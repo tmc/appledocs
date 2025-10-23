@@ -31,29 +31,10 @@ type _PropertyDescriptionClass struct {
 // An interface definition for the [PropertyDescription] class.
 type IPropertyDescription interface {
 	objectivec.IObject
-	SetValidationPredicatesWithValidationWarnings(validationPredicates []foundation.IPredicate, validationWarnings []string)
-	Entity() NSEntityDescription
-	Indexed() bool
-	SetIndexed(value bool)
-	IndexedBySpotlight() bool
-	SetIndexedBySpotlight(value bool)
-	Optional() bool
-	SetOptional(value bool)
-	StoredInExternalRecord() bool
-	SetStoredInExternalRecord(value bool)
-	Transient() bool
-	SetTransient(value bool)
 	Name() string
 	SetName(value string)
-	RenamingIdentifier() string
-	SetRenamingIdentifier(value string)
-	UserInfo() objc.ID
-	SetUserInfo(value objc.ID)
-	ValidationPredicates() []foundation.Predicate
-	ValidationWarnings() objc.ID
-	VersionHash() foundation.NSData
-	VersionHashModifier() string
-	SetVersionHashModifier(value string)
+	Entity() IEntityDescription
+	SetEntity(value IEntityDescription)
 	IsIndexed() bool
 	SetIsIndexed(value bool)
 	IsIndexedBySpotlight() bool
@@ -64,6 +45,18 @@ type IPropertyDescription interface {
 	SetIsStoredInExternalRecord(value bool)
 	IsTransient() bool
 	SetIsTransient(value bool)
+	RenamingIdentifier() string
+	SetRenamingIdentifier(value string)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
+	ValidationPredicates() foundation.Predicate
+	SetValidationPredicates(value foundation.Predicate)
+	ValidationWarnings() unsafe.Pointer
+	SetValidationWarnings(value unsafe.Pointer)
+	VersionHash() foundation.Data
+	SetVersionHash(value foundation.Data)
+	VersionHashModifier() string
+	SetVersionHashModifier(value string)
 }
 
 // A description of a single property belonging to an entity.
@@ -119,120 +112,6 @@ func NewPropertyDescription() PropertyDescription {
 
 
 
-// Sets the validation predicates and warnings of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)
-func (p_ PropertyDescription) SetValidationPredicatesWithValidationWarnings(validationPredicates []foundation.IPredicate, validationWarnings []string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:withValidationWarnings:"), validationPredicates, validationWarnings)
-}
-
-
-// The entity description of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/entity
-func (p_ PropertyDescription) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entity"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver should be indexed for searching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexed
-func (p_ PropertyDescription) Indexed() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("indexed"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver should be indexed for searching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexed
-func (p_ PropertyDescription) SetIndexed(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexed:"), value)
-}
-
-
-// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight
-func (p_ PropertyDescription) IndexedBySpotlight() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("indexedBySpotlight"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight
-func (p_ PropertyDescription) SetIndexedBySpotlight(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIndexedBySpotlight:"), value)
-}
-
-
-// A Boolean value that indicates whether the receiver is optional.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isOptional
-func (p_ PropertyDescription) Optional() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("optional"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver is optional.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isOptional
-func (p_ PropertyDescription) SetOptional(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOptional:"), value)
-}
-
-
-// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord
-func (p_ PropertyDescription) StoredInExternalRecord() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("storedInExternalRecord"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord
-func (p_ PropertyDescription) SetStoredInExternalRecord(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStoredInExternalRecord:"), value)
-}
-
-
-// A Boolean value that indicates whether the receiver is transient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isTransient
-func (p_ PropertyDescription) Transient() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("transient"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver is transient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/isTransient
-func (p_ PropertyDescription) SetTransient(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTransient:"), value)
-}
-
-
 // The name of the receiver.
 //
 // [Full Topic]
@@ -252,90 +131,22 @@ func (p_ PropertyDescription) SetName(value string) {
 }
 
 
-// The renaming identifier for the receiver.
+// The entity description of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) RenamingIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/entity
+func (p_ PropertyDescription) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](p_.ID, objc.Sel("entity"))
 	return rv
 }
 
 
-// The renaming identifier for the receiver.
+// The entity description of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/renamingIdentifier
-func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
-}
-
-
-// The user info dictionary of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/userInfo
-func (p_ PropertyDescription) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// The user info dictionary of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/userInfo
-func (p_ PropertyDescription) SetUserInfo(value objc.ID) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
-}
-
-
-// The validation predicates of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationPredicates
-func (p_ PropertyDescription) ValidationPredicates() []foundation.Predicate {
-	rv := objc.Send[[]foundation.Predicate](p_.ID, objc.Sel("validationPredicates"))
-	return rv
-}
-
-
-// The error strings associated with the receiver’s validation predicates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationWarnings
-func (p_ PropertyDescription) ValidationWarnings() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("validationWarnings"))
-	return rv
-}
-
-
-// The version hash for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHash
-func (p_ PropertyDescription) VersionHash() foundation.NSData {
-	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("versionHash"))
-	return rv
-}
-
-
-// The version hash modifier for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) VersionHashModifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
-	return rv
-}
-
-
-// The version hash modifier for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/versionHashModifier
-func (p_ PropertyDescription) SetVersionHashModifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/entity
+func (p_ PropertyDescription) SetEntity(value IEntityDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEntity:"), value)
 }
 
 
@@ -431,6 +242,120 @@ func (p_ PropertyDescription) IsTransient() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
 func (p_ PropertyDescription) SetIsTransient(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
+}
+
+
+// The renaming identifier for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/renamingidentifier
+func (p_ PropertyDescription) RenamingIdentifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
+	return rv
+}
+
+
+// The renaming identifier for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/renamingidentifier
+func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
+}
+
+
+// The user info dictionary of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/userinfo
+func (p_ PropertyDescription) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
+	return rv
+}
+
+
+// The user info dictionary of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/userinfo
+func (p_ PropertyDescription) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
+}
+
+
+// The validation predicates of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationpredicates
+func (p_ PropertyDescription) ValidationPredicates() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("validationPredicates"))
+	return rv
+}
+
+
+// The validation predicates of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationpredicates
+func (p_ PropertyDescription) SetValidationPredicates(value foundation.Predicate) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:"), value)
+}
+
+
+// The error strings associated with the receiver’s validation predicates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationwarnings
+func (p_ PropertyDescription) ValidationWarnings() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("validationWarnings"))
+	return rv
+}
+
+
+// The error strings associated with the receiver’s validation predicates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationwarnings
+func (p_ PropertyDescription) SetValidationWarnings(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationWarnings:"), value)
+}
+
+
+// The version hash for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhash
+func (p_ PropertyDescription) VersionHash() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("versionHash"))
+	return rv
+}
+
+
+// The version hash for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhash
+func (p_ PropertyDescription) SetVersionHash(value foundation.Data) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHash:"), value)
+}
+
+
+// The version hash modifier for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhashmodifier
+func (p_ PropertyDescription) VersionHashModifier() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
+	return rv
+}
+
+
+// The version hash modifier for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhashmodifier
+func (p_ PropertyDescription) SetVersionHashModifier(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
 
 

@@ -35,7 +35,7 @@ type IActionCell interface {
 	SetTag(value int)
 	Target() objc.ID
 	SetTarget(value objc.ID)
-	ControlView() NSView
+	ControlView() IView
 	SetControlView(value IView)
 	FloatValue() float32
 	SetFloatValue(value float32)
@@ -163,8 +163,8 @@ func (a_ ActionCell) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlview
-func (a_ ActionCell) ControlView() NSView {
-	rv := objc.Send[NSView](a_.ID, objc.Sel("controlView"))
+func (a_ ActionCell) ControlView() IView {
+	rv := objc.Send[View](a_.ID, objc.Sel("controlView"))
 	return rv
 }
 

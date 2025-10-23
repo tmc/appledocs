@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,20 @@ type _MatchRequestClass struct {
 // An interface definition for the [MatchRequest] class.
 type IMatchRequest interface {
 	objectivec.IObject
-	DefaultNumberOfPlayers() uint
-	SetDefaultNumberOfPlayers(value uint)
 	InviteMessage() string
 	SetInviteMessage(value string)
-	MaxPlayers() uint
-	SetMaxPlayers(value uint)
-	MinPlayers() uint
-	SetMinPlayers(value uint)
-	RecipientProperties() unsafe.Pointer
-	SetRecipientProperties(value unsafe.Pointer)
+	RecipientProperties() foundation.IDictionary
+	SetRecipientProperties(value foundation.IDictionary)
 	RecipientResponseHandler() unsafe.Pointer
 	SetRecipientResponseHandler(value unsafe.Pointer)
+	DefaultNumberOfPlayers() int
+	SetDefaultNumberOfPlayers(value int)
 	InviteeResponseHandler() unsafe.Pointer
 	SetInviteeResponseHandler(value unsafe.Pointer)
+	MaxPlayers() int
+	SetMaxPlayers(value int)
+	MinPlayers() int
+	SetMinPlayers(value int)
 	PlayerAttributes() unsafe.Pointer
 	SetPlayerAttributes(value unsafe.Pointer)
 	PlayerGroup() int
@@ -54,7 +55,7 @@ type IMatchRequest interface {
 	SetProperties(value string)
 	QueueName() string
 	SetQueueName(value string)
-	Recipients() GKPlayer
+	Recipients() IGKPlayer
 	SetRecipients(value IGKPlayer)
 	RestrictToAutomatch() bool
 	SetRestrictToAutomatch(value bool)
@@ -113,35 +114,6 @@ func NewMatchRequest() MatchRequest {
 
 
 
-// Returns the maximum number of players allowed in the match request for a given match type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayersAllowedForMatch(of:)
-func (mc _MatchRequestClass) MaxPlayersAllowedForMatchOfType(matchType MatchType) uint {
-	rv := objc.Send[uint](objc.ID(mc.class), objc.Sel("maxPlayersAllowedForMatchOfType:"), matchType)
-	return rv
-}
-
-
-// The default number of players for the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/defaultNumberOfPlayers
-func (m_ MatchRequest) DefaultNumberOfPlayers() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("defaultNumberOfPlayers"))
-	return rv
-}
-
-
-// The default number of players for the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/defaultNumberOfPlayers
-func (m_ MatchRequest) SetDefaultNumberOfPlayers(value uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNumberOfPlayers:"), value)
-}
-
-
 // The message sent to other players when the local player invites them to join a match.
 //
 // [Full Topic]
@@ -161,50 +133,12 @@ func (m_ MatchRequest) SetInviteMessage(value string) {
 }
 
 
-// The maximum number of players that can join the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayers
-func (m_ MatchRequest) MaxPlayers() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("maxPlayers"))
-	return rv
-}
-
-
-// The maximum number of players that can join the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/maxPlayers
-func (m_ MatchRequest) SetMaxPlayers(value uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPlayers:"), value)
-}
-
-
-// The minimum number of players that can join the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/minPlayers
-func (m_ MatchRequest) MinPlayers() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("minPlayers"))
-	return rv
-}
-
-
-// The minimum number of players that can join the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/minPlayers
-func (m_ MatchRequest) SetMinPlayers(value uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPlayers:"), value)
-}
-
-
 // The criteria for recipients of the match request that Game Center uses to find other players when using matchmaking rules.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-func (m_ MatchRequest) RecipientProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("recipientProperties"))
+func (m_ MatchRequest) RecipientProperties() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("recipientProperties"))
 	return rv
 }
 
@@ -213,7 +147,7 @@ func (m_ MatchRequest) RecipientProperties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchRequest/recipientProperties
-func (m_ MatchRequest) SetRecipientProperties(value unsafe.Pointer) {
+func (m_ MatchRequest) SetRecipientProperties(value foundation.IDictionary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecipientProperties:"), value)
 }
 
@@ -237,6 +171,25 @@ func (m_ MatchRequest) SetRecipientResponseHandler(value unsafe.Pointer) {
 }
 
 
+// The default number of players for the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/defaultnumberofplayers
+func (m_ MatchRequest) DefaultNumberOfPlayers() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("defaultNumberOfPlayers"))
+	return rv
+}
+
+
+// The default number of players for the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/defaultnumberofplayers
+func (m_ MatchRequest) SetDefaultNumberOfPlayers(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNumberOfPlayers:"), value)
+}
+
+
 // Handles when a player responds to an invitation.
 //
 // [Full Topic]
@@ -253,6 +206,44 @@ func (m_ MatchRequest) InviteeResponseHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/inviteeresponsehandler
 func (m_ MatchRequest) SetInviteeResponseHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInviteeResponseHandler:"), value)
+}
+
+
+// The maximum number of players that can join the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/maxplayers
+func (m_ MatchRequest) MaxPlayers() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("maxPlayers"))
+	return rv
+}
+
+
+// The maximum number of players that can join the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/maxplayers
+func (m_ MatchRequest) SetMaxPlayers(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPlayers:"), value)
+}
+
+
+// The minimum number of players that can join the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/minplayers
+func (m_ MatchRequest) MinPlayers() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("minPlayers"))
+	return rv
+}
+
+
+// The minimum number of players that can join the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/minplayers
+func (m_ MatchRequest) SetMinPlayers(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPlayers:"), value)
 }
 
 
@@ -355,8 +346,8 @@ func (m_ MatchRequest) SetQueueName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipients
-func (m_ MatchRequest) Recipients() GKPlayer {
-	rv := objc.Send[GKPlayer](m_.ID, objc.Sel("recipients"))
+func (m_ MatchRequest) Recipients() IGKPlayer {
+	rv := objc.Send[Player](m_.ID, objc.Sel("recipients"))
 	return rv
 }
 

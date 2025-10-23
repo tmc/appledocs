@@ -30,6 +30,8 @@ type _reservedClass struct {
 // An interface definition for the [reserved] class.
 type Ireserved interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

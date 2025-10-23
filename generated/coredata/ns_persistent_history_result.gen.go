@@ -30,7 +30,7 @@ type _PersistentHistoryResultClass struct {
 type IPersistentHistoryResult interface {
 	IPersistentStoreResult
 	Result() objc.ID
-	ResultType() PersistentHistoryResultType
+	ResultType() NSPersistentHistoryResultType
 }
 
 // The result of a request to fetch persistent history.
@@ -100,8 +100,8 @@ func (p_ PersistentHistoryResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult/resultType
-func (p_ PersistentHistoryResult) ResultType() PersistentHistoryResultType {
-	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentHistoryResult) ResultType() NSPersistentHistoryResultType {
+	rv := objc.Send[NSPersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 

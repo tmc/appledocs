@@ -30,11 +30,12 @@ type _ArrayControllerClass struct {
 // An interface definition for the [ArrayController] class.
 type IArrayController interface {
 	IObjectController
-	AutomaticRearrangementKeyPaths() []string
 	AlwaysUsesMultipleValuesMarker() bool
 	SetAlwaysUsesMultipleValuesMarker(value bool)
 	ArrangedObjects() unsafe.Pointer
 	SetArrangedObjects(value unsafe.Pointer)
+	AutomaticRearrangementKeyPaths() string
+	SetAutomaticRearrangementKeyPaths(value string)
 	AutomaticallyRearrangesObjects() bool
 	SetAutomaticallyRearrangesObjects(value bool)
 	AvoidsEmptySelection() bool
@@ -48,7 +49,7 @@ type IArrayController interface {
 	ClearsFilterPredicateOnInsertion() bool
 	SetClearsFilterPredicateOnInsertion(value bool)
 	FilterPredicate() foundation.Predicate
-	SetFilterPredicate(value foundation.IPredicate)
+	SetFilterPredicate(value foundation.Predicate)
 	PreservesSelection() bool
 	SetPreservesSelection(value bool)
 	SelectedObjects() unsafe.Pointer
@@ -56,11 +57,11 @@ type IArrayController interface {
 	SelectionIndex() int
 	SetSelectionIndex(value int)
 	SelectionIndexes() foundation.IndexSet
-	SetSelectionIndexes(value foundation.IIndexSet)
+	SetSelectionIndexes(value foundation.IndexSet)
 	SelectsInsertedObjects() bool
 	SetSelectsInsertedObjects(value bool)
 	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.ISortDescriptor)
+	SetSortDescriptors(value foundation.SortDescriptor)
 }
 
 // A bindings-compatible controller that manages a collection of objects.
@@ -118,16 +119,6 @@ func NewArrayController() ArrayController {
 
 
 
-// An array of key paths that trigger automatic content sorting or filtering
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/automaticRearrangementKeyPaths
-func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
-	rv := objc.Send[[]string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the receiver always returns the multiple values marker when multiple objects are selected
 //
 // [Full Topic]
@@ -163,6 +154,25 @@ func (a_ ArrayController) ArrangedObjects() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
 func (a_ ArrayController) SetArrangedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArrangedObjects:"), value)
+}
+
+
+// An array of key paths that trigger automatic content sorting or filtering
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticrearrangementkeypaths
+func (a_ ArrayController) AutomaticRearrangementKeyPaths() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
+	return rv
+}
+
+
+// An array of key paths that trigger automatic content sorting or filtering
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/automaticrearrangementkeypaths
+func (a_ ArrayController) SetAutomaticRearrangementKeyPaths(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticRearrangementKeyPaths:"), objc.String(value))
 }
 
 
@@ -294,7 +304,7 @@ func (a_ ArrayController) FilterPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/filterpredicate
-func (a_ ArrayController) SetFilterPredicate(value foundation.IPredicate) {
+func (a_ ArrayController) SetFilterPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterPredicate:"), value)
 }
 
@@ -370,7 +380,7 @@ func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/selectionindexes
-func (a_ ArrayController) SetSelectionIndexes(value foundation.IIndexSet) {
+func (a_ ArrayController) SetSelectionIndexes(value foundation.IndexSet) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
 
@@ -408,7 +418,7 @@ func (a_ ArrayController) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/sortdescriptors
-func (a_ ArrayController) SetSortDescriptors(value foundation.ISortDescriptor) {
+func (a_ ArrayController) SetSortDescriptors(value foundation.SortDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

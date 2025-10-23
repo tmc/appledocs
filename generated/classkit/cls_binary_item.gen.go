@@ -31,7 +31,7 @@ type ISBinaryItem interface {
 	ISActivityItem
 	Value() bool
 	SetValue(value bool)
-	ValueType() SBinaryValueType
+	ValueType() CLSBinaryValueType
 }
 
 // Activity information that is true or false, pass or fail, yes or no.
@@ -93,7 +93,7 @@ func NewSBinaryItem() SBinaryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
-func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType SBinaryValueType) SBinaryItem {
+func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType CLSBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
 	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
 	rv.Autorelease()
@@ -125,8 +125,8 @@ func (s_ SBinaryItem) SetValue(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType
-func (s_ SBinaryItem) ValueType() SBinaryValueType {
-	rv := objc.Send[SBinaryValueType](s_.ID, objc.Sel("valueType"))
+func (s_ SBinaryItem) ValueType() CLSBinaryValueType {
+	rv := objc.Send[CLSBinaryValueType](s_.ID, objc.Sel("valueType"))
 	return rv
 }
 

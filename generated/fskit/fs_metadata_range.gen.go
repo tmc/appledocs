@@ -32,7 +32,9 @@ type IFSMetadataRange interface {
 	objectivec.IObject
 	SegmentCount() uint64
 	SegmentLength() uint64
+	SetSegmentLength(value uint64)
 	StartOffset() unsafe.Pointer
+	SetStartOffset(value unsafe.Pointer)
 }
 
 // A range that describes contiguous metadata segments on disk.
@@ -88,29 +90,6 @@ func NewFSMetadataRange() FSMetadataRange {
 
 
 
-// Initializes a metadata range with the given properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/init(offset:segmentLength:segmentCount:)
-func NewFSMetadataRangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength uint64, segmentCount uint64) FSMetadataRange {
-	instance := getFSMetadataRangeClass().Alloc()
-	rv := objc.Send[FSMetadataRange](instance.ID, objc.Sel("initWithOffset:segmentLength:segmentCount:"), startOffset, segmentLength, segmentCount)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a metadata range with the given properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/rangeWithOffset:segmentLength:segmentCount:
-func (fc _FSMetadataRangeClass) RangeWithOffsetSegmentLengthSegmentCount(startOffset unsafe.Pointer, segmentLength uint64, segmentCount uint64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("rangeWithOffset:segmentLength:segmentCount:"), startOffset, segmentLength, segmentCount)
-	return rv
-}
-
-
 // The number of segments in the range.
 //
 // [Full Topic]
@@ -124,9 +103,28 @@ func (f_ FSMetadataRange) SegmentCount() uint64 {
 // The segment length in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/segmentLength
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
 func (f_ FSMetadataRange) SegmentLength() uint64 {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentLength"))
+	return rv
+}
+
+
+// The segment length in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
+func (f_ FSMetadataRange) SetSegmentLength(value uint64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSegmentLength:"), value)
+}
+
+
+// The start offset of the range in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/startoffset
+func (f_ FSMetadataRange) StartOffset() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("startOffset"))
 	return rv
 }
 
@@ -134,10 +132,10 @@ func (f_ FSMetadataRange) SegmentLength() uint64 {
 // The start offset of the range in bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/startOffset
-func (f_ FSMetadataRange) StartOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("startOffset"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/startoffset
+func (f_ FSMetadataRange) SetStartOffset(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setStartOffset:"), value)
 }
+
 
 

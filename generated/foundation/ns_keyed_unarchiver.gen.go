@@ -29,12 +29,14 @@ type _KeyedUnarchiverClass struct {
 // An interface definition for the [KeyedUnarchiver] class.
 type IKeyedUnarchiver interface {
 	ICoder
+	// properties:
 	DecodingFailurePolicy() unsafe.Pointer
 	SetDecodingFailurePolicy(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	RequiresSecureCoding() bool
-	SetRequiresSecureCoding(value bool)
+	Delegate() KeyedUnarchiverDelegate /* foo */
+	SetDelegate(value KeyedUnarchiverDelegate /* foo */)
+	RequiresSecureCoding() bool /* primitive/slice/pointer */
+	SetRequiresSecureCoding(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A decoder that restores data from an archive referenced by keys.
@@ -115,8 +117,8 @@ func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
-func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("delegate"))
+func (k_ KeyedUnarchiver) Delegate() KeyedUnarchiverDelegate /* foo */ {
+	rv := objc.Send[KeyedUnarchiverDelegate](k_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -125,7 +127,7 @@ func (k_ KeyedUnarchiver) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/delegate
-func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
+func (k_ KeyedUnarchiver) SetDelegate(value KeyedUnarchiverDelegate /* foo */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -134,7 +136,7 @@ func (k_ KeyedUnarchiver) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
+func (k_ KeyedUnarchiver) RequiresSecureCoding() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](k_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (k_ KeyedUnarchiver) RequiresSecureCoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/requiressecurecoding
-func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool) {
+func (k_ KeyedUnarchiver) SetRequiresSecureCoding(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 

@@ -31,15 +31,15 @@ type _WindowTabClass struct {
 // An interface definition for the [WindowTab] class.
 type IWindowTab interface {
 	objectivec.IObject
-	AccessoryView() NSView
+	AccessoryView() IView
 	SetAccessoryView(value IView)
 	AttributedTitle() foundation.AttributedString
-	SetAttributedTitle(value foundation.IAttributedString)
+	SetAttributedTitle(value foundation.AttributedString)
 	Title() string
 	SetTitle(value string)
 	ToolTip() string
 	SetToolTip(value string)
-	Tab() NSWindowTab
+	Tab() IWindowTab
 	SetTab(value IWindowTab)
 	TabbingIdentifier() unsafe.Pointer
 	SetTabbingIdentifier(value unsafe.Pointer)
@@ -102,8 +102,8 @@ func NewWindowTab() WindowTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
-func (w_ WindowTab) AccessoryView() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("accessoryView"))
+func (w_ WindowTab) AccessoryView() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) SetAttributedTitle(value foundation.IAttributedString) {
+func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -178,8 +178,8 @@ func (w_ WindowTab) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
-func (w_ WindowTab) Tab() NSWindowTab {
-	rv := objc.Send[NSWindowTab](w_.ID, objc.Sel("tab"))
+func (w_ WindowTab) Tab() IWindowTab {
+	rv := objc.Send[WindowTab](w_.ID, objc.Sel("tab"))
 	return rv
 }
 

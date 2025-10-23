@@ -30,6 +30,8 @@ type _wantsInvalidClass struct {
 // An interface definition for the [wantsInvalid] class.
 type IwantsInvalid interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

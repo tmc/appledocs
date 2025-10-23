@@ -31,13 +31,15 @@ type _LPMetadataProviderClass struct {
 // An interface definition for the [LPMetadataProvider] class.
 type ILPMetadataProvider interface {
 	objectivec.IObject
-	Cancel()
-	StartFetchingMetadataForURLCompletionHandler(URL foundation.IURL, completionHandler unsafe.Pointer)
-	StartFetchingMetadataForRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer)
+	// properties:
 	ShouldFetchSubresources() bool
 	SetShouldFetchSubresources(value bool)
 	Timeout() foundation.TimeInterval
-	SetTimeout(value foundation.ITimeInterval)
+	SetTimeout(value foundation.TimeInterval)
+	// methods:
+	Cancel()
+	StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer)
+	StartFetchingMetadataForRequestCompletionHandler(request foundation.URLRequest, completionHandler unsafe.Pointer)
 }
 
 // An object that retrieves metadata for a URL.
@@ -106,7 +108,7 @@ func (l_ LPMetadataProvider) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-54z5i
-func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.IURL, completionHandler unsafe.Pointer) {
+func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForURL:completionHandler:"), URL, completionHandler)
 }
 
@@ -115,7 +117,7 @@ func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8
-func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer) {
+func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(request foundation.URLRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForRequest:completionHandler:"), request, completionHandler)
 }
 
@@ -153,7 +155,7 @@ func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
-func (l_ LPMetadataProvider) SetTimeout(value foundation.ITimeInterval) {
+func (l_ LPMetadataProvider) SetTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimeout:"), value)
 }
 

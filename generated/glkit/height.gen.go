@@ -30,6 +30,8 @@ type _heightClass struct {
 // An interface definition for the [height] class.
 type Iheight interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

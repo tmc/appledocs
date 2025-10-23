@@ -31,11 +31,11 @@ type _CBATTRequestClass struct {
 // An interface definition for the [CBATTRequest] class.
 type ICBATTRequest interface {
 	objectivec.IObject
-	Central() CBCentral
-	Characteristic() CBCharacteristic
+	Central() ICBCentral
+	Characteristic() ICBCharacteristic
 	Offset() uint
 	Value() foundation.NSData
-	SetValue(value foundation.IData)
+	SetValue(value foundation.NSData)
 }
 
 // A request that uses the Attribute Protocol (ATT).
@@ -95,7 +95,7 @@ func NewCBATTRequest() CBATTRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/central
-func (c_ CBATTRequest) Central() CBCentral {
+func (c_ CBATTRequest) Central() ICBCentral {
 	rv := objc.Send[CBCentral](c_.ID, objc.Sel("central"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (c_ CBATTRequest) Central() CBCentral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/characteristic
-func (c_ CBATTRequest) Characteristic() CBCharacteristic {
+func (c_ CBATTRequest) Characteristic() ICBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (c_ CBATTRequest) Value() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBATTRequest/value
-func (c_ CBATTRequest) SetValue(value foundation.IData) {
+func (c_ CBATTRequest) SetValue(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 

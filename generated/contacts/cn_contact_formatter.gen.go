@@ -31,10 +31,10 @@ type _CNContactFormatterClass struct {
 // An interface definition for the [CNContactFormatter] class.
 type ICNContactFormatter interface {
 	foundation.IFormatter
-	AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString
-	StringFromContact(contact ICNContact) foundation.String
 	Style() CNContactFormatterStyle
 	SetStyle(value CNContactFormatterStyle)
+	AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString
+	StringFromContact(contact ICNContact) foundation.String
 }
 
 // An object that you use to format contact information before displaying it to the user.

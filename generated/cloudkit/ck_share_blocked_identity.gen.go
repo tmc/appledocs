@@ -32,7 +32,7 @@ type _CKShareBlockedIdentityClass struct {
 type ICKShareBlockedIdentity interface {
 	objectivec.IObject
 	Contact() contacts.CNContact
-	UserIdentity() CKUserIdentity
+	UserIdentity() ICKUserIdentity
 }
 
 
@@ -95,7 +95,7 @@ func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/userIdentity
-func (c_ CKShareBlockedIdentity) UserIdentity() CKUserIdentity {
+func (c_ CKShareBlockedIdentity) UserIdentity() ICKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
 }

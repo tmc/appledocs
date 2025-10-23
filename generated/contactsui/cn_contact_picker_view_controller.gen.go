@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactPickerViewController] class.
@@ -35,12 +34,12 @@ type ICNContactPickerViewController interface {
 	SetDelegate(value objc.ID)
 	DisplayedPropertyKeys() []string
 	SetDisplayedPropertyKeys(value []string)
-	PredicateForEnablingContact() foundation.Predicate
-	SetPredicateForEnablingContact(value foundation.IPredicate)
-	PredicateForSelectionOfContact() foundation.Predicate
-	SetPredicateForSelectionOfContact(value foundation.IPredicate)
-	PredicateForSelectionOfProperty() foundation.Predicate
-	SetPredicateForSelectionOfProperty(value foundation.IPredicate)
+	PredicateForEnablingContact() NSPredicate
+	SetPredicateForEnablingContact(value NSPredicate)
+	PredicateForSelectionOfContact() NSPredicate
+	SetPredicateForSelectionOfContact(value NSPredicate)
+	PredicateForSelectionOfProperty() NSPredicate
+	SetPredicateForSelectionOfProperty(value NSPredicate)
 }
 
 // A view controller that displays an interface for picking contacts.
@@ -150,8 +149,8 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) PredicateForEnablingContact() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
+func (c_ CNContactPickerViewController) PredicateForEnablingContact() NSPredicate {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
 	return rv
 }
 
@@ -160,7 +159,7 @@ func (c_ CNContactPickerViewController) PredicateForEnablingContact() foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value foundation.IPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value NSPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForEnablingContact:"), value)
 }
 
@@ -169,8 +168,8 @@ func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
+func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() NSPredicate {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
 	return rv
 }
 
@@ -179,7 +178,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() foundat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value foundation.IPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value NSPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfContact:"), value)
 }
 
@@ -188,8 +187,8 @@ func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
+func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() NSPredicate {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
 	return rv
 }
 
@@ -198,7 +197,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value foundation.IPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value NSPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfProperty:"), value)
 }
 

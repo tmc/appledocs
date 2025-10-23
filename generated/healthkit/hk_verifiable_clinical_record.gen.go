@@ -30,24 +30,28 @@ type _HKVerifiableClinicalRecordClass struct {
 // An interface definition for the [HKVerifiableClinicalRecord] class.
 type IHKVerifiableClinicalRecord interface {
 	IHKSample
-	DataRepresentation() foundation.NSData
-	RelevantDate() foundation.NSDate
+	// properties:
+	DataRepresentation() foundation.Data
+	SetDataRepresentation(value foundation.Data)
 	ExpirationDate() foundation.Date
-	SetExpirationDate(value foundation.IDate)
+	SetExpirationDate(value foundation.Date)
 	IssuedDate() foundation.Date
-	SetIssuedDate(value foundation.IDate)
+	SetIssuedDate(value foundation.Date)
 	IssuerIdentifier() string
 	SetIssuerIdentifier(value string)
 	ItemNames() string
 	SetItemNames(value string)
 	JwsRepresentation() foundation.Data
-	SetJwsRepresentation(value foundation.IData)
+	SetJwsRepresentation(value foundation.Data)
 	RecordTypes() string
 	SetRecordTypes(value string)
+	RelevantDate() foundation.Date
+	SetRelevantDate(value foundation.Date)
 	SourceType() HKVerifiableClinicalRecordSourceType
 	SetSourceType(value HKVerifiableClinicalRecordSourceType)
-	Subject() HKVerifiableClinicalRecordSubject
+	Subject() IHKVerifiableClinicalRecordSubject
 	SetSubject(value IHKVerifiableClinicalRecordSubject)
+	// methods:
 }
 
 // A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.
@@ -108,20 +112,19 @@ func NewHKVerifiableClinicalRecord() HKVerifiableClinicalRecord {
 // A raw representation of the record’s data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/dataRepresentation
-func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.NSData {
-	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("dataRepresentation"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/datarepresentation
+func (h_ HKVerifiableClinicalRecord) DataRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
 
-// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
+// A raw representation of the record’s data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecord/relevantDate
-func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("relevantDate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/datarepresentation
+func (h_ HKVerifiableClinicalRecord) SetDataRepresentation(value foundation.Data) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDataRepresentation:"), value)
 }
 
 
@@ -139,7 +142,7 @@ func (h_ HKVerifiableClinicalRecord) ExpirationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/expirationdate
-func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.IDate) {
+func (h_ HKVerifiableClinicalRecord) SetExpirationDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
@@ -158,7 +161,7 @@ func (h_ HKVerifiableClinicalRecord) IssuedDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/issueddate
-func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.IDate) {
+func (h_ HKVerifiableClinicalRecord) SetIssuedDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIssuedDate:"), value)
 }
 
@@ -215,7 +218,7 @@ func (h_ HKVerifiableClinicalRecord) JwsRepresentation() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/jwsrepresentation
-func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.IData) {
+func (h_ HKVerifiableClinicalRecord) SetJwsRepresentation(value foundation.Data) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setJwsRepresentation:"), value)
 }
 
@@ -236,6 +239,25 @@ func (h_ HKVerifiableClinicalRecord) RecordTypes() string {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/recordtypes
 func (h_ HKVerifiableClinicalRecord) SetRecordTypes(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRecordTypes:"), objc.String(value))
+}
+
+
+// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
+func (h_ HKVerifiableClinicalRecord) RelevantDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("relevantDate"))
+	return rv
+}
+
+
+// A date relevant to this record, such as when the issuer administered a vaccine or performed a test.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/relevantdate
+func (h_ HKVerifiableClinicalRecord) SetRelevantDate(value foundation.Date) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRelevantDate:"), value)
 }
 
 
@@ -262,7 +284,7 @@ func (h_ HKVerifiableClinicalRecord) SetSourceType(value HKVerifiableClinicalRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/subject
-func (h_ HKVerifiableClinicalRecord) Subject() HKVerifiableClinicalRecordSubject {
+func (h_ HKVerifiableClinicalRecord) Subject() IHKVerifiableClinicalRecordSubject {
 	rv := objc.Send[HKVerifiableClinicalRecordSubject](h_.ID, objc.Sel("subject"))
 	return rv
 }

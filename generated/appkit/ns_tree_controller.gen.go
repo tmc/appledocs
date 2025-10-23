@@ -32,8 +32,8 @@ type ITreeController interface {
 	IObjectController
 	AlwaysUsesMultipleValuesMarker() bool
 	SetAlwaysUsesMultipleValuesMarker(value bool)
-	ArrangedObjects() NSTreeNode
-	SetArrangedObjects(value ITreeNode)
+	ArrangedObjects() TreeNode
+	SetArrangedObjects(value TreeNode)
 	AvoidsEmptySelection() bool
 	SetAvoidsEmptySelection(value bool)
 	CanAddChild() bool
@@ -52,18 +52,18 @@ type ITreeController interface {
 	SetLeafKeyPath(value string)
 	PreservesSelection() bool
 	SetPreservesSelection(value bool)
-	SelectedNodes() NSTreeNode
-	SetSelectedNodes(value ITreeNode)
+	SelectedNodes() TreeNode
+	SetSelectedNodes(value TreeNode)
 	SelectedObjects() unsafe.Pointer
 	SetSelectedObjects(value unsafe.Pointer)
 	SelectionIndexPath() foundation.IndexPath
-	SetSelectionIndexPath(value foundation.IIndexPath)
+	SetSelectionIndexPath(value foundation.IndexPath)
 	SelectionIndexPaths() foundation.IndexPath
-	SetSelectionIndexPaths(value foundation.IIndexPath)
+	SetSelectionIndexPaths(value foundation.IndexPath)
 	SelectsInsertedObjects() bool
 	SetSelectsInsertedObjects(value bool)
 	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.ISortDescriptor)
+	SetSortDescriptors(value foundation.SortDescriptor)
 }
 
 // A bindings-compatible controller that manages a tree of objects.
@@ -144,8 +144,8 @@ func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) ArrangedObjects() NSTreeNode {
-	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("arrangedObjects"))
+func (t_ TreeController) ArrangedObjects() TreeNode {
+	rv := objc.Send[TreeNode](t_.ID, objc.Sel("arrangedObjects"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (t_ TreeController) ArrangedObjects() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) SetArrangedObjects(value ITreeNode) {
+func (t_ TreeController) SetArrangedObjects(value TreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setArrangedObjects:"), value)
 }
 
@@ -334,8 +334,8 @@ func (t_ TreeController) SetPreservesSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SelectedNodes() NSTreeNode {
-	rv := objc.Send[NSTreeNode](t_.ID, objc.Sel("selectedNodes"))
+func (t_ TreeController) SelectedNodes() TreeNode {
+	rv := objc.Send[TreeNode](t_.ID, objc.Sel("selectedNodes"))
 	return rv
 }
 
@@ -344,7 +344,7 @@ func (t_ TreeController) SelectedNodes() NSTreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SetSelectedNodes(value ITreeNode) {
+func (t_ TreeController) SetSelectedNodes(value TreeNode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedNodes:"), value)
 }
 
@@ -382,7 +382,7 @@ func (t_ TreeController) SelectionIndexPath() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SetSelectionIndexPath(value foundation.IIndexPath) {
+func (t_ TreeController) SetSelectionIndexPath(value foundation.IndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPath:"), value)
 }
 
@@ -401,7 +401,7 @@ func (t_ TreeController) SelectionIndexPaths() foundation.IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SetSelectionIndexPaths(value foundation.IIndexPath) {
+func (t_ TreeController) SetSelectionIndexPaths(value foundation.IndexPath) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
 
@@ -439,7 +439,7 @@ func (t_ TreeController) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SetSortDescriptors(value foundation.ISortDescriptor) {
+func (t_ TreeController) SetSortDescriptors(value foundation.SortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

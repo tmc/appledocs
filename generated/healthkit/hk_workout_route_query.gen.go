@@ -29,6 +29,8 @@ type _HKWorkoutRouteQueryClass struct {
 // An interface definition for the [HKWorkoutRouteQuery] class.
 type IHKWorkoutRouteQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A query to access the location data stored in a workout route.

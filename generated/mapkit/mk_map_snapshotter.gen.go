@@ -30,12 +30,14 @@ type _MKMapSnapshotterClass struct {
 // An interface definition for the [MKMapSnapshotter] class.
 type IMKMapSnapshotter interface {
 	objectivec.IObject
-	Cancel()
-	StartWithCompletionHandler(completionHandler unsafe.Pointer)
-	StartWithQueueCompletionHandler(queue unsafe.Pointer, completionHandler unsafe.Pointer)
+	// properties:
 	Loading() bool
 	IsLoading() bool
 	SetIsLoading(value bool)
+	// methods:
+	Cancel()
+	StartWithCompletionHandler(completionHandler unsafe.Pointer)
+	StartWithQueueCompletionHandler(queue unsafe.Pointer, completionHandler unsafe.Pointer)
 }
 
 // A utility class for capturing a map and its content into an image.
@@ -95,7 +97,7 @@ func NewMKMapSnapshotter() MKMapSnapshotter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/init(options:)
-func NewMKMapSnapshotterWithOptions(options MKMapSnapshotOptions) MKMapSnapshotter {
+func NewMKMapSnapshotterWithOptions(options IMKMapSnapshotOptions) MKMapSnapshotter {
 	instance := getMKMapSnapshotterClass().Alloc()
 	rv := objc.Send[MKMapSnapshotter](instance.ID, objc.Sel("initWithOptions:"), options)
 	rv.Autorelease()

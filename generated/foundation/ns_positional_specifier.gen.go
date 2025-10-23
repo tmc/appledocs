@@ -30,12 +30,14 @@ type _PositionalSpecifierClass struct {
 // An interface definition for the [PositionalSpecifier] class.
 type IPositionalSpecifier interface {
 	objectivec.IObject
+	// properties:
 	InsertionContainer() objc.ID
-	InsertionIndex() int
-	InsertionKey() string
-	InsertionReplaces() bool
+	InsertionIndex() int /* primitive/slice/pointer */
+	InsertionKey() string /* primitive/slice/pointer */
+	InsertionReplaces() bool /* primitive/slice/pointer */
 	ObjectSpecifier() IScriptObjectSpecifier
-	Position() NSInsertionPosition
+	Position() InsertionPosition
+	// methods:
 	Evaluate()
 	SetInsertionClassDescription(classDescription IScriptClassDescription)
 }
@@ -97,7 +99,7 @@ func NewPositionalSpecifier() PositionalSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/init(position:objectSpecifier:)
-func NewPositionalSpecifierWithPositionObjectSpecifier(position NSInsertionPosition, specifier IScriptObjectSpecifier) PositionalSpecifier {
+func NewPositionalSpecifierWithPositionObjectSpecifier(position InsertionPosition, specifier IScriptObjectSpecifier) PositionalSpecifier {
 	instance := getPositionalSpecifierClass().Alloc()
 	rv := objc.Send[PositionalSpecifier](instance.ID, objc.Sel("initWithPosition:objectSpecifier:"), position, specifier)
 	rv.Autorelease()
@@ -138,7 +140,7 @@ func (p_ PositionalSpecifier) InsertionContainer() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/insertionIndex
-func (p_ PositionalSpecifier) InsertionIndex() int {
+func (p_ PositionalSpecifier) InsertionIndex() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("insertionIndex"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (p_ PositionalSpecifier) InsertionIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/insertionKey
-func (p_ PositionalSpecifier) InsertionKey() string {
+func (p_ PositionalSpecifier) InsertionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("insertionKey"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (p_ PositionalSpecifier) InsertionKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/insertionReplaces
-func (p_ PositionalSpecifier) InsertionReplaces() bool {
+func (p_ PositionalSpecifier) InsertionReplaces() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("insertionReplaces"))
 	return rv
 }
@@ -178,7 +180,7 @@ func (p_ PositionalSpecifier) ObjectSpecifier() IScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/position
-func (p_ PositionalSpecifier) Position() NSInsertionPosition {
+func (p_ PositionalSpecifier) Position() InsertionPosition {
 	rv := objc.Send[InsertionPosition](p_.ID, objc.Sel("position"))
 	return rv
 }

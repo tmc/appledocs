@@ -31,9 +31,6 @@ type _CNContactClass struct {
 // An interface definition for the [CNContact] class.
 type ICNContact interface {
 	objectivec.IObject
-	AreKeysAvailable(keyDescriptors []objc.ID) bool
-	IsKeyAvailable(key string) bool
-	IsUnifiedWithContactWithIdentifier(contactIdentifier string) bool
 	Birthday() foundation.DateComponents
 	ContactRelations() []CNLabeledValue
 	ContactType() CNContactType
@@ -64,6 +61,9 @@ type ICNContact interface {
 	SocialProfiles() []CNLabeledValue
 	ThumbnailImageData() foundation.NSData
 	UrlAddresses() []CNLabeledValue
+	AreKeysAvailable(keyDescriptors []objc.ID) bool
+	IsKeyAvailable(key string) bool
+	IsUnifiedWithContactWithIdentifier(contactIdentifier string) bool
 }
 
 // An immutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.
@@ -123,7 +123,7 @@ func NewCNContact() CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/comparator(forNameSortOrder:)
-func (cc _CNContactClass) ComparatorForNameSortOrder(sortOrder ICNContactSortOrder) unsafe.Pointer {
+func (cc _CNContactClass) ComparatorForNameSortOrder(sortOrder CNContactSortOrder) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comparatorForNameSortOrder:"), sortOrder)
 	return rv
 }

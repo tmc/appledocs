@@ -31,15 +31,15 @@ type _TurnBasedExchangeReplyClass struct {
 // An interface definition for the [TurnBasedExchangeReply] class.
 type ITurnBasedExchangeReply interface {
 	objectivec.IObject
-	Recipient() GKTurnBasedParticipant
-	Replies() GKTurnBasedExchangeReply
+	Recipient() IGKTurnBasedParticipant
+	Replies() IGKTurnBasedExchangeReply
 	SetReplies(value IGKTurnBasedExchangeReply)
 	Data() foundation.Data
-	SetData(value foundation.IData)
+	SetData(value foundation.Data)
 	Message() string
 	SetMessage(value string)
 	ReplyDate() foundation.Date
-	SetReplyDate(value foundation.IDate)
+	SetReplyDate(value foundation.Date)
 }
 
 // Details about a recipient’s response to an exchange request.
@@ -99,8 +99,8 @@ func NewTurnBasedExchangeReply() TurnBasedExchangeReply {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply/recipient
-func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
-	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipient"))
+func (t_ TurnBasedExchangeReply) Recipient() IGKTurnBasedParticipant {
+	rv := objc.Send[TurnBasedParticipant](t_.ID, objc.Sel("recipient"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-func (t_ TurnBasedExchangeReply) Replies() GKTurnBasedExchangeReply {
-	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
+func (t_ TurnBasedExchangeReply) Replies() IGKTurnBasedExchangeReply {
+	rv := objc.Send[TurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (t_ TurnBasedExchangeReply) Data() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
-func (t_ TurnBasedExchangeReply) SetData(value foundation.IData) {
+func (t_ TurnBasedExchangeReply) SetData(value foundation.Data) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
 
@@ -176,7 +176,7 @@ func (t_ TurnBasedExchangeReply) ReplyDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
-func (t_ TurnBasedExchangeReply) SetReplyDate(value foundation.IDate) {
+func (t_ TurnBasedExchangeReply) SetReplyDate(value foundation.Date) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplyDate:"), value)
 }
 

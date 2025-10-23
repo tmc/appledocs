@@ -240,7 +240,7 @@ func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
 func (cc _ColorClass) BlackColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blackColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("blackColor"))
 	return rv
 }
 
@@ -249,7 +249,7 @@ func (cc _ColorClass) BlackColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
 func (cc _ColorClass) BlueColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blueColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("blueColor"))
 	return rv
 }
 
@@ -258,7 +258,7 @@ func (cc _ColorClass) BlueColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
 func (cc _ColorClass) ClearColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("clearColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("clearColor"))
 	return rv
 }
 
@@ -267,7 +267,7 @@ func (cc _ColorClass) ClearColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
 func (cc _ColorClass) CyanColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("cyanColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("cyanColor"))
 	return rv
 }
 
@@ -276,7 +276,7 @@ func (cc _ColorClass) CyanColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
 func (cc _ColorClass) GrayColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("grayColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("grayColor"))
 	return rv
 }
 
@@ -285,7 +285,7 @@ func (cc _ColorClass) GrayColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
 func (cc _ColorClass) GreenColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("greenColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("greenColor"))
 	return rv
 }
 
@@ -294,7 +294,7 @@ func (cc _ColorClass) GreenColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
 func (cc _ColorClass) MagentaColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("magentaColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("magentaColor"))
 	return rv
 }
 
@@ -303,7 +303,7 @@ func (cc _ColorClass) MagentaColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
 func (cc _ColorClass) RedColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("redColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("redColor"))
 	return rv
 }
 
@@ -312,7 +312,7 @@ func (cc _ColorClass) RedColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
 func (cc _ColorClass) WhiteColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("whiteColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("whiteColor"))
 	return rv
 }
 
@@ -321,7 +321,7 @@ func (cc _ColorClass) WhiteColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
 func (cc _ColorClass) YellowColor() Color {
-	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("yellowColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("yellowColor"))
 	return rv
 }
 
@@ -339,8 +339,8 @@ func (c_ Color) Alpha() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
-func (c_ Color) BlackColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("blackColor"))
+func (c_ Color) BlackColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("blackColor"))
 	return rv
 }
 
@@ -359,8 +359,8 @@ func (c_ Color) Blue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
-func (c_ Color) BlueColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("blueColor"))
+func (c_ Color) BlueColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("blueColor"))
 	return rv
 }
 
@@ -369,8 +369,8 @@ func (c_ Color) BlueColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
-func (c_ Color) ClearColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("clearColor"))
+func (c_ Color) ClearColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("clearColor"))
 	return rv
 }
 
@@ -399,8 +399,8 @@ func (c_ Color) Components() coregraphics.float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
-func (c_ Color) CyanColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("cyanColor"))
+func (c_ Color) CyanColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("cyanColor"))
 	return rv
 }
 
@@ -409,8 +409,8 @@ func (c_ Color) CyanColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
-func (c_ Color) GrayColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("grayColor"))
+func (c_ Color) GrayColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("grayColor"))
 	return rv
 }
 
@@ -429,8 +429,8 @@ func (c_ Color) Green() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
-func (c_ Color) GreenColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("greenColor"))
+func (c_ Color) GreenColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("greenColor"))
 	return rv
 }
 
@@ -439,8 +439,8 @@ func (c_ Color) GreenColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
-func (c_ Color) MagentaColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("magentaColor"))
+func (c_ Color) MagentaColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("magentaColor"))
 	return rv
 }
 
@@ -469,8 +469,8 @@ func (c_ Color) Red() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
-func (c_ Color) RedColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("redColor"))
+func (c_ Color) RedColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("redColor"))
 	return rv
 }
 
@@ -489,8 +489,8 @@ func (c_ Color) StringRepresentation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
-func (c_ Color) WhiteColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("whiteColor"))
+func (c_ Color) WhiteColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("whiteColor"))
 	return rv
 }
 
@@ -499,8 +499,8 @@ func (c_ Color) WhiteColor() CIColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
-func (c_ Color) YellowColor() CIColor {
-	rv := objc.Send[CIColor](c_.ID, objc.Sel("yellowColor"))
+func (c_ Color) YellowColor() ICIColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("yellowColor"))
 	return rv
 }
 

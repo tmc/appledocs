@@ -31,60 +31,62 @@ type _AssetTrackClass struct {
 // An interface definition for the [AssetTrack] class.
 type IAssetTrack interface {
 	objectivec.IObject
+	// properties:
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	AvailableMetadataFormats() unsafe.Pointer
-	SetAvailableMetadataFormats(value unsafe.Pointer)
+	AvailableMetadataFormats() AVMetadataFormat /* foo */
+	SetAvailableMetadataFormats(value AVMetadataFormat /* foo */)
 	AvailableTrackAssociationTypes() unsafe.Pointer
 	SetAvailableTrackAssociationTypes(value unsafe.Pointer)
-	CanProvideSampleCursors() bool
-	SetCanProvideSampleCursors(value bool)
+	CanProvideSampleCursors() bool /* primitive/slice/pointer */
+	SetCanProvideSampleCursors(value bool /* primitive/slice/pointer */)
 	CommonMetadata() IAVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
-	EstimatedDataRate() float32
-	SetEstimatedDataRate(value float32)
-	ExtendedLanguageTag() string
-	SetExtendedLanguageTag(value string)
+	EstimatedDataRate() float32 /* primitive/slice/pointer */
+	SetEstimatedDataRate(value float32 /* primitive/slice/pointer */)
+	ExtendedLanguageTag() string /* primitive/slice/pointer */
+	SetExtendedLanguageTag(value string /* primitive/slice/pointer */)
 	FormatDescriptions() unsafe.Pointer
 	SetFormatDescriptions(value unsafe.Pointer)
-	HasAudioSampleDependencies() bool
-	SetHasAudioSampleDependencies(value bool)
-	IsDecodable() bool
-	SetIsDecodable(value bool)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	IsPlayable() bool
-	SetIsPlayable(value bool)
-	IsSelfContained() bool
-	SetIsSelfContained(value bool)
-	LanguageCode() string
-	SetLanguageCode(value string)
-	MediaType() unsafe.Pointer
-	SetMediaType(value unsafe.Pointer)
+	HasAudioSampleDependencies() bool /* primitive/slice/pointer */
+	SetHasAudioSampleDependencies(value bool /* primitive/slice/pointer */)
+	IsDecodable() bool /* primitive/slice/pointer */
+	SetIsDecodable(value bool /* primitive/slice/pointer */)
+	IsEnabled() bool /* primitive/slice/pointer */
+	SetIsEnabled(value bool /* primitive/slice/pointer */)
+	IsPlayable() bool /* primitive/slice/pointer */
+	SetIsPlayable(value bool /* primitive/slice/pointer */)
+	IsSelfContained() bool /* primitive/slice/pointer */
+	SetIsSelfContained(value bool /* primitive/slice/pointer */)
+	LanguageCode() string /* primitive/slice/pointer */
+	SetLanguageCode(value string /* primitive/slice/pointer */)
+	MediaType() AVMediaType /* foo */
+	SetMediaType(value AVMediaType /* foo */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	MinFrameDuration() unsafe.Pointer
-	SetMinFrameDuration(value unsafe.Pointer)
+	MinFrameDuration() CMTime /* foo */
+	SetMinFrameDuration(value CMTime /* foo */)
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	NaturalTimeScale() unsafe.Pointer
-	SetNaturalTimeScale(value unsafe.Pointer)
-	NominalFrameRate() float32
-	SetNominalFrameRate(value float32)
+	NaturalTimeScale() CMTimeScale /* foo */
+	SetNaturalTimeScale(value CMTimeScale /* foo */)
+	NominalFrameRate() float32 /* primitive/slice/pointer */
+	SetNominalFrameRate(value float32 /* primitive/slice/pointer */)
 	PreferredTransform() coregraphics.CGAffineTransform
 	SetPreferredTransform(value coregraphics.CGAffineTransform)
-	PreferredVolume() float32
-	SetPreferredVolume(value float32)
-	RequiresFrameReordering() bool
-	SetRequiresFrameReordering(value bool)
+	PreferredVolume() float32 /* primitive/slice/pointer */
+	SetPreferredVolume(value float32 /* primitive/slice/pointer */)
+	RequiresFrameReordering() bool /* primitive/slice/pointer */
+	SetRequiresFrameReordering(value bool /* primitive/slice/pointer */)
 	Segments() IAVAssetTrackSegment
 	SetSegments(value IAVAssetTrackSegment)
-	TimeRange() unsafe.Pointer
-	SetTimeRange(value unsafe.Pointer)
+	TimeRange() CMTimeRange /* foo */
+	SetTimeRange(value CMTimeRange /* foo */)
 	TotalSampleDataLength() unsafe.Pointer
 	SetTotalSampleDataLength(value unsafe.Pointer)
-	TrackID() unsafe.Pointer
-	SetTrackID(value unsafe.Pointer)
+	TrackID() CMPersistentTrackID /* foo */
+	SetTrackID(value CMPersistentTrackID /* foo */)
+	// methods:
 }
 
 // An object that models a track of media that an asset contains.
@@ -163,8 +165,8 @@ func (a_ AssetTrack) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) AvailableMetadataFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableMetadataFormats"))
+func (a_ AssetTrack) AvailableMetadataFormats() AVMetadataFormat /* foo */ {
+	rv := objc.Send[MetadataFormat](a_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -173,7 +175,7 @@ func (a_ AssetTrack) AvailableMetadataFormats() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) SetAvailableMetadataFormats(value unsafe.Pointer) {
+func (a_ AssetTrack) SetAvailableMetadataFormats(value AVMetadataFormat /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
@@ -201,7 +203,7 @@ func (a_ AssetTrack) SetAvailableTrackAssociationTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/canprovidesamplecursors
-func (a_ AssetTrack) CanProvideSampleCursors() bool {
+func (a_ AssetTrack) CanProvideSampleCursors() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canProvideSampleCursors"))
 	return rv
 }
@@ -211,7 +213,7 @@ func (a_ AssetTrack) CanProvideSampleCursors() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/canprovidesamplecursors
-func (a_ AssetTrack) SetCanProvideSampleCursors(value bool) {
+func (a_ AssetTrack) SetCanProvideSampleCursors(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanProvideSampleCursors:"), value)
 }
 
@@ -239,7 +241,7 @@ func (a_ AssetTrack) SetCommonMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/estimateddatarate
-func (a_ AssetTrack) EstimatedDataRate() float32 {
+func (a_ AssetTrack) EstimatedDataRate() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("estimatedDataRate"))
 	return rv
 }
@@ -249,7 +251,7 @@ func (a_ AssetTrack) EstimatedDataRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/estimateddatarate
-func (a_ AssetTrack) SetEstimatedDataRate(value float32) {
+func (a_ AssetTrack) SetEstimatedDataRate(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedDataRate:"), value)
 }
 
@@ -258,7 +260,7 @@ func (a_ AssetTrack) SetEstimatedDataRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/extendedlanguagetag
-func (a_ AssetTrack) ExtendedLanguageTag() string {
+func (a_ AssetTrack) ExtendedLanguageTag() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
@@ -268,7 +270,7 @@ func (a_ AssetTrack) ExtendedLanguageTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/extendedlanguagetag
-func (a_ AssetTrack) SetExtendedLanguageTag(value string) {
+func (a_ AssetTrack) SetExtendedLanguageTag(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
@@ -296,7 +298,7 @@ func (a_ AssetTrack) SetFormatDescriptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/hasaudiosampledependencies
-func (a_ AssetTrack) HasAudioSampleDependencies() bool {
+func (a_ AssetTrack) HasAudioSampleDependencies() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasAudioSampleDependencies"))
 	return rv
 }
@@ -306,7 +308,7 @@ func (a_ AssetTrack) HasAudioSampleDependencies() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/hasaudiosampledependencies
-func (a_ AssetTrack) SetHasAudioSampleDependencies(value bool) {
+func (a_ AssetTrack) SetHasAudioSampleDependencies(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasAudioSampleDependencies:"), value)
 }
 
@@ -315,7 +317,7 @@ func (a_ AssetTrack) SetHasAudioSampleDependencies(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isdecodable
-func (a_ AssetTrack) IsDecodable() bool {
+func (a_ AssetTrack) IsDecodable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isDecodable"))
 	return rv
 }
@@ -325,7 +327,7 @@ func (a_ AssetTrack) IsDecodable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isdecodable
-func (a_ AssetTrack) SetIsDecodable(value bool) {
+func (a_ AssetTrack) SetIsDecodable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDecodable:"), value)
 }
 
@@ -334,7 +336,7 @@ func (a_ AssetTrack) SetIsDecodable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isenabled
-func (a_ AssetTrack) IsEnabled() bool {
+func (a_ AssetTrack) IsEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -344,7 +346,7 @@ func (a_ AssetTrack) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isenabled
-func (a_ AssetTrack) SetIsEnabled(value bool) {
+func (a_ AssetTrack) SetIsEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -353,7 +355,7 @@ func (a_ AssetTrack) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isplayable
-func (a_ AssetTrack) IsPlayable() bool {
+func (a_ AssetTrack) IsPlayable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlayable"))
 	return rv
 }
@@ -363,7 +365,7 @@ func (a_ AssetTrack) IsPlayable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isplayable
-func (a_ AssetTrack) SetIsPlayable(value bool) {
+func (a_ AssetTrack) SetIsPlayable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlayable:"), value)
 }
 
@@ -372,7 +374,7 @@ func (a_ AssetTrack) SetIsPlayable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isselfcontained
-func (a_ AssetTrack) IsSelfContained() bool {
+func (a_ AssetTrack) IsSelfContained() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSelfContained"))
 	return rv
 }
@@ -382,7 +384,7 @@ func (a_ AssetTrack) IsSelfContained() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isselfcontained
-func (a_ AssetTrack) SetIsSelfContained(value bool) {
+func (a_ AssetTrack) SetIsSelfContained(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSelfContained:"), value)
 }
 
@@ -391,7 +393,7 @@ func (a_ AssetTrack) SetIsSelfContained(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/languagecode
-func (a_ AssetTrack) LanguageCode() string {
+func (a_ AssetTrack) LanguageCode() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
@@ -401,7 +403,7 @@ func (a_ AssetTrack) LanguageCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/languagecode
-func (a_ AssetTrack) SetLanguageCode(value string) {
+func (a_ AssetTrack) SetLanguageCode(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
 
@@ -410,8 +412,8 @@ func (a_ AssetTrack) SetLanguageCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+func (a_ AssetTrack) MediaType() AVMediaType /* foo */ {
+	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -420,7 +422,7 @@ func (a_ AssetTrack) MediaType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) SetMediaType(value unsafe.Pointer) {
+func (a_ AssetTrack) SetMediaType(value AVMediaType /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 
@@ -448,8 +450,8 @@ func (a_ AssetTrack) SetMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) MinFrameDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("minFrameDuration"))
+func (a_ AssetTrack) MinFrameDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("minFrameDuration"))
 	return rv
 }
 
@@ -458,7 +460,7 @@ func (a_ AssetTrack) MinFrameDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) SetMinFrameDuration(value unsafe.Pointer) {
+func (a_ AssetTrack) SetMinFrameDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMinFrameDuration:"), value)
 }
 
@@ -486,8 +488,8 @@ func (a_ AssetTrack) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) NaturalTimeScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("naturalTimeScale"))
+func (a_ AssetTrack) NaturalTimeScale() CMTimeScale /* foo */ {
+	rv := objc.Send[TimeScale](a_.ID, objc.Sel("naturalTimeScale"))
 	return rv
 }
 
@@ -496,7 +498,7 @@ func (a_ AssetTrack) NaturalTimeScale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) SetNaturalTimeScale(value unsafe.Pointer) {
+func (a_ AssetTrack) SetNaturalTimeScale(value CMTimeScale /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNaturalTimeScale:"), value)
 }
 
@@ -505,7 +507,7 @@ func (a_ AssetTrack) SetNaturalTimeScale(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/nominalframerate
-func (a_ AssetTrack) NominalFrameRate() float32 {
+func (a_ AssetTrack) NominalFrameRate() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("nominalFrameRate"))
 	return rv
 }
@@ -515,7 +517,7 @@ func (a_ AssetTrack) NominalFrameRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/nominalframerate
-func (a_ AssetTrack) SetNominalFrameRate(value float32) {
+func (a_ AssetTrack) SetNominalFrameRate(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNominalFrameRate:"), value)
 }
 
@@ -543,7 +545,7 @@ func (a_ AssetTrack) SetPreferredTransform(value coregraphics.CGAffineTransform)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredvolume
-func (a_ AssetTrack) PreferredVolume() float32 {
+func (a_ AssetTrack) PreferredVolume() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
@@ -553,7 +555,7 @@ func (a_ AssetTrack) PreferredVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredvolume
-func (a_ AssetTrack) SetPreferredVolume(value float32) {
+func (a_ AssetTrack) SetPreferredVolume(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 
@@ -562,7 +564,7 @@ func (a_ AssetTrack) SetPreferredVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/requiresframereordering
-func (a_ AssetTrack) RequiresFrameReordering() bool {
+func (a_ AssetTrack) RequiresFrameReordering() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("requiresFrameReordering"))
 	return rv
 }
@@ -572,7 +574,7 @@ func (a_ AssetTrack) RequiresFrameReordering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/requiresframereordering
-func (a_ AssetTrack) SetRequiresFrameReordering(value bool) {
+func (a_ AssetTrack) SetRequiresFrameReordering(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresFrameReordering:"), value)
 }
 
@@ -600,8 +602,8 @@ func (a_ AssetTrack) SetSegments(value IAVAssetTrackSegment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/timerange
-func (a_ AssetTrack) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeRange"))
+func (a_ AssetTrack) TimeRange() CMTimeRange /* foo */ {
+	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -610,7 +612,7 @@ func (a_ AssetTrack) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/timerange
-func (a_ AssetTrack) SetTimeRange(value unsafe.Pointer) {
+func (a_ AssetTrack) SetTimeRange(value CMTimeRange /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
 
@@ -638,8 +640,8 @@ func (a_ AssetTrack) SetTotalSampleDataLength(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) TrackID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackID"))
+func (a_ AssetTrack) TrackID() CMPersistentTrackID /* foo */ {
+	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
 	return rv
 }
 
@@ -648,7 +650,7 @@ func (a_ AssetTrack) TrackID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) SetTrackID(value unsafe.Pointer) {
+func (a_ AssetTrack) SetTrackID(value CMPersistentTrackID /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
 }
 

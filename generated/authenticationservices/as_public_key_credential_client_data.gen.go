@@ -30,8 +30,6 @@ type _PublicKeyCredentialClientDataClass struct {
 // An interface definition for the [PublicKeyCredentialClientData] class.
 type IPublicKeyCredentialClientData interface {
 	objectivec.IObject
-	CrossOrigin() PublicKeyCredentialClientDataCrossOriginValue
-	SetCrossOrigin(value IPublicKeyCredentialClientDataCrossOriginValue)
 	Origin() string
 	SetOrigin(value string)
 }
@@ -85,21 +83,6 @@ func NewPublicKeyCredentialClientData() PublicKeyCredentialClientData {
 	return getPublicKeyCredentialClientDataClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
-func (p_ PublicKeyCredentialClientData) CrossOrigin() PublicKeyCredentialClientDataCrossOriginValue {
-	rv := objc.Send[PublicKeyCredentialClientDataCrossOriginValue](p_.ID, objc.Sel("crossOrigin"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
-func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value IPublicKeyCredentialClientDataCrossOriginValue) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCrossOrigin:"), value)
-}
 
 
 // [Full Topic]

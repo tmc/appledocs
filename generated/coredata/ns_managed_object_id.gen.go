@@ -31,12 +31,12 @@ type _ManagedObjectIDClass struct {
 // An interface definition for the [ManagedObjectID] class.
 type IManagedObjectID interface {
 	objectivec.IObject
-	URIRepresentation() foundation.URL
-	Entity() NSEntityDescription
+	Entity() IEntityDescription
 	TemporaryID() bool
-	PersistentStore() NSPersistentStore
+	PersistentStore() IPersistentStore
 	IsTemporaryID() bool
 	SetIsTemporaryID(value bool)
+	URIRepresentation() foundation.URL
 }
 
 // A compact, universal identifier for a managed object.
@@ -106,8 +106,8 @@ func (m_ ManagedObjectID) URIRepresentation() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/entity
-func (m_ ManagedObjectID) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entity"))
+func (m_ ManagedObjectID) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -126,8 +126,8 @@ func (m_ ManagedObjectID) TemporaryID() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/persistentStore
-func (m_ ManagedObjectID) PersistentStore() NSPersistentStore {
-	rv := objc.Send[NSPersistentStore](m_.ID, objc.Sel("persistentStore"))
+func (m_ ManagedObjectID) PersistentStore() IPersistentStore {
+	rv := objc.Send[PersistentStore](m_.ID, objc.Sel("persistentStore"))
 	return rv
 }
 

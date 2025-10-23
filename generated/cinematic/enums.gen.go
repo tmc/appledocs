@@ -3,6 +3,11 @@
 package cinematic
 
 // Enum types and constants
+// CNCinematicErrorCode enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code
+type CNCinematicErrorCode uint
+
 // CNDetectionType - The type of object detected, such as face, torso, cat, dog and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionType
@@ -13,29 +18,14 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionType/catBody
 	CNDetectionTypeCatBody CNDetectionType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionType/unknown
-	CNDetectionTypeUnknown CNDetectionType = 0
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionType/humanTorso
+	CNDetectionTypeHumanTorso CNDetectionType = 0
 )
 
 // CNRenderingQuality - The rendering quality, such as thumbnail, preview, export and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingQuality
 type CNRenderingQuality uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingQuality/export
-	CNRenderingQualityExport CNRenderingQuality = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingQuality/exportHigh
-	CNRenderingQualityExportHigh CNRenderingQuality = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingQuality/preview
-	CNRenderingQualityPreview CNRenderingQuality = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingQuality/thumbnail
-	CNRenderingQualityThumbnail CNRenderingQuality = 0
-)
 
 // CNSpatialAudioContentType enum type
 //
@@ -47,10 +37,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNSpatialAudioContentType/spatial
 	CNSpatialAudioContentTypeSpatial CNSpatialAudioContentType = 0
-	// CNSpatialAudioContentTypeStereo - Export settings to generate an asset with stereo audio and effect burned in
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNSpatialAudioContentType/stereo
-	CNSpatialAudioContentTypeStereo CNSpatialAudioContentType = 0
 )
 
 // CNSpatialAudioRenderingStyle enum type
@@ -63,10 +49,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNSpatialAudioRenderingStyle/standard
 	CNSpatialAudioRenderingStyleStandard CNSpatialAudioRenderingStyle = 0
-	// CNSpatialAudioRenderingStyleStudioBackgroundStem - Isolates the ambience when foreground is studio Audio Mix and place it in a spatial stem. There is no voice stem.
+	// CNSpatialAudioRenderingStyleStudioForegroundStem - Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem. There is no ambience stem.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNSpatialAudioRenderingStyle/studioBackgroundStem
-	CNSpatialAudioRenderingStyleStudioBackgroundStem CNSpatialAudioRenderingStyle = 0
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNSpatialAudioRenderingStyle/studioForegroundStem
+	CNSpatialAudioRenderingStyleStudioForegroundStem CNSpatialAudioRenderingStyle = 0
 )
 
 

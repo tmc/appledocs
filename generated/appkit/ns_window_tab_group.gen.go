@@ -30,22 +30,22 @@ type _WindowTabGroupClass struct {
 // An interface definition for the [WindowTabGroup] class.
 type IWindowTabGroup interface {
 	objectivec.IObject
-	AddWindow(window IWindow)
-	InsertWindowAtIndex(window IWindow, index int)
-	RemoveWindow(window IWindow)
 	Identifier() WindowTabbingIdentifier
 	OverviewVisible() bool
 	SetOverviewVisible(value bool)
 	TabBarVisible() bool
-	SelectedWindow() NSWindow
+	SelectedWindow() IWindow
 	SetSelectedWindow(value IWindow)
 	Windows() []Window
-	TabGroup() NSWindowTabGroup
+	TabGroup() IWindowTabGroup
 	SetTabGroup(value IWindowTabGroup)
 	IsOverviewVisible() bool
 	SetIsOverviewVisible(value bool)
 	IsTabBarVisible() bool
 	SetIsTabBarVisible(value bool)
+	AddWindow(window IWindow)
+	InsertWindowAtIndex(window IWindow, index int)
+	RemoveWindow(window IWindow)
 }
 
 // A group of windows that display together as a single tabbed window.
@@ -171,8 +171,8 @@ func (w_ WindowTabGroup) TabBarVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTabGroup/selectedWindow
-func (w_ WindowTabGroup) SelectedWindow() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("selectedWindow"))
+func (w_ WindowTabGroup) SelectedWindow() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("selectedWindow"))
 	return rv
 }
 
@@ -200,8 +200,8 @@ func (w_ WindowTabGroup) Windows() []Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabgroup
-func (w_ WindowTabGroup) TabGroup() NSWindowTabGroup {
-	rv := objc.Send[NSWindowTabGroup](w_.ID, objc.Sel("tabGroup"))
+func (w_ WindowTabGroup) TabGroup() IWindowTabGroup {
+	rv := objc.Send[WindowTabGroup](w_.ID, objc.Sel("tabGroup"))
 	return rv
 }
 

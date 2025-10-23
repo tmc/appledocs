@@ -31,28 +31,28 @@ type _EntityMappingClass struct {
 // An interface definition for the [EntityMapping] class.
 type IEntityMapping interface {
 	objectivec.IObject
-	AttributeMappings() []PropertyMapping
-	SetAttributeMappings(value []PropertyMapping)
+	MappingType() NSEntityMappingType
+	SetMappingType(value NSEntityMappingType)
+	AttributeMappings() IPropertyMapping
+	SetAttributeMappings(value IPropertyMapping)
 	DestinationEntityName() string
 	SetDestinationEntityName(value string)
-	DestinationEntityVersionHash() foundation.NSData
-	SetDestinationEntityVersionHash(value foundation.IData)
+	DestinationEntityVersionHash() foundation.Data
+	SetDestinationEntityVersionHash(value foundation.Data)
 	EntityMigrationPolicyClassName() string
 	SetEntityMigrationPolicyClassName(value string)
-	MappingType() EntityMappingType
-	SetMappingType(value EntityMappingType)
 	Name() string
 	SetName(value string)
-	RelationshipMappings() []PropertyMapping
-	SetRelationshipMappings(value []PropertyMapping)
+	RelationshipMappings() IPropertyMapping
+	SetRelationshipMappings(value IPropertyMapping)
 	SourceEntityName() string
 	SetSourceEntityName(value string)
-	SourceEntityVersionHash() foundation.NSData
-	SetSourceEntityVersionHash(value foundation.IData)
+	SourceEntityVersionHash() foundation.Data
+	SetSourceEntityVersionHash(value foundation.Data)
 	SourceExpression() Expression
-	SetSourceExpression(value IExpression)
-	UserInfo() objc.ID
-	SetUserInfo(value objc.ID)
+	SetSourceExpression(value Expression)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 }
 
 // A mapping instance that specifies how to map an entity from a source to a destination managed object model.
@@ -106,12 +106,31 @@ func NewEntityMapping() EntityMapping {
 
 
 
+// The mapping type for the entity mapping.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
+func (e_ EntityMapping) MappingType() NSEntityMappingType {
+	rv := objc.Send[NSEntityMappingType](e_.ID, objc.Sel("mappingType"))
+	return rv
+}
+
+
+// The mapping type for the entity mapping.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
+func (e_ EntityMapping) SetMappingType(value NSEntityMappingType) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMappingType:"), value)
+}
+
+
 // The array of attribute mappings for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/attributeMappings
-func (e_ EntityMapping) AttributeMappings() []PropertyMapping {
-	rv := objc.Send[[]PropertyMapping](e_.ID, objc.Sel("attributeMappings"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/attributemappings
+func (e_ EntityMapping) AttributeMappings() IPropertyMapping {
+	rv := objc.Send[PropertyMapping](e_.ID, objc.Sel("attributeMappings"))
 	return rv
 }
 
@@ -119,26 +138,16 @@ func (e_ EntityMapping) AttributeMappings() []PropertyMapping {
 // The array of attribute mappings for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/attributeMappings
-func (e_ EntityMapping) SetAttributeMappings(value []PropertyMapping) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributeMappings:"), nsArray)
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/attributemappings
+func (e_ EntityMapping) SetAttributeMappings(value IPropertyMapping) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributeMappings:"), value)
 }
 
 
 // The destination entity name for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityname
 func (e_ EntityMapping) DestinationEntityName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("destinationEntityName"))
 	return rv
@@ -148,7 +157,7 @@ func (e_ EntityMapping) DestinationEntityName() string {
 // The destination entity name for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityname
 func (e_ EntityMapping) SetDestinationEntityName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityName:"), objc.String(value))
 }
@@ -157,9 +166,9 @@ func (e_ EntityMapping) SetDestinationEntityName(value string) {
 // The version hash for the destination entity for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityVersionHash
-func (e_ EntityMapping) DestinationEntityVersionHash() foundation.NSData {
-	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("destinationEntityVersionHash"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityversionhash
+func (e_ EntityMapping) DestinationEntityVersionHash() foundation.Data {
+	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("destinationEntityVersionHash"))
 	return rv
 }
 
@@ -167,8 +176,8 @@ func (e_ EntityMapping) DestinationEntityVersionHash() foundation.NSData {
 // The version hash for the destination entity for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/destinationEntityVersionHash
-func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.IData) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityversionhash
+func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.Data) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityVersionHash:"), value)
 }
 
@@ -176,7 +185,7 @@ func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.IData) 
 // The class name of the migration policy for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/entityMigrationPolicyClassName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
 func (e_ EntityMapping) EntityMigrationPolicyClassName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
 	return rv
@@ -186,35 +195,16 @@ func (e_ EntityMapping) EntityMigrationPolicyClassName() string {
 // The class name of the migration policy for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/entityMigrationPolicyClassName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
 func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), objc.String(value))
-}
-
-
-// The mapping type for the entity mapping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
-func (e_ EntityMapping) MappingType() EntityMappingType {
-	rv := objc.Send[EntityMappingType](e_.ID, objc.Sel("mappingType"))
-	return rv
-}
-
-
-// The mapping type for the entity mapping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
-func (e_ EntityMapping) SetMappingType(value EntityMappingType) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMappingType:"), value)
 }
 
 
 // The name of the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/name
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/name
 func (e_ EntityMapping) Name() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
@@ -224,7 +214,7 @@ func (e_ EntityMapping) Name() string {
 // The name of the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/name
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/name
 func (e_ EntityMapping) SetName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
@@ -233,9 +223,9 @@ func (e_ EntityMapping) SetName(value string) {
 // The array of relationship mappings for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/relationshipMappings
-func (e_ EntityMapping) RelationshipMappings() []PropertyMapping {
-	rv := objc.Send[[]PropertyMapping](e_.ID, objc.Sel("relationshipMappings"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/relationshipmappings
+func (e_ EntityMapping) RelationshipMappings() IPropertyMapping {
+	rv := objc.Send[PropertyMapping](e_.ID, objc.Sel("relationshipMappings"))
 	return rv
 }
 
@@ -243,26 +233,16 @@ func (e_ EntityMapping) RelationshipMappings() []PropertyMapping {
 // The array of relationship mappings for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/relationshipMappings
-func (e_ EntityMapping) SetRelationshipMappings(value []PropertyMapping) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipMappings:"), nsArray)
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/relationshipmappings
+func (e_ EntityMapping) SetRelationshipMappings(value IPropertyMapping) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipMappings:"), value)
 }
 
 
 // The source entity name for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityname
 func (e_ EntityMapping) SourceEntityName() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("sourceEntityName"))
 	return rv
@@ -272,7 +252,7 @@ func (e_ EntityMapping) SourceEntityName() string {
 // The source entity name for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityName
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityname
 func (e_ EntityMapping) SetSourceEntityName(value string) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityName:"), objc.String(value))
 }
@@ -281,9 +261,9 @@ func (e_ EntityMapping) SetSourceEntityName(value string) {
 // The version hash of the source entity for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityVersionHash
-func (e_ EntityMapping) SourceEntityVersionHash() foundation.NSData {
-	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("sourceEntityVersionHash"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityversionhash
+func (e_ EntityMapping) SourceEntityVersionHash() foundation.Data {
+	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("sourceEntityVersionHash"))
 	return rv
 }
 
@@ -291,8 +271,8 @@ func (e_ EntityMapping) SourceEntityVersionHash() foundation.NSData {
 // The version hash of the source entity for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceEntityVersionHash
-func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.IData) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityversionhash
+func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.Data) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityVersionHash:"), value)
 }
 
@@ -300,7 +280,7 @@ func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.IData) {
 // The source expression for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceExpression
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceexpression
 func (e_ EntityMapping) SourceExpression() Expression {
 	rv := objc.Send[Expression](e_.ID, objc.Sel("sourceExpression"))
 	return rv
@@ -310,8 +290,8 @@ func (e_ EntityMapping) SourceExpression() Expression {
 // The source expression for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/sourceExpression
-func (e_ EntityMapping) SetSourceExpression(value IExpression) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceexpression
+func (e_ EntityMapping) SetSourceExpression(value Expression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceExpression:"), value)
 }
 
@@ -319,9 +299,9 @@ func (e_ EntityMapping) SetSourceExpression(value IExpression) {
 // The user info dictionary for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/userInfo
-func (e_ EntityMapping) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("userInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/userinfo
+func (e_ EntityMapping) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -329,8 +309,8 @@ func (e_ EntityMapping) UserInfo() objc.ID {
 // The user info dictionary for the entity mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/userInfo
-func (e_ EntityMapping) SetUserInfo(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/userinfo
+func (e_ EntityMapping) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }
 

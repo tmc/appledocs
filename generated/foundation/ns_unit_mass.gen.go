@@ -29,6 +29,8 @@ type _UnitMassClass struct {
 // An interface definition for the [UnitMass] class.
 type IUnitMass interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for mass.

@@ -31,9 +31,10 @@ type _FSPathURLResourceClass struct {
 type IFSPathURLResource interface {
 	IFSResource
 	Writable() bool
-	Url() foundation.URL
 	IsWritable() bool
 	SetIsWritable(value bool)
+	Url() foundation.URL
+	SetUrl(value foundation.URL)
 }
 
 // A resource representing a path
@@ -92,28 +93,9 @@ func NewFSPathURLResource() FSPathURLResource {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/init(url:writable:)
-func NewFSPathURLResourceWithURLWritable(URL foundation.IURL, writable bool) FSPathURLResource {
-	instance := getFSPathURLResourceClass().Alloc()
-	rv := objc.Send[FSPathURLResource](instance.ID, objc.Sel("initWithURL:writable:"), URL, writable)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/isWritable
 func (f_ FSPathURLResource) Writable() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writable"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/url
-func (f_ FSPathURLResource) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -131,5 +113,21 @@ func (f_ FSPathURLResource) IsWritable() bool {
 func (f_ FSPathURLResource) SetIsWritable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
 }
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/url
+func (f_ FSPathURLResource) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fspathurlresource/url
+func (f_ FSPathURLResource) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
+}
+
 
 

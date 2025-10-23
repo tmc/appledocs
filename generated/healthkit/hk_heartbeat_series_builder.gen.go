@@ -29,6 +29,8 @@ type _HKHeartbeatSeriesBuilderClass struct {
 // An interface definition for the [HKHeartbeatSeriesBuilder] class.
 type IHKHeartbeatSeriesBuilder interface {
 	IHKSeriesBuilder
+	// properties:
+	// methods:
 }
 
 // A builder object for incrementally building a heartbeat series.

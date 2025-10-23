@@ -32,18 +32,17 @@ type IVZStorageDeviceAttachment interface {
 	objectivec.IObject
 }
 
-// The common behaviors for storage devices in the guest system.
-//
-// A object defines the implementation of a storage interface in a virtual machine. You use the attachment object to specify the source of the storage on the host computer. Don’t create objects directly. Instead, instantiate an appropriate subclass such as , which provides storage using a disk image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZStorageDeviceAttachment
+// A parent class referenced by other Virtualization classes.
+
+
+// A parent class referenced by other Virtualization classes. [Full Topic]
 type VZStorageDeviceAttachment struct {
 	objectivec.Object
 }
 
 // VZStorageDeviceAttachmentFrom constructs a [VZStorageDeviceAttachment] from an unsafe.Pointer.
 //
-// The common behaviors for storage devices in the guest system.
+// A parent class referenced by other Virtualization classes.
 func VZStorageDeviceAttachmentFrom(ptr unsafe.Pointer) VZStorageDeviceAttachment {
 	return VZStorageDeviceAttachment{objectivec.Object{objc.ID(ptr)}}
 }

@@ -31,12 +31,14 @@ type _INRidePartySizeOptionClass struct {
 // An interface definition for the [INRidePartySizeOption] class.
 type IINRidePartySizeOption interface {
 	objectivec.IObject
+	// properties:
 	PartySizeRange() foundation.Range
 	SetPartySizeRange(value foundation.Range)
 	PriceRange() unsafe.Pointer
 	SetPriceRange(value unsafe.Pointer)
 	SizeDescription() string
 	SetSizeDescription(value string)
+	// methods:
 }
 
 // The price of a ride involving the specified number of people.

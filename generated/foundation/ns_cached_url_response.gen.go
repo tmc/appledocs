@@ -30,6 +30,7 @@ type _CachedURLResponseClass struct {
 // An interface definition for the [CachedURLResponse] class.
 type ICachedURLResponse interface {
 	objectivec.IObject
+	// properties:
 	Data() IData
 	SetData(value IData)
 	Response() IURLResponse
@@ -38,6 +39,7 @@ type ICachedURLResponse interface {
 	SetStoragePolicy(value unsafe.Pointer)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
+	// methods:
 }
 
 // A cached response to a URL request.

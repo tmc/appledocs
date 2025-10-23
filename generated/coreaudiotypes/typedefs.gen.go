@@ -3,26 +3,21 @@
 package coreaudiotypes
 
 // Type aliases and typedefs
-// AVAudioInteger - An integer type for audio operations.
+// AudioInteger - An integer type for audio operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioInteger
 // AVAudioInteger has base type: long
-type AVAudioInteger uintptr
-// AVAudioUInteger - An unsigned integer type for audio operations.
+type AudioInteger uintptr
+// AudioUInteger - An unsigned integer type for audio operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AVAudioUInteger
 // AVAudioUInteger has base type: unsigned long
-type AVAudioUInteger uintptr
+type AudioUInteger uintptr
 // AudioChannelLabel - Identifies how an audio data channel is to be used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelLabel
 // AudioChannelLabel has base type: UInt32
 type AudioChannelLabel uintptr
-// AudioChannelLayoutTag - Identifies a previously-defined channel layout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelLayoutTag
-// AudioChannelLayoutTag has base type: UInt32
-type AudioChannelLayoutTag uintptr
 // AudioFormatFlags - A type definition for audio format flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioFormatFlags

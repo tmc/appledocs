@@ -29,12 +29,14 @@ type _MutableAttributedStringClass struct {
 // An interface definition for the [MutableAttributedString] class.
 type IMutableAttributedString interface {
 	IAttributedString
+	// properties:
 	MutableString() IMutableString
 	SetMutableString(value IMutableString)
+	// methods:
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
-	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
-	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString)
+	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint /* primitive/slice/pointer */)
+	ReplaceCharactersInRangeWithAttributedString(range_ Range /* foo */, attrString IAttributedString)
 	SetAttributedString(attrString IAttributedString)
 }
 
@@ -113,7 +115,7 @@ func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/insert(_:at:)
-func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttributedString, loc uint) {
+func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttributedString, loc uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertAttributedString:atIndex:"), attrString, loc)
 }
 
@@ -122,7 +124,7 @@ func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString IAttributedString) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range /* foo */, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
 }
 

@@ -30,20 +30,22 @@ type _DepthDataClass struct {
 // An interface definition for the [DepthData] class.
 type IDepthData interface {
 	objectivec.IObject
+	// properties:
 	AvailableDepthDataTypes() unsafe.Pointer
 	SetAvailableDepthDataTypes(value unsafe.Pointer)
-	CameraCalibrationData() CameraCalibrationData
-	SetCameraCalibrationData(value CameraCalibrationData)
+	CameraCalibrationData() AVCameraCalibrationData /* foo */
+	SetCameraCalibrationData(value AVCameraCalibrationData /* foo */)
 	DepthDataAccuracy() unsafe.Pointer
 	SetDepthDataAccuracy(value unsafe.Pointer)
-	DepthDataMap() unsafe.Pointer
-	SetDepthDataMap(value unsafe.Pointer)
+	DepthDataMap() CVPixelBuffer /* foo */
+	SetDepthDataMap(value CVPixelBuffer /* foo */)
 	DepthDataQuality() unsafe.Pointer
 	SetDepthDataQuality(value unsafe.Pointer)
 	DepthDataType() unsafe.Pointer
 	SetDepthDataType(value unsafe.Pointer)
-	IsDepthDataFiltered() bool
-	SetIsDepthDataFiltered(value bool)
+	IsDepthDataFiltered() bool /* primitive/slice/pointer */
+	SetIsDepthDataFiltered(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A container for per-pixel distance or disparity information captured by compatible camera devices.
@@ -122,7 +124,7 @@ func (d_ DepthData) SetAvailableDepthDataTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) CameraCalibrationData() CameraCalibrationData {
+func (d_ DepthData) CameraCalibrationData() AVCameraCalibrationData /* foo */ {
 	rv := objc.Send[CameraCalibrationData](d_.ID, objc.Sel("cameraCalibrationData"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (d_ DepthData) CameraCalibrationData() CameraCalibrationData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) SetCameraCalibrationData(value CameraCalibrationData) {
+func (d_ DepthData) SetCameraCalibrationData(value AVCameraCalibrationData /* foo */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCameraCalibrationData:"), value)
 }
 
@@ -160,8 +162,8 @@ func (d_ DepthData) SetDepthDataAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
-func (d_ DepthData) DepthDataMap() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("depthDataMap"))
+func (d_ DepthData) DepthDataMap() CVPixelBuffer /* foo */ {
+	rv := objc.Send[PixelBuffer](d_.ID, objc.Sel("depthDataMap"))
 	return rv
 }
 
@@ -170,7 +172,7 @@ func (d_ DepthData) DepthDataMap() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/depthdatamap
-func (d_ DepthData) SetDepthDataMap(value unsafe.Pointer) {
+func (d_ DepthData) SetDepthDataMap(value CVPixelBuffer /* foo */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDepthDataMap:"), value)
 }
 
@@ -217,7 +219,7 @@ func (d_ DepthData) SetDepthDataType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
-func (d_ DepthData) IsDepthDataFiltered() bool {
+func (d_ DepthData) IsDepthDataFiltered() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isDepthDataFiltered"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (d_ DepthData) IsDepthDataFiltered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/isdepthdatafiltered
-func (d_ DepthData) SetIsDepthDataFiltered(value bool) {
+func (d_ DepthData) SetIsDepthDataFiltered(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsDepthDataFiltered:"), value)
 }
 

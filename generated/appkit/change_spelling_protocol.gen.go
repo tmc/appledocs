@@ -4,11 +4,11 @@ package appkit
 
 import "github.com/ebitengine/purego/objc"
 
-// changeSpellingProtocol is the changeSpelling: protocol.
+// ChangeSpellingProtocol is the NSChangeSpelling protocol.
 //
-// Use this protocol when registering custom classes that conform to changeSpelling:.
-var changeSpellingProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to NSChangeSpelling.
+var ChangeSpellingProtocol *objc.Protocol
 
 func init() {
-	changeSpellingProtocol = objc.GetProtocol("changeSpelling:")
+	ChangeSpellingProtocol = objc.GetProtocol("NSChangeSpelling")
 }

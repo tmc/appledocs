@@ -30,13 +30,7 @@ type _BluetoothHandsFreeClass struct {
 // An interface definition for the [BluetoothHandsFree] class.
 type IBluetoothHandsFree interface {
 	objectivec.IObject
-	Connect()
-	ConnectSCO()
-	Disconnect()
-	DisconnectSCO()
-	Indicator(indicatorName string) int
-	IsSCOConnected() bool
-	SetIndicatorValue(indicatorName string, indicatorValue int)
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Device() IOBluetoothDevice
@@ -53,9 +47,9 @@ type IBluetoothHandsFree interface {
 	SMSEnabled() bool
 	OutputVolume() float32
 	SetOutputVolume(value float32)
-	SMSMode() BluetoothSMSMode
+	SMSMode() IOBluetoothSMSMode
 	SupportedFeatures() uint32
-	SetSupportedFeatures(value Iuint32)
+	SetSupportedFeatures(value uint32)
 	IsConnected() bool
 	SetIsConnected(value bool)
 	IsInputMuted() bool
@@ -64,6 +58,14 @@ type IBluetoothHandsFree interface {
 	SetIsOutputMuted(value bool)
 	IsSMSEnabled() bool
 	SetIsSMSEnabled(value bool)
+	// methods:
+	Connect()
+	ConnectSCO()
+	Disconnect()
+	DisconnectSCO()
+	Indicator(indicatorName string) int
+	IsSCOConnected() bool
+	SetIndicatorValue(indicatorName string, indicatorValue int)
 }
 
 // Hands free profile class.
@@ -221,7 +223,7 @@ func (b_ BluetoothHandsFree) SetDelegate(value objc.ID) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/device
 func (b_ BluetoothHandsFree) Device() IOBluetoothDevice {
-	rv := objc.Send[IOBluetoothDevice](b_.ID, objc.Sel("device"))
+	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -354,8 +356,8 @@ func (b_ BluetoothHandsFree) SetOutputVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/smsMode
-func (b_ BluetoothHandsFree) SMSMode() BluetoothSMSMode {
-	rv := objc.Send[BluetoothSMSMode](b_.ID, objc.Sel("SMSMode"))
+func (b_ BluetoothHandsFree) SMSMode() IOBluetoothSMSMode {
+	rv := objc.Send[IOBluetoothSMSMode](b_.ID, objc.Sel("SMSMode"))
 	return rv
 }
 
@@ -374,7 +376,7 @@ func (b_ BluetoothHandsFree) SupportedFeatures() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/supportedFeatures
-func (b_ BluetoothHandsFree) SetSupportedFeatures(value Iuint32) {
+func (b_ BluetoothHandsFree) SetSupportedFeatures(value uint32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSupportedFeatures:"), value)
 }
 

@@ -28,111 +28,111 @@ type BslnTableFormat uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/BslnTablePtr
 // BslnTablePtr has base type: BslnTable *
 type BslnTablePtr uintptr
-// CTFontRef - A font object.
+// FontRef - A font object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFont
 // CTFontRef has base type: const struct __CTFont *
-type CTFontRef uintptr
-// CTFontCollectionRef - A font collection.
+type FontRef uintptr
+// FontCollectionRef - A font collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollection
 // CTFontCollectionRef has base type: const struct __CTFontCollection *
-type CTFontCollectionRef uintptr
-// CTFontCollectionSortDescriptorsCallback - The collection sorting callback type.
+type FontCollectionRef uintptr
+// FontCollectionSortDescriptorsCallback - The collection sorting callback type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSortDescriptorsCallback
 // CTFontCollectionSortDescriptorsCallback has base type: enum CFComparisonResult (*)(const struct __CTFontDescriptor *, const struct __CTFontDescriptor *, void *)
-type CTFontCollectionSortDescriptorsCallback uintptr
-// CTFontDescriptorRef - A font descriptor.
+type FontCollectionSortDescriptorsCallback uintptr
+// FontDescriptorRef - A font descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptor
 // CTFontDescriptorRef has base type: const struct __CTFontDescriptor *
-type CTFontDescriptorRef uintptr
-// CTFontPriority - The priority of font descriptors when resolving duplicates and sorting match results.
+type FontDescriptorRef uintptr
+// FontPriority - The priority of font descriptors when resolving duplicates and sorting match results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontPriority
 // CTFontPriority has base type: uint32_t
-type CTFontPriority uintptr
-// CTFontTableTag - Font table tags provide access to font table data.
+type FontPriority uintptr
+// FontTableTag - Font table tags provide access to font table data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontTableTag
 // CTFontTableTag has base type: FourCharCode
-type CTFontTableTag uintptr
-// CTFrameRef - A frame.
+type FontTableTag uintptr
+// FrameRef - A frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrame
 // CTFrameRef has base type: const struct __CTFrame *
-type CTFrameRef uintptr
-// CTFramesetterRef - Generate text frames.
+type FrameRef uintptr
+// FramesetterRef - Generate text frames.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetter
 // CTFramesetterRef has base type: const struct __CTFramesetter *
-type CTFramesetterRef uintptr
-// CTGlyphInfoRef - Override a font’s specified mapping from Unicode to the glyph ID.
+type FramesetterRef uintptr
+// GlyphInfoRef - Override a font’s specified mapping from Unicode to the glyph ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfo
 // CTGlyphInfoRef has base type: const struct __CTGlyphInfo *
-type CTGlyphInfoRef uintptr
-// CTLineRef - A line of text.
+type GlyphInfoRef uintptr
+// LineRef - A line of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLine
 // CTLineRef has base type: const struct __CTLine *
-type CTLineRef uintptr
-// CTMutableFontCollectionRef - A reference to a mutable font collection.
+type LineRef uintptr
+// MutableFontCollectionRef - A reference to a mutable font collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTMutableFontCollection
 // CTMutableFontCollectionRef has base type: struct __CTFontCollection *
-type CTMutableFontCollectionRef uintptr
-// CTParagraphStyleRef - Paragraph or ruler attributes in an attributed string.
+type MutableFontCollectionRef uintptr
+// ParagraphStyleRef - Paragraph or ruler attributes in an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyle
 // CTParagraphStyleRef has base type: const struct __CTParagraphStyle *
-type CTParagraphStyleRef uintptr
-// CTRubyAnnotationRef type alias
+type ParagraphStyleRef uintptr
+// RubyAnnotationRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotation
 // CTRubyAnnotationRef has base type: const struct __CTRubyAnnotation *
-type CTRubyAnnotationRef uintptr
-// CTRunRef - A glyph run.
+type RubyAnnotationRef uintptr
+// RunRef - A glyph run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRun
 // CTRunRef has base type: const struct __CTRun *
-type CTRunRef uintptr
-// CTRunDelegateRef - A run delegate.
+type RunRef uintptr
+// RunDelegateRef - A run delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegate
 // CTRunDelegateRef has base type: const struct __CTRunDelegate *
-type CTRunDelegateRef uintptr
-// CTRunDelegateDeallocateCallback - Defines a pointer to a function that is invoked when a CTRunDelegate object is deallocated.
+type RunDelegateRef uintptr
+// RunDelegateDeallocateCallback - Defines a pointer to a function that is invoked when a CTRunDelegate object is deallocated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateDeallocateCallback
 // CTRunDelegateDeallocateCallback has base type: void (*)(void *)
-type CTRunDelegateDeallocateCallback uintptr
-// CTRunDelegateGetAscentCallback - Defines a pointer to a function that determines typographic ascent of glyphs in the run.
+type RunDelegateDeallocateCallback uintptr
+// RunDelegateGetAscentCallback - Defines a pointer to a function that determines typographic ascent of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetAscentCallback
 // CTRunDelegateGetAscentCallback has base type: double (*)(void *)
-type CTRunDelegateGetAscentCallback uintptr
-// CTRunDelegateGetDescentCallback - Defines a pointer to a function that determines typographic descent of glyphs in the run.
+type RunDelegateGetAscentCallback uintptr
+// RunDelegateGetDescentCallback - Defines a pointer to a function that determines typographic descent of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetDescentCallback
 // CTRunDelegateGetDescentCallback has base type: double (*)(void *)
-type CTRunDelegateGetDescentCallback uintptr
-// CTRunDelegateGetWidthCallback - Defines a pointer to a function that determines the typographic width of glyphs in the run.
+type RunDelegateGetDescentCallback uintptr
+// RunDelegateGetWidthCallback - Defines a pointer to a function that determines the typographic width of glyphs in the run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetWidthCallback
 // CTRunDelegateGetWidthCallback has base type: double (*)(void *)
-type CTRunDelegateGetWidthCallback uintptr
-// CTTextTabRef - A tab in a paragraph style, storing an alignment type and location.
+type RunDelegateGetWidthCallback uintptr
+// TextTabRef - A tab in a paragraph style, storing an alignment type and location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTab
 // CTTextTabRef has base type: const struct __CTTextTab *
-type CTTextTabRef uintptr
-// CTTypesetterRef - A typesetter which performs line layout.
+type TextTabRef uintptr
+// TypesetterRef - A typesetter which performs line layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetter
 // CTTypesetterRef has base type: const struct __CTTypesetter *
-type CTTypesetterRef uintptr
+type TypesetterRef uintptr
 // FontLanguageCode type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/FontLanguageCode

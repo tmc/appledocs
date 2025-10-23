@@ -30,6 +30,7 @@ type _URLProtocolClass struct {
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
+	// properties:
 	CachedResponse() ICachedURLResponse
 	SetCachedResponse(value ICachedURLResponse)
 	Client() unsafe.Pointer
@@ -40,6 +41,7 @@ type IURLProtocol interface {
 	SetTask(value IURLSessionTask)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
+	// methods:
 }
 
 // An abstract class that handles the loading of protocol-specific URL data.
@@ -99,7 +101,7 @@ func NewURLProtocol() URLProtocol {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
-func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequest) objc.ID {
+func (uc _URLProtocolClass) PropertyForKeyInRequest(key string /* primitive/slice/pointer */, request IURLRequest) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), objc.String(key), request)
 	return rv
 }
@@ -109,9 +111,18 @@ func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/registerClass(_:)
-func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
+func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("registerClass:"), protocolClass)
 	return rv
+}
+
+
+// Sets the property associated with the specified key in the specified request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/setProperty(_:forKey:in:)
+func (uc _URLProtocolClass) SetPropertyForKeyInRequest(value objectivec.IObject, key string /* primitive/slice/pointer */, request IMutableURLRequest) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("setProperty:forKey:inRequest:"), value, objc.String(key), request)
 }
 
 

@@ -31,25 +31,24 @@ type _ObjectControllerClass struct {
 // An interface definition for the [ObjectController] class.
 type IObjectController interface {
 	IController
-	PrepareContent()
 	AutomaticallyPreparesContent() bool
 	SetAutomaticallyPreparesContent(value bool)
-	Content() objc.ID
-	SetContent(value objc.ID)
-	ObjectClass() objc.Class
-	SetObjectClass(value objc.Class)
 	CanAdd() bool
 	SetCanAdd(value bool)
 	CanRemove() bool
 	SetCanRemove(value bool)
+	Content() unsafe.Pointer
+	SetContent(value unsafe.Pointer)
 	EntityName() string
 	SetEntityName(value string)
 	FetchPredicate() foundation.Predicate
-	SetFetchPredicate(value foundation.IPredicate)
+	SetFetchPredicate(value foundation.Predicate)
 	IsEditable() bool
 	SetIsEditable(value bool)
 	ManagedObjectContext() coredata.ManagedObjectContext
-	SetManagedObjectContext(value coredata.IManagedObjectContext)
+	SetManagedObjectContext(value coredata.ManagedObjectContext)
+	ObjectClass() unsafe.Pointer
+	SetObjectClass(value unsafe.Pointer)
 	SelectedObjects() unsafe.Pointer
 	SetSelectedObjects(value unsafe.Pointer)
 	Selection() unsafe.Pointer
@@ -113,19 +112,10 @@ func NewObjectController() ObjectController {
 
 
 
-// Typically overridden by subclasses that require additional control over the creation of new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/prepareContent()
-func (o_ ObjectController) PrepareContent() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("prepareContent"))
-}
-
-
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
 func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("automaticallyPreparesContent"))
 	return rv
@@ -135,47 +125,9 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
 func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomaticallyPreparesContent:"), value)
-}
-
-
-// The receiver’s content object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
-func (o_ ObjectController) Content() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("content"))
-	return rv
-}
-
-
-// The receiver’s content object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
-func (o_ ObjectController) SetContent(value objc.ID) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setContent:"), value)
-}
-
-
-// The object class to use when creating new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
-func (o_ ObjectController) ObjectClass() objc.Class {
-	rv := objc.Send[objc.Class](o_.ID, objc.Sel("objectClass"))
-	return rv
-}
-
-
-// The object class to use when creating new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
-func (o_ ObjectController) SetObjectClass(value objc.Class) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
 }
 
 
@@ -217,6 +169,25 @@ func (o_ ObjectController) SetCanRemove(value bool) {
 }
 
 
+// The receiver’s content object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
+func (o_ ObjectController) Content() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("content"))
+	return rv
+}
+
+
+// The receiver’s content object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
+func (o_ ObjectController) SetContent(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setContent:"), value)
+}
+
+
 // The entity name used by the receiver to create new objects.
 //
 // [Full Topic]
@@ -250,7 +221,7 @@ func (o_ ObjectController) FetchPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) SetFetchPredicate(value foundation.IPredicate) {
+func (o_ ObjectController) SetFetchPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFetchPredicate:"), value)
 }
 
@@ -288,8 +259,27 @@ func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) SetManagedObjectContext(value coredata.IManagedObjectContext) {
+func (o_ ObjectController) SetManagedObjectContext(value coredata.ManagedObjectContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
+}
+
+
+// The object class to use when creating new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/objectclass
+func (o_ ObjectController) ObjectClass() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("objectClass"))
+	return rv
+}
+
+
+// The object class to use when creating new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/objectclass
+func (o_ ObjectController) SetObjectClass(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
 }
 
 

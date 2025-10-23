@@ -31,13 +31,15 @@ type _BluetoothHostControllerClass struct {
 // An interface definition for the [BluetoothHostController] class.
 type IBluetoothHostController interface {
 	objectivec.IObject
-	AddressAsString() foundation.String
-	ClassOfDevice() BluetoothClassOfDevice
-	NameAsString() foundation.String
-	SetClassOfDeviceForTimeInterval(classOfDevice IBluetoothClassOfDevice, seconds foundation.ITimeInterval) unsafe.Pointer
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	PowerState() unsafe.Pointer
+	// methods:
+	AddressAsString() foundation.String
+	ClassOfDevice() BluetoothClassOfDevice
+	NameAsString() foundation.String
+	SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice, seconds foundation.TimeInterval) unsafe.Pointer
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
@@ -137,7 +139,7 @@ func (b_ BluetoothHostController) NameAsString() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/setClassOfDevice(_:forTimeInterval:)
-func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice IBluetoothClassOfDevice, seconds foundation.ITimeInterval) unsafe.Pointer {
+func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice, seconds foundation.TimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
 	return rv
 }

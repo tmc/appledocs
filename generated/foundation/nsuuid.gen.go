@@ -30,8 +30,10 @@ type _UUIDClass struct {
 // An interface definition for the [UUID] class.
 type IUUID interface {
 	objectivec.IObject
-	UuidString() string
-	SetUuidString(value string)
+	// properties:
+	UuidString() string /* primitive/slice/pointer */
+	SetUuidString(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A universally unique value that can be used to identify types, interfaces, and other items.
@@ -91,7 +93,7 @@ func NewUUID() UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) UuidString() string {
+func (u_ UUID) UuidString() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (u_ UUID) UuidString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) SetUuidString(value string) {
+func (u_ UUID) SetUuidString(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }
 

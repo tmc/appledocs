@@ -31,15 +31,15 @@ type _EKReminderClass struct {
 type IEKReminder interface {
 	IEKCalendarItem
 	CompletionDate() foundation.NSDate
-	SetCompletionDate(value foundation.IDate)
+	SetCompletionDate(value foundation.NSDate)
 	DueDateComponents() foundation.DateComponents
-	SetDueDateComponents(value foundation.IDateComponents)
+	SetDueDateComponents(value foundation.DateComponents)
 	Completed() bool
 	SetCompleted(value bool)
 	Priority() uint
 	SetPriority(value uint)
 	StartDateComponents() foundation.DateComponents
-	SetStartDateComponents(value foundation.IDateComponents)
+	SetStartDateComponents(value foundation.DateComponents)
 	IsCompleted() bool
 	SetIsCompleted(value bool)
 }
@@ -134,7 +134,7 @@ func (e_ EKReminder) CompletionDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
-func (e_ EKReminder) SetCompletionDate(value foundation.IDate) {
+func (e_ EKReminder) SetCompletionDate(value foundation.NSDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
@@ -153,7 +153,7 @@ func (e_ EKReminder) DueDateComponents() foundation.DateComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
-func (e_ EKReminder) SetDueDateComponents(value foundation.IDateComponents) {
+func (e_ EKReminder) SetDueDateComponents(value foundation.DateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDueDateComponents:"), value)
 }
 
@@ -210,7 +210,7 @@ func (e_ EKReminder) StartDateComponents() foundation.DateComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
-func (e_ EKReminder) SetStartDateComponents(value foundation.IDateComponents) {
+func (e_ EKReminder) SetStartDateComponents(value foundation.DateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDateComponents:"), value)
 }
 

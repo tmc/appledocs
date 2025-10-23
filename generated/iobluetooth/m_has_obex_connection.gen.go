@@ -30,6 +30,8 @@ type _mHasOBEXConnectionClass struct {
 // An interface definition for the [mHasOBEXConnection] class.
 type ImHasOBEXConnection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

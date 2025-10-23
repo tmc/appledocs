@@ -6,8 +6,8 @@ package devicediscoveryextension
 // DDDeviceProtocolString - String values for the manner in which an app interacts with a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceProtocolString
-// DDDeviceProtocolString has base type: NSString *
-type DDDeviceProtocolString uintptr
+// DDDeviceProtocolString is a string typedef
+type DDDeviceProtocolString = string
 // DDErrorOutType - A type for framework functions that return error references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDErrorOutType

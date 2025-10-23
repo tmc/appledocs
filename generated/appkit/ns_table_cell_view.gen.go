@@ -29,17 +29,17 @@ type _TableCellViewClass struct {
 // An interface definition for the [TableCellView] class.
 type ITableCellView interface {
 	IView
-	BackgroundStyle() BackgroundStyle
-	SetBackgroundStyle(value BackgroundStyle)
+	BackgroundStyle() NSBackgroundStyle
+	SetBackgroundStyle(value NSBackgroundStyle)
 	DraggingImageComponents() []DraggingImageComponent
-	ImageView() NSImageView
+	ImageView() IImageView
 	SetImageView(value IImageView)
 	ObjectValue() objc.ID
 	SetObjectValue(value objc.ID)
-	RowSizeStyle() TableViewRowSizeStyle
-	SetRowSizeStyle(value TableViewRowSizeStyle)
-	TextField() NSTextField
-	SetTextField(value ITextField)
+	RowSizeStyle() unsafe.Pointer
+	SetRowSizeStyle(value unsafe.Pointer)
+	TextField() TextField
+	SetTextField(value TextField)
 }
 
 // A reusable container view shown for a particular cell in a table view that uses rows for content.
@@ -101,8 +101,8 @@ func NewTableCellView() TableCellView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
-	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
+func (t_ TableCellView) BackgroundStyle() NSBackgroundStyle {
+	rv := objc.Send[NSBackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
+func (t_ TableCellView) SetBackgroundStyle(value NSBackgroundStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
@@ -130,8 +130,8 @@ func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/imageView
-func (t_ TableCellView) ImageView() NSImageView {
-	rv := objc.Send[NSImageView](t_.ID, objc.Sel("imageView"))
+func (t_ TableCellView) ImageView() IImageView {
+	rv := objc.Send[ImageView](t_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -168,8 +168,8 @@ func (t_ TableCellView) SetObjectValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
-	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
+func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
+func (t_ TableCellView) SetRowSizeStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
 
@@ -187,8 +187,8 @@ func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) TextField() NSTextField {
-	rv := objc.Send[NSTextField](t_.ID, objc.Sel("textField"))
+func (t_ TableCellView) TextField() TextField {
+	rv := objc.Send[TextField](t_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (t_ TableCellView) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) SetTextField(value ITextField) {
+func (t_ TableCellView) SetTextField(value TextField) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }
 

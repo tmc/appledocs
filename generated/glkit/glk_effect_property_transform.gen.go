@@ -29,11 +29,13 @@ type _GLKEffectPropertyTransformClass struct {
 // An interface definition for the [GLKEffectPropertyTransform] class.
 type IGLKEffectPropertyTransform interface {
 	IGLKEffectProperty
+	// properties:
 	ModelviewMatrix() GLKMatrix4
-	SetModelviewMatrix(value IGLKMatrix4)
+	SetModelviewMatrix(value GLKMatrix4)
 	NormalMatrix() GLKMatrix3
 	ProjectionMatrix() GLKMatrix4
-	SetProjectionMatrix(value IGLKMatrix4)
+	SetProjectionMatrix(value GLKMatrix4)
+	// methods:
 }
 
 // Coordinate transform information for use in GLKit rendering effects.
@@ -105,7 +107,7 @@ func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
-func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value IGLKMatrix4) {
+func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value GLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
 }
 
@@ -134,7 +136,7 @@ func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
-func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value IGLKMatrix4) {
+func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value GLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
 }
 

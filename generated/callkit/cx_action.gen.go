@@ -31,13 +31,13 @@ type _CXActionClass struct {
 // An interface definition for the [CXAction] class.
 type ICXAction interface {
 	objectivec.IObject
-	Fail()
-	Fulfill()
 	Complete() bool
 	TimeoutDate() foundation.NSDate
 	UUID() foundation.UUID
 	IsComplete() bool
 	SetIsComplete(value bool)
+	Fail()
+	Fulfill()
 }
 
 // An abstract class that declares a programmatic interface for objects that represent a telephony action.
@@ -97,7 +97,7 @@ func NewCXAction() CXAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/init(coder:)
-func NewCXActionWithCoder(aDecoder foundation.ICoder) CXAction {
+func NewCXActionWithCoder(aDecoder foundation.Coder) CXAction {
 	instance := getCXActionClass().Alloc()
 	rv := objc.Send[CXAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

@@ -29,7 +29,9 @@ type _CloneCommandClass struct {
 // An interface definition for the [CloneCommand] class.
 type ICloneCommand interface {
 	IScriptCommand
+	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 

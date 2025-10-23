@@ -32,33 +32,34 @@ type _GameActivityClass struct {
 // An interface definition for the [GameActivity] class.
 type IGameActivity interface {
 	objectivec.IObject
-	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64)
-	SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int)
-	Duration() foundation.TimeInterval
-	Achievements() GKAchievement
+	Achievements() IGKAchievement
 	SetAchievements(value IGKAchievement)
-	ActivityDefinition() GKGameActivityDefinition
+	ActivityDefinition() IGKGameActivityDefinition
 	SetActivityDefinition(value IGKGameActivityDefinition)
 	CreationDate() foundation.Date
-	SetCreationDate(value foundation.IDate)
+	SetCreationDate(value foundation.Date)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
 	EndDate() foundation.Date
-	SetEndDate(value foundation.IDate)
+	SetEndDate(value foundation.Date)
 	Identifier() string
 	SetIdentifier(value string)
 	LastResumeDate() foundation.Date
-	SetLastResumeDate(value foundation.IDate)
-	LeaderboardScores() GKLeaderboardScore
+	SetLastResumeDate(value foundation.Date)
+	LeaderboardScores() IGKLeaderboardScore
 	SetLeaderboardScores(value IGKLeaderboardScore)
 	PartyCode() string
 	SetPartyCode(value string)
 	PartyURL() foundation.URL
-	SetPartyURL(value foundation.IURL)
+	SetPartyURL(value foundation.URL)
 	Properties() string
 	SetProperties(value string)
 	StartDate() foundation.Date
-	SetStartDate(value foundation.IDate)
+	SetStartDate(value foundation.Date)
 	State() coreml.State
 	SetState(value coreml.State)
+	SetProgressOnAchievementToPercentComplete(achievement IGKAchievement, percentComplete float64)
+	SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, score int)
 }
 
 // An object that represents a single instance of a game activity for the current game.
@@ -130,22 +131,12 @@ func (g_ GameActivity) SetScoreOnLeaderboardToScore(leaderboard IGKLeaderboard, 
 }
 
 
-// Total time elapsed while in active state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivity/duration
-func (g_ GameActivity) Duration() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
 // All achievements that have been associated with this activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/achievements
-func (g_ GameActivity) Achievements() GKAchievement {
-	rv := objc.Send[GKAchievement](g_.ID, objc.Sel("achievements"))
+func (g_ GameActivity) Achievements() IGKAchievement {
+	rv := objc.Send[Achievement](g_.ID, objc.Sel("achievements"))
 	return rv
 }
 
@@ -163,8 +154,8 @@ func (g_ GameActivity) SetAchievements(value IGKAchievement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/activitydefinition
-func (g_ GameActivity) ActivityDefinition() GKGameActivityDefinition {
-	rv := objc.Send[GKGameActivityDefinition](g_.ID, objc.Sel("activityDefinition"))
+func (g_ GameActivity) ActivityDefinition() IGKGameActivityDefinition {
+	rv := objc.Send[GameActivityDefinition](g_.ID, objc.Sel("activityDefinition"))
 	return rv
 }
 
@@ -192,8 +183,27 @@ func (g_ GameActivity) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/creationdate
-func (g_ GameActivity) SetCreationDate(value foundation.IDate) {
+func (g_ GameActivity) SetCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCreationDate:"), value)
+}
+
+
+// Total time elapsed while in active state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/duration
+func (g_ GameActivity) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// Total time elapsed while in active state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/duration
+func (g_ GameActivity) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDuration:"), value)
 }
 
 
@@ -211,7 +221,7 @@ func (g_ GameActivity) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/enddate
-func (g_ GameActivity) SetEndDate(value foundation.IDate) {
+func (g_ GameActivity) SetEndDate(value foundation.Date) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -249,7 +259,7 @@ func (g_ GameActivity) LastResumeDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/lastresumedate
-func (g_ GameActivity) SetLastResumeDate(value foundation.IDate) {
+func (g_ GameActivity) SetLastResumeDate(value foundation.Date) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLastResumeDate:"), value)
 }
 
@@ -258,8 +268,8 @@ func (g_ GameActivity) SetLastResumeDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/leaderboardscores
-func (g_ GameActivity) LeaderboardScores() GKLeaderboardScore {
-	rv := objc.Send[GKLeaderboardScore](g_.ID, objc.Sel("leaderboardScores"))
+func (g_ GameActivity) LeaderboardScores() IGKLeaderboardScore {
+	rv := objc.Send[LeaderboardScore](g_.ID, objc.Sel("leaderboardScores"))
 	return rv
 }
 
@@ -306,7 +316,7 @@ func (g_ GameActivity) PartyURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/partyurl
-func (g_ GameActivity) SetPartyURL(value foundation.IURL) {
+func (g_ GameActivity) SetPartyURL(value foundation.URL) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPartyURL:"), value)
 }
 
@@ -344,7 +354,7 @@ func (g_ GameActivity) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivity/startdate
-func (g_ GameActivity) SetStartDate(value foundation.IDate) {
+func (g_ GameActivity) SetStartDate(value foundation.Date) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStartDate:"), value)
 }
 

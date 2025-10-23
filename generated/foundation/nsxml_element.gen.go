@@ -30,29 +30,31 @@ type _XMLElementClass struct {
 // An interface definition for the [XMLElement] class.
 type IXMLElement interface {
 	IXMLNode
-	Attributes() []XMLNode
-	SetAttributes(value []XMLNode)
-	Namespaces() []XMLNode
-	SetNamespaces(value []XMLNode)
+	// properties:
+	Attributes() []XMLNode /* primitive/slice/pointer */
+	SetAttributes(value []XMLNode /* primitive/slice/pointer */)
+	Namespaces() []XMLNode /* primitive/slice/pointer */
+	SetNamespaces(value []XMLNode /* primitive/slice/pointer */)
+	// methods:
 	AddAttribute(attribute IXMLNode)
 	AddChild(child IXMLNode)
 	AddNamespace(aNamespace IXMLNode)
-	AttributeForLocalNameURI(localName string, URI string) IXMLNode
-	AttributeForName(name string) IXMLNode
-	ElementsForLocalNameURI(localName string, URI string) []XMLElement
-	ElementsForName(name string) []XMLElement
-	InsertChildAtIndex(child IXMLNode, index uint)
-	InsertChildrenAtIndex(children []XMLNode, index uint)
-	NamespaceForPrefix(name string) IXMLNode
-	NormalizeAdjacentTextNodesPreservingCDATA(preserve bool)
-	RemoveAttributeForName(name string)
-	RemoveChildAtIndex(index uint)
-	RemoveNamespaceForPrefix(name string)
-	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
-	ResolveNamespaceForName(name string) IXMLNode
-	ResolvePrefixForNamespaceURI(namespaceURI string) IString
-	SetAttributesWithDictionary(attributes IDictionary)
-	SetChildren(children []XMLNode)
+	AttributeForLocalNameURI(localName string /* primitive/slice/pointer */, URI string /* primitive/slice/pointer */) IXMLNode
+	AttributeForName(name string /* primitive/slice/pointer */) IXMLNode
+	ElementsForLocalNameURI(localName string /* primitive/slice/pointer */, URI string /* primitive/slice/pointer */) []XMLElement /* primitive/slice/pointer */
+	ElementsForName(name string /* primitive/slice/pointer */) []XMLElement /* primitive/slice/pointer */
+	InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */)
+	InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */)
+	NamespaceForPrefix(name string /* primitive/slice/pointer */) IXMLNode
+	NormalizeAdjacentTextNodesPreservingCDATA(preserve bool /* primitive/slice/pointer */)
+	RemoveAttributeForName(name string /* primitive/slice/pointer */)
+	RemoveChildAtIndex(index uint /* primitive/slice/pointer */)
+	RemoveNamespaceForPrefix(name string /* primitive/slice/pointer */)
+	ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode)
+	ResolveNamespaceForName(name string /* primitive/slice/pointer */) IXMLNode
+	ResolvePrefixForNamespaceURI(namespaceURI string /* primitive/slice/pointer */) IString
+	SetAttributesWithDictionary(attributes IDictionary /* already interface */)
+	SetChildren(children []XMLNode /* primitive/slice/pointer */)
 }
 
 // The element nodes in an XML tree structure.
@@ -112,7 +114,7 @@ func NewXMLElement() XMLElement {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(kind:options:)
-func NewXMLElementWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) XMLElement {
+func NewXMLElementWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
@@ -124,7 +126,7 @@ func NewXMLElementWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:)
-func NewXMLElementWithName(name string) XMLElement {
+func NewXMLElementWithName(name string /* primitive/slice/pointer */) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
@@ -136,7 +138,7 @@ func NewXMLElementWithName(name string) XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
-func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
+func NewXMLElementWithNameStringValue(name string /* primitive/slice/pointer */, string_ string /* primitive/slice/pointer */) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string_))
 	rv.Autorelease()
@@ -148,7 +150,7 @@ func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:uri:)
-func NewXMLElementWithNameURI(name string, URI string) XMLElement {
+func NewXMLElementWithNameURI(name string /* primitive/slice/pointer */, URI string /* primitive/slice/pointer */) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), objc.String(name), objc.String(URI))
 	rv.Autorelease()
@@ -160,7 +162,7 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(xmlString:)
-func NewXMLElementWithXMLStringError(string_ string, error_ IError) XMLElement {
+func NewXMLElementWithXMLStringError(string_ string /* primitive/slice/pointer */, error_ IError) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithXMLString:error:"), objc.String(string_), error_)
 	rv.Autorelease()
@@ -200,7 +202,7 @@ func (x_ XMLElement) AddNamespace(aNamespace IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forLocalName:uri:)
-func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) IXMLNode {
+func (x_ XMLElement) AttributeForLocalNameURI(localName string /* primitive/slice/pointer */, URI string /* primitive/slice/pointer */) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForLocalName:URI:"), objc.String(localName), objc.String(URI))
 	return rv
 }
@@ -210,7 +212,7 @@ func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) IXML
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forName:)
-func (x_ XMLElement) AttributeForName(name string) IXMLNode {
+func (x_ XMLElement) AttributeForName(name string /* primitive/slice/pointer */) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), objc.String(name))
 	return rv
 }
@@ -220,7 +222,7 @@ func (x_ XMLElement) AttributeForName(name string) IXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/elements(forLocalName:uri:)
-func (x_ XMLElement) ElementsForLocalNameURI(localName string, URI string) []XMLElement {
+func (x_ XMLElement) ElementsForLocalNameURI(localName string /* primitive/slice/pointer */, URI string /* primitive/slice/pointer */) []XMLElement /* primitive/slice/pointer */ {
 	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForLocalName:URI:"), objc.String(localName), objc.String(URI))
 	return rv
 }
@@ -230,7 +232,7 @@ func (x_ XMLElement) ElementsForLocalNameURI(localName string, URI string) []XML
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/elements(forName:)
-func (x_ XMLElement) ElementsForName(name string) []XMLElement {
+func (x_ XMLElement) ElementsForName(name string /* primitive/slice/pointer */) []XMLElement /* primitive/slice/pointer */ {
 	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForName:"), objc.String(name))
 	return rv
 }
@@ -240,7 +242,7 @@ func (x_ XMLElement) ElementsForName(name string) []XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/insertChild(_:at:)
-func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint) {
+func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
 
@@ -249,7 +251,7 @@ func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/insertChildren(_:at:)
-func (x_ XMLElement) InsertChildrenAtIndex(children []XMLNode, index uint) {
+func (x_ XMLElement) InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
@@ -258,7 +260,7 @@ func (x_ XMLElement) InsertChildrenAtIndex(children []XMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespace(forPrefix:)
-func (x_ XMLElement) NamespaceForPrefix(name string) IXMLNode {
+func (x_ XMLElement) NamespaceForPrefix(name string /* primitive/slice/pointer */) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaceForPrefix:"), objc.String(name))
 	return rv
 }
@@ -268,7 +270,7 @@ func (x_ XMLElement) NamespaceForPrefix(name string) IXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/normalizeAdjacentTextNodesPreservingCDATA(_:)
-func (x_ XMLElement) NormalizeAdjacentTextNodesPreservingCDATA(preserve bool) {
+func (x_ XMLElement) NormalizeAdjacentTextNodesPreservingCDATA(preserve bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("normalizeAdjacentTextNodesPreservingCDATA:"), preserve)
 }
 
@@ -277,7 +279,7 @@ func (x_ XMLElement) NormalizeAdjacentTextNodesPreservingCDATA(preserve bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/removeAttribute(forName:)
-func (x_ XMLElement) RemoveAttributeForName(name string) {
+func (x_ XMLElement) RemoveAttributeForName(name string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeAttributeForName:"), objc.String(name))
 }
 
@@ -286,7 +288,7 @@ func (x_ XMLElement) RemoveAttributeForName(name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/removeChild(at:)
-func (x_ XMLElement) RemoveChildAtIndex(index uint) {
+func (x_ XMLElement) RemoveChildAtIndex(index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeChildAtIndex:"), index)
 }
 
@@ -295,7 +297,7 @@ func (x_ XMLElement) RemoveChildAtIndex(index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/removeNamespace(forPrefix:)
-func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
+func (x_ XMLElement) RemoveNamespaceForPrefix(name string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), objc.String(name))
 }
 
@@ -304,7 +306,7 @@ func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/replaceChild(at:with:)
-func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
+func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
 
@@ -313,7 +315,7 @@ func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolveNamespace(forName:)
-func (x_ XMLElement) ResolveNamespaceForName(name string) IXMLNode {
+func (x_ XMLElement) ResolveNamespaceForName(name string /* primitive/slice/pointer */) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("resolveNamespaceForName:"), objc.String(name))
 	return rv
 }
@@ -323,7 +325,7 @@ func (x_ XMLElement) ResolveNamespaceForName(name string) IXMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolvePrefix(forNamespaceURI:)
-func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string) IString {
+func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("resolvePrefixForNamespaceURI:"), objc.String(namespaceURI))
 	return rv
 }
@@ -333,7 +335,7 @@ func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/setAttributesWith(_:)
-func (x_ XMLElement) SetAttributesWithDictionary(attributes IDictionary) {
+func (x_ XMLElement) SetAttributesWithDictionary(attributes IDictionary /* already interface */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAttributesWithDictionary:"), attributes)
 }
 
@@ -342,7 +344,7 @@ func (x_ XMLElement) SetAttributesWithDictionary(attributes IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/setChildren(_:)
-func (x_ XMLElement) SetChildren(children []XMLNode) {
+func (x_ XMLElement) SetChildren(children []XMLNode /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
 }
 
@@ -351,7 +353,7 @@ func (x_ XMLElement) SetChildren(children []XMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attributes
-func (x_ XMLElement) Attributes() []XMLNode {
+func (x_ XMLElement) Attributes() []XMLNode /* primitive/slice/pointer */ {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("attributes"))
 	return rv
 }
@@ -361,7 +363,7 @@ func (x_ XMLElement) Attributes() []XMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attributes
-func (x_ XMLElement) SetAttributes(value []XMLNode) {
+func (x_ XMLElement) SetAttributes(value []XMLNode /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -380,7 +382,7 @@ func (x_ XMLElement) SetAttributes(value []XMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespaces
-func (x_ XMLElement) Namespaces() []XMLNode {
+func (x_ XMLElement) Namespaces() []XMLNode /* primitive/slice/pointer */ {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("namespaces"))
 	return rv
 }
@@ -390,7 +392,7 @@ func (x_ XMLElement) Namespaces() []XMLNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespaces
-func (x_ XMLElement) SetNamespaces(value []XMLNode) {
+func (x_ XMLElement) SetNamespaces(value []XMLNode /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

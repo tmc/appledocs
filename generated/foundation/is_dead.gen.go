@@ -30,6 +30,8 @@ type _isDeadClass struct {
 // An interface definition for the [isDead] class.
 type IisDead interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

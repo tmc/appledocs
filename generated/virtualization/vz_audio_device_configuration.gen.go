@@ -35,7 +35,11 @@ type IVZAudioDeviceConfiguration interface {
 // The base class for an audio device configuration.
 //
 // Don’t instantiate this abstract class directly. Instead, instantiate one of its subclasses such as .
+
+
+// The base class for an audio device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZAudioDeviceConfiguration
 type VZAudioDeviceConfiguration struct {
 	objectivec.Object

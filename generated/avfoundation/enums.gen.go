@@ -3,77 +3,122 @@
 package avfoundation
 
 // Enum types and constants
-// AVAudioSpatializationFormats - A structure that defines the spatialization formats that a player item supports.
+// AssetWriterStatus - Values that indicate the state of an asset writer.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/Status-swift.enum
+type AssetWriterStatus uint
+
+// AudioSpatializationFormats - A structure that defines the spatialization formats that a player item supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAudioSpatializationFormats
-type AVAudioSpatializationFormats uint
+type AudioSpatializationFormats uint
 
-// AVContentAuthorizationStatus - A value representing the status of a content authorization request.
+// AuthorizationStatus - Constants that indicate the status of an app’s authorization to capture media.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAuthorizationStatus
+type AuthorizationStatus uint
+
+// CaptureLensStabilizationStatus - Constants that indicate the status of optical image stabilization hardware during a bracketed photo capture.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/LensStabilizationStatus
+type CaptureLensStabilizationStatus uint
+
+// CaptureDevicePosition - Constants that indicate the physical position of a capture device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/Position-swift.enum
+type CaptureDevicePosition uint
+
+// CaptureMultichannelAudioMode - Constants that indicate the modes of multichannel audio.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultichannelAudioMode
+type CaptureMultichannelAudioMode uint
+
+// CaptureOutputDataDroppedReason - Constants that define reasons for why the system dropped a frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureOutput/DataDroppedReason
+type CaptureOutputDataDroppedReason uint
+
+// ContentAuthorizationStatus - A value representing the status of a content authorization request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentAuthorizationStatus
-type AVContentAuthorizationStatus uint
+type ContentAuthorizationStatus uint
 
-// AVError - An enumeration that defines the errors that framework operations can generate.
+// Error - An enumeration that defines the errors that framework operations can generate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code
-type AVError uint
+type Error uint
 
 const (
-	// AVErrorIncorrectlyConfigured - The system is incorrectly configured for the requested operation.
+	// ErrorIncorrectlyConfigured - The system is incorrectly configured for the requested operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/incorrectlyConfigured
-	AVErrorIncorrectlyConfigured AVError = 0
+	ErrorIncorrectlyConfigured Error = 0
+	// ErrorUndecodableMediaData - The system couldn’t decode the media data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVError-swift.struct/Code/undecodableMediaData
+	ErrorUndecodableMediaData Error = 0
 )
 
-// AVPlayerActionAtItemEnd - The actions a player can take when it finishes playing.
+// PlayerActionAtItemEnd - The actions a player can take when it finishes playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/ActionAtItemEnd-swift.enum
-type AVPlayerActionAtItemEnd uint
+type PlayerActionAtItemEnd uint
 
-// AVPlayerHDRMode - A bitfield type that specifies an HDR mode.
+// PlayerHDRMode - A bitfield type that specifies an HDR mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/HDRMode
-type AVPlayerHDRMode uint
+type PlayerHDRMode uint
 
-// AVPlayerNetworkResourcePriority - This defines the network resource priority for a player.
+// PlayerNetworkResourcePriority - This defines the network resource priority for a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/NetworkResourcePriority-swift.enum
-type AVPlayerNetworkResourcePriority uint
+type PlayerNetworkResourcePriority uint
 
-// AVPlayerStatus - Status values that indicate whether a player can successfully play media.
+// PlayerStatus - Status values that indicate whether a player can successfully play media.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/Status-swift.enum
-type AVPlayerStatus uint
+type PlayerStatus uint
 
-// AVPlayerTimeControlStatus - Constants that indicate the state of playback control.
+// PlayerTimeControlStatus - Constants that indicate the state of playback control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/TimeControlStatus-swift.enum
-type AVPlayerTimeControlStatus uint
-
-// AVPlayerAudiovisualBackgroundPlaybackPolicy - Policies that describe playback behavior when an app transitions to the background while playing video.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerAudiovisualBackgroundPlaybackPolicy
-type AVPlayerAudiovisualBackgroundPlaybackPolicy uint
-
-// AVPlayerItemStatus - The statuses for a player item.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum
-type AVPlayerItemStatus uint
+type PlayerTimeControlStatus uint
 
 const (
-	// AVPlayerItemStatusReadyToPlay - The item is ready to play.
+	// PlayerTimeControlStatusPlaying - A state that indicates that the player is currently playing media.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay
-	AVPlayerItemStatusReadyToPlay AVPlayerItemStatus = 0
-	// AVPlayerItemStatusUnknown - The item’s status is unknown.
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/TimeControlStatus-swift.enum/playing
+	PlayerTimeControlStatusPlaying PlayerTimeControlStatus = 0
+	// PlayerTimeControlStatusWaitingToPlayAtSpecifiedRate - A state that indicates that the player is waiting for network conditions to improve before it can start or resume playback.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown
-	AVPlayerItemStatusUnknown AVPlayerItemStatus = 0
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/TimeControlStatus-swift.enum/waitingToPlayAtSpecifiedRate
+	PlayerTimeControlStatusWaitingToPlayAtSpecifiedRate PlayerTimeControlStatus = 0
 )
 
-// AVVariantPreferences - Defines the preferences the player item uses when selecting variant playlists.
+// PlayerAudiovisualBackgroundPlaybackPolicy - Policies that describe playback behavior when an app transitions to the background while playing video.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerAudiovisualBackgroundPlaybackPolicy
+type PlayerAudiovisualBackgroundPlaybackPolicy uint
+
+// PlayerItemStatus - The statuses for a player item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum
+type PlayerItemStatus uint
+
+const (
+	// PlayerItemStatusReadyToPlay - The item is ready to play.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/readyToPlay
+	PlayerItemStatusReadyToPlay PlayerItemStatus = 0
+	// PlayerItemStatusUnknown - The item’s status is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/Status-swift.enum/unknown
+	PlayerItemStatusUnknown PlayerItemStatus = 0
+)
+
+// VariantPreferences - Defines the preferences the player item uses when selecting variant playlists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVariantPreferences
-type AVVariantPreferences uint
+type VariantPreferences uint
 
 

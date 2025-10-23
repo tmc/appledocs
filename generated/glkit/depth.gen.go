@@ -30,6 +30,8 @@ type _depthClass struct {
 // An interface definition for the [depth] class.
 type Idepth interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,9 +30,9 @@ type _ARC4RandomSourceClass struct {
 // An interface definition for the [ARC4RandomSource] class.
 type IARC4RandomSource interface {
 	IRandomSource
-	DropValuesWithCount(count uint)
 	Seed() foundation.NSData
-	SetSeed(value foundation.IData)
+	SetSeed(value foundation.NSData)
+	DropValuesWithCount(count uint)
 }
 
 // A basic random number generator implementing the ARC4 algorithm, which is suitable for most gameplay mechanics.
@@ -94,7 +94,7 @@ func NewARC4RandomSource() ARC4RandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/init(seed:)
-func NewARC4RandomSourceWithSeed(seed foundation.IData) ARC4RandomSource {
+func NewARC4RandomSourceWithSeed(seed foundation.NSData) ARC4RandomSource {
 	instance := getARC4RandomSourceClass().Alloc()
 	rv := objc.Send[ARC4RandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
 	rv.Autorelease()
@@ -126,7 +126,7 @@ func (c_ ARC4RandomSource) Seed() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-func (c_ ARC4RandomSource) SetSeed(value foundation.IData) {
+func (c_ ARC4RandomSource) SetSeed(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
 

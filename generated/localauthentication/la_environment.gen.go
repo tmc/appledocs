@@ -30,9 +30,11 @@ type _EnvironmentClass struct {
 // An interface definition for the [Environment] class.
 type IEnvironment interface {
 	objectivec.IObject
+	// properties:
+	State() ILAEnvironmentState
+	// methods:
 	AddObserver(observer objectivec.IObject)
 	RemoveObserver(observer objectivec.IObject)
-	State() LAEnvironmentState
 }
 
 
@@ -86,7 +88,7 @@ func NewEnvironment() Environment {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
 func (ec _EnvironmentClass) CurrentUser() Environment {
-	rv := objc.Send[LAEnvironment](objc.ID(ec.class), objc.Sel("currentUser"))
+	rv := objc.Send[Environment](objc.ID(ec.class), objc.Sel("currentUser"))
 	return rv
 }
 
@@ -108,8 +110,8 @@ func (e_ Environment) RemoveObserver(observer objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
-func (e_ Environment) CurrentUser() LAEnvironment {
-	rv := objc.Send[LAEnvironment](e_.ID, objc.Sel("currentUser"))
+func (e_ Environment) CurrentUser() ILAEnvironment {
+	rv := objc.Send[Environment](e_.ID, objc.Sel("currentUser"))
 	return rv
 }
 
@@ -118,8 +120,8 @@ func (e_ Environment) CurrentUser() LAEnvironment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/state-swift.property
-func (e_ Environment) State() LAEnvironmentState {
-	rv := objc.Send[LAEnvironmentState](e_.ID, objc.Sel("state"))
+func (e_ Environment) State() ILAEnvironmentState {
+	rv := objc.Send[EnvironmentState](e_.ID, objc.Sel("state"))
 	return rv
 }
 

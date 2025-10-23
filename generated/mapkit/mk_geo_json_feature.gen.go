@@ -31,11 +31,14 @@ type _MKGeoJSONFeatureClass struct {
 // An interface definition for the [MKGeoJSONFeature] class.
 type IMKGeoJSONFeature interface {
 	objectivec.IObject
-	Identifier() string
+	// properties:
 	Geometry() unsafe.Pointer
 	SetGeometry(value unsafe.Pointer)
+	Identifier() string
+	SetIdentifier(value string)
 	Properties() foundation.Data
-	SetProperties(value foundation.IData)
+	SetProperties(value foundation.Data)
+	// methods:
 }
 
 // The decoded representation of a GeoJSON feature.
@@ -91,16 +94,6 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 
 
 
-// An optional identifier the class returns as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier
-func (m_ MKGeoJSONFeature) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
 // The shape or shapes associated with the GeoJSON feature.
 //
 // [Full Topic]
@@ -120,6 +113,25 @@ func (m_ MKGeoJSONFeature) SetGeometry(value unsafe.Pointer) {
 }
 
 
+// An optional identifier the class returns as a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/identifier
+func (m_ MKGeoJSONFeature) Identifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// An optional identifier the class returns as a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/identifier
+func (m_ MKGeoJSONFeature) SetIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
 // Optional serialized JSON data that corresponds to the properties key.
 //
 // [Full Topic]
@@ -134,7 +146,7 @@ func (m_ MKGeoJSONFeature) Properties() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
-func (m_ MKGeoJSONFeature) SetProperties(value foundation.IData) {
+func (m_ MKGeoJSONFeature) SetProperties(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
 }
 

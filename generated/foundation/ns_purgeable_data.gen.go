@@ -29,6 +29,8 @@ type _PurgeableDataClass struct {
 // An interface definition for the [PurgeableData] class.
 type IPurgeableData interface {
 	IMutableData
+	// properties:
+	// methods:
 }
 
 // A mutable data object containing bytes that can be discarded when they’re no longer needed.

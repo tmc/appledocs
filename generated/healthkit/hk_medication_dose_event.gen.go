@@ -30,14 +30,24 @@ type _HKMedicationDoseEventClass struct {
 // An interface definition for the [HKMedicationDoseEvent] class.
 type IHKMedicationDoseEvent interface {
 	IHKSample
-	DoseQuantity() foundation.Number
-	LogStatus() HKMedicationDoseEventLogStatus
-	MedicationConceptIdentifier() HKHealthConceptIdentifier
-	MedicationDoseEventType() HKMedicationDoseEventType
-	ScheduleType() HKMedicationDoseEventScheduleType
-	ScheduledDate() foundation.NSDate
-	ScheduledDoseQuantity() foundation.Number
+	// properties:
+	DoseQuantity() float64
+	SetDoseQuantity(value float64)
+	LogStatus() unsafe.Pointer
+	SetLogStatus(value unsafe.Pointer)
+	MedicationConceptIdentifier() IHKHealthConceptIdentifier
+	SetMedicationConceptIdentifier(value IHKHealthConceptIdentifier)
+	MedicationDoseEventType() IHKMedicationDoseEventType
+	SetMedicationDoseEventType(value IHKMedicationDoseEventType)
+	ScheduleType() unsafe.Pointer
+	SetScheduleType(value unsafe.Pointer)
+	ScheduledDate() foundation.Date
+	SetScheduledDate(value foundation.Date)
+	ScheduledDoseQuantity() float64
+	SetScheduledDoseQuantity(value float64)
 	Unit() HKUnit
+	SetUnit(value HKUnit)
+	// methods:
 }
 
 
@@ -88,12 +98,31 @@ func NewHKMedicationDoseEvent() HKMedicationDoseEvent {
 
 
 
-// The dose quantity the person reports as taken.
+// The quantity of the medication taken.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/doseQuantity-52hxr
-func (h_ HKMedicationDoseEvent) DoseQuantity() foundation.Number {
-	rv := objc.Send[foundation.Number](h_.ID, objc.Sel("doseQuantity"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
+func (h_ HKMedicationDoseEvent) DoseQuantity() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("doseQuantity"))
+	return rv
+}
+
+
+// The quantity of the medication taken.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
+func (h_ HKMedicationDoseEvent) SetDoseQuantity(value float64) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDoseQuantity:"), value)
+}
+
+
+// The log status the system assigns to this dose event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.property
+func (h_ HKMedicationDoseEvent) LogStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("logStatus"))
 	return rv
 }
 
@@ -101,9 +130,18 @@ func (h_ HKMedicationDoseEvent) DoseQuantity() foundation.Number {
 // The log status the system assigns to this dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/logStatus-swift.property
-func (h_ HKMedicationDoseEvent) LogStatus() HKMedicationDoseEventLogStatus {
-	rv := objc.Send[HKMedicationDoseEventLogStatus](h_.ID, objc.Sel("logStatus"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.property
+func (h_ HKMedicationDoseEvent) SetLogStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLogStatus:"), value)
+}
+
+
+// The identifier of the medication concept the system associates with this dose event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationconceptidentifier
+func (h_ HKMedicationDoseEvent) MedicationConceptIdentifier() IHKHealthConceptIdentifier {
+	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("medicationConceptIdentifier"))
 	return rv
 }
 
@@ -111,9 +149,18 @@ func (h_ HKMedicationDoseEvent) LogStatus() HKMedicationDoseEventLogStatus {
 // The identifier of the medication concept the system associates with this dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/medicationConceptIdentifier
-func (h_ HKMedicationDoseEvent) MedicationConceptIdentifier() HKHealthConceptIdentifier {
-	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("medicationConceptIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationconceptidentifier
+func (h_ HKMedicationDoseEvent) SetMedicationConceptIdentifier(value IHKHealthConceptIdentifier) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMedicationConceptIdentifier:"), value)
+}
+
+
+// The data type that identified the samples that store medication dose event data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationdoseeventtype
+func (h_ HKMedicationDoseEvent) MedicationDoseEventType() IHKMedicationDoseEventType {
+	rv := objc.Send[HKMedicationDoseEventType](h_.ID, objc.Sel("medicationDoseEventType"))
 	return rv
 }
 
@@ -121,9 +168,18 @@ func (h_ HKMedicationDoseEvent) MedicationConceptIdentifier() HKHealthConceptIde
 // The data type that identified the samples that store medication dose event data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/medicationDoseEventType
-func (h_ HKMedicationDoseEvent) MedicationDoseEventType() HKMedicationDoseEventType {
-	rv := objc.Send[HKMedicationDoseEventType](h_.ID, objc.Sel("medicationDoseEventType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationdoseeventtype
+func (h_ HKMedicationDoseEvent) SetMedicationDoseEventType(value IHKMedicationDoseEventType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMedicationDoseEventType:"), value)
+}
+
+
+// The scheduling context for this logged dose event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.property
+func (h_ HKMedicationDoseEvent) ScheduleType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("scheduleType"))
 	return rv
 }
 
@@ -131,9 +187,18 @@ func (h_ HKMedicationDoseEvent) MedicationDoseEventType() HKMedicationDoseEventT
 // The scheduling context for this logged dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduleType-swift.property
-func (h_ HKMedicationDoseEvent) ScheduleType() HKMedicationDoseEventScheduleType {
-	rv := objc.Send[HKMedicationDoseEventScheduleType](h_.ID, objc.Sel("scheduleType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.property
+func (h_ HKMedicationDoseEvent) SetScheduleType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduleType:"), value)
+}
+
+
+// The date and time the person takes the medication, if scheduled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
+func (h_ HKMedicationDoseEvent) ScheduledDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("scheduledDate"))
 	return rv
 }
 
@@ -141,19 +206,37 @@ func (h_ HKMedicationDoseEvent) ScheduleType() HKMedicationDoseEventScheduleType
 // The date and time the person takes the medication, if scheduled.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduledDate
-func (h_ HKMedicationDoseEvent) ScheduledDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("scheduledDate"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
+func (h_ HKMedicationDoseEvent) SetScheduledDate(value foundation.Date) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDate:"), value)
+}
+
+
+// The quantity of the medication scheduled to be taken.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
+func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() float64 {
+	rv := objc.Send[float64](h_.ID, objc.Sel("scheduledDoseQuantity"))
 	return rv
 }
 
 
-// The dose quantity a person is expected to take based on their medication schedule.
+// The quantity of the medication scheduled to be taken.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduledDoseQuantity-7ffhr
-func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() foundation.Number {
-	rv := objc.Send[foundation.Number](h_.ID, objc.Sel("scheduledDoseQuantity"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
+func (h_ HKMedicationDoseEvent) SetScheduledDoseQuantity(value float64) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDoseQuantity:"), value)
+}
+
+
+// The unit that the system associates with the medication when the person logs the dose.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/unit
+func (h_ HKMedicationDoseEvent) Unit() HKUnit {
+	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unit"))
 	return rv
 }
 
@@ -161,10 +244,9 @@ func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() foundation.Number {
 // The unit that the system associates with the medication when the person logs the dose.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/unit
-func (h_ HKMedicationDoseEvent) Unit() HKUnit {
-	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unit"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/unit
+func (h_ HKMedicationDoseEvent) SetUnit(value HKUnit) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUnit:"), value)
 }
 
 

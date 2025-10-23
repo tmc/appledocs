@@ -30,16 +30,17 @@ type _HKDiscreteQuantitySampleClass struct {
 // An interface definition for the [HKDiscreteQuantitySample] class.
 type IHKDiscreteQuantitySample interface {
 	IHKQuantitySample
-	AverageQuantity() HKQuantity
+	// properties:
+	AverageQuantity() IHKQuantity
 	SetAverageQuantity(value IHKQuantity)
-	MaximumQuantity() HKQuantity
+	MaximumQuantity() IHKQuantity
 	SetMaximumQuantity(value IHKQuantity)
-	MinimumQuantity() HKQuantity
+	MinimumQuantity() IHKQuantity
 	SetMinimumQuantity(value IHKQuantity)
-	MostRecentQuantity() HKQuantity
+	MostRecentQuantity() IHKQuantity
 	SetMostRecentQuantity(value IHKQuantity)
 	MostRecentQuantityDateInterval() foundation.DateInterval
-	SetMostRecentQuantityDateInterval(value foundation.IDateInterval)
+	SetMostRecentQuantityDateInterval(value foundation.DateInterval)
 	HKPredicateKeyPathAverage() string
 	HKPredicateKeyPathMax() string
 	HKPredicateKeyPathMin() string
@@ -47,6 +48,7 @@ type IHKDiscreteQuantitySample interface {
 	HKPredicateKeyPathMostRecentDuration() string
 	HKPredicateKeyPathMostRecentEndDate() string
 	HKPredicateKeyPathMostRecentStartDate() string
+	// methods:
 }
 
 // A sample that represents a discrete quantity.
@@ -108,7 +110,7 @@ func NewHKDiscreteQuantitySample() HKDiscreteQuantitySample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/averagequantity
-func (h_ HKDiscreteQuantitySample) AverageQuantity() HKQuantity {
+func (h_ HKDiscreteQuantitySample) AverageQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("averageQuantity"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (h_ HKDiscreteQuantitySample) SetAverageQuantity(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/maximumquantity
-func (h_ HKDiscreteQuantitySample) MaximumQuantity() HKQuantity {
+func (h_ HKDiscreteQuantitySample) MaximumQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("maximumQuantity"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (h_ HKDiscreteQuantitySample) SetMaximumQuantity(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/minimumquantity
-func (h_ HKDiscreteQuantitySample) MinimumQuantity() HKQuantity {
+func (h_ HKDiscreteQuantitySample) MinimumQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("minimumQuantity"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (h_ HKDiscreteQuantitySample) SetMinimumQuantity(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity
-func (h_ HKDiscreteQuantitySample) MostRecentQuantity() HKQuantity {
+func (h_ HKDiscreteQuantitySample) MostRecentQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("mostRecentQuantity"))
 	return rv
 }
@@ -194,7 +196,7 @@ func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value foundation.IDateInterval) {
+func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value foundation.DateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantityDateInterval:"), value)
 }
 

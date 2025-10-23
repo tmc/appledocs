@@ -93,7 +93,7 @@ func NewNavigationMarkersGroup() NavigationMarkersGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:dateRangeNavigationMarkers:)
-func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, navigationMarkers []avfoundation.IDateRangeMetadataGroup) NavigationMarkersGroup {
+func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, navigationMarkers []avfoundation.DateRangeMetadataGroup) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:dateRangeNavigationMarkers:"), objc.String(title), navigationMarkers)
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:timedNavigationMarkers:)
-func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navigationMarkers []avfoundation.ITimedMetadataGroup) NavigationMarkersGroup {
+func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navigationMarkers []avfoundation.TimedMetadataGroup) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:timedNavigationMarkers:"), objc.String(title), navigationMarkers)
 	rv.Autorelease()

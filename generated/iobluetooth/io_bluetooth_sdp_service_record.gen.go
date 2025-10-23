@@ -31,23 +31,23 @@ type _BluetoothSDPServiceRecordClass struct {
 // An interface definition for the [BluetoothSDPServiceRecord] class.
 type IBluetoothSDPServiceRecord interface {
 	objectivec.IObject
-	GetAttributeDataElement(attributeID IBluetoothSDPServiceAttributeID) BluetoothSDPDataElement
-	GetAttributes() foundation.Dictionary
-	GetDevice() BluetoothDevice
-	GetServiceRecordHandle(outServiceRecordHandle IBluetoothSDPServiceRecordHandle) unsafe.Pointer
-	GetL2CAPPSM(outPSM IBluetoothL2CAPPSM) unsafe.Pointer
-	GetRFCOMMChannelID(rfcommChannelID IBluetoothRFCOMMChannelID) unsafe.Pointer
+	// properties:
+	Attributes() objc.ID
+	Device() IOBluetoothDevice
+	SortedAttributes() objc.ID
+	// methods:
+	GetAttributeDataElement(attributeID BluetoothSDPServiceAttributeID) IBluetoothSDPDataElement
+	GetServiceRecordHandle(outServiceRecordHandle BluetoothSDPServiceRecordHandle) unsafe.Pointer
+	GetL2CAPPSM(outPSM BluetoothL2CAPPSM) unsafe.Pointer
+	GetRFCOMMChannelID(rfcommChannelID BluetoothRFCOMMChannelID) unsafe.Pointer
 	GetSDPServiceRecordRef() BluetoothSDPServiceRecordRef
 	GetServiceName() foundation.String
 	HandsFreeSupportedFeatures() unsafe.Pointer
 	HasServiceFromArray(array objectivec.IObject) bool
 	MatchesSearchArray(searchArray objectivec.IObject) bool
-	MatchesUUID16(uuid16 IBluetoothSDPUUID16) bool
+	MatchesUUID16(uuid16 BluetoothSDPUUID16) bool
 	MatchesUUIDArray(uuidArray objectivec.IObject) bool
 	RemoveServiceRecord() unsafe.Pointer
-	Attributes() objc.ID
-	Device() IOBluetoothDevice
-	SortedAttributes() objc.ID
 }
 
 // An instance of this class represents a single SDP service record.
@@ -130,7 +130,7 @@ func (bc _BluetoothSDPServiceRecordClass) PublishedServiceRecordWithDictionary(s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/withSDPServiceRecordRef(_:)
-func (bc _BluetoothSDPServiceRecordClass) WithSDPServiceRecordRef(sdpServiceRecordRef IBluetoothSDPServiceRecordRef) unsafe.Pointer {
+func (bc _BluetoothSDPServiceRecordClass) WithSDPServiceRecordRef(sdpServiceRecordRef BluetoothSDPServiceRecordRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withSDPServiceRecordRef:"), sdpServiceRecordRef)
 	return rv
 }
@@ -150,24 +150,8 @@ func (bc _BluetoothSDPServiceRecordClass) WithServiceDictionaryDevice(serviceDic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getAttributeDataElement(_:)
-func (b_ BluetoothSDPServiceRecord) GetAttributeDataElement(attributeID IBluetoothSDPServiceAttributeID) BluetoothSDPDataElement {
+func (b_ BluetoothSDPServiceRecord) GetAttributeDataElement(attributeID BluetoothSDPServiceAttributeID) IBluetoothSDPDataElement {
 	rv := objc.Send[BluetoothSDPDataElement](b_.ID, objc.Sel("getAttributeDataElement:"), attributeID)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getAttributes
-func (b_ BluetoothSDPServiceRecord) GetAttributes() foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](b_.ID, objc.Sel("getAttributes"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getDevice
-func (b_ BluetoothSDPServiceRecord) GetDevice() BluetoothDevice {
-	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("getDevice"))
 	return rv
 }
 
@@ -176,7 +160,7 @@ func (b_ BluetoothSDPServiceRecord) GetDevice() BluetoothDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getHandle(_:)
-func (b_ BluetoothSDPServiceRecord) GetServiceRecordHandle(outServiceRecordHandle IBluetoothSDPServiceRecordHandle) unsafe.Pointer {
+func (b_ BluetoothSDPServiceRecord) GetServiceRecordHandle(outServiceRecordHandle BluetoothSDPServiceRecordHandle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getServiceRecordHandle:"), outServiceRecordHandle)
 	return rv
 }
@@ -186,7 +170,7 @@ func (b_ BluetoothSDPServiceRecord) GetServiceRecordHandle(outServiceRecordHandl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getL2CAPPSM(_:)
-func (b_ BluetoothSDPServiceRecord) GetL2CAPPSM(outPSM IBluetoothL2CAPPSM) unsafe.Pointer {
+func (b_ BluetoothSDPServiceRecord) GetL2CAPPSM(outPSM BluetoothL2CAPPSM) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getL2CAPPSM:"), outPSM)
 	return rv
 }
@@ -196,7 +180,7 @@ func (b_ BluetoothSDPServiceRecord) GetL2CAPPSM(outPSM IBluetoothL2CAPPSM) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/getRFCOMMChannelID(_:)
-func (b_ BluetoothSDPServiceRecord) GetRFCOMMChannelID(rfcommChannelID IBluetoothRFCOMMChannelID) unsafe.Pointer {
+func (b_ BluetoothSDPServiceRecord) GetRFCOMMChannelID(rfcommChannelID BluetoothRFCOMMChannelID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getRFCOMMChannelID:"), rfcommChannelID)
 	return rv
 }
@@ -254,7 +238,7 @@ func (b_ BluetoothSDPServiceRecord) MatchesSearchArray(searchArray objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/matchesUUID16(_:)
-func (b_ BluetoothSDPServiceRecord) MatchesUUID16(uuid16 IBluetoothSDPUUID16) bool {
+func (b_ BluetoothSDPServiceRecord) MatchesUUID16(uuid16 BluetoothSDPUUID16) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("matchesUUID16:"), uuid16)
 	return rv
 }
@@ -295,7 +279,7 @@ func (b_ BluetoothSDPServiceRecord) Attributes() objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecord/device
 func (b_ BluetoothSDPServiceRecord) Device() IOBluetoothDevice {
-	rv := objc.Send[IOBluetoothDevice](b_.ID, objc.Sel("device"))
+	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
 

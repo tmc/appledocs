@@ -30,18 +30,20 @@ type _URLAuthenticationChallengeClass struct {
 // An interface definition for the [URLAuthenticationChallenge] class.
 type IURLAuthenticationChallenge interface {
 	objectivec.IObject
+	// properties:
 	Error() IError
 	SetError(value IError)
 	FailureResponse() IURLResponse
 	SetFailureResponse(value IURLResponse)
-	PreviousFailureCount() int
-	SetPreviousFailureCount(value int)
+	PreviousFailureCount() int /* primitive/slice/pointer */
+	SetPreviousFailureCount(value int /* primitive/slice/pointer */)
 	ProposedCredential() IURLCredential
 	SetProposedCredential(value IURLCredential)
 	ProtectionSpace() IURLProtectionSpace
 	SetProtectionSpace(value IURLProtectionSpace)
 	Sender() unsafe.Pointer
 	SetSender(value unsafe.Pointer)
+	// methods:
 }
 
 // A challenge from a server requiring authentication from the client.
@@ -139,7 +141,7 @@ func (u_ URLAuthenticationChallenge) SetFailureResponse(value IURLResponse) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/previousfailurecount
-func (u_ URLAuthenticationChallenge) PreviousFailureCount() int {
+func (u_ URLAuthenticationChallenge) PreviousFailureCount() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("previousFailureCount"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (u_ URLAuthenticationChallenge) PreviousFailureCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlauthenticationchallenge/previousfailurecount
-func (u_ URLAuthenticationChallenge) SetPreviousFailureCount(value int) {
+func (u_ URLAuthenticationChallenge) SetPreviousFailureCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPreviousFailureCount:"), value)
 }
 

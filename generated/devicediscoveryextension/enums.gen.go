@@ -43,21 +43,6 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum
 type DDDeviceMediaPlaybackState uint
 
-const (
-	// DDDeviceMediaPlaybackStateNoContent - A state that indicates when the device plays no content.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/noContent
-	DDDeviceMediaPlaybackStateNoContent DDDeviceMediaPlaybackState = 0
-	// DDDeviceMediaPlaybackStatePaused - A state that indicates when content playback for the device pauses.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/paused
-	DDDeviceMediaPlaybackStatePaused DDDeviceMediaPlaybackState = 0
-	// DDDeviceMediaPlaybackStatePlaying - A state that indicates when the device plays media.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/playing
-	DDDeviceMediaPlaybackStatePlaying DDDeviceMediaPlaybackState = 0
-)
-
 // DDDeviceProtocol - An identifier for the manner in which an app interacts with a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum

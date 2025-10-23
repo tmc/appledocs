@@ -30,6 +30,8 @@ type _mActionInProgressClass struct {
 // An interface definition for the [mActionInProgress] class.
 type ImActionInProgress interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

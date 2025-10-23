@@ -29,7 +29,9 @@ type _InflectionRuleExplicitClass struct {
 // An interface definition for the [InflectionRuleExplicit] class.
 type IInflectionRuleExplicit interface {
 	IInflectionRule
+	// properties:
 	Morphology() IMorphology
+	// methods:
 }
 
 // An inflection rule that uses a morphology instance to determine how to inflect attribued strings.

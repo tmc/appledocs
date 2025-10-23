@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureDeviceRotationCoordinator] class.
@@ -31,14 +30,16 @@ type _CaptureDeviceRotationCoordinatorClass struct {
 // An interface definition for the [CaptureDeviceRotationCoordinator] class.
 type ICaptureDeviceRotationCoordinator interface {
 	objectivec.IObject
-	Device() AVCaptureDevice
+	// properties:
+	Device() IAVCaptureDevice
 	SetDevice(value IAVCaptureDevice)
-	PreviewLayer() quartzcore.Layer
-	SetPreviewLayer(value quartzcore.ILayer)
-	VideoRotationAngleForHorizonLevelCapture() float64
-	SetVideoRotationAngleForHorizonLevelCapture(value float64)
-	VideoRotationAngleForHorizonLevelPreview() float64
-	SetVideoRotationAngleForHorizonLevelPreview(value float64)
+	PreviewLayer() CALayer /* foo */
+	SetPreviewLayer(value CALayer /* foo */)
+	VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer */
+	SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer */)
+	VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer */
+	SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
@@ -94,25 +95,12 @@ func NewCaptureDeviceRotationCoordinator() CaptureDeviceRotationCoordinator {
 
 
 
-// Creates a coordinator that provides separate compensation angles for content your app takes with a capture device, and for your app’s camera preview.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/init(device:previewLayer:)
-func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device IAVCaptureDevice, previewLayer quartzcore.ILayer) CaptureDeviceRotationCoordinator {
-	instance := getCaptureDeviceRotationCoordinatorClass().Alloc()
-	rv := objc.Send[CaptureDeviceRotationCoordinator](instance.ID, objc.Sel("initWithDevice:previewLayer:"), device, previewLayer)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The capture device the coordinator monitors to track its physical rotation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
-func (c_ CaptureDeviceRotationCoordinator) Device() AVCaptureDevice {
-	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
+func (c_ CaptureDeviceRotationCoordinator) Device() IAVCaptureDevice {
+	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -130,8 +118,8 @@ func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() quartzcore.Layer {
-	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() CALayer /* foo */ {
+	rv := objc.Send[Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -140,7 +128,7 @@ func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() quartzcore.Layer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value quartzcore.ILayer) {
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value CALayer /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 
@@ -149,7 +137,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value quartzcore.ILay
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
-func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 {
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelCapture"))
 	return rv
 }
@@ -159,7 +147,7 @@ func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64) {
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelCapture:"), value)
 }
 
@@ -168,7 +156,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
-func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 {
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelPreview"))
 	return rv
 }
@@ -178,8 +166,9 @@ func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPrev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64) {
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelPreview:"), value)
 }
+
 
 

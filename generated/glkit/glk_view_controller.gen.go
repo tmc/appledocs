@@ -31,6 +31,7 @@ type _GLKViewControllerClass struct {
 // An interface definition for the [GLKViewController] class.
 type IGLKViewController interface {
 	appkit.IViewController
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	FramesDisplayed() int
@@ -49,6 +50,7 @@ type IGLKViewController interface {
 	TimeSinceLastUpdate() foundation.TimeInterval
 	IsPaused() bool
 	SetIsPaused(value bool)
+	// methods:
 }
 
 // A view controller that manages an OpenGL ES rendering loop.

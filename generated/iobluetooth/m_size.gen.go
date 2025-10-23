@@ -30,6 +30,8 @@ type _mSizeClass struct {
 // An interface definition for the [mSize] class.
 type ImSize interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

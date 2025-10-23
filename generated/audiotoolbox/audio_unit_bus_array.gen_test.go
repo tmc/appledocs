@@ -14,7 +14,7 @@ var _ = audiotoolbox.NewAudioUnitBusArray
 func ExampleNewAudioUnitBusArrayWithAudioUnitBusType() {
 	_ = audiotoolbox.NewAudioUnitBusArrayWithAudioUnitBusType(
 		audiotoolbox.AUAudioUnit{}, // owner AUAudioUnit
-		audiotoolbox.AudioUnitBusType{}, // busType AudioUnitBusType
+		audiotoolbox.AUAudioUnitBusType{}, // busType AUAudioUnitBusType
 	)
 	// Output:
 }
@@ -23,7 +23,7 @@ func ExampleNewAudioUnitBusArrayWithAudioUnitBusType() {
 func ExampleNewAudioUnitBusArrayWithAudioUnitBusTypeBusses() {
 	_ = audiotoolbox.NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(
 		audiotoolbox.AUAudioUnit{}, // owner AUAudioUnit
-		audiotoolbox.AudioUnitBusType{}, // busType AudioUnitBusType
+		audiotoolbox.AUAudioUnitBusType{}, // busType AUAudioUnitBusType
 		[]audiotoolbox.AudioUnitBus{}, // busArray []AudioUnitBus
 	)
 	// Output:

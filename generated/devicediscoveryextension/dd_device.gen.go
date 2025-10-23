@@ -32,11 +32,11 @@ type _DDDeviceClass struct {
 type IDDDevice interface {
 	objectivec.IObject
 	BluetoothIdentifier() foundation.UUID
-	SetBluetoothIdentifier(value foundation.IUUID)
+	SetBluetoothIdentifier(value foundation.UUID)
 	Category() DDDeviceCategory
-	SetCategory(value IDDDeviceCategory)
+	SetCategory(value DDDeviceCategory)
 	DeviceSupports() DDDeviceSupports
-	SetDeviceSupports(value IDDDeviceSupports)
+	SetDeviceSupports(value DDDeviceSupports)
 	DisplayImageName() string
 	SetDisplayImageName(value string)
 	DisplayName() string
@@ -52,9 +52,9 @@ type IDDDevice interface {
 	NetworkEndpoint() unsafe.Pointer
 	SetNetworkEndpoint(value unsafe.Pointer)
 	Protocol() DDDeviceProtocol
-	SetProtocol(value IDDDeviceProtocol)
-	ProtocolType() unsafe.Pointer
-	SetProtocolType(value unsafe.Pointer)
+	SetProtocol(value DDDeviceProtocol)
+	ProtocolType() objectivec.IObject
+	SetProtocolType(value objectivec.IObject)
 	SSID() string
 	SetSSID(value string)
 	State() DDDeviceState
@@ -62,15 +62,15 @@ type IDDDevice interface {
 	SupportsGrouping() bool
 	SetSupportsGrouping(value bool)
 	TxtRecordData() foundation.NSData
-	SetTxtRecordData(value foundation.IData)
+	SetTxtRecordData(value foundation.NSData)
 	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	SetUrl(value foundation.URL)
 	WifiAwareModelName() string
 	SetWifiAwareModelName(value string)
 	WifiAwareServiceName() string
 	SetWifiAwareServiceName(value string)
 	WifiAwareServiceRole() DDDeviceWiFiAwareServiceRole
-	SetWifiAwareServiceRole(value IDDDeviceWiFiAwareServiceRole)
+	SetWifiAwareServiceRole(value DDDeviceWiFiAwareServiceRole)
 	WifiAwareVendorName() string
 	SetWifiAwareVendorName(value string)
 	TxtRecord() unsafe.Pointer
@@ -134,7 +134,7 @@ func NewDDDevice() DDDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/init(displayName:category:protocolType:identifier:)
-func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string, category IDDDeviceCategory, protocolType unsafe.Pointer, identifier string) DDDevice {
+func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string, category DDDeviceCategory, protocolType objectivec.IObject, identifier string) DDDevice {
 	instance := getDDDeviceClass().Alloc()
 	rv := objc.Send[DDDevice](instance.ID, objc.Sel("initWithDisplayName:category:protocolType:identifier:"), objc.String(displayName), category, protocolType, objc.String(identifier))
 	rv.Autorelease()
@@ -157,7 +157,7 @@ func (d_ DDDevice) BluetoothIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/bluetoothIdentifier
-func (d_ DDDevice) SetBluetoothIdentifier(value foundation.IUUID) {
+func (d_ DDDevice) SetBluetoothIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBluetoothIdentifier:"), value)
 }
 
@@ -176,7 +176,7 @@ func (d_ DDDevice) Category() DDDeviceCategory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/category-swift.property
-func (d_ DDDevice) SetCategory(value IDDDeviceCategory) {
+func (d_ DDDevice) SetCategory(value DDDeviceCategory) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCategory:"), value)
 }
 
@@ -191,7 +191,7 @@ func (d_ DDDevice) DeviceSupports() DDDeviceSupports {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/deviceSupports
-func (d_ DDDevice) SetDeviceSupports(value IDDDeviceSupports) {
+func (d_ DDDevice) SetDeviceSupports(value DDDeviceSupports) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDeviceSupports:"), value)
 }
 
@@ -339,7 +339,7 @@ func (d_ DDDevice) Protocol() DDDeviceProtocol {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/protocol-swift.property
-func (d_ DDDevice) SetProtocol(value IDDDeviceProtocol) {
+func (d_ DDDevice) SetProtocol(value DDDeviceProtocol) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setProtocol:"), value)
 }
 
@@ -348,8 +348,8 @@ func (d_ DDDevice) SetProtocol(value IDDDeviceProtocol) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/protocolType
-func (d_ DDDevice) ProtocolType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("protocolType"))
+func (d_ DDDevice) ProtocolType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("protocolType"))
 	return rv
 }
 
@@ -358,7 +358,7 @@ func (d_ DDDevice) ProtocolType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/protocolType
-func (d_ DDDevice) SetProtocolType(value unsafe.Pointer) {
+func (d_ DDDevice) SetProtocolType(value objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setProtocolType:"), value)
 }
 
@@ -430,7 +430,7 @@ func (d_ DDDevice) TxtRecordData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/txtRecordData
-func (d_ DDDevice) SetTxtRecordData(value foundation.IData) {
+func (d_ DDDevice) SetTxtRecordData(value foundation.NSData) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTxtRecordData:"), value)
 }
 
@@ -449,7 +449,7 @@ func (d_ DDDevice) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/url
-func (d_ DDDevice) SetUrl(value foundation.IURL) {
+func (d_ DDDevice) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -506,7 +506,7 @@ func (d_ DDDevice) WifiAwareServiceRole() DDDeviceWiFiAwareServiceRole {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareServiceRole-swift.property
-func (d_ DDDevice) SetWifiAwareServiceRole(value IDDDeviceWiFiAwareServiceRole) {
+func (d_ DDDevice) SetWifiAwareServiceRole(value DDDeviceWiFiAwareServiceRole) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareServiceRole:"), value)
 }
 

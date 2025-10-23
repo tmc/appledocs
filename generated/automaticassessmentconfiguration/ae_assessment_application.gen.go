@@ -31,12 +31,14 @@ type _AEAssessmentApplicationClass struct {
 type IAEAssessmentApplication interface {
 	objectivec.IObject
 	BundleIdentifier() string
+	SetBundleIdentifier(value string)
 	RequiresSignatureValidation() bool
 	SetRequiresSignatureValidation(value bool)
 	TeamIdentifier() string
-	ConfigurationsByApplication() AEAssessmentParticipantConfiguration
+	SetTeamIdentifier(value string)
+	ConfigurationsByApplication() IAEAssessmentParticipantConfiguration
 	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
-	MainParticipantConfiguration() AEAssessmentParticipantConfiguration
+	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
 	SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration)
 }
 
@@ -93,45 +95,29 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 
 
 
-// Creates a representation of an app using its bundle identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
-	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a representation of an app using its bundle and team identifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
-	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The bundle identifier of the app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/bundleIdentifier
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
 func (a_ AEAssessmentApplication) BundleIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 
+// The bundle identifier of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
+func (a_ AEAssessmentApplication) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+}
+
+
 // A Boolean that indicates whether the session requires the app to have a valid code signature to run.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/requiresSignatureValidation
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
 func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("requiresSignatureValidation"))
 	return rv
@@ -141,7 +127,7 @@ func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 // A Boolean that indicates whether the session requires the app to have a valid code signature to run.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/requiresSignatureValidation
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
 func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresSignatureValidation:"), value)
 }
@@ -150,10 +136,19 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 // The team identifier of the app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
 func (a_ AEAssessmentApplication) TeamIdentifier() string {
 	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
+}
+
+
+// The team identifier of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
+func (a_ AEAssessmentApplication) SetTeamIdentifier(value string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setTeamIdentifier:"), objc.String(value))
 }
 
 
@@ -161,7 +156,7 @@ func (a_ AEAssessmentApplication) TeamIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-func (a_ AEAssessmentApplication) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
+func (a_ AEAssessmentApplication) ConfigurationsByApplication() IAEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
@@ -180,7 +175,7 @@ func (a_ AEAssessmentApplication) SetConfigurationsByApplication(value IAEAssess
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-func (a_ AEAssessmentApplication) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
+func (a_ AEAssessmentApplication) MainParticipantConfiguration() IAEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
 }
@@ -193,5 +188,6 @@ func (a_ AEAssessmentApplication) MainParticipantConfiguration() AEAssessmentPar
 func (a_ AEAssessmentApplication) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }
+
 
 

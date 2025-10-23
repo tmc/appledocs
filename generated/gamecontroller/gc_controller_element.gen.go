@@ -30,9 +30,10 @@ type _GCControllerElementClass struct {
 // An interface definition for the [GCControllerElement] class.
 type IGCControllerElement interface {
 	objectivec.IObject
-	Aliases() unsafe.Pointer
 	Analog() bool
-	Collection() GCControllerElement
+	Aliases() string
+	SetAliases(value string)
+	Collection() IGCControllerElement
 	SetCollection(value IGCControllerElement)
 	IsAnalog() bool
 	SetIsAnalog(value bool)
@@ -103,16 +104,6 @@ func NewGCControllerElement() GCControllerElement {
 
 
 
-// The element’s aliases you use when accessing it with the subscript notation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerElement/aliases
-func (g_ GCControllerElement) Aliases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("aliases"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the element provides analog data.
 //
 // [Full Topic]
@@ -123,11 +114,30 @@ func (g_ GCControllerElement) Analog() bool {
 }
 
 
+// The element’s aliases you use when accessing it with the subscript notation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/aliases
+func (g_ GCControllerElement) Aliases() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("aliases"))
+	return rv
+}
+
+
+// The element’s aliases you use when accessing it with the subscript notation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/aliases
+func (g_ GCControllerElement) SetAliases(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAliases:"), objc.String(value))
+}
+
+
 // The enclosing element for this element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/collection
-func (g_ GCControllerElement) Collection() GCControllerElement {
+func (g_ GCControllerElement) Collection() IGCControllerElement {
 	rv := objc.Send[GCControllerElement](g_.ID, objc.Sel("collection"))
 	return rv
 }

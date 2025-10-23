@@ -35,9 +35,9 @@ type ICNContactFetchRequest interface {
 	MutableObjects() bool
 	SetMutableObjects(value bool)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 	SortOrder() CNContactSortOrder
-	SetSortOrder(value ICNContactSortOrder)
+	SetSortOrder(value CNContactSortOrder)
 	UnifyResults() bool
 	SetUnifyResults(value bool)
 }
@@ -172,7 +172,7 @@ func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-func (c_ CNContactFetchRequest) SetPredicate(value foundation.IPredicate) {
+func (c_ CNContactFetchRequest) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -191,7 +191,7 @@ func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
-func (c_ CNContactFetchRequest) SetSortOrder(value ICNContactSortOrder) {
+func (c_ CNContactFetchRequest) SetSortOrder(value CNContactSortOrder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
 }
 

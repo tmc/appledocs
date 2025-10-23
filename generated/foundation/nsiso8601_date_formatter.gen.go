@@ -29,11 +29,13 @@ type _ISO8601DateFormatterClass struct {
 // An interface definition for the [ISO8601DateFormatter] class.
 type IISO8601DateFormatter interface {
 	IFormatter
+	// properties:
 	FormatOptions() NSISO8601DateFormatOptions
 	SetFormatOptions(value NSISO8601DateFormatOptions)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
-	DateFromString(string_ string) IDate
+	// methods:
+	DateFromString(string_ string /* primitive/slice/pointer */) IDate
 	StringFromDate(date IDate) IString
 }
 
@@ -107,7 +109,7 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/date(from:)
-func (i_ ISO8601DateFormatter) DateFromString(string_ string) IDate {
+func (i_ ISO8601DateFormatter) DateFromString(string_ string /* primitive/slice/pointer */) IDate {
 	rv := objc.Send[Date](i_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }

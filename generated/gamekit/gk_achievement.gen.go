@@ -32,16 +32,15 @@ type _AchievementClass struct {
 // An interface definition for the [Achievement] class.
 type IAchievement interface {
 	objectivec.IObject
-	ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message string, completionHandler unsafe.Pointer) appkit.ViewController
 	Identifier() string
 	SetIdentifier(value string)
 	IsCompleted() bool
 	SetIsCompleted(value bool)
 	LastReportedDate() foundation.Date
-	SetLastReportedDate(value foundation.IDate)
+	SetLastReportedDate(value foundation.Date)
 	PercentComplete() float64
 	SetPercentComplete(value float64)
-	Player() GKPlayer
+	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
 	ShowsCompletionBanner() bool
 	SetShowsCompletionBanner(value bool)
@@ -100,16 +99,6 @@ func NewAchievement() Achievement {
 
 
 
-// Provides a challenge compose view controller with preselected player identifiers and a message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/challengeComposeController(withPlayers:message:completionHandler:)
-func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message string, completionHandler unsafe.Pointer) appkit.ViewController {
-	rv := objc.Send[appkit.ViewController](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, objc.String(message), completionHandler)
-	return rv
-}
-
-
 // The identifier for the achievement that you enter in App Store Connect.
 //
 // [Full Topic]
@@ -162,7 +151,7 @@ func (a_ Achievement) LastReportedDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-func (a_ Achievement) SetLastReportedDate(value foundation.IDate) {
+func (a_ Achievement) SetLastReportedDate(value foundation.Date) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLastReportedDate:"), value)
 }
 
@@ -190,8 +179,8 @@ func (a_ Achievement) SetPercentComplete(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/player
-func (a_ Achievement) Player() GKPlayer {
-	rv := objc.Send[GKPlayer](a_.ID, objc.Sel("player"))
+func (a_ Achievement) Player() IGKPlayer {
+	rv := objc.Send[Player](a_.ID, objc.Sel("player"))
 	return rv
 }
 

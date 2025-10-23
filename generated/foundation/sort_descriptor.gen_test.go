@@ -26,6 +26,16 @@ func ExampleNewSortDescriptorWithKeyAscending() {
 	)
 	// Output:
 }
+// ExampleNewSortDescriptorWithKeyAscendingComparator demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscendingComparator.
+// Creates a sort descriptor with a specified string key path and ordering, and a comparator block.
+func ExampleNewSortDescriptorWithKeyAscendingComparator() {
+	_ = foundation.NewSortDescriptorWithKeyAscendingComparator(
+		"key", // key string
+		false, // ascending bool
+		foundation.Comparator{}, // cmptr Comparator
+	)
+	// Output:
+}
 // ExampleNewSortDescriptorWithKeyAscendingSelector demonstrates how to create a SortDescriptor instance using NewSortDescriptorWithKeyAscendingSelector.
 // Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
 func ExampleNewSortDescriptorWithKeyAscendingSelector() {

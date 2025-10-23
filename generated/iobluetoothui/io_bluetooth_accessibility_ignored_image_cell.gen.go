@@ -30,6 +30,8 @@ type _BluetoothAccessibilityIgnoredImageCellClass struct {
 // An interface definition for the [BluetoothAccessibilityIgnoredImageCell] class.
 type IBluetoothAccessibilityIgnoredImageCell interface {
 	appkit.IImageCell
+	// properties:
+	// methods:
 }
 
 

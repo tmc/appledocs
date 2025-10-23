@@ -39,6 +39,9 @@ type ColorSyncDataDepth uint
 
 const (
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync10BitInteger
+	kColorSync10BitInteger ColorSyncDataDepth = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync16BitFloat
 	kColorSync16BitFloat ColorSyncDataDepth = 0
 	//
@@ -48,14 +51,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync1BitGamut
 	kColorSync1BitGamut ColorSyncDataDepth = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync32BitInteger
-	kColorSync32BitInteger ColorSyncDataDepth = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync10BitInteger
-	kColorSync10BitInteger ColorSyncDataDepth = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync32BitFloat
 	kColorSync32BitFloat ColorSyncDataDepth = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync32BitInteger
+	kColorSync32BitInteger ColorSyncDataDepth = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/ColorSync/kColorSync32BitNamedColorIndex
 	kColorSync32BitNamedColorIndex ColorSyncDataDepth = 0

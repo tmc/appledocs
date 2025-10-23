@@ -31,9 +31,7 @@ type _USBHostControllerInterfaceClass struct {
 // An interface definition for the [USBHostControllerInterface] class.
 type IUSBHostControllerInterface interface {
 	objectivec.IObject
-	DescriptionForMessage(message unsafe.Pointer) foundation.String
-	Destroy()
-	EnqueueInterruptsCountExpediteError(interrupts unsafe.Pointer, count uint, expedite bool, error_ unsafe.Pointer) bool
+	// properties:
 	Capabilities() unsafe.Pointer
 	SetCapabilities(value unsafe.Pointer)
 	ControllerStateMachine() IOUSBHostCIControllerStateMachine
@@ -43,7 +41,9 @@ type IUSBHostControllerInterface interface {
 	Queue() unsafe.Pointer
 	SetQueue(value unsafe.Pointer)
 	Uuid() foundation.UUID
-	SetUuid(value foundation.IUUID)
+	SetUuid(value foundation.UUID)
+	// methods:
+	DescriptionForMessage(message unsafe.Pointer) foundation.String
 }
 
 
@@ -101,21 +101,6 @@ func (u_ USBHostControllerInterface) DescriptionForMessage(message unsafe.Pointe
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostControllerInterface/destroy()
-func (u_ USBHostControllerInterface) Destroy() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("destroy"))
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostControllerInterface/enqueueInterrupts(_:count:expedite:)
-func (u_ USBHostControllerInterface) EnqueueInterruptsCountExpediteError(interrupts unsafe.Pointer, count uint, expedite bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueInterrupts:count:expedite:error:"), interrupts, count, expedite, error_)
-	return rv
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/capabilities
 func (u_ USBHostControllerInterface) Capabilities() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("capabilities"))
@@ -133,7 +118,7 @@ func (u_ USBHostControllerInterface) SetCapabilities(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
 func (u_ USBHostControllerInterface) ControllerStateMachine() IOUSBHostCIControllerStateMachine {
-	rv := objc.Send[IOUSBHostCIControllerStateMachine](u_.ID, objc.Sel("controllerStateMachine"))
+	rv := objc.Send[USBHostCIControllerStateMachine](u_.ID, objc.Sel("controllerStateMachine"))
 	return rv
 }
 
@@ -185,7 +170,7 @@ func (u_ USBHostControllerInterface) Uuid() foundation.UUID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
-func (u_ USBHostControllerInterface) SetUuid(value foundation.IUUID) {
+func (u_ USBHostControllerInterface) SetUuid(value foundation.UUID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuid:"), value)
 }
 

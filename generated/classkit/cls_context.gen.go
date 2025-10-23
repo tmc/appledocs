@@ -31,17 +31,7 @@ type _SContextClass struct {
 // An interface definition for the [SContext] class.
 type ISContext interface {
 	ISObject
-	AddChildContext(child ICLSContext)
-	AddNavigationChildContext(child ICLSContext)
-	AddProgressReportingCapabilities(capabilities unsafe.Pointer)
-	BecomeActive()
-	CreateNewActivity() SActivity
-	DescendantMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
-	RemoveFromParent()
-	RemoveNavigationChildContext(child ICLSContext)
-	ResetProgressReportingCapabilities()
-	ResignActive()
-	CurrentActivity() CLSActivity
+	CurrentActivity() ICLSActivity
 	CustomTypeName() string
 	SetCustomTypeName(value string)
 	DisplayOrder() int
@@ -52,7 +42,7 @@ type ISContext interface {
 	Assignable() bool
 	SetAssignable(value bool)
 	NavigationChildContexts() []SContext
-	Parent() CLSContext
+	Parent() ICLSContext
 	ProgressReportingCapabilities() unsafe.Pointer
 	SuggestedAge() foundation.Range
 	SetSuggestedAge(value foundation.Range)
@@ -60,15 +50,15 @@ type ISContext interface {
 	SetSuggestedCompletionTime(value foundation.Range)
 	Summary() string
 	SetSummary(value string)
-	Thumbnail() coregraphics.CGImageRef
-	SetThumbnail(value coregraphics.CGImageRef)
+	Thumbnail() coregraphics.ImageRef
+	SetThumbnail(value coregraphics.ImageRef)
 	Title() string
 	SetTitle(value string)
 	Topic() SContextTopic
-	SetTopic(value ISContextTopic)
-	Type() SContextType
+	SetTopic(value SContextTopic)
+	Type() CLSContextType
 	UniversalLinkURL() foundation.URL
-	SetUniversalLinkURL(value foundation.IURL)
+	SetUniversalLinkURL(value foundation.URL)
 	IsActive() bool
 	SetIsActive(value bool)
 	IsAssignable() bool
@@ -77,6 +67,16 @@ type ISContext interface {
 	SetContextIdentifierPath(value string)
 	IsClassKitDeepLink() bool
 	SetIsClassKitDeepLink(value bool)
+	AddChildContext(child ICLSContext)
+	AddNavigationChildContext(child ICLSContext)
+	AddProgressReportingCapabilities(capabilities unsafe.Pointer)
+	BecomeActive()
+	CreateNewActivity() ISActivity
+	DescendantMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
+	RemoveFromParent()
+	RemoveNavigationChildContext(child ICLSContext)
+	ResetProgressReportingCapabilities()
+	ResignActive()
 }
 
 // An area of your app that represents an assignable task, like a quiz or a chapter.
@@ -138,7 +138,7 @@ func NewSContext() SContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/init(type:identifier:title:)
-func NewSContextWithTypeIdentifierTitle(type_ SContextType, identifier string, title string) SContext {
+func NewSContextWithTypeIdentifierTitle(type_ CLSContextType, identifier string, title string) SContext {
 	instance := getSContextClass().Alloc()
 	rv := objc.Send[SContext](instance.ID, objc.Sel("initWithType:identifier:title:"), type_, objc.String(identifier), objc.String(title))
 	rv.Autorelease()
@@ -187,7 +187,7 @@ func (s_ SContext) BecomeActive() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/createNewActivity()
-func (s_ SContext) CreateNewActivity() SActivity {
+func (s_ SContext) CreateNewActivity() ISActivity {
 	rv := objc.Send[SActivity](s_.ID, objc.Sel("createNewActivity"))
 	return rv
 }
@@ -242,8 +242,8 @@ func (s_ SContext) ResignActive() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/currentActivity
-func (s_ SContext) CurrentActivity() CLSActivity {
-	rv := objc.Send[CLSActivity](s_.ID, objc.Sel("currentActivity"))
+func (s_ SContext) CurrentActivity() ICLSActivity {
+	rv := objc.Send[SActivity](s_.ID, objc.Sel("currentActivity"))
 	return rv
 }
 
@@ -349,8 +349,8 @@ func (s_ SContext) NavigationChildContexts() []SContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/parent
-func (s_ SContext) Parent() CLSContext {
-	rv := objc.Send[CLSContext](s_.ID, objc.Sel("parent"))
+func (s_ SContext) Parent() ICLSContext {
+	rv := objc.Send[SContext](s_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -426,8 +426,8 @@ func (s_ SContext) SetSummary(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/thumbnail
-func (s_ SContext) Thumbnail() coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](s_.ID, objc.Sel("thumbnail"))
+func (s_ SContext) Thumbnail() coregraphics.ImageRef {
+	rv := objc.Send[coregraphics.ImageRef](s_.ID, objc.Sel("thumbnail"))
 	return rv
 }
 
@@ -436,7 +436,7 @@ func (s_ SContext) Thumbnail() coregraphics.CGImageRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/thumbnail
-func (s_ SContext) SetThumbnail(value coregraphics.CGImageRef) {
+func (s_ SContext) SetThumbnail(value coregraphics.ImageRef) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setThumbnail:"), value)
 }
 
@@ -474,7 +474,7 @@ func (s_ SContext) Topic() SContextTopic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/topic
-func (s_ SContext) SetTopic(value ISContextTopic) {
+func (s_ SContext) SetTopic(value SContextTopic) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopic:"), value)
 }
 
@@ -483,8 +483,8 @@ func (s_ SContext) SetTopic(value ISContextTopic) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/type
-func (s_ SContext) Type() SContextType {
-	rv := objc.Send[SContextType](s_.ID, objc.Sel("type"))
+func (s_ SContext) Type() CLSContextType {
+	rv := objc.Send[CLSContextType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -503,7 +503,7 @@ func (s_ SContext) UniversalLinkURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/universalLinkURL
-func (s_ SContext) SetUniversalLinkURL(value foundation.IURL) {
+func (s_ SContext) SetUniversalLinkURL(value foundation.URL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUniversalLinkURL:"), value)
 }
 

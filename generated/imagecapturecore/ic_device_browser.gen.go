@@ -31,15 +31,15 @@ type _ICDeviceBrowserClass struct {
 // An interface definition for the [ICDeviceBrowser] class.
 type IICDeviceBrowser interface {
 	objectivec.IObject
-	Start()
+	// properties:
 	BrowsedDeviceTypeMask() unsafe.Pointer
 	SetBrowsedDeviceTypeMask(value unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	ContentsAuthorizationStatus() ICAuthorizationStatus
 	SetContentsAuthorizationStatus(value ICAuthorizationStatus)
 	ControlAuthorizationStatus() ICAuthorizationStatus
 	SetControlAuthorizationStatus(value ICAuthorizationStatus)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	Devices() mlcompute.ICDevice
 	SetDevices(value mlcompute.ICDevice)
 	IsBrowsing() bool
@@ -48,6 +48,8 @@ type IICDeviceBrowser interface {
 	SetIsSuspended(value bool)
 	PreferredDevice() mlcompute.ICDevice
 	SetPreferredDevice(value mlcompute.ICDevice)
+	// methods:
+	RequestControlAuthorizationWithCompletion(completion unsafe.Pointer)
 }
 
 // An object for finding digital cameras and scanners.
@@ -101,12 +103,10 @@ func NewICDeviceBrowser() ICDeviceBrowser {
 
 
 
-// Tells the delegate to start looking for devices.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/start()
-func (i_ ICDeviceBrowser) Start() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("start"))
+// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/requestControlAuthorization(completion:)
+func (i_ ICDeviceBrowser) RequestControlAuthorizationWithCompletion(completion unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("requestControlAuthorizationWithCompletion:"), completion)
 }
 
 
@@ -126,25 +126,6 @@ func (i_ ICDeviceBrowser) BrowsedDeviceTypeMask() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/browsedDeviceTypeMask
 func (i_ ICDeviceBrowser) SetBrowsedDeviceTypeMask(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBrowsedDeviceTypeMask:"), value)
-}
-
-
-// The object that acts as the delegate of the device browser.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/delegate
-func (i_ ICDeviceBrowser) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The object that acts as the delegate of the device browser.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICDeviceBrowser/delegate
-func (i_ ICDeviceBrowser) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -175,6 +156,25 @@ func (i_ ICDeviceBrowser) ControlAuthorizationStatus() ICAuthorizationStatus {
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
 func (i_ ICDeviceBrowser) SetControlAuthorizationStatus(value ICAuthorizationStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setControlAuthorizationStatus:"), value)
+}
+
+
+// The object that acts as the delegate of the device browser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/delegate
+func (i_ ICDeviceBrowser) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The object that acts as the delegate of the device browser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/delegate
+func (i_ ICDeviceBrowser) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

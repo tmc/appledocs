@@ -131,7 +131,7 @@ func (ac _ABGroupClass) RemoveProperties(properties objectivec.IObject) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABGroup/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
+func (ac _ABGroupClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison ABSearchComparison) IABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
 }

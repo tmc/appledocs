@@ -29,13 +29,14 @@ type _GCDualSenseAdaptiveTriggerClass struct {
 // An interface definition for the [GCDualSenseAdaptiveTrigger] class.
 type IGCDualSenseAdaptiveTrigger interface {
 	IGCControllerButtonInput
-	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32)
 	ArmPosition() float32
 	SetArmPosition(value float32)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
+	SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32, endPosition float32, startStrength float32, endStrength float32)
+	SetModeVibrationWithAmplitudesFrequency(positionalAmplitudes unsafe.Pointer, frequency float32)
 }
 
 // A class that encapsulates the features of a DualSense adaptive trigger.
@@ -91,6 +92,15 @@ func NewGCDualSenseAdaptiveTrigger() GCDualSenseAdaptiveTrigger {
 	return getGCDualSenseAdaptiveTriggerClass().New()
 }
 
+
+
+// Sets the mode to provide feedback when the user tilts the trigger between the start and the end positions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCDualSenseAdaptiveTrigger/setModeSlopeFeedback(startPosition:endPosition:startStrength:endStrength:)
+func (g_ GCDualSenseAdaptiveTrigger) SetModeSlopeFeedbackWithStartPositionEndPositionStartStrengthEndStrength(startPosition float32, endPosition float32, startStrength float32, endStrength float32) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:"), startPosition, endPosition, startStrength, endStrength)
+}
 
 
 // Sets the mode to vibrate with the specified amplitudes for each possible trigger position.

@@ -29,20 +29,21 @@ type _CollectionViewItemClass struct {
 // An interface definition for the [CollectionViewItem] class.
 type ICollectionViewItem interface {
 	IViewController
-	CollectionView() NSCollectionView
-	HighlightState() CollectionViewItemHighlightState
-	SetHighlightState(value CollectionViewItemHighlightState)
-	TextField() NSTextField
-	SetTextField(value ITextField)
-	ItemPrototype() NSCollectionViewItem
+	HighlightState() unsafe.Pointer
+	SetHighlightState(value unsafe.Pointer)
+	TextField() TextField
+	SetTextField(value TextField)
+	ItemPrototype() ICollectionViewItem
 	SetItemPrototype(value ICollectionViewItem)
-	DraggingImageComponents() NSDraggingImageComponent
-	SetDraggingImageComponents(value IDraggingImageComponent)
-	ImageView() NSImageView
+	CollectionView() ICollectionView
+	SetCollectionView(value ICollectionView)
+	DraggingImageComponents() DraggingImageComponent
+	SetDraggingImageComponents(value DraggingImageComponent)
+	ImageView() IImageView
 	SetImageView(value IImageView)
 	IsSelected() bool
 	SetIsSelected(value bool)
-	View() NSView
+	View() IView
 	SetView(value IView)
 }
 
@@ -101,12 +102,12 @@ func NewCollectionViewItem() CollectionViewItem {
 
 
 
-// The collection view that owns the item.
+// The highlight state currently applied to the item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/collectionView
-func (c_ CollectionViewItem) CollectionView() NSCollectionView {
-	rv := objc.Send[NSCollectionView](c_.ID, objc.Sel("collectionView"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/highlightState-swift.property
+func (c_ CollectionViewItem) HighlightState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("highlightState"))
 	return rv
 }
 
@@ -115,17 +116,7 @@ func (c_ CollectionViewItem) CollectionView() NSCollectionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/highlightState-swift.property
-func (c_ CollectionViewItem) HighlightState() CollectionViewItemHighlightState {
-	rv := objc.Send[CollectionViewItemHighlightState](c_.ID, objc.Sel("highlightState"))
-	return rv
-}
-
-
-// The highlight state currently applied to the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/highlightState-swift.property
-func (c_ CollectionViewItem) SetHighlightState(value CollectionViewItemHighlightState) {
+func (c_ CollectionViewItem) SetHighlightState(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlightState:"), value)
 }
 
@@ -134,8 +125,8 @@ func (c_ CollectionViewItem) SetHighlightState(value CollectionViewItemHighlight
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-func (c_ CollectionViewItem) TextField() NSTextField {
-	rv := objc.Send[NSTextField](c_.ID, objc.Sel("textField"))
+func (c_ CollectionViewItem) TextField() TextField {
+	rv := objc.Send[TextField](c_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -144,7 +135,7 @@ func (c_ CollectionViewItem) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/textField
-func (c_ CollectionViewItem) SetTextField(value ITextField) {
+func (c_ CollectionViewItem) SetTextField(value TextField) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTextField:"), value)
 }
 
@@ -153,8 +144,8 @@ func (c_ CollectionViewItem) SetTextField(value ITextField) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype
-func (c_ CollectionViewItem) ItemPrototype() NSCollectionViewItem {
-	rv := objc.Send[NSCollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
+func (c_ CollectionViewItem) ItemPrototype() ICollectionViewItem {
+	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
 	return rv
 }
 
@@ -168,12 +159,31 @@ func (c_ CollectionViewItem) SetItemPrototype(value ICollectionViewItem) {
 }
 
 
+// The collection view that owns the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/collectionview
+func (c_ CollectionViewItem) CollectionView() ICollectionView {
+	rv := objc.Send[CollectionView](c_.ID, objc.Sel("collectionView"))
+	return rv
+}
+
+
+// The collection view that owns the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/collectionview
+func (c_ CollectionViewItem) SetCollectionView(value ICollectionView) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionView:"), value)
+}
+
+
 // Dragging images for multi-image drag and drop support.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-func (c_ CollectionViewItem) DraggingImageComponents() NSDraggingImageComponent {
-	rv := objc.Send[NSDraggingImageComponent](c_.ID, objc.Sel("draggingImageComponents"))
+func (c_ CollectionViewItem) DraggingImageComponents() DraggingImageComponent {
+	rv := objc.Send[DraggingImageComponent](c_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
 
@@ -182,7 +192,7 @@ func (c_ CollectionViewItem) DraggingImageComponents() NSDraggingImageComponent 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/draggingimagecomponents
-func (c_ CollectionViewItem) SetDraggingImageComponents(value IDraggingImageComponent) {
+func (c_ CollectionViewItem) SetDraggingImageComponents(value DraggingImageComponent) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingImageComponents:"), value)
 }
 
@@ -191,8 +201,8 @@ func (c_ CollectionViewItem) SetDraggingImageComponents(value IDraggingImageComp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewitem/imageview
-func (c_ CollectionViewItem) ImageView() NSImageView {
-	rv := objc.Send[NSImageView](c_.ID, objc.Sel("imageView"))
+func (c_ CollectionViewItem) ImageView() IImageView {
+	rv := objc.Send[ImageView](c_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -229,8 +239,8 @@ func (c_ CollectionViewItem) SetIsSelected(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/view
-func (c_ CollectionViewItem) View() NSView {
-	rv := objc.Send[NSView](c_.ID, objc.Sel("view"))
+func (c_ CollectionViewItem) View() IView {
+	rv := objc.Send[View](c_.ID, objc.Sel("view"))
 	return rv
 }
 

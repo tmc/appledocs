@@ -30,6 +30,7 @@ type _ProgressClass struct {
 // An interface definition for the [Progress] class.
 type IProgress interface {
 	objectivec.IObject
+	// properties:
 	EstimatedTimeRemaining() INumber
 	SetEstimatedTimeRemaining(value INumber)
 	FileCompletedCount() INumber
@@ -42,47 +43,48 @@ type IProgress interface {
 	SetCancellationHandler(value unsafe.Pointer)
 	CompletedUnitCount() unsafe.Pointer
 	SetCompletedUnitCount(value unsafe.Pointer)
-	FileOperationKind() ProgressFileOperationKind
-	SetFileOperationKind(value ProgressFileOperationKind)
+	FileOperationKind() ProgressFileOperationKind /* foo */
+	SetFileOperationKind(value ProgressFileOperationKind /* foo */)
 	FileURL() IURL
 	SetFileURL(value IURL)
-	FractionCompleted() float64
-	Cancellable() bool
-	SetCancellable(value bool)
-	Cancelled() bool
-	Finished() bool
-	Indeterminate() bool
-	Old() bool
-	Pausable() bool
-	SetPausable(value bool)
-	Paused() bool
-	Kind() ProgressKind
-	SetKind(value ProgressKind)
-	LocalizedAdditionalDescription() string
-	SetLocalizedAdditionalDescription(value string)
-	LocalizedDescription() string
-	SetLocalizedDescription(value string)
+	FractionCompleted() float64 /* primitive/slice/pointer */
+	Cancellable() bool /* primitive/slice/pointer */
+	SetCancellable(value bool /* primitive/slice/pointer */)
+	Cancelled() bool /* primitive/slice/pointer */
+	Finished() bool /* primitive/slice/pointer */
+	Indeterminate() bool /* primitive/slice/pointer */
+	Old() bool /* primitive/slice/pointer */
+	Pausable() bool /* primitive/slice/pointer */
+	SetPausable(value bool /* primitive/slice/pointer */)
+	Paused() bool /* primitive/slice/pointer */
+	Kind() ProgressKind /* foo */
+	SetKind(value ProgressKind /* foo */)
+	LocalizedAdditionalDescription() string /* primitive/slice/pointer */
+	SetLocalizedAdditionalDescription(value string /* primitive/slice/pointer */)
+	LocalizedDescription() string /* primitive/slice/pointer */
+	SetLocalizedDescription(value string /* primitive/slice/pointer */)
 	PausingHandler() unsafe.Pointer
 	SetPausingHandler(value unsafe.Pointer)
 	ResumingHandler() unsafe.Pointer
 	SetResumingHandler(value unsafe.Pointer)
 	TotalUnitCount() unsafe.Pointer
 	SetTotalUnitCount(value unsafe.Pointer)
-	UserInfo() IDictionary
-	IsCancellable() bool
-	SetIsCancellable(value bool)
-	IsCancelled() bool
-	SetIsCancelled(value bool)
-	IsFinished() bool
-	SetIsFinished(value bool)
-	IsIndeterminate() bool
-	SetIsIndeterminate(value bool)
-	IsOld() bool
-	SetIsOld(value bool)
-	IsPausable() bool
-	SetIsPausable(value bool)
-	IsPaused() bool
-	SetIsPaused(value bool)
+	UserInfo() IDictionary /* already interface */
+	IsCancellable() bool /* primitive/slice/pointer */
+	SetIsCancellable(value bool /* primitive/slice/pointer */)
+	IsCancelled() bool /* primitive/slice/pointer */
+	SetIsCancelled(value bool /* primitive/slice/pointer */)
+	IsFinished() bool /* primitive/slice/pointer */
+	SetIsFinished(value bool /* primitive/slice/pointer */)
+	IsIndeterminate() bool /* primitive/slice/pointer */
+	SetIsIndeterminate(value bool /* primitive/slice/pointer */)
+	IsOld() bool /* primitive/slice/pointer */
+	SetIsOld(value bool /* primitive/slice/pointer */)
+	IsPausable() bool /* primitive/slice/pointer */
+	SetIsPausable(value bool /* primitive/slice/pointer */)
+	IsPaused() bool /* primitive/slice/pointer */
+	SetIsPaused(value bool /* primitive/slice/pointer */)
+	// methods:
 	PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsafe.Pointer, work unsafe.Pointer)
 	AddChildWithPendingUnitCount(child IProgress, inUnitCount unsafe.Pointer)
 	BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer)
@@ -91,7 +93,7 @@ type IProgress interface {
 	Publish()
 	ResignCurrent()
 	Resume()
-	SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key ProgressUserInfoKey)
+	SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key ProgressUserInfoKey /* foo */)
 	Unpublish()
 }
 
@@ -152,7 +154,7 @@ func NewProgress() Progress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
-func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil IDictionary) Progress {
+func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil IDictionary /* already interface */) Progress {
 	instance := getProgressClass().Alloc()
 	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
 	rv.Autorelease()
@@ -185,7 +187,7 @@ func NewProgressWithTotalUnitCountParentPendingUnitCount(unitCount unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/addSubscriber(forFileURL:withPublishingHandler:)
-func (pc _ProgressClass) AddSubscriberForFileURLWithPublishingHandler(url IURL, publishingHandler unsafe.Pointer) objc.ID {
+func (pc _ProgressClass) AddSubscriberForFileURLWithPublishingHandler(url IURL, publishingHandler ProgressPublishingHandler /* foo */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("addSubscriberForFileURL:withPublishingHandler:"), url, publishingHandler)
 	return rv
 }
@@ -316,7 +318,7 @@ func (p_ Progress) Resume() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/setUserInfoObject(_:forKey:)
-func (p_ Progress) SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key ProgressUserInfoKey) {
+func (p_ Progress) SetUserInfoObjectForKey(objectOrNil objectivec.IObject, key ProgressUserInfoKey /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfoObject:forKey:"), objectOrNil, key)
 }
 
@@ -448,7 +450,7 @@ func (p_ Progress) SetCompletedUnitCount(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) FileOperationKind() ProgressFileOperationKind {
+func (p_ Progress) FileOperationKind() ProgressFileOperationKind /* foo */ {
 	rv := objc.Send[ProgressFileOperationKind](p_.ID, objc.Sel("fileOperationKind"))
 	return rv
 }
@@ -458,7 +460,7 @@ func (p_ Progress) FileOperationKind() ProgressFileOperationKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) SetFileOperationKind(value ProgressFileOperationKind) {
+func (p_ Progress) SetFileOperationKind(value ProgressFileOperationKind /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileOperationKind:"), value)
 }
 
@@ -486,7 +488,7 @@ func (p_ Progress) SetFileURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fractionCompleted
-func (p_ Progress) FractionCompleted() float64 {
+func (p_ Progress) FractionCompleted() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("fractionCompleted"))
 	return rv
 }
@@ -496,7 +498,7 @@ func (p_ Progress) FractionCompleted() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancellable
-func (p_ Progress) Cancellable() bool {
+func (p_ Progress) Cancellable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("cancellable"))
 	return rv
 }
@@ -506,7 +508,7 @@ func (p_ Progress) Cancellable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancellable
-func (p_ Progress) SetCancellable(value bool) {
+func (p_ Progress) SetCancellable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCancellable:"), value)
 }
 
@@ -515,7 +517,7 @@ func (p_ Progress) SetCancellable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isCancelled
-func (p_ Progress) Cancelled() bool {
+func (p_ Progress) Cancelled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("cancelled"))
 	return rv
 }
@@ -525,7 +527,7 @@ func (p_ Progress) Cancelled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isFinished
-func (p_ Progress) Finished() bool {
+func (p_ Progress) Finished() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("finished"))
 	return rv
 }
@@ -535,7 +537,7 @@ func (p_ Progress) Finished() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isIndeterminate
-func (p_ Progress) Indeterminate() bool {
+func (p_ Progress) Indeterminate() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("indeterminate"))
 	return rv
 }
@@ -545,7 +547,7 @@ func (p_ Progress) Indeterminate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isOld
-func (p_ Progress) Old() bool {
+func (p_ Progress) Old() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("old"))
 	return rv
 }
@@ -555,7 +557,7 @@ func (p_ Progress) Old() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPausable
-func (p_ Progress) Pausable() bool {
+func (p_ Progress) Pausable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pausable"))
 	return rv
 }
@@ -565,7 +567,7 @@ func (p_ Progress) Pausable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPausable
-func (p_ Progress) SetPausable(value bool) {
+func (p_ Progress) SetPausable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPausable:"), value)
 }
 
@@ -574,7 +576,7 @@ func (p_ Progress) SetPausable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/isPaused
-func (p_ Progress) Paused() bool {
+func (p_ Progress) Paused() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("paused"))
 	return rv
 }
@@ -584,7 +586,7 @@ func (p_ Progress) Paused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/kind
-func (p_ Progress) Kind() ProgressKind {
+func (p_ Progress) Kind() ProgressKind /* foo */ {
 	rv := objc.Send[ProgressKind](p_.ID, objc.Sel("kind"))
 	return rv
 }
@@ -594,7 +596,7 @@ func (p_ Progress) Kind() ProgressKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/kind
-func (p_ Progress) SetKind(value ProgressKind) {
+func (p_ Progress) SetKind(value ProgressKind /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setKind:"), value)
 }
 
@@ -603,7 +605,7 @@ func (p_ Progress) SetKind(value ProgressKind) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) LocalizedAdditionalDescription() string {
+func (p_ Progress) LocalizedAdditionalDescription() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedAdditionalDescription"))
 	return rv
 }
@@ -613,7 +615,7 @@ func (p_ Progress) LocalizedAdditionalDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) SetLocalizedAdditionalDescription(value string) {
+func (p_ Progress) SetLocalizedAdditionalDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), objc.String(value))
 }
 
@@ -622,7 +624,7 @@ func (p_ Progress) SetLocalizedAdditionalDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) LocalizedDescription() string {
+func (p_ Progress) LocalizedDescription() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
@@ -632,7 +634,7 @@ func (p_ Progress) LocalizedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) SetLocalizedDescription(value string) {
+func (p_ Progress) SetLocalizedDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
 }
 
@@ -698,7 +700,7 @@ func (p_ Progress) SetTotalUnitCount(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/userInfo
-func (p_ Progress) UserInfo() IDictionary {
+func (p_ Progress) UserInfo() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](p_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -708,7 +710,7 @@ func (p_ Progress) UserInfo() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) IsCancellable() bool {
+func (p_ Progress) IsCancellable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCancellable"))
 	return rv
 }
@@ -718,7 +720,7 @@ func (p_ Progress) IsCancellable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancellable
-func (p_ Progress) SetIsCancellable(value bool) {
+func (p_ Progress) SetIsCancellable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancellable:"), value)
 }
 
@@ -727,7 +729,7 @@ func (p_ Progress) SetIsCancellable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancelled
-func (p_ Progress) IsCancelled() bool {
+func (p_ Progress) IsCancelled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -737,7 +739,7 @@ func (p_ Progress) IsCancelled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/iscancelled
-func (p_ Progress) SetIsCancelled(value bool) {
+func (p_ Progress) SetIsCancelled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -746,7 +748,7 @@ func (p_ Progress) SetIsCancelled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) IsFinished() bool {
+func (p_ Progress) IsFinished() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFinished"))
 	return rv
 }
@@ -756,7 +758,7 @@ func (p_ Progress) IsFinished() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isfinished
-func (p_ Progress) SetIsFinished(value bool) {
+func (p_ Progress) SetIsFinished(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFinished:"), value)
 }
 
@@ -765,7 +767,7 @@ func (p_ Progress) SetIsFinished(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isindeterminate
-func (p_ Progress) IsIndeterminate() bool {
+func (p_ Progress) IsIndeterminate() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndeterminate"))
 	return rv
 }
@@ -775,7 +777,7 @@ func (p_ Progress) IsIndeterminate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isindeterminate
-func (p_ Progress) SetIsIndeterminate(value bool) {
+func (p_ Progress) SetIsIndeterminate(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndeterminate:"), value)
 }
 
@@ -784,7 +786,7 @@ func (p_ Progress) SetIsIndeterminate(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) IsOld() bool {
+func (p_ Progress) IsOld() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOld"))
 	return rv
 }
@@ -794,7 +796,7 @@ func (p_ Progress) IsOld() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/isold
-func (p_ Progress) SetIsOld(value bool) {
+func (p_ Progress) SetIsOld(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOld:"), value)
 }
 
@@ -803,7 +805,7 @@ func (p_ Progress) SetIsOld(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
-func (p_ Progress) IsPausable() bool {
+func (p_ Progress) IsPausable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPausable"))
 	return rv
 }
@@ -813,7 +815,7 @@ func (p_ Progress) IsPausable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispausable
-func (p_ Progress) SetIsPausable(value bool) {
+func (p_ Progress) SetIsPausable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPausable:"), value)
 }
 
@@ -822,7 +824,7 @@ func (p_ Progress) SetIsPausable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) IsPaused() bool {
+func (p_ Progress) IsPaused() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -832,7 +834,7 @@ func (p_ Progress) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/progress/ispaused
-func (p_ Progress) SetIsPaused(value bool) {
+func (p_ Progress) SetIsPaused(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPaused:"), value)
 }
 

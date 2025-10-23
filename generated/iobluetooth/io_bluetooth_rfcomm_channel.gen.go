@@ -30,9 +30,11 @@ type _BluetoothRFCOMMChannelClass struct {
 // An interface definition for the [BluetoothRFCOMMChannel] class.
 type IBluetoothRFCOMMChannel interface {
 	IBluetoothObject
+	// properties:
+	// methods:
 	CloseChannel() unsafe.Pointer
 	Delegate() objc.ID
-	GetDevice() BluetoothDevice
+	GetDevice() IBluetoothDevice
 	GetChannelID() BluetoothRFCOMMChannelID
 	GetMTU() BluetoothRFCOMMMTU
 	GetObjectID() BluetoothObjectID
@@ -40,13 +42,11 @@ type IBluetoothRFCOMMChannel interface {
 	IsIncoming() bool
 	IsOpen() bool
 	IsTransmissionPaused() bool
-	RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification
+	RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification
 	SendRemoteLineStatus(lineStatus BluetoothRFCOMMLineStatus) unsafe.Pointer
 	SetDelegate(delegate objectivec.IObject) unsafe.Pointer
 	SetSerialParametersDataBitsParityStopBits(speed unsafe.Pointer, nBits unsafe.Pointer, parity BluetoothRFCOMMParityType, bitStop unsafe.Pointer) unsafe.Pointer
-	WriteLengthSleep(data unsafe.Pointer, length unsafe.Pointer, sleep bool) unsafe.Pointer
 	WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer
-	WriteSimpleLengthSleepBytesSent(data unsafe.Pointer, length unsafe.Pointer, sleep bool, numBytesSent unsafe.Pointer) unsafe.Pointer
 	WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
 }
 
@@ -109,7 +109,7 @@ func NewBluetoothRFCOMMChannel() BluetoothRFCOMMChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/register(forChannelOpenNotifications:selector:)
-func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelector(object objectivec.IObject, selector objc.SEL) BluetoothUserNotification {
+func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelector(object objectivec.IObject, selector objc.SEL) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForChannelOpenNotifications:selector:"), object, selector)
 	return rv
 }
@@ -119,7 +119,7 @@ func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/register(forChannelOpenNotifications:selector:withChannelID:direction:)
-func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelectorWithChannelIDDirection(object objectivec.IObject, selector objc.SEL, channelID IBluetoothRFCOMMChannelID, inDirection IBluetoothUserNotificationChannelDirection) BluetoothUserNotification {
+func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelectorWithChannelIDDirection(object objectivec.IObject, selector objc.SEL, channelID BluetoothRFCOMMChannelID, inDirection IOBluetoothUserNotificationChannelDirection) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForChannelOpenNotifications:selector:withChannelID:direction:"), object, selector, channelID, inDirection)
 	return rv
 }
@@ -129,7 +129,7 @@ func (bc _BluetoothRFCOMMChannelClass) RegisterForChannelOpenNotificationsSelect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/withObjectID(_:)
-func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID IBluetoothObjectID) unsafe.Pointer {
+func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID BluetoothObjectID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withObjectID:"), objectID)
 	return rv
 }
@@ -139,7 +139,7 @@ func (bc _BluetoothRFCOMMChannelClass) WithObjectID(objectID IBluetoothObjectID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/withRFCOMMChannelRef(_:)
-func (bc _BluetoothRFCOMMChannelClass) WithRFCOMMChannelRef(rfcommChannelRef IBluetoothRFCOMMChannelRef) unsafe.Pointer {
+func (bc _BluetoothRFCOMMChannelClass) WithRFCOMMChannelRef(rfcommChannelRef BluetoothRFCOMMChannelRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withRFCOMMChannelRef:"), rfcommChannelRef)
 	return rv
 }
@@ -169,7 +169,7 @@ func (b_ BluetoothRFCOMMChannel) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/getDevice()
-func (b_ BluetoothRFCOMMChannel) GetDevice() BluetoothDevice {
+func (b_ BluetoothRFCOMMChannel) GetDevice() IBluetoothDevice {
 	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("getDevice"))
 	return rv
 }
@@ -249,7 +249,7 @@ func (b_ BluetoothRFCOMMChannel) IsTransmissionPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/register(forChannelCloseNotification:selector:)
-func (b_ BluetoothRFCOMMChannel) RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification {
+func (b_ BluetoothRFCOMMChannel) RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](b_.ID, objc.Sel("registerForChannelCloseNotification:selector:"), observer, inSelector)
 	return rv
 }
@@ -285,32 +285,12 @@ func (b_ BluetoothRFCOMMChannel) SetSerialParametersDataBitsParityStopBits(speed
 }
 
 
-// Sends a block of data in the channel syncronously.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/write:length:sleep:
-func (b_ BluetoothRFCOMMChannel) WriteLengthSleep(data unsafe.Pointer, length unsafe.Pointer, sleep bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("write:length:sleep:"), data, length, sleep)
-	return rv
-}
-
-
 // Sends a block of data in the channel asynchronously.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/writeAsync(_:length:refcon:)
 func (b_ BluetoothRFCOMMChannel) WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeAsync:length:refcon:"), data, length, refcon)
-	return rv
-}
-
-
-// Sends a block of data in the channel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannel/writeSimple:length:sleep:bytesSent:
-func (b_ BluetoothRFCOMMChannel) WriteSimpleLengthSleepBytesSent(data unsafe.Pointer, length unsafe.Pointer, sleep bool, numBytesSent unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeSimple:length:sleep:bytesSent:"), data, length, sleep, numBytesSent)
 	return rv
 }
 

@@ -30,10 +30,10 @@ type _DCDeviceClass struct {
 // An interface definition for the [DCDevice] class.
 type IDCDevice interface {
 	objectivec.IObject
-	GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 	Supported() bool
 	IsSupported() bool
 	SetIsSupported(value bool)
+	GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 }
 
 // A representation of a device that provides a unique, authenticated token.
@@ -111,7 +111,7 @@ func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-func (d_ DCDevice) CurrentDevice() DCDevice {
+func (d_ DCDevice) CurrentDevice() IDCDevice {
 	rv := objc.Send[DCDevice](d_.ID, objc.Sel("currentDevice"))
 	return rv
 }

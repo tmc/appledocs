@@ -32,6 +32,7 @@ type _CKAssetClass struct {
 type ICKAsset interface {
 	objectivec.IObject
 	FileURL() foundation.URL
+	SetFileURL(value foundation.URL)
 }
 
 // An external file that belongs to a record.
@@ -87,26 +88,23 @@ func NewCKAsset() CKAsset {
 
 
 
-// Creates an asset that references a file.
+// The URL for accessing the asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
-func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
-	instance := getCKAssetClass().Alloc()
-	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
+func (c_ CKAsset) FileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
 	return rv
 }
-
 
 
 // The URL for accessing the asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/fileURL
-func (c_ CKAsset) FileURL() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
+func (c_ CKAsset) SetFileURL(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFileURL:"), value)
 }
+
 
 

@@ -30,6 +30,8 @@ type _MEExtensionManagerClass struct {
 // An interface definition for the [MEExtensionManager] class.
 type IMEExtensionManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

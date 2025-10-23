@@ -31,16 +31,19 @@ type _PersistentHistoryTransactionClass struct {
 // An interface definition for the [PersistentHistoryTransaction] class.
 type IPersistentHistoryTransaction interface {
 	objectivec.IObject
-	ObjectIDNotification() foundation.Notification
 	Author() string
 	BundleID() string
 	Changes() []PersistentHistoryChange
 	ContextName() string
 	ProcessID() string
 	StoreID() string
-	Timestamp() foundation.NSDate
-	Token() NSPersistentHistoryToken
+	Timestamp() foundation.Date
+	SetTimestamp(value foundation.Date)
+	Token() IPersistentHistoryToken
+	SetToken(value IPersistentHistoryToken)
 	TransactionNumber() unsafe.Pointer
+	SetTransactionNumber(value unsafe.Pointer)
+	ObjectIDNotification() foundation.Notification
 }
 
 // A set of changes in the persistent history based on a context save or batch operation.
@@ -98,7 +101,7 @@ func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription(with:)
-func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(context IManagedObjectContext) EntityDescription {
+func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(context IManagedObjectContext) IEntityDescription {
 	rv := objc.Send[EntityDescription](objc.ID(pc.class), objc.Sel("entityDescriptionWithContext:"), context)
 	return rv
 }
@@ -108,8 +111,8 @@ func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(contex
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
-func (pc _PersistentHistoryTransactionClass) EntityDescription() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
+func (pc _PersistentHistoryTransactionClass) EntityDescription() IEntityDescription {
+	rv := objc.Send[EntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
 	return rv
 }
 
@@ -117,8 +120,8 @@ func (pc _PersistentHistoryTransactionClass) EntityDescription() NSEntityDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
-func (pc _PersistentHistoryTransactionClass) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
+func (pc _PersistentHistoryTransactionClass) FetchRequest() IFetchRequest {
+	rv := objc.Send[FetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -176,8 +179,8 @@ func (p_ PersistentHistoryTransaction) ContextName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/entityDescription
-func (p_ PersistentHistoryTransaction) EntityDescription() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entityDescription"))
+func (p_ PersistentHistoryTransaction) EntityDescription() IEntityDescription {
+	rv := objc.Send[EntityDescription](p_.ID, objc.Sel("entityDescription"))
 	return rv
 }
 
@@ -186,8 +189,8 @@ func (p_ PersistentHistoryTransaction) EntityDescription() NSEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/fetchRequest
-func (p_ PersistentHistoryTransaction) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
+func (p_ PersistentHistoryTransaction) FetchRequest() IFetchRequest {
+	rv := objc.Send[FetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -215,9 +218,28 @@ func (p_ PersistentHistoryTransaction) StoreID() string {
 // The date of the persistent history change.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/timestamp
-func (p_ PersistentHistoryTransaction) Timestamp() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("timestamp"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/timestamp
+func (p_ PersistentHistoryTransaction) Timestamp() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("timestamp"))
+	return rv
+}
+
+
+// The date of the persistent history change.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/timestamp
+func (p_ PersistentHistoryTransaction) SetTimestamp(value foundation.Date) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTimestamp:"), value)
+}
+
+
+// The token that represents this transaction in the persistent history.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/token
+func (p_ PersistentHistoryTransaction) Token() IPersistentHistoryToken {
+	rv := objc.Send[PersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
 }
 
@@ -225,9 +247,18 @@ func (p_ PersistentHistoryTransaction) Timestamp() foundation.NSDate {
 // The token that represents this transaction in the persistent history.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/token
-func (p_ PersistentHistoryTransaction) Token() NSPersistentHistoryToken {
-	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/token
+func (p_ PersistentHistoryTransaction) SetToken(value IPersistentHistoryToken) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
+}
+
+
+// The transaction’s numeric identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/transactionnumber
+func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionNumber"))
 	return rv
 }
 
@@ -235,10 +266,9 @@ func (p_ PersistentHistoryTransaction) Token() NSPersistentHistoryToken {
 // The transaction’s numeric identifier.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/transactionNumber
-func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionNumber"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/transactionnumber
+func (p_ PersistentHistoryTransaction) SetTransactionNumber(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransactionNumber:"), value)
 }
 
 

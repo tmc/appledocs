@@ -31,17 +31,10 @@ type _ProgressIndicatorClass struct {
 // An interface definition for the [ProgressIndicator] class.
 type IProgressIndicator interface {
 	IView
-	Animate(sender objectivec.IObject)
-	AnimationDelay() float64
-	IncrementBy(delta float64)
-	SetAnimationDelay(delay float64)
-	SizeToFit()
-	StartAnimation(sender objectivec.IObject)
-	StopAnimation(sender objectivec.IObject)
-	ControlSize() ControlSize
-	SetControlSize(value IControlSize)
-	ControlTint() ControlTint
-	SetControlTint(value IControlTint)
+	ControlSize() unsafe.Pointer
+	SetControlSize(value unsafe.Pointer)
+	ControlTint() unsafe.Pointer
+	SetControlTint(value unsafe.Pointer)
 	DoubleValue() float64
 	SetDoubleValue(value float64)
 	Bezeled() bool
@@ -55,9 +48,9 @@ type IProgressIndicator interface {
 	MinValue() float64
 	SetMinValue(value float64)
 	ObservedProgress() foundation.Progress
-	SetObservedProgress(value foundation.IProgress)
-	Style() ProgressIndicatorStyle
-	SetStyle(value ProgressIndicatorStyle)
+	SetObservedProgress(value foundation.Progress)
+	Style() NSProgressIndicatorStyle
+	SetStyle(value NSProgressIndicatorStyle)
 	UsesThreadedAnimation() bool
 	SetUsesThreadedAnimation(value bool)
 	IsBezeled() bool
@@ -66,6 +59,10 @@ type IProgressIndicator interface {
 	SetIsDisplayedWhenStopped(value bool)
 	IsIndeterminate() bool
 	SetIsIndeterminate(value bool)
+	IncrementBy(delta float64)
+	SizeToFit()
+	StartAnimation(sender objectivec.IObject)
+	StopAnimation(sender objectivec.IObject)
 }
 
 // An interface that provides visual feedback to the user about the status of an ongoing task.
@@ -123,40 +120,12 @@ func NewProgressIndicator() ProgressIndicator {
 
 
 
-// This action method advances the progress animation of an indeterminate progress animator by one step.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/animate:
-func (p_ ProgressIndicator) Animate(sender objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("animate:"), sender)
-}
-
-
-// Returns the delay, in seconds, between animation steps for an indeterminate progress indicator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/animationDelay
-func (p_ ProgressIndicator) AnimationDelay() float64 {
-	rv := objc.Send[float64](p_.ID, objc.Sel("animationDelay"))
-	return rv
-}
-
-
 // Advances the progress bar of a determinate progress indicator by the specified amount.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/increment(by:)
 func (p_ ProgressIndicator) IncrementBy(delta float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("incrementBy:"), delta)
-}
-
-
-// Sets the delay, in seconds, between animation steps for an indeterminate progress indicator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/setAnimationDelay:
-func (p_ ProgressIndicator) SetAnimationDelay(delay float64) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAnimationDelay:"), delay)
 }
 
 
@@ -191,8 +160,8 @@ func (p_ ProgressIndicator) StopAnimation(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlSize
-func (p_ ProgressIndicator) ControlSize() ControlSize {
-	rv := objc.Send[ControlSize](p_.ID, objc.Sel("controlSize"))
+func (p_ ProgressIndicator) ControlSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -201,7 +170,7 @@ func (p_ ProgressIndicator) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlSize
-func (p_ ProgressIndicator) SetControlSize(value IControlSize) {
+func (p_ ProgressIndicator) SetControlSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -210,8 +179,8 @@ func (p_ ProgressIndicator) SetControlSize(value IControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlTint
-func (p_ ProgressIndicator) ControlTint() ControlTint {
-	rv := objc.Send[ControlTint](p_.ID, objc.Sel("controlTint"))
+func (p_ ProgressIndicator) ControlTint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -220,7 +189,7 @@ func (p_ ProgressIndicator) ControlTint() ControlTint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/controlTint
-func (p_ ProgressIndicator) SetControlTint(value IControlTint) {
+func (p_ ProgressIndicator) SetControlTint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -353,7 +322,7 @@ func (p_ ProgressIndicator) ObservedProgress() foundation.Progress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) SetObservedProgress(value foundation.IProgress) {
+func (p_ ProgressIndicator) SetObservedProgress(value foundation.Progress) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedProgress:"), value)
 }
 
@@ -362,8 +331,8 @@ func (p_ ProgressIndicator) SetObservedProgress(value foundation.IProgress) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/style-swift.property
-func (p_ ProgressIndicator) Style() ProgressIndicatorStyle {
-	rv := objc.Send[ProgressIndicatorStyle](p_.ID, objc.Sel("style"))
+func (p_ ProgressIndicator) Style() NSProgressIndicatorStyle {
+	rv := objc.Send[NSProgressIndicatorStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -372,7 +341,7 @@ func (p_ ProgressIndicator) Style() ProgressIndicatorStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/style-swift.property
-func (p_ ProgressIndicator) SetStyle(value ProgressIndicatorStyle) {
+func (p_ ProgressIndicator) SetStyle(value NSProgressIndicatorStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

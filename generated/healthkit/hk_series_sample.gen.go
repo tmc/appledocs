@@ -29,9 +29,11 @@ type _HKSeriesSampleClass struct {
 // An interface definition for the [HKSeriesSample] class.
 type IHKSeriesSample interface {
 	IHKSample
+	// properties:
 	Count() int
 	SetCount(value int)
 	HKWorkoutRouteTypeIdentifier() string
+	// methods:
 }
 
 // An abstract base class that defines samples that contain a series of items.

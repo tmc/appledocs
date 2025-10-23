@@ -30,10 +30,12 @@ type _CaptureDeviceDiscoverySessionClass struct {
 // An interface definition for the [CaptureDeviceDiscoverySession] class.
 type ICaptureDeviceDiscoverySession interface {
 	objectivec.IObject
+	// properties:
 	Devices() IAVCaptureDevice
 	SetDevices(value IAVCaptureDevice)
 	SupportedMultiCamDeviceSets() IAVCaptureDevice
 	SetSupportedMultiCamDeviceSets(value IAVCaptureDevice)
+	// methods:
 }
 
 // An object that finds capture devices that match specific search criteria.

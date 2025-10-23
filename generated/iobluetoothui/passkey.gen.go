@@ -30,6 +30,8 @@ type _passkeyClass struct {
 // An interface definition for the [passkey] class.
 type Ipasskey interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

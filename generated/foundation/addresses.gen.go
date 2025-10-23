@@ -30,6 +30,8 @@ type _addressesClass struct {
 // An interface definition for the [addresses] class.
 type Iaddresses interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

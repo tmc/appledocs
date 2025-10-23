@@ -31,7 +31,7 @@ type _ModelStructureProgramNamedValueTypeClass struct {
 type IModelStructureProgramNamedValueType interface {
 	objectivec.IObject
 	Name() string
-	Type() MLModelStructureProgramValueType
+	Type() IMLModelStructureProgramValueType
 }
 
 // A class representing a named value type in a Program.
@@ -99,8 +99,8 @@ func (m_ ModelStructureProgramNamedValueType) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/type
-func (m_ ModelStructureProgramNamedValueType) Type() MLModelStructureProgramValueType {
-	rv := objc.Send[MLModelStructureProgramValueType](m_.ID, objc.Sel("type"))
+func (m_ ModelStructureProgramNamedValueType) Type() IMLModelStructureProgramValueType {
+	rv := objc.Send[ModelStructureProgramValueType](m_.ID, objc.Sel("type"))
 	return rv
 }
 

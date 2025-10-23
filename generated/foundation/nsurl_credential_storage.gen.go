@@ -30,8 +30,10 @@ type _URLCredentialStorageClass struct {
 // An interface definition for the [URLCredentialStorage] class.
 type IURLCredentialStorage interface {
 	objectivec.IObject
+	// properties:
 	AllCredentials() IURLCredential
 	SetAllCredentials(value IURLCredential)
+	// methods:
 }
 
 // The manager of a shared credentials cache.

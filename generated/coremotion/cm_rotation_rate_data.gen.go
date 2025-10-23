@@ -30,6 +30,7 @@ type _RotationRateDataClass struct {
 type IRotationRateData interface {
 	ILogItem
 	RotationRate() unsafe.Pointer
+	SetRotationRate(value unsafe.Pointer)
 }
 
 // A data object that contains a single rotation-rate measurement.
@@ -85,13 +86,22 @@ func NewRotationRateData() RotationRateData {
 
 
 
-// The rotation rate measured by the gyroscope.
+// The rotation rate as measured by the device’s gyroscope.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRotationRateData/rotationRate
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
 func (r_ RotationRateData) RotationRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
 	return rv
+}
+
+
+// The rotation rate as measured by the device’s gyroscope.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
+func (r_ RotationRateData) SetRotationRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }
 
 

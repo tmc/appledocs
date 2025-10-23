@@ -29,6 +29,8 @@ type _UnitPressureClass struct {
 // An interface definition for the [UnitPressure] class.
 type IUnitPressure interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for pressure.

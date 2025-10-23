@@ -30,13 +30,13 @@ type _TableHeaderViewClass struct {
 // An interface definition for the [TableHeaderView] class.
 type ITableHeaderView interface {
 	IView
-	ColumnAtPoint(point coregraphics.CGPoint) int
-	HeaderRectOfColumn(column int) coregraphics.CGRect
 	DraggedColumn() int
 	DraggedDistance() float64
 	ResizedColumn() int
-	TableView() NSTableView
-	SetTableView(value ITableView)
+	TableView() TableView
+	SetTableView(value TableView)
+	ColumnAtPoint(point coregraphics.CGPoint) int
+	HeaderRectOfColumn(column int) coregraphics.CGRect
 }
 
 // An object that draws headers over a table view’s columns and handles mouse events in those headers.
@@ -148,8 +148,8 @@ func (t_ TableHeaderView) ResizedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) TableView() NSTableView {
-	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
+func (t_ TableHeaderView) TableView() TableView {
+	rv := objc.Send[TableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (t_ TableHeaderView) TableView() NSTableView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) SetTableView(value ITableView) {
+func (t_ TableHeaderView) SetTableView(value TableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 

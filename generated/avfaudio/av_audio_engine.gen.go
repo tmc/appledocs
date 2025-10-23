@@ -30,32 +30,32 @@ type _AudioEngineClass struct {
 // An interface definition for the [AudioEngine] class.
 type IAudioEngine interface {
 	objectivec.IObject
-	Prepare()
-	StartAndReturnError(outError unsafe.Pointer) bool
-	Stop()
-	InputNode() AVAudioInputNode
-	MainMixerNode() AVAudioMixerNode
-	MusicSequence() unsafe.Pointer
-	SetMusicSequence(value unsafe.Pointer)
-	OutputNode() AVAudioOutputNode
-	AttachedNodes() AVAudioNode
+	AttachedNodes() IAVAudioNode
 	SetAttachedNodes(value IAVAudioNode)
+	InputNode() IAVAudioInputNode
+	SetInputNode(value IAVAudioInputNode)
 	IsAutoShutdownEnabled() bool
 	SetIsAutoShutdownEnabled(value bool)
 	IsInManualRenderingMode() bool
 	SetIsInManualRenderingMode(value bool)
 	IsRunning() bool
 	SetIsRunning(value bool)
+	MainMixerNode() IAVAudioMixerNode
+	SetMainMixerNode(value IAVAudioMixerNode)
 	ManualRenderingBlock() unsafe.Pointer
 	SetManualRenderingBlock(value unsafe.Pointer)
-	ManualRenderingFormat() AVAudioFormat
+	ManualRenderingFormat() IAVAudioFormat
 	SetManualRenderingFormat(value IAVAudioFormat)
 	ManualRenderingMaximumFrameCount() AudioFrameCount
-	SetManualRenderingMaximumFrameCount(value IAudioFrameCount)
+	SetManualRenderingMaximumFrameCount(value AudioFrameCount)
 	ManualRenderingMode() unsafe.Pointer
 	SetManualRenderingMode(value unsafe.Pointer)
-	ManualRenderingSampleTime() AudioFramePosition
-	SetManualRenderingSampleTime(value IAudioFramePosition)
+	ManualRenderingSampleTime() unsafe.Pointer
+	SetManualRenderingSampleTime(value unsafe.Pointer)
+	MusicSequence() unsafe.Pointer
+	SetMusicSequence(value unsafe.Pointer)
+	OutputNode() IAVAudioOutputNode
+	SetOutputNode(value IAVAudioOutputNode)
 }
 
 // An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
@@ -111,89 +111,12 @@ func NewAudioEngine() AudioEngine {
 
 
 
-// Prepares the audio engine for starting.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/prepare()
-func (a_ AudioEngine) Prepare() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("prepare"))
-}
-
-
-// Starts the audio engine.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/start()
-func (a_ AudioEngine) StartAndReturnError(outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("startAndReturnError:"), outError)
-	return rv
-}
-
-
-// Stops the audio engine and releases any previously prepared resources.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/stop()
-func (a_ AudioEngine) Stop() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("stop"))
-}
-
-
-// The audio engine’s singleton input audio node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/inputNode
-func (a_ AudioEngine) InputNode() AVAudioInputNode {
-	rv := objc.Send[AVAudioInputNode](a_.ID, objc.Sel("inputNode"))
-	return rv
-}
-
-
-// The audio engine’s optional singleton main mixer node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/mainMixerNode
-func (a_ AudioEngine) MainMixerNode() AVAudioMixerNode {
-	rv := objc.Send[AVAudioMixerNode](a_.ID, objc.Sel("mainMixerNode"))
-	return rv
-}
-
-
-// The music sequence instance that you attach to the audio engine, if any.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
-func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("musicSequence"))
-	return rv
-}
-
-
-// The music sequence instance that you attach to the audio engine, if any.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/musicSequence
-func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicSequence:"), value)
-}
-
-
-// The audio engine’s singleton output audio node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEngine/outputNode
-func (a_ AudioEngine) OutputNode() AVAudioOutputNode {
-	rv := objc.Send[AVAudioOutputNode](a_.ID, objc.Sel("outputNode"))
-	return rv
-}
-
-
 // A read-only set that contains the nodes you attach to the audio engine.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
-func (a_ AudioEngine) AttachedNodes() AVAudioNode {
-	rv := objc.Send[AVAudioNode](a_.ID, objc.Sel("attachedNodes"))
+func (a_ AudioEngine) AttachedNodes() IAVAudioNode {
+	rv := objc.Send[AudioNode](a_.ID, objc.Sel("attachedNodes"))
 	return rv
 }
 
@@ -204,6 +127,25 @@ func (a_ AudioEngine) AttachedNodes() AVAudioNode {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/attachednodes
 func (a_ AudioEngine) SetAttachedNodes(value IAVAudioNode) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttachedNodes:"), value)
+}
+
+
+// The audio engine’s singleton input audio node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/inputnode
+func (a_ AudioEngine) InputNode() IAVAudioInputNode {
+	rv := objc.Send[AudioInputNode](a_.ID, objc.Sel("inputNode"))
+	return rv
+}
+
+
+// The audio engine’s singleton input audio node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/inputnode
+func (a_ AudioEngine) SetInputNode(value IAVAudioInputNode) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInputNode:"), value)
 }
 
 
@@ -264,6 +206,25 @@ func (a_ AudioEngine) SetIsRunning(value bool) {
 }
 
 
+// The audio engine’s optional singleton main mixer node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/mainmixernode
+func (a_ AudioEngine) MainMixerNode() IAVAudioMixerNode {
+	rv := objc.Send[AudioMixerNode](a_.ID, objc.Sel("mainMixerNode"))
+	return rv
+}
+
+
+// The audio engine’s optional singleton main mixer node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/mainmixernode
+func (a_ AudioEngine) SetMainMixerNode(value IAVAudioMixerNode) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMainMixerNode:"), value)
+}
+
+
 // The block that renders the engine when operating in manual rendering mode.
 //
 // [Full Topic]
@@ -287,8 +248,8 @@ func (a_ AudioEngine) SetManualRenderingBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-func (a_ AudioEngine) ManualRenderingFormat() AVAudioFormat {
-	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
+func (a_ AudioEngine) ManualRenderingFormat() IAVAudioFormat {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
 }
 
@@ -316,7 +277,7 @@ func (a_ AudioEngine) ManualRenderingMaximumFrameCount() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingmaximumframecount
-func (a_ AudioEngine) SetManualRenderingMaximumFrameCount(value IAudioFrameCount) {
+func (a_ AudioEngine) SetManualRenderingMaximumFrameCount(value AudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingMaximumFrameCount:"), value)
 }
 
@@ -344,8 +305,8 @@ func (a_ AudioEngine) SetManualRenderingMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
-func (a_ AudioEngine) ManualRenderingSampleTime() AudioFramePosition {
-	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("manualRenderingSampleTime"))
+func (a_ AudioEngine) ManualRenderingSampleTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingSampleTime"))
 	return rv
 }
 
@@ -354,8 +315,46 @@ func (a_ AudioEngine) ManualRenderingSampleTime() AudioFramePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingsampletime
-func (a_ AudioEngine) SetManualRenderingSampleTime(value IAudioFramePosition) {
+func (a_ AudioEngine) SetManualRenderingSampleTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingSampleTime:"), value)
+}
+
+
+// The music sequence instance that you attach to the audio engine, if any.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/musicsequence
+func (a_ AudioEngine) MusicSequence() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("musicSequence"))
+	return rv
+}
+
+
+// The music sequence instance that you attach to the audio engine, if any.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/musicsequence
+func (a_ AudioEngine) SetMusicSequence(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMusicSequence:"), value)
+}
+
+
+// The audio engine’s singleton output audio node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/outputnode
+func (a_ AudioEngine) OutputNode() IAVAudioOutputNode {
+	rv := objc.Send[AudioOutputNode](a_.ID, objc.Sel("outputNode"))
+	return rv
+}
+
+
+// The audio engine’s singleton output audio node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/outputnode
+func (a_ AudioEngine) SetOutputNode(value IAVAudioOutputNode) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputNode:"), value)
 }
 
 

@@ -30,13 +30,13 @@ type _GraphNodeClass struct {
 // An interface definition for the [GraphNode] class.
 type IGraphNode interface {
 	objectivec.IObject
+	ConnectedNodes() []GraphNode
 	AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
 	CostToNode(node IGKGraphNode) float32
 	EstimatedCostToNode(node IGKGraphNode) float32
 	FindPathFromNode(startNode IGKGraphNode) []GraphNode
 	FindPathToNode(goalNode IGKGraphNode) []GraphNode
 	RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
-	ConnectedNodes() []GraphNode
 }
 
 // A single node in a navigation graph for use in pathfinding.

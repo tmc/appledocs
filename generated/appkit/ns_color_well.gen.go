@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ColorWell] class.
@@ -30,19 +29,16 @@ type _ColorWellClass struct {
 // An interface definition for the [ColorWell] class.
 type IColorWell interface {
 	IControl
-	TakeColorFrom(sender objectivec.IObject)
-	ColorWellStyle() ColorWellStyle
-	SetColorWellStyle(value ColorWellStyle)
-	Image() Image
-	SetImage(value IImage)
 	Bordered() bool
 	SetBordered(value bool)
 	PulldownTarget() objc.ID
 	SetPulldownTarget(value objc.ID)
-	SupportsAlpha() bool
-	SetSupportsAlpha(value bool)
-	Color() NSColor
+	Color() IColor
 	SetColor(value IColor)
+	ColorWellStyle() unsafe.Pointer
+	SetColorWellStyle(value unsafe.Pointer)
+	Image() IImage
+	SetImage(value IImage)
 	IsActive() bool
 	SetIsActive(value bool)
 	IsBordered() bool
@@ -51,6 +47,8 @@ type IColorWell interface {
 	SetMaximumLinearExposure(value float64)
 	PulldownAction() unsafe.Pointer
 	SetPulldownAction(value unsafe.Pointer)
+	SupportsAlpha() bool
+	SetSupportsAlpha(value bool)
 }
 
 // A control that displays a color value and lets the user change that color value.
@@ -108,53 +106,6 @@ func NewColorWell() ColorWell {
 
 
 
-// Changes the currently selected color to the color of the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/takeColorFrom(_:)
-func (c_ ColorWell) TakeColorFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeColorFrom:"), sender)
-}
-
-
-// The appearance and interaction style to apply to the color well.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/colorWellStyle
-func (c_ ColorWell) ColorWellStyle() ColorWellStyle {
-	rv := objc.Send[ColorWellStyle](c_.ID, objc.Sel("colorWellStyle"))
-	return rv
-}
-
-
-// The appearance and interaction style to apply to the color well.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/colorWellStyle
-func (c_ ColorWell) SetColorWellStyle(value ColorWellStyle) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorWellStyle:"), value)
-}
-
-
-// The image to display on the button portion of a color well that adopts the expanded style.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/image
-func (c_ ColorWell) Image() Image {
-	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
-	return rv
-}
-
-
-// The image to display on the button portion of a color well that adopts the expanded style.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/image
-func (c_ ColorWell) SetImage(value IImage) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
-}
-
-
 // A Boolean value that determines whether the color well has a border.
 //
 // [Full Topic]
@@ -193,31 +144,12 @@ func (c_ ColorWell) SetPulldownTarget(value objc.ID) {
 }
 
 
-// A Boolean value that determines whether the color picker supports alpha values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
-func (c_ ColorWell) SupportsAlpha() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAlpha"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the color picker supports alpha values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
-func (c_ ColorWell) SetSupportsAlpha(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
-}
-
-
 // The currently selected color for the color well.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
-func (c_ ColorWell) Color() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("color"))
+func (c_ ColorWell) Color() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -228,6 +160,44 @@ func (c_ ColorWell) Color() NSColor {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
 func (c_ ColorWell) SetColor(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+
+// The appearance and interaction style to apply to the color well.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/colorwellstyle
+func (c_ ColorWell) ColorWellStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorWellStyle"))
+	return rv
+}
+
+
+// The appearance and interaction style to apply to the color well.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/colorwellstyle
+func (c_ ColorWell) SetColorWellStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorWellStyle:"), value)
+}
+
+
+// The image to display on the button portion of a color well that adopts the expanded style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
+func (c_ ColorWell) Image() IImage {
+	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// The image to display on the button portion of a color well that adopts the expanded style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/image
+func (c_ ColorWell) SetImage(value IImage) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
 
@@ -304,6 +274,25 @@ func (c_ ColorWell) PulldownAction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction
 func (c_ ColorWell) SetPulldownAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPulldownAction:"), value)
+}
+
+
+// A Boolean value that determines whether the color picker supports alpha values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/supportsalpha
+func (c_ ColorWell) SupportsAlpha() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAlpha"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the color picker supports alpha values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/supportsalpha
+func (c_ ColorWell) SetSupportsAlpha(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
 
 

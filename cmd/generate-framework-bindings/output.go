@@ -441,7 +441,10 @@ func parseEnumFromPreprocessed(preprocessedSource, enumName string) (*EnumResult
 	inEnum := false
 	// Match both Swift-style (enum Name : Type {) and C-style (typedef ... Name {)
 	enumPattern := regexp.MustCompile(`(?:enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+|typedef.*?` + regexp.QuoteMeta(enumName) + `)`)
+	// Match bit-shift pattern FIRST (before explicit values): Name = 1UL << 0
+	bitShiftPattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*\(?\s*(\d+[UL]*)\s*<<\s*(\d+)\s*\)?`)
 	// Match explicit values including negative numbers, hex values, and suffixes like L, UL
+	// NOTE: We check bit-shift BEFORE this pattern in the loop, so order matters!
 	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(-?(?:0[xX][0-9A-Fa-f]+|\d+)[UL]*)`)
 	// Match implicit values (no = assignment) - allow __attribute__, comma, or nothing (last enum case)
 	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,|$)`)
@@ -466,8 +469,26 @@ func parseEnumFromPreprocessed(preprocessedSource, enumName string) (*EnumResult
 				break
 			}
 
-			// Try explicit value first
-			matches := valuePattern.FindStringSubmatch(line)
+			// Try bit-shift pattern FIRST: Name = 1UL << 0
+			matches := bitShiftPattern.FindStringSubmatch(line)
+			if len(matches) >= 4 {
+				// Strip UL/L suffixes from base value
+				baseStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
+				base := 1
+				shift := 0
+				fmt.Sscanf(baseStr, "%d", &base)
+				fmt.Sscanf(matches[3], "%d", &shift)
+				value := base << uint(shift)
+				result.Values = append(result.Values, EnumValue{
+					Name:  matches[1],
+					Value: value,
+				})
+				currentValue = value + 1
+				continue
+			}
+
+			// Try explicit value (hex or decimal)
+			matches = valuePattern.FindStringSubmatch(line)
 			if len(matches) >= 3 {
 				// Strip L, UL suffixes from the value string
 				valueStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
@@ -555,6 +576,13 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 			continue
 		}
 
+		if verbose && enum.Name == "DataBase64EncodingOptions" {
+			fmt.Fprintf(os.Stderr, "DEBUG: parseEnumFromPreprocessed returned %d values for %s:\n", len(result.Values), enumNameForSDK)
+			for _, v := range result.Values {
+				fmt.Fprintf(os.Stderr, "  %s = %d\n", v.Name, v.Value)
+			}
+		}
+
 		// If enum has no cases from documentation, create them from SDK extraction
 		if len(enum.Cases) == 0 && len(result.Values) > 0 {
 			if verbose {
@@ -584,12 +612,18 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 		for _, enumCase := range enum.Cases {
 			// Try exact match first
 			if val, ok := valueMap[enumCase.Name]; ok {
+				if verbose && enum.Name == "DataBase64EncodingOptions" {
+					fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (exact)\n", enum.Name, enumCase.Name, val)
+				}
 				enumCase.IntValue = val
 				matchedCases++
 				continue
 			}
 			// Try with NS prefix (SDK uses NSEnumCase but docs might use EnumCase)
 			if val, ok := valueMap["NS"+enumCase.Name]; ok {
+				if verbose && enum.Name == "DataBase64EncodingOptions" {
+					fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (with NS prefix)\n", enum.Name, enumCase.Name, val)
+				}
 				enumCase.IntValue = val
 				matchedCases++
 				continue
@@ -598,6 +632,9 @@ func enrichEnumValues(framework string, enums []*occ2go.ParsedEnum, verbose bool
 			nameWithoutNS := strings.TrimPrefix(enumCase.Name, "NS")
 			if nameWithoutNS != enumCase.Name {
 				if val, ok := valueMap[nameWithoutNS]; ok {
+					if verbose && enum.Name == "DataBase64EncodingOptions" {
+						fmt.Fprintf(os.Stderr, "DEBUG: Matched %s.%s = %d (without NS prefix)\n", enum.Name, enumCase.Name, val)
+					}
 					enumCase.IntValue = val
 					matchedCases++
 				}

@@ -29,18 +29,20 @@ type _MutableDataClass struct {
 // An interface definition for the [MutableData] class.
 type IMutableData interface {
 	IData
-	NSCompressionErrorMaximum() int
-	SetNSCompressionErrorMaximum(value int)
-	NSCompressionErrorMinimum() int
-	SetNSCompressionErrorMinimum(value int)
-	NSCompressionFailedError() int
-	SetNSCompressionFailedError(value int)
-	NSDecompressionFailedError() int
-	SetNSDecompressionFailedError(value int)
-	Length() int
-	SetLength(value int)
+	// properties:
+	NSCompressionErrorMaximum() int /* primitive/slice/pointer */
+	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer */)
+	NSCompressionErrorMinimum() int /* primitive/slice/pointer */
+	SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer */)
+	NSCompressionFailedError() int /* primitive/slice/pointer */
+	SetNSCompressionFailedError(value int /* primitive/slice/pointer */)
+	NSDecompressionFailedError() int /* primitive/slice/pointer */
+	SetNSDecompressionFailedError(value int /* primitive/slice/pointer */)
+	Length() int /* primitive/slice/pointer */
+	SetLength(value int /* primitive/slice/pointer */)
 	MutableBytes() unsafe.Pointer
 	SetMutableBytes(value unsafe.Pointer)
+	// methods:
 }
 
 // An object representing a dynamic byte buffer in memory.
@@ -102,7 +104,7 @@ func NewMutableData() MutableData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) NSCompressionErrorMaximum() int {
+func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMaximum"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (m_ MutableData) NSCompressionErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
+func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
@@ -121,7 +123,7 @@ func (m_ MutableData) SetNSCompressionErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) NSCompressionErrorMinimum() int {
+func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
 	return rv
 }
@@ -131,7 +133,7 @@ func (m_ MutableData) NSCompressionErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
+func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
@@ -140,7 +142,7 @@ func (m_ MutableData) SetNSCompressionErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) NSCompressionFailedError() int {
+func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionFailedError"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (m_ MutableData) NSCompressionFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) SetNSCompressionFailedError(value int) {
+func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
 
@@ -159,7 +161,7 @@ func (m_ MutableData) SetNSCompressionFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) NSDecompressionFailedError() int {
+func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (m_ MutableData) NSDecompressionFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) SetNSDecompressionFailedError(value int) {
+func (m_ MutableData) SetNSDecompressionFailedError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
 
@@ -178,7 +180,7 @@ func (m_ MutableData) SetNSDecompressionFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) Length() int {
+func (m_ MutableData) Length() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("length"))
 	return rv
 }
@@ -188,7 +190,7 @@ func (m_ MutableData) Length() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutabledata/length
-func (m_ MutableData) SetLength(value int) {
+func (m_ MutableData) SetLength(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
 }
 

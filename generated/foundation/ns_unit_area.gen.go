@@ -29,6 +29,8 @@ type _UnitAreaClass struct {
 // An interface definition for the [UnitArea] class.
 type IUnitArea interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for area.

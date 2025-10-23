@@ -30,12 +30,14 @@ type _StreamClass struct {
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
+	// properties:
 	StreamError() IError
-	StreamStatus() unsafe.Pointer
-	NSStreamSOCKSErrorDomain() string
-	NSStreamSocketSSLErrorDomain() string
+	StreamStatus() StreamStatus /* foo */
+	NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer */
+	NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer */
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	// methods:
 }
 
 // An abstract class representing a stream.
@@ -95,14 +97,14 @@ func NewStream() Stream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getBoundStreams(withBufferSize:inputStream:outputStream:)
-func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(bufferSize uint, inputStream IInputStream, outputStream IOutputStream) {
+func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(bufferSize uint /* primitive/slice/pointer */, inputStream IInputStream, outputStream IOutputStream) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getBoundStreamsWithBufferSize:inputStream:outputStream:"), bufferSize, inputStream, outputStream)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
-func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string, port int, inputStream IInputStream, outputStream IOutputStream) {
+func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string /* primitive/slice/pointer */, port int /* primitive/slice/pointer */, inputStream IInputStream, outputStream IOutputStream) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), objc.String(hostname), port, inputStream, outputStream)
 }
 
@@ -121,8 +123,8 @@ func (s_ Stream) StreamError() IError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamStatus
-func (s_ Stream) StreamStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
+func (s_ Stream) StreamStatus() StreamStatus /* foo */ {
+	rv := objc.Send[StreamStatus](s_.ID, objc.Sel("streamStatus"))
 	return rv
 }
 
@@ -131,7 +133,7 @@ func (s_ Stream) StreamStatus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (s_ Stream) NSStreamSOCKSErrorDomain() string {
+func (s_ Stream) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (s_ Stream) NSStreamSOCKSErrorDomain() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
+func (s_ Stream) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }

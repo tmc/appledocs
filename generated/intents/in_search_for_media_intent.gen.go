@@ -29,10 +29,11 @@ type _INSearchForMediaIntentClass struct {
 // An interface definition for the [INSearchForMediaIntent] class.
 type IINSearchForMediaIntent interface {
 	IINIntent
-	MediaItems() INMediaItem
-	SetMediaItems(value INMediaItem)
+	// properties:
+	MediaItems() []INMediaItem
 	MediaSearch() INMediaSearch
 	SetMediaSearch(value INMediaSearch)
+	// methods:
 }
 
 // A request to search for a media item.
@@ -93,19 +94,10 @@ func NewINSearchForMediaIntent() INSearchForMediaIntent {
 // The media items for which to search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
-func (i_ INSearchForMediaIntent) MediaItems() INMediaItem {
-	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMediaIntent/mediaItems
+func (i_ INSearchForMediaIntent) MediaItems() []INMediaItem {
+	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
-}
-
-
-// The media items for which to search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
-func (i_ INSearchForMediaIntent) SetMediaItems(value INMediaItem) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
 

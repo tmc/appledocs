@@ -30,7 +30,9 @@ type _NullClass struct {
 // An interface definition for the [Null] class.
 type INull interface {
 	objectivec.IObject
-	NSNotFound() int
+	// properties:
+	NSNotFound() int /* primitive/slice/pointer */
+	// methods:
 }
 
 // A singleton object used to represent null values in collection objects that don’t allow values.
@@ -100,7 +102,7 @@ func (nc _NullClass) Null() INull {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (n_ Null) NSNotFound() int {
+func (n_ Null) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
 	return rv
 }

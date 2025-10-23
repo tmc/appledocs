@@ -29,8 +29,8 @@ type _CNChangeHistoryAddSubgroupToGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddSubgroupToGroupEvent] class.
 type ICNChangeHistoryAddSubgroupToGroupEvent interface {
 	ICNChangeHistoryEvent
-	Group() CNGroup
-	Subgroup() CNGroup
+	Group() ICNGroup
+	Subgroup() ICNGroup
 }
 
 // An object that represents a user adding a subgroup to a group.
@@ -90,7 +90,7 @@ func NewCNChangeHistoryAddSubgroupToGroupEvent() CNChangeHistoryAddSubgroupToGro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/group
-func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() CNGroup {
+func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -100,7 +100,7 @@ func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/subgroup
-func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() CNGroup {
+func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv
 }

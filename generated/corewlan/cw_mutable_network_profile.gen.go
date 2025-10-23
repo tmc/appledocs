@@ -31,11 +31,11 @@ type _CWMutableNetworkProfileClass struct {
 type ICWMutableNetworkProfile interface {
 	ICWNetworkProfile
 	Security() CWSecurity
-	SetSecurity(value ICWSecurity)
+	SetSecurity(value CWSecurity)
 	SsidData() foundation.NSData
-	SetSsidData(value foundation.IData)
+	SetSsidData(value foundation.NSData)
 	NetworkProfiles() foundation.OrderedSet
-	SetNetworkProfiles(value foundation.IOrderedSet)
+	SetNetworkProfiles(value foundation.OrderedSet)
 }
 
 // Encapsulates a mutable network profile entry.
@@ -107,7 +107,7 @@ func (c_ CWMutableNetworkProfile) Security() CWSecurity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
-func (c_ CWMutableNetworkProfile) SetSecurity(value ICWSecurity) {
+func (c_ CWMutableNetworkProfile) SetSecurity(value CWSecurity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurity:"), value)
 }
 
@@ -126,7 +126,7 @@ func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.IData) {
+func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
 
@@ -145,7 +145,7 @@ func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.IOrderedSet) {
+func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.OrderedSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
 

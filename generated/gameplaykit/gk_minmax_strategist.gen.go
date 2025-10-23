@@ -30,14 +30,14 @@ type _MinmaxStrategistClass struct {
 // An interface definition for the [MinmaxStrategist] class.
 type IMinmaxStrategist interface {
 	objectivec.IObject
-	BestMoveForPlayer(player objectivec.IObject) objc.ID
-	RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID
 	MaxLookAheadDepth() int
 	SetMaxLookAheadDepth(value int)
 	GameModel() unsafe.Pointer
 	SetGameModel(value unsafe.Pointer)
 	RandomSource() unsafe.Pointer
 	SetRandomSource(value unsafe.Pointer)
+	BestMoveForPlayer(player objectivec.IObject) objc.ID
+	RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID
 }
 
 // An AI that chooses moves in turn-based games using a strategy.

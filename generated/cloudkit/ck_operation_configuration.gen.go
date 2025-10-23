@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,27 +30,25 @@ type _CKOperationConfigurationClass struct {
 // An interface definition for the [CKOperationConfiguration] class.
 type ICKOperationConfiguration interface {
 	objectivec.IObject
-	AllowsCellularAccess() bool
-	SetAllowsCellularAccess(value bool)
-	Container() CKContainer
-	SetContainer(value ICKContainer)
-	LongLived() bool
-	SetLongLived(value bool)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
-	TimeoutIntervalForRequest() foundation.TimeInterval
-	SetTimeoutIntervalForRequest(value foundation.ITimeInterval)
-	TimeoutIntervalForResource() foundation.TimeInterval
-	SetTimeoutIntervalForResource(value foundation.ITimeInterval)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	Container() ICKContainer
+	SetContainer(value ICKContainer)
 	IsLongLived() bool
 	SetIsLongLived(value bool)
-	Configuration() CKOperationConfiguration
+	TimeoutIntervalForRequest() unsafe.Pointer
+	SetTimeoutIntervalForRequest(value unsafe.Pointer)
+	TimeoutIntervalForResource() unsafe.Pointer
+	SetTimeoutIntervalForResource(value unsafe.Pointer)
+	Configuration() ICKOperationConfiguration
 	SetConfiguration(value ICKOperationConfiguration)
-	Group() CKOperationGroup
+	Group() ICKOperationGroup
 	SetGroup(value ICKOperationGroup)
 	LongLivedOperationWasPersistedBlock() unsafe.Pointer
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
-	DefaultConfiguration() CKOperationConfiguration
+	DefaultConfiguration() ICKOperationConfiguration
 	SetDefaultConfiguration(value ICKOperationConfiguration)
 }
 
@@ -108,63 +105,6 @@ func NewCKOperationConfiguration() CKOperationConfiguration {
 
 
 
-// A Boolean value that indicates whether operations that use this configuration can send data over the cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/allowsCellularAccess
-func (c_ CKOperationConfiguration) AllowsCellularAccess() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether operations that use this configuration can send data over the cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/allowsCellularAccess
-func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}
-
-
-// The configuration’s container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/container
-func (c_ CKOperationConfiguration) Container() CKContainer {
-	rv := objc.Send[CKContainer](c_.ID, objc.Sel("container"))
-	return rv
-}
-
-
-// The configuration’s container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/container
-func (c_ CKOperationConfiguration) SetContainer(value ICKContainer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
-}
-
-
-// A Boolean value that indicates whether the operations that use this configuration are long-lived.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/isLongLived
-func (c_ CKOperationConfiguration) LongLived() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("longLived"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the operations that use this configuration are long-lived.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/isLongLived
-func (c_ CKOperationConfiguration) SetLongLived(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLived:"), value)
-}
-
-
 // The priority that the system uses when it allocates resources to the operations that use this configuration.
 //
 // [Full Topic]
@@ -184,41 +124,41 @@ func (c_ CKOperationConfiguration) SetQualityOfService(value unsafe.Pointer) {
 }
 
 
-// The maximum amount of time that a request can take.
+// A Boolean value that indicates whether operations that use this configuration can send data over the cellular network.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForRequest
-func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForRequest"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
+func (c_ CKOperationConfiguration) AllowsCellularAccess() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
 
 
-// The maximum amount of time that a request can take.
+// A Boolean value that indicates whether operations that use this configuration can send data over the cellular network.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForRequest
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value foundation.ITimeInterval) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
+func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
 
-// The maximum amount of time that a resource request can take.
+// The configuration’s container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForResource
-func (c_ CKOperationConfiguration) TimeoutIntervalForResource() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForResource"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/container
+func (c_ CKOperationConfiguration) Container() ICKContainer {
+	rv := objc.Send[CKContainer](c_.ID, objc.Sel("container"))
 	return rv
 }
 
 
-// The maximum amount of time that a resource request can take.
+// The configuration’s container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForResource
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value foundation.ITimeInterval) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/container
+func (c_ CKOperationConfiguration) SetContainer(value ICKContainer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
 
 
@@ -241,11 +181,49 @@ func (c_ CKOperationConfiguration) SetIsLongLived(value bool) {
 }
 
 
+// The maximum amount of time that a request can take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforrequest
+func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeoutIntervalForRequest"))
+	return rv
+}
+
+
+// The maximum amount of time that a request can take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforrequest
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
+}
+
+
+// The maximum amount of time that a resource request can take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforresource
+func (c_ CKOperationConfiguration) TimeoutIntervalForResource() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeoutIntervalForResource"))
+	return rv
+}
+
+
+// The maximum amount of time that a resource request can take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/timeoutintervalforresource
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
+}
+
+
 // The operation’s configuration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
-func (c_ CKOperationConfiguration) Configuration() CKOperationConfiguration {
+func (c_ CKOperationConfiguration) Configuration() ICKOperationConfiguration {
 	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -264,7 +242,7 @@ func (c_ CKOperationConfiguration) SetConfiguration(value ICKOperationConfigurat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationConfiguration) Group() CKOperationGroup {
+func (c_ CKOperationConfiguration) Group() ICKOperationGroup {
 	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -302,7 +280,7 @@ func (c_ CKOperationConfiguration) SetLongLivedOperationWasPersistedBlock(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperationgroup/defaultconfiguration
-func (c_ CKOperationConfiguration) DefaultConfiguration() CKOperationConfiguration {
+func (c_ CKOperationConfiguration) DefaultConfiguration() ICKOperationConfiguration {
 	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }

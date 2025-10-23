@@ -30,6 +30,8 @@ type _mResponsePacketDataLengthSoFarClass struct {
 // An interface definition for the [mResponsePacketDataLengthSoFar] class.
 type ImResponsePacketDataLengthSoFar interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

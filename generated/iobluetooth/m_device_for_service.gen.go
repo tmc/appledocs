@@ -30,6 +30,8 @@ type _mDeviceForServiceClass struct {
 // An interface definition for the [mDeviceForService] class.
 type ImDeviceForService interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

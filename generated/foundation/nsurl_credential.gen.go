@@ -30,18 +30,14 @@ type _URLCredentialClass struct {
 // An interface definition for the [URLCredential] class.
 type IURLCredential interface {
 	objectivec.IObject
-	Certificates() unsafe.Pointer
-	SetCertificates(value unsafe.Pointer)
-	HasPassword() bool
-	SetHasPassword(value bool)
+	// properties:
+	Certificates() objc.ID
+	HasPassword() bool /* primitive/slice/pointer */
 	Identity() unsafe.Pointer
-	SetIdentity(value unsafe.Pointer)
-	Password() string
-	SetPassword(value string)
-	Persistence() unsafe.Pointer
-	SetPersistence(value unsafe.Pointer)
-	User() string
-	SetUser(value string)
+	Password() string /* primitive/slice/pointer */
+	Persistence() URLCredentialPersistence
+	User() string /* primitive/slice/pointer */
+	// methods:
 }
 
 // n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
@@ -97,12 +93,79 @@ func NewURLCredential() URLCredential {
 
 
 
-// The intermediate certificates of the credential, if it is a client certificate credential.
+// Creates a URL credential instance for server trust authentication with a given accepted trust.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/certificates
-func (u_ URLCredential) Certificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("certificates"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(forTrust:)
+func NewURLCredentialForTrust(trust unsafe.Pointer) URLCredential {
+	rv := objc.Send[URLCredential](objc.ID(getURLCredentialClass().class), objc.Sel("credentialForTrust:"), trust)
+	return rv
+}
+
+
+// Creates a URL credential instance for resolving a client certificate authentication challenge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(identity:certificates:persistence:)
+func NewURLCredentialWithIdentityCertificatesPersistence(identity unsafe.Pointer, certArray objectivec.IObject, persistence URLCredentialPersistence) URLCredential {
+	instance := getURLCredentialClass().Alloc()
+	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithIdentity:certificates:persistence:"), identity, certArray, persistence)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a URL credential instance for server trust authentication, initialized with a accepted trust.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(trust:)
+func NewURLCredentialWithTrust(trust unsafe.Pointer) URLCredential {
+	instance := getURLCredentialClass().Alloc()
+	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithTrust:"), trust)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a URL credential instance initialized with a given user name and password, using a given persistence setting.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(user:password:persistence:)
+func NewURLCredentialWithUserPasswordPersistence(user string /* primitive/slice/pointer */, password string /* primitive/slice/pointer */, persistence URLCredentialPersistence) URLCredential {
+	instance := getURLCredentialClass().Alloc()
+	rv := objc.Send[URLCredential](instance.ID, objc.Sel("initWithUser:password:persistence:"), objc.String(user), objc.String(password), persistence)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a URL credential instance for resolving a client certificate authentication challenge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLCredential/credentialWithIdentity:certificates:persistence:
+func (uc _URLCredentialClass) CredentialWithIdentityCertificatesPersistence(identity unsafe.Pointer, certArray objectivec.IObject, persistence URLCredentialPersistence) IURLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithIdentity:certificates:persistence:"), identity, certArray, persistence)
+	return rv
+}
+
+
+// Creates a URL credential instance for internet password authentication with a given user name and password, using a given persistence setting.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLCredential/credentialWithUser:password:persistence:
+func (uc _URLCredentialClass) CredentialWithUserPasswordPersistence(user string /* primitive/slice/pointer */, password string /* primitive/slice/pointer */, persistence URLCredentialPersistence) IURLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialWithUser:password:persistence:"), objc.String(user), objc.String(password), persistence)
+	return rv
+}
+
+
+// Creates a URL credential instance for server trust authentication with a given accepted trust.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/init(forTrust:)
+func (uc _URLCredentialClass) CredentialForTrust(trust unsafe.Pointer) IURLCredential {
+	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialForTrust:"), trust)
 	return rv
 }
 
@@ -110,105 +173,60 @@ func (u_ URLCredential) Certificates() unsafe.Pointer {
 // The intermediate certificates of the credential, if it is a client certificate credential.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/certificates
-func (u_ URLCredential) SetCertificates(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCertificates:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/certificates
+func (u_ URLCredential) Certificates() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("certificates"))
+	return rv
 }
 
 
 // A Boolean value that indicates whether the credential has a password.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/haspassword
-func (u_ URLCredential) HasPassword() bool {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/hasPassword
+func (u_ URLCredential) HasPassword() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasPassword"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether the credential has a password.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/haspassword
-func (u_ URLCredential) SetHasPassword(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHasPassword:"), value)
 }
 
 
 // The identity of this credential if it is a client certificate credential.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/identity
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/identity
 func (u_ URLCredential) Identity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identity"))
 	return rv
 }
 
 
-// The identity of this credential if it is a client certificate credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/identity
-func (u_ URLCredential) SetIdentity(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentity:"), value)
-}
-
-
 // The credential’s password.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/password
-func (u_ URLCredential) Password() string {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/password
+func (u_ URLCredential) Password() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
 
-// The credential’s password.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/password
-func (u_ URLCredential) SetPassword(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPassword:"), objc.String(value))
-}
-
-
 // The credential’s persistence setting.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.property
-func (u_ URLCredential) Persistence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("persistence"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/persistence-swift.property
+func (u_ URLCredential) Persistence() URLCredentialPersistence {
+	rv := objc.Send[URLCredentialPersistence](u_.ID, objc.Sel("persistence"))
 	return rv
-}
-
-
-// The credential’s persistence setting.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.property
-func (u_ URLCredential) SetPersistence(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistence:"), value)
 }
 
 
 // The credential’s user name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/user
-func (u_ URLCredential) User() string {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/user
+func (u_ URLCredential) User() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
-
-
-// The credential’s user name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/user
-func (u_ URLCredential) SetUser(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUser:"), objc.String(value))
-}
-
 
 

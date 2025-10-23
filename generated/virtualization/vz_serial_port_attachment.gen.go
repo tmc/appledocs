@@ -35,7 +35,11 @@ type IVZSerialPortAttachment interface {
 // The common behaviors for the serial attachment points of your virtual machine.
 //
 // Don’t create a object directly. Instead, instantiate a concrete subclass such as to configure how the virtual machine’s serial port connects with the host computer.
+
+
+// The common behaviors for the serial attachment points of your virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSerialPortAttachment
 type VZSerialPortAttachment struct {
 	objectivec.Object

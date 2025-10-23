@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,12 +32,11 @@ type _ICCameraItemClass struct {
 // An interface definition for the [ICCameraItem] class.
 type IICCameraItem interface {
 	objectivec.IObject
-	Raw() bool
-	ModificationDate() foundation.NSDate
-	Thumbnail() coregraphics.CGImageRef
+	// properties:
+	Name() string
 	UTI() string
 	CreationDate() foundation.Date
-	SetCreationDate(value foundation.IDate)
+	SetCreationDate(value foundation.Date)
 	Device() ICCameraDevice
 	SetDevice(value ICCameraDevice)
 	FileSystemPath() string
@@ -50,23 +48,26 @@ type IICCameraItem interface {
 	IsRaw() bool
 	SetIsRaw(value bool)
 	LargeThumbnailIfAvailable() appkit.Image
-	SetLargeThumbnailIfAvailable(value appkit.IImage)
+	SetLargeThumbnailIfAvailable(value appkit.Image)
 	Metadata() unsafe.Pointer
 	SetMetadata(value unsafe.Pointer)
 	MetadataIfAvailable() string
 	SetMetadataIfAvailable(value string)
-	Name() string
-	SetName(value string)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.Date)
 	ParentFolder() ICCameraFolder
 	SetParentFolder(value ICCameraFolder)
 	PtpObjectHandle() unsafe.Pointer
 	SetPtpObjectHandle(value unsafe.Pointer)
+	Thumbnail() appkit.Image
+	SetThumbnail(value appkit.Image)
 	ThumbnailIfAvailable() appkit.Image
-	SetThumbnailIfAvailable(value appkit.IImage)
+	SetThumbnailIfAvailable(value appkit.Image)
 	UserData() foundation.MutableDictionary
-	SetUserData(value foundation.IMutableDictionary)
+	SetUserData(value foundation.MutableDictionary)
 	WasAddedAfterContentCatalogCompleted() bool
 	SetWasAddedAfterContentCatalogCompleted(value bool)
+	// methods:
 }
 
 // An abstract class that represents a camera item.
@@ -122,32 +123,12 @@ func NewICCameraItem() ICCameraItem {
 
 
 
-// A Boolean value indicating whether the item is a raw image file.
+// The item’s name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/isRaw
-func (i_ ICCameraItem) Raw() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("raw"))
-	return rv
-}
-
-
-// The item’s modification date, usually the same as its modification date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/modificationDate
-func (i_ ICCameraItem) ModificationDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("modificationDate"))
-	return rv
-}
-
-
-// The item’s thumbnail.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/thumbnail
-func (i_ ICCameraItem) Thumbnail() coregraphics.CGImageRef {
-	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("thumbnail"))
+// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/name
+func (i_ ICCameraItem) Name() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -176,7 +157,7 @@ func (i_ ICCameraItem) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/creationdate
-func (i_ ICCameraItem) SetCreationDate(value foundation.IDate) {
+func (i_ ICCameraItem) SetCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -290,7 +271,7 @@ func (i_ ICCameraItem) LargeThumbnailIfAvailable() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/largethumbnailifavailable
-func (i_ ICCameraItem) SetLargeThumbnailIfAvailable(value appkit.IImage) {
+func (i_ ICCameraItem) SetLargeThumbnailIfAvailable(value appkit.Image) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLargeThumbnailIfAvailable:"), value)
 }
 
@@ -333,22 +314,22 @@ func (i_ ICCameraItem) SetMetadataIfAvailable(value string) {
 }
 
 
-// The item’s name.
+// The item’s modification date, usually the same as its
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
-func (i_ ICCameraItem) Name() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/modificationdate
+func (i_ ICCameraItem) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
 
-// The item’s name.
+// The item’s modification date, usually the same as its
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/name
-func (i_ ICCameraItem) SetName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/modificationdate
+func (i_ ICCameraItem) SetModificationDate(value foundation.Date) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setModificationDate:"), value)
 }
 
 
@@ -390,6 +371,25 @@ func (i_ ICCameraItem) SetPtpObjectHandle(value unsafe.Pointer) {
 }
 
 
+// The item’s thumbnail.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnail
+func (i_ ICCameraItem) Thumbnail() appkit.Image {
+	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("thumbnail"))
+	return rv
+}
+
+
+// The item’s thumbnail.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnail
+func (i_ ICCameraItem) SetThumbnail(value appkit.Image) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setThumbnail:"), value)
+}
+
+
 // The item’s thumbnail if it is readily available.
 //
 // [Full Topic]
@@ -404,7 +404,7 @@ func (i_ ICCameraItem) ThumbnailIfAvailable() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnailifavailable
-func (i_ ICCameraItem) SetThumbnailIfAvailable(value appkit.IImage) {
+func (i_ ICCameraItem) SetThumbnailIfAvailable(value appkit.Image) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThumbnailIfAvailable:"), value)
 }
 
@@ -423,7 +423,7 @@ func (i_ ICCameraItem) UserData() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/userdata
-func (i_ ICCameraItem) SetUserData(value foundation.IMutableDictionary) {
+func (i_ ICCameraItem) SetUserData(value foundation.MutableDictionary) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserData:"), value)
 }
 

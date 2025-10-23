@@ -30,6 +30,8 @@ type _waitingForRfcommSpaceClass struct {
 // An interface definition for the [waitingForRfcommSpace] class.
 type IwaitingForRfcommSpace interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

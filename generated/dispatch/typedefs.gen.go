@@ -63,6 +63,11 @@ type dispatch_queue_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_semaphore_t
 // dispatch_semaphore_t has base type: NSObject<OS_dispatch_semaphore> *
 type dispatch_semaphore_t uintptr
+// dispatch_source_mach_recv_flags_t - Mach receive-right flags.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_mach_recv_flags_t
+// dispatch_source_mach_recv_flags_t has base type: unsigned long
+type dispatch_source_mach_recv_flags_t uintptr
 // dispatch_source_t - An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_source_t
@@ -73,4 +78,9 @@ type dispatch_source_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_time_t
 // dispatch_time_t has base type: uint64_t
 type dispatch_time_t uintptr
+// dispatch_workloop_t - A dispatch queue that prioritizes the execution of tasks based on their quality-of-service level.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Dispatch/dispatch_workloop_t
+// dispatch_workloop_t has base type: NSObject<OS_dispatch_workloop> *
+type dispatch_workloop_t uintptr
 

@@ -29,6 +29,8 @@ type _UnitDispersionClass struct {
 // An interface definition for the [UnitDispersion] class.
 type IUnitDispersion interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for specific quantities of dispersion.

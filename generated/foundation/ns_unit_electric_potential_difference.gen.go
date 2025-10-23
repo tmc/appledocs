@@ -29,6 +29,8 @@ type _UnitElectricPotentialDifferenceClass struct {
 // An interface definition for the [UnitElectricPotentialDifference] class.
 type IUnitElectricPotentialDifference interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for electric potential difference.

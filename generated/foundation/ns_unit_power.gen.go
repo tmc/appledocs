@@ -29,6 +29,8 @@ type _UnitPowerClass struct {
 // An interface definition for the [UnitPower] class.
 type IUnitPower interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for power.

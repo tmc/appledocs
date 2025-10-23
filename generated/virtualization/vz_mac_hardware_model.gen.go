@@ -35,16 +35,20 @@ type IVZMacHardwareModel interface {
 	Supported() bool
 	IsSupported() bool
 	SetIsSupported(value bool)
-	MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements
+	MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements
 	SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements)
-	HardwareModel() VZMacHardwareModel
+	HardwareModel() IVZMacHardwareModel
 	SetHardwareModel(value IVZMacHardwareModel)
 }
 
 // A specification for the hardware elements and configurations present in a particular Mac hardware model.
 //
 // The Mac hardware model abstracts a set of virtualized hardware elements and configurations. A version of macOS may only run on certain hardware models. Additionally, the host may also only provide certain hardware models based on the version of macOS and the underlying hardware. The property allows you to discover if the current host supports a particular hardware model. Choosing the hardware model starts from a restore image with . A restore image describes its supported configuration requirements through its property. A configuration requirements object has a corresponding hardware model that you can use to configure a VM that meets the requirements. After obtaining the hardware model, use the platform configuration’s to configure the Mac platform object and use to create its auxiliary storage. After creating the VM, use to install macOS on it. If you serialize the VM on disk, preserve the hardware model used for installation for subsequent boots. The property provides a unique binary representation that you serialize to the file system. You can recreate the hardware model from the serialized binary representation with .
+
+
+// A specification for the hardware elements and configurations present in a particular Mac hardware model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel
 type VZMacHardwareModel struct {
 	objectivec.Object
@@ -90,11 +94,11 @@ func NewVZMacHardwareModel() VZMacHardwareModel {
 
 
 
-
 // Creates an instance of the hardware model described by the specified data representation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/init(dataRepresentation:)
-func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation foundation.IData) VZMacHardwareModel {
+func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation foundation.NSData) VZMacHardwareModel {
 	instance := getVZMacHardwareModelClass().Alloc()
 	rv := objc.Send[VZMacHardwareModel](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
 	rv.Autorelease()
@@ -102,24 +106,30 @@ func NewVZMacHardwareModelWithDataRepresentation(dataRepresentation foundation.I
 }
 
 
+
 // Returns the opaque data representation of the hardware model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/dataRepresentation
 func (v_ VZMacHardwareModel) DataRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the host supports this hardware model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacHardwareModel/isSupported
 func (v_ VZMacHardwareModel) Supported() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("supported"))
 	return rv
 }
 
+
 // A Boolean value that indicates whether the host supports this hardware model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/issupported
 func (v_ VZMacHardwareModel) IsSupported() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isSupported"))
@@ -127,46 +137,47 @@ func (v_ VZMacHardwareModel) IsSupported() bool {
 }
 
 
-// SetIsSupported sets the value of the isSupported property.
 // A Boolean value that indicates whether the host supports this hardware model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/issupported
 func (v_ VZMacHardwareModel) SetIsSupported(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsSupported:"), value)
 }
 
+
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacHardwareModel) MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements {
+func (v_ VZMacHardwareModel) MostFeaturefulSupportedConfiguration() IVZMacOSConfigurationRequirements {
 	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
 	return rv
 }
 
 
-// SetMostFeaturefulSupportedConfiguration sets the value of the mostFeaturefulSupportedConfiguration property.
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
 func (v_ VZMacHardwareModel) SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
 
+
 // The Mac hardware model.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacHardwareModel) HardwareModel() VZMacHardwareModel {
+func (v_ VZMacHardwareModel) HardwareModel() IVZMacHardwareModel {
 	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 
 
-// SetHardwareModel sets the value of the hardwareModel property.
 // The Mac hardware model.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
 func (v_ VZMacHardwareModel) SetHardwareModel(value IVZMacHardwareModel) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)

@@ -29,6 +29,8 @@ type _SimpleCStringClass struct {
 // An interface definition for the [SimpleCString] class.
 type ISimpleCString interface {
 	IString
+	// properties:
+	// methods:
 }
 
 

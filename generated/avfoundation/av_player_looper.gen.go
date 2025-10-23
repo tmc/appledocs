@@ -30,14 +30,16 @@ type _PlayerLooperClass struct {
 // An interface definition for the [PlayerLooper] class.
 type IPlayerLooper interface {
 	objectivec.IObject
-	Error() AVError
-	SetError(value AVError)
-	LoopCount() int
-	SetLoopCount(value int)
+	// properties:
+	Error() AVError /* enum */
+	SetError(value AVError /* enum */)
+	LoopCount() int /* primitive/slice/pointer */
+	SetLoopCount(value int /* primitive/slice/pointer */)
 	LoopingPlayerItems() IAVPlayerItem
 	SetLoopingPlayerItems(value IAVPlayerItem)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that loops media content using a queue player.
@@ -97,7 +99,7 @@ func NewPlayerLooper() PlayerLooper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) Error() AVError {
+func (p_ PlayerLooper) Error() AVError /* enum */ {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (p_ PlayerLooper) Error() AVError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) SetError(value AVError) {
+func (p_ PlayerLooper) SetError(value AVError /* enum */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 
@@ -116,7 +118,7 @@ func (p_ PlayerLooper) SetError(value AVError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) LoopCount() int {
+func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (p_ PlayerLooper) LoopCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) SetLoopCount(value int) {
+func (p_ PlayerLooper) SetLoopCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
 }
 

@@ -31,19 +31,19 @@ type _CSSearchableIndexClass struct {
 // An interface definition for the [CSSearchableIndex] class.
 type ICSSearchableIndex interface {
 	objectivec.IObject
-	BeginIndexBatch()
-	DeleteAllSearchableItemsWithCompletionHandler(completionHandler unsafe.Pointer)
-	DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string, completionHandler unsafe.Pointer)
-	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer)
-	EndIndexBatchWithClientStateCompletionHandler(clientState foundation.IData, completionHandler unsafe.Pointer)
-	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.IData, newClientState foundation.IData, completionHandler unsafe.Pointer)
-	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer)
-	IndexSearchableItemsCompletionHandler(items []CSSearchableItem, completionHandler unsafe.Pointer)
 	IndexDelegate() objc.ID
 	SetIndexDelegate(value objc.ID)
 	IsEligibleForSearch() bool
 	SetIsEligibleForSearch(value bool)
+	BeginIndexBatch()
+	DeleteAllSearchableItemsWithCompletionHandler(completionHandler unsafe.Pointer)
+	DeleteSearchableItemsWithDomainIdentifiersCompletionHandler(domainIdentifiers []string, completionHandler unsafe.Pointer)
+	DeleteSearchableItemsWithIdentifiersCompletionHandler(identifiers []string, completionHandler unsafe.Pointer)
+	EndIndexBatchWithClientStateCompletionHandler(clientState foundation.NSData, completionHandler unsafe.Pointer)
+	EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.NSData, newClientState foundation.NSData, completionHandler unsafe.Pointer)
+	FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType objectivec.IObject, completionHandler unsafe.Pointer)
+	FetchLastClientStateWithCompletionHandler(completionHandler unsafe.Pointer)
+	IndexSearchableItemsCompletionHandler(items []CSSearchableItem, completionHandler unsafe.Pointer)
 }
 
 // An on-device index for your app’s searchable content.
@@ -184,7 +184,7 @@ func (c_ CSSearchableIndex) DeleteSearchableItemsWithIdentifiersCompletionHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endBatch(withClientState:completionHandler:)
-func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(clientState foundation.IData, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(clientState foundation.NSData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithClientState:completionHandler:"), clientState, completionHandler)
 }
 
@@ -193,7 +193,7 @@ func (c_ CSSearchableIndex) EndIndexBatchWithClientStateCompletionHandler(client
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/endIndexBatch(expectedClientState:newClientState:completionHandler:)
-func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.IData, newClientState foundation.IData, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCompletionHandler(expectedClientState foundation.NSData, newClientState foundation.NSData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("endIndexBatchWithExpectedClientState:newClientState:completionHandler:"), expectedClientState, newClientState, completionHandler)
 }
 
@@ -202,7 +202,7 @@ func (c_ CSSearchableIndex) EndIndexBatchWithExpectedClientStateNewClientStateCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableIndex/fetchData(forBundleIdentifier:itemIdentifier:contentType:completionHandler:)
-func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CSSearchableIndex) FetchDataForBundleIdentifierItemIdentifierContentTypeCompletionHandler(bundleIdentifier string, itemIdentifier string, contentType objectivec.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:"), objc.String(bundleIdentifier), objc.String(itemIdentifier), contentType, completionHandler)
 }
 

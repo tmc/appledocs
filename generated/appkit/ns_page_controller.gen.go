@@ -30,20 +30,20 @@ type _PageControllerClass struct {
 // An interface definition for the [PageController] class.
 type IPageController interface {
 	IViewController
-	CompleteTransition()
-	NavigateBack(sender objectivec.IObject)
-	NavigateForward(sender objectivec.IObject)
-	NavigateForwardToObject(object objectivec.IObject)
-	TakeSelectedIndexFrom(sender objectivec.IObject)
 	ArrangedObjects() objc.ID
 	SetArrangedObjects(value objc.ID)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	SelectedIndex() int
 	SetSelectedIndex(value int)
-	SelectedViewController() NSViewController
-	TransitionStyle() PageControllerTransitionStyle
-	SetTransitionStyle(value PageControllerTransitionStyle)
+	SelectedViewController() IViewController
+	TransitionStyle() NSPageControllerTransitionStyle
+	SetTransitionStyle(value NSPageControllerTransitionStyle)
+	CompleteTransition()
+	NavigateBack(sender objectivec.IObject)
+	NavigateForward(sender objectivec.IObject)
+	NavigateForwardToObject(object objectivec.IObject)
+	TakeSelectedIndexFrom(sender objectivec.IObject)
 }
 
 // An object that controls swipe navigation and animations between views or view content.
@@ -207,8 +207,8 @@ func (p_ PageController) SetSelectedIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/selectedViewController
-func (p_ PageController) SelectedViewController() NSViewController {
-	rv := objc.Send[NSViewController](p_.ID, objc.Sel("selectedViewController"))
+func (p_ PageController) SelectedViewController() IViewController {
+	rv := objc.Send[ViewController](p_.ID, objc.Sel("selectedViewController"))
 	return rv
 }
 
@@ -217,8 +217,8 @@ func (p_ PageController) SelectedViewController() NSViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/transitionStyle-swift.property
-func (p_ PageController) TransitionStyle() PageControllerTransitionStyle {
-	rv := objc.Send[PageControllerTransitionStyle](p_.ID, objc.Sel("transitionStyle"))
+func (p_ PageController) TransitionStyle() NSPageControllerTransitionStyle {
+	rv := objc.Send[NSPageControllerTransitionStyle](p_.ID, objc.Sel("transitionStyle"))
 	return rv
 }
 
@@ -227,7 +227,7 @@ func (p_ PageController) TransitionStyle() PageControllerTransitionStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/transitionStyle-swift.property
-func (p_ PageController) SetTransitionStyle(value PageControllerTransitionStyle) {
+func (p_ PageController) SetTransitionStyle(value NSPageControllerTransitionStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransitionStyle:"), value)
 }
 

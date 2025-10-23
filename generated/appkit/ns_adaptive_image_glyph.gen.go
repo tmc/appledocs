@@ -36,7 +36,7 @@ type IAdaptiveImageGlyph interface {
 	ContentIdentifier() string
 	SetContentIdentifier(value string)
 	ImageContent() foundation.Data
-	SetImageContent(value foundation.IData)
+	SetImageContent(value foundation.Data)
 }
 
 // A data object for an emoji-like image that can appear in attributed text.
@@ -96,7 +96,7 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(imageContent:)
-func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.IData) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.NSData) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithImageContent:"), imageContent)
 	rv.Autorelease()
@@ -157,7 +157,7 @@ func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-func (a_ AdaptiveImageGlyph) SetImageContent(value foundation.IData) {
+func (a_ AdaptiveImageGlyph) SetImageContent(value foundation.Data) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImageContent:"), value)
 }
 

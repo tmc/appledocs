@@ -7,9 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Control] class.
@@ -32,83 +30,52 @@ type _ControlClass struct {
 // An interface definition for the [Control] class.
 type IControl interface {
 	IView
-	AbortEditing() bool
-	CurrentEditor() Text
-	DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view IView)
-	DrawCell(cell ICell)
-	EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, event IEvent)
-	EndEditing(textObj IText)
-	ExpansionFrameWithFrame(contentFrame coregraphics.CGRect) coregraphics.CGRect
-	InvalidateIntrinsicContentSizeForCell(cell ICell)
-	PerformClick(sender objectivec.IObject)
-	SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
-	SelectCell(cell ICell)
-	SelectedCell() Cell
-	SendActionTo(action objc.SEL, target objectivec.IObject) bool
-	SendActionOn(mask EventMask) int
-	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
-	SetNeedsDisplay()
-	SizeThatFits(size coregraphics.CGSize) coregraphics.CGSize
-	SizeToFit()
-	TakeDoubleValueFrom(sender objectivec.IObject)
-	TakeFloatValueFrom(sender objectivec.IObject)
-	TakeIntValueFrom(sender objectivec.IObject)
-	TakeIntegerValueFrom(sender objectivec.IObject)
-	TakeObjectValueFrom(sender objectivec.IObject)
-	TakeStringValueFrom(sender objectivec.IObject)
-	ValidateEditing()
-	Action() objc.SEL
-	SetAction(value objc.SEL)
-	Alignment() TextAlignment
-	SetAlignment(value ITextAlignment)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
 	AllowsExpansionToolTips() bool
 	SetAllowsExpansionToolTips(value bool)
 	AttributedStringValue() foundation.AttributedString
-	SetAttributedStringValue(value foundation.IAttributedString)
-	BaseWritingDirection() WritingDirection
-	SetBaseWritingDirection(value IWritingDirection)
-	ControlSize() ControlSize
-	SetControlSize(value IControlSize)
+	SetAttributedStringValue(value foundation.AttributedString)
+	BaseWritingDirection() unsafe.Pointer
+	SetBaseWritingDirection(value unsafe.Pointer)
+	ControlSize() unsafe.Pointer
+	SetControlSize(value unsafe.Pointer)
 	DoubleValue() float64
 	SetDoubleValue(value float64)
 	FloatValue() float32
 	SetFloatValue(value float32)
-	Font() NSFont
+	Font() IFont
 	SetFont(value IFont)
 	Formatter() foundation.Formatter
-	SetFormatter(value foundation.IFormatter)
+	SetFormatter(value foundation.Formatter)
 	IgnoresMultiClick() bool
 	SetIgnoresMultiClick(value bool)
-	IntValue() int
-	SetIntValue(value int)
+	IntValue() unsafe.Pointer
+	SetIntValue(value unsafe.Pointer)
 	IntegerValue() int
 	SetIntegerValue(value int)
-	Continuous() bool
-	SetContinuous(value bool)
-	Enabled() bool
-	SetEnabled(value bool)
-	Highlighted() bool
-	SetHighlighted(value bool)
-	LineBreakMode() LineBreakMode
-	SetLineBreakMode(value LineBreakMode)
-	ObjectValue() objc.ID
-	SetObjectValue(value objc.ID)
-	RefusesFirstResponder() bool
-	SetRefusesFirstResponder(value bool)
-	StringValue() string
-	SetStringValue(value string)
-	Tag() int
-	SetTag(value int)
-	Target() objc.ID
-	SetTarget(value objc.ID)
-	UsesSingleLineMode() bool
-	SetUsesSingleLineMode(value bool)
 	IsContinuous() bool
 	SetIsContinuous(value bool)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	IsHighlighted() bool
 	SetIsHighlighted(value bool)
+	LineBreakMode() unsafe.Pointer
+	SetLineBreakMode(value unsafe.Pointer)
+	ObjectValue() unsafe.Pointer
+	SetObjectValue(value unsafe.Pointer)
+	RefusesFirstResponder() bool
+	SetRefusesFirstResponder(value bool)
+	StringValue() string
+	SetStringValue(value string)
+	Tag() int
+	SetTag(value int)
+	Target() unsafe.Pointer
+	SetTarget(value unsafe.Pointer)
+	UsesSingleLineMode() bool
+	SetUsesSingleLineMode(value bool)
 }
 
 // A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.
@@ -166,269 +133,12 @@ func NewControl() Control {
 
 
 
-// Initializes a control with data in an unarchiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(coder:)
-func NewControlWithCoder(coder foundation.ICoder) Control {
-	instance := getControlClass().Alloc()
-	rv := objc.Send[Control](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a control with the specified frame rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/init(frame:)
-func NewControlWithFrame(frameRect coregraphics.CGRect) Control {
-	instance := getControlClass().Alloc()
-	rv := objc.Send[Control](instance.ID, objc.Sel("initWithFrame:"), frameRect)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Terminates the current editing operation and discards any edited text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/abortEditing()
-func (c_ Control) AbortEditing() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("abortEditing"))
-	return rv
-}
-
-
-// Returns the current field editor for the control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/currentEditor()
-func (c_ Control) CurrentEditor() Text {
-	rv := objc.Send[Text](c_.ID, objc.Sel("currentEditor"))
-	return rv
-}
-
-
-// Performs custom expansion tool tip drawing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/draw(withExpansionFrame:in:)
-func (c_ Control) DrawWithExpansionFrameInView(contentFrame coregraphics.CGRect, view IView) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("drawWithExpansionFrame:inView:"), contentFrame, view)
-}
-
-
-// Draws the specified cell, as long as it belongs to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/drawCell(_:)
-func (c_ Control) DrawCell(cell ICell) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("drawCell:"), cell)
-}
-
-
-// Begins editing of the receiver’s text using the specified field editor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/edit(withFrame:editor:delegate:event:)
-func (c_ Control) EditWithFrameEditorDelegateEvent(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, event IEvent) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("editWithFrame:editor:delegate:event:"), rect, textObj, delegate, event)
-}
-
-
-// Ends the editing of text in the receiver using the specified field editor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/endEditing(_:)
-func (c_ Control) EndEditing(textObj IText) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("endEditing:"), textObj)
-}
-
-
-// The frame in which a tool tip can be displayed, if needed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/expansionFrame(withFrame:)
-func (c_ Control) ExpansionFrameWithFrame(contentFrame coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("expansionFrameWithFrame:"), contentFrame)
-	return rv
-}
-
-
-// Notifies the control that the intrinsic content size for its cell is no longer valid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/invalidateIntrinsicContentSize(for:)
-func (c_ Control) InvalidateIntrinsicContentSizeForCell(cell ICell) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateIntrinsicContentSizeForCell:"), cell)
-}
-
-
-// Simulates a single mouse click on the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/performClick(_:)
-func (c_ Control) PerformClick(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("performClick:"), sender)
-}
-
-
-// Selects the specified text range in the receiver’s field editor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/select(withFrame:editor:delegate:start:length:)
-func (c_ Control) SelectWithFrameEditorDelegateStartLength(rect coregraphics.CGRect, textObj IText, delegate objectivec.IObject, selStart int, selLength int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:editor:delegate:start:length:"), rect, textObj, delegate, selStart, selLength)
-}
-
-
-// Selects the specified cell and redraws the control as needed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/selectCell(_:)
-func (c_ Control) SelectCell(cell ICell) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("selectCell:"), cell)
-}
-
-
-// Returns the receiver’s selected cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/selectedCell()
-func (c_ Control) SelectedCell() Cell {
-	rv := objc.Send[Cell](c_.ID, objc.Sel("selectedCell"))
-	return rv
-}
-
-
-// Causes the specified action to be sent to the target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(_:to:)
-func (c_ Control) SendActionTo(action objc.SEL, target objectivec.IObject) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("sendAction:to:"), action, target)
-	return rv
-}
-
-
-// Sets the conditions on which the receiver sends action messages to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sendAction(on:)
-func (c_ Control) SendActionOn(mask EventMask) int {
-	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
-	return rv
-}
-
-
-// Sets the auto-ranging and floating point number format of the receiver’s cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/setFloatingPointFormat:left:right:
-func (c_ Control) SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatingPointFormat:left:right:"), autoRange, leftDigits, rightDigits)
-}
-
-
-// Marks the receiver as needing redisplay (assuming automatic display is enabled).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/setNeedsDisplay()
-func (c_ Control) SetNeedsDisplay() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNeedsDisplay"))
-}
-
-
-// Asks the control to calculate and return the size that best fits the specified size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sizeThatFits(_:)
-func (c_ Control) SizeThatFits(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("sizeThatFits:"), size)
-	return rv
-}
-
-
-// Resizes the receiver’s frame so that it’s the minimum size needed to contain its cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/sizeToFit()
-func (c_ Control) SizeToFit() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("sizeToFit"))
-}
-
-
-// Sets the value of the receiver’s cell to a double-precision floating-point value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeDoubleValueFrom(_:)
-func (c_ Control) TakeDoubleValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeDoubleValueFrom:"), sender)
-}
-
-
-// Sets the value of the receiver’s cell to a single-precision floating-point value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeFloatValueFrom(_:)
-func (c_ Control) TakeFloatValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeFloatValueFrom:"), sender)
-}
-
-
-// Sets the value of the receiver’s cell to an integer value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntValueFrom(_:)
-func (c_ Control) TakeIntValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntValueFrom:"), sender)
-}
-
-
-// Sets the value of the receiver’s cell to an value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeIntegerValueFrom(_:)
-func (c_ Control) TakeIntegerValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeIntegerValueFrom:"), sender)
-}
-
-
-// Sets the value of the receiver’s cell to the object value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeObjectValueFrom(_:)
-func (c_ Control) TakeObjectValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeObjectValueFrom:"), sender)
-}
-
-
-// Sets the value of the receiver’s cell to the string value obtained from the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/takeStringValueFrom(_:)
-func (c_ Control) TakeStringValueFrom(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("takeStringValueFrom:"), sender)
-}
-
-
-// Validates changes to any user-typed text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/validateEditing()
-func (c_ Control) ValidateEditing() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("validateEditing"))
-}
-
-
 // The default action-message selector associated with the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/action
-func (c_ Control) Action() objc.SEL {
-	rv := objc.Send[objc.SEL](c_.ID, objc.Sel("action"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (c_ Control) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
 	return rv
 }
 
@@ -436,8 +146,8 @@ func (c_ Control) Action() objc.SEL {
 // The default action-message selector associated with the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/action
-func (c_ Control) SetAction(value objc.SEL) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
+func (c_ Control) SetAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
 }
 
@@ -445,9 +155,9 @@ func (c_ Control) SetAction(value objc.SEL) {
 // The alignment mode of the text in the receiver’s cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/alignment
-func (c_ Control) Alignment() TextAlignment {
-	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/alignment
+func (c_ Control) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -455,8 +165,8 @@ func (c_ Control) Alignment() TextAlignment {
 // The alignment mode of the text in the receiver’s cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/alignment
-func (c_ Control) SetAlignment(value ITextAlignment) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/alignment
+func (c_ Control) SetAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -464,7 +174,7 @@ func (c_ Control) SetAlignment(value ITextAlignment) {
 // A Boolean value that indicates whether expansion tool tips are shown when the control is hovered over.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/allowsExpansionToolTips
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/allowsexpansiontooltips
 func (c_ Control) AllowsExpansionToolTips() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsExpansionToolTips"))
 	return rv
@@ -474,7 +184,7 @@ func (c_ Control) AllowsExpansionToolTips() bool {
 // A Boolean value that indicates whether expansion tool tips are shown when the control is hovered over.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/allowsExpansionToolTips
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/allowsexpansiontooltips
 func (c_ Control) SetAllowsExpansionToolTips(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsExpansionToolTips:"), value)
 }
@@ -483,7 +193,7 @@ func (c_ Control) SetAllowsExpansionToolTips(value bool) {
 // The value of the receiver’s cell as an attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/attributedstringvalue
 func (c_ Control) AttributedStringValue() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
@@ -493,8 +203,8 @@ func (c_ Control) AttributedStringValue() foundation.AttributedString {
 // The value of the receiver’s cell as an attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/attributedStringValue
-func (c_ Control) SetAttributedStringValue(value foundation.IAttributedString) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/attributedstringvalue
+func (c_ Control) SetAttributedStringValue(value foundation.AttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -502,9 +212,9 @@ func (c_ Control) SetAttributedStringValue(value foundation.IAttributedString) {
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/baseWritingDirection
-func (c_ Control) BaseWritingDirection() WritingDirection {
-	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/basewritingdirection
+func (c_ Control) BaseWritingDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -512,8 +222,8 @@ func (c_ Control) BaseWritingDirection() WritingDirection {
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/baseWritingDirection
-func (c_ Control) SetBaseWritingDirection(value IWritingDirection) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/basewritingdirection
+func (c_ Control) SetBaseWritingDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -521,9 +231,9 @@ func (c_ Control) SetBaseWritingDirection(value IWritingDirection) {
 // The size of the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/controlSize-swift.property
-func (c_ Control) ControlSize() ControlSize {
-	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.property
+func (c_ Control) ControlSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -531,8 +241,8 @@ func (c_ Control) ControlSize() ControlSize {
 // The size of the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/controlSize-swift.property
-func (c_ Control) SetControlSize(value IControlSize) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.property
+func (c_ Control) SetControlSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -540,7 +250,7 @@ func (c_ Control) SetControlSize(value IControlSize) {
 // The value of the receiver’s cell as a double-precision floating-point number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/doubleValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
 func (c_ Control) DoubleValue() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
 	return rv
@@ -550,7 +260,7 @@ func (c_ Control) DoubleValue() float64 {
 // The value of the receiver’s cell as a double-precision floating-point number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/doubleValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
 func (c_ Control) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
@@ -559,7 +269,7 @@ func (c_ Control) SetDoubleValue(value float64) {
 // The value of the receiver’s cell as a single-precision floating-point number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/floatValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/floatvalue
 func (c_ Control) FloatValue() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
 	return rv
@@ -569,7 +279,7 @@ func (c_ Control) FloatValue() float32 {
 // The value of the receiver’s cell as a single-precision floating-point number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/floatValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/floatvalue
 func (c_ Control) SetFloatValue(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
@@ -578,9 +288,9 @@ func (c_ Control) SetFloatValue(value float32) {
 // The font used to draw text in the receiver’s cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/font
-func (c_ Control) Font() NSFont {
-	rv := objc.Send[NSFont](c_.ID, objc.Sel("font"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/font
+func (c_ Control) Font() IFont {
+	rv := objc.Send[Font](c_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -588,7 +298,7 @@ func (c_ Control) Font() NSFont {
 // The font used to draw text in the receiver’s cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/font
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/font
 func (c_ Control) SetFont(value IFont) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFont:"), value)
 }
@@ -597,7 +307,7 @@ func (c_ Control) SetFont(value IFont) {
 // The receiver’s formatter.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/formatter
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/formatter
 func (c_ Control) Formatter() foundation.Formatter {
 	rv := objc.Send[foundation.Formatter](c_.ID, objc.Sel("formatter"))
 	return rv
@@ -607,8 +317,8 @@ func (c_ Control) Formatter() foundation.Formatter {
 // The receiver’s formatter.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/formatter
-func (c_ Control) SetFormatter(value foundation.IFormatter) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/formatter
+func (c_ Control) SetFormatter(value foundation.Formatter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 
@@ -616,7 +326,7 @@ func (c_ Control) SetFormatter(value foundation.IFormatter) {
 // A Boolean value indicating whether the receiver ignores multiple clicks made in rapid succession.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/ignoresMultiClick
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ignoresmulticlick
 func (c_ Control) IgnoresMultiClick() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ignoresMultiClick"))
 	return rv
@@ -626,7 +336,7 @@ func (c_ Control) IgnoresMultiClick() bool {
 // A Boolean value indicating whether the receiver ignores multiple clicks made in rapid succession.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/ignoresMultiClick
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ignoresmulticlick
 func (c_ Control) SetIgnoresMultiClick(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIgnoresMultiClick:"), value)
 }
@@ -635,9 +345,9 @@ func (c_ Control) SetIgnoresMultiClick(value bool) {
 // The value of the receiver’s cell as an integer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/intValue
-func (c_ Control) IntValue() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("intValue"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/intvalue
+func (c_ Control) IntValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intValue"))
 	return rv
 }
 
@@ -645,218 +355,28 @@ func (c_ Control) IntValue() int {
 // The value of the receiver’s cell as an integer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/intValue
-func (c_ Control) SetIntValue(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/intvalue
+func (c_ Control) SetIntValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntValue:"), value)
 }
 
 
-// The value of the receiver’s cell as an value.
+// The value of the receiver’s cell as an integer value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/integerValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/integervalue
 func (c_ Control) IntegerValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("integerValue"))
 	return rv
 }
 
 
-// The value of the receiver’s cell as an value.
+// The value of the receiver’s cell as an integer value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/integerValue
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/integervalue
 func (c_ Control) SetIntegerValue(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntegerValue:"), value)
-}
-
-
-// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isContinuous
-func (c_ Control) Continuous() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isContinuous
-func (c_ Control) SetContinuous(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContinuous:"), value)
-}
-
-
-// A Boolean value that indicates whether the receiver reacts to mouse events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isEnabled
-func (c_ Control) Enabled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver reacts to mouse events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isEnabled
-func (c_ Control) SetEnabled(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
-}
-
-
-// A Boolean value that indicates whether the cell is highlighted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isHighlighted
-func (c_ Control) Highlighted() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("highlighted"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the cell is highlighted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/isHighlighted
-func (c_ Control) SetHighlighted(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlighted:"), value)
-}
-
-
-// The line break mode to use for text in the control’s cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/lineBreakMode
-func (c_ Control) LineBreakMode() LineBreakMode {
-	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
-	return rv
-}
-
-
-// The line break mode to use for text in the control’s cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/lineBreakMode
-func (c_ Control) SetLineBreakMode(value LineBreakMode) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
-}
-
-
-// The value of the receiver’s cell as an Objective-C object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/objectValue
-func (c_ Control) ObjectValue() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectValue"))
-	return rv
-}
-
-
-// The value of the receiver’s cell as an Objective-C object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/objectValue
-func (c_ Control) SetObjectValue(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValue:"), value)
-}
-
-
-// A Boolean value indicating whether the receiver refuses the first responder role.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/refusesFirstResponder
-func (c_ Control) RefusesFirstResponder() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("refusesFirstResponder"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the receiver refuses the first responder role.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/refusesFirstResponder
-func (c_ Control) SetRefusesFirstResponder(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRefusesFirstResponder:"), value)
-}
-
-
-// The value of the receiver’s cell as an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/stringValue
-func (c_ Control) StringValue() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// The value of the receiver’s cell as an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/stringValue
-func (c_ Control) SetStringValue(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
-}
-
-
-// The tag identifying the receiver (not the tag of the receiver’s cell).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/tag
-func (c_ Control) Tag() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("tag"))
-	return rv
-}
-
-
-// The tag identifying the receiver (not the tag of the receiver’s cell).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/tag
-func (c_ Control) SetTag(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTag:"), value)
-}
-
-
-// The target object that receives action messages from the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/target
-func (c_ Control) Target() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// The target object that receives action messages from the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/target
-func (c_ Control) SetTarget(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
-}
-
-
-// A Boolean value that indicates whether the text in the control’s cell uses single line mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/usesSingleLineMode
-func (c_ Control) UsesSingleLineMode() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("usesSingleLineMode"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the text in the control’s cell uses single line mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/usesSingleLineMode
-func (c_ Control) SetUsesSingleLineMode(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
 }
 
 
@@ -915,5 +435,139 @@ func (c_ Control) IsHighlighted() bool {
 func (c_ Control) SetIsHighlighted(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighlighted:"), value)
 }
+
+
+// The line break mode to use for text in the control’s cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/linebreakmode
+func (c_ Control) LineBreakMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
+	return rv
+}
+
+
+// The line break mode to use for text in the control’s cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/linebreakmode
+func (c_ Control) SetLineBreakMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
+}
+
+
+// The value of the receiver’s cell as an Objective-C object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+func (c_ Control) ObjectValue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// The value of the receiver’s cell as an Objective-C object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
+func (c_ Control) SetObjectValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValue:"), value)
+}
+
+
+// A Boolean value indicating whether the receiver refuses the first responder role.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/refusesfirstresponder
+func (c_ Control) RefusesFirstResponder() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("refusesFirstResponder"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the receiver refuses the first responder role.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/refusesfirstresponder
+func (c_ Control) SetRefusesFirstResponder(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRefusesFirstResponder:"), value)
+}
+
+
+// The value of the receiver’s cell as an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
+func (c_ Control) StringValue() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// The value of the receiver’s cell as an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
+func (c_ Control) SetStringValue(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
+
+// The tag identifying the receiver (not the tag of the receiver’s cell).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/tag
+func (c_ Control) Tag() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// The tag identifying the receiver (not the tag of the receiver’s cell).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/tag
+func (c_ Control) SetTag(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTag:"), value)
+}
+
+
+// The target object that receives action messages from the cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
+func (c_ Control) Target() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// The target object that receives action messages from the cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
+func (c_ Control) SetTarget(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
+}
+
+
+// A Boolean value that indicates whether the text in the control’s cell uses single line mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/usessinglelinemode
+func (c_ Control) UsesSingleLineMode() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("usesSingleLineMode"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the text in the control’s cell uses single line mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/usessinglelinemode
+func (c_ Control) SetUsesSingleLineMode(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
+}
+
 
 

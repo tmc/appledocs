@@ -29,9 +29,11 @@ type _DimensionClass struct {
 // An interface definition for the [Dimension] class.
 type IDimension interface {
 	IUnit
+	// properties:
 	Converter() IUnitConverter
-	Coefficient() float64
-	SetCoefficient(value float64)
+	Coefficient() float64 /* primitive/slice/pointer */
+	SetCoefficient(value float64 /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An abstract class representing a dimensional unit of measure.
@@ -93,7 +95,7 @@ func NewDimension() Dimension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/init(symbol:converter:)
-func NewDimensionWithSymbolConverter(symbol string, converter IUnitConverter) Dimension {
+func NewDimensionWithSymbolConverter(symbol string /* primitive/slice/pointer */, converter IUnitConverter) Dimension {
 	instance := getDimensionClass().Alloc()
 	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), objc.String(symbol), converter)
 	rv.Autorelease()
@@ -126,7 +128,7 @@ func (d_ Dimension) Converter() IUnitConverter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) Coefficient() float64 {
+func (d_ Dimension) Coefficient() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("coefficient"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (d_ Dimension) Coefficient() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (d_ Dimension) SetCoefficient(value float64) {
+func (d_ Dimension) SetCoefficient(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }
 

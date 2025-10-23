@@ -31,18 +31,20 @@ type _PlayerLayerClass struct {
 // An interface definition for the [PlayerLayer] class.
 type IPlayerLayer interface {
 	quartzcore.ILayer
-	IsReadyForDisplay() bool
-	SetIsReadyForDisplay(value bool)
-	PixelBufferAttributes() string
-	SetPixelBufferAttributes(value string)
+	// properties:
+	IsReadyForDisplay() bool /* primitive/slice/pointer */
+	SetIsReadyForDisplay(value bool /* primitive/slice/pointer */)
+	PixelBufferAttributes() string /* primitive/slice/pointer */
+	SetPixelBufferAttributes(value string /* primitive/slice/pointer */)
 	Player() IAVPlayer
 	SetPlayer(value IAVPlayer)
-	VideoGravity() unsafe.Pointer
-	SetVideoGravity(value unsafe.Pointer)
+	VideoGravity() AVLayerVideoGravity /* foo */
+	SetVideoGravity(value AVLayerVideoGravity /* foo */)
 	VideoRect() coregraphics.CGRect
 	SetVideoRect(value coregraphics.CGRect)
 	Contents() unsafe.Pointer
 	SetContents(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that presents the visual contents of a player object.
@@ -104,7 +106,7 @@ func NewPlayerLayer() PlayerLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) IsReadyForDisplay() bool {
+func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (p_ PlayerLayer) IsReadyForDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) SetIsReadyForDisplay(value bool) {
+func (p_ PlayerLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
@@ -123,7 +125,7 @@ func (p_ PlayerLayer) SetIsReadyForDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/pixelbufferattributes
-func (p_ PlayerLayer) PixelBufferAttributes() string {
+func (p_ PlayerLayer) PixelBufferAttributes() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("pixelBufferAttributes"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (p_ PlayerLayer) PixelBufferAttributes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/pixelbufferattributes
-func (p_ PlayerLayer) SetPixelBufferAttributes(value string) {
+func (p_ PlayerLayer) SetPixelBufferAttributes(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBufferAttributes:"), objc.String(value))
 }
 
@@ -161,8 +163,8 @@ func (p_ PlayerLayer) SetPlayer(value IAVPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videogravity
-func (p_ PlayerLayer) VideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoGravity"))
+func (p_ PlayerLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
+	rv := objc.Send[LayerVideoGravity](p_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
@@ -171,7 +173,7 @@ func (p_ PlayerLayer) VideoGravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videogravity
-func (p_ PlayerLayer) SetVideoGravity(value unsafe.Pointer) {
+func (p_ PlayerLayer) SetVideoGravity(value AVLayerVideoGravity /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

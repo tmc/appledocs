@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ModelStructureProgramOperationClass struct {
 type IModelStructureProgramOperation interface {
 	objectivec.IObject
 	Blocks() []ModelStructureProgramBlock
-	Inputs() unsafe.Pointer
+	Inputs() foundation.IDictionary
 	OperatorName() string
 	Outputs() []ModelStructureProgramNamedValueType
 }
@@ -101,8 +102,8 @@ func (m_ ModelStructureProgramOperation) Blocks() []ModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramOperation/inputs
-func (m_ ModelStructureProgramOperation) Inputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inputs"))
+func (m_ ModelStructureProgramOperation) Inputs() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("inputs"))
 	return rv
 }
 

@@ -47,9 +47,9 @@ type IAccessPoint interface {
 	IsVisible() bool
 	SetIsVisible(value bool)
 	Location() corelocation.Location
-	SetLocation(value corelocation.ILocation)
+	SetLocation(value corelocation.Location)
 	ParentWindow() appkit.Window
-	SetParentWindow(value appkit.IWindow)
+	SetParentWindow(value appkit.Window)
 }
 
 // An object that allows players to view and manage their Game Center information from within your game.
@@ -243,7 +243,7 @@ func (a_ AccessPoint) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
-func (a_ AccessPoint) SetLocation(value corelocation.ILocation) {
+func (a_ AccessPoint) SetLocation(value corelocation.Location) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -262,7 +262,7 @@ func (a_ AccessPoint) ParentWindow() appkit.Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
-func (a_ AccessPoint) SetParentWindow(value appkit.IWindow) {
+func (a_ AccessPoint) SetParentWindow(value appkit.Window) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParentWindow:"), value)
 }
 

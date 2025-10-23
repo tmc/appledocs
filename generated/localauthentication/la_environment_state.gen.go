@@ -30,10 +30,12 @@ type _EnvironmentStateClass struct {
 // An interface definition for the [EnvironmentState] class.
 type IEnvironmentState interface {
 	objectivec.IObject
+	// properties:
 	AllMechanisms() []EnvironmentMechanism
-	Biometry() LAEnvironmentMechanismBiometry
+	Biometry() ILAEnvironmentMechanismBiometry
 	Companions() []EnvironmentMechanismCompanion
-	UserPassword() LAEnvironmentMechanismUserPassword
+	UserPassword() ILAEnvironmentMechanismUserPassword
+	// methods:
 }
 
 
@@ -92,8 +94,8 @@ func (e_ EnvironmentState) AllMechanisms() []EnvironmentMechanism {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/biometry
-func (e_ EnvironmentState) Biometry() LAEnvironmentMechanismBiometry {
-	rv := objc.Send[LAEnvironmentMechanismBiometry](e_.ID, objc.Sel("biometry"))
+func (e_ EnvironmentState) Biometry() ILAEnvironmentMechanismBiometry {
+	rv := objc.Send[EnvironmentMechanismBiometry](e_.ID, objc.Sel("biometry"))
 	return rv
 }
 
@@ -108,8 +110,8 @@ func (e_ EnvironmentState) Companions() []EnvironmentMechanismCompanion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/userPassword
-func (e_ EnvironmentState) UserPassword() LAEnvironmentMechanismUserPassword {
-	rv := objc.Send[LAEnvironmentMechanismUserPassword](e_.ID, objc.Sel("userPassword"))
+func (e_ EnvironmentState) UserPassword() ILAEnvironmentMechanismUserPassword {
+	rv := objc.Send[EnvironmentMechanismUserPassword](e_.ID, objc.Sel("userPassword"))
 	return rv
 }
 

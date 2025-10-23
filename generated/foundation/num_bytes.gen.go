@@ -30,6 +30,8 @@ type _numBytesClass struct {
 // An interface definition for the [numBytes] class.
 type InumBytes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

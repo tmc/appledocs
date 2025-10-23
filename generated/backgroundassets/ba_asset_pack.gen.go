@@ -31,12 +31,12 @@ type _BAAssetPackClass struct {
 // An interface definition for the [BAAssetPack] class.
 type IBAAssetPack interface {
 	objectivec.IObject
-	Download() BADownload
-	DownloadForContentRequest(contentRequest IBAContentRequest) BADownload
 	DownloadSize() int
 	Identifier() string
 	UserInfo() foundation.NSData
 	Version() int
+	Download() IBADownload
+	DownloadForContentRequest(contentRequest BAContentRequest) IBADownload
 }
 
 // An archive of assets that the system downloads together.
@@ -96,7 +96,7 @@ func NewBAAssetPack() BAAssetPack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/download
-func (b_ BAAssetPack) Download() BADownload {
+func (b_ BAAssetPack) Download() IBADownload {
 	rv := objc.Send[BADownload](b_.ID, objc.Sel("download"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (b_ BAAssetPack) Download() BADownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadForContentRequest:
-func (b_ BAAssetPack) DownloadForContentRequest(contentRequest IBAContentRequest) BADownload {
+func (b_ BAAssetPack) DownloadForContentRequest(contentRequest BAContentRequest) IBADownload {
 	rv := objc.Send[BADownload](b_.ID, objc.Sel("downloadForContentRequest:"), contentRequest)
 	return rv
 }

@@ -30,6 +30,8 @@ type _BluetoothUserNotificationClass struct {
 // An interface definition for the [BluetoothUserNotification] class.
 type IBluetoothUserNotification interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	Unregister()
 }
 

@@ -30,6 +30,8 @@ type _BluetoothHandsFreeDeviceClass struct {
 // An interface definition for the [BluetoothHandsFreeDevice] class.
 type IBluetoothHandsFreeDevice interface {
 	IBluetoothHandsFree
+	// properties:
+	// methods:
 	AcceptCall()
 	AcceptCallOnPhone()
 	AddHeldCall()

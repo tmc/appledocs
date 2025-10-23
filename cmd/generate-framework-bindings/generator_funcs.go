@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
 	"text/template"
 
@@ -270,20 +269,21 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 
 // stripFrameworkPrefix removes the framework-specific prefix from a type name.
 // Examples:
-//   Foundation: NSQualityOfService -> QualityOfService
-//   CoreGraphics: CGColor -> Color
-//   AppKit: NSWindow -> Window
+//
+//	Foundation: NSQualityOfService -> QualityOfService
+//	CoreGraphics: CGColor -> Color
+//	AppKit: NSWindow -> Window
 func (gf GeneratorFuncs) stripFrameworkPrefix(name string) string {
 	// Map framework names to their common prefixes
 	prefixes := map[string][]string{
-		"Foundation":       {"NS"},
-		"AppKit":           {"NS"},
-		"CoreFoundation":   {"CF"},
-		"CoreGraphics":     {"CG"},
-		"CoreImage":        {"CI"},
-		"CoreVideo":        {"CV"},
-		"CoreAudio":        {"CA"},
-		"AVFoundation":     {"AV"},
+		"Foundation":         {"NS"},
+		"AppKit":             {"NS"},
+		"CoreFoundation":     {"CF"},
+		"CoreGraphics":       {"CG"},
+		"CoreImage":          {"CI"},
+		"CoreVideo":          {"CV"},
+		"CoreAudio":          {"CA"},
+		"AVFoundation":       {"AV"},
 		"SecurityFoundation": {"SF"},
 	}
 

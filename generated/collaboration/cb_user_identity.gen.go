@@ -29,12 +29,11 @@ type _CBUserIdentityClass struct {
 // An interface definition for the [CBUserIdentity] class.
 type ICBUserIdentity interface {
 	ICBIdentity
-	AuthenticateWithPassword(password string) bool
 	Certificate() unsafe.Pointer
-	Enabled() bool
-	PosixUID() unsafe.Pointer
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	PosixUID() unsafe.Pointer
+	SetPosixUID(value unsafe.Pointer)
 }
 
 // An object of the class represents a user identity and is used for accessing the attributes of a user identity from an identity authority. The principal attributes of are a POSIX user identifier (UID), password, and certificate.
@@ -90,42 +89,12 @@ func NewCBUserIdentity() CBUserIdentity {
 
 
 
-// Returns a Boolean value indicating whether the given password is correct for the identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/authenticate(withPassword:)
-func (c_ CBUserIdentity) AuthenticateWithPassword(password string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("authenticateWithPassword:"), objc.String(password))
-	return rv
-}
-
-
 // Returns the public authentication certificate associated with a user identity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/certificate
 func (c_ CBUserIdentity) Certificate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("certificate"))
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the identity is allowed to authenticate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/isEnabled
-func (c_ CBUserIdentity) Enabled() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// Returns the POSIX UID of the identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBUserIdentity/posixUID
-func (c_ CBUserIdentity) PosixUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixUID"))
 	return rv
 }
 
@@ -146,6 +115,25 @@ func (c_ CBUserIdentity) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
 func (c_ CBUserIdentity) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+
+// Returns the POSIX UID of the identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/posixuid
+func (c_ CBUserIdentity) PosixUID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixUID"))
+	return rv
+}
+
+
+// Returns the POSIX UID of the identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/posixuid
+func (c_ CBUserIdentity) SetPosixUID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPosixUID:"), value)
 }
 
 

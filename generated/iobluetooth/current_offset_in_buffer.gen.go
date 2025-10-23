@@ -30,6 +30,8 @@ type _currentOffsetInBufferClass struct {
 // An interface definition for the [currentOffsetInBuffer] class.
 type IcurrentOffsetInBuffer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

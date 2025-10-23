@@ -30,13 +30,15 @@ type _HKDocumentQueryClass struct {
 // An interface definition for the [HKDocumentQuery] class.
 type IHKDocumentQuery interface {
 	IHKQuery
+	// properties:
 	IncludeDocumentData() bool
 	SetIncludeDocumentData(value bool)
 	Limit() int
 	SetLimit(value int)
 	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.ISortDescriptor)
+	SetSortDescriptors(value foundation.SortDescriptor)
 	HKObjectQueryNoLimit() int
+	// methods:
 }
 
 // A query that returns a snapshot of all matching documents currently saved in the HealthKit store.
@@ -146,7 +148,7 @@ func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
+func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.SortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

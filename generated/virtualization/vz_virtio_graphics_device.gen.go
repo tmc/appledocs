@@ -32,7 +32,11 @@ type IVZVirtioGraphicsDevice interface {
 }
 
 // A Virtio graphics device.
+
+
+// A Virtio graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDevice
 type VZVirtioGraphicsDevice struct {
 	VZGraphicsDevice

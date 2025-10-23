@@ -30,20 +30,22 @@ type _RunLoopClass struct {
 // An interface definition for the [RunLoop] class.
 type IRunLoop interface {
 	objectivec.IObject
-	CurrentMode() RunLoopMode
-	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
-	AddTimerForMode(timer ITimer, mode RunLoopMode)
-	AddPortForMode(aPort IPort, mode RunLoopMode)
+	// properties:
+	CurrentMode() RunLoopMode /* foo */
+	// methods:
+	AcceptInputForModeBeforeDate(mode RunLoopMode /* foo */, limitDate IDate)
+	AddTimerForMode(timer ITimer, mode RunLoopMode /* foo */)
+	AddPortForMode(aPort IPort, mode RunLoopMode /* foo */)
 	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject)
 	CancelPerformSelectorsWithTarget(target objectivec.IObject)
-	GetCFRunLoop() unsafe.Pointer
-	LimitDateForMode(mode RunLoopMode) IDate
+	GetCFRunLoop() RunLoopRef /* foo */
+	LimitDateForMode(mode RunLoopMode /* foo */) IDate
 	PerformBlock(block unsafe.Pointer)
-	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string)
-	PerformInModesBlock(modes []string, block unsafe.Pointer)
-	RemovePortForMode(aPort IPort, mode RunLoopMode)
+	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint /* primitive/slice/pointer */, modes []string /* primitive/slice/pointer */)
+	PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer)
+	RemovePortForMode(aPort IPort, mode RunLoopMode /* foo */)
 	Run()
-	RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool
+	RunModeBeforeDate(mode RunLoopMode /* foo */, limitDate IDate) bool /* primitive/slice/pointer */
 	RunUntilDate(limitDate IDate)
 }
 
@@ -122,7 +124,7 @@ func (rc _RunLoopClass) MainRunLoop() RunLoop {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/acceptInput(forMode:before:)
-func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate) {
+func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode /* foo */, limitDate IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("acceptInputForMode:beforeDate:"), mode, limitDate)
 }
 
@@ -131,7 +133,7 @@ func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
-func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
+func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode /* foo */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
 
@@ -140,7 +142,7 @@ func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-6z982
-func (r_ RunLoop) AddPortForMode(aPort IPort, mode RunLoopMode) {
+func (r_ RunLoop) AddPortForMode(aPort IPort, mode RunLoopMode /* foo */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addPort:forMode:"), aPort, mode)
 }
 
@@ -167,8 +169,8 @@ func (r_ RunLoop) CancelPerformSelectorsWithTarget(target objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/getCFRunLoop()
-func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("getCFRunLoop"))
+func (r_ RunLoop) GetCFRunLoop() RunLoopRef /* foo */ {
+	rv := objc.Send[RunLoopRef](r_.ID, objc.Sel("getCFRunLoop"))
 	return rv
 }
 
@@ -177,7 +179,7 @@ func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
-func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) IDate {
+func (r_ RunLoop) LimitDateForMode(mode RunLoopMode /* foo */) IDate {
 	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }
@@ -196,7 +198,7 @@ func (r_ RunLoop) PerformBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(_:target:argument:order:modes:)
-func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string) {
+func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint /* primitive/slice/pointer */, modes []string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performSelector:target:argument:order:modes:"), aSelector, target, arg, order, modes)
 }
 
@@ -205,7 +207,7 @@ func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, ta
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(inModes:block:)
-func (r_ RunLoop) PerformInModesBlock(modes []string, block unsafe.Pointer) {
+func (r_ RunLoop) PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performInModes:block:"), modes, block)
 }
 
@@ -214,7 +216,7 @@ func (r_ RunLoop) PerformInModesBlock(modes []string, block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/remove(_:forMode:)
-func (r_ RunLoop) RemovePortForMode(aPort IPort, mode RunLoopMode) {
+func (r_ RunLoop) RemovePortForMode(aPort IPort, mode RunLoopMode /* foo */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removePort:forMode:"), aPort, mode)
 }
 
@@ -232,7 +234,7 @@ func (r_ RunLoop) Run() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(mode:before:)
-func (r_ RunLoop) RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool {
+func (r_ RunLoop) RunModeBeforeDate(mode RunLoopMode /* foo */, limitDate IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("runMode:beforeDate:"), mode, limitDate)
 	return rv
 }
@@ -261,7 +263,7 @@ func (r_ RunLoop) CurrentRunLoop() IRunLoop {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/currentMode
-func (r_ RunLoop) CurrentMode() RunLoopMode {
+func (r_ RunLoop) CurrentMode() RunLoopMode /* foo */ {
 	rv := objc.Send[RunLoopMode](r_.ID, objc.Sel("currentMode"))
 	return rv
 }

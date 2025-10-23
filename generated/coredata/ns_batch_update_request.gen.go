@@ -30,12 +30,12 @@ type _BatchUpdateRequestClass struct {
 // An interface definition for the [BatchUpdateRequest] class.
 type IBatchUpdateRequest interface {
 	IPersistentStoreRequest
-	Entity() NSEntityDescription
+	Entity() IEntityDescription
 	EntityName() string
 	IncludesSubentities() bool
 	SetIncludesSubentities(value bool)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 	PropertiesToUpdate() objc.ID
 	SetPropertiesToUpdate(value objc.ID)
 	ResultType() unsafe.Pointer
@@ -134,8 +134,8 @@ func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entity
-func (b_ BatchUpdateRequest) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](b_.ID, objc.Sel("entity"))
+func (b_ BatchUpdateRequest) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](b_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-func (b_ BatchUpdateRequest) SetPredicate(value foundation.IPredicate) {
+func (b_ BatchUpdateRequest) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
 

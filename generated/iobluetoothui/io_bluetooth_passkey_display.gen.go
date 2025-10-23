@@ -30,21 +30,22 @@ type _BluetoothPasskeyDisplayClass struct {
 // An interface definition for the [BluetoothPasskeyDisplay] class.
 type IBluetoothPasskeyDisplay interface {
 	appkit.IView
-	RetreatPasskeyIndicator()
-	BackgroundImageConstraint() appkit.LayoutConstraint
-	SetBackgroundImageConstraint(value appkit.ILayoutConstraint)
-	CenteredView() appkit.View
-	SetCenteredView(value appkit.IView)
+	// properties:
+	BackgroundImageConstraint() NSLayoutConstraint
+	SetBackgroundImageConstraint(value NSLayoutConstraint)
+	CenteredView() NSView
+	SetCenteredView(value NSView)
 	IsIncomingRequest() bool
 	SetIsIncomingRequest(value bool)
 	Passkey() string
 	SetPasskey(value string)
 	ReturnHighlightImage() appkit.Image
-	SetReturnHighlightImage(value appkit.IImage)
+	SetReturnHighlightImage(value appkit.Image)
 	ReturnImage() appkit.Image
-	SetReturnImage(value appkit.IImage)
+	SetReturnImage(value appkit.Image)
 	UsePasskeyNotificaitons() bool
 	SetUsePasskeyNotificaitons(value bool)
+	// methods:
 }
 
 
@@ -96,38 +97,31 @@ func NewBluetoothPasskeyDisplay() BluetoothPasskeyDisplay {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/retreatPasskeyIndicator()
-func (b_ BluetoothPasskeyDisplay) RetreatPasskeyIndicator() {
-	objc.Send[objc.ID](b_.ID, objc.Sel("retreatPasskeyIndicator"))
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/backgroundimageconstraint
-func (b_ BluetoothPasskeyDisplay) BackgroundImageConstraint() appkit.LayoutConstraint {
-	rv := objc.Send[appkit.LayoutConstraint](b_.ID, objc.Sel("backgroundImageConstraint"))
+func (b_ BluetoothPasskeyDisplay) BackgroundImageConstraint() NSLayoutConstraint {
+	rv := objc.Send[LayoutConstraint](b_.ID, objc.Sel("backgroundImageConstraint"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/backgroundimageconstraint
-func (b_ BluetoothPasskeyDisplay) SetBackgroundImageConstraint(value appkit.ILayoutConstraint) {
+func (b_ BluetoothPasskeyDisplay) SetBackgroundImageConstraint(value NSLayoutConstraint) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundImageConstraint:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/centeredview
-func (b_ BluetoothPasskeyDisplay) CenteredView() appkit.View {
-	rv := objc.Send[appkit.View](b_.ID, objc.Sel("centeredView"))
+func (b_ BluetoothPasskeyDisplay) CenteredView() NSView {
+	rv := objc.Send[View](b_.ID, objc.Sel("centeredView"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/centeredview
-func (b_ BluetoothPasskeyDisplay) SetCenteredView(value appkit.IView) {
+func (b_ BluetoothPasskeyDisplay) SetCenteredView(value NSView) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCenteredView:"), value)
 }
 
@@ -172,7 +166,7 @@ func (b_ BluetoothPasskeyDisplay) ReturnHighlightImage() appkit.Image {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnhighlightimage
-func (b_ BluetoothPasskeyDisplay) SetReturnHighlightImage(value appkit.IImage) {
+func (b_ BluetoothPasskeyDisplay) SetReturnHighlightImage(value appkit.Image) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnHighlightImage:"), value)
 }
 
@@ -187,7 +181,7 @@ func (b_ BluetoothPasskeyDisplay) ReturnImage() appkit.Image {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay/returnimage
-func (b_ BluetoothPasskeyDisplay) SetReturnImage(value appkit.IImage) {
+func (b_ BluetoothPasskeyDisplay) SetReturnImage(value appkit.Image) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setReturnImage:"), value)
 }
 

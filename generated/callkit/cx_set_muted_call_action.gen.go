@@ -95,7 +95,7 @@ func NewCXSetMutedCallAction() CXSetMutedCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(call:muted:)
-func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.IUUID, muted bool) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.UUID, muted bool) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCallUUID:muted:"), callUUID, muted)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.IUUID, muted b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(coder:)
-func NewCXSetMutedCallActionWithCoder(aDecoder foundation.ICoder) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCoder(aDecoder foundation.Coder) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

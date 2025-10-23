@@ -30,12 +30,14 @@ type _MKPinAnnotationViewClass struct {
 // An interface definition for the [MKPinAnnotationView] class.
 type IMKPinAnnotationView interface {
 	IMKAnnotationView
+	// properties:
 	AnimatesDrop() bool
 	SetAnimatesDrop(value bool)
 	PinColor() unsafe.Pointer
 	SetPinColor(value unsafe.Pointer)
 	PinTintColor() appkit.Color
-	SetPinTintColor(value appkit.IColor)
+	SetPinTintColor(value appkit.Color)
+	// methods:
 }
 
 // An annotation view that displays a pin image on the map.
@@ -145,7 +147,7 @@ func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) SetPinTintColor(value appkit.IColor) {
+func (m_ MKPinAnnotationView) SetPinTintColor(value appkit.Color) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)
 }
 

@@ -30,6 +30,8 @@ type _statisticsClass struct {
 // An interface definition for the [statistics] class.
 type Istatistics interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,12 +30,14 @@ type _GLKMeshBufferClass struct {
 // An interface definition for the [GLKMeshBuffer] class.
 type IGLKMeshBuffer interface {
 	objectivec.IObject
-	Allocator() GLKMeshBufferAllocator
+	// properties:
+	Allocator() IGLKMeshBufferAllocator
 	GlBufferName() unsafe.Pointer
 	Length() uint
 	Offset() uint
 	Type() unsafe.Pointer
 	Zone() objc.ID
+	// methods:
 }
 
 
@@ -86,7 +88,7 @@ func NewGLKMeshBuffer() GLKMeshBuffer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/allocator
-func (g_ GLKMeshBuffer) Allocator() GLKMeshBufferAllocator {
+func (g_ GLKMeshBuffer) Allocator() IGLKMeshBufferAllocator {
 	rv := objc.Send[GLKMeshBufferAllocator](g_.ID, objc.Sel("allocator"))
 	return rv
 }

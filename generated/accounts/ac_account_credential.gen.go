@@ -92,7 +92,7 @@ func NewACAccountCredential() ACAccountCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuth2Token:refreshToken:expiryDate:)
-func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, refreshToken string, expiryDate foundation.IDate) ACAccountCredential {
+func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, refreshToken string, expiryDate foundation.NSDate) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
 	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuth2Token:refreshToken:expiryDate:"), objc.String(token), objc.String(refreshToken), expiryDate)
 	rv.Autorelease()

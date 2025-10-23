@@ -29,11 +29,14 @@ type _HKElectrocardiogramClass struct {
 // An interface definition for the [HKElectrocardiogram] class.
 type IHKElectrocardiogram interface {
 	IHKSample
-	AverageHeartRate() HKQuantity
-	NumberOfVoltageMeasurements() int
+	// properties:
+	AverageHeartRate() IHKQuantity
+	SetAverageHeartRate(value IHKQuantity)
 	Classification() unsafe.Pointer
 	SetClassification(value unsafe.Pointer)
-	SamplingFrequency() HKQuantity
+	NumberOfVoltageMeasurements() int
+	SetNumberOfVoltageMeasurements(value int)
+	SamplingFrequency() IHKQuantity
 	SetSamplingFrequency(value IHKQuantity)
 	SymptomsStatus() unsafe.Pointer
 	SetSymptomsStatus(value unsafe.Pointer)
@@ -41,6 +44,7 @@ type IHKElectrocardiogram interface {
 	HKPredicateKeyPathAverageHeartRate() string
 	HKPredicateKeyPathECGClassification() string
 	HKPredicateKeyPathECGSymptomsStatus() string
+	// methods:
 }
 
 // A sample for electrocardiogram data.
@@ -101,20 +105,19 @@ func NewHKElectrocardiogram() HKElectrocardiogram {
 // The user’s average heart rate during the ECG.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogram/averageHeartRate
-func (h_ HKElectrocardiogram) AverageHeartRate() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/averageheartrate
+func (h_ HKElectrocardiogram) AverageHeartRate() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("averageHeartRate"))
 	return rv
 }
 
 
-// The number of voltage measurements associated with this sample.
+// The user’s average heart rate during the ECG.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKElectrocardiogram/numberOfVoltageMeasurements
-func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int {
-	rv := objc.Send[int](h_.ID, objc.Sel("numberOfVoltageMeasurements"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/averageheartrate
+func (h_ HKElectrocardiogram) SetAverageHeartRate(value IHKQuantity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAverageHeartRate:"), value)
 }
 
 
@@ -137,11 +140,30 @@ func (h_ HKElectrocardiogram) SetClassification(value unsafe.Pointer) {
 }
 
 
+// The number of voltage measurements associated with this sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
+func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("numberOfVoltageMeasurements"))
+	return rv
+}
+
+
+// The number of voltage measurements associated with this sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
+func (h_ HKElectrocardiogram) SetNumberOfVoltageMeasurements(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setNumberOfVoltageMeasurements:"), value)
+}
+
+
 // The frequency at which the Apple Watch sampled the voltage.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/samplingfrequency
-func (h_ HKElectrocardiogram) SamplingFrequency() HKQuantity {
+func (h_ HKElectrocardiogram) SamplingFrequency() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("samplingFrequency"))
 	return rv
 }

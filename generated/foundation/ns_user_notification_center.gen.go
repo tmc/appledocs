@@ -30,17 +30,19 @@ type _UserNotificationCenterClass struct {
 // An interface definition for the [UserNotificationCenter] class.
 type IUserNotificationCenter interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DeliveredNotifications() []UserNotification
-	ScheduledNotifications() []UserNotification
-	SetScheduledNotifications(value []UserNotification)
+	DeliveredNotifications() []UserNotification /* primitive/slice/pointer */
+	ScheduledNotifications() []UserNotification /* primitive/slice/pointer */
+	SetScheduledNotifications(value []UserNotification /* primitive/slice/pointer */)
 	ActualDeliveryDate() IDate
 	SetActualDeliveryDate(value IDate)
 	DeliveryDate() IDate
 	SetDeliveryDate(value IDate)
-	IsPresented() bool
-	SetIsPresented(value bool)
+	IsPresented() bool /* primitive/slice/pointer */
+	SetIsPresented(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An object that delivers notifications from apps to the user.
@@ -138,7 +140,7 @@ func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliveredNotifications
-func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
+func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification /* primitive/slice/pointer */ {
 	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("deliveredNotifications"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
-func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification {
+func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification /* primitive/slice/pointer */ {
 	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("scheduledNotifications"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (u_ UserNotificationCenter) ScheduledNotifications() []UserNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduledNotifications
-func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotification) {
+func (u_ UserNotificationCenter) SetScheduledNotifications(value []UserNotification /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -215,7 +217,7 @@ func (u_ UserNotificationCenter) SetDeliveryDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-func (u_ UserNotificationCenter) IsPresented() bool {
+func (u_ UserNotificationCenter) IsPresented() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isPresented"))
 	return rv
 }
@@ -225,7 +227,7 @@ func (u_ UserNotificationCenter) IsPresented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-func (u_ UserNotificationCenter) SetIsPresented(value bool) {
+func (u_ UserNotificationCenter) SetIsPresented(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
 }
 

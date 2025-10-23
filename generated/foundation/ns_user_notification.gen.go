@@ -30,12 +30,13 @@ type _UserNotificationClass struct {
 // An interface definition for the [UserNotification] class.
 type IUserNotification interface {
 	objectivec.IObject
-	ActionButtonTitle() string
-	SetActionButtonTitle(value string)
-	ActivationType() NSUserNotificationActivationType
+	// properties:
+	ActionButtonTitle() string /* primitive/slice/pointer */
+	SetActionButtonTitle(value string /* primitive/slice/pointer */)
+	ActivationType() UserNotificationActivationType
 	ActualDeliveryDate() IDate
-	AdditionalActions() []UserNotificationAction
-	SetAdditionalActions(value []UserNotificationAction)
+	AdditionalActions() []UserNotificationAction /* primitive/slice/pointer */
+	SetAdditionalActions(value []UserNotificationAction /* primitive/slice/pointer */)
 	AdditionalActivationAction() IUserNotificationAction
 	DeliveryDate() IDate
 	SetDeliveryDate(value IDate)
@@ -43,34 +44,35 @@ type IUserNotification interface {
 	SetDeliveryRepeatInterval(value IDateComponents)
 	DeliveryTimeZone() ITimeZone
 	SetDeliveryTimeZone(value ITimeZone)
-	HasActionButton() bool
-	SetHasActionButton(value bool)
-	HasReplyButton() bool
-	SetHasReplyButton(value bool)
-	Identifier() string
-	SetIdentifier(value string)
-	InformativeText() string
-	SetInformativeText(value string)
-	Presented() bool
-	Remote() bool
-	OtherButtonTitle() string
-	SetOtherButtonTitle(value string)
+	HasActionButton() bool /* primitive/slice/pointer */
+	SetHasActionButton(value bool /* primitive/slice/pointer */)
+	HasReplyButton() bool /* primitive/slice/pointer */
+	SetHasReplyButton(value bool /* primitive/slice/pointer */)
+	Identifier() string /* primitive/slice/pointer */
+	SetIdentifier(value string /* primitive/slice/pointer */)
+	InformativeText() string /* primitive/slice/pointer */
+	SetInformativeText(value string /* primitive/slice/pointer */)
+	Presented() bool /* primitive/slice/pointer */
+	Remote() bool /* primitive/slice/pointer */
+	OtherButtonTitle() string /* primitive/slice/pointer */
+	SetOtherButtonTitle(value string /* primitive/slice/pointer */)
 	Response() IAttributedString
-	ResponsePlaceholder() string
-	SetResponsePlaceholder(value string)
-	SoundName() string
-	SetSoundName(value string)
-	Subtitle() string
-	SetSubtitle(value string)
-	Title() string
-	SetTitle(value string)
-	UserInfo() IDictionary
-	SetUserInfo(value IDictionary)
-	IsPresented() bool
-	SetIsPresented(value bool)
-	IsRemote() bool
-	SetIsRemote(value bool)
-	NSUserNotificationDefaultSoundName() string
+	ResponsePlaceholder() string /* primitive/slice/pointer */
+	SetResponsePlaceholder(value string /* primitive/slice/pointer */)
+	SoundName() string /* primitive/slice/pointer */
+	SetSoundName(value string /* primitive/slice/pointer */)
+	Subtitle() string /* primitive/slice/pointer */
+	SetSubtitle(value string /* primitive/slice/pointer */)
+	Title() string /* primitive/slice/pointer */
+	SetTitle(value string /* primitive/slice/pointer */)
+	UserInfo() IDictionary /* already interface */
+	SetUserInfo(value IDictionary /* already interface */)
+	IsPresented() bool /* primitive/slice/pointer */
+	SetIsPresented(value bool /* primitive/slice/pointer */)
+	IsRemote() bool /* primitive/slice/pointer */
+	SetIsRemote(value bool /* primitive/slice/pointer */)
+	NSUserNotificationDefaultSoundName() string /* primitive/slice/pointer */
+	// methods:
 }
 
 // A notification that can be scheduled for display in the notification center.
@@ -131,7 +133,7 @@ func NewUserNotification() UserNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) ActionButtonTitle() string {
+func (u_ UserNotification) ActionButtonTitle() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("actionButtonTitle"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (u_ UserNotification) ActionButtonTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) SetActionButtonTitle(value string) {
+func (u_ UserNotification) SetActionButtonTitle(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), objc.String(value))
 }
 
@@ -150,7 +152,7 @@ func (u_ UserNotification) SetActionButtonTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/activationType-swift.property
-func (u_ UserNotification) ActivationType() NSUserNotificationActivationType {
+func (u_ UserNotification) ActivationType() UserNotificationActivationType {
 	rv := objc.Send[UserNotificationActivationType](u_.ID, objc.Sel("activationType"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (u_ UserNotification) ActualDeliveryDate() IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActions
-func (u_ UserNotification) AdditionalActions() []UserNotificationAction {
+func (u_ UserNotification) AdditionalActions() []UserNotificationAction /* primitive/slice/pointer */ {
 	rv := objc.Send[[]UserNotificationAction](u_.ID, objc.Sel("additionalActions"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (u_ UserNotification) AdditionalActions() []UserNotificationAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActions
-func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) {
+func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -266,7 +268,7 @@ func (u_ UserNotification) SetDeliveryTimeZone(value ITimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasActionButton
-func (u_ UserNotification) HasActionButton() bool {
+func (u_ UserNotification) HasActionButton() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasActionButton"))
 	return rv
 }
@@ -276,7 +278,7 @@ func (u_ UserNotification) HasActionButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasActionButton
-func (u_ UserNotification) SetHasActionButton(value bool) {
+func (u_ UserNotification) SetHasActionButton(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHasActionButton:"), value)
 }
 
@@ -285,7 +287,7 @@ func (u_ UserNotification) SetHasActionButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasReplyButton
-func (u_ UserNotification) HasReplyButton() bool {
+func (u_ UserNotification) HasReplyButton() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("hasReplyButton"))
 	return rv
 }
@@ -295,7 +297,7 @@ func (u_ UserNotification) HasReplyButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasReplyButton
-func (u_ UserNotification) SetHasReplyButton(value bool) {
+func (u_ UserNotification) SetHasReplyButton(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHasReplyButton:"), value)
 }
 
@@ -304,7 +306,7 @@ func (u_ UserNotification) SetHasReplyButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/identifier
-func (u_ UserNotification) Identifier() string {
+func (u_ UserNotification) Identifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -314,7 +316,7 @@ func (u_ UserNotification) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/identifier
-func (u_ UserNotification) SetIdentifier(value string) {
+func (u_ UserNotification) SetIdentifier(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -323,7 +325,7 @@ func (u_ UserNotification) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) InformativeText() string {
+func (u_ UserNotification) InformativeText() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("informativeText"))
 	return rv
 }
@@ -333,7 +335,7 @@ func (u_ UserNotification) InformativeText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) SetInformativeText(value string) {
+func (u_ UserNotification) SetInformativeText(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), objc.String(value))
 }
 
@@ -342,7 +344,7 @@ func (u_ UserNotification) SetInformativeText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/isPresented
-func (u_ UserNotification) Presented() bool {
+func (u_ UserNotification) Presented() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("presented"))
 	return rv
 }
@@ -352,7 +354,7 @@ func (u_ UserNotification) Presented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/isRemote
-func (u_ UserNotification) Remote() bool {
+func (u_ UserNotification) Remote() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("remote"))
 	return rv
 }
@@ -362,7 +364,7 @@ func (u_ UserNotification) Remote() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) OtherButtonTitle() string {
+func (u_ UserNotification) OtherButtonTitle() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("otherButtonTitle"))
 	return rv
 }
@@ -372,7 +374,7 @@ func (u_ UserNotification) OtherButtonTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) SetOtherButtonTitle(value string) {
+func (u_ UserNotification) SetOtherButtonTitle(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), objc.String(value))
 }
 
@@ -391,7 +393,7 @@ func (u_ UserNotification) Response() IAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/responsePlaceholder
-func (u_ UserNotification) ResponsePlaceholder() string {
+func (u_ UserNotification) ResponsePlaceholder() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("responsePlaceholder"))
 	return rv
 }
@@ -401,7 +403,7 @@ func (u_ UserNotification) ResponsePlaceholder() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/responsePlaceholder
-func (u_ UserNotification) SetResponsePlaceholder(value string) {
+func (u_ UserNotification) SetResponsePlaceholder(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), objc.String(value))
 }
 
@@ -410,7 +412,7 @@ func (u_ UserNotification) SetResponsePlaceholder(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/soundName
-func (u_ UserNotification) SoundName() string {
+func (u_ UserNotification) SoundName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("soundName"))
 	return rv
 }
@@ -420,7 +422,7 @@ func (u_ UserNotification) SoundName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/soundName
-func (u_ UserNotification) SetSoundName(value string) {
+func (u_ UserNotification) SetSoundName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 
@@ -429,7 +431,7 @@ func (u_ UserNotification) SetSoundName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/subtitle
-func (u_ UserNotification) Subtitle() string {
+func (u_ UserNotification) Subtitle() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
@@ -439,7 +441,7 @@ func (u_ UserNotification) Subtitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/subtitle
-func (u_ UserNotification) SetSubtitle(value string) {
+func (u_ UserNotification) SetSubtitle(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
@@ -448,7 +450,7 @@ func (u_ UserNotification) SetSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) Title() string {
+func (u_ UserNotification) Title() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
@@ -458,7 +460,7 @@ func (u_ UserNotification) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) SetTitle(value string) {
+func (u_ UserNotification) SetTitle(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -467,7 +469,7 @@ func (u_ UserNotification) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/userInfo
-func (u_ UserNotification) UserInfo() IDictionary {
+func (u_ UserNotification) UserInfo() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -477,7 +479,7 @@ func (u_ UserNotification) UserInfo() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/userInfo
-func (u_ UserNotification) SetUserInfo(value IDictionary) {
+func (u_ UserNotification) SetUserInfo(value IDictionary /* already interface */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
 
@@ -486,7 +488,7 @@ func (u_ UserNotification) SetUserInfo(value IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-func (u_ UserNotification) IsPresented() bool {
+func (u_ UserNotification) IsPresented() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isPresented"))
 	return rv
 }
@@ -496,7 +498,7 @@ func (u_ UserNotification) IsPresented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/ispresented
-func (u_ UserNotification) SetIsPresented(value bool) {
+func (u_ UserNotification) SetIsPresented(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsPresented:"), value)
 }
 
@@ -505,7 +507,7 @@ func (u_ UserNotification) SetIsPresented(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/isremote
-func (u_ UserNotification) IsRemote() bool {
+func (u_ UserNotification) IsRemote() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isRemote"))
 	return rv
 }
@@ -515,7 +517,7 @@ func (u_ UserNotification) IsRemote() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/isremote
-func (u_ UserNotification) SetIsRemote(value bool) {
+func (u_ UserNotification) SetIsRemote(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsRemote:"), value)
 }
 
@@ -524,7 +526,7 @@ func (u_ UserNotification) SetIsRemote(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname
-func (u_ UserNotification) NSUserNotificationDefaultSoundName() string {
+func (u_ UserNotification) NSUserNotificationDefaultSoundName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUserNotificationDefaultSoundName"))
 	return rv
 }

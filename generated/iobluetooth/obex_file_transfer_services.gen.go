@@ -31,6 +31,10 @@ type _OBEXFileTransferServicesClass struct {
 // An interface definition for the [OBEXFileTransferServices] class.
 type IOBEXFileTransferServices interface {
 	objectivec.IObject
+	// properties:
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	// methods:
 	Abort() OBEXError
 	ChangeCurrentFolderBackward() OBEXError
 	ChangeCurrentFolderForwardToPath(inDirName string) OBEXError
@@ -46,10 +50,8 @@ type IOBEXFileTransferServices interface {
 	IsConnected() bool
 	RemoveItem(inItemName string) OBEXError
 	RetrieveFolderListing() OBEXError
-	SendDataTypeName(inData foundation.IData, inType string, inName string) OBEXError
+	SendDataTypeName(inData foundation.NSData, inType string, inName string) OBEXError
 	SendFile(inLocalPathAndName string) OBEXError
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 }
 
 // Implements advanced OBEX operations in addition to simple PUT and GET.
@@ -282,7 +284,7 @@ func (o_ OBEXFileTransferServices) RetrieveFolderListing() OBEXError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/send(_:type:name:)
-func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.IData, inType string, inName string) OBEXError {
+func (o_ OBEXFileTransferServices) SendDataTypeName(inData foundation.NSData, inType string, inName string) OBEXError {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendData:type:name:"), inData, objc.String(inType), objc.String(inName))
 	return rv
 }

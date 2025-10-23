@@ -31,20 +31,20 @@ type _FetchedResultsControllerClass struct {
 // An interface definition for the [FetchedResultsController] class.
 type IFetchedResultsController interface {
 	objectivec.IObject
-	IndexPathForObject(object unsafe.Pointer) foundation.IndexPath
-	ObjectAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer
-	PerformFetch(error_ unsafe.Pointer) bool
-	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
-	SectionIndexTitleForSectionName(sectionName string) foundation.String
 	CacheName() string
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	FetchRequest() unsafe.Pointer
 	FetchedObjects() []objc.ID
-	ManagedObjectContext() NSManagedObjectContext
+	ManagedObjectContext() IManagedObjectContext
 	SectionIndexTitles() []string
 	SectionNameKeyPath() string
 	Sections() []objc.ID
+	IndexPathForObject(object unsafe.Pointer) foundation.IndexPath
+	ObjectAtIndexPath(indexPath foundation.IndexPath) unsafe.Pointer
+	PerformFetch(error_ unsafe.Pointer) bool
+	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
+	SectionIndexTitleForSectionName(sectionName string) foundation.String
 }
 
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
@@ -136,7 +136,7 @@ func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/object(at:)
-func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer {
+func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath foundation.IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("objectAtIndexPath:"), indexPath)
 	return rv
 }
@@ -225,8 +225,8 @@ func (f_ FetchedResultsController) FetchedObjects() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/managedObjectContext
-func (f_ FetchedResultsController) ManagedObjectContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](f_.ID, objc.Sel("managedObjectContext"))
+func (f_ FetchedResultsController) ManagedObjectContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](f_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 

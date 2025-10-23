@@ -29,10 +29,12 @@ type _RelativeSpecifierClass struct {
 // An interface definition for the [RelativeSpecifier] class.
 type IRelativeSpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
 	BaseSpecifier() IScriptObjectSpecifier
 	SetBaseSpecifier(value IScriptObjectSpecifier)
-	RelativePosition() NSRelativePosition
-	SetRelativePosition(value NSRelativePosition)
+	RelativePosition() RelativePosition
+	SetRelativePosition(value RelativePosition)
+	// methods:
 }
 
 // A specifier that indicates an object in a collection by its position relative to another object.
@@ -104,7 +106,7 @@ func NewRelativeSpecifierWithCoder(inCoder ICoder) RelativeSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/init(containerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:)
-func NewRelativeSpecifierWithContainerClassDescriptionContainerSpecifierKeyRelativePositionBaseSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, relPos NSRelativePosition, baseSpecifier IScriptObjectSpecifier) RelativeSpecifier {
+func NewRelativeSpecifierWithContainerClassDescriptionContainerSpecifierKeyRelativePositionBaseSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, relPos RelativePosition, baseSpecifier IScriptObjectSpecifier) RelativeSpecifier {
 	instance := getRelativeSpecifierClass().Alloc()
 	rv := objc.Send[RelativeSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:"), classDesc, container, objc.String(property), relPos, baseSpecifier)
 	rv.Autorelease()
@@ -136,7 +138,7 @@ func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/relativePosition-swift.property
-func (r_ RelativeSpecifier) RelativePosition() NSRelativePosition {
+func (r_ RelativeSpecifier) RelativePosition() RelativePosition {
 	rv := objc.Send[RelativePosition](r_.ID, objc.Sel("relativePosition"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (r_ RelativeSpecifier) RelativePosition() NSRelativePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/relativePosition-swift.property
-func (r_ RelativeSpecifier) SetRelativePosition(value NSRelativePosition) {
+func (r_ RelativeSpecifier) SetRelativePosition(value RelativePosition) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
 }
 

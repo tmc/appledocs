@@ -18,12 +18,3 @@ func ExampleNewCBIdentityWithNameAuthority() {
 	)
 	// Output:
 }
-// ExampleNewCBIdentityWithUUIDStringAuthority demonstrates how to create a CBIdentity instance using NewCBIdentityWithUUIDStringAuthority.
-// Returns the identity object with the given UUID from the specified identity authority.
-func ExampleNewCBIdentityWithUUIDStringAuthority() {
-	_ = collaboration.NewCBIdentityWithUUIDStringAuthority(
-		"uuid", // uuid string
-		collaboration.CBIdentityAuthority{}, // authority CBIdentityAuthority
-	)
-	// Output:
-}

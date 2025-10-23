@@ -29,9 +29,10 @@ type _CircularRegionClass struct {
 // An interface definition for the [CircularRegion] class.
 type ICircularRegion interface {
 	IRegion
-	ContainsCoordinate(coordinate unsafe.Pointer) bool
 	Center() unsafe.Pointer
+	SetCenter(value unsafe.Pointer)
 	Radius() unsafe.Pointer
+	SetRadius(value unsafe.Pointer)
 }
 
 // A circular geographic region that a center point and radius deine.
@@ -89,25 +90,12 @@ func NewCircularRegion() CircularRegion {
 
 
 
-// Creates and returns a region object defining a circular geographic area.
+// The center point of the geographic area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/init(center:radius:identifier:)
-func NewCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) CircularRegion {
-	instance := getCircularRegionClass().Alloc()
-	rv := objc.Send[CircularRegion](instance.ID, objc.Sel("initWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a Boolean value indicating whether the geographic area contains the specified coordinate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/contains(_:)
-func (c_ CircularRegion) ContainsCoordinate(coordinate unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("containsCoordinate:"), coordinate)
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/center
+func (c_ CircularRegion) Center() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
 	return rv
 }
 
@@ -115,9 +103,18 @@ func (c_ CircularRegion) ContainsCoordinate(coordinate unsafe.Pointer) bool {
 // The center point of the geographic area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/center
-func (c_ CircularRegion) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/center
+func (c_ CircularRegion) SetCenter(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
+}
+
+
+// The radius (measured in meters) that defines the geographic area’s outer boundary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/radius
+func (c_ CircularRegion) Radius() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
 	return rv
 }
 
@@ -125,10 +122,10 @@ func (c_ CircularRegion) Center() unsafe.Pointer {
 // The radius (measured in meters) that defines the geographic area’s outer boundary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularRegion/radius
-func (c_ CircularRegion) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clcircularregion/radius
+func (c_ CircularRegion) SetRadius(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRadius:"), value)
 }
+
 
 

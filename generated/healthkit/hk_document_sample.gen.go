@@ -29,8 +29,10 @@ type _HKDocumentSampleClass struct {
 // An interface definition for the [HKDocumentSample] class.
 type IHKDocumentSample interface {
 	IHKSample
-	DocumentType() HKDocumentType
-	SetDocumentType(value HKDocumentType)
+	// properties:
+	DocumentType() IHKDocumentType
+	SetDocumentType(value IHKDocumentType)
+	// methods:
 }
 
 // An abstract class that represents a health document in the HealthKit store.
@@ -92,7 +94,7 @@ func NewHKDocumentSample() HKDocumentSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
-func (h_ HKDocumentSample) DocumentType() HKDocumentType {
+func (h_ HKDocumentSample) DocumentType() IHKDocumentType {
 	rv := objc.Send[HKDocumentType](h_.ID, objc.Sel("documentType"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (h_ HKDocumentSample) DocumentType() HKDocumentType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentsample/documenttype
-func (h_ HKDocumentSample) SetDocumentType(value HKDocumentType) {
+func (h_ HKDocumentSample) SetDocumentType(value IHKDocumentType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDocumentType:"), value)
 }
 

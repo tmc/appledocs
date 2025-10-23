@@ -30,10 +30,12 @@ type _ILClassificationUIExtensionContextClass struct {
 // An interface definition for the [ILClassificationUIExtensionContext] class.
 type IILClassificationUIExtensionContext interface {
 	foundation.IExtensionContext
+	// properties:
 	ReadyForClassificationResponse() bool
 	SetReadyForClassificationResponse(value bool)
 	IsReadyForClassificationResponse() bool
 	SetIsReadyForClassificationResponse(value bool)
+	// methods:
 }
 
 // An object that manages the state of the current request.

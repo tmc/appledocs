@@ -87,27 +87,6 @@ func NewPannerView() PannerView {
 
 
 
-// Creates a panner view for an audio unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/init(audioUnit:)
-func NewPannerViewAUPannerViewWithAudioUnit(au audiotoolbox.IAudioUnit) PannerView {
-	rv := objc.Send[PannerView](objc.ID(getPannerViewClass().class), objc.Sel("AUPannerViewWithAudioUnit:"), au)
-	return rv
-}
-
-
-
-// Creates a panner view for an audio unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/init(audioUnit:)
-func (pc _PannerViewClass) AUPannerViewWithAudioUnit(au audiotoolbox.IAudioUnit) PannerView {
-	rv := objc.Send[PannerView](objc.ID(pc.class), objc.Sel("AUPannerViewWithAudioUnit:"), au)
-	return rv
-}
-
-
 // The panner audio unit associated with the generic panner view.
 //
 // [Full Topic]
@@ -116,5 +95,6 @@ func (p_ PannerView) AudioUnit() audiotoolbox.AudioUnit {
 	rv := objc.Send[audiotoolbox.AudioUnit](p_.ID, objc.Sel("audioUnit"))
 	return rv
 }
+
 
 

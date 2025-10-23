@@ -30,8 +30,8 @@ type _CKSyncEngineFetchChangesContextClass struct {
 // An interface definition for the [CKSyncEngineFetchChangesContext] class.
 type ICKSyncEngineFetchChangesContext interface {
 	objectivec.IObject
-	Options() CKSyncEngineFetchChangesOptions
-	Reason() CKSyncEngineSyncReason
+	Options() ICKSyncEngineFetchChangesOptions
+	Reason() unsafe.Pointer
 }
 
 
@@ -82,7 +82,7 @@ func NewCKSyncEngineFetchChangesContext() CKSyncEngineFetchChangesContext {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/options
-func (c_ CKSyncEngineFetchChangesContext) Options() CKSyncEngineFetchChangesOptions {
+func (c_ CKSyncEngineFetchChangesContext) Options() ICKSyncEngineFetchChangesOptions {
 	rv := objc.Send[CKSyncEngineFetchChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
@@ -90,8 +90,8 @@ func (c_ CKSyncEngineFetchChangesContext) Options() CKSyncEngineFetchChangesOpti
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/reason
-func (c_ CKSyncEngineFetchChangesContext) Reason() CKSyncEngineSyncReason {
-	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
+func (c_ CKSyncEngineFetchChangesContext) Reason() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
 	return rv
 }
 

@@ -30,20 +30,21 @@ type _ExpressionClass struct {
 // An interface definition for the [Expression] class.
 type IExpression interface {
 	objectivec.IObject
-	Arguments() []Expression
+	// properties:
+	Arguments() []Expression /* primitive/slice/pointer */
 	Collection() objc.ID
 	ConstantValue() objc.ID
 	ExpressionBlock() unsafe.Pointer
-	ExpressionType() NSExpressionType
+	ExpressionType() ExpressionType
 	FalseExpression() IExpression
-	Function() string
-	KeyPath() string
+	Function() string /* primitive/slice/pointer */
+	KeyPath() string /* primitive/slice/pointer */
 	LeftExpression() IExpression
 	Operand() IExpression
 	Predicate() IPredicate
 	RightExpression() IExpression
 	TrueExpression() IExpression
-	Variable() string
+	Variable() string /* primitive/slice/pointer */
 	False() IExpression
 	SetFalse(value IExpression)
 	Left() IExpression
@@ -52,6 +53,7 @@ type IExpression interface {
 	SetRight(value IExpression)
 	True() IExpression
 	SetTrue(value IExpression)
+	// methods:
 	AllowEvaluation()
 	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
 }
@@ -113,7 +115,7 @@ func NewExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func NewExpressionForAggregate(subexpressions []Expression) Expression {
+func NewExpressionForAggregate(subexpressions []Expression /* primitive/slice/pointer */) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -123,7 +125,7 @@ func NewExpressionForAggregate(subexpressions []Expression) Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) Expression {
+func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression /* primitive/slice/pointer */) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -153,7 +155,7 @@ func NewExpressionForConstantValue(obj objectivec.IObject) Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:arguments:)
-func NewExpressionForFunctionArguments(name string, parameters objectivec.IObject) Expression {
+func NewExpressionForFunctionArguments(name string /* primitive/slice/pointer */, parameters objectivec.IObject) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForFunction:arguments:"), objc.String(name), parameters)
 	return rv
 }
@@ -163,7 +165,7 @@ func NewExpressionForFunctionArguments(name string, parameters objectivec.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:selectorName:arguments:)
-func NewExpressionForFunctionSelectorNameArguments(target IExpression, name string, parameters objectivec.IObject) Expression {
+func NewExpressionForFunctionSelectorNameArguments(target IExpression, name string /* primitive/slice/pointer */, parameters objectivec.IObject) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForFunction:selectorName:arguments:"), target, objc.String(name), parameters)
 	return rv
 }
@@ -183,7 +185,7 @@ func NewExpressionForIntersectSetWith(left IExpression, right IExpression) Expre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forKeyPath:)-1aqf5
-func NewExpressionForKeyPath(keyPath string) Expression {
+func NewExpressionForKeyPath(keyPath string /* primitive/slice/pointer */) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForKeyPath:"), objc.String(keyPath))
 	return rv
 }
@@ -203,7 +205,7 @@ func NewExpressionForMinusSetWith(left IExpression, right IExpression) Expressio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forSubquery:usingIteratorVariable:predicate:)
-func NewExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string, predicate IPredicate) Expression {
+func NewExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string /* primitive/slice/pointer */, predicate IPredicate) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForSubquery:usingIteratorVariable:predicate:"), expression, objc.String(variable), predicate)
 	return rv
 }
@@ -223,7 +225,7 @@ func NewExpressionForUnionSetWith(left IExpression, right IExpression) Expressio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forVariable:)
-func NewExpressionForVariable(string_ string) Expression {
+func NewExpressionForVariable(string_ string /* primitive/slice/pointer */) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForVariable:"), objc.String(string_))
 	return rv
 }
@@ -245,7 +247,7 @@ func NewExpressionWithCoder(coder ICoder) Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(expressionType:)
-func NewExpressionWithExpressionType(type_ NSExpressionType) Expression {
+func NewExpressionWithExpressionType(type_ ExpressionType) Expression {
 	instance := getExpressionClass().Alloc()
 	rv := objc.Send[Expression](instance.ID, objc.Sel("initWithExpressionType:"), type_)
 	rv.Autorelease()
@@ -257,7 +259,7 @@ func NewExpressionWithExpressionType(type_ NSExpressionType) Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:argumentArray:)
-func NewExpressionWithFormatArgumentArray(expressionFormat string, arguments objectivec.IObject) Expression {
+func NewExpressionWithFormatArgumentArray(expressionFormat string /* primitive/slice/pointer */, arguments objectivec.IObject) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionWithFormat:argumentArray:"), objc.String(expressionFormat), arguments)
 	return rv
 }
@@ -267,7 +269,7 @@ func NewExpressionWithFormatArgumentArray(expressionFormat string, arguments obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:arguments:)
-func NewExpressionWithFormatArguments(expressionFormat string, argList unsafe.Pointer) Expression {
+func NewExpressionWithFormatArguments(expressionFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionWithFormat:arguments:"), objc.String(expressionFormat), argList)
 	return rv
 }
@@ -298,7 +300,7 @@ func (ec _ExpressionClass) ExpressionForEvaluatedObject() IExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionWithFormat:
-func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat string) IExpression {
+func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat string /* primitive/slice/pointer */) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:"), objc.String(expressionFormat))
 	return rv
 }
@@ -308,7 +310,7 @@ func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat string) IExpres
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) IExpression {
+func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression /* primitive/slice/pointer */) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -318,7 +320,7 @@ func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arg
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []Expression) IExpression {
+func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []Expression /* primitive/slice/pointer */) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -348,7 +350,7 @@ func (ec _ExpressionClass) ExpressionForConstantValue(obj objectivec.IObject) IE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:arguments:)
-func (ec _ExpressionClass) ExpressionForFunctionArguments(name string, parameters objectivec.IObject) IExpression {
+func (ec _ExpressionClass) ExpressionForFunctionArguments(name string /* primitive/slice/pointer */, parameters objectivec.IObject) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForFunction:arguments:"), objc.String(name), parameters)
 	return rv
 }
@@ -358,7 +360,7 @@ func (ec _ExpressionClass) ExpressionForFunctionArguments(name string, parameter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forFunction:selectorName:arguments:)
-func (ec _ExpressionClass) ExpressionForFunctionSelectorNameArguments(target IExpression, name string, parameters objectivec.IObject) IExpression {
+func (ec _ExpressionClass) ExpressionForFunctionSelectorNameArguments(target IExpression, name string /* primitive/slice/pointer */, parameters objectivec.IObject) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForFunction:selectorName:arguments:"), target, objc.String(name), parameters)
 	return rv
 }
@@ -378,7 +380,7 @@ func (ec _ExpressionClass) ExpressionForIntersectSetWith(left IExpression, right
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forKeyPath:)-1aqf5
-func (ec _ExpressionClass) ExpressionForKeyPath(keyPath string) IExpression {
+func (ec _ExpressionClass) ExpressionForKeyPath(keyPath string /* primitive/slice/pointer */) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForKeyPath:"), objc.String(keyPath))
 	return rv
 }
@@ -398,7 +400,7 @@ func (ec _ExpressionClass) ExpressionForMinusSetWith(left IExpression, right IEx
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forSubquery:usingIteratorVariable:predicate:)
-func (ec _ExpressionClass) ExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string, predicate IPredicate) IExpression {
+func (ec _ExpressionClass) ExpressionForSubqueryUsingIteratorVariablePredicate(expression IExpression, variable string /* primitive/slice/pointer */, predicate IPredicate) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForSubquery:usingIteratorVariable:predicate:"), expression, objc.String(variable), predicate)
 	return rv
 }
@@ -418,7 +420,7 @@ func (ec _ExpressionClass) ExpressionForUnionSetWith(left IExpression, right IEx
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forVariable:)
-func (ec _ExpressionClass) ExpressionForVariable(string_ string) IExpression {
+func (ec _ExpressionClass) ExpressionForVariable(string_ string /* primitive/slice/pointer */) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForVariable:"), objc.String(string_))
 	return rv
 }
@@ -428,7 +430,7 @@ func (ec _ExpressionClass) ExpressionForVariable(string_ string) IExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:argumentArray:)
-func (ec _ExpressionClass) ExpressionWithFormatArgumentArray(expressionFormat string, arguments objectivec.IObject) IExpression {
+func (ec _ExpressionClass) ExpressionWithFormatArgumentArray(expressionFormat string /* primitive/slice/pointer */, arguments objectivec.IObject) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:argumentArray:"), objc.String(expressionFormat), arguments)
 	return rv
 }
@@ -438,7 +440,7 @@ func (ec _ExpressionClass) ExpressionWithFormatArgumentArray(expressionFormat st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(format:arguments:)
-func (ec _ExpressionClass) ExpressionWithFormatArguments(expressionFormat string, argList unsafe.Pointer) IExpression {
+func (ec _ExpressionClass) ExpressionWithFormatArguments(expressionFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionWithFormat:arguments:"), objc.String(expressionFormat), argList)
 	return rv
 }
@@ -467,7 +469,7 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/arguments
-func (e_ Expression) Arguments() []Expression {
+func (e_ Expression) Arguments() []Expression /* primitive/slice/pointer */ {
 	rv := objc.Send[[]Expression](e_.ID, objc.Sel("arguments"))
 	return rv
 }
@@ -507,7 +509,7 @@ func (e_ Expression) ExpressionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionType-swift.property
-func (e_ Expression) ExpressionType() NSExpressionType {
+func (e_ Expression) ExpressionType() ExpressionType {
 	rv := objc.Send[ExpressionType](e_.ID, objc.Sel("expressionType"))
 	return rv
 }
@@ -527,7 +529,7 @@ func (e_ Expression) FalseExpression() IExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/function
-func (e_ Expression) Function() string {
+func (e_ Expression) Function() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("function"))
 	return rv
 }
@@ -537,7 +539,7 @@ func (e_ Expression) Function() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/keyPath
-func (e_ Expression) KeyPath() string {
+func (e_ Expression) KeyPath() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
 	return rv
 }
@@ -597,7 +599,7 @@ func (e_ Expression) TrueExpression() IExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/variable
-func (e_ Expression) Variable() string {
+func (e_ Expression) Variable() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
 	return rv
 }

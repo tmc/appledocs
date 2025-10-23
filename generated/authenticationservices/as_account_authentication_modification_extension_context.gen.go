@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [AccountAuthenticationModificationExtensionContext] class.
@@ -31,7 +30,6 @@ type _AccountAuthenticationModificationExtensionContextClass struct {
 // An interface definition for the [AccountAuthenticationModificationExtensionContext] class.
 type IAccountAuthenticationModificationExtensionContext interface {
 	foundation.IExtensionContext
-	CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject)
 	ASExtensionLocalizedFailureReasonErrorKey() string
 }
 
@@ -86,15 +84,6 @@ func NewAccountAuthenticationModificationExtensionContext() AccountAuthenticatio
 	return getAccountAuthenticationModificationExtensionContextClass().New()
 }
 
-
-
-// Completes a request to update an account’s authentication credentials from using a weak password to using a strong password.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)
-func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("completeChangePasswordRequestWithUpdatedCredential:userInfo:"), updatedCredential, userInfo)
-}
 
 
 // A key that specifies a string value to show to the user when a request fails.

@@ -30,9 +30,10 @@ type _RecordedRotationRateDataClass struct {
 // An interface definition for the [RecordedRotationRateData] class.
 type IRecordedRotationRateData interface {
 	IRotationRateData
-	StartDate() foundation.NSDate
 	RotationRate() unsafe.Pointer
 	SetRotationRate(value unsafe.Pointer)
+	StartDate() foundation.Date
+	SetStartDate(value foundation.Date)
 }
 
 // A data object that contains a single rotation-rate measurement at a specific time.
@@ -88,16 +89,6 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 
 
 
-// The time when the gyroscope measured the rotation data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
-func (r_ RecordedRotationRateData) StartDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
-	return rv
-}
-
-
 // The rotation rate as measured by the device’s gyroscope.
 //
 // [Full Topic]
@@ -114,6 +105,25 @@ func (r_ RecordedRotationRateData) RotationRate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
 func (r_ RecordedRotationRateData) SetRotationRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
+}
+
+
+// The time when the gyroscope measured the rotation data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmrecordedrotationratedata/startdate
+func (r_ RecordedRotationRateData) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](r_.ID, objc.Sel("startDate"))
+	return rv
+}
+
+
+// The time when the gyroscope measured the rotation data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremotion/cmrecordedrotationratedata/startdate
+func (r_ RecordedRotationRateData) SetStartDate(value foundation.Date) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setStartDate:"), value)
 }
 
 

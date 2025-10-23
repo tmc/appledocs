@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,14 @@ type _SceneClass struct {
 // An interface definition for the [Scene] class.
 type IScene interface {
 	objectivec.IObject
+	Entities() []Entity
+	Graphs() foundation.IDictionary
+	RootNode() objc.ID
+	SetRootNode(value objc.ID)
 	AddEntity(entity IGKEntity)
 	AddGraphName(graph IGKGraph, name string)
 	RemoveEntity(entity IGKEntity)
 	RemoveGraph(name string)
-	Entities() []Entity
-	Graphs() unsafe.Pointer
-	RootNode() objc.ID
-	SetRootNode(value objc.ID)
 }
 
 // A container for associating GameplayKit objects with a SpriteKit scene.
@@ -178,8 +179,8 @@ func (s_ Scene) Entities() []Entity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/graphs
-func (s_ Scene) Graphs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("graphs"))
+func (s_ Scene) Graphs() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](s_.ID, objc.Sel("graphs"))
 	return rv
 }
 

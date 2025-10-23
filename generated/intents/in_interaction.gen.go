@@ -31,21 +31,24 @@ type _INInteractionClass struct {
 // An interface definition for the [INInteraction] class.
 type IINInteraction interface {
 	objectivec.IObject
-	DonateInteractionWithCompletion(completion unsafe.Pointer)
-	ParameterValueForParameter(parameter INParameter) objc.ID
+	// properties:
+	DateInterval() foundation.DateInterval
+	SetDateInterval(value foundation.DateInterval)
+	Direction() unsafe.Pointer
+	SetDirection(value unsafe.Pointer)
 	GroupIdentifier() string
 	SetGroupIdentifier(value string)
 	Identifier() string
 	SetIdentifier(value string)
-	IntentHandlingStatus() unsafe.Pointer
-	DateInterval() foundation.DateInterval
-	SetDateInterval(value foundation.IDateInterval)
-	Direction() unsafe.Pointer
-	SetDirection(value unsafe.Pointer)
 	Intent() INIntent
 	SetIntent(value INIntent)
+	IntentHandlingStatus() unsafe.Pointer
+	SetIntentHandlingStatus(value unsafe.Pointer)
 	IntentResponse() INIntentResponse
 	SetIntentResponse(value INIntentResponse)
+	// methods:
+	DonateInteractionWithCompletion(completion unsafe.Pointer)
+	ParameterValueForParameter(parameter INParameter) objc.ID
 }
 
 // An interaction between the user and your app involving an intent object.
@@ -101,12 +104,12 @@ func NewINInteraction() INInteraction {
 
 
 
-// Deletes the interactions with the specified group identifier.
+// Deletes the specified interactions that were donated by the calling app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/delete(with:completion:)-tcq9
-func (ic _INInteractionClass) DeleteInteractionsWithGroupIdentifierCompletion(groupIdentifier string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithGroupIdentifier:completion:"), objc.String(groupIdentifier), completion)
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs
+func (ic _INInteractionClass) DeleteInteractionsWithIdentifiersCompletion(identifiers []string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithIdentifiers:completion:"), identifiers, completion)
 }
 
 
@@ -129,54 +132,6 @@ func (i_ INInteraction) ParameterValueForParameter(parameter INParameter) objc.I
 }
 
 
-// The unique identifier of the interaction’s group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) GroupIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
-	return rv
-}
-
-
-// The unique identifier of the interaction’s group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) SetGroupIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
-}
-
-
-// The unique identifier of the interaction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) Identifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The unique identifier of the interaction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) SetIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
-}
-
-
-// The current state of the interaction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/intentHandlingStatus
-func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentHandlingStatus"))
-	return rv
-}
-
-
 // The time at which the interaction started and its duration.
 //
 // [Full Topic]
@@ -191,7 +146,7 @@ func (i_ INInteraction) DateInterval() foundation.DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
-func (i_ INInteraction) SetDateInterval(value foundation.IDateInterval) {
+func (i_ INInteraction) SetDateInterval(value foundation.DateInterval) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
 }
 
@@ -215,6 +170,44 @@ func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
 }
 
 
+// The unique identifier of the interaction’s group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/groupidentifier
+func (i_ INInteraction) GroupIdentifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// The unique identifier of the interaction’s group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/groupidentifier
+func (i_ INInteraction) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+}
+
+
+// The unique identifier of the interaction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/identifier
+func (i_ INInteraction) Identifier() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// The unique identifier of the interaction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/identifier
+func (i_ INInteraction) SetIdentifier(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
 // The intent object that describes the user’s request.
 //
 // [Full Topic]
@@ -231,6 +224,25 @@ func (i_ INInteraction) Intent() INIntent {
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
 func (i_ INInteraction) SetIntent(value INIntent) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
+}
+
+
+// The current state of the interaction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intenthandlingstatus
+func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentHandlingStatus"))
+	return rv
+}
+
+
+// The current state of the interaction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intenthandlingstatus
+func (i_ INInteraction) SetIntentHandlingStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentHandlingStatus:"), value)
 }
 
 

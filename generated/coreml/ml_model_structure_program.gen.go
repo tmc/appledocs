@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _ModelStructureProgramClass struct {
 // An interface definition for the [ModelStructureProgram] class.
 type IModelStructureProgram interface {
 	objectivec.IObject
-	Functions() unsafe.Pointer
+	Functions() foundation.IDictionary
 }
 
 // A class representing the structure of an ML Program model.
@@ -88,8 +89,8 @@ func NewModelStructureProgram() ModelStructureProgram {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram/functions
-func (m_ ModelStructureProgram) Functions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("functions"))
+func (m_ ModelStructureProgram) Functions() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("functions"))
 	return rv
 }
 

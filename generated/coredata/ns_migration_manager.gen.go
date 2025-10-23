@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,25 +30,25 @@ type _MigrationManagerClass struct {
 // An interface definition for the [MigrationManager] class.
 type IMigrationManager interface {
 	objectivec.IObject
-	AssociateSourceInstanceWithDestinationInstanceForEntityMapping(sourceInstance IManagedObject, destinationInstance IManagedObject, entityMapping IEntityMapping)
-	CancelMigrationWithError(error_ foundation.IError)
-	DestinationEntityForEntityMapping(mEntity IEntityMapping) EntityDescription
-	DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances []ManagedObject) []ManagedObject
-	MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool
-	Reset()
-	SourceEntityForEntityMapping(mEntity IEntityMapping) EntityDescription
-	SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances []ManagedObject) []ManagedObject
-	CurrentEntityMapping() NSEntityMapping
-	DestinationContext() NSManagedObjectContext
-	DestinationModel() NSManagedObjectModel
-	MappingModel() NSMappingModel
+	CurrentEntityMapping() IEntityMapping
+	SetCurrentEntityMapping(value IEntityMapping)
+	DestinationContext() IManagedObjectContext
+	SetDestinationContext(value IManagedObjectContext)
+	DestinationModel() IManagedObjectModel
+	SetDestinationModel(value IManagedObjectModel)
+	MappingModel() IMappingModel
+	SetMappingModel(value IMappingModel)
 	MigrationProgress() float32
-	SourceContext() NSManagedObjectContext
-	SourceModel() NSManagedObjectModel
-	UserInfo() objc.ID
-	SetUserInfo(value objc.ID)
+	SetMigrationProgress(value float32)
+	SourceContext() IManagedObjectContext
+	SetSourceContext(value IManagedObjectContext)
+	SourceModel() IManagedObjectModel
+	SetSourceModel(value IManagedObjectModel)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	UsesStoreSpecificMigrationManager() bool
 	SetUsesStoreSpecificMigrationManager(value bool)
+	DestinationEntityForEntityMapping(mEntity IEntityMapping) IEntityDescription
 }
 
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model.
@@ -103,92 +102,12 @@ func NewMigrationManager() MigrationManager {
 
 
 
-// Initializes a migration manager instance with given source and destination models.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/init(sourceModel:destinationModel:)
-func NewMigrationManagerWithSourceModelDestinationModel(sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MigrationManager {
-	instance := getMigrationManagerClass().Alloc()
-	rv := objc.Send[MigrationManager](instance.ID, objc.Sel("initWithSourceModel:destinationModel:"), sourceModel, destinationModel)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Associates a given source managed object instance with an array of destination instances for a given property mapping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/associate(sourceInstance:withDestinationInstance:for:)
-func (m_ MigrationManager) AssociateSourceInstanceWithDestinationInstanceForEntityMapping(sourceInstance IManagedObject, destinationInstance IManagedObject, entityMapping IEntityMapping) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("associateSourceInstance:withDestinationInstance:forEntityMapping:"), sourceInstance, destinationInstance, entityMapping)
-}
-
-
-// Cancels the migration with a given error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/cancelMigrationWithError(_:)
-func (m_ MigrationManager) CancelMigrationWithError(error_ foundation.IError) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelMigrationWithError:"), error_)
-}
-
-
 // Returns the entity description for the destination entity of a given entity mapping.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationEntity(for:)
-func (m_ MigrationManager) DestinationEntityForEntityMapping(mEntity IEntityMapping) EntityDescription {
+func (m_ MigrationManager) DestinationEntityForEntityMapping(mEntity IEntityMapping) IEntityDescription {
 	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("destinationEntityForEntityMapping:"), mEntity)
-	return rv
-}
-
-
-// Returns the managed object instances created in the destination store for the named entity mapping for the given array of source instances.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationInstances(forEntityMappingName:sourceInstances:)
-func (m_ MigrationManager) DestinationInstancesForEntityMappingNamedSourceInstances(mappingName string, sourceInstances []ManagedObject) []ManagedObject {
-	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("destinationInstancesForEntityMappingNamed:sourceInstances:"), objc.String(mappingName), sourceInstances)
-	return rv
-}
-
-
-// Migrates the store at a given source URL to the store at a given destination URL, performing all of the mappings specified in a given mapping model.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrateStore(from:sourceType:options:with:toDestinationURL:destinationType:destinationOptions:)
-func (m_ MigrationManager) MigrateStoreFromURLTypeOptionsWithMappingModelToDestinationURLDestinationTypeDestinationOptionsError(sourceURL foundation.IURL, sStoreType string, sOptions objectivec.IObject, mappings IMappingModel, dURL foundation.IURL, dStoreType string, dOptions objectivec.IObject, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:"), sourceURL, objc.String(sStoreType), sOptions, mappings, dURL, objc.String(dStoreType), dOptions, error_)
-	return rv
-}
-
-
-// Resets the association tables for the migration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/reset()
-func (m_ MigrationManager) Reset() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
-}
-
-
-// Returns the entity description for the source entity of a given entity mapping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/sourceEntity(for:)
-func (m_ MigrationManager) SourceEntityForEntityMapping(mEntity IEntityMapping) EntityDescription {
-	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("sourceEntityForEntityMapping:"), mEntity)
-	return rv
-}
-
-
-// Returns the managed object instances in the source store used to create the given destination instances for the passed in property mapping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/sourceInstances(forEntityMappingName:destinationInstances:)
-func (m_ MigrationManager) SourceInstancesForEntityMappingNamedDestinationInstances(mappingName string, destinationInstances []ManagedObject) []ManagedObject {
-	rv := objc.Send[[]ManagedObject](m_.ID, objc.Sel("sourceInstancesForEntityMappingNamed:destinationInstances:"), objc.String(mappingName), destinationInstances)
 	return rv
 }
 
@@ -196,9 +115,28 @@ func (m_ MigrationManager) SourceInstancesForEntityMappingNamedDestinationInstan
 // The entity mapping currently being processed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/currentEntityMapping
-func (m_ MigrationManager) CurrentEntityMapping() NSEntityMapping {
-	rv := objc.Send[NSEntityMapping](m_.ID, objc.Sel("currentEntityMapping"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/currententitymapping
+func (m_ MigrationManager) CurrentEntityMapping() IEntityMapping {
+	rv := objc.Send[EntityMapping](m_.ID, objc.Sel("currentEntityMapping"))
+	return rv
+}
+
+
+// The entity mapping currently being processed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/currententitymapping
+func (m_ MigrationManager) SetCurrentEntityMapping(value IEntityMapping) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentEntityMapping:"), value)
+}
+
+
+// The managed object context the migration manager uses for writing the destination persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/destinationcontext
+func (m_ MigrationManager) DestinationContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](m_.ID, objc.Sel("destinationContext"))
 	return rv
 }
 
@@ -206,9 +144,18 @@ func (m_ MigrationManager) CurrentEntityMapping() NSEntityMapping {
 // The managed object context the migration manager uses for writing the destination persistent store.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationContext
-func (m_ MigrationManager) DestinationContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](m_.ID, objc.Sel("destinationContext"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/destinationcontext
+func (m_ MigrationManager) SetDestinationContext(value IManagedObjectContext) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationContext:"), value)
+}
+
+
+// The destination model for the migration manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/destinationmodel
+func (m_ MigrationManager) DestinationModel() IManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](m_.ID, objc.Sel("destinationModel"))
 	return rv
 }
 
@@ -216,9 +163,18 @@ func (m_ MigrationManager) DestinationContext() NSManagedObjectContext {
 // The destination model for the migration manager.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/destinationModel
-func (m_ MigrationManager) DestinationModel() NSManagedObjectModel {
-	rv := objc.Send[NSManagedObjectModel](m_.ID, objc.Sel("destinationModel"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/destinationmodel
+func (m_ MigrationManager) SetDestinationModel(value IManagedObjectModel) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationModel:"), value)
+}
+
+
+// The mapping model for the migration manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/mappingmodel
+func (m_ MigrationManager) MappingModel() IMappingModel {
+	rv := objc.Send[MappingModel](m_.ID, objc.Sel("mappingModel"))
 	return rv
 }
 
@@ -226,19 +182,37 @@ func (m_ MigrationManager) DestinationModel() NSManagedObjectModel {
 // The mapping model for the migration manager.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/mappingModel
-func (m_ MigrationManager) MappingModel() NSMappingModel {
-	rv := objc.Send[NSMappingModel](m_.ID, objc.Sel("mappingModel"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/mappingmodel
+func (m_ MigrationManager) SetMappingModel(value IMappingModel) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMappingModel:"), value)
+}
+
+
+// A number between
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/migrationprogress
+func (m_ MigrationManager) MigrationProgress() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("migrationProgress"))
 	return rv
 }
 
 
-// A number between and that indicates the proportion of completeness of the migration.
+// A number between
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/migrationProgress
-func (m_ MigrationManager) MigrationProgress() float32 {
-	rv := objc.Send[float32](m_.ID, objc.Sel("migrationProgress"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/migrationprogress
+func (m_ MigrationManager) SetMigrationProgress(value float32) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMigrationProgress:"), value)
+}
+
+
+// The managed object context the migration manager uses for reading the source persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/sourcecontext
+func (m_ MigrationManager) SourceContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](m_.ID, objc.Sel("sourceContext"))
 	return rv
 }
 
@@ -246,9 +220,18 @@ func (m_ MigrationManager) MigrationProgress() float32 {
 // The managed object context the migration manager uses for reading the source persistent store.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/sourceContext
-func (m_ MigrationManager) SourceContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](m_.ID, objc.Sel("sourceContext"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/sourcecontext
+func (m_ MigrationManager) SetSourceContext(value IManagedObjectContext) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceContext:"), value)
+}
+
+
+// The source model for the migration manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/sourcemodel
+func (m_ MigrationManager) SourceModel() IManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](m_.ID, objc.Sel("sourceModel"))
 	return rv
 }
 
@@ -256,9 +239,18 @@ func (m_ MigrationManager) SourceContext() NSManagedObjectContext {
 // The source model for the migration manager.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/sourceModel
-func (m_ MigrationManager) SourceModel() NSManagedObjectModel {
-	rv := objc.Send[NSManagedObjectModel](m_.ID, objc.Sel("sourceModel"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/sourcemodel
+func (m_ MigrationManager) SetSourceModel(value IManagedObjectModel) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceModel:"), value)
+}
+
+
+// The user info for the migration manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/userinfo
+func (m_ MigrationManager) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -266,18 +258,8 @@ func (m_ MigrationManager) SourceModel() NSManagedObjectModel {
 // The user info for the migration manager.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/userInfo
-func (m_ MigrationManager) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// The user info for the migration manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/userInfo
-func (m_ MigrationManager) SetUserInfo(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/userinfo
+func (m_ MigrationManager) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInfo:"), value)
 }
 
@@ -285,7 +267,7 @@ func (m_ MigrationManager) SetUserInfo(value objc.ID) {
 // A Boolean value that indicates whether the migration manager tries to use a store specific migration manager to perform the migration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/usesStoreSpecificMigrationManager
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/usesstorespecificmigrationmanager
 func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("usesStoreSpecificMigrationManager"))
 	return rv
@@ -295,9 +277,10 @@ func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 // A Boolean value that indicates whether the migration manager tries to use a store specific migration manager to perform the migration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationManager/usesStoreSpecificMigrationManager
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/usesstorespecificmigrationmanager
 func (m_ MigrationManager) SetUsesStoreSpecificMigrationManager(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesStoreSpecificMigrationManager:"), value)
 }
+
 
 

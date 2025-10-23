@@ -30,12 +30,14 @@ type _GLKSubmeshClass struct {
 // An interface definition for the [GLKSubmesh] class.
 type IGLKSubmesh interface {
 	objectivec.IObject
-	ElementBuffer() GLKMeshBuffer
+	// properties:
+	ElementBuffer() IGLKMeshBuffer
 	ElementCount() unsafe.Pointer
-	Mesh() GLKMesh
+	Mesh() IGLKMesh
 	Mode() unsafe.Pointer
 	Name() string
 	Type() unsafe.Pointer
+	// methods:
 }
 
 
@@ -86,7 +88,7 @@ func NewGLKSubmesh() GLKSubmesh {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/elementBuffer
-func (g_ GLKSubmesh) ElementBuffer() GLKMeshBuffer {
+func (g_ GLKSubmesh) ElementBuffer() IGLKMeshBuffer {
 	rv := objc.Send[GLKMeshBuffer](g_.ID, objc.Sel("elementBuffer"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (g_ GLKSubmesh) ElementCount() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/mesh
-func (g_ GLKSubmesh) Mesh() GLKMesh {
+func (g_ GLKSubmesh) Mesh() IGLKMesh {
 	rv := objc.Send[GLKMesh](g_.ID, objc.Sel("mesh"))
 	return rv
 }

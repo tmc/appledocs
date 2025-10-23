@@ -29,13 +29,13 @@ type _GridGraphClass struct {
 // An interface definition for the [GridGraph] class.
 type IGridGraph interface {
 	IGraph
-	ClassForGenericArgumentAtIndex(index uint) objc.Class
-	ConnectNodeToAdjacentNodes(node IGKGridGraphNode)
-	NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer
 	DiagonalsAllowed() bool
 	GridHeight() uint
 	GridOrigin() unsafe.Pointer
 	GridWidth() uint
+	ClassForGenericArgumentAtIndex(index uint) objc.Class
+	ConnectNodeToAdjacentNodes(node IGKGridGraphNode)
+	NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer
 }
 
 // A navigation graph for 2D game worlds where movement is constrained to an integer grid.

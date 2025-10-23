@@ -31,8 +31,9 @@ type ISpeechSynthesisProviderAudioUnit interface {
 	IAudioUnit
 	SpeechSynthesisOutputMetadataBlock() unsafe.Pointer
 	SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer)
-	SpeechVoices() AVSpeechSynthesisProviderVoice
+	SpeechVoices() IAVSpeechSynthesisProviderVoice
 	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
+	SynthesizeSpeechRequest(speechRequest SpeechSynthesisProviderRequest)
 }
 
 // An object that generates speech from text.
@@ -90,10 +91,19 @@ func NewSpeechSynthesisProviderAudioUnit() SpeechSynthesisProviderAudioUnit {
 
 
 
+// Sets the text to synthesize and the voice to use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/synthesizeSpeechRequest(_:)
+func (s_ SpeechSynthesisProviderAudioUnit) SynthesizeSpeechRequest(speechRequest SpeechSynthesisProviderRequest) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("synthesizeSpeechRequest:"), speechRequest)
+}
+
+
 // A block that subclasses use to send marker information to the host.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechsynthesisoutputmetadatablock
 func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechSynthesisOutputMetadataBlock"))
 	return rv
@@ -103,7 +113,7 @@ func (s_ SpeechSynthesisProviderAudioUnit) SpeechSynthesisOutputMetadataBlock() 
 // A block that subclasses use to send marker information to the host.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderAudioUnit/speechSynthesisOutputMetadataBlock
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechsynthesisoutputmetadatablock
 func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechSynthesisOutputMetadataBlock:"), value)
 }
@@ -113,8 +123,8 @@ func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() AVSpeechSynthesisProviderVoice {
-	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
+func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() IAVSpeechSynthesisProviderVoice {
+	rv := objc.Send[SpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
 }
 

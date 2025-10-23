@@ -30,7 +30,8 @@ type _JSValueClass struct {
 // An interface definition for the [JSValue] class.
 type IJSValue interface {
 	objectivec.IObject
-	Context() JSContext
+	// properties:
+	Context() IJSContext
 	IsArray() bool
 	SetIsArray(value bool)
 	IsBigInt() bool
@@ -52,7 +53,8 @@ type IJSValue interface {
 	IsUndefined() bool
 	SetIsUndefined(value bool)
 	JsValueRef() JSValueRef
-	SetJsValueRef(value IJSValueRef)
+	SetJsValueRef(value JSValueRef)
+	// methods:
 }
 
 // A JavaScript value.
@@ -112,7 +114,7 @@ func NewJSValue() JSValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValue/context
-func (j_ JSValue) Context() JSContext {
+func (j_ JSValue) Context() IJSContext {
 	rv := objc.Send[JSContext](j_.ID, objc.Sel("context"))
 	return rv
 }
@@ -318,7 +320,7 @@ func (j_ JSValue) JsValueRef() JSValueRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/jsvalueref
-func (j_ JSValue) SetJsValueRef(value IJSValueRef) {
+func (j_ JSValue) SetJsValueRef(value JSValueRef) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsValueRef:"), value)
 }
 

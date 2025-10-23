@@ -30,6 +30,8 @@ type _SecretClass struct {
 // An interface definition for the [Secret] class.
 type ISecret interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	LoadDataWithCompletion(handler unsafe.Pointer)
 }
 

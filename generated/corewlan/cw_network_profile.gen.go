@@ -31,10 +31,10 @@ type _CWNetworkProfileClass struct {
 // An interface definition for the [CWNetworkProfile] class.
 type ICWNetworkProfile interface {
 	objectivec.IObject
-	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool
 	Security() CWSecurity
 	Ssid() string
 	SsidData() foundation.NSData
+	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool
 }
 
 // Encapsulates an immutable network profile entry.

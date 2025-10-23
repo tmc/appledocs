@@ -31,6 +31,7 @@ type _MKGeocodingRequestClass struct {
 // An interface definition for the [MKGeocodingRequest] class.
 type IMKGeocodingRequest interface {
 	objectivec.IObject
+	// properties:
 	AddressString() string
 	SetAddressString(value string)
 	IsCancelled() bool
@@ -38,12 +39,15 @@ type IMKGeocodingRequest interface {
 	IsLoading() bool
 	SetIsLoading(value bool)
 	PreferredLocale() foundation.Locale
-	SetPreferredLocale(value foundation.ILocale)
+	SetPreferredLocale(value foundation.Locale)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
+	// methods:
 }
 
 // A class that looks up a geographic coordinate using the provided string.
+//
+// Use this class to look up the coordinate for an address string you provide, for example if you want to display the location in a map. This example shows how to use a modifier on a SwiftUI view to geocode an array of street addresses to the corresponding coordinates that MapKit returns in an array of objects.
 
 
 // A class that looks up a geographic coordinate using the provided string.
@@ -165,7 +169,7 @@ func (m_ MKGeocodingRequest) PreferredLocale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
-func (m_ MKGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
+func (m_ MKGeocodingRequest) SetPreferredLocale(value foundation.Locale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

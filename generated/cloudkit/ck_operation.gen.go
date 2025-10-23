@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKOperation] class.
@@ -30,25 +29,16 @@ type _CKOperationClass struct {
 // An interface definition for the [CKOperation] class.
 type ICKOperation interface {
 	IOperation
-	AllowsCellularAccess() bool
-	SetAllowsCellularAccess(value bool)
-	Configuration() CKOperationConfiguration
-	SetConfiguration(value ICKOperationConfiguration)
-	Container() CKContainer
-	SetContainer(value ICKContainer)
-	Group() CKOperationGroup
+	Group() ICKOperationGroup
 	SetGroup(value ICKOperationGroup)
-	LongLived() bool
-	SetLongLived(value bool)
+	Configuration() ICKOperationConfiguration
+	SetConfiguration(value ICKOperationConfiguration)
+	IsLongLived() bool
+	SetIsLongLived(value bool)
 	LongLivedOperationWasPersistedBlock() unsafe.Pointer
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
 	OperationID() unsafe.Pointer
-	TimeoutIntervalForRequest() foundation.TimeInterval
-	SetTimeoutIntervalForRequest(value foundation.ITimeInterval)
-	TimeoutIntervalForResource() foundation.TimeInterval
-	SetTimeoutIntervalForResource(value foundation.ITimeInterval)
-	IsLongLived() bool
-	SetIsLongLived(value bool)
+	SetOperationID(value unsafe.Pointer)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
 }
@@ -108,69 +98,11 @@ func NewCKOperation() CKOperation {
 
 
 
-
-// A Boolean value that indicates whether the operation can send data over the cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/allowsCellularAccess
-func (c_ CKOperation) AllowsCellularAccess() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the operation can send data over the cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/allowsCellularAccess
-func (c_ CKOperation) SetAllowsCellularAccess(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}
-
-
-// The operation’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/configuration-swift.property
-func (c_ CKOperation) Configuration() CKOperationConfiguration {
-	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// The operation’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/configuration-swift.property
-func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
-}
-
-
-// The operation’s container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/container
-func (c_ CKOperation) Container() CKContainer {
-	rv := objc.Send[CKContainer](c_.ID, objc.Sel("container"))
-	return rv
-}
-
-
-// The operation’s container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/container
-func (c_ CKOperation) SetContainer(value ICKContainer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
-}
-
-
 // The operation’s group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
-func (c_ CKOperation) Group() CKOperationGroup {
+func (c_ CKOperation) Group() ICKOperationGroup {
 	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -185,89 +117,22 @@ func (c_ CKOperation) SetGroup(value ICKOperationGroup) {
 }
 
 
-// A Boolean value that indicates whether the operation is long-lived.
+// The operation’s configuration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/isLongLived
-func (c_ CKOperation) LongLived() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("longLived"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
+func (c_ CKOperation) Configuration() ICKOperationConfiguration {
+	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether the operation is long-lived.
+// The operation’s configuration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/isLongLived
-func (c_ CKOperation) SetLongLived(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLived:"), value)
-}
-
-
-// The closure to execute when the server begins to store callbacks for the long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/longLivedOperationWasPersistedBlock
-func (c_ CKOperation) LongLivedOperationWasPersistedBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("longLivedOperationWasPersistedBlock"))
-	return rv
-}
-
-
-// The closure to execute when the server begins to store callbacks for the long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/longLivedOperationWasPersistedBlock
-func (c_ CKOperation) SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLivedOperationWasPersistedBlock:"), value)
-}
-
-
-// A unique identifier for a long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/operationID-3eujz
-func (c_ CKOperation) OperationID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operationID"))
-	return rv
-}
-
-
-// The timeout interval when waiting for additional data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-func (c_ CKOperation) TimeoutIntervalForRequest() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForRequest"))
-	return rv
-}
-
-
-// The timeout interval when waiting for additional data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForRequest
-func (c_ CKOperation) SetTimeoutIntervalForRequest(value foundation.ITimeInterval) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
-}
-
-
-// The maximum amount of time that a resource request can use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-func (c_ CKOperation) TimeoutIntervalForResource() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("timeoutIntervalForResource"))
-	return rv
-}
-
-
-// The maximum amount of time that a resource request can use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/timeoutIntervalForResource
-func (c_ CKOperation) SetTimeoutIntervalForResource(value foundation.ITimeInterval) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
+func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 
@@ -290,6 +155,44 @@ func (c_ CKOperation) SetIsLongLived(value bool) {
 }
 
 
+// The closure to execute when the server begins to store callbacks for the long-lived operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/longlivedoperationwaspersistedblock
+func (c_ CKOperation) LongLivedOperationWasPersistedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("longLivedOperationWasPersistedBlock"))
+	return rv
+}
+
+
+// The closure to execute when the server begins to store callbacks for the long-lived operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/longlivedoperationwaspersistedblock
+func (c_ CKOperation) SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLivedOperationWasPersistedBlock:"), value)
+}
+
+
+// A unique identifier for a long-lived operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/operationid-8auuc
+func (c_ CKOperation) OperationID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operationID"))
+	return rv
+}
+
+
+// A unique identifier for a long-lived operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/operationid-8auuc
+func (c_ CKOperation) SetOperationID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOperationID:"), value)
+}
+
+
 // The relative amount of importance for granting system resources to the operation.
 //
 // [Full Topic]
@@ -307,5 +210,6 @@ func (c_ CKOperation) QualityOfService() unsafe.Pointer {
 func (c_ CKOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 
 

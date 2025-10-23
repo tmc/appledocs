@@ -29,6 +29,8 @@ type _HKUserAnnotatedMedicationTypeClass struct {
 // An interface definition for the [HKUserAnnotatedMedicationType] class.
 type IHKUserAnnotatedMedicationType interface {
 	IHKObjectType
+	// properties:
+	// methods:
 }
 
 

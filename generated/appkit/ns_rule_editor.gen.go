@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RuleEditor] class.
@@ -31,50 +30,36 @@ type _RuleEditorClass struct {
 // An interface definition for the [RuleEditor] class.
 type IRuleEditor interface {
 	IControl
-	AddRow(sender objectivec.IObject)
-	CriteriaForRow(row int) foundation.Array
-	DisplayValuesForRow(row int) foundation.Array
-	InsertRowAtIndexWithTypeAsSubrowOfRowAnimate(rowIndex int, rowType RuleEditorRowType, parentRow int, shouldAnimate bool)
-	ParentRowForRow(rowIndex int) int
-	PredicateForRow(row int) foundation.Predicate
-	ReloadCriteria()
-	ReloadPredicate()
-	RemoveRowAtIndex(rowIndex int)
-	RemoveRowsAtIndexesIncludeSubrows(rowIndexes foundation.IIndexSet, includeSubrows bool)
-	RowForDisplayValue(displayValue objectivec.IObject) int
-	RowTypeForRow(rowIndex int) RuleEditorRowType
-	SelectRowIndexesByExtendingSelection(indexes foundation.IIndexSet, extend bool)
-	SetCriteriaAndDisplayValuesForRowAtIndex(criteria objectivec.IObject, values objectivec.IObject, rowIndex int)
-	SubrowIndexesForRow(rowIndex int) foundation.IndexSet
 	CanRemoveAllRows() bool
 	SetCanRemoveAllRows(value bool)
 	CriteriaKeyPath() string
 	SetCriteriaKeyPath(value string)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	DisplayValuesKeyPath() string
 	SetDisplayValuesKeyPath(value string)
-	FormattingDictionary() unsafe.Pointer
-	SetFormattingDictionary(value unsafe.Pointer)
+	FormattingDictionary() string
+	SetFormattingDictionary(value string)
 	FormattingStringsFilename() string
 	SetFormattingStringsFilename(value string)
-	Editable() bool
-	SetEditable(value bool)
-	NestingMode() RuleEditorNestingMode
-	SetNestingMode(value RuleEditorNestingMode)
+	IsEditable() bool
+	SetIsEditable(value bool)
+	NestingMode() unsafe.Pointer
+	SetNestingMode(value unsafe.Pointer)
 	NumberOfRows() int
+	SetNumberOfRows(value int)
 	Predicate() foundation.Predicate
-	RowClass() objc.Class
-	SetRowClass(value objc.Class)
+	SetPredicate(value foundation.Predicate)
+	RowClass() unsafe.Pointer
+	SetRowClass(value unsafe.Pointer)
 	RowHeight() float64
 	SetRowHeight(value float64)
 	RowTypeKeyPath() string
 	SetRowTypeKeyPath(value string)
 	SelectedRowIndexes() foundation.IndexSet
+	SetSelectedRowIndexes(value foundation.IndexSet)
 	SubrowsKeyPath() string
 	SetSubrowsKeyPath(value string)
-	IsEditable() bool
-	SetIsEditable(value bool)
 }
 
 // An interface for configuring a rule-based list of options.
@@ -132,152 +117,10 @@ func NewRuleEditor() RuleEditor {
 
 
 
-// Adds a row to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/addRow(_:)
-func (r_ RuleEditor) AddRow(sender objectivec.IObject) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("addRow:"), sender)
-}
-
-
-// Returns the currently chosen items for a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/criteria(forRow:)
-func (r_ RuleEditor) CriteriaForRow(row int) foundation.Array {
-	rv := objc.Send[foundation.Array](r_.ID, objc.Sel("criteriaForRow:"), row)
-	return rv
-}
-
-
-// Returns the chosen values for a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/displayValues(forRow:)
-func (r_ RuleEditor) DisplayValuesForRow(row int) foundation.Array {
-	rv := objc.Send[foundation.Array](r_.ID, objc.Sel("displayValuesForRow:"), row)
-	return rv
-}
-
-
-// Adds a new row of a given type at a given location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/insertRow(at:with:asSubrowOfRow:animate:)
-func (r_ RuleEditor) InsertRowAtIndexWithTypeAsSubrowOfRowAnimate(rowIndex int, rowType RuleEditorRowType, parentRow int, shouldAnimate bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("insertRowAtIndex:withType:asSubrowOfRow:animate:"), rowIndex, rowType, parentRow, shouldAnimate)
-}
-
-
-// Returns the index of the parent of a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/parentRow(forRow:)
-func (r_ RuleEditor) ParentRowForRow(rowIndex int) int {
-	rv := objc.Send[int](r_.ID, objc.Sel("parentRowForRow:"), rowIndex)
-	return rv
-}
-
-
-// Returns the predicate for a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/predicate(forRow:)
-func (r_ RuleEditor) PredicateForRow(row int) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicateForRow:"), row)
-	return rv
-}
-
-
-// Instructs the receiver to refetch criteria from its delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/reloadCriteria()
-func (r_ RuleEditor) ReloadCriteria() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("reloadCriteria"))
-}
-
-
-// Instructs the receiver to regenerate its predicate by invoking the corresponding delegate method.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/reloadPredicate()
-func (r_ RuleEditor) ReloadPredicate() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("reloadPredicate"))
-}
-
-
-// Removes the row at a given index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/removeRow(at:)
-func (r_ RuleEditor) RemoveRowAtIndex(rowIndex int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("removeRowAtIndex:"), rowIndex)
-}
-
-
-// Removes the rows at given indexes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/removeRows(at:includeSubrows:)
-func (r_ RuleEditor) RemoveRowsAtIndexesIncludeSubrows(rowIndexes foundation.IIndexSet, includeSubrows bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("removeRowsAtIndexes:includeSubrows:"), rowIndexes, includeSubrows)
-}
-
-
-// Returns the index of the row containing a given value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/row(forDisplayValue:)
-func (r_ RuleEditor) RowForDisplayValue(displayValue objectivec.IObject) int {
-	rv := objc.Send[int](r_.ID, objc.Sel("rowForDisplayValue:"), displayValue)
-	return rv
-}
-
-
-// Returns the type of a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowType(forRow:)
-func (r_ RuleEditor) RowTypeForRow(rowIndex int) RuleEditorRowType {
-	rv := objc.Send[RuleEditorRowType](r_.ID, objc.Sel("rowTypeForRow:"), rowIndex)
-	return rv
-}
-
-
-// Sets in the receiver the indexes of rows that are selected.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/selectRowIndexes(_:byExtendingSelection:)
-func (r_ RuleEditor) SelectRowIndexesByExtendingSelection(indexes foundation.IIndexSet, extend bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("selectRowIndexes:byExtendingSelection:"), indexes, extend)
-}
-
-
-// Modifies the row at a given index to contain the given items and values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/setCriteria(_:andDisplayValues:forRowAt:)
-func (r_ RuleEditor) SetCriteriaAndDisplayValuesForRowAtIndex(criteria objectivec.IObject, values objectivec.IObject, rowIndex int) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setCriteria:andDisplayValues:forRowAtIndex:"), criteria, values, rowIndex)
-}
-
-
-// Returns the immediate subrows of a given row.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowIndexes(forRow:)
-func (r_ RuleEditor) SubrowIndexesForRow(rowIndex int) foundation.IndexSet {
-	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("subrowIndexesForRow:"), rowIndex)
-	return rv
-}
-
-
 // A Boolean value that indicates whether all the rows can be removed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/canRemoveAllRows
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/canremoveallrows
 func (r_ RuleEditor) CanRemoveAllRows() bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("canRemoveAllRows"))
 	return rv
@@ -287,7 +130,7 @@ func (r_ RuleEditor) CanRemoveAllRows() bool {
 // A Boolean value that indicates whether all the rows can be removed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/canRemoveAllRows
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/canremoveallrows
 func (r_ RuleEditor) SetCanRemoveAllRows(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCanRemoveAllRows:"), value)
 }
@@ -296,7 +139,7 @@ func (r_ RuleEditor) SetCanRemoveAllRows(value bool) {
 // The criteria key path.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/criteriaKeyPath
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/criteriakeypath
 func (r_ RuleEditor) CriteriaKeyPath() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("criteriaKeyPath"))
 	return rv
@@ -306,7 +149,7 @@ func (r_ RuleEditor) CriteriaKeyPath() string {
 // The criteria key path.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/criteriaKeyPath
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/criteriakeypath
 func (r_ RuleEditor) SetCriteriaKeyPath(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCriteriaKeyPath:"), objc.String(value))
 }
@@ -315,9 +158,9 @@ func (r_ RuleEditor) SetCriteriaKeyPath(value string) {
 // The rule editor’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/delegate
-func (r_ RuleEditor) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/delegate
+func (r_ RuleEditor) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -325,8 +168,8 @@ func (r_ RuleEditor) Delegate() objc.ID {
 // The rule editor’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/delegate
-func (r_ RuleEditor) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/delegate
+func (r_ RuleEditor) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -334,7 +177,7 @@ func (r_ RuleEditor) SetDelegate(value objc.ID) {
 // The display values key path.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/displayValuesKeyPath
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/displayvalueskeypath
 func (r_ RuleEditor) DisplayValuesKeyPath() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("displayValuesKeyPath"))
 	return rv
@@ -344,7 +187,7 @@ func (r_ RuleEditor) DisplayValuesKeyPath() string {
 // The display values key path.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/displayValuesKeyPath
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/displayvalueskeypath
 func (r_ RuleEditor) SetDisplayValuesKeyPath(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDisplayValuesKeyPath:"), objc.String(value))
 }
@@ -353,9 +196,9 @@ func (r_ RuleEditor) SetDisplayValuesKeyPath(value string) {
 // The formatting dictionary for the rule editor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/formattingDictionary
-func (r_ RuleEditor) FormattingDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("formattingDictionary"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingdictionary
+func (r_ RuleEditor) FormattingDictionary() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("formattingDictionary"))
 	return rv
 }
 
@@ -363,16 +206,16 @@ func (r_ RuleEditor) FormattingDictionary() unsafe.Pointer {
 // The formatting dictionary for the rule editor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/formattingDictionary
-func (r_ RuleEditor) SetFormattingDictionary(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingDictionary:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingdictionary
+func (r_ RuleEditor) SetFormattingDictionary(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingDictionary:"), objc.String(value))
 }
 
 
 // The name of the rule editor’s strings file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/formattingStringsFilename
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingstringsfilename
 func (r_ RuleEditor) FormattingStringsFilename() string {
 	rv := objc.Send[string](r_.ID, objc.Sel("formattingStringsFilename"))
 	return rv
@@ -382,153 +225,9 @@ func (r_ RuleEditor) FormattingStringsFilename() string {
 // The name of the rule editor’s strings file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/formattingStringsFilename
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/formattingstringsfilename
 func (r_ RuleEditor) SetFormattingStringsFilename(value string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingStringsFilename:"), objc.String(value))
-}
-
-
-// A Boolean value that determines whether the rule editor is editable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/isEditable
-func (r_ RuleEditor) Editable() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("editable"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the rule editor is editable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/isEditable
-func (r_ RuleEditor) SetEditable(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setEditable:"), value)
-}
-
-
-// The rule editor’s nesting mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/nestingMode-swift.property
-func (r_ RuleEditor) NestingMode() RuleEditorNestingMode {
-	rv := objc.Send[RuleEditorNestingMode](r_.ID, objc.Sel("nestingMode"))
-	return rv
-}
-
-
-// The rule editor’s nesting mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/nestingMode-swift.property
-func (r_ RuleEditor) SetNestingMode(value RuleEditorNestingMode) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setNestingMode:"), value)
-}
-
-
-// The number of rows in the rule editor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/numberOfRows
-func (r_ RuleEditor) NumberOfRows() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("numberOfRows"))
-	return rv
-}
-
-
-// The rule editor’s predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/predicate
-func (r_ RuleEditor) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-
-// The class used to create a new row in the “rows” binding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowClass
-func (r_ RuleEditor) RowClass() objc.Class {
-	rv := objc.Send[objc.Class](r_.ID, objc.Sel("rowClass"))
-	return rv
-}
-
-
-// The class used to create a new row in the “rows” binding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowClass
-func (r_ RuleEditor) SetRowClass(value objc.Class) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRowClass:"), value)
-}
-
-
-// The rule editor’s row height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowHeight
-func (r_ RuleEditor) RowHeight() float64 {
-	rv := objc.Send[float64](r_.ID, objc.Sel("rowHeight"))
-	return rv
-}
-
-
-// The rule editor’s row height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowHeight
-func (r_ RuleEditor) SetRowHeight(value float64) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRowHeight:"), value)
-}
-
-
-// The key path for the row type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowTypeKeyPath
-func (r_ RuleEditor) RowTypeKeyPath() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("rowTypeKeyPath"))
-	return rv
-}
-
-
-// The key path for the row type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/rowTypeKeyPath
-func (r_ RuleEditor) SetRowTypeKeyPath(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRowTypeKeyPath:"), objc.String(value))
-}
-
-
-// The indexes of the rule editor’s selected rows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/selectedRowIndexes
-func (r_ RuleEditor) SelectedRowIndexes() foundation.IndexSet {
-	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("selectedRowIndexes"))
-	return rv
-}
-
-
-// The key path for the subrows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowsKeyPath
-func (r_ RuleEditor) SubrowsKeyPath() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("subrowsKeyPath"))
-	return rv
-}
-
-
-// The key path for the subrows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowsKeyPath
-func (r_ RuleEditor) SetSubrowsKeyPath(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), objc.String(value))
 }
 
 
@@ -548,6 +247,158 @@ func (r_ RuleEditor) IsEditable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/iseditable
 func (r_ RuleEditor) SetIsEditable(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsEditable:"), value)
+}
+
+
+// The rule editor’s nesting mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.property
+func (r_ RuleEditor) NestingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nestingMode"))
+	return rv
+}
+
+
+// The rule editor’s nesting mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.property
+func (r_ RuleEditor) SetNestingMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setNestingMode:"), value)
+}
+
+
+// The number of rows in the rule editor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/numberofrows
+func (r_ RuleEditor) NumberOfRows() int {
+	rv := objc.Send[int](r_.ID, objc.Sel("numberOfRows"))
+	return rv
+}
+
+
+// The number of rows in the rule editor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/numberofrows
+func (r_ RuleEditor) SetNumberOfRows(value int) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfRows:"), value)
+}
+
+
+// The rule editor’s predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/predicate
+func (r_ RuleEditor) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](r_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// The rule editor’s predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/predicate
+func (r_ RuleEditor) SetPredicate(value foundation.Predicate) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPredicate:"), value)
+}
+
+
+// The class used to create a new row in the “rows” binding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowclass
+func (r_ RuleEditor) RowClass() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rowClass"))
+	return rv
+}
+
+
+// The class used to create a new row in the “rows” binding.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowclass
+func (r_ RuleEditor) SetRowClass(value unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRowClass:"), value)
+}
+
+
+// The rule editor’s row height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowheight
+func (r_ RuleEditor) RowHeight() float64 {
+	rv := objc.Send[float64](r_.ID, objc.Sel("rowHeight"))
+	return rv
+}
+
+
+// The rule editor’s row height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowheight
+func (r_ RuleEditor) SetRowHeight(value float64) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRowHeight:"), value)
+}
+
+
+// The key path for the row type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowtypekeypath
+func (r_ RuleEditor) RowTypeKeyPath() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("rowTypeKeyPath"))
+	return rv
+}
+
+
+// The key path for the row type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/rowtypekeypath
+func (r_ RuleEditor) SetRowTypeKeyPath(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRowTypeKeyPath:"), objc.String(value))
+}
+
+
+// The indexes of the rule editor’s selected rows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/selectedrowindexes
+func (r_ RuleEditor) SelectedRowIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("selectedRowIndexes"))
+	return rv
+}
+
+
+// The indexes of the rule editor’s selected rows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/selectedrowindexes
+func (r_ RuleEditor) SetSelectedRowIndexes(value foundation.IndexSet) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSelectedRowIndexes:"), value)
+}
+
+
+// The key path for the subrows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/subrowskeypath
+func (r_ RuleEditor) SubrowsKeyPath() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("subrowsKeyPath"))
+	return rv
+}
+
+
+// The key path for the subrows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsruleeditor/subrowskeypath
+func (r_ RuleEditor) SetSubrowsKeyPath(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), objc.String(value))
 }
 
 

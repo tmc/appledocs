@@ -30,8 +30,10 @@ type _EnvironmentMechanismCompanionClass struct {
 // An interface definition for the [EnvironmentMechanismCompanion] class.
 type IEnvironmentMechanismCompanion interface {
 	IEnvironmentMechanism
+	// properties:
 	StateHash() foundation.NSData
-	Type() CompanionType
+	Type() LACompanionType
+	// methods:
 }
 
 
@@ -94,8 +96,8 @@ func (e_ EnvironmentMechanismCompanion) StateHash() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion/type
-func (e_ EnvironmentMechanismCompanion) Type() CompanionType {
-	rv := objc.Send[CompanionType](e_.ID, objc.Sel("type"))
+func (e_ EnvironmentMechanismCompanion) Type() LACompanionType {
+	rv := objc.Send[LACompanionType](e_.ID, objc.Sel("type"))
 	return rv
 }
 

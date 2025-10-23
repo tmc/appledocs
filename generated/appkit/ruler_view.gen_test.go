@@ -14,7 +14,7 @@ var _ = appkit.NewRulerView
 func ExampleNewRulerViewWithScrollViewOrientation() {
 	_ = appkit.NewRulerViewWithScrollViewOrientation(
 		appkit.NSScrollView{}, // scrollView NSScrollView
-		appkit.RulerOrientation{}, // orientation RulerOrientation
+		appkit.NSRulerOrientation{}, // orientation NSRulerOrientation
 	)
 	// Output:
 }

@@ -31,15 +31,15 @@ type _InputPickerInteractionClass struct {
 // An interface definition for the [InputPickerInteraction] class.
 type IInputPickerInteraction interface {
 	objectivec.IObject
-	Dismiss()
-	Present()
 	AudioSession() avfaudio.AudioSession
-	SetAudioSession(value avfaudio.IAudioSession)
+	SetAudioSession(value avfaudio.AudioSession)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Presented() bool
 	IsPresented() bool
 	SetIsPresented(value bool)
+	Dismiss()
+	Present()
 }
 
 // Use to present an input picker.
@@ -97,7 +97,7 @@ func NewInputPickerInteraction() InputPickerInteraction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/init(audioSession:)
-func NewInputPickerInteractionWithAudioSession(audioSession avfaudio.IAudioSession) InputPickerInteraction {
+func NewInputPickerInteractionWithAudioSession(audioSession avfaudio.AudioSession) InputPickerInteraction {
 	instance := getInputPickerInteractionClass().Alloc()
 	rv := objc.Send[InputPickerInteraction](instance.ID, objc.Sel("initWithAudioSession:"), audioSession)
 	rv.Autorelease()
@@ -138,7 +138,7 @@ func (i_ InputPickerInteraction) AudioSession() avfaudio.AudioSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) SetAudioSession(value avfaudio.IAudioSession) {
+func (i_ InputPickerInteraction) SetAudioSession(value avfaudio.AudioSession) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSession:"), value)
 }
 

@@ -31,10 +31,11 @@ type _EASessionClass struct {
 // An interface definition for the [EASession] class.
 type IEASession interface {
 	objectivec.IObject
-	Accessory() EAAccessory
+	Accessory() IEAAccessory
 	InputStream() foundation.InputStream
-	OutputStream() foundation.OutputStream
 	ProtocolString() string
+	OutputStream() foundation.OutputStream
+	SetOutputStream(value foundation.OutputStream)
 }
 
 // The object you use to manage communications between your app and a connected hardware accessory.
@@ -107,7 +108,7 @@ func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/accessory
-func (e_ EASession) Accessory() EAAccessory {
+func (e_ EASession) Accessory() IEAAccessory {
 	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("accessory"))
 	return rv
 }
@@ -123,16 +124,6 @@ func (e_ EASession) InputStream() foundation.InputStream {
 }
 
 
-// The stream to use for sending data to the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/outputStream
-func (e_ EASession) OutputStream() foundation.OutputStream {
-	rv := objc.Send[foundation.OutputStream](e_.ID, objc.Sel("outputStream"))
-	return rv
-}
-
-
 // The protocol being used for communication with the accessory.
 //
 // [Full Topic]
@@ -140,6 +131,25 @@ func (e_ EASession) OutputStream() foundation.OutputStream {
 func (e_ EASession) ProtocolString() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("protocolString"))
 	return rv
+}
+
+
+// The stream to use for sending data to the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/easession/outputstream
+func (e_ EASession) OutputStream() foundation.OutputStream {
+	rv := objc.Send[foundation.OutputStream](e_.ID, objc.Sel("outputStream"))
+	return rv
+}
+
+
+// The stream to use for sending data to the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/easession/outputstream
+func (e_ EASession) SetOutputStream(value foundation.OutputStream) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setOutputStream:"), value)
 }
 
 

@@ -31,12 +31,14 @@ type _RightStoreClass struct {
 // An interface definition for the [RightStore] class.
 type IRightStore interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	RemoveAllRightsWithCompletion(handler unsafe.Pointer)
 	RemoveRightCompletion(right ILAPersistedRight, handler unsafe.Pointer)
 	RemoveRightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
 	RightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
 	SaveRightIdentifierCompletion(right ILARight, identifier string, handler unsafe.Pointer)
-	SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.IData, handler unsafe.Pointer)
+	SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.NSData, handler unsafe.Pointer)
 }
 
 // A container for data protected by a right.
@@ -97,7 +99,7 @@ func NewRightStore() RightStore {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/shared
 func (rc _RightStoreClass) SharedStore() RightStore {
-	rv := objc.Send[LARightStore](objc.ID(rc.class), objc.Sel("sharedStore"))
+	rv := objc.Send[RightStore](objc.ID(rc.class), objc.Sel("sharedStore"))
 	return rv
 }
 
@@ -150,7 +152,7 @@ func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)
-func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.IData, handler unsafe.Pointer) {
+func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.NSData, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:secret:completion:"), right, objc.String(identifier), secret, handler)
 }
 
@@ -159,8 +161,8 @@ func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/shared
-func (r_ RightStore) SharedStore() LARightStore {
-	rv := objc.Send[LARightStore](r_.ID, objc.Sel("sharedStore"))
+func (r_ RightStore) SharedStore() ILARightStore {
+	rv := objc.Send[RightStore](r_.ID, objc.Sel("sharedStore"))
 	return rv
 }
 

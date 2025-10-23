@@ -30,6 +30,8 @@ type _GLKEffectPropertyClass struct {
 // An interface definition for the [GLKEffectProperty] class.
 type IGLKEffectProperty interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract superclass for configuration information used in GLKit rendering effects.

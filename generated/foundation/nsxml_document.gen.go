@@ -29,34 +29,36 @@ type _XMLDocumentClass struct {
 // An interface definition for the [XMLDocument] class.
 type IXMLDocument interface {
 	IXMLNode
-	CharacterEncoding() string
-	SetCharacterEncoding(value string)
-	DocumentContentKind() NSXMLDocumentContentKind
-	SetDocumentContentKind(value NSXMLDocumentContentKind)
+	// properties:
+	CharacterEncoding() string /* primitive/slice/pointer */
+	SetCharacterEncoding(value string /* primitive/slice/pointer */)
+	DocumentContentKind() XMLDocumentContentKind
+	SetDocumentContentKind(value XMLDocumentContentKind)
 	DTD() IXMLDTD
 	SetDTD(value IXMLDTD)
-	Standalone() bool
-	SetStandalone(value bool)
-	MIMEType() string
-	SetMIMEType(value string)
-	Version() string
-	SetVersion(value string)
+	Standalone() bool /* primitive/slice/pointer */
+	SetStandalone(value bool /* primitive/slice/pointer */)
+	MIMEType() string /* primitive/slice/pointer */
+	SetMIMEType(value string /* primitive/slice/pointer */)
+	Version() string /* primitive/slice/pointer */
+	SetVersion(value string /* primitive/slice/pointer */)
 	XMLData() IData
-	IsStandalone() bool
-	SetIsStandalone(value bool)
+	IsStandalone() bool /* primitive/slice/pointer */
+	SetIsStandalone(value bool /* primitive/slice/pointer */)
+	// methods:
 	AddChild(child IXMLNode)
-	InsertChildAtIndex(child IXMLNode, index uint)
-	InsertChildrenAtIndex(children []XMLNode, index uint)
-	ObjectByApplyingXSLTArgumentsError(xslt IData, arguments IDictionary, error_ IError) objc.ID
-	ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments IDictionary, error_ IError) objc.ID
-	ObjectByApplyingXSLTAtURLArgumentsError(xsltURL IURL, argument IDictionary, error_ IError) objc.ID
-	RemoveChildAtIndex(index uint)
-	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
+	InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */)
+	InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */)
+	ObjectByApplyingXSLTArgumentsError(xslt IData, arguments IDictionary /* already interface */, error_ IError) objc.ID
+	ObjectByApplyingXSLTStringArgumentsError(xslt string /* primitive/slice/pointer */, arguments IDictionary /* already interface */, error_ IError) objc.ID
+	ObjectByApplyingXSLTAtURLArgumentsError(xsltURL IURL, argument IDictionary /* already interface */, error_ IError) objc.ID
+	RemoveChildAtIndex(index uint /* primitive/slice/pointer */)
+	ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode)
 	RootElement() IXMLElement
-	SetChildren(children []XMLNode)
+	SetChildren(children []XMLNode /* primitive/slice/pointer */)
 	SetRootElement(root IXMLElement)
-	ValidateAndReturnError(error_ IError) bool
-	XMLDataWithOptions(options NSXMLNodeOptions) IData
+	ValidateAndReturnError(error_ IError) bool /* primitive/slice/pointer */
+	XMLDataWithOptions(options XMLNodeOptions) IData
 }
 
 // An XML document as internalized into a logical tree structure.
@@ -118,7 +120,7 @@ func NewXMLDocument() XMLDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(contentsOf:options:)
-func NewXMLDocumentWithContentsOfURLOptionsError(url IURL, mask NSXMLNodeOptions, error_ IError) XMLDocument {
+func NewXMLDocumentWithContentsOfURLOptionsError(url IURL, mask XMLNodeOptions, error_ IError) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
 	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, mask, error_)
 	rv.Autorelease()
@@ -130,7 +132,7 @@ func NewXMLDocumentWithContentsOfURLOptionsError(url IURL, mask NSXMLNodeOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
-func NewXMLDocumentWithDataOptionsError(data IData, mask NSXMLNodeOptions, error_ IError) XMLDocument {
+func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
 	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
@@ -154,7 +156,7 @@ func NewXMLDocumentWithRootElement(element IXMLElement) XMLDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(xmlString:options:)
-func NewXMLDocumentWithXMLStringOptionsError(string_ string, mask NSXMLNodeOptions, error_ IError) XMLDocument {
+func NewXMLDocumentWithXMLStringOptionsError(string_ string /* primitive/slice/pointer */, mask XMLNodeOptions, error_ IError) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
 	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithXMLString:options:error:"), objc.String(string_), mask, error_)
 	rv.Autorelease()
@@ -186,7 +188,7 @@ func (x_ XMLDocument) AddChild(child IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/insertChild(_:at:)
-func (x_ XMLDocument) InsertChildAtIndex(child IXMLNode, index uint) {
+func (x_ XMLDocument) InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
 
@@ -195,7 +197,7 @@ func (x_ XMLDocument) InsertChildAtIndex(child IXMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/insertChildren(_:at:)
-func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode, index uint) {
+func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
@@ -204,7 +206,7 @@ func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLT:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments IDictionary, error_ IError) objc.ID {
+func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments IDictionary /* already interface */, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLT:arguments:error:"), xslt, arguments, error_)
 	return rv
 }
@@ -214,7 +216,7 @@ func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLTString:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments IDictionary, error_ IError) objc.ID {
+func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string /* primitive/slice/pointer */, arguments IDictionary /* already interface */, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
 	return rv
 }
@@ -224,7 +226,7 @@ func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, argu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/objectByApplyingXSLT(at:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTAtURLArgumentsError(xsltURL IURL, argument IDictionary, error_ IError) objc.ID {
+func (x_ XMLDocument) ObjectByApplyingXSLTAtURLArgumentsError(xsltURL IURL, argument IDictionary /* already interface */, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTAtURL:arguments:error:"), xsltURL, argument, error_)
 	return rv
 }
@@ -234,7 +236,7 @@ func (x_ XMLDocument) ObjectByApplyingXSLTAtURLArgumentsError(xsltURL IURL, argu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/removeChild(at:)
-func (x_ XMLDocument) RemoveChildAtIndex(index uint) {
+func (x_ XMLDocument) RemoveChildAtIndex(index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("removeChildAtIndex:"), index)
 }
 
@@ -243,7 +245,7 @@ func (x_ XMLDocument) RemoveChildAtIndex(index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/replaceChild(at:with:)
-func (x_ XMLDocument) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
+func (x_ XMLDocument) ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
 
@@ -262,7 +264,7 @@ func (x_ XMLDocument) RootElement() IXMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/setChildren(_:)
-func (x_ XMLDocument) SetChildren(children []XMLNode) {
+func (x_ XMLDocument) SetChildren(children []XMLNode /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
 }
 
@@ -280,7 +282,7 @@ func (x_ XMLDocument) SetRootElement(root IXMLElement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/validate()
-func (x_ XMLDocument) ValidateAndReturnError(error_ IError) bool {
+func (x_ XMLDocument) ValidateAndReturnError(error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("validateAndReturnError:"), error_)
 	return rv
 }
@@ -290,7 +292,7 @@ func (x_ XMLDocument) ValidateAndReturnError(error_ IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/xmlData(options:)
-func (x_ XMLDocument) XMLDataWithOptions(options NSXMLNodeOptions) IData {
+func (x_ XMLDocument) XMLDataWithOptions(options XMLNodeOptions) IData {
 	rv := objc.Send[Data](x_.ID, objc.Sel("XMLDataWithOptions:"), options)
 	return rv
 }
@@ -300,7 +302,7 @@ func (x_ XMLDocument) XMLDataWithOptions(options NSXMLNodeOptions) IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/characterEncoding
-func (x_ XMLDocument) CharacterEncoding() string {
+func (x_ XMLDocument) CharacterEncoding() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
@@ -310,7 +312,7 @@ func (x_ XMLDocument) CharacterEncoding() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/characterEncoding
-func (x_ XMLDocument) SetCharacterEncoding(value string) {
+func (x_ XMLDocument) SetCharacterEncoding(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
 }
 
@@ -319,7 +321,7 @@ func (x_ XMLDocument) SetCharacterEncoding(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/documentContentKind
-func (x_ XMLDocument) DocumentContentKind() NSXMLDocumentContentKind {
+func (x_ XMLDocument) DocumentContentKind() XMLDocumentContentKind {
 	rv := objc.Send[XMLDocumentContentKind](x_.ID, objc.Sel("documentContentKind"))
 	return rv
 }
@@ -329,7 +331,7 @@ func (x_ XMLDocument) DocumentContentKind() NSXMLDocumentContentKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/documentContentKind
-func (x_ XMLDocument) SetDocumentContentKind(value NSXMLDocumentContentKind) {
+func (x_ XMLDocument) SetDocumentContentKind(value XMLDocumentContentKind) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDocumentContentKind:"), value)
 }
 
@@ -357,7 +359,7 @@ func (x_ XMLDocument) SetDTD(value IXMLDTD) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/isStandalone
-func (x_ XMLDocument) Standalone() bool {
+func (x_ XMLDocument) Standalone() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("standalone"))
 	return rv
 }
@@ -367,7 +369,7 @@ func (x_ XMLDocument) Standalone() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/isStandalone
-func (x_ XMLDocument) SetStandalone(value bool) {
+func (x_ XMLDocument) SetStandalone(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStandalone:"), value)
 }
 
@@ -376,7 +378,7 @@ func (x_ XMLDocument) SetStandalone(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) MIMEType() string {
+func (x_ XMLDocument) MIMEType() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("MIMEType"))
 	return rv
 }
@@ -386,7 +388,7 @@ func (x_ XMLDocument) MIMEType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) SetMIMEType(value string) {
+func (x_ XMLDocument) SetMIMEType(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
 
@@ -395,7 +397,7 @@ func (x_ XMLDocument) SetMIMEType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/version
-func (x_ XMLDocument) Version() string {
+func (x_ XMLDocument) Version() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("version"))
 	return rv
 }
@@ -405,7 +407,7 @@ func (x_ XMLDocument) Version() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/version
-func (x_ XMLDocument) SetVersion(value string) {
+func (x_ XMLDocument) SetVersion(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 
@@ -424,7 +426,7 @@ func (x_ XMLDocument) XMLData() IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) IsStandalone() bool {
+func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
 	return rv
 }
@@ -434,7 +436,7 @@ func (x_ XMLDocument) IsStandalone() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) SetIsStandalone(value bool) {
+func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
 }
 

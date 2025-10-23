@@ -9,4 +9,21 @@ import (
 // Suppress unused import errors
 var _ = localauthenticationembeddedui.NewAuthenticationView
 
+// ExampleNewAuthenticationViewWithContext demonstrates how to create a AuthenticationView instance using NewAuthenticationViewWithContext.
+// Creates a new authentication icon that reflects the current authentication state.
+func ExampleNewAuthenticationViewWithContext() {
+	_ = localauthenticationembeddedui.NewAuthenticationViewWithContext(
+		localauthenticationembeddedui.LAContext{}, // context LAContext
+	)
+	// Output:
+}
+// ExampleNewAuthenticationViewWithContextControlSize demonstrates how to create a AuthenticationView instance using NewAuthenticationViewWithContextControlSize.
+// Creates a new authentication icon that reflects the current authentication state,   using a specified size.
+func ExampleNewAuthenticationViewWithContextControlSize() {
+	_ = localauthenticationembeddedui.NewAuthenticationViewWithContextControlSize(
+		localauthenticationembeddedui.LAContext{}, // context LAContext
+		localauthenticationembeddedui.NSControlSize{}, // controlSize NSControlSize
+	)
+	// Output:
+}
 

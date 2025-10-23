@@ -31,8 +31,6 @@ type _AudioSequencerClass struct {
 // An interface definition for the [AudioSequencer] class.
 type IAudioSequencer interface {
 	objectivec.IObject
-	HostTimeForBeatsError(inBeats IMusicTimeStamp, outError unsafe.Pointer) uint64
-	SecondsForBeats(beats IMusicTimeStamp) foundation.TimeInterval
 	CurrentPositionInBeats() unsafe.Pointer
 	SetCurrentPositionInBeats(value unsafe.Pointer)
 	CurrentPositionInSeconds() unsafe.Pointer
@@ -49,6 +47,8 @@ type IAudioSequencer interface {
 	SetUserInfo(value string)
 	AVMusicTimeStampEndOfTrack() float64
 	SetAVMusicTimeStampEndOfTrack(value float64)
+	HostTimeForBeatsError(inBeats MusicTimeStamp, outError unsafe.Pointer) uint64
+	SecondsForBeats(beats MusicTimeStamp) foundation.TimeInterval
 }
 
 // An object that plays audio from a collection of MIDI events the system organizes into music tracks.
@@ -106,7 +106,7 @@ func NewAudioSequencer() AudioSequencer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSequencer/hostTime(forBeats:error:)
-func (a_ AudioSequencer) HostTimeForBeatsError(inBeats IMusicTimeStamp, outError unsafe.Pointer) uint64 {
+func (a_ AudioSequencer) HostTimeForBeatsError(inBeats MusicTimeStamp, outError unsafe.Pointer) uint64 {
 	rv := objc.Send[uint64](a_.ID, objc.Sel("hostTimeForBeats:error:"), inBeats, outError)
 	return rv
 }
@@ -116,7 +116,7 @@ func (a_ AudioSequencer) HostTimeForBeatsError(inBeats IMusicTimeStamp, outError
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSequencer/seconds(forBeats:)
-func (a_ AudioSequencer) SecondsForBeats(beats IMusicTimeStamp) foundation.TimeInterval {
+func (a_ AudioSequencer) SecondsForBeats(beats MusicTimeStamp) foundation.TimeInterval {
 	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("secondsForBeats:"), beats)
 	return rv
 }

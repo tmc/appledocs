@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,14 +31,10 @@ type _ImageRepClass struct {
 // An interface definition for the [ImageRep] class.
 type IImageRep interface {
 	objectivec.IObject
-	Draw() bool
-	DrawAtPoint(point coregraphics.CGPoint) bool
-	DrawInRect(rect coregraphics.CGRect) bool
-	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) bool
 	BitsPerSample() int
 	SetBitsPerSample(value int)
 	ColorSpaceName() ColorSpaceName
-	SetColorSpaceName(value IColorSpaceName)
+	SetColorSpaceName(value ColorSpaceName)
 	HasAlpha() bool
 	SetHasAlpha(value bool)
 	IsOpaque() bool
@@ -52,6 +47,9 @@ type IImageRep interface {
 	SetPixelsWide(value int)
 	Size() coregraphics.CGSize
 	SetSize(value coregraphics.CGSize)
+	Draw() bool
+	DrawAtPoint(point coregraphics.CGPoint) bool
+	DrawInRect(rect coregraphics.CGRect) bool
 }
 
 // A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.
@@ -107,55 +105,12 @@ func NewImageRep() ImageRep {
 
 
 
-// Creates and returns an image representation object from data in an unarchiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(coder:)
-func NewImageRepWithCoder(coder foundation.ICoder) ImageRep {
-	instance := getImageRepClass().Alloc()
-	rv := objc.Send[ImageRep](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns an image representation object using the contents of the specified pasteboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-func NewImageRepWithPasteboard(pasteboard IPasteboard) ImageRep {
-	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
-	return rv
-}
-
-
-
-// Returns the image representation subclass that handles the specified type of data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/class(for:)
-func (ic _ImageRepClass) ImageRepClassForData(data foundation.IData) objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(ic.class), objc.Sel("imageRepClassForData:"), data)
-	return rv
-}
-
-
 // Returns the list of pasteboard types supported directly by the image representation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/imageUnfilteredPasteboardTypes()
 func (ic _ImageRepClass) ImageUnfilteredPasteboardTypes() []string {
 	rv := objc.Send[[]string](objc.ID(ic.class), objc.Sel("imageUnfilteredPasteboardTypes"))
-	return rv
-}
-
-
-// Creates and returns an image representation object using the contents of the specified pasteboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-func (ic _ImageRepClass) ImageRepWithPasteboard(pasteboard IPasteboard) ImageRep {
-	rv := objc.Send[ImageRep](objc.ID(ic.class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
 	return rv
 }
 
@@ -186,16 +141,6 @@ func (i_ ImageRep) DrawAtPoint(point coregraphics.CGPoint) bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:)
 func (i_ ImageRep) DrawInRect(rect coregraphics.CGRect) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:"), rect)
-	return rv
-}
-
-
-// Draws all or part of the image in the specified rectangle in the current coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/draw(in:from:operation:fraction:respectFlipped:hints:)
-func (i_ ImageRep) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 	return rv
 }
 
@@ -233,7 +178,7 @@ func (i_ ImageRep) ColorSpaceName() ColorSpaceName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagerep/colorspacename
-func (i_ ImageRep) SetColorSpaceName(value IColorSpaceName) {
+func (i_ ImageRep) SetColorSpaceName(value ColorSpaceName) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setColorSpaceName:"), value)
 }
 
@@ -350,5 +295,6 @@ func (i_ ImageRep) Size() coregraphics.CGSize {
 func (i_ ImageRep) SetSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSize:"), value)
 }
+
 
 

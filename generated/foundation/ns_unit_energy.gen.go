@@ -29,6 +29,8 @@ type _UnitEnergyClass struct {
 // An interface definition for the [UnitEnergy] class.
 type IUnitEnergy interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for energy.

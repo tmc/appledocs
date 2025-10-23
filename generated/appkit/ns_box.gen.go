@@ -30,38 +30,37 @@ type _BoxClass struct {
 // An interface definition for the [Box] class.
 type IBox interface {
 	IView
-	SetFrameFromContentFrame(contentFrame coregraphics.CGRect)
-	SetTitleWithMnemonic(stringWithAmpersand string)
-	SizeToFit()
-	BorderColor() NSColor
+	BorderColor() IColor
 	SetBorderColor(value IColor)
 	BorderRect() coregraphics.CGRect
-	BorderType() BorderType
-	SetBorderType(value BorderType)
+	BorderType() unsafe.Pointer
+	SetBorderType(value unsafe.Pointer)
 	BorderWidth() float64
 	SetBorderWidth(value float64)
-	BoxType() BoxType
-	SetBoxType(value BoxType)
-	ContentView() NSView
+	BoxType() NSBoxType
+	SetBoxType(value NSBoxType)
+	ContentView() IView
 	SetContentView(value IView)
 	ContentViewMargins() coregraphics.CGSize
 	SetContentViewMargins(value coregraphics.CGSize)
 	CornerRadius() float64
 	SetCornerRadius(value float64)
-	FillColor() NSColor
+	FillColor() IColor
 	SetFillColor(value IColor)
 	Transparent() bool
 	SetTransparent(value bool)
 	Title() string
 	SetTitle(value string)
 	TitleCell() objc.ID
-	TitleFont() NSFont
+	TitleFont() IFont
 	SetTitleFont(value IFont)
-	TitlePosition() TitlePosition
-	SetTitlePosition(value ITitlePosition)
+	TitlePosition() NSTitlePosition
+	SetTitlePosition(value NSTitlePosition)
 	TitleRect() coregraphics.CGRect
 	IsTransparent() bool
 	SetIsTransparent(value bool)
+	SetFrameFromContentFrame(contentFrame coregraphics.CGRect)
+	SizeToFit()
 }
 
 // A stylized rectangular box with an optional title.
@@ -128,15 +127,6 @@ func (b_ Box) SetFrameFromContentFrame(contentFrame coregraphics.CGRect) {
 }
 
 
-// Sets the title of the receiver with a character denoted as an access key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/setTitleWithMnemonic:
-func (b_ Box) SetTitleWithMnemonic(stringWithAmpersand string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
-}
-
-
 // Resizes and moves the receiver’s content view so it just encloses its subviews.
 //
 // [Full Topic]
@@ -150,8 +140,8 @@ func (b_ Box) SizeToFit() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderColor
-func (b_ Box) BorderColor() NSColor {
-	rv := objc.Send[NSColor](b_.ID, objc.Sel("borderColor"))
+func (b_ Box) BorderColor() IColor {
+	rv := objc.Send[Color](b_.ID, objc.Sel("borderColor"))
 	return rv
 }
 
@@ -179,8 +169,8 @@ func (b_ Box) BorderRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) BorderType() BorderType {
-	rv := objc.Send[BorderType](b_.ID, objc.Sel("borderType"))
+func (b_ Box) BorderType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("borderType"))
 	return rv
 }
 
@@ -189,7 +179,7 @@ func (b_ Box) BorderType() BorderType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) SetBorderType(value BorderType) {
+func (b_ Box) SetBorderType(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderType:"), value)
 }
 
@@ -217,8 +207,8 @@ func (b_ Box) SetBorderWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) BoxType() BoxType {
-	rv := objc.Send[BoxType](b_.ID, objc.Sel("boxType"))
+func (b_ Box) BoxType() NSBoxType {
+	rv := objc.Send[NSBoxType](b_.ID, objc.Sel("boxType"))
 	return rv
 }
 
@@ -227,7 +217,7 @@ func (b_ Box) BoxType() BoxType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) SetBoxType(value BoxType) {
+func (b_ Box) SetBoxType(value NSBoxType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBoxType:"), value)
 }
 
@@ -236,8 +226,8 @@ func (b_ Box) SetBoxType(value BoxType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/contentView
-func (b_ Box) ContentView() NSView {
-	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
+func (b_ Box) ContentView() IView {
+	rv := objc.Send[View](b_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -293,8 +283,8 @@ func (b_ Box) SetCornerRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/fillColor
-func (b_ Box) FillColor() NSColor {
-	rv := objc.Send[NSColor](b_.ID, objc.Sel("fillColor"))
+func (b_ Box) FillColor() IColor {
+	rv := objc.Send[Color](b_.ID, objc.Sel("fillColor"))
 	return rv
 }
 
@@ -360,8 +350,8 @@ func (b_ Box) TitleCell() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titleFont
-func (b_ Box) TitleFont() NSFont {
-	rv := objc.Send[NSFont](b_.ID, objc.Sel("titleFont"))
+func (b_ Box) TitleFont() IFont {
+	rv := objc.Send[Font](b_.ID, objc.Sel("titleFont"))
 	return rv
 }
 
@@ -379,8 +369,8 @@ func (b_ Box) SetTitleFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) TitlePosition() TitlePosition {
-	rv := objc.Send[TitlePosition](b_.ID, objc.Sel("titlePosition"))
+func (b_ Box) TitlePosition() NSTitlePosition {
+	rv := objc.Send[NSTitlePosition](b_.ID, objc.Sel("titlePosition"))
 	return rv
 }
 
@@ -389,7 +379,7 @@ func (b_ Box) TitlePosition() TitlePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) SetTitlePosition(value ITitlePosition) {
+func (b_ Box) SetTitlePosition(value NSTitlePosition) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitlePosition:"), value)
 }
 

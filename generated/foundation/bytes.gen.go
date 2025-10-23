@@ -30,6 +30,8 @@ type _bytesClass struct {
 // An interface definition for the [bytes] class.
 type Ibytes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

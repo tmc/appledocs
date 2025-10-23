@@ -32,25 +32,8 @@ type _ABPeoplePickerViewClass struct {
 // An interface definition for the [ABPeoplePickerView] class.
 type IABPeoplePickerView interface {
 	appkit.IView
-	AddProperty(property string)
-	ClearSearchField(sender objectivec.IObject)
-	ColumnTitleForProperty(property string) foundation.String
-	DeselectRecord(record IABRecord)
-	DeselectGroup(group IABGroup)
-	DeselectAll(sender objectivec.IObject)
-	DeselectIdentifierForPerson(identifier string, person IABPerson)
-	EditInAddressBook(sender objectivec.IObject)
-	Properties() foundation.Array
-	RemoveProperty(property string)
-	SelectGroupByExtendingSelection(group IABGroup, extend bool)
-	SelectRecordByExtendingSelection(record IABRecord, extend bool)
-	SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool)
-	SelectInAddressBook(sender objectivec.IObject)
-	SelectedIdentifiersForPerson(person IABPerson) foundation.Array
-	SelectedValues() foundation.Array
-	SetColumnTitleForProperty(title string, property string)
 	AccessoryView() appkit.View
-	SetAccessoryView(value appkit.IView)
+	SetAccessoryView(value appkit.View)
 	AllowsGroupSelection() bool
 	SetAllowsGroupSelection(value bool)
 	AllowsMultipleSelection() bool
@@ -69,6 +52,23 @@ type IABPeoplePickerView interface {
 	SetTarget(value objc.ID)
 	ValueSelectionBehavior() unsafe.Pointer
 	SetValueSelectionBehavior(value unsafe.Pointer)
+	AddProperty(property string)
+	ClearSearchField(sender objectivec.IObject)
+	ColumnTitleForProperty(property string) foundation.String
+	DeselectRecord(record IABRecord)
+	DeselectGroup(group IABGroup)
+	DeselectAll(sender objectivec.IObject)
+	DeselectIdentifierForPerson(identifier string, person IABPerson)
+	EditInAddressBook(sender objectivec.IObject)
+	Properties() foundation.Array
+	RemoveProperty(property string)
+	SelectGroupByExtendingSelection(group IABGroup, extend bool)
+	SelectRecordByExtendingSelection(record IABRecord, extend bool)
+	SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool)
+	SelectInAddressBook(sender objectivec.IObject)
+	SelectedIdentifiersForPerson(person IABPerson) foundation.Array
+	SelectedValues() foundation.Array
+	SetColumnTitleForProperty(title string, property string)
 }
 
 // An object you use to customize the behavior of people-picker views in an app’s user interface.
@@ -295,7 +295,7 @@ func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.IView) {
+func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.View) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
 

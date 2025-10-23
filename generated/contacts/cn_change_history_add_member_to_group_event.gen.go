@@ -29,8 +29,8 @@ type _CNChangeHistoryAddMemberToGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddMemberToGroupEvent] class.
 type ICNChangeHistoryAddMemberToGroupEvent interface {
 	ICNChangeHistoryEvent
-	Group() CNGroup
-	Member() CNContact
+	Group() ICNGroup
+	Member() ICNContact
 }
 
 // An object that represents a user adding a contact to a group.
@@ -90,7 +90,7 @@ func NewCNChangeHistoryAddMemberToGroupEvent() CNChangeHistoryAddMemberToGroupEv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddMemberToGroupEvent/group
-func (c_ CNChangeHistoryAddMemberToGroupEvent) Group() CNGroup {
+func (c_ CNChangeHistoryAddMemberToGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -100,7 +100,7 @@ func (c_ CNChangeHistoryAddMemberToGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddMemberToGroupEvent/member
-func (c_ CNChangeHistoryAddMemberToGroupEvent) Member() CNContact {
+func (c_ CNChangeHistoryAddMemberToGroupEvent) Member() ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("member"))
 	return rv
 }

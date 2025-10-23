@@ -30,6 +30,8 @@ type _receivePortClass struct {
 // An interface definition for the [receivePort] class.
 type IreceivePort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

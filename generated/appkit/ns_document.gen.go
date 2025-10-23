@@ -31,154 +31,34 @@ type _DocumentClass struct {
 // An interface definition for the [Document] class.
 type IDocument interface {
 	objectivec.IObject
-	AccommodatePresentedItemDeletionWithCompletionHandler(completionHandler unsafe.Pointer)
-	AddWindowController(windowController IWindowController)
-	AutosaveDocumentWithDelegateDidAutosaveSelectorContextInfo(delegate objectivec.IObject, didAutosaveSelector objc.SEL, contextInfo unsafe.Pointer)
-	AutosaveWithImplicitCancellabilityCompletionHandler(autosavingIsImplicitlyCancellable bool, completionHandler unsafe.Pointer)
-	BrowseDocumentVersions(sender objectivec.IObject)
-	CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url foundation.IURL, typeName string, saveOperation SaveOperationType) bool
-	CanCloseDocumentWithDelegateShouldCloseSelectorContextInfo(delegate objectivec.IObject, shouldCloseSelector objc.SEL, contextInfo unsafe.Pointer)
-	ChangeCountTokenForSaveOperation(saveOperation SaveOperationType) objc.ID
-	CheckAutosavingSafetyAndReturnError(outError unsafe.Pointer) bool
-	Close()
-	ContinueActivityUsingBlock(block unsafe.Pointer)
-	ContinueAsynchronousWorkOnMainThreadUsingBlock(block unsafe.Pointer)
-	DataOfTypeError(typeName string, outError unsafe.Pointer) foundation.Data
-	DefaultDraftName() foundation.String
-	DuplicateAndReturnError(outError unsafe.Pointer) Document
-	DuplicateDocument(sender objectivec.IObject)
-	DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objectivec.IObject, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer)
-	EncodeRestorableStateWithCoder(coder foundation.ICoder)
-	EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue)
-	FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) unsafe.Pointer
-	FileNameExtensionForTypeSaveOperation(typeName string, saveOperation SaveOperationType) foundation.String
-	FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) foundation.FileWrapper
-	HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID
-	HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID
-	HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID
-	InvalidateRestorableState()
-	LockDocument(sender objectivec.IObject)
-	LockWithCompletionHandler(completionHandler unsafe.Pointer)
-	LockDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
-	MakeWindowControllers()
-	MoveDocument(sender objectivec.IObject)
-	MoveDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
-	MoveToURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer)
-	MoveDocumentToUbiquityContainer(sender objectivec.IObject)
-	PerformActivityWithSynchronousWaitingUsingBlock(waitSynchronously bool, block unsafe.Pointer)
-	PerformAsynchronousFileAccessUsingBlock(block unsafe.Pointer)
-	PerformSynchronousFileAccessUsingBlock(block unsafe.Pointer)
-	PrepareSharingServicePicker(sharingServicePicker ISharingServicePicker)
-	PreparePageLayout(pageLayout IPageLayout) bool
-	PrepareSavePanel(savePanel ISavePanel) bool
-	PresentError(error_ foundation.IError) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
-	PresentedItemDidChange()
-	PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Pointer)
-	PresentedItemDidGainVersion(version foundation.IFileVersion)
-	PresentedItemDidLoseVersion(version foundation.IFileVersion)
-	PresentedItemDidMoveToURL(newURL foundation.IURL)
-	PresentedItemDidResolveConflictVersion(version foundation.IFileVersion)
-	PrintDocumentWithSettingsShowPrintPanelDelegateDidPrintSelectorContextInfo(printSettings unsafe.Pointer, showPrintPanel bool, delegate objectivec.IObject, didPrintSelector objc.SEL, contextInfo unsafe.Pointer)
-	PrintDocument(sender objectivec.IObject)
-	PrintOperationWithSettingsError(printSettings unsafe.Pointer, outError unsafe.Pointer) PrintOperation
-	PrintShowingPrintPanel(flag bool)
-	ReadFromURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
-	ReadFromFileWrapperOfTypeError(fileWrapper foundation.IFileWrapper, typeName string, outError unsafe.Pointer) bool
-	ReadFromDataOfTypeError(data foundation.IData, typeName string, outError unsafe.Pointer) bool
-	ReadFromFileOfType(fileName string, type_ string) bool
-	RelinquishPresentedItemToReader(reader unsafe.Pointer)
-	RelinquishPresentedItemToWriter(writer unsafe.Pointer)
-	RemoveWindowController(windowController IWindowController)
-	RenameDocument(sender objectivec.IObject)
-	RestoreStateWithCoder(coder foundation.ICoder)
-	RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state foundation.ICoder, completionHandler unsafe.Pointer)
-	RevertToContentsOfURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
-	RevertDocumentToSaved(sender objectivec.IObject)
-	RunModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextInfo(printInfo IPrintInfo, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
-	RunModalPageLayoutWithPrintInfo(printInfo IPrintInfo) int
-	RunModalPrintOperationDelegateDidRunSelectorContextInfo(printOperation IPrintOperation, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
-	RunModalSavePanelForSaveOperationDelegateDidSaveSelectorContextInfo(saveOperation SaveOperationType, delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
-	RunPageLayout(sender objectivec.IObject)
-	SaveDocument(sender objectivec.IObject)
-	SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.IURL, typeName string, saveOperation SaveOperationType, completionHandler unsafe.Pointer)
-	SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url foundation.IURL, typeName string, saveOperation SaveOperationType, delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
-	SaveDocumentWithDelegateDidSaveSelectorContextInfo(delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer)
-	SaveDocumentAs(sender objectivec.IObject)
-	SavePresentedItemChangesWithCompletionHandler(completionHandler unsafe.Pointer)
-	SaveDocumentTo(sender objectivec.IObject)
-	SaveDocumentToPDF(sender objectivec.IObject)
-	SaveToURLOfTypeForSaveOperationError(url foundation.IURL, typeName string, saveOperation SaveOperationType, outError unsafe.Pointer) bool
-	ScheduleAutosaving()
-	SetWindow(window IWindow)
-	ShareDocumentWithSharingServiceCompletionHandler(sharingService ISharingService, completionHandler unsafe.Pointer)
-	ShouldChangePrintInfo(newPrintInfo IPrintInfo) bool
-	ShouldCloseWindowControllerDelegateShouldCloseSelectorContextInfo(windowController IWindowController, delegate objectivec.IObject, shouldCloseSelector objc.SEL, contextInfo unsafe.Pointer)
-	ShowWindows()
-	StopBrowsingVersionsWithCompletionHandler(completionHandler unsafe.Pointer)
-	UnblockUserInteraction()
-	UnlockDocument(sender objectivec.IObject)
-	UnlockWithCompletionHandler(completionHandler unsafe.Pointer)
-	UnlockDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
-	UpdateChangeCount(change DocumentChangeType)
-	UpdateChangeCountWithTokenForSaveOperation(changeCountToken objectivec.IObject, saveOperation SaveOperationType)
-	UpdateUserActivityState(activity foundation.IUserActivity)
-	ValidateUserInterfaceItem(item objectivec.IObject) bool
-	WillNotPresentError(error_ foundation.IError)
-	WillPresentError(error_ foundation.IError) foundation.Error
-	WindowControllerDidLoadNib(windowController IWindowController)
-	WindowControllerWillLoadNib(windowController IWindowController)
-	WritableTypesForSaveOperation(saveOperation SaveOperationType) []string
-	WriteToURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) bool
-	WriteSafelyToURLOfTypeForSaveOperationError(url foundation.IURL, typeName string, saveOperation SaveOperationType, outError unsafe.Pointer) bool
-	WriteToFileOfType(fileName string, type_ string) bool
-	AllowsDocumentSharing() bool
-	AutosavedContentsFileURL() foundation.URL
-	SetAutosavedContentsFileURL(value foundation.IURL)
-	AutosavingFileType() string
 	AutosavingIsImplicitlyCancellable() bool
 	BackupFileURL() foundation.URL
-	DisplayName() string
-	SetDisplayName(value string)
-	FileModificationDate() foundation.NSDate
-	SetFileModificationDate(value foundation.IDate)
 	FileNameExtensionWasHiddenInLastRunSavePanel() bool
-	FileType() string
-	SetFileType(value string)
 	FileTypeFromLastRunSavePanel() string
 	FileURL() foundation.URL
-	SetFileURL(value foundation.IURL)
+	SetFileURL(value foundation.URL)
 	HasUnautosavedChanges() bool
-	HasUndoManager() bool
-	SetHasUndoManager(value bool)
-	BrowsingVersions() bool
-	DocumentEdited() bool
 	Draft() bool
 	SetDraft(value bool)
-	EntireFileLoaded() bool
-	InViewingMode() bool
 	Locked() bool
 	KeepBackupFile() bool
-	LastComponentOfFileName() string
-	SetLastComponentOfFileName(value string)
-	ObjectSpecifier() foundation.ScriptObjectSpecifier
-	ObservedPresentedItemUbiquityAttributes() unsafe.Pointer
-	PDFPrintOperation() NSPrintOperation
-	PresentedItemURL() foundation.URL
-	PreviewRepresentableActivityItems() []objc.ID
-	SetPreviewRepresentableActivityItems(value []objc.ID)
-	PrintInfo() NSPrintInfo
+	PrintInfo() IPrintInfo
 	SetPrintInfo(value IPrintInfo)
-	SavePanelShowsFileFormatsControl() bool
-	ShouldRunSavePanelWithAccessoryView() bool
-	UndoManager() foundation.UndoManager
-	SetUndoManager(value foundation.IUndoManager)
-	UserActivity() foundation.UserActivity
-	SetUserActivity(value foundation.IUserActivity)
-	WindowControllers() []WindowController
-	WindowForSheet() NSWindow
 	WindowNibName() NibName
+	AllowsDocumentSharing() bool
+	SetAllowsDocumentSharing(value bool)
+	AutosavedContentsFileURL() foundation.URL
+	SetAutosavedContentsFileURL(value foundation.URL)
+	AutosavingFileType() string
+	SetAutosavingFileType(value string)
+	DisplayName() string
+	SetDisplayName(value string)
+	FileModificationDate() foundation.Date
+	SetFileModificationDate(value foundation.Date)
+	FileType() string
+	SetFileType(value string)
+	HasUndoManager() bool
+	SetHasUndoManager(value bool)
 	IsBrowsingVersions() bool
 	SetIsBrowsingVersions(value bool)
 	IsDocumentEdited() bool
@@ -191,7 +71,60 @@ type IDocument interface {
 	SetIsInViewingMode(value bool)
 	IsLocked() bool
 	SetIsLocked(value bool)
+	LastComponentOfFileName() string
+	SetLastComponentOfFileName(value string)
+	ObjectSpecifier() foundation.ScriptObjectSpecifier
+	SetObjectSpecifier(value foundation.ScriptObjectSpecifier)
+	ObservedPresentedItemUbiquityAttributes() unsafe.Pointer
+	SetObservedPresentedItemUbiquityAttributes(value unsafe.Pointer)
+	PdfPrintOperation() IPrintOperation
+	SetPdfPrintOperation(value IPrintOperation)
+	PresentedItemURL() foundation.URL
+	SetPresentedItemURL(value foundation.URL)
+	PreviewRepresentableActivityItems() unsafe.Pointer
+	SetPreviewRepresentableActivityItems(value unsafe.Pointer)
+	SavePanelShowsFileFormatsControl() bool
+	SetSavePanelShowsFileFormatsControl(value bool)
+	ShouldRunSavePanelWithAccessoryView() bool
+	SetShouldRunSavePanelWithAccessoryView(value bool)
+	UndoManager() foundation.UndoManager
+	SetUndoManager(value foundation.UndoManager)
+	UserActivity() foundation.UserActivity
+	SetUserActivity(value foundation.UserActivity)
+	WindowControllers() IWindowController
+	SetWindowControllers(value IWindowController)
+	WindowForSheet() IWindow
+	SetWindowForSheet(value IWindow)
 	NSUserActivityDocumentURLKey() string
+	AutosaveDocumentWithDelegateDidAutosaveSelectorContextInfo(delegate objectivec.IObject, didAutosaveSelector objc.SEL, contextInfo unsafe.Pointer)
+	Close()
+	ContinueAsynchronousWorkOnMainThreadUsingBlock(block unsafe.Pointer)
+	DataOfTypeError(typeName string, outError unsafe.Pointer) foundation.Data
+	DefaultDraftName() foundation.String
+	DuplicateDocument(sender objectivec.IObject)
+	DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objectivec.IObject, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer)
+	LockDocument(sender objectivec.IObject)
+	LockWithCompletionHandler(completionHandler unsafe.Pointer)
+	LockDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
+	PerformActivityWithSynchronousWaitingUsingBlock(waitSynchronously bool, block unsafe.Pointer)
+	PreparePageLayout(pageLayout IPageLayout) bool
+	PrepareSavePanel(savePanel SavePanel) bool
+	PresentedItemDidMoveToURL(newURL foundation.URL)
+	ReadFromURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool
+	RelinquishPresentedItemToReader(reader unsafe.Pointer)
+	RelinquishPresentedItemToWriter(writer unsafe.Pointer)
+	RemoveWindowController(windowController IWindowController)
+	RenameDocument(sender objectivec.IObject)
+	RevertDocumentToSaved(sender objectivec.IObject)
+	RunModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextInfo(printInfo IPrintInfo, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
+	RunModalPrintOperationDelegateDidRunSelectorContextInfo(printOperation IPrintOperation, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
+	RunPageLayout(sender objectivec.IObject)
+	SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.URL, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer)
+	SetWindow(window IWindow)
+	StopBrowsingVersionsWithCompletionHandler(completionHandler unsafe.Pointer)
+	UnlockDocumentWithCompletionHandler(completionHandler unsafe.Pointer)
+	UpdateChangeCount(change unsafe.Pointer)
+	ValidateUserInterfaceItem(item objectivec.IObject) bool
 }
 
 // An abstract class that defines the interface for macOS documents.
@@ -247,63 +180,6 @@ func NewDocument() Document {
 
 
 
-// Initializes a document with the specified contents, and places the resulting document’s file at the designated location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(for:withContentsOf:ofType:)
-func NewDocumentForURLWithContentsOfURLOfTypeError(urlOrNil foundation.IURL, contentsURL foundation.IURL, typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initForURL:withContentsOfURL:ofType:error:"), urlOrNil, contentsURL, objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a document located by a URL of a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(contentsOf:ofType:)
-func NewDocumentWithContentsOfURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initWithContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a document of a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/init(type:)
-func NewDocumentWithTypeError(typeName string, outError unsafe.Pointer) Document {
-	instance := getDocumentClass().Alloc()
-	rv := objc.Send[Document](instance.ID, objc.Sel("initWithType:error:"), objc.String(typeName), outError)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the classes that support secure coding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/allowedClasses(forRestorableStateKeyPath:)
-func (dc _DocumentClass) AllowedClassesForRestorableStateKeyPath(keyPath string) []objc.Class {
-	rv := objc.Send[[]objc.Class](objc.ID(dc.class), objc.Sel("allowedClassesForRestorableStateKeyPath:"), objc.String(keyPath))
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the receiver reads multiple documents of the given type concurrently.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/canConcurrentlyReadDocuments(ofType:)
-func (dc _DocumentClass) CanConcurrentlyReadDocumentsOfType(typeName string) bool {
-	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("canConcurrentlyReadDocumentsOfType:"), objc.String(typeName))
-	return rv
-}
-
-
 // Returns a Boolean value that indicates whether the document can read and write the data natively.
 //
 // [Full Topic]
@@ -313,33 +189,6 @@ func (dc _DocumentClass) IsNativeType(type_ string) bool {
 	return rv
 }
 
-
-// A Boolean value that indicates whether the document subclass supports autosaving of drafts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesDrafts
-func (dc _DocumentClass) AutosavesDrafts() bool {
-	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesDrafts"))
-	return rv
-}
-
-// A Boolean value that indicates whether the document subclass supports autosaving in place.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesInPlace
-func (dc _DocumentClass) AutosavesInPlace() bool {
-	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("autosavesInPlace"))
-	return rv
-}
-
-// A Boolean value that indicates whether the document subclass supports version management.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/preservesVersions
-func (dc _DocumentClass) PreservesVersions() bool {
-	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("preservesVersions"))
-	return rv
-}
 
 // Returns the types of data the receiver can read natively and any types filterable to that native type.
 //
@@ -368,31 +217,6 @@ func (dc _DocumentClass) UsesUbiquitousStorage() bool {
 	return rv
 }
 
-// Returns the types of data the receiver can write natively and any types filterable to that native type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
-func (dc _DocumentClass) WritableTypes() []string {
-	rv := objc.Send[[]string](objc.ID(dc.class), objc.Sel("writableTypes"))
-	return rv
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/accommodatePresentedItemDeletion(completionHandler:)
-func (d_ Document) AccommodatePresentedItemDeletionWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("accommodatePresentedItemDeletionWithCompletionHandler:"), completionHandler)
-}
-
-
-// Adds the specified window controller to the current document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/addWindowController(_:)
-func (d_ Document) AddWindowController(windowController IWindowController) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("addWindowController:"), windowController)
-}
-
-
 // Autosaves the document’s contents to an appropriate location in the file system.
 //
 // [Full Topic]
@@ -402,78 +226,12 @@ func (d_ Document) AutosaveDocumentWithDelegateDidAutosaveSelectorContextInfo(de
 }
 
 
-// Autosaves the document’s contents to an appropriate file-system location, as needed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosave(withImplicitCancellability:completionHandler:)
-func (d_ Document) AutosaveWithImplicitCancellabilityCompletionHandler(autosavingIsImplicitlyCancellable bool, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("autosaveWithImplicitCancellability:completionHandler:"), autosavingIsImplicitlyCancellable, completionHandler)
-}
-
-
-// Opens the Versions browser in the document’s main window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/browseVersions(_:)
-func (d_ Document) BrowseDocumentVersions(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("browseDocumentVersions:"), sender)
-}
-
-
-// Returns whether the receiver can concurrently write to a file or file package located by a URL, that is formatted for a specific type, for a specific kind of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/canAsynchronouslyWrite(to:ofType:for:)
-func (d_ Document) CanAsynchronouslyWriteToURLOfTypeForSaveOperation(url foundation.IURL, typeName string, saveOperation SaveOperationType) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("canAsynchronouslyWriteToURL:ofType:forSaveOperation:"), url, objc.String(typeName), saveOperation)
-	return rv
-}
-
-
-// Determines whether to close the document, prompting the user as needed to choose a course of action.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/canClose(withDelegate:shouldClose:contextInfo:)
-func (d_ Document) CanCloseDocumentWithDelegateShouldCloseSelectorContextInfo(delegate objectivec.IObject, shouldCloseSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:"), delegate, shouldCloseSelector, contextInfo)
-}
-
-
-// Returns an object that encapsulates the current record of document changes at the beginning of a save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/changeCountToken(for:)
-func (d_ Document) ChangeCountTokenForSaveOperation(saveOperation SaveOperationType) objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("changeCountTokenForSaveOperation:"), saveOperation)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether it is safe to autosave document changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/checkAutosavingSafety()
-func (d_ Document) CheckAutosavingSafetyAndReturnError(outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("checkAutosavingSafetyAndReturnError:"), outError)
-	return rv
-}
-
-
 // Closes all of the document’s windows and removes the document from its document controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/close()
 func (d_ Document) Close() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("close"))
-}
-
-
-// Continues to perform the task for a user activity object using a different block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/continueActivity(_:)
-func (d_ Document) ContinueActivityUsingBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("continueActivityUsingBlock:"), block)
 }
 
 
@@ -506,16 +264,6 @@ func (d_ Document) DefaultDraftName() foundation.String {
 }
 
 
-// Creates a new document whose contents are the same as the receiver and returns an error object if unsuccessful.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/duplicate()
-func (d_ Document) DuplicateAndReturnError(outError unsafe.Pointer) Document {
-	rv := objc.Send[Document](d_.ID, objc.Sel("duplicateAndReturnError:"), outError)
-	return rv
-}
-
-
 // Creates a copy of the receiving document in response to the user choosing Duplicate from the File menu.
 //
 // [Full Topic]
@@ -531,93 +279,6 @@ func (d_ Document) DuplicateDocument(sender objectivec.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/duplicate(withDelegate:didDuplicate:contextInfo:)
 func (d_ Document) DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objectivec.IObject, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("duplicateDocumentWithDelegate:didDuplicateSelector:contextInfo:"), delegate, didDuplicateSelector, contextInfo)
-}
-
-
-// Saves the interface-related state of the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/encodeRestorableState(with:)
-func (d_ Document) EncodeRestorableStateWithCoder(coder foundation.ICoder) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
-}
-
-
-// Saves the interface-related state of the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/encodeRestorableState(with:backgroundQueue:)
-func (d_ Document) EncodeRestorableStateWithCoderBackgroundQueue(coder foundation.ICoder, queue foundation.IOperationQueue) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("encodeRestorableStateWithCoder:backgroundQueue:"), coder, queue)
-}
-
-
-// Returns the attributes to write to the file or file package at the specified URL, and targeting the specified type of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileAttributesToWrite(to:ofType:for:originalContentsURL:)
-func (d_ Document) FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:"), url, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, outError)
-	return rv
-}
-
-
-// Returns a filename extension that can be appended to a base filename, for a specified file type and kind of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileNameExtension(forType:saveOperation:)
-func (d_ Document) FileNameExtensionForTypeSaveOperation(typeName string, saveOperation SaveOperationType) foundation.String {
-	rv := objc.Send[foundation.String](d_.ID, objc.Sel("fileNameExtensionForType:saveOperation:"), objc.String(typeName), saveOperation)
-	return rv
-}
-
-
-// Creates and returns a file wrapper that contains the contents of the document, formatted to the specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileWrapper(ofType:)
-func (d_ Document) FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) foundation.FileWrapper {
-	rv := objc.Send[foundation.FileWrapper](d_.ID, objc.Sel("fileWrapperOfType:error:"), objc.String(typeName), outError)
-	return rv
-}
-
-
-// Handles the Close AppleScript command by attempting to close the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handleClose(_:)
-func (d_ Document) HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handleCloseScriptCommand:"), command)
-	return rv
-}
-
-
-// Handles the Print AppleScript command by attempting to print the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handlePrint(_:)
-func (d_ Document) HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handlePrintScriptCommand:"), command)
-	return rv
-}
-
-
-// Handles the Save AppleScript command by attempting to save the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/handleSave(_:)
-func (d_ Document) HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("handleSaveScriptCommand:"), command)
-	return rv
-}
-
-
-// Marks the document’s interface-related state as dirty.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/invalidateRestorableState()
-func (d_ Document) InvalidateRestorableState() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("invalidateRestorableState"))
 }
 
 
@@ -648,84 +309,12 @@ func (d_ Document) LockDocumentWithCompletionHandler(completionHandler unsafe.Po
 }
 
 
-// Creates the window controller objects that the document uses to display its content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/makeWindowControllers()
-func (d_ Document) MakeWindowControllers() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("makeWindowControllers"))
-}
-
-
-// Moves the document to a new location in response to the user choosing the Move To… menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/move(_:)
-func (d_ Document) MoveDocument(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("moveDocument:"), sender)
-}
-
-
-// Moves the document to a user-selected location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/move(completionHandler:)
-func (d_ Document) MoveDocumentWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("moveDocumentWithCompletionHandler:"), completionHandler)
-}
-
-
-// Moves the document’s file to the given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/move(to:completionHandler:)
-func (d_ Document) MoveToURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("moveToURL:completionHandler:"), url, completionHandler)
-}
-
-
-// Moves the document to the user’s iCloud storage.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/moveToUbiquityContainer(_:)
-func (d_ Document) MoveDocumentToUbiquityContainer(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("moveDocumentToUbiquityContainer:"), sender)
-}
-
-
 // Waits for any work scheduled by previous invocations of this method to complete, then invokes the passed-in block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/performActivity(withSynchronousWaiting:using:)
 func (d_ Document) PerformActivityWithSynchronousWaitingUsingBlock(waitSynchronously bool, block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("performActivityWithSynchronousWaiting:usingBlock:"), waitSynchronously, block)
-}
-
-
-// Waits for any scheduled file access to complete but without blocking the main thread, then invokes the passed-in block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/performAsynchronousFileAccess(_:)
-func (d_ Document) PerformAsynchronousFileAccessUsingBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("performAsynchronousFileAccessUsingBlock:"), block)
-}
-
-
-// Waits for any scheduled file access to complete, then invokes the passed-in block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/performSynchronousFileAccess(_:)
-func (d_ Document) PerformSynchronousFileAccessUsingBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("performSynchronousFileAccessUsingBlock:"), block)
-}
-
-
-// Perform any custom setup associated with a sharing service picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/prepare(_:)
-func (d_ Document) PrepareSharingServicePicker(sharingServicePicker ISharingServicePicker) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("prepareSharingServicePicker:"), sharingServicePicker)
 }
 
 
@@ -743,107 +332,16 @@ func (d_ Document) PreparePageLayout(pageLayout IPageLayout) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/prepareSavePanel(_:)
-func (d_ Document) PrepareSavePanel(savePanel ISavePanel) bool {
+func (d_ Document) PrepareSavePanel(savePanel SavePanel) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("prepareSavePanel:"), savePanel)
 	return rv
 }
 
 
-// Presents an error alert to the user as a modal panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:)
-func (d_ Document) PresentError(error_ foundation.IError) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
-	return rv
-}
-
-
-// Presents an error alert to the user as a modal panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (d_ Document) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.IError, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidChange()
-func (d_ Document) PresentedItemDidChange() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidChange"))
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidChangeUbiquityAttributes(_:)
-func (d_ Document) PresentedItemDidChangeUbiquityAttributes(attributes unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidChangeUbiquityAttributes:"), attributes)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidGain(_:)
-func (d_ Document) PresentedItemDidGainVersion(version foundation.IFileVersion) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidGainVersion:"), version)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidLose(_:)
-func (d_ Document) PresentedItemDidLoseVersion(version foundation.IFileVersion) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidLoseVersion:"), version)
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidMove(to:)
-func (d_ Document) PresentedItemDidMoveToURL(newURL foundation.IURL) {
+func (d_ Document) PresentedItemDidMoveToURL(newURL foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidMoveToURL:"), newURL)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemDidResolveConflict(_:)
-func (d_ Document) PresentedItemDidResolveConflictVersion(version foundation.IFileVersion) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("presentedItemDidResolveConflictVersion:"), version)
-}
-
-
-// Prints the document’s contents, optionally displaying a print panel to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/print(withSettings:showPrintPanel:delegate:didPrint:contextInfo:)
-func (d_ Document) PrintDocumentWithSettingsShowPrintPanelDelegateDidPrintSelectorContextInfo(printSettings unsafe.Pointer, showPrintPanel bool, delegate objectivec.IObject, didPrintSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:"), printSettings, showPrintPanel, delegate, didPrintSelector, contextInfo)
-}
-
-
-// Prints the receiver in response to the user choosing the Print menu command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/printDocument(_:)
-func (d_ Document) PrintDocument(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("printDocument:"), sender)
-}
-
-
-// Creates and returns a print operation for the document’s contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/printOperation(withSettings:)
-func (d_ Document) PrintOperationWithSettingsError(printSettings unsafe.Pointer, outError unsafe.Pointer) PrintOperation {
-	rv := objc.Send[PrintOperation](d_.ID, objc.Sel("printOperationWithSettings:error:"), printSettings, outError)
-	return rv
-}
-
-
-// Prints the current document’s data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/printShowingPrintPanel:
-func (d_ Document) PrintShowingPrintPanel(flag bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("printShowingPrintPanel:"), flag)
 }
 
 
@@ -851,38 +349,8 @@ func (d_ Document) PrintShowingPrintPanel(flag bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/read(from:ofType:)-1vttv
-func (d_ Document) ReadFromURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool {
+func (d_ Document) ReadFromURLOfTypeError(url foundation.URL, typeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("readFromURL:ofType:error:"), url, objc.String(typeName), outError)
-	return rv
-}
-
-
-// Sets the contents of this document by reading from a file wrapper of a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/read(from:ofType:)-3rzsi
-func (d_ Document) ReadFromFileWrapperOfTypeError(fileWrapper foundation.IFileWrapper, typeName string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("readFromFileWrapper:ofType:error:"), fileWrapper, objc.String(typeName), outError)
-	return rv
-}
-
-
-// Sets the contents of this document by reading from data of a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/read(from:ofType:)-6g6ai
-func (d_ Document) ReadFromDataOfTypeError(data foundation.IData, typeName string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("readFromData:ofType:error:"), data, objc.String(typeName), outError)
-	return rv
-}
-
-
-// Reads and loads document data of the given type from the given file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/readFromFile:ofType:
-func (d_ Document) ReadFromFileOfType(fileName string, type_ string) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("readFromFile:ofType:"), objc.String(fileName), objc.String(type_))
 	return rv
 }
 
@@ -919,34 +387,6 @@ func (d_ Document) RenameDocument(sender objectivec.IObject) {
 }
 
 
-// Restores the interface-related state of the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restoreState(with:)
-func (d_ Document) RestoreStateWithCoder(coder foundation.ICoder) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("restoreStateWithCoder:"), coder)
-}
-
-
-// Restores a window that was associated with a document, after that document is reopened.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/restoreWindow(withIdentifier:state:completionHandler:)
-func (d_ Document) RestoreDocumentWindowWithIdentifierStateCompletionHandler(identifier IUserInterfaceItemIdentifier, state foundation.ICoder, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("restoreDocumentWindowWithIdentifier:state:completionHandler:"), identifier, state, completionHandler)
-}
-
-
-// Discards all unsaved document modifications and replaces the document’s contents by reading a file or file package located by a URL of a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/revert(toContentsOf:ofType:)
-func (d_ Document) RevertToContentsOfURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), url, objc.String(typeName), outError)
-	return rv
-}
-
-
 // The action of the File menu item Revert in a document-based app.
 //
 // [Full Topic]
@@ -965,31 +405,12 @@ func (d_ Document) RunModalPageLayoutWithPrintInfoDelegateDidRunSelectorContextI
 }
 
 
-// Runs the page layout modal panel with the receiver’s printing information object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/runModalPageLayoutWithPrintInfo:
-func (d_ Document) RunModalPageLayoutWithPrintInfo(printInfo IPrintInfo) int {
-	rv := objc.Send[int](d_.ID, objc.Sel("runModalPageLayoutWithPrintInfo:"), printInfo)
-	return rv
-}
-
-
 // Runs the specified print operation modally.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/runModalPrintOperation(_:delegate:didRun:contextInfo:)
 func (d_ Document) RunModalPrintOperationDelegateDidRunSelectorContextInfo(printOperation IPrintOperation, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("runModalPrintOperation:delegate:didRunSelector:contextInfo:"), printOperation, delegate, didRunSelector, contextInfo)
-}
-
-
-// Presents a modal Save panel to the user, then tries to save the document if the user approves the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/runModalSavePanel(for:delegate:didSave:contextInfo:)
-func (d_ Document) RunModalSavePanelForSaveOperationDelegateDidSaveSelectorContextInfo(saveOperation SaveOperationType, delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:"), saveOperation, delegate, didSaveSelector, contextInfo)
 }
 
 
@@ -1002,92 +423,12 @@ func (d_ Document) RunPageLayout(sender objectivec.IObject) {
 }
 
 
-// The action method invoked in the receiver as first responder when the user chooses the Save menu command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(_:)
-func (d_ Document) SaveDocument(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveDocument:"), sender)
-}
-
-
 // Saves the contents of the document to a file or file package located by a URL, that is formatted to a specified type, for a particular kind of save operation, and invokes the passed-in completion handler.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(to:ofType:for:completionHandler:)
-func (d_ Document) SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.IURL, typeName string, saveOperation SaveOperationType, completionHandler unsafe.Pointer) {
+func (d_ Document) SaveToURLOfTypeForSaveOperationCompletionHandler(url foundation.URL, typeName string, saveOperation unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:completionHandler:"), url, objc.String(typeName), saveOperation, completionHandler)
-}
-
-
-// Saves the contents of the document to a file or file package located by a URL, that is formatted to a specified type, for a particular kind of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(to:ofType:for:delegate:didSave:contextInfo:)
-func (d_ Document) SaveToURLOfTypeForSaveOperationDelegateDidSaveSelectorContextInfo(url foundation.IURL, typeName string, saveOperation SaveOperationType, delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:"), url, objc.String(typeName), saveOperation, delegate, didSaveSelector, contextInfo)
-}
-
-
-// Saves the document and delivers the results to the provided delegate object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/save(withDelegate:didSave:contextInfo:)
-func (d_ Document) SaveDocumentWithDelegateDidSaveSelectorContextInfo(delegate objectivec.IObject, didSaveSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveDocumentWithDelegate:didSaveSelector:contextInfo:"), delegate, didSaveSelector, contextInfo)
-}
-
-
-// The action method invoked in the receiver as first responder when the user chooses the Save As menu command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/saveAs(_:)
-func (d_ Document) SaveDocumentAs(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveDocumentAs:"), sender)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/savePresentedItemChanges(completionHandler:)
-func (d_ Document) SavePresentedItemChangesWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("savePresentedItemChangesWithCompletionHandler:"), completionHandler)
-}
-
-
-// The action method invoked in the receiver as first responder when the user chooses the Save To menu command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/saveTo(_:)
-func (d_ Document) SaveDocumentTo(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveDocumentTo:"), sender)
-}
-
-
-// Exports a PDF representation of the document’s current contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/saveToPDF(_:)
-func (d_ Document) SaveDocumentToPDF(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("saveDocumentToPDF:"), sender)
-}
-
-
-// Saves the contents of the document to a file or file package located by a URL, formatted to a specified type, for a particular kind of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/saveToURL:ofType:forSaveOperation:error:
-func (d_ Document) SaveToURLOfTypeForSaveOperationError(url foundation.IURL, typeName string, saveOperation SaveOperationType, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("saveToURL:ofType:forSaveOperation:error:"), url, objc.String(typeName), saveOperation, outError)
-	return rv
-}
-
-
-// Schedules periodic autosaving for the purpose of crash protection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/scheduleAutosaving()
-func (d_ Document) ScheduleAutosaving() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("scheduleAutosaving"))
 }
 
 
@@ -1100,76 +441,12 @@ func (d_ Document) SetWindow(window IWindow) {
 }
 
 
-// Share the document’s file using the specified sharing service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/share(with:completionHandler:)
-func (d_ Document) ShareDocumentWithSharingServiceCompletionHandler(sharingService ISharingService, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("shareDocumentWithSharingService:completionHandler:"), sharingService, completionHandler)
-}
-
-
-// Returns a Boolean value that indicates whether the document allows changes to the default printing information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/shouldChangePrintInfo(_:)
-func (d_ Document) ShouldChangePrintInfo(newPrintInfo IPrintInfo) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("shouldChangePrintInfo:"), newPrintInfo)
-	return rv
-}
-
-
-// Determines whether the system should close the document and its associated window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/shouldCloseWindowController(_:delegate:shouldClose:contextInfo:)
-func (d_ Document) ShouldCloseWindowControllerDelegateShouldCloseSelectorContextInfo(windowController IWindowController, delegate objectivec.IObject, shouldCloseSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:"), windowController, delegate, shouldCloseSelector, contextInfo)
-}
-
-
-// Displays all of the document’s windows, bringing them to the front and making them main or key as necessary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/showWindows()
-func (d_ Document) ShowWindows() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("showWindows"))
-}
-
-
 // Dismiss the Versions browser for the current document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/stopBrowsingVersions(completionHandler:)
 func (d_ Document) StopBrowsingVersionsWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("stopBrowsingVersionsWithCompletionHandler:"), completionHandler)
-}
-
-
-// Unblocks the main thread during asynchronous saving.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/unblockUserInteraction()
-func (d_ Document) UnblockUserInteraction() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("unblockUserInteraction"))
-}
-
-
-// Unlocks the document in response to the user choosing the Unlock menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/unlock(_:)
-func (d_ Document) UnlockDocument(sender objectivec.IObject) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("unlockDocument:"), sender)
-}
-
-
-// Allows the user to make modifications to the document’s file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/unlock(completionHandler:)-6m7rh
-func (d_ Document) UnlockWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("unlockWithCompletionHandler:"), completionHandler)
 }
 
 
@@ -1186,26 +463,8 @@ func (d_ Document) UnlockDocumentWithCompletionHandler(completionHandler unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/updateChangeCount(_:)
-func (d_ Document) UpdateChangeCount(change DocumentChangeType) {
+func (d_ Document) UpdateChangeCount(change unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("updateChangeCount:"), change)
-}
-
-
-// Updates the document’s change count settings after a successful save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/updateChangeCount(withToken:for:)
-func (d_ Document) UpdateChangeCountWithTokenForSaveOperation(changeCountToken objectivec.IObject, saveOperation SaveOperationType) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("updateChangeCountWithToken:forSaveOperation:"), changeCountToken, saveOperation)
-}
-
-
-// Updates the state of the given user activity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/updateUserActivityState(_:)
-func (d_ Document) UpdateUserActivityState(activity foundation.IUserActivity) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("updateUserActivityState:"), activity)
 }
 
 
@@ -1215,152 +474,6 @@ func (d_ Document) UpdateUserActivityState(activity foundation.IUserActivity) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/validateUserInterfaceItem(_:)
 func (d_ Document) ValidateUserInterfaceItem(item objectivec.IObject) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("validateUserInterfaceItem:"), item)
-	return rv
-}
-
-
-// Confirms that the error object is not to be presented to the user and the error cannot be recovered from, so cleanup can be done.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willNotPresentError(_:)
-func (d_ Document) WillNotPresentError(error_ foundation.IError) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("willNotPresentError:"), error_)
-}
-
-
-// Called when the receiver is about to present an error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/willPresentError(_:)
-func (d_ Document) WillPresentError(error_ foundation.IError) foundation.Error {
-	rv := objc.Send[foundation.Error](d_.ID, objc.Sel("willPresentError:"), error_)
-	return rv
-}
-
-
-// Called after one of the document’s window controllers loads its nib file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowControllerDidLoadNib(_:)
-func (d_ Document) WindowControllerDidLoadNib(windowController IWindowController) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("windowControllerDidLoadNib:"), windowController)
-}
-
-
-// Called before one of the document’s window controllers loads its nib file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowControllerWillLoadNib(_:)
-func (d_ Document) WindowControllerWillLoadNib(windowController IWindowController) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("windowControllerWillLoadNib:"), windowController)
-}
-
-
-// Returns the names of the types to which this document can be saved for a specified kind of save operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes(for:)
-func (d_ Document) WritableTypesForSaveOperation(saveOperation SaveOperationType) []string {
-	rv := objc.Send[[]string](d_.ID, objc.Sel("writableTypesForSaveOperation:"), saveOperation)
-	return rv
-}
-
-
-// Writes the contents of the document to a file or file package located by a URL, that is formatted to a specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/write(to:ofType:)
-func (d_ Document) WriteToURLOfTypeError(url foundation.IURL, typeName string, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:ofType:error:"), url, objc.String(typeName), outError)
-	return rv
-}
-
-
-// Writes the contents of the document to a file or file package located by a URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/write(to:ofType:for:originalContentsURL:)
-func (d_ Document) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(url foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), url, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, outError)
-	return rv
-}
-
-
-// Writes the contents of the document to a file or file package located by a URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writeSafely(to:ofType:for:)
-func (d_ Document) WriteSafelyToURLOfTypeForSaveOperationError(url foundation.IURL, typeName string, saveOperation SaveOperationType, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeSafelyToURL:ofType:forSaveOperation:error:"), url, objc.String(typeName), saveOperation, outError)
-	return rv
-}
-
-
-// Writes document data to a file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writeToFile:ofType:
-func (d_ Document) WriteToFileOfType(fileName string, type_ string) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:ofType:"), objc.String(fileName), objc.String(type_))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document is shareable from the standard Share menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/allowsDocumentSharing
-func (d_ Document) AllowsDocumentSharing() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("allowsDocumentSharing"))
-	return rv
-}
-
-
-// The location of the most recently autosaved document contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavedContentsFileURL
-func (d_ Document) AutosavedContentsFileURL() foundation.URL {
-	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("autosavedContentsFileURL"))
-	return rv
-}
-
-
-// The location of the most recently autosaved document contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavedContentsFileURL
-func (d_ Document) SetAutosavedContentsFileURL(value foundation.IURL) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavedContentsFileURL:"), value)
-}
-
-
-// A Boolean value that indicates whether the document subclass supports autosaving of drafts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesDrafts
-func (d_ Document) AutosavesDrafts() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("autosavesDrafts"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document subclass supports autosaving in place.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavesInPlace
-func (d_ Document) AutosavesInPlace() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("autosavesInPlace"))
-	return rv
-}
-
-
-// The document type to use for an autosave operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavingFileType
-func (d_ Document) AutosavingFileType() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("autosavingFileType"))
 	return rv
 }
 
@@ -1385,44 +498,6 @@ func (d_ Document) BackupFileURL() foundation.URL {
 }
 
 
-// The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/displayName
-func (d_ Document) DisplayName() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("displayName"))
-	return rv
-}
-
-
-// The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/displayName
-func (d_ Document) SetDisplayName(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), objc.String(value))
-}
-
-
-// The last-known modification date of the document’s on-disk representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileModificationDate
-func (d_ Document) FileModificationDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("fileModificationDate"))
-	return rv
-}
-
-
-// The last-known modification date of the document’s on-disk representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileModificationDate
-func (d_ Document) SetFileModificationDate(value foundation.IDate) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFileModificationDate:"), value)
-}
-
-
 // A Boolean value that indicates whether the user chose to hide the document’s filename extension.
 //
 // [Full Topic]
@@ -1430,25 +505,6 @@ func (d_ Document) SetFileModificationDate(value foundation.IDate) {
 func (d_ Document) FileNameExtensionWasHiddenInLastRunSavePanel() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("fileNameExtensionWasHiddenInLastRunSavePanel"))
 	return rv
-}
-
-
-// The name of the document type, as specified in the app’s information property-list file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileType
-func (d_ Document) FileType() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("fileType"))
-	return rv
-}
-
-
-// The name of the document type, as specified in the app’s information property-list file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileType
-func (d_ Document) SetFileType(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFileType:"), objc.String(value))
 }
 
 
@@ -1476,7 +532,7 @@ func (d_ Document) FileURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileURL
-func (d_ Document) SetFileURL(value foundation.IURL) {
+func (d_ Document) SetFileURL(value foundation.URL) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFileURL:"), value)
 }
 
@@ -1487,45 +543,6 @@ func (d_ Document) SetFileURL(value foundation.IURL) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/hasUnautosavedChanges
 func (d_ Document) HasUnautosavedChanges() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("hasUnautosavedChanges"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document owns an undo manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/hasUndoManager
-func (d_ Document) HasUndoManager() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("hasUndoManager"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document owns an undo manager object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/hasUndoManager
-func (d_ Document) SetHasUndoManager(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setHasUndoManager:"), value)
-}
-
-
-// A Boolean value that indicates whether the document is currently displaying the Versions browser.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/isBrowsingVersions
-func (d_ Document) BrowsingVersions() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("browsingVersions"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document has unsaved changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/isDocumentEdited
-func (d_ Document) DocumentEdited() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("documentEdited"))
 	return rv
 }
 
@@ -1549,26 +566,6 @@ func (d_ Document) SetDraft(value bool) {
 }
 
 
-// A Boolean value that indicates whether the document’s file is completely loaded into memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/isEntireFileLoaded
-func (d_ Document) EntireFileLoaded() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("entireFileLoaded"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document is in read-only mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/isInViewingMode
-func (d_ Document) InViewingMode() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("inViewingMode"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether or not the file can be written to.
 //
 // [Full Topic]
@@ -1589,102 +586,12 @@ func (d_ Document) KeepBackupFile() bool {
 }
 
 
-// The name of the document seen by the user in AppleScript.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/lastComponentOfFileName
-func (d_ Document) LastComponentOfFileName() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("lastComponentOfFileName"))
-	return rv
-}
-
-
-// The name of the document seen by the user in AppleScript.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/lastComponentOfFileName
-func (d_ Document) SetLastComponentOfFileName(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLastComponentOfFileName:"), objc.String(value))
-}
-
-
-// Returns the object specifier that represents the document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/objectSpecifier
-func (d_ Document) ObjectSpecifier() foundation.ScriptObjectSpecifier {
-	rv := objc.Send[foundation.ScriptObjectSpecifier](d_.ID, objc.Sel("objectSpecifier"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/observedPresentedItemUbiquityAttributes
-func (d_ Document) ObservedPresentedItemUbiquityAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("observedPresentedItemUbiquityAttributes"))
-	return rv
-}
-
-
-// A print operation you can use to create a PDF representation of the document’s current contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/pdfPrintOperation
-func (d_ Document) PDFPrintOperation() NSPrintOperation {
-	rv := objc.Send[NSPrintOperation](d_.ID, objc.Sel("PDFPrintOperation"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/presentedItemURL
-func (d_ Document) PresentedItemURL() foundation.URL {
-	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("presentedItemURL"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document subclass supports version management.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/preservesVersions
-func (d_ Document) PreservesVersions() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("preservesVersions"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/previewRepresentableActivityItems
-func (d_ Document) PreviewRepresentableActivityItems() []objc.ID {
-	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("previewRepresentableActivityItems"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/previewRepresentableActivityItems
-func (d_ Document) SetPreviewRepresentableActivityItems(value []objc.ID) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](d_.ID, objc.Sel("setPreviewRepresentableActivityItems:"), nsArray)
-}
-
-
 // The printing information associated with the document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/printInfo
-func (d_ Document) PrintInfo() NSPrintInfo {
-	rv := objc.Send[NSPrintInfo](d_.ID, objc.Sel("printInfo"))
+func (d_ Document) PrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](d_.ID, objc.Sel("printInfo"))
 	return rv
 }
 
@@ -1718,88 +625,12 @@ func (d_ Document) RestorableStateKeyPaths() []string {
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/savePanelShowsFileFormatsControl
-func (d_ Document) SavePanelShowsFileFormatsControl() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("savePanelShowsFileFormatsControl"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the document’s Save panel displays a list of supported writable document types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/shouldRunSavePanelWithAccessoryView
-func (d_ Document) ShouldRunSavePanelWithAccessoryView() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("shouldRunSavePanelWithAccessoryView"))
-	return rv
-}
-
-
-// The object that the document uses to support undo/redo operations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/undoManager
-func (d_ Document) UndoManager() foundation.UndoManager {
-	rv := objc.Send[foundation.UndoManager](d_.ID, objc.Sel("undoManager"))
-	return rv
-}
-
-
-// The object that the document uses to support undo/redo operations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/undoManager
-func (d_ Document) SetUndoManager(value foundation.IUndoManager) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUndoManager:"), value)
-}
-
-
-// An object that encapsulates a user activity the document supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/userActivity
-func (d_ Document) UserActivity() foundation.UserActivity {
-	rv := objc.Send[foundation.UserActivity](d_.ID, objc.Sel("userActivity"))
-	return rv
-}
-
-
-// An object that encapsulates a user activity the document supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/userActivity
-func (d_ Document) SetUserActivity(value foundation.IUserActivity) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setUserActivity:"), value)
-}
-
-
 // Returns whether the document object stores its contents in the user’s iCloud document storage.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/usesUbiquitousStorage
 func (d_ Document) UsesUbiquitousStorage() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("usesUbiquitousStorage"))
-	return rv
-}
-
-
-// The document’s current window controllers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowControllers
-func (d_ Document) WindowControllers() []WindowController {
-	rv := objc.Send[[]WindowController](d_.ID, objc.Sel("windowControllers"))
-	return rv
-}
-
-
-// Returns the document window to use as the parent of a document-modal sheet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/windowForSheet
-func (d_ Document) WindowForSheet() NSWindow {
-	rv := objc.Send[NSWindow](d_.ID, objc.Sel("windowForSheet"))
 	return rv
 }
 
@@ -1814,13 +645,136 @@ func (d_ Document) WindowNibName() NibName {
 }
 
 
-// Returns the types of data the receiver can write natively and any types filterable to that native type.
+// A Boolean value that indicates whether the document is shareable from the standard Share menu.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/writableTypes
-func (d_ Document) WritableTypes() []string {
-	rv := objc.Send[[]string](d_.ID, objc.Sel("writableTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/allowsdocumentsharing
+func (d_ Document) AllowsDocumentSharing() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("allowsDocumentSharing"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether the document is shareable from the standard Share menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/allowsdocumentsharing
+func (d_ Document) SetAllowsDocumentSharing(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowsDocumentSharing:"), value)
+}
+
+
+// The location of the most recently autosaved document contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/autosavedcontentsfileurl
+func (d_ Document) AutosavedContentsFileURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("autosavedContentsFileURL"))
+	return rv
+}
+
+
+// The location of the most recently autosaved document contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/autosavedcontentsfileurl
+func (d_ Document) SetAutosavedContentsFileURL(value foundation.URL) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavedContentsFileURL:"), value)
+}
+
+
+// The document type to use for an autosave operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/autosavingfiletype
+func (d_ Document) AutosavingFileType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("autosavingFileType"))
+	return rv
+}
+
+
+// The document type to use for an autosave operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/autosavingfiletype
+func (d_ Document) SetAutosavingFileType(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavingFileType:"), objc.String(value))
+}
+
+
+// The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/displayname
+func (d_ Document) DisplayName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("displayName"))
+	return rv
+}
+
+
+// The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/displayname
+func (d_ Document) SetDisplayName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+}
+
+
+// The last-known modification date of the document’s on-disk representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/filemodificationdate
+func (d_ Document) FileModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("fileModificationDate"))
+	return rv
+}
+
+
+// The last-known modification date of the document’s on-disk representation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/filemodificationdate
+func (d_ Document) SetFileModificationDate(value foundation.Date) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFileModificationDate:"), value)
+}
+
+
+// The name of the document type, as specified in the app’s information property-list file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/filetype
+func (d_ Document) FileType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileType"))
+	return rv
+}
+
+
+// The name of the document type, as specified in the app’s information property-list file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/filetype
+func (d_ Document) SetFileType(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFileType:"), objc.String(value))
+}
+
+
+// A Boolean value that indicates whether the document owns an undo manager object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
+func (d_ Document) HasUndoManager() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("hasUndoManager"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the document owns an undo manager object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
+func (d_ Document) SetHasUndoManager(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setHasUndoManager:"), value)
 }
 
 
@@ -1938,6 +892,218 @@ func (d_ Document) SetIsLocked(value bool) {
 }
 
 
+// The name of the document seen by the user in AppleScript.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/lastcomponentoffilename
+func (d_ Document) LastComponentOfFileName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("lastComponentOfFileName"))
+	return rv
+}
+
+
+// The name of the document seen by the user in AppleScript.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/lastcomponentoffilename
+func (d_ Document) SetLastComponentOfFileName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLastComponentOfFileName:"), objc.String(value))
+}
+
+
+// Returns the object specifier that represents the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/objectspecifier
+func (d_ Document) ObjectSpecifier() foundation.ScriptObjectSpecifier {
+	rv := objc.Send[foundation.ScriptObjectSpecifier](d_.ID, objc.Sel("objectSpecifier"))
+	return rv
+}
+
+
+// Returns the object specifier that represents the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/objectspecifier
+func (d_ Document) SetObjectSpecifier(value foundation.ScriptObjectSpecifier) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setObjectSpecifier:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/observedpresenteditemubiquityattributes
+func (d_ Document) ObservedPresentedItemUbiquityAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("observedPresentedItemUbiquityAttributes"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/observedpresenteditemubiquityattributes
+func (d_ Document) SetObservedPresentedItemUbiquityAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setObservedPresentedItemUbiquityAttributes:"), value)
+}
+
+
+// A print operation you can use to create a PDF representation of the document’s current contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/pdfprintoperation
+func (d_ Document) PdfPrintOperation() IPrintOperation {
+	rv := objc.Send[PrintOperation](d_.ID, objc.Sel("pdfPrintOperation"))
+	return rv
+}
+
+
+// A print operation you can use to create a PDF representation of the document’s current contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/pdfprintoperation
+func (d_ Document) SetPdfPrintOperation(value IPrintOperation) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPdfPrintOperation:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/presenteditemurl
+func (d_ Document) PresentedItemURL() foundation.URL {
+	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("presentedItemURL"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/presenteditemurl
+func (d_ Document) SetPresentedItemURL(value foundation.URL) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPresentedItemURL:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/previewrepresentableactivityitems
+func (d_ Document) PreviewRepresentableActivityItems() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("previewRepresentableActivityItems"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/previewrepresentableactivityitems
+func (d_ Document) SetPreviewRepresentableActivityItems(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setPreviewRepresentableActivityItems:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/savepanelshowsfileformatscontrol
+func (d_ Document) SavePanelShowsFileFormatsControl() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("savePanelShowsFileFormatsControl"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/savepanelshowsfileformatscontrol
+func (d_ Document) SetSavePanelShowsFileFormatsControl(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSavePanelShowsFileFormatsControl:"), value)
+}
+
+
+// A Boolean value that indicates whether the document’s Save panel displays a list of supported writable document types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/shouldrunsavepanelwithaccessoryview
+func (d_ Document) ShouldRunSavePanelWithAccessoryView() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("shouldRunSavePanelWithAccessoryView"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the document’s Save panel displays a list of supported writable document types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/shouldrunsavepanelwithaccessoryview
+func (d_ Document) SetShouldRunSavePanelWithAccessoryView(value bool) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShouldRunSavePanelWithAccessoryView:"), value)
+}
+
+
+// The object that the document uses to support undo/redo operations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
+func (d_ Document) UndoManager() foundation.UndoManager {
+	rv := objc.Send[foundation.UndoManager](d_.ID, objc.Sel("undoManager"))
+	return rv
+}
+
+
+// The object that the document uses to support undo/redo operations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
+func (d_ Document) SetUndoManager(value foundation.UndoManager) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUndoManager:"), value)
+}
+
+
+// An object that encapsulates a user activity the document supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/useractivity
+func (d_ Document) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](d_.ID, objc.Sel("userActivity"))
+	return rv
+}
+
+
+// An object that encapsulates a user activity the document supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/useractivity
+func (d_ Document) SetUserActivity(value foundation.UserActivity) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setUserActivity:"), value)
+}
+
+
+// The document’s current window controllers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/windowcontrollers
+func (d_ Document) WindowControllers() IWindowController {
+	rv := objc.Send[WindowController](d_.ID, objc.Sel("windowControllers"))
+	return rv
+}
+
+
+// The document’s current window controllers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/windowcontrollers
+func (d_ Document) SetWindowControllers(value IWindowController) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWindowControllers:"), value)
+}
+
+
+// Returns the document window to use as the parent of a document-modal sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/windowforsheet
+func (d_ Document) WindowForSheet() IWindow {
+	rv := objc.Send[Window](d_.ID, objc.Sel("windowForSheet"))
+	return rv
+}
+
+
+// Returns the document window to use as the parent of a document-modal sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/windowforsheet
+func (d_ Document) SetWindowForSheet(value IWindow) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setWindowForSheet:"), value)
+}
+
+
 // The key that identifies the document associated with a user activity.
 //
 // [Full Topic]
@@ -1946,5 +1112,6 @@ func (d_ Document) NSUserActivityDocumentURLKey() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("NSUserActivityDocumentURLKey"))
 	return rv
 }
+
 
 

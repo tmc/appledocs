@@ -30,31 +30,33 @@ type _DateComponentsFormatterClass struct {
 // An interface definition for the [DateComponentsFormatter] class.
 type IDateComponentsFormatter interface {
 	IFormatter
-	AllowedUnits() NSCalendarUnit
-	SetAllowedUnits(value NSCalendarUnit)
-	AllowsFractionalUnits() bool
-	SetAllowsFractionalUnits(value bool)
+	// properties:
+	AllowedUnits() CalendarUnit
+	SetAllowedUnits(value CalendarUnit)
+	AllowsFractionalUnits() bool /* primitive/slice/pointer */
+	SetAllowsFractionalUnits(value bool /* primitive/slice/pointer */)
 	Calendar() ICalendar
 	SetCalendar(value ICalendar)
-	CollapsesLargestUnit() bool
-	SetCollapsesLargestUnit(value bool)
-	FormattingContext() int
-	SetFormattingContext(value int)
-	IncludesApproximationPhrase() bool
-	SetIncludesApproximationPhrase(value bool)
-	IncludesTimeRemainingPhrase() bool
-	SetIncludesTimeRemainingPhrase(value bool)
-	MaximumUnitCount() int
-	SetMaximumUnitCount(value int)
+	CollapsesLargestUnit() bool /* primitive/slice/pointer */
+	SetCollapsesLargestUnit(value bool /* primitive/slice/pointer */)
+	FormattingContext() int /* primitive/slice/pointer */
+	SetFormattingContext(value int /* primitive/slice/pointer */)
+	IncludesApproximationPhrase() bool /* primitive/slice/pointer */
+	SetIncludesApproximationPhrase(value bool /* primitive/slice/pointer */)
+	IncludesTimeRemainingPhrase() bool /* primitive/slice/pointer */
+	SetIncludesTimeRemainingPhrase(value bool /* primitive/slice/pointer */)
+	MaximumUnitCount() int /* primitive/slice/pointer */
+	SetMaximumUnitCount(value int /* primitive/slice/pointer */)
 	ReferenceDate() IDate
 	SetReferenceDate(value IDate)
-	UnitsStyle() NSDateComponentsFormatterUnitsStyle
-	SetUnitsStyle(value NSDateComponentsFormatterUnitsStyle)
-	ZeroFormattingBehavior() NSDateComponentsFormatterZeroFormattingBehavior
-	SetZeroFormattingBehavior(value NSDateComponentsFormatterZeroFormattingBehavior)
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	UnitsStyle() DateComponentsFormatterUnitsStyle
+	SetUnitsStyle(value DateComponentsFormatterUnitsStyle)
+	ZeroFormattingBehavior() DateComponentsFormatterZeroFormattingBehavior
+	SetZeroFormattingBehavior(value DateComponentsFormatterZeroFormattingBehavior)
+	// methods:
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	StringForObjectValue(obj objectivec.IObject) IString
-	StringFromTimeInterval(ti TimeInterval) IString
+	StringFromTimeInterval(ti TimeInterval /* foo */) IString
 	StringFromDateComponents(components IDateComponents) IString
 	StringFromDateToDate(startDate IDate, endDate IDate) IString
 }
@@ -118,7 +120,7 @@ func NewDateComponentsFormatter() DateComponentsFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/localizedString(from:unitsStyle:)
-func (dc _DateComponentsFormatterClass) LocalizedStringFromDateComponentsUnitsStyle(components IDateComponents, unitsStyle NSDateComponentsFormatterUnitsStyle) IString {
+func (dc _DateComponentsFormatterClass) LocalizedStringFromDateComponentsUnitsStyle(components IDateComponents, unitsStyle DateComponentsFormatterUnitsStyle) IString {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("localizedStringFromDateComponents:unitsStyle:"), components, unitsStyle)
 	return rv
 }
@@ -126,7 +128,7 @@ func (dc _DateComponentsFormatterClass) LocalizedStringFromDateComponentsUnitsSt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/getObjectValue(_:for:errorDescription:)
-func (d_ DateComponentsFormatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool {
+func (d_ DateComponentsFormatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string_), objc.String(error_))
 	return rv
 }
@@ -146,7 +148,7 @@ func (d_ DateComponentsFormatter) StringForObjectValue(obj objectivec.IObject) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(from:)-7sj4j
-func (d_ DateComponentsFormatter) StringFromTimeInterval(ti TimeInterval) IString {
+func (d_ DateComponentsFormatter) StringFromTimeInterval(ti TimeInterval /* foo */) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromTimeInterval:"), ti)
 	return rv
 }
@@ -176,7 +178,7 @@ func (d_ DateComponentsFormatter) StringFromDateToDate(startDate IDate, endDate 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/allowedUnits
-func (d_ DateComponentsFormatter) AllowedUnits() NSCalendarUnit {
+func (d_ DateComponentsFormatter) AllowedUnits() CalendarUnit {
 	rv := objc.Send[CalendarUnit](d_.ID, objc.Sel("allowedUnits"))
 	return rv
 }
@@ -186,7 +188,7 @@ func (d_ DateComponentsFormatter) AllowedUnits() NSCalendarUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/allowedUnits
-func (d_ DateComponentsFormatter) SetAllowedUnits(value NSCalendarUnit) {
+func (d_ DateComponentsFormatter) SetAllowedUnits(value CalendarUnit) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowedUnits:"), value)
 }
 
@@ -195,7 +197,7 @@ func (d_ DateComponentsFormatter) SetAllowedUnits(value NSCalendarUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/allowsFractionalUnits
-func (d_ DateComponentsFormatter) AllowsFractionalUnits() bool {
+func (d_ DateComponentsFormatter) AllowsFractionalUnits() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("allowsFractionalUnits"))
 	return rv
 }
@@ -205,7 +207,7 @@ func (d_ DateComponentsFormatter) AllowsFractionalUnits() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/allowsFractionalUnits
-func (d_ DateComponentsFormatter) SetAllowsFractionalUnits(value bool) {
+func (d_ DateComponentsFormatter) SetAllowsFractionalUnits(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowsFractionalUnits:"), value)
 }
 
@@ -233,7 +235,7 @@ func (d_ DateComponentsFormatter) SetCalendar(value ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/collapsesLargestUnit
-func (d_ DateComponentsFormatter) CollapsesLargestUnit() bool {
+func (d_ DateComponentsFormatter) CollapsesLargestUnit() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("collapsesLargestUnit"))
 	return rv
 }
@@ -243,14 +245,14 @@ func (d_ DateComponentsFormatter) CollapsesLargestUnit() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/collapsesLargestUnit
-func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool) {
+func (d_ DateComponentsFormatter) SetCollapsesLargestUnit(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCollapsesLargestUnit:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/formattingContext
-func (d_ DateComponentsFormatter) FormattingContext() int {
+func (d_ DateComponentsFormatter) FormattingContext() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
@@ -258,7 +260,7 @@ func (d_ DateComponentsFormatter) FormattingContext() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/formattingContext
-func (d_ DateComponentsFormatter) SetFormattingContext(value int) {
+func (d_ DateComponentsFormatter) SetFormattingContext(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
@@ -267,7 +269,7 @@ func (d_ DateComponentsFormatter) SetFormattingContext(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/includesApproximationPhrase
-func (d_ DateComponentsFormatter) IncludesApproximationPhrase() bool {
+func (d_ DateComponentsFormatter) IncludesApproximationPhrase() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("includesApproximationPhrase"))
 	return rv
 }
@@ -277,7 +279,7 @@ func (d_ DateComponentsFormatter) IncludesApproximationPhrase() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/includesApproximationPhrase
-func (d_ DateComponentsFormatter) SetIncludesApproximationPhrase(value bool) {
+func (d_ DateComponentsFormatter) SetIncludesApproximationPhrase(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesApproximationPhrase:"), value)
 }
 
@@ -286,7 +288,7 @@ func (d_ DateComponentsFormatter) SetIncludesApproximationPhrase(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/includesTimeRemainingPhrase
-func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool {
+func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("includesTimeRemainingPhrase"))
 	return rv
 }
@@ -296,7 +298,7 @@ func (d_ DateComponentsFormatter) IncludesTimeRemainingPhrase() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/includesTimeRemainingPhrase
-func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool) {
+func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludesTimeRemainingPhrase:"), value)
 }
 
@@ -305,7 +307,7 @@ func (d_ DateComponentsFormatter) SetIncludesTimeRemainingPhrase(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/maximumUnitCount
-func (d_ DateComponentsFormatter) MaximumUnitCount() int {
+func (d_ DateComponentsFormatter) MaximumUnitCount() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("maximumUnitCount"))
 	return rv
 }
@@ -315,7 +317,7 @@ func (d_ DateComponentsFormatter) MaximumUnitCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/maximumUnitCount
-func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int) {
+func (d_ DateComponentsFormatter) SetMaximumUnitCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumUnitCount:"), value)
 }
 
@@ -339,7 +341,7 @@ func (d_ DateComponentsFormatter) SetReferenceDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/unitsStyle-swift.property
-func (d_ DateComponentsFormatter) UnitsStyle() NSDateComponentsFormatterUnitsStyle {
+func (d_ DateComponentsFormatter) UnitsStyle() DateComponentsFormatterUnitsStyle {
 	rv := objc.Send[DateComponentsFormatterUnitsStyle](d_.ID, objc.Sel("unitsStyle"))
 	return rv
 }
@@ -349,7 +351,7 @@ func (d_ DateComponentsFormatter) UnitsStyle() NSDateComponentsFormatterUnitsSty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/unitsStyle-swift.property
-func (d_ DateComponentsFormatter) SetUnitsStyle(value NSDateComponentsFormatterUnitsStyle) {
+func (d_ DateComponentsFormatter) SetUnitsStyle(value DateComponentsFormatterUnitsStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUnitsStyle:"), value)
 }
 
@@ -358,7 +360,7 @@ func (d_ DateComponentsFormatter) SetUnitsStyle(value NSDateComponentsFormatterU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
-func (d_ DateComponentsFormatter) ZeroFormattingBehavior() NSDateComponentsFormatterZeroFormattingBehavior {
+func (d_ DateComponentsFormatter) ZeroFormattingBehavior() DateComponentsFormatterZeroFormattingBehavior {
 	rv := objc.Send[DateComponentsFormatterZeroFormattingBehavior](d_.ID, objc.Sel("zeroFormattingBehavior"))
 	return rv
 }
@@ -368,7 +370,7 @@ func (d_ DateComponentsFormatter) ZeroFormattingBehavior() NSDateComponentsForma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/zeroFormattingBehavior-swift.property
-func (d_ DateComponentsFormatter) SetZeroFormattingBehavior(value NSDateComponentsFormatterZeroFormattingBehavior) {
+func (d_ DateComponentsFormatter) SetZeroFormattingBehavior(value DateComponentsFormatterZeroFormattingBehavior) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setZeroFormattingBehavior:"), value)
 }
 

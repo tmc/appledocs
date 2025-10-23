@@ -30,18 +30,13 @@ type _TableRowViewClass struct {
 // An interface definition for the [TableRowView] class.
 type ITableRowView interface {
 	IView
-	DrawBackgroundInRect(dirtyRect coregraphics.CGRect)
-	DrawDraggingDestinationFeedbackInRect(dirtyRect coregraphics.CGRect)
-	DrawSelectionInRect(dirtyRect coregraphics.CGRect)
-	DrawSeparatorInRect(dirtyRect coregraphics.CGRect)
-	ViewAtColumn(column int) objc.ID
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle
-	SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle)
+	DraggingDestinationFeedbackStyle() unsafe.Pointer
+	SetDraggingDestinationFeedbackStyle(value unsafe.Pointer)
 	IndentationForDropOperation() float64
 	SetIndentationForDropOperation(value float64)
-	InteriorBackgroundStyle() BackgroundStyle
+	InteriorBackgroundStyle() NSBackgroundStyle
 	Emphasized() bool
 	SetEmphasized(value bool)
 	Floating() bool
@@ -73,6 +68,11 @@ type ITableRowView interface {
 	SetIsSelected(value bool)
 	IsTargetForDropOperation() bool
 	SetIsTargetForDropOperation(value bool)
+	DrawBackgroundInRect(dirtyRect coregraphics.CGRect)
+	DrawDraggingDestinationFeedbackInRect(dirtyRect coregraphics.CGRect)
+	DrawSelectionInRect(dirtyRect coregraphics.CGRect)
+	DrawSeparatorInRect(dirtyRect coregraphics.CGRect)
+	ViewAtColumn(column int) objc.ID
 }
 
 // The view shown for a row in a table view.
@@ -180,8 +180,8 @@ func (t_ TableRowView) ViewAtColumn(column int) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/backgroundColor
-func (t_ TableRowView) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TableRowView) BackgroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -199,8 +199,8 @@ func (t_ TableRowView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle {
-	rv := objc.Send[TableViewDraggingDestinationFeedbackStyle](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
+func (t_ TableRowView) DraggingDestinationFeedbackStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
 }
 
@@ -209,7 +209,7 @@ func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDesti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle) {
+func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
 
@@ -237,8 +237,8 @@ func (t_ TableRowView) SetIndentationForDropOperation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/interiorBackgroundStyle
-func (t_ TableRowView) InteriorBackgroundStyle() BackgroundStyle {
-	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("interiorBackgroundStyle"))
+func (t_ TableRowView) InteriorBackgroundStyle() NSBackgroundStyle {
+	rv := objc.Send[NSBackgroundStyle](t_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 

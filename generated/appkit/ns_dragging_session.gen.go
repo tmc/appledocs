@@ -31,15 +31,15 @@ type _DraggingSessionClass struct {
 // An interface definition for the [DraggingSession] class.
 type IDraggingSession interface {
 	objectivec.IObject
-	AnimatesToStartingPositionsOnCancelOrFail() bool
-	SetAnimatesToStartingPositionsOnCancelOrFail(value bool)
 	DraggingFormation() unsafe.Pointer
 	SetDraggingFormation(value unsafe.Pointer)
+	AnimatesToStartingPositionsOnCancelOrFail() bool
+	SetAnimatesToStartingPositionsOnCancelOrFail(value bool)
 	DraggingLeaderIndex() int
 	SetDraggingLeaderIndex(value int)
 	DraggingLocation() coregraphics.CGPoint
 	SetDraggingLocation(value coregraphics.CGPoint)
-	DraggingPasteboard() NSPasteboard
+	DraggingPasteboard() IPasteboard
 	SetDraggingPasteboard(value IPasteboard)
 	DraggingSequenceNumber() int
 	SetDraggingSequenceNumber(value int)
@@ -98,6 +98,25 @@ func NewDraggingSession() DraggingSession {
 
 
 
+// Controls the dragging formation when the drag is not over the source or a valid destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
+func (d_ DraggingSession) DraggingFormation() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("draggingFormation"))
+	return rv
+}
+
+
+// Controls the dragging formation when the drag is not over the source or a valid destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
+func (d_ DraggingSession) SetDraggingFormation(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFormation:"), value)
+}
+
+
 // Controls whether the dragging image animates back to its starting point on a cancelled or failed drag.
 //
 // [Full Topic]
@@ -114,25 +133,6 @@ func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/animatestostartingpositionsoncancelorfail
 func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnimatesToStartingPositionsOnCancelOrFail:"), value)
-}
-
-
-// Controls the dragging formation when the drag is not over the source or a valid destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
-func (d_ DraggingSession) DraggingFormation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("draggingFormation"))
-	return rv
-}
-
-
-// Controls the dragging formation when the drag is not over the source or a valid destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
-func (d_ DraggingSession) SetDraggingFormation(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFormation:"), value)
 }
 
 
@@ -178,8 +178,8 @@ func (d_ DraggingSession) SetDraggingLocation(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingpasteboard
-func (d_ DraggingSession) DraggingPasteboard() NSPasteboard {
-	rv := objc.Send[NSPasteboard](d_.ID, objc.Sel("draggingPasteboard"))
+func (d_ DraggingSession) DraggingPasteboard() IPasteboard {
+	rv := objc.Send[Pasteboard](d_.ID, objc.Sel("draggingPasteboard"))
 	return rv
 }
 

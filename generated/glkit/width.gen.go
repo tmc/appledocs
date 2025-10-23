@@ -30,6 +30,8 @@ type _widthClass struct {
 // An interface definition for the [width] class.
 type Iwidth interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

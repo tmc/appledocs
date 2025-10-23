@@ -6,6 +6,6 @@ package mapkit
 // MKPointOfInterestCategory - A point of interest category.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPointOfInterestCategory
-// MKPointOfInterestCategory has base type: NSString *
-type MKPointOfInterestCategory uintptr
+// MKPointOfInterestCategory is a string typedef
+type MKPointOfInterestCategory = string
 

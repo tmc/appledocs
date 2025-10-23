@@ -32,17 +32,21 @@ type _MKReverseGeocodingRequestClass struct {
 // An interface definition for the [MKReverseGeocodingRequest] class.
 type IMKReverseGeocodingRequest interface {
 	objectivec.IObject
+	// properties:
 	IsCancelled() bool
 	SetIsCancelled(value bool)
 	IsLoading() bool
 	SetIsLoading(value bool)
 	Location() corelocation.Location
-	SetLocation(value corelocation.ILocation)
+	SetLocation(value corelocation.Location)
 	PreferredLocale() foundation.Locale
-	SetPreferredLocale(value foundation.ILocale)
+	SetPreferredLocale(value foundation.Locale)
+	// methods:
 }
 
 // A class that looks up address strings for the provided geographic coordinates.
+//
+// Use this class to look up an address by a coordinate you provide. This example shows how to use a modifier on a SwiftUI view to reverse geocodes an array of coordinates to the corresponding addresses that MapKit returns in an array of objects.
 
 
 // A class that looks up address strings for the provided geographic coordinates.
@@ -145,7 +149,7 @@ func (m_ MKReverseGeocodingRequest) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
-func (m_ MKReverseGeocodingRequest) SetLocation(value corelocation.ILocation) {
+func (m_ MKReverseGeocodingRequest) SetLocation(value corelocation.Location) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -164,7 +168,7 @@ func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
-func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
+func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value foundation.Locale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

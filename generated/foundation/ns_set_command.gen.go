@@ -29,7 +29,9 @@ type _SetCommandClass struct {
 // An interface definition for the [SetCommand] class.
 type ISetCommand interface {
 	IScriptCommand
+	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 

@@ -30,16 +30,18 @@ type _HKSourceRevisionClass struct {
 // An interface definition for the [HKSourceRevision] class.
 type IHKSourceRevision interface {
 	objectivec.IObject
-	SourceRevision() HKSourceRevision
+	// properties:
+	SourceRevision() IHKSourceRevision
 	SetSourceRevision(value IHKSourceRevision)
 	OperatingSystemVersion() unsafe.Pointer
 	SetOperatingSystemVersion(value unsafe.Pointer)
 	ProductType() string
 	SetProductType(value string)
-	Source() HKSource
+	Source() IHKSource
 	SetSource(value IHKSource)
 	Version() string
 	SetVersion(value string)
+	// methods:
 }
 
 // An object indicating the source of a HealthKit sample.
@@ -99,7 +101,7 @@ func NewHKSourceRevision() HKSourceRevision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
-func (h_ HKSourceRevision) SourceRevision() HKSourceRevision {
+func (h_ HKSourceRevision) SourceRevision() IHKSourceRevision {
 	rv := objc.Send[HKSourceRevision](h_.ID, objc.Sel("sourceRevision"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (h_ HKSourceRevision) SetProductType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/source
-func (h_ HKSourceRevision) Source() HKSource {
+func (h_ HKSourceRevision) Source() IHKSource {
 	rv := objc.Send[HKSource](h_.ID, objc.Sel("source"))
 	return rv
 }

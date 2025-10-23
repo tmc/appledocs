@@ -29,10 +29,14 @@ type _INUpdateMediaAffinityIntentClass struct {
 // An interface definition for the [INUpdateMediaAffinityIntent] class.
 type IINUpdateMediaAffinityIntent interface {
 	IINIntent
-	MediaItems() []INMediaItem
-	MediaSearch() INMediaSearch
+	// properties:
 	AffinityType() unsafe.Pointer
 	SetAffinityType(value unsafe.Pointer)
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
+	// methods:
 }
 
 // A request to update the user’s affinity for a media item.
@@ -90,26 +94,6 @@ func NewINUpdateMediaAffinityIntent() INUpdateMediaAffinityIntent {
 
 
 
-// The media items to update.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaItems
-func (i_ INUpdateMediaAffinityIntent) MediaItems() []INMediaItem {
-	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
-	return rv
-}
-
-
-// The type of item to search for.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INUpdateMediaAffinityIntent/mediaSearch
-func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
-	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
-	return rv
-}
-
-
 // The user’s affinity for the media item.
 //
 // [Full Topic]
@@ -126,6 +110,44 @@ func (i_ INUpdateMediaAffinityIntent) AffinityType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/affinitytype
 func (i_ INUpdateMediaAffinityIntent) SetAffinityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAffinityType:"), value)
+}
+
+
+// The media items to update.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediaitems
+func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem {
+	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
+	return rv
+}
+
+
+// The media items to update.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediaitems
+func (i_ INUpdateMediaAffinityIntent) SetMediaItems(value INMediaItem) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
+}
+
+
+// The type of item to search for.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
+func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
+	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
+	return rv
+}
+
+
+// The type of item to search for.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent/mediasearch
+func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value INMediaSearch) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 
 

@@ -38,7 +38,7 @@ type ICKDatabaseNotification interface {
 	ShouldSendContentAvailable() bool
 	SetShouldSendContentAvailable(value bool)
 	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value ICKNotificationInfo)
+	SetNotificationInfo(value CKNotificationInfo)
 }
 
 // A notification that triggers when the contents of a database change.
@@ -186,7 +186,7 @@ func (c_ CKDatabaseNotification) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseNotification) SetNotificationInfo(value ICKNotificationInfo) {
+func (c_ CKDatabaseNotification) SetNotificationInfo(value CKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

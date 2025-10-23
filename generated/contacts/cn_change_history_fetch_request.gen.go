@@ -41,7 +41,7 @@ type ICNChangeHistoryFetchRequest interface {
 	ShouldUnifyResults() bool
 	SetShouldUnifyResults(value bool)
 	StartingToken() foundation.NSData
-	SetStartingToken(value foundation.IData)
+	SetStartingToken(value foundation.NSData)
 }
 
 // An object that specifies the criteria for fetching change history.
@@ -228,7 +228,7 @@ func (c_ CNChangeHistoryFetchRequest) StartingToken() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
-func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value foundation.IData) {
+func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStartingToken:"), value)
 }
 

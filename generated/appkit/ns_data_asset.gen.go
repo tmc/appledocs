@@ -32,8 +32,10 @@ type _DataAssetClass struct {
 type IDataAsset interface {
 	objectivec.IObject
 	Data() foundation.NSData
-	Name() DataAssetName
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
 	TypeIdentifier() string
+	SetTypeIdentifier(value string)
 }
 
 // An object from a data set type stored in an asset catalog.
@@ -89,23 +91,11 @@ func NewDataAsset() DataAsset {
 
 
 
-// Initializes and returns an object with a reference to the named data asset in an asset catalog.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:)
-func NewDataAssetWithName(name IDataAssetName) DataAsset {
-	instance := getDataAssetClass().Alloc()
-	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:"), name)
-	rv.Autorelease()
-	return rv
-}
-
-
 // Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
-func NewDataAssetWithNameBundle(name IDataAssetName, bundle foundation.IBundle) DataAsset {
+func NewDataAssetWithNameBundle(name unsafe.Pointer, bundle foundation.Bundle) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
 	rv.Autorelease()
@@ -127,9 +117,28 @@ func (d_ DataAsset) Data() foundation.NSData {
 // The name of the data set in the asset catalog.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/name-swift.property
-func (d_ DataAsset) Name() DataAssetName {
-	rv := objc.Send[DataAssetName](d_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
+func (d_ DataAsset) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The name of the data set in the asset catalog.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
+func (d_ DataAsset) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setName:"), value)
+}
+
+
+// The uniform type identifier for the data asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+func (d_ DataAsset) TypeIdentifier() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
 
@@ -137,10 +146,9 @@ func (d_ DataAsset) Name() DataAssetName {
 // The uniform type identifier for the data asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/typeIdentifier
-func (d_ DataAsset) TypeIdentifier() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+func (d_ DataAsset) SetTypeIdentifier(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), objc.String(value))
 }
 
 

@@ -31,11 +31,6 @@ type _ParameterNodeClass struct {
 // An interface definition for the [ParameterNode] class.
 type IParameterNode interface {
 	objectivec.IObject
-	DisplayNameWithLength(maximumLength int) foundation.String
-	RemoveParameterObserver(token IParameterObserverToken)
-	TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) ParameterObserverToken
-	TokenByAddingParameterObserver(observer unsafe.Pointer) ParameterObserverToken
-	TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) ParameterObserverToken
 	DisplayName() string
 	Identifier() string
 	ImplementorDisplayNameWithLengthCallback() unsafe.Pointer
@@ -49,6 +44,11 @@ type IParameterNode interface {
 	SetImplementorValueObserver(value unsafe.Pointer)
 	ImplementorValueProvider() unsafe.Pointer
 	SetImplementorValueProvider(value unsafe.Pointer)
+	DisplayNameWithLength(maximumLength int) foundation.String
+	RemoveParameterObserver(token ParameterObserverToken)
+	TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) ParameterObserverToken
+	TokenByAddingParameterObserver(observer unsafe.Pointer) ParameterObserverToken
+	TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) ParameterObserverToken
 }
 
 // An object that represents a node in an audio unit’s parameter tree.
@@ -118,7 +118,7 @@ func (p_ ParameterNode) DisplayNameWithLength(maximumLength int) foundation.Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/removeParameterObserver(_:)
-func (p_ ParameterNode) RemoveParameterObserver(token IParameterObserverToken) {
+func (p_ ParameterNode) RemoveParameterObserver(token ParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeParameterObserver:"), token)
 }
 

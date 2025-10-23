@@ -34,7 +34,7 @@ type ICBCharacteristic interface {
 	IsBroadcasted() bool
 	IsNotifying() bool
 	Properties() CBCharacteristicProperties
-	Service() CBService
+	Service() ICBService
 	Value() foundation.NSData
 }
 
@@ -137,7 +137,7 @@ func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/service
-func (c_ CBCharacteristic) Service() CBService {
+func (c_ CBCharacteristic) Service() ICBService {
 	rv := objc.Send[CBService](c_.ID, objc.Sel("service"))
 	return rv
 }

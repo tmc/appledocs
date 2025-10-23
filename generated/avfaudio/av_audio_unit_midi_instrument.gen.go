@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [AudioUnitMIDIInstrument] class.
@@ -28,29 +29,22 @@ type _AudioUnitMIDIInstrumentClass struct {
 
 // An interface definition for the [AudioUnitMIDIInstrument] class.
 type IAudioUnitMIDIInstrument interface {
-	IAudioUnit
+	objectivec.IObject
 }
 
-// An object that represents music devices or remote instruments.
-//
-// Use an in a chain that processes real-time (live) input and has the general concept of music events; for example, notes.
+// A parent class referenced by other AVFAudio classes.
 
 
-// An object that represents music devices or remote instruments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnitMIDIInstrument
+// A parent class referenced by other AVFAudio classes. [Full Topic]
 type AudioUnitMIDIInstrument struct {
-	AudioUnit
+	objectivec.Object
 }
 
 // AudioUnitMIDIInstrumentFrom constructs a [AudioUnitMIDIInstrument] from an unsafe.Pointer.
 //
-// An object that represents music devices or remote instruments.
+// A parent class referenced by other AVFAudio classes.
 func AudioUnitMIDIInstrumentFrom(ptr unsafe.Pointer) AudioUnitMIDIInstrument {
-	return AudioUnitMIDIInstrument{
-		AudioUnit: AudioUnitFrom(ptr),
-	}
+	return AudioUnitMIDIInstrument{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.

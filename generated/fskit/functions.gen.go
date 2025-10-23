@@ -47,41 +47,35 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Creates an error object for the given Cocoa error code.
 //
 // Added in macOS 15.4.
-
 // Creates an error object for the given Cocoa error code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForCocoaError(_:)
 func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 	return _fs_errorForCocoaError(errorCode)
-	}
-
+}
 
 // Creates an error object for the given Mach error code.
 //
 // Added in macOS 15.4.
-
 // Creates an error object for the given Mach error code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForMachError(_:)
 func fs_errorForMachError(errorCode int) unsafe.Pointer {
 	return _fs_errorForMachError(errorCode)
-	}
-
+}
 
 // Creates an error object for the given POSIX error code.
 //
 // Added in macOS 15.4.
-
 // Creates an error object for the given POSIX error code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForPOSIXError(_:)
 func fs_errorForPOSIXError(p0 int) unsafe.Pointer {
 	return _fs_errorForPOSIXError(p0)
-	}
-
+}
 
 
 

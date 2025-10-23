@@ -29,6 +29,8 @@ type _UnitAccelerationClass struct {
 // An interface definition for the [UnitAcceleration] class.
 type IUnitAcceleration interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for acceleration.

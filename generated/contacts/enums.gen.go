@@ -9,10 +9,6 @@ package contacts
 type CNAuthorizationStatus uint
 
 const (
-	// CNAuthorizationStatusAuthorized - The application is authorized to access contact data.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNAuthorizationStatus/authorized
-	CNAuthorizationStatusAuthorized CNAuthorizationStatus = 0
 	// CNAuthorizationStatusDenied - The user explicitly denied access to contact data for the application.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNAuthorizationStatus/denied
@@ -35,21 +31,6 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactDisplayNameOrder
 type CNContactDisplayNameOrder uint
-
-const (
-	// CNContactDisplayNameOrderFamilyNameFirst - Display name order by family name first.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactDisplayNameOrder/familyNameFirst
-	CNContactDisplayNameOrderFamilyNameFirst CNContactDisplayNameOrder = 0
-	// CNContactDisplayNameOrderGivenNameFirst - Display name order by given name first.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactDisplayNameOrder/givenNameFirst
-	CNContactDisplayNameOrderGivenNameFirst CNContactDisplayNameOrder = 0
-	// CNContactDisplayNameOrderUserDefault - Display name order by user default.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactDisplayNameOrder/userDefault
-	CNContactDisplayNameOrderUserDefault CNContactDisplayNameOrder = 0
-)
 
 // CNContactFormatterStyle - The formatting styles for contact names.
 //
@@ -107,41 +88,10 @@ const (
 	CNContactTypePerson CNContactType = 0
 )
 
-// CNContainerType - The container may be local on the device or associated with a server account that has contacts.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainerType
-type CNContainerType uint
-
-const (
-	// CNContainerTypeCardDAV - A container for contacts stored in an CardDAV server, such as iCloud.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainerType/cardDAV
-	CNContainerTypeCardDAV CNContainerType = 0
-	// CNContainerTypeExchange - A container for contacts stored in an Exchange folder from an Exchange server.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainerType/exchange
-	CNContainerTypeExchange CNContainerType = 0
-	// CNContainerTypeLocal - A container for contacts only stored locally on the device.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainerType/local
-	CNContainerTypeLocal CNContainerType = 0
-	// CNContainerTypeUnassigned - A container where the system hasn’t assigned the container type.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainerType/unassigned
-	CNContainerTypeUnassigned CNContainerType = 0
-)
-
 // CNEntityType - The entities the user can grant access to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNEntityType
 type CNEntityType uint
-
-const (
-	// CNEntityTypeContacts - The user’s contacts.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNEntityType/contacts
-	CNEntityTypeContacts CNEntityType = 0
-)
 
 // CNErrorCode - Error codes that the system may return when you use Contacts framework methods.
 //
@@ -177,18 +127,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/clientIdentifierInvalid
 	CNErrorCodeClientIdentifierInvalid CNErrorCode = 0
-	// CNErrorCodeCommunicationError - An error that indicates a communication error occurred.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/communicationError
-	CNErrorCodeCommunicationError CNErrorCode = 0
 	// CNErrorCodeContainmentCycle - An error with the containment cycle.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/containmentCycle
 	CNErrorCodeContainmentCycle CNErrorCode = 0
-	// CNErrorCodeContainmentScope - An error with containment scope.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/containmentScope
-	CNErrorCodeContainmentScope CNErrorCode = 0
 	// CNErrorCodeDataAccessError - An error with data access.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/dataAccessError
@@ -197,10 +139,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/featureDisabledByUser
 	CNErrorCodeFeatureDisabledByUser CNErrorCode = 0
-	// CNErrorCodeFeatureNotAvailable - An error that indicates the feature isn’t available.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/featureNotAvailable
-	CNErrorCodeFeatureNotAvailable CNErrorCode = 0
 	// CNErrorCodeInsertedRecordAlreadyExists - An error that indicates the inserted record already exists.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/insertedRecordAlreadyExists
@@ -213,42 +151,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/parentContainerNotWritable
 	CNErrorCodeParentContainerNotWritable CNErrorCode = 0
-	// CNErrorCodeParentRecordDoesNotExist - An error that indicates the parent record doesn’t exist.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/parentRecordDoesNotExist
-	CNErrorCodeParentRecordDoesNotExist CNErrorCode = 0
-	// CNErrorCodePolicyViolation - An error that indicates a policy violation.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/policyViolation
-	CNErrorCodePolicyViolation CNErrorCode = 0
-	// CNErrorCodePredicateInvalid - An error that indicates an invalid predicate.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/predicateInvalid
-	CNErrorCodePredicateInvalid CNErrorCode = 0
 	// CNErrorCodeRecordDoesNotExist - An error that indicates a record doesn’t exist.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/recordDoesNotExist
 	CNErrorCodeRecordDoesNotExist CNErrorCode = 0
-	// CNErrorCodeRecordIdentifierInvalid - An error that indicates a record identifier is invalid.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/recordIdentifierInvalid
-	CNErrorCodeRecordIdentifierInvalid CNErrorCode = 0
-	// CNErrorCodeRecordNotWritable - An error that indicates a record isn’t writable.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/recordNotWritable
-	CNErrorCodeRecordNotWritable CNErrorCode = 0
-	// CNErrorCodeUnauthorizedKeys - An error that indicates unauthorized keys usage.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/unauthorizedKeys
-	CNErrorCodeUnauthorizedKeys CNErrorCode = 0
-	// CNErrorCodeVCardMalformed - An error that indicates a malformed vCard.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/vCardMalformed
-	CNErrorCodeVCardMalformed CNErrorCode = 0
-	// CNErrorCodeVCardSummarizationError - An error that indicates a vCard summarization problem.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/vCardSummarizationError
-	CNErrorCodeVCardSummarizationError CNErrorCode = 0
 	// CNErrorCodeValidationConfigurationError - An error with validation configuration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/validationConfigurationError
@@ -257,22 +163,11 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/validationMultipleErrors
 	CNErrorCodeValidationMultipleErrors CNErrorCode = 0
-	// CNErrorCodeValidationTypeMismatch - A validation error that indicates a type mismatch.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code/validationTypeMismatch
-	CNErrorCodeValidationTypeMismatch CNErrorCode = 0
 )
 
 // CNPostalAddressFormatterStyle - Constants for postal formatting styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatterStyle
 type CNPostalAddressFormatterStyle uint
-
-const (
-	// CNPostalAddressFormatterStyleMailingAddress - A style that combines the postal address components into a multi-line mailing address.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNPostalAddressFormatterStyle/mailingAddress
-	CNPostalAddressFormatterStyleMailingAddress CNPostalAddressFormatterStyle = 0
-)
 
 

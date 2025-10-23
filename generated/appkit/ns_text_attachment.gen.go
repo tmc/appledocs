@@ -39,13 +39,13 @@ type ITextAttachment interface {
 	FileType() string
 	SetFileType(value string)
 	FileWrapper() foundation.FileWrapper
-	SetFileWrapper(value foundation.IFileWrapper)
-	Image() Image
+	SetFileWrapper(value foundation.FileWrapper)
+	Image() IImage
 	SetImage(value IImage)
 	Bounds() coregraphics.CGRect
 	SetBounds(value coregraphics.CGRect)
 	Contents() foundation.Data
-	SetContents(value foundation.IData)
+	SetContents(value foundation.Data)
 	LineLayoutPadding() float64
 	SetLineLayoutPadding(value float64)
 	UsesTextAttachmentView() bool
@@ -109,7 +109,7 @@ func NewTextAttachment() TextAttachment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/init(fileWrapper:)
-func NewTextAttachmentWithFileWrapper(fileWrapper foundation.IFileWrapper) TextAttachment {
+func NewTextAttachmentWithFileWrapper(fileWrapper foundation.FileWrapper) TextAttachment {
 	instance := getTextAttachmentClass().Alloc()
 	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithFileWrapper:"), fileWrapper)
 	rv.Autorelease()
@@ -208,7 +208,7 @@ func (t_ TextAttachment) FileWrapper() foundation.FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileWrapper
-func (t_ TextAttachment) SetFileWrapper(value foundation.IFileWrapper) {
+func (t_ TextAttachment) SetFileWrapper(value foundation.FileWrapper) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFileWrapper:"), value)
 }
 
@@ -217,7 +217,7 @@ func (t_ TextAttachment) SetFileWrapper(value foundation.IFileWrapper) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/image
-func (t_ TextAttachment) Image() Image {
+func (t_ TextAttachment) Image() IImage {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
@@ -265,7 +265,7 @@ func (t_ TextAttachment) Contents() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
-func (t_ TextAttachment) SetContents(value foundation.IData) {
+func (t_ TextAttachment) SetContents(value foundation.Data) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
 }
 

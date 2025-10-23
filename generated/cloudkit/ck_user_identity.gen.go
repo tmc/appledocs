@@ -31,11 +31,15 @@ type _CKUserIdentityClass struct {
 // An interface definition for the [CKUserIdentity] class.
 type ICKUserIdentity interface {
 	objectivec.IObject
-	ContactIdentifiers() []string
-	HasiCloudAccount() bool
-	LookupInfo() CKUserIdentityLookupInfo
-	NameComponents() foundation.PersonNameComponents
 	UserRecordID() CKRecordID
+	ContactIdentifiers() string
+	SetContactIdentifiers(value string)
+	HasiCloudAccount() bool
+	SetHasiCloudAccount(value bool)
+	LookupInfo() ICKUserIdentityLookupInfo
+	SetLookupInfo(value ICKUserIdentityLookupInfo)
+	NameComponents() foundation.PersonNameComponents
+	SetNameComponents(value foundation.PersonNameComponents)
 }
 
 // The identity of a user.
@@ -91,46 +95,6 @@ func NewCKUserIdentity() CKUserIdentity {
 
 
 
-// Identifiers that match contacts in the local Contacts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/contactIdentifiers
-func (c_ CKUserIdentity) ContactIdentifiers() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("contactIdentifiers"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the user has an iCloud account.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/hasiCloudAccount
-func (c_ CKUserIdentity) HasiCloudAccount() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
-	return rv
-}
-
-
-// The lookup info for retrieving the user identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/lookupInfo-swift.property
-func (c_ CKUserIdentity) LookupInfo() CKUserIdentityLookupInfo {
-	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("lookupInfo"))
-	return rv
-}
-
-
-// The user’s name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/nameComponents
-func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
-	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
-	return rv
-}
-
-
 // The user record ID for the corresponding user record.
 //
 // [Full Topic]
@@ -138,6 +102,82 @@ func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
 func (c_ CKUserIdentity) UserRecordID() CKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
+}
+
+
+// Identifiers that match contacts in the local Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKUserIdentity) ContactIdentifiers() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
+	return rv
+}
+
+
+// Identifiers that match contacts in the local Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
+func (c_ CKUserIdentity) SetContactIdentifiers(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
+}
+
+
+// A Boolean value that indicates whether the user has an iCloud account.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKUserIdentity) HasiCloudAccount() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the user has an iCloud account.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
+func (c_ CKUserIdentity) SetHasiCloudAccount(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
+}
+
+
+// The lookup info for retrieving the user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/lookupinfo-swift.property
+func (c_ CKUserIdentity) LookupInfo() ICKUserIdentityLookupInfo {
+	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("lookupInfo"))
+	return rv
+}
+
+
+// The lookup info for retrieving the user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/lookupinfo-swift.property
+func (c_ CKUserIdentity) SetLookupInfo(value ICKUserIdentityLookupInfo) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLookupInfo:"), value)
+}
+
+
+// The user’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/namecomponents
+func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
+	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
+	return rv
+}
+
+
+// The user’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/namecomponents
+func (c_ CKUserIdentity) SetNameComponents(value foundation.PersonNameComponents) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNameComponents:"), value)
 }
 
 

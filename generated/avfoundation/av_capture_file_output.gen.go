@@ -30,24 +30,26 @@ type _CaptureFileOutputClass struct {
 // An interface definition for the [CaptureFileOutput] class.
 type ICaptureFileOutput interface {
 	ICaptureOutput
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	IsRecording() bool
-	SetIsRecording(value bool)
-	IsRecordingPaused() bool
-	SetIsRecordingPaused(value bool)
-	MaxRecordedDuration() unsafe.Pointer
-	SetMaxRecordedDuration(value unsafe.Pointer)
+	// properties:
+	Delegate() AVCaptureFileOutputDelegate /* foo */
+	SetDelegate(value AVCaptureFileOutputDelegate /* foo */)
+	IsRecording() bool /* primitive/slice/pointer */
+	SetIsRecording(value bool /* primitive/slice/pointer */)
+	IsRecordingPaused() bool /* primitive/slice/pointer */
+	SetIsRecordingPaused(value bool /* primitive/slice/pointer */)
+	MaxRecordedDuration() CMTime /* foo */
+	SetMaxRecordedDuration(value CMTime /* foo */)
 	MaxRecordedFileSize() unsafe.Pointer
 	SetMaxRecordedFileSize(value unsafe.Pointer)
 	MinFreeDiskSpaceLimit() unsafe.Pointer
 	SetMinFreeDiskSpaceLimit(value unsafe.Pointer)
-	OutputFileURL() foundation.URL
-	SetOutputFileURL(value foundation.URL)
-	RecordedDuration() unsafe.Pointer
-	SetRecordedDuration(value unsafe.Pointer)
+	OutputFileURL() foundation.URL /* foo */
+	SetOutputFileURL(value foundation.URL /* foo */)
+	RecordedDuration() CMTime /* foo */
+	SetRecordedDuration(value CMTime /* foo */)
 	RecordedFileSize() unsafe.Pointer
 	SetRecordedFileSize(value unsafe.Pointer)
+	// methods:
 }
 
 // The abstract superclass for capture outputs that can record captured data to a file.
@@ -107,8 +109,8 @@ func NewCaptureFileOutput() CaptureFileOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
-func (c_ CaptureFileOutput) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+func (c_ CaptureFileOutput) Delegate() AVCaptureFileOutputDelegate /* foo */ {
+	rv := objc.Send[CaptureFileOutputDelegate](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -117,7 +119,7 @@ func (c_ CaptureFileOutput) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/delegate
-func (c_ CaptureFileOutput) SetDelegate(value unsafe.Pointer) {
+func (c_ CaptureFileOutput) SetDelegate(value AVCaptureFileOutputDelegate /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -126,7 +128,7 @@ func (c_ CaptureFileOutput) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) IsRecording() bool {
+func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecording"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (c_ CaptureFileOutput) IsRecording() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) SetIsRecording(value bool) {
+func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecording:"), value)
 }
 
@@ -145,7 +147,7 @@ func (c_ CaptureFileOutput) SetIsRecording(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) IsRecordingPaused() bool {
+func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecordingPaused"))
 	return rv
 }
@@ -155,7 +157,7 @@ func (c_ CaptureFileOutput) IsRecordingPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool) {
+func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecordingPaused:"), value)
 }
 
@@ -164,8 +166,8 @@ func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) MaxRecordedDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxRecordedDuration"))
+func (c_ CaptureFileOutput) MaxRecordedDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](c_.ID, objc.Sel("maxRecordedDuration"))
 	return rv
 }
 
@@ -174,7 +176,7 @@ func (c_ CaptureFileOutput) MaxRecordedDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/maxrecordedduration
-func (c_ CaptureFileOutput) SetMaxRecordedDuration(value unsafe.Pointer) {
+func (c_ CaptureFileOutput) SetMaxRecordedDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxRecordedDuration:"), value)
 }
 
@@ -221,7 +223,7 @@ func (c_ CaptureFileOutput) SetMinFreeDiskSpaceLimit(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) OutputFileURL() foundation.URL {
+func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* foo */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("outputFileURL"))
 	return rv
 }
@@ -231,7 +233,7 @@ func (c_ CaptureFileOutput) OutputFileURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL) {
+func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputFileURL:"), value)
 }
 
@@ -240,8 +242,8 @@ func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) RecordedDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordedDuration"))
+func (c_ CaptureFileOutput) RecordedDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](c_.ID, objc.Sel("recordedDuration"))
 	return rv
 }
 
@@ -250,7 +252,7 @@ func (c_ CaptureFileOutput) RecordedDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/recordedduration
-func (c_ CaptureFileOutput) SetRecordedDuration(value unsafe.Pointer) {
+func (c_ CaptureFileOutput) SetRecordedDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordedDuration:"), value)
 }
 

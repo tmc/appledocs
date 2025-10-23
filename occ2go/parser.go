@@ -164,10 +164,10 @@ func ExtractOverview(doc *appledocs.Document) string {
 
 			contentType, _ := contentMap["type"].(string)
 
-			// Check if this is the overview heading
+			// Check if this is the overview or discussion heading
 			if contentType == "heading" {
 				anchor, _ := contentMap["anchor"].(string)
-				if anchor == "overview" {
+				if anchor == "overview" || anchor == "Discussion" {
 					inOverview = true
 					continue
 				}
@@ -720,11 +720,22 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 
 		// Collect return type until closing paren
 		returnTypeParts := []string{}
+		preciseID := ""
 		for i < len(tokens) && !strings.Contains(tokens[i].Text, ")") {
+			if tokens[i].Kind == "typeIdentifier" && tokens[i].PreciseIdentifier != "" {
+				preciseID = tokens[i].PreciseIdentifier
+			}
 			if tokens[i].Text != "" && strings.TrimSpace(tokens[i].Text) != "" {
 				returnTypeParts = append(returnTypeParts, tokens[i].Text)
 			}
 			i++
+		}
+		// Use preciseIdentifier for enum/typedef if available
+		if preciseID != "" && (strings.HasPrefix(preciseID, "c:@E@") || strings.HasPrefix(preciseID, "c:@T@")) {
+			parts := strings.Split(preciseID, "@")
+			if len(parts) >= 3 {
+				returnTypeParts = []string{parts[len(parts)-1]}
+			}
 		}
 		method.ReturnType = strings.Join(returnTypeParts, " ")
 
@@ -789,9 +800,15 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 					// Need to handle nested parentheses for blocks like: void (^)(NSModalResponse)
 					paramTypeParts := []string{}
 					parenDepth := 0
+					preciseID := ""
 
 					for i < len(tokens) {
 						text := tokens[i].Text
+
+						// Capture preciseIdentifier for enum/typedef types
+						if tokens[i].Kind == "typeIdentifier" && tokens[i].PreciseIdentifier != "" {
+							preciseID = tokens[i].PreciseIdentifier
+						}
 
 						// Count opening and closing parens in this token
 						for _, ch := range text {
@@ -824,6 +841,14 @@ func ParseMethodDeclaration(tokens []appledocs.Token, isClassMethod bool) (*Pars
 						}
 
 						i++
+					}
+
+					// Use preciseIdentifier for enum/typedef if available
+					if preciseID != "" && (strings.HasPrefix(preciseID, "c:@E@") || strings.HasPrefix(preciseID, "c:@T@")) {
+						parts := strings.Split(preciseID, "@")
+						if len(parts) >= 3 {
+							paramTypeParts = []string{parts[len(parts)-1]}
+						}
 					}
 
 					param.Type = strings.Join(paramTypeParts, " ")
@@ -1365,6 +1390,11 @@ func ParseEnumCase(doc *appledocs.Document) (*ParsedEnumCase, error) {
 	availability := ExtractAvailability(doc.Metadata.Platforms)
 	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
 	abstract := ExtractAbstract(doc.Abstract)
+
+	// If abstract is empty, try to extract from Discussion section
+	if abstract == "" {
+		abstract = ExtractOverview(doc)
+	}
 
 	// Modern enum cases have external IDs like: c:@E@NSWindowCollectionBehavior@NSWindowCollectionBehaviorDefault
 	// Enum type definitions have 3 parts: c:@E@EnumName

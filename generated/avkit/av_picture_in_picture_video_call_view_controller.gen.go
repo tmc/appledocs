@@ -30,10 +30,10 @@ type _PictureInPictureVideoCallViewControllerClass struct {
 // An interface definition for the [PictureInPictureVideoCallViewController] class.
 type IPictureInPictureVideoCallViewController interface {
 	appkit.IViewController
-	ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController
+	ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController
 	SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController)
 	ActiveVideoCallSourceView() appkit.View
-	SetActiveVideoCallSourceView(value appkit.IView)
+	SetActiveVideoCallSourceView(value appkit.View)
 }
 
 // A view controller that presents content from a video call in Picture in Picture.
@@ -93,8 +93,8 @@ func NewPictureInPictureVideoCallViewController() PictureInPictureVideoCallViewC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
-	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
+func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController {
+	rv := objc.Send[PictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
 }
 
@@ -122,7 +122,7 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() ap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.IView) {
+func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.View) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }
 

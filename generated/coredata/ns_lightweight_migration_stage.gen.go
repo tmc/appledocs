@@ -87,19 +87,6 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 
 
 
-// Creates a lightweight migration stage with the specified version checksums.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage/initWithVersionChecksums:
-func NewLightweightMigrationStageWithVersionChecksums(versionChecksums []string) LightweightMigrationStage {
-	instance := getLightweightMigrationStageClass().Alloc()
-	rv := objc.Send[LightweightMigrationStage](instance.ID, objc.Sel("initWithVersionChecksums:"), versionChecksums)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The array of version checksums.
 //
 // [Full Topic]
@@ -108,5 +95,6 @@ func (l_ LightweightMigrationStage) VersionChecksums() []string {
 	rv := objc.Send[[]string](l_.ID, objc.Sel("versionChecksums"))
 	return rv
 }
+
 
 

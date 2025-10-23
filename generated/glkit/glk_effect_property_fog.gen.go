@@ -29,8 +29,9 @@ type _GLKEffectPropertyFogClass struct {
 // An interface definition for the [GLKEffectPropertyFog] class.
 type IGLKEffectPropertyFog interface {
 	IGLKEffectProperty
+	// properties:
 	Color() GLKVector4
-	SetColor(value IGLKVector4)
+	SetColor(value GLKVector4)
 	Density() unsafe.Pointer
 	SetDensity(value unsafe.Pointer)
 	Enabled() unsafe.Pointer
@@ -41,6 +42,7 @@ type IGLKEffectPropertyFog interface {
 	SetMode(value unsafe.Pointer)
 	Start() unsafe.Pointer
 	SetStart(value unsafe.Pointer)
+	// methods:
 }
 
 // Fog drawing information for use in GLKit rendering effects.
@@ -112,7 +114,7 @@ func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-func (g_ GLKEffectPropertyFog) SetColor(value IGLKVector4) {
+func (g_ GLKEffectPropertyFog) SetColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
 

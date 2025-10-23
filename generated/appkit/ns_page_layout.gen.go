@@ -30,18 +30,13 @@ type _PageLayoutClass struct {
 // An interface definition for the [PageLayout] class.
 type IPageLayout interface {
 	objectivec.IObject
-	AccessoryView() View
+	AccessoryControllers() []ViewController
+	PrintInfo() IPrintInfo
 	AddAccessoryController(accessoryController IViewController)
 	BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer)
-	BeginSheetWithPrintInfoModalForWindowDelegateDidEndSelectorContextInfo(printInfo IPrintInfo, docWindow IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
-	ReadPrintInfo()
 	RemoveAccessoryController(accessoryController IViewController)
 	RunModal() int
 	RunModalWithPrintInfo(printInfo IPrintInfo) int
-	SetAccessoryView(accessoryView IView)
-	WritePrintInfo()
-	AccessoryControllers() []ViewController
-	PrintInfo() NSPrintInfo
 }
 
 // A panel that queries the user for information such as paper type and orientation.
@@ -101,18 +96,8 @@ func NewPageLayout() PageLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/pageLayout
-func (pc _PageLayoutClass) PageLayout() PageLayout {
+func (pc _PageLayoutClass) PageLayout() IPageLayout {
 	rv := objc.Send[PageLayout](objc.ID(pc.class), objc.Sel("pageLayout"))
-	return rv
-}
-
-
-// Returns the page layout panel’s accessory view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryView
-func (p_ PageLayout) AccessoryView() View {
-	rv := objc.Send[View](p_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -130,24 +115,6 @@ func (p_ PageLayout) AddAccessoryController(accessoryController IViewController)
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/beginSheet(using:on:completionHandler:)
 func (p_ PageLayout) BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("beginSheetUsingPrintInfo:onWindow:completionHandler:"), printInfo, parentWindow, handler)
-}
-
-
-// Presents a page setup sheet for the specified print info object, document-modal relative to the specified window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/beginSheet(with:modalFor:delegate:didEnd:contextInfo:)
-func (p_ PageLayout) BeginSheetWithPrintInfoModalForWindowDelegateDidEndSelectorContextInfo(printInfo IPrintInfo, docWindow IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:"), printInfo, docWindow, delegate, didEndSelector, contextInfo)
-}
-
-
-// Sets the page layout’s values to those stored in the print info object used when the page layout panel is run.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/readPrintInfo
-func (p_ PageLayout) ReadPrintInfo() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("readPrintInfo"))
 }
 
 
@@ -180,24 +147,6 @@ func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int {
 }
 
 
-// Adds a view object to the page layout panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/setAccessoryView:
-func (p_ PageLayout) SetAccessoryView(accessoryView IView) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryView:"), accessoryView)
-}
-
-
-// Writes the page layout’s values to the print info object used when the page layout panel is run.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/writePrintInfo
-func (p_ PageLayout) WritePrintInfo() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("writePrintInfo"))
-}
-
-
 // An array of accessory view controllers belonging to the page layout panel.
 //
 // [Full Topic]
@@ -212,8 +161,8 @@ func (p_ PageLayout) AccessoryControllers() []ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/printInfo
-func (p_ PageLayout) PrintInfo() NSPrintInfo {
-	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
+func (p_ PageLayout) PrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
 	return rv
 }
 

@@ -30,23 +30,25 @@ type _MorphologyClass struct {
 // An interface definition for the [Morphology] class.
 type IMorphology interface {
 	objectivec.IObject
-	Definiteness() NSGrammaticalDefiniteness
-	SetDefiniteness(value NSGrammaticalDefiniteness)
-	Determination() NSGrammaticalDetermination
-	SetDetermination(value NSGrammaticalDetermination)
-	GrammaticalCase() NSGrammaticalCase
-	SetGrammaticalCase(value NSGrammaticalCase)
-	GrammaticalGender() NSGrammaticalGender
-	SetGrammaticalGender(value NSGrammaticalGender)
-	GrammaticalPerson() NSGrammaticalPerson
-	SetGrammaticalPerson(value NSGrammaticalPerson)
-	Number() NSGrammaticalNumber
-	SetNumber(value NSGrammaticalNumber)
-	PartOfSpeech() NSGrammaticalPartOfSpeech
-	SetPartOfSpeech(value NSGrammaticalPartOfSpeech)
-	PronounType() NSGrammaticalPronounType
-	SetPronounType(value NSGrammaticalPronounType)
-	Unspecified() bool
+	// properties:
+	Definiteness() GrammaticalDefiniteness
+	SetDefiniteness(value GrammaticalDefiniteness)
+	Determination() GrammaticalDetermination
+	SetDetermination(value GrammaticalDetermination)
+	GrammaticalCase() GrammaticalCase
+	SetGrammaticalCase(value GrammaticalCase)
+	GrammaticalGender() GrammaticalGender
+	SetGrammaticalGender(value GrammaticalGender)
+	GrammaticalPerson() GrammaticalPerson
+	SetGrammaticalPerson(value GrammaticalPerson)
+	Number() GrammaticalNumber
+	SetNumber(value GrammaticalNumber)
+	PartOfSpeech() GrammaticalPartOfSpeech
+	SetPartOfSpeech(value GrammaticalPartOfSpeech)
+	PronounType() GrammaticalPronounType
+	SetPronounType(value GrammaticalPronounType)
+	Unspecified() bool /* primitive/slice/pointer */
+	// methods:
 }
 
 // A description of the grammatical properties of a string.
@@ -113,7 +115,7 @@ func (mc _MorphologyClass) UserMorphology() Morphology {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/definiteness
-func (m_ Morphology) Definiteness() NSGrammaticalDefiniteness {
+func (m_ Morphology) Definiteness() GrammaticalDefiniteness {
 	rv := objc.Send[GrammaticalDefiniteness](m_.ID, objc.Sel("definiteness"))
 	return rv
 }
@@ -121,14 +123,14 @@ func (m_ Morphology) Definiteness() NSGrammaticalDefiniteness {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/definiteness
-func (m_ Morphology) SetDefiniteness(value NSGrammaticalDefiniteness) {
+func (m_ Morphology) SetDefiniteness(value GrammaticalDefiniteness) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefiniteness:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/determination
-func (m_ Morphology) Determination() NSGrammaticalDetermination {
+func (m_ Morphology) Determination() GrammaticalDetermination {
 	rv := objc.Send[GrammaticalDetermination](m_.ID, objc.Sel("determination"))
 	return rv
 }
@@ -136,14 +138,14 @@ func (m_ Morphology) Determination() NSGrammaticalDetermination {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/determination
-func (m_ Morphology) SetDetermination(value NSGrammaticalDetermination) {
+func (m_ Morphology) SetDetermination(value GrammaticalDetermination) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDetermination:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalCase
-func (m_ Morphology) GrammaticalCase() NSGrammaticalCase {
+func (m_ Morphology) GrammaticalCase() GrammaticalCase {
 	rv := objc.Send[GrammaticalCase](m_.ID, objc.Sel("grammaticalCase"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (m_ Morphology) GrammaticalCase() NSGrammaticalCase {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalCase
-func (m_ Morphology) SetGrammaticalCase(value NSGrammaticalCase) {
+func (m_ Morphology) SetGrammaticalCase(value GrammaticalCase) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalCase:"), value)
 }
 
@@ -160,7 +162,7 @@ func (m_ Morphology) SetGrammaticalCase(value NSGrammaticalCase) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalGender
-func (m_ Morphology) GrammaticalGender() NSGrammaticalGender {
+func (m_ Morphology) GrammaticalGender() GrammaticalGender {
 	rv := objc.Send[GrammaticalGender](m_.ID, objc.Sel("grammaticalGender"))
 	return rv
 }
@@ -170,14 +172,14 @@ func (m_ Morphology) GrammaticalGender() NSGrammaticalGender {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalGender
-func (m_ Morphology) SetGrammaticalGender(value NSGrammaticalGender) {
+func (m_ Morphology) SetGrammaticalGender(value GrammaticalGender) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalGender:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalPerson
-func (m_ Morphology) GrammaticalPerson() NSGrammaticalPerson {
+func (m_ Morphology) GrammaticalPerson() GrammaticalPerson {
 	rv := objc.Send[GrammaticalPerson](m_.ID, objc.Sel("grammaticalPerson"))
 	return rv
 }
@@ -185,7 +187,7 @@ func (m_ Morphology) GrammaticalPerson() NSGrammaticalPerson {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalPerson
-func (m_ Morphology) SetGrammaticalPerson(value NSGrammaticalPerson) {
+func (m_ Morphology) SetGrammaticalPerson(value GrammaticalPerson) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalPerson:"), value)
 }
 
@@ -194,7 +196,7 @@ func (m_ Morphology) SetGrammaticalPerson(value NSGrammaticalPerson) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/number
-func (m_ Morphology) Number() NSGrammaticalNumber {
+func (m_ Morphology) Number() GrammaticalNumber {
 	rv := objc.Send[GrammaticalNumber](m_.ID, objc.Sel("number"))
 	return rv
 }
@@ -204,7 +206,7 @@ func (m_ Morphology) Number() NSGrammaticalNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/number
-func (m_ Morphology) SetNumber(value NSGrammaticalNumber) {
+func (m_ Morphology) SetNumber(value GrammaticalNumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumber:"), value)
 }
 
@@ -213,7 +215,7 @@ func (m_ Morphology) SetNumber(value NSGrammaticalNumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/partOfSpeech
-func (m_ Morphology) PartOfSpeech() NSGrammaticalPartOfSpeech {
+func (m_ Morphology) PartOfSpeech() GrammaticalPartOfSpeech {
 	rv := objc.Send[GrammaticalPartOfSpeech](m_.ID, objc.Sel("partOfSpeech"))
 	return rv
 }
@@ -223,14 +225,14 @@ func (m_ Morphology) PartOfSpeech() NSGrammaticalPartOfSpeech {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/partOfSpeech
-func (m_ Morphology) SetPartOfSpeech(value NSGrammaticalPartOfSpeech) {
+func (m_ Morphology) SetPartOfSpeech(value GrammaticalPartOfSpeech) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPartOfSpeech:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/pronounType
-func (m_ Morphology) PronounType() NSGrammaticalPronounType {
+func (m_ Morphology) PronounType() GrammaticalPronounType {
 	rv := objc.Send[GrammaticalPronounType](m_.ID, objc.Sel("pronounType"))
 	return rv
 }
@@ -238,7 +240,7 @@ func (m_ Morphology) PronounType() NSGrammaticalPronounType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/pronounType
-func (m_ Morphology) SetPronounType(value NSGrammaticalPronounType) {
+func (m_ Morphology) SetPronounType(value GrammaticalPronounType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPronounType:"), value)
 }
 
@@ -247,7 +249,7 @@ func (m_ Morphology) SetPronounType(value NSGrammaticalPronounType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/unspecified
-func (m_ Morphology) Unspecified() bool {
+func (m_ Morphology) Unspecified() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("unspecified"))
 	return rv
 }

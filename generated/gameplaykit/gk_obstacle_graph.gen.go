@@ -29,6 +29,8 @@ type _ObstacleGraphClass struct {
 // An interface definition for the [ObstacleGraph] class.
 type IObstacleGraph interface {
 	IGraph
+	BufferRadius() float32
+	Obstacles() []PolygonObstacle
 	AddObstacles(obstacles []PolygonObstacle)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeUsingObstacles(node unsafe.Pointer)
@@ -40,8 +42,6 @@ type IObstacleGraph interface {
 	RemoveAllObstacles()
 	RemoveObstacles(obstacles []PolygonObstacle)
 	UnlockConnectionFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer)
-	BufferRadius() float32
-	Obstacles() []PolygonObstacle
 }
 
 // A navigation graph for 2D game worlds that creates a minimal network for precise pathfinding around obstacles.

@@ -30,14 +30,16 @@ type _ScriptSuiteRegistryClass struct {
 // An interface definition for the [ScriptSuiteRegistry] class.
 type IScriptSuiteRegistry interface {
 	objectivec.IObject
-	SuiteNames() []string
-	AeteResource(languageName string) IData
-	AppleEventCodeForSuite(suiteName string) unsafe.Pointer
-	BundleForSuite(suiteName string) IBundle
+	// properties:
+	SuiteNames() []string /* primitive/slice/pointer */
+	// methods:
+	AeteResource(languageName string /* primitive/slice/pointer */) IData
+	AppleEventCodeForSuite(suiteName string /* primitive/slice/pointer */) unsafe.Pointer
+	BundleForSuite(suiteName string /* primitive/slice/pointer */) IBundle
 	ClassDescriptionWithAppleEventCode(appleEventCode unsafe.Pointer) IScriptClassDescription
-	ClassDescriptionsInSuite(suiteName string) IDictionary
+	ClassDescriptionsInSuite(suiteName string /* primitive/slice/pointer */) IDictionary /* already interface */
 	CommandDescriptionWithAppleEventClassAndAppleEventCode(appleEventClassCode unsafe.Pointer, appleEventIDCode unsafe.Pointer) IScriptCommandDescription
-	CommandDescriptionsInSuite(suiteName string) IDictionary
+	CommandDescriptionsInSuite(suiteName string /* primitive/slice/pointer */) IDictionary /* already interface */
 	LoadSuiteWithDictionaryFromBundle(suiteDeclaration objectivec.IObject, bundle IBundle)
 	LoadSuitesFromBundle(bundle IBundle)
 	RegisterCommandDescription(commandDescription IScriptCommandDescription)
@@ -121,7 +123,7 @@ func (sc _ScriptSuiteRegistryClass) SharedScriptSuiteRegistry() IScriptSuiteRegi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/aeteResource(_:)
-func (s_ ScriptSuiteRegistry) AeteResource(languageName string) IData {
+func (s_ ScriptSuiteRegistry) AeteResource(languageName string /* primitive/slice/pointer */) IData {
 	rv := objc.Send[Data](s_.ID, objc.Sel("aeteResource:"), objc.String(languageName))
 	return rv
 }
@@ -131,7 +133,7 @@ func (s_ ScriptSuiteRegistry) AeteResource(languageName string) IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/appleEventCode(forSuite:)
-func (s_ ScriptSuiteRegistry) AppleEventCodeForSuite(suiteName string) unsafe.Pointer {
+func (s_ ScriptSuiteRegistry) AppleEventCodeForSuite(suiteName string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForSuite:"), objc.String(suiteName))
 	return rv
 }
@@ -141,7 +143,7 @@ func (s_ ScriptSuiteRegistry) AppleEventCodeForSuite(suiteName string) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/bundle(forSuite:)
-func (s_ ScriptSuiteRegistry) BundleForSuite(suiteName string) IBundle {
+func (s_ ScriptSuiteRegistry) BundleForSuite(suiteName string /* primitive/slice/pointer */) IBundle {
 	rv := objc.Send[Bundle](s_.ID, objc.Sel("bundleForSuite:"), objc.String(suiteName))
 	return rv
 }
@@ -161,7 +163,7 @@ func (s_ ScriptSuiteRegistry) ClassDescriptionWithAppleEventCode(appleEventCode 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/classDescriptions(inSuite:)
-func (s_ ScriptSuiteRegistry) ClassDescriptionsInSuite(suiteName string) IDictionary {
+func (s_ ScriptSuiteRegistry) ClassDescriptionsInSuite(suiteName string /* primitive/slice/pointer */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](s_.ID, objc.Sel("classDescriptionsInSuite:"), objc.String(suiteName))
 	return rv
 }
@@ -181,7 +183,7 @@ func (s_ ScriptSuiteRegistry) CommandDescriptionWithAppleEventClassAndAppleEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/commandDescriptions(inSuite:)
-func (s_ ScriptSuiteRegistry) CommandDescriptionsInSuite(suiteName string) IDictionary {
+func (s_ ScriptSuiteRegistry) CommandDescriptionsInSuite(suiteName string /* primitive/slice/pointer */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](s_.ID, objc.Sel("commandDescriptionsInSuite:"), objc.String(suiteName))
 	return rv
 }
@@ -237,7 +239,7 @@ func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/suiteNames
-func (s_ ScriptSuiteRegistry) SuiteNames() []string {
+func (s_ ScriptSuiteRegistry) SuiteNames() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("suiteNames"))
 	return rv
 }

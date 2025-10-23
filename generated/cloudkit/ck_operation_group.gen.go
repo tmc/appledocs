@@ -31,18 +31,18 @@ type _CKOperationGroupClass struct {
 // An interface definition for the [CKOperationGroup] class.
 type ICKOperationGroup interface {
 	objectivec.IObject
-	DefaultConfiguration() CKOperationConfiguration
+	DefaultConfiguration() ICKOperationConfiguration
 	SetDefaultConfiguration(value ICKOperationConfiguration)
 	ExpectedReceiveSize() CKOperationGroupTransferSize
-	SetExpectedReceiveSize(value ICKOperationGroupTransferSize)
+	SetExpectedReceiveSize(value CKOperationGroupTransferSize)
 	ExpectedSendSize() CKOperationGroupTransferSize
-	SetExpectedSendSize(value ICKOperationGroupTransferSize)
+	SetExpectedSendSize(value CKOperationGroupTransferSize)
 	Name() string
 	SetName(value string)
 	OperationGroupID() string
 	Quantity() uint
 	SetQuantity(value uint)
-	Group() CKOperationGroup
+	Group() ICKOperationGroup
 	SetGroup(value ICKOperationGroup)
 }
 
@@ -103,7 +103,7 @@ func NewCKOperationGroup() CKOperationGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/init(coder:)
-func NewCKOperationGroupWithCoder(aDecoder foundation.ICoder) CKOperationGroup {
+func NewCKOperationGroupWithCoder(aDecoder foundation.Coder) CKOperationGroup {
 	instance := getCKOperationGroupClass().Alloc()
 	rv := objc.Send[CKOperationGroup](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewCKOperationGroupWithCoder(aDecoder foundation.ICoder) CKOperationGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/defaultConfiguration
-func (c_ CKOperationGroup) DefaultConfiguration() CKOperationConfiguration {
+func (c_ CKOperationGroup) DefaultConfiguration() ICKOperationConfiguration {
 	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (c_ CKOperationGroup) ExpectedReceiveSize() CKOperationGroupTransferSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedReceiveSize
-func (c_ CKOperationGroup) SetExpectedReceiveSize(value ICKOperationGroupTransferSize) {
+func (c_ CKOperationGroup) SetExpectedReceiveSize(value CKOperationGroupTransferSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedReceiveSize:"), value)
 }
 
@@ -164,7 +164,7 @@ func (c_ CKOperationGroup) ExpectedSendSize() CKOperationGroupTransferSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedSendSize
-func (c_ CKOperationGroup) SetExpectedSendSize(value ICKOperationGroupTransferSize) {
+func (c_ CKOperationGroup) SetExpectedSendSize(value CKOperationGroupTransferSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedSendSize:"), value)
 }
 
@@ -221,7 +221,7 @@ func (c_ CKOperationGroup) SetQuantity(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationGroup) Group() CKOperationGroup {
+func (c_ CKOperationGroup) Group() ICKOperationGroup {
 	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
 }

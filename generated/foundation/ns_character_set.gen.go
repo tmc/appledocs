@@ -30,11 +30,13 @@ type _CharacterSetClass struct {
 // An interface definition for the [CharacterSet] class.
 type ICharacterSet interface {
 	objectivec.IObject
+	// properties:
 	InvertedSet() ICharacterSet
 	BitmapRepresentation() IData
 	SetBitmapRepresentation(value IData)
 	Inverted() ICharacterSet
 	SetInverted(value ICharacterSet)
+	// methods:
 }
 
 // An object representing a fixed set of Unicode character values for use in search operations.
@@ -90,12 +92,48 @@ func NewCharacterSet() CharacterSet {
 
 
 
+// A character set containing the characters in Unicode General Categories L*, M*, and N*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/alphanumerics
+func (cc _CharacterSetClass) AlphanumericCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("alphanumericCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category Lt.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/capitalizedLetters
+func (cc _CharacterSetClass) CapitalizedLetterCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("capitalizedLetterCharacterSet"))
+	return rv
+}
+
 // A character set containing the characters in Unicode General Category Cc and Cf.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
 func (cc _CharacterSetClass) ControlCharacterSet() CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("controlCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in the category of Decimal Numbers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/decimalDigits
+func (cc _CharacterSetClass) DecimalDigitCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("decimalDigitCharacterSet"))
+	return rv
+}
+
+// A character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of “standard decomposition” in version 3.2 of the Unicode character encoding standard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/decomposables
+func (cc _CharacterSetClass) DecomposableCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("decomposableCharacterSet"))
 	return rv
 }
 
@@ -108,6 +146,33 @@ func (cc _CharacterSetClass) IllegalCharacterSet() CharacterSet {
 	return rv
 }
 
+// A character set containing the characters in Unicode General Category L* & M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/letters
+func (cc _CharacterSetClass) LetterCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("letterCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category Ll.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/lowercaseLetters
+func (cc _CharacterSetClass) LowercaseLetterCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("lowercaseLetterCharacterSet"))
+	return rv
+}
+
+// A character set containing the newline characters ( ~ , , , and ).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/newlines
+func (cc _CharacterSetClass) NewlineCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("newlineCharacterSet"))
+	return rv
+}
+
 // A character set containing the characters in Unicode General Category M*.
 //
 // [Full Topic]
@@ -117,12 +182,30 @@ func (cc _CharacterSetClass) NonBaseCharacterSet() CharacterSet {
 	return rv
 }
 
+// A character set containing the characters in Unicode General Category P*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/punctuationCharacters
+func (cc _CharacterSetClass) PunctuationCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("punctuationCharacterSet"))
+	return rv
+}
+
 // A character set containing the characters in Unicode General Category S*.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
 func (cc _CharacterSetClass) SymbolCharacterSet() CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("symbolCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category Lu and Lt.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/uppercaseLetters
+func (cc _CharacterSetClass) UppercaseLetterCharacterSet() CharacterSet {
+	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("uppercaseLetterCharacterSet"))
 	return rv
 }
 
@@ -162,12 +245,52 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() CharacterSet {
 	return rv
 }
 
+// A character set containing the characters in Unicode General Categories L*, M*, and N*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/alphanumerics
+func (c_ CharacterSet) AlphanumericCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("alphanumericCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category Lt.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/capitalizedLetters
+func (c_ CharacterSet) CapitalizedLetterCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("capitalizedLetterCharacterSet"))
+	return rv
+}
+
+
 // A character set containing the characters in Unicode General Category Cc and Cf.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
 func (c_ CharacterSet) ControlCharacterSet() ICharacterSet {
 	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("controlCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in the category of Decimal Numbers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/decimalDigits
+func (c_ CharacterSet) DecimalDigitCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("decimalDigitCharacterSet"))
+	return rv
+}
+
+
+// A character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of “standard decomposition” in version 3.2 of the Unicode character encoding standard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/decomposables
+func (c_ CharacterSet) DecomposableCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("decomposableCharacterSet"))
 	return rv
 }
 
@@ -192,6 +315,36 @@ func (c_ CharacterSet) InvertedSet() ICharacterSet {
 }
 
 
+// A character set containing the characters in Unicode General Category L* & M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/letters
+func (c_ CharacterSet) LetterCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("letterCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category Ll.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/lowercaseLetters
+func (c_ CharacterSet) LowercaseLetterCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("lowercaseLetterCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the newline characters ( ~ , , , and ).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/newlines
+func (c_ CharacterSet) NewlineCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("newlineCharacterSet"))
+	return rv
+}
+
+
 // A character set containing the characters in Unicode General Category M*.
 //
 // [Full Topic]
@@ -202,12 +355,32 @@ func (c_ CharacterSet) NonBaseCharacterSet() ICharacterSet {
 }
 
 
+// A character set containing the characters in Unicode General Category P*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/punctuationCharacters
+func (c_ CharacterSet) PunctuationCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("punctuationCharacterSet"))
+	return rv
+}
+
+
 // A character set containing the characters in Unicode General Category S*.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
 func (c_ CharacterSet) SymbolCharacterSet() ICharacterSet {
 	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("symbolCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category Lu and Lt.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/uppercaseLetters
+func (c_ CharacterSet) UppercaseLetterCharacterSet() ICharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("uppercaseLetterCharacterSet"))
 	return rv
 }
 

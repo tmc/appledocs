@@ -29,10 +29,12 @@ type _UnarchiverClass struct {
 // An interface definition for the [Unarchiver] class.
 type IUnarchiver interface {
 	ICoder
-	IsAtEnd() bool
-	SetIsAtEnd(value bool)
+	// properties:
+	IsAtEnd() bool /* primitive/slice/pointer */
+	SetIsAtEnd(value bool /* primitive/slice/pointer */)
 	SystemVersion() unsafe.Pointer
 	SetSystemVersion(value unsafe.Pointer)
+	// methods:
 }
 
 // A decoder that restores data from an archive.
@@ -117,7 +119,7 @@ func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(withFile:)
-func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string) objc.ID {
+func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithFile:"), objc.String(path))
 	return rv
 }
@@ -127,7 +129,7 @@ func (uc _UnarchiverClass) UnarchiveObjectWithFile(path string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) IsAtEnd() bool {
+func (u_ Unarchiver) IsAtEnd() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (u_ Unarchiver) IsAtEnd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsunarchiver/isatend
-func (u_ Unarchiver) SetIsAtEnd(value bool) {
+func (u_ Unarchiver) SetIsAtEnd(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsAtEnd:"), value)
 }
 

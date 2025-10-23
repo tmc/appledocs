@@ -30,9 +30,11 @@ type _CKRecordZoneIDClass struct {
 // An interface definition for the [CKRecordZoneID] class.
 type ICKRecordZoneID interface {
 	objectivec.IObject
-	OwnerName() string
-	ZoneName() string
 	CKCurrentUserDefaultName() string
+	OwnerName() string
+	SetOwnerName(value string)
+	ZoneName() string
+	SetZoneName(value string)
 }
 
 // An object that uniquely identifies a record zone in a database.
@@ -88,39 +90,6 @@ func NewCKRecordZoneID() CKRecordZoneID {
 
 
 
-// Creates a record zone ID with the specified name and owner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneID/initWithZoneName:ownerName:
-func NewCKRecordZoneIDWithZoneNameOwnerName(zoneName string, ownerName string) CKRecordZoneID {
-	instance := getCKRecordZoneIDClass().Alloc()
-	rv := objc.Send[CKRecordZoneID](instance.ID, objc.Sel("initWithZoneName:ownerName:"), objc.String(zoneName), objc.String(ownerName))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The ID of the user who owns the record zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/ownerName
-func (c_ CKRecordZoneID) OwnerName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("ownerName"))
-	return rv
-}
-
-
-// The unique name of the record zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/ID/zoneName
-func (c_ CKRecordZoneID) ZoneName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("zoneName"))
-	return rv
-}
-
-
 // A constant that provides the current user’s default name.
 //
 // [Full Topic]
@@ -129,5 +98,44 @@ func (c_ CKRecordZoneID) CKCurrentUserDefaultName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
 	return rv
 }
+
+
+// The ID of the user who owns the record zone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/ownername
+func (c_ CKRecordZoneID) OwnerName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("ownerName"))
+	return rv
+}
+
+
+// The ID of the user who owns the record zone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/ownername
+func (c_ CKRecordZoneID) SetOwnerName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOwnerName:"), objc.String(value))
+}
+
+
+// The unique name of the record zone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/zonename
+func (c_ CKRecordZoneID) ZoneName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("zoneName"))
+	return rv
+}
+
+
+// The unique name of the record zone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzone/id/zonename
+func (c_ CKRecordZoneID) SetZoneName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneName:"), objc.String(value))
+}
+
 
 

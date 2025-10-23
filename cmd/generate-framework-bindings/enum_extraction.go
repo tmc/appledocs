@@ -110,12 +110,14 @@ func extractEnumWithPreprocessor(framework, enumName string) (*occ2go.ParsedEnum
 				break
 			}
 
-			// Try bit shift pattern (e.g., 1 << 0)
+			// Try bit shift pattern (e.g., 1 << 0 or 1UL << 4)
 			matches := valuePattern.FindStringSubmatch(line)
 			if len(matches) >= 4 {
+				// Strip UL/L suffixes from base value
+				baseStr := strings.TrimSuffix(strings.TrimSuffix(matches[2], "UL"), "L")
 				base := 1
 				shift := 0
-				fmt.Sscanf(matches[2], "%d", &base)
+				fmt.Sscanf(baseStr, "%d", &base)
 				fmt.Sscanf(matches[3], "%d", &shift)
 				value := base << uint(shift)
 				enum.Cases = append(enum.Cases, &occ2go.ParsedEnumCase{

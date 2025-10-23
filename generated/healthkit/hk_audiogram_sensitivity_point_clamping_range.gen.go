@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,12 @@ type _HKAudiogramSensitivityPointClampingRangeClass struct {
 // An interface definition for the [HKAudiogramSensitivityPointClampingRange] class.
 type IHKAudiogramSensitivityPointClampingRange interface {
 	objectivec.IObject
-	LowerBound() HKQuantity
-	UpperBound() HKQuantity
+	// properties:
+	LowerBound() IHKQuantity
+	SetLowerBound(value IHKQuantity)
+	UpperBound() IHKQuantity
+	SetUpperBound(value IHKQuantity)
+	// methods:
 }
 
 // Defines the range within which an ear’s sensitivity point may have been clamped, if any.
@@ -89,35 +92,33 @@ func NewHKAudiogramSensitivityPointClampingRange() HKAudiogramSensitivityPointCl
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/init(lowerBound:upperBound:)
-func NewHKAudiogramSensitivityPointClampingRangeWithLowerBoundUpperBoundError(lowerBound foundation.INumber, upperBound foundation.INumber, errorOut unsafe.Pointer) HKAudiogramSensitivityPointClampingRange {
-	rv := objc.Send[HKAudiogramSensitivityPointClampingRange](objc.ID(getHKAudiogramSensitivityPointClampingRangeClass().class), objc.Sel("clampingRangeWithLowerBound:upperBound:error:"), lowerBound, upperBound, errorOut)
-	return rv
-}
-
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/init(lowerBound:upperBound:)
-func (hc _HKAudiogramSensitivityPointClampingRangeClass) ClampingRangeWithLowerBoundUpperBoundError(lowerBound foundation.INumber, upperBound foundation.INumber, errorOut unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("clampingRangeWithLowerBound:upperBound:error:"), lowerBound, upperBound, errorOut)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/lowerBound
-func (h_ HKAudiogramSensitivityPointClampingRange) LowerBound() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypointclampingrange/lowerbound
+func (h_ HKAudiogramSensitivityPointClampingRange) LowerBound() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("lowerBound"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPointClampingRange/upperBound
-func (h_ HKAudiogramSensitivityPointClampingRange) UpperBound() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypointclampingrange/lowerbound
+func (h_ HKAudiogramSensitivityPointClampingRange) SetLowerBound(value IHKQuantity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setLowerBound:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypointclampingrange/upperbound
+func (h_ HKAudiogramSensitivityPointClampingRange) UpperBound() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("upperBound"))
 	return rv
 }
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypointclampingrange/upperbound
+func (h_ HKAudiogramSensitivityPointClampingRange) SetUpperBound(value IHKQuantity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUpperBound:"), value)
+}
+
 
 

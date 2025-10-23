@@ -35,7 +35,7 @@ type ICKShareRequestAccessOperation interface {
 	ShareRequestAccessCompletionBlock() func(error objc.ID)
 	SetShareRequestAccessCompletionBlock(value func(error objc.ID))
 	ShareURLs() []foundation.URL
-	SetShareURLs(value []foundation.IURL)
+	SetShareURLs(value []foundation.URL)
 	PerShareAccessRequestResultBlock() unsafe.Pointer
 	SetPerShareAccessRequestResultBlock(value unsafe.Pointer)
 	ShareAccessRequestResultBlock() unsafe.Pointer
@@ -94,7 +94,7 @@ func NewCKShareRequestAccessOperation() CKShareRequestAccessOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/init(shareURLs:)
-func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.IURL) CKShareRequestAccessOperation {
+func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.URL) CKShareRequestAccessOperation {
 	instance := getCKShareRequestAccessOperationClass().Alloc()
 	rv := objc.Send[CKShareRequestAccessOperation](instance.ID, objc.Sel("initWithShareURLs:"), shareURLs)
 	rv.Autorelease()
@@ -155,7 +155,7 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.IURL) {
+func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.URL) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

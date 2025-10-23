@@ -30,6 +30,8 @@ type _mOpenConnectionRefConClass struct {
 // An interface definition for the [mOpenConnectionRefCon] class.
 type ImOpenConnectionRefCon interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

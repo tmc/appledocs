@@ -30,7 +30,6 @@ type _VoiceChatClass struct {
 // An interface definition for the [VoiceChat] class.
 type IVoiceChat interface {
 	objectivec.IObject
-	Stop()
 	IsActive() bool
 	SetIsActive(value bool)
 	Name() string
@@ -41,7 +40,7 @@ type IVoiceChat interface {
 	SetPlayerStateUpdateHandler(value unsafe.Pointer)
 	PlayerVoiceChatStateDidChangeHandler() unsafe.Pointer
 	SetPlayerVoiceChatStateDidChangeHandler(value unsafe.Pointer)
-	Players() GKPlayer
+	Players() IGKPlayer
 	SetPlayers(value IGKPlayer)
 	Volume() float32
 	SetVolume(value float32)
@@ -98,15 +97,6 @@ func NewVoiceChat() VoiceChat {
 	return getVoiceChatClass().New()
 }
 
-
-
-// Ends communication with other players in a channel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKVoiceChat/stop()
-func (v_ VoiceChat) Stop() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("stop"))
-}
 
 
 // A Boolean value that indicates whether the channel is sampling the microphone.
@@ -208,8 +198,8 @@ func (v_ VoiceChat) SetPlayerVoiceChatStateDidChangeHandler(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkvoicechat/players
-func (v_ VoiceChat) Players() GKPlayer {
-	rv := objc.Send[GKPlayer](v_.ID, objc.Sel("players"))
+func (v_ VoiceChat) Players() IGKPlayer {
+	rv := objc.Send[Player](v_.ID, objc.Sel("players"))
 	return rv
 }
 
@@ -240,6 +230,7 @@ func (v_ VoiceChat) Volume() float32 {
 func (v_ VoiceChat) SetVolume(value float32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolume:"), value)
 }
+
 
 
 

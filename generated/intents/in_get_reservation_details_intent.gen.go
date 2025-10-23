@@ -29,8 +29,11 @@ type _INGetReservationDetailsIntentClass struct {
 // An interface definition for the [INGetReservationDetailsIntent] class.
 type IINGetReservationDetailsIntent interface {
 	IINIntent
+	// properties:
 	ReservationContainerReference() INSpeakableString
-	ReservationItemReferences() []INSpeakableString
+	ReservationItemReferences() INSpeakableString
+	SetReservationItemReferences(value INSpeakableString)
+	// methods:
 }
 
 // A request for details about one or more reservations.
@@ -101,10 +104,19 @@ func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeaka
 // An array of unique identifiers for previously created reservations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent/reservationItemReferences
-func (i_ INGetReservationDetailsIntent) ReservationItemReferences() []INSpeakableString {
-	rv := objc.Send[[]INSpeakableString](i_.ID, objc.Sel("reservationItemReferences"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintent/reservationitemreferences
+func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationItemReferences"))
 	return rv
+}
+
+
+// An array of unique identifiers for previously created reservations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintent/reservationitemreferences
+func (i_ INGetReservationDetailsIntent) SetReservationItemReferences(value INSpeakableString) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationItemReferences:"), value)
 }
 
 

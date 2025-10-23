@@ -30,20 +30,20 @@ type _GLKSkyboxEffectClass struct {
 // An interface definition for the [GLKSkyboxEffect] class.
 type IGLKSkyboxEffect interface {
 	objectivec.IObject
-	Draw()
-	PrepareToDraw()
+	// properties:
 	Center() GLKVector3
-	SetCenter(value IGLKVector3)
+	SetCenter(value GLKVector3)
 	Label() string
 	SetLabel(value string)
-	TextureCubeMap() GLKEffectPropertyTexture
-	Transform() GLKEffectPropertyTransform
+	TextureCubeMap() IGLKEffectPropertyTexture
+	Transform() IGLKEffectPropertyTransform
 	XSize() unsafe.Pointer
 	SetXSize(value unsafe.Pointer)
 	YSize() unsafe.Pointer
 	SetYSize(value unsafe.Pointer)
 	ZSize() unsafe.Pointer
 	SetZSize(value unsafe.Pointer)
+	// methods:
 }
 
 // A simple skybox visual effect for use in shader-based OpenGL rendering.
@@ -99,24 +99,6 @@ func NewGLKSkyboxEffect() GLKSkyboxEffect {
 
 
 
-// Draws the skybox.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/draw()
-func (g_ GLKSkyboxEffect) Draw() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("draw"))
-}
-
-
-// Prepares an effect for rendering.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/prepareToDraw()
-func (g_ GLKSkyboxEffect) PrepareToDraw() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("prepareToDraw"))
-}
-
-
 // The center of the skybox.
 //
 // [Full Topic]
@@ -131,7 +113,7 @@ func (g_ GLKSkyboxEffect) Center() GLKVector3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-func (g_ GLKSkyboxEffect) SetCenter(value IGLKVector3) {
+func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
 }
 
@@ -159,7 +141,7 @@ func (g_ GLKSkyboxEffect) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/textureCubeMap
-func (g_ GLKSkyboxEffect) TextureCubeMap() GLKEffectPropertyTexture {
+func (g_ GLKSkyboxEffect) TextureCubeMap() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
 }
@@ -169,7 +151,7 @@ func (g_ GLKSkyboxEffect) TextureCubeMap() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/transform
-func (g_ GLKSkyboxEffect) Transform() GLKEffectPropertyTransform {
+func (g_ GLKSkyboxEffect) Transform() IGLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
 }

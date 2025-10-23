@@ -29,23 +29,23 @@ type _VisualEffectViewClass struct {
 // An interface definition for the [VisualEffectView] class.
 type IVisualEffectView interface {
 	IView
-	ViewDidMoveToWindow()
-	ViewWillMoveToWindow(newWindow IWindow)
-	BlendingMode() VisualEffectBlendingMode
-	SetBlendingMode(value VisualEffectBlendingMode)
-	InteriorBackgroundStyle() BackgroundStyle
+	BlendingMode() NSVisualEffectBlendingMode
+	SetBlendingMode(value NSVisualEffectBlendingMode)
+	InteriorBackgroundStyle() NSBackgroundStyle
 	Emphasized() bool
 	SetEmphasized(value bool)
-	MaskImage() Image
+	MaskImage() IImage
 	SetMaskImage(value IImage)
-	Material() VisualEffectMaterial
-	SetMaterial(value IVisualEffectMaterial)
-	State() VisualEffectState
-	SetState(value VisualEffectState)
+	Material() NSVisualEffectMaterial
+	SetMaterial(value NSVisualEffectMaterial)
+	State() NSVisualEffectState
+	SetState(value NSVisualEffectState)
 	AllowsVibrancy() bool
 	SetAllowsVibrancy(value bool)
 	IsEmphasized() bool
 	SetIsEmphasized(value bool)
+	ViewDidMoveToWindow()
+	ViewWillMoveToWindow(newWindow IWindow)
 }
 
 // A view that adds translucency and vibrancy effects to the views in your interface.
@@ -125,8 +125,8 @@ func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
-	rv := objc.Send[VisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
+func (v_ VisualEffectView) BlendingMode() NSVisualEffectBlendingMode {
+	rv := objc.Send[NSVisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
+func (v_ VisualEffectView) SetBlendingMode(value NSVisualEffectBlendingMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBlendingMode:"), value)
 }
 
@@ -144,8 +144,8 @@ func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/interiorBackgroundStyle
-func (v_ VisualEffectView) InteriorBackgroundStyle() BackgroundStyle {
-	rv := objc.Send[BackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
+func (v_ VisualEffectView) InteriorBackgroundStyle() NSBackgroundStyle {
+	rv := objc.Send[NSBackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -173,7 +173,7 @@ func (v_ VisualEffectView) SetEmphasized(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/maskImage
-func (v_ VisualEffectView) MaskImage() Image {
+func (v_ VisualEffectView) MaskImage() IImage {
 	rv := objc.Send[Image](v_.ID, objc.Sel("maskImage"))
 	return rv
 }
@@ -192,8 +192,8 @@ func (v_ VisualEffectView) SetMaskImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) Material() VisualEffectMaterial {
-	rv := objc.Send[VisualEffectMaterial](v_.ID, objc.Sel("material"))
+func (v_ VisualEffectView) Material() NSVisualEffectMaterial {
+	rv := objc.Send[NSVisualEffectMaterial](v_.ID, objc.Sel("material"))
 	return rv
 }
 
@@ -202,7 +202,7 @@ func (v_ VisualEffectView) Material() VisualEffectMaterial {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) SetMaterial(value IVisualEffectMaterial) {
+func (v_ VisualEffectView) SetMaterial(value NSVisualEffectMaterial) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaterial:"), value)
 }
 
@@ -211,8 +211,8 @@ func (v_ VisualEffectView) SetMaterial(value IVisualEffectMaterial) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) State() VisualEffectState {
-	rv := objc.Send[VisualEffectState](v_.ID, objc.Sel("state"))
+func (v_ VisualEffectView) State() NSVisualEffectState {
+	rv := objc.Send[NSVisualEffectState](v_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (v_ VisualEffectView) State() VisualEffectState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) SetState(value VisualEffectState) {
+func (v_ VisualEffectView) SetState(value NSVisualEffectState) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
 

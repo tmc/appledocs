@@ -31,8 +31,9 @@ type _FSContainerStatusClass struct {
 // An interface definition for the [FSContainerStatus] class.
 type IFSContainerStatus interface {
 	objectivec.IObject
-	State() FSContainerState
+	State() unsafe.Pointer
 	Status() foundation.Error
+	SetStatus(value foundation.Error)
 }
 
 // A type that represents a container’s status.
@@ -88,90 +89,12 @@ func NewFSContainerStatus() FSContainerStatus {
 
 
 
-// Returns a active container status instance with the provided error status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/active(status:)
-func (fc _FSContainerStatusClass) ActiveWithStatus(errorStatus foundation.IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("activeWithStatus:"), errorStatus)
-	return rv
-}
-
-
-// Returns a blocked container status instance with the provided error status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/blocked(status:)
-func (fc _FSContainerStatusClass) BlockedWithStatus(errorStatus foundation.IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("blockedWithStatus:"), errorStatus)
-	return rv
-}
-
-
-// Returns a not-ready container status instance with the provided error status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/notReady(status:)
-func (fc _FSContainerStatusClass) NotReadyWithStatus(errorStatus foundation.IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("notReadyWithStatus:"), errorStatus)
-	return rv
-}
-
-
-// Returns a ready container status instance with the provided error status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/ready(status:)
-func (fc _FSContainerStatusClass) ReadyWithStatus(errorStatus foundation.IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readyWithStatus:"), errorStatus)
-	return rv
-}
-
-
-// A status that represents an active container with no error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/active
-func (fc _FSContainerStatusClass) Active() FSContainerStatus {
-	rv := objc.Send[FSContainerStatus](objc.ID(fc.class), objc.Sel("active"))
-	return rv
-}
-
-// A status that represents a ready container with no error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/ready
-func (fc _FSContainerStatusClass) Ready() FSContainerStatus {
-	rv := objc.Send[FSContainerStatus](objc.ID(fc.class), objc.Sel("ready"))
-	return rv
-}
-
-// A status that represents an active container with no error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/active
-func (f_ FSContainerStatus) Active() FSContainerStatus {
-	rv := objc.Send[FSContainerStatus](f_.ID, objc.Sel("active"))
-	return rv
-}
-
-
-// A status that represents a ready container with no error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/ready
-func (f_ FSContainerStatus) Ready() FSContainerStatus {
-	rv := objc.Send[FSContainerStatus](f_.ID, objc.Sel("ready"))
-	return rv
-}
-
-
 // A value that represents the container state, such as ready, active, or blocked.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/state
-func (f_ FSContainerStatus) State() FSContainerState {
-	rv := objc.Send[FSContainerState](f_.ID, objc.Sel("state"))
+func (f_ FSContainerStatus) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -179,10 +102,19 @@ func (f_ FSContainerStatus) State() FSContainerState {
 // An optional error that provides further information about the state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerStatus/status
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
 func (f_ FSContainerStatus) Status() foundation.Error {
 	rv := objc.Send[foundation.Error](f_.ID, objc.Sel("status"))
 	return rv
+}
+
+
+// An optional error that provides further information about the state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
+func (f_ FSContainerStatus) SetStatus(value foundation.Error) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setStatus:"), value)
 }
 
 

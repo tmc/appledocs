@@ -30,6 +30,8 @@ type _PortCoderClass struct {
 // An interface definition for the [PortCoder] class.
 type IPortCoder interface {
 	ICoder
+	// properties:
+	// methods:
 }
 
 // A coder used to transmit object proxies (and sometimes objects themselves) between connections.

@@ -31,11 +31,14 @@ type _PersistentHistoryChangeClass struct {
 type IPersistentHistoryChange interface {
 	objectivec.IObject
 	ChangeID() unsafe.Pointer
-	ChangeType() PersistentHistoryChangeType
-	ChangedObjectID() NSManagedObjectID
 	Tombstone() objc.ID
-	Transaction() NSPersistentHistoryTransaction
 	UpdatedProperties() unsafe.Pointer
+	ChangeType() unsafe.Pointer
+	SetChangeType(value unsafe.Pointer)
+	ChangedObjectID() IManagedObjectID
+	SetChangedObjectID(value IManagedObjectID)
+	Transaction() IPersistentHistoryTransaction
+	SetTransaction(value IPersistentHistoryTransaction)
 }
 
 // A change representing the insertion, update, or deletion of a managed object in the persistent store.
@@ -89,70 +92,12 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 
 
 
-// The entity description of the persistent history change entity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
-func (pc _PersistentHistoryChangeClass) EntityDescription() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](objc.ID(pc.class), objc.Sel("entityDescription"))
-	return rv
-}
-
-// A fetch request that has the persistent history change as the entity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
-func (pc _PersistentHistoryChangeClass) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](objc.ID(pc.class), objc.Sel("fetchRequest"))
-	return rv
-}
-
 // The change’s numeric identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeID
 func (p_ PersistentHistoryChange) ChangeID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeID"))
-	return rv
-}
-
-
-// The type of change to the managed object in the persistent store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changeType
-func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType {
-	rv := objc.Send[PersistentHistoryChangeType](p_.ID, objc.Sel("changeType"))
-	return rv
-}
-
-
-// The identifier of the managed object that changed. (swift) Declaration: @property(readonly, copy) NSManagedObjectID *changedObjectID; (objc) Availability: iOS: 11.0 — iPadOS: 11.0 — Mac Catalyst: 13.1 — macOS: 10.13 — tvOS: 11.0 — visionOS: 1.0 — watchOS: 4.0 (objc,swift) }
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/changedObjectID
-func (p_ PersistentHistoryChange) ChangedObjectID() NSManagedObjectID {
-	rv := objc.Send[NSManagedObjectID](p_.ID, objc.Sel("changedObjectID"))
-	return rv
-}
-
-
-// The entity description of the persistent history change entity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/entityDescription
-func (p_ PersistentHistoryChange) EntityDescription() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](p_.ID, objc.Sel("entityDescription"))
-	return rv
-}
-
-
-// A fetch request that has the persistent history change as the entity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/fetchRequest
-func (p_ PersistentHistoryChange) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -167,16 +112,6 @@ func (p_ PersistentHistoryChange) Tombstone() objc.ID {
 }
 
 
-// The persistent history transaction containing this change.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChange/transaction
-func (p_ PersistentHistoryChange) Transaction() NSPersistentHistoryTransaction {
-	rv := objc.Send[NSPersistentHistoryTransaction](p_.ID, objc.Sel("transaction"))
-	return rv
-}
-
-
 // The set of properties that were updated on the managed object.
 //
 // [Full Topic]
@@ -184,6 +119,63 @@ func (p_ PersistentHistoryChange) Transaction() NSPersistentHistoryTransaction {
 func (p_ PersistentHistoryChange) UpdatedProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("updatedProperties"))
 	return rv
+}
+
+
+// The type of change to the managed object in the persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changetype
+func (p_ PersistentHistoryChange) ChangeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeType"))
+	return rv
+}
+
+
+// The type of change to the managed object in the persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changetype
+func (p_ PersistentHistoryChange) SetChangeType(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangeType:"), value)
+}
+
+
+// The identifier of the managed object that changed. (swift)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changedobjectid
+func (p_ PersistentHistoryChange) ChangedObjectID() IManagedObjectID {
+	rv := objc.Send[ManagedObjectID](p_.ID, objc.Sel("changedObjectID"))
+	return rv
+}
+
+
+// The identifier of the managed object that changed. (swift)
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changedobjectid
+func (p_ PersistentHistoryChange) SetChangedObjectID(value IManagedObjectID) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedObjectID:"), value)
+}
+
+
+// The persistent history transaction containing this change.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/transaction
+func (p_ PersistentHistoryChange) Transaction() IPersistentHistoryTransaction {
+	rv := objc.Send[PersistentHistoryTransaction](p_.ID, objc.Sel("transaction"))
+	return rv
+}
+
+
+// The persistent history transaction containing this change.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/transaction
+func (p_ PersistentHistoryChange) SetTransaction(value IPersistentHistoryTransaction) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTransaction:"), value)
 }
 
 

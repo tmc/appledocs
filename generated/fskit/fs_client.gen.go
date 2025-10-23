@@ -30,7 +30,6 @@ type _FSClientClass struct {
 // An interface definition for the [FSClient] class.
 type IFSClient interface {
 	objectivec.IObject
-	FetchInstalledExtensionsWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // An interface for apps and daemons to interact with FSKit.
@@ -84,34 +83,6 @@ func NewFSClient() FSClient {
 	return getFSClientClass().New()
 }
 
-
-
-// The shared instance of the FSKit client class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
-func (fc _FSClientClass) SharedInstance() FSClient {
-	rv := objc.Send[FSClient](objc.ID(fc.class), objc.Sel("sharedInstance"))
-	return rv
-}
-
-// Asynchronously retrieves an list of installed file system modules.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/fetchInstalledExtensions(completionHandler:)
-func (f_ FSClient) FetchInstalledExtensionsWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("fetchInstalledExtensionsWithCompletionHandler:"), completionHandler)
-}
-
-
-// The shared instance of the FSKit client class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSClient/shared
-func (f_ FSClient) SharedInstance() FSClient {
-	rv := objc.Send[FSClient](f_.ID, objc.Sel("sharedInstance"))
-	return rv
-}
 
 
 

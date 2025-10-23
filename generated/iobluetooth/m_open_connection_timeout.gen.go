@@ -30,6 +30,8 @@ type _mOpenConnectionTimeoutClass struct {
 // An interface definition for the [mOpenConnectionTimeout] class.
 type ImOpenConnectionTimeout interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

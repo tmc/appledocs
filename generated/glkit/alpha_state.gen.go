@@ -30,6 +30,8 @@ type _alphaStateClass struct {
 // An interface definition for the [alphaState] class.
 type IalphaState interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

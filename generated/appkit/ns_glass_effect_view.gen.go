@@ -29,13 +29,13 @@ type _GlassEffectViewClass struct {
 // An interface definition for the [GlassEffectView] class.
 type IGlassEffectView interface {
 	IView
-	ContentView() NSView
+	ContentView() IView
 	SetContentView(value IView)
 	CornerRadius() float64
 	SetCornerRadius(value float64)
-	Style() GlassEffectViewStyle
-	SetStyle(value GlassEffectViewStyle)
-	TintColor() NSColor
+	Style() NSGlassEffectViewStyle
+	SetStyle(value NSGlassEffectViewStyle)
+	TintColor() IColor
 	SetTintColor(value IColor)
 }
 
@@ -96,8 +96,8 @@ func NewGlassEffectView() GlassEffectView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
-func (g_ GlassEffectView) ContentView() NSView {
-	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
+func (g_ GlassEffectView) ContentView() IView {
+	rv := objc.Send[View](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -134,8 +134,8 @@ func (g_ GlassEffectView) SetCornerRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) Style() GlassEffectViewStyle {
-	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
+func (g_ GlassEffectView) Style() NSGlassEffectViewStyle {
+	rv := objc.Send[NSGlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (g_ GlassEffectView) Style() GlassEffectViewStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
+func (g_ GlassEffectView) SetStyle(value NSGlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -153,8 +153,8 @@ func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
-func (g_ GlassEffectView) TintColor() NSColor {
-	rv := objc.Send[NSColor](g_.ID, objc.Sel("tintColor"))
+func (g_ GlassEffectView) TintColor() IColor {
+	rv := objc.Send[Color](g_.ID, objc.Sel("tintColor"))
 	return rv
 }
 

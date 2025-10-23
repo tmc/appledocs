@@ -30,10 +30,10 @@ type _TKTokenWatcherClass struct {
 // An interface definition for the [TKTokenWatcher] class.
 type ITKTokenWatcher interface {
 	objectivec.IObject
-	AddRemovalHandlerForTokenID(removalHandler unsafe.Pointer, tokenID string)
-	SetInsertionHandler(insertionHandler unsafe.Pointer)
 	TokenIDs() string
 	SetTokenIDs(value string)
+	SetInsertionHandler(insertionHandler unsafe.Pointer)
+	TokenInfoForTokenID(tokenID string) ITKTokenWatcherTokenInfo
 }
 
 // An object that tracks the tokens available in the system.
@@ -89,27 +89,6 @@ func NewTKTokenWatcher() TKTokenWatcher {
 
 
 
-// Initializes a token watcher with the specified insertion handler.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/init(insertionHandler:)
-func NewTKTokenWatcherWithInsertionHandler(insertionHandler unsafe.Pointer) TKTokenWatcher {
-	instance := getTKTokenWatcherClass().Alloc()
-	rv := objc.Send[TKTokenWatcher](instance.ID, objc.Sel("initWithInsertionHandler:"), insertionHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Adds a removal handler for the specified token ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/addRemovalHandler(_:forTokenID:)
-func (t_ TKTokenWatcher) AddRemovalHandlerForTokenID(removalHandler unsafe.Pointer, tokenID string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("addRemovalHandler:forTokenID:"), removalHandler, objc.String(tokenID))
-}
-
 
 // Sets an insertion handler closure to be called when a new token is inserted into the system.
 //
@@ -117,6 +96,14 @@ func (t_ TKTokenWatcher) AddRemovalHandlerForTokenID(removalHandler unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/setInsertionHandler(_:)
 func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInsertionHandler:"), insertionHandler)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/tokenInfo(forTokenID:)
+func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string) ITKTokenWatcherTokenInfo {
+	rv := objc.Send[TKTokenWatcherTokenInfo](t_.ID, objc.Sel("tokenInfoForTokenID:"), objc.String(tokenID))
+	return rv
 }
 
 

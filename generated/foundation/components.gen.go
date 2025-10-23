@@ -30,6 +30,8 @@ type _componentsClass struct {
 // An interface definition for the [components] class.
 type Icomponents interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

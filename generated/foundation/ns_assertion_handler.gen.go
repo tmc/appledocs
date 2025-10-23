@@ -30,6 +30,9 @@ type _AssertionHandlerClass struct {
 // An interface definition for the [AssertionHandler] class.
 type IAssertionHandler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
+	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName string /* primitive/slice/pointer */, line int /* primitive/slice/pointer */, format string /* primitive/slice/pointer */)
 }
 
 // An object that logs an assertion to the console.
@@ -83,6 +86,13 @@ func NewAssertionHandler() AssertionHandler {
 	return getAssertionHandlerClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
+func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName string /* primitive/slice/pointer */, line int /* primitive/slice/pointer */, format string /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, objc.String(fileName), line, objc.String(format))
+}
 
 
 

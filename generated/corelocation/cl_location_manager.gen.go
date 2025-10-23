@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,53 +30,25 @@ type _LocationManagerClass struct {
 // An interface definition for the [LocationManager] class.
 type ILocationManager interface {
 	objectivec.IObject
-	AllowDeferredLocationUpdatesUntilTraveledTimeout(distance unsafe.Pointer, timeout foundation.ITimeInterval)
-	DisallowDeferredLocationUpdates()
-	DismissHeadingCalibrationDisplay()
-	RequestAlwaysAuthorization()
-	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer)
-	RequestLocation()
-	RequestStateForRegion(region ICLRegion)
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string)
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer)
-	RequestWhenInUseAuthorization()
-	StartMonitoringForRegion(region ICLRegion)
-	StartMonitoringForRegionDesiredAccuracy(region ICLRegion, accuracy unsafe.Pointer)
-	StartMonitoringLocationPushesWithCompletion(completion unsafe.Pointer)
-	StartMonitoringSignificantLocationChanges()
-	StartMonitoringVisits()
-	StartRangingBeaconsInRegion(region ICLBeaconRegion)
-	StartRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint)
-	StartUpdatingHeading()
-	StartUpdatingLocation()
-	StopMonitoringForRegion(region ICLRegion)
-	StopMonitoringLocationPushes()
-	StopMonitoringSignificantLocationChanges()
-	StopMonitoringVisits()
-	StopRangingBeaconsInRegion(region ICLBeaconRegion)
-	StopRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint)
-	StopUpdatingHeading()
-	StopUpdatingLocation()
-	AccuracyAuthorization() AccuracyAuthorization
-	ActivityType() ActivityType
-	SetActivityType(value ActivityType)
+	AccuracyAuthorization() CLAccuracyAuthorization
+	ActivityType() CLActivityType
+	SetActivityType(value CLActivityType)
 	AllowsBackgroundLocationUpdates() bool
 	SetAllowsBackgroundLocationUpdates(value bool)
-	AuthorizationStatus() AuthorizationStatus
+	AuthorizationStatus() CLAuthorizationStatus
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DesiredAccuracy() unsafe.Pointer
 	SetDesiredAccuracy(value unsafe.Pointer)
 	DistanceFilter() unsafe.Pointer
 	SetDistanceFilter(value unsafe.Pointer)
-	Heading() CLHeading
-	HeadingAvailable() bool
+	Heading() ICLHeading
 	HeadingFilter() unsafe.Pointer
 	SetHeadingFilter(value unsafe.Pointer)
-	HeadingOrientation() DeviceOrientation
-	SetHeadingOrientation(value IDeviceOrientation)
+	HeadingOrientation() CLDeviceOrientation
+	SetHeadingOrientation(value CLDeviceOrientation)
 	AuthorizedForWidgetUpdates() bool
-	Location() CLLocation
+	Location() ICLLocation
 	MaximumRegionMonitoringDistance() unsafe.Pointer
 	MonitoredRegions() unsafe.Pointer
 	PausesLocationUpdatesAutomatically() bool
@@ -91,6 +62,25 @@ type ILocationManager interface {
 	CLTimeIntervalMax() unsafe.Pointer
 	KCLDistanceFilterNone() unsafe.Pointer
 	KCLHeadingFilterNone() unsafe.Pointer
+	DismissHeadingCalibrationDisplay()
+	RequestAlwaysAuthorization()
+	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer)
+	RequestLocation()
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer)
+	RequestWhenInUseAuthorization()
+	StartMonitoringLocationPushesWithCompletion(completion unsafe.Pointer)
+	StartMonitoringSignificantLocationChanges()
+	StartMonitoringVisits()
+	StartRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint)
+	StartUpdatingHeading()
+	StartUpdatingLocation()
+	StopMonitoringLocationPushes()
+	StopMonitoringSignificantLocationChanges()
+	StopMonitoringVisits()
+	StopRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint)
+	StopUpdatingHeading()
+	StopUpdatingLocation()
 }
 
 // The object you use to start and stop the delivery of location-related events to your app.
@@ -146,26 +136,6 @@ func NewLocationManager() LocationManager {
 
 
 
-// Returns the app’s authorization status for using location services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/authorizationStatus()
-func (lc _LocationManagerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(lc.class), objc.Sel("authorizationStatus"))
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether the device supports deferred location updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/deferredLocationUpdatesAvailable()
-func (lc _LocationManagerClass) DeferredLocationUpdatesAvailable() bool {
-	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("deferredLocationUpdatesAvailable"))
-	return rv
-}
-
-
 // Returns a Boolean value indicating whether the location manager is able to generate heading-related events.
 //
 // [Full Topic]
@@ -206,26 +176,6 @@ func (lc _LocationManagerClass) LocationServicesEnabled() bool {
 }
 
 
-// Returns a Boolean value indicating whether region monitoring is supported on the current device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/regionMonitoringAvailable()
-func (lc _LocationManagerClass) RegionMonitoringAvailable() bool {
-	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("regionMonitoringAvailable"))
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether region monitoring is currently enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/regionMonitoringEnabled()
-func (lc _LocationManagerClass) RegionMonitoringEnabled() bool {
-	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("regionMonitoringEnabled"))
-	return rv
-}
-
-
 // Returns a Boolean value indicating whether the significant-change location service is available on the device.
 //
 // [Full Topic]
@@ -233,24 +183,6 @@ func (lc _LocationManagerClass) RegionMonitoringEnabled() bool {
 func (lc _LocationManagerClass) SignificantLocationChangeMonitoringAvailable() bool {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("significantLocationChangeMonitoringAvailable"))
 	return rv
-}
-
-
-// Asks the location manager to defer the delivery of location updates until the specified criteria are met.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/allowDeferredLocationUpdates(untilTraveled:timeout:)
-func (l_ LocationManager) AllowDeferredLocationUpdatesUntilTraveledTimeout(distance unsafe.Pointer, timeout foundation.ITimeInterval) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("allowDeferredLocationUpdatesUntilTraveled:timeout:"), distance, timeout)
-}
-
-
-// Cancels the deferral of location updates for this app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/disallowDeferredLocationUpdates()
-func (l_ LocationManager) DisallowDeferredLocationUpdates() {
-	objc.Send[objc.ID](l_.ID, objc.Sel("disallowDeferredLocationUpdates"))
 }
 
 
@@ -288,15 +220,6 @@ func (l_ LocationManager) RequestLocation() {
 }
 
 
-// Retrieves the state of a region asynchronously.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestState(for:)
-func (l_ LocationManager) RequestStateForRegion(region ICLRegion) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("requestStateForRegion:"), region)
-}
-
-
 // Requests permission to temporarily use location services with full accuracy.
 //
 // [Full Topic]
@@ -321,24 +244,6 @@ func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKe
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()
 func (l_ LocationManager) RequestWhenInUseAuthorization() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestWhenInUseAuthorization"))
-}
-
-
-// Starts monitoring the specified region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/startMonitoring(for:)
-func (l_ LocationManager) StartMonitoringForRegion(region ICLRegion) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("startMonitoringForRegion:"), region)
-}
-
-
-// Starts monitoring the specified region for boundary crossings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/startMonitoring(for:desiredAccuracy:)
-func (l_ LocationManager) StartMonitoringForRegionDesiredAccuracy(region ICLRegion, accuracy unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("startMonitoringForRegion:desiredAccuracy:"), region, accuracy)
 }
 
 
@@ -369,15 +274,6 @@ func (l_ LocationManager) StartMonitoringVisits() {
 }
 
 
-// Starts the delivery of notifications for the specified beacon region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/startRangingBeacons(in:)
-func (l_ LocationManager) StartRangingBeaconsInRegion(region ICLBeaconRegion) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("startRangingBeaconsInRegion:"), region)
-}
-
-
 // Starts the delivery of notifications for the specified beacon constraints.
 //
 // [Full Topic]
@@ -405,15 +301,6 @@ func (l_ LocationManager) StartUpdatingLocation() {
 }
 
 
-// Stops monitoring the specified region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/stopMonitoring(for:)
-func (l_ LocationManager) StopMonitoringForRegion(region ICLRegion) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("stopMonitoringForRegion:"), region)
-}
-
-
 // Stops monitoring for Apple Push Notification service (APNs) location pushes.
 //
 // [Full Topic]
@@ -438,15 +325,6 @@ func (l_ LocationManager) StopMonitoringSignificantLocationChanges() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/stopMonitoringVisits()
 func (l_ LocationManager) StopMonitoringVisits() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopMonitoringVisits"))
-}
-
-
-// Stops the delivery of notifications for the specified beacon region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/stopRangingBeacons(in:)
-func (l_ LocationManager) StopRangingBeaconsInRegion(region ICLBeaconRegion) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("stopRangingBeaconsInRegion:"), region)
 }
 
 
@@ -481,8 +359,8 @@ func (l_ LocationManager) StopUpdatingLocation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/accuracyAuthorization
-func (l_ LocationManager) AccuracyAuthorization() AccuracyAuthorization {
-	rv := objc.Send[AccuracyAuthorization](l_.ID, objc.Sel("accuracyAuthorization"))
+func (l_ LocationManager) AccuracyAuthorization() CLAccuracyAuthorization {
+	rv := objc.Send[CLAccuracyAuthorization](l_.ID, objc.Sel("accuracyAuthorization"))
 	return rv
 }
 
@@ -491,8 +369,8 @@ func (l_ LocationManager) AccuracyAuthorization() AccuracyAuthorization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/activityType
-func (l_ LocationManager) ActivityType() ActivityType {
-	rv := objc.Send[ActivityType](l_.ID, objc.Sel("activityType"))
+func (l_ LocationManager) ActivityType() CLActivityType {
+	rv := objc.Send[CLActivityType](l_.ID, objc.Sel("activityType"))
 	return rv
 }
 
@@ -501,7 +379,7 @@ func (l_ LocationManager) ActivityType() ActivityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/activityType
-func (l_ LocationManager) SetActivityType(value ActivityType) {
+func (l_ LocationManager) SetActivityType(value CLActivityType) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityType:"), value)
 }
 
@@ -529,8 +407,8 @@ func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property
-func (l_ LocationManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](l_.ID, objc.Sel("authorizationStatus"))
+func (l_ LocationManager) AuthorizationStatus() CLAuthorizationStatus {
+	rv := objc.Send[CLAuthorizationStatus](l_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -596,18 +474,8 @@ func (l_ LocationManager) SetDistanceFilter(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/heading
-func (l_ LocationManager) Heading() CLHeading {
-	rv := objc.Send[CLHeading](l_.ID, objc.Sel("heading"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the location manager is able to generate heading-related events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingAvailable-swift.property
-func (l_ LocationManager) HeadingAvailable() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("headingAvailable"))
+func (l_ LocationManager) Heading() ICLHeading {
+	rv := objc.Send[Heading](l_.ID, objc.Sel("heading"))
 	return rv
 }
 
@@ -635,8 +503,8 @@ func (l_ LocationManager) SetHeadingFilter(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingOrientation
-func (l_ LocationManager) HeadingOrientation() DeviceOrientation {
-	rv := objc.Send[DeviceOrientation](l_.ID, objc.Sel("headingOrientation"))
+func (l_ LocationManager) HeadingOrientation() CLDeviceOrientation {
+	rv := objc.Send[CLDeviceOrientation](l_.ID, objc.Sel("headingOrientation"))
 	return rv
 }
 
@@ -645,7 +513,7 @@ func (l_ LocationManager) HeadingOrientation() DeviceOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingOrientation
-func (l_ LocationManager) SetHeadingOrientation(value IDeviceOrientation) {
+func (l_ LocationManager) SetHeadingOrientation(value CLDeviceOrientation) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingOrientation:"), value)
 }
 
@@ -664,8 +532,8 @@ func (l_ LocationManager) AuthorizedForWidgetUpdates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/location
-func (l_ LocationManager) Location() CLLocation {
-	rv := objc.Send[CLLocation](l_.ID, objc.Sel("location"))
+func (l_ LocationManager) Location() ICLLocation {
+	rv := objc.Send[Location](l_.ID, objc.Sel("location"))
 	return rv
 }
 

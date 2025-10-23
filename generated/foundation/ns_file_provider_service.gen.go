@@ -30,7 +30,9 @@ type _FileProviderServiceClass struct {
 // An interface definition for the [FileProviderService] class.
 type IFileProviderService interface {
 	objectivec.IObject
-	Name() FileProviderServiceName
+	// properties:
+	Name() FileProviderServiceName /* foo */
+	// methods:
 	GetFileProviderConnectionWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -100,7 +102,7 @@ func (f_ FileProviderService) GetFileProviderConnectionWithCompletionHandler(com
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderService/name
-func (f_ FileProviderService) Name() FileProviderServiceName {
+func (f_ FileProviderService) Name() FileProviderServiceName /* foo */ {
 	rv := objc.Send[FileProviderServiceName](f_.ID, objc.Sel("name"))
 	return rv
 }

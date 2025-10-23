@@ -36,11 +36,11 @@ type IMIDIUMPFunctionBlock interface {
 	IsEnabled() bool
 	MaxSysEx8Streams() unsafe.Pointer
 	MIDI1Info() MIDIUMPFunctionBlockMIDI1Info
-	MidiCIDevice() MIDICIDevice
+	MidiCIDevice() IMIDICIDevice
 	Name() string
 	TotalGroupsSpanned() MIDIUInteger7
 	UIHint() MIDIUMPFunctionBlockUIHint
-	UMPEndpoint() MIDIUMPEndpoint
+	UMPEndpoint() IMIDIUMPEndpoint
 }
 
 
@@ -139,7 +139,7 @@ func (m_ MIDIUMPFunctionBlock) MIDI1Info() MIDIUMPFunctionBlockMIDI1Info {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/midiCIDevice
-func (m_ MIDIUMPFunctionBlock) MidiCIDevice() MIDICIDevice {
+func (m_ MIDIUMPFunctionBlock) MidiCIDevice() IMIDICIDevice {
 	rv := objc.Send[MIDICIDevice](m_.ID, objc.Sel("midiCIDevice"))
 	return rv
 }
@@ -171,7 +171,7 @@ func (m_ MIDIUMPFunctionBlock) UIHint() MIDIUMPFunctionBlockUIHint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/umpEndpoint
-func (m_ MIDIUMPFunctionBlock) UMPEndpoint() MIDIUMPEndpoint {
+func (m_ MIDIUMPFunctionBlock) UMPEndpoint() IMIDIUMPEndpoint {
 	rv := objc.Send[MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoint"))
 	return rv
 }

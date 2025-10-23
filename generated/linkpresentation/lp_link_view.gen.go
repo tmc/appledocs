@@ -31,8 +31,10 @@ type _LPLinkViewClass struct {
 // An interface definition for the [LPLinkView] class.
 type ILPLinkView interface {
 	appkit.IView
-	Metadata() LPLinkMetadata
+	// properties:
+	Metadata() ILPLinkMetadata
 	SetMetadata(value ILPLinkMetadata)
+	// methods:
 }
 
 // A rich visual representation of a link.
@@ -106,7 +108,7 @@ func NewLPLinkViewWithMetadata(metadata ILPLinkMetadata) LPLinkView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(url:)
-func NewLPLinkViewWithURL(URL foundation.IURL) LPLinkView {
+func NewLPLinkViewWithURL(URL foundation.URL) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
 	rv := objc.Send[LPLinkView](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -119,7 +121,7 @@ func NewLPLinkViewWithURL(URL foundation.IURL) LPLinkView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/metadata
-func (l_ LPLinkView) Metadata() LPLinkMetadata {
+func (l_ LPLinkView) Metadata() ILPLinkMetadata {
 	rv := objc.Send[LPLinkMetadata](l_.ID, objc.Sel("metadata"))
 	return rv
 }

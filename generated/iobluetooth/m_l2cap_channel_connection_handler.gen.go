@@ -30,6 +30,8 @@ type _mL2CAPChannelConnectionHandlerClass struct {
 // An interface definition for the [mL2CAPChannelConnectionHandler] class.
 type ImL2CAPChannelConnectionHandler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

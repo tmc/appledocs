@@ -30,10 +30,12 @@ type _ClassDescriptionClass struct {
 // An interface definition for the [ClassDescription] class.
 type IClassDescription interface {
 	objectivec.IObject
-	AttributeKeys() []string
-	ToManyRelationshipKeys() []string
-	ToOneRelationshipKeys() []string
-	InverseForRelationshipKey(relationshipKey string) IString
+	// properties:
+	AttributeKeys() []string /* primitive/slice/pointer */
+	ToManyRelationshipKeys() []string /* primitive/slice/pointer */
+	ToOneRelationshipKeys() []string /* primitive/slice/pointer */
+	// methods:
+	InverseForRelationshipKey(relationshipKey string /* primitive/slice/pointer */) IString
 }
 
 // An abstract class that provides the interface for querying the relationships and properties of a class.
@@ -132,7 +134,7 @@ func (cc _ClassDescriptionClass) RegisterClassDescriptionForClass(description IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/inverse(forRelationshipKey:)
-func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string) IString {
+func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("inverseForRelationshipKey:"), objc.String(relationshipKey))
 	return rv
 }
@@ -142,7 +144,7 @@ func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string) ISt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/attributeKeys
-func (c_ ClassDescription) AttributeKeys() []string {
+func (c_ ClassDescription) AttributeKeys() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("attributeKeys"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (c_ ClassDescription) AttributeKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toManyRelationshipKeys
-func (c_ ClassDescription) ToManyRelationshipKeys() []string {
+func (c_ ClassDescription) ToManyRelationshipKeys() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
 }
@@ -162,7 +164,7 @@ func (c_ ClassDescription) ToManyRelationshipKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toOneRelationshipKeys
-func (c_ ClassDescription) ToOneRelationshipKeys() []string {
+func (c_ ClassDescription) ToOneRelationshipKeys() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("toOneRelationshipKeys"))
 	return rv
 }

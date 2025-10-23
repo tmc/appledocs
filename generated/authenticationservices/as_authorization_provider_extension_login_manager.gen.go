@@ -30,9 +30,6 @@ type _AuthorizationProviderExtensionLoginManagerClass struct {
 // An interface definition for the [AuthorizationProviderExtensionLoginManager] class.
 type IAuthorizationProviderExtensionLoginManager interface {
 	objectivec.IObject
-	BeginKeyRotationForKeyType(keyType unsafe.Pointer) unsafe.Pointer
-	CompleteKeyRotationForKeyType(keyType unsafe.Pointer)
-	SaveCertificateKeyType(certificate unsafe.Pointer, keyType unsafe.Pointer)
 	AuthenticationMethod() unsafe.Pointer
 	SetAuthenticationMethod(value unsafe.Pointer)
 	ExtensionData() unsafe.Pointer
@@ -49,8 +46,10 @@ type IAuthorizationProviderExtensionLoginManager interface {
 	SetRegistrationToken(value string)
 	SsoTokens() unsafe.Pointer
 	SetSsoTokens(value unsafe.Pointer)
-	UserLoginConfiguration() ASAuthorizationProviderExtensionUserLoginConfiguration
+	UserLoginConfiguration() IASAuthorizationProviderExtensionUserLoginConfiguration
 	SetUserLoginConfiguration(value IASAuthorizationProviderExtensionUserLoginConfiguration)
+	BeginKeyRotationForKeyType(keyType unsafe.Pointer) unsafe.Pointer
+	CompleteKeyRotationForKeyType(keyType unsafe.Pointer)
 }
 
 // An interface to maintain platform single sign-on (SSO) during authentication and registration.
@@ -118,15 +117,6 @@ func (a_ AuthorizationProviderExtensionLoginManager) BeginKeyRotationForKeyType(
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/completeKeyRotation(_:)
 func (a_ AuthorizationProviderExtensionLoginManager) CompleteKeyRotationForKeyType(keyType unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("completeKeyRotationForKeyType:"), keyType)
-}
-
-
-// Saves the provided certificate for the key type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginManager/saveCertificate(_:keyType:)
-func (a_ AuthorizationProviderExtensionLoginManager) SaveCertificateKeyType(certificate unsafe.Pointer, keyType unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("saveCertificate:keyType:"), certificate, keyType)
 }
 
 
@@ -276,8 +266,8 @@ func (a_ AuthorizationProviderExtensionLoginManager) SetSsoTokens(value unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager/userloginconfiguration
-func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() ASAuthorizationProviderExtensionUserLoginConfiguration {
-	rv := objc.Send[ASAuthorizationProviderExtensionUserLoginConfiguration](a_.ID, objc.Sel("userLoginConfiguration"))
+func (a_ AuthorizationProviderExtensionLoginManager) UserLoginConfiguration() IASAuthorizationProviderExtensionUserLoginConfiguration {
+	rv := objc.Send[AuthorizationProviderExtensionUserLoginConfiguration](a_.ID, objc.Sel("userLoginConfiguration"))
 	return rv
 }
 

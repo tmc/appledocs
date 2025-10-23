@@ -31,8 +31,8 @@ type _FSTaskOptionsClass struct {
 // An interface definition for the [FSTaskOptions] class.
 type IFSTaskOptions interface {
 	objectivec.IObject
-	UrlForOption(option string) foundation.URL
 	TaskOptions() []string
+	UrlForOption(option string) foundation.URL
 }
 
 // A class that passes command options to a task, optionally providing security-scoped URLs.

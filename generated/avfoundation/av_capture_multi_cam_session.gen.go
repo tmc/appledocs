@@ -29,12 +29,14 @@ type _CaptureMultiCamSessionClass struct {
 // An interface definition for the [CaptureMultiCamSession] class.
 type ICaptureMultiCamSession interface {
 	ICaptureSession
-	ActiveFormat() unsafe.Pointer
-	SetActiveFormat(value unsafe.Pointer)
-	HardwareCost() float32
-	SetHardwareCost(value float32)
-	SystemPressureCost() float32
-	SetSystemPressureCost(value float32)
+	// properties:
+	ActiveFormat() IAVCaptureDeviceFormat
+	SetActiveFormat(value IAVCaptureDeviceFormat)
+	HardwareCost() float32 /* primitive/slice/pointer */
+	SetHardwareCost(value float32 /* primitive/slice/pointer */)
+	SystemPressureCost() float32 /* primitive/slice/pointer */
+	SetSystemPressureCost(value float32 /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A capture session that supports simultaneous capture from multiple inputs of the same media type.
@@ -96,8 +98,8 @@ func NewCaptureMultiCamSession() CaptureMultiCamSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-func (c_ CaptureMultiCamSession) ActiveFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
+func (c_ CaptureMultiCamSession) ActiveFormat() IAVCaptureDeviceFormat {
+	rv := objc.Send[CaptureDeviceFormat](c_.ID, objc.Sel("activeFormat"))
 	return rv
 }
 
@@ -106,7 +108,7 @@ func (c_ CaptureMultiCamSession) ActiveFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-func (c_ CaptureMultiCamSession) SetActiveFormat(value unsafe.Pointer) {
+func (c_ CaptureMultiCamSession) SetActiveFormat(value IAVCaptureDeviceFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
 }
 
@@ -115,7 +117,7 @@ func (c_ CaptureMultiCamSession) SetActiveFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) HardwareCost() float32 {
+func (c_ CaptureMultiCamSession) HardwareCost() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (c_ CaptureMultiCamSession) HardwareCost() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) SetHardwareCost(value float32) {
+func (c_ CaptureMultiCamSession) SetHardwareCost(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHardwareCost:"), value)
 }
 
@@ -134,7 +136,7 @@ func (c_ CaptureMultiCamSession) SetHardwareCost(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SystemPressureCost() float32 {
+func (c_ CaptureMultiCamSession) SystemPressureCost() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("systemPressureCost"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (c_ CaptureMultiCamSession) SystemPressureCost() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SetSystemPressureCost(value float32) {
+func (c_ CaptureMultiCamSession) SetSystemPressureCost(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureCost:"), value)
 }
 

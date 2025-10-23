@@ -30,6 +30,8 @@ type _HKAttachmentStoreClass struct {
 // An interface definition for the [HKAttachmentStore] class.
 type IHKAttachmentStore interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The access point for attachments associated with samples in the HealthKit store.

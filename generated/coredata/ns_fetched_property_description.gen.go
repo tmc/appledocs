@@ -30,9 +30,9 @@ type _FetchedPropertyDescriptionClass struct {
 // An interface definition for the [FetchedPropertyDescription] class.
 type IFetchedPropertyDescription interface {
 	IPropertyDescription
-	FetchRequest() NSFetchRequest
+	FetchRequest() IFetchRequest
 	SetFetchRequest(value IFetchRequest)
-	AffectedStores() NSPersistentStore
+	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
 	FetchBatchSize() int
 	SetFetchBatchSize(value int)
@@ -41,7 +41,7 @@ type IFetchedPropertyDescription interface {
 	FetchOffset() int
 	SetFetchOffset(value int)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 }
 
 // A description object used to define which properties are fetched from Core Data.
@@ -103,8 +103,8 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
-func (f_ FetchedPropertyDescription) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](f_.ID, objc.Sel("fetchRequest"))
+func (f_ FetchedPropertyDescription) FetchRequest() IFetchRequest {
+	rv := objc.Send[FetchRequest](f_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -122,8 +122,8 @@ func (f_ FetchedPropertyDescription) SetFetchRequest(value IFetchRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchedPropertyDescription) AffectedStores() NSPersistentStore {
-	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
+func (f_ FetchedPropertyDescription) AffectedStores() IPersistentStore {
+	rv := objc.Send[PersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (f_ FetchedPropertyDescription) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchedPropertyDescription) SetPredicate(value foundation.IPredicate) {
+func (f_ FetchedPropertyDescription) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 

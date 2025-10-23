@@ -33,14 +33,14 @@ type _RenderDestinationClass struct {
 // An interface definition for the [RenderDestination] class.
 type IRenderDestination interface {
 	objectivec.IObject
-	AlphaMode() RenderDestinationAlphaMode
-	SetAlphaMode(value RenderDestinationAlphaMode)
-	BlendKernel() CIBlendKernel
+	AlphaMode() CIRenderDestinationAlphaMode
+	SetAlphaMode(value CIRenderDestinationAlphaMode)
+	BlendKernel() ICIBlendKernel
 	SetBlendKernel(value ICIBlendKernel)
 	BlendsInDestinationColorSpace() bool
 	SetBlendsInDestinationColorSpace(value bool)
 	CaptureTraceURL() foundation.URL
-	SetCaptureTraceURL(value foundation.IURL)
+	SetCaptureTraceURL(value foundation.URL)
 	ColorSpace() coregraphics.CGColorSpaceRef
 	SetColorSpace(value coregraphics.CGColorSpaceRef)
 	Height() uint
@@ -116,7 +116,7 @@ func NewRenderDestination() RenderDestination {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
-func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format IFormat) RenderDestination {
+func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format Format) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
 	rv.Autorelease()
@@ -140,7 +140,7 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
-func NewRenderDestinationWithIOSurface(surface iosurface.ISurface) RenderDestination {
+func NewRenderDestinationWithIOSurface(surface iosurface.Surface) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithIOSurface:"), surface)
 	rv.Autorelease()
@@ -189,8 +189,8 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) AlphaMode() RenderDestinationAlphaMode {
-	rv := objc.Send[RenderDestinationAlphaMode](r_.ID, objc.Sel("alphaMode"))
+func (r_ RenderDestination) AlphaMode() CIRenderDestinationAlphaMode {
+	rv := objc.Send[CIRenderDestinationAlphaMode](r_.ID, objc.Sel("alphaMode"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (r_ RenderDestination) AlphaMode() RenderDestinationAlphaMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) SetAlphaMode(value RenderDestinationAlphaMode) {
+func (r_ RenderDestination) SetAlphaMode(value CIRenderDestinationAlphaMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAlphaMode:"), value)
 }
 
@@ -208,8 +208,8 @@ func (r_ RenderDestination) SetAlphaMode(value RenderDestinationAlphaMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/blendKernel
-func (r_ RenderDestination) BlendKernel() CIBlendKernel {
-	rv := objc.Send[CIBlendKernel](r_.ID, objc.Sel("blendKernel"))
+func (r_ RenderDestination) BlendKernel() ICIBlendKernel {
+	rv := objc.Send[BlendKernel](r_.ID, objc.Sel("blendKernel"))
 	return rv
 }
 
@@ -256,7 +256,7 @@ func (r_ RenderDestination) CaptureTraceURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) SetCaptureTraceURL(value foundation.IURL) {
+func (r_ RenderDestination) SetCaptureTraceURL(value foundation.URL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCaptureTraceURL:"), value)
 }
 

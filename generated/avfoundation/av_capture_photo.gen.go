@@ -30,6 +30,8 @@ type _CapturePhotoClass struct {
 // An interface definition for the [CapturePhoto] class.
 type ICapturePhoto interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AVFoundation classes.

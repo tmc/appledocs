@@ -30,11 +30,11 @@ type _RelationshipDescriptionClass struct {
 // An interface definition for the [RelationshipDescription] class.
 type IRelationshipDescription interface {
 	IPropertyDescription
-	DeleteRule() DeleteRule
-	SetDeleteRule(value IDeleteRule)
-	DestinationEntity() NSEntityDescription
+	DeleteRule() unsafe.Pointer
+	SetDeleteRule(value unsafe.Pointer)
+	DestinationEntity() IEntityDescription
 	SetDestinationEntity(value IEntityDescription)
-	InverseRelationship() NSRelationshipDescription
+	InverseRelationship() IRelationshipDescription
 	SetInverseRelationship(value IRelationshipDescription)
 	IsOrdered() bool
 	SetIsOrdered(value bool)
@@ -45,7 +45,7 @@ type IRelationshipDescription interface {
 	MinCount() int
 	SetMinCount(value int)
 	VersionHash() foundation.Data
-	SetVersionHash(value foundation.IData)
+	SetVersionHash(value foundation.Data)
 }
 
 // A description of a relationship between two entities.
@@ -107,8 +107,8 @@ func NewRelationshipDescription() RelationshipDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-func (r_ RelationshipDescription) DeleteRule() DeleteRule {
-	rv := objc.Send[DeleteRule](r_.ID, objc.Sel("deleteRule"))
+func (r_ RelationshipDescription) DeleteRule() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("deleteRule"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (r_ RelationshipDescription) DeleteRule() DeleteRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
+func (r_ RelationshipDescription) SetDeleteRule(value unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDeleteRule:"), value)
 }
 
@@ -126,8 +126,8 @@ func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
-func (r_ RelationshipDescription) DestinationEntity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](r_.ID, objc.Sel("destinationEntity"))
+func (r_ RelationshipDescription) DestinationEntity() IEntityDescription {
+	rv := objc.Send[EntityDescription](r_.ID, objc.Sel("destinationEntity"))
 	return rv
 }
 
@@ -145,8 +145,8 @@ func (r_ RelationshipDescription) SetDestinationEntity(value IEntityDescription)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
-func (r_ RelationshipDescription) InverseRelationship() NSRelationshipDescription {
-	rv := objc.Send[NSRelationshipDescription](r_.ID, objc.Sel("inverseRelationship"))
+func (r_ RelationshipDescription) InverseRelationship() IRelationshipDescription {
+	rv := objc.Send[RelationshipDescription](r_.ID, objc.Sel("inverseRelationship"))
 	return rv
 }
 
@@ -250,7 +250,7 @@ func (r_ RelationshipDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-func (r_ RelationshipDescription) SetVersionHash(value foundation.IData) {
+func (r_ RelationshipDescription) SetVersionHash(value foundation.Data) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
 }
 

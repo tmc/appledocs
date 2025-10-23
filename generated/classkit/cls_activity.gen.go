@@ -30,20 +30,20 @@ type _SActivityClass struct {
 // An interface definition for the [SActivity] class.
 type ISActivity interface {
 	ISObject
-	AddAdditionalActivityItem(activityItem ICLSActivityItem)
-	AddProgressRangeFromStartToEnd(start float64, end float64)
-	RemoveAllActivityItems()
-	Start()
-	Stop()
 	AdditionalActivityItems() []SActivityItem
 	Duration() foundation.TimeInterval
 	Started() bool
-	PrimaryActivityItem() CLSActivityItem
+	PrimaryActivityItem() ICLSActivityItem
 	SetPrimaryActivityItem(value ICLSActivityItem)
 	Progress() float64
 	SetProgress(value float64)
 	IsStarted() bool
 	SetIsStarted(value bool)
+	AddAdditionalActivityItem(activityItem ICLSActivityItem)
+	AddProgressRangeFromStartToEnd(start float64, end float64)
+	RemoveAllActivityItems()
+	Start()
+	Stop()
 }
 
 // A representation of user interaction with a context.
@@ -180,8 +180,8 @@ func (s_ SActivity) Started() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
-func (s_ SActivity) PrimaryActivityItem() CLSActivityItem {
-	rv := objc.Send[CLSActivityItem](s_.ID, objc.Sel("primaryActivityItem"))
+func (s_ SActivity) PrimaryActivityItem() ICLSActivityItem {
+	rv := objc.Send[SActivityItem](s_.ID, objc.Sel("primaryActivityItem"))
 	return rv
 }
 

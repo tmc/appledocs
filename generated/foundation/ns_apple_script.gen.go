@@ -30,14 +30,16 @@ type _AppleScriptClass struct {
 // An interface definition for the [AppleScript] class.
 type IAppleScript interface {
 	objectivec.IObject
-	Compiled() bool
+	// properties:
+	Compiled() bool /* primitive/slice/pointer */
 	RichTextSource() IAttributedString
-	Source() string
-	IsCompiled() bool
-	SetIsCompiled(value bool)
-	CompileAndReturnError(errorInfo IDictionary) bool
-	ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor
-	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor
+	Source() string /* primitive/slice/pointer */
+	IsCompiled() bool /* primitive/slice/pointer */
+	SetIsCompiled(value bool /* primitive/slice/pointer */)
+	// methods:
+	CompileAndReturnError(errorInfo IDictionary /* already interface */) bool /* primitive/slice/pointer */
+	ExecuteAndReturnError(errorInfo IDictionary /* already interface */) IAppleEventDescriptor
+	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary /* already interface */) IAppleEventDescriptor
 }
 
 // An object that provides the ability to load, compile, and execute scripts.
@@ -97,7 +99,7 @@ func NewAppleScript() AppleScript {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/init(contentsOf:error:)
-func NewAppleScriptWithContentsOfURLError(url IURL, errorInfo IDictionary) AppleScript {
+func NewAppleScriptWithContentsOfURLError(url IURL, errorInfo IDictionary /* already interface */) AppleScript {
 	instance := getAppleScriptClass().Alloc()
 	rv := objc.Send[AppleScript](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, errorInfo)
 	rv.Autorelease()
@@ -109,7 +111,7 @@ func NewAppleScriptWithContentsOfURLError(url IURL, errorInfo IDictionary) Apple
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/init(source:)
-func NewAppleScriptWithSource(source string) AppleScript {
+func NewAppleScriptWithSource(source string /* primitive/slice/pointer */) AppleScript {
 	instance := getAppleScriptClass().Alloc()
 	rv := objc.Send[AppleScript](instance.ID, objc.Sel("initWithSource:"), objc.String(source))
 	rv.Autorelease()
@@ -122,7 +124,7 @@ func NewAppleScriptWithSource(source string) AppleScript {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/compileAndReturnError(_:)
-func (a_ AppleScript) CompileAndReturnError(errorInfo IDictionary) bool {
+func (a_ AppleScript) CompileAndReturnError(errorInfo IDictionary /* already interface */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("compileAndReturnError:"), errorInfo)
 	return rv
 }
@@ -132,7 +134,7 @@ func (a_ AppleScript) CompileAndReturnError(errorInfo IDictionary) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAndReturnError(_:)
-func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDescriptor {
+func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary /* already interface */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAndReturnError:"), errorInfo)
 	return rv
 }
@@ -142,7 +144,7 @@ func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) IAppleEventDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
-func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) IAppleEventDescriptor {
+func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary /* already interface */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
@@ -152,7 +154,7 @@ func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/isCompiled
-func (a_ AppleScript) Compiled() bool {
+func (a_ AppleScript) Compiled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("compiled"))
 	return rv
 }
@@ -172,7 +174,7 @@ func (a_ AppleScript) RichTextSource() IAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/source
-func (a_ AppleScript) Source() string {
+func (a_ AppleScript) Source() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("source"))
 	return rv
 }
@@ -182,7 +184,7 @@ func (a_ AppleScript) Source() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-func (a_ AppleScript) IsCompiled() bool {
+func (a_ AppleScript) IsCompiled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompiled"))
 	return rv
 }
@@ -192,7 +194,7 @@ func (a_ AppleScript) IsCompiled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/iscompiled
-func (a_ AppleScript) SetIsCompiled(value bool) {
+func (a_ AppleScript) SetIsCompiled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
 }
 

@@ -30,9 +30,11 @@ type _MorphologyPronounClass struct {
 // An interface definition for the [MorphologyPronoun] class.
 type IMorphologyPronoun interface {
 	objectivec.IObject
+	// properties:
 	DependentMorphology() IMorphology
 	Morphology() IMorphology
-	Pronoun() string
+	Pronoun() string /* primitive/slice/pointer */
+	// methods:
 }
 
 // A custom pronoun for referring to a third person.
@@ -90,7 +92,7 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
-func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
+func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string /* primitive/slice/pointer */, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
 	instance := getMorphologyPronounClass().Alloc()
 	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)
 	rv.Autorelease()
@@ -117,7 +119,7 @@ func (m_ MorphologyPronoun) Morphology() IMorphology {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/pronoun
-func (m_ MorphologyPronoun) Pronoun() string {
+func (m_ MorphologyPronoun) Pronoun() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("pronoun"))
 	return rv
 }

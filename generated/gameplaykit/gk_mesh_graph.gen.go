@@ -29,17 +29,17 @@ type _MeshGraphClass struct {
 // An interface definition for the [MeshGraph] class.
 type IMeshGraph interface {
 	IGraph
+	BufferRadius() float32
+	Obstacles() []PolygonObstacle
+	TriangleCount() uint
+	TriangulationMode() GKMeshGraphTriangulationMode
+	SetTriangulationMode(value GKMeshGraphTriangulationMode)
 	AddObstacles(obstacles []PolygonObstacle)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeUsingObstacles(node unsafe.Pointer)
 	RemoveObstacles(obstacles []PolygonObstacle)
 	TriangleAtIndex(index uint) unsafe.Pointer
 	Triangulate()
-	BufferRadius() float32
-	Obstacles() []PolygonObstacle
-	TriangleCount() uint
-	TriangulationMode() MeshGraphTriangulationMode
-	SetTriangulationMode(value MeshGraphTriangulationMode)
 }
 
 // A navigation graph for 2D game worlds that creates a space-filling network for smooth pathfinding around obstacles.
@@ -230,8 +230,8 @@ func (m_ MeshGraph) TriangleCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangulationMode
-func (m_ MeshGraph) TriangulationMode() MeshGraphTriangulationMode {
-	rv := objc.Send[MeshGraphTriangulationMode](m_.ID, objc.Sel("triangulationMode"))
+func (m_ MeshGraph) TriangulationMode() GKMeshGraphTriangulationMode {
+	rv := objc.Send[GKMeshGraphTriangulationMode](m_.ID, objc.Sel("triangulationMode"))
 	return rv
 }
 
@@ -240,7 +240,7 @@ func (m_ MeshGraph) TriangulationMode() MeshGraphTriangulationMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangulationMode
-func (m_ MeshGraph) SetTriangulationMode(value MeshGraphTriangulationMode) {
+func (m_ MeshGraph) SetTriangulationMode(value GKMeshGraphTriangulationMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTriangulationMode:"), value)
 }
 

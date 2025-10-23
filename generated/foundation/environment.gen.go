@@ -30,6 +30,8 @@ type _environmentClass struct {
 // An interface definition for the [environment] class.
 type Ienvironment interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

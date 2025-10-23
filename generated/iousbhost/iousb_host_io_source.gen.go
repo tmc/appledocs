@@ -30,9 +30,11 @@ type _USBHostIOSourceClass struct {
 // An interface definition for the [USBHostIOSource] class.
 type IUSBHostIOSource interface {
 	objectivec.IObject
+	// properties:
 	DeviceAddress() uint
 	EndpointAddress() uint
 	HostInterface() IOUSBHostInterface
+	// methods:
 }
 
 // This class provides basic functionality for deriving pipe and stream classes.
@@ -113,7 +115,7 @@ func (u_ USBHostIOSource) EndpointAddress() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/hostInterface
 func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface {
-	rv := objc.Send[IOUSBHostInterface](u_.ID, objc.Sel("hostInterface"))
+	rv := objc.Send[USBHostInterface](u_.ID, objc.Sel("hostInterface"))
 	return rv
 }
 

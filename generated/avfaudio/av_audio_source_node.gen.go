@@ -86,16 +86,4 @@ func NewAudioSourceNode() AudioSourceNode {
 
 
 
-// Creates an audio source node with a block that supplies audio data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSourceNode/init(renderBlock:)
-func NewAudioSourceNodeWithRenderBlock(block unsafe.Pointer) AudioSourceNode {
-	instance := getAudioSourceNodeClass().Alloc()
-	rv := objc.Send[AudioSourceNode](instance.ID, objc.Sel("initWithRenderBlock:"), block)
-	rv.Autorelease()
-	return rv
-}
-
-
 

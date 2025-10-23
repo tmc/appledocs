@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,18 +32,19 @@ type _MKMapSnapshotOptionsClass struct {
 // An interface definition for the [MKMapSnapshotOptions] class.
 type IMKMapSnapshotOptions interface {
 	objectivec.IObject
+	// properties:
 	Appearance() appkit.Appearance
-	SetAppearance(value appkit.IAppearance)
-	Camera() unsafe.Pointer
-	SetCamera(value unsafe.Pointer)
+	SetAppearance(value appkit.Appearance)
+	Camera() IMKMapCamera
+	SetCamera(value IMKMapCamera)
 	MapRect() unsafe.Pointer
 	SetMapRect(value unsafe.Pointer)
-	MapType() MKMapType
-	SetMapType(value MKMapType)
-	PointOfInterestFilter() MKPointOfInterestFilter
+	MapType() unsafe.Pointer
+	SetMapType(value unsafe.Pointer)
+	PointOfInterestFilter() IMKPointOfInterestFilter
 	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
 	PreferredConfiguration() MKMapConfiguration
-	SetPreferredConfiguration(value IMKMapConfiguration)
+	SetPreferredConfiguration(value MKMapConfiguration)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
 	Scale() float64
@@ -52,10 +53,11 @@ type IMKMapSnapshotOptions interface {
 	SetShowsBuildings(value bool)
 	ShowsPointsOfInterest() bool
 	SetShowsPointsOfInterest(value bool)
-	Size() foundation.Size
-	SetSize(value foundation.Size)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
 	TraitCollection() unsafe.Pointer
 	SetTraitCollection(value unsafe.Pointer)
+	// methods:
 }
 
 // The options the snapshotter initializer uses to create a snapshotter to capture map-based imagery.
@@ -114,7 +116,7 @@ func NewMKMapSnapshotOptions() MKMapSnapshotOptions {
 // The visual style (light or dark) to apply to the map when rendering the snapshot image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/appearance
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/appearance
 func (m_ MKMapSnapshotOptions) Appearance() appkit.Appearance {
 	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
@@ -124,8 +126,8 @@ func (m_ MKMapSnapshotOptions) Appearance() appkit.Appearance {
 // The visual style (light or dark) to apply to the map when rendering the snapshot image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/appearance
-func (m_ MKMapSnapshotOptions) SetAppearance(value appkit.IAppearance) {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/appearance
+func (m_ MKMapSnapshotOptions) SetAppearance(value appkit.Appearance) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
 }
 
@@ -133,9 +135,9 @@ func (m_ MKMapSnapshotOptions) SetAppearance(value appkit.IAppearance) {
 // The camera to use when taking the map snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/camera
-func (m_ MKMapSnapshotOptions) Camera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("camera"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/camera
+func (m_ MKMapSnapshotOptions) Camera() IMKMapCamera {
+	rv := objc.Send[MKMapCamera](m_.ID, objc.Sel("camera"))
 	return rv
 }
 
@@ -143,8 +145,8 @@ func (m_ MKMapSnapshotOptions) Camera() unsafe.Pointer {
 // The camera to use when taking the map snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/camera
-func (m_ MKMapSnapshotOptions) SetCamera(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/camera
+func (m_ MKMapSnapshotOptions) SetCamera(value IMKMapCamera) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCamera:"), value)
 }
 
@@ -152,7 +154,7 @@ func (m_ MKMapSnapshotOptions) SetCamera(value unsafe.Pointer) {
 // The map rectangle that you want to capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/mapRect
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/maprect
 func (m_ MKMapSnapshotOptions) MapRect() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapRect"))
 	return rv
@@ -162,7 +164,7 @@ func (m_ MKMapSnapshotOptions) MapRect() unsafe.Pointer {
 // The map rectangle that you want to capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/mapRect
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/maprect
 func (m_ MKMapSnapshotOptions) SetMapRect(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapRect:"), value)
 }
@@ -171,9 +173,9 @@ func (m_ MKMapSnapshotOptions) SetMapRect(value unsafe.Pointer) {
 // The map’s visual style.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/mapType
-func (m_ MKMapSnapshotOptions) MapType() MKMapType {
-	rv := objc.Send[MKMapType](m_.ID, objc.Sel("mapType"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/maptype
+func (m_ MKMapSnapshotOptions) MapType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapType"))
 	return rv
 }
 
@@ -181,8 +183,8 @@ func (m_ MKMapSnapshotOptions) MapType() MKMapType {
 // The map’s visual style.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/mapType
-func (m_ MKMapSnapshotOptions) SetMapType(value MKMapType) {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/maptype
+func (m_ MKMapSnapshotOptions) SetMapType(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapType:"), value)
 }
 
@@ -190,8 +192,8 @@ func (m_ MKMapSnapshotOptions) SetMapType(value MKMapType) {
 // The filter to use for determining the points of interest that appear in the snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/pointOfInterestFilter
-func (m_ MKMapSnapshotOptions) PointOfInterestFilter() MKPointOfInterestFilter {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/pointofinterestfilter
+func (m_ MKMapSnapshotOptions) PointOfInterestFilter() IMKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
@@ -200,7 +202,7 @@ func (m_ MKMapSnapshotOptions) PointOfInterestFilter() MKPointOfInterestFilter {
 // The filter to use for determining the points of interest that appear in the snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/pointOfInterestFilter
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/pointofinterestfilter
 func (m_ MKMapSnapshotOptions) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
@@ -209,7 +211,7 @@ func (m_ MKMapSnapshotOptions) SetPointOfInterestFilter(value IMKPointOfInterest
 // The map configuration style to use for snapshots.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/preferredConfiguration
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/preferredconfiguration
 func (m_ MKMapSnapshotOptions) PreferredConfiguration() MKMapConfiguration {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
@@ -219,8 +221,8 @@ func (m_ MKMapSnapshotOptions) PreferredConfiguration() MKMapConfiguration {
 // The map configuration style to use for snapshots.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/preferredConfiguration
-func (m_ MKMapSnapshotOptions) SetPreferredConfiguration(value IMKMapConfiguration) {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/preferredconfiguration
+func (m_ MKMapSnapshotOptions) SetPreferredConfiguration(value MKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
@@ -228,7 +230,7 @@ func (m_ MKMapSnapshotOptions) SetPreferredConfiguration(value IMKMapConfigurati
 // The area of the map that you want to capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/region
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/region
 func (m_ MKMapSnapshotOptions) Region() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("region"))
 	return rv
@@ -238,7 +240,7 @@ func (m_ MKMapSnapshotOptions) Region() unsafe.Pointer {
 // The area of the map that you want to capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/region
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/region
 func (m_ MKMapSnapshotOptions) SetRegion(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
@@ -247,7 +249,7 @@ func (m_ MKMapSnapshotOptions) SetRegion(value unsafe.Pointer) {
 // The scale factor to use when creating the image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/scale
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/scale
 func (m_ MKMapSnapshotOptions) Scale() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("scale"))
 	return rv
@@ -257,7 +259,7 @@ func (m_ MKMapSnapshotOptions) Scale() float64 {
 // The scale factor to use when creating the image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/scale
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/scale
 func (m_ MKMapSnapshotOptions) SetScale(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScale:"), value)
 }
@@ -266,7 +268,7 @@ func (m_ MKMapSnapshotOptions) SetScale(value float64) {
 // A Boolean that indicates whether the map displays extruded building information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsBuildings
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/showsbuildings
 func (m_ MKMapSnapshotOptions) ShowsBuildings() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsBuildings"))
 	return rv
@@ -276,7 +278,7 @@ func (m_ MKMapSnapshotOptions) ShowsBuildings() bool {
 // A Boolean that indicates whether the map displays extruded building information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsBuildings
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/showsbuildings
 func (m_ MKMapSnapshotOptions) SetShowsBuildings(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsBuildings:"), value)
 }
@@ -285,7 +287,7 @@ func (m_ MKMapSnapshotOptions) SetShowsBuildings(value bool) {
 // A Boolean value that indicates whether the map displays point-of-interest information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsPointsOfInterest
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/showspointsofinterest
 func (m_ MKMapSnapshotOptions) ShowsPointsOfInterest() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsPointsOfInterest"))
 	return rv
@@ -295,7 +297,7 @@ func (m_ MKMapSnapshotOptions) ShowsPointsOfInterest() bool {
 // A Boolean value that indicates whether the map displays point-of-interest information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/showsPointsOfInterest
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/showspointsofinterest
 func (m_ MKMapSnapshotOptions) SetShowsPointsOfInterest(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPointsOfInterest:"), value)
 }
@@ -304,9 +306,9 @@ func (m_ MKMapSnapshotOptions) SetShowsPointsOfInterest(value bool) {
 // The size of the image that you want to create.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/size
-func (m_ MKMapSnapshotOptions) Size() foundation.Size {
-	rv := objc.Send[foundation.Size](m_.ID, objc.Sel("size"))
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/size
+func (m_ MKMapSnapshotOptions) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("size"))
 	return rv
 }
 
@@ -314,8 +316,8 @@ func (m_ MKMapSnapshotOptions) Size() foundation.Size {
 // The size of the image that you want to create.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/size
-func (m_ MKMapSnapshotOptions) SetSize(value foundation.Size) {
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/size
+func (m_ MKMapSnapshotOptions) SetSize(value coregraphics.CGSize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
 
@@ -323,7 +325,7 @@ func (m_ MKMapSnapshotOptions) SetSize(value foundation.Size) {
 // Traits that determine the appearance of the map snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/traitCollection
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/traitcollection
 func (m_ MKMapSnapshotOptions) TraitCollection() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("traitCollection"))
 	return rv
@@ -333,7 +335,7 @@ func (m_ MKMapSnapshotOptions) TraitCollection() unsafe.Pointer {
 // Traits that determine the appearance of the map snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Options/traitCollection
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/traitcollection
 func (m_ MKMapSnapshotOptions) SetTraitCollection(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)
 }

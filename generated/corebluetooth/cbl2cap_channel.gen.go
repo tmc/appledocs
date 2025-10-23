@@ -32,13 +32,13 @@ type _CBL2CAPChannelClass struct {
 type ICBL2CAPChannel interface {
 	objectivec.IObject
 	InputStream() foundation.InputStream
-	SetInputStream(value foundation.IInputStream)
+	SetInputStream(value foundation.InputStream)
 	OutputStream() foundation.OutputStream
-	SetOutputStream(value foundation.IOutputStream)
-	Peer() CBPeer
+	SetOutputStream(value foundation.OutputStream)
+	Peer() ICBPeer
 	SetPeer(value ICBPeer)
 	Psm() CBL2CAPPSM
-	SetPsm(value ICBL2CAPPSM)
+	SetPsm(value CBL2CAPPSM)
 }
 
 // A live L2CAP connection to a remote device.
@@ -106,7 +106,7 @@ func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) SetInputStream(value foundation.IInputStream) {
+func (c_ CBL2CAPChannel) SetInputStream(value foundation.InputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
 
@@ -125,7 +125,7 @@ func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
+func (c_ CBL2CAPChannel) SetOutputStream(value foundation.OutputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
 }
 
@@ -134,7 +134,7 @@ func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
-func (c_ CBL2CAPChannel) Peer() CBPeer {
+func (c_ CBL2CAPChannel) Peer() ICBPeer {
 	rv := objc.Send[CBPeer](c_.ID, objc.Sel("peer"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) SetPsm(value ICBL2CAPPSM) {
+func (c_ CBL2CAPChannel) SetPsm(value CBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }
 

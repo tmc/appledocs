@@ -30,9 +30,11 @@ type _URLSessionTaskMetricsClass struct {
 // An interface definition for the [URLSessionTaskMetrics] class.
 type IURLSessionTaskMetrics interface {
 	objectivec.IObject
-	RedirectCount() uint
+	// properties:
+	RedirectCount() uint /* primitive/slice/pointer */
 	TaskInterval() IDateInterval
-	TransactionMetrics() []URLSessionTaskTransactionMetrics
+	TransactionMetrics() []URLSessionTaskTransactionMetrics /* primitive/slice/pointer */
+	// methods:
 }
 
 // An object encapsulating the metrics for a session task.
@@ -93,7 +95,7 @@ func NewURLSessionTaskMetrics() URLSessionTaskMetrics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/redirectCount
-func (u_ URLSessionTaskMetrics) RedirectCount() uint {
+func (u_ URLSessionTaskMetrics) RedirectCount() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("redirectCount"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (u_ URLSessionTaskMetrics) TaskInterval() IDateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/transactionMetrics
-func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransactionMetrics {
+func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransactionMetrics /* primitive/slice/pointer */ {
 	rv := objc.Send[[]URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }

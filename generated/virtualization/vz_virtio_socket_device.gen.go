@@ -29,17 +29,19 @@ type _VZVirtioSocketDeviceClass struct {
 // An interface definition for the [VZVirtioSocketDevice] class.
 type IVZVirtioSocketDevice interface {
 	IVZSocketDevice
-	ConnectToPortCompletionHandler(port Iuint32, completionHandler unsafe.Pointer)
-	RemoveSocketListenerForPort(port Iuint32)
-	SetSocketListenerForPort(listener IVZVirtioSocketListener, port Iuint32)
 	SocketDevices() VZSocketDevice
-	SetSocketDevices(value IVZSocketDevice)
+	SetSocketDevices(value VZSocketDevice)
+	SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32)
 }
 
 // A device that manages port-based connections between the guest system and the host computer.
 //
 // Use a object to configure services and other communication end points in your virtual machine. Host computers make services available using ports, which identify the type of service and the protocol to use when transmitting data. Use this object to specify the ports available to your guest operating system, and to register handlers to manage the communication on those ports. Don’t create a object directly. Instead, when you request a socket device in your configuration, the virtual machine creates it and stores it in the property. For each port you want to make available in your virtual machine, call the method and provide an object to manage the port connections.
+
+
+// A device that manages port-based connections between the guest system and the host computer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice
 type VZVirtioSocketDevice struct {
 	VZSocketDevice
@@ -86,29 +88,19 @@ func NewVZVirtioSocketDevice() VZVirtioSocketDevice {
 }
 
 
-// Initiates a connection to the specified port of the guest operating system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/connect(toPort:)
-func (v_ VZVirtioSocketDevice) ConnectToPortCompletionHandler(port Iuint32, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("connectToPort:completionHandler:"), port, completionHandler)
-}
-
-// Removes the listener object from the specfied port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/removeSocketListener(forPort:)
-func (v_ VZVirtioSocketDevice) RemoveSocketListenerForPort(port Iuint32) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("removeSocketListenerForPort:"), port)
-}
 
 // Configures an object to monitor the specified port for new connections.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/setSocketListener(_:forPort:)
-func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port Iuint32) {
+func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port uint32) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketListener:forPort:"), listener, port)
 }
 
+
 // The array of socket devices that the VM configures for use ports in the guest VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
 func (v_ VZVirtioSocketDevice) SocketDevices() VZSocketDevice {
 	rv := objc.Send[VZSocketDevice](v_.ID, objc.Sel("socketDevices"))
@@ -116,12 +108,11 @@ func (v_ VZVirtioSocketDevice) SocketDevices() VZSocketDevice {
 }
 
 
-// SetSocketDevices sets the value of the socketDevices property.
 // The array of socket devices that the VM configures for use ports in the guest VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
-func (v_ VZVirtioSocketDevice) SetSocketDevices(value IVZSocketDevice) {
+func (v_ VZVirtioSocketDevice) SetSocketDevices(value VZSocketDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
 }
 

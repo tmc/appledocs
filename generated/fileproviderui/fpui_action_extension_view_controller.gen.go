@@ -31,9 +31,10 @@ type _FPUIActionExtensionViewControllerClass struct {
 // An interface definition for the [FPUIActionExtensionViewController] class.
 type IFPUIActionExtensionViewController interface {
 	appkit.IViewController
+	ExtensionContext() IFPUIActionExtensionContext
+	SetExtensionContext(value IFPUIActionExtensionContext)
 	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string)
-	PrepareForError(error_ foundation.IError)
-	ExtensionContext() FPUIActionExtensionContext
+	PrepareForError(error_ foundation.Error)
 }
 
 // The custom user interface used to perform a selected action.
@@ -104,7 +105,7 @@ func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)
-func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.IError) {
+func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.Error) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForError:"), error_)
 }
 
@@ -112,10 +113,19 @@ func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.IE
 // The extension context provided by the host app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/extensionContext
-func (f_ FPUIActionExtensionViewController) ExtensionContext() FPUIActionExtensionContext {
+// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
+func (f_ FPUIActionExtensionViewController) ExtensionContext() IFPUIActionExtensionContext {
 	rv := objc.Send[FPUIActionExtensionContext](f_.ID, objc.Sel("extensionContext"))
 	return rv
+}
+
+
+// The extension context provided by the host app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
+func (f_ FPUIActionExtensionViewController) SetExtensionContext(value IFPUIActionExtensionContext) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setExtensionContext:"), value)
 }
 
 

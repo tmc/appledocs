@@ -30,11 +30,13 @@ type _HostClass struct {
 // An interface definition for the [Host] class.
 type IHost interface {
 	objectivec.IObject
-	Address() string
-	Addresses() []string
-	LocalizedName() string
-	Name() string
-	Names() []string
+	// properties:
+	Address() string /* primitive/slice/pointer */
+	Addresses() []string /* primitive/slice/pointer */
+	LocalizedName() string /* primitive/slice/pointer */
+	Name() string /* primitive/slice/pointer */
+	Names() []string /* primitive/slice/pointer */
+	// methods:
 }
 
 // A representation of an individual host on the network.
@@ -94,7 +96,7 @@ func NewHost() Host {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func NewHostWithAddress(address string) Host {
+func NewHostWithAddress(address string /* primitive/slice/pointer */) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
@@ -104,7 +106,7 @@ func NewHostWithAddress(address string) Host {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func NewHostWithName(name string) Host {
+func NewHostWithName(name string /* primitive/slice/pointer */) Host {
 	rv := objc.Send[Host](objc.ID(getHostClass().class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
@@ -125,7 +127,7 @@ func (hc _HostClass) CurrentHost() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(address:)
-func (hc _HostClass) HostWithAddress(address string) unsafe.Pointer {
+func (hc _HostClass) HostWithAddress(address string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithAddress:"), objc.String(address))
 	return rv
 }
@@ -135,7 +137,7 @@ func (hc _HostClass) HostWithAddress(address string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/init(name:)
-func (hc _HostClass) HostWithName(name string) unsafe.Pointer {
+func (hc _HostClass) HostWithName(name string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hostWithName:"), objc.String(name))
 	return rv
 }
@@ -154,7 +156,7 @@ func (hc _HostClass) FlushHostCache() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/isHostCacheEnabled
-func (hc _HostClass) IsHostCacheEnabled() bool {
+func (hc _HostClass) IsHostCacheEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("isHostCacheEnabled"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (hc _HostClass) IsHostCacheEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/setHostCacheEnabled:
-func (hc _HostClass) SetHostCacheEnabled(flag bool) {
+func (hc _HostClass) SetHostCacheEnabled(flag bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
 }
 
@@ -173,7 +175,7 @@ func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/address
-func (h_ Host) Address() string {
+func (h_ Host) Address() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("address"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (h_ Host) Address() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/addresses
-func (h_ Host) Addresses() []string {
+func (h_ Host) Addresses() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("addresses"))
 	return rv
 }
@@ -193,7 +195,7 @@ func (h_ Host) Addresses() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-func (h_ Host) LocalizedName() string {
+func (h_ Host) LocalizedName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
 	return rv
 }
@@ -203,7 +205,7 @@ func (h_ Host) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-func (h_ Host) Name() string {
+func (h_ Host) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
@@ -213,7 +215,7 @@ func (h_ Host) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/names
-func (h_ Host) Names() []string {
+func (h_ Host) Names() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](h_.ID, objc.Sel("names"))
 	return rv
 }

@@ -31,17 +31,17 @@ type _SDataStoreClass struct {
 // An interface definition for the [SDataStore] class.
 type ISDataStore interface {
 	objectivec.IObject
-	CompleteAllAssignedActivitiesMatching(contextPath []string)
-	ContextsMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer)
-	ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
-	FetchActivityForURLCompletion(url foundation.IURL, completion unsafe.Pointer)
-	RemoveContext(context ICLSContext)
-	SaveWithCompletion(completion unsafe.Pointer)
-	ActiveContext() CLSContext
+	ActiveContext() ICLSContext
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	MainAppContext() CLSContext
-	RunningActivity() CLSActivity
+	MainAppContext() ICLSContext
+	RunningActivity() ICLSActivity
+	CompleteAllAssignedActivitiesMatching(contextPath []string)
+	ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer)
+	ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
+	FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer)
+	RemoveContext(context ICLSContext)
+	SaveWithCompletion(completion unsafe.Pointer)
 }
 
 // A container for all the ClassKit data in your app.
@@ -102,7 +102,7 @@ func NewSDataStore() SDataStore {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/shared
 func (sc _SDataStoreClass) Shared() SDataStore {
-	rv := objc.Send[CLSDataStore](objc.ID(sc.class), objc.Sel("shared"))
+	rv := objc.Send[SDataStore](objc.ID(sc.class), objc.Sel("shared"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matching:completion:)
-func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingPredicate:completion:"), predicate, completion)
 }
 
@@ -137,7 +137,7 @@ func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/fetchActivity(for:completion:)
-func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.IURL, completion unsafe.Pointer) {
+func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchActivityForURL:completion:"), url, completion)
 }
 
@@ -164,8 +164,8 @@ func (s_ SDataStore) SaveWithCompletion(completion unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/activeContext
-func (s_ SDataStore) ActiveContext() CLSContext {
-	rv := objc.Send[CLSContext](s_.ID, objc.Sel("activeContext"))
+func (s_ SDataStore) ActiveContext() ICLSContext {
+	rv := objc.Send[SContext](s_.ID, objc.Sel("activeContext"))
 	return rv
 }
 
@@ -193,8 +193,8 @@ func (s_ SDataStore) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/mainAppContext
-func (s_ SDataStore) MainAppContext() CLSContext {
-	rv := objc.Send[CLSContext](s_.ID, objc.Sel("mainAppContext"))
+func (s_ SDataStore) MainAppContext() ICLSContext {
+	rv := objc.Send[SContext](s_.ID, objc.Sel("mainAppContext"))
 	return rv
 }
 
@@ -203,8 +203,8 @@ func (s_ SDataStore) MainAppContext() CLSContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/runningActivity
-func (s_ SDataStore) RunningActivity() CLSActivity {
-	rv := objc.Send[CLSActivity](s_.ID, objc.Sel("runningActivity"))
+func (s_ SDataStore) RunningActivity() ICLSActivity {
+	rv := objc.Send[SActivity](s_.ID, objc.Sel("runningActivity"))
 	return rv
 }
 
@@ -213,8 +213,8 @@ func (s_ SDataStore) RunningActivity() CLSActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/shared
-func (s_ SDataStore) Shared() CLSDataStore {
-	rv := objc.Send[CLSDataStore](s_.ID, objc.Sel("shared"))
+func (s_ SDataStore) Shared() ICLSDataStore {
+	rv := objc.Send[SDataStore](s_.ID, objc.Sel("shared"))
 	return rv
 }
 

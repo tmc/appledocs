@@ -32,7 +32,6 @@ type _CNAssetSpatialAudioInfoClass struct {
 // An interface definition for the [CNAssetSpatialAudioInfo] class.
 type ICNAssetSpatialAudioInfo interface {
 	objectivec.IObject
-	DefaultRenderingStyle() CNSpatialAudioRenderingStyle
 	SpatialAudioMixMetadata() foundation.NSData
 }
 
@@ -84,16 +83,8 @@ func NewCNAssetSpatialAudioInfo() CNAssetSpatialAudioInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/loadFromAsset:completionHandler:
-func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
+func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset avfoundation.Asset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/defaultRenderingStyle
-func (c_ CNAssetSpatialAudioInfo) DefaultRenderingStyle() CNSpatialAudioRenderingStyle {
-	rv := objc.Send[CNSpatialAudioRenderingStyle](c_.ID, objc.Sel("defaultRenderingStyle"))
-	return rv
 }
 
 

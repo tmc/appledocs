@@ -29,17 +29,18 @@ type _CKRecordZoneNotificationClass struct {
 // An interface definition for the [CKRecordZoneNotification] class.
 type ICKRecordZoneNotification interface {
 	ICKNotification
-	RecordZoneID() CKRecordZoneID
 	IsPruned() bool
 	SetIsPruned(value bool)
 	NotificationType() unsafe.Pointer
 	SetNotificationType(value unsafe.Pointer)
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
+	RecordZoneID() ICKRecordZoneID
+	SetRecordZoneID(value ICKRecordZoneID)
 	ShouldSendContentAvailable() bool
 	SetShouldSendContentAvailable(value bool)
 	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value ICKNotificationInfo)
+	SetNotificationInfo(value CKNotificationInfo)
 }
 
 // A notification that triggers when the contents of a record zone change.
@@ -95,16 +96,6 @@ func NewCKRecordZoneNotification() CKRecordZoneNotification {
 	return getCKRecordZoneNotificationClass().New()
 }
 
-
-
-// The ID of the record zone that has changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification/recordZoneID
-func (c_ CKRecordZoneNotification) RecordZoneID() CKRecordZoneID {
-	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneID"))
-	return rv
-}
 
 
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
@@ -164,6 +155,25 @@ func (c_ CKRecordZoneNotification) SetDatabaseScope(value unsafe.Pointer) {
 }
 
 
+// The ID of the record zone that has changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification/recordzoneid
+func (c_ CKRecordZoneNotification) RecordZoneID() ICKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneID"))
+	return rv
+}
+
+
+// The ID of the record zone that has changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification/recordzoneid
+func (c_ CKRecordZoneNotification) SetRecordZoneID(value ICKRecordZoneID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneID:"), value)
+}
+
+
 // A Boolean value that indicates whether the push notification includes the content available flag.
 //
 // [Full Topic]
@@ -197,7 +207,7 @@ func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneNotification) SetNotificationInfo(value ICKNotificationInfo) {
+func (c_ CKRecordZoneNotification) SetNotificationInfo(value CKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

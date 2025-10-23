@@ -88,7 +88,7 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
-func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.IData, error_ unsafe.Pointer) []CNContact {
+func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.NSData, error_ unsafe.Pointer) []CNContact {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
 }

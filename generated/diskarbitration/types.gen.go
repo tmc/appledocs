@@ -8,12 +8,6 @@ import (
 // CFAllocatorRef is a CoreGraphics opaque type.
 type CFAllocatorRef unsafe.Pointer
 
-// CFArrayRef is a CoreGraphics opaque type.
-type CFArrayRef unsafe.Pointer
-
-// CFDictionaryRef is a CoreGraphics opaque type.
-type CFDictionaryRef unsafe.Pointer
-
 // CFRunLoopRef is a CoreGraphics opaque type.
 type CFRunLoopRef unsafe.Pointer
 
@@ -23,8 +17,18 @@ type CFStringRef unsafe.Pointer
 // CFURLRef is a CoreGraphics opaque type.
 type CFURLRef unsafe.Pointer
 
-// DAApprovalSessionRef is a CoreGraphics opaque type.
-type DAApprovalSessionRef unsafe.Pointer
+// DADiskRef is a CoreGraphics opaque type.
+type DADiskRef unsafe.Pointer
+
+// DADissenterRef is a CoreGraphics opaque type.
+type DADissenterRef unsafe.Pointer
+
+
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type CFTypeID unsafe.Pointer
 
 
 

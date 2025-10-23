@@ -29,6 +29,8 @@ type _UnitTemperatureClass struct {
 // An interface definition for the [UnitTemperature] class.
 type IUnitTemperature interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for temperature.

@@ -30,6 +30,8 @@ type _FileSecurityClass struct {
 // An interface definition for the [FileSecurity] class.
 type IFileSecurity interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A stub class that encapsulates security information about a file.

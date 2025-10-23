@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [AuthenticationView] class.
@@ -31,8 +30,10 @@ type _AuthenticationViewClass struct {
 // An interface definition for the [AuthenticationView] class.
 type IAuthenticationView interface {
 	appkit.IView
-	Context() coreimage.Context
-	ControlSize() unsafe.Pointer
+	// properties:
+	Context() LAContext
+	ControlSize() NSControlSize
+	// methods:
 }
 
 // A graphical representation of the state of biometric authentication.
@@ -94,7 +95,7 @@ func NewAuthenticationView() AuthenticationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
-func NewAuthenticationViewWithContext(context coreimage.IContext) AuthenticationView {
+func NewAuthenticationViewWithContext(context LAContext) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:"), context)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewAuthenticationViewWithContext(context coreimage.IContext) Authentication
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:controlSize:)
-func NewAuthenticationViewWithContextControlSize(context coreimage.IContext, controlSize unsafe.Pointer) AuthenticationView {
+func NewAuthenticationViewWithContextControlSize(context LAContext, controlSize NSControlSize) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:controlSize:"), context, controlSize)
 	rv.Autorelease()
@@ -119,8 +120,8 @@ func NewAuthenticationViewWithContextControlSize(context coreimage.IContext, con
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/context
-func (a_ AuthenticationView) Context() coreimage.Context {
-	rv := objc.Send[coreimage.Context](a_.ID, objc.Sel("context"))
+func (a_ AuthenticationView) Context() LAContext {
+	rv := objc.Send[Context](a_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -129,8 +130,8 @@ func (a_ AuthenticationView) Context() coreimage.Context {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/controlSize
-func (a_ AuthenticationView) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlSize"))
+func (a_ AuthenticationView) ControlSize() NSControlSize {
+	rv := objc.Send[ControlSize](a_.ID, objc.Sel("controlSize"))
 	return rv
 }
 

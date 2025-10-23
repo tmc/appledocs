@@ -30,6 +30,8 @@ type _mIsClosedClass struct {
 // An interface definition for the [mIsClosed] class.
 type ImIsClosed interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

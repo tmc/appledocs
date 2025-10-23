@@ -30,15 +30,15 @@ type _CXStartCallActionClass struct {
 // An interface definition for the [CXStartCallAction] class.
 type ICXStartCallAction interface {
 	ICXCallAction
-	FulfillWithDateStarted(dateStarted foundation.IDate)
 	ContactIdentifier() string
 	SetContactIdentifier(value string)
-	Handle() CXHandle
+	Handle() ICXHandle
 	SetHandle(value ICXHandle)
 	Video() bool
 	SetVideo(value bool)
 	IsVideo() bool
 	SetIsVideo(value bool)
+	FulfillWithDateStarted(dateStarted foundation.NSDate)
 }
 
 // An encapsulation of the act of initiating an outgoing call.
@@ -100,7 +100,7 @@ func NewCXStartCallAction() CXStartCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
-func NewCXStartCallActionWithCallUUIDHandle(callUUID foundation.IUUID, handle ICXHandle) CXStartCallAction {
+func NewCXStartCallActionWithCallUUIDHandle(callUUID foundation.UUID, handle ICXHandle) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
 	rv.Autorelease()
@@ -112,7 +112,7 @@ func NewCXStartCallActionWithCallUUIDHandle(callUUID foundation.IUUID, handle IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
-func NewCXStartCallActionWithCoder(aDecoder foundation.ICoder) CXStartCallAction {
+func NewCXStartCallActionWithCoder(aDecoder foundation.Coder) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -125,7 +125,7 @@ func NewCXStartCallActionWithCoder(aDecoder foundation.ICoder) CXStartCallAction
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/fulfill(withDateStarted:)
-func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted foundation.IDate) {
+func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateStarted:"), dateStarted)
 }
 
@@ -153,7 +153,7 @@ func (c_ CXStartCallAction) SetContactIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
-func (c_ CXStartCallAction) Handle() CXHandle {
+func (c_ CXStartCallAction) Handle() ICXHandle {
 	rv := objc.Send[CXHandle](c_.ID, objc.Sel("handle"))
 	return rv
 }

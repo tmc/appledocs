@@ -30,13 +30,17 @@ type _MKAddressClass struct {
 // An interface definition for the [MKAddress] class.
 type IMKAddress interface {
 	objectivec.IObject
+	// properties:
 	FullAddress() string
 	SetFullAddress(value string)
 	ShortAddress() string
 	SetShortAddress(value string)
+	// methods:
 }
 
 // A class that contains a full address, and, optionally, a short address.
+//
+// MapKit capabilities, such as Search and Reverse geocoding, populate the of a with a full address, and a short address, if the framework has one. When presenting a Place Card using an or a selection accessory on an annotation you created using an , MapKit uses the full address provided if you create the using .
 
 
 // A class that contains a full address, and, optionally, a short address.
@@ -87,19 +91,6 @@ func NewMKAddress() MKAddress {
 
 
 
-// Initializes a new address with a location’s full address using a string and a short address that provides an abbreviated form of the address such as a street address.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAddress/init(fullAddress:shortAddress:)
-func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress string) MKAddress {
-	instance := getMKAddressClass().Alloc()
-	rv := objc.Send[MKAddress](instance.ID, objc.Sel("initWithFullAddress:shortAddress:"), objc.String(fullAddress), objc.String(shortAddress))
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // A string that represents a place’s full address
 //
 // [Full Topic]
@@ -136,5 +127,6 @@ func (m_ MKAddress) ShortAddress() string {
 func (m_ MKAddress) SetShortAddress(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))
 }
+
 
 

@@ -30,14 +30,18 @@ type _VZUSBControllerConfigurationClass struct {
 // An interface definition for the [VZUSBControllerConfiguration] class.
 type IVZUSBControllerConfiguration interface {
 	objectivec.IObject
-	UsbDevices() unsafe.Pointer
-	SetUsbDevices(value unsafe.Pointer)
+	UsbDevices() []objc.ID
+	SetUsbDevices(value []objc.ID)
 }
 
 // The base class for a USB controller configuration.
 //
 // Don’t create objects directly. Use one of its subclasses, such as , instead.
+
+
+// The base class for a USB controller configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBControllerConfiguration
 type VZUSBControllerConfiguration struct {
 	objectivec.Object
@@ -82,22 +86,33 @@ func NewVZUSBControllerConfiguration() VZUSBControllerConfiguration {
 }
 
 
+
 // The list of USB devices.
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration/usbdevices
-func (v_ VZUSBControllerConfiguration) UsbDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbDevices"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBControllerConfiguration/usbDevices
+func (v_ VZUSBControllerConfiguration) UsbDevices() []objc.ID {
+	rv := objc.Send[[]objc.ID](v_.ID, objc.Sel("usbDevices"))
 	return rv
 }
 
 
-// SetUsbDevices sets the value of the usbDevices property.
 // The list of USB devices.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration/usbdevices
-func (v_ VZUSBControllerConfiguration) SetUsbDevices(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), value)
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBControllerConfiguration/usbDevices
+func (v_ VZUSBControllerConfiguration) SetUsbDevices(value []objc.ID) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbDevices:"), nsArray)
 }
 
 

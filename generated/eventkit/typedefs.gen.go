@@ -16,6 +16,6 @@ type ABRecordRef uintptr
 // EKVirtualConferenceRoomTypeIdentifier - The type for a room type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeIdentifier
-// EKVirtualConferenceRoomTypeIdentifier has base type: NSString *
-type EKVirtualConferenceRoomTypeIdentifier uintptr
+// EKVirtualConferenceRoomTypeIdentifier is a string typedef
+type EKVirtualConferenceRoomTypeIdentifier = string
 

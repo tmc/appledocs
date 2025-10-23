@@ -30,6 +30,8 @@ type _mInactivityTimerClass struct {
 // An interface definition for the [mInactivityTimer] class.
 type ImInactivityTimer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

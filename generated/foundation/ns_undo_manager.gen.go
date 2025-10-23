@@ -30,34 +30,36 @@ type _UndoManagerClass struct {
 // An interface definition for the [UndoManager] class.
 type IUndoManager interface {
 	objectivec.IObject
-	CanRedo() bool
-	CanUndo() bool
-	GroupingLevel() int
-	GroupsByEvent() bool
-	SetGroupsByEvent(value bool)
-	Redoing() bool
-	UndoRegistrationEnabled() bool
-	Undoing() bool
-	LevelsOfUndo() uint
-	SetLevelsOfUndo(value uint)
-	RedoActionIsDiscardable() bool
-	RedoActionName() string
-	RedoCount() uint
-	RedoMenuItemTitle() string
-	RunLoopModes() []string
-	SetRunLoopModes(value []string)
-	UndoActionIsDiscardable() bool
-	UndoActionName() string
-	UndoCount() uint
-	UndoMenuItemTitle() string
-	NSUndoCloseGroupingRunLoopOrdering() int
-	NSUndoManagerGroupIsDiscardableKey() string
-	IsRedoing() bool
-	SetIsRedoing(value bool)
-	IsUndoRegistrationEnabled() bool
-	SetIsUndoRegistrationEnabled(value bool)
-	IsUndoing() bool
-	SetIsUndoing(value bool)
+	// properties:
+	CanRedo() bool /* primitive/slice/pointer */
+	CanUndo() bool /* primitive/slice/pointer */
+	GroupingLevel() int /* primitive/slice/pointer */
+	GroupsByEvent() bool /* primitive/slice/pointer */
+	SetGroupsByEvent(value bool /* primitive/slice/pointer */)
+	Redoing() bool /* primitive/slice/pointer */
+	UndoRegistrationEnabled() bool /* primitive/slice/pointer */
+	Undoing() bool /* primitive/slice/pointer */
+	LevelsOfUndo() uint /* primitive/slice/pointer */
+	SetLevelsOfUndo(value uint /* primitive/slice/pointer */)
+	RedoActionIsDiscardable() bool /* primitive/slice/pointer */
+	RedoActionName() string /* primitive/slice/pointer */
+	RedoCount() uint /* primitive/slice/pointer */
+	RedoMenuItemTitle() string /* primitive/slice/pointer */
+	RunLoopModes() []string /* primitive/slice/pointer */
+	SetRunLoopModes(value []string /* primitive/slice/pointer */)
+	UndoActionIsDiscardable() bool /* primitive/slice/pointer */
+	UndoActionName() string /* primitive/slice/pointer */
+	UndoCount() uint /* primitive/slice/pointer */
+	UndoMenuItemTitle() string /* primitive/slice/pointer */
+	NSUndoCloseGroupingRunLoopOrdering() int /* primitive/slice/pointer */
+	NSUndoManagerGroupIsDiscardableKey() string /* primitive/slice/pointer */
+	IsRedoing() bool /* primitive/slice/pointer */
+	SetIsRedoing(value bool /* primitive/slice/pointer */)
+	IsUndoRegistrationEnabled() bool /* primitive/slice/pointer */
+	SetIsUndoRegistrationEnabled(value bool /* primitive/slice/pointer */)
+	IsUndoing() bool /* primitive/slice/pointer */
+	SetIsUndoing(value bool /* primitive/slice/pointer */)
+	// methods:
 	RegisterUndoWithTargetHandler(target objectivec.IObject, undoHandler unsafe.Pointer)
 	BeginUndoGrouping()
 	DisableUndoRegistration()
@@ -65,17 +67,17 @@ type IUndoManager interface {
 	EndUndoGrouping()
 	PrepareWithInvocationTarget(target objectivec.IObject) objc.ID
 	Redo()
-	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	RedoMenuTitleForUndoActionName(actionName string) IString
+	RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* foo */) objc.ID
+	RedoMenuTitleForUndoActionName(actionName string /* primitive/slice/pointer */) IString
 	RegisterUndoWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, object objectivec.IObject)
 	RemoveAllActions()
 	RemoveAllActionsWithTarget(target objectivec.IObject)
-	SetActionIsDiscardable(discardable bool)
-	SetActionName(actionName string)
-	SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey)
+	SetActionIsDiscardable(discardable bool /* primitive/slice/pointer */)
+	SetActionName(actionName string /* primitive/slice/pointer */)
+	SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey /* foo */)
 	Undo()
-	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID
-	UndoMenuTitleForUndoActionName(actionName string) IString
+	UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* foo */) objc.ID
+	UndoMenuTitleForUndoActionName(actionName string /* primitive/slice/pointer */) IString
 	UndoNestedGroup()
 }
 
@@ -200,7 +202,7 @@ func (u_ UndoManager) Redo() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoActionUserInfoValue(forKey:)
-func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID {
+func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* foo */) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("redoActionUserInfoValueForKey:"), key)
 	return rv
 }
@@ -210,7 +212,7 @@ func (u_ UndoManager) RedoActionUserInfoValueForKey(key UndoManagerUserInfoKey) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuTitle(forUndoActionName:)
-func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName string) IString {
+func (u_ UndoManager) RedoMenuTitleForUndoActionName(actionName string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("redoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
@@ -247,7 +249,7 @@ func (u_ UndoManager) RemoveAllActionsWithTarget(target objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionIsDiscardable(_:)
-func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
+func (u_ UndoManager) SetActionIsDiscardable(discardable bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionIsDiscardable:"), discardable)
 }
 
@@ -256,7 +258,7 @@ func (u_ UndoManager) SetActionIsDiscardable(discardable bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionName(_:)-8lzip
-func (u_ UndoManager) SetActionName(actionName string) {
+func (u_ UndoManager) SetActionName(actionName string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionName:"), objc.String(actionName))
 }
 
@@ -265,7 +267,7 @@ func (u_ UndoManager) SetActionName(actionName string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/setActionUserInfoValue(_:forKey:)
-func (u_ UndoManager) SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey) {
+func (u_ UndoManager) SetActionUserInfoValueForKey(info objectivec.IObject, key UndoManagerUserInfoKey /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActionUserInfoValue:forKey:"), info, key)
 }
 
@@ -283,7 +285,7 @@ func (u_ UndoManager) Undo() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionUserInfoValue(forKey:)
-func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) objc.ID {
+func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey /* foo */) objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("undoActionUserInfoValueForKey:"), key)
 	return rv
 }
@@ -293,7 +295,7 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key UndoManagerUserInfoKey) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoMenuTitle(forUndoActionName:)
-func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) IString {
+func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
@@ -312,7 +314,7 @@ func (u_ UndoManager) UndoNestedGroup() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/canRedo
-func (u_ UndoManager) CanRedo() bool {
+func (u_ UndoManager) CanRedo() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("canRedo"))
 	return rv
 }
@@ -322,7 +324,7 @@ func (u_ UndoManager) CanRedo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/canUndo
-func (u_ UndoManager) CanUndo() bool {
+func (u_ UndoManager) CanUndo() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("canUndo"))
 	return rv
 }
@@ -332,7 +334,7 @@ func (u_ UndoManager) CanUndo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupingLevel
-func (u_ UndoManager) GroupingLevel() int {
+func (u_ UndoManager) GroupingLevel() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("groupingLevel"))
 	return rv
 }
@@ -342,7 +344,7 @@ func (u_ UndoManager) GroupingLevel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
-func (u_ UndoManager) GroupsByEvent() bool {
+func (u_ UndoManager) GroupsByEvent() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("groupsByEvent"))
 	return rv
 }
@@ -352,7 +354,7 @@ func (u_ UndoManager) GroupsByEvent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/groupsByEvent
-func (u_ UndoManager) SetGroupsByEvent(value bool) {
+func (u_ UndoManager) SetGroupsByEvent(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
 }
 
@@ -361,7 +363,7 @@ func (u_ UndoManager) SetGroupsByEvent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/isRedoing
-func (u_ UndoManager) Redoing() bool {
+func (u_ UndoManager) Redoing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("redoing"))
 	return rv
 }
@@ -371,7 +373,7 @@ func (u_ UndoManager) Redoing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/isUndoRegistrationEnabled
-func (u_ UndoManager) UndoRegistrationEnabled() bool {
+func (u_ UndoManager) UndoRegistrationEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoRegistrationEnabled"))
 	return rv
 }
@@ -381,7 +383,7 @@ func (u_ UndoManager) UndoRegistrationEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/isUndoing
-func (u_ UndoManager) Undoing() bool {
+func (u_ UndoManager) Undoing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoing"))
 	return rv
 }
@@ -391,7 +393,7 @@ func (u_ UndoManager) Undoing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/levelsOfUndo
-func (u_ UndoManager) LevelsOfUndo() uint {
+func (u_ UndoManager) LevelsOfUndo() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("levelsOfUndo"))
 	return rv
 }
@@ -401,7 +403,7 @@ func (u_ UndoManager) LevelsOfUndo() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/levelsOfUndo
-func (u_ UndoManager) SetLevelsOfUndo(value uint) {
+func (u_ UndoManager) SetLevelsOfUndo(value uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLevelsOfUndo:"), value)
 }
 
@@ -410,7 +412,7 @@ func (u_ UndoManager) SetLevelsOfUndo(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoActionIsDiscardable
-func (u_ UndoManager) RedoActionIsDiscardable() bool {
+func (u_ UndoManager) RedoActionIsDiscardable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("redoActionIsDiscardable"))
 	return rv
 }
@@ -420,7 +422,7 @@ func (u_ UndoManager) RedoActionIsDiscardable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoActionName
-func (u_ UndoManager) RedoActionName() string {
+func (u_ UndoManager) RedoActionName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("redoActionName"))
 	return rv
 }
@@ -430,7 +432,7 @@ func (u_ UndoManager) RedoActionName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoCount
-func (u_ UndoManager) RedoCount() uint {
+func (u_ UndoManager) RedoCount() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("redoCount"))
 	return rv
 }
@@ -440,7 +442,7 @@ func (u_ UndoManager) RedoCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuItemTitle
-func (u_ UndoManager) RedoMenuItemTitle() string {
+func (u_ UndoManager) RedoMenuItemTitle() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("redoMenuItemTitle"))
 	return rv
 }
@@ -450,7 +452,7 @@ func (u_ UndoManager) RedoMenuItemTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
-func (u_ UndoManager) RunLoopModes() []string {
+func (u_ UndoManager) RunLoopModes() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](u_.ID, objc.Sel("runLoopModes"))
 	return rv
 }
@@ -460,7 +462,7 @@ func (u_ UndoManager) RunLoopModes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
-func (u_ UndoManager) SetRunLoopModes(value []string) {
+func (u_ UndoManager) SetRunLoopModes(value []string /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -479,7 +481,7 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionIsDiscardable
-func (u_ UndoManager) UndoActionIsDiscardable() bool {
+func (u_ UndoManager) UndoActionIsDiscardable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("undoActionIsDiscardable"))
 	return rv
 }
@@ -489,7 +491,7 @@ func (u_ UndoManager) UndoActionIsDiscardable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
-func (u_ UndoManager) UndoActionName() string {
+func (u_ UndoManager) UndoActionName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("undoActionName"))
 	return rv
 }
@@ -499,7 +501,7 @@ func (u_ UndoManager) UndoActionName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoCount
-func (u_ UndoManager) UndoCount() uint {
+func (u_ UndoManager) UndoCount() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("undoCount"))
 	return rv
 }
@@ -509,7 +511,7 @@ func (u_ UndoManager) UndoCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoMenuItemTitle
-func (u_ UndoManager) UndoMenuItemTitle() string {
+func (u_ UndoManager) UndoMenuItemTitle() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("undoMenuItemTitle"))
 	return rv
 }
@@ -519,7 +521,7 @@ func (u_ UndoManager) UndoMenuItemTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering
-func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
+func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUndoCloseGroupingRunLoopOrdering"))
 	return rv
 }
@@ -529,7 +531,7 @@ func (u_ UndoManager) NSUndoCloseGroupingRunLoopOrdering() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsundomanagergroupisdiscardablekey
-func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() string {
+func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUndoManagerGroupIsDiscardableKey"))
 	return rv
 }
@@ -539,7 +541,7 @@ func (u_ UndoManager) NSUndoManagerGroupIsDiscardableKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isredoing
-func (u_ UndoManager) IsRedoing() bool {
+func (u_ UndoManager) IsRedoing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isRedoing"))
 	return rv
 }
@@ -549,7 +551,7 @@ func (u_ UndoManager) IsRedoing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isredoing
-func (u_ UndoManager) SetIsRedoing(value bool) {
+func (u_ UndoManager) SetIsRedoing(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsRedoing:"), value)
 }
 
@@ -558,7 +560,7 @@ func (u_ UndoManager) SetIsRedoing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
-func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
+func (u_ UndoManager) IsUndoRegistrationEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoRegistrationEnabled"))
 	return rv
 }
@@ -568,7 +570,7 @@ func (u_ UndoManager) IsUndoRegistrationEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoregistrationenabled
-func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
+func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoRegistrationEnabled:"), value)
 }
 
@@ -577,7 +579,7 @@ func (u_ UndoManager) SetIsUndoRegistrationEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
-func (u_ UndoManager) IsUndoing() bool {
+func (u_ UndoManager) IsUndoing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isUndoing"))
 	return rv
 }
@@ -587,7 +589,7 @@ func (u_ UndoManager) IsUndoing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/undomanager/isundoing
-func (u_ UndoManager) SetIsUndoing(value bool) {
+func (u_ UndoManager) SetIsUndoing(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsUndoing:"), value)
 }
 

@@ -30,6 +30,8 @@ type _mOpenConnectionCallbackClass struct {
 // An interface definition for the [mOpenConnectionCallback] class.
 type ImOpenConnectionCallback interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

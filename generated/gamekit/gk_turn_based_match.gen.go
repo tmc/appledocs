@@ -31,34 +31,33 @@ type _TurnBasedMatchClass struct {
 // An interface definition for the [TurnBasedMatch] class.
 type ITurnBasedMatch interface {
 	objectivec.IObject
-	SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer)
-	SetLocalizableMessageWithKeyArguments(key string, arguments []string)
-	ActiveExchanges() GKTurnBasedExchange
+	ActiveExchanges() IGKTurnBasedExchange
 	SetActiveExchanges(value IGKTurnBasedExchange)
-	CompletedExchanges() GKTurnBasedExchange
+	CompletedExchanges() IGKTurnBasedExchange
 	SetCompletedExchanges(value IGKTurnBasedExchange)
 	CreationDate() foundation.Date
-	SetCreationDate(value foundation.IDate)
-	CurrentParticipant() GKTurnBasedParticipant
+	SetCreationDate(value foundation.Date)
+	CurrentParticipant() IGKTurnBasedParticipant
 	SetCurrentParticipant(value IGKTurnBasedParticipant)
 	ExchangeDataMaximumSize() int
 	SetExchangeDataMaximumSize(value int)
 	ExchangeMaxInitiatedExchangesPerPlayer() int
 	SetExchangeMaxInitiatedExchangesPerPlayer(value int)
-	Exchanges() GKTurnBasedExchange
+	Exchanges() IGKTurnBasedExchange
 	SetExchanges(value IGKTurnBasedExchange)
 	MatchData() foundation.Data
-	SetMatchData(value foundation.IData)
+	SetMatchData(value foundation.Data)
 	MatchDataMaximumSize() int
 	SetMatchDataMaximumSize(value int)
 	MatchID() string
 	SetMatchID(value string)
 	Message() string
 	SetMessage(value string)
-	Participants() GKTurnBasedParticipant
+	Participants() IGKTurnBasedParticipant
 	SetParticipants(value IGKTurnBasedParticipant)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
+	SetLocalizableMessageWithKeyArguments(key string, arguments []string)
 }
 
 // An object that encapsulates the match data for games where players take turns.
@@ -123,15 +122,6 @@ func (tc _TurnBasedMatchClass) LoadMatchWithIDWithCompletionHandler(matchID stri
 }
 
 
-// Sends an exchange request that contains your game data to one or more participants.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)
-func (t_ TurnBasedMatch) SendExchangeToParticipantsDataLocalizableMessageKeyArgumentsTimeoutCompletionHandler(participants []TurnBasedParticipant, data foundation.IData, key string, arguments []string, timeout foundation.ITimeInterval, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"), participants, data, objc.String(key), arguments, timeout, completionHandler)
-}
-
-
 // Sends a localized message from the current participant to all other participants when you end a turn, forfeit a match, or end a match.
 //
 // [Full Topic]
@@ -145,8 +135,8 @@ func (t_ TurnBasedMatch) SetLocalizableMessageWithKeyArguments(key string, argum
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/activeexchanges
-func (t_ TurnBasedMatch) ActiveExchanges() GKTurnBasedExchange {
-	rv := objc.Send[GKTurnBasedExchange](t_.ID, objc.Sel("activeExchanges"))
+func (t_ TurnBasedMatch) ActiveExchanges() IGKTurnBasedExchange {
+	rv := objc.Send[TurnBasedExchange](t_.ID, objc.Sel("activeExchanges"))
 	return rv
 }
 
@@ -164,8 +154,8 @@ func (t_ TurnBasedMatch) SetActiveExchanges(value IGKTurnBasedExchange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges
-func (t_ TurnBasedMatch) CompletedExchanges() GKTurnBasedExchange {
-	rv := objc.Send[GKTurnBasedExchange](t_.ID, objc.Sel("completedExchanges"))
+func (t_ TurnBasedMatch) CompletedExchanges() IGKTurnBasedExchange {
+	rv := objc.Send[TurnBasedExchange](t_.ID, objc.Sel("completedExchanges"))
 	return rv
 }
 
@@ -193,7 +183,7 @@ func (t_ TurnBasedMatch) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/creationdate
-func (t_ TurnBasedMatch) SetCreationDate(value foundation.IDate) {
+func (t_ TurnBasedMatch) SetCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -202,8 +192,8 @@ func (t_ TurnBasedMatch) SetCreationDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/currentparticipant
-func (t_ TurnBasedMatch) CurrentParticipant() GKTurnBasedParticipant {
-	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("currentParticipant"))
+func (t_ TurnBasedMatch) CurrentParticipant() IGKTurnBasedParticipant {
+	rv := objc.Send[TurnBasedParticipant](t_.ID, objc.Sel("currentParticipant"))
 	return rv
 }
 
@@ -259,8 +249,8 @@ func (t_ TurnBasedMatch) SetExchangeMaxInitiatedExchangesPerPlayer(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/exchanges
-func (t_ TurnBasedMatch) Exchanges() GKTurnBasedExchange {
-	rv := objc.Send[GKTurnBasedExchange](t_.ID, objc.Sel("exchanges"))
+func (t_ TurnBasedMatch) Exchanges() IGKTurnBasedExchange {
+	rv := objc.Send[TurnBasedExchange](t_.ID, objc.Sel("exchanges"))
 	return rv
 }
 
@@ -288,7 +278,7 @@ func (t_ TurnBasedMatch) MatchData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/matchdata
-func (t_ TurnBasedMatch) SetMatchData(value foundation.IData) {
+func (t_ TurnBasedMatch) SetMatchData(value foundation.Data) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchData:"), value)
 }
 
@@ -354,8 +344,8 @@ func (t_ TurnBasedMatch) SetMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-func (t_ TurnBasedMatch) Participants() GKTurnBasedParticipant {
-	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("participants"))
+func (t_ TurnBasedMatch) Participants() IGKTurnBasedParticipant {
+	rv := objc.Send[TurnBasedParticipant](t_.ID, objc.Sel("participants"))
 	return rv
 }
 

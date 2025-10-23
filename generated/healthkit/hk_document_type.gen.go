@@ -29,6 +29,8 @@ type _HKDocumentTypeClass struct {
 // An interface definition for the [HKDocumentType] class.
 type IHKDocumentType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A sample type used to create queries for documents.

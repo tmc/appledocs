@@ -30,10 +30,16 @@ type _HKMedicationConceptClass struct {
 // An interface definition for the [HKMedicationConcept] class.
 type IHKMedicationConcept interface {
 	objectivec.IObject
+	// properties:
 	DisplayText() string
+	SetDisplayText(value string)
 	GeneralForm() HKMedicationGeneralForm
-	Identifier() HKHealthConceptIdentifier
-	RelatedCodings() unsafe.Pointer
+	SetGeneralForm(value HKMedicationGeneralForm)
+	Identifier() IHKHealthConceptIdentifier
+	SetIdentifier(value IHKHealthConceptIdentifier)
+	RelatedCodings() IHKClinicalCoding
+	SetRelatedCodings(value IHKClinicalCoding)
+	// methods:
 }
 
 // An object that describes a specific medication concept.
@@ -92,9 +98,28 @@ func NewHKMedicationConcept() HKMedicationConcept {
 // The display name for this medication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
 func (h_ HKMedicationConcept) DisplayText() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
+	return rv
+}
+
+
+// The display name for this medication.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
+func (h_ HKMedicationConcept) SetDisplayText(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayText:"), objc.String(value))
+}
+
+
+// The general form the medication is manufactured in.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/generalform
+func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
+	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
 	return rv
 }
 
@@ -102,9 +127,18 @@ func (h_ HKMedicationConcept) DisplayText() string {
 // The general form the medication is manufactured in.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/generalForm
-func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
-	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/generalform
+func (h_ HKMedicationConcept) SetGeneralForm(value HKMedicationGeneralForm) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setGeneralForm:"), value)
+}
+
+
+// The unique identifier for the specific medication concept.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/identifier
+func (h_ HKMedicationConcept) Identifier() IHKHealthConceptIdentifier {
+	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -112,9 +146,18 @@ func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
 // The unique identifier for the specific medication concept.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/identifier
-func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
-	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/identifier
+func (h_ HKMedicationConcept) SetIdentifier(value IHKHealthConceptIdentifier) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+
+// The set of related clinical codings for the medication.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/relatedcodings
+func (h_ HKMedicationConcept) RelatedCodings() IHKClinicalCoding {
+	rv := objc.Send[HKClinicalCoding](h_.ID, objc.Sel("relatedCodings"))
 	return rv
 }
 
@@ -122,10 +165,9 @@ func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
 // The set of related clinical codings for the medication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/relatedCodings
-func (h_ HKMedicationConcept) RelatedCodings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("relatedCodings"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/relatedcodings
+func (h_ HKMedicationConcept) SetRelatedCodings(value IHKClinicalCoding) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setRelatedCodings:"), value)
 }
 
 

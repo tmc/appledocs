@@ -30,6 +30,8 @@ type _isMultiClass struct {
 // An interface definition for the [isMulti] class.
 type IisMulti interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

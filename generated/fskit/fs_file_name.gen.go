@@ -33,7 +33,9 @@ type IFSFileName interface {
 	objectivec.IObject
 	Data() foundation.NSData
 	DebugDescription() string
+	SetDebugDescription(value string)
 	String() string
+	SetString(value string)
 }
 
 // The name of a file, expressed as a data buffer.
@@ -89,95 +91,6 @@ func NewFSFileName() FSFileName {
 
 
 
-// Initializes a file name by copying a character sequence from a byte array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/initWithBytes:length:
-func NewFSFileNameWithBytesLength(bytes unsafe.Pointer, length uint) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithBytes:length:"), bytes, length)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a filename from a null-terminated character sequence.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/initWithCString:
-func NewFSFileNameWithCString(name unsafe.Pointer) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithCString:"), name)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a filename by copying a character sequence data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(data:)
-func NewFSFileNameWithData(name foundation.IData) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithData:"), name)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a filename by copying a character sequence from a string instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/init(string:)
-func NewFSFileNameWithString(name string) FSFileName {
-	instance := getFSFileNameClass().Alloc()
-	rv := objc.Send[FSFileName](instance.ID, objc.Sel("initWithString:"), objc.String(name))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates a filename by copying a character sequence from a byte array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithBytes:length:
-func (fc _FSFileNameClass) NameWithBytesLength(bytes unsafe.Pointer, length uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithBytes:length:"), bytes, length)
-	return rv
-}
-
-
-// Creates a filename from a null-terminated character sequence.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithCString:
-func (fc _FSFileNameClass) NameWithCString(name unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithCString:"), name)
-	return rv
-}
-
-
-// Creates a filename by copying a character sequence data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithData:
-func (fc _FSFileNameClass) NameWithData(name foundation.IData) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithData:"), name)
-	return rv
-}
-
-
-// Creates a filename by copying a character sequence from a string instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/nameWithString:
-func (fc _FSFileNameClass) NameWithString(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("nameWithString:"), objc.String(name))
-	return rv
-}
-
-
 // The byte sequence of the filename, as a data object.
 //
 // [Full Topic]
@@ -191,9 +104,28 @@ func (f_ FSFileName) Data() foundation.NSData {
 // The filename, represented as a potentially lossy conversion to a string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/debugDescription
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/debugdescription
 func (f_ FSFileName) DebugDescription() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("debugDescription"))
+	return rv
+}
+
+
+// The filename, represented as a potentially lossy conversion to a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/debugdescription
+func (f_ FSFileName) SetDebugDescription(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDebugDescription:"), objc.String(value))
+}
+
+
+// The filename, represented as a Unicode string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/string
+func (f_ FSFileName) String() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -201,10 +133,10 @@ func (f_ FSFileName) DebugDescription() string {
 // The filename, represented as a Unicode string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSFileName/string
-func (f_ FSFileName) String() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("string"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsfilename/string
+func (f_ FSFileName) SetString(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setString:"), objc.String(value))
 }
+
 
 

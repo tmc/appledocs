@@ -29,10 +29,11 @@ type _USBHostDeviceClass struct {
 // An interface definition for the [USBHostDevice] class.
 type IUSBHostDevice interface {
 	IUSBHostObject
-	ConfigureWithValueError(value uint, error_ unsafe.Pointer) bool
-	ResetWithError(error_ unsafe.Pointer) bool
+	// properties:
 	ConfigurationDescriptor() unsafe.Pointer
 	SetConfigurationDescriptor(value unsafe.Pointer)
+	// methods:
+	ResetWithError(error_ unsafe.Pointer) bool
 }
 
 // The class that claims and configures devices, retrieves descriptors, and sends device requests.
@@ -88,16 +89,6 @@ func NewUSBHostDevice() USBHostDevice {
 	return getUSBHostDeviceClass().New()
 }
 
-
-
-// Selects a new configuration for the device and registers the interfaces for matching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice/configureWithValue:error:
-func (u_ USBHostDevice) ConfigureWithValueError(value uint, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("configureWithValue:error:"), value, error_)
-	return rv
-}
 
 
 // Terminates the device and attempts to re-enumerate it.

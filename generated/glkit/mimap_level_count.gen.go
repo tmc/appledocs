@@ -30,6 +30,8 @@ type _mimapLevelCountClass struct {
 // An interface definition for the [mimapLevelCount] class.
 type ImimapLevelCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

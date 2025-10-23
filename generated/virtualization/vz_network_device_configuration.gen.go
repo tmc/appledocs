@@ -30,24 +30,19 @@ type _VZNetworkDeviceConfigurationClass struct {
 // An interface definition for the [VZNetworkDeviceConfiguration] class.
 type IVZNetworkDeviceConfiguration interface {
 	objectivec.IObject
-	Attachment() VZNetworkDeviceAttachment
-	SetAttachment(value IVZNetworkDeviceAttachment)
-	MACAddress() VZMACAddress
-	SetMACAddress(value IVZMACAddress)
 }
 
-// The common configuration traits for network devices.
-//
-// Don’t instantiate the class directly. Instead, instantiate one of its subclasses, such as . Then use the properties of this class to configure the network device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration
+// A parent class referenced by other Virtualization classes.
+
+
+// A parent class referenced by other Virtualization classes. [Full Topic]
 type VZNetworkDeviceConfiguration struct {
 	objectivec.Object
 }
 
 // VZNetworkDeviceConfigurationFrom constructs a [VZNetworkDeviceConfiguration] from an unsafe.Pointer.
 //
-// The common configuration traits for network devices.
+// A parent class referenced by other Virtualization classes.
 func VZNetworkDeviceConfigurationFrom(ptr unsafe.Pointer) VZNetworkDeviceConfiguration {
 	return VZNetworkDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
@@ -83,42 +78,6 @@ func NewVZNetworkDeviceConfiguration() VZNetworkDeviceConfiguration {
 	return getVZNetworkDeviceConfigurationClass().New()
 }
 
-
-// The object that defines how the virtual network device communicates with the host system.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/attachment
-func (v_ VZNetworkDeviceConfiguration) Attachment() VZNetworkDeviceAttachment {
-	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
-	return rv
-}
-
-
-// SetAttachment sets the value of the attachment property.
-// The object that defines how the virtual network device communicates with the host system.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/attachment
-func (v_ VZNetworkDeviceConfiguration) SetAttachment(value IVZNetworkDeviceAttachment) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-}
-
-// The media access control (MAC) address to assign to the network device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/macAddress
-func (v_ VZNetworkDeviceConfiguration) MACAddress() VZMACAddress {
-	rv := objc.Send[VZMACAddress](v_.ID, objc.Sel("MACAddress"))
-	return rv
-}
-
-
-// SetMACAddress sets the value of the MACAddress property.
-// The media access control (MAC) address to assign to the network device.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/macAddress
-func (v_ VZNetworkDeviceConfiguration) SetMACAddress(value IVZMACAddress) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMACAddress:"), value)
-}
 
 
 

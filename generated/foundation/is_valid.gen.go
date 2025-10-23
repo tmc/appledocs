@@ -30,6 +30,8 @@ type _isValidClass struct {
 // An interface definition for the [isValid] class.
 type IisValid interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

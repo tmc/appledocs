@@ -31,15 +31,13 @@ type _GCMotionClass struct {
 type IGCMotion interface {
 	objectivec.IObject
 	HasAttitudeAndRotationRate() bool
-	RotationRate() unsafe.Pointer
-	SensorsRequireManualActivation() bool
-	Motion() GCMotion
+	Motion() IGCMotion
 	SetMotion(value IGCMotion)
 	Acceleration() unsafe.Pointer
 	SetAcceleration(value unsafe.Pointer)
 	Attitude() unsafe.Pointer
 	SetAttitude(value unsafe.Pointer)
-	Controller() GCController
+	Controller() IGCController
 	SetController(value IGCController)
 	Gravity() unsafe.Pointer
 	SetGravity(value unsafe.Pointer)
@@ -49,8 +47,12 @@ type IGCMotion interface {
 	SetHasGravityAndUserAcceleration(value bool)
 	HasRotationRate() bool
 	SetHasRotationRate(value bool)
+	RotationRate() unsafe.Pointer
+	SetRotationRate(value unsafe.Pointer)
 	SensorsActive() bool
 	SetSensorsActive(value bool)
+	SensorsRequireManualActivation() bool
+	SetSensorsRequireManualActivation(value bool)
 	UserAcceleration() unsafe.Pointer
 	SetUserAcceleration(value unsafe.Pointer)
 	ValueChangedHandler() unsafe.Pointer
@@ -120,31 +122,11 @@ func (g_ GCMotion) HasAttitudeAndRotationRate() bool {
 }
 
 
-// The rotation rate of the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/rotationRate
-func (g_ GCMotion) RotationRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the sensors that compute the motion data require manual activation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/sensorsRequireManualActivation
-func (g_ GCMotion) SensorsRequireManualActivation() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsRequireManualActivation"))
-	return rv
-}
-
-
 // The motion input profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCMotion) Motion() GCMotion {
+func (g_ GCMotion) Motion() IGCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
@@ -201,7 +183,7 @@ func (g_ GCMotion) SetAttitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
-func (g_ GCMotion) Controller() GCController {
+func (g_ GCMotion) Controller() IGCController {
 	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
 }
@@ -292,6 +274,25 @@ func (g_ GCMotion) SetHasRotationRate(value bool) {
 }
 
 
+// The rotation rate of the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/rotationrate
+func (g_ GCMotion) RotationRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
+	return rv
+}
+
+
+// The rotation rate of the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/rotationrate
+func (g_ GCMotion) SetRotationRate(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setRotationRate:"), value)
+}
+
+
 // A Boolean value that indicates whether the sensors that compute the motion data are active.
 //
 // [Full Topic]
@@ -308,6 +309,25 @@ func (g_ GCMotion) SensorsActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
 func (g_ GCMotion) SetSensorsActive(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsActive:"), value)
+}
+
+
+// A Boolean value that indicates whether the sensors that compute the motion data require manual activation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
+func (g_ GCMotion) SensorsRequireManualActivation() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsRequireManualActivation"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the sensors that compute the motion data require manual activation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
+func (g_ GCMotion) SetSensorsRequireManualActivation(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsRequireManualActivation:"), value)
 }
 
 

@@ -32,8 +32,8 @@ type _CKShareAccessRequesterClass struct {
 type ICKShareAccessRequester interface {
 	objectivec.IObject
 	Contact() contacts.CNContact
-	ParticipantLookupInfo() CKUserIdentityLookupInfo
-	UserIdentity() CKUserIdentity
+	ParticipantLookupInfo() ICKUserIdentityLookupInfo
+	UserIdentity() ICKUserIdentity
 }
 
 
@@ -96,7 +96,7 @@ func (c_ CKShareAccessRequester) Contact() contacts.CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/participantLookupInfo
-func (c_ CKShareAccessRequester) ParticipantLookupInfo() CKUserIdentityLookupInfo {
+func (c_ CKShareAccessRequester) ParticipantLookupInfo() ICKUserIdentityLookupInfo {
 	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("participantLookupInfo"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (c_ CKShareAccessRequester) ParticipantLookupInfo() CKUserIdentityLookupInf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/userIdentity
-func (c_ CKShareAccessRequester) UserIdentity() CKUserIdentity {
+func (c_ CKShareAccessRequester) UserIdentity() ICKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
 }

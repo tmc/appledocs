@@ -29,6 +29,8 @@ type _UnitVolumeClass struct {
 // An interface definition for the [UnitVolume] class.
 type IUnitVolume interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for volume.

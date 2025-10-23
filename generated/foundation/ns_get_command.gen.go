@@ -29,6 +29,8 @@ type _GetCommandClass struct {
 // An interface definition for the [GetCommand] class.
 type IGetCommand interface {
 	IScriptCommand
+	// properties:
+	// methods:
 }
 
 // A command that retrieves a value or object from a scriptable object.

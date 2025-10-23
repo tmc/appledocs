@@ -30,6 +30,8 @@ type _mObjectIDClass struct {
 // An interface definition for the [mObjectID] class.
 type ImObjectID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

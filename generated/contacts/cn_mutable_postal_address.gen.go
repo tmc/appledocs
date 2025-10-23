@@ -33,8 +33,8 @@ type ICNMutablePostalAddress interface {
 	SetCity(value string)
 	Country() string
 	SetCountry(value string)
-	ISOCountryCode() string
-	SetISOCountryCode(value string)
+	IsoCountryCode() string
+	SetIsoCountryCode(value string)
 	PostalCode() string
 	SetPostalCode(value string)
 	State() string
@@ -105,7 +105,7 @@ func NewCNMutablePostalAddress() CNMutablePostalAddress {
 // The city name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/city
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/city
 func (c_ CNMutablePostalAddress) City() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("city"))
 	return rv
@@ -115,7 +115,7 @@ func (c_ CNMutablePostalAddress) City() string {
 // The city name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/city
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/city
 func (c_ CNMutablePostalAddress) SetCity(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCity:"), objc.String(value))
 }
@@ -124,7 +124,7 @@ func (c_ CNMutablePostalAddress) SetCity(value string) {
 // The country or region name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/country
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/country
 func (c_ CNMutablePostalAddress) Country() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("country"))
 	return rv
@@ -134,7 +134,7 @@ func (c_ CNMutablePostalAddress) Country() string {
 // The country or region name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/country
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/country
 func (c_ CNMutablePostalAddress) SetCountry(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCountry:"), objc.String(value))
 }
@@ -143,9 +143,9 @@ func (c_ CNMutablePostalAddress) SetCountry(value string) {
 // The ISO country code, using the ISO 3166-1 alpha-2 standard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/isoCountryCode
-func (c_ CNMutablePostalAddress) ISOCountryCode() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("ISOCountryCode"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/isocountrycode
+func (c_ CNMutablePostalAddress) IsoCountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
 	return rv
 }
 
@@ -153,16 +153,16 @@ func (c_ CNMutablePostalAddress) ISOCountryCode() string {
 // The ISO country code, using the ISO 3166-1 alpha-2 standard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/isoCountryCode
-func (c_ CNMutablePostalAddress) SetISOCountryCode(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setISOCountryCode:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/isocountrycode
+func (c_ CNMutablePostalAddress) SetIsoCountryCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsoCountryCode:"), objc.String(value))
 }
 
 
 // The postal code of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/postalCode
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/postalcode
 func (c_ CNMutablePostalAddress) PostalCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("postalCode"))
 	return rv
@@ -172,7 +172,7 @@ func (c_ CNMutablePostalAddress) PostalCode() string {
 // The postal code of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/postalCode
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/postalcode
 func (c_ CNMutablePostalAddress) SetPostalCode(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPostalCode:"), objc.String(value))
 }
@@ -181,7 +181,7 @@ func (c_ CNMutablePostalAddress) SetPostalCode(value string) {
 // The state name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/state
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/state
 func (c_ CNMutablePostalAddress) State() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("state"))
 	return rv
@@ -191,7 +191,7 @@ func (c_ CNMutablePostalAddress) State() string {
 // The state name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/state
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/state
 func (c_ CNMutablePostalAddress) SetState(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setState:"), objc.String(value))
 }
@@ -200,7 +200,7 @@ func (c_ CNMutablePostalAddress) SetState(value string) {
 // The street name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/street
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/street
 func (c_ CNMutablePostalAddress) Street() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("street"))
 	return rv
@@ -210,7 +210,7 @@ func (c_ CNMutablePostalAddress) Street() string {
 // The street name of the address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/street
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/street
 func (c_ CNMutablePostalAddress) SetStreet(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStreet:"), objc.String(value))
 }
@@ -219,7 +219,7 @@ func (c_ CNMutablePostalAddress) SetStreet(value string) {
 // The subadministrative area (such as a county or other region) in a postal address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/subAdministrativeArea
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/subadministrativearea
 func (c_ CNMutablePostalAddress) SubAdministrativeArea() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subAdministrativeArea"))
 	return rv
@@ -229,7 +229,7 @@ func (c_ CNMutablePostalAddress) SubAdministrativeArea() string {
 // The subadministrative area (such as a county or other region) in a postal address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/subAdministrativeArea
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/subadministrativearea
 func (c_ CNMutablePostalAddress) SetSubAdministrativeArea(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubAdministrativeArea:"), objc.String(value))
 }
@@ -238,7 +238,7 @@ func (c_ CNMutablePostalAddress) SetSubAdministrativeArea(value string) {
 // Additional information associated with the location, typically defined at the city or town level, in a postal address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/subLocality
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/sublocality
 func (c_ CNMutablePostalAddress) SubLocality() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("subLocality"))
 	return rv
@@ -248,7 +248,7 @@ func (c_ CNMutablePostalAddress) SubLocality() string {
 // Additional information associated with the location, typically defined at the city or town level, in a postal address.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutablePostalAddress/subLocality
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablepostaladdress/sublocality
 func (c_ CNMutablePostalAddress) SetSubLocality(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubLocality:"), objc.String(value))
 }

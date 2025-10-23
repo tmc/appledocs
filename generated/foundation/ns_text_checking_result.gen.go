@@ -30,35 +30,37 @@ type _TextCheckingResultClass struct {
 // An interface definition for the [TextCheckingResult] class.
 type ITextCheckingResult interface {
 	objectivec.IObject
+	// properties:
 	Date() IDate
-	PhoneNumber() string
-	NSNotFound() int
-	AddressComponents() string
-	SetAddressComponents(value string)
-	AlternativeStrings() string
-	SetAlternativeStrings(value string)
-	Components() string
-	SetComponents(value string)
-	Duration() TimeInterval
-	SetDuration(value TimeInterval)
-	GrammarDetails() string
-	SetGrammarDetails(value string)
-	NumberOfRanges() int
-	SetNumberOfRanges(value int)
+	PhoneNumber() string /* primitive/slice/pointer */
+	NSNotFound() int /* primitive/slice/pointer */
+	AddressComponents() string /* primitive/slice/pointer */
+	SetAddressComponents(value string /* primitive/slice/pointer */)
+	AlternativeStrings() string /* primitive/slice/pointer */
+	SetAlternativeStrings(value string /* primitive/slice/pointer */)
+	Components() string /* primitive/slice/pointer */
+	SetComponents(value string /* primitive/slice/pointer */)
+	Duration() TimeInterval /* foo */
+	SetDuration(value TimeInterval /* foo */)
+	GrammarDetails() string /* primitive/slice/pointer */
+	SetGrammarDetails(value string /* primitive/slice/pointer */)
+	NumberOfRanges() int /* primitive/slice/pointer */
+	SetNumberOfRanges(value int /* primitive/slice/pointer */)
 	Orthography() IOrthography
 	SetOrthography(value IOrthography)
-	Range() Range
-	SetRange(value Range)
+	Range() Range /* foo */
+	SetRange(value Range /* foo */)
 	RegularExpression() IRegularExpression
 	SetRegularExpression(value IRegularExpression)
-	ReplacementString() string
-	SetReplacementString(value string)
+	ReplacementString() string /* primitive/slice/pointer */
+	SetReplacementString(value string /* primitive/slice/pointer */)
 	ResultType() unsafe.Pointer
 	SetResultType(value unsafe.Pointer)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	Url() IURL
 	SetUrl(value IURL)
+	// methods:
 }
 
 // An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
@@ -118,7 +120,7 @@ func NewTextCheckingResult() TextCheckingResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
-func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range, components IDictionary) ITextCheckingResult {
+func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ Range /* foo */, components IDictionary /* already interface */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
 }
@@ -138,7 +140,7 @@ func (t_ TextCheckingResult) Date() IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
-func (t_ TextCheckingResult) PhoneNumber() string {
+func (t_ TextCheckingResult) PhoneNumber() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (t_ TextCheckingResult) PhoneNumber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (t_ TextCheckingResult) NSNotFound() int {
+func (t_ TextCheckingResult) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (t_ TextCheckingResult) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) AddressComponents() string {
+func (t_ TextCheckingResult) AddressComponents() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("addressComponents"))
 	return rv
 }
@@ -168,14 +170,14 @@ func (t_ TextCheckingResult) AddressComponents() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscomponents
-func (t_ TextCheckingResult) SetAddressComponents(value string) {
+func (t_ TextCheckingResult) SetAddressComponents(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAddressComponents:"), objc.String(value))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) AlternativeStrings() string {
+func (t_ TextCheckingResult) AlternativeStrings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (t_ TextCheckingResult) AlternativeStrings() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/alternativestrings
-func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
+func (t_ TextCheckingResult) SetAlternativeStrings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), objc.String(value))
 }
 
@@ -192,7 +194,7 @@ func (t_ TextCheckingResult) SetAlternativeStrings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-func (t_ TextCheckingResult) Components() string {
+func (t_ TextCheckingResult) Components() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("components"))
 	return rv
 }
@@ -202,7 +204,7 @@ func (t_ TextCheckingResult) Components() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/components
-func (t_ TextCheckingResult) SetComponents(value string) {
+func (t_ TextCheckingResult) SetComponents(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setComponents:"), objc.String(value))
 }
 
@@ -211,7 +213,7 @@ func (t_ TextCheckingResult) SetComponents(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (t_ TextCheckingResult) Duration() TimeInterval {
+func (t_ TextCheckingResult) Duration() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -221,7 +223,7 @@ func (t_ TextCheckingResult) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (t_ TextCheckingResult) SetDuration(value TimeInterval) {
+func (t_ TextCheckingResult) SetDuration(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -230,7 +232,7 @@ func (t_ TextCheckingResult) SetDuration(value TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-func (t_ TextCheckingResult) GrammarDetails() string {
+func (t_ TextCheckingResult) GrammarDetails() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("grammarDetails"))
 	return rv
 }
@@ -240,7 +242,7 @@ func (t_ TextCheckingResult) GrammarDetails() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/grammardetails
-func (t_ TextCheckingResult) SetGrammarDetails(value string) {
+func (t_ TextCheckingResult) SetGrammarDetails(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGrammarDetails:"), objc.String(value))
 }
 
@@ -249,7 +251,7 @@ func (t_ TextCheckingResult) SetGrammarDetails(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-func (t_ TextCheckingResult) NumberOfRanges() int {
+func (t_ TextCheckingResult) NumberOfRanges() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("numberOfRanges"))
 	return rv
 }
@@ -259,7 +261,7 @@ func (t_ TextCheckingResult) NumberOfRanges() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/numberofranges
-func (t_ TextCheckingResult) SetNumberOfRanges(value int) {
+func (t_ TextCheckingResult) SetNumberOfRanges(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfRanges:"), value)
 }
 
@@ -287,7 +289,7 @@ func (t_ TextCheckingResult) SetOrthography(value IOrthography) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (t_ TextCheckingResult) Range() Range {
+func (t_ TextCheckingResult) Range() Range /* foo */ {
 	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
 	return rv
 }
@@ -297,7 +299,7 @@ func (t_ TextCheckingResult) Range() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (t_ TextCheckingResult) SetRange(value Range) {
+func (t_ TextCheckingResult) SetRange(value Range /* foo */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRange:"), value)
 }
 
@@ -325,7 +327,7 @@ func (t_ TextCheckingResult) SetRegularExpression(value IRegularExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) ReplacementString() string {
+func (t_ TextCheckingResult) ReplacementString() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("replacementString"))
 	return rv
 }
@@ -335,7 +337,7 @@ func (t_ TextCheckingResult) ReplacementString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
-func (t_ TextCheckingResult) SetReplacementString(value string) {
+func (t_ TextCheckingResult) SetReplacementString(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
 }
 

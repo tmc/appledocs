@@ -95,7 +95,7 @@ func NewCXSetHeldCallAction() CXSetHeldCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(call:onHold:)
-func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.IUUID, onHold bool) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.UUID, onHold bool) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCallUUID:onHold:"), callUUID, onHold)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.IUUID, onHold 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(coder:)
-func NewCXSetHeldCallActionWithCoder(aDecoder foundation.ICoder) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCoder(aDecoder foundation.Coder) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

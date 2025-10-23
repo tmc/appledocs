@@ -31,8 +31,11 @@ type _INShortcutClass struct {
 // An interface definition for the [INShortcut] class.
 type IINShortcut interface {
 	objectivec.IObject
-	Intent() INIntent
+	// properties:
 	UserActivity() foundation.UserActivity
+	Intent() INIntent
+	SetIntent(value INIntent)
+	// methods:
 }
 
 // An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.
@@ -98,28 +101,6 @@ func NewINShortcutWithIntent(intent INIntent) INShortcut {
 }
 
 
-// Creates a shortcut with the specified user activity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/init(userActivity:)
-func NewINShortcutWithUserActivity(userActivity foundation.IUserActivity) INShortcut {
-	instance := getINShortcutClass().Alloc()
-	rv := objc.Send[INShortcut](instance.ID, objc.Sel("initWithUserActivity:"), userActivity)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The intent that performs the action when invoking the shortcut.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/intent
-func (i_ INShortcut) Intent() INIntent {
-	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
-	return rv
-}
-
 
 // The user activity that defines the action to perform when invoking the shortcut.
 //
@@ -128,6 +109,25 @@ func (i_ INShortcut) Intent() INIntent {
 func (i_ INShortcut) UserActivity() foundation.UserActivity {
 	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
+}
+
+
+// The intent that performs the action when invoking the shortcut.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inshortcutreference/intent
+func (i_ INShortcut) Intent() INIntent {
+	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
+	return rv
+}
+
+
+// The intent that performs the action when invoking the shortcut.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inshortcutreference/intent
+func (i_ INShortcut) SetIntent(value INIntent) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
 
 

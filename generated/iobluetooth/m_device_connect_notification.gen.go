@@ -30,6 +30,8 @@ type _mDeviceConnectNotificationClass struct {
 // An interface definition for the [mDeviceConnectNotification] class.
 type ImDeviceConnectNotification interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

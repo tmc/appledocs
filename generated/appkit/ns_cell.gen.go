@@ -32,57 +32,11 @@ type _CellClass struct {
 // An interface definition for the [Cell] class.
 type ICell interface {
 	objectivec.IObject
-	CalcDrawInfo(rect coregraphics.CGRect)
-	CellAttribute(parameter CellAttribute) int
-	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
-	Compare(otherCell objectivec.IObject) unsafe.Pointer
-	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool
-	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent
-	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView)
-	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
-	DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent)
-	EndEditing(textObj IText)
-	EntryType() int
-	ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect
-	FieldEditorForView(controlView IView) TextView
-	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect
-	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
-	HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView)
-	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) Color
-	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult
-	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	IsEntryAcceptable(string_ string) bool
-	MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) Menu
-	Mnemonic() foundation.String
-	MnemonicLocation() uint
-	PerformClick(sender objectivec.IObject)
-	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView)
-	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
-	SendActionOn(mask EventMask) int
-	SetCellAttributeTo(parameter CellAttribute, value int)
-	SetEntryType(type_ int)
-	SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint)
-	SetMnemonicLocation(location uint)
-	SetTitleWithMnemonic(stringWithAmpersand string)
-	SetUpFieldEditorAttributes(textObj IText) Text
-	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool
-	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool)
-	TakeDoubleValueFrom(sender objectivec.IObject)
-	TakeFloatValueFrom(sender objectivec.IObject)
-	TakeIntValueFrom(sender objectivec.IObject)
-	TakeIntegerValueFrom(sender objectivec.IObject)
-	TakeObjectValueFrom(sender objectivec.IObject)
-	TakeStringValueFrom(sender objectivec.IObject)
-	TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool
 	AcceptsFirstResponder() bool
 	Action() objc.SEL
 	SetAction(value objc.SEL)
-	Alignment() TextAlignment
-	SetAlignment(value ITextAlignment)
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
 	AllowsEditingTextAttributes() bool
 	SetAllowsEditingTextAttributes(value bool)
 	AllowsMixedState() bool
@@ -90,30 +44,30 @@ type ICell interface {
 	AllowsUndo() bool
 	SetAllowsUndo(value bool)
 	AttributedStringValue() foundation.AttributedString
-	SetAttributedStringValue(value foundation.IAttributedString)
-	BackgroundStyle() BackgroundStyle
-	SetBackgroundStyle(value BackgroundStyle)
-	BaseWritingDirection() WritingDirection
-	SetBaseWritingDirection(value IWritingDirection)
+	SetAttributedStringValue(value foundation.AttributedString)
+	BackgroundStyle() NSBackgroundStyle
+	SetBackgroundStyle(value NSBackgroundStyle)
+	BaseWritingDirection() unsafe.Pointer
+	SetBaseWritingDirection(value unsafe.Pointer)
 	CellSize() coregraphics.CGSize
-	ControlSize() ControlSize
-	SetControlSize(value IControlSize)
-	ControlTint() ControlTint
-	SetControlTint(value IControlTint)
-	ControlView() NSView
+	ControlSize() unsafe.Pointer
+	SetControlSize(value unsafe.Pointer)
+	ControlTint() unsafe.Pointer
+	SetControlTint(value unsafe.Pointer)
+	ControlView() IView
 	SetControlView(value IView)
 	DoubleValue() float64
 	SetDoubleValue(value float64)
 	FloatValue() float32
 	SetFloatValue(value float32)
-	FocusRingType() FocusRingType
-	SetFocusRingType(value FocusRingType)
-	Font() NSFont
+	FocusRingType() NSFocusRingType
+	SetFocusRingType(value NSFocusRingType)
+	Font() IFont
 	SetFont(value IFont)
 	Formatter() foundation.Formatter
-	SetFormatter(value foundation.IFormatter)
+	SetFormatter(value foundation.Formatter)
 	HasValidObjectValue() bool
-	Image() Image
+	Image() IImage
 	SetImage(value IImage)
 	ImportsGraphics() bool
 	SetImportsGraphics(value bool)
@@ -121,7 +75,7 @@ type ICell interface {
 	SetIntValue(value int)
 	IntegerValue() int
 	SetIntegerValue(value int)
-	InteriorBackgroundStyle() BackgroundStyle
+	InteriorBackgroundStyle() NSBackgroundStyle
 	Bezeled() bool
 	SetBezeled(value bool)
 	Bordered() bool
@@ -140,9 +94,9 @@ type ICell interface {
 	Selectable() bool
 	SetSelectable(value bool)
 	KeyEquivalent() string
-	LineBreakMode() LineBreakMode
-	SetLineBreakMode(value LineBreakMode)
-	Menu() NSMenu
+	LineBreakMode() unsafe.Pointer
+	SetLineBreakMode(value unsafe.Pointer)
+	Menu() IMenu
 	SetMenu(value IMenu)
 	MouseDownFlags() int
 	NextState() int
@@ -156,8 +110,8 @@ type ICell interface {
 	SetSendsActionOnEndEditing(value bool)
 	ShowsFirstResponder() bool
 	SetShowsFirstResponder(value bool)
-	State() ControlStateValue
-	SetState(value IControlStateValue)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
 	StringValue() string
 	SetStringValue(value string)
 	Tag() int
@@ -168,10 +122,10 @@ type ICell interface {
 	SetTitle(value string)
 	TruncatesLastVisibleLine() bool
 	SetTruncatesLastVisibleLine(value bool)
-	Type() CellType
-	SetType(value CellType)
-	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
+	Type() NSCellType
+	SetType(value NSCellType)
+	UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection)
 	UsesSingleLineMode() bool
 	SetUsesSingleLineMode(value bool)
 	WantsNotificationForMarkedText() bool
@@ -195,6 +149,44 @@ type ICell interface {
 	SetIsScrollable(value bool)
 	IsSelectable() bool
 	SetIsSelectable(value bool)
+	CalcDrawInfo(rect coregraphics.CGRect)
+	CellAttribute(parameter NSCellAttribute) int
+	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
+	Compare(otherCell objectivec.IObject) unsafe.Pointer
+	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool
+	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent
+	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView)
+	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
+	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
+	DrawInteriorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
+	DrawingRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
+	EditWithFrameInViewEditorDelegateEvent(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, event IEvent)
+	EndEditing(textObj IText)
+	ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view IView) coregraphics.CGRect
+	FieldEditorForView(controlView IView) ITextView
+	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect
+	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
+	HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView)
+	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) IColor
+	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) NSCellHitResult
+	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
+	MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) IMenu
+	PerformClick(sender objectivec.IObject)
+	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView)
+	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
+	SendActionOn(mask NSEventMask) int
+	SetCellAttributeTo(parameter NSCellAttribute, value int)
+	SetUpFieldEditorAttributes(textObj IText) IText
+	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool
+	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool)
+	TakeDoubleValueFrom(sender objectivec.IObject)
+	TakeFloatValueFrom(sender objectivec.IObject)
+	TakeIntValueFrom(sender objectivec.IObject)
+	TakeIntegerValueFrom(sender objectivec.IObject)
+	TakeObjectValueFrom(sender objectivec.IObject)
+	TakeStringValueFrom(sender objectivec.IObject)
+	TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
+	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool
 }
 
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass.
@@ -276,7 +268,7 @@ func NewCellTextCell(string_ string) Cell {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder foundation.ICoder) Cell {
+func NewCellWithCoder(coder foundation.Coder) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -289,8 +281,8 @@ func NewCellWithCoder(coder foundation.ICoder) Cell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (cc _CellClass) DefaultFocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
+func (cc _CellClass) DefaultFocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -298,8 +290,8 @@ func (cc _CellClass) DefaultFocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
-func (cc _CellClass) DefaultMenu() NSMenu {
-	rv := objc.Send[NSMenu](objc.ID(cc.class), objc.Sel("defaultMenu"))
+func (cc _CellClass) DefaultMenu() IMenu {
+	rv := objc.Send[Menu](objc.ID(cc.class), objc.Sel("defaultMenu"))
 	return rv
 }
 
@@ -325,7 +317,7 @@ func (c_ Cell) CalcDrawInfo(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/cellAttribute(_:)
-func (c_ Cell) CellAttribute(parameter CellAttribute) int {
+func (c_ Cell) CellAttribute(parameter NSCellAttribute) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("cellAttribute:"), parameter)
 	return rv
 }
@@ -435,16 +427,6 @@ func (c_ Cell) EndEditing(textObj IText) {
 }
 
 
-// Returns the type of data the user can type into the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/entryType
-func (c_ Cell) EntryType() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("entryType"))
-	return rv
-}
-
-
 // Returns the expansion cell frame for the receiver.
 //
 // [Full Topic]
@@ -459,7 +441,7 @@ func (c_ Cell) ExpansionFrameWithFrameInView(cellFrame coregraphics.CGRect, view
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/fieldEditor(for:)
-func (c_ Cell) FieldEditorForView(controlView IView) TextView {
+func (c_ Cell) FieldEditorForView(controlView IView) ITextView {
 	rv := objc.Send[TextView](c_.ID, objc.Sel("fieldEditorForView:"), controlView)
 	return rv
 }
@@ -497,7 +479,7 @@ func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlightColor(withFrame:in:)
-func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) Color {
+func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("highlightColorWithFrame:inView:"), cellFrame, controlView)
 	return rv
 }
@@ -507,8 +489,8 @@ func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/hitTest(for:in:of:)
-func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult {
-	rv := objc.Send[CellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
+func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) NSCellHitResult {
+	rv := objc.Send[NSCellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
 	return rv
 }
 
@@ -523,42 +505,12 @@ func (c_ Cell) ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 }
 
 
-// Returns whether a string representing a numeric or date value is formatted in a suitable way for the cell’s entry type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEntryAcceptable:
-func (c_ Cell) IsEntryAcceptable(string_ string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isEntryAcceptable:"), objc.String(string_))
-	return rv
-}
-
-
 // Returns the menu associated with the cell and related to the specified event and frame.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu(for:in:of:)
-func (c_ Cell) MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) Menu {
+func (c_ Cell) MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) IMenu {
 	rv := objc.Send[Menu](c_.ID, objc.Sel("menuForEvent:inRect:ofView:"), event, cellFrame, view)
-	return rv
-}
-
-
-// Returns the character in the receiver’s title that appears underlined for use as a mnemonic.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/mnemonic
-func (c_ Cell) Mnemonic() foundation.String {
-	rv := objc.Send[foundation.String](c_.ID, objc.Sel("mnemonic"))
-	return rv
-}
-
-
-// Returns the position of the underlined mnemonic character in the receiver’s title.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/mnemonicLocation
-func (c_ Cell) MnemonicLocation() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("mnemonicLocation"))
 	return rv
 }
 
@@ -594,7 +546,7 @@ func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/sendAction(on:)
-func (c_ Cell) SendActionOn(mask EventMask) int {
+func (c_ Cell) SendActionOn(mask NSEventMask) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
 }
@@ -604,44 +556,8 @@ func (c_ Cell) SendActionOn(mask EventMask) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setCellAttribute(_:to:)
-func (c_ Cell) SetCellAttributeTo(parameter CellAttribute, value int) {
+func (c_ Cell) SetCellAttributeTo(parameter NSCellAttribute, value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCellAttribute:to:"), parameter, value)
-}
-
-
-// Sets how numeric data is formatted in the receiver and places restrictions on acceptable input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setEntryType:
-func (c_ Cell) SetEntryType(type_ int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEntryType:"), type_)
-}
-
-
-// Sets the auto-ranging and floating point number format of the receiver’s cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setFloatingPointFormat:left:right:
-func (c_ Cell) SetFloatingPointFormatLeftRight(autoRange bool, leftDigits uint, rightDigits uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatingPointFormat:left:right:"), autoRange, leftDigits, rightDigits)
-}
-
-
-// Sets the character of the receiver’s title to be used as a mnemonic character.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setMnemonicLocation:
-func (c_ Cell) SetMnemonicLocation(location uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMnemonicLocation:"), location)
-}
-
-
-// Sets the title of the receiver with one character in the string denoted as an access key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setTitleWithMnemonic:
-func (c_ Cell) SetTitleWithMnemonic(stringWithAmpersand string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
 }
 
 
@@ -649,7 +565,7 @@ func (c_ Cell) SetTitleWithMnemonic(stringWithAmpersand string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setUpFieldEditorAttributes(_:)
-func (c_ Cell) SetUpFieldEditorAttributes(textObj IText) Text {
+func (c_ Cell) SetUpFieldEditorAttributes(textObj IText) IText {
 	rv := objc.Send[Text](c_.ID, objc.Sel("setUpFieldEditorAttributes:"), textObj)
 	return rv
 }
@@ -781,8 +697,8 @@ func (c_ Cell) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) Alignment() TextAlignment {
-	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
+func (c_ Cell) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -791,7 +707,7 @@ func (c_ Cell) Alignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) SetAlignment(value ITextAlignment) {
+func (c_ Cell) SetAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -867,7 +783,7 @@ func (c_ Cell) AttributedStringValue() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) SetAttributedStringValue(value foundation.IAttributedString) {
+func (c_ Cell) SetAttributedStringValue(value foundation.AttributedString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -876,8 +792,8 @@ func (c_ Cell) SetAttributedStringValue(value foundation.IAttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) BackgroundStyle() BackgroundStyle {
-	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("backgroundStyle"))
+func (c_ Cell) BackgroundStyle() NSBackgroundStyle {
+	rv := objc.Send[NSBackgroundStyle](c_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -886,7 +802,7 @@ func (c_ Cell) BackgroundStyle() BackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) SetBackgroundStyle(value BackgroundStyle) {
+func (c_ Cell) SetBackgroundStyle(value NSBackgroundStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
@@ -895,8 +811,8 @@ func (c_ Cell) SetBackgroundStyle(value BackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) BaseWritingDirection() WritingDirection {
-	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
+func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -905,7 +821,7 @@ func (c_ Cell) BaseWritingDirection() WritingDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) SetBaseWritingDirection(value IWritingDirection) {
+func (c_ Cell) SetBaseWritingDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -924,8 +840,8 @@ func (c_ Cell) CellSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) ControlSize() ControlSize {
-	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
+func (c_ Cell) ControlSize() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -934,7 +850,7 @@ func (c_ Cell) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) SetControlSize(value IControlSize) {
+func (c_ Cell) SetControlSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -943,8 +859,8 @@ func (c_ Cell) SetControlSize(value IControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) ControlTint() ControlTint {
-	rv := objc.Send[ControlTint](c_.ID, objc.Sel("controlTint"))
+func (c_ Cell) ControlTint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -953,7 +869,7 @@ func (c_ Cell) ControlTint() ControlTint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) SetControlTint(value IControlTint) {
+func (c_ Cell) SetControlTint(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -962,8 +878,8 @@ func (c_ Cell) SetControlTint(value IControlTint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlView
-func (c_ Cell) ControlView() NSView {
-	rv := objc.Send[NSView](c_.ID, objc.Sel("controlView"))
+func (c_ Cell) ControlView() IView {
+	rv := objc.Send[View](c_.ID, objc.Sel("controlView"))
 	return rv
 }
 
@@ -981,8 +897,8 @@ func (c_ Cell) SetControlView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (c_ Cell) DefaultFocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("defaultFocusRingType"))
+func (c_ Cell) DefaultFocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](c_.ID, objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -991,8 +907,8 @@ func (c_ Cell) DefaultFocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultMenu
-func (c_ Cell) DefaultMenu() NSMenu {
-	rv := objc.Send[NSMenu](c_.ID, objc.Sel("defaultMenu"))
+func (c_ Cell) DefaultMenu() IMenu {
+	rv := objc.Send[Menu](c_.ID, objc.Sel("defaultMenu"))
 	return rv
 }
 
@@ -1039,8 +955,8 @@ func (c_ Cell) SetFloatValue(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) FocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("focusRingType"))
+func (c_ Cell) FocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](c_.ID, objc.Sel("focusRingType"))
 	return rv
 }
 
@@ -1049,7 +965,7 @@ func (c_ Cell) FocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) SetFocusRingType(value FocusRingType) {
+func (c_ Cell) SetFocusRingType(value NSFocusRingType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusRingType:"), value)
 }
 
@@ -1058,8 +974,8 @@ func (c_ Cell) SetFocusRingType(value FocusRingType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/font
-func (c_ Cell) Font() NSFont {
-	rv := objc.Send[NSFont](c_.ID, objc.Sel("font"))
+func (c_ Cell) Font() IFont {
+	rv := objc.Send[Font](c_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -1087,7 +1003,7 @@ func (c_ Cell) Formatter() foundation.Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/formatter
-func (c_ Cell) SetFormatter(value foundation.IFormatter) {
+func (c_ Cell) SetFormatter(value foundation.Formatter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 
@@ -1106,7 +1022,7 @@ func (c_ Cell) HasValidObjectValue() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/image
-func (c_ Cell) Image() Image {
+func (c_ Cell) Image() IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
 }
@@ -1182,8 +1098,8 @@ func (c_ Cell) SetIntegerValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/interiorBackgroundStyle
-func (c_ Cell) InteriorBackgroundStyle() BackgroundStyle {
-	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("interiorBackgroundStyle"))
+func (c_ Cell) InteriorBackgroundStyle() NSBackgroundStyle {
+	rv := objc.Send[NSBackgroundStyle](c_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -1364,8 +1280,8 @@ func (c_ Cell) KeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) LineBreakMode() LineBreakMode {
-	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
+func (c_ Cell) LineBreakMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -1374,7 +1290,7 @@ func (c_ Cell) LineBreakMode() LineBreakMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) SetLineBreakMode(value LineBreakMode) {
+func (c_ Cell) SetLineBreakMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
@@ -1383,8 +1299,8 @@ func (c_ Cell) SetLineBreakMode(value LineBreakMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/menu
-func (c_ Cell) Menu() NSMenu {
-	rv := objc.Send[NSMenu](c_.ID, objc.Sel("menu"))
+func (c_ Cell) Menu() IMenu {
+	rv := objc.Send[Menu](c_.ID, objc.Sel("menu"))
 	return rv
 }
 
@@ -1527,8 +1443,8 @@ func (c_ Cell) SetShowsFirstResponder(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) State() ControlStateValue {
-	rv := objc.Send[ControlStateValue](c_.ID, objc.Sel("state"))
+func (c_ Cell) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -1537,7 +1453,7 @@ func (c_ Cell) State() ControlStateValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) SetState(value IControlStateValue) {
+func (c_ Cell) SetState(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setState:"), value)
 }
 
@@ -1641,8 +1557,8 @@ func (c_ Cell) SetTruncatesLastVisibleLine(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) Type() CellType {
-	rv := objc.Send[CellType](c_.ID, objc.Sel("type"))
+func (c_ Cell) Type() NSCellType {
+	rv := objc.Send[NSCellType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -1651,7 +1567,7 @@ func (c_ Cell) Type() CellType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) SetType(value CellType) {
+func (c_ Cell) SetType(value NSCellType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 
@@ -1660,8 +1576,8 @@ func (c_ Cell) SetType(value CellType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
-	rv := objc.Send[UserInterfaceLayoutDirection](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (c_ Cell) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
+	rv := objc.Send[NSUserInterfaceLayoutDirection](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -1670,7 +1586,7 @@ func (c_ Cell) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
+func (c_ Cell) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

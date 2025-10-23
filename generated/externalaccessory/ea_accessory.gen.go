@@ -32,18 +32,25 @@ type IEAAccessory interface {
 	objectivec.IObject
 	ConnectionID() uint
 	DockType() string
-	FirmwareRevision() string
-	HardwareRevision() string
 	Connected() bool
-	Manufacturer() string
-	ModelNumber() string
-	Name() string
-	ProtocolStrings() []string
-	SerialNumber() string
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	FirmwareRevision() string
+	SetFirmwareRevision(value string)
+	HardwareRevision() string
+	SetHardwareRevision(value string)
 	IsConnected() bool
 	SetIsConnected(value bool)
+	Manufacturer() string
+	SetManufacturer(value string)
+	ModelNumber() string
+	SetModelNumber(value string)
+	Name() string
+	SetName(value string)
+	ProtocolStrings() string
+	SetProtocolStrings(value string)
+	SerialNumber() string
+	SetSerialNumber(value string)
 }
 
 // An object that contains information about a single, connected hardware accessory.
@@ -117,82 +124,12 @@ func (e_ EAAccessory) DockType() string {
 }
 
 
-// The current firmware version for the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/firmwareRevision
-func (e_ EAAccessory) FirmwareRevision() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("firmwareRevision"))
-	return rv
-}
-
-
-// The hardware version of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/hardwareRevision
-func (e_ EAAccessory) HardwareRevision() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("hardwareRevision"))
-	return rv
-}
-
-
 // A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/isConnected
 func (e_ EAAccessory) Connected() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("connected"))
-	return rv
-}
-
-
-// The name of the accessory’s manufacturer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/manufacturer
-func (e_ EAAccessory) Manufacturer() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
-	return rv
-}
-
-
-// The model information for the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/modelNumber
-func (e_ EAAccessory) ModelNumber() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("modelNumber"))
-	return rv
-}
-
-
-// The display name of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/name
-func (e_ EAAccessory) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The communication protocols supported by the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/protocolStrings
-func (e_ EAAccessory) ProtocolStrings() []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("protocolStrings"))
-	return rv
-}
-
-
-// The serial number of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessory/serialNumber
-func (e_ EAAccessory) SerialNumber() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
 	return rv
 }
 
@@ -216,6 +153,44 @@ func (e_ EAAccessory) SetDelegate(value unsafe.Pointer) {
 }
 
 
+// The current firmware version for the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/firmwarerevision
+func (e_ EAAccessory) FirmwareRevision() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("firmwareRevision"))
+	return rv
+}
+
+
+// The current firmware version for the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/firmwarerevision
+func (e_ EAAccessory) SetFirmwareRevision(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFirmwareRevision:"), objc.String(value))
+}
+
+
+// The hardware version of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/hardwarerevision
+func (e_ EAAccessory) HardwareRevision() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("hardwareRevision"))
+	return rv
+}
+
+
+// The hardware version of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/hardwarerevision
+func (e_ EAAccessory) SetHardwareRevision(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setHardwareRevision:"), objc.String(value))
+}
+
+
 // A Boolean value indicating whether the accessory is currently connected to the iOS-based device.
 //
 // [Full Topic]
@@ -232,6 +207,101 @@ func (e_ EAAccessory) IsConnected() bool {
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/isconnected
 func (e_ EAAccessory) SetIsConnected(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsConnected:"), value)
+}
+
+
+// The name of the accessory’s manufacturer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/manufacturer
+func (e_ EAAccessory) Manufacturer() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
+	return rv
+}
+
+
+// The name of the accessory’s manufacturer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/manufacturer
+func (e_ EAAccessory) SetManufacturer(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setManufacturer:"), objc.String(value))
+}
+
+
+// The model information for the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/modelnumber
+func (e_ EAAccessory) ModelNumber() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("modelNumber"))
+	return rv
+}
+
+
+// The model information for the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/modelnumber
+func (e_ EAAccessory) SetModelNumber(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setModelNumber:"), objc.String(value))
+}
+
+
+// The display name of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/name
+func (e_ EAAccessory) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The display name of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/name
+func (e_ EAAccessory) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The communication protocols supported by the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/protocolstrings
+func (e_ EAAccessory) ProtocolStrings() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("protocolStrings"))
+	return rv
+}
+
+
+// The communication protocols supported by the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/protocolstrings
+func (e_ EAAccessory) SetProtocolStrings(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setProtocolStrings:"), objc.String(value))
+}
+
+
+// The serial number of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/serialnumber
+func (e_ EAAccessory) SerialNumber() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("serialNumber"))
+	return rv
+}
+
+
+// The serial number of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessory/serialnumber
+func (e_ EAAccessory) SetSerialNumber(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSerialNumber:"), objc.String(value))
 }
 
 

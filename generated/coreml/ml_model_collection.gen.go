@@ -32,7 +32,7 @@ type _ModelCollectionClass struct {
 type IModelCollection interface {
 	objectivec.IObject
 	DeploymentID() string
-	Entries() unsafe.Pointer
+	Entries() foundation.IDictionary
 	Identifier() string
 }
 
@@ -122,8 +122,8 @@ func (m_ ModelCollection) DeploymentID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/entries
-func (m_ ModelCollection) Entries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entries"))
+func (m_ ModelCollection) Entries() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("entries"))
 	return rv
 }
 

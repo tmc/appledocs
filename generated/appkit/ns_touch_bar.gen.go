@@ -31,11 +31,10 @@ type _TouchBarClass struct {
 // An interface definition for the [TouchBar] class.
 type ITouchBar interface {
 	objectivec.IObject
-	ItemForIdentifier(identifier ITouchBarItemIdentifier) TouchBarItem
 	CustomizationAllowedItemIdentifiers() []string
 	SetCustomizationAllowedItemIdentifiers(value []string)
 	CustomizationIdentifier() TouchBarCustomizationIdentifier
-	SetCustomizationIdentifier(value ITouchBarCustomizationIdentifier)
+	SetCustomizationIdentifier(value TouchBarCustomizationIdentifier)
 	CustomizationRequiredItemIdentifiers() []string
 	SetCustomizationRequiredItemIdentifiers(value []string)
 	DefaultItemIdentifiers() []string
@@ -43,37 +42,38 @@ type ITouchBar interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier
-	SetEscapeKeyReplacementItemIdentifier(value ITouchBarItemIdentifier)
+	SetEscapeKeyReplacementItemIdentifier(value TouchBarItemIdentifier)
 	Visible() bool
 	ItemIdentifiers() []string
 	PrincipalItemIdentifier() TouchBarItemIdentifier
-	SetPrincipalItemIdentifier(value ITouchBarItemIdentifier)
+	SetPrincipalItemIdentifier(value TouchBarItemIdentifier)
 	TemplateItems() unsafe.Pointer
 	SetTemplateItems(value unsafe.Pointer)
 	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool
 	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
-	BezelColor() NSColor
+	BezelColor() IColor
 	SetBezelColor(value IColor)
-	AllowedTouchTypes() TouchTypeMask
-	SetAllowedTouchTypes(value TouchTypeMask)
-	GroupTouchBar() NSTouchBar
+	AllowedTouchTypes() NSTouchTypeMask
+	SetAllowedTouchTypes(value NSTouchTypeMask)
+	GroupTouchBar() ITouchBar
 	SetGroupTouchBar(value ITouchBar)
-	PopoverTouchBar() NSTouchBar
+	PopoverTouchBar() ITouchBar
 	SetPopoverTouchBar(value ITouchBar)
-	PressAndHoldTouchBar() NSTouchBar
+	PressAndHoldTouchBar() ITouchBar
 	SetPressAndHoldTouchBar(value ITouchBar)
-	SelectedSegmentBezelColor() NSColor
+	SelectedSegmentBezelColor() IColor
 	SetSelectedSegmentBezelColor(value IColor)
-	TrackFillColor() NSColor
+	TrackFillColor() IColor
 	SetTrackFillColor(value IColor)
 	IsVisible() bool
 	SetIsVisible(value bool)
 	CustomizationLabel() string
 	SetCustomizationLabel(value string)
-	TouchBar() NSTouchBar
+	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
 	AcceptsTouchEvents() bool
 	SetAcceptsTouchEvents(value bool)
+	ItemForIdentifier(identifier TouchBarItemIdentifier) TouchBarItem
 }
 
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
@@ -133,7 +133,7 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder foundation.ICoder) TouchBar {
+func NewTouchBarWithCoder(coder foundation.Coder) TouchBar {
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -155,7 +155,7 @@ func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
-func (t_ TouchBar) ItemForIdentifier(identifier ITouchBarItemIdentifier) TouchBarItem {
+func (t_ TouchBar) ItemForIdentifier(identifier TouchBarItemIdentifier) TouchBarItem {
 	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
 	return rv
 }
@@ -204,7 +204,7 @@ func (t_ TouchBar) CustomizationIdentifier() TouchBarCustomizationIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) SetCustomizationIdentifier(value ITouchBarCustomizationIdentifier) {
+func (t_ TouchBar) SetCustomizationIdentifier(value TouchBarCustomizationIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
 }
 
@@ -300,7 +300,7 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value ITouchBarItemIdentifier) {
+func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value TouchBarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
 }
 
@@ -358,7 +358,7 @@ func (t_ TouchBar) PrincipalItemIdentifier() TouchBarItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) SetPrincipalItemIdentifier(value ITouchBarItemIdentifier) {
+func (t_ TouchBar) SetPrincipalItemIdentifier(value TouchBarItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
 }
 
@@ -405,8 +405,8 @@ func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/bezelcolor
-func (t_ TouchBar) BezelColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("bezelColor"))
+func (t_ TouchBar) BezelColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("bezelColor"))
 	return rv
 }
 
@@ -422,7 +422,7 @@ func (t_ TouchBar) SetBezelColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) AllowedTouchTypes() TouchTypeMask {
+func (t_ TouchBar) AllowedTouchTypes() NSTouchTypeMask {
 	rv := objc.Send[TouchTypeMask](t_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
@@ -430,7 +430,7 @@ func (t_ TouchBar) AllowedTouchTypes() TouchTypeMask {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) SetAllowedTouchTypes(value TouchTypeMask) {
+func (t_ TouchBar) SetAllowedTouchTypes(value NSTouchTypeMask) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -439,8 +439,8 @@ func (t_ TouchBar) SetAllowedTouchTypes(value TouchTypeMask) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBar) GroupTouchBar() NSTouchBar {
-	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("groupTouchBar"))
+func (t_ TouchBar) GroupTouchBar() ITouchBar {
+	rv := objc.Send[TouchBar](t_.ID, objc.Sel("groupTouchBar"))
 	return rv
 }
 
@@ -458,8 +458,8 @@ func (t_ TouchBar) SetGroupTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBar) PopoverTouchBar() NSTouchBar {
-	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("popoverTouchBar"))
+func (t_ TouchBar) PopoverTouchBar() ITouchBar {
+	rv := objc.Send[TouchBar](t_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -477,8 +477,8 @@ func (t_ TouchBar) SetPopoverTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBar) PressAndHoldTouchBar() NSTouchBar {
-	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+func (t_ TouchBar) PressAndHoldTouchBar() ITouchBar {
+	rv := objc.Send[TouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -496,8 +496,8 @@ func (t_ TouchBar) SetPressAndHoldTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegmentbezelcolor
-func (t_ TouchBar) SelectedSegmentBezelColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("selectedSegmentBezelColor"))
+func (t_ TouchBar) SelectedSegmentBezelColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
 }
 
@@ -515,8 +515,8 @@ func (t_ TouchBar) SetSelectedSegmentBezelColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/trackfillcolor
-func (t_ TouchBar) TrackFillColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("trackFillColor"))
+func (t_ TouchBar) TrackFillColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
 
@@ -572,8 +572,8 @@ func (t_ TouchBar) SetCustomizationLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbarprovider/touchbar
-func (t_ TouchBar) TouchBar() NSTouchBar {
-	rv := objc.Send[NSTouchBar](t_.ID, objc.Sel("touchBar"))
+func (t_ TouchBar) TouchBar() ITouchBar {
+	rv := objc.Send[TouchBar](t_.ID, objc.Sel("touchBar"))
 	return rv
 }
 

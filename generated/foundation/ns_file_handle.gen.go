@@ -30,33 +30,35 @@ type _FileHandleClass struct {
 // An interface definition for the [FileHandle] class.
 type IFileHandle interface {
 	objectivec.IObject
+	// properties:
 	AvailableData() IData
-	FileDescriptor() int
-	OffsetInFile() uint64
+	FileDescriptor() int /* primitive/slice/pointer */
+	OffsetInFile() uint64 /* primitive/slice/pointer */
 	ReadabilityHandler() unsafe.Pointer
 	SetReadabilityHandler(value unsafe.Pointer)
 	WriteabilityHandler() unsafe.Pointer
 	SetWriteabilityHandler(value unsafe.Pointer)
 	Bytes() unsafe.Pointer
 	SetBytes(value unsafe.Pointer)
-	NSFileHandleNotificationMonitorModes() string
+	NSFileHandleNotificationMonitorModes() string /* primitive/slice/pointer */
+	// methods:
 	AcceptConnectionInBackgroundAndNotify()
-	AcceptConnectionInBackgroundAndNotifyForModes(modes []string)
-	CloseAndReturnError(error_ IError) bool
+	AcceptConnectionInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */)
+	CloseAndReturnError(error_ IError) bool /* primitive/slice/pointer */
 	ReadInBackgroundAndNotify()
-	ReadInBackgroundAndNotifyForModes(modes []string)
+	ReadInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */)
 	ReadToEndOfFileInBackgroundAndNotify()
-	ReadToEndOfFileInBackgroundAndNotifyForModes(modes []string)
-	SeekToOffsetError(offset uint64, error_ IError) bool
-	SynchronizeAndReturnError(error_ IError) bool
-	TruncateAtOffsetError(offset uint64, error_ IError) bool
+	ReadToEndOfFileInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */)
+	SeekToOffsetError(offset uint64 /* primitive/slice/pointer */, error_ IError) bool /* primitive/slice/pointer */
+	SynchronizeAndReturnError(error_ IError) bool /* primitive/slice/pointer */
+	TruncateAtOffsetError(offset uint64 /* primitive/slice/pointer */, error_ IError) bool /* primitive/slice/pointer */
 	WaitForDataInBackgroundAndNotify()
-	WaitForDataInBackgroundAndNotifyForModes(modes []string)
-	GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool
+	WaitForDataInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */)
+	GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool /* primitive/slice/pointer */
 	ReadDataToEndOfFileAndReturnError(error_ IError) IData
-	ReadDataUpToLengthError(length uint, error_ IError) IData
-	SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool
-	WriteDataError(data IData, error_ IError) bool
+	ReadDataUpToLengthError(length uint /* primitive/slice/pointer */, error_ IError) IData
+	SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool /* primitive/slice/pointer */
+	WriteDataError(data IData, error_ IError) bool /* primitive/slice/pointer */
 }
 
 // An object-oriented wrapper for a file descriptor.
@@ -116,7 +118,7 @@ func NewFileHandle() FileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
-func NewFileHandleForReadingAtPath(path string) FileHandle {
+func NewFileHandleForReadingAtPath(path string /* primitive/slice/pointer */) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
@@ -136,7 +138,7 @@ func NewFileHandleForReadingFromURLError(url IURL, error_ IError) FileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingAtPath:)
-func NewFileHandleForUpdatingAtPath(path string) FileHandle {
+func NewFileHandleForUpdatingAtPath(path string /* primitive/slice/pointer */) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingAtPath:"), objc.String(path))
 	return rv
 }
@@ -156,7 +158,7 @@ func NewFileHandleForUpdatingURLError(url IURL, error_ IError) FileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func NewFileHandleForWritingAtPath(path string) FileHandle {
+func NewFileHandleForWritingAtPath(path string /* primitive/slice/pointer */) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
 	return rv
 }
@@ -188,7 +190,7 @@ func NewFileHandleWithCoder(coder ICoder) FileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
-func NewFileHandleWithFileDescriptor(fd int) FileHandle {
+func NewFileHandleWithFileDescriptor(fd int /* primitive/slice/pointer */) FileHandle {
 	instance := getFileHandleClass().Alloc()
 	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
 	rv.Autorelease()
@@ -200,7 +202,7 @@ func NewFileHandleWithFileDescriptor(fd int) FileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
-func NewFileHandleWithFileDescriptorCloseOnDealloc(fd int, closeopt bool) FileHandle {
+func NewFileHandleWithFileDescriptorCloseOnDealloc(fd int /* primitive/slice/pointer */, closeopt bool /* primitive/slice/pointer */) FileHandle {
 	instance := getFileHandleClass().Alloc()
 	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:closeOnDealloc:"), fd, closeopt)
 	rv.Autorelease()
@@ -213,7 +215,7 @@ func NewFileHandleWithFileDescriptorCloseOnDealloc(fd int, closeopt bool) FileHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
-func (fc _FileHandleClass) FileHandleForReadingAtPath(path string) unsafe.Pointer {
+func (fc _FileHandleClass) FileHandleForReadingAtPath(path string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForReadingAtPath:"), objc.String(path))
 	return rv
 }
@@ -233,7 +235,7 @@ func (fc _FileHandleClass) FileHandleForReadingFromURLError(url IURL, error_ IEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingAtPath:)
-func (fc _FileHandleClass) FileHandleForUpdatingAtPath(path string) unsafe.Pointer {
+func (fc _FileHandleClass) FileHandleForUpdatingAtPath(path string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForUpdatingAtPath:"), objc.String(path))
 	return rv
 }
@@ -253,7 +255,7 @@ func (fc _FileHandleClass) FileHandleForUpdatingURLError(url IURL, error_ IError
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func (fc _FileHandleClass) FileHandleForWritingAtPath(path string) unsafe.Pointer {
+func (fc _FileHandleClass) FileHandleForWritingAtPath(path string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
 	return rv
 }
@@ -318,7 +320,7 @@ func (f_ FileHandle) AcceptConnectionInBackgroundAndNotify() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/acceptConnectionInBackgroundAndNotify(forModes:)
-func (f_ FileHandle) AcceptConnectionInBackgroundAndNotifyForModes(modes []string) {
+func (f_ FileHandle) AcceptConnectionInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("acceptConnectionInBackgroundAndNotifyForModes:"), modes)
 }
 
@@ -327,7 +329,7 @@ func (f_ FileHandle) AcceptConnectionInBackgroundAndNotifyForModes(modes []strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/close()
-func (f_ FileHandle) CloseAndReturnError(error_ IError) bool {
+func (f_ FileHandle) CloseAndReturnError(error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("closeAndReturnError:"), error_)
 	return rv
 }
@@ -346,7 +348,7 @@ func (f_ FileHandle) ReadInBackgroundAndNotify() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readInBackgroundAndNotify(forModes:)
-func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes []string) {
+func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("readInBackgroundAndNotifyForModes:"), modes)
 }
 
@@ -364,7 +366,7 @@ func (f_ FileHandle) ReadToEndOfFileInBackgroundAndNotify() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/readToEndOfFileInBackgroundAndNotify(forModes:)
-func (f_ FileHandle) ReadToEndOfFileInBackgroundAndNotifyForModes(modes []string) {
+func (f_ FileHandle) ReadToEndOfFileInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("readToEndOfFileInBackgroundAndNotifyForModes:"), modes)
 }
 
@@ -373,7 +375,7 @@ func (f_ FileHandle) ReadToEndOfFileInBackgroundAndNotifyForModes(modes []string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seek(toOffset:)
-func (f_ FileHandle) SeekToOffsetError(offset uint64, error_ IError) bool {
+func (f_ FileHandle) SeekToOffsetError(offset uint64 /* primitive/slice/pointer */, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("seekToOffset:error:"), offset, error_)
 	return rv
 }
@@ -383,7 +385,7 @@ func (f_ FileHandle) SeekToOffsetError(offset uint64, error_ IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/synchronize()
-func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool {
+func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("synchronizeAndReturnError:"), error_)
 	return rv
 }
@@ -393,7 +395,7 @@ func (f_ FileHandle) SynchronizeAndReturnError(error_ IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/truncate(atOffset:)
-func (f_ FileHandle) TruncateAtOffsetError(offset uint64, error_ IError) bool {
+func (f_ FileHandle) TruncateAtOffsetError(offset uint64 /* primitive/slice/pointer */, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("truncateAtOffset:error:"), offset, error_)
 	return rv
 }
@@ -412,7 +414,7 @@ func (f_ FileHandle) WaitForDataInBackgroundAndNotify() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/waitForDataInBackgroundAndNotify(forModes:)
-func (f_ FileHandle) WaitForDataInBackgroundAndNotifyForModes(modes []string) {
+func (f_ FileHandle) WaitForDataInBackgroundAndNotifyForModes(modes []string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("waitForDataInBackgroundAndNotifyForModes:"), modes)
 }
 
@@ -421,7 +423,7 @@ func (f_ FileHandle) WaitForDataInBackgroundAndNotifyForModes(modes []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/getOffset:error:
-func (f_ FileHandle) GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool {
+func (f_ FileHandle) GetOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("getOffset:error:"), offsetInFile, error_)
 	return rv
 }
@@ -441,7 +443,7 @@ func (f_ FileHandle) ReadDataToEndOfFileAndReturnError(error_ IError) IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/readDataUpToLength:error:
-func (f_ FileHandle) ReadDataUpToLengthError(length uint, error_ IError) IData {
+func (f_ FileHandle) ReadDataUpToLengthError(length uint /* primitive/slice/pointer */, error_ IError) IData {
 	rv := objc.Send[Data](f_.ID, objc.Sel("readDataUpToLength:error:"), length, error_)
 	return rv
 }
@@ -451,7 +453,7 @@ func (f_ FileHandle) ReadDataUpToLengthError(length uint, error_ IError) IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/seekToEndReturningOffset:error:
-func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool {
+func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("seekToEndReturningOffset:error:"), offsetInFile, error_)
 	return rv
 }
@@ -461,7 +463,7 @@ func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileHandle/writeData:error:
-func (f_ FileHandle) WriteDataError(data IData, error_ IError) bool {
+func (f_ FileHandle) WriteDataError(data IData, error_ IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeData:error:"), data, error_)
 	return rv
 }
@@ -481,7 +483,7 @@ func (f_ FileHandle) AvailableData() IData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/fileDescriptor
-func (f_ FileHandle) FileDescriptor() int {
+func (f_ FileHandle) FileDescriptor() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fileDescriptor"))
 	return rv
 }
@@ -501,7 +503,7 @@ func (f_ FileHandle) FileHandleWithNullDevice() IFileHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/offsetInFile
-func (f_ FileHandle) OffsetInFile() uint64 {
+func (f_ FileHandle) OffsetInFile() uint64 /* primitive/slice/pointer */ {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("offsetInFile"))
 	return rv
 }
@@ -598,7 +600,7 @@ func (f_ FileHandle) SetBytes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes
-func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string {
+func (f_ FileHandle) NSFileHandleNotificationMonitorModes() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("NSFileHandleNotificationMonitorModes"))
 	return rv
 }

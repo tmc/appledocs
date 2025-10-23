@@ -30,8 +30,9 @@ type _HKSeriesBuilderClass struct {
 // An interface definition for the [HKSeriesBuilder] class.
 type IHKSeriesBuilder interface {
 	objectivec.IObject
-	Discard()
+	// properties:
 	HKWorkoutRouteTypeIdentifier() string
+	// methods:
 }
 
 // An abstract base class for building series samples.
@@ -85,15 +86,6 @@ func NewHKSeriesBuilder() HKSeriesBuilder {
 	return getHKSeriesBuilderClass().New()
 }
 
-
-
-// Invalidates the builder and discards the collected data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSeriesBuilder/discard()
-func (h_ HKSeriesBuilder) Discard() {
-	objc.Send[objc.ID](h_.ID, objc.Sel("discard"))
-}
 
 
 // A series sample containing location data that defines the route the user took during a workout.

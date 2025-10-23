@@ -30,10 +30,12 @@ type _MutableCompositionClass struct {
 // An interface definition for the [MutableComposition] class.
 type IMutableComposition interface {
 	IComposition
+	// properties:
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	Tracks() unsafe.Pointer
-	SetTracks(value unsafe.Pointer)
+	Tracks() AVMutableCompositionTrack /* foo */
+	SetTracks(value AVMutableCompositionTrack /* foo */)
+	// methods:
 }
 
 // An object that you use to create a new composition from existing assets.
@@ -114,8 +116,8 @@ func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-func (m_ MutableComposition) Tracks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tracks"))
+func (m_ MutableComposition) Tracks() AVMutableCompositionTrack /* foo */ {
+	rv := objc.Send[MutableCompositionTrack](m_.ID, objc.Sel("tracks"))
 	return rv
 }
 
@@ -124,7 +126,7 @@ func (m_ MutableComposition) Tracks() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/tracks
-func (m_ MutableComposition) SetTracks(value unsafe.Pointer) {
+func (m_ MutableComposition) SetTracks(value AVMutableCompositionTrack /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 

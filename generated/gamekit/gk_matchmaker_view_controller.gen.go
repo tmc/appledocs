@@ -32,16 +32,14 @@ type IMatchmakerViewController interface {
 	appkit.IViewController
 	DefaultInvitationMessage() string
 	SetDefaultInvitationMessage(value string)
-	Hosted() bool
-	SetHosted(value bool)
-	MatchmakerDelegate() objc.ID
-	SetMatchmakerDelegate(value objc.ID)
 	CanStartWithMinimumPlayers() bool
 	SetCanStartWithMinimumPlayers(value bool)
 	IsHosted() bool
 	SetIsHosted(value bool)
-	MatchRequest() GKMatchRequest
+	MatchRequest() IGKMatchRequest
 	SetMatchRequest(value IGKMatchRequest)
+	MatchmakerDelegate() unsafe.Pointer
+	SetMatchmakerDelegate(value unsafe.Pointer)
 	MatchmakingMode() unsafe.Pointer
 	SetMatchmakingMode(value unsafe.Pointer)
 }
@@ -101,19 +99,6 @@ func NewMatchmakerViewController() MatchmakerViewController {
 
 
 
-// Creates a matchmaker view controller for the local player to start inviting other players.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/init(matchRequest:)
-func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) MatchmakerViewController {
-	instance := getMatchmakerViewControllerClass().Alloc()
-	rv := objc.Send[MatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The default invitation message sent to a player.
 //
 // [Full Topic]
@@ -130,44 +115,6 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
 func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
-}
-
-
-// A Boolean value that indicates whether the match is hosted or peer-to-peer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/isHosted
-func (m_ MatchmakerViewController) Hosted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hosted"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the match is hosted or peer-to-peer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/isHosted
-func (m_ MatchmakerViewController) SetHosted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHosted:"), value)
-}
-
-
-// The object that handles matchmaker view controller changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
-func (m_ MatchmakerViewController) MatchmakerDelegate() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("matchmakerDelegate"))
-	return rv
-}
-
-
-// The object that handles matchmaker view controller changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/matchmakerDelegate
-func (m_ MatchmakerViewController) SetMatchmakerDelegate(value objc.ID) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakerDelegate:"), value)
 }
 
 
@@ -213,8 +160,8 @@ func (m_ MatchmakerViewController) SetIsHosted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
-func (m_ MatchmakerViewController) MatchRequest() GKMatchRequest {
-	rv := objc.Send[GKMatchRequest](m_.ID, objc.Sel("matchRequest"))
+func (m_ MatchmakerViewController) MatchRequest() IGKMatchRequest {
+	rv := objc.Send[MatchRequest](m_.ID, objc.Sel("matchRequest"))
 	return rv
 }
 
@@ -225,6 +172,25 @@ func (m_ MatchmakerViewController) MatchRequest() GKMatchRequest {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
 func (m_ MatchmakerViewController) SetMatchRequest(value IGKMatchRequest) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchRequest:"), value)
+}
+
+
+// The object that handles matchmaker view controller changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakerdelegate
+func (m_ MatchmakerViewController) MatchmakerDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchmakerDelegate"))
+	return rv
+}
+
+
+// The object that handles matchmaker view controller changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchmakerdelegate
+func (m_ MatchmakerViewController) SetMatchmakerDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakerDelegate:"), value)
 }
 
 
@@ -245,5 +211,6 @@ func (m_ MatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 func (m_ MatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchmakingMode:"), value)
 }
+
 
 

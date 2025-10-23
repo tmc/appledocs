@@ -29,9 +29,11 @@ type _InputStreamClass struct {
 // An interface definition for the [InputStream] class.
 type IInputStream interface {
 	IStream
-	HasBytesAvailable() bool
-	GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool
-	ReadMaxLength(buffer unsafe.Pointer, len_ uint) int
+	// properties:
+	HasBytesAvailable() bool /* primitive/slice/pointer */
+	// methods:
+	GetBufferLength(buffer unsafe.Pointer, len_ UInteger /* foo */) bool /* primitive/slice/pointer */
+	ReadMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
 }
 
 // A stream that provides read-only stream functionality.
@@ -105,7 +107,7 @@ func NewInputStreamWithData(data IData) InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(fileAtPath:)
-func NewInputStreamWithFileAtPath(path string) InputStream {
+func NewInputStreamWithFileAtPath(path string /* primitive/slice/pointer */) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), objc.String(path))
 	rv.Autorelease()
@@ -150,7 +152,7 @@ func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithFileAtPath:
-func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithFileAtPath(path string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithFileAtPath:"), objc.String(path))
 	return rv
 }
@@ -160,7 +162,7 @@ func (ic _InputStreamClass) InputStreamWithFileAtPath(path string) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/getBuffer(_:length:)
-func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer) bool {
+func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ UInteger /* foo */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("getBuffer:length:"), buffer, len_)
 	return rv
 }
@@ -170,7 +172,7 @@ func (i_ InputStream) GetBufferLength(buffer unsafe.Pointer, len_ unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/read(_:maxLength:)
-func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
+func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("read:maxLength:"), buffer, len_)
 	return rv
 }
@@ -180,7 +182,7 @@ func (i_ InputStream) ReadMaxLength(buffer unsafe.Pointer, len_ uint) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/hasBytesAvailable
-func (i_ InputStream) HasBytesAvailable() bool {
+func (i_ InputStream) HasBytesAvailable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hasBytesAvailable"))
 	return rv
 }

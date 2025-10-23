@@ -29,24 +29,44 @@ type _INSearchForMessagesIntentClass struct {
 // An interface definition for the [INSearchForMessagesIntent] class.
 type IINSearchForMessagesIntent interface {
 	IINIntent
-	Attributes() INMessageAttributeOptions
-	ConversationIdentifiers() []string
-	ConversationIdentifiersOperator() INConditionalOperator
+	// properties:
+	Attributes() unsafe.Pointer
+	SetAttributes(value unsafe.Pointer)
+	ConversationIdentifiers() string
+	SetConversationIdentifiers(value string)
+	ConversationIdentifiersOperator() unsafe.Pointer
+	SetConversationIdentifiersOperator(value unsafe.Pointer)
 	DateTimeRange() INDateComponentsRange
-	GroupNames() []string
-	GroupNamesOperator() INConditionalOperator
-	Identifiers() []string
-	IdentifiersOperator() INConditionalOperator
-	NotificationIdentifiers() []string
-	NotificationIdentifiersOperator() INConditionalOperator
-	Recipients() []INPerson
-	RecipientsOperator() INConditionalOperator
-	SearchTerms() []string
-	SearchTermsOperator() INConditionalOperator
-	Senders() []INPerson
-	SendersOperator() INConditionalOperator
-	SpeakableGroupNames() []INSpeakableString
-	SpeakableGroupNamesOperator() INConditionalOperator
+	SetDateTimeRange(value INDateComponentsRange)
+	GroupNames() string
+	SetGroupNames(value string)
+	GroupNamesOperator() unsafe.Pointer
+	SetGroupNamesOperator(value unsafe.Pointer)
+	Identifiers() string
+	SetIdentifiers(value string)
+	IdentifiersOperator() unsafe.Pointer
+	SetIdentifiersOperator(value unsafe.Pointer)
+	NotificationIdentifiers() string
+	SetNotificationIdentifiers(value string)
+	NotificationIdentifiersOperator() unsafe.Pointer
+	SetNotificationIdentifiersOperator(value unsafe.Pointer)
+	Recipients() INPerson
+	SetRecipients(value INPerson)
+	RecipientsOperator() unsafe.Pointer
+	SetRecipientsOperator(value unsafe.Pointer)
+	SearchTerms() string
+	SetSearchTerms(value string)
+	SearchTermsOperator() unsafe.Pointer
+	SetSearchTermsOperator(value unsafe.Pointer)
+	Senders() INPerson
+	SetSenders(value INPerson)
+	SendersOperator() unsafe.Pointer
+	SetSendersOperator(value unsafe.Pointer)
+	SpeakableGroupNames() INSpeakableString
+	SetSpeakableGroupNames(value INSpeakableString)
+	SpeakableGroupNamesOperator() unsafe.Pointer
+	SetSpeakableGroupNamesOperator(value unsafe.Pointer)
+	// methods:
 }
 
 // A request to list the messages that match the specified criteria.
@@ -104,49 +124,31 @@ func NewINSearchForMessagesIntent() INSearchForMessagesIntent {
 
 
 
-// Creates a intent object with the specified search criteria.
+// The attributes that must be present on a message to yield a match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:)
-func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersGroupNames(recipients []INPerson, senders []INPerson, searchTerms []string, attributes INMessageAttributeOptions, dateTimeRange INDateComponentsRange, identifiers []string, notificationIdentifiers []string, groupNames []string) INSearchForMessagesIntent {
-	instance := getINSearchForMessagesIntentClass().Alloc()
-	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, groupNames)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/attributes
+func (i_ INSearchForMessagesIntent) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("attributes"))
 	return rv
 }
-
-
-// Creates a intent object with the specified search criteria.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:)
-func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersSpeakableGroupNames(recipients []INPerson, senders []INPerson, searchTerms []string, attributes INMessageAttributeOptions, dateTimeRange INDateComponentsRange, identifiers []string, notificationIdentifiers []string, speakableGroupNames []INSpeakableString) INSearchForMessagesIntent {
-	instance := getINSearchForMessagesIntentClass().Alloc()
-	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a search messages intent object with the specified search criteria.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/init(recipients:senders:searchTerms:attributes:dateTime:identifiers:notificationIdentifiers:speakableGroupNames:conversationIdentifiers:)
-func NewINSearchForMessagesIntentWithRecipientsSendersSearchTermsAttributesDateTimeRangeIdentifiersNotificationIdentifiersSpeakableGroupNamesConversationIdentifiers(recipients []INPerson, senders []INPerson, searchTerms []string, attributes INMessageAttributeOptions, dateTimeRange INDateComponentsRange, identifiers []string, notificationIdentifiers []string, speakableGroupNames []INSpeakableString, conversationIdentifiers []string) INSearchForMessagesIntent {
-	instance := getINSearchForMessagesIntentClass().Alloc()
-	rv := objc.Send[INSearchForMessagesIntent](instance.ID, objc.Sel("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:conversationIdentifiers:"), recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames, conversationIdentifiers)
-	rv.Autorelease()
-	return rv
-}
-
 
 
 // The attributes that must be present on a message to yield a match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/attributes
-func (i_ INSearchForMessagesIntent) Attributes() INMessageAttributeOptions {
-	rv := objc.Send[INMessageAttributeOptions](i_.ID, objc.Sel("attributes"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/attributes
+func (i_ INSearchForMessagesIntent) SetAttributes(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAttributes:"), value)
+}
+
+
+// The conversation identifiers to locate in your search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiers
+func (i_ INSearchForMessagesIntent) ConversationIdentifiers() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifiers"))
 	return rv
 }
 
@@ -154,9 +156,18 @@ func (i_ INSearchForMessagesIntent) Attributes() INMessageAttributeOptions {
 // The conversation identifiers to locate in your search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/conversationIdentifiers
-func (i_ INSearchForMessagesIntent) ConversationIdentifiers() []string {
-	rv := objc.Send[[]string](i_.ID, objc.Sel("conversationIdentifiers"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiers
+func (i_ INSearchForMessagesIntent) SetConversationIdentifiers(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifiers:"), objc.String(value))
+}
+
+
+// The operator that defines how to use the conversation identifiers in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiersoperator
+func (i_ INSearchForMessagesIntent) ConversationIdentifiersOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("conversationIdentifiersOperator"))
 	return rv
 }
 
@@ -164,9 +175,18 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiers() []string {
 // The operator that defines how to use the conversation identifiers in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/conversationIdentifiersOperator
-func (i_ INSearchForMessagesIntent) ConversationIdentifiersOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("conversationIdentifiersOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiersoperator
+func (i_ INSearchForMessagesIntent) SetConversationIdentifiersOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifiersOperator:"), value)
+}
+
+
+// The range of dates in which to search for messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/datetimerange
+func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateTimeRange"))
 	return rv
 }
 
@@ -174,9 +194,18 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiersOperator() INConditio
 // The range of dates in which to search for messages.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/dateTimeRange
-func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
-	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateTimeRange"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/datetimerange
+func (i_ INSearchForMessagesIntent) SetDateTimeRange(value INDateComponentsRange) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDateTimeRange:"), value)
+}
+
+
+// The names of any groups associated with the message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnames
+func (i_ INSearchForMessagesIntent) GroupNames() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("groupNames"))
 	return rv
 }
 
@@ -184,9 +213,18 @@ func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
 // The names of any groups associated with the message.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/groupNames
-func (i_ INSearchForMessagesIntent) GroupNames() []string {
-	rv := objc.Send[[]string](i_.ID, objc.Sel("groupNames"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnames
+func (i_ INSearchForMessagesIntent) SetGroupNames(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupNames:"), objc.String(value))
+}
+
+
+// The operator that defines how to use the group names in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnamesoperator
+func (i_ INSearchForMessagesIntent) GroupNamesOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupNamesOperator"))
 	return rv
 }
 
@@ -194,9 +232,18 @@ func (i_ INSearchForMessagesIntent) GroupNames() []string {
 // The operator that defines how to use the group names in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/groupNamesOperator
-func (i_ INSearchForMessagesIntent) GroupNamesOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("groupNamesOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnamesoperator
+func (i_ INSearchForMessagesIntent) SetGroupNamesOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupNamesOperator:"), value)
+}
+
+
+// The message identifiers to locate in your search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiers
+func (i_ INSearchForMessagesIntent) Identifiers() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("identifiers"))
 	return rv
 }
 
@@ -204,9 +251,18 @@ func (i_ INSearchForMessagesIntent) GroupNamesOperator() INConditionalOperator {
 // The message identifiers to locate in your search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/identifiers
-func (i_ INSearchForMessagesIntent) Identifiers() []string {
-	rv := objc.Send[[]string](i_.ID, objc.Sel("identifiers"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiers
+func (i_ INSearchForMessagesIntent) SetIdentifiers(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifiers:"), objc.String(value))
+}
+
+
+// The operator that defines how to use the identifiers in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiersoperator
+func (i_ INSearchForMessagesIntent) IdentifiersOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("identifiersOperator"))
 	return rv
 }
 
@@ -214,9 +270,18 @@ func (i_ INSearchForMessagesIntent) Identifiers() []string {
 // The operator that defines how to use the identifiers in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/identifiersOperator
-func (i_ INSearchForMessagesIntent) IdentifiersOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("identifiersOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiersoperator
+func (i_ INSearchForMessagesIntent) SetIdentifiersOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifiersOperator:"), value)
+}
+
+
+// The notification identifiers to locate in your search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiers
+func (i_ INSearchForMessagesIntent) NotificationIdentifiers() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("notificationIdentifiers"))
 	return rv
 }
 
@@ -224,9 +289,18 @@ func (i_ INSearchForMessagesIntent) IdentifiersOperator() INConditionalOperator 
 // The notification identifiers to locate in your search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/notificationIdentifiers
-func (i_ INSearchForMessagesIntent) NotificationIdentifiers() []string {
-	rv := objc.Send[[]string](i_.ID, objc.Sel("notificationIdentifiers"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiers
+func (i_ INSearchForMessagesIntent) SetNotificationIdentifiers(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNotificationIdentifiers:"), objc.String(value))
+}
+
+
+// The operator that defines how to use the notification identifiers in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiersoperator
+func (i_ INSearchForMessagesIntent) NotificationIdentifiersOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("notificationIdentifiersOperator"))
 	return rv
 }
 
@@ -234,9 +308,18 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiers() []string {
 // The operator that defines how to use the notification identifiers in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/notificationIdentifiersOperator
-func (i_ INSearchForMessagesIntent) NotificationIdentifiersOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("notificationIdentifiersOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiersoperator
+func (i_ INSearchForMessagesIntent) SetNotificationIdentifiersOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNotificationIdentifiersOperator:"), value)
+}
+
+
+// The contacts who are the recipients of the messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipients
+func (i_ INSearchForMessagesIntent) Recipients() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("recipients"))
 	return rv
 }
 
@@ -244,9 +327,18 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiersOperator() INConditio
 // The contacts who are the recipients of the messages.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/recipients
-func (i_ INSearchForMessagesIntent) Recipients() []INPerson {
-	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("recipients"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipients
+func (i_ INSearchForMessagesIntent) SetRecipients(value INPerson) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipients:"), value)
+}
+
+
+// The operator that defines how to use the recipients in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipientsoperator
+func (i_ INSearchForMessagesIntent) RecipientsOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recipientsOperator"))
 	return rv
 }
 
@@ -254,9 +346,18 @@ func (i_ INSearchForMessagesIntent) Recipients() []INPerson {
 // The operator that defines how to use the recipients in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/recipientsOperator
-func (i_ INSearchForMessagesIntent) RecipientsOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("recipientsOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipientsoperator
+func (i_ INSearchForMessagesIntent) SetRecipientsOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipientsOperator:"), value)
+}
+
+
+// The terms to look for in the messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchterms
+func (i_ INSearchForMessagesIntent) SearchTerms() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
 
@@ -264,9 +365,18 @@ func (i_ INSearchForMessagesIntent) RecipientsOperator() INConditionalOperator {
 // The terms to look for in the messages.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/searchTerms
-func (i_ INSearchForMessagesIntent) SearchTerms() []string {
-	rv := objc.Send[[]string](i_.ID, objc.Sel("searchTerms"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchterms
+func (i_ INSearchForMessagesIntent) SetSearchTerms(value string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
+}
+
+
+// The operator that defines how to use the set of terms in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchtermsoperator
+func (i_ INSearchForMessagesIntent) SearchTermsOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("searchTermsOperator"))
 	return rv
 }
 
@@ -274,9 +384,18 @@ func (i_ INSearchForMessagesIntent) SearchTerms() []string {
 // The operator that defines how to use the set of terms in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/searchTermsOperator
-func (i_ INSearchForMessagesIntent) SearchTermsOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("searchTermsOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchtermsoperator
+func (i_ INSearchForMessagesIntent) SetSearchTermsOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
+}
+
+
+// The senders to include or exclude when you search for messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/senders
+func (i_ INSearchForMessagesIntent) Senders() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("senders"))
 	return rv
 }
 
@@ -284,9 +403,18 @@ func (i_ INSearchForMessagesIntent) SearchTermsOperator() INConditionalOperator 
 // The senders to include or exclude when you search for messages.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/senders
-func (i_ INSearchForMessagesIntent) Senders() []INPerson {
-	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("senders"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/senders
+func (i_ INSearchForMessagesIntent) SetSenders(value INPerson) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSenders:"), value)
+}
+
+
+// The operator that defines how to use the senders in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/sendersoperator
+func (i_ INSearchForMessagesIntent) SendersOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sendersOperator"))
 	return rv
 }
 
@@ -294,9 +422,18 @@ func (i_ INSearchForMessagesIntent) Senders() []INPerson {
 // The operator that defines how to use the senders in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/sendersOperator
-func (i_ INSearchForMessagesIntent) SendersOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("sendersOperator"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/sendersoperator
+func (i_ INSearchForMessagesIntent) SetSendersOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSendersOperator:"), value)
+}
+
+
+// The names of any groups associated with the message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnames
+func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("speakableGroupNames"))
 	return rv
 }
 
@@ -304,9 +441,18 @@ func (i_ INSearchForMessagesIntent) SendersOperator() INConditionalOperator {
 // The names of any groups associated with the message.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/speakableGroupNames
-func (i_ INSearchForMessagesIntent) SpeakableGroupNames() []INSpeakableString {
-	rv := objc.Send[[]INSpeakableString](i_.ID, objc.Sel("speakableGroupNames"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnames
+func (i_ INSearchForMessagesIntent) SetSpeakableGroupNames(value INSpeakableString) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSpeakableGroupNames:"), value)
+}
+
+
+// The operator that defines how to use the group names in the search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnamesoperator
+func (i_ INSearchForMessagesIntent) SpeakableGroupNamesOperator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("speakableGroupNamesOperator"))
 	return rv
 }
 
@@ -314,10 +460,10 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNames() []INSpeakableString {
 // The operator that defines how to use the group names in the search criteria.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntent/speakableGroupNamesOperator
-func (i_ INSearchForMessagesIntent) SpeakableGroupNamesOperator() INConditionalOperator {
-	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("speakableGroupNamesOperator"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnamesoperator
+func (i_ INSearchForMessagesIntent) SetSpeakableGroupNamesOperator(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSpeakableGroupNamesOperator:"), value)
 }
+
 
 

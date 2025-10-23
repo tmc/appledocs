@@ -30,10 +30,12 @@ type _XPCInterfaceClass struct {
 // An interface definition for the [XPCInterface] class.
 type IXPCInterface interface {
 	objectivec.IObject
+	// properties:
 	Protocol() objectivec.Protocol
 	SetProtocol(value objectivec.Protocol)
-	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
-	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
+	// methods:
+	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer */, ofReply bool /* primitive/slice/pointer */) unsafe.Pointer
+	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer */, ofReply bool /* primitive/slice/pointer */)
 }
 
 // An interface that may be sent to an exported object or remote object proxy.
@@ -93,7 +95,7 @@ func NewXPCInterface() XPCInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/classes(for:argumentIndex:ofReply:)
-func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer {
+func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint /* primitive/slice/pointer */, ofReply bool /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("classesForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }
@@ -103,7 +105,7 @@ func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setClasses(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool) {
+func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint /* primitive/slice/pointer */, ofReply bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setClasses:forSelector:argumentIndex:ofReply:"), classes, sel, arg, ofReply)
 }
 

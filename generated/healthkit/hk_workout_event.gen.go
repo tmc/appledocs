@@ -31,14 +31,17 @@ type _HKWorkoutEventClass struct {
 // An interface definition for the [HKWorkoutEvent] class.
 type IHKWorkoutEvent interface {
 	objectivec.IObject
-	Type() unsafe.Pointer
+	// properties:
 	Date() foundation.Date
-	SetDate(value foundation.IDate)
+	SetDate(value foundation.Date)
 	DateInterval() foundation.DateInterval
-	SetDateInterval(value foundation.IDateInterval)
+	SetDateInterval(value foundation.DateInterval)
 	Metadata() string
 	SetMetadata(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 	HKWorkoutTypeIdentifier() string
+	// methods:
 }
 
 // An object representing an important event during a workout.
@@ -94,16 +97,6 @@ func NewHKWorkoutEvent() HKWorkoutEvent {
 
 
 
-// The type of workout event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutEvent/type
-func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
-	return rv
-}
-
-
 // The time when the transition occurred.
 //
 // [Full Topic]
@@ -118,7 +111,7 @@ func (h_ HKWorkoutEvent) Date() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-func (h_ HKWorkoutEvent) SetDate(value foundation.IDate) {
+func (h_ HKWorkoutEvent) SetDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
 }
 
@@ -137,7 +130,7 @@ func (h_ HKWorkoutEvent) DateInterval() foundation.DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-func (h_ HKWorkoutEvent) SetDateInterval(value foundation.IDateInterval) {
+func (h_ HKWorkoutEvent) SetDateInterval(value foundation.DateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateInterval:"), value)
 }
 
@@ -158,6 +151,25 @@ func (h_ HKWorkoutEvent) Metadata() string {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
 func (h_ HKWorkoutEvent) SetMetadata(value string) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
+
+// The type of workout event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/type
+func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// The type of workout event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/type
+func (h_ HKWorkoutEvent) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
 }
 
 

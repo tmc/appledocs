@@ -30,8 +30,9 @@ type _AudioUnitViewConfigurationClass struct {
 // An interface definition for the [AudioUnitViewConfiguration] class.
 type IAudioUnitViewConfiguration interface {
 	objectivec.IObject
-	Height() float64
 	Width() float64
+	Height() float64
+	SetHeight(value float64)
 	HostHasController() bool
 	SetHostHasController(value bool)
 }
@@ -100,16 +101,6 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 
 
 
-// The configured height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/height
-func (a_ AudioUnitViewConfiguration) Height() float64 {
-	rv := objc.Send[float64](a_.ID, objc.Sel("height"))
-	return rv
-}
-
-
 // The configured width.
 //
 // [Full Topic]
@@ -117,6 +108,25 @@ func (a_ AudioUnitViewConfiguration) Height() float64 {
 func (a_ AudioUnitViewConfiguration) Width() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("width"))
 	return rv
+}
+
+
+// The configured height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/height
+func (a_ AudioUnitViewConfiguration) Height() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("height"))
+	return rv
+}
+
+
+// The configured height.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/height
+func (a_ AudioUnitViewConfiguration) SetHeight(value float64) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHeight:"), value)
 }
 
 

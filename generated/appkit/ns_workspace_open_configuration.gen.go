@@ -38,15 +38,15 @@ type IWorkspaceOpenConfiguration interface {
 	AllowsRunningApplicationSubstitution() bool
 	SetAllowsRunningApplicationSubstitution(value bool)
 	AppleEvent() foundation.AppleEventDescriptor
-	SetAppleEvent(value foundation.IAppleEventDescriptor)
+	SetAppleEvent(value foundation.AppleEventDescriptor)
 	Architecture() unsafe.Pointer
 	SetArchitecture(value unsafe.Pointer)
 	Arguments() []string
 	SetArguments(value []string)
 	CreatesNewApplicationInstance() bool
 	SetCreatesNewApplicationInstance(value bool)
-	Environment() unsafe.Pointer
-	SetEnvironment(value unsafe.Pointer)
+	Environment() foundation.IDictionary
+	SetEnvironment(value foundation.IDictionary)
 	Hides() bool
 	SetHides(value bool)
 	HidesOthers() bool
@@ -195,7 +195,7 @@ func (w_ WorkspaceOpenConfiguration) AppleEvent() foundation.AppleEventDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.IAppleEventDescriptor) {
+func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.AppleEventDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
 
@@ -271,8 +271,8 @@ func (w_ WorkspaceOpenConfiguration) SetCreatesNewApplicationInstance(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/environment
-func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("environment"))
+func (w_ WorkspaceOpenConfiguration) Environment() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("environment"))
 	return rv
 }
 
@@ -281,7 +281,7 @@ func (w_ WorkspaceOpenConfiguration) Environment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/environment
-func (w_ WorkspaceOpenConfiguration) SetEnvironment(value unsafe.Pointer) {
+func (w_ WorkspaceOpenConfiguration) SetEnvironment(value foundation.IDictionary) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEnvironment:"), value)
 }
 

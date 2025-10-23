@@ -30,12 +30,14 @@ type _HTTPCookieStorageClass struct {
 // An interface definition for the [HTTPCookieStorage] class.
 type IHTTPCookieStorage interface {
 	objectivec.IObject
-	IsSessionOnly() bool
-	SetIsSessionOnly(value bool)
+	// properties:
+	IsSessionOnly() bool /* primitive/slice/pointer */
+	SetIsSessionOnly(value bool /* primitive/slice/pointer */)
 	CookieAcceptPolicy() unsafe.Pointer
 	SetCookieAcceptPolicy(value unsafe.Pointer)
 	Cookies() IHTTPCookie
 	SetCookies(value IHTTPCookie)
+	// methods:
 }
 
 // A container that manages the storage of cookies.
@@ -114,7 +116,7 @@ func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() IHTTPCookieStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookieStorage) IsSessionOnly() bool {
+func (h_ HTTPCookieStorage) IsSessionOnly() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (h_ HTTPCookieStorage) IsSessionOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
-func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool) {
+func (h_ HTTPCookieStorage) SetIsSessionOnly(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
 }
 

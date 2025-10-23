@@ -29,11 +29,10 @@ type _SegmentedControlClass struct {
 // An interface definition for the [SegmentedControl] class.
 type ISegmentedControl interface {
 	IControl
-	SelectSegmentWithTag(tag int) bool
-	SelectedSegmentBezelColor() NSColor
+	SelectedSegmentBezelColor() IColor
 	SetSelectedSegmentBezelColor(value IColor)
-	ActiveCompressionOptions() NSUserInterfaceCompressionOptions
-	SetActiveCompressionOptions(value NSUserInterfaceCompressionOptions)
+	ActiveCompressionOptions() UserInterfaceCompressionOptions
+	SetActiveCompressionOptions(value UserInterfaceCompressionOptions)
 	BorderShape() unsafe.Pointer
 	SetBorderShape(value unsafe.Pointer)
 	DoubleValueForSelectedSegment() float64
@@ -109,22 +108,12 @@ func NewSegmentedControl() SegmentedControl {
 
 
 
-// Selects the segment with the specified tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectSegment(withTag:)
-func (s_ SegmentedControl) SelectSegmentWithTag(tag int) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("selectSegmentWithTag:"), tag)
-	return rv
-}
-
-
 // The color of the selected segment’s bezel, in appearances that support it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegmentBezelColor
-func (s_ SegmentedControl) SelectedSegmentBezelColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("selectedSegmentBezelColor"))
+func (s_ SegmentedControl) SelectedSegmentBezelColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("selectedSegmentBezelColor"))
 	return rv
 }
 
@@ -140,15 +129,15 @@ func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) ActiveCompressionOptions() NSUserInterfaceCompressionOptions {
-	rv := objc.Send[NSUserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
+func (s_ SegmentedControl) ActiveCompressionOptions() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) SetActiveCompressionOptions(value NSUserInterfaceCompressionOptions) {
+func (s_ SegmentedControl) SetActiveCompressionOptions(value UserInterfaceCompressionOptions) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActiveCompressionOptions:"), value)
 }
 

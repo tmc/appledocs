@@ -3,34 +3,34 @@
 package fileprovider
 
 // Type aliases and typedefs
-// NSFileProviderDomainIdentifier - A unique identifier for a file provider’s domain.
+// FileProviderDomainIdentifier - A unique identifier for a file provider’s domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomainIdentifier
-// NSFileProviderDomainIdentifier has base type: NSString *
-type NSFileProviderDomainIdentifier uintptr
-// NSFileProviderExtensionActionIdentifier - An identifier for custom actions.
+// NSFileProviderDomainIdentifier is a string typedef
+type FileProviderDomainIdentifier = string
+// FileProviderExtensionActionIdentifier - An identifier for custom actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtensionActionIdentifier
-// NSFileProviderExtensionActionIdentifier has base type: NSString *
-type NSFileProviderExtensionActionIdentifier uintptr
-// NSFileProviderItem - An item the File Provider extension manages.
+// NSFileProviderExtensionActionIdentifier is a string typedef
+type FileProviderExtensionActionIdentifier = string
+// FileProviderItem - An item the File Provider extension manages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItem-swift.typealias
 // NSFileProviderItem has base type: id<NSFileProviderItem>
-type NSFileProviderItem uintptr
-// NSFileProviderItemDecorationIdentifier - A decoration identifier defined in the File Provider extension’s information property list.
+type FileProviderItem uintptr
+// FileProviderItemDecorationIdentifier - A decoration identifier defined in the File Provider extension’s information property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemDecorationIdentifier
-// NSFileProviderItemDecorationIdentifier has base type: NSString *
-type NSFileProviderItemDecorationIdentifier uintptr
-// NSFileProviderItemIdentifier - A unique identifier for an item managed by the File Provider extension.
+// NSFileProviderItemDecorationIdentifier is a string typedef
+type FileProviderItemDecorationIdentifier = string
+// FileProviderItemIdentifier - A unique identifier for an item managed by the File Provider extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemIdentifier
-// NSFileProviderItemIdentifier has base type: NSString *
-type NSFileProviderItemIdentifier uintptr
-// NSFileProviderUserInfoKey type alias
+// NSFileProviderItemIdentifier is a string typedef
+type FileProviderItemIdentifier = string
+// FileProviderUserInfoKey type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderUserInfoKey
-// NSFileProviderUserInfoKey has base type: NSString *
-type NSFileProviderUserInfoKey uintptr
+// NSFileProviderUserInfoKey is a string typedef
+type FileProviderUserInfoKey = string
 

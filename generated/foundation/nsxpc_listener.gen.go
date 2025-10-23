@@ -30,10 +30,12 @@ type _XPCListenerClass struct {
 // An interface definition for the [XPCListener] class.
 type IXPCListener interface {
 	objectivec.IObject
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	Delegate() XPCListenerDelegate /* foo */
+	SetDelegate(value XPCListenerDelegate /* foo */)
 	Endpoint() IXPCListenerEndpoint
 	SetEndpoint(value IXPCListenerEndpoint)
+	// methods:
 	Suspend()
 }
 
@@ -113,8 +115,8 @@ func (x_ XPCListener) Suspend() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
-func (x_ XPCListener) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("delegate"))
+func (x_ XPCListener) Delegate() XPCListenerDelegate /* foo */ {
+	rv := objc.Send[XPCListenerDelegate](x_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -123,7 +125,7 @@ func (x_ XPCListener) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/delegate
-func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
+func (x_ XPCListener) SetDelegate(value XPCListenerDelegate /* foo */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
 }
 

@@ -34,7 +34,7 @@ type IBeacon interface {
 	Accuracy() unsafe.Pointer
 	Major() foundation.Number
 	Minor() foundation.Number
-	Proximity() Proximity
+	Proximity() CLProximity
 	ProximityUUID() foundation.UUID
 	Rssi() int
 	Timestamp() foundation.NSDate
@@ -128,8 +128,8 @@ func (b_ Beacon) Minor() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximity
-func (b_ Beacon) Proximity() Proximity {
-	rv := objc.Send[Proximity](b_.ID, objc.Sel("proximity"))
+func (b_ Beacon) Proximity() CLProximity {
+	rv := objc.Send[CLProximity](b_.ID, objc.Sel("proximity"))
 	return rv
 }
 

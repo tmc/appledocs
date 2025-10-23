@@ -30,14 +30,16 @@ type _HKAudiogramSensitivityPointClass struct {
 // An interface definition for the [HKAudiogramSensitivityPoint] class.
 type IHKAudiogramSensitivityPoint interface {
 	objectivec.IObject
-	Frequency() HKQuantity
+	// properties:
+	Frequency() IHKQuantity
 	SetFrequency(value IHKQuantity)
-	LeftEarSensitivity() HKQuantity
+	LeftEarSensitivity() IHKQuantity
 	SetLeftEarSensitivity(value IHKQuantity)
-	RightEarSensitivity() HKQuantity
+	RightEarSensitivity() IHKQuantity
 	SetRightEarSensitivity(value IHKQuantity)
-	Tests() HKAudiogramSensitivityTest
+	Tests() IHKAudiogramSensitivityTest
 	SetTests(value IHKAudiogramSensitivityTest)
+	// methods:
 }
 
 // A hearing sensitivity reading associated with a hearing test.
@@ -95,7 +97,7 @@ func NewHKAudiogramSensitivityPoint() HKAudiogramSensitivityPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
-func (h_ HKAudiogramSensitivityPoint) Frequency() HKQuantity {
+func (h_ HKAudiogramSensitivityPoint) Frequency() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("frequency"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (h_ HKAudiogramSensitivityPoint) SetFrequency(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/leftearsensitivity
-func (h_ HKAudiogramSensitivityPoint) LeftEarSensitivity() HKQuantity {
+func (h_ HKAudiogramSensitivityPoint) LeftEarSensitivity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("leftEarSensitivity"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (h_ HKAudiogramSensitivityPoint) SetLeftEarSensitivity(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/rightearsensitivity
-func (h_ HKAudiogramSensitivityPoint) RightEarSensitivity() HKQuantity {
+func (h_ HKAudiogramSensitivityPoint) RightEarSensitivity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("rightEarSensitivity"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (h_ HKAudiogramSensitivityPoint) SetRightEarSensitivity(value IHKQuantity) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/tests
-func (h_ HKAudiogramSensitivityPoint) Tests() HKAudiogramSensitivityTest {
+func (h_ HKAudiogramSensitivityPoint) Tests() IHKAudiogramSensitivityTest {
 	rv := objc.Send[HKAudiogramSensitivityTest](h_.ID, objc.Sel("tests"))
 	return rv
 }

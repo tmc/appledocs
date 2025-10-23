@@ -44,7 +44,7 @@ var (
 	_MIDIEntityGetNumberOfSources func(unsafe.Pointer) unsafe.Pointer
 	_MIDIEntityGetSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIEventListAdd func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIEventListForEachEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MIDIEventListForEachEvent func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_MIDIEventListInit func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIExternalDeviceCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIFlushOutput func(unsafe.Pointer) unsafe.Pointer
@@ -85,7 +85,7 @@ var (
 	_MIDIThruConnectionDispose func(unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionFind func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MIDIThruConnectionGetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MIDIThruConnectionParamsInitialize func(unsafe.Pointer) unsafe.Pointer
+	_MIDIThruConnectionParamsInitialize func(unsafe.Pointer)
 	_MIDIThruConnectionSetParams func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
 
@@ -185,956 +185,812 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Promote all active Bluetooth connections into an online MIDI device capable of input and output.
 //
 // Added in macOS 13.0.
-
 // Promote all active Bluetooth connections into an online MIDI device capable of input and output.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIBluetoothDriverActivateAllConnections()
 func MIDIBluetoothDriverActivateAllConnections() unsafe.Pointer {
 	return _MIDIBluetoothDriverActivateAllConnections()
-	}
-
+}
 
 // Disconnect the Bluetooth MIDI driver from a Bluetooth Low Energy MIDI peripheral.
 //
 // Added in macOS 13.0.
-
 // Disconnect the Bluetooth MIDI driver from a Bluetooth Low Energy MIDI peripheral.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIBluetoothDriverDisconnect(_:)
 func MIDIBluetoothDriverDisconnect(uuid unsafe.Pointer) unsafe.Pointer {
 	return _MIDIBluetoothDriverDisconnect(uuid)
-	}
-
+}
 
 // Creates a MIDI client.
 //
 // Added in macOS 10.0.
-
 // Creates a MIDI client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIClientCreate(_:_:_:_:)
 func MIDIClientCreate(name unsafe.Pointer, notifyProc unsafe.Pointer, notifyRefCon unsafe.Pointer, outClient unsafe.Pointer) unsafe.Pointer {
 	return _MIDIClientCreate(name, notifyProc, notifyRefCon, outClient)
-	}
-
+}
 
 // Creates a MIDI client with a callback block.
 //
 // Added in macOS 10.11.
-
 // Creates a MIDI client with a callback block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIClientCreateWithBlock(_:_:_:)
 func MIDIClientCreateWithBlock(name unsafe.Pointer, outClient unsafe.Pointer, notifyBlock unsafe.Pointer) unsafe.Pointer {
 	return _MIDIClientCreateWithBlock(name, outClient, notifyBlock)
-	}
-
+}
 
 // Disposes of a MIDI client.
 //
 // Added in macOS 10.0.
-
 // Disposes of a MIDI client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIClientDispose(_:)
 func MIDIClientDispose(client unsafe.Pointer) unsafe.Pointer {
 	return _MIDIClientDispose(client)
-	}
-
+}
 
 // Creates a virtual destination in a client.
 //
 // Added in macOS 11.0.
-
 // Creates a virtual destination in a client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDestinationCreateWithProtocol(_:_:_:_:_:)
 func MIDIDestinationCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outDest unsafe.Pointer, readBlock unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDestinationCreateWithProtocol(client, name, protocol_, outDest, readBlock)
-	}
-
+}
 
 // Specifies one of the entities that make up a device.
 //
 // Deprecated: This function was deprecated in macOS 11.0.
 //
 // Added in macOS 10.0.
-
 // Specifies one of the entities that make up a device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceAddEntity(_:_:_:_:_:_:)
 func MIDIDeviceAddEntity(device unsafe.Pointer, name unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceAddEntity(device, name, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
-	}
-
+}
 
 // Creates a new device object that corresponds to the available hardware.
 //
 // Added in macOS 10.0.
-
 // Creates a new device object that corresponds to the available hardware.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceCreate(_:_:_:_:_:)
 func MIDIDeviceCreate(owner unsafe.Pointer, name unsafe.Pointer, manufacturer unsafe.Pointer, model unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceCreate(owner, name, manufacturer, model, outDevice)
-	}
-
+}
 
 // Disposes of a MIDI device.
 //
 // Added in macOS 10.3.
-
 // Disposes of a MIDI device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceDispose(_:)
 func MIDIDeviceDispose(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceDispose(device)
-	}
-
+}
 
 // Returns the device’s entity at a specific index.
 //
 // Added in macOS 10.0.
-
 // Returns the device’s entity at a specific index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceGetEntity(_:_:)
 func MIDIDeviceGetEntity(device unsafe.Pointer, entityIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceGetEntity(device, entityIndex0)
-	}
-
+}
 
 // Returns the number of entities in a device.
 //
 // Added in macOS 10.0.
-
 // Returns the number of entities in a device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceGetNumberOfEntities(_:)
 func MIDIDeviceGetNumberOfEntities(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceGetNumberOfEntities(device)
-	}
-
+}
 
 // Adds the specified device to the device list.
 //
 // Added in macOS 10.0.
-
 // Adds the specified device to the device list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListAddDevice(_:_:)
 func MIDIDeviceListAddDevice(devList unsafe.Pointer, dev unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceListAddDevice(devList, dev)
-	}
-
+}
 
 // Disposes of a device list, but not its devices.
 //
 // Added in macOS 10.1.
-
 // Disposes of a device list, but not its devices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListDispose(_:)
 func MIDIDeviceListDispose(devList unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceListDispose(devList)
-	}
-
+}
 
 // Retrieves a MIDI device from a device list.
 //
 // Added in macOS 10.0.
-
 // Retrieves a MIDI device from a device list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListGetDevice(_:_:)
 func MIDIDeviceListGetDevice(devList unsafe.Pointer, index0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceListGetDevice(devList, index0)
-	}
-
+}
 
 // Retrieves the number of devices in a device list.
 //
 // Added in macOS 10.0.
-
 // Retrieves the number of devices in a device list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceListGetNumberOfDevices(_:)
 func MIDIDeviceListGetNumberOfDevices(devList unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceListGetNumberOfDevices(devList)
-	}
-
+}
 
 // Adds a new entity to a device.
 //
 // Added in macOS 11.0.
-
 // Adds a new entity to a device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceNewEntity(_:_:_:_:_:_:_:)
 func MIDIDeviceNewEntity(device unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, embedded unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer, newEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceNewEntity(device, name, protocol_, embedded, numSourceEndpoints, numDestinationEndpoints, newEntity)
-	}
-
+}
 
 // Removes an entity from a device.
 //
 // Added in macOS 10.1.
-
 // Removes an entity from a device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDeviceRemoveEntity(_:_:)
 func MIDIDeviceRemoveEntity(device unsafe.Pointer, entity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDeviceRemoveEntity(device, entity)
-	}
-
+}
 
 // Enables monitoring of all outgoing MIDI packets.
 //
 // Added in macOS 10.1.
-
 // Enables monitoring of all outgoing MIDI packets.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIDriverEnableMonitoring(_:_:)
 func MIDIDriverEnableMonitoring(driver unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
 	return _MIDIDriverEnableMonitoring(driver, enabled)
-	}
-
+}
 
 // Disposes of a virtual source or destination.
 //
 // Added in macOS 10.0.
-
 // Disposes of a virtual source or destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointDispose(_:)
 func MIDIEndpointDispose(endpt unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointDispose(endpt)
-	}
-
+}
 
 // Returns an endpoint’s entity.
 //
 // Added in macOS 10.2.
-
 // Returns an endpoint’s entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointGetEntity(_:_:)
 func MIDIEndpointGetEntity(inEndpoint unsafe.Pointer, outEntity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointGetEntity(inEndpoint, outEntity)
-	}
-
+}
 
 // Returns contextual data assigned to an endpoint.
 //
 // Added in macOS 10.0.
-
 // Returns contextual data assigned to an endpoint.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointGetRefCons(_:_:_:)
 func MIDIEndpointGetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointGetRefCons(endpt, ref1, ref2)
-	}
-
+}
 
 // Sets contextual data on an endpoint.
 //
 // Added in macOS 10.0.
-
 // Sets contextual data on an endpoint.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEndpointSetRefCons(_:_:_:)
 func MIDIEndpointSetRefCons(endpt unsafe.Pointer, ref1 unsafe.Pointer, ref2 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEndpointSetRefCons(endpt, ref1, ref2)
-	}
-
+}
 
 // Adds or removes an entity’s endpoints.
 //
 // Added in macOS 10.2.
-
 // Adds or removes an entity’s endpoints.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityAddOrRemoveEndpoints(_:_:_:)
 func MIDIEntityAddOrRemoveEndpoints(entity unsafe.Pointer, numSourceEndpoints unsafe.Pointer, numDestinationEndpoints unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityAddOrRemoveEndpoints(entity, numSourceEndpoints, numDestinationEndpoints)
-	}
-
+}
 
 // Returns one of an entity’s destinations.
 //
 // Added in macOS 10.0.
-
 // Returns one of an entity’s destinations.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetDestination(_:_:)
 func MIDIEntityGetDestination(entity unsafe.Pointer, destIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetDestination(entity, destIndex0)
-	}
-
+}
 
 // Returns an entity’s device.
 //
 // Added in macOS 10.2.
-
 // Returns an entity’s device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetDevice(_:_:)
 func MIDIEntityGetDevice(inEntity unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetDevice(inEntity, outDevice)
-	}
-
+}
 
 // Returns the number of destinations in an entity.
 //
 // Added in macOS 10.0.
-
 // Returns the number of destinations in an entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetNumberOfDestinations(_:)
 func MIDIEntityGetNumberOfDestinations(entity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetNumberOfDestinations(entity)
-	}
-
+}
 
 // Returns the number of sources in an entity.
 //
 // Added in macOS 10.0.
-
 // Returns the number of sources in an entity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetNumberOfSources(_:)
 func MIDIEntityGetNumberOfSources(entity unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetNumberOfSources(entity)
-	}
-
+}
 
 // Returns one of an entity’s sources.
 //
 // Added in macOS 10.0.
-
 // Returns one of an entity’s sources.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEntityGetSource(_:_:)
 func MIDIEntityGetSource(entity unsafe.Pointer, sourceIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEntityGetSource(entity, sourceIndex0)
-	}
-
+}
 
 // Adds an event to an event list.
 //
 // Added in macOS 11.0.
-
 // Adds an event to an event list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListAdd(_:_:_:_:_:_:)
 func MIDIEventListAdd(evtlist unsafe.Pointer, listSize unsafe.Pointer, curPacket unsafe.Pointer, time unsafe.Pointer, wordCount unsafe.Pointer, words unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEventListAdd(evtlist, listSize, curPacket, time, wordCount, words)
-	}
-
+}
 
 // MIDIEventListForEachEvent is a CoreMIDI function.
 //
 // Added in macOS 12.0.
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListForEachEvent(_:_:_:)
 func MIDIEventListForEachEvent(evtlist unsafe.Pointer, visitor unsafe.Pointer, visitorContext unsafe.Pointer) {
 	_MIDIEventListForEachEvent(evtlist, visitor, visitorContext)
-	}
-
+}
 
 // Initializes an event list.
 //
 // Added in macOS 11.0.
-
 // Initializes an event list.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIEventListInit(_:_:)
 func MIDIEventListInit(evtlist unsafe.Pointer, protocol_ unsafe.Pointer) unsafe.Pointer {
 	return _MIDIEventListInit(evtlist, protocol_)
-	}
-
+}
 
 // Creates an external MIDI device.
 //
 // Added in macOS 10.1.
-
 // Creates an external MIDI device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIExternalDeviceCreate(_:_:_:_:)
 func MIDIExternalDeviceCreate(name unsafe.Pointer, manufacturer unsafe.Pointer, model unsafe.Pointer, outDevice unsafe.Pointer) unsafe.Pointer {
 	return _MIDIExternalDeviceCreate(name, manufacturer, model, outDevice)
-	}
-
+}
 
 // Cancels all pending events that were previously scheduled to send.
 //
 // Added in macOS 10.1.
-
 // Cancels all pending events that were previously scheduled to send.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIFlushOutput(_:)
 func MIDIFlushOutput(dest unsafe.Pointer) unsafe.Pointer {
 	return _MIDIFlushOutput(dest)
-	}
-
+}
 
 // Returns a destination in the system.
 //
 // Added in macOS 10.0.
-
 // Returns a destination in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDestination(_:)
 func MIDIGetDestination(destIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetDestination(destIndex0)
-	}
-
+}
 
 // Returns a device from the system.
 //
 // Added in macOS 10.0.
-
 // Returns a device from the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDevice(_:)
 func MIDIGetDevice(deviceIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetDevice(deviceIndex0)
-	}
-
+}
 
 // Returns the list of driver-created devices in the current MIDI setup.
 //
 // Added in macOS 10.1.
-
 // Returns the list of driver-created devices in the current MIDI setup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDriverDeviceList(_:)
 func MIDIGetDriverDeviceList(driver unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetDriverDeviceList(driver)
-	}
-
+}
 
 // Returns the server’s driver I/O thread.
 //
 // Added in macOS 10.0.
-
 // Returns the server’s driver I/O thread.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetDriverIORunLoop()
 func MIDIGetDriverIORunLoop() unsafe.Pointer {
 	return _MIDIGetDriverIORunLoop()
-	}
-
+}
 
 // Returns one of the external devices in the system.
 //
 // Added in macOS 10.1.
-
 // Returns one of the external devices in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetExternalDevice(_:)
 func MIDIGetExternalDevice(deviceIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetExternalDevice(deviceIndex0)
-	}
-
+}
 
 // Returns the number of destinations in the system.
 //
 // Added in macOS 10.0.
-
 // Returns the number of destinations in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetNumberOfDestinations()
 func MIDIGetNumberOfDestinations() unsafe.Pointer {
 	return _MIDIGetNumberOfDestinations()
-	}
-
+}
 
 // Returns the number of devices in the system.
 //
 // Added in macOS 10.0.
-
 // Returns the number of devices in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetNumberOfDevices()
 func MIDIGetNumberOfDevices() unsafe.Pointer {
 	return _MIDIGetNumberOfDevices()
-	}
-
+}
 
 // Returns the number of external MIDI devices in the system.
 //
 // Added in macOS 10.1.
-
 // Returns the number of external MIDI devices in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetNumberOfExternalDevices()
 func MIDIGetNumberOfExternalDevices() unsafe.Pointer {
 	return _MIDIGetNumberOfExternalDevices()
-	}
-
+}
 
 // Returns the number of sources in the system.
 //
 // Added in macOS 10.0.
-
 // Returns the number of sources in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetNumberOfSources()
 func MIDIGetNumberOfSources() unsafe.Pointer {
 	return _MIDIGetNumberOfSources()
-	}
-
+}
 
 // Returns a list of installed MIDI drivers for serial port MIDI devices.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.1.
-
 // Returns a list of installed MIDI drivers for serial port MIDI devices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetSerialPortDrivers
 func MIDIGetSerialPortDrivers(outDriverNames unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetSerialPortDrivers(outDriverNames)
-	}
-
+}
 
 // Returns the MIDI driver that owns a serial port.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.1.
-
 // Returns the MIDI driver that owns a serial port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetSerialPortOwner
 func MIDIGetSerialPortOwner(portName unsafe.Pointer, outDriverName unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetSerialPortOwner(portName, outDriverName)
-	}
-
+}
 
 // Returns a source in the system.
 //
 // Added in macOS 10.0.
-
 // Returns a source in the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIGetSource(_:)
 func MIDIGetSource(sourceIndex0 unsafe.Pointer) unsafe.Pointer {
 	return _MIDIGetSource(sourceIndex0)
-	}
-
+}
 
 // Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.
 //
 // Added in macOS 11.0.
-
 // Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIInputPortCreateWithProtocol(_:_:_:_:_:)
 func MIDIInputPortCreateWithProtocol(client unsafe.Pointer, portName unsafe.Pointer, protocol_ unsafe.Pointer, outPort unsafe.Pointer, receiveBlock unsafe.Pointer) unsafe.Pointer {
 	return _MIDIInputPortCreateWithProtocol(client, portName, protocol_, outPort, receiveBlock)
-	}
-
+}
 
 // Locates a device, entity, or endpoint by its unique identifier.
 //
 // Added in macOS 10.2.
-
 // Locates a device, entity, or endpoint by its unique identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIObjectFindByUniqueID(_:_:_:)
 func MIDIObjectFindByUniqueID(inUniqueID unsafe.Pointer, outObject unsafe.Pointer, outObjectType unsafe.Pointer) unsafe.Pointer {
 	return _MIDIObjectFindByUniqueID(inUniqueID, outObject, outObjectType)
-	}
-
+}
 
 // Creates an output port through which a client sends outgoing MIDI messages to any MIDI destination.
 //
 // Added in macOS 10.0.
-
 // Creates an output port through which a client sends outgoing MIDI messages to any MIDI destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIOutputPortCreate(_:_:_:)
 func MIDIOutputPortCreate(client unsafe.Pointer, portName unsafe.Pointer, outPort unsafe.Pointer) unsafe.Pointer {
 	return _MIDIOutputPortCreate(client, portName, outPort)
-	}
-
+}
 
 // Makes a connection from a source to a client input port.
 //
 // Added in macOS 10.0.
-
 // Makes a connection from a source to a client input port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortConnectSource(_:_:_:)
 func MIDIPortConnectSource(port unsafe.Pointer, source unsafe.Pointer, connRefCon unsafe.Pointer) unsafe.Pointer {
 	return _MIDIPortConnectSource(port, source, connRefCon)
-	}
-
+}
 
 // Closes a previously established source-to-input port connection.
 //
 // Added in macOS 10.0.
-
 // Closes a previously established source-to-input port connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortDisconnectSource(_:_:)
 func MIDIPortDisconnectSource(port unsafe.Pointer, source unsafe.Pointer) unsafe.Pointer {
 	return _MIDIPortDisconnectSource(port, source)
-	}
-
+}
 
 // Disposes of a MIDI port.
 //
 // Added in macOS 10.0.
-
 // Disposes of a MIDI port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIPortDispose(_:)
 func MIDIPortDispose(port unsafe.Pointer) unsafe.Pointer {
 	return _MIDIPortDispose(port)
-	}
-
+}
 
 // Distributes incoming MIDI events from a source to its connected client input ports.
 //
 // Added in macOS 11.0.
-
 // Distributes incoming MIDI events from a source to its connected client input ports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIReceivedEventList(_:_:)
 func MIDIReceivedEventList(src unsafe.Pointer, evtlist unsafe.Pointer) unsafe.Pointer {
 	return _MIDIReceivedEventList(src, evtlist)
-	}
-
+}
 
 // Stops and restarts MIDI I/O.
 //
 // Added in macOS 10.1.
-
 // Stops and restarts MIDI I/O.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIRestart()
 func MIDIRestart() unsafe.Pointer {
 	return _MIDIRestart()
-	}
-
+}
 
 // Sends MIDI events to a destination.
 //
 // Added in macOS 11.0.
-
 // Sends MIDI events to a destination.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISendEventList(_:_:_:)
 func MIDISendEventList(port unsafe.Pointer, dest unsafe.Pointer, evtlist unsafe.Pointer) unsafe.Pointer {
 	return _MIDISendEventList(port, dest, evtlist)
-	}
-
+}
 
 // Specifies the MIDI driver that owns a serial port.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.1.
-
 // Specifies the MIDI driver that owns a serial port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetSerialPortOwner
 func MIDISetSerialPortOwner(portName unsafe.Pointer, driverName unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetSerialPortOwner(portName, driverName)
-	}
-
+}
 
 // Adds a driver-owned MIDI device to the current MIDI setup.
 //
 // Added in macOS 10.1.
-
 // Adds a driver-owned MIDI device to the current MIDI setup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupAddDevice(_:)
 func MIDISetupAddDevice(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupAddDevice(device)
-	}
-
+}
 
 // Adds an external MIDI device to the current MIDI setup.
 //
 // Added in macOS 10.1.
-
 // Adds an external MIDI device to the current MIDI setup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupAddExternalDevice(_:)
 func MIDISetupAddExternalDevice(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupAddExternalDevice(device)
-	}
-
+}
 
 // Queries drivers to discover what hardware is available.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Queries drivers to discover what hardware is available.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupCreate
 func MIDISetupCreate(outSetup unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupCreate(outSetup)
-	}
-
+}
 
 // Disposes the specified setup object.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Disposes the specified setup object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupDispose
 func MIDISetupDispose(setup unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupDispose(setup)
-	}
-
+}
 
 // Creates a MIDISetup object from an XML stream.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Creates a MIDISetup object from an XML stream.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupFromData
 func MIDISetupFromData(data unsafe.Pointer, outSetup unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupFromData(data, outSetup)
-	}
-
+}
 
 // Returns the system’s current MIDISetup.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Returns the system’s current MIDISetup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupGetCurrent
 func MIDISetupGetCurrent(outSetup unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupGetCurrent(outSetup)
-	}
-
+}
 
 // Installs a MIDISetup as the system’s current state.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Installs a MIDISetup as the system’s current state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupInstall
 func MIDISetupInstall(setup unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupInstall(setup)
-	}
-
+}
 
 // Removes a driver-owned MIDI device from the current MIDI setup.
 //
 // Added in macOS 10.1.
-
 // Removes a driver-owned MIDI device from the current MIDI setup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupRemoveDevice(_:)
 func MIDISetupRemoveDevice(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupRemoveDevice(device)
-	}
-
+}
 
 // Removes an external MIDI device from the current MIDI setup.
 //
 // Added in macOS 10.1.
-
 // Removes an external MIDI device from the current MIDI setup.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupRemoveExternalDevice(_:)
 func MIDISetupRemoveExternalDevice(device unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupRemoveExternalDevice(device)
-	}
-
+}
 
 // Creates an XML representation of a MIDISetup object.
 //
 // Deprecated: This function was deprecated in macOS 10.6.
 //
 // Added in macOS 10.0.
-
 // Creates an XML representation of a MIDISetup object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISetupToData
 func MIDISetupToData(setup unsafe.Pointer, outData unsafe.Pointer) unsafe.Pointer {
 	return _MIDISetupToData(setup, outData)
-	}
-
+}
 
 // Creates a virtual source in a client.
 //
 // Added in macOS 11.0.
-
 // Creates a virtual source in a client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDISourceCreateWithProtocol(_:_:_:_:)
 func MIDISourceCreateWithProtocol(client unsafe.Pointer, name unsafe.Pointer, protocol_ unsafe.Pointer, outSrc unsafe.Pointer) unsafe.Pointer {
 	return _MIDISourceCreateWithProtocol(client, name, protocol_, outSrc)
-	}
-
+}
 
 // Creates a MIDI thru connection.
 //
 // Added in macOS 10.2.
-
 // Creates a MIDI thru connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionCreate(_:_:_:)
 func MIDIThruConnectionCreate(inPersistentOwnerID unsafe.Pointer, inConnectionParams unsafe.Pointer, outConnection unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionCreate(inPersistentOwnerID, inConnectionParams, outConnection)
-	}
-
+}
 
 // Disposes a MIDI thru connection.
 //
 // Added in macOS 10.2.
-
 // Disposes a MIDI thru connection.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)
 func MIDIThruConnectionDispose(connection unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionDispose(connection)
-	}
-
+}
 
 // Finds the persistent thru connections for the specified client.
 //
 // Added in macOS 10.2.
-
 // Finds the persistent thru connections for the specified client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionFind(_:_:)
 func MIDIThruConnectionFind(inPersistentOwnerID unsafe.Pointer, outConnectionList unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionFind(inPersistentOwnerID, outConnectionList)
-	}
-
+}
 
 // Returns the thru connection’s parameters.
 //
 // Added in macOS 10.2.
-
 // Returns the thru connection’s parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)
 func MIDIThruConnectionGetParams(connection unsafe.Pointer, outConnectionParams unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionGetParams(connection, outConnectionParams)
-	}
-
+}
 
 // Initializes a parameters object with its default values.
 //
 // Added in macOS 10.2.
-
 // Initializes a parameters object with its default values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionParamsInitialize(_:)
 func MIDIThruConnectionParamsInitialize(inConnectionParams unsafe.Pointer) {
 	_MIDIThruConnectionParamsInitialize(inConnectionParams)
-	}
-
+}
 
 // Updates a thru connection’s parameters.
 //
 // Added in macOS 10.2.
-
 // Updates a thru connection’s parameters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)
 func MIDIThruConnectionSetParams(connection unsafe.Pointer, inConnectionParams unsafe.Pointer) unsafe.Pointer {
 	return _MIDIThruConnectionSetParams(connection, inConnectionParams)
-	}
-
+}
 
 
 

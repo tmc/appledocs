@@ -32,43 +32,14 @@ type _ImageClass struct {
 // An interface definition for the [Image] class.
 type IImage interface {
 	objectivec.IObject
-	AddRepresentation(imageRep IImageRep)
-	AddRepresentations(imageReps []ImageRep)
-	BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) ImageRep
-	BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep
-	CancelIncrementalLoad()
-	CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) coregraphics.CGImageRef
-	CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation)
-	CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64)
-	CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation)
-	CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64)
-	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
-	DrawInRect(rect coregraphics.CGRect)
-	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64)
-	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer)
-	DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool
-	HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints unsafe.Pointer, flipped bool) bool
-	LayerContentsForContentsScale(layerContentsScale float64) objc.ID
-	LockFocus()
-	Name() ImageName
-	Recache()
-	RecommendedLayerContentsScale(preferredContentsScale float64) float64
-	RemoveRepresentation(imageRep IImageRep)
-	SetCachedSeparately(flag bool)
-	SetDataRetained(flag bool)
-	SetName(string_ IImageName) bool
-	TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data
-	UnlockFocus()
-	ImageWithLocale(locale foundation.ILocale) Image
-	ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image
 	AccessibilityDescription() string
 	SetAccessibilityDescription(value string)
 	AlignmentRect() coregraphics.CGRect
 	SetAlignmentRect(value coregraphics.CGRect)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	CacheMode() ImageCacheMode
-	SetCacheMode(value ImageCacheMode)
+	CacheMode() NSImageCacheMode
+	SetCacheMode(value NSImageCacheMode)
 	CapInsets() unsafe.Pointer
 	SetCapInsets(value unsafe.Pointer)
 	Delegate() objc.ID
@@ -84,11 +55,11 @@ type IImage interface {
 	PrefersColorMatch() bool
 	SetPrefersColorMatch(value bool)
 	Representations() []ImageRep
-	ResizingMode() ImageResizingMode
-	SetResizingMode(value ImageResizingMode)
+	ResizingMode() NSImageResizingMode
+	SetResizingMode(value NSImageResizingMode)
 	Size() coregraphics.CGSize
 	SetSize(value coregraphics.CGSize)
-	SymbolConfiguration() ImageSymbolConfiguration
+	SymbolConfiguration() IImageSymbolConfiguration
 	TIFFRepresentation() foundation.NSData
 	UsesEPSOnResolutionMismatch() bool
 	SetUsesEPSOnResolutionMismatch(value bool)
@@ -100,6 +71,25 @@ type IImage interface {
 	SetContents(value unsafe.Pointer)
 	ContentsGravity() unsafe.Pointer
 	SetContentsGravity(value unsafe.Pointer)
+	AddRepresentation(imageRep IImageRep)
+	AddRepresentations(imageReps []ImageRep)
+	BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary) IImageRep
+	CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary) coregraphics.CGImageRef
+	DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op NSCompositingOperation, delta float64)
+	DrawInRect(rect coregraphics.CGRect)
+	DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op NSCompositingOperation, delta float64)
+	DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op NSCompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints foundation.IDictionary)
+	DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.CGRect) bool
+	HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints foundation.IDictionary, flipped bool) bool
+	LayerContentsForContentsScale(layerContentsScale float64) objc.ID
+	Name() ImageName
+	Recache()
+	RecommendedLayerContentsScale(preferredContentsScale float64) float64
+	RemoveRepresentation(imageRep IImageRep)
+	SetName(string_ ImageName) bool
+	TIFFRepresentationUsingCompressionFactor(comp NSTIFFCompression, factor float32) foundation.Data
+	ImageWithLocale(locale foundation.Locale) IImage
+	ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) IImage
 }
 
 // A high-level interface for manipulating image data.
@@ -171,7 +161,7 @@ func NewImageByReferencingFile(fileName string) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(byReferencing:)
-func NewImageByReferencingURL(url foundation.IURL) Image {
+func NewImageByReferencingURL(url foundation.URL) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initByReferencingURL:"), url)
 	rv.Autorelease()
@@ -183,7 +173,7 @@ func NewImageByReferencingURL(url foundation.IURL) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
-func NewImageNamed(name IImageName) Image {
+func NewImageNamed(name ImageName) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageNamed:"), name)
 	return rv
 }
@@ -205,7 +195,7 @@ func NewImageWithCGImageSize(cgImage coregraphics.CGImageRef, size coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(coder:)
-func NewImageWithCoder(coder foundation.ICoder) Image {
+func NewImageWithCoder(coder foundation.Coder) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -229,7 +219,7 @@ func NewImageWithContentsOfFile(fileName string) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(contentsOf:)
-func NewImageWithContentsOfURL(url foundation.IURL) Image {
+func NewImageWithContentsOfURL(url foundation.URL) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -241,7 +231,7 @@ func NewImageWithContentsOfURL(url foundation.IURL) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(data:)
-func NewImageWithData(data foundation.IData) Image {
+func NewImageWithData(data foundation.NSData) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -253,7 +243,7 @@ func NewImageWithData(data foundation.IData) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(dataIgnoringOrientation:)
-func NewImageWithDataIgnoringOrientation(data foundation.IData) Image {
+func NewImageWithDataIgnoringOrientation(data foundation.NSData) Image {
 	instance := getImageClass().Alloc()
 	rv := objc.Send[Image](instance.ID, objc.Sel("initWithDataIgnoringOrientation:"), data)
 	rv.Autorelease()
@@ -297,7 +287,7 @@ func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHand
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
-func NewImageWithSymbolNameBundleVariableValue(name string, bundle foundation.IBundle, value float64) Image {
+func NewImageWithSymbolNameBundleVariableValue(name string, bundle foundation.Bundle, value float64) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
 	return rv
 }
@@ -378,7 +368,7 @@ func (ic _ImageClass) ImageUnfilteredPasteboardTypes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(named:)
-func (ic _ImageClass) ImageNamed(name IImageName) Image {
+func (ic _ImageClass) ImageNamed(name ImageName) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("imageNamed:"), name)
 	return rv
 }
@@ -396,7 +386,7 @@ func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSiz
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:bundle:variableValue:)
-func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name string, bundle foundation.IBundle, value float64) unsafe.Pointer {
+func (ic _ImageClass) ImageWithSymbolNameBundleVariableValue(name string, bundle foundation.Bundle, value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:bundle:variableValue:"), objc.String(name), bundle, value)
 	return rv
 }
@@ -472,28 +462,9 @@ func (i_ Image) AddRepresentations(imageReps []ImageRep) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentation(for:context:hints:)
-func (i_ Image) BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) ImageRep {
+func (i_ Image) BestRepresentationForRectContextHints(rect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary) IImageRep {
 	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForRect:context:hints:"), rect, referenceContext, hints)
 	return rv
-}
-
-
-// Returns the best representation for the device with the specified characteristics.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/bestRepresentationForDevice:
-func (i_ Image) BestRepresentationForDevice(deviceDescription objectivec.IObject) ImageRep {
-	rv := objc.Send[ImageRep](i_.ID, objc.Sel("bestRepresentationForDevice:"), deviceDescription)
-	return rv
-}
-
-
-// Cancels the current download operation, if any, for an incrementally loaded image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cancelIncrementalLoad
-func (i_ Image) CancelIncrementalLoad() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("cancelIncrementalLoad"))
 }
 
 
@@ -501,45 +472,9 @@ func (i_ Image) CancelIncrementalLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cgImage(forProposedRect:context:hints:)
-func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints unsafe.Pointer) coregraphics.CGImageRef {
+func (i_ Image) CGImageForProposedRectContextHints(proposedDestRect coregraphics.CGRect, referenceContext IGraphicsContext, hints foundation.IDictionary) coregraphics.CGImageRef {
 	rv := objc.Send[coregraphics.CGImageRef](i_.ID, objc.Sel("CGImageForProposedRect:context:hints:"), proposedDestRect, referenceContext, hints)
 	return rv
-}
-
-
-// Composites a portion of the image to the specified point in the current coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:
-func (i_ Image) CompositeToPointFromRectOperation(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:"), point, rect, operation)
-}
-
-
-// Composites a portion of the image at the specified opacity to the current coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:
-func (i_ Image) CompositeToPointFromRectOperationFraction(point coregraphics.CGPoint, rect coregraphics.CGRect, operation ICompositingOperation, fraction float64) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:fromRect:operation:fraction:"), point, rect, operation, fraction)
-}
-
-
-// Composites the entire image to the specified point in the current coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:
-func (i_ Image) CompositeToPointOperation(point coregraphics.CGPoint, operation ICompositingOperation) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:"), point, operation)
-}
-
-
-// Composites the entire image at the specified opacity in the current coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:
-func (i_ Image) CompositeToPointOperationFraction(point coregraphics.CGPoint, operation ICompositingOperation, fraction float64) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("compositeToPoint:operation:fraction:"), point, operation, fraction)
 }
 
 
@@ -547,7 +482,7 @@ func (i_ Image) CompositeToPointOperationFraction(point coregraphics.CGPoint, op
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(at:from:operation:fraction:)
-func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
+func (i_ Image) DrawAtPointFromRectOperationFraction(point coregraphics.CGPoint, fromRect coregraphics.CGRect, op NSCompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawAtPoint:fromRect:operation:fraction:"), point, fromRect, op, delta)
 }
 
@@ -565,7 +500,7 @@ func (i_ Image) DrawInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:)
-func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op ICompositingOperation, delta float64) {
+func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fromRect coregraphics.CGRect, op NSCompositingOperation, delta float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:"), rect, fromRect, op, delta)
 }
 
@@ -574,7 +509,7 @@ func (i_ Image) DrawInRectFromRectOperationFraction(rect coregraphics.CGRect, fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/draw(in:from:operation:fraction:respectFlipped:hints:)
-func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op ICompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints unsafe.Pointer) {
+func (i_ Image) DrawInRectFromRectOperationFractionRespectFlippedHints(dstSpacePortionRect coregraphics.CGRect, srcSpacePortionRect coregraphics.CGRect, op NSCompositingOperation, requestedAlpha float64, respectContextIsFlipped bool, hints foundation.IDictionary) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("drawInRect:fromRect:operation:fraction:respectFlipped:hints:"), dstSpacePortionRect, srcSpacePortionRect, op, requestedAlpha, respectContextIsFlipped, hints)
 }
 
@@ -593,7 +528,7 @@ func (i_ Image) DrawRepresentationInRect(imageRep IImageRep, rect coregraphics.C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/hitTest(_:withDestinationRect:context:hints:flipped:)
-func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints unsafe.Pointer, flipped bool) bool {
+func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectDestSpace coregraphics.CGRect, imageRectDestSpace coregraphics.CGRect, context IGraphicsContext, hints foundation.IDictionary, flipped bool) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("hitTestRect:withImageDestinationRect:context:hints:flipped:"), testRectDestSpace, imageRectDestSpace, context, hints, flipped)
 	return rv
 }
@@ -606,15 +541,6 @@ func (i_ Image) HitTestRectWithImageDestinationRectContextHintsFlipped(testRectD
 func (i_ Image) LayerContentsForContentsScale(layerContentsScale float64) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("layerContentsForContentsScale:"), layerContentsScale)
 	return rv
-}
-
-
-// Prepares the image to receive drawing commands.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/lockFocus()
-func (i_ Image) LockFocus() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("lockFocus"))
 }
 
 
@@ -656,29 +582,11 @@ func (i_ Image) RemoveRepresentation(imageRep IImageRep) {
 }
 
 
-// Sets whether each image representation uses a separate offscreen window to cache its contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setCachedSeparately:
-func (i_ Image) SetCachedSeparately(flag bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCachedSeparately:"), flag)
-}
-
-
-// Sets whether the image retains its source image data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setDataRetained:
-func (i_ Image) SetDataRetained(flag bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDataRetained:"), flag)
-}
-
-
 // Registers the image object under the specified name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/setName(_:)
-func (i_ Image) SetName(string_ IImageName) bool {
+func (i_ Image) SetName(string_ ImageName) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("setName:"), string_)
 	return rv
 }
@@ -688,24 +596,15 @@ func (i_ Image) SetName(string_ IImageName) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/tiffRepresentation(using:factor:)
-func (i_ Image) TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data {
+func (i_ Image) TIFFRepresentationUsingCompressionFactor(comp NSTIFFCompression, factor float32) foundation.Data {
 	rv := objc.Send[foundation.Data](i_.ID, objc.Sel("TIFFRepresentationUsingCompression:factor:"), comp, factor)
 	return rv
 }
 
 
-// Removes the focus from the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/unlockFocus()
-func (i_ Image) UnlockFocus() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("unlockFocus"))
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/withLocale(_:)
-func (i_ Image) ImageWithLocale(locale foundation.ILocale) Image {
+func (i_ Image) ImageWithLocale(locale foundation.Locale) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageWithLocale:"), locale)
 	return rv
 }
@@ -715,7 +614,7 @@ func (i_ Image) ImageWithLocale(locale foundation.ILocale) Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/withSymbolConfiguration(_:)
-func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) Image {
+func (i_ Image) ImageWithSymbolConfiguration(configuration IImageSymbolConfiguration) IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("imageWithSymbolConfiguration:"), configuration)
 	return rv
 }
@@ -763,8 +662,8 @@ func (i_ Image) SetAlignmentRect(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/backgroundColor
-func (i_ Image) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](i_.ID, objc.Sel("backgroundColor"))
+func (i_ Image) BackgroundColor() IColor {
+	rv := objc.Send[Color](i_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -782,8 +681,8 @@ func (i_ Image) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cacheMode-swift.property
-func (i_ Image) CacheMode() ImageCacheMode {
-	rv := objc.Send[ImageCacheMode](i_.ID, objc.Sel("cacheMode"))
+func (i_ Image) CacheMode() NSImageCacheMode {
+	rv := objc.Send[NSImageCacheMode](i_.ID, objc.Sel("cacheMode"))
 	return rv
 }
 
@@ -792,7 +691,7 @@ func (i_ Image) CacheMode() ImageCacheMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/cacheMode-swift.property
-func (i_ Image) SetCacheMode(value ImageCacheMode) {
+func (i_ Image) SetCacheMode(value NSImageCacheMode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCacheMode:"), value)
 }
 
@@ -963,8 +862,8 @@ func (i_ Image) Representations() []ImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/resizingMode-swift.property
-func (i_ Image) ResizingMode() ImageResizingMode {
-	rv := objc.Send[ImageResizingMode](i_.ID, objc.Sel("resizingMode"))
+func (i_ Image) ResizingMode() NSImageResizingMode {
+	rv := objc.Send[NSImageResizingMode](i_.ID, objc.Sel("resizingMode"))
 	return rv
 }
 
@@ -973,7 +872,7 @@ func (i_ Image) ResizingMode() ImageResizingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/resizingMode-swift.property
-func (i_ Image) SetResizingMode(value ImageResizingMode) {
+func (i_ Image) SetResizingMode(value NSImageResizingMode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setResizingMode:"), value)
 }
 
@@ -1001,7 +900,7 @@ func (i_ Image) SetSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/symbolConfiguration-swift.property
-func (i_ Image) SymbolConfiguration() ImageSymbolConfiguration {
+func (i_ Image) SymbolConfiguration() IImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
 	return rv
 }

@@ -30,6 +30,8 @@ type _doRequestClass struct {
 // An interface definition for the [doRequest] class.
 type IdoRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

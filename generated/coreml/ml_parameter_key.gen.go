@@ -29,11 +29,11 @@ type _ParameterKeyClass struct {
 // An interface definition for the [ParameterKey] class.
 type IParameterKey interface {
 	IKey
-	Configuration() MLModelConfiguration
+	Configuration() IMLModelConfiguration
 	SetConfiguration(value IMLModelConfiguration)
-	ModelDescription() MLModelDescription
+	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
-	Parameters() MLParameterKey
+	Parameters() IMLParameterKey
 	SetParameters(value IMLParameterKey)
 }
 
@@ -96,8 +96,8 @@ func NewParameterKey() ParameterKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (p_ ParameterKey) Configuration() MLModelConfiguration {
-	rv := objc.Send[MLModelConfiguration](p_.ID, objc.Sel("configuration"))
+func (p_ ParameterKey) Configuration() IMLModelConfiguration {
+	rv := objc.Send[ModelConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -115,8 +115,8 @@ func (p_ ParameterKey) SetConfiguration(value IMLModelConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (p_ ParameterKey) ModelDescription() MLModelDescription {
-	rv := objc.Send[MLModelDescription](p_.ID, objc.Sel("modelDescription"))
+func (p_ ParameterKey) ModelDescription() IMLModelDescription {
+	rv := objc.Send[ModelDescription](p_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -134,8 +134,8 @@ func (p_ ParameterKey) SetModelDescription(value IMLModelDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-func (p_ ParameterKey) Parameters() MLParameterKey {
-	rv := objc.Send[MLParameterKey](p_.ID, objc.Sel("parameters"))
+func (p_ ParameterKey) Parameters() IMLParameterKey {
+	rv := objc.Send[ParameterKey](p_.ID, objc.Sel("parameters"))
 	return rv
 }
 

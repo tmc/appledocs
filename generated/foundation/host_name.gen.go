@@ -30,6 +30,8 @@ type _hostNameClass struct {
 // An interface definition for the [hostName] class.
 type IhostName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

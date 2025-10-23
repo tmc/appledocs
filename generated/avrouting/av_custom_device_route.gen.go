@@ -32,10 +32,12 @@ type _CustomDeviceRouteClass struct {
 type ICustomDeviceRoute interface {
 	objectivec.IObject
 	BluetoothIdentifier() foundation.UUID
+	SetBluetoothIdentifier(value foundation.UUID)
 	NetworkEndpoint() unsafe.Pointer
-	Reason() CustomRoutingEventReason
-	SetReason(value ICustomRoutingEventReason)
-	Route() AVCustomDeviceRoute
+	SetNetworkEndpoint(value unsafe.Pointer)
+	Reason() AVCustomRoutingEventReason
+	SetReason(value AVCustomRoutingEventReason)
+	Route() IAVCustomDeviceRoute
 	SetRoute(value IAVCustomDeviceRoute)
 }
 
@@ -95,9 +97,28 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 // An identifier to use to establish a connection to a Bluetooth device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/bluetoothIdentifier
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
 func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
+	return rv
+}
+
+
+// An identifier to use to establish a connection to a Bluetooth device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
+func (c_ CustomDeviceRoute) SetBluetoothIdentifier(value foundation.UUID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBluetoothIdentifier:"), value)
+}
+
+
+// A local or remote endpoint to connect to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/networkendpoint
+func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkEndpoint"))
 	return rv
 }
 
@@ -105,10 +126,9 @@ func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 // A local or remote endpoint to connect to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/networkEndpoint
-func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkEndpoint"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/networkendpoint
+func (c_ CustomDeviceRoute) SetNetworkEndpoint(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkEndpoint:"), value)
 }
 
 
@@ -116,7 +136,7 @@ func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
+func (c_ CustomDeviceRoute) Reason() AVCustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
@@ -126,7 +146,7 @@ func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
+func (c_ CustomDeviceRoute) SetReason(value AVCustomRoutingEventReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
 
@@ -135,8 +155,8 @@ func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-func (c_ CustomDeviceRoute) Route() AVCustomDeviceRoute {
-	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
+func (c_ CustomDeviceRoute) Route() IAVCustomDeviceRoute {
+	rv := objc.Send[CustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv
 }
 

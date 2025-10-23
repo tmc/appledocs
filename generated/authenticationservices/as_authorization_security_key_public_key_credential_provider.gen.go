@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,6 @@ type _AuthorizationSecurityKeyPublicKeyCredentialProviderClass struct {
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialProvider] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialProvider interface {
 	objectivec.IObject
-	CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName string, name string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest
 	RelyingPartyIdentifier() string
 	SetRelyingPartyIdentifier(value string)
 }
@@ -87,16 +85,6 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialProvider() AuthorizationSecur
 	return getAuthorizationSecurityKeyPublicKeyCredentialProviderClass().New()
 }
 
-
-
-// Creates an assertion request with a challenge, display name, and user ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/createCredentialRegistrationRequest(challenge:displayName:name:userID:)
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialProvider) CreateCredentialRegistrationRequestWithChallengeDisplayNameNameUserID(challenge foundation.IData, displayName string, name string, userID foundation.IData) AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
-	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest](a_.ID, objc.Sel("createCredentialRegistrationRequestWithChallenge:displayName:name:userID:"), challenge, objc.String(displayName), objc.String(name), userID)
-	return rv
-}
 
 
 // The domain name of the service to authorize against.

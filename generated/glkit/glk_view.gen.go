@@ -31,26 +31,25 @@ type _GLKViewClass struct {
 // An interface definition for the [GLKView] class.
 type IGLKView interface {
 	appkit.IView
-	BindDrawable()
-	DeleteDrawable()
-	Display()
+	// properties:
 	Context() unsafe.Pointer
 	SetContext(value unsafe.Pointer)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DrawableColorFormat() GLKViewDrawableColorFormat
-	SetDrawableColorFormat(value IGLKViewDrawableColorFormat)
+	SetDrawableColorFormat(value GLKViewDrawableColorFormat)
 	DrawableDepthFormat() GLKViewDrawableDepthFormat
-	SetDrawableDepthFormat(value IGLKViewDrawableDepthFormat)
+	SetDrawableDepthFormat(value GLKViewDrawableDepthFormat)
 	DrawableHeight() int
 	DrawableMultisample() GLKViewDrawableMultisample
-	SetDrawableMultisample(value IGLKViewDrawableMultisample)
+	SetDrawableMultisample(value GLKViewDrawableMultisample)
 	DrawableStencilFormat() GLKViewDrawableStencilFormat
-	SetDrawableStencilFormat(value IGLKViewDrawableStencilFormat)
+	SetDrawableStencilFormat(value GLKViewDrawableStencilFormat)
 	DrawableWidth() int
 	EnableSetNeedsDisplay() bool
 	SetEnableSetNeedsDisplay(value bool)
 	Snapshot() appkit.Image
+	// methods:
 }
 
 // A default implementation for views that draw their content using OpenGL ES.
@@ -121,33 +120,6 @@ func NewGLKViewWithFrameContext(frame coregraphics.CGRect, context unsafe.Pointe
 
 
 
-// Binds the underlying framebuffer object to OpenGL ES.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/bindDrawable()
-func (g_ GLKView) BindDrawable() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("bindDrawable"))
-}
-
-
-// Deletes the drawable object associated with the view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/deleteDrawable()
-func (g_ GLKView) DeleteDrawable() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("deleteDrawable"))
-}
-
-
-// Redraws the view’s contents immediately.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/display()
-func (g_ GLKView) Display() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("display"))
-}
-
-
 // The OpenGL ES context used when drawing the view’s contents.
 //
 // [Full Topic]
@@ -200,7 +172,7 @@ func (g_ GLKView) DrawableColorFormat() GLKViewDrawableColorFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-func (g_ GLKView) SetDrawableColorFormat(value IGLKViewDrawableColorFormat) {
+func (g_ GLKView) SetDrawableColorFormat(value GLKViewDrawableColorFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableColorFormat:"), value)
 }
 
@@ -219,7 +191,7 @@ func (g_ GLKView) DrawableDepthFormat() GLKViewDrawableDepthFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-func (g_ GLKView) SetDrawableDepthFormat(value IGLKViewDrawableDepthFormat) {
+func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableDepthFormat:"), value)
 }
 
@@ -248,7 +220,7 @@ func (g_ GLKView) DrawableMultisample() GLKViewDrawableMultisample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-func (g_ GLKView) SetDrawableMultisample(value IGLKViewDrawableMultisample) {
+func (g_ GLKView) SetDrawableMultisample(value GLKViewDrawableMultisample) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableMultisample:"), value)
 }
 
@@ -267,7 +239,7 @@ func (g_ GLKView) DrawableStencilFormat() GLKViewDrawableStencilFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-func (g_ GLKView) SetDrawableStencilFormat(value IGLKViewDrawableStencilFormat) {
+func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableStencilFormat:"), value)
 }
 

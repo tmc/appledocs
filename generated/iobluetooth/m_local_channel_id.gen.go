@@ -30,6 +30,8 @@ type _mLocalChannelIDClass struct {
 // An interface definition for the [mLocalChannelID] class.
 type ImLocalChannelID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

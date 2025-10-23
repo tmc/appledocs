@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,17 +31,18 @@ type _TKSmartCardSlotClass struct {
 // An interface definition for the [TKSmartCardSlot] class.
 type ITKSmartCardSlot interface {
 	objectivec.IObject
-	MakeSmartCard() TKSmartCard
-	Name() string
-	State() TKSmartCardSlotState
+	MaxOutputLength() int
 	Atr() unsafe.Pointer
 	SetAtr(value unsafe.Pointer)
 	MaxInputLength() int
 	SetMaxInputLength(value int)
-	MaxOutputLength() int
-	SetMaxOutputLength(value int)
+	Name() string
+	SetName(value string)
+	State() coreml.State
+	SetState(value coreml.State)
 	SlotNames() string
 	SetSlotNames(value string)
+	MakeSmartCard() ITKSmartCard
 }
 
 // A single smart card reader slot in the system.
@@ -100,28 +102,18 @@ func NewTKSmartCardSlot() TKSmartCardSlot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/makeSmartCard()
-func (t_ TKSmartCardSlot) MakeSmartCard() TKSmartCard {
+func (t_ TKSmartCardSlot) MakeSmartCard() ITKSmartCard {
 	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("makeSmartCard"))
 	return rv
 }
 
 
-// The name of the Smart Card reader slot.
+// The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name
-func (t_ TKSmartCardSlot) Name() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The current state of the Smart Card reader slot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/state-swift.property
-func (t_ TKSmartCardSlot) State() TKSmartCardSlotState {
-	rv := objc.Send[TKSmartCardSlotState](t_.ID, objc.Sel("state"))
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/maxOutputLength
+func (t_ TKSmartCardSlot) MaxOutputLength() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maxOutputLength"))
 	return rv
 }
 
@@ -164,22 +156,41 @@ func (t_ TKSmartCardSlot) SetMaxInputLength(value int) {
 }
 
 
-// The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
+// The name of the Smart Card reader slot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxoutputlength
-func (t_ TKSmartCardSlot) MaxOutputLength() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("maxOutputLength"))
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
+func (t_ TKSmartCardSlot) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
+// The name of the Smart Card reader slot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxoutputlength
-func (t_ TKSmartCardSlot) SetMaxOutputLength(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxOutputLength:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
+func (t_ TKSmartCardSlot) SetName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The current state of the Smart Card reader slot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
+func (t_ TKSmartCardSlot) State() coreml.State {
+	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// The current state of the Smart Card reader slot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
+func (t_ TKSmartCardSlot) SetState(value coreml.State) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
 }
 
 

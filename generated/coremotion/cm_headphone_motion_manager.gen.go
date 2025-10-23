@@ -31,14 +31,9 @@ type _HeadphoneMotionManagerClass struct {
 // An interface definition for the [HeadphoneMotionManager] class.
 type IHeadphoneMotionManager interface {
 	objectivec.IObject
-	StartConnectionStatusUpdates()
-	StartDeviceMotionUpdates()
-	StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
-	StopConnectionStatusUpdates()
-	StopDeviceMotionUpdates()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DeviceMotion() CMDeviceMotion
+	DeviceMotion() ICMDeviceMotion
 	ConnectionStatusActive() bool
 	DeviceMotionActive() bool
 	DeviceMotionAvailable() bool
@@ -48,6 +43,11 @@ type IHeadphoneMotionManager interface {
 	SetIsDeviceMotionActive(value bool)
 	IsDeviceMotionAvailable() bool
 	SetIsDeviceMotionAvailable(value bool)
+	StartConnectionStatusUpdates()
+	StartDeviceMotionUpdates()
+	StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	StopConnectionStatusUpdates()
+	StopDeviceMotionUpdates()
 }
 
 // An object that starts and manages headphone motion services.
@@ -107,8 +107,8 @@ func NewHeadphoneMotionManager() HeadphoneMotionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/authorizationStatus()
-func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
+func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (h_ HeadphoneMotionManager) StartDeviceMotionUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/startDeviceMotionUpdates(to:withHandler:)
-func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
+func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startDeviceMotionUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -177,8 +177,8 @@ func (h_ HeadphoneMotionManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/deviceMotion
-func (h_ HeadphoneMotionManager) DeviceMotion() CMDeviceMotion {
-	rv := objc.Send[CMDeviceMotion](h_.ID, objc.Sel("deviceMotion"))
+func (h_ HeadphoneMotionManager) DeviceMotion() ICMDeviceMotion {
+	rv := objc.Send[DeviceMotion](h_.ID, objc.Sel("deviceMotion"))
 	return rv
 }
 

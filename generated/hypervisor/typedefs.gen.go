@@ -13,6 +13,16 @@ type hv_allocate_flags_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_capability_t
 // hv_capability_t has base type: uint64_t
 type hv_capability_t uintptr
+// hv_gic_config_t - An alias for this value type’s equivalent Hypervisor generic interrupt controller (GIC) configuration’s reference type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_t
+// hv_gic_config_t has base type: NSObject<OS_hv_gic_config> *
+type hv_gic_config_t uintptr
+// hv_gic_state_t - An alias for this value type’s equivalent Hypervisor generic interrupt controller (GIC) state’s reference type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_state_t
+// hv_gic_state_t has base type: NSObject<OS_hv_gic_state> *
+type hv_gic_state_t uintptr
 // hv_gpaddr_t - The type of a guest physical address (GPA).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gpaddr_t

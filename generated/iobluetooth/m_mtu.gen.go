@@ -30,6 +30,8 @@ type _mMTUClass struct {
 // An interface definition for the [mMTU] class.
 type ImMTU interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

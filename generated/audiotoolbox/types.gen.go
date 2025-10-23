@@ -28,10 +28,3 @@ type MIDIEndpointRef unsafe.Pointer
 
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type AudioObjectID unsafe.Pointer
-
-
-

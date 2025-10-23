@@ -30,6 +30,8 @@ type _textureOriginClass struct {
 // An interface definition for the [textureOrigin] class.
 type ItextureOrigin interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

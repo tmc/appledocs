@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +30,16 @@ type _PersistentContainerClass struct {
 // An interface definition for the [PersistentContainer] class.
 type IPersistentContainer interface {
 	objectivec.IObject
-	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
-	NewBackgroundContext() ManagedObjectContext
-	PerformBackgroundTask(block unsafe.Pointer)
-	ManagedObjectModel() NSManagedObjectModel
+	ManagedObjectModel() IManagedObjectModel
+	PersistentStoreCoordinator() IPersistentStoreCoordinator
+	ViewContext() IManagedObjectContext
 	Name() string
-	PersistentStoreCoordinator() NSPersistentStoreCoordinator
-	PersistentStoreDescriptions() []PersistentStoreDescription
-	SetPersistentStoreDescriptions(value []PersistentStoreDescription)
-	ViewContext() NSManagedObjectContext
+	SetName(value string)
+	PersistentStoreDescriptions() IPersistentStoreDescription
+	SetPersistentStoreDescriptions(value IPersistentStoreDescription)
+	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
+	NewBackgroundContext() IManagedObjectContext
+	PerformBackgroundTask(block unsafe.Pointer)
 }
 
 // A container that encapsulates the Core Data stack in your app.
@@ -107,48 +107,6 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 }
 
 
-// Create a container with the specified name and managed object model.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:managedObjectModel:)
-func NewPersistentContainerWithNameManagedObjectModel(name string, model IManagedObjectModel) PersistentContainer {
-	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), objc.String(name), model)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the location of the directory that contains the persistent stores.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/defaultDirectoryURL()
-func (pc _PersistentContainerClass) DefaultDirectoryURL() foundation.URL {
-	rv := objc.Send[foundation.URL](objc.ID(pc.class), objc.Sel("defaultDirectoryURL"))
-	return rv
-}
-
-
-// Initializes a new persistent container using the provided name for the container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:
-func (pc _PersistentContainerClass) PersistentContainerWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), objc.String(name))
-	return rv
-}
-
-
-// Initializes a new persistent container using the provided name and managed object model.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:managedObjectModel:
-func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name string, model IManagedObjectModel) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), objc.String(name), model)
-	return rv
-}
-
 
 // Loads the persistent stores.
 //
@@ -163,7 +121,7 @@ func (p_ PersistentContainer) LoadPersistentStoresWithCompletionHandler(block un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/newBackgroundContext()
-func (p_ PersistentContainer) NewBackgroundContext() ManagedObjectContext {
+func (p_ PersistentContainer) NewBackgroundContext() IManagedObjectContext {
 	rv := objc.Send[ManagedObjectContext](p_.ID, objc.Sel("newBackgroundContext"))
 	return rv
 }
@@ -182,18 +140,8 @@ func (p_ PersistentContainer) PerformBackgroundTask(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/managedObjectModel
-func (p_ PersistentContainer) ManagedObjectModel() NSManagedObjectModel {
-	rv := objc.Send[NSManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
-	return rv
-}
-
-
-// The container’s name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/name
-func (p_ PersistentContainer) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PersistentContainer) ManagedObjectModel() IManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
 
@@ -202,38 +150,9 @@ func (p_ PersistentContainer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreCoordinator
-func (p_ PersistentContainer) PersistentStoreCoordinator() NSPersistentStoreCoordinator {
-	rv := objc.Send[NSPersistentStoreCoordinator](p_.ID, objc.Sel("persistentStoreCoordinator"))
+func (p_ PersistentContainer) PersistentStoreCoordinator() IPersistentStoreCoordinator {
+	rv := objc.Send[PersistentStoreCoordinator](p_.ID, objc.Sel("persistentStoreCoordinator"))
 	return rv
-}
-
-
-// The descriptions of the container’s persistent stores.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreDescriptions
-func (p_ PersistentContainer) PersistentStoreDescriptions() []PersistentStoreDescription {
-	rv := objc.Send[[]PersistentStoreDescription](p_.ID, objc.Sel("persistentStoreDescriptions"))
-	return rv
-}
-
-
-// The descriptions of the container’s persistent stores.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreDescriptions
-func (p_ PersistentContainer) SetPersistentStoreDescriptions(value []PersistentStoreDescription) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreDescriptions:"), nsArray)
 }
 
 
@@ -241,9 +160,47 @@ func (p_ PersistentContainer) SetPersistentStoreDescriptions(value []PersistentS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext
-func (p_ PersistentContainer) ViewContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](p_.ID, objc.Sel("viewContext"))
+func (p_ PersistentContainer) ViewContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](p_.ID, objc.Sel("viewContext"))
 	return rv
+}
+
+
+// The container’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
+func (p_ PersistentContainer) Name() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The container’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
+func (p_ PersistentContainer) SetName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The descriptions of the container’s persistent stores.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/persistentstoredescriptions
+func (p_ PersistentContainer) PersistentStoreDescriptions() IPersistentStoreDescription {
+	rv := objc.Send[PersistentStoreDescription](p_.ID, objc.Sel("persistentStoreDescriptions"))
+	return rv
+}
+
+
+// The descriptions of the container’s persistent stores.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/persistentstoredescriptions
+func (p_ PersistentContainer) SetPersistentStoreDescriptions(value IPersistentStoreDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreDescriptions:"), value)
 }
 
 

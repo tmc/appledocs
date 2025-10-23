@@ -29,14 +29,12 @@ type _SharingServicePickerTouchBarItemClass struct {
 // An interface definition for the [SharingServicePickerTouchBarItem] class.
 type ISharingServicePickerTouchBarItem interface {
 	ITouchBarItem
-	ActivityItemsConfiguration() objc.ID
-	SetActivityItemsConfiguration(value objc.ID)
-	Enabled() bool
-	SetEnabled(value bool)
-	ButtonImage() Image
-	SetButtonImage(value IImage)
 	ButtonTitle() string
 	SetButtonTitle(value string)
+	ActivityItemsConfiguration() unsafe.Pointer
+	SetActivityItemsConfiguration(value unsafe.Pointer)
+	ButtonImage() IImage
+	SetButtonImage(value IImage)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	IsEnabled() bool
@@ -96,37 +94,37 @@ func NewSharingServicePickerTouchBarItem() SharingServicePickerTouchBarItem {
 
 
 
+// The text displayed in the sharing service picker item button.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
-func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/buttonTitle
+func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("buttonTitle"))
+	return rv
+}
+
+
+// The text displayed in the sharing service picker item button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/buttonTitle
+func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), objc.String(value))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/activityitemsconfiguration
+func (s_ SharingServicePickerTouchBarItem) ActivityItemsConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/activityItemsConfiguration
-func (s_ SharingServicePickerTouchBarItem) SetActivityItemsConfiguration(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/activityitemsconfiguration
+func (s_ SharingServicePickerTouchBarItem) SetActivityItemsConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
-}
-
-
-// A Boolean value that specifies whether the sharing service picker item is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
-func (s_ SharingServicePickerTouchBarItem) Enabled() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the sharing service picker item is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerTouchBarItem/isEnabled
-func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
 
 
@@ -134,7 +132,7 @@ func (s_ SharingServicePickerTouchBarItem) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
-func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
+func (s_ SharingServicePickerTouchBarItem) ButtonImage() IImage {
 	rv := objc.Send[Image](s_.ID, objc.Sel("buttonImage"))
 	return rv
 }
@@ -146,25 +144,6 @@ func (s_ SharingServicePickerTouchBarItem) ButtonImage() Image {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttonimage
 func (s_ SharingServicePickerTouchBarItem) SetButtonImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonImage:"), value)
-}
-
-
-// The text displayed in the sharing service picker item button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
-func (s_ SharingServicePickerTouchBarItem) ButtonTitle() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("buttonTitle"))
-	return rv
-}
-
-
-// The text displayed in the sharing service picker item button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem/buttontitle
-func (s_ SharingServicePickerTouchBarItem) SetButtonTitle(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setButtonTitle:"), objc.String(value))
 }
 
 

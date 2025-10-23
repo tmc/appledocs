@@ -32,7 +32,7 @@ type _PedometerEventClass struct {
 type IPedometerEvent interface {
 	objectivec.IObject
 	Date() foundation.NSDate
-	Type() PedometerEventType
+	Type() CMPedometerEventType
 }
 
 // A change in the user’s pedestrian activity.
@@ -100,8 +100,8 @@ func (p_ PedometerEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/type
-func (p_ PedometerEvent) Type() PedometerEventType {
-	rv := objc.Send[PedometerEventType](p_.ID, objc.Sel("type"))
+func (p_ PedometerEvent) Type() CMPedometerEventType {
+	rv := objc.Send[CMPedometerEventType](p_.ID, objc.Sel("type"))
 	return rv
 }
 

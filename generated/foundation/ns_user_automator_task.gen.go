@@ -30,9 +30,11 @@ type _UserAutomatorTaskClass struct {
 // An interface definition for the [UserAutomatorTask] class.
 type IUserAutomatorTask interface {
 	IUserScriptTask
-	Variables() IDictionary
-	SetVariables(value IDictionary)
-	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer)
+	// properties:
+	Variables() IDictionary /* already interface */
+	SetVariables(value IDictionary /* already interface */)
+	// methods:
+	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* foo */)
 }
 
 // An object that executes Automator workflows.
@@ -94,7 +96,7 @@ func NewUserAutomatorTask() UserAutomatorTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
-func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler unsafe.Pointer) {
+func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
 }
 
@@ -103,7 +105,7 @@ func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-func (u_ UserAutomatorTask) Variables() IDictionary {
+func (u_ UserAutomatorTask) Variables() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](u_.ID, objc.Sel("variables"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (u_ UserAutomatorTask) Variables() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-func (u_ UserAutomatorTask) SetVariables(value IDictionary) {
+func (u_ UserAutomatorTask) SetVariables(value IDictionary /* already interface */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), value)
 }
 

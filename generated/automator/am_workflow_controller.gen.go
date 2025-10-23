@@ -31,24 +31,24 @@ type _AMWorkflowControllerClass struct {
 // An interface definition for the [AMWorkflowController] class.
 type IAMWorkflowController interface {
 	appkit.IController
-	Pause(sender objectivec.IObject)
-	Reset(sender objectivec.IObject)
-	Run(sender objectivec.IObject)
-	Step(sender objectivec.IObject)
-	Stop(sender objectivec.IObject)
 	CanRun() bool
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Paused() bool
 	Running() bool
-	Workflow() AMWorkflow
+	Workflow() IAMWorkflow
 	SetWorkflow(value IAMWorkflow)
-	WorkflowView() AMWorkflowView
+	WorkflowView() IAMWorkflowView
 	SetWorkflowView(value IAMWorkflowView)
 	IsPaused() bool
 	SetIsPaused(value bool)
 	IsRunning() bool
 	SetIsRunning(value bool)
+	Pause(sender objectivec.IObject)
+	Reset(sender objectivec.IObject)
+	Run(sender objectivec.IObject)
+	Step(sender objectivec.IObject)
+	Stop(sender objectivec.IObject)
 }
 
 // An object that lets you manage an Automator workflow in your app.
@@ -204,7 +204,7 @@ func (a_ AMWorkflowController) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflow
-func (a_ AMWorkflowController) Workflow() AMWorkflow {
+func (a_ AMWorkflowController) Workflow() IAMWorkflow {
 	rv := objc.Send[AMWorkflow](a_.ID, objc.Sel("workflow"))
 	return rv
 }
@@ -223,7 +223,7 @@ func (a_ AMWorkflowController) SetWorkflow(value IAMWorkflow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
-func (a_ AMWorkflowController) WorkflowView() AMWorkflowView {
+func (a_ AMWorkflowController) WorkflowView() IAMWorkflowView {
 	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
 }

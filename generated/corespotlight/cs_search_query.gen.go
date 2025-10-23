@@ -30,8 +30,6 @@ type _CSSearchQueryClass struct {
 // An interface definition for the [CSSearchQuery] class.
 type ICSSearchQuery interface {
 	objectivec.IObject
-	Cancel()
-	Start()
 	CompletionHandler() unsafe.Pointer
 	SetCompletionHandler(value unsafe.Pointer)
 	FoundItemCount() uint
@@ -46,6 +44,8 @@ type ICSSearchQuery interface {
 	Results() unsafe.Pointer
 	SetResults(value unsafe.Pointer)
 	CSSearchQueryString() string
+	Cancel()
+	Start()
 }
 
 // A type you use to programmatically search the indexed app content.

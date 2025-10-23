@@ -30,8 +30,6 @@ type _GCRacingWheelClass struct {
 // An interface definition for the [GCRacingWheel] class.
 type IGCRacingWheel interface {
 	objectivec.IObject
-	Capture() GCRacingWheel
-	RelinquishDevice()
 	Acquired() bool
 	Snapshot() bool
 	IsAcquired() bool
@@ -40,6 +38,7 @@ type IGCRacingWheel interface {
 	SetIsSnapshot(value bool)
 	WheelInput() unsafe.Pointer
 	SetWheelInput(value unsafe.Pointer)
+	Capture() IGCRacingWheel
 }
 
 // An object that represents a physical racing wheel controller connected to a device.
@@ -100,15 +99,6 @@ func NewGCRacingWheel() GCRacingWheel {
 func (g_ GCRacingWheel) Capture() GCRacingWheel {
 	rv := objc.Send[GCRacingWheel](g_.ID, objc.Sel("capture"))
 	return rv
-}
-
-
-// Stops receiving events from the racing wheel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/relinquishDevice()
-func (g_ GCRacingWheel) RelinquishDevice() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("relinquishDevice"))
 }
 
 

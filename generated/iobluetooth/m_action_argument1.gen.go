@@ -30,6 +30,8 @@ type _mActionArgument1Class struct {
 // An interface definition for the [mActionArgument1] class.
 type ImActionArgument1 interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

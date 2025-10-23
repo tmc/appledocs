@@ -32,6 +32,7 @@ type _CKLocationSortDescriptorClass struct {
 type ICKLocationSortDescriptor interface {
 	foundation.ISortDescriptor
 	RelativeLocation() corelocation.Location
+	SetRelativeLocation(value corelocation.Location)
 }
 
 // An object for sorting records that contain location data.
@@ -89,38 +90,23 @@ func NewCKLocationSortDescriptor() CKLocationSortDescriptor {
 
 
 
-// Creates a location sort descriptor from a serialized instance.
+// The reference location for sorting records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(coder:)
-func NewCKLocationSortDescriptorWithCoder(aDecoder foundation.ICoder) CKLocationSortDescriptor {
-	instance := getCKLocationSortDescriptorClass().Alloc()
-	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor/relativelocation
+func (c_ CKLocationSortDescriptor) RelativeLocation() corelocation.Location {
+	rv := objc.Send[corelocation.Location](c_.ID, objc.Sel("relativeLocation"))
 	return rv
 }
-
-
-// Creates a location sort descriptor using the specified key and relative location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/init(key:relativeLocation:)
-func NewCKLocationSortDescriptorWithKeyRelativeLocation(key string, relativeLocation corelocation.ILocation) CKLocationSortDescriptor {
-	instance := getCKLocationSortDescriptorClass().Alloc()
-	rv := objc.Send[CKLocationSortDescriptor](instance.ID, objc.Sel("initWithKey:relativeLocation:"), objc.String(key), relativeLocation)
-	rv.Autorelease()
-	return rv
-}
-
 
 
 // The reference location for sorting records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKLocationSortDescriptor/relativeLocation
-func (c_ CKLocationSortDescriptor) RelativeLocation() corelocation.Location {
-	rv := objc.Send[corelocation.Location](c_.ID, objc.Sel("relativeLocation"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor/relativelocation
+func (c_ CKLocationSortDescriptor) SetRelativeLocation(value corelocation.Location) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRelativeLocation:"), value)
 }
+
 
 

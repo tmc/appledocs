@@ -31,14 +31,18 @@ type _VZGraphicsDeviceClass struct {
 type IVZGraphicsDevice interface {
 	objectivec.IObject
 	Displays() []VZGraphicsDisplay
-	GraphicsDevices() VZGraphicsDevice
+	GraphicsDevices() IVZGraphicsDevice
 	SetGraphicsDevices(value IVZGraphicsDevice)
 }
 
 // A class that represents a graphics device in a VM.
 //
 // You don’t instantiate a directly. Graphics devices are first configured on the through a subclass of . When the framework creates a from the configuration, the graphics devices are available through the property. The real type of corresponds to the type used by the configuration. For example, a leads to a device of type and a leads to a device of type .
+
+
+// A class that represents a graphics device in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDevice
 type VZGraphicsDevice struct {
 	objectivec.Object
@@ -83,27 +87,30 @@ func NewVZGraphicsDevice() VZGraphicsDevice {
 }
 
 
+
 // The list of graphics displays configured for this graphics device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDevice/displays
 func (v_ VZGraphicsDevice) Displays() []VZGraphicsDisplay {
 	rv := objc.Send[[]VZGraphicsDisplay](v_.ID, objc.Sel("displays"))
 	return rv
 }
 
+
 // The list of configured graphics devices on the virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/graphicsdevices
-func (v_ VZGraphicsDevice) GraphicsDevices() VZGraphicsDevice {
+func (v_ VZGraphicsDevice) GraphicsDevices() IVZGraphicsDevice {
 	rv := objc.Send[VZGraphicsDevice](v_.ID, objc.Sel("graphicsDevices"))
 	return rv
 }
 
 
-// SetGraphicsDevices sets the value of the graphicsDevices property.
 // The list of configured graphics devices on the virtual machine.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/graphicsdevices
 func (v_ VZGraphicsDevice) SetGraphicsDevices(value IVZGraphicsDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), value)

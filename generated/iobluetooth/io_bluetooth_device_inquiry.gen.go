@@ -31,19 +31,21 @@ type _BluetoothDeviceInquiryClass struct {
 // An interface definition for the [BluetoothDeviceInquiry] class.
 type IBluetoothDeviceInquiry interface {
 	objectivec.IObject
-	ClearFoundDevices()
-	FoundDevices() foundation.Array
-	SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor IBluetoothServiceClassMajor, inMajorDeviceClass IBluetoothDeviceClassMajor, inMinorDeviceClass IBluetoothDeviceClassMinor)
-	Start() unsafe.Pointer
-	Stop() unsafe.Pointer
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	InquiryLength() unsafe.Pointer
 	SetInquiryLength(value unsafe.Pointer)
 	SearchType() BluetoothDeviceSearchTypes
-	SetSearchType(value IBluetoothDeviceSearchTypes)
+	SetSearchType(value BluetoothDeviceSearchTypes)
 	UpdateNewDeviceNames() bool
 	SetUpdateNewDeviceNames(value bool)
+	// methods:
+	ClearFoundDevices()
+	FoundDevices() foundation.Array
+	SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor BluetoothServiceClassMajor, inMajorDeviceClass BluetoothDeviceClassMajor, inMinorDeviceClass BluetoothDeviceClassMinor)
+	Start() unsafe.Pointer
+	Stop() unsafe.Pointer
 }
 
 // Object representing a device inquiry that finds Bluetooth devices in-range of the computer, and (optionally) retrieves name information for them.
@@ -145,7 +147,7 @@ func (b_ BluetoothDeviceInquiry) FoundDevices() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/setSearchCriteria(_:majorDeviceClass:minorDeviceClass:)
-func (b_ BluetoothDeviceInquiry) SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor IBluetoothServiceClassMajor, inMajorDeviceClass IBluetoothDeviceClassMajor, inMinorDeviceClass IBluetoothDeviceClassMinor) {
+func (b_ BluetoothDeviceInquiry) SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor BluetoothServiceClassMajor, inMajorDeviceClass BluetoothDeviceClassMajor, inMinorDeviceClass BluetoothDeviceClassMinor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchCriteria:majorDeviceClass:minorDeviceClass:"), inServiceClassMajor, inMajorDeviceClass, inMinorDeviceClass)
 }
 
@@ -218,7 +220,7 @@ func (b_ BluetoothDeviceInquiry) SearchType() BluetoothDeviceSearchTypes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/searchType
-func (b_ BluetoothDeviceInquiry) SetSearchType(value IBluetoothDeviceSearchTypes) {
+func (b_ BluetoothDeviceInquiry) SetSearchType(value BluetoothDeviceSearchTypes) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchType:"), value)
 }
 

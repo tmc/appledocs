@@ -35,7 +35,11 @@ type IVZPlatformConfiguration interface {
 // The base class for a platform configuration.
 //
 // Don’t instantiate directly , use one of its subclasses, such as or instead.
+
+
+// The base class for a platform configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZPlatformConfiguration
 type VZPlatformConfiguration struct {
 	objectivec.Object

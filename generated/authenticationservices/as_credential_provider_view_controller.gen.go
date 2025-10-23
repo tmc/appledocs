@@ -31,14 +31,13 @@ type _CredentialProviderViewControllerClass struct {
 // An interface definition for the [CredentialProviderViewController] class.
 type ICredentialProviderViewController interface {
 	appkit.IViewController
-	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer)
-	PrepareCredentialListForServiceIdentifiers(serviceIdentifiers []unsafe.IPointer)
-	PrepareInterfaceForUserChoosingTextToInsert()
-	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
-	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
 	ExtensionContext() unsafe.Pointer
 	SetExtensionContext(value unsafe.Pointer)
 	ASExtensionErrorDomain() string
+	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer)
+	PrepareInterfaceForUserChoosingTextToInsert()
+	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
+	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
 }
 
 // A view controller that a credential manager app uses to extend AutoFill.
@@ -102,15 +101,6 @@ func NewCredentialProviderViewController() CredentialProviderViewController {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/performWithoutUserInteractionIfPossible(passkeyRegistration:)
 func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performPasskeyRegistrationWithoutUserInteractionIfPossible:"), registrationRequest)
-}
-
-
-// Prepares the interface to display a list of credentials from which the user can select.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareCredentialList(for:)
-func (c_ CredentialProviderViewController) PrepareCredentialListForServiceIdentifiers(serviceIdentifiers []unsafe.IPointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("prepareCredentialListForServiceIdentifiers:"), serviceIdentifiers)
 }
 
 

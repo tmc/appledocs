@@ -30,16 +30,17 @@ type _GCControllerTouchpadClass struct {
 type IGCControllerTouchpad interface {
 	IGCControllerElement
 	Button() GCControllerButtonInput
-	TouchMoved() unsafe.Pointer
-	SetTouchMoved(value unsafe.Pointer)
+	SetButton(value GCControllerButtonInput)
 	ReportsAbsoluteTouchSurfaceValues() bool
 	SetReportsAbsoluteTouchSurfaceValues(value bool)
 	TouchDown() unsafe.Pointer
 	SetTouchDown(value unsafe.Pointer)
+	TouchMoved() unsafe.Pointer
+	SetTouchMoved(value unsafe.Pointer)
 	TouchState() unsafe.Pointer
 	SetTouchState(value unsafe.Pointer)
 	TouchSurface() GCControllerDirectionPad
-	SetTouchSurface(value IGCControllerDirectionPad)
+	SetTouchSurface(value GCControllerDirectionPad)
 	TouchUp() unsafe.Pointer
 	SetTouchUp(value unsafe.Pointer)
 }
@@ -102,29 +103,19 @@ func NewGCControllerTouchpad() GCControllerTouchpad {
 // The element that represents the button component on the touchpad.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/button
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/button
 func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("button"))
 	return rv
 }
 
 
-// The block that the element calls when the user continues touching the touchpad, not when the user begins or ends touching the touchpad.
+// The element that represents the button component on the touchpad.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/touchMoved
-func (g_ GCControllerTouchpad) TouchMoved() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchMoved"))
-	return rv
-}
-
-
-// The block that the element calls when the user continues touching the touchpad, not when the user begins or ends touching the touchpad.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/touchMoved
-func (g_ GCControllerTouchpad) SetTouchMoved(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchMoved:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/button
+func (g_ GCControllerTouchpad) SetButton(value GCControllerButtonInput) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setButton:"), value)
 }
 
 
@@ -166,6 +157,25 @@ func (g_ GCControllerTouchpad) SetTouchDown(value unsafe.Pointer) {
 }
 
 
+// The block that the element calls when the user continues touching the touchpad, not when the user begins or ends touching the touchpad.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchmoved
+func (g_ GCControllerTouchpad) TouchMoved() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchMoved"))
+	return rv
+}
+
+
+// The block that the element calls when the user continues touching the touchpad, not when the user begins or ends touching the touchpad.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchmoved
+func (g_ GCControllerTouchpad) SetTouchMoved(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchMoved:"), value)
+}
+
+
 // The state of the user’s touch on the surface of the touchpad.
 //
 // [Full Topic]
@@ -199,7 +209,7 @@ func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-func (g_ GCControllerTouchpad) SetTouchSurface(value IGCControllerDirectionPad) {
+func (g_ GCControllerTouchpad) SetTouchSurface(value GCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchSurface:"), value)
 }
 

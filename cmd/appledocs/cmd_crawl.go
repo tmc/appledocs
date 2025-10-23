@@ -303,8 +303,8 @@ func isHTMLFile(path string) bool {
 	// Check for HTML markers
 	content := string(buf[:n])
 	return contains(content, "<!DOCTYPE html") ||
-	       contains(content, "<html") ||
-	       contains(content, "<HTML")
+		contains(content, "<html") ||
+		contains(content, "<HTML")
 }
 
 func contains(s, substr string) bool {

@@ -8,8 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/iobluetooth"
 )
 
 // The class instance for the [BluetoothDeviceSelectorController] class.
@@ -32,11 +30,8 @@ type _BluetoothDeviceSelectorControllerClass struct {
 // An interface definition for the [BluetoothDeviceSelectorController] class.
 type IBluetoothDeviceSelectorController interface {
 	appkit.IWindowController
-	AddAllowedUUID(allowedUUID iobluetooth.IBluetoothSDPUUID)
-	GetOptions() BluetoothServiceBrowserControllerOptions
-	GetPrompt() foundation.String
-	GetSearchAttributes() unsafe.Pointer
-	SetSearchAttributes(searchAttributes unsafe.Pointer)
+	// properties:
+	// methods:
 	SetTitle(windowTitle string)
 }
 
@@ -93,54 +88,6 @@ func NewBluetoothDeviceSelectorController() BluetoothDeviceSelectorController {
 	return getBluetoothDeviceSelectorControllerClass().New()
 }
 
-
-
-// Adds a UUID to the list of UUIDs that are used to validate the user’s selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/addAllowedUUID(_:)
-func (b_ BluetoothDeviceSelectorController) AddAllowedUUID(allowedUUID iobluetooth.IBluetoothSDPUUID) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("addAllowedUUID:"), allowedUUID)
-}
-
-
-// Returns the option bits that control the panel’s behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getOptions()
-func (b_ BluetoothDeviceSelectorController) GetOptions() BluetoothServiceBrowserControllerOptions {
-	rv := objc.Send[BluetoothServiceBrowserControllerOptions](b_.ID, objc.Sel("getOptions"))
-	return rv
-}
-
-
-// Returns the title of the default/select button in the device selector panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getPrompt()
-func (b_ BluetoothDeviceSelectorController) GetPrompt() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getPrompt"))
-	return rv
-}
-
-
-// Returns the search attributes that control the panel’s search/inquiry behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/getSearchAttributes()
-func (b_ BluetoothDeviceSelectorController) GetSearchAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getSearchAttributes"))
-	return rv
-}
-
-
-// Sets the search attributes that control the panel’s search/inquiry behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setSearchAttributes(_:)
-func (b_ BluetoothDeviceSelectorController) SetSearchAttributes(searchAttributes unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchAttributes:"), searchAttributes)
-}
 
 
 // Sets the title of the panel when not run as a sheet.

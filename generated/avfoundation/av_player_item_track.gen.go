@@ -30,15 +30,17 @@ type _PlayerItemTrackClass struct {
 // An interface definition for the [PlayerItemTrack] class.
 type IPlayerItemTrack interface {
 	objectivec.IObject
+	// properties:
 	AssetTrack() IAVAssetTrack
 	SetAssetTrack(value IAVAssetTrack)
-	CurrentVideoFrameRate() float32
-	SetCurrentVideoFrameRate(value float32)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	VideoFieldMode() string
-	SetVideoFieldMode(value string)
-	AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string
+	CurrentVideoFrameRate() float32 /* primitive/slice/pointer */
+	SetCurrentVideoFrameRate(value float32 /* primitive/slice/pointer */)
+	IsEnabled() bool /* primitive/slice/pointer */
+	SetIsEnabled(value bool /* primitive/slice/pointer */)
+	VideoFieldMode() string /* primitive/slice/pointer */
+	SetVideoFieldMode(value string /* primitive/slice/pointer */)
+	AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string /* primitive/slice/pointer */
+	// methods:
 }
 
 // An object that represents the presentation state of an asset track during playback.
@@ -115,7 +117,7 @@ func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
-func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
+func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](p_.ID, objc.Sel("currentVideoFrameRate"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (p_ PlayerItemTrack) CurrentVideoFrameRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/currentvideoframerate
-func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32) {
+func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentVideoFrameRate:"), value)
 }
 
@@ -134,7 +136,7 @@ func (p_ PlayerItemTrack) SetCurrentVideoFrameRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-func (p_ PlayerItemTrack) IsEnabled() bool {
+func (p_ PlayerItemTrack) IsEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (p_ PlayerItemTrack) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/isenabled
-func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
+func (p_ PlayerItemTrack) SetIsEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -153,7 +155,7 @@ func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/videofieldmode
-func (p_ PlayerItemTrack) VideoFieldMode() string {
+func (p_ PlayerItemTrack) VideoFieldMode() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (p_ PlayerItemTrack) VideoFieldMode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/videofieldmode
-func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
+func (p_ PlayerItemTrack) SetVideoFieldMode(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
@@ -172,7 +174,7 @@ func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
-func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
+func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
 	return rv
 }

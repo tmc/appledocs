@@ -29,8 +29,10 @@ type _HKQuantityTypeClass struct {
 // An interface definition for the [HKQuantityType] class.
 type IHKQuantityType interface {
 	IHKSampleType
-	IsCompatibleWithUnit(unit IHKUnit) bool
-	AggregationStyle() HKQuantityAggregationStyle
+	// properties:
+	AggregationStyle() unsafe.Pointer
+	SetAggregationStyle(value unsafe.Pointer)
+	// methods:
 }
 
 // A type that identifies samples that store numerical values.
@@ -88,12 +90,12 @@ func NewHKQuantityType() HKQuantityType {
 
 
 
-// Returns a Boolean value that indicates whether the quantity type is compatible with the given unit.
+// The aggregation style for the given quantity type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantityType/is(compatibleWith:)
-func (h_ HKQuantityType) IsCompatibleWithUnit(unit IHKUnit) bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isCompatibleWithUnit:"), unit)
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitytype/aggregationstyle
+func (h_ HKQuantityType) AggregationStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("aggregationStyle"))
 	return rv
 }
 
@@ -101,10 +103,9 @@ func (h_ HKQuantityType) IsCompatibleWithUnit(unit IHKUnit) bool {
 // The aggregation style for the given quantity type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantityType/aggregationStyle
-func (h_ HKQuantityType) AggregationStyle() HKQuantityAggregationStyle {
-	rv := objc.Send[HKQuantityAggregationStyle](h_.ID, objc.Sel("aggregationStyle"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitytype/aggregationstyle
+func (h_ HKQuantityType) SetAggregationStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAggregationStyle:"), value)
 }
 
 

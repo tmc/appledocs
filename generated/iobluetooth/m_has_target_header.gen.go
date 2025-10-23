@@ -30,6 +30,8 @@ type _mHasTargetHeaderClass struct {
 // An interface definition for the [mHasTargetHeader] class.
 type ImHasTargetHeader interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

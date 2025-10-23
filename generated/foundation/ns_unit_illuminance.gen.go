@@ -29,6 +29,8 @@ type _UnitIlluminanceClass struct {
 // An interface definition for the [UnitIlluminance] class.
 type IUnitIlluminance interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for illuminance.

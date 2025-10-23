@@ -30,9 +30,9 @@ type _USBHostCIEndpointStateMachineClass struct {
 // An interface definition for the [USBHostCIEndpointStateMachine] class.
 type IUSBHostCIEndpointStateMachine interface {
 	objectivec.IObject
-	InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool
-	ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool
+	// properties:
 	ControllerInterface() IOUSBHostControllerInterface
+	SetControllerInterface(value IOUSBHostControllerInterface)
 	CurrentTransferMessage() unsafe.Pointer
 	SetCurrentTransferMessage(value unsafe.Pointer)
 	DeviceAddress() int
@@ -41,6 +41,8 @@ type IUSBHostCIEndpointStateMachine interface {
 	SetEndpointAddress(value int)
 	EndpointState() unsafe.Pointer
 	SetEndpointState(value unsafe.Pointer)
+	// methods:
+	InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 
@@ -98,18 +100,17 @@ func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command unsafe.Point
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/processDoorbell(_:)
-func (u_ USBHostCIEndpointStateMachine) ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("processDoorbell:error:"), doorbell, error_)
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/controllerinterface
+func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/controllerInterface
-func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface {
-	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatemachine/controllerinterface
+func (u_ USBHostCIEndpointStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
 }
 
 

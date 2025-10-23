@@ -31,14 +31,6 @@ type _ACAccountStoreClass struct {
 // An interface definition for the [ACAccountStore] class.
 type IACAccountStore interface {
 	objectivec.IObject
-	AccountWithIdentifier(identifier string) ACAccount
-	AccountTypeWithAccountTypeIdentifier(typeIdentifier string) ACAccountType
-	AccountsWithAccountType(accountType ACAccountType) foundation.Array
-	RemoveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer)
-	RenewCredentialsForAccountCompletion(account IACAccount, completionHandler unsafe.Pointer)
-	RequestAccessToAccountsWithTypeOptionsCompletion(accountType ACAccountType, options objectivec.IObject, completion unsafe.Pointer)
-	RequestAccessToAccountsWithTypeWithCompletionHandler(accountType ACAccountType, handler unsafe.Pointer)
-	SaveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer)
 	Accounts() objc.ID
 }
 
@@ -93,81 +85,6 @@ func NewACAccountStore() ACAccountStore {
 	return getACAccountStoreClass().New()
 }
 
-
-
-// Returns the account with the specified identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/account(withIdentifier:)
-func (a_ ACAccountStore) AccountWithIdentifier(identifier string) ACAccount {
-	rv := objc.Send[ACAccount](a_.ID, objc.Sel("accountWithIdentifier:"), objc.String(identifier))
-	return rv
-}
-
-
-// Returns an account type that matches the specified identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accountType(withAccountTypeIdentifier:)
-func (a_ ACAccountStore) AccountTypeWithAccountTypeIdentifier(typeIdentifier string) ACAccountType {
-	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountTypeWithAccountTypeIdentifier:"), objc.String(typeIdentifier))
-	return rv
-}
-
-
-// Returns all accounts of the specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/accounts(with:)
-func (a_ ACAccountStore) AccountsWithAccountType(accountType ACAccountType) foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("accountsWithAccountType:"), accountType)
-	return rv
-}
-
-
-// Removes an account from the account store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/removeAccount(_:withCompletionHandler:)
-func (a_ ACAccountStore) RemoveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeAccount:withCompletionHandler:"), account, completionHandler)
-}
-
-
-// Renews account credentials when the credentials are no longer valid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/renewCredentials(for:completion:)
-func (a_ ACAccountStore) RenewCredentialsForAccountCompletion(account IACAccount, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("renewCredentialsForAccount:completion:"), account, completionHandler)
-}
-
-
-// Obtains permission to access protected user properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/requestAccessToAccounts(with:options:completion:)
-func (a_ ACAccountStore) RequestAccessToAccountsWithTypeOptionsCompletion(accountType ACAccountType, options objectivec.IObject, completion unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("requestAccessToAccountsWithType:options:completion:"), accountType, options, completion)
-}
-
-
-// Requests access to accounts of the specified type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/requestAccessToAccountsWithType:withCompletionHandler:
-func (a_ ACAccountStore) RequestAccessToAccountsWithTypeWithCompletionHandler(accountType ACAccountType, handler unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("requestAccessToAccountsWithType:withCompletionHandler:"), accountType, handler)
-}
-
-
-// Saves an account to the Accounts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountStore/saveAccount(_:withCompletionHandler:)
-func (a_ ACAccountStore) SaveAccountWithCompletionHandler(account IACAccount, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("saveAccount:withCompletionHandler:"), account, completionHandler)
-}
 
 
 // The accounts managed by this account store.

@@ -6,6 +6,6 @@ package gamecontroller
 // GCHapticsLocality - The location of one or more haptics actuators on a game controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCHapticsLocality
-// GCHapticsLocality has base type: NSString *
-type GCHapticsLocality uintptr
+// GCHapticsLocality is a string typedef
+type GCHapticsLocality = string
 

@@ -32,7 +32,7 @@ type _StateConstraintClass struct {
 type IStateConstraint interface {
 	objectivec.IObject
 	BufferShape() []foundation.Number
-	DataType() MultiArrayDataType
+	DataType() MLMultiArrayDataType
 }
 
 // Constraint of a state feature value.
@@ -100,8 +100,8 @@ func (s_ StateConstraint) BufferShape() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/dataType
-func (s_ StateConstraint) DataType() MultiArrayDataType {
-	rv := objc.Send[MultiArrayDataType](s_.ID, objc.Sel("dataType"))
+func (s_ StateConstraint) DataType() MLMultiArrayDataType {
+	rv := objc.Send[MLMultiArrayDataType](s_.ID, objc.Sel("dataType"))
 	return rv
 }
 

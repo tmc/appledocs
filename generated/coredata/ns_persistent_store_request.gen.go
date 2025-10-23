@@ -32,7 +32,7 @@ type IPersistentStoreRequest interface {
 	objectivec.IObject
 	AffectedStores() []PersistentStore
 	SetAffectedStores(value []PersistentStore)
-	RequestType() PersistentStoreRequestType
+	RequestType() NSPersistentStoreRequestType
 }
 
 // Criteria used to retrieve data from or save data to a persistent store.
@@ -119,8 +119,8 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
-func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
-	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
+func (p_ PersistentStoreRequest) RequestType() NSPersistentStoreRequestType {
+	rv := objc.Send[NSPersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv
 }
 

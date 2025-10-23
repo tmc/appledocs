@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AssetReaderTrackOutput] class.
@@ -30,22 +29,23 @@ type _AssetReaderTrackOutputClass struct {
 // An interface definition for the [AssetReaderTrackOutput] class.
 type IAssetReaderTrackOutput interface {
 	IAssetReaderOutput
-	AudioTimePitchAlgorithm() unsafe.Pointer
-	SetAudioTimePitchAlgorithm(value unsafe.Pointer)
-	OutputSettings() string
-	SetOutputSettings(value string)
+	// properties:
+	AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */
+	SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */)
+	OutputSettings() string /* primitive/slice/pointer */
+	SetOutputSettings(value string /* primitive/slice/pointer */)
 	Track() IAVAssetTrack
 	SetTrack(value IAVAssetTrack)
-	AVVideoCleanApertureKey() string
-	AVVideoPixelAspectRatioKey() string
-	AVVideoScalingModeKey() string
-	AVFormatIDKey() string
-	AVSampleRateConverterAudioQualityKey() string
+	AVVideoCleanApertureKey() string /* primitive/slice/pointer */
+	AVVideoPixelAspectRatioKey() string /* primitive/slice/pointer */
+	AVVideoScalingModeKey() string /* primitive/slice/pointer */
+	AVFormatIDKey() string /* primitive/slice/pointer */
+	AVSampleRateConverterAudioQualityKey() string /* primitive/slice/pointer */
 	KAudioFormatLinearPCM() unsafe.Pointer
 	SetKAudioFormatLinearPCM(value unsafe.Pointer)
-	KCMFormatDescriptionExtension_Depth() foundation.String
-	KCVPixelBufferHeightKey() foundation.String
-	KCVPixelBufferWidthKey() foundation.String
+	KCMFormatDescriptionExtension_Depth() CFString /* foo */
+	KCVPixelBufferHeightKey() CFString /* foo */
+	KCVPixelBufferWidthKey() CFString /* foo */
 	KCVPixelFormatType_32ARGB() unsafe.Pointer
 	SetKCVPixelFormatType_32ARGB(value unsafe.Pointer)
 	KCVPixelFormatType_32BGRA() unsafe.Pointer
@@ -64,6 +64,7 @@ type IAssetReaderTrackOutput interface {
 	SetKCVPixelFormatType_4444AYpCbCr16(value unsafe.Pointer)
 	KCVPixelFormatType_64ARGB() unsafe.Pointer
 	SetKCVPixelFormatType_64ARGB(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that reads media data from a single track of an asset.
@@ -125,8 +126,8 @@ func NewAssetReaderTrackOutput() AssetReaderTrackOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */ {
+	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -135,7 +136,7 @@ func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -144,7 +145,7 @@ func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) OutputSettings() string {
+func (a_ AssetReaderTrackOutput) OutputSettings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
@@ -154,7 +155,7 @@ func (a_ AssetReaderTrackOutput) OutputSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) SetOutputSettings(value string) {
+func (a_ AssetReaderTrackOutput) SetOutputSettings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
 }
 
@@ -182,7 +183,7 @@ func (a_ AssetReaderTrackOutput) SetTrack(value IAVAssetTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey
-func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string {
+func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
 	return rv
 }
@@ -192,7 +193,7 @@ func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey
-func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string {
+func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
 	return rv
 }
@@ -202,7 +203,7 @@ func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey
-func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string {
+func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
 	return rv
 }
@@ -212,7 +213,7 @@ func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVFormatIDKey
-func (a_ AssetReaderTrackOutput) AVFormatIDKey() string {
+func (a_ AssetReaderTrackOutput) AVFormatIDKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVFormatIDKey"))
 	return rv
 }
@@ -222,7 +223,7 @@ func (a_ AssetReaderTrackOutput) AVFormatIDKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey
-func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() string {
+func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
 	return rv
 }
@@ -249,8 +250,8 @@ func (a_ AssetReaderTrackOutput) SetKAudioFormatLinearPCM(value unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth
-func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
+func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() CFString /* foo */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
 	return rv
 }
 
@@ -259,8 +260,8 @@ func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferHeightKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
+func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() CFString /* foo */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
 	return rv
 }
 
@@ -269,8 +270,8 @@ func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferWidthKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
+func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() CFString /* foo */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
 	return rv
 }
 

@@ -32,10 +32,11 @@ type _FSModuleIdentityClass struct {
 type IFSModuleIdentity interface {
 	objectivec.IObject
 	BundleIdentifier() string
-	Enabled() bool
-	Url() foundation.URL
+	SetBundleIdentifier(value string)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	Url() foundation.URL
+	SetUrl(value foundation.URL)
 }
 
 // An installed file system module.
@@ -92,30 +93,19 @@ func NewFSModuleIdentity() FSModuleIdentity {
 // The module’s bundle identifier.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/bundleidentifier
 func (f_ FSModuleIdentity) BundleIdentifier() string {
 	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 
-// A Boolean value that indicates if the module is enabled.
+// The module’s bundle identifier.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/isEnabled
-func (f_ FSModuleIdentity) Enabled() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// The module’s URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/url
-func (f_ FSModuleIdentity) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/bundleidentifier
+func (f_ FSModuleIdentity) SetBundleIdentifier(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
 
@@ -135,6 +125,25 @@ func (f_ FSModuleIdentity) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
 func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
+}
+
+
+// The module’s URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/url
+func (f_ FSModuleIdentity) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The module’s URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/url
+func (f_ FSModuleIdentity) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 
 

@@ -30,6 +30,8 @@ type _replModeClass struct {
 // An interface definition for the [replMode] class.
 type IreplMode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

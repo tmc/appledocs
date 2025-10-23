@@ -9,12 +9,13 @@ import (
 )
 
 
-// CoreGraphics Functions (725 total)
+// CoreGraphics Functions (727 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
+	_CGImageRelease func(ImageRef)
 	_CGBitmapContextCreateAdaptive func(uintptr, uintptr, unsafe.Pointer, bool) ContextRef
 	_CGColorGetAlpha func(ColorRef) float64
 	_CGColorGetColorSpace func(ColorRef) ColorSpaceRef
@@ -319,7 +320,9 @@ var (
 	_CGPathAddLines func(MutablePathRef, unsafe.Pointer, unsafe.Pointer, uintptr)
 	_CGPathAddPath func(MutablePathRef, unsafe.Pointer, PathRef)
 	_CGPathAddQuadCurveToPoint func(MutablePathRef, unsafe.Pointer, float64, float64, float64, float64)
+	_CGPathAddRect func(MutablePathRef, unsafe.Pointer, CGRect)
 	_CGPathAddRects func(MutablePathRef, unsafe.Pointer, unsafe.Pointer, uintptr)
+	_CGPathAddRelativeArc func(MutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64)
 	_CGPathAddRoundedRect func(MutablePathRef, unsafe.Pointer, CGRect, float64, float64)
 	_CGPathMoveToPoint func(MutablePathRef, unsafe.Pointer, float64, float64)
 	_CGPatternCreate func(unsafe.Pointer, CGRect, CGAffineTransform, float64, float64, unsafe.Pointer, bool, unsafe.Pointer) PatternRef
@@ -571,7 +574,6 @@ var (
 	_CGGradientRetain func(GradientRef) GradientRef
 	_CGImageCreateCopyWithContentHeadroom func(float32, ImageRef) ImageRef
 	_CGImageCreateWithMaskingColors func(ImageRef, []float64) ImageRef
-	_CGImageRelease func(ImageRef)
 	_CGImageRetain func(ImageRef) ImageRef
 	_CGInhibitLocalEvents func(unsafe.Pointer) unsafe.Pointer
 	_CGLayerRelease func(LayerRef)
@@ -747,6 +749,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
 	tryRegister(&_CGBitmapContextCreateAdaptive, lib, "CGBitmapContextCreateAdaptive")
 	tryRegister(&_CGColorGetAlpha, lib, "CGColorGetAlpha")
 	tryRegister(&_CGColorGetColorSpace, lib, "CGColorGetColorSpace")
@@ -1051,7 +1054,9 @@ func init() {
 	tryRegister(&_CGPathAddLines, lib, "CGPathAddLines")
 	tryRegister(&_CGPathAddPath, lib, "CGPathAddPath")
 	tryRegister(&_CGPathAddQuadCurveToPoint, lib, "CGPathAddQuadCurveToPoint")
+	tryRegister(&_CGPathAddRect, lib, "CGPathAddRect")
 	tryRegister(&_CGPathAddRects, lib, "CGPathAddRects")
+	tryRegister(&_CGPathAddRelativeArc, lib, "CGPathAddRelativeArc")
 	tryRegister(&_CGPathAddRoundedRect, lib, "CGPathAddRoundedRect")
 	tryRegister(&_CGPathMoveToPoint, lib, "CGPathMoveToPoint")
 	tryRegister(&_CGPatternCreate, lib, "CGPatternCreate")
@@ -1303,7 +1308,6 @@ func init() {
 	tryRegister(&_CGGradientRetain, lib, "CGGradientRetain")
 	tryRegister(&_CGImageCreateCopyWithContentHeadroom, lib, "CGImageCreateCopyWithContentHeadroom")
 	tryRegister(&_CGImageCreateWithMaskingColors, lib, "CGImageCreateWithMaskingColors")
-	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
 	tryRegister(&_CGImageRetain, lib, "CGImageRetain")
 	tryRegister(&_CGInhibitLocalEvents, lib, "CGInhibitLocalEvents")
 	tryRegister(&_CGLayerRelease, lib, "CGLayerRelease")
@@ -1487,6 +1491,17 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 }
 
 
+
+// Decrements the retain count of a bitmap image.
+//
+// Added in macOS 10.0.
+// Decrements the retain count of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1556742-cgimagerelease
+func CGImageRelease(p0 ImageRef) {
+	_CGImageRelease(p0)
+}
 
 // CGBitmapContextCreateAdaptive is a CoreGraphics function.
 //
@@ -4765,6 +4780,17 @@ func CGPathAddQuadCurveToPoint(path MutablePathRef, m unsafe.Pointer, cpx float6
 	_CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y)
 }
 
+// Appends a rectangle to a mutable graphics path.
+//
+// Added in macOS 10.2.
+// Appends a rectangle to a mutable graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRect
+func CGPathAddRect(path MutablePathRef, m unsafe.Pointer, rect CGRect) {
+	_CGPathAddRect(path, m, rect)
+}
+
 // Appends an array of rectangles to a mutable graphics path.
 //
 // Added in macOS 10.2.
@@ -4774,6 +4800,17 @@ func CGPathAddQuadCurveToPoint(path MutablePathRef, m unsafe.Pointer, cpx float6
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRects
 func CGPathAddRects(path MutablePathRef, m unsafe.Pointer, rects unsafe.Pointer, count uintptr) {
 	_CGPathAddRects(path, m, rects, count)
+}
+
+// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
+//
+// Added in macOS 10.7.
+// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRelativeArc
+func CGPathAddRelativeArc(path MutablePathRef, matrix unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, delta float64) {
+	_CGPathAddRelativeArc(path, matrix, x, y, radius, startAngle, delta)
 }
 
 // Appends a rounded rectangle to a mutable graphics path.
@@ -7442,17 +7479,6 @@ func CGImageCreateCopyWithContentHeadroom(headroom float32, image ImageRef) Imag
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateWithMaskingColors
 func CGImageCreateWithMaskingColors(image ImageRef, components []float64) ImageRef {
 	return _CGImageCreateWithMaskingColors(image, components)
-}
-
-// Decrements the retain count of a bitmap image.
-//
-// Added in macOS 10.0.
-// Decrements the retain count of a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRelease
-func CGImageRelease(image ImageRef) {
-	_CGImageRelease(image)
 }
 
 // Increments the retain count of a bitmap image.

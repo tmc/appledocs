@@ -29,12 +29,14 @@ type _MassFormatterClass struct {
 // An interface definition for the [MassFormatter] class.
 type IMassFormatter interface {
 	IFormatter
-	IsForPersonMassUse() bool
-	SetIsForPersonMassUse(value bool)
+	// properties:
+	IsForPersonMassUse() bool /* primitive/slice/pointer */
+	SetIsForPersonMassUse(value bool /* primitive/slice/pointer */)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
 	UnitStyle() unsafe.Pointer
 	SetUnitStyle(value unsafe.Pointer)
+	// methods:
 }
 
 // A formatter that provides localized descriptions of mass and weight values.
@@ -94,7 +96,7 @@ func NewMassFormatter() MassFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) IsForPersonMassUse() bool {
+func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isForPersonMassUse"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (m_ MassFormatter) IsForPersonMassUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
+func (m_ MassFormatter) SetIsForPersonMassUse(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForPersonMassUse:"), value)
 }
 

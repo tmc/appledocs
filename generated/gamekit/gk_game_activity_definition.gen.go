@@ -31,12 +31,13 @@ type _GameActivityDefinitionClass struct {
 // An interface definition for the [GameActivityDefinition] class.
 type IGameActivityDefinition interface {
 	objectivec.IObject
-	DefaultProperties() unsafe.Pointer
-	GroupIdentifier() string
+	DefaultProperties() foundation.IDictionary
 	Details() string
 	SetDetails(value string)
 	FallbackURL() foundation.URL
-	SetFallbackURL(value foundation.IURL)
+	SetFallbackURL(value foundation.URL)
+	GroupIdentifier() string
+	SetGroupIdentifier(value string)
 	Identifier() string
 	SetIdentifier(value string)
 	PlayStyle() unsafe.Pointer
@@ -108,18 +109,8 @@ func NewGameActivityDefinition() GameActivityDefinition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/defaultProperties
-func (g_ GameActivityDefinition) DefaultProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("defaultProperties"))
-	return rv
-}
-
-
-// The group identifier for the activity, if one exists.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/groupIdentifier
-func (g_ GameActivityDefinition) GroupIdentifier() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("groupIdentifier"))
+func (g_ GameActivityDefinition) DefaultProperties() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](g_.ID, objc.Sel("defaultProperties"))
 	return rv
 }
 
@@ -157,8 +148,27 @@ func (g_ GameActivityDefinition) FallbackURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/fallbackurl
-func (g_ GameActivityDefinition) SetFallbackURL(value foundation.IURL) {
+func (g_ GameActivityDefinition) SetFallbackURL(value foundation.URL) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFallbackURL:"), value)
+}
+
+
+// The group identifier for the activity, if one exists.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/groupidentifier
+func (g_ GameActivityDefinition) GroupIdentifier() string {
+	rv := objc.Send[string](g_.ID, objc.Sel("groupIdentifier"))
+	return rv
+}
+
+
+// The group identifier for the activity, if one exists.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/groupidentifier
+func (g_ GameActivityDefinition) SetGroupIdentifier(value string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
 

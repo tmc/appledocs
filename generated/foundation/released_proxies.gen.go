@@ -30,6 +30,8 @@ type _releasedProxiesClass struct {
 // An interface definition for the [releasedProxies] class.
 type IreleasedProxies interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

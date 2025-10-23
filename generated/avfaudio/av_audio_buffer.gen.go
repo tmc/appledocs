@@ -31,8 +31,11 @@ type _AudioBufferClass struct {
 type IAudioBuffer interface {
 	objectivec.IObject
 	AudioBufferList() unsafe.Pointer
-	Format() AVAudioFormat
+	SetAudioBufferList(value unsafe.Pointer)
+	Format() IAVAudioFormat
+	SetFormat(value IAVAudioFormat)
 	MutableAudioBufferList() unsafe.Pointer
+	SetMutableAudioBufferList(value unsafe.Pointer)
 }
 
 // An object that represents a buffer of audio data with a format.
@@ -89,9 +92,28 @@ func NewAudioBuffer() AudioBuffer {
 // The buffer’s underlying audio buffer list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/audioBufferList
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/audiobufferlist
 func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioBufferList"))
+	return rv
+}
+
+
+// The buffer’s underlying audio buffer list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/audiobufferlist
+func (a_ AudioBuffer) SetAudioBufferList(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioBufferList:"), value)
+}
+
+
+// The format of the audio in the buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/format
+func (a_ AudioBuffer) Format() IAVAudioFormat {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 
@@ -99,9 +121,18 @@ func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 // The format of the audio in the buffer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/format
-func (a_ AudioBuffer) Format() AVAudioFormat {
-	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/format
+func (a_ AudioBuffer) SetFormat(value IAVAudioFormat) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFormat:"), value)
+}
+
+
+// A mutable version of the buffer’s underlying audio buffer list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/mutableaudiobufferlist
+func (a_ AudioBuffer) MutableAudioBufferList() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mutableAudioBufferList"))
 	return rv
 }
 
@@ -109,10 +140,9 @@ func (a_ AudioBuffer) Format() AVAudioFormat {
 // A mutable version of the buffer’s underlying audio buffer list.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/mutableAudioBufferList
-func (a_ AudioBuffer) MutableAudioBufferList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mutableAudioBufferList"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiobuffer/mutableaudiobufferlist
+func (a_ AudioBuffer) SetMutableAudioBufferList(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMutableAudioBufferList:"), value)
 }
 
 

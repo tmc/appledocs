@@ -30,16 +30,18 @@ type _HKStatisticsCollectionQueryClass struct {
 // An interface definition for the [HKStatisticsCollectionQuery] class.
 type IHKStatisticsCollectionQuery interface {
 	IHKQuery
+	// properties:
 	AnchorDate() foundation.Date
-	SetAnchorDate(value foundation.IDate)
+	SetAnchorDate(value foundation.Date)
 	InitialResultsHandler() unsafe.Pointer
 	SetInitialResultsHandler(value unsafe.Pointer)
 	IntervalComponents() foundation.DateComponents
-	SetIntervalComponents(value foundation.IDateComponents)
+	SetIntervalComponents(value foundation.DateComponents)
 	Options() HKStatisticsOptions
 	SetOptions(value HKStatisticsOptions)
 	StatisticsUpdateHandler() unsafe.Pointer
 	SetStatisticsUpdateHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // A query that performs multiple statistics queries over a series of fixed-length time intervals.
@@ -111,7 +113,7 @@ func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.IDate) {
+func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
 }
 
@@ -149,7 +151,7 @@ func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateCompon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.IDateComponents) {
+func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.DateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
 }
 

@@ -35,7 +35,11 @@ type IVZConsoleDeviceConfiguration interface {
 // The base class for a console device configuration.
 //
 // Don’t instantiate VZConsoleDeviceConfiguration directly, instead use one of its subclasses like instead.
+
+
+// The base class for a console device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsoleDeviceConfiguration
 type VZConsoleDeviceConfiguration struct {
 	objectivec.Object

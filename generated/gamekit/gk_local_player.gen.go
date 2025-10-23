@@ -29,11 +29,11 @@ type _LocalPlayerClass struct {
 // An interface definition for the [LocalPlayer] class.
 type ILocalPlayer interface {
 	IPlayer
-	AuthenticateHandler() unsafe.Pointer
-	SetAuthenticateHandler(value unsafe.Pointer)
 	Authenticated() bool
 	MultiplayerGamingRestricted() bool
 	PersonalizedCommunicationRestricted() bool
+	AuthenticateHandler() unsafe.Pointer
+	SetAuthenticateHandler(value unsafe.Pointer)
 	IsAuthenticated() bool
 	SetIsAuthenticated(value bool)
 	IsMultiplayerGamingRestricted() bool
@@ -101,25 +101,6 @@ func NewLocalPlayer() LocalPlayer {
 
 
 
-// A handler that GameKit calls while initializing the local player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
-func (l_ LocalPlayer) AuthenticateHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("authenticateHandler"))
-	return rv
-}
-
-
-// A handler that GameKit calls while initializing the local player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
-func (l_ LocalPlayer) SetAuthenticateHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setAuthenticateHandler:"), value)
-}
-
-
 // A Boolean value that indicates whether a local player has signed in to Game Center.
 //
 // [Full Topic]
@@ -147,6 +128,25 @@ func (l_ LocalPlayer) MultiplayerGamingRestricted() bool {
 func (l_ LocalPlayer) PersonalizedCommunicationRestricted() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("personalizedCommunicationRestricted"))
 	return rv
+}
+
+
+// A handler that GameKit calls while initializing the local player.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/authenticatehandler
+func (l_ LocalPlayer) AuthenticateHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("authenticateHandler"))
+	return rv
+}
+
+
+// A handler that GameKit calls while initializing the local player.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gklocalplayer/authenticatehandler
+func (l_ LocalPlayer) SetAuthenticateHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setAuthenticateHandler:"), value)
 }
 
 

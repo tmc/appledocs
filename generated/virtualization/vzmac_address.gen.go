@@ -31,6 +31,7 @@ type _VZMACAddressClass struct {
 type IVZMACAddress interface {
 	objectivec.IObject
 	EthernetAddress() unsafe.Pointer
+	SetEthernetAddress(value unsafe.Pointer)
 	IsBroadcastAddress() bool
 	SetIsBroadcastAddress(value bool)
 	IsLocallyAdministeredAddress() bool
@@ -48,7 +49,11 @@ type IVZMACAddress interface {
 // The media access control (MAC) address for a network interface in your virtual machine.
 //
 // A object contains the hardware address of your network interface. Every network device has a unique 48-bit MAC address that the system uses to route network packets to that device. Call the method to get a local MAC address suitable for use with your network interfaces. Alternatively, you can create a object yourself from a string or structure.
+
+
+// The media access control (MAC) address for a network interface in your virtual machine.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress
 type VZMACAddress struct {
 	objectivec.Object
@@ -94,36 +99,28 @@ func NewVZMACAddress() VZMACAddress {
 
 
 
-
-// Creates a MAC address object from a specially formatted string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress/init(string:)
-func NewVZMACAddressWithString(string_ string) VZMACAddress {
-	instance := getVZMACAddressClass().Alloc()
-	rv := objc.Send[VZMACAddress](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns a valid, random, locally administered, unicast MAC address.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress/randomLocallyAdministered()
-func (vc _VZMACAddressClass) RandomLocallyAdministeredAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("randomLocallyAdministeredAddress"))
-	return rv
-}
-
 // The MAC address as an Ethernet data structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress/ethernetAddress
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/ethernetaddress
 func (v_ VZMACAddress) EthernetAddress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ethernetAddress"))
 	return rv
 }
 
+
+// The MAC address as an Ethernet data structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/ethernetaddress
+func (v_ VZMACAddress) SetEthernetAddress(value unsafe.Pointer) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setEthernetAddress:"), value)
+}
+
+
 // A Boolean value that indicates whether the address is a broadcast address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isbroadcastaddress
 func (v_ VZMACAddress) IsBroadcastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isBroadcastAddress"))
@@ -131,17 +128,18 @@ func (v_ VZMACAddress) IsBroadcastAddress() bool {
 }
 
 
-// SetIsBroadcastAddress sets the value of the isBroadcastAddress property.
 // A Boolean value that indicates whether the address is a broadcast address.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isbroadcastaddress
 func (v_ VZMACAddress) SetIsBroadcastAddress(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsBroadcastAddress:"), value)
 }
 
+
 // A Boolean value that indicates whether the address is a locally administered address (LAA).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/islocallyadministeredaddress
 func (v_ VZMACAddress) IsLocallyAdministeredAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isLocallyAdministeredAddress"))
@@ -149,17 +147,18 @@ func (v_ VZMACAddress) IsLocallyAdministeredAddress() bool {
 }
 
 
-// SetIsLocallyAdministeredAddress sets the value of the isLocallyAdministeredAddress property.
 // A Boolean value that indicates whether the address is a locally administered address (LAA).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/islocallyadministeredaddress
 func (v_ VZMACAddress) SetIsLocallyAdministeredAddress(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsLocallyAdministeredAddress:"), value)
 }
 
+
 // A Boolean value that indicates whether the address is a multicast address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/ismulticastaddress
 func (v_ VZMACAddress) IsMulticastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isMulticastAddress"))
@@ -167,17 +166,18 @@ func (v_ VZMACAddress) IsMulticastAddress() bool {
 }
 
 
-// SetIsMulticastAddress sets the value of the isMulticastAddress property.
 // A Boolean value that indicates whether the address is a multicast address.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/ismulticastaddress
 func (v_ VZMACAddress) SetIsMulticastAddress(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsMulticastAddress:"), value)
 }
 
+
 // A Boolean value that indicates whether the address is a unicast address.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isunicastaddress
 func (v_ VZMACAddress) IsUnicastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isUnicastAddress"))
@@ -185,17 +185,18 @@ func (v_ VZMACAddress) IsUnicastAddress() bool {
 }
 
 
-// SetIsUnicastAddress sets the value of the isUnicastAddress property.
 // A Boolean value that indicates whether the address is a unicast address.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isunicastaddress
 func (v_ VZMACAddress) SetIsUnicastAddress(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsUnicastAddress:"), value)
 }
 
+
 // A Boolean value that indicates whether the address is a universally adminstered address (UAA).
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isuniversallyadministeredaddress
 func (v_ VZMACAddress) IsUniversallyAdministeredAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isUniversallyAdministeredAddress"))
@@ -203,17 +204,18 @@ func (v_ VZMACAddress) IsUniversallyAdministeredAddress() bool {
 }
 
 
-// SetIsUniversallyAdministeredAddress sets the value of the isUniversallyAdministeredAddress property.
 // A Boolean value that indicates whether the address is a universally adminstered address (UAA).
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/isuniversallyadministeredaddress
 func (v_ VZMACAddress) SetIsUniversallyAdministeredAddress(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsUniversallyAdministeredAddress:"), value)
 }
 
+
 // The MAC address as a formatted string.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/string
 func (v_ VZMACAddress) String() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("string"))
@@ -221,13 +223,13 @@ func (v_ VZMACAddress) String() string {
 }
 
 
-// SetString sets the value of the string property.
 // The MAC address as a formatted string.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacaddress/string
 func (v_ VZMACAddress) SetString(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setString:"), objc.String(value))
 }
+
 
 

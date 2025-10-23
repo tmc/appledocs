@@ -30,13 +30,13 @@ type _RandomDistributionClass struct {
 // An interface definition for the [RandomDistribution] class.
 type IRandomDistribution interface {
 	objectivec.IObject
+	HighestValue() int
+	LowestValue() int
+	NumberOfPossibleOutcomes() uint
 	NextBool() bool
 	NextInt() int
 	NextIntWithUpperBound(upperBound uint) uint
 	NextUniform() float32
-	HighestValue() int
-	LowestValue() int
-	NumberOfPossibleOutcomes() uint
 }
 
 // A generator for random numbers that fall within a specific range and that exhibit a specific distribution over multiple samplings.

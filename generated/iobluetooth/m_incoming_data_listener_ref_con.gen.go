@@ -30,6 +30,8 @@ type _mIncomingDataListenerRefConClass struct {
 // An interface definition for the [mIncomingDataListenerRefCon] class.
 type ImIncomingDataListenerRefCon interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

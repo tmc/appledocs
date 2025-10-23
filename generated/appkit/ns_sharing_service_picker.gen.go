@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +30,10 @@ type _SharingServicePickerClass struct {
 // An interface definition for the [SharingServicePicker] class.
 type ISharingServicePicker interface {
 	objectivec.IObject
-	ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view IView, preferredEdge int)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	StandardShareMenuItem() NSMenuItem
-	SetStandardShareMenuItem(value IMenuItem)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	StandardShareMenuItem() MenuItem
+	SetStandardShareMenuItem(value MenuItem)
 }
 
 // A list of sharing services that the user can choose from.
@@ -91,21 +89,12 @@ func NewSharingServicePicker() SharingServicePicker {
 
 
 
-// Shows the picker interface and populates it with the relevant sharing services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
-func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect coregraphics.CGRect, view IView, preferredEdge int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
-}
-
-
 // The object for managing the sharing service picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
-func (s_ SharingServicePicker) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
+func (s_ SharingServicePicker) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -113,8 +102,8 @@ func (s_ SharingServicePicker) Delegate() objc.ID {
 // The object for managing the sharing service picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
-func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
+func (s_ SharingServicePicker) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -123,8 +112,8 @@ func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) StandardShareMenuItem() NSMenuItem {
-	rv := objc.Send[NSMenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
+func (s_ SharingServicePicker) StandardShareMenuItem() MenuItem {
+	rv := objc.Send[MenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
 	return rv
 }
 
@@ -133,7 +122,7 @@ func (s_ SharingServicePicker) StandardShareMenuItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) SetStandardShareMenuItem(value IMenuItem) {
+func (s_ SharingServicePicker) SetStandardShareMenuItem(value MenuItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
 }
 

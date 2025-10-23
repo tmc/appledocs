@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +31,12 @@ type _CNContactPickerClass struct {
 // An interface definition for the [CNContactPicker] class.
 type ICNContactPicker interface {
 	objectivec.IObject
-	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DisplayedKeys() []string
 	SetDisplayedKeys(value []string)
+	Close()
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView NSView, preferredEdge foundation.RectEdge)
 }
 
 // A popover-based interface for selecting a contact.
@@ -106,7 +105,7 @@ func (c_ CNContactPicker) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPicker/showRelative(to:of:preferredEdge:)
-func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
+func (c_ CNContactPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView NSView, preferredEdge foundation.RectEdge) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 

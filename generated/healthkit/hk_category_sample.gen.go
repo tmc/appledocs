@@ -29,10 +29,13 @@ type _HKCategorySampleClass struct {
 // An interface definition for the [HKCategorySample] class.
 type IHKCategorySample interface {
 	IHKSample
-	CategoryType() HKCategoryType
+	// properties:
+	CategoryType() IHKCategoryType
+	SetCategoryType(value IHKCategoryType)
 	Value() int
 	SetValue(value int)
 	HKPredicateKeyPathCategoryValue() string
+	// methods:
 }
 
 // A sample with values from a short list of possible values.
@@ -93,10 +96,19 @@ func NewHKCategorySample() HKCategorySample {
 // The category type for this sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample/categoryType
-func (h_ HKCategorySample) CategoryType() HKCategoryType {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/categorytype
+func (h_ HKCategorySample) CategoryType() IHKCategoryType {
 	rv := objc.Send[HKCategoryType](h_.ID, objc.Sel("categoryType"))
 	return rv
+}
+
+
+// The category type for this sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcategorysample/categorytype
+func (h_ HKCategorySample) SetCategoryType(value IHKCategoryType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCategoryType:"), value)
 }
 
 

@@ -31,11 +31,7 @@ type _USBHostObjectClass struct {
 // An interface definition for the [USBHostObject] class.
 type IUSBHostObject interface {
 	objectivec.IObject
-	Destroy()
-	ReferenceMicroframeWithTimeError(time unsafe.Pointer, error_ unsafe.Pointer) uint64
-	SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.IMutableData, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool
-	IoService() unsafe.Pointer
-	Queue() unsafe.Pointer
+	// properties:
 	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
 	CapabilityDescriptors() unsafe.Pointer
 	SetCapabilityDescriptors(value unsafe.Pointer)
@@ -43,6 +39,13 @@ type IUSBHostObject interface {
 	SetDeviceAddress(value int)
 	DeviceDescriptor() unsafe.Pointer
 	SetDeviceDescriptor(value unsafe.Pointer)
+	IoService() unsafe.Pointer
+	SetIoService(value unsafe.Pointer)
+	Queue() unsafe.Pointer
+	SetQueue(value unsafe.Pointer)
+	// methods:
+	ReferenceMicroframeWithTimeError(time unsafe.Pointer, error_ unsafe.Pointer) uint64
+	SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.MutableData, bytesTransferred uint, error_ unsafe.Pointer) bool
 }
 
 // This class provides basic functionality for sending device requests and retrieving descriptors.
@@ -100,34 +103,13 @@ func NewUSBHostObject() USBHostObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/initWithIOService:options:queue:error:interestHandler:
-func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService unsafe.Pointer, options USBHostObjectInitOptions, queue unsafe.Pointer, error_ unsafe.Pointer, interestHandler unsafe.Pointer) USBHostObject {
+func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, error_ unsafe.Pointer, interestHandler unsafe.Pointer) USBHostObject {
 	instance := getUSBHostObjectClass().Alloc()
 	rv := objc.Send[USBHostObject](instance.ID, objc.Sel("initWithIOService:options:queue:error:interestHandler:"), ioService, options, queue, error_, interestHandler)
 	rv.Autorelease()
 	return rv
 }
 
-
-// Creates a USB host object and sets up a default communication channel to the kernel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/initWithIOService:queue:error:interestHandler:
-func NewUSBHostObjectWithIOServiceQueueErrorInterestHandler(ioService unsafe.Pointer, queue unsafe.Pointer, error_ unsafe.Pointer, interestHandler unsafe.Pointer) USBHostObject {
-	instance := getUSBHostObjectClass().Alloc()
-	rv := objc.Send[USBHostObject](instance.ID, objc.Sel("initWithIOService:queue:error:interestHandler:"), ioService, queue, error_, interestHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Removes underlying allocations and connections from the USB host object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/destroy()
-func (u_ USBHostObject) Destroy() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("destroy"))
-}
 
 
 // [Full Topic]
@@ -142,28 +124,8 @@ func (u_ USBHostObject) ReferenceMicroframeWithTimeError(time unsafe.Pointer, er
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/sendDeviceRequest:data:bytesTransferred:error:
-func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.IMutableData, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.MutableData, bytesTransferred uint, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendDeviceRequest:data:bytesTransferred:error:"), request, data, bytesTransferred, error_)
-	return rv
-}
-
-
-// A reference to the kernel object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/ioService
-func (u_ USBHostObject) IoService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ioService"))
-	return rv
-}
-
-
-// The queue for servicing input/output requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/queue
-func (u_ USBHostObject) Queue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queue"))
 	return rv
 }
 
@@ -224,6 +186,44 @@ func (u_ USBHostObject) DeviceDescriptor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/devicedescriptor
 func (u_ USBHostObject) SetDeviceDescriptor(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceDescriptor:"), value)
+}
+
+
+// A reference to the kernel object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/ioservice
+func (u_ USBHostObject) IoService() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ioService"))
+	return rv
+}
+
+
+// A reference to the kernel object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/ioservice
+func (u_ USBHostObject) SetIoService(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIoService:"), value)
+}
+
+
+// The queue for servicing input/output requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/queue
+func (u_ USBHostObject) Queue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queue"))
+	return rv
+}
+
+
+// The queue for servicing input/output requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostobject/queue
+func (u_ USBHostObject) SetQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setQueue:"), value)
 }
 
 

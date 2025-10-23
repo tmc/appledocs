@@ -30,6 +30,8 @@ type _BluetoothHandsFreeAudioGatewayClass struct {
 // An interface definition for the [BluetoothHandsFreeAudioGateway] class.
 type IBluetoothHandsFreeAudioGateway interface {
 	IBluetoothHandsFree
+	// properties:
+	// methods:
 	CreateIndicatorMinMaxCurrentValue(indicatorName string, minValue int, maxValue int, currentValue int)
 	ProcessATCommand(atCommand string)
 	SendOKResponse()

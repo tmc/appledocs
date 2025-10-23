@@ -30,6 +30,8 @@ type _InflectionRuleClass struct {
 // An interface definition for the [InflectionRule] class.
 type IInflectionRule interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A rule that affects how an attributed string performs automatic grammatical agreement.
@@ -89,7 +91,7 @@ func NewInflectionRule() InflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectLanguage:
-func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
+func (ic _InflectionRuleClass) CanInflectLanguage(language string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectLanguage:"), objc.String(language))
 	return rv
 }
@@ -108,7 +110,7 @@ func (ic _InflectionRuleClass) AutomaticRule() InflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
-func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
+func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (i_ InflectionRule) AutomaticRule() IInflectionRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
-func (i_ InflectionRule) CanInflectPreferredLocalization() bool {
+func (i_ InflectionRule) CanInflectPreferredLocalization() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }

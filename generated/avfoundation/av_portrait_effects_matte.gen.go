@@ -30,10 +30,12 @@ type _PortraitEffectsMatteClass struct {
 // An interface definition for the [PortraitEffectsMatte] class.
 type IPortraitEffectsMatte interface {
 	objectivec.IObject
-	MattingImage() unsafe.Pointer
-	SetMattingImage(value unsafe.Pointer)
+	// properties:
+	MattingImage() CVPixelBuffer /* foo */
+	SetMattingImage(value CVPixelBuffer /* foo */)
 	PixelFormatType() unsafe.Pointer
 	SetPixelFormatType(value unsafe.Pointer)
+	// methods:
 }
 
 // An auxiliary image used to separate foreground from background with high resolution.
@@ -93,8 +95,8 @@ func NewPortraitEffectsMatte() PortraitEffectsMatte {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-func (p_ PortraitEffectsMatte) MattingImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mattingImage"))
+func (p_ PortraitEffectsMatte) MattingImage() CVPixelBuffer /* foo */ {
+	rv := objc.Send[PixelBuffer](p_.ID, objc.Sel("mattingImage"))
 	return rv
 }
 
@@ -103,7 +105,7 @@ func (p_ PortraitEffectsMatte) MattingImage() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte/mattingimage
-func (p_ PortraitEffectsMatte) SetMattingImage(value unsafe.Pointer) {
+func (p_ PortraitEffectsMatte) SetMattingImage(value CVPixelBuffer /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMattingImage:"), value)
 }
 

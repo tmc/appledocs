@@ -30,15 +30,17 @@ type _DistributedNotificationCenterClass struct {
 // An interface definition for the [DistributedNotificationCenter] class.
 type IDistributedNotificationCenter interface {
 	INotificationCenter
-	Suspended() bool
-	SetSuspended(value bool)
-	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName, anObject string)
-	AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName, object string, suspensionBehavior NSNotificationSuspensionBehavior)
-	PostNotificationNameObject(aName NotificationName, anObject string)
-	PostNotificationNameObjectUserInfo(aName NotificationName, anObject string, aUserInfo objectivec.IObject)
-	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool)
-	PostNotificationNameObjectUserInfoOptions(name NotificationName, object string, userInfo objectivec.IObject, options NSDistributedNotificationOptions)
-	RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName, anObject string)
+	// properties:
+	Suspended() bool /* primitive/slice/pointer */
+	SetSuspended(value bool /* primitive/slice/pointer */)
+	// methods:
+	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */)
+	AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName /* foo */, object string /* primitive/slice/pointer */, suspensionBehavior NotificationSuspensionBehavior)
+	PostNotificationNameObject(aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */)
+	PostNotificationNameObjectUserInfo(aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */, aUserInfo objectivec.IObject)
+	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName /* foo */, object string /* primitive/slice/pointer */, userInfo objectivec.IObject, deliverImmediately bool /* primitive/slice/pointer */)
+	PostNotificationNameObjectUserInfoOptions(name NotificationName /* foo */, object string /* primitive/slice/pointer */, userInfo objectivec.IObject, options DistributedNotificationOptions)
+	RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */)
 }
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
@@ -110,7 +112,7 @@ func (dc _DistributedNotificationCenterClass) DefaultCenter() IDistributedNotifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/forType(_:)
-func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType) IDistributedNotificationCenter {
+func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType /* foo */) IDistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("notificationCenterForType:"), notificationCenterType)
 	return rv
 }
@@ -120,7 +122,7 @@ func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notifica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName, anObject string) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, objc.String(anObject))
 }
 
@@ -129,7 +131,7 @@ func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:suspensionBehavior:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName, object string, suspensionBehavior NSNotificationSuspensionBehavior) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName /* foo */, object string /* primitive/slice/pointer */, suspensionBehavior NotificationSuspensionBehavior) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:suspensionBehavior:"), observer, selector, name, objc.String(object), suspensionBehavior)
 }
 
@@ -138,7 +140,7 @@ func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName NotificationName, anObject string) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:"), aName, objc.String(anObject))
 }
 
@@ -147,7 +149,7 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName Notific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:userInfo:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName NotificationName, anObject string, aUserInfo objectivec.IObject) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */, aUserInfo objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, objc.String(anObject), aUserInfo)
 }
 
@@ -156,7 +158,7 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:deliverImmediately:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName /* foo */, object string /* primitive/slice/pointer */, userInfo objectivec.IObject, deliverImmediately bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, objc.String(object), userInfo, deliverImmediately)
 }
 
@@ -165,7 +167,7 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDelive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:options:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name NotificationName, object string, userInfo objectivec.IObject, options NSDistributedNotificationOptions) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name NotificationName /* foo */, object string /* primitive/slice/pointer */, userInfo objectivec.IObject, options DistributedNotificationOptions) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:options:"), name, objc.String(object), userInfo, options)
 }
 
@@ -174,7 +176,7 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/removeObserver(_:name:object:)
-func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName, anObject string) {
+func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName /* foo */, anObject string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, objc.String(anObject))
 }
 
@@ -183,7 +185,7 @@ func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/suspended
-func (d_ DistributedNotificationCenter) Suspended() bool {
+func (d_ DistributedNotificationCenter) Suspended() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("suspended"))
 	return rv
 }
@@ -193,7 +195,7 @@ func (d_ DistributedNotificationCenter) Suspended() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/suspended
-func (d_ DistributedNotificationCenter) SetSuspended(value bool) {
+func (d_ DistributedNotificationCenter) SetSuspended(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSuspended:"), value)
 }
 

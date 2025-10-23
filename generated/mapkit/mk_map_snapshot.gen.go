@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +31,14 @@ type _MKMapSnapshotClass struct {
 // An interface definition for the [MKMapSnapshot] class.
 type IMKMapSnapshot interface {
 	objectivec.IObject
-	PointForCoordinate(coordinate unsafe.Pointer) coregraphics.CGPoint
+	// properties:
 	Appearance() appkit.Appearance
+	SetAppearance(value appkit.Appearance)
 	Image() appkit.Image
-	SetImage(value appkit.IImage)
+	SetImage(value appkit.Image)
 	TraitCollection() unsafe.Pointer
 	SetTraitCollection(value unsafe.Pointer)
+	// methods:
 }
 
 // An image that a snapshotter object generates.
@@ -93,12 +94,12 @@ func NewMKMapSnapshot() MKMapSnapshot {
 
 
 
-// Converts the specified map coordinate to a point in the coordinate space of the image.
+// The visual style that MapKit uses when rendering the snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/point(for:)
-func (m_ MKMapSnapshot) PointForCoordinate(coordinate unsafe.Pointer) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("pointForCoordinate:"), coordinate)
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
+func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -106,10 +107,9 @@ func (m_ MKMapSnapshot) PointForCoordinate(coordinate unsafe.Pointer) coregraphi
 // The visual style that MapKit uses when rendering the snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/appearance
-func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
-	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
+func (m_ MKMapSnapshot) SetAppearance(value appkit.Appearance) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
 }
 
 
@@ -127,7 +127,7 @@ func (m_ MKMapSnapshot) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) SetImage(value appkit.IImage) {
+func (m_ MKMapSnapshot) SetImage(value appkit.Image) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
 

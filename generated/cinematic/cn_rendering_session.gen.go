@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +32,6 @@ type _CNRenderingSessionClass struct {
 type ICNRenderingSession interface {
 	objectivec.IObject
 	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool
-	CommandQueue() objc.ID
-	PreferredTransform() coregraphics.CGAffineTransform
-	SessionAttributes() CNRenderingSessionAttributes
 }
 
 // An object representing the context in which rendering occurs.
@@ -88,6 +85,15 @@ func NewCNRenderingSession() CNRenderingSession {
 
 
 
+// The pixel format types supported for the output destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sourcePixelFormatTypes
+func (cc _CNRenderingSessionClass) SourcePixelFormatTypes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](objc.ID(cc.class), objc.Sel("sourcePixelFormatTypes"))
+	return rv
+}
+
 // Encodes a command to render a shallow depth of field (SDoF) image to two metal textures as luma and chroma.
 //
 // [Full Topic]
@@ -98,32 +104,12 @@ func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceIma
 }
 
 
-// The command queue of a Metal device that creates the command buffer.
+// The pixel format types supported for the output destination.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/commandQueue
-func (c_ CNRenderingSession) CommandQueue() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("commandQueue"))
-	return rv
-}
-
-
-// The preferred transform of the rendered image for display purposes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/preferredTransform
-func (c_ CNRenderingSession) PreferredTransform() coregraphics.CGAffineTransform {
-	rv := objc.Send[coregraphics.CGAffineTransform](c_.ID, objc.Sel("preferredTransform"))
-	return rv
-}
-
-
-// Rendering session attributes for a Cinematic asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sessionAttributes
-func (c_ CNRenderingSession) SessionAttributes() CNRenderingSessionAttributes {
-	rv := objc.Send[CNRenderingSessionAttributes](c_.ID, objc.Sel("sessionAttributes"))
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sourcePixelFormatTypes
+func (c_ CNRenderingSession) SourcePixelFormatTypes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("sourcePixelFormatTypes"))
 	return rv
 }
 

@@ -29,8 +29,10 @@ type _SocketPortNameServerClass struct {
 // An interface definition for the [SocketPortNameServer] class.
 type ISocketPortNameServer interface {
 	IPortNameServer
+	// properties:
 	DefaultNameServerPortNumber() unsafe.Pointer
 	SetDefaultNameServerPortNumber(value unsafe.Pointer)
+	// methods:
 }
 
 // A port name server that takes and returns socket ports.

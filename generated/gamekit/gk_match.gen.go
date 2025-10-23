@@ -30,7 +30,6 @@ type _MatchClass struct {
 // An interface definition for the [Match] class.
 type IMatch interface {
 	objectivec.IObject
-	VoiceChatWithName(name string) VoiceChat
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	ExpectedPlayerCount() int
@@ -39,7 +38,7 @@ type IMatch interface {
 	SetPlayerIDs(value string)
 	PlayerProperties() string
 	SetPlayerProperties(value string)
-	Players() GKPlayer
+	Players() IGKPlayer
 	SetPlayers(value IGKPlayer)
 	Properties() string
 	SetProperties(value string)
@@ -96,16 +95,6 @@ func NewMatch() Match {
 	return getMatchClass().New()
 }
 
-
-
-// Joins the local player to a voice channel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/voiceChat(withName:)
-func (m_ Match) VoiceChatWithName(name string) VoiceChat {
-	rv := objc.Send[VoiceChat](m_.ID, objc.Sel("voiceChatWithName:"), objc.String(name))
-	return rv
-}
 
 
 // The delegate that handles communication between players in a match.
@@ -188,8 +177,8 @@ func (m_ Match) SetPlayerProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
-func (m_ Match) Players() GKPlayer {
-	rv := objc.Send[GKPlayer](m_.ID, objc.Sel("players"))
+func (m_ Match) Players() IGKPlayer {
+	rv := objc.Send[Player](m_.ID, objc.Sel("players"))
 	return rv
 }
 

@@ -30,14 +30,16 @@ type _HKWorkoutConfigurationClass struct {
 // An interface definition for the [HKWorkoutConfiguration] class.
 type IHKWorkoutConfiguration interface {
 	objectivec.IObject
+	// properties:
 	ActivityType() HKWorkoutActivityType
 	SetActivityType(value HKWorkoutActivityType)
-	LapLength() HKQuantity
+	LapLength() IHKQuantity
 	SetLapLength(value IHKQuantity)
-	LocationType() HKWorkoutSessionLocationType
-	SetLocationType(value HKWorkoutSessionLocationType)
-	SwimmingLocationType() HKWorkoutSwimmingLocationType
-	SetSwimmingLocationType(value HKWorkoutSwimmingLocationType)
+	LocationType() unsafe.Pointer
+	SetLocationType(value unsafe.Pointer)
+	SwimmingLocationType() unsafe.Pointer
+	SetSwimmingLocationType(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that contains configuration information about a workout session.
@@ -96,7 +98,7 @@ func NewHKWorkoutConfiguration() HKWorkoutConfiguration {
 // The workout session’s activity type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/activityType
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/activitytype
 func (h_ HKWorkoutConfiguration) ActivityType() HKWorkoutActivityType {
 	rv := objc.Send[HKWorkoutActivityType](h_.ID, objc.Sel("activityType"))
 	return rv
@@ -106,7 +108,7 @@ func (h_ HKWorkoutConfiguration) ActivityType() HKWorkoutActivityType {
 // The workout session’s activity type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/activityType
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/activitytype
 func (h_ HKWorkoutConfiguration) SetActivityType(value HKWorkoutActivityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityType:"), value)
 }
@@ -115,8 +117,8 @@ func (h_ HKWorkoutConfiguration) SetActivityType(value HKWorkoutActivityType) {
 // The length of the lap for a workout session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/lapLength
-func (h_ HKWorkoutConfiguration) LapLength() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/laplength
+func (h_ HKWorkoutConfiguration) LapLength() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("lapLength"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (h_ HKWorkoutConfiguration) LapLength() HKQuantity {
 // The length of the lap for a workout session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/lapLength
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/laplength
 func (h_ HKWorkoutConfiguration) SetLapLength(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLapLength:"), value)
 }
@@ -134,9 +136,9 @@ func (h_ HKWorkoutConfiguration) SetLapLength(value IHKQuantity) {
 // The workout session’s location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/locationType
-func (h_ HKWorkoutConfiguration) LocationType() HKWorkoutSessionLocationType {
-	rv := objc.Send[HKWorkoutSessionLocationType](h_.ID, objc.Sel("locationType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/locationtype
+func (h_ HKWorkoutConfiguration) LocationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("locationType"))
 	return rv
 }
 
@@ -144,8 +146,8 @@ func (h_ HKWorkoutConfiguration) LocationType() HKWorkoutSessionLocationType {
 // The workout session’s location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/locationType
-func (h_ HKWorkoutConfiguration) SetLocationType(value HKWorkoutSessionLocationType) {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/locationtype
+func (h_ HKWorkoutConfiguration) SetLocationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLocationType:"), value)
 }
 
@@ -153,9 +155,9 @@ func (h_ HKWorkoutConfiguration) SetLocationType(value HKWorkoutSessionLocationT
 // The workout session’s swimming location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/swimmingLocationType
-func (h_ HKWorkoutConfiguration) SwimmingLocationType() HKWorkoutSwimmingLocationType {
-	rv := objc.Send[HKWorkoutSwimmingLocationType](h_.ID, objc.Sel("swimmingLocationType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/swimminglocationtype
+func (h_ HKWorkoutConfiguration) SwimmingLocationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("swimmingLocationType"))
 	return rv
 }
 
@@ -163,8 +165,8 @@ func (h_ HKWorkoutConfiguration) SwimmingLocationType() HKWorkoutSwimmingLocatio
 // The workout session’s swimming location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutConfiguration/swimmingLocationType
-func (h_ HKWorkoutConfiguration) SetSwimmingLocationType(value HKWorkoutSwimmingLocationType) {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration/swimminglocationtype
+func (h_ HKWorkoutConfiguration) SetSwimmingLocationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSwimmingLocationType:"), value)
 }
 

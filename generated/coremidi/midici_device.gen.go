@@ -30,7 +30,7 @@ type _MIDICIDeviceClass struct {
 // An interface definition for the [MIDICIDevice] class.
 type IMIDICIDevice interface {
 	objectivec.IObject
-	DeviceInfo() MIDI2DeviceInfo
+	DeviceInfo() IMIDI2DeviceInfo
 	DeviceType() MIDICIDeviceType
 	MaxPropertyExchangeRequests() uint
 	MaxSysExSize() uint
@@ -90,7 +90,7 @@ func NewMIDICIDevice() MIDICIDevice {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/deviceInfo
-func (m_ MIDICIDevice) DeviceInfo() MIDI2DeviceInfo {
+func (m_ MIDICIDevice) DeviceInfo() IMIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }

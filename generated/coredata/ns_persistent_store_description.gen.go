@@ -31,30 +31,30 @@ type _PersistentStoreDescriptionClass struct {
 // An interface definition for the [PersistentStoreDescription] class.
 type IPersistentStoreDescription interface {
 	objectivec.IObject
-	SetOptionForKey(option objectivec.IObject, key string)
-	SetValueForPragmaNamed(value objectivec.IObject, name string)
-	CloudKitContainerOptions() NSPersistentCloudKitContainerOptions
-	SetCloudKitContainerOptions(value NSPersistentCloudKitContainerOptions)
 	Configuration() string
 	SetConfiguration(value string)
 	ReadOnly() bool
 	SetReadOnly(value bool)
-	Options() unsafe.Pointer
+	Options() foundation.IDictionary
 	ShouldAddStoreAsynchronously() bool
 	SetShouldAddStoreAsynchronously(value bool)
 	ShouldInferMappingModelAutomatically() bool
 	SetShouldInferMappingModelAutomatically(value bool)
 	ShouldMigrateStoreAutomatically() bool
 	SetShouldMigrateStoreAutomatically(value bool)
-	SqlitePragmas() unsafe.Pointer
+	SqlitePragmas() foundation.IDictionary
 	Timeout() foundation.TimeInterval
-	SetTimeout(value foundation.ITimeInterval)
-	URL() foundation.URL
-	SetURL(value foundation.IURL)
+	SetTimeout(value foundation.TimeInterval)
+	CloudKitContainerOptions() IPersistentCloudKitContainerOptions
+	SetCloudKitContainerOptions(value IPersistentCloudKitContainerOptions)
 	IsReadOnly() bool
 	SetIsReadOnly(value bool)
 	Type() string
 	SetType(value string)
+	Url() foundation.URL
+	SetUrl(value foundation.URL)
+	SetOptionForKey(option objectivec.IObject, key string)
+	SetValueForPragmaNamed(value objectivec.IObject, name string)
 }
 
 // A description object used to create and load a persistent store.
@@ -112,7 +112,7 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/init(url:)
-func NewPersistentStoreDescriptionWithURL(url foundation.IURL) PersistentStoreDescription {
+func NewPersistentStoreDescriptionWithURL(url foundation.URL) PersistentStoreDescription {
 	instance := getPersistentStoreDescriptionClass().Alloc()
 	rv := objc.Send[PersistentStoreDescription](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -125,7 +125,7 @@ func NewPersistentStoreDescriptionWithURL(url foundation.IURL) PersistentStoreDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/persistentStoreDescriptionWithURL:
-func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL foundation.IURL) unsafe.Pointer {
+func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentStoreDescriptionWithURL:"), URL)
 	return rv
 }
@@ -146,25 +146,6 @@ func (p_ PersistentStoreDescription) SetOptionForKey(option objectivec.IObject, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/setValue(_:forPragmaNamed:)
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value objectivec.IObject, name string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, objc.String(name))
-}
-
-
-// Options that customize how this store description aligns with a CloudKit database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
-func (p_ PersistentStoreDescription) CloudKitContainerOptions() NSPersistentCloudKitContainerOptions {
-	rv := objc.Send[NSPersistentCloudKitContainerOptions](p_.ID, objc.Sel("cloudKitContainerOptions"))
-	return rv
-}
-
-
-// Options that customize how this store description aligns with a CloudKit database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/cloudKitContainerOptions
-func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value NSPersistentCloudKitContainerOptions) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
 }
 
 
@@ -210,8 +191,8 @@ func (p_ PersistentStoreDescription) SetReadOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/options
-func (p_ PersistentStoreDescription) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
+func (p_ PersistentStoreDescription) Options() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -277,8 +258,8 @@ func (p_ PersistentStoreDescription) SetShouldMigrateStoreAutomatically(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/sqlitePragmas
-func (p_ PersistentStoreDescription) SqlitePragmas() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sqlitePragmas"))
+func (p_ PersistentStoreDescription) SqlitePragmas() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("sqlitePragmas"))
 	return rv
 }
 
@@ -297,27 +278,27 @@ func (p_ PersistentStoreDescription) Timeout() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/timeout
-func (p_ PersistentStoreDescription) SetTimeout(value foundation.ITimeInterval) {
+func (p_ PersistentStoreDescription) SetTimeout(value foundation.TimeInterval) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
 }
 
 
-// The URL that the store will use for its location.
+// Options that customize how this store description aligns with a CloudKit database.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-func (p_ PersistentStoreDescription) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("URL"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/cloudkitcontaineroptions
+func (p_ PersistentStoreDescription) CloudKitContainerOptions() IPersistentCloudKitContainerOptions {
+	rv := objc.Send[PersistentCloudKitContainerOptions](p_.ID, objc.Sel("cloudKitContainerOptions"))
 	return rv
 }
 
 
-// The URL that the store will use for its location.
+// Options that customize how this store description aligns with a CloudKit database.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreDescription/url
-func (p_ PersistentStoreDescription) SetURL(value foundation.IURL) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/cloudkitcontaineroptions
+func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value IPersistentCloudKitContainerOptions) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
 }
 
 
@@ -356,6 +337,25 @@ func (p_ PersistentStoreDescription) Type() string {
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/type
 func (p_ PersistentStoreDescription) SetType(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
+}
+
+
+// The URL that the store will use for its location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/url
+func (p_ PersistentStoreDescription) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL that the store will use for its location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstoredescription/url
+func (p_ PersistentStoreDescription) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 
 

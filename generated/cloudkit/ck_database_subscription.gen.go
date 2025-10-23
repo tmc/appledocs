@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKDatabaseSubscription] class.
@@ -33,7 +32,7 @@ type ICKDatabaseSubscription interface {
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
 	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value ICKNotificationInfo)
+	SetNotificationInfo(value CKNotificationInfo)
 }
 
 // A subscription that generates push notifications when CloudKit modifies records in a database.
@@ -91,35 +90,10 @@ func NewCKDatabaseSubscription() CKDatabaseSubscription {
 
 
 
-// Creates a database subscription from a serialized instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/init(coder:)
-func NewCKDatabaseSubscriptionWithCoder(aDecoder foundation.ICoder) CKDatabaseSubscription {
-	instance := getCKDatabaseSubscriptionClass().Alloc()
-	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a named subscription for all records in a database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/initWithSubscriptionID:
-func NewCKDatabaseSubscriptionWithSubscriptionID(subscriptionID unsafe.Pointer) CKDatabaseSubscription {
-	instance := getCKDatabaseSubscriptionClass().Alloc()
-	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithSubscriptionID:"), subscriptionID)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The type of record that the subscription queries.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/recordType-1y7dv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription/recordtype-46v7a
 func (c_ CKDatabaseSubscription) RecordType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
@@ -129,7 +103,7 @@ func (c_ CKDatabaseSubscription) RecordType() unsafe.Pointer {
 // The type of record that the subscription queries.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/recordType-1y7dv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription/recordtype-46v7a
 func (c_ CKDatabaseSubscription) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
@@ -149,8 +123,9 @@ func (c_ CKDatabaseSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseSubscription) SetNotificationInfo(value ICKNotificationInfo) {
+func (c_ CKDatabaseSubscription) SetNotificationInfo(value CKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
+
 
 

@@ -29,7 +29,7 @@ type _AudioPlayerNodeClass struct {
 // An interface definition for the [AudioPlayerNode] class.
 type IAudioPlayerNode interface {
 	IAudioNode
-	LastRenderTime() AVAudioTime
+	LastRenderTime() IAVAudioTime
 	SetLastRenderTime(value IAVAudioTime)
 	Latency() unsafe.Pointer
 	SetLatency(value unsafe.Pointer)
@@ -98,8 +98,8 @@ func NewAudioPlayerNode() AudioPlayerNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
-func (a_ AudioPlayerNode) LastRenderTime() AVAudioTime {
-	rv := objc.Send[AVAudioTime](a_.ID, objc.Sel("lastRenderTime"))
+func (a_ AudioPlayerNode) LastRenderTime() IAVAudioTime {
+	rv := objc.Send[AudioTime](a_.ID, objc.Sel("lastRenderTime"))
 	return rv
 }
 

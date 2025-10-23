@@ -30,8 +30,10 @@ type _UniqueIDSpecifierClass struct {
 // An interface definition for the [UniqueIDSpecifier] class.
 type IUniqueIDSpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
 	UniqueID() objc.ID
 	SetUniqueID(value objc.ID)
+	// methods:
 }
 
 // A specifier for an object in a collection (or container) by unique ID.
@@ -103,7 +105,7 @@ func NewUniqueIDSpecifierWithCoder(inCoder ICoder) UniqueIDSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUniqueIDSpecifier/init(containerClassDescription:containerSpecifier:key:uniqueID:)
-func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, uniqueID objectivec.IObject) UniqueIDSpecifier {
+func NewUniqueIDSpecifierWithContainerClassDescriptionContainerSpecifierKeyUniqueID(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, uniqueID objectivec.IObject) UniqueIDSpecifier {
 	instance := getUniqueIDSpecifierClass().Alloc()
 	rv := objc.Send[UniqueIDSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:uniqueID:"), classDesc, container, objc.String(property), uniqueID)
 	rv.Autorelease()

@@ -2,11 +2,14 @@
 
 // Package virtualization provides Go bindings for the Virtualization framework.
 //
-// Create virtual machines and run macOS and Linux-based operating systems. [Full Topic]
+// Create virtual machines and run macOS and Linux-based operating systems.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Virtualization without requiring cgo.
+
+// Create virtual machines and run macOS and Linux-based operating systems.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization
 package virtualization
 

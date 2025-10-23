@@ -31,8 +31,11 @@ type _CNObjectTrackerClass struct {
 // An interface definition for the [CNObjectTracker] class.
 type ICNObjectTracker interface {
 	objectivec.IObject
-	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) CNBoundsPrediction
-	FinishDetectionTrack() CNDetectionTrack
+	ContinueTrackingAtSourceImageSourceDisparity(time unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) ICNBoundsPrediction
+	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) ICNBoundsPrediction
+	FinishDetectionTrack() ICNDetectionTrack
+	ResetDetectionTrack()
+	StartTrackingAtWithinSourceImageSourceDisparity(time unsafe.Pointer, normalizedBounds coregraphics.CGRect, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) bool
 }
 
 // An object that converts a normalized point or rectangle into a detection track that tracks an object over time.
@@ -108,11 +111,21 @@ func (cc _CNObjectTrackerClass) IsSupported() bool {
 	return rv
 }
 
+// Continues to track an object that you’ve started tracking, and adds a new detection to the detection track you’re building.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/continueTrackingAt:sourceImage:sourceDisparity:
+func (c_ CNObjectTracker) ContinueTrackingAtSourceImageSourceDisparity(time unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) ICNBoundsPrediction {
+	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("continueTrackingAt:sourceImage:sourceDisparity:"), time, sourceImage, sourceDisparity)
+	return rv
+}
+
+
 // Finds the bounds of an object at the given point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/findObjectAtPoint:sourceImage:
-func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) CNBoundsPrediction {
+func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) ICNBoundsPrediction {
 	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("findObjectAtPoint:sourceImage:"), point, sourceImage)
 	return rv
 }
@@ -122,8 +135,27 @@ func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/finishDetectionTrack
-func (c_ CNObjectTracker) FinishDetectionTrack() CNDetectionTrack {
+func (c_ CNObjectTracker) FinishDetectionTrack() ICNDetectionTrack {
 	rv := objc.Send[CNDetectionTrack](c_.ID, objc.Sel("finishDetectionTrack"))
+	return rv
+}
+
+
+// Resets the builder to construct a new detection track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/resetDetectionTrack
+func (c_ CNObjectTracker) ResetDetectionTrack() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("resetDetectionTrack"))
+}
+
+
+// Starts creating a detection track to track an object within the given bounds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/startTrackingAt:within:sourceImage:sourceDisparity:
+func (c_ CNObjectTracker) StartTrackingAtWithinSourceImageSourceDisparity(time unsafe.Pointer, normalizedBounds coregraphics.CGRect, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("startTrackingAt:within:sourceImage:sourceDisparity:"), time, normalizedBounds, sourceImage, sourceDisparity)
 	return rv
 }
 

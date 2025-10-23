@@ -31,8 +31,6 @@ type _InterAppAudioSwitcherViewClass struct {
 // An interface definition for the [InterAppAudioSwitcherView] class.
 type IInterAppAudioSwitcherView interface {
 	appkit.IView
-	ContentWidth() float64
-	SetOutputAudioUnit(au audiotoolbox.IAudioUnit)
 	ShowingAppNames() bool
 	SetShowingAppNames(value bool)
 	IsShowingAppNames() bool
@@ -90,21 +88,6 @@ func NewInterAppAudioSwitcherView() InterAppAudioSwitcherView {
 	return getInterAppAudioSwitcherViewClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/contentWidth()
-func (i_ InterAppAudioSwitcherView) ContentWidth() float64 {
-	rv := objc.Send[float64](i_.ID, objc.Sel("contentWidth"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/setOutputAudioUnit(_:)
-func (i_ InterAppAudioSwitcherView) SetOutputAudioUnit(au audiotoolbox.IAudioUnit) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOutputAudioUnit:"), au)
-}
 
 
 // [Full Topic]

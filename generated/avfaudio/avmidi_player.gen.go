@@ -31,17 +31,17 @@ type _MIDIPlayerClass struct {
 // An interface definition for the [MIDIPlayer] class.
 type IMIDIPlayer interface {
 	objectivec.IObject
-	Play(completionHandler unsafe.Pointer)
-	PrepareToPlay()
-	Stop()
 	CurrentPosition() foundation.TimeInterval
-	SetCurrentPosition(value foundation.ITimeInterval)
+	SetCurrentPosition(value foundation.TimeInterval)
 	Duration() foundation.TimeInterval
 	Playing() bool
 	Rate() float32
 	SetRate(value float32)
 	IsPlaying() bool
 	SetIsPlaying(value bool)
+	Play(completionHandler unsafe.Pointer)
+	PrepareToPlay()
+	Stop()
 }
 
 // An object that plays MIDI data through a system sound module.
@@ -101,7 +101,7 @@ func NewMIDIPlayer() MIDIPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
-func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.IURL, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithContentsOfURL:soundBankURL:error:"), inURL, bankURL, outError)
 	rv.Autorelease()
@@ -113,7 +113,7 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.IURL, bank
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(data:soundBankURL:)
-func NewMIDIPlayerWithDataSoundBankURLError(data foundation.IData, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithDataSoundBankURLError(data foundation.NSData, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithData:soundBankURL:error:"), data, bankURL, outError)
 	rv.Autorelease()
@@ -163,7 +163,7 @@ func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) SetCurrentPosition(value foundation.ITimeInterval) {
+func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
 

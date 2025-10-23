@@ -44,45 +44,10 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest
 type BAContentRequest uint
 
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/install
-	BAContentRequestInstall BAContentRequest = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/periodic
-	BAContentRequestPeriodic BAContentRequest = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/update
-	BAContentRequestUpdate BAContentRequest = 0
-)
-
 // BADownloadState - Constants that indicate the state of a download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum
 type BADownloadState uint
-
-const (
-	// BADownloadStateCreated - A state that indicates a created download.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/created
-	BADownloadStateCreated BADownloadState = 0
-	// BADownloadStateDownloading - A state that indicates a download is in progress.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/downloading
-	BADownloadStateDownloading BADownloadState = 0
-	// BADownloadStateFailed - A state that indicates a failed download.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/failed
-	BADownloadStateFailed BADownloadState = 0
-	// BADownloadStateFinished - A state that indicates a finished download.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/finished
-	BADownloadStateFinished BADownloadState = 0
-	// BADownloadStateWaiting - A state that indicates a download is waiting to execute.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/waiting
-	BADownloadStateWaiting BADownloadState = 0
-)
 
 // BAErrorCode enum type
 //
@@ -146,7 +111,7 @@ const (
 // BAManagedErrorCode - An error code for a managed asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAManagedErrorCode
-type BAManagedErrorCode uint
+type BAManagedErrorCode int
 
 const (
 	// BAManagedErrorCodeAssetPackNotFound - An error code that indicates the system can’t find an asset pack with the given identifier.

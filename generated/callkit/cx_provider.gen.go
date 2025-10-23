@@ -31,19 +31,19 @@ type _CXProviderClass struct {
 // An interface definition for the [CXProvider] class.
 type ICXProvider interface {
 	objectivec.IObject
-	Invalidate()
-	PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.IUUID) []CXCallAction
-	ReportCallWithUUIDEndedAtDateReason(UUID foundation.IUUID, dateEnded foundation.IDate, endedReason ICXCallEndedReason)
-	ReportCallWithUUIDUpdated(UUID foundation.IUUID, update ICXCallUpdate)
-	ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.IUUID, update ICXCallUpdate, completion unsafe.Pointer)
-	ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.IUUID, dateConnected foundation.IDate)
-	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.IUUID, dateStartedConnecting foundation.IDate)
-	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
-	Configuration() CXProviderConfiguration
+	Configuration() ICXProviderConfiguration
 	SetConfiguration(value ICXProviderConfiguration)
 	PendingTransactions() []CXTransaction
 	CXErrorDomain() string
 	CXErrorDomainIncomingCall() string
+	Invalidate()
+	PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.UUID) []CXCallAction
+	ReportCallWithUUIDEndedAtDateReason(UUID foundation.UUID, dateEnded foundation.NSDate, endedReason CXCallEndedReason)
+	ReportCallWithUUIDUpdated(UUID foundation.UUID, update ICXCallUpdate)
+	ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.UUID, update ICXCallUpdate, completion unsafe.Pointer)
+	ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.UUID, dateConnected foundation.NSDate)
+	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.UUID, dateStartedConnecting foundation.NSDate)
+	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 }
 
 // An object that represents a telephony provider.
@@ -134,7 +134,7 @@ func (c_ CXProvider) Invalidate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingCallActions(of:withCall:)
-func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.IUUID) []CXCallAction {
+func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.UUID) []CXCallAction {
 	rv := objc.Send[[]CXCallAction](c_.ID, objc.Sel("pendingCallActionsOfClass:withCallUUID:"), callActionClass, callUUID)
 	return rv
 }
@@ -144,7 +144,7 @@ func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:endedAt:reason:)
-func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID foundation.IUUID, dateEnded foundation.IDate, endedReason ICXCallEndedReason) {
+func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID foundation.UUID, dateEnded foundation.NSDate, endedReason CXCallEndedReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:endedAtDate:reason:"), UUID, dateEnded, endedReason)
 }
 
@@ -153,7 +153,7 @@ func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID foundation.IUUID, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:updated:)
-func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID foundation.IUUID, update ICXCallUpdate) {
+func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID foundation.UUID, update ICXCallUpdate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:updated:"), UUID, update)
 }
 
@@ -162,7 +162,7 @@ func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID foundation.IUUID, update ICX
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)
-func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.IUUID, update ICXCallUpdate, completion unsafe.Pointer) {
+func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.UUID, update ICXCallUpdate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportNewIncomingCallWithUUID:update:completion:"), UUID, update, completion)
 }
 
@@ -171,7 +171,7 @@ func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:connectedAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.IUUID, dateConnected foundation.IDate) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.UUID, dateConnected foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:connectedAtDate:"), UUID, dateConnected)
 }
 
@@ -180,7 +180,7 @@ func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:startedConnectingAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.IUUID, dateStartedConnecting foundation.IDate) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.UUID, dateStartedConnecting foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:startedConnectingAtDate:"), UUID, dateStartedConnecting)
 }
 
@@ -198,7 +198,7 @@ func (c_ CXProvider) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
-func (c_ CXProvider) Configuration() CXProviderConfiguration {
+func (c_ CXProvider) Configuration() ICXProviderConfiguration {
 	rv := objc.Send[CXProviderConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }

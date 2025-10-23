@@ -30,17 +30,22 @@ type _VZVirtioConsolePortClass struct {
 // An interface definition for the [VZVirtioConsolePort] class.
 type IVZVirtioConsolePort interface {
 	objectivec.IObject
-	Attachment() VZSerialPortAttachment
+	Ports() VZVirtioConsolePortArray
+	SetPorts(value VZVirtioConsolePortArray)
+	Attachment() IVZSerialPortAttachment
 	SetAttachment(value IVZSerialPortAttachment)
 	Name() string
-	Ports() VZVirtioConsolePortArray
-	SetPorts(value IVZVirtioConsolePortArray)
+	SetName(value string)
 }
 
 // A class that represents a Virtio console port in a VM.
 //
 // Don’t instantiate a directly. You retrieve this object from the property.
+
+
+// A class that represents a Virtio console port in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort
 type VZVirtioConsolePort struct {
 	objectivec.Object
@@ -85,34 +90,10 @@ func NewVZVirtioConsolePort() VZVirtioConsolePort {
 }
 
 
-// An array of serial port attachments.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
-func (v_ VZVirtioConsolePort) Attachment() VZSerialPortAttachment {
-	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
-	return rv
-}
-
-
-// SetAttachment sets the value of the attachment property.
-// An array of serial port attachments.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
-func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
-}
-
-// The name of the port.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name
-func (v_ VZVirtioConsolePort) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
-	return rv
-}
 
 // The array of console ports that a specific device uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
 func (v_ VZVirtioConsolePort) Ports() VZVirtioConsolePortArray {
 	rv := objc.Send[VZVirtioConsolePortArray](v_.ID, objc.Sel("ports"))
@@ -120,13 +101,50 @@ func (v_ VZVirtioConsolePort) Ports() VZVirtioConsolePortArray {
 }
 
 
-// SetPorts sets the value of the ports property.
 // The array of console ports that a specific device uses.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
-func (v_ VZVirtioConsolePort) SetPorts(value IVZVirtioConsolePortArray) {
+func (v_ VZVirtioConsolePort) SetPorts(value VZVirtioConsolePortArray) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPorts:"), value)
+}
+
+
+// An array of serial port attachments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport/attachment
+func (v_ VZVirtioConsolePort) Attachment() IVZSerialPortAttachment {
+	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
+	return rv
+}
+
+
+// An array of serial port attachments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport/attachment
+func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
+}
+
+
+// The name of the port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport/name
+func (v_ VZVirtioConsolePort) Name() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The name of the port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport/name
+func (v_ VZVirtioConsolePort) SetName(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

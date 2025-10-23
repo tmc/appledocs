@@ -29,7 +29,6 @@ type _CKSyncEngineWillFetchChangesEventClass struct {
 // An interface definition for the [CKSyncEngineWillFetchChangesEvent] class.
 type ICKSyncEngineWillFetchChangesEvent interface {
 	ICKSyncEngineEvent
-	Context() CKSyncEngineFetchChangesContext
 }
 
 // An object that represents an imminent database fetch.
@@ -83,14 +82,6 @@ func NewCKSyncEngineWillFetchChangesEvent() CKSyncEngineWillFetchChangesEvent {
 	return getCKSyncEngineWillFetchChangesEventClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent/context
-func (c_ CKSyncEngineWillFetchChangesEvent) Context() CKSyncEngineFetchChangesContext {
-	rv := objc.Send[CKSyncEngineFetchChangesContext](c_.ID, objc.Sel("context"))
-	return rv
-}
 
 
 

@@ -29,8 +29,10 @@ type _HKAudiogramSampleClass struct {
 // An interface definition for the [HKAudiogramSample] class.
 type IHKAudiogramSample interface {
 	IHKSample
-	SensitivityPoints() HKAudiogramSensitivityPoint
+	// properties:
+	SensitivityPoints() IHKAudiogramSensitivityPoint
 	SetSensitivityPoints(value IHKAudiogramSensitivityPoint)
+	// methods:
 }
 
 // A sample that stores an audiogram.
@@ -92,7 +94,7 @@ func NewHKAudiogramSample() HKAudiogramSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsample/sensitivitypoints
-func (h_ HKAudiogramSample) SensitivityPoints() HKAudiogramSensitivityPoint {
+func (h_ HKAudiogramSample) SensitivityPoints() IHKAudiogramSensitivityPoint {
 	rv := objc.Send[HKAudiogramSensitivityPoint](h_.ID, objc.Sel("sensitivityPoints"))
 	return rv
 }

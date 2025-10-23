@@ -29,6 +29,8 @@ type _HKMedicationDoseEventTypeClass struct {
 // An interface definition for the [HKMedicationDoseEventType] class.
 type IHKMedicationDoseEventType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 

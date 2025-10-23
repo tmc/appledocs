@@ -30,34 +30,32 @@ type _SplitViewClass struct {
 // An interface definition for the [SplitView] class.
 type ISplitView interface {
 	IView
-	AddArrangedSubview(view IView)
-	AdjustSubviews()
-	DrawDividerInRect(rect coregraphics.CGRect)
-	HoldingPriorityForSubviewAtIndex(subviewIndex int) LayoutPriority
-	InsertArrangedSubviewAtIndex(view IView, index int)
-	IsPaneSplitter() bool
-	IsSubviewCollapsed(subview IView) bool
-	MaxPossiblePositionOfDividerAtIndex(dividerIndex int) float64
-	MinPossiblePositionOfDividerAtIndex(dividerIndex int) float64
-	RemoveArrangedSubview(view IView)
-	SetHoldingPriorityForSubviewAtIndex(priority LayoutPriority, subviewIndex int)
-	SetIsPaneSplitter(flag bool)
-	SetPositionOfDividerAtIndex(position float64, dividerIndex int)
 	ArrangedSubviews() []View
 	ArrangesAllSubviews() bool
 	SetArrangesAllSubviews(value bool)
 	AutosaveName() SplitViewAutosaveName
-	SetAutosaveName(value ISplitViewAutosaveName)
+	SetAutosaveName(value SplitViewAutosaveName)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DividerColor() NSColor
-	DividerStyle() SplitViewDividerStyle
-	SetDividerStyle(value SplitViewDividerStyle)
+	DividerColor() IColor
+	DividerStyle() NSSplitViewDividerStyle
+	SetDividerStyle(value NSSplitViewDividerStyle)
 	DividerThickness() float64
 	Vertical() bool
 	SetVertical(value bool)
 	IsVertical() bool
 	SetIsVertical(value bool)
+	AddArrangedSubview(view IView)
+	AdjustSubviews()
+	DrawDividerInRect(rect coregraphics.CGRect)
+	HoldingPriorityForSubviewAtIndex(subviewIndex int) LayoutPriority
+	InsertArrangedSubviewAtIndex(view IView, index int)
+	IsSubviewCollapsed(subview IView) bool
+	MaxPossiblePositionOfDividerAtIndex(dividerIndex int) float64
+	MinPossiblePositionOfDividerAtIndex(dividerIndex int) float64
+	RemoveArrangedSubview(view IView)
+	SetHoldingPriorityForSubviewAtIndex(priority LayoutPriority, subviewIndex int)
+	SetPositionOfDividerAtIndex(position float64, dividerIndex int)
 }
 
 // A view that arranges two or more views in a linear stack running horizontally or vertically.
@@ -161,16 +159,6 @@ func (s_ SplitView) InsertArrangedSubviewAtIndex(view IView, index int) {
 }
 
 
-// The type of pane splitter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/isPaneSplitter
-func (s_ SplitView) IsPaneSplitter() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isPaneSplitter"))
-	return rv
-}
-
-
 // Returns whether the specified view is in a collapsed state.
 //
 // [Full Topic]
@@ -216,15 +204,6 @@ func (s_ SplitView) RemoveArrangedSubview(view IView) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/setHoldingPriority(_:forSubviewAt:)
 func (s_ SplitView) SetHoldingPriorityForSubviewAtIndex(priority LayoutPriority, subviewIndex int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHoldingPriority:forSubviewAtIndex:"), priority, subviewIndex)
-}
-
-
-// Sets the type of splitter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/setIsPaneSplitter:
-func (s_ SplitView) SetIsPaneSplitter(flag bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPaneSplitter:"), flag)
 }
 
 
@@ -280,7 +259,7 @@ func (s_ SplitView) AutosaveName() SplitViewAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/autosaveName-swift.property
-func (s_ SplitView) SetAutosaveName(value ISplitViewAutosaveName) {
+func (s_ SplitView) SetAutosaveName(value SplitViewAutosaveName) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutosaveName:"), value)
 }
 
@@ -308,8 +287,8 @@ func (s_ SplitView) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/dividerColor
-func (s_ SplitView) DividerColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("dividerColor"))
+func (s_ SplitView) DividerColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("dividerColor"))
 	return rv
 }
 
@@ -318,8 +297,8 @@ func (s_ SplitView) DividerColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/dividerStyle-swift.property
-func (s_ SplitView) DividerStyle() SplitViewDividerStyle {
-	rv := objc.Send[SplitViewDividerStyle](s_.ID, objc.Sel("dividerStyle"))
+func (s_ SplitView) DividerStyle() NSSplitViewDividerStyle {
+	rv := objc.Send[NSSplitViewDividerStyle](s_.ID, objc.Sel("dividerStyle"))
 	return rv
 }
 
@@ -328,7 +307,7 @@ func (s_ SplitView) DividerStyle() SplitViewDividerStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/dividerStyle-swift.property
-func (s_ SplitView) SetDividerStyle(value SplitViewDividerStyle) {
+func (s_ SplitView) SetDividerStyle(value NSSplitViewDividerStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDividerStyle:"), value)
 }
 

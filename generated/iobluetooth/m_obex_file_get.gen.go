@@ -30,6 +30,8 @@ type _mOBEXFileGetClass struct {
 // An interface definition for the [mOBEXFileGet] class.
 type ImOBEXFileGet interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

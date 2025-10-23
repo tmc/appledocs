@@ -30,9 +30,11 @@ type _DistantObjectRequestClass struct {
 // An interface definition for the [DistantObjectRequest] class.
 type IDistantObjectRequest interface {
 	objectivec.IObject
+	// properties:
 	Connection() IConnection
 	Conversation() objc.ID
 	Invocation() IInvocation
+	// methods:
 }
 
 // An object used by the distributed objects system to help handle invocations between different processes.

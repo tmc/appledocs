@@ -30,7 +30,7 @@ type _PasskeyRegistrationCredentialExtensionOutputClass struct {
 // An interface definition for the [PasskeyRegistrationCredentialExtensionOutput] class.
 type IPasskeyRegistrationCredentialExtensionOutput interface {
 	objectivec.IObject
-	LargeBlobRegistrationOutput() ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput
+	LargeBlobRegistrationOutput() IASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput
 }
 
 // This class encapsulates output for various WebAuthn extensions used during passkey registration.
@@ -99,8 +99,8 @@ func NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput(largeBlo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyRegistrationCredentialExtensionOutput-c.class/largeBlobRegistrationOutput
-func (p_ PasskeyRegistrationCredentialExtensionOutput) LargeBlobRegistrationOutput() ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
-	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput](p_.ID, objc.Sel("largeBlobRegistrationOutput"))
+func (p_ PasskeyRegistrationCredentialExtensionOutput) LargeBlobRegistrationOutput() IASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
+	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput](p_.ID, objc.Sel("largeBlobRegistrationOutput"))
 	return rv
 }
 

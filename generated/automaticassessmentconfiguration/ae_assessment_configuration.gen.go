@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,6 @@ type _AEAssessmentConfigurationClass struct {
 // An interface definition for the [AEAssessmentConfiguration] class.
 type IAEAssessmentConfiguration interface {
 	objectivec.IObject
-	RemoveApplication(application IAEAssessmentApplication)
-	SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication)
 	AllowsAccessibilitySpeech() bool
 	SetAllowsAccessibilitySpeech(value bool)
 	AllowsAccessibilityTypingFeedback() bool
@@ -54,8 +53,16 @@ type IAEAssessmentConfiguration interface {
 	SetAllowsSpellCheck(value bool)
 	AutocorrectMode() AEAutocorrectMode
 	SetAutocorrectMode(value AEAutocorrectMode)
-	ConfigurationsByApplication() unsafe.Pointer
-	MainParticipantConfiguration() AEAssessmentParticipantConfiguration
+	ConfigurationsByApplication() foundation.IDictionary
+	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
+	AllowsAccessibilityKeyboard() bool
+	SetAllowsAccessibilityKeyboard(value bool)
+	AllowsAccessibilityLiveCaptions() bool
+	SetAllowsAccessibilityLiveCaptions(value bool)
+	AllowsAccessibilityReader() bool
+	SetAllowsAccessibilityReader(value bool)
+	RemoveApplication(application IAEAssessmentApplication)
+	SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication)
 }
 
 // Configuration information for an assessment session.
@@ -342,8 +349,8 @@ func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value AEAutocorrectMode) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication
-func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationsByApplication"))
+func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
 
@@ -352,9 +359,66 @@ func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration
-func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
+func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() IAEAssessmentParticipantConfiguration {
 	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether to allow alternative input methods in the Accessibility Keyboard during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitykeyboard
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityKeyboard() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityKeyboard"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to allow alternative input methods in the Accessibility Keyboard during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitykeyboard
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityKeyboard(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityKeyboard:"), value)
+}
+
+
+// A Boolean value that indicates whether to allow Live Captions during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitylivecaptions
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityLiveCaptions() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityLiveCaptions"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to allow Live Captions during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilitylivecaptions
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityLiveCaptions(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityLiveCaptions:"), value)
+}
+
+
+// A Boolean value that indicates whether to allow the Accessibility Reader during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilityreader
+func (a_ AEAssessmentConfiguration) AllowsAccessibilityReader() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsAccessibilityReader"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to allow the Accessibility Reader during an assessment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilityreader
+func (a_ AEAssessmentConfiguration) SetAllowsAccessibilityReader(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsAccessibilityReader:"), value)
 }
 
 

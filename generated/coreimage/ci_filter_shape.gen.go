@@ -31,13 +31,13 @@ type _FilterShapeClass struct {
 // An interface definition for the [FilterShape] class.
 type IFilterShape interface {
 	objectivec.IObject
-	InsetByXY(dx int, dy int) FilterShape
-	IntersectWithRect(r coregraphics.CGRect) FilterShape
-	IntersectWith(s2 ICIFilterShape) FilterShape
-	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) FilterShape
-	UnionWith(s2 ICIFilterShape) FilterShape
-	UnionWithRect(r coregraphics.CGRect) FilterShape
 	Extent() coregraphics.CGRect
+	InsetByXY(dx int, dy int) IFilterShape
+	IntersectWithRect(r coregraphics.CGRect) IFilterShape
+	IntersectWith(s2 ICIFilterShape) IFilterShape
+	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) IFilterShape
+	UnionWith(s2 ICIFilterShape) IFilterShape
+	UnionWithRect(r coregraphics.CGRect) IFilterShape
 }
 
 // A description of the bounding shape of a filter and the domain of definition for a filter operation.
@@ -120,7 +120,7 @@ func (fc _FilterShapeClass) ShapeWithRect(r coregraphics.CGRect) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/insetBy(x:y:)
-func (f_ FilterShape) InsetByXY(dx int, dy int) FilterShape {
+func (f_ FilterShape) InsetByXY(dx int, dy int) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("insetByX:Y:"), dx, dy)
 	return rv
 }
@@ -130,7 +130,7 @@ func (f_ FilterShape) InsetByXY(dx int, dy int) FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/intersect(with:)-2o2n8
-func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) FilterShape {
+func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("intersectWithRect:"), r)
 	return rv
 }
@@ -140,7 +140,7 @@ func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/intersect(with:)-8iw
-func (f_ FilterShape) IntersectWith(s2 ICIFilterShape) FilterShape {
+func (f_ FilterShape) IntersectWith(s2 ICIFilterShape) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("intersectWith:"), s2)
 	return rv
 }
@@ -150,7 +150,7 @@ func (f_ FilterShape) IntersectWith(s2 ICIFilterShape) FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/transform(by:interior:)
-func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool) FilterShape {
+func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("transformBy:interior:"), m, flag)
 	return rv
 }
@@ -160,7 +160,7 @@ func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/union(with:)-52mnd
-func (f_ FilterShape) UnionWith(s2 ICIFilterShape) FilterShape {
+func (f_ FilterShape) UnionWith(s2 ICIFilterShape) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("unionWith:"), s2)
 	return rv
 }
@@ -170,7 +170,7 @@ func (f_ FilterShape) UnionWith(s2 ICIFilterShape) FilterShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/union(with:)-75ebo
-func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) FilterShape {
+func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) IFilterShape {
 	rv := objc.Send[FilterShape](f_.ID, objc.Sel("unionWithRect:"), r)
 	return rv
 }

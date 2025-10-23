@@ -30,8 +30,10 @@ type _INSpeakableStringClass struct {
 // An interface definition for the [INSpeakableString] class.
 type IINSpeakableString interface {
 	objectivec.IObject
+	// properties:
 	Identifier() string
 	SetIdentifier(value string)
+	// methods:
 }
 
 // A custom phrase to be resolved by an Intents extension.

@@ -30,15 +30,14 @@ type _AuthorizationControllerClass struct {
 // An interface definition for the [AuthorizationController] class.
 type IAuthorizationController interface {
 	objectivec.IObject
-	Cancel()
 	CustomAuthorizationMethods() []string
 	SetCustomAuthorizationMethods(value []string)
-	PresentationContextProvider() objc.ID
-	SetPresentationContextProvider(value objc.ID)
-	AuthorizationRequests() ASAuthorizationRequest
-	SetAuthorizationRequests(value IASAuthorizationRequest)
+	AuthorizationRequests() AuthorizationRequest
+	SetAuthorizationRequests(value AuthorizationRequest)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	PresentationContextProvider() unsafe.Pointer
+	SetPresentationContextProvider(value unsafe.Pointer)
 }
 
 // A controller that manages authorization requests that a provider creates.
@@ -94,15 +93,6 @@ func NewAuthorizationController() AuthorizationController {
 
 
 
-// Cancels any active authorization requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/cancel()
-func (a_ AuthorizationController) Cancel() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("cancel"))
-}
-
-
 // An array of custom authorization methods for the user to choose.
 //
 // [Full Topic]
@@ -132,31 +122,12 @@ func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) 
 }
 
 
-// A delegate that provides a display context in which the system can present an authorization interface to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
-func (a_ AuthorizationController) PresentationContextProvider() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("presentationContextProvider"))
-	return rv
-}
-
-
-// A delegate that provides a display context in which the system can present an authorization interface to the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/presentationContextProvider
-func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
-}
-
-
 // The authorization requests that the controller manages.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest {
-	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
+func (a_ AuthorizationController) AuthorizationRequests() AuthorizationRequest {
+	rv := objc.Send[AuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
 
@@ -165,7 +136,7 @@ func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) SetAuthorizationRequests(value IASAuthorizationRequest) {
+func (a_ AuthorizationController) SetAuthorizationRequests(value AuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 
@@ -186,6 +157,25 @@ func (a_ AuthorizationController) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
 func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A delegate that provides a display context in which the system can present an authorization interface to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/presentationcontextprovider
+func (a_ AuthorizationController) PresentationContextProvider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
+	return rv
+}
+
+
+// A delegate that provides a display context in which the system can present an authorization interface to the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/presentationcontextprovider
+func (a_ AuthorizationController) SetPresentationContextProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 
 

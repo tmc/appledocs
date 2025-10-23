@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CustomImageRep] class.
@@ -30,7 +29,8 @@ type _CustomImageRepClass struct {
 // An interface definition for the [CustomImageRep] class.
 type ICustomImageRep interface {
 	IImageRep
-	Delegate() objc.ID
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	DrawSelector() unsafe.Pointer
 	SetDrawSelector(value unsafe.Pointer)
 	DrawingHandler() bool
@@ -92,26 +92,22 @@ func NewCustomImageRep() CustomImageRep {
 
 
 
-// Returns a representation of an image initialized with the specified delegate information.
+// The delegate object that renders the image for the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/init(draw:delegate:)
-func NewCustomImageRepWithDrawSelectorDelegate(selector objc.SEL, delegate objectivec.IObject) CustomImageRep {
-	instance := getCustomImageRepClass().Alloc()
-	rv := objc.Send[CustomImageRep](instance.ID, objc.Sel("initWithDrawSelector:delegate:"), selector, delegate)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/delegate
+func (c_ CustomImageRep) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-
 
 
 // The delegate object that renders the image for the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomImageRep/delegate
-func (c_ CustomImageRep) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/delegate
+func (c_ CustomImageRep) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -151,5 +147,6 @@ func (c_ CustomImageRep) DrawingHandler() bool {
 func (c_ CustomImageRep) SetDrawingHandler(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingHandler:"), value)
 }
+
 
 

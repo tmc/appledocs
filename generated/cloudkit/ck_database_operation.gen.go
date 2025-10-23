@@ -29,7 +29,7 @@ type _CKDatabaseOperationClass struct {
 // An interface definition for the [CKDatabaseOperation] class.
 type ICKDatabaseOperation interface {
 	ICKOperation
-	Database() CKDatabase
+	Database() ICKDatabase
 	SetDatabase(value ICKDatabase)
 }
 
@@ -92,7 +92,7 @@ func NewCKDatabaseOperation() CKDatabaseOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
-func (c_ CKDatabaseOperation) Database() CKDatabase {
+func (c_ CKDatabaseOperation) Database() ICKDatabase {
 	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("database"))
 	return rv
 }

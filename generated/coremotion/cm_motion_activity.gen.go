@@ -31,7 +31,7 @@ type _MotionActivityClass struct {
 type IMotionActivity interface {
 	ILogItem
 	Automotive() bool
-	Confidence() MotionActivityConfidence
+	Confidence() CMMotionActivityConfidence
 	Cycling() bool
 	Running() bool
 	StartDate() foundation.NSDate
@@ -109,8 +109,8 @@ func (m_ MotionActivity) Automotive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/confidence
-func (m_ MotionActivity) Confidence() MotionActivityConfidence {
-	rv := objc.Send[MotionActivityConfidence](m_.ID, objc.Sel("confidence"))
+func (m_ MotionActivity) Confidence() CMMotionActivityConfidence {
+	rv := objc.Send[CMMotionActivityConfidence](m_.ID, objc.Sel("confidence"))
 	return rv
 }
 

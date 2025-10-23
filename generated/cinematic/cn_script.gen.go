@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +32,7 @@ type _CNScriptClass struct {
 // An interface definition for the [CNScript] class.
 type ICNScript interface {
 	objectivec.IObject
-	DecisionBeforeTime(time unsafe.Pointer) CNDecision
-	PrimaryDecisionAtTime(time unsafe.Pointer) CNDecision
-	TimeRangeOfTransitionBeforeDecision(decision ICNDecision) unsafe.Pointer
+	PrimaryDecisionAtTime(time unsafe.Pointer) ICNDecision
 }
 
 // A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.
@@ -88,13 +88,10 @@ func NewCNScript() CNScript {
 
 
 
-// The decision that occurs before the given time.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/decisionBeforeTime:
-func (c_ CNScript) DecisionBeforeTime(time unsafe.Pointer) CNDecision {
-	rv := objc.Send[CNDecision](c_.ID, objc.Sel("decisionBeforeTime:"), time)
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/loadFromAsset:changes:progress:completionHandler:
+func (cc _CNScriptClass) LoadFromAssetChangesProgressCompletionHandler(asset avfoundation.Asset, changes ICNScriptChanges, progress foundation.Progress, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:changes:progress:completionHandler:"), asset, changes, progress, completionHandler)
 }
 
 
@@ -102,18 +99,8 @@ func (c_ CNScript) DecisionBeforeTime(time unsafe.Pointer) CNDecision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/primaryDecisionAtTime:
-func (c_ CNScript) PrimaryDecisionAtTime(time unsafe.Pointer) CNDecision {
+func (c_ CNScript) PrimaryDecisionAtTime(time unsafe.Pointer) ICNDecision {
 	rv := objc.Send[CNDecision](c_.ID, objc.Sel("primaryDecisionAtTime:"), time)
-	return rv
-}
-
-
-// The time range during which the focus transitioned toward the given decision.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScript-9e1zn/timeRangeOfTransitionBeforeDecision:
-func (c_ CNScript) TimeRangeOfTransitionBeforeDecision(decision ICNDecision) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRangeOfTransitionBeforeDecision:"), decision)
 	return rv
 }
 

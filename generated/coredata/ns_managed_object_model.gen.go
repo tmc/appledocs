@@ -31,18 +31,14 @@ type _ManagedObjectModelClass struct {
 // An interface definition for the [ManagedObjectModel] class.
 type IManagedObjectModel interface {
 	objectivec.IObject
-	FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) FetchRequest
-	FetchRequestTemplateForName(name string) FetchRequest
-	IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool
-	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string)
 	Configurations() string
 	SetConfigurations(value string)
-	Entities() NSEntityDescription
+	Entities() IEntityDescription
 	SetEntities(value IEntityDescription)
-	EntitiesByName() NSEntityDescription
+	EntitiesByName() IEntityDescription
 	SetEntitiesByName(value IEntityDescription)
 	EntityVersionHashesByName() foundation.Data
-	SetEntityVersionHashesByName(value foundation.IData)
+	SetEntityVersionHashesByName(value foundation.Data)
 	FetchRequestTemplatesByName() unsafe.Pointer
 	SetFetchRequestTemplatesByName(value unsafe.Pointer)
 	LocalizationDictionary() string
@@ -51,6 +47,8 @@ type IManagedObjectModel interface {
 	SetVersionChecksum(value string)
 	VersionIdentifiers() unsafe.Pointer
 	SetVersionIdentifiers(value unsafe.Pointer)
+	IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata foundation.IDictionary) bool
+	SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name string)
 }
 
 // A programmatic representation of the file describing your objects.
@@ -106,31 +104,11 @@ func NewManagedObjectModel() ManagedObjectModel {
 
 
 
-// Returns a copy of the fetch request template with the variables substituted by values from the substitutions dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestFromTemplate(withName:substitutionVariables:)
-func (m_ ManagedObjectModel) FetchRequestFromTemplateWithNameSubstitutionVariables(name string, variables unsafe.Pointer) FetchRequest {
-	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestFromTemplateWithName:substitutionVariables:"), objc.String(name), variables)
-	return rv
-}
-
-
-// Returns the fetch request with a specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/fetchRequestTemplate(forName:)
-func (m_ ManagedObjectModel) FetchRequestTemplateForName(name string) FetchRequest {
-	rv := objc.Send[FetchRequest](m_.ID, objc.Sel("fetchRequestTemplateForName:"), objc.String(name))
-	return rv
-}
-
-
 // Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectModel/isConfiguration(withName:compatibleWithStoreMetadata:)
-func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata unsafe.Pointer) bool {
+func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configuration string, metadata foundation.IDictionary) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isConfiguration:compatibleWithStoreMetadata:"), objc.String(configuration), metadata)
 	return rv
 }
@@ -168,8 +146,8 @@ func (m_ ManagedObjectModel) SetConfigurations(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entities
-func (m_ ManagedObjectModel) Entities() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entities"))
+func (m_ ManagedObjectModel) Entities() IEntityDescription {
+	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("entities"))
 	return rv
 }
 
@@ -187,8 +165,8 @@ func (m_ ManagedObjectModel) SetEntities(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entitiesbyname
-func (m_ ManagedObjectModel) EntitiesByName() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entitiesByName"))
+func (m_ ManagedObjectModel) EntitiesByName() IEntityDescription {
+	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("entitiesByName"))
 	return rv
 }
 
@@ -216,7 +194,7 @@ func (m_ ManagedObjectModel) EntityVersionHashesByName() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/entityversionhashesbyname
-func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value foundation.IData) {
+func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityVersionHashesByName:"), value)
 }
 

@@ -30,6 +30,8 @@ type _isQueueingClass struct {
 // An interface definition for the [isQueueing] class.
 type IisQueueing interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

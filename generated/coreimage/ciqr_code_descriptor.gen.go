@@ -31,7 +31,7 @@ type _QRCodeDescriptorClass struct {
 type IQRCodeDescriptor interface {
 	IBarcodeDescriptor
 	ErrorCorrectedPayload() foundation.NSData
-	ErrorCorrectionLevel() QRCodeErrorCorrectionLevel
+	ErrorCorrectionLevel() CIQRCodeErrorCorrectionLevel
 	MaskPattern() unsafe.Pointer
 	SymbolVersion() int
 }
@@ -95,7 +95,7 @@ func NewQRCodeDescriptor() QRCodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/init(payload:symbolVersion:maskPattern:errorCorrectionLevel:)
-func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.IData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) QRCodeDescriptor {
+func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.NSData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel CIQRCodeErrorCorrectionLevel) QRCodeDescriptor {
 	instance := getQRCodeDescriptorClass().Alloc()
 	rv := objc.Send[QRCodeDescriptor](instance.ID, objc.Sel("initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:
-func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.IData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) unsafe.Pointer {
+func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.NSData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel CIQRCodeErrorCorrectionLevel) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	return rv
 }
@@ -128,8 +128,8 @@ func (q_ QRCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectionLevel-swift.property
-func (q_ QRCodeDescriptor) ErrorCorrectionLevel() QRCodeErrorCorrectionLevel {
-	rv := objc.Send[QRCodeErrorCorrectionLevel](q_.ID, objc.Sel("errorCorrectionLevel"))
+func (q_ QRCodeDescriptor) ErrorCorrectionLevel() CIQRCodeErrorCorrectionLevel {
+	rv := objc.Send[CIQRCodeErrorCorrectionLevel](q_.ID, objc.Sel("errorCorrectionLevel"))
 	return rv
 }
 

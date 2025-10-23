@@ -131,10 +131,10 @@ var templateFuncs = template.FuncMap{
 	"getConstructorBody":     getConstructorBody,
 
 	// Utility functions for template generation
-	"sortedKeys":        sortedKeys,
-	"stripObjCPrefix":   stripObjCPrefix,
-	"cleanConstantName": cleanConstantName,
-	"strContains":       stringsContains,
+	"sortedKeys":         sortedKeys,
+	"stripObjCPrefix":    stripObjCPrefix,
+	"cleanConstantName":  cleanConstantName,
+	"strContains":        stringsContains,
 	"enumUnderlyingType": enumUnderlyingType,
 }
 

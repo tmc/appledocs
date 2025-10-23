@@ -87,25 +87,6 @@ func NewGCMouse() GCMouse {
 
 
 
-// The most recent mouse that the user connects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
-func (gc _GCMouseClass) Current() GCMouse {
-	rv := objc.Send[GCMouse](objc.ID(gc.class), objc.Sel("current"))
-	return rv
-}
-
-// The most recent mouse that the user connects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
-func (g_ GCMouse) Current() GCMouse {
-	rv := objc.Send[GCMouse](g_.ID, objc.Sel("current"))
-	return rv
-}
-
-
 // The controller profile for the mouse device.
 //
 // [Full Topic]

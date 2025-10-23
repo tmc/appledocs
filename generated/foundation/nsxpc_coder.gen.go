@@ -29,11 +29,13 @@ type _XPCCoderClass struct {
 // An interface definition for the [XPCCoder] class.
 type IXPCCoder interface {
 	ICoder
+	// properties:
 	Connection() IXPCConnection
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
-	DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer
-	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
+	// methods:
+	DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string /* primitive/slice/pointer */) unsafe.Pointer
+	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string /* primitive/slice/pointer */)
 }
 
 // A coder that encodes and decodes objects that your app sends over an XPC connection.
@@ -95,7 +97,7 @@ func NewXPCCoder() XPCCoder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/decodeXPCObject(ofType:forKey:)
-func (x_ XPCCoder) DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string) unsafe.Pointer {
+func (x_ XPCCoder) DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("decodeXPCObjectOfType:forKey:"), type_, objc.String(key))
 	return rv
 }
@@ -105,7 +107,7 @@ func (x_ XPCCoder) DecodeXPCObjectOfTypeForKey(type_ unsafe.Pointer, key string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/encodeXPCObject(_:forKey:)
-func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string) {
+func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("encodeXPCObject:forKey:"), xpcObject, objc.String(key))
 }
 

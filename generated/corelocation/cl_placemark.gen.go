@@ -38,11 +38,11 @@ type IPlacemark interface {
 	InlandWater() string
 	ISOcountryCode() string
 	Locality() string
-	Location() CLLocation
+	Location() ICLLocation
 	Name() string
 	Ocean() string
 	PostalCode() string
-	Region() CLRegion
+	Region() ICLRegion
 	SubAdministrativeArea() string
 	SubLocality() string
 	SubThoroughfare() string
@@ -103,6 +103,14 @@ func NewPlacemark() Placemark {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
+func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress objectivec.IObject) Placemark {
+	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
+	return rv
+}
+
+
 // Initializes and returns a placemark object from another placemark object.
 //
 // [Full Topic]
@@ -114,6 +122,14 @@ func NewPlacemarkWithPlacemark(placemark ICLPlacemark) Placemark {
 	return rv
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
+func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress objectivec.IObject) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
+	return rv
+}
 
 
 // A dictionary containing the Address Book keys and values for the placemark.
@@ -190,8 +206,8 @@ func (p_ Placemark) Locality() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/location
-func (p_ Placemark) Location() CLLocation {
-	rv := objc.Send[CLLocation](p_.ID, objc.Sel("location"))
+func (p_ Placemark) Location() ICLLocation {
+	rv := objc.Send[Location](p_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -230,8 +246,8 @@ func (p_ Placemark) PostalCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/region
-func (p_ Placemark) Region() CLRegion {
-	rv := objc.Send[CLRegion](p_.ID, objc.Sel("region"))
+func (p_ Placemark) Region() ICLRegion {
+	rv := objc.Send[Region](p_.ID, objc.Sel("region"))
 	return rv
 }
 

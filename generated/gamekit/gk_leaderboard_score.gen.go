@@ -34,7 +34,7 @@ type ILeaderboardScore interface {
 	SetContext(value int)
 	LeaderboardID() string
 	SetLeaderboardID(value string)
-	Player() GKPlayer
+	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
 	Value() int
 	SetValue(value int)
@@ -135,8 +135,8 @@ func (l_ LeaderboardScore) SetLeaderboardID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/player
-func (l_ LeaderboardScore) Player() GKPlayer {
-	rv := objc.Send[GKPlayer](l_.ID, objc.Sel("player"))
+func (l_ LeaderboardScore) Player() IGKPlayer {
+	rv := objc.Send[Player](l_.ID, objc.Sel("player"))
 	return rv
 }
 

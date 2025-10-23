@@ -30,10 +30,10 @@ type _RoutingPlaybackArbiterClass struct {
 // An interface definition for the [RoutingPlaybackArbiter] class.
 type IRoutingPlaybackArbiter interface {
 	objectivec.IObject
-	PreferredParticipantForExternalPlayback() objc.ID
-	SetPreferredParticipantForExternalPlayback(value objc.ID)
 	PreferredParticipantForNonMixableAudioRoutes() objc.ID
 	SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID)
+	PreferredParticipantForExternalPlayback() AVRoutingPlaybackParticipant
+	SetPreferredParticipantForExternalPlayback(value AVRoutingPlaybackParticipant)
 }
 
 // An object that manages playback routing preferences.
@@ -89,35 +89,6 @@ func NewRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 
 
 
-// Returns the singleton playback arbiter instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/shared()
-func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() RoutingPlaybackArbiter {
-	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("sharedRoutingPlaybackArbiter"))
-	return rv
-}
-
-
-// The participant that has priority to play on external playback interfaces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForExternalPlayback
-func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("preferredParticipantForExternalPlayback"))
-	return rv
-}
-
-
-// The participant that has priority to play on external playback interfaces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForExternalPlayback
-func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value objc.ID) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
-}
-
-
 // The participant that has priority to play audio when it’s not possible to play multiple audio sources concurrently.
 //
 // [Full Topic]
@@ -134,6 +105,25 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForNonMixableAudioRoutes() 
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/preferredParticipantForNonMixableAudioRoutes
 func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForNonMixableAudioRoutes:"), value)
+}
+
+
+// The participant that has priority to play on external playback interfaces.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
+func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() AVRoutingPlaybackParticipant {
+	rv := objc.Send[RoutingPlaybackParticipant](r_.ID, objc.Sel("preferredParticipantForExternalPlayback"))
+	return rv
+}
+
+
+// The participant that has priority to play on external playback interfaces.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
+func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value AVRoutingPlaybackParticipant) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
 }
 
 

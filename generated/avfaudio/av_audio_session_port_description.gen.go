@@ -31,16 +31,15 @@ type _AudioSessionPortDescriptionClass struct {
 // An interface definition for the [AudioSessionPortDescription] class.
 type IAudioSessionPortDescription interface {
 	objectivec.IObject
-	PreferredDataSource() AVAudioSessionDataSourceDescription
-	AvailableInputs() AVAudioSessionPortDescription
+	AvailableInputs() IAVAudioSessionPortDescription
 	SetAvailableInputs(value IAVAudioSessionPortDescription)
-	CurrentRoute() AVAudioSessionRouteDescription
+	CurrentRoute() IAVAudioSessionRouteDescription
 	SetCurrentRoute(value IAVAudioSessionRouteDescription)
-	BluetoothMicrophoneExtension() AVAudioSessionPortExtensionBluetoothMicrophone
+	BluetoothMicrophoneExtension() IAVAudioSessionPortExtensionBluetoothMicrophone
 	SetBluetoothMicrophoneExtension(value IAVAudioSessionPortExtensionBluetoothMicrophone)
 	Channels() unsafe.Pointer
 	SetChannels(value unsafe.Pointer)
-	DataSources() AVAudioSessionDataSourceDescription
+	DataSources() IAVAudioSessionDataSourceDescription
 	SetDataSources(value IAVAudioSessionDataSourceDescription)
 	HasHardwareVoiceCallProcessing() bool
 	SetHasHardwareVoiceCallProcessing(value bool)
@@ -49,8 +48,10 @@ type IAudioSessionPortDescription interface {
 	PortName() string
 	SetPortName(value string)
 	PortType() foundation.Port
-	SetPortType(value foundation.IPort)
-	SelectedDataSource() AVAudioSessionDataSourceDescription
+	SetPortType(value foundation.Port)
+	PreferredDataSource() IAVAudioSessionDataSourceDescription
+	SetPreferredDataSource(value IAVAudioSessionDataSourceDescription)
+	SelectedDataSource() IAVAudioSessionDataSourceDescription
 	SetSelectedDataSource(value IAVAudioSessionDataSourceDescription)
 	Uid() string
 	SetUid(value string)
@@ -109,22 +110,12 @@ func NewAudioSessionPortDescription() AudioSessionPortDescription {
 
 
 
-// The preferred audio data source for the port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortDescription/preferredDataSource
-func (a_ AudioSessionPortDescription) PreferredDataSource() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("preferredDataSource"))
-	return rv
-}
-
-
 // An array of input ports available for audio routing.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/availableinputs
-func (a_ AudioSessionPortDescription) AvailableInputs() AVAudioSessionPortDescription {
-	rv := objc.Send[AVAudioSessionPortDescription](a_.ID, objc.Sel("availableInputs"))
+func (a_ AudioSessionPortDescription) AvailableInputs() IAVAudioSessionPortDescription {
+	rv := objc.Send[AudioSessionPortDescription](a_.ID, objc.Sel("availableInputs"))
 	return rv
 }
 
@@ -142,8 +133,8 @@ func (a_ AudioSessionPortDescription) SetAvailableInputs(value IAVAudioSessionPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-func (a_ AudioSessionPortDescription) CurrentRoute() AVAudioSessionRouteDescription {
-	rv := objc.Send[AVAudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
+func (a_ AudioSessionPortDescription) CurrentRoute() IAVAudioSessionRouteDescription {
+	rv := objc.Send[AudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
 }
 
@@ -161,8 +152,8 @@ func (a_ AudioSessionPortDescription) SetCurrentRoute(value IAVAudioSessionRoute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/bluetoothmicrophoneextension
-func (a_ AudioSessionPortDescription) BluetoothMicrophoneExtension() AVAudioSessionPortExtensionBluetoothMicrophone {
-	rv := objc.Send[AVAudioSessionPortExtensionBluetoothMicrophone](a_.ID, objc.Sel("bluetoothMicrophoneExtension"))
+func (a_ AudioSessionPortDescription) BluetoothMicrophoneExtension() IAVAudioSessionPortExtensionBluetoothMicrophone {
+	rv := objc.Send[AudioSessionPortExtensionBluetoothMicrophone](a_.ID, objc.Sel("bluetoothMicrophoneExtension"))
 	return rv
 }
 
@@ -199,8 +190,8 @@ func (a_ AudioSessionPortDescription) SetChannels(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-func (a_ AudioSessionPortDescription) DataSources() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
+func (a_ AudioSessionPortDescription) DataSources() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
 	return rv
 }
 
@@ -285,8 +276,27 @@ func (a_ AudioSessionPortDescription) PortType() foundation.Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/porttype
-func (a_ AudioSessionPortDescription) SetPortType(value foundation.IPort) {
+func (a_ AudioSessionPortDescription) SetPortType(value foundation.Port) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPortType:"), value)
+}
+
+
+// The preferred audio data source for the port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/preferreddatasource
+func (a_ AudioSessionPortDescription) PreferredDataSource() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("preferredDataSource"))
+	return rv
+}
+
+
+// The preferred audio data source for the port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/preferreddatasource
+func (a_ AudioSessionPortDescription) SetPreferredDataSource(value IAVAudioSessionDataSourceDescription) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredDataSource:"), value)
 }
 
 
@@ -294,8 +304,8 @@ func (a_ AudioSessionPortDescription) SetPortType(value foundation.IPort) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/selecteddatasource
-func (a_ AudioSessionPortDescription) SelectedDataSource() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("selectedDataSource"))
+func (a_ AudioSessionPortDescription) SelectedDataSource() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("selectedDataSource"))
 	return rv
 }
 

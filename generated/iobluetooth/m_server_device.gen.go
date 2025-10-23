@@ -30,6 +30,8 @@ type _mServerDeviceClass struct {
 // An interface definition for the [mServerDevice] class.
 type ImServerDevice interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

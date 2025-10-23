@@ -30,9 +30,11 @@ type _EnvironmentMechanismClass struct {
 // An interface definition for the [EnvironmentMechanism] class.
 type IEnvironmentMechanism interface {
 	objectivec.IObject
+	// properties:
 	IconSystemName() string
 	IsUsable() bool
 	LocalizedName() string
+	// methods:
 }
 
 

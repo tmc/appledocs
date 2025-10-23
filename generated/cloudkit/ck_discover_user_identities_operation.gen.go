@@ -31,12 +31,12 @@ type ICKDiscoverUserIdentitiesOperation interface {
 	ICKOperation
 	DiscoverUserIdentitiesCompletionBlock() unsafe.Pointer
 	SetDiscoverUserIdentitiesCompletionBlock(value unsafe.Pointer)
-	UserIdentityDiscoveredBlock() unsafe.Pointer
-	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
-	UserIdentityLookupInfos() []CKUserIdentityLookupInfo
-	SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo)
 	DiscoverUserIdentitiesResultBlock() unsafe.Pointer
 	SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer)
+	UserIdentityDiscoveredBlock() unsafe.Pointer
+	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
+	UserIdentityLookupInfos() ICKUserIdentityLookupInfo
+	SetUserIdentityLookupInfos(value ICKUserIdentityLookupInfo)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 	QualityOfService() unsafe.Pointer
@@ -98,23 +98,10 @@ func NewCKDiscoverUserIdentitiesOperation() CKDiscoverUserIdentitiesOperation {
 
 
 
-// Creates an operation for discovering the user identities of the specified lookup infos.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/init(userIdentityLookupInfos:)
-func NewCKDiscoverUserIdentitiesOperationWithUserIdentityLookupInfos(userIdentityLookupInfos []CKUserIdentityLookupInfo) CKDiscoverUserIdentitiesOperation {
-	instance := getCKDiscoverUserIdentitiesOperationClass().Alloc()
-	rv := objc.Send[CKDiscoverUserIdentitiesOperation](instance.ID, objc.Sel("initWithUserIdentityLookupInfos:"), userIdentityLookupInfos)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/discoverUserIdentitiesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiescompletionblock
 func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverUserIdentitiesCompletionBlock"))
 	return rv
@@ -124,57 +111,9 @@ func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesCompletionBloc
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/discoverUserIdentitiesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiescompletionblock
 func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesCompletionBlock:"), value)
-}
-
-
-// The closure to execute for each user identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityDiscoveredBlock
-func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
-	return rv
-}
-
-
-// The closure to execute for each user identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityDiscoveredBlock
-func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
-}
-
-
-// The lookup info for discovering user identities.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() []CKUserIdentityLookupInfo {
-	rv := objc.Send[[]CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
-	return rv
-}
-
-
-// The lookup info for discovering user identities.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverUserIdentitiesOperation/userIdentityLookupInfos
-func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value []CKUserIdentityLookupInfo) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), nsArray)
 }
 
 
@@ -190,6 +129,44 @@ func (c_ CKDiscoverUserIdentitiesOperation) DiscoverUserIdentitiesResultBlock() 
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/discoveruseridentitiesresultblock
 func (c_ CKDiscoverUserIdentitiesOperation) SetDiscoverUserIdentitiesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverUserIdentitiesResultBlock:"), value)
+}
+
+
+// The closure to execute for each user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/useridentitydiscoveredblock
+func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
+	return rv
+}
+
+
+// The closure to execute for each user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/useridentitydiscoveredblock
+func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
+}
+
+
+// The lookup info for discovering user identities.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/useridentitylookupinfos
+func (c_ CKDiscoverUserIdentitiesOperation) UserIdentityLookupInfos() ICKUserIdentityLookupInfo {
+	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("userIdentityLookupInfos"))
+	return rv
+}
+
+
+// The lookup info for discovering user identities.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation/useridentitylookupinfos
+func (c_ CKDiscoverUserIdentitiesOperation) SetUserIdentityLookupInfos(value ICKUserIdentityLookupInfo) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityLookupInfos:"), value)
 }
 
 
@@ -229,5 +206,6 @@ func (c_ CKDiscoverUserIdentitiesOperation) QualityOfService() unsafe.Pointer {
 func (c_ CKDiscoverUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 
 

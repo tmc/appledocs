@@ -30,32 +30,34 @@ type _FileWrapperClass struct {
 // An interface definition for the [FileWrapper] class.
 type IFileWrapper interface {
 	objectivec.IObject
-	FileAttributes() IDictionary
-	SetFileAttributes(value IDictionary)
-	FileWrappers() IDictionary
-	Filename() string
-	SetFilename(value string)
-	Directory() bool
-	RegularFile() bool
-	SymbolicLink() bool
-	PreferredFilename() string
-	SetPreferredFilename(value string)
+	// properties:
+	FileAttributes() IDictionary /* already interface */
+	SetFileAttributes(value IDictionary /* already interface */)
+	FileWrappers() IDictionary /* already interface */
+	Filename() string /* primitive/slice/pointer */
+	SetFilename(value string /* primitive/slice/pointer */)
+	Directory() bool /* primitive/slice/pointer */
+	RegularFile() bool /* primitive/slice/pointer */
+	SymbolicLink() bool /* primitive/slice/pointer */
+	PreferredFilename() string /* primitive/slice/pointer */
+	SetPreferredFilename(value string /* primitive/slice/pointer */)
 	RegularFileContents() IData
 	SerializedRepresentation() IData
 	SymbolicLinkDestinationURL() IURL
-	IsDirectory() bool
-	SetIsDirectory(value bool)
-	IsRegularFile() bool
-	SetIsRegularFile(value bool)
-	IsSymbolicLink() bool
-	SetIsSymbolicLink(value bool)
+	IsDirectory() bool /* primitive/slice/pointer */
+	SetIsDirectory(value bool /* primitive/slice/pointer */)
+	IsRegularFile() bool /* primitive/slice/pointer */
+	SetIsRegularFile(value bool /* primitive/slice/pointer */)
+	IsSymbolicLink() bool /* primitive/slice/pointer */
+	SetIsSymbolicLink(value bool /* primitive/slice/pointer */)
+	// methods:
 	AddFileWrapper(child IFileWrapper) IString
-	AddRegularFileWithContentsPreferredFilename(data IData, fileName string) IString
+	AddRegularFileWithContentsPreferredFilename(data IData, fileName string /* primitive/slice/pointer */) IString
 	KeyForFileWrapper(child IFileWrapper) IString
-	MatchesContentsOfURL(url IURL) bool
-	ReadFromURLOptionsError(url IURL, options NSFileWrapperReadingOptions, outError IError) bool
+	MatchesContentsOfURL(url IURL) bool /* primitive/slice/pointer */
+	ReadFromURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) bool /* primitive/slice/pointer */
 	RemoveFileWrapper(child IFileWrapper)
-	WriteToURLOptionsOriginalContentsURLError(url IURL, options NSFileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool
+	WriteToURLOptionsOriginalContentsURLError(url IURL, options FileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool /* primitive/slice/pointer */
 }
 
 // A representation of a node (a file, directory, or symbolic link) in the file system.
@@ -115,7 +117,7 @@ func NewFileWrapper() FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(directoryWithFileWrappers:)
-func NewFileWrapperDirectoryWithFileWrappers(childrenByPreferredName IDictionary) FileWrapper {
+func NewFileWrapperDirectoryWithFileWrappers(childrenByPreferredName IDictionary /* already interface */) FileWrapper {
 	instance := getFileWrapperClass().Alloc()
 	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initDirectoryWithFileWrappers:"), childrenByPreferredName)
 	rv.Autorelease()
@@ -139,7 +141,7 @@ func NewFileWrapperRegularFileWithContents(contents IData) FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(symbolicLinkWithDestination:)
-func NewFileWrapperSymbolicLinkWithDestination(path string) FileWrapper {
+func NewFileWrapperSymbolicLinkWithDestination(path string /* primitive/slice/pointer */) FileWrapper {
 	instance := getFileWrapperClass().Alloc()
 	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initSymbolicLinkWithDestination:"), objc.String(path))
 	rv.Autorelease()
@@ -173,7 +175,7 @@ func NewFileWrapperWithCoder(inCoder ICoder) FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(path:)
-func NewFileWrapperWithPath(path string) FileWrapper {
+func NewFileWrapperWithPath(path string /* primitive/slice/pointer */) FileWrapper {
 	instance := getFileWrapperClass().Alloc()
 	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
 	rv.Autorelease()
@@ -197,7 +199,7 @@ func NewFileWrapperWithSerializedRepresentation(serializeRepresentation IData) F
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/init(url:options:)
-func NewFileWrapperWithURLOptionsError(url IURL, options NSFileWrapperReadingOptions, outError IError) FileWrapper {
+func NewFileWrapperWithURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) FileWrapper {
 	instance := getFileWrapperClass().Alloc()
 	rv := objc.Send[FileWrapper](instance.ID, objc.Sel("initWithURL:options:error:"), url, options, outError)
 	rv.Autorelease()
@@ -220,7 +222,7 @@ func (f_ FileWrapper) AddFileWrapper(child IFileWrapper) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/addRegularFile(withContents:preferredFilename:)
-func (f_ FileWrapper) AddRegularFileWithContentsPreferredFilename(data IData, fileName string) IString {
+func (f_ FileWrapper) AddRegularFileWithContentsPreferredFilename(data IData, fileName string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("addRegularFileWithContents:preferredFilename:"), data, objc.String(fileName))
 	return rv
 }
@@ -240,7 +242,7 @@ func (f_ FileWrapper) KeyForFileWrapper(child IFileWrapper) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/matchesContents(of:)
-func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
+func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("matchesContentsOfURL:"), url)
 	return rv
 }
@@ -250,7 +252,7 @@ func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/read(from:options:)
-func (f_ FileWrapper) ReadFromURLOptionsError(url IURL, options NSFileWrapperReadingOptions, outError IError) bool {
+func (f_ FileWrapper) ReadFromURLOptionsError(url IURL, options FileWrapperReadingOptions, outError IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("readFromURL:options:error:"), url, options, outError)
 	return rv
 }
@@ -269,7 +271,7 @@ func (f_ FileWrapper) RemoveFileWrapper(child IFileWrapper) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/write(to:options:originalContentsURL:)
-func (f_ FileWrapper) WriteToURLOptionsOriginalContentsURLError(url IURL, options NSFileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool {
+func (f_ FileWrapper) WriteToURLOptionsOriginalContentsURLError(url IURL, options FileWrapperWritingOptions, originalContentsURL IURL, outError IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:options:originalContentsURL:error:"), url, options, originalContentsURL, outError)
 	return rv
 }
@@ -279,7 +281,7 @@ func (f_ FileWrapper) WriteToURLOptionsOriginalContentsURLError(url IURL, option
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileAttributes
-func (f_ FileWrapper) FileAttributes() IDictionary {
+func (f_ FileWrapper) FileAttributes() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](f_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
@@ -289,7 +291,7 @@ func (f_ FileWrapper) FileAttributes() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileAttributes
-func (f_ FileWrapper) SetFileAttributes(value IDictionary) {
+func (f_ FileWrapper) SetFileAttributes(value IDictionary /* already interface */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileAttributes:"), value)
 }
 
@@ -298,7 +300,7 @@ func (f_ FileWrapper) SetFileAttributes(value IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/fileWrappers
-func (f_ FileWrapper) FileWrappers() IDictionary {
+func (f_ FileWrapper) FileWrappers() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](f_.ID, objc.Sel("fileWrappers"))
 	return rv
 }
@@ -308,7 +310,7 @@ func (f_ FileWrapper) FileWrappers() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) Filename() string {
+func (f_ FileWrapper) Filename() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
 	return rv
 }
@@ -318,7 +320,7 @@ func (f_ FileWrapper) Filename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) SetFilename(value string) {
+func (f_ FileWrapper) SetFilename(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
 
@@ -327,7 +329,7 @@ func (f_ FileWrapper) SetFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isDirectory
-func (f_ FileWrapper) Directory() bool {
+func (f_ FileWrapper) Directory() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("directory"))
 	return rv
 }
@@ -337,7 +339,7 @@ func (f_ FileWrapper) Directory() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isRegularFile
-func (f_ FileWrapper) RegularFile() bool {
+func (f_ FileWrapper) RegularFile() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("regularFile"))
 	return rv
 }
@@ -347,7 +349,7 @@ func (f_ FileWrapper) RegularFile() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/isSymbolicLink
-func (f_ FileWrapper) SymbolicLink() bool {
+func (f_ FileWrapper) SymbolicLink() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("symbolicLink"))
 	return rv
 }
@@ -357,7 +359,7 @@ func (f_ FileWrapper) SymbolicLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/preferredFilename
-func (f_ FileWrapper) PreferredFilename() string {
+func (f_ FileWrapper) PreferredFilename() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("preferredFilename"))
 	return rv
 }
@@ -367,7 +369,7 @@ func (f_ FileWrapper) PreferredFilename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/preferredFilename
-func (f_ FileWrapper) SetPreferredFilename(value string) {
+func (f_ FileWrapper) SetPreferredFilename(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPreferredFilename:"), objc.String(value))
 }
 
@@ -406,7 +408,7 @@ func (f_ FileWrapper) SymbolicLinkDestinationURL() IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-func (f_ FileWrapper) IsDirectory() bool {
+func (f_ FileWrapper) IsDirectory() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDirectory"))
 	return rv
 }
@@ -416,7 +418,7 @@ func (f_ FileWrapper) IsDirectory() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isdirectory
-func (f_ FileWrapper) SetIsDirectory(value bool) {
+func (f_ FileWrapper) SetIsDirectory(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDirectory:"), value)
 }
 
@@ -425,7 +427,7 @@ func (f_ FileWrapper) SetIsDirectory(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-func (f_ FileWrapper) IsRegularFile() bool {
+func (f_ FileWrapper) IsRegularFile() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRegularFile"))
 	return rv
 }
@@ -435,7 +437,7 @@ func (f_ FileWrapper) IsRegularFile() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/isregularfile
-func (f_ FileWrapper) SetIsRegularFile(value bool) {
+func (f_ FileWrapper) SetIsRegularFile(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRegularFile:"), value)
 }
 
@@ -444,7 +446,7 @@ func (f_ FileWrapper) SetIsRegularFile(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-func (f_ FileWrapper) IsSymbolicLink() bool {
+func (f_ FileWrapper) IsSymbolicLink() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSymbolicLink"))
 	return rv
 }
@@ -454,7 +456,7 @@ func (f_ FileWrapper) IsSymbolicLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/issymboliclink
-func (f_ FileWrapper) SetIsSymbolicLink(value bool) {
+func (f_ FileWrapper) SetIsSymbolicLink(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSymbolicLink:"), value)
 }
 

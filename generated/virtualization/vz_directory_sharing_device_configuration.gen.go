@@ -35,7 +35,11 @@ type IVZDirectorySharingDeviceConfiguration interface {
 // The base class for a directory sharing device configuration.
 //
 // Don’t instantiate directly. Instead use one of its subclasses, like .
+
+
+// The base class for a directory sharing device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDirectorySharingDeviceConfiguration
 type VZDirectorySharingDeviceConfiguration struct {
 	objectivec.Object

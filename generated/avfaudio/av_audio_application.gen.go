@@ -30,13 +30,13 @@ type _AudioApplicationClass struct {
 // An interface definition for the [AudioApplication] class.
 type IAudioApplication interface {
 	objectivec.IObject
-	SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool
-	SetInputMutedError(muted bool, outError unsafe.Pointer) bool
 	InputMuted() bool
-	MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission
-	RecordPermission() AudioApplicationRecordPermission
+	MicrophoneInjectionPermission() AVAudioApplicationMicrophoneInjectionPermission
+	RecordPermission() AVAudioApplicationRecordPermission
 	IsInputMuted() bool
 	SetIsInputMuted(value bool)
+	SetInputMuteStateChangeHandlerError(inputMuteHandler unsafe.Pointer, outError unsafe.Pointer) bool
+	SetInputMutedError(muted bool, outError unsafe.Pointer) bool
 }
 
 // An object that manages one or more audio sessions that belong to an app.
@@ -115,7 +115,7 @@ func (ac _AudioApplicationClass) RequestRecordPermissionWithCompletionHandler(re
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
 func (ac _AudioApplicationClass) SharedInstance() AudioApplication {
-	rv := objc.Send[AVAudioApplication](objc.ID(ac.class), objc.Sel("sharedInstance"))
+	rv := objc.Send[AudioApplication](objc.ID(ac.class), objc.Sel("sharedInstance"))
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (a_ AudioApplication) InputMuted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/microphoneInjectionPermission-swift.property
-func (a_ AudioApplication) MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission {
-	rv := objc.Send[AudioApplicationMicrophoneInjectionPermission](a_.ID, objc.Sel("microphoneInjectionPermission"))
+func (a_ AudioApplication) MicrophoneInjectionPermission() AVAudioApplicationMicrophoneInjectionPermission {
+	rv := objc.Send[AVAudioApplicationMicrophoneInjectionPermission](a_.ID, objc.Sel("microphoneInjectionPermission"))
 	return rv
 }
 
@@ -163,8 +163,8 @@ func (a_ AudioApplication) MicrophoneInjectionPermission() AudioApplicationMicro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.property
-func (a_ AudioApplication) RecordPermission() AudioApplicationRecordPermission {
-	rv := objc.Send[AudioApplicationRecordPermission](a_.ID, objc.Sel("recordPermission"))
+func (a_ AudioApplication) RecordPermission() AVAudioApplicationRecordPermission {
+	rv := objc.Send[AVAudioApplicationRecordPermission](a_.ID, objc.Sel("recordPermission"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (a_ AudioApplication) RecordPermission() AudioApplicationRecordPermission {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
-func (a_ AudioApplication) SharedInstance() AVAudioApplication {
-	rv := objc.Send[AVAudioApplication](a_.ID, objc.Sel("sharedInstance"))
+func (a_ AudioApplication) SharedInstance() IAVAudioApplication {
+	rv := objc.Send[AudioApplication](a_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 

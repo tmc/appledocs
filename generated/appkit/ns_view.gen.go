@@ -34,34 +34,185 @@ type _ViewClass struct {
 // An interface definition for the [View] class.
 type IView interface {
 	IResponder
+	AcceptsTouchEvents() bool
+	SetAcceptsTouchEvents(value bool)
+	AdditionalSafeAreaInsets() unsafe.Pointer
+	SetAdditionalSafeAreaInsets(value unsafe.Pointer)
+	AlignmentRectInsets() unsafe.Pointer
+	AllowedTouchTypes() NSTouchTypeMask
+	SetAllowedTouchTypes(value NSTouchTypeMask)
+	AllowsVibrancy() bool
+	AlphaValue() float64
+	SetAlphaValue(value float64)
+	AutoresizesSubviews() bool
+	SetAutoresizesSubviews(value bool)
+	AutoresizingMask() NSAutoresizingMaskOptions
+	SetAutoresizingMask(value NSAutoresizingMaskOptions)
+	BackgroundFilters() []coreimage.Filter
+	SetBackgroundFilters(value []coreimage.Filter)
+	BaselineOffsetFromBottom() float64
+	BottomAnchor() LayoutYAxisAnchor
+	Bounds() coregraphics.CGRect
+	SetBounds(value coregraphics.CGRect)
+	BoundsRotation() float64
+	SetBoundsRotation(value float64)
+	CanBecomeKeyView() bool
+	CanDraw() bool
+	CanDrawConcurrently() bool
+	SetCanDrawConcurrently(value bool)
+	CanDrawSubviewsIntoLayer() bool
+	SetCanDrawSubviewsIntoLayer(value bool)
+	CandidateListTouchBarItem() CandidateListTouchBarItem
+	CenterXAnchor() ILayoutXAxisAnchor
+	CenterYAnchor() LayoutYAxisAnchor
+	ClipsToBounds() bool
+	SetClipsToBounds(value bool)
+	CompositingFilter() coreimage.Filter
+	SetCompositingFilter(value coreimage.Filter)
+	Constraints() []LayoutConstraint
+	ContentFilters() []coreimage.Filter
+	SetContentFilters(value []coreimage.Filter)
+	EnclosingMenuItem() MenuItem
+	EnclosingScrollView() IScrollView
+	FirstBaselineAnchor() LayoutYAxisAnchor
+	FirstBaselineOffsetFromTop() float64
+	FittingSize() coregraphics.CGSize
+	FocusRingMaskBounds() coregraphics.CGRect
+	FocusRingType() NSFocusRingType
+	SetFocusRingType(value NSFocusRingType)
+	Frame() coregraphics.CGRect
+	SetFrame(value coregraphics.CGRect)
+	FrameCenterRotation() float64
+	SetFrameCenterRotation(value float64)
+	FrameRotation() float64
+	SetFrameRotation(value float64)
+	GestureRecognizers() []GestureRecognizer
+	SetGestureRecognizers(value []GestureRecognizer)
+	HasAmbiguousLayout() bool
+	HeightAdjustLimit() float64
+	HeightAnchor() LayoutDimension
+	InLiveResize() bool
+	InputContext() TextInputContext
+	IntrinsicContentSize() coregraphics.CGSize
+	DrawingFindIndicator() bool
+	Flipped() bool
+	Hidden() bool
+	SetHidden(value bool)
+	HiddenOrHasHiddenAncestor() bool
+	HorizontalContentSizeConstraintActive() bool
+	SetHorizontalContentSizeConstraintActive(value bool)
+	InFullScreenMode() bool
+	Opaque() bool
+	RotatedFromBase() bool
+	RotatedOrScaledFromBase() bool
+	VerticalContentSizeConstraintActive() bool
+	SetVerticalContentSizeConstraintActive(value bool)
+	LastBaselineAnchor() LayoutYAxisAnchor
+	LastBaselineOffsetFromBottom() float64
+	Layer() quartzcore.Layer
+	SetLayer(value quartzcore.Layer)
+	LayerContentsPlacement() NSViewLayerContentsPlacement
+	SetLayerContentsPlacement(value NSViewLayerContentsPlacement)
+	LayerContentsRedrawPolicy() NSViewLayerContentsRedrawPolicy
+	SetLayerContentsRedrawPolicy(value NSViewLayerContentsRedrawPolicy)
+	LayerUsesCoreImageFilters() bool
+	SetLayerUsesCoreImageFilters(value bool)
+	LayoutGuides() []LayoutGuide
+	LayoutMarginsGuide() ILayoutGuide
+	LeadingAnchor() ILayoutXAxisAnchor
+	LeftAnchor() ILayoutXAxisAnchor
+	MouseDownCanMoveWindow() bool
+	NeedsDisplay() bool
+	SetNeedsDisplay(value bool)
+	NeedsLayout() bool
+	SetNeedsLayout(value bool)
+	NeedsPanelToBecomeKey() bool
+	NeedsUpdateConstraints() bool
+	SetNeedsUpdateConstraints(value bool)
+	NextKeyView() IView
+	SetNextKeyView(value IView)
+	NextValidKeyView() IView
+	OpaqueAncestor() IView
+	PageFooter() foundation.AttributedString
+	PageHeader() foundation.AttributedString
+	PostsBoundsChangedNotifications() bool
+	SetPostsBoundsChangedNotifications(value bool)
+	PostsFrameChangedNotifications() bool
+	SetPostsFrameChangedNotifications(value bool)
+	PrefersCompactControlSizeMetrics() bool
+	SetPrefersCompactControlSizeMetrics(value bool)
+	PreparedContentRect() coregraphics.CGRect
+	SetPreparedContentRect(value coregraphics.CGRect)
+	PreservesContentDuringLiveResize() bool
+	PressureConfiguration() IPressureConfiguration
+	SetPressureConfiguration(value IPressureConfiguration)
+	PreviousKeyView() IView
+	PreviousValidKeyView() IView
+	PrintJobTitle() string
+	RectPreservedDuringLiveResize() coregraphics.CGRect
+	RegisteredDraggedTypes() []string
+	RightAnchor() ILayoutXAxisAnchor
+	SafeAreaInsets() unsafe.Pointer
+	SafeAreaLayoutGuide() ILayoutGuide
+	SafeAreaRect() coregraphics.CGRect
+	Shadow() IShadow
+	SetShadow(value IShadow)
+	Subviews() []View
+	SetSubviews(value []View)
+	Superview() IView
+	Tag() int
+	ToolTip() string
+	SetToolTip(value string)
+	TopAnchor() LayoutYAxisAnchor
+	TrackingAreas() []TrackingArea
+	TrailingAnchor() ILayoutXAxisAnchor
+	TranslatesAutoresizingMaskIntoConstraints() bool
+	SetTranslatesAutoresizingMaskIntoConstraints(value bool)
+	UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection)
+	VisibleRect() coregraphics.CGRect
+	WantsBestResolutionOpenGLSurface() bool
+	SetWantsBestResolutionOpenGLSurface(value bool)
+	WantsDefaultClipping() bool
+	WantsExtendedDynamicRangeOpenGLSurface() bool
+	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
+	WantsLayer() bool
+	SetWantsLayer(value bool)
+	WantsRestingTouches() bool
+	SetWantsRestingTouches(value bool)
+	WantsUpdateLayer() bool
+	WidthAdjustLimit() float64
+	WidthAnchor() LayoutDimension
+	Window() IWindow
+	WritingToolsCoordinator() WritingToolsCoordinator
+	SetWritingToolsCoordinator(value WritingToolsCoordinator)
 	AcceptsFirstMouse(event IEvent) bool
-	AddConstraint(constraint ILayoutConstraint)
+	AddConstraint(constraint LayoutConstraint)
 	AddConstraints(constraints []LayoutConstraint)
 	AddCursorRectCursor(rect coregraphics.CGRect, object ICursor)
-	AddGestureRecognizer(gestureRecognizer IGestureRecognizer)
+	AddGestureRecognizer(gestureRecognizer GestureRecognizer)
 	AddLayoutGuide(guide ILayoutGuide)
 	AddSubview(view IView)
-	AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMode, otherView IView)
+	AddSubviewPositionedRelativeTo(view IView, place NSWindowOrderingMode, otherView IView)
 	AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) ToolTipTag
-	AddTrackingArea(trackingArea ITrackingArea)
+	AddTrackingArea(trackingArea TrackingArea)
 	AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool) TrackingRectTag
 	AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64, oldTop float64, oldBottom float64, bottomLimit float64)
 	AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64, oldLeft float64, oldRight float64, rightLimit float64)
 	AdjustScroll(newVisible coregraphics.CGRect) coregraphics.CGRect
 	AlignmentRectForFrame(frame coregraphics.CGRect) coregraphics.CGRect
-	AllocateGState()
-	AncestorSharedWithView(view IView) View
+	AncestorSharedWithView(view IView) IView
 	Autoscroll(event IEvent) bool
 	BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect
 	BeginDocument()
-	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession
+	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession
 	BeginPageInRectAtPlacement(rect coregraphics.CGRect, location coregraphics.CGPoint)
-	BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) BitmapImageRep
+	BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) IBitmapImageRep
 	CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitmapImageRep IBitmapImageRep)
 	CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect
-	ConstraintsAffectingLayoutForOrientation(orientation ILayoutConstraintOrientation) []LayoutConstraint
-	ContentCompressionResistancePriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority
-	ContentHuggingPriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority
+	ConstraintsAffectingLayoutForOrientation(orientation NSLayoutConstraintOrientation) []LayoutConstraint
+	ContentCompressionResistancePriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority
+	ContentHuggingPriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority
 	ConvertPointFromView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint
 	ConvertSizeFromView(size coregraphics.CGSize, view IView) coregraphics.CGSize
 	ConvertRectFromView(rect coregraphics.CGRect, view IView) coregraphics.CGRect
@@ -74,12 +225,6 @@ type IView interface {
 	ConvertPointFromLayer(point coregraphics.CGPoint) coregraphics.CGPoint
 	ConvertSizeFromLayer(size coregraphics.CGSize) coregraphics.CGSize
 	ConvertRectFromLayer(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertPointFromBase(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointToBase(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectFromBase(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectToBase(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertSizeFromBase(size coregraphics.CGSize) coregraphics.CGSize
-	ConvertSizeToBase(size coregraphics.CGSize) coregraphics.CGSize
 	ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint
 	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
 	ConvertSizeToBacking(size coregraphics.CGSize) coregraphics.CGSize
@@ -100,41 +245,32 @@ type IView interface {
 	DisplayRectIgnoringOpacity(rect coregraphics.CGRect)
 	DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, context IGraphicsContext)
 	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
-	DragFileFromRectSlideBackEvent(filename string, rect coregraphics.CGRect, flag bool, event IEvent) bool
-	DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, viewLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool)
-	DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray []string, rect coregraphics.CGRect, sourceObject objectivec.IObject, flag bool, event IEvent) bool
 	DrawRect(dirtyRect coregraphics.CGRect)
 	DrawFocusRingMask()
 	DrawPageBorderWithSize(borderSize coregraphics.CGSize)
-	DrawSheetBorderWithSize(borderSize coregraphics.CGSize)
 	EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) unsafe.Pointer
 	EndDocument()
 	EndPage()
-	EnterFullScreenModeWithOptions(screen IScreen, options unsafe.Pointer) bool
+	EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary) bool
 	ExerciseAmbiguityInLayout()
-	ExitFullScreenModeWithOptions(options unsafe.Pointer)
+	ExitFullScreenModeWithOptions(options foundation.IDictionary)
 	FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregraphics.CGRect
-	GState() int
 	GetRectsBeingDrawnCount(rects coregraphics.CGRect, count unsafe.Pointer)
 	GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer, count unsafe.Pointer)
-	HitTest(point coregraphics.CGPoint) View
+	HitTest(point coregraphics.CGPoint) IView
 	InvalidateIntrinsicContentSize()
 	IsDescendantOf(view IView) bool
 	MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool
 	KnowsPageRange(range_ unsafe.Pointer) bool
 	Layout()
-	LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) LayoutGuide
+	LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) ILayoutGuide
 	LayoutSubtreeIfNeeded()
 	LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoint
-	LockFocus()
-	LockFocusIfCanDraw() bool
-	LockFocusIfCanDrawInContext(context IGraphicsContext) bool
 	MakeBackingLayer() quartzcore.Layer
-	MenuForEvent(event IEvent) Menu
+	MenuForEvent(event IEvent) IMenu
 	NeedsToDrawRect(rect coregraphics.CGRect) bool
 	NoteFocusRingMaskChanged()
 	PerformKeyEquivalent(event IEvent) bool
-	PerformMnemonic(string_ string) bool
 	PrepareContentInRect(rect coregraphics.CGRect)
 	PrepareForReuse()
 	Print(sender objectivec.IObject)
@@ -143,58 +279,52 @@ type IView interface {
 	RectForSmartMagnificationAtPointInRect(location coregraphics.CGPoint, visibleRect coregraphics.CGRect) coregraphics.CGRect
 	ReflectScrolledClipView(clipView IClipView)
 	RegisterForDraggedTypes(newTypes []string)
-	ReleaseGState()
 	RemoveAllToolTips()
-	RemoveConstraint(constraint ILayoutConstraint)
+	RemoveConstraint(constraint LayoutConstraint)
 	RemoveConstraints(constraints []LayoutConstraint)
 	RemoveCursorRectCursor(rect coregraphics.CGRect, object ICursor)
 	RemoveFromSuperview()
 	RemoveFromSuperviewWithoutNeedingDisplay()
-	RemoveGestureRecognizer(gestureRecognizer IGestureRecognizer)
+	RemoveGestureRecognizer(gestureRecognizer GestureRecognizer)
 	RemoveLayoutGuide(guide ILayoutGuide)
-	RemoveToolTip(tag IToolTipTag)
-	RemoveTrackingArea(trackingArea ITrackingArea)
-	RemoveTrackingRect(tag ITrackingRectTag)
-	RenewGState()
+	RemoveToolTip(tag ToolTipTag)
+	RemoveTrackingArea(trackingArea TrackingArea)
+	RemoveTrackingRect(tag TrackingRectTag)
 	ReplaceSubviewWith(oldView IView, newView IView)
 	ResetCursorRects()
 	ResizeWithOldSuperviewSize(oldSize coregraphics.CGSize)
 	ResizeSubviewsWithOldSize(oldSize coregraphics.CGSize)
 	RotateByAngle(angle float64)
-	RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker)
-	RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker)
-	RulerViewDidRemoveMarker(ruler IRulerView, marker IRulerMarker)
+	RulerViewDidAddMarker(ruler IRulerView, marker RulerMarker)
+	RulerViewDidMoveMarker(ruler IRulerView, marker RulerMarker)
+	RulerViewDidRemoveMarker(ruler IRulerView, marker RulerMarker)
 	RulerViewHandleMouseDown(ruler IRulerView, event IEvent)
 	RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64
 	RulerViewPointForLocation(ruler IRulerView, point float64) coregraphics.CGPoint
-	RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) bool
-	RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) bool
-	RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool
-	RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerMarker, location float64) float64
-	RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker IRulerMarker, location float64) float64
+	RulerViewShouldAddMarker(ruler IRulerView, marker RulerMarker) bool
+	RulerViewShouldMoveMarker(ruler IRulerView, marker RulerMarker) bool
+	RulerViewShouldRemoveMarker(ruler IRulerView, marker RulerMarker) bool
+	RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker RulerMarker, location float64) float64
+	RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker RulerMarker, location float64) float64
 	RulerViewWillSetClientView(ruler IRulerView, newClient IView)
 	ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize)
 	ScrollPoint(point coregraphics.CGPoint)
-	ScrollRectBy(rect coregraphics.CGRect, delta coregraphics.CGSize)
 	ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPoint)
 	ScrollRectToVisible(rect coregraphics.CGRect) bool
 	SetBoundsOrigin(newOrigin coregraphics.CGPoint)
 	SetBoundsSize(newSize coregraphics.CGSize)
-	SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation ILayoutConstraintOrientation)
-	SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation ILayoutConstraintOrientation)
+	SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation)
+	SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation)
 	SetFrameOrigin(newOrigin coregraphics.CGPoint)
 	SetFrameSize(newSize coregraphics.CGSize)
 	SetKeyboardFocusRingNeedsDisplayInRect(rect coregraphics.CGRect)
 	SetNeedsDisplayInRect(invalidRect coregraphics.CGRect)
-	SetUpGState()
 	ShouldDelayWindowOrderingForEvent(event IEvent) bool
-	ShouldDrawColor() bool
-	ShowDefinitionForAttributedStringAtPoint(attrString foundation.IAttributedString, textBaselineOrigin coregraphics.CGPoint)
-	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.IAttributedString, targetRange foundation.Range, options unsafe.Pointer, originProvider unsafe.Pointer)
+	ShowDefinitionForAttributedStringAtPoint(attrString foundation.AttributedString, textBaselineOrigin coregraphics.CGPoint)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.AttributedString, targetRange foundation.Range, options foundation.IDictionary, originProvider unsafe.Pointer)
 	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	TranslateOriginToPoint(translation coregraphics.CGPoint)
 	TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize)
-	UnlockFocus()
 	UnregisterDraggedTypes()
 	UpdateConstraints()
 	UpdateConstraintsForSubtreeIfNeeded()
@@ -211,163 +341,11 @@ type IView interface {
 	ViewWillMoveToSuperview(newSuperview IView)
 	ViewWillMoveToWindow(newWindow IWindow)
 	ViewWillStartLiveResize()
-	ViewWithTag(tag int) View
+	ViewWithTag(tag int) IView
 	WillOpenMenuWithEvent(menu IMenu, event IEvent)
 	WillRemoveSubview(subview IView)
 	WriteEPSInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard)
 	WritePDFInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard)
-	AcceptsTouchEvents() bool
-	SetAcceptsTouchEvents(value bool)
-	AdditionalSafeAreaInsets() unsafe.Pointer
-	SetAdditionalSafeAreaInsets(value unsafe.Pointer)
-	AlignmentRectInsets() unsafe.Pointer
-	AllowedTouchTypes() TouchTypeMask
-	SetAllowedTouchTypes(value TouchTypeMask)
-	AllowsVibrancy() bool
-	AlphaValue() float64
-	SetAlphaValue(value float64)
-	AutoresizesSubviews() bool
-	SetAutoresizesSubviews(value bool)
-	AutoresizingMask() AutoresizingMaskOptions
-	SetAutoresizingMask(value AutoresizingMaskOptions)
-	BackgroundFilters() []coreimage.Filter
-	SetBackgroundFilters(value []coreimage.IFilter)
-	BaselineOffsetFromBottom() float64
-	BottomAnchor() NSLayoutYAxisAnchor
-	Bounds() coregraphics.CGRect
-	SetBounds(value coregraphics.CGRect)
-	BoundsRotation() float64
-	SetBoundsRotation(value float64)
-	CanBecomeKeyView() bool
-	CanDraw() bool
-	CanDrawConcurrently() bool
-	SetCanDrawConcurrently(value bool)
-	CanDrawSubviewsIntoLayer() bool
-	SetCanDrawSubviewsIntoLayer(value bool)
-	CandidateListTouchBarItem() NSCandidateListTouchBarItem
-	CenterXAnchor() NSLayoutXAxisAnchor
-	CenterYAnchor() NSLayoutYAxisAnchor
-	ClipsToBounds() bool
-	SetClipsToBounds(value bool)
-	CompositingFilter() coreimage.Filter
-	SetCompositingFilter(value coreimage.IFilter)
-	Constraints() []LayoutConstraint
-	ContentFilters() []coreimage.Filter
-	SetContentFilters(value []coreimage.IFilter)
-	EnclosingMenuItem() NSMenuItem
-	EnclosingScrollView() NSScrollView
-	FirstBaselineAnchor() NSLayoutYAxisAnchor
-	FirstBaselineOffsetFromTop() float64
-	FittingSize() coregraphics.CGSize
-	FocusRingMaskBounds() coregraphics.CGRect
-	FocusRingType() FocusRingType
-	SetFocusRingType(value FocusRingType)
-	Frame() coregraphics.CGRect
-	SetFrame(value coregraphics.CGRect)
-	FrameCenterRotation() float64
-	SetFrameCenterRotation(value float64)
-	FrameRotation() float64
-	SetFrameRotation(value float64)
-	GestureRecognizers() []GestureRecognizer
-	SetGestureRecognizers(value []GestureRecognizer)
-	HasAmbiguousLayout() bool
-	HeightAdjustLimit() float64
-	HeightAnchor() NSLayoutDimension
-	InLiveResize() bool
-	InputContext() NSTextInputContext
-	IntrinsicContentSize() coregraphics.CGSize
-	DrawingFindIndicator() bool
-	Flipped() bool
-	Hidden() bool
-	SetHidden(value bool)
-	HiddenOrHasHiddenAncestor() bool
-	HorizontalContentSizeConstraintActive() bool
-	SetHorizontalContentSizeConstraintActive(value bool)
-	InFullScreenMode() bool
-	Opaque() bool
-	RotatedFromBase() bool
-	RotatedOrScaledFromBase() bool
-	VerticalContentSizeConstraintActive() bool
-	SetVerticalContentSizeConstraintActive(value bool)
-	LastBaselineAnchor() NSLayoutYAxisAnchor
-	LastBaselineOffsetFromBottom() float64
-	Layer() quartzcore.Layer
-	SetLayer(value quartzcore.ILayer)
-	LayerContentsPlacement() ViewLayerContentsPlacement
-	SetLayerContentsPlacement(value IViewLayerContentsPlacement)
-	LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy
-	SetLayerContentsRedrawPolicy(value ViewLayerContentsRedrawPolicy)
-	LayerUsesCoreImageFilters() bool
-	SetLayerUsesCoreImageFilters(value bool)
-	LayoutGuides() []LayoutGuide
-	LayoutMarginsGuide() NSLayoutGuide
-	LeadingAnchor() NSLayoutXAxisAnchor
-	LeftAnchor() NSLayoutXAxisAnchor
-	MouseDownCanMoveWindow() bool
-	NeedsDisplay() bool
-	SetNeedsDisplay(value bool)
-	NeedsLayout() bool
-	SetNeedsLayout(value bool)
-	NeedsPanelToBecomeKey() bool
-	NeedsUpdateConstraints() bool
-	SetNeedsUpdateConstraints(value bool)
-	NextKeyView() NSView
-	SetNextKeyView(value IView)
-	NextValidKeyView() NSView
-	OpaqueAncestor() NSView
-	PageFooter() foundation.AttributedString
-	PageHeader() foundation.AttributedString
-	PostsBoundsChangedNotifications() bool
-	SetPostsBoundsChangedNotifications(value bool)
-	PostsFrameChangedNotifications() bool
-	SetPostsFrameChangedNotifications(value bool)
-	PrefersCompactControlSizeMetrics() bool
-	SetPrefersCompactControlSizeMetrics(value bool)
-	PreparedContentRect() coregraphics.CGRect
-	SetPreparedContentRect(value coregraphics.CGRect)
-	PreservesContentDuringLiveResize() bool
-	PressureConfiguration() NSPressureConfiguration
-	SetPressureConfiguration(value IPressureConfiguration)
-	PreviousKeyView() NSView
-	PreviousValidKeyView() NSView
-	PrintJobTitle() string
-	RectPreservedDuringLiveResize() coregraphics.CGRect
-	RegisteredDraggedTypes() []string
-	RightAnchor() NSLayoutXAxisAnchor
-	SafeAreaInsets() unsafe.Pointer
-	SafeAreaLayoutGuide() NSLayoutGuide
-	SafeAreaRect() coregraphics.CGRect
-	Shadow() NSShadow
-	SetShadow(value IShadow)
-	Subviews() []View
-	SetSubviews(value []View)
-	Superview() NSView
-	Tag() int
-	ToolTip() string
-	SetToolTip(value string)
-	TopAnchor() NSLayoutYAxisAnchor
-	TrackingAreas() []TrackingArea
-	TrailingAnchor() NSLayoutXAxisAnchor
-	TranslatesAutoresizingMaskIntoConstraints() bool
-	SetTranslatesAutoresizingMaskIntoConstraints(value bool)
-	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
-	VisibleRect() coregraphics.CGRect
-	WantsBestResolutionOpenGLSurface() bool
-	SetWantsBestResolutionOpenGLSurface(value bool)
-	WantsDefaultClipping() bool
-	WantsExtendedDynamicRangeOpenGLSurface() bool
-	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
-	WantsLayer() bool
-	SetWantsLayer(value bool)
-	WantsRestingTouches() bool
-	SetWantsRestingTouches(value bool)
-	WantsUpdateLayer() bool
-	WidthAdjustLimit() float64
-	WidthAnchor() NSLayoutDimension
-	Window() NSWindow
-	WritingToolsCoordinator() NSWritingToolsCoordinator
-	SetWritingToolsCoordinator(value IWritingToolsCoordinator)
 }
 
 // The infrastructure for drawing, printing, and handling events in an app.
@@ -429,7 +407,7 @@ func NewView() View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
-func NewViewWithCoder(coder foundation.ICoder) View {
+func NewViewWithCoder(coder foundation.Coder) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -454,8 +432,8 @@ func NewViewWithFrame(frameRect coregraphics.CGRect) View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
-func (vc _ViewClass) DefaultFocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
+func (vc _ViewClass) DefaultFocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -463,8 +441,8 @@ func (vc _ViewClass) DefaultFocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultMenu
-func (vc _ViewClass) DefaultMenu() NSMenu {
-	rv := objc.Send[NSMenu](objc.ID(vc.class), objc.Sel("defaultMenu"))
+func (vc _ViewClass) DefaultMenu() IMenu {
+	rv := objc.Send[Menu](objc.ID(vc.class), objc.Sel("defaultMenu"))
 	return rv
 }
 
@@ -473,7 +451,7 @@ func (vc _ViewClass) DefaultMenu() NSMenu {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
 func (vc _ViewClass) FocusView() View {
-	rv := objc.Send[NSView](objc.ID(vc.class), objc.Sel("focusView"))
+	rv := objc.Send[View](objc.ID(vc.class), objc.Sel("focusView"))
 	return rv
 }
 
@@ -509,7 +487,7 @@ func (v_ View) AcceptsFirstMouse(event IEvent) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addConstraint(_:)
-func (v_ View) AddConstraint(constraint ILayoutConstraint) {
+func (v_ View) AddConstraint(constraint LayoutConstraint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addConstraint:"), constraint)
 }
 
@@ -536,7 +514,7 @@ func (v_ View) AddCursorRectCursor(rect coregraphics.CGRect, object ICursor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addGestureRecognizer(_:)
-func (v_ View) AddGestureRecognizer(gestureRecognizer IGestureRecognizer) {
+func (v_ View) AddGestureRecognizer(gestureRecognizer GestureRecognizer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addGestureRecognizer:"), gestureRecognizer)
 }
 
@@ -563,7 +541,7 @@ func (v_ View) AddSubview(view IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addSubview(_:positioned:relativeTo:)
-func (v_ View) AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMode, otherView IView) {
+func (v_ View) AddSubviewPositionedRelativeTo(view IView, place NSWindowOrderingMode, otherView IView) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addSubview:positioned:relativeTo:"), view, place, otherView)
 }
 
@@ -582,7 +560,7 @@ func (v_ View) AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addTrackingArea(_:)
-func (v_ View) AddTrackingArea(trackingArea ITrackingArea) {
+func (v_ View) AddTrackingArea(trackingArea TrackingArea) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addTrackingArea:"), trackingArea)
 }
 
@@ -635,20 +613,11 @@ func (v_ View) AlignmentRectForFrame(frame coregraphics.CGRect) coregraphics.CGR
 }
 
 
-// Causes the view to maintain a private graphics state object, which encapsulates all parameters of the graphics environment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allocateGState()
-func (v_ View) AllocateGState() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("allocateGState"))
-}
-
-
 // Returns the closest ancestor shared by the view and another specified view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/ancestorShared(with:)
-func (v_ View) AncestorSharedWithView(view IView) View {
+func (v_ View) AncestorSharedWithView(view IView) IView {
 	rv := objc.Send[View](v_.ID, objc.Sel("ancestorSharedWithView:"), view)
 	return rv
 }
@@ -687,7 +656,7 @@ func (v_ View) BeginDocument() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/beginDraggingSession(with:event:source:)
-func (v_ View) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession {
+func (v_ View) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession {
 	rv := objc.Send[DraggingSession](v_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
 	return rv
 }
@@ -706,7 +675,7 @@ func (v_ View) BeginPageInRectAtPlacement(rect coregraphics.CGRect, location cor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bitmapImageRepForCachingDisplay(in:)
-func (v_ View) BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) BitmapImageRep {
+func (v_ View) BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) IBitmapImageRep {
 	rv := objc.Send[BitmapImageRep](v_.ID, objc.Sel("bitmapImageRepForCachingDisplayInRect:"), rect)
 	return rv
 }
@@ -735,7 +704,7 @@ func (v_ View) CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/constraintsAffectingLayout(for:)
-func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation ILayoutConstraintOrientation) []LayoutConstraint {
+func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation NSLayoutConstraintOrientation) []LayoutConstraint {
 	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraintsAffectingLayoutForOrientation:"), orientation)
 	return rv
 }
@@ -745,7 +714,7 @@ func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation ILayoutConst
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentCompressionResistancePriority(for:)
-func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority {
+func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority {
 	rv := objc.Send[LayoutPriority](v_.ID, objc.Sel("contentCompressionResistancePriorityForOrientation:"), orientation)
 	return rv
 }
@@ -755,7 +724,7 @@ func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation IL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentHuggingPriority(for:)
-func (v_ View) ContentHuggingPriorityForOrientation(orientation ILayoutConstraintOrientation) LayoutPriority {
+func (v_ View) ContentHuggingPriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority {
 	rv := objc.Send[LayoutPriority](v_.ID, objc.Sel("contentHuggingPriorityForOrientation:"), orientation)
 	return rv
 }
@@ -877,66 +846,6 @@ func (v_ View) ConvertSizeFromLayer(size coregraphics.CGSize) coregraphics.CGSiz
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertFromLayer(_:)-8s5bi
 func (v_ View) ConvertRectFromLayer(rect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectFromLayer:"), rect)
-	return rv
-}
-
-
-// Converts the point from the base coordinate system to the view’s coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertPointFromBase:
-func (v_ View) ConvertPointFromBase(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointFromBase:"), point)
-	return rv
-}
-
-
-// Converts the point from the view’s coordinate system to the base coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertPointToBase:
-func (v_ View) ConvertPointToBase(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("convertPointToBase:"), point)
-	return rv
-}
-
-
-// Converts the rectangle from the base coordinate system to the view’s coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertRectFromBase:
-func (v_ View) ConvertRectFromBase(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectFromBase:"), rect)
-	return rv
-}
-
-
-// Converts the rectangle from the view’s coordinate system to the base coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertRectToBase:
-func (v_ View) ConvertRectToBase(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("convertRectToBase:"), rect)
-	return rv
-}
-
-
-// Converts the size from the base coordinate system to the view’s coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertSizeFromBase:
-func (v_ View) ConvertSizeFromBase(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeFromBase:"), size)
-	return rv
-}
-
-
-// Converts the size from the view’s coordinate system to the base coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/convertSizeToBase:
-func (v_ View) ConvertSizeToBase(size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](v_.ID, objc.Sel("convertSizeToBase:"), size)
 	return rv
 }
 
@@ -1128,35 +1037,6 @@ func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector
 }
 
 
-// Initiates a dragging operation from the view, allowing the user to drag a file icon to any application that has window or view objects that accept files.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dragFile(_:from:slideBack:event:)
-func (v_ View) DragFileFromRectSlideBackEvent(filename string, rect coregraphics.CGRect, flag bool, event IEvent) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("dragFile:fromRect:slideBack:event:"), objc.String(filename), rect, flag, event)
-	return rv
-}
-
-
-// Initiates a dragging operation from the view, allowing the user to drag arbitrary data with a specified icon into any application that has window or view objects that accept dragged data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dragImage:at:offset:event:pasteboard:source:slideBack:
-func (v_ View) DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, viewLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("dragImage:at:offset:event:pasteboard:source:slideBack:"), image, viewLocation, initialOffset, event, pboard, sourceObj, slideFlag)
-}
-
-
-// Initiates a dragging operation from the view, allowing the user to drag one or more promised files (or directories) into any application that has window or view objects that accept promised file data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dragPromisedFiles(ofTypes:from:source:slideBack:event:)
-func (v_ View) DragPromisedFilesOfTypesFromRectSourceSlideBackEvent(typeArray []string, rect coregraphics.CGRect, sourceObject objectivec.IObject, flag bool, event IEvent) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("dragPromisedFilesOfTypes:fromRect:source:slideBack:event:"), typeArray, rect, sourceObject, flag, event)
-	return rv
-}
-
-
 // Overridden by subclasses to draw the view’s image within the specified rectangle.
 //
 // [Full Topic]
@@ -1181,15 +1061,6 @@ func (v_ View) DrawFocusRingMask() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/drawPageBorder(with:)
 func (v_ View) DrawPageBorderWithSize(borderSize coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("drawPageBorderWithSize:"), borderSize)
-}
-
-
-// Allows applications that use the AppKit pagination facility to draw additional marks on each printed sheet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/drawSheetBorder(with:)
-func (v_ View) DrawSheetBorderWithSize(borderSize coregraphics.CGSize) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("drawSheetBorderWithSize:"), borderSize)
 }
 
 
@@ -1223,7 +1094,7 @@ func (v_ View) EndPage() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)
-func (v_ View) EnterFullScreenModeWithOptions(screen IScreen, options unsafe.Pointer) bool {
+func (v_ View) EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("enterFullScreenMode:withOptions:"), screen, options)
 	return rv
 }
@@ -1242,7 +1113,7 @@ func (v_ View) ExerciseAmbiguityInLayout() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/exitFullScreenMode(options:)
-func (v_ View) ExitFullScreenModeWithOptions(options unsafe.Pointer) {
+func (v_ View) ExitFullScreenModeWithOptions(options foundation.IDictionary) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("exitFullScreenModeWithOptions:"), options)
 }
 
@@ -1253,16 +1124,6 @@ func (v_ View) ExitFullScreenModeWithOptions(options unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frame(forAlignmentRect:)
 func (v_ View) FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("frameForAlignmentRect:"), alignmentRect)
-	return rv
-}
-
-
-// Returns the identifier for the view’s graphics state object, or 0 if the view doesn’t have a graphics state object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gState()
-func (v_ View) GState() int {
-	rv := objc.Send[int](v_.ID, objc.Sel("gState"))
 	return rv
 }
 
@@ -1289,7 +1150,7 @@ func (v_ View) GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/hitTest(_:)
-func (v_ View) HitTest(point coregraphics.CGPoint) View {
+func (v_ View) HitTest(point coregraphics.CGPoint) IView {
 	rv := objc.Send[View](v_.ID, objc.Sel("hitTest:"), point)
 	return rv
 }
@@ -1345,7 +1206,7 @@ func (v_ View) Layout() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layoutGuideForLayoutRegion:
-func (v_ View) LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) LayoutGuide {
+func (v_ View) LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) ILayoutGuide {
 	rv := objc.Send[LayoutGuide](v_.ID, objc.Sel("layoutGuideForLayoutRegion:"), layoutRegion)
 	return rv
 }
@@ -1370,35 +1231,6 @@ func (v_ View) LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoin
 }
 
 
-// Locks the focus on the view, so subsequent commands take effect in the view’s window and coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lockFocus()
-func (v_ View) LockFocus() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("lockFocus"))
-}
-
-
-// Locks the focus to the view atomically if the method returns and returns the value of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lockFocusIfCanDraw()
-func (v_ View) LockFocusIfCanDraw() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("lockFocusIfCanDraw"))
-	return rv
-}
-
-
-// Locks the focus to the view atomically if drawing can occur in the specified graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lockFocusIfCanDraw(in:)
-func (v_ View) LockFocusIfCanDrawInContext(context IGraphicsContext) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("lockFocusIfCanDrawInContext:"), context)
-	return rv
-}
-
-
 // Creates the view’s backing layer.
 //
 // [Full Topic]
@@ -1413,7 +1245,7 @@ func (v_ View) MakeBackingLayer() quartzcore.Layer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/menu(for:)
-func (v_ View) MenuForEvent(event IEvent) Menu {
+func (v_ View) MenuForEvent(event IEvent) IMenu {
 	rv := objc.Send[Menu](v_.ID, objc.Sel("menuForEvent:"), event)
 	return rv
 }
@@ -1444,16 +1276,6 @@ func (v_ View) NoteFocusRingMaskChanged() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/performKeyEquivalent(with:)
 func (v_ View) PerformKeyEquivalent(event IEvent) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("performKeyEquivalent:"), event)
-	return rv
-}
-
-
-// Implemented by subclasses to respond to mnemonics.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/performMnemonic:
-func (v_ View) PerformMnemonic(string_ string) bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("performMnemonic:"), objc.String(string_))
 	return rv
 }
 
@@ -1531,15 +1353,6 @@ func (v_ View) RegisterForDraggedTypes(newTypes []string) {
 }
 
 
-// Frees the view’s graphics state object, if it has one.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/releaseGState()
-func (v_ View) ReleaseGState() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("releaseGState"))
-}
-
-
 // Removes all tooltips assigned to the view.
 //
 // [Full Topic]
@@ -1553,7 +1366,7 @@ func (v_ View) RemoveAllToolTips() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeConstraint(_:)
-func (v_ View) RemoveConstraint(constraint ILayoutConstraint) {
+func (v_ View) RemoveConstraint(constraint LayoutConstraint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeConstraint:"), constraint)
 }
 
@@ -1598,7 +1411,7 @@ func (v_ View) RemoveFromSuperviewWithoutNeedingDisplay() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeGestureRecognizer(_:)
-func (v_ View) RemoveGestureRecognizer(gestureRecognizer IGestureRecognizer) {
+func (v_ View) RemoveGestureRecognizer(gestureRecognizer GestureRecognizer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeGestureRecognizer:"), gestureRecognizer)
 }
 
@@ -1616,7 +1429,7 @@ func (v_ View) RemoveLayoutGuide(guide ILayoutGuide) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeToolTip(_:)
-func (v_ View) RemoveToolTip(tag IToolTipTag) {
+func (v_ View) RemoveToolTip(tag ToolTipTag) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeToolTip:"), tag)
 }
 
@@ -1625,7 +1438,7 @@ func (v_ View) RemoveToolTip(tag IToolTipTag) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeTrackingArea(_:)
-func (v_ View) RemoveTrackingArea(trackingArea ITrackingArea) {
+func (v_ View) RemoveTrackingArea(trackingArea TrackingArea) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeTrackingArea:"), trackingArea)
 }
 
@@ -1634,17 +1447,8 @@ func (v_ View) RemoveTrackingArea(trackingArea ITrackingArea) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeTrackingRect(_:)
-func (v_ View) RemoveTrackingRect(tag ITrackingRectTag) {
+func (v_ View) RemoveTrackingRect(tag TrackingRectTag) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeTrackingRect:"), tag)
-}
-
-
-// Invalidates the view’s graphics state object, if it has one.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/renewGState()
-func (v_ View) RenewGState() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("renewGState"))
 }
 
 
@@ -1697,7 +1501,7 @@ func (v_ View) RotateByAngle(angle float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didAdd:)
-func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker) {
+func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker RulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didAddMarker:"), ruler, marker)
 }
 
@@ -1706,7 +1510,7 @@ func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didMove:)
-func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker) {
+func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker RulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didMoveMarker:"), ruler, marker)
 }
 
@@ -1715,7 +1519,7 @@ func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didRemove:)
-func (v_ View) RulerViewDidRemoveMarker(ruler IRulerView, marker IRulerMarker) {
+func (v_ View) RulerViewDidRemoveMarker(ruler IRulerView, marker RulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didRemoveMarker:"), ruler, marker)
 }
 
@@ -1749,7 +1553,7 @@ func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64) coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldAdd:)
-func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) bool {
+func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker RulerMarker) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldAddMarker:"), ruler, marker)
 	return rv
 }
@@ -1759,7 +1563,7 @@ func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldMove:)
-func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) bool {
+func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker RulerMarker) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldMoveMarker:"), ruler, marker)
 	return rv
 }
@@ -1769,7 +1573,7 @@ func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldRemove:)
-func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool {
+func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker RulerMarker) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldRemoveMarker:"), ruler, marker)
 	return rv
 }
@@ -1779,7 +1583,7 @@ func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:willAdd:atLocation:)
-func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerMarker, location float64) float64 {
+func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker RulerMarker, location float64) float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:willAddMarker:atLocation:"), ruler, marker, location)
 	return rv
 }
@@ -1789,7 +1593,7 @@ func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:willMove:toLocation:)
-func (v_ View) RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker IRulerMarker, location float64) float64 {
+func (v_ View) RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker RulerMarker, location float64) float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:willMoveMarker:toLocation:"), ruler, marker, location)
 	return rv
 }
@@ -1819,15 +1623,6 @@ func (v_ View) ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scroll(_:)
 func (v_ View) ScrollPoint(point coregraphics.CGPoint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("scrollPoint:"), point)
-}
-
-
-// Copies the visible portion of the view’s rendered image within a region and lays that portion down again at a specified offset .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scroll(_:by:)
-func (v_ View) ScrollRectBy(rect coregraphics.CGRect, delta coregraphics.CGSize) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("scrollRect:by:"), rect, delta)
 }
 
 
@@ -1872,7 +1667,7 @@ func (v_ View) SetBoundsSize(newSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setContentCompressionResistancePriority(_:for:)
-func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation ILayoutConstraintOrientation) {
+func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentCompressionResistancePriority:forOrientation:"), priority, orientation)
 }
 
@@ -1881,7 +1676,7 @@ func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority La
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setContentHuggingPriority(_:for:)
-func (v_ View) SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation ILayoutConstraintOrientation) {
+func (v_ View) SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentHuggingPriority:forOrientation:"), priority, orientation)
 }
 
@@ -1922,15 +1717,6 @@ func (v_ View) SetNeedsDisplayInRect(invalidRect coregraphics.CGRect) {
 }
 
 
-// Overridden by subclasses to (re)initialize the view’s graphics state object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setUpGState()
-func (v_ View) SetUpGState() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUpGState"))
-}
-
-
 // Allows the user to drag objects from the view without activating the app or moving the window of the view forward, possibly obscuring the destination.
 //
 // [Full Topic]
@@ -1941,21 +1727,11 @@ func (v_ View) ShouldDelayWindowOrderingForEvent(event IEvent) bool {
 }
 
 
-// Returns a Boolean value indicating whether the view is being drawn to an environment that supports color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/shouldDrawColor()
-func (v_ View) ShouldDrawColor() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("shouldDrawColor"))
-	return rv
-}
-
-
 // Shows a window displaying the definition of the attributed string at the specified point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:at:)
-func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.IAttributedString, textBaselineOrigin coregraphics.CGPoint) {
+func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.AttributedString, textBaselineOrigin coregraphics.CGPoint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:atPoint:"), attrString, textBaselineOrigin)
 }
 
@@ -1964,7 +1740,7 @@ func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.IA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.IAttributedString, targetRange foundation.Range, options unsafe.Pointer, originProvider unsafe.Pointer) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.AttributedString, targetRange foundation.Range, options foundation.IDictionary, originProvider unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:range:options:baselineOriginProvider:"), attrString, targetRange, options, originProvider)
 }
 
@@ -1993,15 +1769,6 @@ func (v_ View) TranslateOriginToPoint(translation coregraphics.CGPoint) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translateRectsNeedingDisplay(in:by:)
 func (v_ View) TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("translateRectsNeedingDisplayInRect:by:"), clipRect, delta)
-}
-
-
-// Unlocks focus from the current view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/unlockFocus()
-func (v_ View) UnlockFocus() {
-	objc.Send[objc.ID](v_.ID, objc.Sel("unlockFocus"))
 }
 
 
@@ -2153,7 +1920,7 @@ func (v_ View) ViewWillStartLiveResize() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/viewWithTag(_:)
-func (v_ View) ViewWithTag(tag int) View {
+func (v_ View) ViewWithTag(tag int) IView {
 	rv := objc.Send[View](v_.ID, objc.Sel("viewWithTag:"), tag)
 	return rv
 }
@@ -2247,8 +2014,8 @@ func (v_ View) AlignmentRectInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowedTouchTypes
-func (v_ View) AllowedTouchTypes() TouchTypeMask {
-	rv := objc.Send[TouchTypeMask](v_.ID, objc.Sel("allowedTouchTypes"))
+func (v_ View) AllowedTouchTypes() NSTouchTypeMask {
+	rv := objc.Send[NSTouchTypeMask](v_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
 
@@ -2257,7 +2024,7 @@ func (v_ View) AllowedTouchTypes() TouchTypeMask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowedTouchTypes
-func (v_ View) SetAllowedTouchTypes(value TouchTypeMask) {
+func (v_ View) SetAllowedTouchTypes(value NSTouchTypeMask) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -2314,8 +2081,8 @@ func (v_ View) SetAutoresizesSubviews(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizingMask-swift.property
-func (v_ View) AutoresizingMask() AutoresizingMaskOptions {
-	rv := objc.Send[AutoresizingMaskOptions](v_.ID, objc.Sel("autoresizingMask"))
+func (v_ View) AutoresizingMask() NSAutoresizingMaskOptions {
+	rv := objc.Send[NSAutoresizingMaskOptions](v_.ID, objc.Sel("autoresizingMask"))
 	return rv
 }
 
@@ -2324,7 +2091,7 @@ func (v_ View) AutoresizingMask() AutoresizingMaskOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizingMask-swift.property
-func (v_ View) SetAutoresizingMask(value AutoresizingMaskOptions) {
+func (v_ View) SetAutoresizingMask(value NSAutoresizingMaskOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAutoresizingMask:"), value)
 }
 
@@ -2343,7 +2110,7 @@ func (v_ View) BackgroundFilters() []coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []coreimage.IFilter) {
+func (v_ View) SetBackgroundFilters(value []coreimage.Filter) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2372,8 +2139,8 @@ func (v_ View) BaselineOffsetFromBottom() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bottomAnchor
-func (v_ View) BottomAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](v_.ID, objc.Sel("bottomAnchor"))
+func (v_ View) BottomAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("bottomAnchor"))
 	return rv
 }
 
@@ -2476,8 +2243,8 @@ func (v_ View) SetCanDrawSubviewsIntoLayer(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/candidateListTouchBarItem
-func (v_ View) CandidateListTouchBarItem() NSCandidateListTouchBarItem {
-	rv := objc.Send[NSCandidateListTouchBarItem](v_.ID, objc.Sel("candidateListTouchBarItem"))
+func (v_ View) CandidateListTouchBarItem() CandidateListTouchBarItem {
+	rv := objc.Send[CandidateListTouchBarItem](v_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
 
@@ -2486,8 +2253,8 @@ func (v_ View) CandidateListTouchBarItem() NSCandidateListTouchBarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerXAnchor
-func (v_ View) CenterXAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](v_.ID, objc.Sel("centerXAnchor"))
+func (v_ View) CenterXAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](v_.ID, objc.Sel("centerXAnchor"))
 	return rv
 }
 
@@ -2496,8 +2263,8 @@ func (v_ View) CenterXAnchor() NSLayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerYAnchor
-func (v_ View) CenterYAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](v_.ID, objc.Sel("centerYAnchor"))
+func (v_ View) CenterYAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("centerYAnchor"))
 	return rv
 }
 
@@ -2535,7 +2302,7 @@ func (v_ View) CompositingFilter() coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) SetCompositingFilter(value coreimage.IFilter) {
+func (v_ View) SetCompositingFilter(value coreimage.Filter) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCompositingFilter:"), value)
 }
 
@@ -2564,7 +2331,7 @@ func (v_ View) ContentFilters() []coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []coreimage.IFilter) {
+func (v_ View) SetContentFilters(value []coreimage.Filter) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2583,8 +2350,8 @@ func (v_ View) SetContentFilters(value []coreimage.IFilter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
-func (v_ View) DefaultFocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](v_.ID, objc.Sel("defaultFocusRingType"))
+func (v_ View) DefaultFocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](v_.ID, objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -2593,8 +2360,8 @@ func (v_ View) DefaultFocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultMenu
-func (v_ View) DefaultMenu() NSMenu {
-	rv := objc.Send[NSMenu](v_.ID, objc.Sel("defaultMenu"))
+func (v_ View) DefaultMenu() IMenu {
+	rv := objc.Send[Menu](v_.ID, objc.Sel("defaultMenu"))
 	return rv
 }
 
@@ -2603,8 +2370,8 @@ func (v_ View) DefaultMenu() NSMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enclosingMenuItem
-func (v_ View) EnclosingMenuItem() NSMenuItem {
-	rv := objc.Send[NSMenuItem](v_.ID, objc.Sel("enclosingMenuItem"))
+func (v_ View) EnclosingMenuItem() MenuItem {
+	rv := objc.Send[MenuItem](v_.ID, objc.Sel("enclosingMenuItem"))
 	return rv
 }
 
@@ -2613,8 +2380,8 @@ func (v_ View) EnclosingMenuItem() NSMenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enclosingScrollView
-func (v_ View) EnclosingScrollView() NSScrollView {
-	rv := objc.Send[NSScrollView](v_.ID, objc.Sel("enclosingScrollView"))
+func (v_ View) EnclosingScrollView() IScrollView {
+	rv := objc.Send[ScrollView](v_.ID, objc.Sel("enclosingScrollView"))
 	return rv
 }
 
@@ -2623,8 +2390,8 @@ func (v_ View) EnclosingScrollView() NSScrollView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/firstBaselineAnchor
-func (v_ View) FirstBaselineAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](v_.ID, objc.Sel("firstBaselineAnchor"))
+func (v_ View) FirstBaselineAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("firstBaselineAnchor"))
 	return rv
 }
 
@@ -2663,8 +2430,8 @@ func (v_ View) FocusRingMaskBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingType
-func (v_ View) FocusRingType() FocusRingType {
-	rv := objc.Send[FocusRingType](v_.ID, objc.Sel("focusRingType"))
+func (v_ View) FocusRingType() NSFocusRingType {
+	rv := objc.Send[NSFocusRingType](v_.ID, objc.Sel("focusRingType"))
 	return rv
 }
 
@@ -2673,7 +2440,7 @@ func (v_ View) FocusRingType() FocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingType
-func (v_ View) SetFocusRingType(value FocusRingType) {
+func (v_ View) SetFocusRingType(value NSFocusRingType) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFocusRingType:"), value)
 }
 
@@ -2682,8 +2449,8 @@ func (v_ View) SetFocusRingType(value FocusRingType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusView
-func (v_ View) FocusView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("focusView"))
+func (v_ View) FocusView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("focusView"))
 	return rv
 }
 
@@ -2798,8 +2565,8 @@ func (v_ View) HeightAdjustLimit() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/heightAnchor
-func (v_ View) HeightAnchor() NSLayoutDimension {
-	rv := objc.Send[NSLayoutDimension](v_.ID, objc.Sel("heightAnchor"))
+func (v_ View) HeightAnchor() LayoutDimension {
+	rv := objc.Send[LayoutDimension](v_.ID, objc.Sel("heightAnchor"))
 	return rv
 }
 
@@ -2818,8 +2585,8 @@ func (v_ View) InLiveResize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/inputContext
-func (v_ View) InputContext() NSTextInputContext {
-	rv := objc.Send[NSTextInputContext](v_.ID, objc.Sel("inputContext"))
+func (v_ View) InputContext() TextInputContext {
+	rv := objc.Send[TextInputContext](v_.ID, objc.Sel("inputContext"))
 	return rv
 }
 
@@ -2975,8 +2742,8 @@ func (v_ View) SetVerticalContentSizeConstraintActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lastBaselineAnchor
-func (v_ View) LastBaselineAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](v_.ID, objc.Sel("lastBaselineAnchor"))
+func (v_ View) LastBaselineAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("lastBaselineAnchor"))
 	return rv
 }
 
@@ -3005,7 +2772,7 @@ func (v_ View) Layer() quartzcore.Layer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
-func (v_ View) SetLayer(value quartzcore.ILayer) {
+func (v_ View) SetLayer(value quartzcore.Layer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayer:"), value)
 }
 
@@ -3014,8 +2781,8 @@ func (v_ View) SetLayer(value quartzcore.ILayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsPlacement-swift.property
-func (v_ View) LayerContentsPlacement() ViewLayerContentsPlacement {
-	rv := objc.Send[ViewLayerContentsPlacement](v_.ID, objc.Sel("layerContentsPlacement"))
+func (v_ View) LayerContentsPlacement() NSViewLayerContentsPlacement {
+	rv := objc.Send[NSViewLayerContentsPlacement](v_.ID, objc.Sel("layerContentsPlacement"))
 	return rv
 }
 
@@ -3024,7 +2791,7 @@ func (v_ View) LayerContentsPlacement() ViewLayerContentsPlacement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsPlacement-swift.property
-func (v_ View) SetLayerContentsPlacement(value IViewLayerContentsPlacement) {
+func (v_ View) SetLayerContentsPlacement(value NSViewLayerContentsPlacement) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayerContentsPlacement:"), value)
 }
 
@@ -3033,8 +2800,8 @@ func (v_ View) SetLayerContentsPlacement(value IViewLayerContentsPlacement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property
-func (v_ View) LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy {
-	rv := objc.Send[ViewLayerContentsRedrawPolicy](v_.ID, objc.Sel("layerContentsRedrawPolicy"))
+func (v_ View) LayerContentsRedrawPolicy() NSViewLayerContentsRedrawPolicy {
+	rv := objc.Send[NSViewLayerContentsRedrawPolicy](v_.ID, objc.Sel("layerContentsRedrawPolicy"))
 	return rv
 }
 
@@ -3043,7 +2810,7 @@ func (v_ View) LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property
-func (v_ View) SetLayerContentsRedrawPolicy(value ViewLayerContentsRedrawPolicy) {
+func (v_ View) SetLayerContentsRedrawPolicy(value NSViewLayerContentsRedrawPolicy) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayerContentsRedrawPolicy:"), value)
 }
 
@@ -3081,8 +2848,8 @@ func (v_ View) LayoutGuides() []LayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layoutMarginsGuide
-func (v_ View) LayoutMarginsGuide() NSLayoutGuide {
-	rv := objc.Send[NSLayoutGuide](v_.ID, objc.Sel("layoutMarginsGuide"))
+func (v_ View) LayoutMarginsGuide() ILayoutGuide {
+	rv := objc.Send[LayoutGuide](v_.ID, objc.Sel("layoutMarginsGuide"))
 	return rv
 }
 
@@ -3091,8 +2858,8 @@ func (v_ View) LayoutMarginsGuide() NSLayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/leadingAnchor
-func (v_ View) LeadingAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](v_.ID, objc.Sel("leadingAnchor"))
+func (v_ View) LeadingAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](v_.ID, objc.Sel("leadingAnchor"))
 	return rv
 }
 
@@ -3101,8 +2868,8 @@ func (v_ View) LeadingAnchor() NSLayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/leftAnchor
-func (v_ View) LeftAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](v_.ID, objc.Sel("leftAnchor"))
+func (v_ View) LeftAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](v_.ID, objc.Sel("leftAnchor"))
 	return rv
 }
 
@@ -3188,8 +2955,8 @@ func (v_ View) SetNeedsUpdateConstraints(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/nextKeyView
-func (v_ View) NextKeyView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("nextKeyView"))
+func (v_ View) NextKeyView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("nextKeyView"))
 	return rv
 }
 
@@ -3207,8 +2974,8 @@ func (v_ View) SetNextKeyView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/nextValidKeyView
-func (v_ View) NextValidKeyView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("nextValidKeyView"))
+func (v_ View) NextValidKeyView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("nextValidKeyView"))
 	return rv
 }
 
@@ -3217,8 +2984,8 @@ func (v_ View) NextValidKeyView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/opaqueAncestor
-func (v_ View) OpaqueAncestor() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("opaqueAncestor"))
+func (v_ View) OpaqueAncestor() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("opaqueAncestor"))
 	return rv
 }
 
@@ -3333,8 +3100,8 @@ func (v_ View) PreservesContentDuringLiveResize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pressureConfiguration
-func (v_ View) PressureConfiguration() NSPressureConfiguration {
-	rv := objc.Send[NSPressureConfiguration](v_.ID, objc.Sel("pressureConfiguration"))
+func (v_ View) PressureConfiguration() IPressureConfiguration {
+	rv := objc.Send[PressureConfiguration](v_.ID, objc.Sel("pressureConfiguration"))
 	return rv
 }
 
@@ -3352,8 +3119,8 @@ func (v_ View) SetPressureConfiguration(value IPressureConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/previousKeyView
-func (v_ View) PreviousKeyView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("previousKeyView"))
+func (v_ View) PreviousKeyView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("previousKeyView"))
 	return rv
 }
 
@@ -3362,8 +3129,8 @@ func (v_ View) PreviousKeyView() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/previousValidKeyView
-func (v_ View) PreviousValidKeyView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("previousValidKeyView"))
+func (v_ View) PreviousValidKeyView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("previousValidKeyView"))
 	return rv
 }
 
@@ -3412,8 +3179,8 @@ func (v_ View) RequiresConstraintBasedLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rightAnchor
-func (v_ View) RightAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](v_.ID, objc.Sel("rightAnchor"))
+func (v_ View) RightAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](v_.ID, objc.Sel("rightAnchor"))
 	return rv
 }
 
@@ -3432,8 +3199,8 @@ func (v_ View) SafeAreaInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaLayoutGuide
-func (v_ View) SafeAreaLayoutGuide() NSLayoutGuide {
-	rv := objc.Send[NSLayoutGuide](v_.ID, objc.Sel("safeAreaLayoutGuide"))
+func (v_ View) SafeAreaLayoutGuide() ILayoutGuide {
+	rv := objc.Send[LayoutGuide](v_.ID, objc.Sel("safeAreaLayoutGuide"))
 	return rv
 }
 
@@ -3452,8 +3219,8 @@ func (v_ View) SafeAreaRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/shadow
-func (v_ View) Shadow() NSShadow {
-	rv := objc.Send[NSShadow](v_.ID, objc.Sel("shadow"))
+func (v_ View) Shadow() IShadow {
+	rv := objc.Send[Shadow](v_.ID, objc.Sel("shadow"))
 	return rv
 }
 
@@ -3500,8 +3267,8 @@ func (v_ View) SetSubviews(value []View) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/superview
-func (v_ View) Superview() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("superview"))
+func (v_ View) Superview() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("superview"))
 	return rv
 }
 
@@ -3539,8 +3306,8 @@ func (v_ View) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/topAnchor
-func (v_ View) TopAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](v_.ID, objc.Sel("topAnchor"))
+func (v_ View) TopAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("topAnchor"))
 	return rv
 }
 
@@ -3559,8 +3326,8 @@ func (v_ View) TrackingAreas() []TrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/trailingAnchor
-func (v_ View) TrailingAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](v_.ID, objc.Sel("trailingAnchor"))
+func (v_ View) TrailingAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](v_.ID, objc.Sel("trailingAnchor"))
 	return rv
 }
 
@@ -3588,8 +3355,8 @@ func (v_ View) SetTranslatesAutoresizingMaskIntoConstraints(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/userInterfaceLayoutDirection
-func (v_ View) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
-	rv := objc.Send[UserInterfaceLayoutDirection](v_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (v_ View) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
+	rv := objc.Send[NSUserInterfaceLayoutDirection](v_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -3598,7 +3365,7 @@ func (v_ View) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/userInterfaceLayoutDirection
-func (v_ View) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
+func (v_ View) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 
@@ -3719,8 +3486,8 @@ func (v_ View) WidthAdjustLimit() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/widthAnchor
-func (v_ View) WidthAnchor() NSLayoutDimension {
-	rv := objc.Send[NSLayoutDimension](v_.ID, objc.Sel("widthAnchor"))
+func (v_ View) WidthAnchor() LayoutDimension {
+	rv := objc.Send[LayoutDimension](v_.ID, objc.Sel("widthAnchor"))
 	return rv
 }
 
@@ -3729,23 +3496,23 @@ func (v_ View) WidthAnchor() NSLayoutDimension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/window
-func (v_ View) Window() NSWindow {
-	rv := objc.Send[NSWindow](v_.ID, objc.Sel("window"))
+func (v_ View) Window() IWindow {
+	rv := objc.Send[Window](v_.ID, objc.Sel("window"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
-func (v_ View) WritingToolsCoordinator() NSWritingToolsCoordinator {
-	rv := objc.Send[NSWritingToolsCoordinator](v_.ID, objc.Sel("writingToolsCoordinator"))
+func (v_ View) WritingToolsCoordinator() WritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](v_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
-func (v_ View) SetWritingToolsCoordinator(value IWritingToolsCoordinator) {
+func (v_ View) SetWritingToolsCoordinator(value WritingToolsCoordinator) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
 

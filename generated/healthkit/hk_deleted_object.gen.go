@@ -31,8 +31,12 @@ type _HKDeletedObjectClass struct {
 // An interface definition for the [HKDeletedObject] class.
 type IHKDeletedObject interface {
 	objectivec.IObject
-	Metadata() unsafe.Pointer
-	UUID() foundation.UUID
+	// properties:
+	Metadata() string
+	SetMetadata(value string)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.UUID)
+	// methods:
 }
 
 // An object that represents a sample that has been deleted from the HealthKit store.
@@ -91,9 +95,28 @@ func NewHKDeletedObject() HKDeletedObject {
 // The metadata associated with the deleted object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/metadata
-func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("metadata"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
+func (h_ HKDeletedObject) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// The metadata associated with the deleted object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
+func (h_ HKDeletedObject) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
+
+// The universally unique identifier (UUID) for the HealthKit object that was deleted from the store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
+func (h_ HKDeletedObject) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
 
@@ -101,10 +124,9 @@ func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
 // The universally unique identifier (UUID) for the HealthKit object that was deleted from the store.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/uuid
-func (h_ HKDeletedObject) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
+func (h_ HKDeletedObject) SetUuid(value foundation.UUID) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 
 

@@ -31,7 +31,6 @@ type _CNContactViewControllerClass struct {
 // An interface definition for the [CNContactViewController] class.
 type ICNContactViewController interface {
 	appkit.IViewController
-	HighlightPropertyWithKeyIdentifier(key string, identifier string)
 	AllowsActions() bool
 	SetAllowsActions(value bool)
 	AllowsEditing() bool
@@ -40,7 +39,7 @@ type ICNContactViewController interface {
 	SetAlternateName(value string)
 	Contact() contacts.CNContact
 	ContactStore() contacts.CNContactStore
-	SetContactStore(value contacts.ICNContactStore)
+	SetContactStore(value contacts.CNContactStore)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DisplayedPropertyKeys() objc.ID
@@ -48,11 +47,12 @@ type ICNContactViewController interface {
 	Message() string
 	SetMessage(value string)
 	ParentContainer() contacts.CNContainer
-	SetParentContainer(value contacts.ICNContainer)
+	SetParentContainer(value contacts.CNContainer)
 	ParentGroup() contacts.CNGroup
-	SetParentGroup(value contacts.ICNGroup)
+	SetParentGroup(value contacts.CNGroup)
 	ShouldShowLinkedContacts() bool
 	SetShouldShowLinkedContacts(value bool)
+	HighlightPropertyWithKeyIdentifier(key string, identifier string)
 }
 
 // A view controller that displays a new, unknown, or existing contact.
@@ -114,7 +114,7 @@ func NewCNContactViewController() CNContactViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func NewCNContactViewControllerForContact(contact contacts.ICNContact) CNContactViewController {
+func NewCNContactViewControllerForContact(contact contacts.CNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -124,7 +124,7 @@ func NewCNContactViewControllerForContact(contact contacts.ICNContact) CNContact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func NewCNContactViewControllerForNewContact(contact contacts.ICNContact) CNContactViewController {
+func NewCNContactViewControllerForNewContact(contact contacts.CNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -134,7 +134,7 @@ func NewCNContactViewControllerForNewContact(contact contacts.ICNContact) CNCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func NewCNContactViewControllerForUnknownContact(contact contacts.ICNContact) CNContactViewController {
+func NewCNContactViewControllerForUnknownContact(contact contacts.CNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -155,7 +155,7 @@ func (cc _CNContactViewControllerClass) DescriptorForRequiredKeys() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contacts.ICNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contacts.CNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -165,7 +165,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact contacts.ICNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact contacts.CNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -175,7 +175,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact contacts.ICNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact contacts.CNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -271,7 +271,7 @@ func (c_ CNContactViewController) ContactStore() contacts.CNContactStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) SetContactStore(value contacts.ICNContactStore) {
+func (c_ CNContactViewController) SetContactStore(value contacts.CNContactStore) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactStore:"), value)
 }
 
@@ -347,7 +347,7 @@ func (c_ CNContactViewController) ParentContainer() contacts.CNContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) SetParentContainer(value contacts.ICNContainer) {
+func (c_ CNContactViewController) SetParentContainer(value contacts.CNContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentContainer:"), value)
 }
 
@@ -366,7 +366,7 @@ func (c_ CNContactViewController) ParentGroup() contacts.CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) SetParentGroup(value contacts.ICNGroup) {
+func (c_ CNContactViewController) SetParentGroup(value contacts.CNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentGroup:"), value)
 }
 

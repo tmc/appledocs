@@ -30,6 +30,8 @@ type _AuthenticationRequirementClass struct {
 // An interface definition for the [AuthenticationRequirement] class.
 type IAuthenticationRequirement interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A set of requirements that protect a right.
@@ -98,7 +100,7 @@ func (ac _AuthenticationRequirementClass) BiometryRequirementWithFallback(fallba
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
 func (ac _AuthenticationRequirementClass) BiometryRequirement() AuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryRequirement"))
+	rv := objc.Send[AuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryRequirement"))
 	return rv
 }
 
@@ -107,7 +109,7 @@ func (ac _AuthenticationRequirementClass) BiometryRequirement() AuthenticationRe
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
 func (ac _AuthenticationRequirementClass) BiometryCurrentSetRequirement() AuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryCurrentSetRequirement"))
+	rv := objc.Send[AuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryCurrentSetRequirement"))
 	return rv
 }
 
@@ -116,7 +118,7 @@ func (ac _AuthenticationRequirementClass) BiometryCurrentSetRequirement() Authen
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
 func (ac _AuthenticationRequirementClass) DefaultRequirement() AuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("defaultRequirement"))
+	rv := objc.Send[AuthenticationRequirement](objc.ID(ac.class), objc.Sel("defaultRequirement"))
 	return rv
 }
 
@@ -124,8 +126,8 @@ func (ac _AuthenticationRequirementClass) DefaultRequirement() AuthenticationReq
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
-func (a_ AuthenticationRequirement) BiometryRequirement() LAAuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("biometryRequirement"))
+func (a_ AuthenticationRequirement) BiometryRequirement() ILAAuthenticationRequirement {
+	rv := objc.Send[AuthenticationRequirement](a_.ID, objc.Sel("biometryRequirement"))
 	return rv
 }
 
@@ -134,8 +136,8 @@ func (a_ AuthenticationRequirement) BiometryRequirement() LAAuthenticationRequir
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
-func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() LAAuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("biometryCurrentSetRequirement"))
+func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() ILAAuthenticationRequirement {
+	rv := objc.Send[AuthenticationRequirement](a_.ID, objc.Sel("biometryCurrentSetRequirement"))
 	return rv
 }
 
@@ -144,8 +146,8 @@ func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() LAAuthentica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
-func (a_ AuthenticationRequirement) DefaultRequirement() LAAuthenticationRequirement {
-	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("defaultRequirement"))
+func (a_ AuthenticationRequirement) DefaultRequirement() ILAAuthenticationRequirement {
+	rv := objc.Send[AuthenticationRequirement](a_.ID, objc.Sel("defaultRequirement"))
 	return rv
 }
 

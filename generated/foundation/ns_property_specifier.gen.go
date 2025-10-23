@@ -29,6 +29,8 @@ type _PropertySpecifierClass struct {
 // An interface definition for the [PropertySpecifier] class.
 type IPropertySpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
+	// methods:
 }
 
 // A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.

@@ -30,6 +30,8 @@ type _mPageScanPeriodModeClass struct {
 // An interface definition for the [mPageScanPeriodMode] class.
 type ImPageScanPeriodMode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

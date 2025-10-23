@@ -30,6 +30,8 @@ type _mTypeDescriptorClass struct {
 // An interface definition for the [mTypeDescriptor] class.
 type ImTypeDescriptor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

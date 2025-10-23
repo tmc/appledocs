@@ -33,6 +33,7 @@ type IAudioEnvironmentReverbParameters interface {
 	Enable() bool
 	SetEnable(value bool)
 	FilterParameters() unsafe.Pointer
+	SetFilterParameters(value unsafe.Pointer)
 	Level() float32
 	SetLevel(value float32)
 }
@@ -93,7 +94,7 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 // A Boolean value that indicates whether reverberation is in an enabled state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
 func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enable"))
 	return rv
@@ -103,7 +104,7 @@ func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 // A Boolean value that indicates whether reverberation is in an enabled state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/enable
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
 func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
@@ -112,10 +113,19 @@ func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 // A filter that the system applies to the output.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentReverbParameters/filterParameters
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/filterparameters
 func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("filterParameters"))
 	return rv
+}
+
+
+// A filter that the system applies to the output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/filterparameters
+func (a_ AudioEnvironmentReverbParameters) SetFilterParameters(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterParameters:"), value)
 }
 
 

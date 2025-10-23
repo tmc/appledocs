@@ -29,6 +29,8 @@ type _ConstantStringClass struct {
 // An interface definition for the [ConstantString] class.
 type IConstantString interface {
 	ISimpleCString
+	// properties:
+	// methods:
 }
 
 

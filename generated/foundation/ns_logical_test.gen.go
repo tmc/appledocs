@@ -29,6 +29,8 @@ type _LogicalTestClass struct {
 // An interface definition for the [LogicalTest] class.
 type ILogicalTest interface {
 	IScriptWhoseTest
+	// properties:
+	// methods:
 }
 
 // The logical combination of one or more specifier tests.
@@ -90,7 +92,7 @@ func NewLogicalTest() LogicalTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
-func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
+func NewLogicalTestAndTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer */) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
 	rv.Autorelease()
@@ -114,7 +116,7 @@ func NewLogicalTestNotTestWithTest(subTest IScriptWhoseTest) LogicalTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
-func NewLogicalTestOrTestWithTests(subTests []SpecifierTest) LogicalTest {
+func NewLogicalTestOrTestWithTests(subTests []SpecifierTest /* primitive/slice/pointer */) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)
 	rv.Autorelease()

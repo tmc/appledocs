@@ -30,6 +30,8 @@ type _ValueTransformerClass struct {
 // An interface definition for the [ValueTransformer] class.
 type IValueTransformer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract class used to transform values from one representation to another.
@@ -83,6 +85,15 @@ func NewValueTransformer() ValueTransformer {
 	return getValueTransformerClass().New()
 }
 
+
+
+// Registers the provided value transformer with a given identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/setValueTransformer(_:forName:)
+func (vc _ValueTransformerClass) SetValueTransformerForName(transformer IValueTransformer, name ValueTransformerName /* foo */) {
+	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("setValueTransformer:forName:"), transformer, name)
+}
 
 
 

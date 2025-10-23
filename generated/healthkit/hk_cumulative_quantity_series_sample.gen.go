@@ -29,9 +29,11 @@ type _HKCumulativeQuantitySeriesSampleClass struct {
 // An interface definition for the [HKCumulativeQuantitySeriesSample] class.
 type IHKCumulativeQuantitySeriesSample interface {
 	IHKCumulativeQuantitySample
-	Sum() HKQuantity
+	// properties:
+	Sum() IHKQuantity
 	SetSum(value IHKQuantity)
 	HKPredicateKeyPathSum() string
+	// methods:
 }
 
 // A sample representing a series of cumulative quantity values.
@@ -91,7 +93,7 @@ func NewHKCumulativeQuantitySeriesSample() HKCumulativeQuantitySeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantityseriessample/sum
-func (h_ HKCumulativeQuantitySeriesSample) Sum() HKQuantity {
+func (h_ HKCumulativeQuantitySeriesSample) Sum() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sum"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKUserAnnotatedMedicationQuery] class.
@@ -30,6 +29,8 @@ type _HKUserAnnotatedMedicationQueryClass struct {
 // An interface definition for the [HKUserAnnotatedMedicationQuery] class.
 type IHKUserAnnotatedMedicationQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 
@@ -78,16 +79,6 @@ func NewHKUserAnnotatedMedicationQuery() HKUserAnnotatedMedicationQuery {
 	return getHKUserAnnotatedMedicationQueryClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedicationQuery/init(predicate:limit:resultsHandler:)
-func NewHKUserAnnotatedMedicationQueryWithPredicateLimitResultsHandler(predicate foundation.IPredicate, limit uint, resultsHandler unsafe.Pointer) HKUserAnnotatedMedicationQuery {
-	instance := getHKUserAnnotatedMedicationQueryClass().Alloc()
-	rv := objc.Send[HKUserAnnotatedMedicationQuery](instance.ID, objc.Sel("initWithPredicate:limit:resultsHandler:"), predicate, limit, resultsHandler)
-	rv.Autorelease()
-	return rv
-}
 
 
 

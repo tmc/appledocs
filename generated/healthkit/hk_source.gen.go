@@ -30,10 +30,12 @@ type _HKSourceClass struct {
 // An interface definition for the [HKSource] class.
 type IHKSource interface {
 	objectivec.IObject
+	// properties:
 	BundleIdentifier() string
 	SetBundleIdentifier(value string)
 	Name() string
 	SetName(value string)
+	// methods:
 }
 
 // An object indicating the app or device that created a HealthKit sample

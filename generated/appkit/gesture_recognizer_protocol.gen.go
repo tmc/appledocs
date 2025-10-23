@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // gestureRecognizerProtocol is the gestureRecognizer: protocol.
 //
 // Availability:
-//   - macOS 10.11+
+//   - macOS 10.10+
 //
 // Use this protocol when registering custom classes that conform to gestureRecognizer:.
 var gestureRecognizerProtocol *objc.Protocol

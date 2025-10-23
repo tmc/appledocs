@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,39 +99,6 @@ func NewCNInstantMessageAddress() CNInstantMessageAddress {
 	return getCNInstantMessageAddressClass().New()
 }
 
-
-
-// Returns a object initialized with the specified user name and service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/init(username:service:)
-func NewCNInstantMessageAddressWithUsernameService(username string, service string) CNInstantMessageAddress {
-	instance := getCNInstantMessageAddressClass().Alloc()
-	rv := objc.Send[CNInstantMessageAddress](instance.ID, objc.Sel("initWithUsername:service:"), objc.String(username), objc.String(service))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a string containing the localized property name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forKey:)
-func (cc _CNInstantMessageAddressClass) LocalizedStringForKey(key string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
-	return rv
-}
-
-
-// Returns a string containing the localized name of the specified service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNInstantMessageAddress/localizedString(forService:)
-func (cc _CNInstantMessageAddressClass) LocalizedStringForService(service string) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForService:"), objc.String(service))
-	return rv
-}
 
 
 // The name of the instant message address service.
@@ -291,5 +257,6 @@ func (c_ CNInstantMessageAddress) CNInstantMessageServiceYahoo() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNInstantMessageServiceYahoo"))
 	return rv
 }
+
 
 

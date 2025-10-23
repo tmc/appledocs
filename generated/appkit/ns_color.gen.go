@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,54 +32,48 @@ type _ColorClass struct {
 // An interface definition for the [Color] class.
 type IColor interface {
 	objectivec.IObject
-	ColorByApplyingContentHeadroom(contentHeadroom float64) Color
-	BlendedColorWithFractionOfColor(fraction float64, color IColor) Color
-	GetComponents(components coregraphics.float64)
-	GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magenta coregraphics.float64, yellow coregraphics.float64, black coregraphics.float64, alpha coregraphics.float64)
-	GetRedGreenBlueAlpha(red coregraphics.float64, green coregraphics.float64, blue coregraphics.float64, alpha coregraphics.float64)
-	Set()
-	SetFill()
-	ColorUsingColorSpace(space IColorSpace) Color
-	ColorUsingColorSpaceName(name IColorSpaceName) Color
-	ColorUsingType(type_ ColorType) Color
-	ColorWithAlphaComponent(alpha float64) Color
-	ColorWithSystemEffect(systemEffect IColorSystemEffect) Color
 	BlackComponent() float64
+	BlueComponent() float64
 	BrightnessComponent() float64
-	CatalogNameComponent() ColorListName
-	ColorSpace() NSColorSpace
+	CatalogNameComponent() unsafe.Pointer
+	ColorNameComponent() unsafe.Pointer
+	ColorSpace() ColorSpace
+	ColorSpaceName() ColorSpaceName
 	CyanComponent() float64
+	GreenComponent() float64
 	HueComponent() float64
-	LocalizedCatalogNameComponent() string
+	LinearExposure() float64
+	LocalizedColorNameComponent() string
 	NumberOfComponents() int
-	PatternImage() Image
 	RedComponent() float64
 	SaturationComponent() float64
-	StandardDynamicRangeColor() NSColor
-	Type() ColorType
+	Type() NSColorType
 	YellowComponent() float64
 	AlphaComponent() float64
 	SetAlphaComponent(value float64)
-	BlueComponent() float64
-	SetBlueComponent(value float64)
-	CgColor() Color
+	CgColor() IColor
 	SetCgColor(value IColor)
-	ColorNameComponent() unsafe.Pointer
-	SetColorNameComponent(value unsafe.Pointer)
-	ColorSpaceName() ColorSpaceName
-	SetColorSpaceName(value IColorSpaceName)
-	GreenComponent() float64
-	SetGreenComponent(value float64)
-	LinearExposure() float64
-	SetLinearExposure(value float64)
-	LocalizedColorNameComponent() string
-	SetLocalizedColorNameComponent(value string)
+	LocalizedCatalogNameComponent() string
+	SetLocalizedCatalogNameComponent(value string)
 	MagentaComponent() float64
 	SetMagentaComponent(value float64)
-	StandardDynamicRange() NSColor
+	StandardDynamicRange() IColor
 	SetStandardDynamicRange(value IColor)
 	WhiteComponent() float64
 	SetWhiteComponent(value float64)
+	ColorByApplyingContentHeadroom(contentHeadroom float64) IColor
+	BlendedColorWithFractionOfColor(fraction float64, color IColor) IColor
+	GetComponents(components coregraphics.float64)
+	GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magenta coregraphics.float64, yellow coregraphics.float64, black coregraphics.float64, alpha coregraphics.float64)
+	GetHueSaturationBrightnessAlpha(hue coregraphics.float64, saturation coregraphics.float64, brightness coregraphics.float64, alpha coregraphics.float64)
+	GetRedGreenBlueAlpha(red coregraphics.float64, green coregraphics.float64, blue coregraphics.float64, alpha coregraphics.float64)
+	Set()
+	SetFill()
+	SetStroke()
+	ShadowWithLevel(val float64) IColor
+	ColorUsingColorSpace(space ColorSpace) IColor
+	ColorWithSystemEffect(systemEffect NSColorSystemEffect) IColor
+	WriteToPasteboard(pasteBoard IPasteboard)
 }
 
 // An object that stores color data and sometimes opacity (alpha value).
@@ -134,36 +129,6 @@ func NewColor() Color {
 
 
 
-// Returns the color object specified by the given control tint.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(for:)
-func NewColorForControlTint(controlTint IControlTint) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorForControlTint:"), controlTint)
-	return rv
-}
-
-
-// Creates a color object using the specified asset catalog and color names.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
-func NewColorWithCatalogNameColorName(listName IColorListName, colorName unsafe.Pointer) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
-	return rv
-}
-
-
-// Creates a color object from the specified components of the given color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:components:count:)
-func NewColorWithColorSpaceComponentsCount(space IColorSpace, components coregraphics.float64, numberOfComponents int) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithColorSpace:components:count:"), space, components, numberOfComponents)
-	return rv
-}
-
-
 // Creates a color object that uses the specified image pattern to paint the target area.
 //
 // [Full Topic]
@@ -175,79 +140,40 @@ func NewColorWithPatternImage(image IImage) Color {
 
 
 
-// Creates a color object using the specified asset catalog and color names.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
-func (cc _ColorClass) ColorWithCatalogNameColorName(listName IColorListName, colorName unsafe.Pointer) Color {
-	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
-	return rv
-}
-
-
-// Creates a color object from the specified components of the given color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:components:count:)
-func (cc _ColorClass) ColorWithColorSpaceComponentsCount(space IColorSpace, components coregraphics.float64, numberOfComponents int) Color {
-	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithColorSpace:components:count:"), space, components, numberOfComponents)
-	return rv
-}
-
-
-// Returns the color object specified by the given control tint.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(for:)
-func (cc _ColorClass) ColorForControlTint(controlTint IControlTint) Color {
-	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorForControlTint:"), controlTint)
-	return rv
-}
-
-
 // Creates a color object that uses the specified image pattern to paint the target area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(patternImage:)
-func (cc _ColorClass) ColorWithPatternImage(image IImage) Color {
+func (cc _ColorClass) ColorWithPatternImage(image IImage) IColor {
 	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithPatternImage:"), image)
 	return rv
 }
 
 
-// The color to use for text in a selected control.
+// The color to use for the background of large controls, such as scroll views or table views.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alternateSelectedControlTextColor
-func (cc _ColorClass) AlternateSelectedControlTextColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("alternateSelectedControlTextColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlBackgroundColor
+func (cc _ColorClass) ControlBackgroundColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("controlBackgroundColor"))
 	return rv
 }
 
-// The system color used for the dark edge of the shadow dropped from controls.
+// A Boolean value that indicates whether the app supports alpha.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
-func (cc _ColorClass) ControlDarkShadowColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("controlDarkShadowColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
+func (cc _ColorClass) IgnoresAlpha() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("ignoresAlpha"))
 	return rv
 }
 
-// The current system control tint color.
+// The color to use for links.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/currentControlTint
-func (cc _ColorClass) CurrentControlTint() ControlTint {
-	rv := objc.Send[ControlTint](objc.ID(cc.class), objc.Sel("currentControlTint"))
-	return rv
-}
-
-// The primary color to use for text labels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
-func (cc _ColorClass) LabelColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("labelColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/linkColor
+func (cc _ColorClass) LinkColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("linkColor"))
 	return rv
 }
 
@@ -256,16 +182,7 @@ func (cc _ColorClass) LabelColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/magenta
 func (cc _ColorClass) MagentaColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("magentaColor"))
-	return rv
-}
-
-// The quaternary color to use for text labels and separators.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
-func (cc _ColorClass) QuaternaryLabelColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("quaternaryLabelColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("magentaColor"))
 	return rv
 }
 
@@ -274,16 +191,7 @@ func (cc _ColorClass) QuaternaryLabelColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/scrubberTexturedBackground
 func (cc _ColorClass) ScrubberTexturedBackgroundColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("scrubberTexturedBackgroundColor"))
-	return rv
-}
-
-// The secondary color to use for text labels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
-func (cc _ColorClass) SecondaryLabelColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("secondaryLabelColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("scrubberTexturedBackgroundColor"))
 	return rv
 }
 
@@ -292,50 +200,7 @@ func (cc _ColorClass) SecondaryLabelColor() Color {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
 func (cc _ColorClass) SystemBlueColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemBlueColor"))
-	return rv
-}
-
-// Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
-func (cc _ColorClass) SystemMintColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemMintColor"))
-	return rv
-}
-
-// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
-func (cc _ColorClass) SystemYellowColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("systemYellowColor"))
-	return rv
-}
-
-// The tertiary color to use for text labels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
-func (cc _ColorClass) TertiaryLabelColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("tertiaryLabelColor"))
-	return rv
-}
-
-// The color to use for the background area behind text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
-func (cc _ColorClass) TextBackgroundColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("textBackgroundColor"))
-	return rv
-}
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
-func (cc _ColorClass) TextInsertionPointColor() Color {
-	rv := objc.Send[NSColor](objc.ID(cc.class), objc.Sel("textInsertionPointColor"))
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("systemBlueColor"))
 	return rv
 }
 
@@ -343,7 +208,7 @@ func (cc _ColorClass) TextInsertionPointColor() Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/applyingContentHeadroom(_:)
-func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64) Color {
+func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorByApplyingContentHeadroom:"), contentHeadroom)
 	return rv
 }
@@ -353,7 +218,7 @@ func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64) Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blended(withFraction:of:)
-func (c_ Color) BlendedColorWithFractionOfColor(fraction float64, color IColor) Color {
+func (c_ Color) BlendedColorWithFractionOfColor(fraction float64, color IColor) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("blendedColorWithFraction:ofColor:"), fraction, color)
 	return rv
 }
@@ -374,6 +239,15 @@ func (c_ Color) GetComponents(components coregraphics.float64) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)
 func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magenta coregraphics.float64, yellow coregraphics.float64, black coregraphics.float64, alpha coregraphics.float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getCyan:magenta:yellow:black:alpha:"), cyan, magenta, yellow, black, alpha)
+}
+
+
+// Returns the color object’s HSB component and opacity values in the respective arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)
+func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64, saturation coregraphics.float64, brightness coregraphics.float64, alpha coregraphics.float64) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("getHue:saturation:brightness:alpha:"), hue, saturation, brightness, alpha)
 }
 
 
@@ -404,42 +278,31 @@ func (c_ Color) SetFill() {
 }
 
 
+// Sets the stroke color of subsequent drawing to the color object’s color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/setStroke()
+func (c_ Color) SetStroke() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStroke"))
+}
+
+
+// Creates a new color object that represents a blend between the current color and the shadow color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/shadow(withLevel:)
+func (c_ Color) ShadowWithLevel(val float64) IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("shadowWithLevel:"), val)
+	return rv
+}
+
+
 // Creates a new color object representing the color of the current color object in the specified color space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingColorSpace(_:)
-func (c_ Color) ColorUsingColorSpace(space IColorSpace) Color {
+func (c_ Color) ColorUsingColorSpace(space ColorSpace) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorUsingColorSpace:"), space)
-	return rv
-}
-
-
-// Creates a new color object whose color is the same as the receiver’s, except that the new color object is in the specified color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingColorSpaceName(_:)
-func (c_ Color) ColorUsingColorSpaceName(name IColorSpaceName) Color {
-	rv := objc.Send[Color](c_.ID, objc.Sel("colorUsingColorSpaceName:"), name)
-	return rv
-}
-
-
-// Returns a version of the color object that is compatible with the specified color type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingType(_:)
-func (c_ Color) ColorUsingType(type_ ColorType) Color {
-	rv := objc.Send[Color](c_.ID, objc.Sel("colorUsingType:"), type_)
-	return rv
-}
-
-
-// Creates a new color object that has the same color space and component values as the current color object, but the specified alpha component.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/withAlphaComponent(_:)
-func (c_ Color) ColorWithAlphaComponent(alpha float64) Color {
-	rv := objc.Send[Color](c_.ID, objc.Sel("colorWithAlphaComponent:"), alpha)
 	return rv
 }
 
@@ -448,19 +311,18 @@ func (c_ Color) ColorWithAlphaComponent(alpha float64) Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/withSystemEffect(_:)
-func (c_ Color) ColorWithSystemEffect(systemEffect IColorSystemEffect) Color {
+func (c_ Color) ColorWithSystemEffect(systemEffect NSColorSystemEffect) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorWithSystemEffect:"), systemEffect)
 	return rv
 }
 
 
-// The color to use for text in a selected control.
+// Writes the color object’s data to the specified pasteboard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alternateSelectedControlTextColor
-func (c_ Color) AlternateSelectedControlTextColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("alternateSelectedControlTextColor"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/write(to:)
+func (c_ Color) WriteToPasteboard(pasteBoard IPasteboard) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 
 
@@ -470,6 +332,16 @@ func (c_ Color) AlternateSelectedControlTextColor() NSColor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blackComponent
 func (c_ Color) BlackComponent() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("blackComponent"))
+	return rv
+}
+
+
+// The blue component value of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blueComponent
+func (c_ Color) BlueComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("blueComponent"))
 	return rv
 }
 
@@ -488,8 +360,18 @@ func (c_ Color) BrightnessComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/catalogNameComponent
-func (c_ Color) CatalogNameComponent() ColorListName {
-	rv := objc.Send[ColorListName](c_.ID, objc.Sel("catalogNameComponent"))
+func (c_ Color) CatalogNameComponent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("catalogNameComponent"))
+	return rv
+}
+
+
+// The name of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorNameComponent
+func (c_ Color) ColorNameComponent() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorNameComponent"))
 	return rv
 }
 
@@ -498,28 +380,28 @@ func (c_ Color) CatalogNameComponent() ColorListName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorSpace
-func (c_ Color) ColorSpace() NSColorSpace {
-	rv := objc.Send[NSColorSpace](c_.ID, objc.Sel("colorSpace"))
+func (c_ Color) ColorSpace() ColorSpace {
+	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
 
-// The system color used for the dark edge of the shadow dropped from controls.
+// The name of the color space associated with the color.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlDarkShadowColor
-func (c_ Color) ControlDarkShadowColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("controlDarkShadowColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorSpaceName
+func (c_ Color) ColorSpaceName() ColorSpaceName {
+	rv := objc.Send[ColorSpaceName](c_.ID, objc.Sel("colorSpaceName"))
 	return rv
 }
 
 
-// The current system control tint color.
+// The color to use for the background of large controls, such as scroll views or table views.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/currentControlTint
-func (c_ Color) CurrentControlTint() ControlTint {
-	rv := objc.Send[ControlTint](c_.ID, objc.Sel("currentControlTint"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/controlBackgroundColor
+func (c_ Color) ControlBackgroundColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("controlBackgroundColor"))
 	return rv
 }
 
@@ -534,6 +416,16 @@ func (c_ Color) CyanComponent() float64 {
 }
 
 
+// The green component value of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/greenComponent
+func (c_ Color) GreenComponent() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("greenComponent"))
+	return rv
+}
+
+
 // The hue component value of the color.
 //
 // [Full Topic]
@@ -544,22 +436,51 @@ func (c_ Color) HueComponent() float64 {
 }
 
 
-// The primary color to use for text labels.
+// A Boolean value that indicates whether the app supports alpha.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/labelColor
-func (c_ Color) LabelColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("labelColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
+func (c_ Color) IgnoresAlpha() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("ignoresAlpha"))
 	return rv
 }
 
 
-// The localized version of the catalog name containing the color.
+// A Boolean value that indicates whether the app supports alpha.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedCatalogNameComponent
-func (c_ Color) LocalizedCatalogNameComponent() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
+func (c_ Color) SetIgnoresAlpha(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIgnoresAlpha:"), value)
+}
+
+
+// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/linearExposure
+func (c_ Color) LinearExposure() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("linearExposure"))
+	return rv
+}
+
+
+// The color to use for links.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/linkColor
+func (c_ Color) LinkColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("linkColor"))
+	return rv
+}
+
+
+// The localized version of the color name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedColorNameComponent
+func (c_ Color) LocalizedColorNameComponent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedColorNameComponent"))
 	return rv
 }
 
@@ -568,8 +489,8 @@ func (c_ Color) LocalizedCatalogNameComponent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/magenta
-func (c_ Color) MagentaColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("magentaColor"))
+func (c_ Color) MagentaColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("magentaColor"))
 	return rv
 }
 
@@ -580,26 +501,6 @@ func (c_ Color) MagentaColor() NSColor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/numberOfComponents
 func (c_ Color) NumberOfComponents() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfComponents"))
-	return rv
-}
-
-
-// The pattern image used to paint the target area.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/patternImage
-func (c_ Color) PatternImage() Image {
-	rv := objc.Send[Image](c_.ID, objc.Sel("patternImage"))
-	return rv
-}
-
-
-// The quaternary color to use for text labels and separators.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quaternaryLabelColor
-func (c_ Color) QuaternaryLabelColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("quaternaryLabelColor"))
 	return rv
 }
 
@@ -628,28 +529,8 @@ func (c_ Color) SaturationComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/scrubberTexturedBackground
-func (c_ Color) ScrubberTexturedBackgroundColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("scrubberTexturedBackgroundColor"))
-	return rv
-}
-
-
-// The secondary color to use for text labels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/secondaryLabelColor
-func (c_ Color) SecondaryLabelColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("secondaryLabelColor"))
-	return rv
-}
-
-
-// In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color’s is > 1, then this will return the base SDR color. If the color is not an HDR color, this will return .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/standardDynamicRange
-func (c_ Color) StandardDynamicRangeColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("standardDynamicRangeColor"))
+func (c_ Color) ScrubberTexturedBackgroundColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("scrubberTexturedBackgroundColor"))
 	return rv
 }
 
@@ -658,56 +539,8 @@ func (c_ Color) StandardDynamicRangeColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemBlue
-func (c_ Color) SystemBlueColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("systemBlueColor"))
-	return rv
-}
-
-
-// Returns a color object for mint that automatically adapts to vibrancy and accessibility settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemMint
-func (c_ Color) SystemMintColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("systemMintColor"))
-	return rv
-}
-
-
-// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
-func (c_ Color) SystemYellowColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("systemYellowColor"))
-	return rv
-}
-
-
-// The tertiary color to use for text labels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/tertiaryLabelColor
-func (c_ Color) TertiaryLabelColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("tertiaryLabelColor"))
-	return rv
-}
-
-
-// The color to use for the background area behind text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textBackgroundColor
-func (c_ Color) TextBackgroundColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("textBackgroundColor"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/textInsertionPointColor
-func (c_ Color) TextInsertionPointColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("textInsertionPointColor"))
+func (c_ Color) SystemBlueColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("systemBlueColor"))
 	return rv
 }
 
@@ -716,8 +549,8 @@ func (c_ Color) TextInsertionPointColor() NSColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/type
-func (c_ Color) Type() ColorType {
-	rv := objc.Send[ColorType](c_.ID, objc.Sel("type"))
+func (c_ Color) Type() NSColorType {
+	rv := objc.Send[NSColorType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -751,30 +584,11 @@ func (c_ Color) SetAlphaComponent(value float64) {
 }
 
 
-// The blue component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/bluecomponent
-func (c_ Color) BlueComponent() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("blueComponent"))
-	return rv
-}
-
-
-// The blue component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/bluecomponent
-func (c_ Color) SetBlueComponent(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBlueComponent:"), value)
-}
-
-
 // The Core Graphics color object corresponding to the color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/cgcolor
-func (c_ Color) CgColor() Color {
+func (c_ Color) CgColor() IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("cgColor"))
 	return rv
 }
@@ -789,98 +603,22 @@ func (c_ Color) SetCgColor(value IColor) {
 }
 
 
-// The name of the color.
+// The localized version of the catalog name containing the color.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colornamecomponent
-func (c_ Color) ColorNameComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorNameComponent"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcatalognamecomponent
+func (c_ Color) LocalizedCatalogNameComponent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
 	return rv
 }
 
 
-// The name of the color.
+// The localized version of the catalog name containing the color.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colornamecomponent
-func (c_ Color) SetColorNameComponent(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorNameComponent:"), value)
-}
-
-
-// The name of the color space associated with the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colorspacename
-func (c_ Color) ColorSpaceName() ColorSpaceName {
-	rv := objc.Send[ColorSpaceName](c_.ID, objc.Sel("colorSpaceName"))
-	return rv
-}
-
-
-// The name of the color space associated with the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/colorspacename
-func (c_ Color) SetColorSpaceName(value IColorSpaceName) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColorSpaceName:"), value)
-}
-
-
-// The green component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/greencomponent
-func (c_ Color) GreenComponent() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("greenComponent"))
-	return rv
-}
-
-
-// The green component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/greencomponent
-func (c_ Color) SetGreenComponent(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGreenComponent:"), value)
-}
-
-
-// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/linearexposure
-func (c_ Color) LinearExposure() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("linearExposure"))
-	return rv
-}
-
-
-// For HDR colors, the linear brightness multiplier that was applied when generating the color. Colors created with an exposure by NSColor create CGColors that are tagged with a contentHeadroom value. While CGColors created without a contentHeadroom tag will return 0 from CGColorGetHeadroom, NSColors generated in a similar fashion return a linearExposure of 1.0.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/linearexposure
-func (c_ Color) SetLinearExposure(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLinearExposure:"), value)
-}
-
-
-// The localized version of the color name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcolornamecomponent
-func (c_ Color) LocalizedColorNameComponent() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedColorNameComponent"))
-	return rv
-}
-
-
-// The localized version of the color name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcolornamecomponent
-func (c_ Color) SetLocalizedColorNameComponent(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedColorNameComponent:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcatalognamecomponent
+func (c_ Color) SetLocalizedCatalogNameComponent(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCatalogNameComponent:"), objc.String(value))
 }
 
 
@@ -907,8 +645,8 @@ func (c_ Color) SetMagentaComponent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/standarddynamicrange
-func (c_ Color) StandardDynamicRange() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("standardDynamicRange"))
+func (c_ Color) StandardDynamicRange() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("standardDynamicRange"))
 	return rv
 }
 

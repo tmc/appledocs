@@ -30,6 +30,8 @@ type _mChannelIsOpenClass struct {
 // An interface definition for the [mChannelIsOpen] class.
 type ImChannelIsOpen interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,14 +30,16 @@ type _HKLensSpecificationClass struct {
 // An interface definition for the [HKLensSpecification] class.
 type IHKLensSpecification interface {
 	objectivec.IObject
-	AddPower() HKQuantity
+	// properties:
+	AddPower() IHKQuantity
 	SetAddPower(value IHKQuantity)
-	Axis() HKQuantity
+	Axis() IHKQuantity
 	SetAxis(value IHKQuantity)
-	Cylinder() HKQuantity
+	Cylinder() IHKQuantity
 	SetCylinder(value IHKQuantity)
-	Sphere() HKQuantity
+	Sphere() IHKQuantity
 	SetSphere(value IHKQuantity)
+	// methods:
 }
 
 // An abstract superclass for lens specifications.
@@ -97,7 +99,7 @@ func NewHKLensSpecification() HKLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
-func (h_ HKLensSpecification) AddPower() HKQuantity {
+func (h_ HKLensSpecification) AddPower() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("addPower"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (h_ HKLensSpecification) SetAddPower(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
-func (h_ HKLensSpecification) Axis() HKQuantity {
+func (h_ HKLensSpecification) Axis() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("axis"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (h_ HKLensSpecification) SetAxis(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-func (h_ HKLensSpecification) Cylinder() HKQuantity {
+func (h_ HKLensSpecification) Cylinder() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("cylinder"))
 	return rv
 }
@@ -154,7 +156,7 @@ func (h_ HKLensSpecification) SetCylinder(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
-func (h_ HKLensSpecification) Sphere() HKQuantity {
+func (h_ HKLensSpecification) Sphere() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sphere"))
 	return rv
 }

@@ -31,11 +31,11 @@ type _StateMachineClass struct {
 // An interface definition for the [StateMachine] class.
 type IStateMachine interface {
 	objectivec.IObject
+	CurrentState() IGKState
 	CanEnterState(stateClass objc.Class) bool
 	EnterState(stateClass objc.Class) bool
-	StateForClass(stateClass objc.Class) State
-	UpdateWithDeltaTime(sec foundation.ITimeInterval)
-	CurrentState() GKState
+	StateForClass(stateClass objc.Class) IState
+	UpdateWithDeltaTime(sec foundation.TimeInterval)
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
@@ -138,7 +138,7 @@ func (s_ StateMachine) EnterState(stateClass objc.Class) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateForClass:
-func (s_ StateMachine) StateForClass(stateClass objc.Class) State {
+func (s_ StateMachine) StateForClass(stateClass objc.Class) IState {
 	rv := objc.Send[State](s_.ID, objc.Sel("stateForClass:"), stateClass)
 	return rv
 }
@@ -148,7 +148,7 @@ func (s_ StateMachine) StateForClass(stateClass objc.Class) State {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.ITimeInterval) {
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 
@@ -157,8 +157,8 @@ func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/currentState
-func (s_ StateMachine) CurrentState() GKState {
-	rv := objc.Send[GKState](s_.ID, objc.Sel("currentState"))
+func (s_ StateMachine) CurrentState() IGKState {
+	rv := objc.Send[State](s_.ID, objc.Sel("currentState"))
 	return rv
 }
 

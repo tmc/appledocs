@@ -30,8 +30,10 @@ type _ICScannerFeatureBooleanClass struct {
 // An interface definition for the [ICScannerFeatureBoolean] class.
 type IICScannerFeatureBoolean interface {
 	objectivec.IObject
+	// properties:
 	Value() bool
 	SetValue(value bool)
+	// methods:
 }
 
 // A feature with a value of or .
@@ -86,7 +88,7 @@ func NewICScannerFeatureBoolean() ICScannerFeatureBoolean {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerFeatureBoolean/value
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerfeatureboolean/value
 func (i_ ICScannerFeatureBoolean) Value() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("value"))
 	return rv
@@ -94,11 +96,10 @@ func (i_ ICScannerFeatureBoolean) Value() bool {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerFeatureBoolean/value
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerfeatureboolean/value
 func (i_ ICScannerFeatureBoolean) SetValue(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
 }
-
 
 
 

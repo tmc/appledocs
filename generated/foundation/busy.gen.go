@@ -30,6 +30,8 @@ type _busyClass struct {
 // An interface definition for the [busy] class.
 type Ibusy interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

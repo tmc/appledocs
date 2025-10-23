@@ -30,10 +30,12 @@ type _USBHostCIControllerStateMachineClass struct {
 // An interface definition for the [USBHostCIControllerStateMachine] class.
 type IUSBHostCIControllerStateMachine interface {
 	objectivec.IObject
-	EnqueueUpdatedFrameTimestampError(frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
-	RespondToCommandStatusFrameTimestampError(command unsafe.Pointer, status unsafe.Pointer, frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
+	// properties:
 	ControllerInterface() IOUSBHostControllerInterface
+	SetControllerInterface(value IOUSBHostControllerInterface)
 	ControllerState() unsafe.Pointer
+	SetControllerState(value unsafe.Pointer)
+	// methods:
 }
 
 
@@ -94,34 +96,32 @@ func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ IOUSBHostCo
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/enqueueUpdatedFrame(_:timestamp:)
-func (u_ USBHostCIControllerStateMachine) EnqueueUpdatedFrameTimestampError(frame uint64, timestamp uint64, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueUpdatedFrame:timestamp:error:"), frame, timestamp, error_)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/respond(toCommand:status:frame:timestamp:)
-func (u_ USBHostCIControllerStateMachine) RespondToCommandStatusFrameTimestampError(command unsafe.Pointer, status unsafe.Pointer, frame uint64, timestamp uint64, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("respondToCommand:status:frame:timestamp:error:"), command, status, frame, timestamp, error_)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/controllerInterface
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
 func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface {
-	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
+	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/controllerState
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
+func (u_ USBHostCIControllerStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
 func (u_ USBHostCIControllerStateMachine) ControllerState() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerState"))
 	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
+func (u_ USBHostCIControllerStateMachine) SetControllerState(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerState:"), value)
 }
 
 

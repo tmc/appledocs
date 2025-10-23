@@ -30,10 +30,12 @@ type _PortClass struct {
 // An interface definition for the [Port] class.
 type IPort interface {
 	objectivec.IObject
-	IsValid() bool
-	SetIsValid(value bool)
-	ReservedSpaceLength() int
-	SetReservedSpaceLength(value int)
+	// properties:
+	IsValid() bool /* primitive/slice/pointer */
+	SetIsValid(value bool /* primitive/slice/pointer */)
+	ReservedSpaceLength() int /* primitive/slice/pointer */
+	SetReservedSpaceLength(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An abstract class that represents a communication channel.
@@ -93,7 +95,7 @@ func NewPort() Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
-func (p_ Port) IsValid() bool {
+func (p_ Port) IsValid() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isValid"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (p_ Port) IsValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/isvalid
-func (p_ Port) SetIsValid(value bool) {
+func (p_ Port) SetIsValid(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsValid:"), value)
 }
 
@@ -112,7 +114,7 @@ func (p_ Port) SetIsValid(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
-func (p_ Port) ReservedSpaceLength() int {
+func (p_ Port) ReservedSpaceLength() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("reservedSpaceLength"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (p_ Port) ReservedSpaceLength() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/port/reservedspacelength
-func (p_ Port) SetReservedSpaceLength(value int) {
+func (p_ Port) SetReservedSpaceLength(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReservedSpaceLength:"), value)
 }
 

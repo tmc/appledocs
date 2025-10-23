@@ -31,12 +31,6 @@ type _CNLabeledValueClass struct {
 // An interface definition for the [CNLabeledValue] class.
 type ICNLabeledValue interface {
 	objectivec.IObject
-	LabeledValueBySettingLabel(label string) unsafe.Pointer
-	LabeledValueBySettingLabelValue(label string, value unsafe.Pointer) unsafe.Pointer
-	LabeledValueBySettingValue(value unsafe.Pointer) unsafe.Pointer
-	Identifier() string
-	Label() string
-	Value() unsafe.Pointer
 	CNLabelContactRelationAssistant() string
 	CNLabelContactRelationAunt() string
 	CNLabelContactRelationAuntFathersBrothersWife() string
@@ -268,6 +262,12 @@ type ICNLabeledValue interface {
 	CNLabelSchool() string
 	CNLabelURLAddressHomePage() string
 	CNLabelWork() string
+	Identifier() string
+	SetIdentifier(value string)
+	Label() string
+	SetLabel(value string)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 }
 
 // An immutable object that combines a contact property value with a label that describes that property.
@@ -323,95 +323,12 @@ func NewCNLabeledValue() CNLabeledValue {
 
 
 
-// Returns a new labeled value identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/init(label:value:)
-func NewCNLabeledValueWithLabelValue(label string, value unsafe.Pointer) CNLabeledValue {
-	instance := getCNLabeledValueClass().Alloc()
-	rv := objc.Send[CNLabeledValue](instance.ID, objc.Sel("initWithLabel:value:"), objc.String(label), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a new labeled value identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/labeledValueWithLabel:value:
-func (cc _CNLabeledValueClass) LabeledValueWithLabelValue(label string, value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("labeledValueWithLabel:value:"), objc.String(label), value)
-	return rv
-}
-
-
 // Returns a localized string for the specified label.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/localizedString(forLabel:)
 func (cc _CNLabeledValueClass) LocalizedStringForLabel(label string) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForLabel:"), objc.String(label))
-	return rv
-}
-
-
-// Returns a labeled value object with an existing value and identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingLabel(_:)
-func (c_ CNLabeledValue) LabeledValueBySettingLabel(label string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingLabel:"), objc.String(label))
-	return rv
-}
-
-
-// Returns a labeled value object with the specified label and value with the existing identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingLabel(_:value:)
-func (c_ CNLabeledValue) LabeledValueBySettingLabelValue(label string, value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingLabel:value:"), objc.String(label), value)
-	return rv
-}
-
-
-// Returns a new value for an existing label and identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/settingValue(_:)
-func (c_ CNLabeledValue) LabeledValueBySettingValue(value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("labeledValueBySettingValue:"), value)
-	return rv
-}
-
-
-// A unique identifier for the labeled value object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/identifier
-func (c_ CNLabeledValue) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The label for a contact property value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/label
-func (c_ CNLabeledValue) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// A contact property value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNLabeledValue/value
-func (c_ CNLabeledValue) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -2724,5 +2641,63 @@ func (c_ CNLabeledValue) CNLabelWork() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelWork"))
 	return rv
 }
+
+
+// A unique identifier for the labeled value object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/identifier
+func (c_ CNLabeledValue) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// A unique identifier for the labeled value object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/identifier
+func (c_ CNLabeledValue) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
+// The label for a contact property value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/label
+func (c_ CNLabeledValue) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// The label for a contact property value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/label
+func (c_ CNLabeledValue) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+
+// A contact property value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/value
+func (c_ CNLabeledValue) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// A contact property value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabeledvalue/value
+func (c_ CNLabeledValue) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
+}
+
 
 

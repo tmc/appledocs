@@ -30,7 +30,7 @@ type _CKReferenceClass struct {
 // An interface definition for the [CKReference] class.
 type ICKReference interface {
 	objectivec.IObject
-	ReferenceAction() CKReferenceAction
+	ReferenceAction() unsafe.Pointer
 	RecordID() CKRecordID
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
@@ -95,7 +95,7 @@ func NewCKReference() CKReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(record:action:)
-func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction) CKReference {
+func NewCKReferenceWithRecordAction(record ICKRecord, action unsafe.Pointer) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecord:action:"), record, action)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
-func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceAction) CKReference {
+func NewCKReferenceWithRecordIDAction(recordID CKRecordID, action unsafe.Pointer) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
 	rv.Autorelease()
@@ -120,8 +120,8 @@ func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
-func (c_ CKReference) ReferenceAction() CKReferenceAction {
-	rv := objc.Send[CKReferenceAction](c_.ID, objc.Sel("referenceAction"))
+func (c_ CKReference) ReferenceAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("referenceAction"))
 	return rv
 }
 

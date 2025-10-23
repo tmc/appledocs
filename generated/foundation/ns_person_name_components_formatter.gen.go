@@ -30,17 +30,19 @@ type _PersonNameComponentsFormatterClass struct {
 // An interface definition for the [PersonNameComponentsFormatter] class.
 type IPersonNameComponentsFormatter interface {
 	IFormatter
-	Phonetic() bool
-	SetPhonetic(value bool)
+	// properties:
+	Phonetic() bool /* primitive/slice/pointer */
+	SetPhonetic(value bool /* primitive/slice/pointer */)
 	Locale() ILocale
 	SetLocale(value ILocale)
-	Style() NSPersonNameComponentsFormatterStyle
-	SetStyle(value NSPersonNameComponentsFormatterStyle)
-	IsPhonetic() bool
-	SetIsPhonetic(value bool)
+	Style() PersonNameComponentsFormatterStyle
+	SetStyle(value PersonNameComponentsFormatterStyle)
+	IsPhonetic() bool /* primitive/slice/pointer */
+	SetIsPhonetic(value bool /* primitive/slice/pointer */)
+	// methods:
 	AnnotatedStringFromPersonNameComponents(components IPersonNameComponents) IAttributedString
-	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	PersonNameComponentsFromString(string_ string) IPersonNameComponents
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	PersonNameComponentsFromString(string_ string /* primitive/slice/pointer */) IPersonNameComponents
 	StringFromPersonNameComponents(components IPersonNameComponents) IString
 }
 
@@ -103,7 +105,7 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/localizedString(from:style:options:)
-func (pc _PersonNameComponentsFormatterClass) LocalizedStringFromPersonNameComponentsStyleOptions(components IPersonNameComponents, nameFormatStyle NSPersonNameComponentsFormatterStyle, nameOptions NSPersonNameComponentsFormatterOptions) IString {
+func (pc _PersonNameComponentsFormatterClass) LocalizedStringFromPersonNameComponentsStyleOptions(components IPersonNameComponents, nameFormatStyle PersonNameComponentsFormatterStyle, nameOptions PersonNameComponentsFormatterOptions) IString {
 	rv := objc.Send[String](objc.ID(pc.class), objc.Sel("localizedStringFromPersonNameComponents:style:options:"), components, nameFormatStyle, nameOptions)
 	return rv
 }
@@ -123,7 +125,7 @@ func (p_ PersonNameComponentsFormatter) AnnotatedStringFromPersonNameComponents(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/getObjectValue(_:for:errorDescription:)
-func (p_ PersonNameComponentsFormatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool {
+func (p_ PersonNameComponentsFormatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string_), objc.String(error_))
 	return rv
 }
@@ -133,7 +135,7 @@ func (p_ PersonNameComponentsFormatter) GetObjectValueForStringErrorDescription(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
-func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ string) IPersonNameComponents {
+func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ string /* primitive/slice/pointer */) IPersonNameComponents {
 	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string_))
 	return rv
 }
@@ -153,7 +155,7 @@ func (p_ PersonNameComponentsFormatter) StringFromPersonNameComponents(component
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/isPhonetic
-func (p_ PersonNameComponentsFormatter) Phonetic() bool {
+func (p_ PersonNameComponentsFormatter) Phonetic() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("phonetic"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (p_ PersonNameComponentsFormatter) Phonetic() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/isPhonetic
-func (p_ PersonNameComponentsFormatter) SetPhonetic(value bool) {
+func (p_ PersonNameComponentsFormatter) SetPhonetic(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPhonetic:"), value)
 }
 
@@ -187,7 +189,7 @@ func (p_ PersonNameComponentsFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/style-swift.property
-func (p_ PersonNameComponentsFormatter) Style() NSPersonNameComponentsFormatterStyle {
+func (p_ PersonNameComponentsFormatter) Style() PersonNameComponentsFormatterStyle {
 	rv := objc.Send[PersonNameComponentsFormatterStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (p_ PersonNameComponentsFormatter) Style() NSPersonNameComponentsFormatterS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/style-swift.property
-func (p_ PersonNameComponentsFormatter) SetStyle(value NSPersonNameComponentsFormatterStyle) {
+func (p_ PersonNameComponentsFormatter) SetStyle(value PersonNameComponentsFormatterStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -206,7 +208,7 @@ func (p_ PersonNameComponentsFormatter) SetStyle(value NSPersonNameComponentsFor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
-func (p_ PersonNameComponentsFormatter) IsPhonetic() bool {
+func (p_ PersonNameComponentsFormatter) IsPhonetic() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPhonetic"))
 	return rv
 }
@@ -216,7 +218,7 @@ func (p_ PersonNameComponentsFormatter) IsPhonetic() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/isphonetic
-func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
+func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPhonetic:"), value)
 }
 

@@ -42,7 +42,7 @@ type IAchievementDescription interface {
 	Identifier() string
 	SetIdentifier(value string)
 	Image() appkit.Image
-	SetImage(value appkit.IImage)
+	SetImage(value appkit.Image)
 	IsHidden() bool
 	SetIsHidden(value bool)
 	IsReplayable() bool
@@ -241,7 +241,7 @@ func (a_ AchievementDescription) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
-func (a_ AchievementDescription) SetImage(value appkit.IImage) {
+func (a_ AchievementDescription) SetImage(value appkit.Image) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImage:"), value)
 }
 

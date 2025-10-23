@@ -30,21 +30,23 @@ type _ScannerClass struct {
 // An interface definition for the [Scanner] class.
 type IScanner interface {
 	objectivec.IObject
-	NSNotFound() int
-	CaseSensitive() bool
-	SetCaseSensitive(value bool)
+	// properties:
+	NSNotFound() int /* primitive/slice/pointer */
+	CaseSensitive() bool /* primitive/slice/pointer */
+	SetCaseSensitive(value bool /* primitive/slice/pointer */)
 	CharactersToBeSkipped() ICharacterSet
 	SetCharactersToBeSkipped(value ICharacterSet)
 	CurrentIndex() unsafe.Pointer
 	SetCurrentIndex(value unsafe.Pointer)
-	IsAtEnd() bool
-	SetIsAtEnd(value bool)
+	IsAtEnd() bool /* primitive/slice/pointer */
+	SetIsAtEnd(value bool /* primitive/slice/pointer */)
 	Locale() unsafe.Pointer
 	SetLocale(value unsafe.Pointer)
-	ScanLocation() int
-	SetScanLocation(value int)
-	String() string
-	SetString(value string)
+	ScanLocation() int /* primitive/slice/pointer */
+	SetScanLocation(value int /* primitive/slice/pointer */)
+	String() string /* primitive/slice/pointer */
+	SetString(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
@@ -104,7 +106,7 @@ func NewScanner() Scanner {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (s_ Scanner) NSNotFound() int {
+func (s_ Scanner) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (s_ Scanner) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
-func (s_ Scanner) CaseSensitive() bool {
+func (s_ Scanner) CaseSensitive() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (s_ Scanner) CaseSensitive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/casesensitive
-func (s_ Scanner) SetCaseSensitive(value bool) {
+func (s_ Scanner) SetCaseSensitive(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
 }
 
@@ -167,7 +169,7 @@ func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-func (s_ Scanner) IsAtEnd() bool {
+func (s_ Scanner) IsAtEnd() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAtEnd"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (s_ Scanner) IsAtEnd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
-func (s_ Scanner) SetIsAtEnd(value bool) {
+func (s_ Scanner) SetIsAtEnd(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
 }
 
@@ -205,7 +207,7 @@ func (s_ Scanner) SetLocale(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-func (s_ Scanner) ScanLocation() int {
+func (s_ Scanner) ScanLocation() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("scanLocation"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (s_ Scanner) ScanLocation() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/scanlocation
-func (s_ Scanner) SetScanLocation(value int) {
+func (s_ Scanner) SetScanLocation(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
 }
 
@@ -224,7 +226,7 @@ func (s_ Scanner) SetScanLocation(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) String() string {
+func (s_ Scanner) String() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("string"))
 	return rv
 }
@@ -234,7 +236,7 @@ func (s_ Scanner) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) SetString(value string) {
+func (s_ Scanner) SetString(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), objc.String(value))
 }
 

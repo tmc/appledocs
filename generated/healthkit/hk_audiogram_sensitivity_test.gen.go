@@ -30,16 +30,18 @@ type _HKAudiogramSensitivityTestClass struct {
 // An interface definition for the [HKAudiogramSensitivityTest] class.
 type IHKAudiogramSensitivityTest interface {
 	objectivec.IObject
-	ClampingRange() HKAudiogramSensitivityPointClampingRange
+	// properties:
+	ClampingRange() IHKAudiogramSensitivityPointClampingRange
 	SetClampingRange(value IHKAudiogramSensitivityPointClampingRange)
 	Masked() bool
 	SetMasked(value bool)
-	Sensitivity() HKQuantity
+	Sensitivity() IHKQuantity
 	SetSensitivity(value IHKQuantity)
 	Side() HKAudiogramSensitivityTestSide
-	SetSide(value IHKAudiogramSensitivityTestSide)
+	SetSide(value HKAudiogramSensitivityTestSide)
 	Type() HKAudiogramConductionType
 	SetType(value HKAudiogramConductionType)
+	// methods:
 }
 
 
@@ -90,7 +92,7 @@ func NewHKAudiogramSensitivityTest() HKAudiogramSensitivityTest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/clampingrange
-func (h_ HKAudiogramSensitivityTest) ClampingRange() HKAudiogramSensitivityPointClampingRange {
+func (h_ HKAudiogramSensitivityTest) ClampingRange() IHKAudiogramSensitivityPointClampingRange {
 	rv := objc.Send[HKAudiogramSensitivityPointClampingRange](h_.ID, objc.Sel("clampingRange"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (h_ HKAudiogramSensitivityTest) SetMasked(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/sensitivity
-func (h_ HKAudiogramSensitivityTest) Sensitivity() HKQuantity {
+func (h_ HKAudiogramSensitivityTest) Sensitivity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sensitivity"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (h_ HKAudiogramSensitivityTest) Side() HKAudiogramSensitivityTestSide {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest/side
-func (h_ HKAudiogramSensitivityTest) SetSide(value IHKAudiogramSensitivityTestSide) {
+func (h_ HKAudiogramSensitivityTest) SetSide(value HKAudiogramSensitivityTestSide) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSide:"), value)
 }
 

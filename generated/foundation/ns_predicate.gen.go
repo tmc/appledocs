@@ -30,11 +30,13 @@ type _PredicateClass struct {
 // An interface definition for the [Predicate] class.
 type IPredicate interface {
 	objectivec.IObject
-	PredicateFormat() string
+	// properties:
+	PredicateFormat() string /* primitive/slice/pointer */
+	// methods:
 	AllowEvaluation()
-	EvaluateWithObject(object objectivec.IObject) bool
-	EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary) bool
-	PredicateWithSubstitutionVariables(variables IDictionary) unsafe.Pointer
+	EvaluateWithObject(object objectivec.IObject) bool /* primitive/slice/pointer */
+	EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary /* already interface */) bool /* primitive/slice/pointer */
+	PredicateWithSubstitutionVariables(variables IDictionary /* already interface */) unsafe.Pointer
 }
 
 // A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
@@ -94,7 +96,7 @@ func NewPredicate() Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
-func NewPredicateFromMetadataQueryString(queryString string) Predicate {
+func NewPredicateFromMetadataQueryString(queryString string /* primitive/slice/pointer */) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
@@ -104,7 +106,7 @@ func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
-func NewPredicateWithBlock(block IDictionary) Predicate {
+func NewPredicateWithBlock(block IDictionary /* already interface */) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
@@ -114,7 +116,7 @@ func NewPredicateWithBlock(block IDictionary) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) Predicate {
+func NewPredicateWithFormatArgumentArray(predicateFormat string /* primitive/slice/pointer */, arguments objectivec.IObject) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
@@ -124,7 +126,7 @@ func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) Predicate {
+func NewPredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
@@ -134,7 +136,7 @@ func NewPredicateWithFormatArguments(predicateFormat string, argList unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
-func NewPredicateWithValue(value bool) Predicate {
+func NewPredicateWithValue(value bool /* primitive/slice/pointer */) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
@@ -145,7 +147,7 @@ func NewPredicateWithValue(value bool) Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
-func (pc _PredicateClass) PredicateWithBlock(block IDictionary) IPredicate {
+func (pc _PredicateClass) PredicateWithBlock(block IDictionary /* already interface */) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithBlock:"), block)
 	return rv
 }
@@ -155,7 +157,7 @@ func (pc _PredicateClass) PredicateWithBlock(block IDictionary) IPredicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string, arguments objectivec.IObject) IPredicate {
+func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat string /* primitive/slice/pointer */, arguments objectivec.IObject) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
@@ -165,7 +167,7 @@ func (pc _PredicateClass) PredicateWithFormatArgumentArray(predicateFormat strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, argList unsafe.Pointer) IPredicate {
+func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
@@ -175,7 +177,7 @@ func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string, a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
-func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) IPredicate {
+func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string /* primitive/slice/pointer */) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateFromMetadataQueryString:"), objc.String(queryString))
 	return rv
 }
@@ -185,7 +187,7 @@ func (pc _PredicateClass) PredicateFromMetadataQueryString(queryString string) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
-func (pc _PredicateClass) PredicateWithValue(value bool) IPredicate {
+func (pc _PredicateClass) PredicateWithValue(value bool /* primitive/slice/pointer */) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
@@ -195,7 +197,7 @@ func (pc _PredicateClass) PredicateWithValue(value bool) IPredicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateWithFormat:
-func (pc _PredicateClass) PredicateWithFormat(predicateFormat string) IPredicate {
+func (pc _PredicateClass) PredicateWithFormat(predicateFormat string /* primitive/slice/pointer */) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:"), objc.String(predicateFormat))
 	return rv
 }
@@ -214,7 +216,7 @@ func (p_ Predicate) AllowEvaluation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:)
-func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
+func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:"), object)
 	return rv
 }
@@ -224,7 +226,7 @@ func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:substitutionVariables:)
-func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary) bool {
+func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary /* already interface */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:substitutionVariables:"), object, bindings)
 	return rv
 }
@@ -234,7 +236,7 @@ func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/withSubstitutionVariables(_:)
-func (p_ Predicate) PredicateWithSubstitutionVariables(variables IDictionary) unsafe.Pointer {
+func (p_ Predicate) PredicateWithSubstitutionVariables(variables IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicateWithSubstitutionVariables:"), variables)
 	return rv
 }
@@ -244,7 +246,7 @@ func (p_ Predicate) PredicateWithSubstitutionVariables(variables IDictionary) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/predicateFormat
-func (p_ Predicate) PredicateFormat() string {
+func (p_ Predicate) PredicateFormat() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("predicateFormat"))
 	return rv
 }

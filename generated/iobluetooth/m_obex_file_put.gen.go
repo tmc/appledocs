@@ -30,6 +30,8 @@ type _mOBEXFilePutClass struct {
 // An interface definition for the [mOBEXFilePut] class.
 type ImOBEXFilePut interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

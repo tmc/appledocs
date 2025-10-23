@@ -29,30 +29,32 @@ type _GLKEffectPropertyLightClass struct {
 // An interface definition for the [GLKEffectPropertyLight] class.
 type IGLKEffectPropertyLight interface {
 	IGLKEffectProperty
+	// properties:
 	AmbientColor() GLKVector4
-	SetAmbientColor(value IGLKVector4)
+	SetAmbientColor(value GLKVector4)
 	ConstantAttenuation() unsafe.Pointer
 	SetConstantAttenuation(value unsafe.Pointer)
 	DiffuseColor() GLKVector4
-	SetDiffuseColor(value IGLKVector4)
+	SetDiffuseColor(value GLKVector4)
 	Enabled() unsafe.Pointer
 	SetEnabled(value unsafe.Pointer)
 	LinearAttenuation() unsafe.Pointer
 	SetLinearAttenuation(value unsafe.Pointer)
 	Position() GLKVector4
-	SetPosition(value IGLKVector4)
+	SetPosition(value GLKVector4)
 	QuadraticAttenuation() unsafe.Pointer
 	SetQuadraticAttenuation(value unsafe.Pointer)
 	SpecularColor() GLKVector4
-	SetSpecularColor(value IGLKVector4)
+	SetSpecularColor(value GLKVector4)
 	SpotCutoff() unsafe.Pointer
 	SetSpotCutoff(value unsafe.Pointer)
 	SpotDirection() GLKVector3
-	SetSpotDirection(value IGLKVector3)
+	SetSpotDirection(value GLKVector3)
 	SpotExponent() unsafe.Pointer
 	SetSpotExponent(value unsafe.Pointer)
-	Transform() GLKEffectPropertyTransform
+	Transform() IGLKEffectPropertyTransform
 	SetTransform(value IGLKEffectPropertyTransform)
+	// methods:
 }
 
 // Lighting information for use in GLKit rendering effects.
@@ -124,7 +126,7 @@ func (g_ GLKEffectPropertyLight) AmbientColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/ambientColor
-func (g_ GLKEffectPropertyLight) SetAmbientColor(value IGLKVector4) {
+func (g_ GLKEffectPropertyLight) SetAmbientColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAmbientColor:"), value)
 }
 
@@ -162,7 +164,7 @@ func (g_ GLKEffectPropertyLight) DiffuseColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/diffuseColor
-func (g_ GLKEffectPropertyLight) SetDiffuseColor(value IGLKVector4) {
+func (g_ GLKEffectPropertyLight) SetDiffuseColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDiffuseColor:"), value)
 }
 
@@ -219,7 +221,7 @@ func (g_ GLKEffectPropertyLight) Position() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/position
-func (g_ GLKEffectPropertyLight) SetPosition(value IGLKVector4) {
+func (g_ GLKEffectPropertyLight) SetPosition(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPosition:"), value)
 }
 
@@ -257,7 +259,7 @@ func (g_ GLKEffectPropertyLight) SpecularColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/specularColor
-func (g_ GLKEffectPropertyLight) SetSpecularColor(value IGLKVector4) {
+func (g_ GLKEffectPropertyLight) SetSpecularColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpecularColor:"), value)
 }
 
@@ -295,7 +297,7 @@ func (g_ GLKEffectPropertyLight) SpotDirection() GLKVector3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/spotDirection
-func (g_ GLKEffectPropertyLight) SetSpotDirection(value IGLKVector3) {
+func (g_ GLKEffectPropertyLight) SetSpotDirection(value GLKVector3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpotDirection:"), value)
 }
 
@@ -323,7 +325,7 @@ func (g_ GLKEffectPropertyLight) SetSpotExponent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyLight/transform
-func (g_ GLKEffectPropertyLight) Transform() GLKEffectPropertyTransform {
+func (g_ GLKEffectPropertyLight) Transform() IGLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
 }

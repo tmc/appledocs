@@ -31,7 +31,7 @@ type _CXSetGroupCallActionClass struct {
 type ICXSetGroupCallAction interface {
 	ICXCallAction
 	CallUUIDToGroupWith() foundation.UUID
-	SetCallUUIDToGroupWith(value foundation.IUUID)
+	SetCallUUIDToGroupWith(value foundation.UUID)
 }
 
 // An encapsulation of the act of grouping or ungrouping calls.
@@ -93,7 +93,7 @@ func NewCXSetGroupCallAction() CXSetGroupCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(call:callUUIDToGroupWith:)
-func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.IUUID, callUUIDToGroupWith foundation.IUUID) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.UUID, callUUIDToGroupWith foundation.UUID) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCallUUID:callUUIDToGroupWith:"), callUUID, callUUIDToGroupWith)
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(coder:)
-func NewCXSetGroupCallActionWithCoder(aDecoder foundation.ICoder) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCoder(aDecoder foundation.Coder) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -128,7 +128,7 @@ func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value foundation.IUUID) {
+func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value foundation.UUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallUUIDToGroupWith:"), value)
 }
 

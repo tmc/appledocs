@@ -31,10 +31,6 @@ type _CNRenderingSessionFrameAttributesClass struct {
 // An interface definition for the [CNRenderingSessionFrameAttributes] class.
 type ICNRenderingSessionFrameAttributes interface {
 	objectivec.IObject
-	FNumber() float32
-	SetFNumber(value float32)
-	FocusDisparity() float32
-	SetFocusDisparity(value float32)
 }
 
 // Creates an object with the per frame attributes that control the appearance of a single frame of the Cinematic movie.
@@ -106,50 +102,12 @@ func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup avfoundation.ITimedMetadataGroup, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup avfoundation.TimedMetadataGroup, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// The f-stop value that inversely affects the aperture used to render the Cinematic image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-func (c_ CNRenderingSessionFrameAttributes) FNumber() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("fNumber"))
-	return rv
-}
-
-
-// The f-stop value that inversely affects the aperture used to render the Cinematic image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/fNumber
-func (c_ CNRenderingSessionFrameAttributes) SetFNumber(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFNumber:"), value)
-}
-
-
-// Represents the focus plane at which the rendered image should be in focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-func (c_ CNRenderingSessionFrameAttributes) FocusDisparity() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
-	return rv
-}
-
-
-// Represents the focus plane at which the rendered image should be in focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/focusDisparity
-func (c_ CNRenderingSessionFrameAttributes) SetFocusDisparity(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusDisparity:"), value)
-}
 
 

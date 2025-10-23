@@ -30,34 +30,36 @@ type _AppleEventDescriptorClass struct {
 // An interface definition for the [AppleEventDescriptor] class.
 type IAppleEventDescriptor interface {
 	objectivec.IObject
+	// properties:
 	AeDesc() unsafe.Pointer
 	BooleanValue() unsafe.Pointer
 	Data() IData
 	DateValue() IDate
 	DescriptorType() unsafe.Pointer
-	DoubleValue() float64
+	DoubleValue() float64 /* primitive/slice/pointer */
 	EnumCodeValue() unsafe.Pointer
 	EventClass() unsafe.Pointer
 	EventID() unsafe.Pointer
 	FileURLValue() IURL
 	Int32Value() unsafe.Pointer
-	IsRecordDescriptor() bool
-	NumberOfItems() int
+	IsRecordDescriptor() bool /* primitive/slice/pointer */
+	NumberOfItems() int /* primitive/slice/pointer */
 	ReturnID() unsafe.Pointer
-	StringValue() string
+	StringValue() string /* primitive/slice/pointer */
 	TransactionID() unsafe.Pointer
 	TypeCodeValue() unsafe.Pointer
-	DescriptorAtIndex(index int) IAppleEventDescriptor
+	// methods:
+	DescriptorAtIndex(index int /* primitive/slice/pointer */) IAppleEventDescriptor
 	AttributeDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
 	CoerceToDescriptorType(descriptorType unsafe.Pointer) IAppleEventDescriptor
 	DescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
-	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int)
-	KeywordForDescriptorAtIndex(index int) unsafe.Pointer
+	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int /* primitive/slice/pointer */)
+	KeywordForDescriptorAtIndex(index int /* primitive/slice/pointer */) unsafe.Pointer
 	ParamDescriptorForKeyword(keyword unsafe.Pointer) IAppleEventDescriptor
-	RemoveDescriptorAtIndex(index int)
+	RemoveDescriptorAtIndex(index int /* primitive/slice/pointer */)
 	RemoveDescriptorWithKeyword(keyword unsafe.Pointer)
 	RemoveParamDescriptorWithKeyword(keyword unsafe.Pointer)
-	SendEventWithOptionsTimeoutError(sendOptions NSAppleEventSendOptions, timeoutInSeconds TimeInterval, error_ IError) IAppleEventDescriptor
+	SendEventWithOptionsTimeoutError(sendOptions AppleEventSendOptions, timeoutInSeconds TimeInterval /* foo */, error_ IError) IAppleEventDescriptor
 	SetAttributeDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
 	SetDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
 	SetParamDescriptorForKeyword(descriptor IAppleEventDescriptor, keyword unsafe.Pointer)
@@ -172,7 +174,7 @@ func NewAppleEventDescriptorWithBoolean(boolean unsafe.Pointer) AppleEventDescri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(bundleIdentifier:)
-func NewAppleEventDescriptorWithBundleIdentifier(bundleIdentifier string) AppleEventDescriptor {
+func NewAppleEventDescriptorWithBundleIdentifier(bundleIdentifier string /* primitive/slice/pointer */) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(getAppleEventDescriptorClass().class), objc.Sel("descriptorWithBundleIdentifier:"), objc.String(bundleIdentifier))
 	return rv
 }
@@ -190,7 +192,7 @@ func NewAppleEventDescriptorWithDate(date IDate) AppleEventDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(descriptorType:bytes:length:)
-func NewAppleEventDescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint) AppleEventDescriptor {
+func NewAppleEventDescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint /* primitive/slice/pointer */) AppleEventDescriptor {
 	instance := getAppleEventDescriptorClass().Alloc()
 	rv := objc.Send[AppleEventDescriptor](instance.ID, objc.Sel("initWithDescriptorType:bytes:length:"), descriptorType, bytes, byteCount)
 	rv.Autorelease()
@@ -212,7 +214,7 @@ func NewAppleEventDescriptorWithDescriptorTypeData(descriptorType unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(double:)
-func NewAppleEventDescriptorWithDouble(doubleValue float64) AppleEventDescriptor {
+func NewAppleEventDescriptorWithDouble(doubleValue float64 /* primitive/slice/pointer */) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(getAppleEventDescriptorClass().class), objc.Sel("descriptorWithDouble:"), doubleValue)
 	return rv
 }
@@ -270,7 +272,7 @@ func NewAppleEventDescriptorWithProcessIdentifier(processIdentifier unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(string:)
-func NewAppleEventDescriptorWithString(string_ string) AppleEventDescriptor {
+func NewAppleEventDescriptorWithString(string_ string /* primitive/slice/pointer */) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(getAppleEventDescriptorClass().class), objc.Sel("descriptorWithString:"), objc.String(string_))
 	return rv
 }
@@ -309,7 +311,7 @@ func (ac _AppleEventDescriptorClass) CurrentProcessDescriptor() IAppleEventDescr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/descriptorWithDescriptorType:bytes:length:
-func (ac _AppleEventDescriptorClass) DescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint) IAppleEventDescriptor {
+func (ac _AppleEventDescriptorClass) DescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint /* primitive/slice/pointer */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("descriptorWithDescriptorType:bytes:length:"), descriptorType, bytes, byteCount)
 	return rv
 }
@@ -345,7 +347,7 @@ func (ac _AppleEventDescriptorClass) DescriptorWithBoolean(boolean unsafe.Pointe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(bundleIdentifier:)
-func (ac _AppleEventDescriptorClass) DescriptorWithBundleIdentifier(bundleIdentifier string) IAppleEventDescriptor {
+func (ac _AppleEventDescriptorClass) DescriptorWithBundleIdentifier(bundleIdentifier string /* primitive/slice/pointer */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("descriptorWithBundleIdentifier:"), objc.String(bundleIdentifier))
 	return rv
 }
@@ -361,7 +363,7 @@ func (ac _AppleEventDescriptorClass) DescriptorWithDate(date IDate) IAppleEventD
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(double:)
-func (ac _AppleEventDescriptorClass) DescriptorWithDouble(doubleValue float64) IAppleEventDescriptor {
+func (ac _AppleEventDescriptorClass) DescriptorWithDouble(doubleValue float64 /* primitive/slice/pointer */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("descriptorWithDouble:"), doubleValue)
 	return rv
 }
@@ -407,7 +409,7 @@ func (ac _AppleEventDescriptorClass) DescriptorWithProcessIdentifier(processIden
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(string:)
-func (ac _AppleEventDescriptorClass) DescriptorWithString(string_ string) IAppleEventDescriptor {
+func (ac _AppleEventDescriptorClass) DescriptorWithString(string_ string /* primitive/slice/pointer */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("descriptorWithString:"), objc.String(string_))
 	return rv
 }
@@ -457,7 +459,7 @@ func (ac _AppleEventDescriptorClass) RecordDescriptor() IAppleEventDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/atIndex(_:)
-func (a_ AppleEventDescriptor) DescriptorAtIndex(index int) IAppleEventDescriptor {
+func (a_ AppleEventDescriptor) DescriptorAtIndex(index int /* primitive/slice/pointer */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("descriptorAtIndex:"), index)
 	return rv
 }
@@ -497,7 +499,7 @@ func (a_ AppleEventDescriptor) DescriptorForKeyword(keyword unsafe.Pointer) IApp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/insert(_:at:)
-func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int) {
+func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertDescriptor:atIndex:"), descriptor, index)
 }
 
@@ -506,7 +508,7 @@ func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/keywordForDescriptor(at:)
-func (a_ AppleEventDescriptor) KeywordForDescriptorAtIndex(index int) unsafe.Pointer {
+func (a_ AppleEventDescriptor) KeywordForDescriptorAtIndex(index int /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("keywordForDescriptorAtIndex:"), index)
 	return rv
 }
@@ -526,7 +528,7 @@ func (a_ AppleEventDescriptor) ParamDescriptorForKeyword(keyword unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/remove(at:)
-func (a_ AppleEventDescriptor) RemoveDescriptorAtIndex(index int) {
+func (a_ AppleEventDescriptor) RemoveDescriptorAtIndex(index int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeDescriptorAtIndex:"), index)
 }
 
@@ -551,7 +553,7 @@ func (a_ AppleEventDescriptor) RemoveParamDescriptorWithKeyword(keyword unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/sendEvent(options:timeout:)
-func (a_ AppleEventDescriptor) SendEventWithOptionsTimeoutError(sendOptions NSAppleEventSendOptions, timeoutInSeconds TimeInterval, error_ IError) IAppleEventDescriptor {
+func (a_ AppleEventDescriptor) SendEventWithOptionsTimeoutError(sendOptions AppleEventSendOptions, timeoutInSeconds TimeInterval /* foo */, error_ IError) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("sendEventWithOptions:timeout:error:"), sendOptions, timeoutInSeconds, error_)
 	return rv
 }
@@ -634,7 +636,7 @@ func (a_ AppleEventDescriptor) DescriptorType() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/doubleValue
-func (a_ AppleEventDescriptor) DoubleValue() float64 {
+func (a_ AppleEventDescriptor) DoubleValue() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -690,7 +692,7 @@ func (a_ AppleEventDescriptor) Int32Value() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/isRecordDescriptor
-func (a_ AppleEventDescriptor) IsRecordDescriptor() bool {
+func (a_ AppleEventDescriptor) IsRecordDescriptor() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRecordDescriptor"))
 	return rv
 }
@@ -700,7 +702,7 @@ func (a_ AppleEventDescriptor) IsRecordDescriptor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/numberOfItems
-func (a_ AppleEventDescriptor) NumberOfItems() int {
+func (a_ AppleEventDescriptor) NumberOfItems() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfItems"))
 	return rv
 }
@@ -720,7 +722,7 @@ func (a_ AppleEventDescriptor) ReturnID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/stringValue
-func (a_ AppleEventDescriptor) StringValue() string {
+func (a_ AppleEventDescriptor) StringValue() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }

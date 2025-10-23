@@ -30,8 +30,6 @@ type _LocationClass struct {
 // An interface definition for the [Location] class.
 type ILocation interface {
 	objectivec.IObject
-	Distance()
-	GetDistanceFrom()
 	Altitude() unsafe.Pointer
 	SetAltitude(value unsafe.Pointer)
 	Coordinate() unsafe.Pointer
@@ -44,7 +42,7 @@ type ILocation interface {
 	SetEllipsoidalAltitude(value unsafe.Pointer)
 	HorizontalAccuracy() unsafe.Pointer
 	SetHorizontalAccuracy(value unsafe.Pointer)
-	SourceInformation() CLLocationSourceInformation
+	SourceInformation() ICLLocationSourceInformation
 	SetSourceInformation(value ICLLocationSourceInformation)
 	Speed() unsafe.Pointer
 	SetSpeed(value unsafe.Pointer)
@@ -54,6 +52,7 @@ type ILocation interface {
 	SetTimestamp(value unsafe.Pointer)
 	VerticalAccuracy() unsafe.Pointer
 	SetVerticalAccuracy(value unsafe.Pointer)
+	Distance()
 }
 
 // The latitude, longitude, and course information reported by the system.
@@ -115,15 +114,6 @@ func NewLocation() Location {
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/distance(from:)
 func (l_ Location) Distance() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("distance"))
-}
-
-
-// Returns the distance (measured in meters) from the current object’s location to the specified location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/getDistanceFrom(_:)
-func (l_ Location) GetDistanceFrom() {
-	objc.Send[objc.ID](l_.ID, objc.Sel("getDistanceFrom"))
 }
 
 
@@ -245,8 +235,8 @@ func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
-func (l_ Location) SourceInformation() CLLocationSourceInformation {
-	rv := objc.Send[CLLocationSourceInformation](l_.ID, objc.Sel("sourceInformation"))
+func (l_ Location) SourceInformation() ICLLocationSourceInformation {
+	rv := objc.Send[LocationSourceInformation](l_.ID, objc.Sel("sourceInformation"))
 	return rv
 }
 

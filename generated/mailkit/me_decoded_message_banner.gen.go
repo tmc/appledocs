@@ -30,12 +30,13 @@ type _MEDecodedMessageBannerClass struct {
 // An interface definition for the [MEDecodedMessageBanner] class.
 type IMEDecodedMessageBanner interface {
 	objectivec.IObject
-	Dismissable() bool
+	// properties:
 	PrimaryActionTitle() string
 	IsDismissable() bool
 	SetIsDismissable(value bool)
 	Title() string
 	SetTitle(value string)
+	// methods:
 }
 
 
@@ -93,14 +94,6 @@ func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title strin
 	return rv
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/isDismissable
-func (m_ MEDecodedMessageBanner) Dismissable() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("dismissable"))
-	return rv
-}
 
 
 // [Full Topic]

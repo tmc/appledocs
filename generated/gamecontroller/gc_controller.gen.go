@@ -30,34 +30,35 @@ type _GCControllerClass struct {
 // An interface definition for the [GCController] class.
 type IGCController interface {
 	objectivec.IObject
-	ExtendedGamepad() GCExtendedGamepad
-	Gamepad() unsafe.Pointer
+	ExtendedGamepad() IGCExtendedGamepad
+	PhysicalInputProfile() IGCPhysicalInputProfile
 	PlayerIndex() unsafe.Pointer
 	SetPlayerIndex(value unsafe.Pointer)
-	Battery() GCDeviceBattery
+	Battery() IGCDeviceBattery
 	SetBattery(value IGCDeviceBattery)
 	ControllerPausedHandler() unsafe.Pointer
 	SetControllerPausedHandler(value unsafe.Pointer)
-	Haptics() GCDeviceHaptics
+	Gamepad() unsafe.Pointer
+	SetGamepad(value unsafe.Pointer)
+	Haptics() IGCDeviceHaptics
 	SetHaptics(value IGCDeviceHaptics)
 	Input() GCControllerLiveInput
-	SetInput(value IGCControllerLiveInput)
+	SetInput(value GCControllerLiveInput)
 	IsAttachedToDevice() bool
 	SetIsAttachedToDevice(value bool)
 	IsSnapshot() bool
 	SetIsSnapshot(value bool)
-	Light() GCDeviceLight
+	Light() IGCDeviceLight
 	SetLight(value IGCDeviceLight)
 	MicroGamepad() GCMicroGamepad
-	SetMicroGamepad(value IGCMicroGamepad)
-	Motion() GCMotion
+	SetMicroGamepad(value GCMicroGamepad)
+	Motion() IGCMotion
 	SetMotion(value IGCMotion)
-	PhysicalInputProfile() GCPhysicalInputProfile
-	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
 	LeftThumbstick() GCControllerDirectionPad
-	SetLeftThumbstick(value IGCControllerDirectionPad)
+	SetLeftThumbstick(value GCControllerDirectionPad)
 	ValueChangedHandler() unsafe.Pointer
 	SetValueChangedHandler(value unsafe.Pointer)
+	Capture() IGCController
 }
 
 // A representation of a real game controller, a virtual controller, or a snapshot of a controller.
@@ -132,22 +133,51 @@ func (gc _GCControllerClass) StartWirelessControllerDiscoveryWithCompletionHandl
 }
 
 
+// The most recently used game controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/current
+func (gc _GCControllerClass) Current() GCController {
+	rv := objc.Send[GCController](objc.ID(gc.class), objc.Sel("current"))
+	return rv
+}
+
+// Returns a snapshot of the controller with its current element values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/capture()
+func (g_ GCController) Capture() GCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("capture"))
+	return rv
+}
+
+
+// The most recently used game controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/current
+func (g_ GCController) Current() IGCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("current"))
+	return rv
+}
+
+
 // The extended gamepad profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/extendedGamepad
-func (g_ GCController) ExtendedGamepad() GCExtendedGamepad {
+func (g_ GCController) ExtendedGamepad() IGCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
 
-// The gamepad profile.
+// The physical input profile for the controller.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/gamepad
-func (g_ GCController) Gamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/physicalInputProfile
+func (g_ GCController) PhysicalInputProfile() IGCPhysicalInputProfile {
+	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
 }
 
@@ -175,7 +205,7 @@ func (g_ GCController) SetPlayerIndex(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/battery
-func (g_ GCController) Battery() GCDeviceBattery {
+func (g_ GCController) Battery() IGCDeviceBattery {
 	rv := objc.Send[GCDeviceBattery](g_.ID, objc.Sel("battery"))
 	return rv
 }
@@ -209,11 +239,30 @@ func (g_ GCController) SetControllerPausedHandler(value unsafe.Pointer) {
 }
 
 
+// The gamepad profile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
+func (g_ GCController) Gamepad() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
+	return rv
+}
+
+
+// The gamepad profile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
+func (g_ GCController) SetGamepad(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
+}
+
+
 // The controller’s haptics information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/haptics
-func (g_ GCController) Haptics() GCDeviceHaptics {
+func (g_ GCController) Haptics() IGCDeviceHaptics {
 	rv := objc.Send[GCDeviceHaptics](g_.ID, objc.Sel("haptics"))
 	return rv
 }
@@ -242,7 +291,7 @@ func (g_ GCController) Input() GCControllerLiveInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCController) SetInput(value IGCControllerLiveInput) {
+func (g_ GCController) SetInput(value GCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
@@ -289,7 +338,7 @@ func (g_ GCController) SetIsSnapshot(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/light
-func (g_ GCController) Light() GCDeviceLight {
+func (g_ GCController) Light() IGCDeviceLight {
 	rv := objc.Send[GCDeviceLight](g_.ID, objc.Sel("light"))
 	return rv
 }
@@ -318,7 +367,7 @@ func (g_ GCController) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCController) SetMicroGamepad(value IGCMicroGamepad) {
+func (g_ GCController) SetMicroGamepad(value GCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
@@ -327,7 +376,7 @@ func (g_ GCController) SetMicroGamepad(value IGCMicroGamepad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCController) Motion() GCMotion {
+func (g_ GCController) Motion() IGCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
@@ -339,25 +388,6 @@ func (g_ GCController) Motion() GCMotion {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
 func (g_ GCController) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
-}
-
-
-// The physical input profile for the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCController) PhysicalInputProfile() GCPhysicalInputProfile {
-	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
-	return rv
-}
-
-
-// The physical input profile for the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCController) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 
 
@@ -375,7 +405,7 @@ func (g_ GCController) LeftThumbstick() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCController) SetLeftThumbstick(value IGCControllerDirectionPad) {
+func (g_ GCController) SetLeftThumbstick(value GCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstick:"), value)
 }
 

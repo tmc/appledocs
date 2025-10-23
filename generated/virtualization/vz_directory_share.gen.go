@@ -32,18 +32,17 @@ type IVZDirectoryShare interface {
 	objectivec.IObject
 }
 
-// The base class for a directory share.
-//
-// A directory share defines how the system exposes host directories to a guest VM. Don’t instantiate directly, use one of its subclasses such as or instead.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDirectoryShare
+// A parent class referenced by other Virtualization classes.
+
+
+// A parent class referenced by other Virtualization classes. [Full Topic]
 type VZDirectoryShare struct {
 	objectivec.Object
 }
 
 // VZDirectoryShareFrom constructs a [VZDirectoryShare] from an unsafe.Pointer.
 //
-// The base class for a directory share.
+// A parent class referenced by other Virtualization classes.
 func VZDirectoryShareFrom(ptr unsafe.Pointer) VZDirectoryShare {
 	return VZDirectoryShare{objectivec.Object{objc.ID(ptr)}}
 }

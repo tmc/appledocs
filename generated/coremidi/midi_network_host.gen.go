@@ -30,7 +30,6 @@ type _MIDINetworkHostClass struct {
 // An interface definition for the [MIDINetworkHost] class.
 type IMIDINetworkHost interface {
 	objectivec.IObject
-	Port() uint
 	MIDINetworkBonjourServiceType() string
 	Address() string
 	SetAddress(value string)
@@ -40,6 +39,8 @@ type IMIDINetworkHost interface {
 	SetNetServiceDomain(value string)
 	NetServiceName() string
 	SetNetServiceName(value string)
+	Port() int
+	SetPort(value int)
 }
 
 // An object that represents the host’s network address.
@@ -91,37 +92,6 @@ func NewMIDINetworkHost() MIDINetworkHost {
 	return getMIDINetworkHostClass().New()
 }
 
-
-
-// Creates a host with the specified name, net service name, and domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-func NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) MIDINetworkHost {
-	rv := objc.Send[MIDINetworkHost](objc.ID(getMIDINetworkHostClass().class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
-	return rv
-}
-
-
-
-// Creates a host with the specified name, net service name, and domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/init(name:netServiceName:netServiceDomain:)
-func (mc _MIDINetworkHostClass) HostWithNameNetServiceNameNetServiceDomain(name string, netServiceName string, netServiceDomain string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("hostWithName:netServiceName:netServiceDomain:"), objc.String(name), objc.String(netServiceName), objc.String(netServiceDomain))
-	return rv
-}
-
-
-// The host port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkHost/port
-func (m_ MIDINetworkHost) Port() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("port"))
-	return rv
-}
 
 
 // The Bonjour service type.
@@ -208,5 +178,25 @@ func (m_ MIDINetworkHost) NetServiceName() string {
 func (m_ MIDINetworkHost) SetNetServiceName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetServiceName:"), objc.String(value))
 }
+
+
+// The host port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/port
+func (m_ MIDINetworkHost) Port() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("port"))
+	return rv
+}
+
+
+// The host port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkhost/port
+func (m_ MIDINetworkHost) SetPort(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
+}
+
 
 

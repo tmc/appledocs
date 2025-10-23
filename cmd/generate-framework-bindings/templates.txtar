@@ -246,9 +246,9 @@ type WindowLevel = int  // NSWindowLevel
 {{if gt (len $undefinedTypes) 0}}
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
+// Using inferred base types as fallback to allow code generation.
 {{range $undefinedTypes -}}
-type {{.Name}} unsafe.Pointer
+type {{.Name}} = {{.BaseType}}
 
 {{end}}
 {{end -}}
@@ -394,6 +394,7 @@ type {{$classTypeName}} struct {
 // An interface definition for the [{{$structName}}] class.
 type I{{$structName}} interface {
 	{{getInterfaceParent . $.Framework}}
+	// properties:
 	{{- range .Properties}}
 	{{- if not .IsClassProperty}}
 	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
@@ -411,6 +412,7 @@ type I{{$structName}} interface {
 	{{- end}}
 	{{- end}}
 	{{- end}}
+	// methods:
 	{{- range filterPropertyMethods .}}
 	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}

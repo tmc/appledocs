@@ -30,10 +30,10 @@ type _CWChannelClass struct {
 // An interface definition for the [CWChannel] class.
 type ICWChannel interface {
 	objectivec.IObject
-	IsEqualToChannel(channel ICWChannel) bool
 	ChannelBand() CWChannelBand
 	ChannelNumber() int
 	ChannelWidth() CWChannelWidth
+	IsEqualToChannel(channel ICWChannel) bool
 }
 
 // Encapsulates an IEEE 802.11 channel.

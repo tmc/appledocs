@@ -30,7 +30,7 @@ type _FileProviderDomainVersionClass struct {
 // An interface definition for the [FileProviderDomainVersion] class.
 type IFileProviderDomainVersion interface {
 	objectivec.IObject
-	DomainVersion() NSFileProviderDomainVersion
+	DomainVersion() IFileProviderDomainVersion
 	SetDomainVersion(value IFileProviderDomainVersion)
 }
 
@@ -91,8 +91,8 @@ func NewFileProviderDomainVersion() FileProviderDomainVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
-func (f_ FileProviderDomainVersion) DomainVersion() NSFileProviderDomainVersion {
-	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
+func (f_ FileProviderDomainVersion) DomainVersion() IFileProviderDomainVersion {
+	rv := objc.Send[FileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
 }
 

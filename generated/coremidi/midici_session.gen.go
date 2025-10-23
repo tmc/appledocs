@@ -32,10 +32,13 @@ type _MIDICISessionClass struct {
 type IMIDICISession interface {
 	objectivec.IObject
 	DeviceInfo() MIDICIDeviceInfo
-	MaxSysExSize() foundation.Number
-	MidiDestination() MIDIEntityRef
+	SetDeviceInfo(value MIDICIDeviceInfo)
 	MaxPropertyRequests() foundation.Number
-	SetMaxPropertyRequests(value foundation.INumber)
+	SetMaxPropertyRequests(value foundation.Number)
+	MaxSysExSize() foundation.Number
+	SetMaxSysExSize(value foundation.Number)
+	MidiDestination() MIDIEntityRef
+	SetMidiDestination(value MIDIEntityRef)
 	ProfileChangedCallback() unsafe.Pointer
 	SetProfileChangedCallback(value unsafe.Pointer)
 	ProfileSpecificDataHandler() unsafe.Pointer
@@ -100,46 +103,22 @@ func NewMIDICISession() MIDICISession {
 
 
 
-// Creates a MIDI-CI session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/init(discoveredNode:dataReadyHandler:disconnectHandler:)
-func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discoveredNode IMIDICIDiscoveredNode, handler unsafe.Pointer, disconnectHandler unsafe.Pointer) MIDICISession {
-	instance := getMIDICISessionClass().Alloc()
-	rv := objc.Send[MIDICISession](instance.ID, objc.Sel("initWithDiscoveredNode:dataReadyHandler:disconnectHandler:"), discoveredNode, handler, disconnectHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Information about a MIDI-CI device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/deviceInfo
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/deviceinfo
 func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
 
-// The maximum size of System Exclusive (SysEx) messages.
+// Information about a MIDI-CI device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxSysExSize
-func (m_ MIDICISession) MaxSysExSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
-	return rv
-}
-
-
-// The MIDI destination with which the session is communicating.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/midiDestination
-func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
-	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("midiDestination"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/deviceinfo
+func (m_ MIDICISession) SetDeviceInfo(value MIDICIDeviceInfo) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 
 
@@ -157,8 +136,46 @@ func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.INumber) {
+func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.Number) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPropertyRequests:"), value)
+}
+
+
+// The maximum size of System Exclusive (SysEx) messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxsysexsize
+func (m_ MIDICISession) MaxSysExSize() foundation.Number {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
+	return rv
+}
+
+
+// The maximum size of System Exclusive (SysEx) messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxsysexsize
+func (m_ MIDICISession) SetMaxSysExSize(value foundation.Number) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSysExSize:"), value)
+}
+
+
+// The MIDI destination with which the session is communicating.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/mididestination
+func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
+	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("midiDestination"))
+	return rv
+}
+
+
+// The MIDI destination with which the session is communicating.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/mididestination
+func (m_ MIDICISession) SetMidiDestination(value MIDIEntityRef) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
 
 
@@ -246,5 +263,6 @@ func (m_ MIDICISession) MIDIChannelsWholePort() MIDIChannelNumber {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("MIDIChannelsWholePort"))
 	return rv
 }
+
 
 

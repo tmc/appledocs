@@ -29,6 +29,8 @@ type _SecureUnarchiveFromDataTransformerClass struct {
 // An interface definition for the [SecureUnarchiveFromDataTransformer] class.
 type ISecureUnarchiveFromDataTransformer interface {
 	IValueTransformer
+	// properties:
+	// methods:
 }
 
 // A value transformer that converts data to and from classes that support secure coding.

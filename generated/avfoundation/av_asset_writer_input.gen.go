@@ -32,46 +32,48 @@ type _AssetWriterInputClass struct {
 // An interface definition for the [AssetWriterInput] class.
 type IAssetWriterInput interface {
 	objectivec.IObject
-	CanPerformMultiplePasses() bool
-	SetCanPerformMultiplePasses(value bool)
-	CurrentPassDescription() unsafe.Pointer
-	SetCurrentPassDescription(value unsafe.Pointer)
-	ExpectsMediaDataInRealTime() bool
-	SetExpectsMediaDataInRealTime(value bool)
-	ExtendedLanguageTag() string
-	SetExtendedLanguageTag(value string)
-	IsReadyForMoreMediaData() bool
-	SetIsReadyForMoreMediaData(value bool)
-	LanguageCode() string
-	SetLanguageCode(value string)
-	MarksOutputTrackAsEnabled() bool
-	SetMarksOutputTrackAsEnabled(value bool)
+	// properties:
+	CanPerformMultiplePasses() bool /* primitive/slice/pointer */
+	SetCanPerformMultiplePasses(value bool /* primitive/slice/pointer */)
+	CurrentPassDescription() AVAssetWriterInputPassDescription /* foo */
+	SetCurrentPassDescription(value AVAssetWriterInputPassDescription /* foo */)
+	ExpectsMediaDataInRealTime() bool /* primitive/slice/pointer */
+	SetExpectsMediaDataInRealTime(value bool /* primitive/slice/pointer */)
+	ExtendedLanguageTag() string /* primitive/slice/pointer */
+	SetExtendedLanguageTag(value string /* primitive/slice/pointer */)
+	IsReadyForMoreMediaData() bool /* primitive/slice/pointer */
+	SetIsReadyForMoreMediaData(value bool /* primitive/slice/pointer */)
+	LanguageCode() string /* primitive/slice/pointer */
+	SetLanguageCode(value string /* primitive/slice/pointer */)
+	MarksOutputTrackAsEnabled() bool /* primitive/slice/pointer */
+	SetMarksOutputTrackAsEnabled(value bool /* primitive/slice/pointer */)
 	MediaDataLocation() unsafe.Pointer
 	SetMediaDataLocation(value unsafe.Pointer)
-	MediaTimeScale() unsafe.Pointer
-	SetMediaTimeScale(value unsafe.Pointer)
-	MediaType() unsafe.Pointer
-	SetMediaType(value unsafe.Pointer)
+	MediaTimeScale() CMTimeScale /* foo */
+	SetMediaTimeScale(value CMTimeScale /* foo */)
+	MediaType() AVMediaType /* foo */
+	SetMediaType(value AVMediaType /* foo */)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
 	NaturalSize() coregraphics.CGSize
 	SetNaturalSize(value coregraphics.CGSize)
-	OutputSettings() string
-	SetOutputSettings(value string)
-	PerformsMultiPassEncodingIfSupported() bool
-	SetPerformsMultiPassEncodingIfSupported(value bool)
-	PreferredMediaChunkAlignment() int
-	SetPreferredMediaChunkAlignment(value int)
-	PreferredMediaChunkDuration() unsafe.Pointer
-	SetPreferredMediaChunkDuration(value unsafe.Pointer)
-	PreferredVolume() float32
-	SetPreferredVolume(value float32)
-	SampleReferenceBaseURL() foundation.URL
-	SetSampleReferenceBaseURL(value foundation.URL)
-	SourceFormatHint() unsafe.Pointer
-	SetSourceFormatHint(value unsafe.Pointer)
+	OutputSettings() string /* primitive/slice/pointer */
+	SetOutputSettings(value string /* primitive/slice/pointer */)
+	PerformsMultiPassEncodingIfSupported() bool /* primitive/slice/pointer */
+	SetPerformsMultiPassEncodingIfSupported(value bool /* primitive/slice/pointer */)
+	PreferredMediaChunkAlignment() int /* primitive/slice/pointer */
+	SetPreferredMediaChunkAlignment(value int /* primitive/slice/pointer */)
+	PreferredMediaChunkDuration() CMTime /* foo */
+	SetPreferredMediaChunkDuration(value CMTime /* foo */)
+	PreferredVolume() float32 /* primitive/slice/pointer */
+	SetPreferredVolume(value float32 /* primitive/slice/pointer */)
+	SampleReferenceBaseURL() foundation.URL /* foo */
+	SetSampleReferenceBaseURL(value foundation.URL /* foo */)
+	SourceFormatHint() CMFormatDescription /* foo */
+	SetSourceFormatHint(value CMFormatDescription /* foo */)
 	Transform() coregraphics.CGAffineTransform
 	SetTransform(value coregraphics.CGAffineTransform)
+	// methods:
 }
 
 // An object that appends media samples to a track in an asset writer’s output file.
@@ -131,7 +133,7 @@ func NewAssetWriterInput() AssetWriterInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/canperformmultiplepasses
-func (a_ AssetWriterInput) CanPerformMultiplePasses() bool {
+func (a_ AssetWriterInput) CanPerformMultiplePasses() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformMultiplePasses"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (a_ AssetWriterInput) CanPerformMultiplePasses() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/canperformmultiplepasses
-func (a_ AssetWriterInput) SetCanPerformMultiplePasses(value bool) {
+func (a_ AssetWriterInput) SetCanPerformMultiplePasses(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformMultiplePasses:"), value)
 }
 
@@ -150,8 +152,8 @@ func (a_ AssetWriterInput) SetCanPerformMultiplePasses(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/currentpassdescription
-func (a_ AssetWriterInput) CurrentPassDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentPassDescription"))
+func (a_ AssetWriterInput) CurrentPassDescription() AVAssetWriterInputPassDescription /* foo */ {
+	rv := objc.Send[AssetWriterInputPassDescription](a_.ID, objc.Sel("currentPassDescription"))
 	return rv
 }
 
@@ -160,7 +162,7 @@ func (a_ AssetWriterInput) CurrentPassDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/currentpassdescription
-func (a_ AssetWriterInput) SetCurrentPassDescription(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetCurrentPassDescription(value AVAssetWriterInputPassDescription /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentPassDescription:"), value)
 }
 
@@ -169,7 +171,7 @@ func (a_ AssetWriterInput) SetCurrentPassDescription(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/expectsmediadatainrealtime
-func (a_ AssetWriterInput) ExpectsMediaDataInRealTime() bool {
+func (a_ AssetWriterInput) ExpectsMediaDataInRealTime() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("expectsMediaDataInRealTime"))
 	return rv
 }
@@ -179,7 +181,7 @@ func (a_ AssetWriterInput) ExpectsMediaDataInRealTime() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/expectsmediadatainrealtime
-func (a_ AssetWriterInput) SetExpectsMediaDataInRealTime(value bool) {
+func (a_ AssetWriterInput) SetExpectsMediaDataInRealTime(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExpectsMediaDataInRealTime:"), value)
 }
 
@@ -188,7 +190,7 @@ func (a_ AssetWriterInput) SetExpectsMediaDataInRealTime(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) ExtendedLanguageTag() string {
+func (a_ AssetWriterInput) ExtendedLanguageTag() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
@@ -198,7 +200,7 @@ func (a_ AssetWriterInput) ExtendedLanguageTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) SetExtendedLanguageTag(value string) {
+func (a_ AssetWriterInput) SetExtendedLanguageTag(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
 }
 
@@ -207,7 +209,7 @@ func (a_ AssetWriterInput) SetExtendedLanguageTag(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/isreadyformoremediadata
-func (a_ AssetWriterInput) IsReadyForMoreMediaData() bool {
+func (a_ AssetWriterInput) IsReadyForMoreMediaData() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isReadyForMoreMediaData"))
 	return rv
 }
@@ -217,7 +219,7 @@ func (a_ AssetWriterInput) IsReadyForMoreMediaData() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/isreadyformoremediadata
-func (a_ AssetWriterInput) SetIsReadyForMoreMediaData(value bool) {
+func (a_ AssetWriterInput) SetIsReadyForMoreMediaData(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsReadyForMoreMediaData:"), value)
 }
 
@@ -226,7 +228,7 @@ func (a_ AssetWriterInput) SetIsReadyForMoreMediaData(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) LanguageCode() string {
+func (a_ AssetWriterInput) LanguageCode() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
@@ -236,7 +238,7 @@ func (a_ AssetWriterInput) LanguageCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) SetLanguageCode(value string) {
+func (a_ AssetWriterInput) SetLanguageCode(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
 
@@ -245,7 +247,7 @@ func (a_ AssetWriterInput) SetLanguageCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/marksoutputtrackasenabled
-func (a_ AssetWriterInput) MarksOutputTrackAsEnabled() bool {
+func (a_ AssetWriterInput) MarksOutputTrackAsEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("marksOutputTrackAsEnabled"))
 	return rv
 }
@@ -255,7 +257,7 @@ func (a_ AssetWriterInput) MarksOutputTrackAsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/marksoutputtrackasenabled
-func (a_ AssetWriterInput) SetMarksOutputTrackAsEnabled(value bool) {
+func (a_ AssetWriterInput) SetMarksOutputTrackAsEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMarksOutputTrackAsEnabled:"), value)
 }
 
@@ -283,8 +285,8 @@ func (a_ AssetWriterInput) SetMediaDataLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatimescale
-func (a_ AssetWriterInput) MediaTimeScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaTimeScale"))
+func (a_ AssetWriterInput) MediaTimeScale() CMTimeScale /* foo */ {
+	rv := objc.Send[TimeScale](a_.ID, objc.Sel("mediaTimeScale"))
 	return rv
 }
 
@@ -293,7 +295,7 @@ func (a_ AssetWriterInput) MediaTimeScale() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatimescale
-func (a_ AssetWriterInput) SetMediaTimeScale(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetMediaTimeScale(value CMTimeScale /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaTimeScale:"), value)
 }
 
@@ -302,8 +304,8 @@ func (a_ AssetWriterInput) SetMediaTimeScale(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatype
-func (a_ AssetWriterInput) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+func (a_ AssetWriterInput) MediaType() AVMediaType /* foo */ {
+	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -312,7 +314,7 @@ func (a_ AssetWriterInput) MediaType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatype
-func (a_ AssetWriterInput) SetMediaType(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetMediaType(value AVMediaType /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 
@@ -359,7 +361,7 @@ func (a_ AssetWriterInput) SetNaturalSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) OutputSettings() string {
+func (a_ AssetWriterInput) OutputSettings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
@@ -369,7 +371,7 @@ func (a_ AssetWriterInput) OutputSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) SetOutputSettings(value string) {
+func (a_ AssetWriterInput) SetOutputSettings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
 }
 
@@ -378,7 +380,7 @@ func (a_ AssetWriterInput) SetOutputSettings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/performsmultipassencodingifsupported
-func (a_ AssetWriterInput) PerformsMultiPassEncodingIfSupported() bool {
+func (a_ AssetWriterInput) PerformsMultiPassEncodingIfSupported() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("performsMultiPassEncodingIfSupported"))
 	return rv
 }
@@ -388,7 +390,7 @@ func (a_ AssetWriterInput) PerformsMultiPassEncodingIfSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/performsmultipassencodingifsupported
-func (a_ AssetWriterInput) SetPerformsMultiPassEncodingIfSupported(value bool) {
+func (a_ AssetWriterInput) SetPerformsMultiPassEncodingIfSupported(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerformsMultiPassEncodingIfSupported:"), value)
 }
 
@@ -397,7 +399,7 @@ func (a_ AssetWriterInput) SetPerformsMultiPassEncodingIfSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredmediachunkalignment
-func (a_ AssetWriterInput) PreferredMediaChunkAlignment() int {
+func (a_ AssetWriterInput) PreferredMediaChunkAlignment() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("preferredMediaChunkAlignment"))
 	return rv
 }
@@ -407,7 +409,7 @@ func (a_ AssetWriterInput) PreferredMediaChunkAlignment() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredmediachunkalignment
-func (a_ AssetWriterInput) SetPreferredMediaChunkAlignment(value int) {
+func (a_ AssetWriterInput) SetPreferredMediaChunkAlignment(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredMediaChunkAlignment:"), value)
 }
 
@@ -416,8 +418,8 @@ func (a_ AssetWriterInput) SetPreferredMediaChunkAlignment(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredmediachunkduration
-func (a_ AssetWriterInput) PreferredMediaChunkDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredMediaChunkDuration"))
+func (a_ AssetWriterInput) PreferredMediaChunkDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("preferredMediaChunkDuration"))
 	return rv
 }
 
@@ -426,7 +428,7 @@ func (a_ AssetWriterInput) PreferredMediaChunkDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredmediachunkduration
-func (a_ AssetWriterInput) SetPreferredMediaChunkDuration(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetPreferredMediaChunkDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredMediaChunkDuration:"), value)
 }
 
@@ -435,7 +437,7 @@ func (a_ AssetWriterInput) SetPreferredMediaChunkDuration(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredvolume
-func (a_ AssetWriterInput) PreferredVolume() float32 {
+func (a_ AssetWriterInput) PreferredVolume() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
 	return rv
 }
@@ -445,7 +447,7 @@ func (a_ AssetWriterInput) PreferredVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/preferredvolume
-func (a_ AssetWriterInput) SetPreferredVolume(value float32) {
+func (a_ AssetWriterInput) SetPreferredVolume(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredVolume:"), value)
 }
 
@@ -454,7 +456,7 @@ func (a_ AssetWriterInput) SetPreferredVolume(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/samplereferencebaseurl
-func (a_ AssetWriterInput) SampleReferenceBaseURL() foundation.URL {
+func (a_ AssetWriterInput) SampleReferenceBaseURL() foundation.URL /* foo */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("sampleReferenceBaseURL"))
 	return rv
 }
@@ -464,7 +466,7 @@ func (a_ AssetWriterInput) SampleReferenceBaseURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/samplereferencebaseurl
-func (a_ AssetWriterInput) SetSampleReferenceBaseURL(value foundation.URL) {
+func (a_ AssetWriterInput) SetSampleReferenceBaseURL(value foundation.URL /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleReferenceBaseURL:"), value)
 }
 
@@ -473,8 +475,8 @@ func (a_ AssetWriterInput) SetSampleReferenceBaseURL(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/sourceformathint
-func (a_ AssetWriterInput) SourceFormatHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sourceFormatHint"))
+func (a_ AssetWriterInput) SourceFormatHint() CMFormatDescription /* foo */ {
+	rv := objc.Send[FormatDescription](a_.ID, objc.Sel("sourceFormatHint"))
 	return rv
 }
 
@@ -483,7 +485,7 @@ func (a_ AssetWriterInput) SourceFormatHint() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/sourceformathint
-func (a_ AssetWriterInput) SetSourceFormatHint(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetSourceFormatHint(value CMFormatDescription /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSourceFormatHint:"), value)
 }
 

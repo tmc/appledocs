@@ -29,13 +29,21 @@ type _INStartCallIntentClass struct {
 // An interface definition for the [INStartCallIntent] class.
 type IINStartCallIntent interface {
 	IINIntent
-	AudioRoute() INCallAudioRoute
-	CallCapability() INCallCapability
-	CallRecordFilter() INCallRecordFilter
+	// properties:
 	CallRecordToCallBack() INCallRecord
-	Contacts() []INPerson
-	DestinationType() INCallDestinationType
-	RecordTypeForRedialing() INCallRecordType
+	AudioRoute() unsafe.Pointer
+	SetAudioRoute(value unsafe.Pointer)
+	CallCapability() unsafe.Pointer
+	SetCallCapability(value unsafe.Pointer)
+	CallRecordFilter() INCallRecordFilter
+	SetCallRecordFilter(value INCallRecordFilter)
+	Contacts() INPerson
+	SetContacts(value INPerson)
+	DestinationType() unsafe.Pointer
+	SetDestinationType(value unsafe.Pointer)
+	RecordTypeForRedialing() unsafe.Pointer
+	SetRecordTypeForRedialing(value unsafe.Pointer)
+	// methods:
 }
 
 // A request to start an audio or video call with one or more users.
@@ -93,61 +101,6 @@ func NewINStartCallIntent() INStartCallIntent {
 
 
 
-// Creates a start call intent object with the specified parameters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(audioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:)
-func NewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedialingCallCapability(audioRoute INCallAudioRoute, destinationType INCallDestinationType, contacts []INPerson, recordTypeForRedialing INCallRecordType, callCapability INCallCapability) INStartCallIntent {
-	instance := getINStartCallIntentClass().Alloc()
-	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:"), audioRoute, destinationType, contacts, recordTypeForRedialing, callCapability)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a start call intent object with the specified parameters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/init(callRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:)
-func NewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability(callRecordFilter INCallRecordFilter, callRecordToCallBack INCallRecord, audioRoute INCallAudioRoute, destinationType INCallDestinationType, contacts []INPerson, callCapability INCallCapability) INStartCallIntent {
-	instance := getINStartCallIntentClass().Alloc()
-	rv := objc.Send[INStartCallIntent](instance.ID, objc.Sel("initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:"), callRecordFilter, callRecordToCallBack, audioRoute, destinationType, contacts, callCapability)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The audio route the call is using.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/audioRoute
-func (i_ INStartCallIntent) AudioRoute() INCallAudioRoute {
-	rv := objc.Send[INCallAudioRoute](i_.ID, objc.Sel("audioRoute"))
-	return rv
-}
-
-
-// The type of call the user initiated.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/callCapability
-func (i_ INStartCallIntent) CallCapability() INCallCapability {
-	rv := objc.Send[INCallCapability](i_.ID, objc.Sel("callCapability"))
-	return rv
-}
-
-
-// Filters specified by the user to redial a call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/callRecordFilter
-func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
-	rv := objc.Send[INCallRecordFilter](i_.ID, objc.Sel("callRecordFilter"))
-	return rv
-}
-
-
 // Details about a call to redial a missed call.
 //
 // [Full Topic]
@@ -158,12 +111,88 @@ func (i_ INStartCallIntent) CallRecordToCallBack() INCallRecord {
 }
 
 
+// The audio route the call is using.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/audioroute
+func (i_ INStartCallIntent) AudioRoute() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioRoute"))
+	return rv
+}
+
+
+// The audio route the call is using.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/audioroute
+func (i_ INStartCallIntent) SetAudioRoute(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioRoute:"), value)
+}
+
+
+// The type of call the user initiated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callcapability
+func (i_ INStartCallIntent) CallCapability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapability"))
+	return rv
+}
+
+
+// The type of call the user initiated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callcapability
+func (i_ INStartCallIntent) SetCallCapability(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
+}
+
+
+// Filters specified by the user to redial a call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callrecordfilter
+func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
+	rv := objc.Send[INCallRecordFilter](i_.ID, objc.Sel("callRecordFilter"))
+	return rv
+}
+
+
+// Filters specified by the user to redial a call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callrecordfilter
+func (i_ INStartCallIntent) SetCallRecordFilter(value INCallRecordFilter) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordFilter:"), value)
+}
+
+
 // The users to call.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/contacts
-func (i_ INStartCallIntent) Contacts() []INPerson {
-	rv := objc.Send[[]INPerson](i_.ID, objc.Sel("contacts"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/contacts
+func (i_ INStartCallIntent) Contacts() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("contacts"))
+	return rv
+}
+
+
+// The users to call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/contacts
+func (i_ INStartCallIntent) SetContacts(value INPerson) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
+}
+
+
+// The type of call to place.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/destinationtype
+func (i_ INStartCallIntent) DestinationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("destinationType"))
 	return rv
 }
 
@@ -171,9 +200,18 @@ func (i_ INStartCallIntent) Contacts() []INPerson {
 // The type of call to place.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/destinationType
-func (i_ INStartCallIntent) DestinationType() INCallDestinationType {
-	rv := objc.Send[INCallDestinationType](i_.ID, objc.Sel("destinationType"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/destinationtype
+func (i_ INStartCallIntent) SetDestinationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDestinationType:"), value)
+}
+
+
+// The category of past call record contact information used for redialing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/recordtypeforredialing
+func (i_ INStartCallIntent) RecordTypeForRedialing() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recordTypeForRedialing"))
 	return rv
 }
 
@@ -181,10 +219,10 @@ func (i_ INStartCallIntent) DestinationType() INCallDestinationType {
 // The category of past call record contact information used for redialing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/recordTypeForRedialing
-func (i_ INStartCallIntent) RecordTypeForRedialing() INCallRecordType {
-	rv := objc.Send[INCallRecordType](i_.ID, objc.Sel("recordTypeForRedialing"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/recordtypeforredialing
+func (i_ INStartCallIntent) SetRecordTypeForRedialing(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordTypeForRedialing:"), value)
 }
+
 
 

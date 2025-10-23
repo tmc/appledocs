@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PlayerInterstitialEventController] class.
@@ -30,12 +29,14 @@ type _PlayerInterstitialEventControllerClass struct {
 // An interface definition for the [PlayerInterstitialEventController] class.
 type IPlayerInterstitialEventController interface {
 	IPlayerInterstitialEventMonitor
+	// properties:
 	Events() IAVPlayerInterstitialEvent
 	SetEvents(value IAVPlayerInterstitialEvent)
-	LocalizedStringsBundle() foundation.Bundle
-	SetLocalizedStringsBundle(value foundation.Bundle)
-	LocalizedStringsTableName() string
-	SetLocalizedStringsTableName(value string)
+	LocalizedStringsBundle() NSBundle /* foo */
+	SetLocalizedStringsBundle(value NSBundle /* foo */)
+	LocalizedStringsTableName() string /* primitive/slice/pointer */
+	SetLocalizedStringsTableName(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An object that schedules interstitial events for items played by the primary player.
@@ -116,8 +117,8 @@ func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() foundation.Bundle {
-	rv := objc.Send[foundation.Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
+func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() NSBundle /* foo */ {
+	rv := objc.Send[Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value foundation.Bundle) {
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value NSBundle /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsBundle:"), value)
 }
 
@@ -135,7 +136,7 @@ func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
-func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
+func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
 	return rv
 }
@@ -145,7 +146,7 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string) {
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
 }
 

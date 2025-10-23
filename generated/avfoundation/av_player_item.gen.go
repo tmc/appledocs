@@ -33,132 +33,134 @@ type _PlayerItemClass struct {
 // An interface definition for the [PlayerItem] class.
 type IPlayerItem interface {
 	objectivec.IObject
-	AppliesPerFrameHDRDisplayMetadata() bool
-	SetAppliesPerFrameHDRDisplayMetadata(value bool)
+	// properties:
+	AppliesPerFrameHDRDisplayMetadata() bool /* primitive/slice/pointer */
+	SetAppliesPerFrameHDRDisplayMetadata(value bool /* primitive/slice/pointer */)
 	Asset() IAVAsset
 	AudioMix() IAVAudioMix
 	SetAudioMix(value IAVAudioMix)
-	AudioTimePitchAlgorithm() unsafe.Pointer
-	SetAudioTimePitchAlgorithm(value unsafe.Pointer)
-	AutomaticallyHandlesInterstitialEvents() bool
-	SetAutomaticallyHandlesInterstitialEvents(value bool)
-	AutomaticallyLoadedAssetKeys() []string
-	AutomaticallyPreservesTimeOffsetFromLive() bool
-	SetAutomaticallyPreservesTimeOffsetFromLive(value bool)
-	CanPlayFastForward() bool
-	CanPlayFastReverse() bool
-	CanPlayReverse() bool
-	CanPlaySlowForward() bool
-	CanPlaySlowReverse() bool
-	CanStepBackward() bool
-	CanStepForward() bool
-	CanUseNetworkResourcesForLiveStreamingWhilePaused() bool
-	SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool)
-	ConfiguredTimeOffsetFromLive() unsafe.Pointer
-	SetConfiguredTimeOffsetFromLive(value unsafe.Pointer)
-	ContentAuthorizationRequestStatus() AVContentAuthorizationStatus
+	AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */
+	SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */)
+	AutomaticallyHandlesInterstitialEvents() bool /* primitive/slice/pointer */
+	SetAutomaticallyHandlesInterstitialEvents(value bool /* primitive/slice/pointer */)
+	AutomaticallyLoadedAssetKeys() []string /* primitive/slice/pointer */
+	AutomaticallyPreservesTimeOffsetFromLive() bool /* primitive/slice/pointer */
+	SetAutomaticallyPreservesTimeOffsetFromLive(value bool /* primitive/slice/pointer */)
+	CanPlayFastForward() bool /* primitive/slice/pointer */
+	CanPlayFastReverse() bool /* primitive/slice/pointer */
+	CanPlayReverse() bool /* primitive/slice/pointer */
+	CanPlaySlowForward() bool /* primitive/slice/pointer */
+	CanPlaySlowReverse() bool /* primitive/slice/pointer */
+	CanStepBackward() bool /* primitive/slice/pointer */
+	CanStepForward() bool /* primitive/slice/pointer */
+	CanUseNetworkResourcesForLiveStreamingWhilePaused() bool /* primitive/slice/pointer */
+	SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool /* primitive/slice/pointer */)
+	ConfiguredTimeOffsetFromLive() CMTime /* foo */
+	SetConfiguredTimeOffsetFromLive(value CMTime /* foo */)
+	ContentAuthorizationRequestStatus() AVContentAuthorizationStatus /* enum */
 	CurrentMediaSelection() IAVMediaSelection
 	CustomVideoCompositor() objc.ID
-	Duration() unsafe.Pointer
-	Error() AVError
-	ExternalMetadata() []MetadataItem
-	SetExternalMetadata(value []MetadataItem)
-	ForwardPlaybackEndTime() unsafe.Pointer
-	SetForwardPlaybackEndTime(value unsafe.Pointer)
+	Duration() CMTime /* foo */
+	Error() NSError /* foo */
+	ExternalMetadata() []MetadataItem /* primitive/slice/pointer */
+	SetExternalMetadata(value []MetadataItem /* primitive/slice/pointer */)
+	ForwardPlaybackEndTime() CMTime /* foo */
+	SetForwardPlaybackEndTime(value CMTime /* foo */)
 	IntegratedTimeline() IAVPlayerItemIntegratedTimeline
-	InterstitialTimeRanges() []avkit.InterstitialTimeRange
-	ApplicationAuthorizedForPlayback() bool
-	AuthorizationRequiredForPlayback() bool
-	ContentAuthorizedForPlayback() bool
-	PlaybackBufferEmpty() bool
-	PlaybackBufferFull() bool
-	PlaybackLikelyToKeepUp() bool
-	LoadedTimeRanges() []foundation.Value
-	MediaDataCollectors() []unsafe.Pointer
-	NavigationMarkerGroups() []avkit.NavigationMarkersGroup
-	SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup)
-	NextContentProposal() avkit.ContentProposal
-	SetNextContentProposal(value avkit.ContentProposal)
-	NowPlayingInfo() foundation.IDictionary
-	SetNowPlayingInfo(value foundation.IDictionary)
-	Outputs() []unsafe.Pointer
-	PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme
-	SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme)
-	PreferredForwardBufferDuration() foundation.TimeInterval
-	SetPreferredForwardBufferDuration(value foundation.TimeInterval)
+	InterstitialTimeRanges() []avkit.InterstitialTimeRange /* foo */
+	ApplicationAuthorizedForPlayback() bool /* primitive/slice/pointer */
+	AuthorizationRequiredForPlayback() bool /* primitive/slice/pointer */
+	ContentAuthorizedForPlayback() bool /* primitive/slice/pointer */
+	PlaybackBufferEmpty() bool /* primitive/slice/pointer */
+	PlaybackBufferFull() bool /* primitive/slice/pointer */
+	PlaybackLikelyToKeepUp() bool /* primitive/slice/pointer */
+	LoadedTimeRanges() []foundation.Value /* foo */
+	MediaDataCollectors() []AVPlayerItemMediaDataCollector /* primitive/slice/pointer */
+	NavigationMarkerGroups() []avkit.NavigationMarkersGroup /* foo */
+	SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup /* foo */)
+	NextContentProposal() AVContentProposal /* foo */
+	SetNextContentProposal(value AVContentProposal /* foo */)
+	NowPlayingInfo() foundation.IDictionary /* already interface */
+	SetNowPlayingInfo(value foundation.IDictionary /* already interface */)
+	Outputs() []AVPlayerItemOutput /* primitive/slice/pointer */
+	PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme /* primitive/slice/pointer */
+	SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme /* primitive/slice/pointer */)
+	PreferredForwardBufferDuration() foundation.TimeInterval /* foo */
+	SetPreferredForwardBufferDuration(value foundation.TimeInterval /* foo */)
 	PreferredMaximumResolution() coregraphics.CGSize
 	SetPreferredMaximumResolution(value coregraphics.CGSize)
 	PreferredMaximumResolutionForExpensiveNetworks() coregraphics.CGSize
 	SetPreferredMaximumResolutionForExpensiveNetworks(value coregraphics.CGSize)
-	PreferredPeakBitRate() float64
-	SetPreferredPeakBitRate(value float64)
-	PreferredPeakBitRateForExpensiveNetworks() float64
-	SetPreferredPeakBitRateForExpensiveNetworks(value float64)
+	PreferredPeakBitRate() float64 /* primitive/slice/pointer */
+	SetPreferredPeakBitRate(value float64 /* primitive/slice/pointer */)
+	PreferredPeakBitRateForExpensiveNetworks() float64 /* primitive/slice/pointer */
+	SetPreferredPeakBitRateForExpensiveNetworks(value float64 /* primitive/slice/pointer */)
 	PresentationSize() coregraphics.CGSize
-	RecommendedTimeOffsetFromLive() unsafe.Pointer
-	ReversePlaybackEndTime() unsafe.Pointer
-	SetReversePlaybackEndTime(value unsafe.Pointer)
-	SeekableTimeRanges() []foundation.Value
-	SeekingWaitsForVideoCompositionRendering() bool
-	SetSeekingWaitsForVideoCompositionRendering(value bool)
-	StartsOnFirstEligibleVariant() bool
-	SetStartsOnFirstEligibleVariant(value bool)
-	Status() AVPlayerItemStatus
+	RecommendedTimeOffsetFromLive() CMTime /* foo */
+	ReversePlaybackEndTime() CMTime /* foo */
+	SetReversePlaybackEndTime(value CMTime /* foo */)
+	SeekableTimeRanges() []foundation.Value /* foo */
+	SeekingWaitsForVideoCompositionRendering() bool /* primitive/slice/pointer */
+	SetSeekingWaitsForVideoCompositionRendering(value bool /* primitive/slice/pointer */)
+	StartsOnFirstEligibleVariant() bool /* primitive/slice/pointer */
+	SetStartsOnFirstEligibleVariant(value bool /* primitive/slice/pointer */)
+	Status() AVPlayerItemStatus /* enum */
 	TemplatePlayerItem() IAVPlayerItem
-	TextStyleRules() []TextStyleRule
-	SetTextStyleRules(value []TextStyleRule)
-	Timebase() unsafe.Pointer
-	Tracks() []PlayerItemTrack
-	TranslatesPlayerInterstitialEvents() bool
-	SetTranslatesPlayerInterstitialEvents(value bool)
-	VariantPreferences() AVVariantPreferences
-	SetVariantPreferences(value AVVariantPreferences)
-	VideoApertureMode() VideoApertureMode
-	SetVideoApertureMode(value VideoApertureMode)
-	VideoComposition() VideoComposition
-	SetVideoComposition(value VideoComposition)
-	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats
-	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats)
-	IsApplicationAuthorizedForPlayback() bool
-	SetIsApplicationAuthorizedForPlayback(value bool)
-	IsAudioSpatializationAllowed() bool
-	SetIsAudioSpatializationAllowed(value bool)
-	IsAuthorizationRequiredForPlayback() bool
-	SetIsAuthorizationRequiredForPlayback(value bool)
-	IsContentAuthorizedForPlayback() bool
-	SetIsContentAuthorizedForPlayback(value bool)
-	IsPlaybackBufferEmpty() bool
-	SetIsPlaybackBufferEmpty(value bool)
-	IsPlaybackBufferFull() bool
-	SetIsPlaybackBufferFull(value bool)
-	IsPlaybackLikelyToKeepUp() bool
-	SetIsPlaybackLikelyToKeepUp(value bool)
+	TextStyleRules() []TextStyleRule /* primitive/slice/pointer */
+	SetTextStyleRules(value []TextStyleRule /* primitive/slice/pointer */)
+	Timebase() CMTimebaseRef /* foo */
+	Tracks() []PlayerItemTrack /* primitive/slice/pointer */
+	TranslatesPlayerInterstitialEvents() bool /* primitive/slice/pointer */
+	SetTranslatesPlayerInterstitialEvents(value bool /* primitive/slice/pointer */)
+	VariantPreferences() AVVariantPreferences /* enum */
+	SetVariantPreferences(value AVVariantPreferences /* enum */)
+	VideoApertureMode() AVVideoApertureMode /* typedef */
+	SetVideoApertureMode(value AVVideoApertureMode /* typedef */)
+	VideoComposition() AVVideoComposition /* foo */
+	SetVideoComposition(value AVVideoComposition /* foo */)
+	AllowedAudioSpatializationFormats() AVAudioSpatializationFormats /* enum */
+	SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats /* enum */)
+	IsApplicationAuthorizedForPlayback() bool /* primitive/slice/pointer */
+	SetIsApplicationAuthorizedForPlayback(value bool /* primitive/slice/pointer */)
+	IsAudioSpatializationAllowed() bool /* primitive/slice/pointer */
+	SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer */)
+	IsAuthorizationRequiredForPlayback() bool /* primitive/slice/pointer */
+	SetIsAuthorizationRequiredForPlayback(value bool /* primitive/slice/pointer */)
+	IsContentAuthorizedForPlayback() bool /* primitive/slice/pointer */
+	SetIsContentAuthorizedForPlayback(value bool /* primitive/slice/pointer */)
+	IsPlaybackBufferEmpty() bool /* primitive/slice/pointer */
+	SetIsPlaybackBufferEmpty(value bool /* primitive/slice/pointer */)
+	IsPlaybackBufferFull() bool /* primitive/slice/pointer */
+	SetIsPlaybackBufferFull(value bool /* primitive/slice/pointer */)
+	IsPlaybackLikelyToKeepUp() bool /* primitive/slice/pointer */
+	SetIsPlaybackLikelyToKeepUp(value bool /* primitive/slice/pointer */)
 	Template() IAVPlayerItem
 	SetTemplate(value IAVPlayerItem)
-	AccessLog() IPlayerItemAccessLog
-	AddOutput(output unsafe.Pointer)
-	AddMediaDataCollector(collector unsafe.Pointer)
+	// methods:
+	AccessLog() IAVPlayerItemAccessLog
+	AddOutput(output AVPlayerItemOutput /* foo */)
+	AddMediaDataCollector(collector AVPlayerItemMediaDataCollector /* foo */)
 	CancelContentAuthorizationRequest()
 	CancelPendingSeeks()
 	CancelPlaybackRestrictionsAuthorizationRequest()
-	CurrentDate() foundation.Date
-	CurrentTime() unsafe.Pointer
-	EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary
-	ErrorLog() IPlayerItemErrorLog
-	RemoveMediaDataCollector(collector unsafe.Pointer)
-	RemoveOutput(output unsafe.Pointer)
-	RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval, handler unsafe.Pointer)
+	CurrentDate() NSDate /* foo */
+	CurrentTime() CMTime /* foo */
+	EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary /* already interface */
+	ErrorLog() IAVPlayerItemErrorLog
+	RemoveMediaDataCollector(collector AVPlayerItemMediaDataCollector /* foo */)
+	RemoveOutput(output AVPlayerItemOutput /* foo */)
+	RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval /* foo */, handler unsafe.Pointer)
 	RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer)
-	SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer) bool
-	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
-	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToDateCompletionHandler(date foundation.NSDate /* foo */, completionHandler unsafe.Pointer) bool /* primitive/slice/pointer */
+	SeekToTimeCompletionHandler(time CMTime /* foo */, completionHandler unsafe.Pointer)
+	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time CMTime /* foo */, toleranceBefore CMTime /* foo */, toleranceAfter CMTime /* foo */, completionHandler unsafe.Pointer)
 	SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup)
 	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup)
 	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup)
-	SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup)
-	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String
-	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary
-	StepByCount(stepCount int)
+	SelectMediaPresentationLanguageForMediaSelectionGroup(language string /* primitive/slice/pointer */, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) NSString /* foo */
+	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary /* already interface */
+	StepByCount(stepCount int /* primitive/slice/pointer */)
 }
 
 // An object that models the timing and presentation state of an asset during playback.
@@ -230,7 +232,7 @@ func NewPlayerItemWithAsset(asset IAVAsset) PlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/init(asset:automaticallyLoadedAssetKeys:)-8x4
-func NewPlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string) PlayerItem {
+func NewPlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string /* primitive/slice/pointer */) PlayerItem {
 	instance := getPlayerItemClass().Alloc()
 	rv := objc.Send[PlayerItem](instance.ID, objc.Sel("initWithAsset:automaticallyLoadedAssetKeys:"), asset, automaticallyLoadedAssetKeys)
 	rv.Autorelease()
@@ -242,7 +244,7 @@ func NewPlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/init(url:)
-func NewPlayerItemWithURL(URL foundation.URL) PlayerItem {
+func NewPlayerItemWithURL(URL foundation.URL /* foo */) PlayerItem {
 	instance := getPlayerItemClass().Alloc()
 	rv := objc.Send[PlayerItem](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -265,7 +267,7 @@ func (pc _PlayerItemClass) PlayerItemWithAsset(asset IAVAsset) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/playerItemWithAsset:automaticallyLoadedAssetKeys:
-func (pc _PlayerItemClass) PlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string) unsafe.Pointer {
+func (pc _PlayerItemClass) PlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset IAVAsset, automaticallyLoadedAssetKeys []string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerItemWithAsset:automaticallyLoadedAssetKeys:"), asset, automaticallyLoadedAssetKeys)
 	return rv
 }
@@ -275,7 +277,7 @@ func (pc _PlayerItemClass) PlayerItemWithAssetAutomaticallyLoadedAssetKeys(asset
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/playerItemWithURL:
-func (pc _PlayerItemClass) PlayerItemWithURL(URL foundation.URL) unsafe.Pointer {
+func (pc _PlayerItemClass) PlayerItemWithURL(URL foundation.URL /* foo */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerItemWithURL:"), URL)
 	return rv
 }
@@ -285,7 +287,7 @@ func (pc _PlayerItemClass) PlayerItemWithURL(URL foundation.URL) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/accessLog()
-func (p_ PlayerItem) AccessLog() IPlayerItemAccessLog {
+func (p_ PlayerItem) AccessLog() IAVPlayerItemAccessLog {
 	rv := objc.Send[PlayerItemAccessLog](p_.ID, objc.Sel("accessLog"))
 	return rv
 }
@@ -295,7 +297,7 @@ func (p_ PlayerItem) AccessLog() IPlayerItemAccessLog {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/add(_:)-16ctk
-func (p_ PlayerItem) AddOutput(output unsafe.Pointer) {
+func (p_ PlayerItem) AddOutput(output AVPlayerItemOutput /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addOutput:"), output)
 }
 
@@ -304,7 +306,7 @@ func (p_ PlayerItem) AddOutput(output unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/add(_:)-9l3to
-func (p_ PlayerItem) AddMediaDataCollector(collector unsafe.Pointer) {
+func (p_ PlayerItem) AddMediaDataCollector(collector AVPlayerItemMediaDataCollector /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addMediaDataCollector:"), collector)
 }
 
@@ -340,8 +342,8 @@ func (p_ PlayerItem) CancelPlaybackRestrictionsAuthorizationRequest() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentDate()
-func (p_ PlayerItem) CurrentDate() foundation.Date {
-	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
+func (p_ PlayerItem) CurrentDate() NSDate /* foo */ {
+	rv := objc.Send[Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
 
@@ -350,8 +352,8 @@ func (p_ PlayerItem) CurrentDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentTime()
-func (p_ PlayerItem) CurrentTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
+func (p_ PlayerItem) CurrentTime() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -360,7 +362,7 @@ func (p_ PlayerItem) CurrentTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/effectiveMediaPresentationSettings(for:)
-func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary {
+func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("effectiveMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
@@ -370,7 +372,7 @@ func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(me
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/errorLog()
-func (p_ PlayerItem) ErrorLog() IPlayerItemErrorLog {
+func (p_ PlayerItem) ErrorLog() IAVPlayerItemErrorLog {
 	rv := objc.Send[PlayerItemErrorLog](p_.ID, objc.Sel("errorLog"))
 	return rv
 }
@@ -380,7 +382,7 @@ func (p_ PlayerItem) ErrorLog() IPlayerItemErrorLog {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/remove(_:)-29iuz
-func (p_ PlayerItem) RemoveMediaDataCollector(collector unsafe.Pointer) {
+func (p_ PlayerItem) RemoveMediaDataCollector(collector AVPlayerItemMediaDataCollector /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeMediaDataCollector:"), collector)
 }
 
@@ -389,7 +391,7 @@ func (p_ PlayerItem) RemoveMediaDataCollector(collector unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/remove(_:)-46b1r
-func (p_ PlayerItem) RemoveOutput(output unsafe.Pointer) {
+func (p_ PlayerItem) RemoveOutput(output AVPlayerItemOutput /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeOutput:"), output)
 }
 
@@ -398,7 +400,7 @@ func (p_ PlayerItem) RemoveOutput(output unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/requestContentAuthorizationAsynchronously(withTimeoutInterval:completionHandler:)
-func (p_ PlayerItem) RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval, handler unsafe.Pointer) {
+func (p_ PlayerItem) RequestContentAuthorizationAsynchronouslyWithTimeoutIntervalCompletionHandler(timeoutInterval foundation.TimeInterval /* foo */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:"), timeoutInterval, handler)
 }
 
@@ -416,7 +418,7 @@ func (p_ PlayerItem) RequestPlaybackRestrictionsAuthorization(completion unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:completionHandler:)-1dibq
-func (p_ PlayerItem) SeekToDateCompletionHandler(date foundation.NSDate, completionHandler unsafe.Pointer) bool {
+func (p_ PlayerItem) SeekToDateCompletionHandler(date foundation.NSDate /* foo */, completionHandler unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
 	return rv
 }
@@ -426,7 +428,7 @@ func (p_ PlayerItem) SeekToDateCompletionHandler(date foundation.NSDate, complet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:completionHandler:)-91gnw
-func (p_ PlayerItem) SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ PlayerItem) SeekToTimeCompletionHandler(time CMTime /* foo */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:completionHandler:"), time, completionHandler)
 }
 
@@ -435,7 +437,7 @@ func (p_ PlayerItem) SeekToTimeCompletionHandler(time unsafe.Pointer, completion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seek(to:toleranceBefore:toleranceAfter:completionHandler:)
-func (p_ PlayerItem) SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ PlayerItem) SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time CMTime /* foo */, toleranceBefore CMTime /* foo */, toleranceAfter CMTime /* foo */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:completionHandler:"), time, toleranceBefore, toleranceAfter, completionHandler)
 }
 
@@ -471,7 +473,7 @@ func (p_ PlayerItem) SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaPresentationLanguage(_:for:)
-func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup IAVMediaSelectionGroup) {
+func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language string /* primitive/slice/pointer */, mediaSelectionGroup IAVMediaSelectionGroup) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), objc.String(language), mediaSelectionGroup)
 }
 
@@ -480,8 +482,8 @@ func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(langu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationLanguage(for:)
-func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String {
-	rv := objc.Send[foundation.String](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
+func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) NSString /* foo */ {
+	rv := objc.Send[String](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
 
@@ -490,7 +492,7 @@ func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(med
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationSettings(for:)
-func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary {
+func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("selectedMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
@@ -500,7 +502,7 @@ func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(med
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/step(byCount:)
-func (p_ PlayerItem) StepByCount(stepCount int) {
+func (p_ PlayerItem) StepByCount(stepCount int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stepByCount:"), stepCount)
 }
 
@@ -509,7 +511,7 @@ func (p_ PlayerItem) StepByCount(stepCount int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/appliesPerFrameHDRDisplayMetadata
-func (p_ PlayerItem) AppliesPerFrameHDRDisplayMetadata() bool {
+func (p_ PlayerItem) AppliesPerFrameHDRDisplayMetadata() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("appliesPerFrameHDRDisplayMetadata"))
 	return rv
 }
@@ -519,7 +521,7 @@ func (p_ PlayerItem) AppliesPerFrameHDRDisplayMetadata() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/appliesPerFrameHDRDisplayMetadata
-func (p_ PlayerItem) SetAppliesPerFrameHDRDisplayMetadata(value bool) {
+func (p_ PlayerItem) SetAppliesPerFrameHDRDisplayMetadata(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesPerFrameHDRDisplayMetadata:"), value)
 }
 
@@ -557,8 +559,8 @@ func (p_ PlayerItem) SetAudioMix(value IAVAudioMix) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioTimePitchAlgorithm
-func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (p_ PlayerItem) AudioTimePitchAlgorithm() AVAudioTimePitchAlgorithm /* foo */ {
+	rv := objc.Send[AudioTimePitchAlgorithm](p_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -567,7 +569,7 @@ func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/audioTimePitchAlgorithm
-func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value AVAudioTimePitchAlgorithm /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -576,7 +578,7 @@ func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyHandlesInterstitialEvents
-func (p_ PlayerItem) AutomaticallyHandlesInterstitialEvents() bool {
+func (p_ PlayerItem) AutomaticallyHandlesInterstitialEvents() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyHandlesInterstitialEvents"))
 	return rv
 }
@@ -586,7 +588,7 @@ func (p_ PlayerItem) AutomaticallyHandlesInterstitialEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyHandlesInterstitialEvents
-func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
+func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyHandlesInterstitialEvents:"), value)
 }
 
@@ -595,7 +597,7 @@ func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyLoadedAssetKeys
-func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() []string {
+func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
 	return rv
 }
@@ -605,7 +607,7 @@ func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyPreservesTimeOffsetFromLive
-func (p_ PlayerItem) AutomaticallyPreservesTimeOffsetFromLive() bool {
+func (p_ PlayerItem) AutomaticallyPreservesTimeOffsetFromLive() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyPreservesTimeOffsetFromLive"))
 	return rv
 }
@@ -615,7 +617,7 @@ func (p_ PlayerItem) AutomaticallyPreservesTimeOffsetFromLive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/automaticallyPreservesTimeOffsetFromLive
-func (p_ PlayerItem) SetAutomaticallyPreservesTimeOffsetFromLive(value bool) {
+func (p_ PlayerItem) SetAutomaticallyPreservesTimeOffsetFromLive(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyPreservesTimeOffsetFromLive:"), value)
 }
 
@@ -624,7 +626,7 @@ func (p_ PlayerItem) SetAutomaticallyPreservesTimeOffsetFromLive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayFastForward
-func (p_ PlayerItem) CanPlayFastForward() bool {
+func (p_ PlayerItem) CanPlayFastForward() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayFastForward"))
 	return rv
 }
@@ -634,7 +636,7 @@ func (p_ PlayerItem) CanPlayFastForward() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayFastReverse
-func (p_ PlayerItem) CanPlayFastReverse() bool {
+func (p_ PlayerItem) CanPlayFastReverse() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayFastReverse"))
 	return rv
 }
@@ -644,7 +646,7 @@ func (p_ PlayerItem) CanPlayFastReverse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlayReverse
-func (p_ PlayerItem) CanPlayReverse() bool {
+func (p_ PlayerItem) CanPlayReverse() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlayReverse"))
 	return rv
 }
@@ -654,7 +656,7 @@ func (p_ PlayerItem) CanPlayReverse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlaySlowForward
-func (p_ PlayerItem) CanPlaySlowForward() bool {
+func (p_ PlayerItem) CanPlaySlowForward() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlaySlowForward"))
 	return rv
 }
@@ -664,7 +666,7 @@ func (p_ PlayerItem) CanPlaySlowForward() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canPlaySlowReverse
-func (p_ PlayerItem) CanPlaySlowReverse() bool {
+func (p_ PlayerItem) CanPlaySlowReverse() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPlaySlowReverse"))
 	return rv
 }
@@ -674,7 +676,7 @@ func (p_ PlayerItem) CanPlaySlowReverse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canStepBackward
-func (p_ PlayerItem) CanStepBackward() bool {
+func (p_ PlayerItem) CanStepBackward() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStepBackward"))
 	return rv
 }
@@ -684,7 +686,7 @@ func (p_ PlayerItem) CanStepBackward() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canStepForward
-func (p_ PlayerItem) CanStepForward() bool {
+func (p_ PlayerItem) CanStepForward() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStepForward"))
 	return rv
 }
@@ -694,7 +696,7 @@ func (p_ PlayerItem) CanStepForward() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canUseNetworkResourcesForLiveStreamingWhilePaused
-func (p_ PlayerItem) CanUseNetworkResourcesForLiveStreamingWhilePaused() bool {
+func (p_ PlayerItem) CanUseNetworkResourcesForLiveStreamingWhilePaused() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canUseNetworkResourcesForLiveStreamingWhilePaused"))
 	return rv
 }
@@ -704,7 +706,7 @@ func (p_ PlayerItem) CanUseNetworkResourcesForLiveStreamingWhilePaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/canUseNetworkResourcesForLiveStreamingWhilePaused
-func (p_ PlayerItem) SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool) {
+func (p_ PlayerItem) SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanUseNetworkResourcesForLiveStreamingWhilePaused:"), value)
 }
 
@@ -713,8 +715,8 @@ func (p_ PlayerItem) SetCanUseNetworkResourcesForLiveStreamingWhilePaused(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/configuredTimeOffsetFromLive
-func (p_ PlayerItem) ConfiguredTimeOffsetFromLive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuredTimeOffsetFromLive"))
+func (p_ PlayerItem) ConfiguredTimeOffsetFromLive() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("configuredTimeOffsetFromLive"))
 	return rv
 }
 
@@ -723,7 +725,7 @@ func (p_ PlayerItem) ConfiguredTimeOffsetFromLive() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/configuredTimeOffsetFromLive
-func (p_ PlayerItem) SetConfiguredTimeOffsetFromLive(value unsafe.Pointer) {
+func (p_ PlayerItem) SetConfiguredTimeOffsetFromLive(value CMTime /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguredTimeOffsetFromLive:"), value)
 }
 
@@ -732,8 +734,8 @@ func (p_ PlayerItem) SetConfiguredTimeOffsetFromLive(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/contentAuthorizationRequestStatus
-func (p_ PlayerItem) ContentAuthorizationRequestStatus() AVContentAuthorizationStatus {
-	rv := objc.Send[ContentAuthorizationStatus](p_.ID, objc.Sel("contentAuthorizationRequestStatus"))
+func (p_ PlayerItem) ContentAuthorizationRequestStatus() AVContentAuthorizationStatus /* enum */ {
+	rv := objc.Send[AVContentAuthorizationStatus](p_.ID, objc.Sel("contentAuthorizationRequestStatus"))
 	return rv
 }
 
@@ -762,8 +764,8 @@ func (p_ PlayerItem) CustomVideoCompositor() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/duration
-func (p_ PlayerItem) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("duration"))
+func (p_ PlayerItem) Duration() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -772,8 +774,8 @@ func (p_ PlayerItem) Duration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/error
-func (p_ PlayerItem) Error() AVError {
-	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
+func (p_ PlayerItem) Error() NSError /* foo */ {
+	rv := objc.Send[NSError](p_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -782,7 +784,7 @@ func (p_ PlayerItem) Error() AVError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/externalMetadata
-func (p_ PlayerItem) ExternalMetadata() []MetadataItem {
+func (p_ PlayerItem) ExternalMetadata() []MetadataItem /* primitive/slice/pointer */ {
 	rv := objc.Send[[]MetadataItem](p_.ID, objc.Sel("externalMetadata"))
 	return rv
 }
@@ -792,7 +794,7 @@ func (p_ PlayerItem) ExternalMetadata() []MetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/externalMetadata
-func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
+func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -811,8 +813,8 @@ func (p_ PlayerItem) SetExternalMetadata(value []MetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime
-func (p_ PlayerItem) ForwardPlaybackEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("forwardPlaybackEndTime"))
+func (p_ PlayerItem) ForwardPlaybackEndTime() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("forwardPlaybackEndTime"))
 	return rv
 }
 
@@ -821,7 +823,7 @@ func (p_ PlayerItem) ForwardPlaybackEndTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime
-func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
+func (p_ PlayerItem) SetForwardPlaybackEndTime(value CMTime /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setForwardPlaybackEndTime:"), value)
 }
 
@@ -840,7 +842,7 @@ func (p_ PlayerItem) IntegratedTimeline() IAVPlayerItemIntegratedTimeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
-func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
+func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange /* foo */ {
 	rv := objc.Send[[]avkit.InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
 	return rv
 }
@@ -850,7 +852,7 @@ func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isApplicationAuthorizedForPlayback
-func (p_ PlayerItem) ApplicationAuthorizedForPlayback() bool {
+func (p_ PlayerItem) ApplicationAuthorizedForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("applicationAuthorizedForPlayback"))
 	return rv
 }
@@ -860,7 +862,7 @@ func (p_ PlayerItem) ApplicationAuthorizedForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isAuthorizationRequiredForPlayback
-func (p_ PlayerItem) AuthorizationRequiredForPlayback() bool {
+func (p_ PlayerItem) AuthorizationRequiredForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("authorizationRequiredForPlayback"))
 	return rv
 }
@@ -870,7 +872,7 @@ func (p_ PlayerItem) AuthorizationRequiredForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isContentAuthorizedForPlayback
-func (p_ PlayerItem) ContentAuthorizedForPlayback() bool {
+func (p_ PlayerItem) ContentAuthorizedForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("contentAuthorizedForPlayback"))
 	return rv
 }
@@ -880,7 +882,7 @@ func (p_ PlayerItem) ContentAuthorizedForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackBufferEmpty
-func (p_ PlayerItem) PlaybackBufferEmpty() bool {
+func (p_ PlayerItem) PlaybackBufferEmpty() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("playbackBufferEmpty"))
 	return rv
 }
@@ -890,7 +892,7 @@ func (p_ PlayerItem) PlaybackBufferEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackBufferFull
-func (p_ PlayerItem) PlaybackBufferFull() bool {
+func (p_ PlayerItem) PlaybackBufferFull() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("playbackBufferFull"))
 	return rv
 }
@@ -900,7 +902,7 @@ func (p_ PlayerItem) PlaybackBufferFull() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/isPlaybackLikelyToKeepUp
-func (p_ PlayerItem) PlaybackLikelyToKeepUp() bool {
+func (p_ PlayerItem) PlaybackLikelyToKeepUp() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("playbackLikelyToKeepUp"))
 	return rv
 }
@@ -910,7 +912,7 @@ func (p_ PlayerItem) PlaybackLikelyToKeepUp() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/loadedTimeRanges
-func (p_ PlayerItem) LoadedTimeRanges() []foundation.Value {
+func (p_ PlayerItem) LoadedTimeRanges() []foundation.Value /* foo */ {
 	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
 }
@@ -920,8 +922,8 @@ func (p_ PlayerItem) LoadedTimeRanges() []foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/mediaDataCollectors
-func (p_ PlayerItem) MediaDataCollectors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("mediaDataCollectors"))
+func (p_ PlayerItem) MediaDataCollectors() []AVPlayerItemMediaDataCollector /* primitive/slice/pointer */ {
+	rv := objc.Send[[]PlayerItemMediaDataCollector](p_.ID, objc.Sel("mediaDataCollectors"))
 	return rv
 }
 
@@ -930,7 +932,7 @@ func (p_ PlayerItem) MediaDataCollectors() []unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup {
+func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup /* foo */ {
 	rv := objc.Send[[]avkit.NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
 	return rv
 }
@@ -940,7 +942,7 @@ func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup) {
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGroup /* foo */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -959,8 +961,8 @@ func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.NavigationMarkersGr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
-func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
-	rv := objc.Send[avkit.ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
+func (p_ PlayerItem) NextContentProposal() AVContentProposal /* foo */ {
+	rv := objc.Send[ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
 	return rv
 }
 
@@ -969,7 +971,7 @@ func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
-func (p_ PlayerItem) SetNextContentProposal(value avkit.ContentProposal) {
+func (p_ PlayerItem) SetNextContentProposal(value AVContentProposal /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNextContentProposal:"), value)
 }
 
@@ -978,7 +980,7 @@ func (p_ PlayerItem) SetNextContentProposal(value avkit.ContentProposal) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nowPlayingInfo
-func (p_ PlayerItem) NowPlayingInfo() foundation.IDictionary {
+func (p_ PlayerItem) NowPlayingInfo() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("nowPlayingInfo"))
 	return rv
 }
@@ -988,7 +990,7 @@ func (p_ PlayerItem) NowPlayingInfo() foundation.IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nowPlayingInfo
-func (p_ PlayerItem) SetNowPlayingInfo(value foundation.IDictionary) {
+func (p_ PlayerItem) SetNowPlayingInfo(value foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingInfo:"), value)
 }
 
@@ -997,8 +999,8 @@ func (p_ PlayerItem) SetNowPlayingInfo(value foundation.IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/outputs
-func (p_ PlayerItem) Outputs() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("outputs"))
+func (p_ PlayerItem) Outputs() []AVPlayerItemOutput /* primitive/slice/pointer */ {
+	rv := objc.Send[[]PlayerItemOutput](p_.ID, objc.Sel("outputs"))
 	return rv
 }
 
@@ -1007,7 +1009,7 @@ func (p_ PlayerItem) Outputs() []unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme {
+func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []CustomMediaSelectionScheme /* primitive/slice/pointer */ {
 	rv := objc.Send[[]CustomMediaSelectionScheme](p_.ID, objc.Sel("preferredCustomMediaSelectionSchemes"))
 	return rv
 }
@@ -1017,7 +1019,7 @@ func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []CustomMediaSelecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme) {
+func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []CustomMediaSelectionScheme /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1036,7 +1038,7 @@ func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []CustomMedia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredForwardBufferDuration
-func (p_ PlayerItem) PreferredForwardBufferDuration() foundation.TimeInterval {
+func (p_ PlayerItem) PreferredForwardBufferDuration() foundation.TimeInterval /* foo */ {
 	rv := objc.Send[foundation.TimeInterval](p_.ID, objc.Sel("preferredForwardBufferDuration"))
 	return rv
 }
@@ -1046,7 +1048,7 @@ func (p_ PlayerItem) PreferredForwardBufferDuration() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredForwardBufferDuration
-func (p_ PlayerItem) SetPreferredForwardBufferDuration(value foundation.TimeInterval) {
+func (p_ PlayerItem) SetPreferredForwardBufferDuration(value foundation.TimeInterval /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredForwardBufferDuration:"), value)
 }
 
@@ -1093,7 +1095,7 @@ func (p_ PlayerItem) SetPreferredMaximumResolutionForExpensiveNetworks(value cor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
-func (p_ PlayerItem) PreferredPeakBitRate() float64 {
+func (p_ PlayerItem) PreferredPeakBitRate() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRate"))
 	return rv
 }
@@ -1103,7 +1105,7 @@ func (p_ PlayerItem) PreferredPeakBitRate() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRate
-func (p_ PlayerItem) SetPreferredPeakBitRate(value float64) {
+func (p_ PlayerItem) SetPreferredPeakBitRate(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRate:"), value)
 }
 
@@ -1112,7 +1114,7 @@ func (p_ PlayerItem) SetPreferredPeakBitRate(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRateForExpensiveNetworks
-func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 {
+func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("preferredPeakBitRateForExpensiveNetworks"))
 	return rv
 }
@@ -1122,7 +1124,7 @@ func (p_ PlayerItem) PreferredPeakBitRateForExpensiveNetworks() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredPeakBitRateForExpensiveNetworks
-func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value float64) {
+func (p_ PlayerItem) SetPreferredPeakBitRateForExpensiveNetworks(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredPeakBitRateForExpensiveNetworks:"), value)
 }
 
@@ -1141,8 +1143,8 @@ func (p_ PlayerItem) PresentationSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/recommendedTimeOffsetFromLive
-func (p_ PlayerItem) RecommendedTimeOffsetFromLive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recommendedTimeOffsetFromLive"))
+func (p_ PlayerItem) RecommendedTimeOffsetFromLive() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("recommendedTimeOffsetFromLive"))
 	return rv
 }
 
@@ -1151,8 +1153,8 @@ func (p_ PlayerItem) RecommendedTimeOffsetFromLive() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime
-func (p_ PlayerItem) ReversePlaybackEndTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reversePlaybackEndTime"))
+func (p_ PlayerItem) ReversePlaybackEndTime() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("reversePlaybackEndTime"))
 	return rv
 }
 
@@ -1161,7 +1163,7 @@ func (p_ PlayerItem) ReversePlaybackEndTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime
-func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
+func (p_ PlayerItem) SetReversePlaybackEndTime(value CMTime /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReversePlaybackEndTime:"), value)
 }
 
@@ -1170,7 +1172,7 @@ func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekableTimeRanges
-func (p_ PlayerItem) SeekableTimeRanges() []foundation.Value {
+func (p_ PlayerItem) SeekableTimeRanges() []foundation.Value /* foo */ {
 	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("seekableTimeRanges"))
 	return rv
 }
@@ -1180,7 +1182,7 @@ func (p_ PlayerItem) SeekableTimeRanges() []foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekingWaitsForVideoCompositionRendering
-func (p_ PlayerItem) SeekingWaitsForVideoCompositionRendering() bool {
+func (p_ PlayerItem) SeekingWaitsForVideoCompositionRendering() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("seekingWaitsForVideoCompositionRendering"))
 	return rv
 }
@@ -1190,7 +1192,7 @@ func (p_ PlayerItem) SeekingWaitsForVideoCompositionRendering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/seekingWaitsForVideoCompositionRendering
-func (p_ PlayerItem) SetSeekingWaitsForVideoCompositionRendering(value bool) {
+func (p_ PlayerItem) SetSeekingWaitsForVideoCompositionRendering(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSeekingWaitsForVideoCompositionRendering:"), value)
 }
 
@@ -1199,7 +1201,7 @@ func (p_ PlayerItem) SetSeekingWaitsForVideoCompositionRendering(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/startsOnFirstEligibleVariant
-func (p_ PlayerItem) StartsOnFirstEligibleVariant() bool {
+func (p_ PlayerItem) StartsOnFirstEligibleVariant() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("startsOnFirstEligibleVariant"))
 	return rv
 }
@@ -1209,7 +1211,7 @@ func (p_ PlayerItem) StartsOnFirstEligibleVariant() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/startsOnFirstEligibleVariant
-func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool) {
+func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartsOnFirstEligibleVariant:"), value)
 }
 
@@ -1218,8 +1220,8 @@ func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/status-swift.property
-func (p_ PlayerItem) Status() AVPlayerItemStatus {
-	rv := objc.Send[PlayerItemStatus](p_.ID, objc.Sel("status"))
+func (p_ PlayerItem) Status() AVPlayerItemStatus /* enum */ {
+	rv := objc.Send[AVPlayerItemStatus](p_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -1238,7 +1240,7 @@ func (p_ PlayerItem) TemplatePlayerItem() IAVPlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/textStyleRules
-func (p_ PlayerItem) TextStyleRules() []TextStyleRule {
+func (p_ PlayerItem) TextStyleRules() []TextStyleRule /* primitive/slice/pointer */ {
 	rv := objc.Send[[]TextStyleRule](p_.ID, objc.Sel("textStyleRules"))
 	return rv
 }
@@ -1248,7 +1250,7 @@ func (p_ PlayerItem) TextStyleRules() []TextStyleRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/textStyleRules
-func (p_ PlayerItem) SetTextStyleRules(value []TextStyleRule) {
+func (p_ PlayerItem) SetTextStyleRules(value []TextStyleRule /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1267,8 +1269,8 @@ func (p_ PlayerItem) SetTextStyleRules(value []TextStyleRule) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/timebase
-func (p_ PlayerItem) Timebase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timebase"))
+func (p_ PlayerItem) Timebase() CMTimebaseRef /* foo */ {
+	rv := objc.Send[TimebaseRef](p_.ID, objc.Sel("timebase"))
 	return rv
 }
 
@@ -1277,7 +1279,7 @@ func (p_ PlayerItem) Timebase() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/tracks
-func (p_ PlayerItem) Tracks() []PlayerItemTrack {
+func (p_ PlayerItem) Tracks() []PlayerItemTrack /* primitive/slice/pointer */ {
 	rv := objc.Send[[]PlayerItemTrack](p_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -1287,7 +1289,7 @@ func (p_ PlayerItem) Tracks() []PlayerItemTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents
-func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool {
+func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("translatesPlayerInterstitialEvents"))
 	return rv
 }
@@ -1297,7 +1299,7 @@ func (p_ PlayerItem) TranslatesPlayerInterstitialEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents
-func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool) {
+func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTranslatesPlayerInterstitialEvents:"), value)
 }
 
@@ -1306,8 +1308,8 @@ func (p_ PlayerItem) SetTranslatesPlayerInterstitialEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/variantPreferences
-func (p_ PlayerItem) VariantPreferences() AVVariantPreferences {
-	rv := objc.Send[VariantPreferences](p_.ID, objc.Sel("variantPreferences"))
+func (p_ PlayerItem) VariantPreferences() AVVariantPreferences /* enum */ {
+	rv := objc.Send[AVVariantPreferences](p_.ID, objc.Sel("variantPreferences"))
 	return rv
 }
 
@@ -1316,7 +1318,7 @@ func (p_ PlayerItem) VariantPreferences() AVVariantPreferences {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/variantPreferences
-func (p_ PlayerItem) SetVariantPreferences(value AVVariantPreferences) {
+func (p_ PlayerItem) SetVariantPreferences(value AVVariantPreferences /* enum */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVariantPreferences:"), value)
 }
 
@@ -1325,7 +1327,7 @@ func (p_ PlayerItem) SetVariantPreferences(value AVVariantPreferences) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoApertureMode
-func (p_ PlayerItem) VideoApertureMode() VideoApertureMode {
+func (p_ PlayerItem) VideoApertureMode() AVVideoApertureMode /* typedef */ {
 	rv := objc.Send[VideoApertureMode](p_.ID, objc.Sel("videoApertureMode"))
 	return rv
 }
@@ -1335,7 +1337,7 @@ func (p_ PlayerItem) VideoApertureMode() VideoApertureMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoApertureMode
-func (p_ PlayerItem) SetVideoApertureMode(value VideoApertureMode) {
+func (p_ PlayerItem) SetVideoApertureMode(value AVVideoApertureMode /* typedef */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoApertureMode:"), value)
 }
 
@@ -1344,7 +1346,7 @@ func (p_ PlayerItem) SetVideoApertureMode(value VideoApertureMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoComposition
-func (p_ PlayerItem) VideoComposition() VideoComposition {
+func (p_ PlayerItem) VideoComposition() AVVideoComposition /* foo */ {
 	rv := objc.Send[VideoComposition](p_.ID, objc.Sel("videoComposition"))
 	return rv
 }
@@ -1354,7 +1356,7 @@ func (p_ PlayerItem) VideoComposition() VideoComposition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/videoComposition
-func (p_ PlayerItem) SetVideoComposition(value VideoComposition) {
+func (p_ PlayerItem) SetVideoComposition(value AVVideoComposition /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoComposition:"), value)
 }
 
@@ -1363,8 +1365,8 @@ func (p_ PlayerItem) SetVideoComposition(value VideoComposition) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ PlayerItem) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats {
-	rv := objc.Send[AudioSpatializationFormats](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
+func (p_ PlayerItem) AllowedAudioSpatializationFormats() AVAudioSpatializationFormats /* enum */ {
+	rv := objc.Send[AVAudioSpatializationFormats](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
 }
 
@@ -1373,7 +1375,7 @@ func (p_ PlayerItem) AllowedAudioSpatializationFormats() AVAudioSpatializationFo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
-func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats) {
+func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value AVAudioSpatializationFormats /* enum */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
 }
 
@@ -1382,7 +1384,7 @@ func (p_ PlayerItem) SetAllowedAudioSpatializationFormats(value AVAudioSpatializ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isapplicationauthorizedforplayback
-func (p_ PlayerItem) IsApplicationAuthorizedForPlayback() bool {
+func (p_ PlayerItem) IsApplicationAuthorizedForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isApplicationAuthorizedForPlayback"))
 	return rv
 }
@@ -1392,7 +1394,7 @@ func (p_ PlayerItem) IsApplicationAuthorizedForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isapplicationauthorizedforplayback
-func (p_ PlayerItem) SetIsApplicationAuthorizedForPlayback(value bool) {
+func (p_ PlayerItem) SetIsApplicationAuthorizedForPlayback(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsApplicationAuthorizedForPlayback:"), value)
 }
 
@@ -1401,7 +1403,7 @@ func (p_ PlayerItem) SetIsApplicationAuthorizedForPlayback(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
-func (p_ PlayerItem) IsAudioSpatializationAllowed() bool {
+func (p_ PlayerItem) IsAudioSpatializationAllowed() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAudioSpatializationAllowed"))
 	return rv
 }
@@ -1411,7 +1413,7 @@ func (p_ PlayerItem) IsAudioSpatializationAllowed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
-func (p_ PlayerItem) SetIsAudioSpatializationAllowed(value bool) {
+func (p_ PlayerItem) SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAudioSpatializationAllowed:"), value)
 }
 
@@ -1420,7 +1422,7 @@ func (p_ PlayerItem) SetIsAudioSpatializationAllowed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isauthorizationrequiredforplayback
-func (p_ PlayerItem) IsAuthorizationRequiredForPlayback() bool {
+func (p_ PlayerItem) IsAuthorizationRequiredForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAuthorizationRequiredForPlayback"))
 	return rv
 }
@@ -1430,7 +1432,7 @@ func (p_ PlayerItem) IsAuthorizationRequiredForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isauthorizationrequiredforplayback
-func (p_ PlayerItem) SetIsAuthorizationRequiredForPlayback(value bool) {
+func (p_ PlayerItem) SetIsAuthorizationRequiredForPlayback(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAuthorizationRequiredForPlayback:"), value)
 }
 
@@ -1439,7 +1441,7 @@ func (p_ PlayerItem) SetIsAuthorizationRequiredForPlayback(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/iscontentauthorizedforplayback
-func (p_ PlayerItem) IsContentAuthorizedForPlayback() bool {
+func (p_ PlayerItem) IsContentAuthorizedForPlayback() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isContentAuthorizedForPlayback"))
 	return rv
 }
@@ -1449,7 +1451,7 @@ func (p_ PlayerItem) IsContentAuthorizedForPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/iscontentauthorizedforplayback
-func (p_ PlayerItem) SetIsContentAuthorizedForPlayback(value bool) {
+func (p_ PlayerItem) SetIsContentAuthorizedForPlayback(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsContentAuthorizedForPlayback:"), value)
 }
 
@@ -1458,7 +1460,7 @@ func (p_ PlayerItem) SetIsContentAuthorizedForPlayback(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybackbufferempty
-func (p_ PlayerItem) IsPlaybackBufferEmpty() bool {
+func (p_ PlayerItem) IsPlaybackBufferEmpty() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPlaybackBufferEmpty"))
 	return rv
 }
@@ -1468,7 +1470,7 @@ func (p_ PlayerItem) IsPlaybackBufferEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybackbufferempty
-func (p_ PlayerItem) SetIsPlaybackBufferEmpty(value bool) {
+func (p_ PlayerItem) SetIsPlaybackBufferEmpty(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPlaybackBufferEmpty:"), value)
 }
 
@@ -1477,7 +1479,7 @@ func (p_ PlayerItem) SetIsPlaybackBufferEmpty(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybackbufferfull
-func (p_ PlayerItem) IsPlaybackBufferFull() bool {
+func (p_ PlayerItem) IsPlaybackBufferFull() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPlaybackBufferFull"))
 	return rv
 }
@@ -1487,7 +1489,7 @@ func (p_ PlayerItem) IsPlaybackBufferFull() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybackbufferfull
-func (p_ PlayerItem) SetIsPlaybackBufferFull(value bool) {
+func (p_ PlayerItem) SetIsPlaybackBufferFull(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPlaybackBufferFull:"), value)
 }
 
@@ -1496,7 +1498,7 @@ func (p_ PlayerItem) SetIsPlaybackBufferFull(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybacklikelytokeepup
-func (p_ PlayerItem) IsPlaybackLikelyToKeepUp() bool {
+func (p_ PlayerItem) IsPlaybackLikelyToKeepUp() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPlaybackLikelyToKeepUp"))
 	return rv
 }
@@ -1506,7 +1508,7 @@ func (p_ PlayerItem) IsPlaybackLikelyToKeepUp() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isplaybacklikelytokeepup
-func (p_ PlayerItem) SetIsPlaybackLikelyToKeepUp(value bool) {
+func (p_ PlayerItem) SetIsPlaybackLikelyToKeepUp(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPlaybackLikelyToKeepUp:"), value)
 }
 

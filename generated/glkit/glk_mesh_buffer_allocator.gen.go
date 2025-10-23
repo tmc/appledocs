@@ -30,6 +30,8 @@ type _GLKMeshBufferAllocatorClass struct {
 // An interface definition for the [GLKMeshBufferAllocator] class.
 type IGLKMeshBufferAllocator interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

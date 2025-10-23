@@ -30,7 +30,7 @@ type _WarpKernelClass struct {
 // An interface definition for the [WarpKernel] class.
 type IWarpKernel interface {
 	IKernel
-	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) Image
+	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) IImage
 }
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
@@ -113,7 +113,7 @@ func (wc _WarpKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
-func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) Image {
+func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }

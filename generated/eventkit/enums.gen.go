@@ -39,21 +39,12 @@ type EKCalendarEventAvailabilityMask uint
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarType
 type EKCalendarType uint
 
-// EKEntityMask - A bitmask of 
-//
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityMask
-type EKEntityMask uint
-
 // EKEntityType - The type of entities allowed for a source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityType
 type EKEntityType uint
 
 const (
-	// EKEntityTypeEvent - Represents an event.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityType/event
-	EKEntityTypeEvent EKEntityType = 0
 	// EKEntityTypeReminder - Represents a reminder.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEntityType/reminder
@@ -224,13 +215,6 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventAvailability
 type EKEventAvailability uint
 
-const (
-	// EKEventAvailabilityNotSupported - Availability settings are not supported by the event’s calendar.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventAvailability/notSupported
-	EKEventAvailabilityNotSupported EKEventAvailability = 0
-)
-
 // EKEventStatus - The event’s status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStatus
@@ -250,41 +234,6 @@ type EKParticipantScheduleStatus uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus
 type EKParticipantStatus uint
-
-const (
-	// EKParticipantStatusAccepted - The participant has accepted the event.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/accepted
-	EKParticipantStatusAccepted EKParticipantStatus = 0
-	// EKParticipantStatusCompleted - The participant’s event has completed.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/completed
-	EKParticipantStatusCompleted EKParticipantStatus = 0
-	// EKParticipantStatusDeclined - The participant has declined the event.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/declined
-	EKParticipantStatusDeclined EKParticipantStatus = 0
-	// EKParticipantStatusDelegated - The participant has delegated attendance to another participant.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/delegated
-	EKParticipantStatusDelegated EKParticipantStatus = 0
-	// EKParticipantStatusInProcess - The participant’s event is currently in process.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/inProcess
-	EKParticipantStatusInProcess EKParticipantStatus = 0
-	// EKParticipantStatusPending - The participant has yet to respond to the event.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/pending
-	EKParticipantStatusPending EKParticipantStatus = 0
-	// EKParticipantStatusTentative - The participant’s attendance status is tentative.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/tentative
-	EKParticipantStatusTentative EKParticipantStatus = 0
-	// EKParticipantStatusUnknown - The participant’s attendance status is unknown.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipantStatus/unknown
-	EKParticipantStatusUnknown EKParticipantStatus = 0
-)
 
 // EKParticipantType - The type of participant.
 //
@@ -328,34 +277,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKFriday
 	EKFriday EKWeekday = 0
-	// EKMonday - The value for Monday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKMonday
-	EKMonday EKWeekday = 0
-	// EKSaturday - The value for Saturday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKSaturday
-	EKSaturday EKWeekday = 0
-	// EKSunday - The value for Sunday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKSunday
-	EKSunday EKWeekday = 0
-	// EKThursday - The value for Thursday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKThursday
-	EKThursday EKWeekday = 0
 	// EKTuesday - The value for Tuesday.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKTuesday
 	EKTuesday EKWeekday = 0
-	// EKWednesday - The value for Wednesday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/EKWednesday
-	EKWednesday EKWeekday = 0
-	// EKWeekdayTuesday - The value for Tuesday.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKWeekday/tuesday
-	EKWeekdayTuesday EKWeekday = 0
 )
 
 

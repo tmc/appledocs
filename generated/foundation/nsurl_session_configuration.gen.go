@@ -30,74 +30,76 @@ type _URLSessionConfigurationClass struct {
 // An interface definition for the [URLSessionConfiguration] class.
 type IURLSessionConfiguration interface {
 	objectivec.IObject
-	ProxyConfigurations() []objectivec.IObject
-	SetProxyConfigurations(value []objectivec.IObject)
+	// properties:
+	ProxyConfigurations() []objectivec.IObject /* already interface */
+	SetProxyConfigurations(value []objectivec.IObject /* already interface */)
 	ConnectionProxyDictionary() objc.ID
 	SetConnectionProxyDictionary(value objc.ID)
-	HTTPCookieAcceptPolicy() unsafe.Pointer
-	SetHTTPCookieAcceptPolicy(value unsafe.Pointer)
+	HTTPCookieAcceptPolicy() HTTPCookieAcceptPolicy /* foo */
+	SetHTTPCookieAcceptPolicy(value HTTPCookieAcceptPolicy /* foo */)
 	HTTPCookieStorage() IHTTPCookieStorage
 	SetHTTPCookieStorage(value IHTTPCookieStorage)
-	HTTPMaximumConnectionsPerHost() int
-	SetHTTPMaximumConnectionsPerHost(value int)
-	HTTPShouldSetCookies() bool
-	SetHTTPShouldSetCookies(value bool)
-	HTTPShouldUsePipelining() bool
-	SetHTTPShouldUsePipelining(value bool)
-	MultipathServiceType() NSURLSessionMultipathServiceType
-	SetMultipathServiceType(value NSURLSessionMultipathServiceType)
-	SharedContainerIdentifier() string
-	SetSharedContainerIdentifier(value string)
-	UsesClassicLoadingMode() bool
-	SetUsesClassicLoadingMode(value bool)
-	WaitsForConnectivity() bool
-	SetWaitsForConnectivity(value bool)
+	HTTPMaximumConnectionsPerHost() int /* primitive/slice/pointer */
+	SetHTTPMaximumConnectionsPerHost(value int /* primitive/slice/pointer */)
+	HTTPShouldSetCookies() bool /* primitive/slice/pointer */
+	SetHTTPShouldSetCookies(value bool /* primitive/slice/pointer */)
+	HTTPShouldUsePipelining() bool /* primitive/slice/pointer */
+	SetHTTPShouldUsePipelining(value bool /* primitive/slice/pointer */)
+	MultipathServiceType() URLSessionMultipathServiceType
+	SetMultipathServiceType(value URLSessionMultipathServiceType)
+	SharedContainerIdentifier() string /* primitive/slice/pointer */
+	SetSharedContainerIdentifier(value string /* primitive/slice/pointer */)
+	TLSMinimumSupportedProtocolVersion() unsafe.Pointer
+	SetTLSMinimumSupportedProtocolVersion(value unsafe.Pointer)
+	UsesClassicLoadingMode() bool /* primitive/slice/pointer */
+	SetUsesClassicLoadingMode(value bool /* primitive/slice/pointer */)
+	WaitsForConnectivity() bool /* primitive/slice/pointer */
+	SetWaitsForConnectivity(value bool /* primitive/slice/pointer */)
 	Configuration() IURLSessionConfiguration
 	SetConfiguration(value IURLSessionConfiguration)
-	AllowsCellularAccess() bool
-	SetAllowsCellularAccess(value bool)
-	AllowsConstrainedNetworkAccess() bool
-	SetAllowsConstrainedNetworkAccess(value bool)
-	AllowsExpensiveNetworkAccess() bool
-	SetAllowsExpensiveNetworkAccess(value bool)
-	AllowsUltraConstrainedNetworkAccess() bool
-	SetAllowsUltraConstrainedNetworkAccess(value bool)
-	EnablesEarlyData() bool
-	SetEnablesEarlyData(value bool)
+	AllowsCellularAccess() bool /* primitive/slice/pointer */
+	SetAllowsCellularAccess(value bool /* primitive/slice/pointer */)
+	AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer */
+	SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer */)
+	AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer */
+	SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer */)
+	AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer */
+	SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer */)
+	EnablesEarlyData() bool /* primitive/slice/pointer */
+	SetEnablesEarlyData(value bool /* primitive/slice/pointer */)
 	HttpAdditionalHeaders() unsafe.Pointer
 	SetHttpAdditionalHeaders(value unsafe.Pointer)
-	Identifier() string
-	SetIdentifier(value string)
-	IsDiscretionary() bool
-	SetIsDiscretionary(value bool)
+	Identifier() string /* primitive/slice/pointer */
+	SetIdentifier(value string /* primitive/slice/pointer */)
+	IsDiscretionary() bool /* primitive/slice/pointer */
+	SetIsDiscretionary(value bool /* primitive/slice/pointer */)
 	NetworkServiceType() unsafe.Pointer
 	SetNetworkServiceType(value unsafe.Pointer)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
 	RequestCachePolicy() unsafe.Pointer
 	SetRequestCachePolicy(value unsafe.Pointer)
-	RequiresDNSSECValidation() bool
-	SetRequiresDNSSECValidation(value bool)
-	SessionSendsLaunchEvents() bool
-	SetSessionSendsLaunchEvents(value bool)
-	ShouldUseExtendedBackgroundIdleMode() bool
-	SetShouldUseExtendedBackgroundIdleMode(value bool)
-	TimeoutIntervalForRequest() TimeInterval
-	SetTimeoutIntervalForRequest(value TimeInterval)
-	TimeoutIntervalForResource() TimeInterval
-	SetTimeoutIntervalForResource(value TimeInterval)
+	RequiresDNSSECValidation() bool /* primitive/slice/pointer */
+	SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer */)
+	SessionSendsLaunchEvents() bool /* primitive/slice/pointer */
+	SetSessionSendsLaunchEvents(value bool /* primitive/slice/pointer */)
+	ShouldUseExtendedBackgroundIdleMode() bool /* primitive/slice/pointer */
+	SetShouldUseExtendedBackgroundIdleMode(value bool /* primitive/slice/pointer */)
+	TimeoutIntervalForRequest() TimeInterval /* foo */
+	SetTimeoutIntervalForRequest(value TimeInterval /* foo */)
+	TimeoutIntervalForResource() TimeInterval /* foo */
+	SetTimeoutIntervalForResource(value TimeInterval /* foo */)
 	TlsMaximumSupportedProtocol() unsafe.Pointer
 	SetTlsMaximumSupportedProtocol(value unsafe.Pointer)
 	TlsMaximumSupportedProtocolVersion() unsafe.Pointer
 	SetTlsMaximumSupportedProtocolVersion(value unsafe.Pointer)
 	TlsMinimumSupportedProtocol() unsafe.Pointer
 	SetTlsMinimumSupportedProtocol(value unsafe.Pointer)
-	TlsMinimumSupportedProtocolVersion() unsafe.Pointer
-	SetTlsMinimumSupportedProtocolVersion(value unsafe.Pointer)
 	UrlCache() IURLCache
 	SetUrlCache(value IURLCache)
 	UrlCredentialStorage() IURLCredentialStorage
 	SetUrlCredentialStorage(value IURLCredentialStorage)
+	// methods:
 }
 
 // A configuration object that defines behavior and policies for a URL session.
@@ -157,7 +159,7 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) IURLSessionConfiguration {
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string /* primitive/slice/pointer */) IURLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), objc.String(identifier))
 	return rv
 }
@@ -185,7 +187,7 @@ func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() URLSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) ProxyConfigurations() []objectivec.IObject {
+func (u_ URLSessionConfiguration) ProxyConfigurations() []objectivec.IObject /* already interface */ {
 	rv := objc.Send[[]objectivec.IObject](u_.ID, objc.Sel("proxyConfigurations"))
 	return rv
 }
@@ -195,7 +197,7 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) SetProxyConfigurations(value []objectivec.IObject) {
+func (u_ URLSessionConfiguration) SetProxyConfigurations(value []objectivec.IObject /* already interface */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -253,8 +255,8 @@ func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() IURLSessionCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieAcceptPolicy
-func (u_ URLSessionConfiguration) HTTPCookieAcceptPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("HTTPCookieAcceptPolicy"))
+func (u_ URLSessionConfiguration) HTTPCookieAcceptPolicy() HTTPCookieAcceptPolicy /* foo */ {
+	rv := objc.Send[HTTPCookieAcceptPolicy](u_.ID, objc.Sel("HTTPCookieAcceptPolicy"))
 	return rv
 }
 
@@ -263,7 +265,7 @@ func (u_ URLSessionConfiguration) HTTPCookieAcceptPolicy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieAcceptPolicy
-func (u_ URLSessionConfiguration) SetHTTPCookieAcceptPolicy(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetHTTPCookieAcceptPolicy(value HTTPCookieAcceptPolicy /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPCookieAcceptPolicy:"), value)
 }
 
@@ -291,7 +293,7 @@ func (u_ URLSessionConfiguration) SetHTTPCookieStorage(value IHTTPCookieStorage)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpMaximumConnectionsPerHost
-func (u_ URLSessionConfiguration) HTTPMaximumConnectionsPerHost() int {
+func (u_ URLSessionConfiguration) HTTPMaximumConnectionsPerHost() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("HTTPMaximumConnectionsPerHost"))
 	return rv
 }
@@ -301,7 +303,7 @@ func (u_ URLSessionConfiguration) HTTPMaximumConnectionsPerHost() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpMaximumConnectionsPerHost
-func (u_ URLSessionConfiguration) SetHTTPMaximumConnectionsPerHost(value int) {
+func (u_ URLSessionConfiguration) SetHTTPMaximumConnectionsPerHost(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPMaximumConnectionsPerHost:"), value)
 }
 
@@ -310,7 +312,7 @@ func (u_ URLSessionConfiguration) SetHTTPMaximumConnectionsPerHost(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpShouldSetCookies
-func (u_ URLSessionConfiguration) HTTPShouldSetCookies() bool {
+func (u_ URLSessionConfiguration) HTTPShouldSetCookies() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("HTTPShouldSetCookies"))
 	return rv
 }
@@ -320,7 +322,7 @@ func (u_ URLSessionConfiguration) HTTPShouldSetCookies() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpShouldSetCookies
-func (u_ URLSessionConfiguration) SetHTTPShouldSetCookies(value bool) {
+func (u_ URLSessionConfiguration) SetHTTPShouldSetCookies(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPShouldSetCookies:"), value)
 }
 
@@ -329,7 +331,7 @@ func (u_ URLSessionConfiguration) SetHTTPShouldSetCookies(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpShouldUsePipelining
-func (u_ URLSessionConfiguration) HTTPShouldUsePipelining() bool {
+func (u_ URLSessionConfiguration) HTTPShouldUsePipelining() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("HTTPShouldUsePipelining"))
 	return rv
 }
@@ -339,7 +341,7 @@ func (u_ URLSessionConfiguration) HTTPShouldUsePipelining() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpShouldUsePipelining
-func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
+func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPShouldUsePipelining:"), value)
 }
 
@@ -348,7 +350,7 @@ func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) MultipathServiceType() NSURLSessionMultipathServiceType {
+func (u_ URLSessionConfiguration) MultipathServiceType() URLSessionMultipathServiceType {
 	rv := objc.Send[URLSessionMultipathServiceType](u_.ID, objc.Sel("multipathServiceType"))
 	return rv
 }
@@ -358,7 +360,7 @@ func (u_ URLSessionConfiguration) MultipathServiceType() NSURLSessionMultipathSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) SetMultipathServiceType(value NSURLSessionMultipathServiceType) {
+func (u_ URLSessionConfiguration) SetMultipathServiceType(value URLSessionMultipathServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMultipathServiceType:"), value)
 }
 
@@ -367,7 +369,7 @@ func (u_ URLSessionConfiguration) SetMultipathServiceType(value NSURLSessionMult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
+func (u_ URLSessionConfiguration) SharedContainerIdentifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("sharedContainerIdentifier"))
 	return rv
 }
@@ -377,14 +379,33 @@ func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value string) {
+func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), objc.String(value))
+}
+
+
+// The minimum TLS protocol version that the client should accept when making connections in this session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/tlsMinimumSupportedProtocolVersion
+func (u_ URLSessionConfiguration) TLSMinimumSupportedProtocolVersion() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("TLSMinimumSupportedProtocolVersion"))
+	return rv
+}
+
+
+// The minimum TLS protocol version that the client should accept when making connections in this session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/tlsMinimumSupportedProtocolVersion
+func (u_ URLSessionConfiguration) SetTLSMinimumSupportedProtocolVersion(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTLSMinimumSupportedProtocolVersion:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/usesClassicLoadingMode
-func (u_ URLSessionConfiguration) UsesClassicLoadingMode() bool {
+func (u_ URLSessionConfiguration) UsesClassicLoadingMode() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("usesClassicLoadingMode"))
 	return rv
 }
@@ -392,7 +413,7 @@ func (u_ URLSessionConfiguration) UsesClassicLoadingMode() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/usesClassicLoadingMode
-func (u_ URLSessionConfiguration) SetUsesClassicLoadingMode(value bool) {
+func (u_ URLSessionConfiguration) SetUsesClassicLoadingMode(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUsesClassicLoadingMode:"), value)
 }
 
@@ -401,7 +422,7 @@ func (u_ URLSessionConfiguration) SetUsesClassicLoadingMode(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/waitsForConnectivity
-func (u_ URLSessionConfiguration) WaitsForConnectivity() bool {
+func (u_ URLSessionConfiguration) WaitsForConnectivity() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("waitsForConnectivity"))
 	return rv
 }
@@ -411,7 +432,7 @@ func (u_ URLSessionConfiguration) WaitsForConnectivity() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/waitsForConnectivity
-func (u_ URLSessionConfiguration) SetWaitsForConnectivity(value bool) {
+func (u_ URLSessionConfiguration) SetWaitsForConnectivity(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setWaitsForConnectivity:"), value)
 }
 
@@ -439,7 +460,7 @@ func (u_ URLSessionConfiguration) SetConfiguration(value IURLSessionConfiguratio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowscellularaccess
-func (u_ URLSessionConfiguration) AllowsCellularAccess() bool {
+func (u_ URLSessionConfiguration) AllowsCellularAccess() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
@@ -449,7 +470,7 @@ func (u_ URLSessionConfiguration) AllowsCellularAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowscellularaccess
-func (u_ URLSessionConfiguration) SetAllowsCellularAccess(value bool) {
+func (u_ URLSessionConfiguration) SetAllowsCellularAccess(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
@@ -458,7 +479,7 @@ func (u_ URLSessionConfiguration) SetAllowsCellularAccess(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess
-func (u_ URLSessionConfiguration) AllowsConstrainedNetworkAccess() bool {
+func (u_ URLSessionConfiguration) AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
 	return rv
 }
@@ -468,7 +489,7 @@ func (u_ URLSessionConfiguration) AllowsConstrainedNetworkAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess
-func (u_ URLSessionConfiguration) SetAllowsConstrainedNetworkAccess(value bool) {
+func (u_ URLSessionConfiguration) SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
 }
 
@@ -477,7 +498,7 @@ func (u_ URLSessionConfiguration) SetAllowsConstrainedNetworkAccess(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess
-func (u_ URLSessionConfiguration) AllowsExpensiveNetworkAccess() bool {
+func (u_ URLSessionConfiguration) AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
 	return rv
 }
@@ -487,14 +508,14 @@ func (u_ URLSessionConfiguration) AllowsExpensiveNetworkAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess
-func (u_ URLSessionConfiguration) SetAllowsExpensiveNetworkAccess(value bool) {
+func (u_ URLSessionConfiguration) SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
-func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool {
+func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
 	return rv
 }
@@ -502,14 +523,14 @@ func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
-func (u_ URLSessionConfiguration) SetAllowsUltraConstrainedNetworkAccess(value bool) {
+func (u_ URLSessionConfiguration) SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
-func (u_ URLSessionConfiguration) EnablesEarlyData() bool {
+func (u_ URLSessionConfiguration) EnablesEarlyData() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enablesEarlyData"))
 	return rv
 }
@@ -517,7 +538,7 @@ func (u_ URLSessionConfiguration) EnablesEarlyData() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/enablesearlydata
-func (u_ URLSessionConfiguration) SetEnablesEarlyData(value bool) {
+func (u_ URLSessionConfiguration) SetEnablesEarlyData(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEnablesEarlyData:"), value)
 }
 
@@ -545,7 +566,7 @@ func (u_ URLSessionConfiguration) SetHttpAdditionalHeaders(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/identifier
-func (u_ URLSessionConfiguration) Identifier() string {
+func (u_ URLSessionConfiguration) Identifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -555,7 +576,7 @@ func (u_ URLSessionConfiguration) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/identifier
-func (u_ URLSessionConfiguration) SetIdentifier(value string) {
+func (u_ URLSessionConfiguration) SetIdentifier(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -564,7 +585,7 @@ func (u_ URLSessionConfiguration) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/isdiscretionary
-func (u_ URLSessionConfiguration) IsDiscretionary() bool {
+func (u_ URLSessionConfiguration) IsDiscretionary() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isDiscretionary"))
 	return rv
 }
@@ -574,7 +595,7 @@ func (u_ URLSessionConfiguration) IsDiscretionary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/isdiscretionary
-func (u_ URLSessionConfiguration) SetIsDiscretionary(value bool) {
+func (u_ URLSessionConfiguration) SetIsDiscretionary(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDiscretionary:"), value)
 }
 
@@ -638,7 +659,7 @@ func (u_ URLSessionConfiguration) SetRequestCachePolicy(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
-func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool {
+func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
 	return rv
 }
@@ -646,7 +667,7 @@ func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
-func (u_ URLSessionConfiguration) SetRequiresDNSSECValidation(value bool) {
+func (u_ URLSessionConfiguration) SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
 }
 
@@ -655,7 +676,7 @@ func (u_ URLSessionConfiguration) SetRequiresDNSSECValidation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/sessionsendslaunchevents
-func (u_ URLSessionConfiguration) SessionSendsLaunchEvents() bool {
+func (u_ URLSessionConfiguration) SessionSendsLaunchEvents() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sessionSendsLaunchEvents"))
 	return rv
 }
@@ -665,7 +686,7 @@ func (u_ URLSessionConfiguration) SessionSendsLaunchEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/sessionsendslaunchevents
-func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
+func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionSendsLaunchEvents:"), value)
 }
 
@@ -674,7 +695,7 @@ func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/shoulduseextendedbackgroundidlemode
-func (u_ URLSessionConfiguration) ShouldUseExtendedBackgroundIdleMode() bool {
+func (u_ URLSessionConfiguration) ShouldUseExtendedBackgroundIdleMode() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("shouldUseExtendedBackgroundIdleMode"))
 	return rv
 }
@@ -684,7 +705,7 @@ func (u_ URLSessionConfiguration) ShouldUseExtendedBackgroundIdleMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/shoulduseextendedbackgroundidlemode
-func (u_ URLSessionConfiguration) SetShouldUseExtendedBackgroundIdleMode(value bool) {
+func (u_ URLSessionConfiguration) SetShouldUseExtendedBackgroundIdleMode(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setShouldUseExtendedBackgroundIdleMode:"), value)
 }
 
@@ -693,7 +714,7 @@ func (u_ URLSessionConfiguration) SetShouldUseExtendedBackgroundIdleMode(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforrequest
-func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
+func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForRequest"))
 	return rv
 }
@@ -703,7 +724,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforrequest
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value TimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -712,7 +733,7 @@ func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value TimeInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforresource
-func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
+func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForResource"))
 	return rv
 }
@@ -722,7 +743,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforresource
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value TimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 
@@ -781,25 +802,6 @@ func (u_ URLSessionConfiguration) TlsMinimumSupportedProtocol() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocol
 func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocol(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMinimumSupportedProtocol:"), value)
-}
-
-
-// The minimum TLS protocol version that the client should accept when making connections in this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocolversion
-func (u_ URLSessionConfiguration) TlsMinimumSupportedProtocolVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("tlsMinimumSupportedProtocolVersion"))
-	return rv
-}
-
-
-// The minimum TLS protocol version that the client should accept when making connections in this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsminimumsupportedprotocolversion
-func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocolVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMinimumSupportedProtocolVersion:"), value)
 }
 
 

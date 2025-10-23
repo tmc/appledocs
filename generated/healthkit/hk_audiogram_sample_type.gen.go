@@ -29,6 +29,8 @@ type _HKAudiogramSampleTypeClass struct {
 // An interface definition for the [HKAudiogramSampleType] class.
 type IHKAudiogramSampleType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that contain audiogram data.

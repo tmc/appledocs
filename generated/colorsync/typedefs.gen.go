@@ -3,26 +3,26 @@
 package colorsync
 
 // Type aliases and typedefs
-// CMMApplyTransformProc type alias
+// MApplyTransformProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMApplyTransformProc
 // CMMApplyTransformProc has base type: _Bool (*)(struct ColorSyncTransform *, unsigned long, unsigned long, unsigned long, void **, enum ColorSyncDataDepth, unsigned int, unsigned long, unsigned long, const void **, enum ColorSyncDataDepth, unsigned int, unsigned long, const struct __CFDictionary *)
-type CMMApplyTransformProc uintptr
-// CMMCreateTransformPropertyProc type alias
+type MApplyTransformProc uintptr
+// MCreateTransformPropertyProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMCreateTransformPropertyProc
 // CMMCreateTransformPropertyProc has base type: const void *(*)(struct ColorSyncTransform *, const void *, const struct __CFDictionary *)
-type CMMCreateTransformPropertyProc uintptr
-// CMMInitializeLinkProfileProc type alias
+type MCreateTransformPropertyProc uintptr
+// MInitializeLinkProfileProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMInitializeLinkProfileProc
 // CMMInitializeLinkProfileProc has base type: _Bool (*)(struct ColorSyncProfile *, const struct __CFArray *, const struct __CFDictionary *)
-type CMMInitializeLinkProfileProc uintptr
-// CMMInitializeTransformProc type alias
+type MInitializeLinkProfileProc uintptr
+// MInitializeTransformProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/CMMInitializeTransformProc
 // CMMInitializeTransformProc has base type: _Bool (*)(struct ColorSyncTransform *, const struct __CFArray *, const struct __CFDictionary *)
-type CMMInitializeTransformProc uintptr
+type MInitializeTransformProc uintptr
 // ColorSyncCMMIterateCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMIterateCallback

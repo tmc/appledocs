@@ -30,8 +30,8 @@ type _NSPredicateRuleClass struct {
 // An interface definition for the [NSPredicateRule] class.
 type INSPredicateRule interface {
 	IRule
-	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 	Predicate() foundation.Predicate
+	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 }
 
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.
@@ -93,7 +93,7 @@ func NewNSPredicateRule() NSPredicateRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
-func NewNSPredicateRuleWithPredicate(predicate foundation.IPredicate) NSPredicateRule {
+func NewNSPredicateRuleWithPredicate(predicate foundation.Predicate) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
 	rv.Autorelease()

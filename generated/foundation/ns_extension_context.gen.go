@@ -31,18 +31,20 @@ type _ExtensionContextClass struct {
 // An interface definition for the [ExtensionContext] class.
 type IExtensionContext interface {
 	objectivec.IObject
+	// properties:
 	HostedViewMaximumAllowedSize() coregraphics.CGSize
 	HostedViewMinimumAllowedSize() coregraphics.CGSize
 	InputItems() objc.ID
-	NotificationActions() []objectivec.IObject
-	SetNotificationActions(value []objectivec.IObject)
+	NotificationActions() []objectivec.IObject /* already interface */
+	SetNotificationActions(value []objectivec.IObject /* already interface */)
 	WidgetActiveDisplayMode() unsafe.Pointer
 	WidgetLargestAvailableDisplayMode() unsafe.Pointer
 	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
-	NSExtensionItemsAndErrorsKey() string
+	NSExtensionItemsAndErrorsKey() string /* primitive/slice/pointer */
+	// methods:
 	CancelRequestWithError(error_ IError)
 	CompleteRequestReturningItemsCompletionHandler(items objectivec.IObject, completionHandler unsafe.Pointer)
-	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary)
+	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary /* already interface */)
 	DismissNotificationContentExtension()
 	InterfaceParametersDescription() IString
 	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
@@ -125,7 +127,7 @@ func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary) {
+func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary /* already interface */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:setupInfo:"), broadcastURL, setupInfo)
 }
 
@@ -220,7 +222,7 @@ func (e_ ExtensionContext) InputItems() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
-func (e_ ExtensionContext) NotificationActions() []objectivec.IObject {
+func (e_ ExtensionContext) NotificationActions() []objectivec.IObject /* already interface */ {
 	rv := objc.Send[[]objectivec.IObject](e_.ID, objc.Sel("notificationActions"))
 	return rv
 }
@@ -228,7 +230,7 @@ func (e_ ExtensionContext) NotificationActions() []objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
-func (e_ ExtensionContext) SetNotificationActions(value []objectivec.IObject) {
+func (e_ ExtensionContext) SetNotificationActions(value []objectivec.IObject /* already interface */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -276,7 +278,7 @@ func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
-func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
+func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
 }

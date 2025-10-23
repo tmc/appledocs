@@ -30,6 +30,8 @@ type _mRFCOMMConnectionClass struct {
 // An interface definition for the [mRFCOMMConnection] class.
 type ImRFCOMMConnection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

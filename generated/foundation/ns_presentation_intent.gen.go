@@ -30,6 +30,8 @@ type _PresentationIntentClass struct {
 // An interface definition for the [PresentationIntent] class.
 type IPresentationIntent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables.

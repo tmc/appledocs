@@ -30,10 +30,10 @@ type _CXSetTranslatingCallActionClass struct {
 // An interface definition for the [CXSetTranslatingCallAction] class.
 type ICXSetTranslatingCallAction interface {
 	ICXCallAction
-	FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine)
 	IsTranslating() bool
 	LocalLanguage() string
 	RemoteLanguage() string
+	FulfillUsingTranslationEngine(translationEngine CXTranslationEngine)
 }
 
 // An encapsulation of the act of translating a call.
@@ -93,7 +93,7 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
-func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.IUUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.UUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
-func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.Coder) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTra
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/fulfill(using:)
-func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine) {
+func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine CXTranslationEngine) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillUsingTranslationEngine:"), translationEngine)
 }
 

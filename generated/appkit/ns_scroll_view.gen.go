@@ -31,37 +31,30 @@ type _ScrollViewClass struct {
 // An interface definition for the [ScrollView] class.
 type IScrollView interface {
 	IView
-	AddFloatingSubviewForAxis(view IView, axis IEventGestureAxis)
-	FlashScrollers()
-	MagnifyToFitRect(rect coregraphics.CGRect)
-	ReflectScrolledClipView(cView IClipView)
-	ScrollWheel(event IEvent)
-	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
-	Tile()
 	AllowsMagnification() bool
 	SetAllowsMagnification(value bool)
 	AutohidesScrollers() bool
 	SetAutohidesScrollers(value bool)
 	AutomaticallyAdjustsContentInsets() bool
 	SetAutomaticallyAdjustsContentInsets(value bool)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	BorderType() BorderType
-	SetBorderType(value BorderType)
+	BorderType() unsafe.Pointer
+	SetBorderType(value unsafe.Pointer)
 	ContentInsets() unsafe.Pointer
 	SetContentInsets(value unsafe.Pointer)
 	ContentSize() coregraphics.CGSize
-	ContentView() NSClipView
+	ContentView() IClipView
 	SetContentView(value IClipView)
-	DocumentCursor() NSCursor
+	DocumentCursor() ICursor
 	SetDocumentCursor(value ICursor)
-	DocumentView() NSView
+	DocumentView() IView
 	SetDocumentView(value IView)
 	DocumentVisibleRect() coregraphics.CGRect
 	DrawsBackground() bool
 	SetDrawsBackground(value bool)
-	FindBarPosition() ScrollViewFindBarPosition
-	SetFindBarPosition(value IScrollViewFindBarPosition)
+	FindBarPosition() NSScrollViewFindBarPosition
+	SetFindBarPosition(value NSScrollViewFindBarPosition)
 	HasHorizontalRuler() bool
 	SetHasHorizontalRuler(value bool)
 	HasHorizontalScroller() bool
@@ -74,12 +67,12 @@ type IScrollView interface {
 	SetHorizontalLineScroll(value float64)
 	HorizontalPageScroll() float64
 	SetHorizontalPageScroll(value float64)
-	HorizontalRulerView() NSRulerView
+	HorizontalRulerView() IRulerView
 	SetHorizontalRulerView(value IRulerView)
-	HorizontalScrollElasticity() ScrollElasticity
-	SetHorizontalScrollElasticity(value IScrollElasticity)
-	HorizontalScroller() NSScroller
-	SetHorizontalScroller(value IScroller)
+	HorizontalScrollElasticity() NSScrollElasticity
+	SetHorizontalScrollElasticity(value NSScrollElasticity)
+	HorizontalScroller() Scroller
+	SetHorizontalScroller(value Scroller)
 	LineScroll() float64
 	SetLineScroll(value float64)
 	Magnification() float64
@@ -94,8 +87,8 @@ type IScrollView interface {
 	SetRulersVisible(value bool)
 	ScrollerInsets() unsafe.Pointer
 	SetScrollerInsets(value unsafe.Pointer)
-	ScrollerKnobStyle() unsafe.Pointer
-	SetScrollerKnobStyle(value unsafe.Pointer)
+	ScrollerKnobStyle() NSScrollerKnobStyle
+	SetScrollerKnobStyle(value NSScrollerKnobStyle)
 	ScrollerStyle() unsafe.Pointer
 	SetScrollerStyle(value unsafe.Pointer)
 	ScrollsDynamically() bool
@@ -106,12 +99,19 @@ type IScrollView interface {
 	SetVerticalLineScroll(value float64)
 	VerticalPageScroll() float64
 	SetVerticalPageScroll(value float64)
-	VerticalRulerView() NSRulerView
+	VerticalRulerView() IRulerView
 	SetVerticalRulerView(value IRulerView)
-	VerticalScrollElasticity() ScrollElasticity
-	SetVerticalScrollElasticity(value IScrollElasticity)
-	VerticalScroller() NSScroller
-	SetVerticalScroller(value IScroller)
+	VerticalScrollElasticity() NSScrollElasticity
+	SetVerticalScrollElasticity(value NSScrollElasticity)
+	VerticalScroller() Scroller
+	SetVerticalScroller(value Scroller)
+	AddFloatingSubviewForAxis(view IView, axis NSEventGestureAxis)
+	FlashScrollers()
+	MagnifyToFitRect(rect coregraphics.CGRect)
+	ReflectScrolledClipView(cView IClipView)
+	ScrollWheel(event IEvent)
+	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
+	Tile()
 }
 
 // A view that displays a portion of a document view and provides scroll bars that allow the user to move the document view within the scroll view.
@@ -171,7 +171,7 @@ func NewScrollView() ScrollView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/init(coder:)
-func NewScrollViewWithCoder(coder foundation.ICoder) ScrollView {
+func NewScrollViewWithCoder(coder foundation.Coder) ScrollView {
 	instance := getScrollViewClass().Alloc()
 	rv := objc.Send[ScrollView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -194,7 +194,7 @@ func NewScrollViewWithFrame(frameRect coregraphics.CGRect) ScrollView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentSize(forFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize IControlSize, scrollerStyle unsafe.Pointer) coregraphics.CGSize {
+func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(fSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), fSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
 	return rv
 }
@@ -204,7 +204,7 @@ func (sc _ScrollViewClass) ContentSizeForFrameSizeHorizontalScrollerClassVertica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize coregraphics.CGSize, hFlag bool, vFlag bool, type_ BorderType) coregraphics.CGSize {
+func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVerticalScrollerBorderType(fSize coregraphics.CGSize, hFlag bool, vFlag bool, type_ unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), fSize, hFlag, vFlag, type_)
 	return rv
 }
@@ -214,7 +214,7 @@ func (sc _ScrollViewClass) ContentSizeForFrameSizeHasHorizontalScrollerHasVertic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/frameSize(forContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)
-func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ BorderType, controlSize IControlSize, scrollerStyle unsafe.Pointer) coregraphics.CGSize {
+func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVerticalScrollerClassBorderTypeControlSizeScrollerStyle(cSize coregraphics.CGSize, horizontalScrollerClass objc.Class, verticalScrollerClass objc.Class, type_ unsafe.Pointer, controlSize unsafe.Pointer, scrollerStyle unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), cSize, horizontalScrollerClass, verticalScrollerClass, type_, controlSize, scrollerStyle)
 	return rv
 }
@@ -224,7 +224,7 @@ func (sc _ScrollViewClass) FrameSizeForContentSizeHorizontalScrollerClassVertica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:
-func (sc _ScrollViewClass) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize coregraphics.CGSize, hFlag bool, vFlag bool, type_ BorderType) coregraphics.CGSize {
+func (sc _ScrollViewClass) FrameSizeForContentSizeHasHorizontalScrollerHasVerticalScrollerBorderType(cSize coregraphics.CGSize, hFlag bool, vFlag bool, type_ unsafe.Pointer) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(sc.class), objc.Sel("frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), cSize, hFlag, vFlag, type_)
 	return rv
 }
@@ -243,7 +243,7 @@ func (sc _ScrollViewClass) RulerViewClass() objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/addFloatingSubview(_:for:)
-func (s_ ScrollView) AddFloatingSubviewForAxis(view IView, axis IEventGestureAxis) {
+func (s_ ScrollView) AddFloatingSubviewForAxis(view IView, axis NSEventGestureAxis) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addFloatingSubview:forAxis:"), view, axis)
 }
 
@@ -363,8 +363,8 @@ func (s_ ScrollView) SetAutomaticallyAdjustsContentInsets(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/backgroundColor
-func (s_ ScrollView) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("backgroundColor"))
+func (s_ ScrollView) BackgroundColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -382,8 +382,8 @@ func (s_ ScrollView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/borderType
-func (s_ ScrollView) BorderType() BorderType {
-	rv := objc.Send[BorderType](s_.ID, objc.Sel("borderType"))
+func (s_ ScrollView) BorderType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("borderType"))
 	return rv
 }
 
@@ -392,7 +392,7 @@ func (s_ ScrollView) BorderType() BorderType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/borderType
-func (s_ ScrollView) SetBorderType(value BorderType) {
+func (s_ ScrollView) SetBorderType(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderType:"), value)
 }
 
@@ -430,8 +430,8 @@ func (s_ ScrollView) ContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/contentView
-func (s_ ScrollView) ContentView() NSClipView {
-	rv := objc.Send[NSClipView](s_.ID, objc.Sel("contentView"))
+func (s_ ScrollView) ContentView() IClipView {
+	rv := objc.Send[ClipView](s_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -449,8 +449,8 @@ func (s_ ScrollView) SetContentView(value IClipView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/documentCursor
-func (s_ ScrollView) DocumentCursor() NSCursor {
-	rv := objc.Send[NSCursor](s_.ID, objc.Sel("documentCursor"))
+func (s_ ScrollView) DocumentCursor() ICursor {
+	rv := objc.Send[Cursor](s_.ID, objc.Sel("documentCursor"))
 	return rv
 }
 
@@ -468,8 +468,8 @@ func (s_ ScrollView) SetDocumentCursor(value ICursor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/documentView
-func (s_ ScrollView) DocumentView() NSView {
-	rv := objc.Send[NSView](s_.ID, objc.Sel("documentView"))
+func (s_ ScrollView) DocumentView() IView {
+	rv := objc.Send[View](s_.ID, objc.Sel("documentView"))
 	return rv
 }
 
@@ -516,8 +516,8 @@ func (s_ ScrollView) SetDrawsBackground(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/findBarPosition-swift.property
-func (s_ ScrollView) FindBarPosition() ScrollViewFindBarPosition {
-	rv := objc.Send[ScrollViewFindBarPosition](s_.ID, objc.Sel("findBarPosition"))
+func (s_ ScrollView) FindBarPosition() NSScrollViewFindBarPosition {
+	rv := objc.Send[NSScrollViewFindBarPosition](s_.ID, objc.Sel("findBarPosition"))
 	return rv
 }
 
@@ -526,7 +526,7 @@ func (s_ ScrollView) FindBarPosition() ScrollViewFindBarPosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/findBarPosition-swift.property
-func (s_ ScrollView) SetFindBarPosition(value IScrollViewFindBarPosition) {
+func (s_ ScrollView) SetFindBarPosition(value NSScrollViewFindBarPosition) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFindBarPosition:"), value)
 }
 
@@ -649,8 +649,8 @@ func (s_ ScrollView) SetHorizontalPageScroll(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/horizontalRulerView
-func (s_ ScrollView) HorizontalRulerView() NSRulerView {
-	rv := objc.Send[NSRulerView](s_.ID, objc.Sel("horizontalRulerView"))
+func (s_ ScrollView) HorizontalRulerView() IRulerView {
+	rv := objc.Send[RulerView](s_.ID, objc.Sel("horizontalRulerView"))
 	return rv
 }
 
@@ -668,8 +668,8 @@ func (s_ ScrollView) SetHorizontalRulerView(value IRulerView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/horizontalScrollElasticity
-func (s_ ScrollView) HorizontalScrollElasticity() ScrollElasticity {
-	rv := objc.Send[ScrollElasticity](s_.ID, objc.Sel("horizontalScrollElasticity"))
+func (s_ ScrollView) HorizontalScrollElasticity() NSScrollElasticity {
+	rv := objc.Send[NSScrollElasticity](s_.ID, objc.Sel("horizontalScrollElasticity"))
 	return rv
 }
 
@@ -678,7 +678,7 @@ func (s_ ScrollView) HorizontalScrollElasticity() ScrollElasticity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/horizontalScrollElasticity
-func (s_ ScrollView) SetHorizontalScrollElasticity(value IScrollElasticity) {
+func (s_ ScrollView) SetHorizontalScrollElasticity(value NSScrollElasticity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHorizontalScrollElasticity:"), value)
 }
 
@@ -687,8 +687,8 @@ func (s_ ScrollView) SetHorizontalScrollElasticity(value IScrollElasticity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/horizontalScroller
-func (s_ ScrollView) HorizontalScroller() NSScroller {
-	rv := objc.Send[NSScroller](s_.ID, objc.Sel("horizontalScroller"))
+func (s_ ScrollView) HorizontalScroller() Scroller {
+	rv := objc.Send[Scroller](s_.ID, objc.Sel("horizontalScroller"))
 	return rv
 }
 
@@ -697,7 +697,7 @@ func (s_ ScrollView) HorizontalScroller() NSScroller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/horizontalScroller
-func (s_ ScrollView) SetHorizontalScroller(value IScroller) {
+func (s_ ScrollView) SetHorizontalScroller(value Scroller) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHorizontalScroller:"), value)
 }
 
@@ -858,8 +858,8 @@ func (s_ ScrollView) SetScrollerInsets(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/scrollerKnobStyle
-func (s_ ScrollView) ScrollerKnobStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrollerKnobStyle"))
+func (s_ ScrollView) ScrollerKnobStyle() NSScrollerKnobStyle {
+	rv := objc.Send[NSScrollerKnobStyle](s_.ID, objc.Sel("scrollerKnobStyle"))
 	return rv
 }
 
@@ -868,7 +868,7 @@ func (s_ ScrollView) ScrollerKnobStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/scrollerKnobStyle
-func (s_ ScrollView) SetScrollerKnobStyle(value unsafe.Pointer) {
+func (s_ ScrollView) SetScrollerKnobStyle(value NSScrollerKnobStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollerKnobStyle:"), value)
 }
 
@@ -972,8 +972,8 @@ func (s_ ScrollView) SetVerticalPageScroll(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/verticalRulerView
-func (s_ ScrollView) VerticalRulerView() NSRulerView {
-	rv := objc.Send[NSRulerView](s_.ID, objc.Sel("verticalRulerView"))
+func (s_ ScrollView) VerticalRulerView() IRulerView {
+	rv := objc.Send[RulerView](s_.ID, objc.Sel("verticalRulerView"))
 	return rv
 }
 
@@ -991,8 +991,8 @@ func (s_ ScrollView) SetVerticalRulerView(value IRulerView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/verticalScrollElasticity
-func (s_ ScrollView) VerticalScrollElasticity() ScrollElasticity {
-	rv := objc.Send[ScrollElasticity](s_.ID, objc.Sel("verticalScrollElasticity"))
+func (s_ ScrollView) VerticalScrollElasticity() NSScrollElasticity {
+	rv := objc.Send[NSScrollElasticity](s_.ID, objc.Sel("verticalScrollElasticity"))
 	return rv
 }
 
@@ -1001,7 +1001,7 @@ func (s_ ScrollView) VerticalScrollElasticity() ScrollElasticity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/verticalScrollElasticity
-func (s_ ScrollView) SetVerticalScrollElasticity(value IScrollElasticity) {
+func (s_ ScrollView) SetVerticalScrollElasticity(value NSScrollElasticity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVerticalScrollElasticity:"), value)
 }
 
@@ -1010,8 +1010,8 @@ func (s_ ScrollView) SetVerticalScrollElasticity(value IScrollElasticity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/verticalScroller
-func (s_ ScrollView) VerticalScroller() NSScroller {
-	rv := objc.Send[NSScroller](s_.ID, objc.Sel("verticalScroller"))
+func (s_ ScrollView) VerticalScroller() Scroller {
+	rv := objc.Send[Scroller](s_.ID, objc.Sel("verticalScroller"))
 	return rv
 }
 
@@ -1020,7 +1020,7 @@ func (s_ ScrollView) VerticalScroller() NSScroller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/verticalScroller
-func (s_ ScrollView) SetVerticalScroller(value IScroller) {
+func (s_ ScrollView) SetVerticalScroller(value Scroller) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVerticalScroller:"), value)
 }
 

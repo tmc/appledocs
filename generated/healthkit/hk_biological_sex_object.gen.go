@@ -30,7 +30,10 @@ type _HKBiologicalSexObjectClass struct {
 // An interface definition for the [HKBiologicalSexObject] class.
 type IHKBiologicalSexObject interface {
 	objectivec.IObject
+	// properties:
 	BiologicalSex() HKBiologicalSex
+	SetBiologicalSex(value HKBiologicalSex)
+	// methods:
 }
 
 // This class acts as a wrapper for the enumeration.
@@ -87,10 +90,19 @@ func NewHKBiologicalSexObject() HKBiologicalSexObject {
 // The biological sex.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject/biologicalSex
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbiologicalsexobject/biologicalsex
 func (h_ HKBiologicalSexObject) BiologicalSex() HKBiologicalSex {
 	rv := objc.Send[HKBiologicalSex](h_.ID, objc.Sel("biologicalSex"))
 	return rv
+}
+
+
+// The biological sex.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkbiologicalsexobject/biologicalsex
+func (h_ HKBiologicalSexObject) SetBiologicalSex(value HKBiologicalSex) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBiologicalSex:"), value)
 }
 
 

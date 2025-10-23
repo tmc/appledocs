@@ -47,7 +47,7 @@ type ILeaderboard interface {
 	LeaderboardDescription() string
 	SetLeaderboardDescription(value string)
 	NextStartDate() foundation.Date
-	SetNextStartDate(value foundation.IDate)
+	SetNextStartDate(value foundation.Date)
 	ReleaseState() unsafe.Pointer
 	SetReleaseState(value unsafe.Pointer)
 	Title() string
@@ -266,7 +266,7 @@ func (l_ Leaderboard) NextStartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-func (l_ Leaderboard) SetNextStartDate(value foundation.IDate) {
+func (l_ Leaderboard) SetNextStartDate(value foundation.Date) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNextStartDate:"), value)
 }
 

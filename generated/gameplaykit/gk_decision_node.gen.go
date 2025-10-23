@@ -31,8 +31,8 @@ type _DecisionNodeClass struct {
 // An interface definition for the [DecisionNode] class.
 type IDecisionNode interface {
 	objectivec.IObject
-	CreateBranchWithPredicateAttribute(predicate foundation.IPredicate, attribute objectivec.IObject) unsafe.Pointer
-	CreateBranchWithValueAttribute(value foundation.INumber, attribute objectivec.IObject) unsafe.Pointer
+	CreateBranchWithPredicateAttribute(predicate foundation.Predicate, attribute objectivec.IObject) unsafe.Pointer
+	CreateBranchWithValueAttribute(value foundation.Number, attribute objectivec.IObject) unsafe.Pointer
 	CreateBranchWithWeightAttribute(weight int, attribute objectivec.IObject) unsafe.Pointer
 }
 
@@ -93,7 +93,7 @@ func NewDecisionNode() DecisionNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(predicate:attribute:)
-func (d_ DecisionNode) CreateBranchWithPredicateAttribute(predicate foundation.IPredicate, attribute objectivec.IObject) unsafe.Pointer {
+func (d_ DecisionNode) CreateBranchWithPredicateAttribute(predicate foundation.Predicate, attribute objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithPredicate:attribute:"), predicate, attribute)
 	return rv
 }
@@ -103,7 +103,7 @@ func (d_ DecisionNode) CreateBranchWithPredicateAttribute(predicate foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionNode/createBranch(value:attribute:)
-func (d_ DecisionNode) CreateBranchWithValueAttribute(value foundation.INumber, attribute objectivec.IObject) unsafe.Pointer {
+func (d_ DecisionNode) CreateBranchWithValueAttribute(value foundation.Number, attribute objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("createBranchWithValue:attribute:"), value, attribute)
 	return rv
 }

@@ -30,10 +30,12 @@ type _LockClass struct {
 // An interface definition for the [Lock] class.
 type ILock interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	LockBeforeDate(limit IDate) bool
-	TryLock() bool
+	// properties:
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	// methods:
+	LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */
+	TryLock() bool /* primitive/slice/pointer */
 }
 
 // An object that coordinates the operation of multiple threads of execution within the same application.
@@ -93,7 +95,7 @@ func NewLock() Lock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/lock(before:)
-func (l_ Lock) LockBeforeDate(limit IDate) bool {
+func (l_ Lock) LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
@@ -103,7 +105,7 @@ func (l_ Lock) LockBeforeDate(limit IDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/try()
-func (l_ Lock) TryLock() bool {
+func (l_ Lock) TryLock() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("tryLock"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (l_ Lock) TryLock() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) Name() string {
+func (l_ Lock) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (l_ Lock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) SetName(value string) {
+func (l_ Lock) SetName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

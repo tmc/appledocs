@@ -32,18 +32,18 @@ type IModelConfiguration interface {
 	objectivec.IObject
 	AllowLowPrecisionAccumulationOnGPU() bool
 	SetAllowLowPrecisionAccumulationOnGPU(value bool)
-	ComputeUnits() ComputeUnits
-	SetComputeUnits(value IComputeUnits)
+	ComputeUnits() unsafe.Pointer
+	SetComputeUnits(value unsafe.Pointer)
 	FunctionName() string
 	SetFunctionName(value string)
 	ModelDisplayName() string
 	SetModelDisplayName(value string)
-	OptimizationHints() MLOptimizationHints
-	SetOptimizationHints(value IMLOptimizationHints)
-	Parameters() unsafe.Pointer
-	SetParameters(value unsafe.Pointer)
-	PreferredMetalDevice() objc.ID
-	SetPreferredMetalDevice(value objc.ID)
+	OptimizationHints() IOptimizationHints
+	SetOptimizationHints(value IOptimizationHints)
+	Parameters() IMLParameterKey
+	SetParameters(value IMLParameterKey)
+	PreferredMetalDevice() unsafe.Pointer
+	SetPreferredMetalDevice(value unsafe.Pointer)
 }
 
 // The settings for creating or updating a machine learning model.
@@ -102,7 +102,7 @@ func NewModelConfiguration() ModelConfiguration {
 // A Boolean value that determines whether to allow low-precision accumulation on a GPU.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/allowLowPrecisionAccumulationOnGPU
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
 func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowLowPrecisionAccumulationOnGPU"))
 	return rv
@@ -112,7 +112,7 @@ func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 // A Boolean value that determines whether to allow low-precision accumulation on a GPU.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/allowLowPrecisionAccumulationOnGPU
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
 func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowLowPrecisionAccumulationOnGPU:"), value)
 }
@@ -121,9 +121,9 @@ func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 // The processing unit or units the model uses to make predictions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-func (m_ ModelConfiguration) ComputeUnits() ComputeUnits {
-	rv := objc.Send[ComputeUnits](m_.ID, objc.Sel("computeUnits"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/computeunits
+func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("computeUnits"))
 	return rv
 }
 
@@ -131,26 +131,26 @@ func (m_ ModelConfiguration) ComputeUnits() ComputeUnits {
 // The processing unit or units the model uses to make predictions.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-func (m_ ModelConfiguration) SetComputeUnits(value IComputeUnits) {
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/computeunits
+func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeUnits:"), value)
 }
 
 
-// Function name that will use.
+// Function name that
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
 func (m_ ModelConfiguration) FunctionName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
 	return rv
 }
 
 
-// Function name that will use.
+// Function name that
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
 func (m_ ModelConfiguration) SetFunctionName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
@@ -159,7 +159,7 @@ func (m_ ModelConfiguration) SetFunctionName(value string) {
 // A human readable name of a model for display purposes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
 func (m_ ModelConfiguration) ModelDisplayName() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
 	return rv
@@ -169,7 +169,7 @@ func (m_ ModelConfiguration) ModelDisplayName() string {
 // A human readable name of a model for display purposes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
 func (m_ ModelConfiguration) SetModelDisplayName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
@@ -178,9 +178,9 @@ func (m_ ModelConfiguration) SetModelDisplayName(value string) {
 // A group of hints for CoreML to optimize
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-func (m_ ModelConfiguration) OptimizationHints() MLOptimizationHints {
-	rv := objc.Send[MLOptimizationHints](m_.ID, objc.Sel("optimizationHints"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/optimizationhints-1oq0g
+func (m_ ModelConfiguration) OptimizationHints() IOptimizationHints {
+	rv := objc.Send[OptimizationHints](m_.ID, objc.Sel("optimizationHints"))
 	return rv
 }
 
@@ -188,8 +188,8 @@ func (m_ ModelConfiguration) OptimizationHints() MLOptimizationHints {
 // A group of hints for CoreML to optimize
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-func (m_ ModelConfiguration) SetOptimizationHints(value IMLOptimizationHints) {
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/optimizationhints-1oq0g
+func (m_ ModelConfiguration) SetOptimizationHints(value IOptimizationHints) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptimizationHints:"), value)
 }
 
@@ -197,9 +197,9 @@ func (m_ ModelConfiguration) SetOptimizationHints(value IMLOptimizationHints) {
 // A dictionary of configuration settings your app can override when loading a model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/parameters
-func (m_ ModelConfiguration) Parameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameters"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
+func (m_ ModelConfiguration) Parameters() IMLParameterKey {
+	rv := objc.Send[ParameterKey](m_.ID, objc.Sel("parameters"))
 	return rv
 }
 
@@ -207,8 +207,8 @@ func (m_ ModelConfiguration) Parameters() unsafe.Pointer {
 // A dictionary of configuration settings your app can override when loading a model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/parameters
-func (m_ ModelConfiguration) SetParameters(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
+func (m_ ModelConfiguration) SetParameters(value IMLParameterKey) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParameters:"), value)
 }
 
@@ -216,9 +216,9 @@ func (m_ ModelConfiguration) SetParameters(value unsafe.Pointer) {
 // The metal device you prefer this model use to make predictions (inference) and update the model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
-func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("preferredMetalDevice"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/preferredmetaldevice
+func (m_ ModelConfiguration) PreferredMetalDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredMetalDevice"))
 	return rv
 }
 
@@ -226,8 +226,8 @@ func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 // The metal device you prefer this model use to make predictions (inference) and update the model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
-func (m_ ModelConfiguration) SetPreferredMetalDevice(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/preferredmetaldevice
+func (m_ ModelConfiguration) SetPreferredMetalDevice(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
 }
 

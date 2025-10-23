@@ -30,11 +30,13 @@ type _URLSessionClass struct {
 // An interface definition for the [URLSession] class.
 type IURLSession interface {
 	objectivec.IObject
+	// properties:
 	Configuration() IURLSessionConfiguration
 	Delegate() objc.ID
 	DelegateQueue() IOperationQueue
-	SessionDescription() string
-	SetSessionDescription(value string)
+	SessionDescription() string /* primitive/slice/pointer */
+	SetSessionDescription(value string /* primitive/slice/pointer */)
+	// methods:
 	DataTaskWithURL(url IURL) IURLSessionDataTask
 	DataTaskWithRequest(request IURLRequest) IURLSessionDataTask
 	DataTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDataTask
@@ -51,7 +53,7 @@ type IURLSession interface {
 	GetTasksWithCompletionHandler(completionHandler unsafe.Pointer)
 	InvalidateAndCancel()
 	ResetWithCompletionHandler(completionHandler unsafe.Pointer)
-	StreamTaskWithHostNamePort(hostname string, port int) IURLSessionStreamTask
+	StreamTaskWithHostNamePort(hostname string /* primitive/slice/pointer */, port int /* primitive/slice/pointer */) IURLSessionStreamTask
 	UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) IURLSessionUploadTask
 	UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask
 	UploadTaskWithRequestFromFile(request IURLRequest, fileURL IURL) IURLSessionUploadTask
@@ -61,7 +63,7 @@ type IURLSession interface {
 	UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask
 	WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask
 	WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask
-	WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask
+	WebSocketTaskWithURLProtocols(url IURL, protocols []string /* primitive/slice/pointer */) IURLSessionWebSocketTask
 }
 
 // An object that coordinates a group of related, network data transfer tasks.
@@ -325,7 +327,7 @@ func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/streamTask(withHostName:port:)
-func (u_ URLSession) StreamTaskWithHostNamePort(hostname string, port int) IURLSessionStreamTask {
+func (u_ URLSession) StreamTaskWithHostNamePort(hostname string /* primitive/slice/pointer */, port int /* primitive/slice/pointer */) IURLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), objc.String(hostname), port)
 	return rv
 }
@@ -421,7 +423,7 @@ func (u_ URLSession) WebSocketTaskWithRequest(request IURLRequest) IURLSessionWe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/webSocketTask(with:protocols:)
-func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask {
+func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string /* primitive/slice/pointer */) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithURL:protocols:"), url, protocols)
 	return rv
 }
@@ -461,7 +463,7 @@ func (u_ URLSession) DelegateQueue() IOperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SessionDescription() string {
+func (u_ URLSession) SessionDescription() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("sessionDescription"))
 	return rv
 }
@@ -471,7 +473,7 @@ func (u_ URLSession) SessionDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SetSessionDescription(value string) {
+func (u_ URLSession) SetSessionDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
 

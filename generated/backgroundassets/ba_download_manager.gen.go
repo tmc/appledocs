@@ -31,15 +31,15 @@ type _BADownloadManagerClass struct {
 // An interface definition for the [BADownloadManager] class.
 type IBADownloadManager interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload
 	FetchCurrentDownloadsWithCompletionHandler(completionHandler unsafe.Pointer)
 	ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	PerformWithExclusiveControl(performHandler unsafe.Pointer)
-	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.IDate, performHandler unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.NSDate, performHandler unsafe.Pointer)
 }
 
 // An object that manages the queue of scheduled asset downloads.
@@ -162,7 +162,7 @@ func (b_ BADownloadManager) PerformWithExclusiveControl(performHandler unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)
-func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.IDate, performHandler unsafe.Pointer) {
+func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.NSDate, performHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("performWithExclusiveControlBeforeDate:performHandler:"), date, performHandler)
 }
 
@@ -190,7 +190,7 @@ func (b_ BADownloadManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared
-func (b_ BADownloadManager) SharedManager() BADownloadManager {
+func (b_ BADownloadManager) SharedManager() IBADownloadManager {
 	rv := objc.Send[BADownloadManager](b_.ID, objc.Sel("sharedManager"))
 	return rv
 }

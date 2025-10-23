@@ -31,21 +31,20 @@ type _PersistentDocumentClass struct {
 // An interface definition for the [PersistentDocument] class.
 type IPersistentDocument interface {
 	IDocument
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.IURL, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool
-	ConfigurePersistentStoreCoordinatorForURLOfTypeError(url foundation.IURL, fileType string, error_ unsafe.Pointer) bool
-	PersistentStoreTypeForFileType(fileType string) foundation.String
-	ReadFromURLOfTypeError(absoluteURL foundation.IURL, typeName string, error_ unsafe.Pointer) bool
-	RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.IURL, inTypeName string, outError unsafe.Pointer) bool
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, error_ unsafe.Pointer) bool
 	ManagedObjectContext() coredata.ManagedObjectContext
-	SetManagedObjectContext(value coredata.IManagedObjectContext)
+	SetManagedObjectContext(value coredata.ManagedObjectContext)
 	ManagedObjectModel() coredata.ManagedObjectModel
 	HasUndoManager() bool
 	SetHasUndoManager(value bool)
 	IsDocumentEdited() bool
 	SetIsDocumentEdited(value bool)
 	UndoManager() foundation.UndoManager
-	SetUndoManager(value foundation.IUndoManager)
+	SetUndoManager(value foundation.UndoManager)
+	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.URL, fileType string, configuration string, storeOptions foundation.IDictionary, error_ unsafe.Pointer) bool
+	PersistentStoreTypeForFileType(fileType string) foundation.String
+	ReadFromURLOfTypeError(absoluteURL foundation.URL, typeName string, error_ unsafe.Pointer) bool
+	RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.URL, inTypeName string, outError unsafe.Pointer) bool
+	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, error_ unsafe.Pointer) bool
 }
 
 // A document object that can integrate with Core Data.
@@ -107,18 +106,8 @@ func NewPersistentDocument() PersistentDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.IURL, fileType string, configuration string, storeOptions unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url foundation.URL, fileType string, configuration string, storeOptions foundation.IDictionary, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, objc.String(fileType), objc.String(configuration), storeOptions, error_)
-	return rv
-}
-
-
-// Configures the receiver’s persistent store coordinator for a given URL and document type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinatorForURL:ofType:error:
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeError(url foundation.IURL, fileType string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:error:"), url, objc.String(fileType), error_)
 	return rv
 }
 
@@ -137,7 +126,7 @@ func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType string) fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/read(from:ofType:)
-func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL foundation.IURL, typeName string, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL foundation.URL, typeName string, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("readFromURL:ofType:error:"), absoluteURL, objc.String(typeName), error_)
 	return rv
 }
@@ -147,7 +136,7 @@ func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL foundation.IURL,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/revert(toContentsOf:ofType:)
-func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.IURL, inTypeName string, outError unsafe.Pointer) bool {
+func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL foundation.URL, inTypeName string, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), inAbsoluteURL, objc.String(inTypeName), outError)
 	return rv
 }
@@ -157,7 +146,7 @@ func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/write(to:ofType:for:originalContentsURL:)
-func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.IURL, typeName string, saveOperation SaveOperationType, absoluteOriginalContentsURL foundation.IURL, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL foundation.URL, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), absoluteURL, objc.String(typeName), saveOperation, absoluteOriginalContentsURL, error_)
 	return rv
 }
@@ -177,7 +166,7 @@ func (p_ PersistentDocument) ManagedObjectContext() coredata.ManagedObjectContex
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
-func (p_ PersistentDocument) SetManagedObjectContext(value coredata.IManagedObjectContext) {
+func (p_ PersistentDocument) SetManagedObjectContext(value coredata.ManagedObjectContext) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
 }
 
@@ -244,7 +233,7 @@ func (p_ PersistentDocument) UndoManager() foundation.UndoManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
-func (p_ PersistentDocument) SetUndoManager(value foundation.IUndoManager) {
+func (p_ PersistentDocument) SetUndoManager(value foundation.UndoManager) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
 }
 

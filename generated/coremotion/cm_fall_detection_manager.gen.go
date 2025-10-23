@@ -30,10 +30,10 @@ type _FallDetectionManagerClass struct {
 // An interface definition for the [FallDetectionManager] class.
 type IFallDetectionManager interface {
 	objectivec.IObject
-	RequestAuthorizationWithHandler(handler unsafe.Pointer)
-	AuthorizationStatus() AuthorizationStatus
+	AuthorizationStatus() CMAuthorizationStatus
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	RequestAuthorizationWithHandler(handler unsafe.Pointer)
 }
 
 // An object for managing fall detection events.
@@ -111,8 +111,8 @@ func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
-func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
+func (f_ FallDetectionManager) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

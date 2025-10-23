@@ -30,16 +30,18 @@ type _AssetReaderClass struct {
 // An interface definition for the [AssetReader] class.
 type IAssetReader interface {
 	objectivec.IObject
+	// properties:
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
-	Error() AVError
-	SetError(value AVError)
-	Outputs() AssetReaderOutput
-	SetOutputs(value AssetReaderOutput)
+	Error() AVError /* enum */
+	SetError(value AVError /* enum */)
+	Outputs() AVAssetReaderOutput /* foo */
+	SetOutputs(value AVAssetReaderOutput /* foo */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
-	TimeRange() unsafe.Pointer
-	SetTimeRange(value unsafe.Pointer)
+	TimeRange() CMTimeRange /* foo */
+	SetTimeRange(value CMTimeRange /* foo */)
+	// methods:
 }
 
 // An object that reads media data from an asset.
@@ -118,7 +120,7 @@ func (a_ AssetReader) SetAsset(value IAVAsset) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) Error() AVError {
+func (a_ AssetReader) Error() AVError /* enum */ {
 	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (a_ AssetReader) Error() AVError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) SetError(value AVError) {
+func (a_ AssetReader) SetError(value AVError /* enum */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -137,7 +139,7 @@ func (a_ AssetReader) SetError(value AVError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) Outputs() AssetReaderOutput {
+func (a_ AssetReader) Outputs() AVAssetReaderOutput /* foo */ {
 	rv := objc.Send[AssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (a_ AssetReader) Outputs() AssetReaderOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) SetOutputs(value AssetReaderOutput) {
+func (a_ AssetReader) SetOutputs(value AVAssetReaderOutput /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 
@@ -175,8 +177,8 @@ func (a_ AssetReader) SetStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeRange"))
+func (a_ AssetReader) TimeRange() CMTimeRange /* foo */ {
+	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -185,7 +187,7 @@ func (a_ AssetReader) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/timerange
-func (a_ AssetReader) SetTimeRange(value unsafe.Pointer) {
+func (a_ AssetReader) SetTimeRange(value CMTimeRange /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeRange:"), value)
 }
 

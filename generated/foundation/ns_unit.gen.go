@@ -30,7 +30,9 @@ type _UnitClass struct {
 // An interface definition for the [Unit] class.
 type IUnit interface {
 	objectivec.IObject
-	Symbol() string
+	// properties:
+	Symbol() string /* primitive/slice/pointer */
+	// methods:
 }
 
 // An abstract class representing a unit of measure.
@@ -90,7 +92,7 @@ func NewUnit() Unit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/init(symbol:)
-func NewUnitWithSymbol(symbol string) Unit {
+func NewUnitWithSymbol(symbol string /* primitive/slice/pointer */) Unit {
 	instance := getUnitClass().Alloc()
 	rv := objc.Send[Unit](instance.ID, objc.Sel("initWithSymbol:"), objc.String(symbol))
 	rv.Autorelease()
@@ -103,7 +105,7 @@ func NewUnitWithSymbol(symbol string) Unit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
-func (u_ Unit) Symbol() string {
+func (u_ Unit) Symbol() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("symbol"))
 	return rv
 }

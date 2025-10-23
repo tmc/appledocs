@@ -3,91 +3,91 @@
 package audiotoolbox
 
 // Type aliases and typedefs
-// AUAudioChannelCount - A number of audio channels.
+// AudioChannelCount - A number of audio channels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioChannelCount
 // AUAudioChannelCount has base type: uint32_t
-type AUAudioChannelCount uintptr
-// AUAudioFrameCount - A number of audio sample frames.
+type AudioChannelCount uintptr
+// AudioFrameCount - A number of audio sample frames.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioFrameCount
 // AUAudioFrameCount has base type: uint32_t
-type AUAudioFrameCount uintptr
-// AUAudioObjectID type alias
+type AudioFrameCount uintptr
+// AudioObjectID type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioObjectID
 // AUAudioObjectID has base type: UInt32
-type AUAudioObjectID uintptr
-// AUAudioUnitStatus - A result code returned from an audio unit’s render function.
+type AudioObjectID uintptr
+// AudioUnitStatus - A result code returned from an audio unit’s render function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitStatus
 // AUAudioUnitStatus has base type: OSStatus
-type AUAudioUnitStatus uintptr
-// AUEventListenerProc type alias
+type AudioUnitStatus uintptr
+// EventListenerProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerProc
 // AUEventListenerProc has base type: void (*)(void *, void *, const struct AudioUnitEvent *, unsigned long long, float)
-type AUEventListenerProc uintptr
-// AUEventListenerRef type alias
+type EventListenerProc uintptr
+// EventListenerRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerRef
 // AUEventListenerRef has base type: AUParameterListenerRef
-type AUEventListenerRef uintptr
-// AUEventSampleTime - Expresses time as a sample count.
+type EventListenerRef uintptr
+// EventSampleTime - Expresses time as a sample count.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventSampleTime
 // AUEventSampleTime has base type: int64_t
-type AUEventSampleTime uintptr
-// AUInputSamplesInOutputCallback - Called by the system when an audio unit has provided a buffer of output samples.
+type EventSampleTime uintptr
+// InputSamplesInOutputCallback - Called by the system when an audio unit has provided a buffer of output samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUInputSamplesInOutputCallback
 // AUInputSamplesInOutputCallback has base type: void (*)(void *, const struct AudioTimeStamp *, double, double) __attribute__((nonblocking))
-type AUInputSamplesInOutputCallback uintptr
-// AUMIDIOutputCallback - When called by a host application, gets MIDI data from an audio unit.
+type InputSamplesInOutputCallback uintptr
+// MIDIOutputCallback - When called by a host application, gets MIDI data from an audio unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUMIDIOutputCallback
 // AUMIDIOutputCallback has base type: int (*)(void *, const struct AudioTimeStamp *, unsigned int, const struct MIDIPacketList *) __attribute__((nonblocking))
-type AUMIDIOutputCallback uintptr
-// AUNode - A member of an audio processing graph, associated with an audio unit.
+type MIDIOutputCallback uintptr
+// Node - A member of an audio processing graph, associated with an audio unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNode
 // AUNode has base type: SInt32
-type AUNode uintptr
-// AUNodeConnection type alias
+type Node uintptr
+// NodeConnection type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNodeConnection
 // AUNodeConnection has base type: struct AudioUnitNodeConnection
-type AUNodeConnection uintptr
-// AUParameterAddress - A numeric identifier for an audio unit parameter.
+type NodeConnection uintptr
+// ParameterAddress - A numeric identifier for an audio unit parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAddress
 // AUParameterAddress has base type: uint64_t
-type AUParameterAddress uintptr
-// AUParameterListenerProc type alias
+type ParameterAddress uintptr
+// ParameterListenerProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerProc
 // AUParameterListenerProc has base type: void (*)(void *, void *, const struct AudioUnitParameter *, float)
-type AUParameterListenerProc uintptr
-// AUParameterListenerRef type alias
+type ParameterListenerProc uintptr
+// ParameterListenerRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerRef
 // AUParameterListenerRef has base type: struct AUListenerBase *
-type AUParameterListenerRef uintptr
-// AUParameterObserverToken - A token representing an installed parameter observer block.
+type ParameterListenerRef uintptr
+// ParameterObserverToken - A token representing an installed parameter observer block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterObserverToken
 // AUParameterObserverToken has base type: void *
-type AUParameterObserverToken uintptr
-// AURenderCallback - Called by the system when an audio unit requires input samples, or before and after a render operation.
+type ParameterObserverToken uintptr
+// RenderCallback - Called by the system when an audio unit requires input samples, or before and after a render operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderCallback
 // AURenderCallback has base type: int (*)(void *, enum AudioUnitRenderActionFlags *, const struct AudioTimeStamp *, unsigned int, unsigned int, struct AudioBufferList *) __attribute__((nonblocking))
-type AURenderCallback uintptr
-// AUValue - A value of an audio unit parameter.
+type RenderCallback uintptr
+// Value - A value of an audio unit parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUValue
 // AUValue has base type: float
-type AUValue uintptr
+type Value uintptr
 // AudioCodec - An instance of a Component Manager component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioCodec
@@ -613,41 +613,41 @@ type AudioUnitSetPropertyProc uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitUninitializeProc
 // AudioUnitUninitializeProc has base type: int (*)(void *)
 type AudioUnitUninitializeProc uintptr
-// CAClockBeats type alias
+// ClockBeats type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockBeats
 // CAClockBeats has base type: Float64
-type CAClockBeats uintptr
-// CAClockListenerProc type alias
+type ClockBeats uintptr
+// ClockListenerProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockListenerProc
 // CAClockListenerProc has base type: void (*)(void *, enum CAClockMessage, const void *)
-type CAClockListenerProc uintptr
-// CAClockRef type alias
+type ClockListenerProc uintptr
+// ClockRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockRef
 // CAClockRef has base type: struct OpaqueCAClock *
-type CAClockRef uintptr
-// CAClockSMPTEFormat type alias
+type ClockRef uintptr
+// ClockSMPTEFormat type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSMPTEFormat
 // CAClockSMPTEFormat has base type: SMPTETimeType
-type CAClockSMPTEFormat uintptr
-// CAClockSamples type alias
+type ClockSMPTEFormat uintptr
+// ClockSamples type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSamples
 // CAClockSamples has base type: Float64
-type CAClockSamples uintptr
-// CAClockSeconds type alias
+type ClockSamples uintptr
+// ClockSeconds type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSeconds
 // CAClockSeconds has base type: Float64
-type CAClockSeconds uintptr
-// CAClockTempo type alias
+type ClockSeconds uintptr
+// ClockTempo type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTempo
 // CAClockTempo has base type: Float64
-type CAClockTempo uintptr
+type ClockTempo uintptr
 // CountUserDataFDF type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CountUserDataFDF

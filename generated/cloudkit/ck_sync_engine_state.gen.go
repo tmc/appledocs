@@ -30,12 +30,10 @@ type _CKSyncEngineStateClass struct {
 // An interface definition for the [CKSyncEngineState] class.
 type ICKSyncEngineState interface {
 	objectivec.IObject
+	UserRecordID() CKRecordID
+	SetUserRecordID(value CKRecordID)
 	AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
 	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
-	RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
-	RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
-	UserRecordID() CKRecordID
-	SetUserRecordID(value ICKRecordID)
 }
 
 // An object that manages the sync engine’s state.
@@ -109,24 +107,6 @@ func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePe
 }
 
 
-// Removes the specified database changes from the state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:
-func (c_ CKSyncEngineState) RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingDatabaseChanges:"), changes)
-}
-
-
-// Removes the specified record zone changes from the state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:
-func (c_ CKSyncEngineState) RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingRecordZoneChanges:"), changes)
-}
-
-
 // The user record ID for the corresponding user record.
 //
 // [Full Topic]
@@ -141,7 +121,7 @@ func (c_ CKSyncEngineState) UserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKSyncEngineState) SetUserRecordID(value ICKRecordID) {
+func (c_ CKSyncEngineState) SetUserRecordID(value CKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
 

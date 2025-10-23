@@ -162,15 +162,6 @@ type MIDIUMPFunctionBlockUIHint uint
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPProtocolOptions
 type MIDIUMPProtocolOptions uint
 
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPProtocolOptions/midi1
-	kMIDIUMPProtocolOptionsMIDI1 MIDIUMPProtocolOptions = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPProtocolOptions/midi2
-	kMIDIUMPProtocolOptionsMIDI2 MIDIUMPProtocolOptions = 0
-)
-
 // MIDIUtilityStatus enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUtilityStatus

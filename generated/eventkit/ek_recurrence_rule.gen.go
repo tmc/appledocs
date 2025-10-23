@@ -38,7 +38,7 @@ type IEKRecurrenceRule interface {
 	Frequency() EKRecurrenceFrequency
 	Interval() int
 	MonthsOfTheYear() []foundation.Number
-	RecurrenceEnd() EKRecurrenceEnd
+	RecurrenceEnd() IEKRecurrenceEnd
 	SetRecurrenceEnd(value IEKRecurrenceEnd)
 	SetPositions() []foundation.Number
 	WeeksOfTheYear() []foundation.Number
@@ -103,7 +103,7 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ IEKRecurrenceFrequency, interval int, days []EKRecurrenceDayOfWeek, monthDays []foundation.INumber, months []foundation.INumber, weeksOfTheYear []foundation.INumber, daysOfTheYear []foundation.INumber, setPositions []foundation.INumber, end IEKRecurrenceEnd) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ EKRecurrenceFrequency, interval int, days []EKRecurrenceDayOfWeek, monthDays []foundation.Number, months []foundation.Number, weeksOfTheYear []foundation.Number, daysOfTheYear []foundation.Number, setPositions []foundation.Number, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"), type_, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ IEKRecurrenceFrequency, interval int, end IEKRecurrenceEnd) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ EKRecurrenceFrequency, interval int, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
 	rv.Autorelease()
@@ -208,7 +208,7 @@ func (e_ EKRecurrenceRule) MonthsOfTheYear() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/recurrenceEnd
-func (e_ EKRecurrenceRule) RecurrenceEnd() EKRecurrenceEnd {
+func (e_ EKRecurrenceRule) RecurrenceEnd() IEKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](e_.ID, objc.Sel("recurrenceEnd"))
 	return rv
 }

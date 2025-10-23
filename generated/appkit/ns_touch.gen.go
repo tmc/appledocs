@@ -31,21 +31,17 @@ type _TouchClass struct {
 // An interface definition for the [Touch] class.
 type ITouch interface {
 	objectivec.IObject
-	LocationInView(view IView) coregraphics.CGPoint
-	PreviousLocationInView(view IView) coregraphics.CGPoint
+	Device() objc.ID
+	DeviceSize() coregraphics.CGSize
+	Identity() objc.ID
 	Resting() bool
 	NormalizedPosition() coregraphics.CGPoint
-	Phase() unsafe.Pointer
-	Device() unsafe.Pointer
-	SetDevice(value unsafe.Pointer)
-	DeviceSize() coregraphics.CGSize
-	SetDeviceSize(value coregraphics.CGSize)
-	Identity() unsafe.Pointer
-	SetIdentity(value unsafe.Pointer)
+	Phase() NSTouchPhase
+	Type() NSTouchType
 	IsResting() bool
 	SetIsResting(value bool)
-	Type() TouchType
-	SetType(value TouchType)
+	LocationInView(view IView) coregraphics.CGPoint
+	PreviousLocationInView(view IView) coregraphics.CGPoint
 }
 
 // A snapshot of a particular touch at an instant in time.
@@ -121,6 +117,36 @@ func (t_ Touch) PreviousLocationInView(view IView) coregraphics.CGPoint {
 }
 
 
+// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/device
+func (t_ Touch) Device() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// The range of the touch device in points, such as 72 ppi.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/deviceSize
+func (t_ Touch) DeviceSize() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("deviceSize"))
+	return rv
+}
+
+
+// The changes to a particular touch during its lifetime.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/identity
+func (t_ Touch) Identity() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("identity"))
+	return rv
+}
+
+
 // The indicator for a resting touch.
 //
 // [Full Topic]
@@ -145,66 +171,19 @@ func (t_ Touch) NormalizedPosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/phase-swift.property
-func (t_ Touch) Phase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("phase"))
+func (t_ Touch) Phase() NSTouchPhase {
+	rv := objc.Send[NSTouchPhase](t_.ID, objc.Sel("phase"))
 	return rv
 }
 
 
-// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
+// A type of touch from a Touch Bar interaction.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
-func (t_ Touch) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("device"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/type
+func (t_ Touch) Type() NSTouchType {
+	rv := objc.Send[NSTouchType](t_.ID, objc.Sel("type"))
 	return rv
-}
-
-
-// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/device
-func (t_ Touch) SetDevice(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDevice:"), value)
-}
-
-
-// The range of the touch device in points, such as 72 ppi.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
-func (t_ Touch) DeviceSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("deviceSize"))
-	return rv
-}
-
-
-// The range of the touch device in points, such as 72 ppi.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
-func (t_ Touch) SetDeviceSize(value coregraphics.CGSize) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceSize:"), value)
-}
-
-
-// The changes to a particular touch during its lifetime.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
-func (t_ Touch) Identity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identity"))
-	return rv
-}
-
-
-// The changes to a particular touch during its lifetime.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/identity
-func (t_ Touch) SetIdentity(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentity:"), value)
 }
 
 
@@ -224,25 +203,6 @@ func (t_ Touch) IsResting() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
 func (t_ Touch) SetIsResting(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsResting:"), value)
-}
-
-
-// A type of touch from a Touch Bar interaction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-func (t_ Touch) Type() TouchType {
-	rv := objc.Send[TouchType](t_.ID, objc.Sel("type"))
-	return rv
-}
-
-
-// A type of touch from a Touch Bar interaction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/type
-func (t_ Touch) SetType(value TouchType) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
 
 

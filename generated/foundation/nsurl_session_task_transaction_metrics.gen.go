@@ -30,8 +30,9 @@ type _URLSessionTaskTransactionMetricsClass struct {
 // An interface definition for the [URLSessionTaskTransactionMetrics] class.
 type IURLSessionTaskTransactionMetrics interface {
 	objectivec.IObject
-	RedirectCount() int
-	SetRedirectCount(value int)
+	// properties:
+	RedirectCount() int /* primitive/slice/pointer */
+	SetRedirectCount(value int /* primitive/slice/pointer */)
 	TaskInterval() IDateInterval
 	SetTaskInterval(value IDateInterval)
 	TransactionMetrics() IURLSessionTaskTransactionMetrics
@@ -60,32 +61,32 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetDomainResolutionProtocol(value unsafe.Pointer)
 	FetchStartDate() IDate
 	SetFetchStartDate(value IDate)
-	IsCellular() bool
-	SetIsCellular(value bool)
-	IsConstrained() bool
-	SetIsConstrained(value bool)
-	IsExpensive() bool
-	SetIsExpensive(value bool)
-	IsMultipath() bool
-	SetIsMultipath(value bool)
-	IsProxyConnection() bool
-	SetIsProxyConnection(value bool)
-	IsReusedConnection() bool
-	SetIsReusedConnection(value bool)
-	LocalAddress() string
-	SetLocalAddress(value string)
-	LocalPort() int
-	SetLocalPort(value int)
+	IsCellular() bool /* primitive/slice/pointer */
+	SetIsCellular(value bool /* primitive/slice/pointer */)
+	IsConstrained() bool /* primitive/slice/pointer */
+	SetIsConstrained(value bool /* primitive/slice/pointer */)
+	IsExpensive() bool /* primitive/slice/pointer */
+	SetIsExpensive(value bool /* primitive/slice/pointer */)
+	IsMultipath() bool /* primitive/slice/pointer */
+	SetIsMultipath(value bool /* primitive/slice/pointer */)
+	IsProxyConnection() bool /* primitive/slice/pointer */
+	SetIsProxyConnection(value bool /* primitive/slice/pointer */)
+	IsReusedConnection() bool /* primitive/slice/pointer */
+	SetIsReusedConnection(value bool /* primitive/slice/pointer */)
+	LocalAddress() string /* primitive/slice/pointer */
+	SetLocalAddress(value string /* primitive/slice/pointer */)
+	LocalPort() int /* primitive/slice/pointer */
+	SetLocalPort(value int /* primitive/slice/pointer */)
 	NegotiatedTLSCipherSuite() unsafe.Pointer
 	SetNegotiatedTLSCipherSuite(value unsafe.Pointer)
 	NegotiatedTLSProtocolVersion() unsafe.Pointer
 	SetNegotiatedTLSProtocolVersion(value unsafe.Pointer)
-	NetworkProtocolName() string
-	SetNetworkProtocolName(value string)
-	RemoteAddress() string
-	SetRemoteAddress(value string)
-	RemotePort() int
-	SetRemotePort(value int)
+	NetworkProtocolName() string /* primitive/slice/pointer */
+	SetNetworkProtocolName(value string /* primitive/slice/pointer */)
+	RemoteAddress() string /* primitive/slice/pointer */
+	SetRemoteAddress(value string /* primitive/slice/pointer */)
+	RemotePort() int /* primitive/slice/pointer */
+	SetRemotePort(value int /* primitive/slice/pointer */)
 	Request() IURLRequest
 	SetRequest(value IURLRequest)
 	RequestEndDate() IDate
@@ -104,6 +105,7 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetSecureConnectionEndDate(value IDate)
 	SecureConnectionStartDate() IDate
 	SetSecureConnectionStartDate(value IDate)
+	// methods:
 }
 
 // An object that encapsualtes the performance metrics collected by the URL Loading System during the execution of a session task.
@@ -163,7 +165,7 @@ func NewURLSessionTaskTransactionMetrics() URLSessionTaskTransactionMetrics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/redirectcount
-func (u_ URLSessionTaskTransactionMetrics) RedirectCount() int {
+func (u_ URLSessionTaskTransactionMetrics) RedirectCount() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("redirectCount"))
 	return rv
 }
@@ -173,7 +175,7 @@ func (u_ URLSessionTaskTransactionMetrics) RedirectCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/redirectcount
-func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int) {
+func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRedirectCount:"), value)
 }
 
@@ -444,7 +446,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetFetchStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/iscellular
-func (u_ URLSessionTaskTransactionMetrics) IsCellular() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsCellular() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isCellular"))
 	return rv
 }
@@ -454,7 +456,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsCellular() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/iscellular
-func (u_ URLSessionTaskTransactionMetrics) SetIsCellular(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsCellular(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsCellular:"), value)
 }
 
@@ -463,7 +465,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsCellular(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isconstrained
-func (u_ URLSessionTaskTransactionMetrics) IsConstrained() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsConstrained() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isConstrained"))
 	return rv
 }
@@ -473,7 +475,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsConstrained() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isconstrained
-func (u_ URLSessionTaskTransactionMetrics) SetIsConstrained(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsConstrained(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsConstrained:"), value)
 }
 
@@ -482,7 +484,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsConstrained(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isexpensive
-func (u_ URLSessionTaskTransactionMetrics) IsExpensive() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsExpensive() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isExpensive"))
 	return rv
 }
@@ -492,7 +494,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsExpensive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isexpensive
-func (u_ URLSessionTaskTransactionMetrics) SetIsExpensive(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsExpensive(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsExpensive:"), value)
 }
 
@@ -501,7 +503,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsExpensive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/ismultipath
-func (u_ URLSessionTaskTransactionMetrics) IsMultipath() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsMultipath() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isMultipath"))
 	return rv
 }
@@ -511,7 +513,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsMultipath() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/ismultipath
-func (u_ URLSessionTaskTransactionMetrics) SetIsMultipath(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsMultipath(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsMultipath:"), value)
 }
 
@@ -520,7 +522,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsMultipath(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isproxyconnection
-func (u_ URLSessionTaskTransactionMetrics) IsProxyConnection() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsProxyConnection() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isProxyConnection"))
 	return rv
 }
@@ -530,7 +532,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsProxyConnection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isproxyconnection
-func (u_ URLSessionTaskTransactionMetrics) SetIsProxyConnection(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsProxyConnection(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsProxyConnection:"), value)
 }
 
@@ -539,7 +541,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsProxyConnection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isreusedconnection
-func (u_ URLSessionTaskTransactionMetrics) IsReusedConnection() bool {
+func (u_ URLSessionTaskTransactionMetrics) IsReusedConnection() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isReusedConnection"))
 	return rv
 }
@@ -549,7 +551,7 @@ func (u_ URLSessionTaskTransactionMetrics) IsReusedConnection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isreusedconnection
-func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
+func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsReusedConnection:"), value)
 }
 
@@ -558,7 +560,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
+func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("localAddress"))
 	return rv
 }
@@ -568,7 +570,7 @@ func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
+func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), objc.String(value))
 }
 
@@ -577,7 +579,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localport
-func (u_ URLSessionTaskTransactionMetrics) LocalPort() int {
+func (u_ URLSessionTaskTransactionMetrics) LocalPort() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("localPort"))
 	return rv
 }
@@ -587,7 +589,7 @@ func (u_ URLSessionTaskTransactionMetrics) LocalPort() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localport
-func (u_ URLSessionTaskTransactionMetrics) SetLocalPort(value int) {
+func (u_ URLSessionTaskTransactionMetrics) SetLocalPort(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalPort:"), value)
 }
 
@@ -634,7 +636,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSProtocolVersion(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
+func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("networkProtocolName"))
 	return rv
 }
@@ -644,7 +646,7 @@ func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) {
+func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), objc.String(value))
 }
 
@@ -653,7 +655,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
+func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("remoteAddress"))
 	return rv
 }
@@ -663,7 +665,7 @@ func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
+func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), objc.String(value))
 }
 
@@ -672,7 +674,7 @@ func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteport
-func (u_ URLSessionTaskTransactionMetrics) RemotePort() int {
+func (u_ URLSessionTaskTransactionMetrics) RemotePort() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("remotePort"))
 	return rv
 }
@@ -682,7 +684,7 @@ func (u_ URLSessionTaskTransactionMetrics) RemotePort() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteport
-func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int) {
+func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRemotePort:"), value)
 }
 

@@ -37,7 +37,11 @@ type IVZFileSerialPortAttachment interface {
 // An attachment point that writes data from the guest system to a file.
 //
 // Use a object to configure a one-way serial port from the guest operating system to the virtual machine. When the guest sends data to the serial port, the virtual machine writes that data to the specified file. You can’t use this serial port to send data back to the guest. Create a object and assign it to an appropriate subclass of object, such as . The file you use to create this object must be writable.
+
+
+// An attachment point that writes data from the guest system to a file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment
 type VZFileSerialPortAttachment struct {
 	VZSerialPortAttachment
@@ -85,11 +89,11 @@ func NewVZFileSerialPortAttachment() VZFileSerialPortAttachment {
 
 
 
-
 // Creates a file-based serial port attachment object.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/init(url:append:)
-func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.IURL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
+func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.URL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
 	instance := getVZFileSerialPortAttachmentClass().Alloc()
 	rv := objc.Send[VZFileSerialPortAttachment](instance.ID, objc.Sel("initWithURL:append:error:"), url, shouldAppend, error_)
 	rv.Autorelease()
@@ -97,16 +101,20 @@ func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.IURL, should
 }
 
 
+
 // A Boolean that indicates whether the virtual machine appends data to the file.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/append
 func (v_ VZFileSerialPortAttachment) Append() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("append"))
 	return rv
 }
 
+
 // The URL of a file on the local file system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/url
 func (v_ VZFileSerialPortAttachment) URL() foundation.URL {
 	rv := objc.Send[foundation.URL](v_.ID, objc.Sel("URL"))

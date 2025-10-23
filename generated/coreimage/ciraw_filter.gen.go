@@ -43,7 +43,7 @@ type IRAWFilter interface {
 	ContrastAmount() float32
 	SetContrastAmount(value float32)
 	DecoderVersion() RAWDecoderVersion
-	SetDecoderVersion(value IRAWDecoderVersion)
+	SetDecoderVersion(value RAWDecoderVersion)
 	DetailAmount() float32
 	SetDetailAmount(value float32)
 	Exposure() float32
@@ -67,7 +67,7 @@ type IRAWFilter interface {
 	LuminanceNoiseReductionSupported() bool
 	MoireReductionSupported() bool
 	SharpnessSupported() bool
-	LinearSpaceFilter() CIFilter
+	LinearSpaceFilter() ICIFilter
 	SetLinearSpaceFilter(value ICIFilter)
 	LocalToneMapAmount() float32
 	SetLocalToneMapAmount(value float32)
@@ -86,16 +86,16 @@ type IRAWFilter interface {
 	SetNeutralTint(value float32)
 	Orientation() unsafe.Pointer
 	SetOrientation(value unsafe.Pointer)
-	PortraitEffectsMatte() CIImage
-	PreviewImage() CIImage
+	PortraitEffectsMatte() ICIImage
+	PreviewImage() ICIImage
 	Properties() objc.ID
 	ScaleFactor() float32
 	SetScaleFactor(value float32)
-	SemanticSegmentationGlassesMatte() CIImage
-	SemanticSegmentationHairMatte() CIImage
-	SemanticSegmentationSkinMatte() CIImage
-	SemanticSegmentationSkyMatte() CIImage
-	SemanticSegmentationTeethMatte() CIImage
+	SemanticSegmentationGlassesMatte() ICIImage
+	SemanticSegmentationHairMatte() ICIImage
+	SemanticSegmentationSkinMatte() ICIImage
+	SemanticSegmentationSkyMatte() ICIImage
+	SemanticSegmentationTeethMatte() ICIImage
 	ShadowBias() float32
 	SetShadowBias(value float32)
 	SharpnessAmount() float32
@@ -198,7 +198,7 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func NewRAWFilterWithImageDataIdentifierHint(data foundation.IData, identifierHint string) RAWFilter {
+func NewRAWFilterWithImageDataIdentifierHint(data foundation.NSData, identifierHint string) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
@@ -208,7 +208,7 @@ func NewRAWFilterWithImageDataIdentifierHint(data foundation.IData, identifierHi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewRAWFilterWithImageURL(url foundation.IURL) RAWFilter {
+func NewRAWFilterWithImageURL(url foundation.URL) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -229,7 +229,7 @@ func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.IData, identifierHint string) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.NSData, identifierHint string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
 	return rv
 }
@@ -239,7 +239,7 @@ func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.IDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func (rc _RAWFilterClass) FilterWithImageURL(url foundation.IURL) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithImageURL(url foundation.URL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -363,7 +363,7 @@ func (r_ RAWFilter) DecoderVersion() RAWDecoderVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/decoderVersion
-func (r_ RAWFilter) SetDecoderVersion(value IRAWDecoderVersion) {
+func (r_ RAWFilter) SetDecoderVersion(value RAWDecoderVersion) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDecoderVersion:"), value)
 }
 
@@ -589,8 +589,8 @@ func (r_ RAWFilter) SharpnessSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/linearSpaceFilter
-func (r_ RAWFilter) LinearSpaceFilter() CIFilter {
-	rv := objc.Send[CIFilter](r_.ID, objc.Sel("linearSpaceFilter"))
+func (r_ RAWFilter) LinearSpaceFilter() ICIFilter {
+	rv := objc.Send[Filter](r_.ID, objc.Sel("linearSpaceFilter"))
 	return rv
 }
 
@@ -770,8 +770,8 @@ func (r_ RAWFilter) SetOrientation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/portraitEffectsMatte
-func (r_ RAWFilter) PortraitEffectsMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("portraitEffectsMatte"))
+func (r_ RAWFilter) PortraitEffectsMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
 }
 
@@ -780,8 +780,8 @@ func (r_ RAWFilter) PortraitEffectsMatte() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/previewImage
-func (r_ RAWFilter) PreviewImage() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("previewImage"))
+func (r_ RAWFilter) PreviewImage() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("previewImage"))
 	return rv
 }
 
@@ -819,8 +819,8 @@ func (r_ RAWFilter) SetScaleFactor(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationGlassesMatte
-func (r_ RAWFilter) SemanticSegmentationGlassesMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationGlassesMatte"))
+func (r_ RAWFilter) SemanticSegmentationGlassesMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("semanticSegmentationGlassesMatte"))
 	return rv
 }
 
@@ -829,8 +829,8 @@ func (r_ RAWFilter) SemanticSegmentationGlassesMatte() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationHairMatte
-func (r_ RAWFilter) SemanticSegmentationHairMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationHairMatte"))
+func (r_ RAWFilter) SemanticSegmentationHairMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("semanticSegmentationHairMatte"))
 	return rv
 }
 
@@ -839,8 +839,8 @@ func (r_ RAWFilter) SemanticSegmentationHairMatte() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationSkinMatte
-func (r_ RAWFilter) SemanticSegmentationSkinMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationSkinMatte"))
+func (r_ RAWFilter) SemanticSegmentationSkinMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("semanticSegmentationSkinMatte"))
 	return rv
 }
 
@@ -849,8 +849,8 @@ func (r_ RAWFilter) SemanticSegmentationSkinMatte() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationSkyMatte
-func (r_ RAWFilter) SemanticSegmentationSkyMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationSkyMatte"))
+func (r_ RAWFilter) SemanticSegmentationSkyMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("semanticSegmentationSkyMatte"))
 	return rv
 }
 
@@ -859,8 +859,8 @@ func (r_ RAWFilter) SemanticSegmentationSkyMatte() CIImage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationTeethMatte
-func (r_ RAWFilter) SemanticSegmentationTeethMatte() CIImage {
-	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationTeethMatte"))
+func (r_ RAWFilter) SemanticSegmentationTeethMatte() ICIImage {
+	rv := objc.Send[Image](r_.ID, objc.Sel("semanticSegmentationTeethMatte"))
 	return rv
 }
 

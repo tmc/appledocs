@@ -30,11 +30,16 @@ type _UpdateContextClass struct {
 // An interface definition for the [UpdateContext] class.
 type IUpdateContext interface {
 	objectivec.IObject
-	Event() UpdateProgressEvent
-	Metrics() unsafe.Pointer
+	Event() unsafe.Pointer
+	SetEvent(value unsafe.Pointer)
+	Metrics() MetricKey
+	SetMetrics(value MetricKey)
 	Model() unsafe.Pointer
-	Parameters() unsafe.Pointer
-	Task() MLUpdateTask
+	SetModel(value unsafe.Pointer)
+	Parameters() IMLParameterKey
+	SetParameters(value IMLParameterKey)
+	Task() IMLUpdateTask
+	SetTask(value IMLUpdateTask)
 }
 
 // The context an update task provides to your app’s completion and update progress handlers.
@@ -91,9 +96,28 @@ func NewUpdateContext() UpdateContext {
 // The event type that triggered an update task to notify your app’s completion and update progress handlers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/event
-func (u_ UpdateContext) Event() UpdateProgressEvent {
-	rv := objc.Send[UpdateProgressEvent](u_.ID, objc.Sel("event"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/event
+func (u_ UpdateContext) Event() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("event"))
+	return rv
+}
+
+
+// The event type that triggered an update task to notify your app’s completion and update progress handlers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/event
+func (u_ UpdateContext) SetEvent(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setEvent:"), value)
+}
+
+
+// The training metrics of the model for the update task, contained in a dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
+func (u_ UpdateContext) Metrics() MetricKey {
+	rv := objc.Send[MetricKey](u_.ID, objc.Sel("metrics"))
 	return rv
 }
 
@@ -101,9 +125,18 @@ func (u_ UpdateContext) Event() UpdateProgressEvent {
 // The training metrics of the model for the update task, contained in a dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/metrics
-func (u_ UpdateContext) Metrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("metrics"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
+func (u_ UpdateContext) SetMetrics(value MetricKey) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setMetrics:"), value)
+}
+
+
+// The underlying Core ML model stored in memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/model
+func (u_ UpdateContext) Model() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -111,9 +144,18 @@ func (u_ UpdateContext) Metrics() unsafe.Pointer {
 // The underlying Core ML model stored in memory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/model
-func (u_ UpdateContext) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("model"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/model
+func (u_ UpdateContext) SetModel(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setModel:"), value)
+}
+
+
+// The parameters for the update task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/parameters
+func (u_ UpdateContext) Parameters() IMLParameterKey {
+	rv := objc.Send[ParameterKey](u_.ID, objc.Sel("parameters"))
 	return rv
 }
 
@@ -121,9 +163,18 @@ func (u_ UpdateContext) Model() unsafe.Pointer {
 // The parameters for the update task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/parameters
-func (u_ UpdateContext) Parameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("parameters"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/parameters
+func (u_ UpdateContext) SetParameters(value IMLParameterKey) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setParameters:"), value)
+}
+
+
+// The update task that generated the update context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/task
+func (u_ UpdateContext) Task() IMLUpdateTask {
+	rv := objc.Send[UpdateTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 
@@ -131,10 +182,9 @@ func (u_ UpdateContext) Parameters() unsafe.Pointer {
 // The update task that generated the update context.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/task
-func (u_ UpdateContext) Task() MLUpdateTask {
-	rv := objc.Send[MLUpdateTask](u_.ID, objc.Sel("task"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/task
+func (u_ UpdateContext) SetTask(value IMLUpdateTask) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTask:"), value)
 }
 
 

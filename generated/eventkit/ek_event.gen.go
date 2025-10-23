@@ -30,28 +30,28 @@ type _EKEventClass struct {
 // An interface definition for the [EKEvent] class.
 type IEKEvent interface {
 	IEKCalendarItem
-	CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer
-	Refresh() bool
 	Availability() EKEventAvailability
-	SetAvailability(value IEKEventAvailability)
+	SetAvailability(value EKEventAvailability)
 	BirthdayContactIdentifier() string
 	BirthdayPersonID() int
 	BirthdayPersonUniqueID() string
 	EndDate() foundation.NSDate
-	SetEndDate(value foundation.IDate)
+	SetEndDate(value foundation.NSDate)
 	EventIdentifier() string
 	AllDay() bool
 	SetAllDay(value bool)
 	IsDetached() bool
 	OccurrenceDate() foundation.NSDate
-	Organizer() EKParticipant
+	Organizer() IEKParticipant
 	StartDate() foundation.NSDate
-	SetStartDate(value foundation.IDate)
+	SetStartDate(value foundation.NSDate)
 	Status() EKEventStatus
-	StructuredLocation() EKStructuredLocation
+	StructuredLocation() IEKStructuredLocation
 	SetStructuredLocation(value IEKStructuredLocation)
 	IsAllDay() bool
 	SetIsAllDay(value bool)
+	CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer
+	Refresh() bool
 }
 
 // A class that represents an event in a calendar.
@@ -164,7 +164,7 @@ func (e_ EKEvent) Availability() EKEventAvailability {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability
-func (e_ EKEvent) SetAvailability(value IEKEventAvailability) {
+func (e_ EKEvent) SetAvailability(value EKEventAvailability) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAvailability:"), value)
 }
 
@@ -213,7 +213,7 @@ func (e_ EKEvent) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/endDate
-func (e_ EKEvent) SetEndDate(value foundation.IDate) {
+func (e_ EKEvent) SetEndDate(value foundation.NSDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -271,7 +271,7 @@ func (e_ EKEvent) OccurrenceDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/organizer
-func (e_ EKEvent) Organizer() EKParticipant {
+func (e_ EKEvent) Organizer() IEKParticipant {
 	rv := objc.Send[EKParticipant](e_.ID, objc.Sel("organizer"))
 	return rv
 }
@@ -291,7 +291,7 @@ func (e_ EKEvent) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/startDate
-func (e_ EKEvent) SetStartDate(value foundation.IDate) {
+func (e_ EKEvent) SetStartDate(value foundation.NSDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -310,7 +310,7 @@ func (e_ EKEvent) Status() EKEventStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/structuredLocation
-func (e_ EKEvent) StructuredLocation() EKStructuredLocation {
+func (e_ EKEvent) StructuredLocation() IEKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](e_.ID, objc.Sel("structuredLocation"))
 	return rv
 }

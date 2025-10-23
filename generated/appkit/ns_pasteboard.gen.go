@@ -31,35 +31,22 @@ type _PasteboardClass struct {
 // An interface definition for the [Pasteboard] class.
 type IPasteboard interface {
 	objectivec.IObject
-	AddTypesOwner(newTypes []string, newOwner objectivec.IObject) int
-	AvailableTypeFromArray(types []string) PasteboardType
-	CanReadItemWithDataConformingToTypes(types []string) bool
-	CanReadObjectForClassesOptions(classArray []objc.IClass, options unsafe.Pointer) bool
-	ClearContents() int
-	DataForType(dataType PasteboardType) foundation.Data
-	DeclareTypesOwner(newTypes []string, newOwner objectivec.IObject) int
-	DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer)
-	DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
-	DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
-	IndexOfPasteboardItem(pasteboardItem IPasteboardItem) uint
-	PrepareForNewContentsWithOptions(options PasteboardContentsOptions) int
-	PropertyListForType(dataType PasteboardType) objc.ID
-	ReadFileContentsTypeToFile(type_ PasteboardType, filename string) foundation.String
-	ReadFileWrapper() foundation.FileWrapper
-	ReadObjectsForClassesOptions(classArray []objc.IClass, options unsafe.Pointer) foundation.Array
-	ReleaseGlobally()
-	SetDataForType(data foundation.IData, dataType PasteboardType) bool
+	AccessBehavior() unsafe.Pointer
+	ChangeCount() int
+	SetChangeCount(value int)
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
+	PasteboardItems() PasteboardItem
+	SetPasteboardItems(value PasteboardItem)
+	Types() PasteboardType
+	SetTypes(value PasteboardType)
+	IndexOfPasteboardItem(pasteboardItem PasteboardItem) uint
+	ReadObjectsForClassesOptions(classArray []objc.Class, options foundation.IDictionary) foundation.Array
+	SetDataForType(data foundation.NSData, dataType PasteboardType) bool
 	SetPropertyListForType(plist objectivec.IObject, dataType PasteboardType) bool
 	SetStringForType(string_ string, dataType PasteboardType) bool
 	StringForType(dataType PasteboardType) foundation.String
-	WriteFileWrapper(wrapper foundation.IFileWrapper) bool
-	WriteFileContents(filename string) bool
 	WriteObjects(objects []objc.ID) bool
-	AccessBehavior() PasteboardAccessBehavior
-	ChangeCount() int
-	Name() PasteboardName
-	PasteboardItems() []PasteboardItem
-	Types() []string
 }
 
 // An object that transfers data to and from the pasteboard server.
@@ -115,259 +102,12 @@ func NewPasteboard() Pasteboard {
 
 
 
-// Creates a new pasteboard object that supplies the specified data in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)
-func NewPasteboardByFilteringDataOfType(data foundation.IData, type_ PasteboardType) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringData:ofType:"), data, type_)
-	return rv
-}
-
-
-// Creates a new pasteboard object that supplies the specified file in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringFile:)
-func NewPasteboardByFilteringFile(filename string) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringFile:"), objc.String(filename))
-	return rv
-}
-
-
-// Creates a new pasteboard object that supplies the specified pasteboard data in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)
-func NewPasteboardByFilteringTypesInPasteboard(pboard IPasteboard) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardByFilteringTypesInPasteboard:"), pboard)
-	return rv
-}
-
-
-// Returns the pasteboard with the specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(name:)
-func NewPasteboardWithName(name IPasteboardName) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(getPasteboardClass().class), objc.Sel("pasteboardWithName:"), name)
-	return rv
-}
-
-
-
-// Creates a new pasteboard object that supplies the specified data in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringData:ofType:)
-func (pc _PasteboardClass) PasteboardByFilteringDataOfType(data foundation.IData, type_ PasteboardType) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringData:ofType:"), data, type_)
-	return rv
-}
-
-
-// Creates a new pasteboard object that supplies the specified file in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringFile:)
-func (pc _PasteboardClass) PasteboardByFilteringFile(filename string) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringFile:"), objc.String(filename))
-	return rv
-}
-
-
-// Creates a new pasteboard object that supplies the specified pasteboard data in as many types as possible based on the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(byFilteringTypesInPasteboard:)
-func (pc _PasteboardClass) PasteboardByFilteringTypesInPasteboard(pboard IPasteboard) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardByFilteringTypesInPasteboard:"), pboard)
-	return rv
-}
-
-
-// Returns the pasteboard with the specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/init(name:)
-func (pc _PasteboardClass) PasteboardWithName(name IPasteboardName) Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardWithName:"), name)
-	return rv
-}
-
-
-// Returns the data types that can be converted to the specified type using the available filter services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/types(filterableTo:)
-func (pc _PasteboardClass) TypesFilterableTo(type_ PasteboardType) []string {
-	rv := objc.Send[[]string](objc.ID(pc.class), objc.Sel("typesFilterableTo:"), type_)
-	return rv
-}
-
-
-// Creates and returns a new pasteboard with a name that is guaranteed to be unique with respect to other pasteboards in the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/withUniqueName()
-func (pc _PasteboardClass) PasteboardWithUniqueName() Pasteboard {
-	rv := objc.Send[Pasteboard](objc.ID(pc.class), objc.Sel("pasteboardWithUniqueName"))
-	return rv
-}
-
-
-// The shared pasteboard object to use for general content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/general
-func (pc _PasteboardClass) GeneralPasteboard() Pasteboard {
-	rv := objc.Send[NSPasteboard](objc.ID(pc.class), objc.Sel("generalPasteboard"))
-	return rv
-}
-
-// Adds promises for the specified types to the first pasteboard item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/addTypes(_:owner:)
-func (p_ Pasteboard) AddTypesOwner(newTypes []string, newOwner objectivec.IObject) int {
-	rv := objc.Send[int](p_.ID, objc.Sel("addTypes:owner:"), newTypes, newOwner)
-	return rv
-}
-
-
-// Scans the specified types for a type that the receiver supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/availableType(from:)
-func (p_ Pasteboard) AvailableTypeFromArray(types []string) PasteboardType {
-	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("availableTypeFromArray:"), types)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the receiver contains any items that conform to the specified UTIs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/canReadItem(withDataConformingToTypes:)
-func (p_ Pasteboard) CanReadItemWithDataConformingToTypes(types []string) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("canReadItemWithDataConformingToTypes:"), types)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the receiver contains any items that can be represented as an instance of any class in a given array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/canReadObject(forClasses:options:)
-func (p_ Pasteboard) CanReadObjectForClassesOptions(classArray []objc.IClass, options unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("canReadObjectForClasses:options:"), classArray, options)
-	return rv
-}
-
-
-// Clears the existing contents of the pasteboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/clearContents()
-func (p_ Pasteboard) ClearContents() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("clearContents"))
-	return rv
-}
-
-
-// Returns the data for the specified type from the first item in the receiver that contains the type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/data(forType:)
-func (p_ Pasteboard) DataForType(dataType PasteboardType) foundation.Data {
-	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("dataForType:"), dataType)
-	return rv
-}
-
-
-// Prepares the receiver for a change in its contents by declaring the new types of data it will contain and a new owner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/declareTypes(_:owner:)
-func (p_ Pasteboard) DeclareTypesOwner(newTypes []string, newOwner objectivec.IObject) int {
-	rv := objc.Send[int](p_.ID, objc.Sel("declareTypes:owner:"), newTypes, newOwner)
-	return rv
-}
-
-
-// Determines available metadata from the specified metadata types for the first pasteboard item, without notifying the person using the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/detectMetadataForTypes:completionHandler:
-func (p_ Pasteboard) DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectMetadataForTypes:completionHandler:"), types, completionHandler)
-}
-
-
-// Determines whether the first pasteboard item matches the specified patterns, without notifying the person using the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/detectPatternsForPatterns:completionHandler:
-func (p_ Pasteboard) DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectPatternsForPatterns:completionHandler:"), patterns, completionHandler)
-}
-
-
-// Determines whether the first pasteboard item matches the specified patterns, reading the contents if it finds a match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/detectValuesForPatterns:completionHandler:
-func (p_ Pasteboard) DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectValuesForPatterns:completionHandler:"), patterns, completionHandler)
-}
-
-
 // Returns the index of the specified pasteboard item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/index(of:)
-func (p_ Pasteboard) IndexOfPasteboardItem(pasteboardItem IPasteboardItem) uint {
+func (p_ Pasteboard) IndexOfPasteboardItem(pasteboardItem PasteboardItem) uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("indexOfPasteboardItem:"), pasteboardItem)
-	return rv
-}
-
-
-// Prepares the pasteboard to receive new contents, removing the existing pasteboard contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/prepareForNewContents(with:)
-func (p_ Pasteboard) PrepareForNewContentsWithOptions(options PasteboardContentsOptions) int {
-	rv := objc.Send[int](p_.ID, objc.Sel("prepareForNewContentsWithOptions:"), options)
-	return rv
-}
-
-
-// Returns the property list for the specified type from the first item in the receiver that contains the type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/propertyList(forType:)
-func (p_ Pasteboard) PropertyListForType(dataType PasteboardType) objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("propertyListForType:"), dataType)
-	return rv
-}
-
-
-// Reads data representing a file’s contents from the receiver and writes it to the specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readFileContentsType(_:toFile:)
-func (p_ Pasteboard) ReadFileContentsTypeToFile(type_ PasteboardType, filename string) foundation.String {
-	rv := objc.Send[foundation.String](p_.ID, objc.Sel("readFileContentsType:toFile:"), type_, objc.String(filename))
-	return rv
-}
-
-
-// Reads data representing a file’s contents from the receiver and returns it as a file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readFileWrapper()
-func (p_ Pasteboard) ReadFileWrapper() foundation.FileWrapper {
-	rv := objc.Send[foundation.FileWrapper](p_.ID, objc.Sel("readFileWrapper"))
 	return rv
 }
 
@@ -376,18 +116,9 @@ func (p_ Pasteboard) ReadFileWrapper() foundation.FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/readObjects(forClasses:options:)
-func (p_ Pasteboard) ReadObjectsForClassesOptions(classArray []objc.IClass, options unsafe.Pointer) foundation.Array {
+func (p_ Pasteboard) ReadObjectsForClassesOptions(classArray []objc.Class, options foundation.IDictionary) foundation.Array {
 	rv := objc.Send[foundation.Array](p_.ID, objc.Sel("readObjectsForClasses:options:"), classArray, options)
 	return rv
-}
-
-
-// Releases the receiver’s resources in the pasteboard server.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/releaseGlobally()
-func (p_ Pasteboard) ReleaseGlobally() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("releaseGlobally"))
 }
 
 
@@ -395,7 +126,7 @@ func (p_ Pasteboard) ReleaseGlobally() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/setData(_:forType:)
-func (p_ Pasteboard) SetDataForType(data foundation.IData, dataType PasteboardType) bool {
+func (p_ Pasteboard) SetDataForType(data foundation.NSData, dataType PasteboardType) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("setData:forType:"), data, dataType)
 	return rv
 }
@@ -431,26 +162,6 @@ func (p_ Pasteboard) StringForType(dataType PasteboardType) foundation.String {
 }
 
 
-// Writes the serialized contents of the specified file wrapper to the pasteboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/write(_:)
-func (p_ Pasteboard) WriteFileWrapper(wrapper foundation.IFileWrapper) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileWrapper:"), wrapper)
-	return rv
-}
-
-
-// Writes the contents of the specified file to the pasteboard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/writeFileContents(_:)
-func (p_ Pasteboard) WriteFileContents(filename string) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("writeFileContents:"), objc.String(filename))
-	return rv
-}
-
-
 // Writes an array of objects to the receiver.
 //
 // [Full Topic]
@@ -465,8 +176,8 @@ func (p_ Pasteboard) WriteObjects(objects []objc.ID) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/accessBehavior-86972
-func (p_ Pasteboard) AccessBehavior() PasteboardAccessBehavior {
-	rv := objc.Send[PasteboardAccessBehavior](p_.ID, objc.Sel("accessBehavior"))
+func (p_ Pasteboard) AccessBehavior() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("accessBehavior"))
 	return rv
 }
 
@@ -474,19 +185,28 @@ func (p_ Pasteboard) AccessBehavior() PasteboardAccessBehavior {
 // The receiver’s change count.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/changeCount
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/changecount
 func (p_ Pasteboard) ChangeCount() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("changeCount"))
 	return rv
 }
 
 
-// The shared pasteboard object to use for general content.
+// The receiver’s change count.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/general
-func (p_ Pasteboard) GeneralPasteboard() NSPasteboard {
-	rv := objc.Send[NSPasteboard](p_.ID, objc.Sel("generalPasteboard"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/changecount
+func (p_ Pasteboard) SetChangeCount(value int) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setChangeCount:"), value)
+}
+
+
+// The receiver’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.property
+func (p_ Pasteboard) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -494,9 +214,18 @@ func (p_ Pasteboard) GeneralPasteboard() NSPasteboard {
 // The receiver’s name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/name-swift.property
-func (p_ Pasteboard) Name() PasteboardName {
-	rv := objc.Send[PasteboardName](p_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.property
+func (p_ Pasteboard) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+}
+
+
+// An array that contains all the items held by the pasteboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
+func (p_ Pasteboard) PasteboardItems() PasteboardItem {
+	rv := objc.Send[PasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
 	return rv
 }
 
@@ -504,9 +233,18 @@ func (p_ Pasteboard) Name() PasteboardName {
 // An array that contains all the items held by the pasteboard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/pasteboardItems
-func (p_ Pasteboard) PasteboardItems() []PasteboardItem {
-	rv := objc.Send[[]PasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
+func (p_ Pasteboard) SetPasteboardItems(value PasteboardItem) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPasteboardItems:"), value)
+}
+
+
+// An array of the receiver’s supported data types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/types
+func (p_ Pasteboard) Types() PasteboardType {
+	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("types"))
 	return rv
 }
 
@@ -514,10 +252,10 @@ func (p_ Pasteboard) PasteboardItems() []PasteboardItem {
 // An array of the receiver’s supported data types.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/types
-func (p_ Pasteboard) Types() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("types"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/types
+func (p_ Pasteboard) SetTypes(value PasteboardType) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
 }
+
 
 

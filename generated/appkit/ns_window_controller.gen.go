@@ -31,16 +31,7 @@ type _WindowControllerClass struct {
 // An interface definition for the [WindowController] class.
 type IWindowController interface {
 	IResponder
-	Close()
-	DismissController(sender objectivec.IObject)
-	LoadWindow()
-	SetDocumentEdited(dirtyFlag bool)
-	ShowWindow(sender objectivec.IObject)
-	SynchronizeWindowTitleWithDocumentName()
-	WindowDidLoad()
-	WindowTitleForDocumentDisplayName(displayName string) foundation.String
-	WindowWillLoad()
-	ContentViewController() NSViewController
+	ContentViewController() IViewController
 	SetContentViewController(value IViewController)
 	Document() objc.ID
 	SetDocument(value objc.ID)
@@ -52,15 +43,24 @@ type IWindowController interface {
 	SetShouldCascadeWindows(value bool)
 	ShouldCloseDocument() bool
 	SetShouldCloseDocument(value bool)
-	Storyboard() NSStoryboard
-	Window() NSWindow
+	Storyboard() IStoryboard
+	Window() IWindow
 	SetWindow(value IWindow)
 	WindowFrameAutosaveName() WindowFrameAutosaveName
-	SetWindowFrameAutosaveName(value IWindowFrameAutosaveName)
+	SetWindowFrameAutosaveName(value WindowFrameAutosaveName)
 	WindowNibName() NibName
 	WindowNibPath() string
 	IsWindowLoaded() bool
 	SetIsWindowLoaded(value bool)
+	Close()
+	DismissController(sender objectivec.IObject)
+	LoadWindow()
+	SetDocumentEdited(dirtyFlag bool)
+	ShowWindow(sender objectivec.IObject)
+	SynchronizeWindowTitleWithDocumentName()
+	WindowDidLoad()
+	WindowTitleForDocumentDisplayName(displayName string) foundation.String
+	WindowWillLoad()
 }
 
 // A controller that manages a window, usually a window stored in a nib file.
@@ -120,7 +120,7 @@ func NewWindowController() WindowController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(coder:)
-func NewWindowControllerWithCoder(coder foundation.ICoder) WindowController {
+func NewWindowControllerWithCoder(coder foundation.Coder) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -144,7 +144,7 @@ func NewWindowControllerWithWindow(window IWindow) WindowController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:)
-func NewWindowControllerWithWindowNibName(windowNibName INibName) WindowController {
+func NewWindowControllerWithWindowNibName(windowNibName NibName) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:"), windowNibName)
 	rv.Autorelease()
@@ -156,7 +156,7 @@ func NewWindowControllerWithWindowNibName(windowNibName INibName) WindowControll
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:owner:)
-func NewWindowControllerWithWindowNibNameOwner(windowNibName INibName, owner objectivec.IObject) WindowController {
+func NewWindowControllerWithWindowNibNameOwner(windowNibName NibName, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:owner:"), windowNibName, owner)
 	rv.Autorelease()
@@ -263,8 +263,8 @@ func (w_ WindowController) WindowWillLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/contentViewController
-func (w_ WindowController) ContentViewController() NSViewController {
-	rv := objc.Send[NSViewController](w_.ID, objc.Sel("contentViewController"))
+func (w_ WindowController) ContentViewController() IViewController {
+	rv := objc.Send[ViewController](w_.ID, objc.Sel("contentViewController"))
 	return rv
 }
 
@@ -384,8 +384,8 @@ func (w_ WindowController) SetShouldCloseDocument(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/storyboard
-func (w_ WindowController) Storyboard() NSStoryboard {
-	rv := objc.Send[NSStoryboard](w_.ID, objc.Sel("storyboard"))
+func (w_ WindowController) Storyboard() IStoryboard {
+	rv := objc.Send[Storyboard](w_.ID, objc.Sel("storyboard"))
 	return rv
 }
 
@@ -394,8 +394,8 @@ func (w_ WindowController) Storyboard() NSStoryboard {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/window
-func (w_ WindowController) Window() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("window"))
+func (w_ WindowController) Window() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("window"))
 	return rv
 }
 
@@ -423,7 +423,7 @@ func (w_ WindowController) WindowFrameAutosaveName() WindowFrameAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowFrameAutosaveName
-func (w_ WindowController) SetWindowFrameAutosaveName(value IWindowFrameAutosaveName) {
+func (w_ WindowController) SetWindowFrameAutosaveName(value WindowFrameAutosaveName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowFrameAutosaveName:"), value)
 }
 

@@ -30,22 +30,23 @@ type _ScriptObjectSpecifierClass struct {
 // An interface definition for the [ScriptObjectSpecifier] class.
 type IScriptObjectSpecifier interface {
 	objectivec.IObject
+	// properties:
 	ChildSpecifier() IScriptObjectSpecifier
 	SetChildSpecifier(value IScriptObjectSpecifier)
 	ContainerSpecifier() IScriptObjectSpecifier
 	SetContainerSpecifier(value IScriptObjectSpecifier)
 	ContainerClassDescription() IScriptClassDescription
 	SetContainerClassDescription(value IScriptClassDescription)
-	ContainerIsObjectBeingTested() bool
-	SetContainerIsObjectBeingTested(value bool)
-	ContainerIsRangeContainerObject() bool
-	SetContainerIsRangeContainerObject(value bool)
+	ContainerIsObjectBeingTested() bool /* primitive/slice/pointer */
+	SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer */)
+	ContainerIsRangeContainerObject() bool /* primitive/slice/pointer */
+	SetContainerIsRangeContainerObject(value bool /* primitive/slice/pointer */)
 	Descriptor() IAppleEventDescriptor
 	EvaluationErrorSpecifier() IScriptObjectSpecifier
-	EvaluationErrorNumber() int
-	SetEvaluationErrorNumber(value int)
-	Key() string
-	SetKey(value string)
+	EvaluationErrorNumber() int /* primitive/slice/pointer */
+	SetEvaluationErrorNumber(value int /* primitive/slice/pointer */)
+	Key() string /* primitive/slice/pointer */
+	SetKey(value string /* primitive/slice/pointer */)
 	KeyClassDescription() IScriptClassDescription
 	ObjectsByEvaluatingSpecifier() objc.ID
 	Child() IScriptObjectSpecifier
@@ -54,7 +55,8 @@ type IScriptObjectSpecifier interface {
 	SetContainer(value IScriptObjectSpecifier)
 	EvaluationError() IScriptObjectSpecifier
 	SetEvaluationError(value IScriptObjectSpecifier)
-	IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count unsafe.Pointer) int
+	// methods:
+	IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count Integer /* foo */) int /* primitive/slice/pointer */
 	ObjectsByEvaluatingWithContainers(containers objectivec.IObject) objc.ID
 }
 
@@ -125,7 +127,7 @@ func NewScriptObjectSpecifierWithCoder(inCoder ICoder) ScriptObjectSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
 	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, objc.String(property))
 	rv.Autorelease()
@@ -137,7 +139,7 @@ func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property string /* primitive/slice/pointer */) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
 	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, objc.String(property))
 	rv.Autorelease()
@@ -170,7 +172,7 @@ func (sc _ScriptObjectSpecifierClass) ObjectSpecifierWithDescriptor(descriptor I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/indicesOfObjectsByEvaluating(withContainer:count:)
-func (s_ ScriptObjectSpecifier) IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count unsafe.Pointer) int {
+func (s_ ScriptObjectSpecifier) IndicesOfObjectsByEvaluatingWithContainerCount(container objectivec.IObject, count Integer /* foo */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("indicesOfObjectsByEvaluatingWithContainer:count:"), container, count)
 	return rv
 }
@@ -247,7 +249,7 @@ func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value IScriptClassD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsObjectBeingTested
-func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool {
+func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
 	return rv
 }
@@ -257,7 +259,7 @@ func (s_ ScriptObjectSpecifier) ContainerIsObjectBeingTested() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsObjectBeingTested
-func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool) {
+func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
 }
 
@@ -266,7 +268,7 @@ func (s_ ScriptObjectSpecifier) SetContainerIsObjectBeingTested(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsRangeContainerObject
-func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool {
+func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsRangeContainerObject"))
 	return rv
 }
@@ -276,7 +278,7 @@ func (s_ ScriptObjectSpecifier) ContainerIsRangeContainerObject() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/containerIsRangeContainerObject
-func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool) {
+func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsRangeContainerObject:"), value)
 }
 
@@ -305,7 +307,7 @@ func (s_ ScriptObjectSpecifier) EvaluationErrorSpecifier() IScriptObjectSpecifie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationErrorNumber
-func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int {
+func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("evaluationErrorNumber"))
 	return rv
 }
@@ -315,7 +317,7 @@ func (s_ ScriptObjectSpecifier) EvaluationErrorNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/evaluationErrorNumber
-func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
+func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationErrorNumber:"), value)
 }
 
@@ -324,7 +326,7 @@ func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/key
-func (s_ ScriptObjectSpecifier) Key() string {
+func (s_ ScriptObjectSpecifier) Key() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("key"))
 	return rv
 }
@@ -334,7 +336,7 @@ func (s_ ScriptObjectSpecifier) Key() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/key
-func (s_ ScriptObjectSpecifier) SetKey(value string) {
+func (s_ ScriptObjectSpecifier) SetKey(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), objc.String(value))
 }
 

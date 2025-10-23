@@ -30,6 +30,8 @@ type _mServiceArrayClass struct {
 // An interface definition for the [mServiceArray] class.
 type ImServiceArray interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

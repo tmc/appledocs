@@ -30,6 +30,8 @@ type _AutoreleasePoolClass struct {
 // An interface definition for the [AutoreleasePool] class.
 type IAutoreleasePool interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	AddObject(anObject objectivec.IObject)
 	Drain()
 }

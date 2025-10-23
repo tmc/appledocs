@@ -30,7 +30,7 @@ type _AudioRoutingArbiterClass struct {
 // An interface definition for the [AudioRoutingArbiter] class.
 type IAudioRoutingArbiter interface {
 	objectivec.IObject
-	BeginArbitrationWithCategoryCompletionHandler(category IAudioRoutingArbitrationCategory, handler unsafe.Pointer)
+	BeginArbitrationWithCategoryCompletionHandler(category AVAudioRoutingArbitrationCategory, handler unsafe.Pointer)
 	LeaveArbitration()
 }
 
@@ -92,7 +92,7 @@ func NewAudioRoutingArbiter() AudioRoutingArbiter {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
 func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() AudioRoutingArbiter {
-	rv := objc.Send[AVAudioRoutingArbiter](objc.ID(ac.class), objc.Sel("sharedRoutingArbiter"))
+	rv := objc.Send[AudioRoutingArbiter](objc.ID(ac.class), objc.Sel("sharedRoutingArbiter"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() AudioRoutingArbiter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)
-func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category IAudioRoutingArbitrationCategory, handler unsafe.Pointer) {
+func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category AVAudioRoutingArbitrationCategory, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginArbitrationWithCategory:completionHandler:"), category, handler)
 }
 
@@ -118,8 +118,8 @@ func (a_ AudioRoutingArbiter) LeaveArbitration() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/shared
-func (a_ AudioRoutingArbiter) SharedRoutingArbiter() AVAudioRoutingArbiter {
-	rv := objc.Send[AVAudioRoutingArbiter](a_.ID, objc.Sel("sharedRoutingArbiter"))
+func (a_ AudioRoutingArbiter) SharedRoutingArbiter() IAVAudioRoutingArbiter {
+	rv := objc.Send[AudioRoutingArbiter](a_.ID, objc.Sel("sharedRoutingArbiter"))
 	return rv
 }
 

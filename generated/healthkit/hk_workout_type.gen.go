@@ -29,6 +29,8 @@ type _HKWorkoutTypeClass struct {
 // An interface definition for the [HKWorkoutType] class.
 type IHKWorkoutType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that store information about a workout.

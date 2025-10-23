@@ -31,13 +31,14 @@ type _USBHostInterfaceClass struct {
 // An interface definition for the [USBHostInterface] class.
 type IUSBHostInterface interface {
 	IUSBHostObject
-	CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe
-	SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool
-	InterfaceDescriptor() unsafe.Pointer
+	// properties:
 	ConfigurationDescriptor() unsafe.Pointer
 	SetConfigurationDescriptor(value unsafe.Pointer)
 	IdleTimeout() unsafe.Pointer
 	SetIdleTimeout(value unsafe.Pointer)
+	InterfaceDescriptor() unsafe.Pointer
+	SetInterfaceDescriptor(value unsafe.Pointer)
+	// methods:
 }
 
 // The class for accessing USB-related services.
@@ -99,38 +100,8 @@ func NewUSBHostInterface() USBHostInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
-func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.INumber, productID foundation.INumber, bcdDevice foundation.INumber, interfaceNumber foundation.INumber, configurationValue foundation.INumber, interfaceClass foundation.INumber, interfaceSubclass foundation.INumber, interfaceProtocol foundation.INumber, speed foundation.INumber, productIDArray objectivec.IObject) unsafe.Pointer {
+func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.Number, productID foundation.Number, bcdDevice foundation.Number, interfaceNumber foundation.Number, configurationValue foundation.Number, interfaceClass foundation.Number, interfaceSubclass foundation.Number, interfaceProtocol foundation.Number, speed foundation.Number, productIDArray objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
-	return rv
-}
-
-
-// Copies a pipe for a specific endpoint address.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/copyPipe(withAddress:)
-func (u_ USBHostInterface) CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe {
-	rv := objc.Send[USBHostPipe](u_.ID, objc.Sel("copyPipeWithAddress:error:"), address, error_)
-	return rv
-}
-
-
-// Selects an alternative setting for the interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/selectAlternateSetting(_:)
-func (u_ USBHostInterface) SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("selectAlternateSetting:error:"), alternateSetting, error_)
-	return rv
-}
-
-
-// The descriptor for the interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/interfaceDescriptor
-func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
 	return rv
 }
 
@@ -170,6 +141,25 @@ func (u_ USBHostInterface) IdleTimeout() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/idletimeout
 func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIdleTimeout:"), value)
+}
+
+
+// The descriptor for the interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/interfacedescriptor
+func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
+	return rv
+}
+
+
+// The descriptor for the interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/interfacedescriptor
+func (u_ USBHostInterface) SetInterfaceDescriptor(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInterfaceDescriptor:"), value)
 }
 
 

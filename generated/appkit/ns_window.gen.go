@@ -33,139 +33,6 @@ type _WindowClass struct {
 // An interface definition for the [Window] class.
 type IWindow interface {
 	IResponder
-	AddChildWindowOrdered(childWin IWindow, place WindowOrderingMode)
-	AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode)
-	AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController)
-	AnchorAttributeForOrientation(orientation ILayoutConstraintOrientation) LayoutAttribute
-	AnimationResizeTime(newFrame coregraphics.CGRect) float64
-	AutorecalculatesContentBorderThicknessForEdge(edge int) bool
-	BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect
-	BecomeKeyWindow()
-	BecomeMainWindow()
-	BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
-	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession
-	BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
-	CacheImageInRect(rect coregraphics.CGRect)
-	CanRepresentDisplayGamut(displayGamut IDisplayGamut) bool
-	CanStoreColor() bool
-	CascadeTopLeftFromPoint(topLeftPoint coregraphics.CGPoint) coregraphics.CGPoint
-	Center()
-	Close()
-	ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect
-	ContentBorderThicknessForEdge(edge int) float64
-	ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect
-	ConvertBaseToScreen(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectFromScreen(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertPointFromScreen(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointToScreen(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertScreenToBase(point coregraphics.CGPoint) coregraphics.CGPoint
-	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
-	ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRect
-	DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data
-	DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data
-	Deminiaturize(sender objectivec.IObject)
-	DisableCursorRects()
-	DisableFlushWindow()
-	DisableKeyEquivalentForDefaultButtonCell()
-	DisableScreenUpdatesUntilFlush()
-	DisableSnapshotRestoration()
-	DiscardCachedImage()
-	DiscardCursorRects()
-	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
-	Display()
-	DisplayIfNeeded()
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
-	DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool)
-	EnableCursorRects()
-	EnableFlushWindow()
-	EnableKeyEquivalentForDefaultButtonCell()
-	EnableSnapshotRestoration()
-	EndEditingFor(object objectivec.IObject)
-	EndSheet(sheetWindow IWindow)
-	EndSheetReturnCode(sheetWindow IWindow, returnCode IModalResponse)
-	FieldEditorForObject(createFlag bool, object objectivec.IObject) Text
-	FlushWindow()
-	FlushWindowIfNeeded()
-	FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect
-	GState() int
-	HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID
-	HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID
-	HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID
-	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int)
-	InvalidateCursorRectsForView(view IView)
-	InvalidateShadow()
-	LayoutIfNeeded()
-	MakeFirstResponder(responder IResponder) bool
-	MakeKeyWindow()
-	MakeKeyAndOrderFront(sender objectivec.IObject)
-	MakeMainWindow()
-	MergeAllWindows(sender objectivec.IObject)
-	Miniaturize(sender objectivec.IObject)
-	MoveTabToNewWindow(sender objectivec.IObject)
-	NextEventMatchingMask(mask EventMask) Event
-	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event
-	OrderWindowRelativeTo(place WindowOrderingMode, otherWin int)
-	OrderBack(sender objectivec.IObject)
-	OrderFront(sender objectivec.IObject)
-	OrderFrontRegardless()
-	OrderOut(sender objectivec.IObject)
-	PerformClose(sender objectivec.IObject)
-	PerformWindowDragWithEvent(event IEvent)
-	PerformMiniaturize(sender objectivec.IObject)
-	PerformZoom(sender objectivec.IObject)
-	PostEventAtStart(event IEvent, flag bool)
-	Print(sender objectivec.IObject)
-	RecalculateKeyViewLoop()
-	RegisterForDraggedTypes(newTypes []string)
-	RemoveChildWindow(childWin IWindow)
-	RemoveTitlebarAccessoryViewControllerAtIndex(index int)
-	RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
-	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string, completionHandler unsafe.Pointer)
-	ResetCursorRects()
-	ResignKeyWindow()
-	ResignMainWindow()
-	RestoreCachedImage()
-	RunToolbarCustomizationPalette(sender objectivec.IObject)
-	SaveFrameUsingName(name IWindowFrameAutosaveName)
-	SelectKeyViewFollowingView(view IView)
-	SelectKeyViewPrecedingView(view IView)
-	SelectNextKeyView(sender objectivec.IObject)
-	SelectNextTab(sender objectivec.IObject)
-	SelectPreviousKeyView(sender objectivec.IObject)
-	SelectPreviousTab(sender objectivec.IObject)
-	SendEvent(event IEvent)
-	SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation ILayoutConstraintOrientation)
-	SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge int)
-	SetContentBorderThicknessForEdge(thickness float64, edge int)
-	SetContentSize(size coregraphics.CGSize)
-	SetDynamicDepthLimit(flag bool)
-	SetFrameDisplay(frameRect coregraphics.CGRect, flag bool)
-	SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool, animateFlag bool)
-	SetFrameFromString(string_ IWindowPersistableFrameDescriptor)
-	SetFrameOrigin(point coregraphics.CGPoint)
-	SetFrameTopLeftPoint(point coregraphics.CGPoint)
-	SetFrameUsingName(name IWindowFrameAutosaveName) bool
-	SetFrameUsingNameForce(name IWindowFrameAutosaveName, force bool) bool
-	SetTitleWithRepresentedFilename(filename string)
-	StandardWindowButton(b IWindowButton) Button
-	ToggleFullScreen(sender objectivec.IObject)
-	ToggleTabBar(sender objectivec.IObject)
-	ToggleTabOverview(sender objectivec.IObject)
-	ToggleToolbarShown(sender objectivec.IObject)
-	TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer)
-	TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
-	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
-	UnregisterDraggedTypes()
-	Update()
-	UpdateConstraintsIfNeeded()
-	UseOptimizedDrawing(flag bool)
-	UserSpaceScaleFactor() float64
-	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
-	VisualizeConstraints(constraints []LayoutConstraint)
-	Zoom(sender objectivec.IObject)
 	AcceptsMouseMovedEvents() bool
 	SetAcceptsMouseMovedEvents(value bool)
 	AllowsConcurrentViewDrawing() bool
@@ -174,22 +41,22 @@ type IWindow interface {
 	SetAllowsToolTipsWhenApplicationIsInactive(value bool)
 	AlphaValue() float64
 	SetAlphaValue(value float64)
-	AnimationBehavior() WindowAnimationBehavior
-	SetAnimationBehavior(value WindowAnimationBehavior)
+	AnimationBehavior() NSWindowAnimationBehavior
+	SetAnimationBehavior(value NSWindowAnimationBehavior)
 	AppearanceSource() unsafe.Pointer
 	SetAppearanceSource(value unsafe.Pointer)
 	AreCursorRectsEnabled() bool
 	AspectRatio() coregraphics.CGSize
 	SetAspectRatio(value coregraphics.CGSize)
-	AttachedSheet() NSWindow
+	AttachedSheet() IWindow
 	AutorecalculatesKeyViewLoop() bool
 	SetAutorecalculatesKeyViewLoop(value bool)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	BackingLocation() WindowBackingLocation
+	BackingLocation() NSWindowBackingLocation
 	BackingScaleFactor() float64
-	BackingType() BackingStoreType
-	SetBackingType(value BackingStoreType)
+	BackingType() NSBackingStoreType
+	SetBackingType(value NSBackingStoreType)
 	CanBecomeKeyWindow() bool
 	CanBecomeMainWindow() bool
 	CanBecomeVisibleWithoutLogin() bool
@@ -198,10 +65,10 @@ type IWindow interface {
 	SetCanHide(value bool)
 	CascadingReferenceFrame() coregraphics.CGRect
 	ChildWindows() []Window
-	CollectionBehavior() WindowCollectionBehavior
-	SetCollectionBehavior(value WindowCollectionBehavior)
-	ColorSpace() NSColorSpace
-	SetColorSpace(value IColorSpace)
+	CollectionBehavior() NSWindowCollectionBehavior
+	SetCollectionBehavior(value NSWindowCollectionBehavior)
+	ColorSpace() ColorSpace
+	SetColorSpace(value ColorSpace)
 	ContentAspectRatio() coregraphics.CGSize
 	SetContentAspectRatio(value coregraphics.CGSize)
 	ContentLayoutGuide() objc.ID
@@ -212,28 +79,28 @@ type IWindow interface {
 	SetContentMinSize(value coregraphics.CGSize)
 	ContentResizeIncrements() coregraphics.CGSize
 	SetContentResizeIncrements(value coregraphics.CGSize)
-	ContentView() NSView
+	ContentView() IView
 	SetContentView(value IView)
-	ContentViewController() NSViewController
+	ContentViewController() IViewController
 	SetContentViewController(value IViewController)
-	CurrentEvent() NSEvent
-	DeepestScreen() NSScreen
-	DefaultButtonCell() NSButtonCell
-	SetDefaultButtonCell(value IButtonCell)
+	CurrentEvent() IEvent
+	DeepestScreen() IScreen
+	DefaultButtonCell() ButtonCell
+	SetDefaultButtonCell(value ButtonCell)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DepthLimit() WindowDepth
-	SetDepthLimit(value IWindowDepth)
-	DeviceDescription() unsafe.Pointer
+	DepthLimit() NSWindowDepth
+	SetDepthLimit(value NSWindowDepth)
+	DeviceDescription() foundation.IDictionary
 	DisplaysWhenScreenProfileChanges() bool
 	SetDisplaysWhenScreenProfileChanges(value bool)
-	DockTile() NSDockTile
+	DockTile() DockTile
 	Drawers() []Drawer
-	FirstResponder() NSResponder
+	FirstResponder() IResponder
 	Frame() coregraphics.CGRect
 	FrameAutosaveName() WindowFrameAutosaveName
 	StringWithSavedFrame() WindowPersistableFrameDescriptor
-	GraphicsContext() NSGraphicsContext
+	GraphicsContext() IGraphicsContext
 	HasActiveWindowSharingSession() bool
 	HasCloseBox() bool
 	HasDynamicDepthLimit() bool
@@ -245,7 +112,7 @@ type IWindow interface {
 	IgnoresMouseEvents() bool
 	SetIgnoresMouseEvents(value bool)
 	InLiveResize() bool
-	InitialFirstResponder() NSView
+	InitialFirstResponder() IView
 	SetInitialFirstResponder(value IView)
 	Autodisplay() bool
 	SetAutodisplay(value bool)
@@ -278,7 +145,7 @@ type IWindow interface {
 	Visible() bool
 	Zoomable() bool
 	Zoomed() bool
-	KeyViewSelectionDirection() SelectionDirection
+	KeyViewSelectionDirection() NSSelectionDirection
 	Level() WindowLevel
 	SetLevel(value WindowLevel)
 	MaxFullScreenContentSize() coregraphics.CGSize
@@ -289,18 +156,18 @@ type IWindow interface {
 	SetMinFullScreenContentSize(value coregraphics.CGSize)
 	MinSize() coregraphics.CGSize
 	SetMinSize(value coregraphics.CGSize)
-	MiniwindowImage() Image
+	MiniwindowImage() IImage
 	SetMiniwindowImage(value IImage)
 	MiniwindowTitle() string
 	SetMiniwindowTitle(value string)
 	MouseLocationOutsideOfEventStream() coregraphics.CGPoint
-	OcclusionState() WindowOcclusionState
+	OcclusionState() NSWindowOcclusionState
 	OrderedIndex() int
 	SetOrderedIndex(value int)
-	ParentWindow() NSWindow
+	ParentWindow() IWindow
 	SetParentWindow(value IWindow)
-	PreferredBackingLocation() WindowBackingLocation
-	SetPreferredBackingLocation(value IWindowBackingLocation)
+	PreferredBackingLocation() NSWindowBackingLocation
+	SetPreferredBackingLocation(value NSWindowBackingLocation)
 	PreservesContentDuringLiveResize() bool
 	SetPreservesContentDuringLiveResize(value bool)
 	PreventsApplicationTerminationWhenModal() bool
@@ -308,53 +175,53 @@ type IWindow interface {
 	RepresentedFilename() string
 	SetRepresentedFilename(value string)
 	RepresentedURL() foundation.URL
-	SetRepresentedURL(value foundation.IURL)
-	ResizeFlags() EventModifierFlags
+	SetRepresentedURL(value foundation.URL)
+	ResizeFlags() NSEventModifierFlags
 	ResizeIncrements() coregraphics.CGSize
 	SetResizeIncrements(value coregraphics.CGSize)
 	RestorationClass() unsafe.Pointer
 	SetRestorationClass(value unsafe.Pointer)
-	Screen() NSScreen
-	SharingType() WindowSharingType
-	SetSharingType(value WindowSharingType)
-	SheetParent() NSWindow
+	Screen() IScreen
+	SharingType() NSWindowSharingType
+	SetSharingType(value NSWindowSharingType)
+	SheetParent() IWindow
 	Sheets() []Window
 	ShowsResizeIndicator() bool
 	SetShowsResizeIndicator(value bool)
 	ShowsToolbarButton() bool
 	SetShowsToolbarButton(value bool)
-	StyleMask() WindowStyleMask
-	SetStyleMask(value WindowStyleMask)
+	StyleMask() NSWindowStyleMask
+	SetStyleMask(value NSWindowStyleMask)
 	Subtitle() string
 	SetSubtitle(value string)
-	Tab() NSWindowTab
-	TabGroup() NSWindowTabGroup
+	Tab() IWindowTab
+	TabGroup() IWindowTabGroup
 	TabbedWindows() []Window
 	TabbingIdentifier() WindowTabbingIdentifier
-	SetTabbingIdentifier(value IWindowTabbingIdentifier)
-	TabbingMode() WindowTabbingMode
-	SetTabbingMode(value WindowTabbingMode)
+	SetTabbingIdentifier(value WindowTabbingIdentifier)
+	TabbingMode() NSWindowTabbingMode
+	SetTabbingMode(value NSWindowTabbingMode)
 	Title() string
 	SetTitle(value string)
-	TitleVisibility() WindowTitleVisibility
-	SetTitleVisibility(value IWindowTitleVisibility)
+	TitleVisibility() NSWindowTitleVisibility
+	SetTitleVisibility(value NSWindowTitleVisibility)
 	TitlebarAccessoryViewControllers() []TitlebarAccessoryViewController
 	SetTitlebarAccessoryViewControllers(value []TitlebarAccessoryViewController)
 	TitlebarAppearsTransparent() bool
 	SetTitlebarAppearsTransparent(value bool)
-	TitlebarSeparatorStyle() TitlebarSeparatorStyle
-	SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle)
-	Toolbar() NSToolbar
+	TitlebarSeparatorStyle() NSTitlebarSeparatorStyle
+	SetTitlebarSeparatorStyle(value NSTitlebarSeparatorStyle)
+	Toolbar() IToolbar
 	SetToolbar(value IToolbar)
-	ToolbarStyle() WindowToolbarStyle
-	SetToolbarStyle(value WindowToolbarStyle)
+	ToolbarStyle() NSWindowToolbarStyle
+	SetToolbarStyle(value NSWindowToolbarStyle)
 	ViewsNeedDisplay() bool
 	SetViewsNeedDisplay(value bool)
-	WindowController() NSWindowController
+	WindowController() IWindowController
 	SetWindowController(value IWindowController)
 	WindowNumber() int
 	WindowRef() unsafe.Pointer
-	WindowTitlebarLayoutDirection() UserInterfaceLayoutDirection
+	WindowTitlebarLayoutDirection() NSUserInterfaceLayoutDirection
 	WorksWhenModal() bool
 	NumberOfColorComponents() int
 	SetNumberOfColorComponents(value int)
@@ -363,7 +230,7 @@ type IWindow interface {
 	BitsPerSample() int
 	SetBitsPerSample(value int)
 	ColorSpaceName() ColorSpaceName
-	SetColorSpaceName(value IColorSpaceName)
+	SetColorSpaceName(value ColorSpaceName)
 	IsPlanar() bool
 	SetIsPlanar(value bool)
 	CanBecomeKey() bool
@@ -410,8 +277,126 @@ type IWindow interface {
 	SetIsZoomable(value bool)
 	IsZoomed() bool
 	SetIsZoomed(value bool)
-	Parent() NSWindow
+	Parent() IWindow
 	SetParent(value IWindow)
+	AddChildWindowOrdered(childWin IWindow, place NSWindowOrderingMode)
+	AddTabbedWindowOrdered(window IWindow, ordered NSWindowOrderingMode)
+	AddTitlebarAccessoryViewController(childViewController ITitlebarAccessoryViewController)
+	AnchorAttributeForOrientation(orientation NSLayoutConstraintOrientation) NSLayoutAttribute
+	AnimationResizeTime(newFrame coregraphics.CGRect) float64
+	AutorecalculatesContentBorderThicknessForEdge(edge int) bool
+	BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect
+	BecomeKeyWindow()
+	BecomeMainWindow()
+	BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
+	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession
+	BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
+	CanRepresentDisplayGamut(displayGamut NSDisplayGamut) bool
+	CascadeTopLeftFromPoint(topLeftPoint coregraphics.CGPoint) coregraphics.CGPoint
+	Center()
+	Close()
+	ConstrainFrameRectToScreen(frameRect coregraphics.CGRect, screen IScreen) coregraphics.CGRect
+	ContentBorderThicknessForEdge(edge int) float64
+	ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect
+	ConvertRectFromBacking(rect coregraphics.CGRect) coregraphics.CGRect
+	ConvertRectFromScreen(rect coregraphics.CGRect) coregraphics.CGRect
+	ConvertPointFromScreen(point coregraphics.CGPoint) coregraphics.CGPoint
+	ConvertPointToScreen(point coregraphics.CGPoint) coregraphics.CGPoint
+	ConvertPointFromBacking(point coregraphics.CGPoint) coregraphics.CGPoint
+	ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.CGPoint
+	ConvertRectToBacking(rect coregraphics.CGRect) coregraphics.CGRect
+	ConvertRectToScreen(rect coregraphics.CGRect) coregraphics.CGRect
+	DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data
+	DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data
+	Deminiaturize(sender objectivec.IObject)
+	DisableCursorRects()
+	DisableKeyEquivalentForDefaultButtonCell()
+	DisableSnapshotRestoration()
+	DiscardCursorRects()
+	DiscardEventsMatchingMaskBeforeEvent(mask NSEventMask, lastEvent IEvent)
+	Display()
+	DisplayIfNeeded()
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
+	EnableCursorRects()
+	EnableKeyEquivalentForDefaultButtonCell()
+	EnableSnapshotRestoration()
+	EndEditingFor(object objectivec.IObject)
+	EndSheet(sheetWindow IWindow)
+	EndSheetReturnCode(sheetWindow IWindow, returnCode ModalResponse)
+	FieldEditorForObject(createFlag bool, object objectivec.IObject) IText
+	FrameRectForContentRect(contentRect coregraphics.CGRect) coregraphics.CGRect
+	HandleCloseScriptCommand(command foundation.CloseCommand) objc.ID
+	HandlePrintScriptCommand(command foundation.ScriptCommand) objc.ID
+	HandleSaveScriptCommand(command foundation.ScriptCommand) objc.ID
+	InsertTitlebarAccessoryViewControllerAtIndex(childViewController ITitlebarAccessoryViewController, index int)
+	InvalidateCursorRectsForView(view IView)
+	InvalidateShadow()
+	LayoutIfNeeded()
+	MakeFirstResponder(responder IResponder) bool
+	MakeKeyWindow()
+	MakeKeyAndOrderFront(sender objectivec.IObject)
+	MakeMainWindow()
+	MergeAllWindows(sender objectivec.IObject)
+	Miniaturize(sender objectivec.IObject)
+	MoveTabToNewWindow(sender objectivec.IObject)
+	NextEventMatchingMask(mask NSEventMask) IEvent
+	NextEventMatchingMaskUntilDateInModeDequeue(mask NSEventMask, expiration foundation.NSDate, mode unsafe.Pointer, deqFlag bool) IEvent
+	OrderWindowRelativeTo(place NSWindowOrderingMode, otherWin int)
+	OrderBack(sender objectivec.IObject)
+	OrderFront(sender objectivec.IObject)
+	OrderFrontRegardless()
+	OrderOut(sender objectivec.IObject)
+	PerformClose(sender objectivec.IObject)
+	PerformWindowDragWithEvent(event IEvent)
+	PerformMiniaturize(sender objectivec.IObject)
+	PerformZoom(sender objectivec.IObject)
+	PostEventAtStart(event IEvent, flag bool)
+	Print(sender objectivec.IObject)
+	RecalculateKeyViewLoop()
+	RegisterForDraggedTypes(newTypes []string)
+	RemoveChildWindow(childWin IWindow)
+	RemoveTitlebarAccessoryViewControllerAtIndex(index int)
+	RequestSharingOfWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
+	RequestSharingOfWindowUsingPreviewTitleCompletionHandler(image IImage, title string, completionHandler unsafe.Pointer)
+	ResetCursorRects()
+	ResignKeyWindow()
+	ResignMainWindow()
+	RunToolbarCustomizationPalette(sender objectivec.IObject)
+	SaveFrameUsingName(name WindowFrameAutosaveName)
+	SelectKeyViewFollowingView(view IView)
+	SelectKeyViewPrecedingView(view IView)
+	SelectNextKeyView(sender objectivec.IObject)
+	SelectNextTab(sender objectivec.IObject)
+	SelectPreviousKeyView(sender objectivec.IObject)
+	SelectPreviousTab(sender objectivec.IObject)
+	SendEvent(event IEvent)
+	SetAnchorAttributeForOrientation(attr NSLayoutAttribute, orientation NSLayoutConstraintOrientation)
+	SetAutorecalculatesContentBorderThicknessForEdge(flag bool, edge int)
+	SetContentBorderThicknessForEdge(thickness float64, edge int)
+	SetContentSize(size coregraphics.CGSize)
+	SetDynamicDepthLimit(flag bool)
+	SetFrameDisplay(frameRect coregraphics.CGRect, flag bool)
+	SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFlag bool, animateFlag bool)
+	SetFrameFromString(string_ WindowPersistableFrameDescriptor)
+	SetFrameOrigin(point coregraphics.CGPoint)
+	SetFrameTopLeftPoint(point coregraphics.CGPoint)
+	SetFrameUsingName(name WindowFrameAutosaveName) bool
+	SetFrameUsingNameForce(name WindowFrameAutosaveName, force bool) bool
+	SetTitleWithRepresentedFilename(filename string)
+	StandardWindowButton(b NSWindowButton) IButton
+	ToggleFullScreen(sender objectivec.IObject)
+	ToggleTabBar(sender objectivec.IObject)
+	ToggleTabOverview(sender objectivec.IObject)
+	ToggleToolbarShown(sender objectivec.IObject)
+	TrackEventsMatchingMaskTimeoutModeHandler(mask NSEventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer)
+	TransferWindowSharingToWindowCompletionHandler(window IWindow, completionHandler unsafe.Pointer)
+	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
+	UnregisterDraggedTypes()
+	Update()
+	UpdateConstraintsIfNeeded()
+	ValidRequestorForSendTypeReturnType(sendType PasteboardType, returnType PasteboardType) objc.ID
+	VisualizeConstraints(constraints []LayoutConstraint)
+	Zoom(sender objectivec.IObject)
 }
 
 // A window that an app displays on the screen.
@@ -473,7 +458,7 @@ func NewWindow() Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRect, style NSWindowStyleMask, backingStoreType NSBackingStoreType, flag bool) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
@@ -485,7 +470,7 @@ func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
-func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool, screen IScreen) Window {
+func NewWindowWithContentRectStyleMaskBackingDeferScreen(contentRect coregraphics.CGRect, style NSWindowStyleMask, backingStoreType NSBackingStoreType, flag bool, screen IScreen) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:screen:"), contentRect, style, backingStoreType, flag, screen)
 	rv.Autorelease()
@@ -520,7 +505,7 @@ func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:styleMask:)
-func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect coregraphics.CGRect, style WindowStyleMask) coregraphics.CGRect {
+func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect coregraphics.CGRect, style NSWindowStyleMask) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](objc.ID(wc.class), objc.Sel("contentRectForFrameRect:styleMask:"), fRect, style)
 	return rv
 }
@@ -530,7 +515,7 @@ func (wc _WindowClass) ContentRectForFrameRectStyleMask(fRect coregraphics.CGRec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/frameRect(forContentRect:styleMask:)
-func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect coregraphics.CGRect, style WindowStyleMask) coregraphics.CGRect {
+func (wc _WindowClass) FrameRectForContentRectStyleMask(cRect coregraphics.CGRect, style NSWindowStyleMask) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](objc.ID(wc.class), objc.Sel("frameRectForContentRect:styleMask:"), cRect, style)
 	return rv
 }
@@ -559,7 +544,7 @@ func (wc _WindowClass) MenuChanged(menu IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/minFrameWidth(withTitle:styleMask:)
-func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string, style WindowStyleMask) float64 {
+func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string, style NSWindowStyleMask) float64 {
 	rv := objc.Send[float64](objc.ID(wc.class), objc.Sel("minFrameWidthWithTitle:styleMask:"), objc.String(title), style)
 	return rv
 }
@@ -569,7 +554,7 @@ func (wc _WindowClass) MinFrameWidthWithTitleStyleMask(title string, style Windo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/removeFrame(usingName:)
-func (wc _WindowClass) RemoveFrameUsingName(name IWindowFrameAutosaveName) {
+func (wc _WindowClass) RemoveFrameUsingName(name WindowFrameAutosaveName) {
 	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("removeFrameUsingName:"), name)
 }
 
@@ -578,7 +563,7 @@ func (wc _WindowClass) RemoveFrameUsingName(name IWindowFrameAutosaveName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/standardWindowButton(_:for:)
-func (wc _WindowClass) StandardWindowButtonForStyleMask(b IWindowButton, styleMask WindowStyleMask) Button {
+func (wc _WindowClass) StandardWindowButtonForStyleMask(b NSWindowButton, styleMask NSWindowStyleMask) IButton {
 	rv := objc.Send[Button](objc.ID(wc.class), objc.Sel("standardWindowButton:forStyleMask:"), b, styleMask)
 	return rv
 }
@@ -598,7 +583,7 @@ func (wc _WindowClass) WindowNumberAtPointBelowWindowWithWindowNumber(point core
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowNumbers(options:)
-func (wc _WindowClass) WindowNumbersWithOptions(options WindowNumberListOptions) []foundation.Number {
+func (wc _WindowClass) WindowNumbersWithOptions(options NSWindowNumberListOptions) []foundation.Number {
 	rv := objc.Send[[]foundation.Number](objc.ID(wc.class), objc.Sel("windowNumbersWithOptions:"), options)
 	return rv
 }
@@ -617,8 +602,8 @@ func (wc _WindowClass) AllowsAutomaticWindowTabbing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
-func (wc _WindowClass) DefaultDepthLimit() WindowDepth {
-	rv := objc.Send[WindowDepth](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
+func (wc _WindowClass) DefaultDepthLimit() NSWindowDepth {
+	rv := objc.Send[NSWindowDepth](objc.ID(wc.class), objc.Sel("defaultDepthLimit"))
 	return rv
 }
 
@@ -626,8 +611,8 @@ func (wc _WindowClass) DefaultDepthLimit() WindowDepth {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
-func (wc _WindowClass) UserTabbingPreference() WindowUserTabbingPreference {
-	rv := objc.Send[WindowUserTabbingPreference](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
+func (wc _WindowClass) UserTabbingPreference() NSWindowUserTabbingPreference {
+	rv := objc.Send[NSWindowUserTabbingPreference](objc.ID(wc.class), objc.Sel("userTabbingPreference"))
 	return rv
 }
 
@@ -635,7 +620,7 @@ func (wc _WindowClass) UserTabbingPreference() WindowUserTabbingPreference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addChildWindow(_:ordered:)
-func (w_ Window) AddChildWindowOrdered(childWin IWindow, place WindowOrderingMode) {
+func (w_ Window) AddChildWindowOrdered(childWin IWindow, place NSWindowOrderingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addChildWindow:ordered:"), childWin, place)
 }
 
@@ -644,7 +629,7 @@ func (w_ Window) AddChildWindowOrdered(childWin IWindow, place WindowOrderingMod
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/addTabbedWindow(_:ordered:)
-func (w_ Window) AddTabbedWindowOrdered(window IWindow, ordered WindowOrderingMode) {
+func (w_ Window) AddTabbedWindowOrdered(window IWindow, ordered NSWindowOrderingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("addTabbedWindow:ordered:"), window, ordered)
 }
 
@@ -662,8 +647,8 @@ func (w_ Window) AddTitlebarAccessoryViewController(childViewController ITitleba
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/anchorAttribute(for:)
-func (w_ Window) AnchorAttributeForOrientation(orientation ILayoutConstraintOrientation) LayoutAttribute {
-	rv := objc.Send[LayoutAttribute](w_.ID, objc.Sel("anchorAttributeForOrientation:"), orientation)
+func (w_ Window) AnchorAttributeForOrientation(orientation NSLayoutConstraintOrientation) NSLayoutAttribute {
+	rv := objc.Send[NSLayoutAttribute](w_.ID, objc.Sel("anchorAttributeForOrientation:"), orientation)
 	return rv
 }
 
@@ -727,7 +712,7 @@ func (w_ Window) BeginCriticalSheetCompletionHandler(sheetWindow IWindow, handle
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/beginDraggingSession(items:event:source:)
-func (w_ Window) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) DraggingSession {
+func (w_ Window) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession {
 	rv := objc.Send[DraggingSession](w_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
 	return rv
 }
@@ -742,31 +727,12 @@ func (w_ Window) BeginSheetCompletionHandler(sheetWindow IWindow, handler unsafe
 }
 
 
-// Stores the window’s raster image from a given rectangle expressed in the window’s base coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/cacheImage(in:)
-func (w_ Window) CacheImageInRect(rect coregraphics.CGRect) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("cacheImageInRect:"), rect)
-}
-
-
 // A Boolean value that indicates if the window and its screen use a color space that can represent the specified display gamut.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canRepresent(_:)
-func (w_ Window) CanRepresentDisplayGamut(displayGamut IDisplayGamut) bool {
+func (w_ Window) CanRepresentDisplayGamut(displayGamut NSDisplayGamut) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("canRepresentDisplayGamut:"), displayGamut)
-	return rv
-}
-
-
-// Indicates whether the window has a depth limit that allows it to store color values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/canStoreColor()
-func (w_ Window) CanStoreColor() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("canStoreColor"))
 	return rv
 }
 
@@ -825,16 +791,6 @@ func (w_ Window) ContentBorderThicknessForEdge(edge int) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentRect(forFrameRect:)
 func (w_ Window) ContentRectForFrameRect(frameRect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](w_.ID, objc.Sel("contentRectForFrameRect:"), frameRect)
-	return rv
-}
-
-
-// Converts a given point from the window’s base coordinate system to the screen coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertBaseToScreen:
-func (w_ Window) ConvertBaseToScreen(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertBaseToScreen:"), point)
 	return rv
 }
 
@@ -899,16 +855,6 @@ func (w_ Window) ConvertPointToBacking(point coregraphics.CGPoint) coregraphics.
 }
 
 
-// Converts a given point from the screen coordinate system to the window’s base coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/convertScreenToBase:
-func (w_ Window) ConvertScreenToBase(point coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](w_.ID, objc.Sel("convertScreenToBase:"), point)
-	return rv
-}
-
-
 // Converts a rectangle from the window’s coordinate system to its pixel-aligned backing store coordinate system.
 //
 // [Full Topic]
@@ -967,15 +913,6 @@ func (w_ Window) DisableCursorRects() {
 }
 
 
-// Disables the method for the window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/disableFlushing()
-func (w_ Window) DisableFlushWindow() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("disableFlushWindow"))
-}
-
-
 // Disables the default button cell’s key equivalent, so it doesn’t perform a click when the user presses Return (or Enter).
 //
 // [Full Topic]
@@ -985,30 +922,12 @@ func (w_ Window) DisableKeyEquivalentForDefaultButtonCell() {
 }
 
 
-// Disables the window’s screen updates until the window is flushed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/disableScreenUpdatesUntilFlush()
-func (w_ Window) DisableScreenUpdatesUntilFlush() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("disableScreenUpdatesUntilFlush"))
-}
-
-
 // Disables snapshot restoration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/disableSnapshotRestoration()
 func (w_ Window) DisableSnapshotRestoration() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("disableSnapshotRestoration"))
-}
-
-
-// Discards all of the window’s cached image rectangles.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/discardCachedImage()
-func (w_ Window) DiscardCachedImage() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("discardCachedImage"))
 }
 
 
@@ -1025,7 +944,7 @@ func (w_ Window) DiscardCursorRects() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/discardEvents(matching:before:)
-func (w_ Window) DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent) {
+func (w_ Window) DiscardEventsMatchingMaskBeforeEvent(mask NSEventMask, lastEvent IEvent) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("discardEventsMatchingMask:beforeEvent:"), mask, lastEvent)
 }
 
@@ -1056,30 +975,12 @@ func (w_ Window) DisplayLinkWithTargetSelector(target objectivec.IObject, select
 }
 
 
-// Begins a dragging session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/drag(_:at:offset:event:pasteboard:source:slideBack:)
-func (w_ Window) DragImageAtOffsetEventPasteboardSourceSlideBack(image IImage, baseLocation coregraphics.CGPoint, initialOffset coregraphics.CGSize, event IEvent, pboard IPasteboard, sourceObj objectivec.IObject, slideFlag bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("dragImage:at:offset:event:pasteboard:source:slideBack:"), image, baseLocation, initialOffset, event, pboard, sourceObj, slideFlag)
-}
-
-
 // Reenables cursor rectangle management within the window after a message.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/enableCursorRects()
 func (w_ Window) EnableCursorRects() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("enableCursorRects"))
-}
-
-
-// Reenables the method for the window after it was disabled through a previous message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/enableFlushing()
-func (w_ Window) EnableFlushWindow() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("enableFlushWindow"))
 }
 
 
@@ -1121,7 +1022,7 @@ func (w_ Window) EndSheet(sheetWindow IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/endSheet(_:returnCode:)
-func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode IModalResponse) {
+func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode ModalResponse) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("endSheet:returnCode:"), sheetWindow, returnCode)
 }
 
@@ -1130,27 +1031,9 @@ func (w_ Window) EndSheetReturnCode(sheetWindow IWindow, returnCode IModalRespon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/fieldEditor(_:for:)
-func (w_ Window) FieldEditorForObject(createFlag bool, object objectivec.IObject) Text {
+func (w_ Window) FieldEditorForObject(createFlag bool, object objectivec.IObject) IText {
 	rv := objc.Send[Text](w_.ID, objc.Sel("fieldEditor:forObject:"), createFlag, object)
 	return rv
-}
-
-
-// Flushes the window’s offscreen buffer to the screen if the window is buffered and flushing is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/flush()
-func (w_ Window) FlushWindow() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("flushWindow"))
-}
-
-
-// Flushes the window’s offscreen buffer to the screen if flushing is enabled and if the last message had no effect because flushing was disabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/flushIfNeeded()
-func (w_ Window) FlushWindowIfNeeded() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("flushWindowIfNeeded"))
 }
 
 
@@ -1164,21 +1047,11 @@ func (w_ Window) FrameRectForContentRect(contentRect coregraphics.CGRect) coregr
 }
 
 
-// Returns the window’s graphics state object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/gState()
-func (w_ Window) GState() int {
-	rv := objc.Send[int](w_.ID, objc.Sel("gState"))
-	return rv
-}
-
-
 // Handles the AppleScript command to close the window (and its associated document, if any).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleClose(_:)
-func (w_ Window) HandleCloseScriptCommand(command foundation.ICloseCommand) objc.ID {
+func (w_ Window) HandleCloseScriptCommand(command foundation.CloseCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleCloseScriptCommand:"), command)
 	return rv
 }
@@ -1188,7 +1061,7 @@ func (w_ Window) HandleCloseScriptCommand(command foundation.ICloseCommand) objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handlePrint(_:)
-func (w_ Window) HandlePrintScriptCommand(command foundation.IScriptCommand) objc.ID {
+func (w_ Window) HandlePrintScriptCommand(command foundation.ScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handlePrintScriptCommand:"), command)
 	return rv
 }
@@ -1198,7 +1071,7 @@ func (w_ Window) HandlePrintScriptCommand(command foundation.IScriptCommand) obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/handleSave(_:)
-func (w_ Window) HandleSaveScriptCommand(command foundation.IScriptCommand) objc.ID {
+func (w_ Window) HandleSaveScriptCommand(command foundation.ScriptCommand) objc.ID {
 	rv := objc.Send[objc.ID](w_.ID, objc.Sel("handleSaveScriptCommand:"), command)
 	return rv
 }
@@ -1308,7 +1181,7 @@ func (w_ Window) MoveTabToNewWindow(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:)
-func (w_ Window) NextEventMatchingMask(mask EventMask) Event {
+func (w_ Window) NextEventMatchingMask(mask NSEventMask) IEvent {
 	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:"), mask)
 	return rv
 }
@@ -1318,7 +1191,7 @@ func (w_ Window) NextEventMatchingMask(mask EventMask) Event {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/nextEvent(matching:until:inMode:dequeue:)
-func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration foundation.IDate, mode unsafe.Pointer, deqFlag bool) Event {
+func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask NSEventMask, expiration foundation.NSDate, mode unsafe.Pointer, deqFlag bool) IEvent {
 	rv := objc.Send[Event](w_.ID, objc.Sel("nextEventMatchingMask:untilDate:inMode:dequeue:"), mask, expiration, mode, deqFlag)
 	return rv
 }
@@ -1328,7 +1201,7 @@ func (w_ Window) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, exp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/order(_:relativeTo:)
-func (w_ Window) OrderWindowRelativeTo(place WindowOrderingMode, otherWin int) {
+func (w_ Window) OrderWindowRelativeTo(place NSWindowOrderingMode, otherWin int) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("orderWindow:relativeTo:"), place, otherWin)
 }
 
@@ -1500,15 +1373,6 @@ func (w_ Window) ResignMainWindow() {
 }
 
 
-// Splices the window’s cached image rectangles, if any, back into its raster image (and buffer if it has one), undoing the effect of any drawing performed within those areas since they were established using .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/restoreCachedImage()
-func (w_ Window) RestoreCachedImage() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("restoreCachedImage"))
-}
-
-
 // Presents the toolbar customization user interface.
 //
 // [Full Topic]
@@ -1522,7 +1386,7 @@ func (w_ Window) RunToolbarCustomizationPalette(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/saveFrame(usingName:)
-func (w_ Window) SaveFrameUsingName(name IWindowFrameAutosaveName) {
+func (w_ Window) SaveFrameUsingName(name WindowFrameAutosaveName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("saveFrameUsingName:"), name)
 }
 
@@ -1594,7 +1458,7 @@ func (w_ Window) SendEvent(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setAnchorAttribute(_:for:)
-func (w_ Window) SetAnchorAttributeForOrientation(attr LayoutAttribute, orientation ILayoutConstraintOrientation) {
+func (w_ Window) SetAnchorAttributeForOrientation(attr NSLayoutAttribute, orientation NSLayoutConstraintOrientation) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAnchorAttribute:forOrientation:"), attr, orientation)
 }
 
@@ -1657,7 +1521,7 @@ func (w_ Window) SetFrameDisplayAnimate(frameRect coregraphics.CGRect, displayFl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrame(from:)
-func (w_ Window) SetFrameFromString(string_ IWindowPersistableFrameDescriptor) {
+func (w_ Window) SetFrameFromString(string_ WindowPersistableFrameDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setFrameFromString:"), string_)
 }
 
@@ -1684,7 +1548,7 @@ func (w_ Window) SetFrameTopLeftPoint(point coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:)
-func (w_ Window) SetFrameUsingName(name IWindowFrameAutosaveName) bool {
+func (w_ Window) SetFrameUsingName(name WindowFrameAutosaveName) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:"), name)
 	return rv
 }
@@ -1694,7 +1558,7 @@ func (w_ Window) SetFrameUsingName(name IWindowFrameAutosaveName) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/setFrameUsingName(_:force:)
-func (w_ Window) SetFrameUsingNameForce(name IWindowFrameAutosaveName, force bool) bool {
+func (w_ Window) SetFrameUsingNameForce(name WindowFrameAutosaveName, force bool) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("setFrameUsingName:force:"), name, force)
 	return rv
 }
@@ -1713,7 +1577,7 @@ func (w_ Window) SetTitleWithRepresentedFilename(filename string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/standardWindowButton(_:)
-func (w_ Window) StandardWindowButton(b IWindowButton) Button {
+func (w_ Window) StandardWindowButton(b NSWindowButton) IButton {
 	rv := objc.Send[Button](w_.ID, objc.Sel("standardWindowButton:"), b)
 	return rv
 }
@@ -1759,7 +1623,7 @@ func (w_ Window) ToggleToolbarShown(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/trackEvents(matching:timeout:mode:handler:)
-func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask EventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
+func (w_ Window) TrackEventsMatchingMaskTimeoutModeHandler(mask NSEventMask, timeout float64, mode unsafe.Pointer, trackingHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("trackEventsMatchingMask:timeout:mode:handler:"), mask, timeout, mode, trackingHandler)
 }
 
@@ -1805,25 +1669,6 @@ func (w_ Window) Update() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/updateConstraintsIfNeeded()
 func (w_ Window) UpdateConstraintsIfNeeded() {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateConstraintsIfNeeded"))
-}
-
-
-// Specifies whether the window is to optimize focusing and drawing when displaying its views.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/useOptimizedDrawing(_:)
-func (w_ Window) UseOptimizedDrawing(flag bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("useOptimizedDrawing:"), flag)
-}
-
-
-// Returns the scale factor applied to the window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userSpaceScaleFactor
-func (w_ Window) UserSpaceScaleFactor() float64 {
-	rv := objc.Send[float64](w_.ID, objc.Sel("userSpaceScaleFactor"))
-	return rv
 }
 
 
@@ -1954,8 +1799,8 @@ func (w_ Window) SetAlphaValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationBehavior-swift.property
-func (w_ Window) AnimationBehavior() WindowAnimationBehavior {
-	rv := objc.Send[WindowAnimationBehavior](w_.ID, objc.Sel("animationBehavior"))
+func (w_ Window) AnimationBehavior() NSWindowAnimationBehavior {
+	rv := objc.Send[NSWindowAnimationBehavior](w_.ID, objc.Sel("animationBehavior"))
 	return rv
 }
 
@@ -1964,7 +1809,7 @@ func (w_ Window) AnimationBehavior() WindowAnimationBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/animationBehavior-swift.property
-func (w_ Window) SetAnimationBehavior(value WindowAnimationBehavior) {
+func (w_ Window) SetAnimationBehavior(value NSWindowAnimationBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAnimationBehavior:"), value)
 }
 
@@ -2021,8 +1866,8 @@ func (w_ Window) SetAspectRatio(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/attachedSheet
-func (w_ Window) AttachedSheet() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("attachedSheet"))
+func (w_ Window) AttachedSheet() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("attachedSheet"))
 	return rv
 }
 
@@ -2050,8 +1895,8 @@ func (w_ Window) SetAutorecalculatesKeyViewLoop(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backgroundColor
-func (w_ Window) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](w_.ID, objc.Sel("backgroundColor"))
+func (w_ Window) BackgroundColor() IColor {
+	rv := objc.Send[Color](w_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -2069,8 +1914,8 @@ func (w_ Window) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingLocation-swift.property
-func (w_ Window) BackingLocation() WindowBackingLocation {
-	rv := objc.Send[WindowBackingLocation](w_.ID, objc.Sel("backingLocation"))
+func (w_ Window) BackingLocation() NSWindowBackingLocation {
+	rv := objc.Send[NSWindowBackingLocation](w_.ID, objc.Sel("backingLocation"))
 	return rv
 }
 
@@ -2089,7 +1934,7 @@ func (w_ Window) BackingScaleFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingType
-func (w_ Window) BackingType() BackingStoreType {
+func (w_ Window) BackingType() NSBackingStoreType {
 	rv := objc.Send[BackingStoreType](w_.ID, objc.Sel("backingType"))
 	return rv
 }
@@ -2099,7 +1944,7 @@ func (w_ Window) BackingType() BackingStoreType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/backingType
-func (w_ Window) SetBackingType(value BackingStoreType) {
+func (w_ Window) SetBackingType(value NSBackingStoreType) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setBackingType:"), value)
 }
 
@@ -2184,8 +2029,8 @@ func (w_ Window) ChildWindows() []Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/collectionBehavior-swift.property
-func (w_ Window) CollectionBehavior() WindowCollectionBehavior {
-	rv := objc.Send[WindowCollectionBehavior](w_.ID, objc.Sel("collectionBehavior"))
+func (w_ Window) CollectionBehavior() NSWindowCollectionBehavior {
+	rv := objc.Send[NSWindowCollectionBehavior](w_.ID, objc.Sel("collectionBehavior"))
 	return rv
 }
 
@@ -2194,7 +2039,7 @@ func (w_ Window) CollectionBehavior() WindowCollectionBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/collectionBehavior-swift.property
-func (w_ Window) SetCollectionBehavior(value WindowCollectionBehavior) {
+func (w_ Window) SetCollectionBehavior(value NSWindowCollectionBehavior) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCollectionBehavior:"), value)
 }
 
@@ -2203,8 +2048,8 @@ func (w_ Window) SetCollectionBehavior(value WindowCollectionBehavior) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/colorSpace
-func (w_ Window) ColorSpace() NSColorSpace {
-	rv := objc.Send[NSColorSpace](w_.ID, objc.Sel("colorSpace"))
+func (w_ Window) ColorSpace() ColorSpace {
+	rv := objc.Send[ColorSpace](w_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -2213,7 +2058,7 @@ func (w_ Window) ColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/colorSpace
-func (w_ Window) SetColorSpace(value IColorSpace) {
+func (w_ Window) SetColorSpace(value ColorSpace) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpace:"), value)
 }
 
@@ -2318,8 +2163,8 @@ func (w_ Window) SetContentResizeIncrements(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentView
-func (w_ Window) ContentView() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("contentView"))
+func (w_ Window) ContentView() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("contentView"))
 	return rv
 }
 
@@ -2337,8 +2182,8 @@ func (w_ Window) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/contentViewController
-func (w_ Window) ContentViewController() NSViewController {
-	rv := objc.Send[NSViewController](w_.ID, objc.Sel("contentViewController"))
+func (w_ Window) ContentViewController() IViewController {
+	rv := objc.Send[ViewController](w_.ID, objc.Sel("contentViewController"))
 	return rv
 }
 
@@ -2356,8 +2201,8 @@ func (w_ Window) SetContentViewController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/currentEvent
-func (w_ Window) CurrentEvent() NSEvent {
-	rv := objc.Send[NSEvent](w_.ID, objc.Sel("currentEvent"))
+func (w_ Window) CurrentEvent() IEvent {
+	rv := objc.Send[Event](w_.ID, objc.Sel("currentEvent"))
 	return rv
 }
 
@@ -2366,8 +2211,8 @@ func (w_ Window) CurrentEvent() NSEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deepestScreen
-func (w_ Window) DeepestScreen() NSScreen {
-	rv := objc.Send[NSScreen](w_.ID, objc.Sel("deepestScreen"))
+func (w_ Window) DeepestScreen() IScreen {
+	rv := objc.Send[Screen](w_.ID, objc.Sel("deepestScreen"))
 	return rv
 }
 
@@ -2376,8 +2221,8 @@ func (w_ Window) DeepestScreen() NSScreen {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultButtonCell
-func (w_ Window) DefaultButtonCell() NSButtonCell {
-	rv := objc.Send[NSButtonCell](w_.ID, objc.Sel("defaultButtonCell"))
+func (w_ Window) DefaultButtonCell() ButtonCell {
+	rv := objc.Send[ButtonCell](w_.ID, objc.Sel("defaultButtonCell"))
 	return rv
 }
 
@@ -2386,7 +2231,7 @@ func (w_ Window) DefaultButtonCell() NSButtonCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultButtonCell
-func (w_ Window) SetDefaultButtonCell(value IButtonCell) {
+func (w_ Window) SetDefaultButtonCell(value ButtonCell) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultButtonCell:"), value)
 }
 
@@ -2395,8 +2240,8 @@ func (w_ Window) SetDefaultButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/defaultDepthLimit
-func (w_ Window) DefaultDepthLimit() WindowDepth {
-	rv := objc.Send[WindowDepth](w_.ID, objc.Sel("defaultDepthLimit"))
+func (w_ Window) DefaultDepthLimit() NSWindowDepth {
+	rv := objc.Send[NSWindowDepth](w_.ID, objc.Sel("defaultDepthLimit"))
 	return rv
 }
 
@@ -2424,8 +2269,8 @@ func (w_ Window) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/depthLimit
-func (w_ Window) DepthLimit() WindowDepth {
-	rv := objc.Send[WindowDepth](w_.ID, objc.Sel("depthLimit"))
+func (w_ Window) DepthLimit() NSWindowDepth {
+	rv := objc.Send[NSWindowDepth](w_.ID, objc.Sel("depthLimit"))
 	return rv
 }
 
@@ -2434,7 +2279,7 @@ func (w_ Window) DepthLimit() WindowDepth {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/depthLimit
-func (w_ Window) SetDepthLimit(value IWindowDepth) {
+func (w_ Window) SetDepthLimit(value NSWindowDepth) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDepthLimit:"), value)
 }
 
@@ -2443,8 +2288,8 @@ func (w_ Window) SetDepthLimit(value IWindowDepth) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/deviceDescription
-func (w_ Window) DeviceDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("deviceDescription"))
+func (w_ Window) DeviceDescription() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("deviceDescription"))
 	return rv
 }
 
@@ -2472,8 +2317,8 @@ func (w_ Window) SetDisplaysWhenScreenProfileChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/dockTile
-func (w_ Window) DockTile() NSDockTile {
-	rv := objc.Send[NSDockTile](w_.ID, objc.Sel("dockTile"))
+func (w_ Window) DockTile() DockTile {
+	rv := objc.Send[DockTile](w_.ID, objc.Sel("dockTile"))
 	return rv
 }
 
@@ -2492,8 +2337,8 @@ func (w_ Window) Drawers() []Drawer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/firstResponder
-func (w_ Window) FirstResponder() NSResponder {
-	rv := objc.Send[NSResponder](w_.ID, objc.Sel("firstResponder"))
+func (w_ Window) FirstResponder() IResponder {
+	rv := objc.Send[Responder](w_.ID, objc.Sel("firstResponder"))
 	return rv
 }
 
@@ -2532,8 +2377,8 @@ func (w_ Window) StringWithSavedFrame() WindowPersistableFrameDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/graphicsContext
-func (w_ Window) GraphicsContext() NSGraphicsContext {
-	rv := objc.Send[NSGraphicsContext](w_.ID, objc.Sel("graphicsContext"))
+func (w_ Window) GraphicsContext() IGraphicsContext {
+	rv := objc.Send[GraphicsContext](w_.ID, objc.Sel("graphicsContext"))
 	return rv
 }
 
@@ -2647,8 +2492,8 @@ func (w_ Window) InLiveResize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/initialFirstResponder
-func (w_ Window) InitialFirstResponder() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("initialFirstResponder"))
+func (w_ Window) InitialFirstResponder() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("initialFirstResponder"))
 	return rv
 }
 
@@ -2967,8 +2812,8 @@ func (w_ Window) Zoomed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/keyViewSelectionDirection
-func (w_ Window) KeyViewSelectionDirection() SelectionDirection {
-	rv := objc.Send[SelectionDirection](w_.ID, objc.Sel("keyViewSelectionDirection"))
+func (w_ Window) KeyViewSelectionDirection() NSSelectionDirection {
+	rv := objc.Send[NSSelectionDirection](w_.ID, objc.Sel("keyViewSelectionDirection"))
 	return rv
 }
 
@@ -3072,7 +2917,7 @@ func (w_ Window) SetMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowImage
-func (w_ Window) MiniwindowImage() Image {
+func (w_ Window) MiniwindowImage() IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("miniwindowImage"))
 	return rv
 }
@@ -3120,8 +2965,8 @@ func (w_ Window) MouseLocationOutsideOfEventStream() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/occlusionState-swift.property
-func (w_ Window) OcclusionState() WindowOcclusionState {
-	rv := objc.Send[WindowOcclusionState](w_.ID, objc.Sel("occlusionState"))
+func (w_ Window) OcclusionState() NSWindowOcclusionState {
+	rv := objc.Send[NSWindowOcclusionState](w_.ID, objc.Sel("occlusionState"))
 	return rv
 }
 
@@ -3149,8 +2994,8 @@ func (w_ Window) SetOrderedIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/parent
-func (w_ Window) ParentWindow() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("parentWindow"))
+func (w_ Window) ParentWindow() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -3168,8 +3013,8 @@ func (w_ Window) SetParentWindow(value IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preferredBackingLocation
-func (w_ Window) PreferredBackingLocation() WindowBackingLocation {
-	rv := objc.Send[WindowBackingLocation](w_.ID, objc.Sel("preferredBackingLocation"))
+func (w_ Window) PreferredBackingLocation() NSWindowBackingLocation {
+	rv := objc.Send[NSWindowBackingLocation](w_.ID, objc.Sel("preferredBackingLocation"))
 	return rv
 }
 
@@ -3178,7 +3023,7 @@ func (w_ Window) PreferredBackingLocation() WindowBackingLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/preferredBackingLocation
-func (w_ Window) SetPreferredBackingLocation(value IWindowBackingLocation) {
+func (w_ Window) SetPreferredBackingLocation(value NSWindowBackingLocation) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredBackingLocation:"), value)
 }
 
@@ -3254,7 +3099,7 @@ func (w_ Window) RepresentedURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedURL
-func (w_ Window) SetRepresentedURL(value foundation.IURL) {
+func (w_ Window) SetRepresentedURL(value foundation.URL) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedURL:"), value)
 }
 
@@ -3263,7 +3108,7 @@ func (w_ Window) SetRepresentedURL(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/resizeFlags
-func (w_ Window) ResizeFlags() EventModifierFlags {
+func (w_ Window) ResizeFlags() NSEventModifierFlags {
 	rv := objc.Send[EventModifierFlags](w_.ID, objc.Sel("resizeFlags"))
 	return rv
 }
@@ -3311,8 +3156,8 @@ func (w_ Window) SetRestorationClass(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/screen
-func (w_ Window) Screen() NSScreen {
-	rv := objc.Send[NSScreen](w_.ID, objc.Sel("screen"))
+func (w_ Window) Screen() IScreen {
+	rv := objc.Send[Screen](w_.ID, objc.Sel("screen"))
 	return rv
 }
 
@@ -3321,8 +3166,8 @@ func (w_ Window) Screen() NSScreen {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sharingType-swift.property
-func (w_ Window) SharingType() WindowSharingType {
-	rv := objc.Send[WindowSharingType](w_.ID, objc.Sel("sharingType"))
+func (w_ Window) SharingType() NSWindowSharingType {
+	rv := objc.Send[NSWindowSharingType](w_.ID, objc.Sel("sharingType"))
 	return rv
 }
 
@@ -3331,7 +3176,7 @@ func (w_ Window) SharingType() WindowSharingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sharingType-swift.property
-func (w_ Window) SetSharingType(value WindowSharingType) {
+func (w_ Window) SetSharingType(value NSWindowSharingType) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSharingType:"), value)
 }
 
@@ -3340,8 +3185,8 @@ func (w_ Window) SetSharingType(value WindowSharingType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/sheetParent
-func (w_ Window) SheetParent() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("sheetParent"))
+func (w_ Window) SheetParent() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("sheetParent"))
 	return rv
 }
 
@@ -3398,7 +3243,7 @@ func (w_ Window) SetShowsToolbarButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/styleMask-swift.property
-func (w_ Window) StyleMask() WindowStyleMask {
+func (w_ Window) StyleMask() NSWindowStyleMask {
 	rv := objc.Send[WindowStyleMask](w_.ID, objc.Sel("styleMask"))
 	return rv
 }
@@ -3408,7 +3253,7 @@ func (w_ Window) StyleMask() WindowStyleMask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/styleMask-swift.property
-func (w_ Window) SetStyleMask(value WindowStyleMask) {
+func (w_ Window) SetStyleMask(value NSWindowStyleMask) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStyleMask:"), value)
 }
 
@@ -3436,8 +3281,8 @@ func (w_ Window) SetSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tab
-func (w_ Window) Tab() NSWindowTab {
-	rv := objc.Send[NSWindowTab](w_.ID, objc.Sel("tab"))
+func (w_ Window) Tab() IWindowTab {
+	rv := objc.Send[WindowTab](w_.ID, objc.Sel("tab"))
 	return rv
 }
 
@@ -3446,8 +3291,8 @@ func (w_ Window) Tab() NSWindowTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabGroup
-func (w_ Window) TabGroup() NSWindowTabGroup {
-	rv := objc.Send[NSWindowTabGroup](w_.ID, objc.Sel("tabGroup"))
+func (w_ Window) TabGroup() IWindowTabGroup {
+	rv := objc.Send[WindowTabGroup](w_.ID, objc.Sel("tabGroup"))
 	return rv
 }
 
@@ -3476,7 +3321,7 @@ func (w_ Window) TabbingIdentifier() WindowTabbingIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingIdentifier-swift.property
-func (w_ Window) SetTabbingIdentifier(value IWindowTabbingIdentifier) {
+func (w_ Window) SetTabbingIdentifier(value WindowTabbingIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
 }
 
@@ -3485,8 +3330,8 @@ func (w_ Window) SetTabbingIdentifier(value IWindowTabbingIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingMode-swift.property
-func (w_ Window) TabbingMode() WindowTabbingMode {
-	rv := objc.Send[WindowTabbingMode](w_.ID, objc.Sel("tabbingMode"))
+func (w_ Window) TabbingMode() NSWindowTabbingMode {
+	rv := objc.Send[NSWindowTabbingMode](w_.ID, objc.Sel("tabbingMode"))
 	return rv
 }
 
@@ -3495,7 +3340,7 @@ func (w_ Window) TabbingMode() WindowTabbingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/tabbingMode-swift.property
-func (w_ Window) SetTabbingMode(value WindowTabbingMode) {
+func (w_ Window) SetTabbingMode(value NSWindowTabbingMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingMode:"), value)
 }
 
@@ -3523,8 +3368,8 @@ func (w_ Window) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titleVisibility-swift.property
-func (w_ Window) TitleVisibility() WindowTitleVisibility {
-	rv := objc.Send[WindowTitleVisibility](w_.ID, objc.Sel("titleVisibility"))
+func (w_ Window) TitleVisibility() NSWindowTitleVisibility {
+	rv := objc.Send[NSWindowTitleVisibility](w_.ID, objc.Sel("titleVisibility"))
 	return rv
 }
 
@@ -3533,7 +3378,7 @@ func (w_ Window) TitleVisibility() WindowTitleVisibility {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titleVisibility-swift.property
-func (w_ Window) SetTitleVisibility(value IWindowTitleVisibility) {
+func (w_ Window) SetTitleVisibility(value NSWindowTitleVisibility) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitleVisibility:"), value)
 }
 
@@ -3590,8 +3435,8 @@ func (w_ Window) SetTitlebarAppearsTransparent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarSeparatorStyle
-func (w_ Window) TitlebarSeparatorStyle() TitlebarSeparatorStyle {
-	rv := objc.Send[TitlebarSeparatorStyle](w_.ID, objc.Sel("titlebarSeparatorStyle"))
+func (w_ Window) TitlebarSeparatorStyle() NSTitlebarSeparatorStyle {
+	rv := objc.Send[NSTitlebarSeparatorStyle](w_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
 
@@ -3600,7 +3445,7 @@ func (w_ Window) TitlebarSeparatorStyle() TitlebarSeparatorStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/titlebarSeparatorStyle
-func (w_ Window) SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle) {
+func (w_ Window) SetTitlebarSeparatorStyle(value NSTitlebarSeparatorStyle) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitlebarSeparatorStyle:"), value)
 }
 
@@ -3609,8 +3454,8 @@ func (w_ Window) SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbar
-func (w_ Window) Toolbar() NSToolbar {
-	rv := objc.Send[NSToolbar](w_.ID, objc.Sel("toolbar"))
+func (w_ Window) Toolbar() IToolbar {
+	rv := objc.Send[Toolbar](w_.ID, objc.Sel("toolbar"))
 	return rv
 }
 
@@ -3628,8 +3473,8 @@ func (w_ Window) SetToolbar(value IToolbar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbarStyle-swift.property
-func (w_ Window) ToolbarStyle() WindowToolbarStyle {
-	rv := objc.Send[WindowToolbarStyle](w_.ID, objc.Sel("toolbarStyle"))
+func (w_ Window) ToolbarStyle() NSWindowToolbarStyle {
+	rv := objc.Send[NSWindowToolbarStyle](w_.ID, objc.Sel("toolbarStyle"))
 	return rv
 }
 
@@ -3638,7 +3483,7 @@ func (w_ Window) ToolbarStyle() WindowToolbarStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/toolbarStyle-swift.property
-func (w_ Window) SetToolbarStyle(value WindowToolbarStyle) {
+func (w_ Window) SetToolbarStyle(value NSWindowToolbarStyle) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarStyle:"), value)
 }
 
@@ -3647,8 +3492,8 @@ func (w_ Window) SetToolbarStyle(value WindowToolbarStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/userTabbingPreference-swift.type.property
-func (w_ Window) UserTabbingPreference() WindowUserTabbingPreference {
-	rv := objc.Send[WindowUserTabbingPreference](w_.ID, objc.Sel("userTabbingPreference"))
+func (w_ Window) UserTabbingPreference() NSWindowUserTabbingPreference {
+	rv := objc.Send[NSWindowUserTabbingPreference](w_.ID, objc.Sel("userTabbingPreference"))
 	return rv
 }
 
@@ -3676,8 +3521,8 @@ func (w_ Window) SetViewsNeedDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowController
-func (w_ Window) WindowController() NSWindowController {
-	rv := objc.Send[NSWindowController](w_.ID, objc.Sel("windowController"))
+func (w_ Window) WindowController() IWindowController {
+	rv := objc.Send[WindowController](w_.ID, objc.Sel("windowController"))
 	return rv
 }
 
@@ -3715,8 +3560,8 @@ func (w_ Window) WindowRef() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/windowTitlebarLayoutDirection
-func (w_ Window) WindowTitlebarLayoutDirection() UserInterfaceLayoutDirection {
-	rv := objc.Send[UserInterfaceLayoutDirection](w_.ID, objc.Sel("windowTitlebarLayoutDirection"))
+func (w_ Window) WindowTitlebarLayoutDirection() NSUserInterfaceLayoutDirection {
+	rv := objc.Send[NSUserInterfaceLayoutDirection](w_.ID, objc.Sel("windowTitlebarLayoutDirection"))
 	return rv
 }
 
@@ -3802,7 +3647,7 @@ func (w_ Window) ColorSpaceName() ColorSpaceName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename
-func (w_ Window) SetColorSpaceName(value IColorSpaceName) {
+func (w_ Window) SetColorSpaceName(value ColorSpaceName) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setColorSpaceName:"), value)
 }
 
@@ -4248,8 +4093,8 @@ func (w_ Window) SetIsZoomed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/parent
-func (w_ Window) Parent() NSWindow {
-	rv := objc.Send[NSWindow](w_.ID, objc.Sel("parent"))
+func (w_ Window) Parent() IWindow {
+	rv := objc.Send[Window](w_.ID, objc.Sel("parent"))
 	return rv
 }
 

@@ -31,9 +31,11 @@ type _DomainStateCompanionClass struct {
 // An interface definition for the [DomainStateCompanion] class.
 type IDomainStateCompanion interface {
 	objectivec.IObject
-	StateHashForCompanionType(companionType CompanionType) foundation.Data
+	// properties:
 	AvailableCompanionTypes() unsafe.Pointer
 	StateHash() foundation.NSData
+	// methods:
+	StateHashForCompanionType(companionType LACompanionType) foundation.Data
 }
 
 
@@ -86,7 +88,7 @@ func NewDomainStateCompanion() DomainStateCompanion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash(for:)
-func (d_ DomainStateCompanion) StateHashForCompanionType(companionType CompanionType) foundation.Data {
+func (d_ DomainStateCompanion) StateHashForCompanionType(companionType LACompanionType) foundation.Data {
 	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
 	return rv
 }

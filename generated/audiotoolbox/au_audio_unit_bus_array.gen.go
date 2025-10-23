@@ -30,21 +30,21 @@ type _AudioUnitBusArrayClass struct {
 // An interface definition for the [AudioUnitBusArray] class.
 type IAudioUnitBusArray interface {
 	objectivec.IObject
+	BusType() AUAudioUnitBusType
+	Count() uint
+	CountChangeable() bool
+	OwnerAudioUnit() IAUAudioUnit
+	InputBusses() IAUAudioUnitBusArray
+	SetInputBusses(value IAUAudioUnitBusArray)
+	OutputBusses() IAUAudioUnitBusArray
+	SetOutputBusses(value IAUAudioUnitBusArray)
+	IsCountChangeable() bool
+	SetIsCountChangeable(value bool)
 	AddObserverToAllBussesForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
 	RemoveObserverFromAllBussesForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer)
 	ReplaceBusses(busArray []AudioUnitBus)
 	SetBusCountError(count uint, outError unsafe.Pointer) bool
-	ObjectAtIndexedSubscript(index uint) AudioUnitBus
-	BusType() AudioUnitBusType
-	Count() uint
-	CountChangeable() bool
-	OwnerAudioUnit() AUAudioUnit
-	InputBusses() AUAudioUnitBusArray
-	SetInputBusses(value IAUAudioUnitBusArray)
-	OutputBusses() AUAudioUnitBusArray
-	SetOutputBusses(value IAUAudioUnitBusArray)
-	IsCountChangeable() bool
-	SetIsCountChangeable(value bool)
+	ObjectAtIndexedSubscript(index uint) IAudioUnitBus
 }
 
 // A class that defines a container for an audio unit’s input or output busses.
@@ -104,7 +104,7 @@ func NewAudioUnitBusArray() AudioUnitBusArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)
-func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AudioUnitBusType) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AUAudioUnitBusType) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:"), owner, busType)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AudioU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)
-func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType AudioUnitBusType, busArray []AudioUnitBus) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType AUAudioUnitBusType, busArray []AudioUnitBus) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:busses:"), owner, busType, busArray)
 	rv.Autorelease()
@@ -166,7 +166,7 @@ func (a_ AudioUnitBusArray) SetBusCountError(count uint, outError unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)
-func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) AudioUnitBus {
+func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) IAudioUnitBus {
 	rv := objc.Send[AudioUnitBus](a_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
 }
@@ -176,8 +176,8 @@ func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) AudioUnitBus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/busType
-func (a_ AudioUnitBusArray) BusType() AudioUnitBusType {
-	rv := objc.Send[AudioUnitBusType](a_.ID, objc.Sel("busType"))
+func (a_ AudioUnitBusArray) BusType() AUAudioUnitBusType {
+	rv := objc.Send[AUAudioUnitBusType](a_.ID, objc.Sel("busType"))
 	return rv
 }
 
@@ -206,8 +206,8 @@ func (a_ AudioUnitBusArray) CountChangeable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit
-func (a_ AudioUnitBusArray) OwnerAudioUnit() AUAudioUnit {
-	rv := objc.Send[AUAudioUnit](a_.ID, objc.Sel("ownerAudioUnit"))
+func (a_ AudioUnitBusArray) OwnerAudioUnit() IAUAudioUnit {
+	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("ownerAudioUnit"))
 	return rv
 }
 
@@ -216,8 +216,8 @@ func (a_ AudioUnitBusArray) OwnerAudioUnit() AUAudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
-func (a_ AudioUnitBusArray) InputBusses() AUAudioUnitBusArray {
-	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
+func (a_ AudioUnitBusArray) InputBusses() IAUAudioUnitBusArray {
+	rv := objc.Send[AudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
 	return rv
 }
 
@@ -235,8 +235,8 @@ func (a_ AudioUnitBusArray) SetInputBusses(value IAUAudioUnitBusArray) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
-func (a_ AudioUnitBusArray) OutputBusses() AUAudioUnitBusArray {
-	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
+func (a_ AudioUnitBusArray) OutputBusses() IAUAudioUnitBusArray {
+	rv := objc.Send[AudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
 	return rv
 }
 

@@ -29,6 +29,8 @@ type _HKHeartbeatSeriesQueryClass struct {
 // An interface definition for the [HKHeartbeatSeriesQuery] class.
 type IHKHeartbeatSeriesQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A query that returns the heartbeat data contained in a heartbeat series sample.

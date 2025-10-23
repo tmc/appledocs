@@ -29,12 +29,12 @@ type _DeviceMotionClass struct {
 // An interface definition for the [DeviceMotion] class.
 type IDeviceMotion interface {
 	ILogItem
-	Attitude() CMAttitude
+	Attitude() ICMAttitude
 	Gravity() unsafe.Pointer
 	Heading() float64
 	MagneticField() unsafe.Pointer
 	RotationRate() unsafe.Pointer
-	SensorLocation() DeviceMotionSensorLocation
+	SensorLocation() CMDeviceMotionSensorLocation
 	UserAcceleration() unsafe.Pointer
 }
 
@@ -97,8 +97,8 @@ func NewDeviceMotion() DeviceMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/attitude
-func (d_ DeviceMotion) Attitude() CMAttitude {
-	rv := objc.Send[CMAttitude](d_.ID, objc.Sel("attitude"))
+func (d_ DeviceMotion) Attitude() ICMAttitude {
+	rv := objc.Send[Attitude](d_.ID, objc.Sel("attitude"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/sensorLocation-swift.property
-func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
-	rv := objc.Send[DeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
+func (d_ DeviceMotion) SensorLocation() CMDeviceMotionSensorLocation {
+	rv := objc.Send[CMDeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
 	return rv
 }
 

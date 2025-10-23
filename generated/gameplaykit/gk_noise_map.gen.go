@@ -30,15 +30,15 @@ type _NoiseMapClass struct {
 // An interface definition for the [NoiseMap] class.
 type INoiseMap interface {
 	objectivec.IObject
-	InterpolatedValueAtPosition(position unsafe.Pointer) float32
-	SetValueAtPosition(value float32, position unsafe.Pointer)
-	ValueAtPosition(position unsafe.Pointer) float32
 	Seamless() bool
 	Origin() unsafe.Pointer
 	SampleCount() unsafe.Pointer
 	Size() unsafe.Pointer
 	IsSeamless() bool
 	SetIsSeamless(value bool)
+	InterpolatedValueAtPosition(position unsafe.Pointer) float32
+	SetValueAtPosition(value float32, position unsafe.Pointer)
+	ValueAtPosition(position unsafe.Pointer) float32
 }
 
 // A sample of procedural noise data from which you can read noise values directly or create noise textures.

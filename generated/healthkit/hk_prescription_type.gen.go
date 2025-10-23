@@ -29,6 +29,8 @@ type _HKPrescriptionTypeClass struct {
 // An interface definition for the [HKPrescriptionType] class.
 type IHKPrescriptionType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that store a prescription.

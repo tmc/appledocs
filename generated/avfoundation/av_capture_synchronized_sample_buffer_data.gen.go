@@ -29,12 +29,14 @@ type _CaptureSynchronizedSampleBufferDataClass struct {
 // An interface definition for the [CaptureSynchronizedSampleBufferData] class.
 type ICaptureSynchronizedSampleBufferData interface {
 	ICaptureSynchronizedData
+	// properties:
 	DroppedReason() unsafe.Pointer
 	SetDroppedReason(value unsafe.Pointer)
-	SampleBuffer() unsafe.Pointer
-	SetSampleBuffer(value unsafe.Pointer)
-	SampleBufferWasDropped() bool
-	SetSampleBufferWasDropped(value bool)
+	SampleBuffer() CMSampleBuffer /* foo */
+	SetSampleBuffer(value CMSampleBuffer /* foo */)
+	SampleBufferWasDropped() bool /* primitive/slice/pointer */
+	SetSampleBufferWasDropped(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A container for video or audio samples collected using synchronized capture.
@@ -113,8 +115,8 @@ func (c_ CaptureSynchronizedSampleBufferData) SetDroppedReason(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBuffer"))
+func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() CMSampleBuffer /* foo */ {
+	rv := objc.Send[SampleBuffer](c_.ID, objc.Sel("sampleBuffer"))
 	return rv
 }
 
@@ -123,7 +125,7 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value unsafe.Pointer) {
+func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value CMSampleBuffer /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
 }
 
@@ -132,7 +134,7 @@ func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
-func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
+func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sampleBufferWasDropped"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
-func (c_ CaptureSynchronizedSampleBufferData) SetSampleBufferWasDropped(value bool) {
+func (c_ CaptureSynchronizedSampleBufferData) SetSampleBufferWasDropped(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferWasDropped:"), value)
 }
 

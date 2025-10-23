@@ -10,7 +10,7 @@ import (
 )
 
 
-// Foundation Functions (33 total)
+// Foundation Functions (36 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -21,12 +21,14 @@ var (
 	_NSCopyObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCountFrames func() unsafe.Pointer
 	_NSDeallocateObject func(unsafe.Pointer)
+	_NSDecimalMultiply func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSDecrementExtraRefCountWasZero func(unsafe.Pointer) bool
 	_NSExtraRefCount func(unsafe.Pointer) unsafe.Pointer
 	_NSFileTypeForHFSTypeCode func(unsafe.Pointer) unsafe.Pointer
 	_NSFrameAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSFullUserName func() unsafe.Pointer
 	_NSGetSizeAndAlignment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSGetUncaughtExceptionHandler func() unsafe.Pointer
 	_NSHFSTypeCodeFromFileType func(unsafe.Pointer) unsafe.Pointer
 	_NSHFSTypeOfFile func(unsafe.Pointer) unsafe.Pointer
 	_NSHomeDirectory func() unsafe.Pointer
@@ -42,6 +44,7 @@ var (
 	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_NSSelectorFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSSetUncaughtExceptionHandler func()
 	_NSShouldRetainWithZone func(unsafe.Pointer, unsafe.Pointer) bool
 	_NSStringFromClass func(unsafe.Pointer) unsafe.Pointer
 	_NSStringFromProtocol func(unsafe.Pointer) unsafe.Pointer
@@ -61,12 +64,14 @@ func init() {
 	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
 	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
 	tryRegister(&_NSDeallocateObject, lib, "NSDeallocateObject")
+	tryRegister(&_NSDecimalMultiply, lib, "NSDecimalMultiply")
 	tryRegister(&_NSDecrementExtraRefCountWasZero, lib, "NSDecrementExtraRefCountWasZero")
 	tryRegister(&_NSExtraRefCount, lib, "NSExtraRefCount")
 	tryRegister(&_NSFileTypeForHFSTypeCode, lib, "NSFileTypeForHFSTypeCode")
 	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
 	tryRegister(&_NSFullUserName, lib, "NSFullUserName")
 	tryRegister(&_NSGetSizeAndAlignment, lib, "NSGetSizeAndAlignment")
+	tryRegister(&_NSGetUncaughtExceptionHandler, lib, "NSGetUncaughtExceptionHandler")
 	tryRegister(&_NSHFSTypeCodeFromFileType, lib, "NSHFSTypeCodeFromFileType")
 	tryRegister(&_NSHFSTypeOfFile, lib, "NSHFSTypeOfFile")
 	tryRegister(&_NSHomeDirectory, lib, "NSHomeDirectory")
@@ -82,6 +87,7 @@ func init() {
 	tryRegister(&_NSReturnAddress, lib, "NSReturnAddress")
 	tryRegister(&_NSSearchPathForDirectoriesInDomains, lib, "NSSearchPathForDirectoriesInDomains")
 	tryRegister(&_NSSelectorFromString, lib, "NSSelectorFromString")
+	tryRegister(&_NSSetUncaughtExceptionHandler, lib, "NSSetUncaughtExceptionHandler")
 	tryRegister(&_NSShouldRetainWithZone, lib, "NSShouldRetainWithZone")
 	tryRegister(&_NSStringFromClass, lib, "NSStringFromClass")
 	tryRegister(&_NSStringFromProtocol, lib, "NSStringFromProtocol")
@@ -162,6 +168,17 @@ func NSDeallocateObject(object unsafe.Pointer) {
 	_NSDeallocateObject(object)
 }
 
+// Multiplies two decimal numbers together.
+//
+// Added in macOS 10.0.
+// Multiplies two decimal numbers together.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiply(_:_:_:_:)
+func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode unsafe.Pointer) unsafe.Pointer {
+	return _NSDecimalMultiply(result, leftOperand, rightOperand, roundingMode)
+}
+
 // Decrements the specified object’s reference count.
 //
 // Added in macOS 10.0.
@@ -226,6 +243,17 @@ func NSFullUserName() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetSizeAndAlignment(_:_:_:)
 func NSGetSizeAndAlignment(typePtr unsafe.Pointer, sizep unsafe.Pointer, alignp unsafe.Pointer) unsafe.Pointer {
 	return _NSGetSizeAndAlignment(typePtr, sizep, alignp)
+}
+
+// Returns the top-level error handler.
+//
+// Added in macOS 10.0.
+// Returns the top-level error handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetUncaughtExceptionHandler()
+func NSGetUncaughtExceptionHandler() unsafe.Pointer {
+	return _NSGetUncaughtExceptionHandler()
 }
 
 // Returns a file type code.
@@ -391,6 +419,17 @@ func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask un
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSelectorFromString(_:)
 func NSSelectorFromString(aSelectorName unsafe.Pointer) unsafe.Pointer {
 	return _NSSelectorFromString(aSelectorName)
+}
+
+// Changes the top-level error handler.
+//
+// Added in macOS 10.0.
+// Changes the top-level error handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetUncaughtExceptionHandler(_:)
+func NSSetUncaughtExceptionHandler() {
+	_NSSetUncaughtExceptionHandler()
 }
 
 // Indicates whether an object should be retained.

@@ -29,6 +29,8 @@ type _HKCorrelationTypeClass struct {
 // An interface definition for the [HKCorrelationType] class.
 type IHKCorrelationType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that group multiple subsamples.

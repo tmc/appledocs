@@ -31,21 +31,6 @@ type _GridViewClass struct {
 // An interface definition for the [GridView] class.
 type IGridView interface {
 	IView
-	AddColumnWithViews(views []View) GridColumn
-	AddRowWithViews(views []View) unsafe.Pointer
-	CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) GridCell
-	CellForView(view IView) GridCell
-	ColumnAtIndex(index int) GridColumn
-	IndexOfColumn(column IGridColumn) int
-	IndexOfRow(row unsafe.Pointer) int
-	InsertColumnAtIndexWithViews(index int, views []View) GridColumn
-	InsertRowAtIndexWithViews(index int, views []View) unsafe.Pointer
-	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range)
-	MoveColumnAtIndexToIndex(fromIndex int, toIndex int)
-	MoveRowAtIndexToIndex(fromIndex int, toIndex int)
-	RemoveColumnAtIndex(index int)
-	RemoveRowAtIndex(index int)
-	RowAtIndex(index int) unsafe.Pointer
 	ColumnSpacing() float64
 	SetColumnSpacing(value float64)
 	NumberOfColumns() int
@@ -58,6 +43,21 @@ type IGridView interface {
 	SetXPlacement(value unsafe.Pointer)
 	YPlacement() unsafe.Pointer
 	SetYPlacement(value unsafe.Pointer)
+	AddColumnWithViews(views []View) GridColumn
+	AddRowWithViews(views []View) unsafe.Pointer
+	CellAtColumnIndexRowIndex(columnIndex int, rowIndex int) GridCell
+	CellForView(view IView) GridCell
+	ColumnAtIndex(index int) GridColumn
+	IndexOfColumn(column GridColumn) int
+	IndexOfRow(row unsafe.Pointer) int
+	InsertColumnAtIndexWithViews(index int, views []View) GridColumn
+	InsertRowAtIndexWithViews(index int, views []View) unsafe.Pointer
+	MergeCellsInHorizontalRangeVerticalRange(hRange foundation.Range, vRange foundation.Range)
+	MoveColumnAtIndexToIndex(fromIndex int, toIndex int)
+	MoveRowAtIndexToIndex(fromIndex int, toIndex int)
+	RemoveColumnAtIndex(index int)
+	RemoveRowAtIndex(index int)
+	RowAtIndex(index int) unsafe.Pointer
 }
 
 // A container that aligns views in a flexible grid of rows and columns.
@@ -119,7 +119,7 @@ func NewGridView() GridView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(coder:)
-func NewGridViewWithCoder(coder foundation.ICoder) GridView {
+func NewGridViewWithCoder(coder foundation.Coder) GridView {
 	instance := getGridViewClass().Alloc()
 	rv := objc.Send[GridView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -153,7 +153,7 @@ func NewGridViewWithNumberOfColumnsRows(columnCount int, rowCount int) GridView 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func NewGridViewWithViews(rows []foundation.IArray) GridView {
+func NewGridViewWithViews(rows []foundation.Array) GridView {
 	rv := objc.Send[GridView](objc.ID(getGridViewClass().class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -174,7 +174,7 @@ func (gc _GridViewClass) GridViewWithNumberOfColumnsRows(columnCount int, rowCou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/init(views:)
-func (gc _GridViewClass) GridViewWithViews(rows []foundation.IArray) unsafe.Pointer {
+func (gc _GridViewClass) GridViewWithViews(rows []foundation.Array) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("gridViewWithViews:"), rows)
 	return rv
 }
@@ -234,7 +234,7 @@ func (g_ GridView) ColumnAtIndex(index int) GridColumn {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridView/index(of:)-32sdd
-func (g_ GridView) IndexOfColumn(column IGridColumn) int {
+func (g_ GridView) IndexOfColumn(column GridColumn) int {
 	rv := objc.Send[int](g_.ID, objc.Sel("indexOfColumn:"), column)
 	return rv
 }

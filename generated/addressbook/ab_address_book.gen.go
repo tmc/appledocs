@@ -38,9 +38,9 @@ type IABAddressBook interface {
 	FormattedAddressFromDictionary(address objectivec.IObject) foundation.AttributedString
 	Groups() foundation.Array
 	HasUnsavedChanges() bool
-	Me() ABPerson
+	Me() IABPerson
 	People() foundation.Array
-	RecordForUniqueId(uniqueId string) ABRecord
+	RecordForUniqueId(uniqueId string) IABRecord
 	RecordClassFromUniqueId(uniqueId string) foundation.String
 	RecordsMatchingSearchElement(search IABSearchElement) foundation.Array
 	RemoveRecord(record IABRecord) bool
@@ -197,7 +197,7 @@ func (a_ ABAddressBook) HasUnsavedChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/me()
-func (a_ ABAddressBook) Me() ABPerson {
+func (a_ ABAddressBook) Me() IABPerson {
 	rv := objc.Send[ABPerson](a_.ID, objc.Sel("me"))
 	return rv
 }
@@ -217,7 +217,7 @@ func (a_ ABAddressBook) People() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/record(forUniqueId:)
-func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) ABRecord {
+func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) IABRecord {
 	rv := objc.Send[ABRecord](a_.ID, objc.Sel("recordForUniqueId:"), objc.String(uniqueId))
 	return rv
 }

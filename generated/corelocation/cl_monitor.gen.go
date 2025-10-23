@@ -30,12 +30,12 @@ type _MonitorClass struct {
 // An interface definition for the [Monitor] class.
 type IMonitor interface {
 	objectivec.IObject
-	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string)
-	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state MonitoringState)
-	MonitoringRecordForIdentifier(identifier string) MonitoringRecord
-	RemoveConditionFromMonitoringWithIdentifier(identifier string)
 	MonitoredIdentifiers() []string
 	Name() string
+	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string)
+	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state unsafe.Pointer)
+	MonitoringRecordForIdentifier(identifier string) IMonitoringRecord
+	RemoveConditionFromMonitoringWithIdentifier(identifier string)
 }
 
 // An object that monitors the conditions you add to it.
@@ -113,7 +113,7 @@ func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, id
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
-func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state MonitoringState) {
+func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, objc.String(identifier), state)
 }
 
@@ -122,7 +122,7 @@ func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
-func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) MonitoringRecord {
+func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) IMonitoringRecord {
 	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), objc.String(identifier))
 	return rv
 }

@@ -30,11 +30,13 @@ type _EnvironmentMechanismBiometryClass struct {
 // An interface definition for the [EnvironmentMechanismBiometry] class.
 type IEnvironmentMechanismBiometry interface {
 	IEnvironmentMechanism
-	BiometryType() BiometryType
+	// properties:
+	BiometryType() LABiometryType
 	BuiltInSensorInaccessible() bool
 	IsEnrolled() bool
 	IsLockedOut() bool
 	StateHash() foundation.NSData
+	// methods:
 }
 
 
@@ -87,8 +89,8 @@ func NewEnvironmentMechanismBiometry() EnvironmentMechanismBiometry {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/biometryType
-func (e_ EnvironmentMechanismBiometry) BiometryType() BiometryType {
-	rv := objc.Send[BiometryType](e_.ID, objc.Sel("biometryType"))
+func (e_ EnvironmentMechanismBiometry) BiometryType() LABiometryType {
+	rv := objc.Send[LABiometryType](e_.ID, objc.Sel("biometryType"))
 	return rv
 }
 

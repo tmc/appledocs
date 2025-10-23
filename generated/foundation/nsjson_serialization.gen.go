@@ -30,6 +30,8 @@ type _JSONSerializationClass struct {
 // An interface definition for the [JSONSerialization] class.
 type IJSONSerialization interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that converts between JSON and the equivalent Foundation objects.

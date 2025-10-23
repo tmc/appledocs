@@ -30,6 +30,8 @@ type _mDelegateClass struct {
 // An interface definition for the [mDelegate] class.
 type ImDelegate interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

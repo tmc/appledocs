@@ -30,8 +30,10 @@ type _ProtocolCheckerClass struct {
 // An interface definition for the [ProtocolChecker] class.
 type IProtocolChecker interface {
 	IProxy
+	// properties:
 	Protocol() objectivec.Protocol
 	Target() objectivec.IObject
+	// methods:
 }
 
 // An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).

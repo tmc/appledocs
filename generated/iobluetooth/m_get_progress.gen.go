@@ -30,6 +30,8 @@ type _mGETProgressClass struct {
 // An interface definition for the [mGETProgress] class.
 type ImGETProgress interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

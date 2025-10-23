@@ -29,6 +29,8 @@ type _HKCharacteristicTypeClass struct {
 // An interface definition for the [HKCharacteristicType] class.
 type IHKCharacteristicType interface {
 	IHKObjectType
+	// properties:
+	// methods:
 }
 
 // A type that represents data that doesn’t typically change over time.

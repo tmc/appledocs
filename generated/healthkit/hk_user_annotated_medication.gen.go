@@ -30,10 +30,16 @@ type _HKUserAnnotatedMedicationClass struct {
 // An interface definition for the [HKUserAnnotatedMedication] class.
 type IHKUserAnnotatedMedication interface {
 	objectivec.IObject
+	// properties:
 	HasSchedule() bool
+	SetHasSchedule(value bool)
 	IsArchived() bool
-	Medication() HKMedicationConcept
+	SetIsArchived(value bool)
+	Medication() IHKMedicationConcept
+	SetMedication(value IHKMedicationConcept)
 	Nickname() string
+	SetNickname(value string)
+	// methods:
 }
 
 // A reference to the tracked medication and the details a person can customize.
@@ -92,9 +98,28 @@ func NewHKUserAnnotatedMedication() HKUserAnnotatedMedication {
 // A Boolean value that indicates whether a medication has a schedule set up.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/hasSchedule
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/hasschedule
 func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasSchedule"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether a medication has a schedule set up.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/hasschedule
+func (h_ HKUserAnnotatedMedication) SetHasSchedule(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setHasSchedule:"), value)
+}
+
+
+// A Boolean value that indicates whether a medication is archived.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/isarchived
+func (h_ HKUserAnnotatedMedication) IsArchived() bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("isArchived"))
 	return rv
 }
 
@@ -102,9 +127,18 @@ func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 // A Boolean value that indicates whether a medication is archived.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/isArchived
-func (h_ HKUserAnnotatedMedication) IsArchived() bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isArchived"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/isarchived
+func (h_ HKUserAnnotatedMedication) SetIsArchived(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIsArchived:"), value)
+}
+
+
+// A reference to the specific medication a person is tracking.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/medication
+func (h_ HKUserAnnotatedMedication) Medication() IHKMedicationConcept {
+	rv := objc.Send[HKMedicationConcept](h_.ID, objc.Sel("medication"))
 	return rv
 }
 
@@ -112,9 +146,18 @@ func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 // A reference to the specific medication a person is tracking.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/medication
-func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
-	rv := objc.Send[HKMedicationConcept](h_.ID, objc.Sel("medication"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/medication
+func (h_ HKUserAnnotatedMedication) SetMedication(value IHKMedicationConcept) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMedication:"), value)
+}
+
+
+// The nickname that a person added to a medication during the entry experience.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/nickname
+func (h_ HKUserAnnotatedMedication) Nickname() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv
 }
 
@@ -122,10 +165,9 @@ func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
 // The nickname that a person added to a medication during the entry experience.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
-func (h_ HKUserAnnotatedMedication) Nickname() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/nickname
+func (h_ HKUserAnnotatedMedication) SetNickname(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setNickname:"), objc.String(value))
 }
 
 

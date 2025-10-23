@@ -30,15 +30,17 @@ type _ConditionLockClass struct {
 // An interface definition for the [ConditionLock] class.
 type IConditionLock interface {
 	objectivec.IObject
-	Condition() int
-	Name() string
-	SetName(value string)
-	LockBeforeDate(limit IDate) bool
-	LockWhenCondition(condition int)
-	LockWhenConditionBeforeDate(condition int, limit IDate) bool
-	TryLock() bool
-	TryLockWhenCondition(condition int) bool
-	UnlockWithCondition(condition int)
+	// properties:
+	Condition() int /* primitive/slice/pointer */
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	// methods:
+	LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */
+	LockWhenCondition(condition int /* primitive/slice/pointer */)
+	LockWhenConditionBeforeDate(condition int /* primitive/slice/pointer */, limit IDate) bool /* primitive/slice/pointer */
+	TryLock() bool /* primitive/slice/pointer */
+	TryLockWhenCondition(condition int /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	UnlockWithCondition(condition int /* primitive/slice/pointer */)
 }
 
 // A lock that can be associated with specific, user-defined conditions.
@@ -98,7 +100,7 @@ func NewConditionLock() ConditionLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/init(condition:)
-func NewConditionLockWithCondition(condition int) ConditionLock {
+func NewConditionLockWithCondition(condition int /* primitive/slice/pointer */) ConditionLock {
 	instance := getConditionLockClass().Alloc()
 	rv := objc.Send[ConditionLock](instance.ID, objc.Sel("initWithCondition:"), condition)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewConditionLockWithCondition(condition int) ConditionLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(before:)
-func (c_ ConditionLock) LockBeforeDate(limit IDate) bool {
+func (c_ ConditionLock) LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
@@ -121,7 +123,7 @@ func (c_ ConditionLock) LockBeforeDate(limit IDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:)
-func (c_ ConditionLock) LockWhenCondition(condition int) {
+func (c_ ConditionLock) LockWhenCondition(condition int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
 }
 
@@ -130,7 +132,7 @@ func (c_ ConditionLock) LockWhenCondition(condition int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:before:)
-func (c_ ConditionLock) LockWhenConditionBeforeDate(condition int, limit IDate) bool {
+func (c_ ConditionLock) LockWhenConditionBeforeDate(condition int /* primitive/slice/pointer */, limit IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("lockWhenCondition:beforeDate:"), condition, limit)
 	return rv
 }
@@ -140,7 +142,7 @@ func (c_ ConditionLock) LockWhenConditionBeforeDate(condition int, limit IDate) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/try()
-func (c_ ConditionLock) TryLock() bool {
+func (c_ ConditionLock) TryLock() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("tryLock"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (c_ ConditionLock) TryLock() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/tryLock(whenCondition:)
-func (c_ ConditionLock) TryLockWhenCondition(condition int) bool {
+func (c_ ConditionLock) TryLockWhenCondition(condition int /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("tryLockWhenCondition:"), condition)
 	return rv
 }
@@ -160,7 +162,7 @@ func (c_ ConditionLock) TryLockWhenCondition(condition int) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/unlock(withCondition:)
-func (c_ ConditionLock) UnlockWithCondition(condition int) {
+func (c_ ConditionLock) UnlockWithCondition(condition int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("unlockWithCondition:"), condition)
 }
 
@@ -169,7 +171,7 @@ func (c_ ConditionLock) UnlockWithCondition(condition int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/condition
-func (c_ ConditionLock) Condition() int {
+func (c_ ConditionLock) Condition() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("condition"))
 	return rv
 }
@@ -179,7 +181,7 @@ func (c_ ConditionLock) Condition() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/name
-func (c_ ConditionLock) Name() string {
+func (c_ ConditionLock) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (c_ ConditionLock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/name
-func (c_ ConditionLock) SetName(value string) {
+func (c_ ConditionLock) SetName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

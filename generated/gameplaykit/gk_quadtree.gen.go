@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,10 @@ type _QuadtreeClass struct {
 // An interface definition for the [Quadtree] class.
 type IQuadtree interface {
 	objectivec.IObject
-	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) QuadtreeNode
-	AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) QuadtreeNode
-	ElementsAtPoint(point unsafe.Pointer) []foundation.Object
-	ElementsInQuad(quad unsafe.Pointer) []foundation.Object
+	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IQuadtreeNode
+	AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) IQuadtreeNode
+	ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject
+	ElementsInQuad(quad unsafe.Pointer) []objectivec.IObject
 	RemoveElement(element unsafe.Pointer) bool
 	RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool
 }
@@ -119,7 +118,7 @@ func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:at:)
-func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) QuadtreeNode {
+func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IQuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withPoint:"), element, point)
 	return rv
 }
@@ -129,7 +128,7 @@ func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:in:)
-func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) QuadtreeNode {
+func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) IQuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withQuad:"), element, quad)
 	return rv
 }
@@ -139,8 +138,8 @@ func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(at:)
-func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
-	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsAtPoint:"), point)
+func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](q_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
@@ -149,8 +148,8 @@ func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(in:)
-func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []foundation.Object {
-	rv := objc.Send[[]foundation.Object](q_.ID, objc.Sel("elementsInQuad:"), quad)
+func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](q_.ID, objc.Sel("elementsInQuad:"), quad)
 	return rv
 }
 

@@ -30,6 +30,8 @@ type _namesClass struct {
 // An interface definition for the [names] class.
 type Inames interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

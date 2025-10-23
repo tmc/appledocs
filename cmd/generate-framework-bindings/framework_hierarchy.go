@@ -72,10 +72,29 @@ var frameworkLevels = map[string]int{
 	"replaykit":         4,
 }
 
+// RelaxedParameterInfo tracks information about parameters that were relaxed due to hierarchy violations
+type RelaxedParameterInfo struct {
+	ClassName      string // e.g., "NSExtensionContext"
+	MethodSelector string // e.g., "completeRequestWithBroadcastURL:broadcastConfiguration:setupInfo:"
+	ParamName      string // e.g., "broadcastConfiguration"
+	OriginalType   string // e.g., "RPBroadcastConfiguration *"
+	ExpectedGoType string // e.g., "replaykit.BroadcastConfiguration"
+}
+
+// relaxedParametersMap tracks all relaxed parameters globally for comment generation
+// Key format: "ClassName::MethodSelector::ParamName"
+var relaxedParametersMap = make(map[string]*RelaxedParameterInfo)
+
+// GetRelaxedParamInfo retrieves information about a relaxed parameter for use in templates
+func GetRelaxedParamInfo(className, methodSelector, paramName string) *RelaxedParameterInfo {
+	key := className + "::" + methodSelector + "::" + paramName
+	return relaxedParametersMap[key]
+}
+
 // RelaxMethodParameters marks parameters that violate hierarchy with relaxed types.
 // Instead of filtering out methods, we keep them but mark violating parameters
 // to use objectivec.IObject with a comment indicating the expected type.
-func RelaxMethodParameters(methods []*occ2go.ParsedMethod, currentFramework string) {
+func RelaxMethodParameters(className string, methods []*occ2go.ParsedMethod, currentFramework string) {
 	currentLevel, exists := frameworkLevels[strings.ToLower(currentFramework)]
 	if !exists {
 		// Unknown framework, don't relax
@@ -94,16 +113,18 @@ func RelaxMethodParameters(methods []*occ2go.ParsedMethod, currentFramework stri
 		for i := range method.Parameters {
 			param := &method.Parameters[i]
 			if violatesHierarchy(param.Type, currentFramework, currentLevel) {
-				// 				// Get the expected Go type (with cross-framework reference)
-				// 				expectedType := mapObjCTypeToGo(param.Type, currentFramework)
+				// Get the expected Go type (with cross-framework reference)
+				expectedType := mapObjCTypeToGo(param.Type, currentFramework)
 
-				// Mark this parameter as relaxed
-				// Store original type in a custom field for documentation
-				// 				if param.Metadata == nil {
-				// 					param.Metadata = make(map[string]string)
-				// 				}
-				// 				param.Metadata["ExpectedType"] = expectedType
-				// 				param.Metadata["OriginalObjCType"] = param.Type
+				// Store relaxation info in global map for template use
+				key := className + "::" + method.Selector + "::" + param.Name
+				relaxedParametersMap[key] = &RelaxedParameterInfo{
+					ClassName:      className,
+					MethodSelector: method.Selector,
+					ParamName:      param.Name,
+					OriginalType:   param.Type,
+					ExpectedGoType: expectedType,
+				}
 
 				// Relax the type to objectivec.IObject
 				// We set the Type to a marker that the type mapper will recognize

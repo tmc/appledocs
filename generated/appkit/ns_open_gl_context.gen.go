@@ -30,14 +30,11 @@ type _OpenGLContextClass struct {
 // An interface definition for the [OpenGLContext] class.
 type IOpenGLContext interface {
 	objectivec.IObject
-	ClearDrawable()
-	CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer)
 	CGLContextObj() unsafe.Pointer
 	CurrentVirtualScreen() unsafe.Pointer
 	SetCurrentVirtualScreen(value unsafe.Pointer)
-	PixelFormat() NSOpenGLPixelFormat
-	SetPixelFormat(value IOpenGLPixelFormat)
-	View() NSView
+	PixelFormat() IOpenGLPixelFormat
+	View() IView
 	SetView(value IView)
 }
 
@@ -94,23 +91,48 @@ func NewOpenGLContext() OpenGLContext {
 
 
 
-// Disassociates the OpenGL context from its viewport.
+// Initializes and returns an OpenGL context object using an existing CGL context.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/clearDrawable()
-func (o_ OpenGLContext) ClearDrawable() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("clearDrawable"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/init(cglContextObj:)
+func NewOpenGLContextWithCGLContextObj(context unsafe.Pointer) OpenGLContext {
+	instance := getOpenGLContextClass().Alloc()
+	rv := objc.Send[OpenGLContext](instance.ID, objc.Sel("initWithCGLContextObj:"), context)
+	rv.Autorelease()
+	return rv
 }
 
 
-// Copies selected groups of state variables to the OpenGL context.
+// Returns an OpenGL context object initialized with the specified pixel format information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/copyAttributesFromContext:withMask:
-func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext, mask unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("copyAttributesFromContext:withMask:"), context, mask)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/init(format:share:)
+func NewOpenGLContextWithFormatShareContext(format IOpenGLPixelFormat, share IOpenGLContext) OpenGLContext {
+	instance := getOpenGLContextClass().Alloc()
+	rv := objc.Send[OpenGLContext](instance.ID, objc.Sel("initWithFormat:shareContext:"), format, share)
+	rv.Autorelease()
+	return rv
 }
 
+
+
+// Clears the current context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/clearCurrentContext()
+func (oc _OpenGLContextClass) ClearCurrentContext() {
+	objc.Send[objc.ID](objc.ID(oc.class), objc.Sel("clearCurrentContext"))
+}
+
+
+// Returns the current OpenGL graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/current
+func (oc _OpenGLContextClass) CurrentContext() OpenGLContext {
+	rv := objc.Send[OpenGLContext](objc.ID(oc.class), objc.Sel("currentContext"))
+	return rv
+}
 
 // Returns the low-level, platform-specific Core OpenGL (CGL) context object represented by the receiver.
 //
@@ -118,6 +140,16 @@ func (o_ OpenGLContext) CopyAttributesFromContextWithMask(context IOpenGLContext
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/cglContextObj
 func (o_ OpenGLContext) CGLContextObj() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLContextObj"))
+	return rv
+}
+
+
+// Returns the current OpenGL graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/current
+func (o_ OpenGLContext) CurrentContext() IOpenGLContext {
+	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("currentContext"))
 	return rv
 }
 
@@ -144,28 +176,9 @@ func (o_ OpenGLContext) SetCurrentVirtualScreen(value unsafe.Pointer) {
 // The pixel format of the OpenGL context.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-func (o_ OpenGLContext) PixelFormat() NSOpenGLPixelFormat {
-	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
-	return rv
-}
-
-
-// The pixel format of the OpenGL context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/pixelformat
-func (o_ OpenGLContext) SetPixelFormat(value IOpenGLPixelFormat) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
-}
-
-
-// Returns the OpenGL context’s view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
-func (o_ OpenGLContext) View() NSView {
-	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/pixelFormat
+func (o_ OpenGLContext) PixelFormat() IOpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
@@ -173,10 +186,19 @@ func (o_ OpenGLContext) View() NSView {
 // Returns the OpenGL context’s view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglcontext/view
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/view
+func (o_ OpenGLContext) View() IView {
+	rv := objc.Send[View](o_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// Returns the OpenGL context’s view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/view
 func (o_ OpenGLContext) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }
-
 
 

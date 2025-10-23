@@ -31,10 +31,6 @@ type _HeadphoneActivityManagerClass struct {
 // An interface definition for the [HeadphoneActivityManager] class.
 type IHeadphoneActivityManager interface {
 	objectivec.IObject
-	StartActivityUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
-	StartStatusUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
-	StopActivityUpdates()
-	StopStatusUpdates()
 	ActivityActive() bool
 	ActivityAvailable() bool
 	StatusActive() bool
@@ -47,6 +43,10 @@ type IHeadphoneActivityManager interface {
 	SetIsStatusActive(value bool)
 	IsStatusAvailable() bool
 	SetIsStatusAvailable(value bool)
+	StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	StartStatusUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	StopActivityUpdates()
+	StopStatusUpdates()
 }
 
 // An object that starts and manages headphone activity services.
@@ -106,8 +106,8 @@ func NewHeadphoneActivityManager() HeadphoneActivityManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/authorizationStatus()
-func (hc _HeadphoneActivityManagerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
+func (hc _HeadphoneActivityManagerClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -116,7 +116,7 @@ func (hc _HeadphoneActivityManagerClass) AuthorizationStatus() AuthorizationStat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)
-func (h_ HeadphoneActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
+func (h_ HeadphoneActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -125,7 +125,7 @@ func (h_ HeadphoneActivityManager) StartActivityUpdatesToQueueWithHandler(queue 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)
-func (h_ HeadphoneActivityManager) StartStatusUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
+func (h_ HeadphoneActivityManager) StartStatusUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startStatusUpdatesToQueue:withHandler:"), queue, handler)
 }
 

@@ -30,6 +30,8 @@ type _mValueClass struct {
 // An interface definition for the [mValue] class.
 type ImValue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

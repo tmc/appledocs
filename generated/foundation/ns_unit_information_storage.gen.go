@@ -29,6 +29,8 @@ type _UnitInformationStorageClass struct {
 // An interface definition for the [UnitInformationStorage] class.
 type IUnitInformationStorage interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for quantities of information.

@@ -29,8 +29,8 @@ type _CNChangeHistoryRemoveSubgroupFromGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryRemoveSubgroupFromGroupEvent] class.
 type ICNChangeHistoryRemoveSubgroupFromGroupEvent interface {
 	ICNChangeHistoryEvent
-	Group() CNGroup
-	Subgroup() CNGroup
+	Group() ICNGroup
+	Subgroup() ICNGroup
 }
 
 // An object that represents a user removing a subgroup from a group.
@@ -90,7 +90,7 @@ func NewCNChangeHistoryRemoveSubgroupFromGroupEvent() CNChangeHistoryRemoveSubgr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/group
-func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() CNGroup {
+func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -100,7 +100,7 @@ func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/subgroup
-func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Subgroup() CNGroup {
+func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Subgroup() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv
 }

@@ -30,6 +30,8 @@ type _mIOConnectionClass struct {
 // An interface definition for the [mIOConnection] class.
 type ImIOConnection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

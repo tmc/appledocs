@@ -30,6 +30,8 @@ type _mPageScanModeClass struct {
 // An interface definition for the [mPageScanMode] class.
 type ImPageScanMode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

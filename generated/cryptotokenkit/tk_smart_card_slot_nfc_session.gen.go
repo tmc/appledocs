@@ -30,9 +30,8 @@ type _TKSmartCardSlotNFCSessionClass struct {
 // An interface definition for the [TKSmartCardSlotNFCSession] class.
 type ITKSmartCardSlotNFCSession interface {
 	objectivec.IObject
-	EndSession()
-	UpdateWithMessageError(message string, error_ unsafe.Pointer) bool
 	SlotName() string
+	EndSession()
 }
 
 // NFC session that’s related to NFC smart card slot which was created.
@@ -94,16 +93,6 @@ func NewTKSmartCardSlotNFCSession() TKSmartCardSlotNFCSession {
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/end()
 func (t_ TKSmartCardSlotNFCSession) EndSession() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
-}
-
-
-// Updates the message of the system-presented NFC UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/update(message:)
-func (t_ TKSmartCardSlotNFCSession) UpdateWithMessageError(message string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("updateWithMessage:error:"), objc.String(message), error_)
-	return rv
 }
 
 

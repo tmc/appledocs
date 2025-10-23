@@ -30,6 +30,8 @@ type _mSavedCommandClass struct {
 // An interface definition for the [mSavedCommand] class.
 type ImSavedCommand interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

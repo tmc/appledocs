@@ -29,14 +29,18 @@ type _VZMacOSBootLoaderClass struct {
 // An interface definition for the [VZMacOSBootLoader] class.
 type IVZMacOSBootLoader interface {
 	IVZBootLoader
-	Platform() VZPlatformConfiguration
+	Platform() IVZPlatformConfiguration
 	SetPlatform(value IVZPlatformConfiguration)
 }
 
 // An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
 //
 // You must use a in conjunction with the macOS boot loader. It’s invalid to use it with any other platform configuration.
+
+
+// An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSBootLoader
 type VZMacOSBootLoader struct {
 	VZBootLoader
@@ -86,20 +90,21 @@ func NewVZMacOSBootLoader() VZMacOSBootLoader {
 
 // The hardware platform to use.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/platform
-func (v_ VZMacOSBootLoader) Platform() VZPlatformConfiguration {
+func (v_ VZMacOSBootLoader) Platform() IVZPlatformConfiguration {
 	rv := objc.Send[VZPlatformConfiguration](v_.ID, objc.Sel("platform"))
 	return rv
 }
 
 
-// SetPlatform sets the value of the platform property.
 // The hardware platform to use.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/platform
 func (v_ VZMacOSBootLoader) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
+
 
 

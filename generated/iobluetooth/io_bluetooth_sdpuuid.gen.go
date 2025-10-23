@@ -30,10 +30,11 @@ type _BluetoothSDPUUIDClass struct {
 // An interface definition for the [BluetoothSDPUUID] class.
 type IBluetoothSDPUUID interface {
 	foundation.IData
+	// properties:
+	// methods:
 	ClassForArchiver() objc.Class
 	ClassForCoder() objc.Class
 	ClassForPortCoder() objc.Class
-	GetSDPUUIDRef() BluetoothSDPUUIDRef
 	GetUUIDWithLength(newLength unsafe.Pointer) unsafe.Pointer
 	IsEqualToUUID(otherUUID IOBluetoothSDPUUID) bool
 }
@@ -107,7 +108,7 @@ func NewBluetoothSDPUUIDUuidWithBytesLength(bytes unsafe.Pointer, length unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(data:)
-func NewBluetoothSDPUUIDUuidWithData(data foundation.IData) BluetoothSDPUUID {
+func NewBluetoothSDPUUIDUuidWithData(data foundation.NSData) BluetoothSDPUUID {
 	rv := objc.Send[BluetoothSDPUUID](objc.ID(getBluetoothSDPUUIDClass().class), objc.Sel("uuidWithData:"), data)
 	return rv
 }
@@ -117,7 +118,7 @@ func NewBluetoothSDPUUIDUuidWithData(data foundation.IData) BluetoothSDPUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(uuid16:)
-func NewBluetoothSDPUUIDWithUUID16(uuid16 IBluetoothSDPUUID16) BluetoothSDPUUID {
+func NewBluetoothSDPUUIDWithUUID16(uuid16 BluetoothSDPUUID16) BluetoothSDPUUID {
 	instance := getBluetoothSDPUUIDClass().Alloc()
 	rv := objc.Send[BluetoothSDPUUID](instance.ID, objc.Sel("initWithUUID16:"), uuid16)
 	rv.Autorelease()
@@ -129,7 +130,7 @@ func NewBluetoothSDPUUIDWithUUID16(uuid16 IBluetoothSDPUUID16) BluetoothSDPUUID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(uuid32:)
-func NewBluetoothSDPUUIDWithUUID32(uuid32 IBluetoothSDPUUID32) BluetoothSDPUUID {
+func NewBluetoothSDPUUIDWithUUID32(uuid32 BluetoothSDPUUID32) BluetoothSDPUUID {
 	instance := getBluetoothSDPUUIDClass().Alloc()
 	rv := objc.Send[BluetoothSDPUUID](instance.ID, objc.Sel("initWithUUID32:"), uuid32)
 	rv.Autorelease()
@@ -152,7 +153,7 @@ func (bc _BluetoothSDPUUIDClass) UuidWithBytesLength(bytes unsafe.Pointer, lengt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/init(data:)
-func (bc _BluetoothSDPUUIDClass) UuidWithData(data foundation.IData) unsafe.Pointer {
+func (bc _BluetoothSDPUUIDClass) UuidWithData(data foundation.NSData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuidWithData:"), data)
 	return rv
 }
@@ -162,7 +163,7 @@ func (bc _BluetoothSDPUUIDClass) UuidWithData(data foundation.IData) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/uuid16(_:)
-func (bc _BluetoothSDPUUIDClass) Uuid16(uuid16 IBluetoothSDPUUID16) unsafe.Pointer {
+func (bc _BluetoothSDPUUIDClass) Uuid16(uuid16 BluetoothSDPUUID16) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuid16:"), uuid16)
 	return rv
 }
@@ -172,7 +173,7 @@ func (bc _BluetoothSDPUUIDClass) Uuid16(uuid16 IBluetoothSDPUUID16) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/uuid32(_:)
-func (bc _BluetoothSDPUUIDClass) Uuid32(uuid32 IBluetoothSDPUUID32) unsafe.Pointer {
+func (bc _BluetoothSDPUUIDClass) Uuid32(uuid32 BluetoothSDPUUID32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuid32:"), uuid32)
 	return rv
 }
@@ -182,7 +183,7 @@ func (bc _BluetoothSDPUUIDClass) Uuid32(uuid32 IBluetoothSDPUUID32) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/withSDPUUIDRef:
-func (bc _BluetoothSDPUUIDClass) WithSDPUUIDRef(sdpUUIDRef IBluetoothSDPUUIDRef) unsafe.Pointer {
+func (bc _BluetoothSDPUUIDClass) WithSDPUUIDRef(sdpUUIDRef BluetoothSDPUUIDRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withSDPUUIDRef:"), sdpUUIDRef)
 	return rv
 }
@@ -208,16 +209,6 @@ func (b_ BluetoothSDPUUID) ClassForCoder() objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/classForPortCoder()
 func (b_ BluetoothSDPUUID) ClassForPortCoder() objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classForPortCoder"))
-	return rv
-}
-
-
-// Returns an IOBluetoothSDPUUIDRef representation of the target IOBluetoothSDPUUID object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/getSDPUUIDRef
-func (b_ BluetoothSDPUUID) GetSDPUUIDRef() BluetoothSDPUUIDRef {
-	rv := objc.Send[BluetoothSDPUUIDRef](b_.ID, objc.Sel("getSDPUUIDRef"))
 	return rv
 }
 

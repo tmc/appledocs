@@ -30,9 +30,9 @@ type _AuthorizationAppleIDProviderClass struct {
 // An interface definition for the [AuthorizationAppleIDProvider] class.
 type IAuthorizationAppleIDProvider interface {
 	objectivec.IObject
-	GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer)
 	User() string
 	SetUser(value string)
+	GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer)
 }
 
 // A mechanism for generating requests to authenticate users based on their Apple ID.

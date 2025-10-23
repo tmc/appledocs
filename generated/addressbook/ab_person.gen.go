@@ -35,7 +35,7 @@ type IABPerson interface {
 	ImageData() foundation.Data
 	LinkedPeople() foundation.Array
 	ParentGroups() foundation.Array
-	SetImageData(data foundation.IData) bool
+	SetImageData(data foundation.NSData) bool
 	VCardRepresentation() foundation.Data
 }
 
@@ -98,7 +98,7 @@ func NewABPerson() ABPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/init(VCardRepresentation:)
-func NewABPersonWithVCardRepresentation(vCardData foundation.IData) ABPerson {
+func NewABPersonWithVCardRepresentation(vCardData foundation.NSData) ABPerson {
 	instance := getABPersonClass().Alloc()
 	rv := objc.Send[ABPerson](instance.ID, objc.Sel("initWithVCardRepresentation:"), vCardData)
 	rv.Autorelease()
@@ -150,7 +150,7 @@ func (ac _ABPersonClass) RemoveProperties(properties objectivec.IObject) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison IABSearchComparison) ABSearchElement {
+func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison ABSearchComparison) IABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
 }
@@ -210,7 +210,7 @@ func (a_ ABPerson) ParentGroups() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/setImageData(_:)
-func (a_ ABPerson) SetImageData(data foundation.IData) bool {
+func (a_ ABPerson) SetImageData(data foundation.NSData) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setImageData:"), data)
 	return rv
 }

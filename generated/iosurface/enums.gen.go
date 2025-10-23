@@ -6,116 +6,67 @@ package iosurface
 // IOSurfaceComponentName enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName
-type SurfaceComponentName uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/alpha
-	kIOSurfaceComponentNameAlpha SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/blue
-	kIOSurfaceComponentNameBlue SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/chromaBlue
-	kIOSurfaceComponentNameChromaBlue SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/chromaRed
-	kIOSurfaceComponentNameChromaRed SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/green
-	kIOSurfaceComponentNameGreen SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/luma
-	kIOSurfaceComponentNameLuma SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/red
-	kIOSurfaceComponentNameRed SurfaceComponentName = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentName/unknown
-	kIOSurfaceComponentNameUnknown SurfaceComponentName = 0
-)
+type IOSurfaceComponentName uint
 
 // IOSurfaceComponentRange enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentRange
-type SurfaceComponentRange uint
+type IOSurfaceComponentRange uint
 
 // IOSurfaceComponentType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceComponentType
-type SurfaceComponentType uint
+type IOSurfaceComponentType uint
 
 // IOSurfaceLockOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLockOptions
-type SurfaceLockOptions uint
+type IOSurfaceLockOptions uint
 
 const (
+	// kIOSurfaceLockAvoidSync - If you want to detect/avoid a potentially expensive paging operation (such as readback from a GPU to system memory) when you lock the buffer, you may include this flag. If locking the buffer requires a readback, the lock will fail with an error return of  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLockOptions/avoidSync
-	kIOSurfaceLockAvoidSync SurfaceLockOptions = 0
+	kIOSurfaceLockAvoidSync IOSurfaceLockOptions = 0
+	// kIOSurfaceLockReadOnly - If you are not going to modify the data while you hold the lock, you should set this flag to avoid invalidating any existing caches of the buffer contents. This flag should be passed both to the lock and unlock functions. Non-symmentrical usage of this flag will result in undefined behavior.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLockOptions/readOnly
-	kIOSurfaceLockReadOnly SurfaceLockOptions = 0
+	kIOSurfaceLockReadOnly IOSurfaceLockOptions = 0
 )
 
 // IOSurfaceMemoryLedgerFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerFlags
-type SurfaceMemoryLedgerFlags uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerFlags/noFootprint
-	kIOSurfaceMemoryLedgerFlagNoFootprint SurfaceMemoryLedgerFlags = 0
-)
+type IOSurfaceMemoryLedgerFlags uint
 
 // IOSurfaceMemoryLedgerTags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags
-type SurfaceMemoryLedgerTags uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags/default
-	kIOSurfaceMemoryLedgerTagDefault SurfaceMemoryLedgerTags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags/graphics
-	kIOSurfaceMemoryLedgerTagGraphics SurfaceMemoryLedgerTags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags/media
-	kIOSurfaceMemoryLedgerTagMedia SurfaceMemoryLedgerTags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags/network
-	kIOSurfaceMemoryLedgerTagNetwork SurfaceMemoryLedgerTags = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceMemoryLedgerTags/neural
-	kIOSurfaceMemoryLedgerTagNeural SurfaceMemoryLedgerTags = 0
-)
+type IOSurfaceMemoryLedgerTags uint
 
 // IOSurfacePurgeabilityState enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfacePurgeabilityState
-type SurfacePurgeabilityState uint
+type IOSurfacePurgeabilityState uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfacePurgeabilityState/kIOSurfacePurgeableNonVolatile
-	kIOSurfacePurgeableNonVolatile SurfacePurgeabilityState = 0
+	kIOSurfacePurgeableNonVolatile IOSurfacePurgeabilityState = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfacePurgeabilityState/purgeableEmpty
-	kIOSurfacePurgeableEmpty SurfacePurgeabilityState = 0
+	kIOSurfacePurgeableEmpty IOSurfacePurgeabilityState = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfacePurgeabilityState/purgeableKeepCurrent
-	kIOSurfacePurgeableKeepCurrent SurfacePurgeabilityState = 0
+	kIOSurfacePurgeableKeepCurrent IOSurfacePurgeabilityState = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfacePurgeabilityState/purgeableVolatile
-	kIOSurfacePurgeableVolatile SurfacePurgeabilityState = 0
+	kIOSurfacePurgeableVolatile IOSurfacePurgeabilityState = 0
 )
 
 // IOSurfaceSubsampling enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSubsampling
-type SurfaceSubsampling uint
+type IOSurfaceSubsampling uint
 
 

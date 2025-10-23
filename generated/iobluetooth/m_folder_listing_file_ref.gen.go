@@ -30,6 +30,8 @@ type _mFolderListingFileRefClass struct {
 // An interface definition for the [mFolderListingFileRef] class.
 type ImFolderListingFileRef interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

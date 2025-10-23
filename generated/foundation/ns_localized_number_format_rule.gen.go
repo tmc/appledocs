@@ -30,6 +30,8 @@ type _LocalizedNumberFormatRuleClass struct {
 // An interface definition for the [LocalizedNumberFormatRule] class.
 type ILocalizedNumberFormatRule interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,6 +29,8 @@ type _UnitElectricChargeClass struct {
 // An interface definition for the [UnitElectricCharge] class.
 type IUnitElectricCharge interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for electric charge.

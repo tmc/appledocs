@@ -17,12 +17,3 @@ func ExampleNewPersistentContainerWithName() {
 	)
 	// Output:
 }
-// ExampleNewPersistentContainerWithNameManagedObjectModel demonstrates how to create a PersistentContainer instance using NewPersistentContainerWithNameManagedObjectModel.
-// Create a container with the specified name and managed object model.
-func ExampleNewPersistentContainerWithNameManagedObjectModel() {
-	_ = coredata.NewPersistentContainerWithNameManagedObjectModel(
-		"name", // name string
-		coredata.NSManagedObjectModel{}, // model NSManagedObjectModel
-	)
-	// Output:
-}

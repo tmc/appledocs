@@ -29,6 +29,7 @@ type _URLSessionWebSocketTaskClass struct {
 // An interface definition for the [URLSessionWebSocketTask] class.
 type IURLSessionWebSocketTask interface {
 	IURLSessionTask
+	// properties:
 	CloseReason() IData
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
@@ -36,8 +37,9 @@ type IURLSessionWebSocketTask interface {
 	SetHttpCookieStorage(value IHTTPCookieStorage)
 	CloseCode() unsafe.Pointer
 	SetCloseCode(value unsafe.Pointer)
-	MaximumMessageSize() int
-	SetMaximumMessageSize(value int)
+	MaximumMessageSize() int /* primitive/slice/pointer */
+	SetMaximumMessageSize(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A URL session task that communicates over the WebSockets protocol standard.
@@ -166,7 +168,7 @@ func (u_ URLSessionWebSocketTask) SetCloseCode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
-func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
+func (u_ URLSessionWebSocketTask) MaximumMessageSize() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("maximumMessageSize"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (u_ URLSessionWebSocketTask) MaximumMessageSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/maximummessagesize
-func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
+func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMaximumMessageSize:"), value)
 }
 

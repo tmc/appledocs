@@ -36,7 +36,7 @@ type IImageCell interface {
 	ImageFrameStyle() unsafe.Pointer
 	SetImageFrameStyle(value unsafe.Pointer)
 	ImageScaling() ImageScaling
-	SetImageScaling(value IImageScaling)
+	SetImageScaling(value ImageScaling)
 }
 
 // An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
@@ -165,7 +165,7 @@ func (i_ ImageCell) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagescaling
-func (i_ ImageCell) SetImageScaling(value IImageScaling) {
+func (i_ ImageCell) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
 }
 

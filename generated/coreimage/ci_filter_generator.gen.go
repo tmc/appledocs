@@ -31,17 +31,17 @@ type _FilterGeneratorClass struct {
 // An interface definition for the [FilterGenerator] class.
 type IFilterGenerator interface {
 	objectivec.IObject
-	ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string, targetObject objectivec.IObject, targetKey string)
-	DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string, targetObject objectivec.IObject, targetKey string)
-	ExportKeyFromObjectWithName(key string, targetObject objectivec.IObject, exportedKeyName string)
-	Filter() Filter
-	RegisterFilterName(name string)
-	RemoveExportedKey(exportedKeyName string)
-	SetAttributesForExportedKey(attributes objectivec.IObject, key string)
-	WriteToURLAtomically(aURL foundation.IURL, flag bool) bool
 	ClassAttributes() objc.ID
 	SetClassAttributes(value objc.ID)
 	ExportedKeys() objc.ID
+	ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string, targetObject objectivec.IObject, targetKey string)
+	DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey string, targetObject objectivec.IObject, targetKey string)
+	ExportKeyFromObjectWithName(key string, targetObject objectivec.IObject, exportedKeyName string)
+	Filter() IFilter
+	RegisterFilterName(name string)
+	RemoveExportedKey(exportedKeyName string)
+	SetAttributesForExportedKey(attributes objectivec.IObject, key string)
+	WriteToURLAtomically(aURL foundation.URL, flag bool) bool
 }
 
 // An object that creates and configures chains of individual image filters.
@@ -101,7 +101,7 @@ func NewFilterGenerator() FilterGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
-func NewFilterGeneratorWithContentsOfURL(aURL foundation.IURL) FilterGenerator {
+func NewFilterGeneratorWithContentsOfURL(aURL foundation.URL) FilterGenerator {
 	instance := getFilterGeneratorClass().Alloc()
 	rv := objc.Send[FilterGenerator](instance.ID, objc.Sel("initWithContentsOfURL:"), aURL)
 	rv.Autorelease()
@@ -114,7 +114,7 @@ func NewFilterGeneratorWithContentsOfURL(aURL foundation.IURL) FilterGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGenerator
-func (fc _FilterGeneratorClass) FilterGenerator() FilterGenerator {
+func (fc _FilterGeneratorClass) FilterGenerator() IFilterGenerator {
 	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("filterGenerator"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (fc _FilterGeneratorClass) FilterGenerator() FilterGenerator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGeneratorWithContentsOfURL:
-func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.IURL) FilterGenerator {
+func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.URL) IFilterGenerator {
 	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("filterGeneratorWithContentsOfURL:"), aURL)
 	return rv
 }
@@ -161,7 +161,7 @@ func (f_ FilterGenerator) ExportKeyFromObjectWithName(key string, targetObject o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filter()
-func (f_ FilterGenerator) Filter() Filter {
+func (f_ FilterGenerator) Filter() IFilter {
 	rv := objc.Send[Filter](f_.ID, objc.Sel("filter"))
 	return rv
 }
@@ -198,7 +198,7 @@ func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/write(to:atomically:)
-func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.IURL, flag bool) bool {
+func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.URL, flag bool) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:atomically:"), aURL, flag)
 	return rv
 }

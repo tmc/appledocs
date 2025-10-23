@@ -30,10 +30,12 @@ type _ListFormatterClass struct {
 // An interface definition for the [ListFormatter] class.
 type IListFormatter interface {
 	IFormatter
+	// properties:
 	ItemFormatter() IFormatter
 	SetItemFormatter(value IFormatter)
 	Locale() ILocale
 	SetLocale(value ILocale)
+	// methods:
 	StringForObjectValue(obj objectivec.IObject) IString
 	StringFromItems(items objectivec.IObject) IString
 }
@@ -97,7 +99,7 @@ func NewListFormatter() ListFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/localizedString(byJoining:)
-func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) IString {
+func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](objc.ID(lc.class), objc.Sel("localizedStringByJoiningStrings:"), strings)
 	return rv
 }

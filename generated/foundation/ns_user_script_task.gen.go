@@ -30,8 +30,10 @@ type _UserScriptTaskClass struct {
 // An interface definition for the [UserScriptTask] class.
 type IUserScriptTask interface {
 	objectivec.IObject
+	// properties:
 	ScriptURL() IURL
-	ExecuteWithCompletionHandler(handler unsafe.Pointer)
+	// methods:
+	ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* foo */)
 }
 
 // An object that executes scripts.
@@ -104,7 +106,7 @@ func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/execute(completionHandler:)
-func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler unsafe.Pointer) {
+func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithCompletionHandler:"), handler)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioUnit] class.
@@ -30,12 +29,12 @@ type _AudioUnitClass struct {
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	IAudioNode
-	LoadAudioUnitPresetAtURLError(url foundation.IURL, outError unsafe.Pointer) bool
-	AudioUnit() AudioUnit
-	AuAudioUnit() AudioUnit
+	AuAudioUnit() IAudioUnit
 	SetAuAudioUnit(value IAudioUnit)
 	AudioComponentDescription() unsafe.Pointer
 	SetAudioComponentDescription(value unsafe.Pointer)
+	AudioUnit() IAudioUnit
+	SetAudioUnit(value IAudioUnit)
 	ManufacturerName() string
 	SetManufacturerName(value string)
 	Name() string
@@ -97,23 +96,12 @@ func NewAudioUnit() AudioUnit {
 
 
 
-// Loads an audio unit using a specified preset.
+// Creates an instance of an audio unit component asynchronously and wraps it in an audio unit class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/loadPreset(at:)
-func (a_ AudioUnit) LoadAudioUnitPresetAtURLError(url foundation.IURL, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("loadAudioUnitPresetAtURL:error:"), url, outError)
-	return rv
-}
-
-
-// The underlying Core Audio audio unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/audioUnit
-func (a_ AudioUnit) AudioUnit() AudioUnit {
-	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioUnit/instantiate(with:options:completionHandler:)
+func (ac _AudioUnitClass) InstantiateWithComponentDescriptionOptionsCompletionHandler(audioComponentDescription unsafe.Pointer, options unsafe.Pointer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("instantiateWithComponentDescription:options:completionHandler:"), audioComponentDescription, options, completionHandler)
 }
 
 
@@ -121,7 +109,7 @@ func (a_ AudioUnit) AudioUnit() AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/auaudiounit
-func (a_ AudioUnit) AuAudioUnit() AudioUnit {
+func (a_ AudioUnit) AuAudioUnit() IAudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("auAudioUnit"))
 	return rv
 }
@@ -152,6 +140,25 @@ func (a_ AudioUnit) AudioComponentDescription() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiocomponentdescription
 func (a_ AudioUnit) SetAudioComponentDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioComponentDescription:"), value)
+}
+
+
+// The underlying Core Audio audio unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiounit
+func (a_ AudioUnit) AudioUnit() IAudioUnit {
+	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
+	return rv
+}
+
+
+// The underlying Core Audio audio unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounit/audiounit
+func (a_ AudioUnit) SetAudioUnit(value IAudioUnit) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioUnit:"), value)
 }
 
 

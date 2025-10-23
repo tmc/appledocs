@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _AuthorizationPublicKeyCredentialPRFAssertionInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFAssertionInput] class.
 type IAuthorizationPublicKeyCredentialPRFAssertionInput interface {
 	objectivec.IObject
-	PerCredentialInputValues() unsafe.Pointer
+	PerCredentialInputValues() foundation.IDictionary
 }
 
 
@@ -81,8 +82,8 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInput() AuthorizationPublicK
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class/perCredentialInputValues
-func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("perCredentialInputValues"))
+func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("perCredentialInputValues"))
 	return rv
 }
 

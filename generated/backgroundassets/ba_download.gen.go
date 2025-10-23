@@ -30,12 +30,12 @@ type _BADownloadClass struct {
 // An interface definition for the [BADownload] class.
 type IBADownload interface {
 	objectivec.IObject
-	CopyAsNonEssential() unsafe.Pointer
 	Identifier() string
 	IsEssential() bool
 	Priority() BADownloaderPriority
 	State() BADownloadState
 	UniqueIdentifier() string
+	CopyAsNonEssential() unsafe.Pointer
 }
 
 // An object that represents an in-progress or concluded asset download.

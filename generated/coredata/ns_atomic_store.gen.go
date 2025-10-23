@@ -29,7 +29,6 @@ type _AtomicStoreClass struct {
 // An interface definition for the [AtomicStore] class.
 type IAtomicStore interface {
 	IPersistentStore
-	Save(error_ unsafe.Pointer) bool
 	Identifier() string
 	SetIdentifier(value string)
 	Metadata() string
@@ -38,6 +37,7 @@ type IAtomicStore interface {
 	SetType(value string)
 	NSStoreTypeKey() string
 	NSStoreUUIDKey() string
+	Save(error_ unsafe.Pointer) bool
 }
 
 // An abstract superclass that you subclass to create a Core Data atomic store.

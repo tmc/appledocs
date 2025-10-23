@@ -30,7 +30,6 @@ type _AuthorizationProviderExtensionUserLoginConfigurationClass struct {
 // An interface definition for the [AuthorizationProviderExtensionUserLoginConfiguration] class.
 type IAuthorizationProviderExtensionUserLoginConfiguration interface {
 	objectivec.IObject
-	SetCustomAssertionRequestHeaderClaimsReturningError(claims unsafe.Pointer, error_ unsafe.Pointer) bool
 	LoginUserName() string
 	SetLoginUserName(value string)
 }
@@ -79,14 +78,6 @@ func NewAuthorizationProviderExtensionUserLoginConfiguration() AuthorizationProv
 	return getAuthorizationProviderExtensionUserLoginConfigurationClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationProviderExtensionUserLoginConfiguration/setCustomAssertionRequestHeaderClaims(_:)
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetCustomAssertionRequestHeaderClaimsReturningError(claims unsafe.Pointer, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setCustomAssertionRequestHeaderClaims:returningError:"), claims, error_)
-	return rv
-}
 
 
 // [Full Topic]

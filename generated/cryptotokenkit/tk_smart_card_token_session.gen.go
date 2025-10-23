@@ -29,8 +29,7 @@ type _TKSmartCardTokenSessionClass struct {
 // An interface definition for the [TKSmartCardTokenSession] class.
 type ITKSmartCardTokenSession interface {
 	ITKTokenSession
-	GetSmartCardWithError(error_ unsafe.Pointer) TKSmartCard
-	SmartCard() TKSmartCard
+	SmartCard() ITKSmartCard
 }
 
 // A token session that is based on a smart card token.
@@ -88,19 +87,11 @@ func NewTKSmartCardTokenSession() TKSmartCardTokenSession {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenSession/getSmartCard()
-func (t_ TKSmartCardTokenSession) GetSmartCardWithError(error_ unsafe.Pointer) TKSmartCard {
-	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("getSmartCardWithError:"), error_)
-	return rv
-}
-
-
 // The smart card for the active exclusive session and selected application.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenSession/smartCard
-func (t_ TKSmartCardTokenSession) SmartCard() TKSmartCard {
+func (t_ TKSmartCardTokenSession) SmartCard() ITKSmartCard {
 	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("smartCard"))
 	return rv
 }

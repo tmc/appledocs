@@ -30,6 +30,8 @@ type _AssetReaderOutputClass struct {
 // An interface definition for the [AssetReaderOutput] class.
 type IAssetReaderOutput interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AVFoundation classes.

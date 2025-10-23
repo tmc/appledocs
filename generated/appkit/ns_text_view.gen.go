@@ -33,24 +33,17 @@ type _TextViewClass struct {
 // An interface definition for the [TextView] class.
 type ITextView interface {
 	IText
-	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.ITextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, orthography foundation.IOrthography, wordCount int)
-	QuickLookPreviewableItemsInRanges(ranges []foundation.IValue) []objc.ID
-	ToggleAutomaticTextReplacement(sender objectivec.IObject)
-	ToggleSmartInsertDelete(sender objectivec.IObject)
-	LayoutManager() NSLayoutManager
+	RangeForUserCompletion() foundation.Range
 	SelectedRanges() []foundation.Value
-	SetSelectedRanges(value []foundation.IValue)
-	TextContainer() NSTextContainer
-	SetTextContainer(value ITextContainer)
-	TextStorage() NSTextStorage
+	SetSelectedRanges(value []foundation.Value)
 	AcceptableDragTypes() PasteboardType
 	SetAcceptableDragTypes(value PasteboardType)
 	AcceptsGlyphInfo() bool
 	SetAcceptsGlyphInfo(value bool)
 	AllowedInputSourceLocales() string
 	SetAllowedInputSourceLocales(value string)
-	AllowedWritingToolsResultOptions() WritingToolsResultOptions
-	SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions)
+	AllowedWritingToolsResultOptions() unsafe.Pointer
+	SetAllowedWritingToolsResultOptions(value unsafe.Pointer)
 	AllowsCharacterPickerTouchBarItem() bool
 	SetAllowsCharacterPickerTouchBarItem(value bool)
 	AllowsDocumentBackgroundColorChange() bool
@@ -59,12 +52,12 @@ type ITextView interface {
 	SetAllowsImageEditing(value bool)
 	AllowsUndo() bool
 	SetAllowsUndo(value bool)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	CandidateListTouchBarItem() NSCandidateListTouchBarItem
-	SetCandidateListTouchBarItem(value ICandidateListTouchBarItem)
-	DefaultParagraphStyle() NSParagraphStyle
-	SetDefaultParagraphStyle(value NSParagraphStyle)
+	CandidateListTouchBarItem() CandidateListTouchBarItem
+	SetCandidateListTouchBarItem(value CandidateListTouchBarItem)
+	DefaultParagraphStyle() IParagraphStyle
+	SetDefaultParagraphStyle(value IParagraphStyle)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DisplaysLinkToolTips() bool
@@ -75,9 +68,9 @@ type ITextView interface {
 	SetEnabledTextCheckingTypes(value unsafe.Pointer)
 	ImportsGraphics() bool
 	SetImportsGraphics(value bool)
-	InlinePredictionType() TextInputTraitType
-	SetInlinePredictionType(value TextInputTraitType)
-	InsertionPointColor() NSColor
+	InlinePredictionType() unsafe.Pointer
+	SetInlinePredictionType(value unsafe.Pointer)
+	InsertionPointColor() IColor
 	SetInsertionPointColor(value IColor)
 	IsAutomaticDashSubstitutionEnabled() bool
 	SetIsAutomaticDashSubstitutionEnabled(value bool)
@@ -113,30 +106,30 @@ type ITextView interface {
 	SetIsSelectable(value bool)
 	IsWritingToolsActive() bool
 	SetIsWritingToolsActive(value bool)
+	LayoutManager() ILayoutManager
+	SetLayoutManager(value ILayoutManager)
 	LinkTextAttributes() coreml.Key
-	SetLinkTextAttributes(value coreml.IKey)
+	SetLinkTextAttributes(value coreml.Key)
 	MarkedTextAttributes() coreml.Key
-	SetMarkedTextAttributes(value coreml.IKey)
-	MathExpressionCompletionType() TextInputTraitType
-	SetMathExpressionCompletionType(value TextInputTraitType)
+	SetMarkedTextAttributes(value coreml.Key)
+	MathExpressionCompletionType() unsafe.Pointer
+	SetMathExpressionCompletionType(value unsafe.Pointer)
 	RangeForUserCharacterAttributeChange() foundation.Range
 	SetRangeForUserCharacterAttributeChange(value foundation.Range)
-	RangeForUserCompletion() foundation.Range
-	SetRangeForUserCompletion(value foundation.Range)
 	RangeForUserParagraphAttributeChange() foundation.Range
 	SetRangeForUserParagraphAttributeChange(value foundation.Range)
 	RangeForUserTextChange() foundation.Range
 	SetRangeForUserTextChange(value foundation.Range)
 	RangesForUserCharacterAttributeChange() foundation.Value
-	SetRangesForUserCharacterAttributeChange(value foundation.IValue)
+	SetRangesForUserCharacterAttributeChange(value foundation.Value)
 	RangesForUserParagraphAttributeChange() foundation.Value
-	SetRangesForUserParagraphAttributeChange(value foundation.IValue)
+	SetRangesForUserParagraphAttributeChange(value foundation.Value)
 	RangesForUserTextChange() foundation.Value
-	SetRangesForUserTextChange(value foundation.IValue)
+	SetRangesForUserTextChange(value foundation.Value)
 	ReadablePasteboardTypes() PasteboardType
 	SetReadablePasteboardTypes(value PasteboardType)
 	SelectedTextAttributes() coreml.Key
-	SetSelectedTextAttributes(value coreml.IKey)
+	SetSelectedTextAttributes(value coreml.Key)
 	SelectionAffinity() unsafe.Pointer
 	SetSelectionAffinity(value unsafe.Pointer)
 	SelectionGranularity() unsafe.Pointer
@@ -147,18 +140,22 @@ type ITextView interface {
 	SetSmartInsertDeleteEnabled(value bool)
 	SpellCheckerDocumentTag() int
 	SetSpellCheckerDocumentTag(value int)
+	TextContainer() TextContainer
+	SetTextContainer(value TextContainer)
 	TextContainerInset() coregraphics.CGSize
 	SetTextContainerInset(value coregraphics.CGSize)
 	TextContainerOrigin() coregraphics.CGPoint
 	SetTextContainerOrigin(value coregraphics.CGPoint)
-	TextContentStorage() NSTextContentStorage
+	TextContentStorage() ITextContentStorage
 	SetTextContentStorage(value ITextContentStorage)
 	TextHighlightAttributes() coreml.Key
-	SetTextHighlightAttributes(value coreml.IKey)
-	TextLayoutManager() NSTextLayoutManager
+	SetTextHighlightAttributes(value coreml.Key)
+	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
+	TextStorage() TextStorage
+	SetTextStorage(value TextStorage)
 	TypingAttributes() coreml.Key
-	SetTypingAttributes(value coreml.IKey)
+	SetTypingAttributes(value coreml.Key)
 	UsesAdaptiveColorMappingForDarkAppearance() bool
 	SetUsesAdaptiveColorMappingForDarkAppearance(value bool)
 	UsesFindBar() bool
@@ -175,8 +172,12 @@ type ITextView interface {
 	SetUsesRuler(value bool)
 	WritablePasteboardTypes() PasteboardType
 	SetWritablePasteboardTypes(value PasteboardType)
-	WritingToolsBehavior() WritingToolsBehavior
-	SetWritingToolsBehavior(value WritingToolsBehavior)
+	WritingToolsBehavior() NSWritingToolsBehavior
+	SetWritingToolsBehavior(value NSWritingToolsBehavior)
+	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.TextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options foundation.IDictionary, orthography foundation.Orthography, wordCount int)
+	QuickLookPreviewableItemsInRanges(ranges []foundation.Value) []objc.ID
+	ToggleAutomaticTextReplacement(sender objectivec.IObject)
+	ToggleSmartInsertDelete(sender objectivec.IObject)
 }
 
 // A view that draws text and handles user interactions with that text.
@@ -238,7 +239,7 @@ func NewTextView() TextView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)
-func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.ITextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options unsafe.Pointer, orthography foundation.IOrthography, wordCount int) {
+func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.TextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options foundation.IDictionary, orthography foundation.Orthography, wordCount int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), results, range_, checkingTypes, options, orthography, wordCount)
 }
 
@@ -247,7 +248,7 @@ func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/quickLookPreviewableItems(inRanges:)
-func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges []foundation.IValue) []objc.ID {
+func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges []foundation.Value) []objc.ID {
 	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("quickLookPreviewableItemsInRanges:"), ranges)
 	return rv
 }
@@ -271,12 +272,12 @@ func (t_ TextView) ToggleSmartInsertDelete(sender objectivec.IObject) {
 }
 
 
-// The layout manager that lays out text for the receiver’s text container.
+// The partial range from the most recent beginning of a word up to the insertion point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/layoutManager
-func (t_ TextView) LayoutManager() NSLayoutManager {
-	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/rangeForUserCompletion
+func (t_ TextView) RangeForUserCompletion() foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCompletion"))
 	return rv
 }
 
@@ -295,7 +296,7 @@ func (t_ TextView) SelectedRanges() []foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/selectedRanges
-func (t_ TextView) SetSelectedRanges(value []foundation.IValue) {
+func (t_ TextView) SetSelectedRanges(value []foundation.Value) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -307,35 +308,6 @@ func (t_ TextView) SetSelectedRanges(value []foundation.IValue) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRanges:"), nsArray)
-}
-
-
-// The receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
-func (t_ TextView) TextContainer() NSTextContainer {
-	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("textContainer"))
-	return rv
-}
-
-
-// The receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
-func (t_ TextView) SetTextContainer(value ITextContainer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
-}
-
-
-// The receiver’s text storage object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textStorage
-func (t_ TextView) TextStorage() NSTextStorage {
-	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("textStorage"))
-	return rv
 }
 
 
@@ -398,15 +370,15 @@ func (t_ TextView) SetAllowedInputSourceLocales(value string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) AllowedWritingToolsResultOptions() WritingToolsResultOptions {
-	rv := objc.Send[WritingToolsResultOptions](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
+func (t_ TextView) AllowedWritingToolsResultOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions) {
+func (t_ TextView) SetAllowedWritingToolsResultOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedWritingToolsResultOptions:"), value)
 }
 
@@ -487,8 +459,8 @@ func (t_ TextView) SetAllowsUndo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/backgroundcolor
-func (t_ TextView) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextView) BackgroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -504,15 +476,15 @@ func (t_ TextView) SetBackgroundColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) CandidateListTouchBarItem() NSCandidateListTouchBarItem {
-	rv := objc.Send[NSCandidateListTouchBarItem](t_.ID, objc.Sel("candidateListTouchBarItem"))
+func (t_ TextView) CandidateListTouchBarItem() CandidateListTouchBarItem {
+	rv := objc.Send[CandidateListTouchBarItem](t_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) SetCandidateListTouchBarItem(value ICandidateListTouchBarItem) {
+func (t_ TextView) SetCandidateListTouchBarItem(value CandidateListTouchBarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateListTouchBarItem:"), value)
 }
 
@@ -521,8 +493,8 @@ func (t_ TextView) SetCandidateListTouchBarItem(value ICandidateListTouchBarItem
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/defaultparagraphstyle
-func (t_ TextView) DefaultParagraphStyle() NSParagraphStyle {
-	rv := objc.Send[NSParagraphStyle](t_.ID, objc.Sel("defaultParagraphStyle"))
+func (t_ TextView) DefaultParagraphStyle() IParagraphStyle {
+	rv := objc.Send[ParagraphStyle](t_.ID, objc.Sel("defaultParagraphStyle"))
 	return rv
 }
 
@@ -531,7 +503,7 @@ func (t_ TextView) DefaultParagraphStyle() NSParagraphStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/defaultparagraphstyle
-func (t_ TextView) SetDefaultParagraphStyle(value NSParagraphStyle) {
+func (t_ TextView) SetDefaultParagraphStyle(value IParagraphStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultParagraphStyle:"), value)
 }
 
@@ -633,15 +605,15 @@ func (t_ TextView) SetImportsGraphics(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) InlinePredictionType() TextInputTraitType {
-	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("inlinePredictionType"))
+func (t_ TextView) InlinePredictionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inlinePredictionType"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) SetInlinePredictionType(value TextInputTraitType) {
+func (t_ TextView) SetInlinePredictionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInlinePredictionType:"), value)
 }
 
@@ -650,8 +622,8 @@ func (t_ TextView) SetInlinePredictionType(value TextInputTraitType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/insertionpointcolor
-func (t_ TextView) InsertionPointColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("insertionPointColor"))
+func (t_ TextView) InsertionPointColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("insertionPointColor"))
 	return rv
 }
 
@@ -984,6 +956,25 @@ func (t_ TextView) SetIsWritingToolsActive(value bool) {
 }
 
 
+// The layout manager that lays out text for the receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/layoutmanager
+func (t_ TextView) LayoutManager() ILayoutManager {
+	rv := objc.Send[LayoutManager](t_.ID, objc.Sel("layoutManager"))
+	return rv
+}
+
+
+// The layout manager that lays out text for the receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/layoutmanager
+func (t_ TextView) SetLayoutManager(value ILayoutManager) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
+}
+
+
 // The attributes used to draw the onscreen presentation of link text.
 //
 // [Full Topic]
@@ -998,7 +989,7 @@ func (t_ TextView) LinkTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) SetLinkTextAttributes(value coreml.IKey) {
+func (t_ TextView) SetLinkTextAttributes(value coreml.Key) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkTextAttributes:"), value)
 }
 
@@ -1017,22 +1008,22 @@ func (t_ TextView) MarkedTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) SetMarkedTextAttributes(value coreml.IKey) {
+func (t_ TextView) SetMarkedTextAttributes(value coreml.Key) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkedTextAttributes:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) MathExpressionCompletionType() TextInputTraitType {
-	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("mathExpressionCompletionType"))
+func (t_ TextView) MathExpressionCompletionType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mathExpressionCompletionType"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) SetMathExpressionCompletionType(value TextInputTraitType) {
+func (t_ TextView) SetMathExpressionCompletionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMathExpressionCompletionType:"), value)
 }
 
@@ -1053,25 +1044,6 @@ func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.Range {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
 func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.Range) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCharacterAttributeChange:"), value)
-}
-
-
-// The partial range from the most recent beginning of a word up to the insertion point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercompletion
-func (t_ TextView) RangeForUserCompletion() foundation.Range {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCompletion"))
-	return rv
-}
-
-
-// The partial range from the most recent beginning of a word up to the insertion point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercompletion
-func (t_ TextView) SetRangeForUserCompletion(value foundation.Range) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCompletion:"), value)
 }
 
 
@@ -1127,7 +1099,7 @@ func (t_ TextView) RangesForUserCharacterAttributeChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) SetRangesForUserCharacterAttributeChange(value foundation.IValue) {
+func (t_ TextView) SetRangesForUserCharacterAttributeChange(value foundation.Value) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserCharacterAttributeChange:"), value)
 }
 
@@ -1146,7 +1118,7 @@ func (t_ TextView) RangesForUserParagraphAttributeChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) SetRangesForUserParagraphAttributeChange(value foundation.IValue) {
+func (t_ TextView) SetRangesForUserParagraphAttributeChange(value foundation.Value) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserParagraphAttributeChange:"), value)
 }
 
@@ -1165,7 +1137,7 @@ func (t_ TextView) RangesForUserTextChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) SetRangesForUserTextChange(value foundation.IValue) {
+func (t_ TextView) SetRangesForUserTextChange(value foundation.Value) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserTextChange:"), value)
 }
 
@@ -1203,7 +1175,7 @@ func (t_ TextView) SelectedTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SetSelectedTextAttributes(value coreml.IKey) {
+func (t_ TextView) SetSelectedTextAttributes(value coreml.Key) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTextAttributes:"), value)
 }
 
@@ -1303,6 +1275,25 @@ func (t_ TextView) SetSpellCheckerDocumentTag(value int) {
 }
 
 
+// The receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainer
+func (t_ TextView) TextContainer() TextContainer {
+	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
+	return rv
+}
+
+
+// The receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainer
+func (t_ TextView) SetTextContainer(value TextContainer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
+}
+
+
 // The empty space the receiver leaves around its associated text container.
 //
 // [Full Topic]
@@ -1345,8 +1336,8 @@ func (t_ TextView) SetTextContainerOrigin(value coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontentstorage
-func (t_ TextView) TextContentStorage() NSTextContentStorage {
-	rv := objc.Send[NSTextContentStorage](t_.ID, objc.Sel("textContentStorage"))
+func (t_ TextView) TextContentStorage() ITextContentStorage {
+	rv := objc.Send[TextContentStorage](t_.ID, objc.Sel("textContentStorage"))
 	return rv
 }
 
@@ -1374,7 +1365,7 @@ func (t_ TextView) TextHighlightAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) SetTextHighlightAttributes(value coreml.IKey) {
+func (t_ TextView) SetTextHighlightAttributes(value coreml.Key) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextHighlightAttributes:"), value)
 }
 
@@ -1383,8 +1374,8 @@ func (t_ TextView) SetTextHighlightAttributes(value coreml.IKey) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textlayoutmanager
-func (t_ TextView) TextLayoutManager() NSTextLayoutManager {
-	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextView) TextLayoutManager() ITextLayoutManager {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -1395,6 +1386,25 @@ func (t_ TextView) TextLayoutManager() NSTextLayoutManager {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textlayoutmanager
 func (t_ TextView) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
+}
+
+
+// The receiver’s text storage object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textstorage
+func (t_ TextView) TextStorage() TextStorage {
+	rv := objc.Send[TextStorage](t_.ID, objc.Sel("textStorage"))
+	return rv
+}
+
+
+// The receiver’s text storage object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textstorage
+func (t_ TextView) SetTextStorage(value TextStorage) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorage:"), value)
 }
 
 
@@ -1412,7 +1422,7 @@ func (t_ TextView) TypingAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/typingattributes
-func (t_ TextView) SetTypingAttributes(value coreml.IKey) {
+func (t_ TextView) SetTypingAttributes(value coreml.Key) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 
@@ -1567,15 +1577,15 @@ func (t_ TextView) SetWritablePasteboardTypes(value PasteboardType) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) WritingToolsBehavior() WritingToolsBehavior {
-	rv := objc.Send[WritingToolsBehavior](t_.ID, objc.Sel("writingToolsBehavior"))
+func (t_ TextView) WritingToolsBehavior() NSWritingToolsBehavior {
+	rv := objc.Send[NSWritingToolsBehavior](t_.ID, objc.Sel("writingToolsBehavior"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) SetWritingToolsBehavior(value WritingToolsBehavior) {
+func (t_ TextView) SetWritingToolsBehavior(value NSWritingToolsBehavior) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWritingToolsBehavior:"), value)
 }
 

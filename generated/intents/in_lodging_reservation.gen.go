@@ -30,14 +30,16 @@ type _INLodgingReservationClass struct {
 // An interface definition for the [INLodgingReservation] class.
 type IINLodgingReservation interface {
 	IINReservation
+	// properties:
 	LodgingBusinessLocation() corelocation.Placemark
-	SetLodgingBusinessLocation(value corelocation.IPlacemark)
+	SetLodgingBusinessLocation(value corelocation.Placemark)
 	NumberOfAdults() int
 	SetNumberOfAdults(value int)
 	NumberOfChildren() int
 	SetNumberOfChildren(value int)
 	ReservationDuration() INDateComponentsRange
 	SetReservationDuration(value INDateComponentsRange)
+	// methods:
 }
 
 // The information that describes a lodging reservation.
@@ -107,7 +109,7 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
-func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.IPlacemark) {
+func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.Placemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
 

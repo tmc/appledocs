@@ -29,6 +29,8 @@ type _UnitConcentrationMassClass struct {
 // An interface definition for the [UnitConcentrationMass] class.
 type IUnitConcentrationMass interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for concentration of mass.
@@ -90,7 +92,7 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/millimolesPerLiter(withGramsPerMole:)
-func (uc _UnitConcentrationMassClass) MillimolesPerLiterWithGramsPerMole(gramsPerMole float64) IUnitConcentrationMass {
+func (uc _UnitConcentrationMassClass) MillimolesPerLiterWithGramsPerMole(gramsPerMole float64 /* primitive/slice/pointer */) IUnitConcentrationMass {
 	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("millimolesPerLiterWithGramsPerMole:"), gramsPerMole)
 	return rv
 }

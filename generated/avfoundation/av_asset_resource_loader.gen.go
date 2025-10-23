@@ -30,16 +30,18 @@ type _AssetResourceLoaderClass struct {
 // An interface definition for the [AssetResourceLoader] class.
 type IAssetResourceLoader interface {
 	objectivec.IObject
-	SendsCommonMediaClientDataAsHTTPHeaders() bool
-	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer */
+	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer */)
+	Delegate() AVAssetResourceLoaderDelegate /* foo */
+	SetDelegate(value AVAssetResourceLoaderDelegate /* foo */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
-	PreloadsEligibleContentKeys() bool
-	SetPreloadsEligibleContentKeys(value bool)
+	PreloadsEligibleContentKeys() bool /* primitive/slice/pointer */
+	SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer */)
 	ResourceLoader() IAVAssetResourceLoader
 	SetResourceLoader(value IAVAssetResourceLoader)
+	// methods:
 }
 
 // An object that mediates resource requests from a URL asset.
@@ -99,7 +101,7 @@ func NewAssetResourceLoader() AssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
+func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendsCommonMediaClientDataAsHTTPHeaders"))
 	return rv
 }
@@ -109,7 +111,7 @@ func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool) {
+func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
 }
 
@@ -118,8 +120,8 @@ func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+func (a_ AssetResourceLoader) Delegate() AVAssetResourceLoaderDelegate /* foo */ {
+	rv := objc.Send[AssetResourceLoaderDelegate](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -128,7 +130,7 @@ func (a_ AssetResourceLoader) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/delegate
-func (a_ AssetResourceLoader) SetDelegate(value unsafe.Pointer) {
+func (a_ AssetResourceLoader) SetDelegate(value AVAssetResourceLoaderDelegate /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -156,7 +158,7 @@ func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
+func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
 	return rv
 }
@@ -166,7 +168,7 @@ func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
+func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
 }
 

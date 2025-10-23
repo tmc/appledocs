@@ -30,20 +30,22 @@ type _HKVisionPrismClass struct {
 // An interface definition for the [HKVisionPrism] class.
 type IHKVisionPrism interface {
 	objectivec.IObject
-	Amount() HKQuantity
+	// properties:
+	Amount() IHKQuantity
 	SetAmount(value IHKQuantity)
-	Angle() HKQuantity
+	Angle() IHKQuantity
 	SetAngle(value IHKQuantity)
 	Eye() unsafe.Pointer
 	SetEye(value unsafe.Pointer)
-	HorizontalAmount() HKQuantity
+	HorizontalAmount() IHKQuantity
 	SetHorizontalAmount(value IHKQuantity)
 	HorizontalBase() unsafe.Pointer
 	SetHorizontalBase(value unsafe.Pointer)
-	VerticalAmount() HKQuantity
+	VerticalAmount() IHKQuantity
 	SetVerticalAmount(value IHKQuantity)
 	VerticalBase() unsafe.Pointer
 	SetVerticalBase(value unsafe.Pointer)
+	// methods:
 }
 
 // Prescription data for eye alignment.
@@ -103,7 +105,7 @@ func NewHKVisionPrism() HKVisionPrism {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
-func (h_ HKVisionPrism) Amount() HKQuantity {
+func (h_ HKVisionPrism) Amount() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("amount"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (h_ HKVisionPrism) SetAmount(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
-func (h_ HKVisionPrism) Angle() HKQuantity {
+func (h_ HKVisionPrism) Angle() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("angle"))
 	return rv
 }
@@ -160,7 +162,7 @@ func (h_ HKVisionPrism) SetEye(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
-func (h_ HKVisionPrism) HorizontalAmount() HKQuantity {
+func (h_ HKVisionPrism) HorizontalAmount() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("horizontalAmount"))
 	return rv
 }
@@ -198,7 +200,7 @@ func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
-func (h_ HKVisionPrism) VerticalAmount() HKQuantity {
+func (h_ HKVisionPrism) VerticalAmount() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("verticalAmount"))
 	return rv
 }

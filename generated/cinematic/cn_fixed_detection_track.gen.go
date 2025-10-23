@@ -30,7 +30,7 @@ type _CNFixedDetectionTrackClass struct {
 type ICNFixedDetectionTrack interface {
 	ICNDetectionTrack
 	FocusDisparity() float32
-	OriginalDetection() CNDetection
+	OriginalDetection() ICNDetection
 }
 
 // An object representing the fixed detection track.
@@ -98,18 +98,6 @@ func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity float32) CNFixedD
 }
 
 
-// Creates a detection track with fixed focus at the disparity of an existing detection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithOriginalDetection:
-func NewCNFixedDetectionTrackWithOriginalDetection(originalDetection ICNDetection) CNFixedDetectionTrack {
-	instance := getCNFixedDetectionTrackClass().Alloc()
-	rv := objc.Send[CNFixedDetectionTrack](instance.ID, objc.Sel("initWithOriginalDetection:"), originalDetection)
-	rv.Autorelease()
-	return rv
-}
-
-
 
 // The disparity to use in order to focus on the object.
 //
@@ -125,7 +113,7 @@ func (c_ CNFixedDetectionTrack) FocusDisparity() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/originalDetection
-func (c_ CNFixedDetectionTrack) OriginalDetection() CNDetection {
+func (c_ CNFixedDetectionTrack) OriginalDetection() ICNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("originalDetection"))
 	return rv
 }

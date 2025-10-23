@@ -32,9 +32,9 @@ type _KernelClass struct {
 // An interface definition for the [Kernel] class.
 type IKernel interface {
 	objectivec.IObject
-	ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args []objc.ID) Image
-	SetROISelector(method objc.SEL)
 	Name() string
+	ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args []objc.ID) IImage
+	SetROISelector(method objc.SEL)
 }
 
 // A GPU-based image-processing routine used to create custom Core Image filters.
@@ -94,7 +94,7 @@ func NewKernel() Kernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
-func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data foundation.IData, error_ unsafe.Pointer) Kernel {
+func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data foundation.NSData, error_ unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error_)
 	return rv
 }
@@ -104,7 +104,7 @@ func NewKernelWithFunctionNameFromMetalLibraryDataError(name string, data founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
-func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data foundation.IData, format IFormat, error_ unsafe.Pointer) Kernel {
+func NewKernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data foundation.NSData, format Format, error_ unsafe.Pointer) Kernel {
 	rv := objc.Send[Kernel](objc.ID(getKernelClass().class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error_)
 	return rv
 }
@@ -125,7 +125,7 @@ func NewKernelWithString(string_ string) Kernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:)
-func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name string, data foundation.IData, error_ unsafe.Pointer) unsafe.Pointer {
+func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name string, data foundation.NSData, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:error:"), objc.String(name), data, error_)
 	return rv
 }
@@ -135,7 +135,7 @@ func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataError(name stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/init(functionName:fromMetalLibraryData:outputPixelFormat:)
-func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data foundation.IData, format IFormat, error_ unsafe.Pointer) unsafe.Pointer {
+func (kc _KernelClass) KernelWithFunctionNameFromMetalLibraryDataOutputPixelFormatError(name string, data foundation.NSData, format Format, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(kc.class), objc.Sel("kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:"), objc.String(name), data, format, error_)
 	return rv
 }
@@ -155,7 +155,7 @@ func (kc _KernelClass) KernelWithString(string_ string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/kernelNames(fromMetalLibraryData:)
-func (kc _KernelClass) KernelNamesFromMetalLibraryData(data foundation.IData) []string {
+func (kc _KernelClass) KernelNamesFromMetalLibraryData(data foundation.NSData) []string {
 	rv := objc.Send[[]string](objc.ID(kc.class), objc.Sel("kernelNamesFromMetalLibraryData:"), data)
 	return rv
 }
@@ -185,7 +185,7 @@ func (kc _KernelClass) KernelsWithString(string_ string) []Kernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIKernel/apply(extent:roiCallback:arguments:)
-func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args []objc.ID) Image {
+func (k_ Kernel) ApplyWithExtentRoiCallbackArguments(extent coregraphics.CGRect, callback unsafe.Pointer, args []objc.ID) IImage {
 	rv := objc.Send[Image](k_.ID, objc.Sel("applyWithExtent:roiCallback:arguments:"), extent, callback, args)
 	return rv
 }

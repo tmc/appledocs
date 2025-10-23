@@ -34,7 +34,7 @@ type IMIDICIProfile interface {
 	Name() string
 	SetName(value string)
 	ProfileID() foundation.Data
-	SetProfileID(value foundation.IData)
+	SetProfileID(value foundation.Data)
 }
 
 // A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on.
@@ -121,7 +121,7 @@ func (m_ MIDICIProfile) ProfileID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-func (m_ MIDICIProfile) SetProfileID(value foundation.IData) {
+func (m_ MIDICIProfile) SetProfileID(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileID:"), value)
 }
 

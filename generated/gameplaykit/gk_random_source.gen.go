@@ -89,7 +89,7 @@ func NewRandomSource() RandomSource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/init(coder:)
-func NewRandomSourceWithCoder(aDecoder foundation.ICoder) RandomSource {
+func NewRandomSourceWithCoder(aDecoder foundation.Coder) RandomSource {
 	instance := getRandomSourceClass().Alloc()
 	rv := objc.Send[RandomSource](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -102,7 +102,7 @@ func NewRandomSourceWithCoder(aDecoder foundation.ICoder) RandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/sharedRandom()
-func (rc _RandomSourceClass) SharedRandom() RandomSource {
+func (rc _RandomSourceClass) SharedRandom() IRandomSource {
 	rv := objc.Send[RandomSource](objc.ID(rc.class), objc.Sel("sharedRandom"))
 	return rv
 }

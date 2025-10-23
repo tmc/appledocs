@@ -31,8 +31,10 @@ type _AssetTrackGroupClass struct {
 // An interface definition for the [AssetTrackGroup] class.
 type IAssetTrackGroup interface {
 	objectivec.IObject
-	TrackIDs() foundation.Number
-	SetTrackIDs(value foundation.Number)
+	// properties:
+	TrackIDs() foundation.Number /* foo */
+	SetTrackIDs(value foundation.Number /* foo */)
+	// methods:
 }
 
 // A group of related tracks in an asset.
@@ -92,7 +94,7 @@ func NewAssetTrackGroup() AssetTrackGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
-func (a_ AssetTrackGroup) TrackIDs() foundation.Number {
+func (a_ AssetTrackGroup) TrackIDs() foundation.Number /* foo */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("trackIDs"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (a_ AssetTrackGroup) TrackIDs() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
-func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number) {
+func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackIDs:"), value)
 }
 

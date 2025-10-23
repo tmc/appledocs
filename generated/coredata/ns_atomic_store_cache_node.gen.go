@@ -31,10 +31,10 @@ type _AtomicStoreCacheNodeClass struct {
 // An interface definition for the [AtomicStoreCacheNode] class.
 type IAtomicStoreCacheNode interface {
 	objectivec.IObject
-	ObjectID() NSManagedObjectID
+	ObjectID() IManagedObjectID
 	SetObjectID(value IManagedObjectID)
 	PropertyCache() foundation.MutableDictionary
-	SetPropertyCache(value foundation.IMutableDictionary)
+	SetPropertyCache(value foundation.MutableDictionary)
 }
 
 // A concrete class that you use to represent basic nodes in a Core Data atomic store.
@@ -90,15 +90,6 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 
 
 
-// Sets the value for the given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAtomicStoreCacheNode/setValue(_:forKey:)
-func (a_ AtomicStoreCacheNode) SetValueForKey(value objectivec.IObject, key string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
-}
-
-
 // Returns the value for a given key.
 //
 // [Full Topic]
@@ -113,8 +104,8 @@ func (a_ AtomicStoreCacheNode) ValueForKey(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/objectid
-func (a_ AtomicStoreCacheNode) ObjectID() NSManagedObjectID {
-	rv := objc.Send[NSManagedObjectID](a_.ID, objc.Sel("objectID"))
+func (a_ AtomicStoreCacheNode) ObjectID() IManagedObjectID {
+	rv := objc.Send[ManagedObjectID](a_.ID, objc.Sel("objectID"))
 	return rv
 }
 
@@ -142,7 +133,7 @@ func (a_ AtomicStoreCacheNode) PropertyCache() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsatomicstorecachenode/propertycache
-func (a_ AtomicStoreCacheNode) SetPropertyCache(value foundation.IMutableDictionary) {
+func (a_ AtomicStoreCacheNode) SetPropertyCache(value foundation.MutableDictionary) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPropertyCache:"), value)
 }
 

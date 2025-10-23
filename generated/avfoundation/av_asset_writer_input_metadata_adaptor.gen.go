@@ -30,8 +30,10 @@ type _AssetWriterInputMetadataAdaptorClass struct {
 // An interface definition for the [AssetWriterInputMetadataAdaptor] class.
 type IAssetWriterInputMetadataAdaptor interface {
 	objectivec.IObject
-	AssetWriterInput() AVAssetWriterInput
+	// properties:
+	AssetWriterInput() IAVAssetWriterInput
 	SetAssetWriterInput(value IAVAssetWriterInput)
+	// methods:
 }
 
 // An object that appends timed metadata groups to an asset writer input.
@@ -91,8 +93,8 @@ func NewAssetWriterInputMetadataAdaptor() AssetWriterInputMetadataAdaptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
-func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() AVAssetWriterInput {
-	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
+func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() IAVAssetWriterInput {
+	rv := objc.Send[AssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
 	return rv
 }
 

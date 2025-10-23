@@ -31,14 +31,16 @@ type _HKStatisticsClass struct {
 // An interface definition for the [HKStatistics] class.
 type IHKStatistics interface {
 	objectivec.IObject
+	// properties:
 	EndDate() foundation.Date
-	SetEndDate(value foundation.IDate)
-	QuantityType() HKQuantityType
-	SetQuantityType(value HKQuantityType)
-	Sources() HKSource
+	SetEndDate(value foundation.Date)
+	QuantityType() IHKQuantityType
+	SetQuantityType(value IHKQuantityType)
+	Sources() IHKSource
 	SetSources(value IHKSource)
 	StartDate() foundation.Date
-	SetStartDate(value foundation.IDate)
+	SetStartDate(value foundation.Date)
+	// methods:
 }
 
 // An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.
@@ -108,7 +110,7 @@ func (h_ HKStatistics) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
-func (h_ HKStatistics) SetEndDate(value foundation.IDate) {
+func (h_ HKStatistics) SetEndDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -117,7 +119,7 @@ func (h_ HKStatistics) SetEndDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
-func (h_ HKStatistics) QuantityType() HKQuantityType {
+func (h_ HKStatistics) QuantityType() IHKQuantityType {
 	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (h_ HKStatistics) QuantityType() HKQuantityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
-func (h_ HKStatistics) SetQuantityType(value HKQuantityType) {
+func (h_ HKStatistics) SetQuantityType(value IHKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
@@ -136,7 +138,7 @@ func (h_ HKStatistics) SetQuantityType(value HKQuantityType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
-func (h_ HKStatistics) Sources() HKSource {
+func (h_ HKStatistics) Sources() IHKSource {
 	rv := objc.Send[HKSource](h_.ID, objc.Sel("sources"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (h_ HKStatistics) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
-func (h_ HKStatistics) SetStartDate(value foundation.IDate) {
+func (h_ HKStatistics) SetStartDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

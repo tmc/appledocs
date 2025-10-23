@@ -30,10 +30,9 @@ type _FetchRequestClass struct {
 // An interface definition for the [FetchRequest] class.
 type IFetchRequest interface {
 	IPersistentStoreRequest
-	Execute(error_ unsafe.Pointer) []objc.ID
 	AffectedStores() []PersistentStore
 	SetAffectedStores(value []PersistentStore)
-	Entity() NSEntityDescription
+	Entity() IEntityDescription
 	SetEntity(value IEntityDescription)
 	EntityName() string
 	FetchBatchSize() uint
@@ -43,7 +42,7 @@ type IFetchRequest interface {
 	FetchOffset() uint
 	SetFetchOffset(value uint)
 	HavingPredicate() foundation.Predicate
-	SetHavingPredicate(value foundation.IPredicate)
+	SetHavingPredicate(value foundation.Predicate)
 	IncludesPendingChanges() bool
 	SetIncludesPendingChanges(value bool)
 	IncludesPropertyValues() bool
@@ -51,15 +50,15 @@ type IFetchRequest interface {
 	IncludesSubentities() bool
 	SetIncludesSubentities(value bool)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 	PropertiesToFetch() objc.ID
 	SetPropertiesToFetch(value objc.ID)
 	PropertiesToGroupBy() objc.ID
 	SetPropertiesToGroupBy(value objc.ID)
 	RelationshipKeyPathsForPrefetching() []string
 	SetRelationshipKeyPathsForPrefetching(value []string)
-	ResultType() FetchRequestResultType
-	SetResultType(value FetchRequestResultType)
+	ResultType() NSFetchRequestResultType
+	SetResultType(value NSFetchRequestResultType)
 	ReturnsDistinctResults() bool
 	SetReturnsDistinctResults(value bool)
 	ReturnsObjectsAsFaults() bool
@@ -67,7 +66,8 @@ type IFetchRequest interface {
 	ShouldRefreshRefetchedObjects() bool
 	SetShouldRefreshRefetchedObjects(value bool)
 	SortDescriptors() []foundation.SortDescriptor
-	SetSortDescriptors(value []foundation.ISortDescriptor)
+	SetSortDescriptors(value []foundation.SortDescriptor)
+	Execute(error_ unsafe.Pointer) []objc.ID
 }
 
 // A description of search criteria used to retrieve data from a persistent store.
@@ -191,8 +191,8 @@ func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entity
-func (f_ FetchRequest) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](f_.ID, objc.Sel("entity"))
+func (f_ FetchRequest) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](f_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -287,7 +287,7 @@ func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-func (f_ FetchRequest) SetHavingPredicate(value foundation.IPredicate) {
+func (f_ FetchRequest) SetHavingPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHavingPredicate:"), value)
 }
 
@@ -363,7 +363,7 @@ func (f_ FetchRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-func (f_ FetchRequest) SetPredicate(value foundation.IPredicate) {
+func (f_ FetchRequest) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -439,8 +439,8 @@ func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) ResultType() FetchRequestResultType {
-	rv := objc.Send[FetchRequestResultType](f_.ID, objc.Sel("resultType"))
+func (f_ FetchRequest) ResultType() NSFetchRequestResultType {
+	rv := objc.Send[NSFetchRequestResultType](f_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -449,7 +449,7 @@ func (f_ FetchRequest) ResultType() FetchRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
+func (f_ FetchRequest) SetResultType(value NSFetchRequestResultType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -525,7 +525,7 @@ func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []foundation.ISortDescriptor) {
+func (f_ FetchRequest) SetSortDescriptors(value []foundation.SortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -30,10 +30,10 @@ type _FileProviderKnownFolderLocationsClass struct {
 // An interface definition for the [FileProviderKnownFolderLocations] class.
 type IFileProviderKnownFolderLocations interface {
 	objectivec.IObject
-	DesktopLocation() NSFileProviderKnownFolderLocation
-	SetDesktopLocation(value IFileProviderKnownFolderLocation)
-	DocumentsLocation() NSFileProviderKnownFolderLocation
-	SetDocumentsLocation(value IFileProviderKnownFolderLocation)
+	DesktopLocation() FileProviderKnownFolderLocation
+	SetDesktopLocation(value FileProviderKnownFolderLocation)
+	DocumentsLocation() FileProviderKnownFolderLocation
+	SetDocumentsLocation(value FileProviderKnownFolderLocation)
 	ShouldCreateBinaryCompatibilitySymlink() bool
 	SetShouldCreateBinaryCompatibilitySymlink(value bool)
 }
@@ -89,39 +89,38 @@ func NewFileProviderKnownFolderLocations() FileProviderKnownFolderLocations {
 
 
 
-
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
-func (f_ FileProviderKnownFolderLocations) DesktopLocation() NSFileProviderKnownFolderLocation {
-	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
+func (f_ FileProviderKnownFolderLocations) DesktopLocation() FileProviderKnownFolderLocation {
+	rv := objc.Send[FileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
-func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
+func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value FileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
-func (f_ FileProviderKnownFolderLocations) DocumentsLocation() NSFileProviderKnownFolderLocation {
-	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+func (f_ FileProviderKnownFolderLocations) DocumentsLocation() FileProviderKnownFolderLocation {
+	rv := objc.Send[FileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
-func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
+func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value FileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/shouldCreateBinaryCompatibilitySymlink
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
 func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlink() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("shouldCreateBinaryCompatibilitySymlink"))
 	return rv
@@ -129,9 +128,10 @@ func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlin
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/shouldCreateBinaryCompatibilitySymlink
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
 func (f_ FileProviderKnownFolderLocations) SetShouldCreateBinaryCompatibilitySymlink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldCreateBinaryCompatibilitySymlink:"), value)
 }
+
 
 

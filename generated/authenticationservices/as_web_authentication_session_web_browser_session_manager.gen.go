@@ -94,7 +94,7 @@ func NewWebAuthenticationSessionWebBrowserSessionManager() WebAuthenticationSess
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
 func (wc _WebAuthenticationSessionWebBrowserSessionManagerClass) SharedManager() WebAuthenticationSessionWebBrowserSessionManager {
-	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](objc.ID(wc.class), objc.Sel("sharedManager"))
+	rv := objc.Send[WebAuthenticationSessionWebBrowserSessionManager](objc.ID(wc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (wc _WebAuthenticationSessionWebBrowserSessionManagerClass) SharedManager()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager/shared
-func (w_ WebAuthenticationSessionWebBrowserSessionManager) SharedManager() ASWebAuthenticationSessionWebBrowserSessionManager {
-	rv := objc.Send[ASWebAuthenticationSessionWebBrowserSessionManager](w_.ID, objc.Sel("sharedManager"))
+func (w_ WebAuthenticationSessionWebBrowserSessionManager) SharedManager() IASWebAuthenticationSessionWebBrowserSessionManager {
+	rv := objc.Send[WebAuthenticationSessionWebBrowserSessionManager](w_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

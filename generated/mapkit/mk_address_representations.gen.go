@@ -31,17 +31,21 @@ type _MKAddressRepresentationsClass struct {
 // An interface definition for the [MKAddressRepresentations] class.
 type IMKAddressRepresentations interface {
 	objectivec.IObject
+	// properties:
 	CityName() string
 	SetCityName(value string)
 	CityWithContext() string
 	SetCityWithContext(value string)
 	Region() corelocation.Region
-	SetRegion(value corelocation.IRegion)
+	SetRegion(value corelocation.Region)
 	RegionName() string
 	SetRegionName(value string)
+	// methods:
 }
 
 // A class that provides formatted address strings.
+//
+// Use this class to obtain formatted address strings for a place’s full address, city, or region.
 
 
 // A class that provides formatted address strings.
@@ -140,7 +144,7 @@ func (m_ MKAddressRepresentations) Region() corelocation.Region {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/region
-func (m_ MKAddressRepresentations) SetRegion(value corelocation.IRegion) {
+func (m_ MKAddressRepresentations) SetRegion(value corelocation.Region) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegion:"), value)
 }
 

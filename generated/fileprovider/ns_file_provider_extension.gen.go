@@ -32,29 +32,29 @@ type _FileProviderExtensionClass struct {
 // An interface definition for the [FileProviderExtension] class.
 type IFileProviderExtension interface {
 	objectivec.IObject
-	CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	DeleteItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	EnumeratorForContainerItemIdentifierError(containerItemIdentifier IFileProviderItemIdentifier, error_ unsafe.Pointer) objc.ID
-	FetchThumbnailsForItemIdentifiersRequestedSizePerThumbnailCompletionHandlerCompletionHandler(itemIdentifiers []string, size coregraphics.CGSize, perThumbnailCompletionHandler unsafe.Pointer, completionHandler unsafe.Pointer) foundation.Progress
-	ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.IURL, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	ItemForIdentifierError(identifier IFileProviderItemIdentifier, error_ unsafe.Pointer) FileProviderItem
-	ItemChangedAtURL(url foundation.IURL)
-	PersistentIdentifierForItemAtURL(url foundation.IURL) FileProviderItemIdentifier
-	ProvidePlaceholderAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer)
-	RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer)
-	ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer)
-	SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.INumber, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate foundation.IDate, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	SetTagDataForItemIdentifierCompletionHandler(tagData foundation.IData, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	StartProvidingItemAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer)
-	StopProvidingItemAtURL(url foundation.IURL)
-	SupportedServiceSourcesForItemIdentifierError(itemIdentifier IFileProviderItemIdentifier, error_ unsafe.Pointer) []objc.ID
-	TrashItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer)
-	URLForItemWithPersistentIdentifier(identifier IFileProviderItemIdentifier) foundation.URL
 	DocumentStorageURL() foundation.URL
-	Domain() NSFileProviderDomain
+	Domain() IFileProviderDomain
 	ProviderIdentifier() string
+	CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	DeleteItemWithIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	EnumeratorForContainerItemIdentifierError(containerItemIdentifier FileProviderItemIdentifier, error_ unsafe.Pointer) objc.ID
+	FetchThumbnailsForItemIdentifiersRequestedSizePerThumbnailCompletionHandlerCompletionHandler(itemIdentifiers []string, size coregraphics.CGSize, perThumbnailCompletionHandler unsafe.Pointer, completionHandler unsafe.Pointer) foundation.Progress
+	ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.URL, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	ItemForIdentifierError(identifier FileProviderItemIdentifier, error_ unsafe.Pointer) FileProviderItem
+	ItemChangedAtURL(url foundation.URL)
+	PersistentIdentifierForItemAtURL(url foundation.URL) FileProviderItemIdentifier
+	ProvidePlaceholderAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
+	RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier FileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer)
+	ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier FileProviderItemIdentifier, parentItemIdentifier FileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer)
+	SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.Number, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate foundation.NSDate, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	SetTagDataForItemIdentifierCompletionHandler(tagData foundation.NSData, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	StartProvidingItemAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
+	StopProvidingItemAtURL(url foundation.URL)
+	SupportedServiceSourcesForItemIdentifierError(itemIdentifier FileProviderItemIdentifier, error_ unsafe.Pointer) []objc.ID
+	TrashItemWithIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer)
+	URLForItemWithPersistentIdentifier(identifier FileProviderItemIdentifier) foundation.URL
 }
 
 // The principal class for the nonreplicated File Provider extension.
@@ -114,7 +114,7 @@ func NewFileProviderExtension() FileProviderExtension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/placeholderURL(for:)
-func (fc _FileProviderExtensionClass) PlaceholderURLForURL(url foundation.IURL) foundation.URL {
+func (fc _FileProviderExtensionClass) PlaceholderURLForURL(url foundation.URL) foundation.URL {
 	rv := objc.Send[foundation.URL](objc.ID(fc.class), objc.Sel("placeholderURLForURL:"), url)
 	return rv
 }
@@ -124,7 +124,7 @@ func (fc _FileProviderExtensionClass) PlaceholderURLForURL(url foundation.IURL) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/writePlaceholder(at:withMetadata:)
-func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(placeholderURL foundation.IURL, metadata unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(placeholderURL foundation.URL, metadata foundation.IDictionary, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("writePlaceholderAtURL:withMetadata:error:"), placeholderURL, metadata, error_)
 	return rv
 }
@@ -134,7 +134,7 @@ func (fc _FileProviderExtensionClass) WritePlaceholderAtURLWithMetadataError(pla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/createDirectory(withName:inParentItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) CreateDirectoryWithNameInParentItemIdentifierCompletionHandler(directoryName string, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("createDirectoryWithName:inParentItemIdentifier:completionHandler:"), objc.String(directoryName), parentItemIdentifier, completionHandler)
 }
 
@@ -143,7 +143,7 @@ func (f_ FileProviderExtension) CreateDirectoryWithNameInParentItemIdentifierCom
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/deleteItem(withIdentifier:completionHandler:)
-func (f_ FileProviderExtension) DeleteItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) DeleteItemWithIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("deleteItemWithIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
 
@@ -152,7 +152,7 @@ func (f_ FileProviderExtension) DeleteItemWithIdentifierCompletionHandler(itemId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/enumerator(for:)
-func (f_ FileProviderExtension) EnumeratorForContainerItemIdentifierError(containerItemIdentifier IFileProviderItemIdentifier, error_ unsafe.Pointer) objc.ID {
+func (f_ FileProviderExtension) EnumeratorForContainerItemIdentifierError(containerItemIdentifier FileProviderItemIdentifier, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("enumeratorForContainerItemIdentifier:error:"), containerItemIdentifier, error_)
 	return rv
 }
@@ -172,7 +172,7 @@ func (f_ FileProviderExtension) FetchThumbnailsForItemIdentifiersRequestedSizePe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/importDocument(at:toParentItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.IURL, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) ImportDocumentAtURLToParentItemIdentifierCompletionHandler(fileURL foundation.URL, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("importDocumentAtURL:toParentItemIdentifier:completionHandler:"), fileURL, parentItemIdentifier, completionHandler)
 }
 
@@ -181,7 +181,7 @@ func (f_ FileProviderExtension) ImportDocumentAtURLToParentItemIdentifierComplet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/item(for:)
-func (f_ FileProviderExtension) ItemForIdentifierError(identifier IFileProviderItemIdentifier, error_ unsafe.Pointer) FileProviderItem {
+func (f_ FileProviderExtension) ItemForIdentifierError(identifier FileProviderItemIdentifier, error_ unsafe.Pointer) FileProviderItem {
 	rv := objc.Send[FileProviderItem](f_.ID, objc.Sel("itemForIdentifier:error:"), identifier, error_)
 	return rv
 }
@@ -191,7 +191,7 @@ func (f_ FileProviderExtension) ItemForIdentifierError(identifier IFileProviderI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/itemChanged(at:)
-func (f_ FileProviderExtension) ItemChangedAtURL(url foundation.IURL) {
+func (f_ FileProviderExtension) ItemChangedAtURL(url foundation.URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("itemChangedAtURL:"), url)
 }
 
@@ -200,7 +200,7 @@ func (f_ FileProviderExtension) ItemChangedAtURL(url foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/persistentIdentifierForItem(at:)
-func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url foundation.IURL) FileProviderItemIdentifier {
+func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url foundation.URL) FileProviderItemIdentifier {
 	rv := objc.Send[FileProviderItemIdentifier](f_.ID, objc.Sel("persistentIdentifierForItemAtURL:"), url)
 	return rv
 }
@@ -210,7 +210,7 @@ func (f_ FileProviderExtension) PersistentIdentifierForItemAtURL(url foundation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/providePlaceholder(at:completionHandler:)
-func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("providePlaceholderAtURL:completionHandler:"), url, completionHandler)
 }
 
@@ -219,7 +219,7 @@ func (f_ FileProviderExtension) ProvidePlaceholderAtURLCompletionHandler(url fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/renameItem(withIdentifier:toName:completionHandler:)
-func (f_ FileProviderExtension) RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) RenameItemWithIdentifierToNameCompletionHandler(itemIdentifier FileProviderItemIdentifier, itemName string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("renameItemWithIdentifier:toName:completionHandler:"), itemIdentifier, objc.String(itemName), completionHandler)
 }
 
@@ -228,7 +228,7 @@ func (f_ FileProviderExtension) RenameItemWithIdentifierToNameCompletionHandler(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/reparentItem(withIdentifier:toParentItemWithIdentifier:newName:completionHandler:)
-func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdentifierNewNameCompletionHandler(itemIdentifier FileProviderItemIdentifier, parentItemIdentifier FileProviderItemIdentifier, newName string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:"), itemIdentifier, parentItemIdentifier, objc.String(newName), completionHandler)
 }
 
@@ -237,7 +237,7 @@ func (f_ FileProviderExtension) ReparentItemWithIdentifierToParentItemWithIdenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/setFavoriteRank(_:forItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.INumber, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) SetFavoriteRankForItemIdentifierCompletionHandler(favoriteRank foundation.Number, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFavoriteRank:forItemIdentifier:completionHandler:"), favoriteRank, itemIdentifier, completionHandler)
 }
 
@@ -246,7 +246,7 @@ func (f_ FileProviderExtension) SetFavoriteRankForItemIdentifierCompletionHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/setLastUsedDate(_:forItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate foundation.IDate, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) SetLastUsedDateForItemIdentifierCompletionHandler(lastUsedDate foundation.NSDate, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLastUsedDate:forItemIdentifier:completionHandler:"), lastUsedDate, itemIdentifier, completionHandler)
 }
 
@@ -255,7 +255,7 @@ func (f_ FileProviderExtension) SetLastUsedDateForItemIdentifierCompletionHandle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/setTagData(_:forItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) SetTagDataForItemIdentifierCompletionHandler(tagData foundation.IData, itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) SetTagDataForItemIdentifierCompletionHandler(tagData foundation.NSData, itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTagData:forItemIdentifier:completionHandler:"), tagData, itemIdentifier, completionHandler)
 }
 
@@ -264,7 +264,7 @@ func (f_ FileProviderExtension) SetTagDataForItemIdentifierCompletionHandler(tag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/startProvidingItem(at:completionHandler:)
-func (f_ FileProviderExtension) StartProvidingItemAtURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) StartProvidingItemAtURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("startProvidingItemAtURL:completionHandler:"), url, completionHandler)
 }
 
@@ -273,7 +273,7 @@ func (f_ FileProviderExtension) StartProvidingItemAtURLCompletionHandler(url fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/stopProvidingItem(at:)
-func (f_ FileProviderExtension) StopProvidingItemAtURL(url foundation.IURL) {
+func (f_ FileProviderExtension) StopProvidingItemAtURL(url foundation.URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("stopProvidingItemAtURL:"), url)
 }
 
@@ -282,7 +282,7 @@ func (f_ FileProviderExtension) StopProvidingItemAtURL(url foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/supportedServiceSources(for:)
-func (f_ FileProviderExtension) SupportedServiceSourcesForItemIdentifierError(itemIdentifier IFileProviderItemIdentifier, error_ unsafe.Pointer) []objc.ID {
+func (f_ FileProviderExtension) SupportedServiceSourcesForItemIdentifierError(itemIdentifier FileProviderItemIdentifier, error_ unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("supportedServiceSourcesForItemIdentifier:error:"), itemIdentifier, error_)
 	return rv
 }
@@ -292,7 +292,7 @@ func (f_ FileProviderExtension) SupportedServiceSourcesForItemIdentifierError(it
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/trashItem(withIdentifier:completionHandler:)
-func (f_ FileProviderExtension) TrashItemWithIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) TrashItemWithIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("trashItemWithIdentifier:completionHandler:"), itemIdentifier, completionHandler)
 }
 
@@ -301,7 +301,7 @@ func (f_ FileProviderExtension) TrashItemWithIdentifierCompletionHandler(itemIde
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/untrashItem(withIdentifier:toParentItemIdentifier:completionHandler:)
-func (f_ FileProviderExtension) UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier IFileProviderItemIdentifier, parentItemIdentifier IFileProviderItemIdentifier, completionHandler unsafe.Pointer) {
+func (f_ FileProviderExtension) UntrashItemWithIdentifierToParentItemIdentifierCompletionHandler(itemIdentifier FileProviderItemIdentifier, parentItemIdentifier FileProviderItemIdentifier, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:"), itemIdentifier, parentItemIdentifier, completionHandler)
 }
 
@@ -310,7 +310,7 @@ func (f_ FileProviderExtension) UntrashItemWithIdentifierToParentItemIdentifierC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/urlForItem(withPersistentIdentifier:)
-func (f_ FileProviderExtension) URLForItemWithPersistentIdentifier(identifier IFileProviderItemIdentifier) foundation.URL {
+func (f_ FileProviderExtension) URLForItemWithPersistentIdentifier(identifier FileProviderItemIdentifier) foundation.URL {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("URLForItemWithPersistentIdentifier:"), identifier)
 	return rv
 }
@@ -330,8 +330,8 @@ func (f_ FileProviderExtension) DocumentStorageURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderExtension/domain
-func (f_ FileProviderExtension) Domain() NSFileProviderDomain {
-	rv := objc.Send[NSFileProviderDomain](f_.ID, objc.Sel("domain"))
+func (f_ FileProviderExtension) Domain() IFileProviderDomain {
+	rv := objc.Send[FileProviderDomain](f_.ID, objc.Sel("domain"))
 	return rv
 }
 

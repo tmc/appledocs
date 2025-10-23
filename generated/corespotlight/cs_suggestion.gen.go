@@ -31,10 +31,10 @@ type _CSSuggestionClass struct {
 // An interface definition for the [CSSuggestion] class.
 type ICSSuggestion interface {
 	objectivec.IObject
-	Compare(other ICSSuggestion) unsafe.Pointer
-	CompareByRank(other ICSSuggestion) unsafe.Pointer
 	LocalizedAttributedSuggestion() foundation.AttributedString
 	SuggestionKind() CSSuggestionKind
+	Compare(other ICSSuggestion) unsafe.Pointer
+	CompareByRank(other ICSSuggestion) unsafe.Pointer
 }
 
 // The kind of suggestion to use in a query.

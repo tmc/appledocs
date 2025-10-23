@@ -32,16 +32,17 @@ type _PictureInPictureControllerContentSourceClass struct {
 // An interface definition for the [PictureInPictureControllerContentSource] class.
 type IPictureInPictureControllerContentSource interface {
 	objectivec.IObject
-	ActiveVideoCallSourceView() appkit.View
-	ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController
+	ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController
 	SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController)
+	ActiveVideoCallSourceView() appkit.View
+	SetActiveVideoCallSourceView(value appkit.View)
 	PlayerLayer() avfoundation.PlayerLayer
-	SetPlayerLayer(value avfoundation.IPlayerLayer)
+	SetPlayerLayer(value avfoundation.PlayerLayer)
 	SampleBufferDisplayLayer() avfoundation.SampleBufferDisplayLayer
-	SetSampleBufferDisplayLayer(value avfoundation.ISampleBufferDisplayLayer)
+	SetSampleBufferDisplayLayer(value avfoundation.SampleBufferDisplayLayer)
 	SampleBufferPlaybackDelegate() unsafe.Pointer
 	SetSampleBufferPlaybackDelegate(value unsafe.Pointer)
-	ContentSource() AVPictureInPictureControllerContentSource
+	ContentSource() IAVPictureInPictureControllerContentSource
 	SetContentSource(value IAVPictureInPictureControllerContentSource)
 }
 
@@ -98,22 +99,12 @@ func NewPictureInPictureControllerContentSource() PictureInPictureControllerCont
 
 
 
-// The view that contains the video content of the call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/activeVideoCallSourceView
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() appkit.View {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
-	return rv
-}
-
-
 // The view controller that presents the video call content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
-	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
+func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController {
+	rv := objc.Send[PictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
 }
 
@@ -124,6 +115,25 @@ func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewCont
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
 func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
+}
+
+
+// The view that contains the video content of the call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
+func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
+	return rv
+}
+
+
+// The view that contains the video content of the call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
+func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallSourceView(value appkit.View) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }
 
 
@@ -141,7 +151,7 @@ func (p_ PictureInPictureControllerContentSource) PlayerLayer() avfoundation.Pla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
-func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value avfoundation.IPlayerLayer) {
+func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value avfoundation.PlayerLayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerLayer:"), value)
 }
 
@@ -160,7 +170,7 @@ func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() avf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
-func (p_ PictureInPictureControllerContentSource) SetSampleBufferDisplayLayer(value avfoundation.ISampleBufferDisplayLayer) {
+func (p_ PictureInPictureControllerContentSource) SetSampleBufferDisplayLayer(value avfoundation.SampleBufferDisplayLayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSampleBufferDisplayLayer:"), value)
 }
 
@@ -188,8 +198,8 @@ func (p_ PictureInPictureControllerContentSource) SetSampleBufferPlaybackDelegat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.property
-func (p_ PictureInPictureControllerContentSource) ContentSource() AVPictureInPictureControllerContentSource {
-	rv := objc.Send[AVPictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
+func (p_ PictureInPictureControllerContentSource) ContentSource() IAVPictureInPictureControllerContentSource {
+	rv := objc.Send[PictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
 }
 

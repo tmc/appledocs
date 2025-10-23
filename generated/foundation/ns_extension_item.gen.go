@@ -30,14 +30,16 @@ type _ExtensionItemClass struct {
 // An interface definition for the [ExtensionItem] class.
 type IExtensionItem interface {
 	objectivec.IObject
-	Attachments() []ItemProvider
-	SetAttachments(value []ItemProvider)
+	// properties:
+	Attachments() []ItemProvider /* primitive/slice/pointer */
+	SetAttachments(value []ItemProvider /* primitive/slice/pointer */)
 	AttributedContentText() IAttributedString
 	SetAttributedContentText(value IAttributedString)
 	AttributedTitle() IAttributedString
 	SetAttributedTitle(value IAttributedString)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
+	// methods:
 }
 
 // An immutable collection of values representing different aspects of an item for an extension to act upon.
@@ -95,7 +97,7 @@ func NewExtensionItem() ExtensionItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
-func (e_ ExtensionItem) Attachments() []ItemProvider {
+func (e_ ExtensionItem) Attachments() []ItemProvider /* primitive/slice/pointer */ {
 	rv := objc.Send[[]ItemProvider](e_.ID, objc.Sel("attachments"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (e_ ExtensionItem) Attachments() []ItemProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
-func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
+func (e_ ExtensionItem) SetAttachments(value []ItemProvider /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

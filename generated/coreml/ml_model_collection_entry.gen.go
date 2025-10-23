@@ -31,10 +31,11 @@ type _ModelCollectionEntryClass struct {
 // An interface definition for the [ModelCollectionEntry] class.
 type IModelCollectionEntry interface {
 	objectivec.IObject
-	IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool
 	ModelIdentifier() string
+	SetModelIdentifier(value string)
 	ModelURL() foundation.URL
-	Entries() MLModelCollectionEntry
+	SetModelURL(value foundation.URL)
+	Entries() IMLModelCollectionEntry
 	SetEntries(value IMLModelCollectionEntry)
 }
 
@@ -89,12 +90,12 @@ func NewModelCollectionEntry() ModelCollectionEntry {
 
 
 
-// Returns a Boolean value that indicates whether the two entries are equal.
+// The name of the model, which is unique to the collection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/isEqual(to:)
-func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isEqualToModelCollectionEntry:"), entry)
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
+func (m_ ModelCollectionEntry) ModelIdentifier() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 
@@ -102,9 +103,18 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelColle
 // The name of the model, which is unique to the collection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
+func (m_ ModelCollectionEntry) SetModelIdentifier(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelIdentifier:"), objc.String(value))
+}
+
+
+// The compiled model’s location on the device’s file system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
+func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
+	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
 	return rv
 }
 
@@ -112,10 +122,9 @@ func (m_ ModelCollectionEntry) ModelIdentifier() string {
 // The compiled model’s location on the device’s file system.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelURL
-func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
-	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
+func (m_ ModelCollectionEntry) SetModelURL(value foundation.URL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelURL:"), value)
 }
 
 
@@ -123,8 +132,8 @@ func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
-func (m_ ModelCollectionEntry) Entries() MLModelCollectionEntry {
-	rv := objc.Send[MLModelCollectionEntry](m_.ID, objc.Sel("entries"))
+func (m_ ModelCollectionEntry) Entries() IMLModelCollectionEntry {
+	rv := objc.Send[ModelCollectionEntry](m_.ID, objc.Sel("entries"))
 	return rv
 }
 

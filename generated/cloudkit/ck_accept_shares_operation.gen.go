@@ -32,19 +32,19 @@ type ICKAcceptSharesOperation interface {
 	ICKOperation
 	AcceptSharesCompletionBlock() unsafe.Pointer
 	SetAcceptSharesCompletionBlock(value unsafe.Pointer)
-	PerShareCompletionBlock() unsafe.Pointer
-	SetPerShareCompletionBlock(value unsafe.Pointer)
 	AcceptSharesResultBlock() unsafe.Pointer
 	SetAcceptSharesResultBlock(value unsafe.Pointer)
+	PerShareCompletionBlock() unsafe.Pointer
+	SetPerShareCompletionBlock(value unsafe.Pointer)
 	PerShareResultBlock() unsafe.Pointer
 	SetPerShareResultBlock(value unsafe.Pointer)
 	ShareMetadatas() CKShareMetadata
-	SetShareMetadatas(value ICKShareMetadata)
+	SetShareMetadatas(value CKShareMetadata)
 	CKPartialErrorsByItemIDKey() string
 	ContainerIdentifier() string
 	SetContainerIdentifier(value string)
 	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	SetUrl(value foundation.URL)
 	UserInfo() string
 	SetUserInfo(value string)
 }
@@ -107,7 +107,7 @@ func NewCKAcceptSharesOperation() CKAcceptSharesOperation {
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharescompletionblock
 func (c_ CKAcceptSharesOperation) AcceptSharesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acceptSharesCompletionBlock"))
 	return rv
@@ -117,28 +117,9 @@ func (c_ CKAcceptSharesOperation) AcceptSharesCompletionBlock() unsafe.Pointer {
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharescompletionblock
 func (c_ CKAcceptSharesOperation) SetAcceptSharesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAcceptSharesCompletionBlock:"), value)
-}
-
-
-// The block to execute as CloudKit processes individual shares.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
-func (c_ CKAcceptSharesOperation) PerShareCompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareCompletionBlock"))
-	return rv
-}
-
-
-// The block to execute as CloudKit processes individual shares.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
-func (c_ CKAcceptSharesOperation) SetPerShareCompletionBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareCompletionBlock:"), value)
 }
 
 
@@ -154,6 +135,25 @@ func (c_ CKAcceptSharesOperation) AcceptSharesResultBlock() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharesresultblock
 func (c_ CKAcceptSharesOperation) SetAcceptSharesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAcceptSharesResultBlock:"), value)
+}
+
+
+// The block to execute as CloudKit processes individual shares.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/persharecompletionblock
+func (c_ CKAcceptSharesOperation) PerShareCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareCompletionBlock"))
+	return rv
+}
+
+
+// The block to execute as CloudKit processes individual shares.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/persharecompletionblock
+func (c_ CKAcceptSharesOperation) SetPerShareCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareCompletionBlock:"), value)
 }
 
 
@@ -186,7 +186,7 @@ func (c_ CKAcceptSharesOperation) ShareMetadatas() CKShareMetadata {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
-func (c_ CKAcceptSharesOperation) SetShareMetadatas(value ICKShareMetadata) {
+func (c_ CKAcceptSharesOperation) SetShareMetadatas(value CKShareMetadata) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareMetadatas:"), value)
 }
 
@@ -234,7 +234,7 @@ func (c_ CKAcceptSharesOperation) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) SetUrl(value foundation.IURL) {
+func (c_ CKAcceptSharesOperation) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 

@@ -30,6 +30,8 @@ type _arrayLengthClass struct {
 // An interface definition for the [arrayLength] class.
 type IarrayLength interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

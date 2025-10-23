@@ -84,7 +84,7 @@ func NewMIDI2DeviceInfo() MIDI2DeviceInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/init(manufacturerID:family:modelNumber:revisionLevel:)
-func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family IMIDIUInteger14, modelNumber IMIDIUInteger14, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
+func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family MIDIUInteger14, modelNumber MIDIUInteger14, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
 	instance := getMIDI2DeviceInfoClass().Alloc()
 	rv := objc.Send[MIDI2DeviceInfo](instance.ID, objc.Sel("initWithManufacturerID:family:modelNumber:revisionLevel:"), manufacturerID, family, modelNumber, revisionLevel)
 	rv.Autorelease()

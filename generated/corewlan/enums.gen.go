@@ -46,6 +46,49 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr
 type CWErr uint
 
+const (
+	// kCWChallengeFailureErr - Authentication was rejected because of a challenge failure.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwChallengeFailureErr
+	kCWChallengeFailureErr CWErr = 0
+	// kCWInvalidFormatErr - Invalid protocol element field detected.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwInvalidFormatErr
+	kCWInvalidFormatErr CWErr = 0
+	// kCWInvalidInformationElementErr - Invalid information element included in association request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwInvalidInformationElementErr
+	kCWInvalidInformationElementErr CWErr = 0
+	// kCWInvalidPMKErr - PMK rejected by the access point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwInvalidPMKErr
+	kCWInvalidPMKErr CWErr = 0
+	// kCWInvalidParameterErr - Parameter error.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwInvalidParameterErr
+	kCWInvalidParameterErr CWErr = 0
+	// kCWNotSupportedErr - Operation not supported.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwNotSupportedErr
+	kCWNotSupportedErr CWErr = 0
+	// kCWOperationNotPermittedErr - Calling process does not have permission to perform this operation.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwOperationNotPermittedErr
+	kCWOperationNotPermittedErr CWErr = 0
+	// kCWTimeoutErr - Authentication/Association timed out.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwTimeoutErr
+	kCWTimeoutErr CWErr = 0
+	// kCWEAPOLErr - EAPOL-related error.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cweapolErr
+	kCWEAPOLErr CWErr = 0
+	// kCWPCOTransitionTimeNotSupportedErr - Association was denied because the requesting station does not support the PCO transition time required by the AP.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWErr/cwpcoTransitionTimeNotSupportedErr
+	kCWPCOTransitionTimeNotSupportedErr CWErr = 0
+)
+
 // CWEventType - Wi-Fi event types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWEventType
@@ -60,6 +103,25 @@ type CWIBSSModeSecurity uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterfaceMode
 type CWInterfaceMode uint
+
+const (
+	// kCWInterfaceModeIBSS - Interface is participating in an IBSS network.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterfaceMode/IBSS
+	kCWInterfaceModeIBSS CWInterfaceMode = 0
+	// kCWInterfaceModeHostAP - Interface is participating in an infrastructure network as an access point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterfaceMode/hostAP
+	kCWInterfaceModeHostAP CWInterfaceMode = 0
+	// kCWInterfaceModeNone - Interface is not in any mode.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterfaceMode/none
+	kCWInterfaceModeNone CWInterfaceMode = 0
+	// kCWInterfaceModeStation - Interface is participating in an infrastructure network as a non-AP station.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterfaceMode/station
+	kCWInterfaceModeStation CWInterfaceMode = 0
+)
 
 // CWKeychainDomain - Keychain domain types that CoreWLAN keychain methods use.
 //

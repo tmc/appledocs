@@ -31,6 +31,7 @@ type _CellularPlanProvisioningClass struct {
 type ICellularPlanProvisioning interface {
 	objectivec.IObject
 	SupportsEmbeddedSIM() bool
+	SetSupportsEmbeddedSIM(value bool)
 }
 
 // An object you use to download and install a carrier eSIM.
@@ -89,10 +90,19 @@ func NewCellularPlanProvisioning() CellularPlanProvisioning {
 // A Boolean value that indicates whether the device has hardware eSIM support.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/supportsEmbeddedSIM
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning/supportsembeddedsim
 func (c_ CellularPlanProvisioning) SupportsEmbeddedSIM() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsEmbeddedSIM"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether the device has hardware eSIM support.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning/supportsembeddedsim
+func (c_ CellularPlanProvisioning) SetSupportsEmbeddedSIM(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsEmbeddedSIM:"), value)
 }
 
 

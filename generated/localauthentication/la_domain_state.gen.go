@@ -31,9 +31,11 @@ type _DomainStateClass struct {
 // An interface definition for the [DomainState] class.
 type IDomainState interface {
 	objectivec.IObject
-	Biometry() LADomainStateBiometry
-	Companion() LADomainStateCompanion
+	// properties:
+	Biometry() ILADomainStateBiometry
+	Companion() ILADomainStateCompanion
 	StateHash() foundation.NSData
+	// methods:
 }
 
 
@@ -86,8 +88,8 @@ func NewDomainState() DomainState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/biometry
-func (d_ DomainState) Biometry() LADomainStateBiometry {
-	rv := objc.Send[LADomainStateBiometry](d_.ID, objc.Sel("biometry"))
+func (d_ DomainState) Biometry() ILADomainStateBiometry {
+	rv := objc.Send[DomainStateBiometry](d_.ID, objc.Sel("biometry"))
 	return rv
 }
 
@@ -96,8 +98,8 @@ func (d_ DomainState) Biometry() LADomainStateBiometry {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/companion
-func (d_ DomainState) Companion() LADomainStateCompanion {
-	rv := objc.Send[LADomainStateCompanion](d_.ID, objc.Sel("companion"))
+func (d_ DomainState) Companion() ILADomainStateCompanion {
+	rv := objc.Send[DomainStateCompanion](d_.ID, objc.Sel("companion"))
 	return rv
 }
 

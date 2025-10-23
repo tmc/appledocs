@@ -5,8 +5,15 @@ import (
 	"unsafe"
 )
 
-// CMSampleBufferRef is a CoreGraphics opaque type.
-type CMSampleBufferRef unsafe.Pointer
+// CFTypeRef is a CoreGraphics opaque type.
+type CFTypeRef unsafe.Pointer
+
+
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type CMTime unsafe.Pointer
 
 
 

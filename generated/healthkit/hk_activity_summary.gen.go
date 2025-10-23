@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,34 +30,33 @@ type _HKActivitySummaryClass struct {
 // An interface definition for the [HKActivitySummary] class.
 type IHKActivitySummary interface {
 	objectivec.IObject
-	DateComponentsForCalendar(calendar foundation.ICalendar) foundation.DateComponents
-	ActiveEnergyBurned() HKQuantity
+	// properties:
+	ActiveEnergyBurned() IHKQuantity
 	SetActiveEnergyBurned(value IHKQuantity)
-	ActiveEnergyBurnedGoal() HKQuantity
+	ActiveEnergyBurnedGoal() IHKQuantity
 	SetActiveEnergyBurnedGoal(value IHKQuantity)
-	ActivityMoveMode() HKActivityMoveMode
-	SetActivityMoveMode(value HKActivityMoveMode)
-	AppleExerciseTime() HKQuantity
+	ActivityMoveMode() unsafe.Pointer
+	SetActivityMoveMode(value unsafe.Pointer)
+	AppleExerciseTime() IHKQuantity
 	SetAppleExerciseTime(value IHKQuantity)
-	AppleExerciseTimeGoal() HKQuantity
+	AppleExerciseTimeGoal() IHKQuantity
 	SetAppleExerciseTimeGoal(value IHKQuantity)
-	AppleMoveTime() HKQuantity
+	AppleMoveTime() IHKQuantity
 	SetAppleMoveTime(value IHKQuantity)
-	AppleMoveTimeGoal() HKQuantity
+	AppleMoveTimeGoal() IHKQuantity
 	SetAppleMoveTimeGoal(value IHKQuantity)
-	AppleStandHours() HKQuantity
+	AppleStandHours() IHKQuantity
 	SetAppleStandHours(value IHKQuantity)
-	AppleStandHoursGoal() HKQuantity
+	AppleStandHoursGoal() IHKQuantity
 	SetAppleStandHoursGoal(value IHKQuantity)
-	ExerciseTimeGoal() HKQuantity
+	ExerciseTimeGoal() IHKQuantity
 	SetExerciseTimeGoal(value IHKQuantity)
-	Paused() bool
-	SetPaused(value bool)
-	StandHoursGoal() HKQuantity
-	SetStandHoursGoal(value IHKQuantity)
 	IsPaused() bool
 	SetIsPaused(value bool)
+	StandHoursGoal() IHKQuantity
+	SetStandHoursGoal(value IHKQuantity)
 	HKPredicateKeyPathDateComponents() string
+	// methods:
 }
 
 // An object that contains the move, exercise, and stand data for a given day.
@@ -114,21 +112,11 @@ func NewHKActivitySummary() HKActivitySummary {
 
 
 
-// Date components that uniquely identify the day represented by the summary object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/dateComponents(for:)
-func (h_ HKActivitySummary) DateComponentsForCalendar(calendar foundation.ICalendar) foundation.DateComponents {
-	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateComponentsForCalendar:"), calendar)
-	return rv
-}
-
-
 // The amount of active energy the user burned during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurned
-func (h_ HKActivitySummary) ActiveEnergyBurned() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
+func (h_ HKActivitySummary) ActiveEnergyBurned() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("activeEnergyBurned"))
 	return rv
 }
@@ -137,7 +125,7 @@ func (h_ HKActivitySummary) ActiveEnergyBurned() HKQuantity {
 // The amount of active energy the user burned during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurned
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburned
 func (h_ HKActivitySummary) SetActiveEnergyBurned(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurned:"), value)
 }
@@ -146,8 +134,8 @@ func (h_ HKActivitySummary) SetActiveEnergyBurned(value IHKQuantity) {
 // The user’s daily goal for active energy burned.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal
-func (h_ HKActivitySummary) ActiveEnergyBurnedGoal() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
+func (h_ HKActivitySummary) ActiveEnergyBurnedGoal() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("activeEnergyBurnedGoal"))
 	return rv
 }
@@ -156,7 +144,7 @@ func (h_ HKActivitySummary) ActiveEnergyBurnedGoal() HKQuantity {
 // The user’s daily goal for active energy burned.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activeenergyburnedgoal
 func (h_ HKActivitySummary) SetActiveEnergyBurnedGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurnedGoal:"), value)
 }
@@ -165,9 +153,9 @@ func (h_ HKActivitySummary) SetActiveEnergyBurnedGoal(value IHKQuantity) {
 // The move mode that they system used for this activity summary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activityMoveMode
-func (h_ HKActivitySummary) ActivityMoveMode() HKActivityMoveMode {
-	rv := objc.Send[HKActivityMoveMode](h_.ID, objc.Sel("activityMoveMode"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activitymovemode
+func (h_ HKActivitySummary) ActivityMoveMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activityMoveMode"))
 	return rv
 }
 
@@ -175,8 +163,8 @@ func (h_ HKActivitySummary) ActivityMoveMode() HKActivityMoveMode {
 // The move mode that they system used for this activity summary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/activityMoveMode
-func (h_ HKActivitySummary) SetActivityMoveMode(value HKActivityMoveMode) {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/activitymovemode
+func (h_ HKActivitySummary) SetActivityMoveMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityMoveMode:"), value)
 }
 
@@ -184,8 +172,8 @@ func (h_ HKActivitySummary) SetActivityMoveMode(value HKActivityMoveMode) {
 // The amount of time that the user has spent exercising during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTime
-func (h_ HKActivitySummary) AppleExerciseTime() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
+func (h_ HKActivitySummary) AppleExerciseTime() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleExerciseTime"))
 	return rv
 }
@@ -194,7 +182,7 @@ func (h_ HKActivitySummary) AppleExerciseTime() HKQuantity {
 // The amount of time that the user has spent exercising during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTime
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetime
 func (h_ HKActivitySummary) SetAppleExerciseTime(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTime:"), value)
 }
@@ -203,8 +191,8 @@ func (h_ HKActivitySummary) SetAppleExerciseTime(value IHKQuantity) {
 // The user’s daily exercise goal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal
-func (h_ HKActivitySummary) AppleExerciseTimeGoal() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
+func (h_ HKActivitySummary) AppleExerciseTimeGoal() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleExerciseTimeGoal"))
 	return rv
 }
@@ -213,7 +201,7 @@ func (h_ HKActivitySummary) AppleExerciseTimeGoal() HKQuantity {
 // The user’s daily exercise goal.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal
 func (h_ HKActivitySummary) SetAppleExerciseTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTimeGoal:"), value)
 }
@@ -222,8 +210,8 @@ func (h_ HKActivitySummary) SetAppleExerciseTimeGoal(value IHKQuantity) {
 // The amount of time the user spent performing activities that involve full-body movements during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
-func (h_ HKActivitySummary) AppleMoveTime() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
+func (h_ HKActivitySummary) AppleMoveTime() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTime"))
 	return rv
 }
@@ -232,7 +220,7 @@ func (h_ HKActivitySummary) AppleMoveTime() HKQuantity {
 // The amount of time the user spent performing activities that involve full-body movements during the specified day.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
 func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
 }
@@ -241,8 +229,8 @@ func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
 // The user’s daily goal for move time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTimeGoal
-func (h_ HKActivitySummary) AppleMoveTimeGoal() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
+func (h_ HKActivitySummary) AppleMoveTimeGoal() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTimeGoal"))
 	return rv
 }
@@ -251,7 +239,7 @@ func (h_ HKActivitySummary) AppleMoveTimeGoal() HKQuantity {
 // The user’s daily goal for move time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTimeGoal
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetimegoal
 func (h_ HKActivitySummary) SetAppleMoveTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTimeGoal:"), value)
 }
@@ -260,8 +248,8 @@ func (h_ HKActivitySummary) SetAppleMoveTimeGoal(value IHKQuantity) {
 // The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHours
-func (h_ HKActivitySummary) AppleStandHours() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
+func (h_ HKActivitySummary) AppleStandHours() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleStandHours"))
 	return rv
 }
@@ -270,7 +258,7 @@ func (h_ HKActivitySummary) AppleStandHours() HKQuantity {
 // The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHours
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours
 func (h_ HKActivitySummary) SetAppleStandHours(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHours:"), value)
 }
@@ -279,8 +267,8 @@ func (h_ HKActivitySummary) SetAppleStandHours(value IHKQuantity) {
 // The user’s daily goal for stand hours.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal
-func (h_ HKActivitySummary) AppleStandHoursGoal() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
+func (h_ HKActivitySummary) AppleStandHoursGoal() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleStandHoursGoal"))
 	return rv
 }
@@ -289,7 +277,7 @@ func (h_ HKActivitySummary) AppleStandHoursGoal() HKQuantity {
 // The user’s daily goal for stand hours.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal
 func (h_ HKActivitySummary) SetAppleStandHoursGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHoursGoal:"), value)
 }
@@ -298,8 +286,8 @@ func (h_ HKActivitySummary) SetAppleStandHoursGoal(value IHKQuantity) {
 // The user’s daily goal for exercise time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/exerciseTimeGoal
-func (h_ HKActivitySummary) ExerciseTimeGoal() HKQuantity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/exercisetimegoal
+func (h_ HKActivitySummary) ExerciseTimeGoal() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("exerciseTimeGoal"))
 	return rv
 }
@@ -308,43 +296,9 @@ func (h_ HKActivitySummary) ExerciseTimeGoal() HKQuantity {
 // The user’s daily goal for exercise time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/exerciseTimeGoal
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/exercisetimegoal
 func (h_ HKActivitySummary) SetExerciseTimeGoal(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExerciseTimeGoal:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/isPaused
-func (h_ HKActivitySummary) Paused() bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("paused"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/isPaused
-func (h_ HKActivitySummary) SetPaused(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setPaused:"), value)
-}
-
-
-// The user’s daily goal for stand hours.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/standHoursGoal
-func (h_ HKActivitySummary) StandHoursGoal() HKQuantity {
-	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("standHoursGoal"))
-	return rv
-}
-
-
-// The user’s daily goal for stand hours.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/standHoursGoal
-func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setStandHoursGoal:"), value)
 }
 
 
@@ -360,6 +314,25 @@ func (h_ HKActivitySummary) IsPaused() bool {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
 func (h_ HKActivitySummary) SetIsPaused(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
+}
+
+
+// The user’s daily goal for stand hours.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/standhoursgoal
+func (h_ HKActivitySummary) StandHoursGoal() IHKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("standHoursGoal"))
+	return rv
+}
+
+
+// The user’s daily goal for stand hours.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/standhoursgoal
+func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStandHoursGoal:"), value)
 }
 
 

@@ -43,7 +43,7 @@ type ICKFetchShareMetadataOperation interface {
 	RootRecordDesiredKeys() unsafe.Pointer
 	SetRootRecordDesiredKeys(value unsafe.Pointer)
 	ShareURLs() foundation.URL
-	SetShareURLs(value foundation.IURL)
+	SetShareURLs(value foundation.URL)
 	CKPartialErrorsByItemIDKey() string
 	UserInfo() string
 	SetUserInfo(value string)
@@ -224,7 +224,7 @@ func (c_ CKFetchShareMetadataOperation) ShareURLs() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shareurls
-func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.IURL) {
+func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.URL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), value)
 }
 

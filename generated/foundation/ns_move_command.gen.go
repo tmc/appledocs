@@ -29,7 +29,9 @@ type _MoveCommandClass struct {
 // An interface definition for the [MoveCommand] class.
 type IMoveCommand interface {
 	IScriptCommand
+	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 

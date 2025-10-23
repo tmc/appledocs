@@ -29,6 +29,8 @@ type _HKActivitySummaryTypeClass struct {
 // An interface definition for the [HKActivitySummaryType] class.
 type IHKActivitySummaryType interface {
 	IHKObjectType
+	// properties:
+	// methods:
 }
 
 // A type that identifies activity summary objects.

@@ -29,13 +29,13 @@ type _CustomMigrationStageClass struct {
 // An interface definition for the [CustomMigrationStage] class.
 type ICustomMigrationStage interface {
 	IMigrationStage
-	CurrentModel() NSManagedObjectModelReference
+	CurrentModel() IManagedObjectModelReference
 	DidMigrateHandler() unsafe.Pointer
 	SetDidMigrateHandler(value unsafe.Pointer)
-	NextModel() NSManagedObjectModelReference
+	NextModel() IManagedObjectModelReference
 	WillMigrateHandler() unsafe.Pointer
 	SetWillMigrateHandler(value unsafe.Pointer)
-	Container() NSPersistentContainer
+	Container() IPersistentContainer
 	SetContainer(value IPersistentContainer)
 }
 
@@ -111,8 +111,8 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/currentModel
-func (c_ CustomMigrationStage) CurrentModel() NSManagedObjectModelReference {
-	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
+func (c_ CustomMigrationStage) CurrentModel() IManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/nextModel
-func (c_ CustomMigrationStage) NextModel() NSManagedObjectModelReference {
-	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("nextModel"))
+func (c_ CustomMigrationStage) NextModel() IManagedObjectModelReference {
+	rv := objc.Send[ManagedObjectModelReference](c_.ID, objc.Sel("nextModel"))
 	return rv
 }
 
@@ -169,8 +169,8 @@ func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-func (c_ CustomMigrationStage) Container() NSPersistentContainer {
-	rv := objc.Send[NSPersistentContainer](c_.ID, objc.Sel("container"))
+func (c_ CustomMigrationStage) Container() IPersistentContainer {
+	rv := objc.Send[PersistentContainer](c_.ID, objc.Sel("container"))
 	return rv
 }
 

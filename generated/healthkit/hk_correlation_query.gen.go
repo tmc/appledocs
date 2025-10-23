@@ -30,8 +30,12 @@ type _HKCorrelationQueryClass struct {
 // An interface definition for the [HKCorrelationQuery] class.
 type IHKCorrelationQuery interface {
 	IHKQuery
-	CorrelationType() HKCorrelationType
-	SamplePredicates() unsafe.Pointer
+	// properties:
+	CorrelationType() IHKCorrelationType
+	SetCorrelationType(value IHKCorrelationType)
+	SamplePredicates() foundation.Predicate
+	SetSamplePredicates(value foundation.Predicate)
+	// methods:
 }
 
 // A query that performs complex searches based on the correlation’s contents, and returns a snapshot of all matching samples.
@@ -89,36 +93,42 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 
 
 
-// Instantiates and returns a correlation query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)
-func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType HKCorrelationType, predicate foundation.IPredicate, samplePredicates unsafe.Pointer, completion unsafe.Pointer) HKCorrelationQuery {
-	instance := getHKCorrelationQueryClass().Alloc()
-	rv := objc.Send[HKCorrelationQuery](instance.ID, objc.Sel("initWithType:predicate:samplePredicates:completion:"), correlationType, predicate, samplePredicates, completion)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The type of correlation to search for.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/correlationType
-func (h_ HKCorrelationQuery) CorrelationType() HKCorrelationType {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/correlationtype
+func (h_ HKCorrelationQuery) CorrelationType() IHKCorrelationType {
 	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 
 
-// A dictionary whose keys are instances and whose values are instances.
+// The type of correlation to search for.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/samplePredicates
-func (h_ HKCorrelationQuery) SamplePredicates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("samplePredicates"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/correlationtype
+func (h_ HKCorrelationQuery) SetCorrelationType(value IHKCorrelationType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCorrelationType:"), value)
+}
+
+
+// A dictionary whose keys are
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/samplepredicates
+func (h_ HKCorrelationQuery) SamplePredicates() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("samplePredicates"))
 	return rv
 }
+
+
+// A dictionary whose keys are
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/samplepredicates
+func (h_ HKCorrelationQuery) SetSamplePredicates(value foundation.Predicate) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSamplePredicates:"), value)
+}
+
 
 

@@ -31,18 +31,18 @@ type IMutableParagraphStyle interface {
 	IParagraphStyle
 	HeaderLevel() int
 	SetHeaderLevel(value int)
-	LineBreakStrategy() LineBreakStrategy
-	SetLineBreakStrategy(value LineBreakStrategy)
+	LineBreakStrategy() unsafe.Pointer
+	SetLineBreakStrategy(value unsafe.Pointer)
 	MaximumLineHeight() float64
 	SetMaximumLineHeight(value float64)
 	MinimumLineHeight() float64
 	SetMinimumLineHeight(value float64)
-	Alignment() TextAlignment
-	SetAlignment(value ITextAlignment)
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
 	AllowsDefaultTighteningForTruncation() bool
 	SetAllowsDefaultTighteningForTruncation(value bool)
-	BaseWritingDirection() WritingDirection
-	SetBaseWritingDirection(value IWritingDirection)
+	BaseWritingDirection() unsafe.Pointer
+	SetBaseWritingDirection(value unsafe.Pointer)
 	DefaultTabInterval() float64
 	SetDefaultTabInterval(value float64)
 	FirstLineHeadIndent() float64
@@ -51,8 +51,8 @@ type IMutableParagraphStyle interface {
 	SetHeadIndent(value float64)
 	HyphenationFactor() float32
 	SetHyphenationFactor(value float32)
-	LineBreakMode() LineBreakMode
-	SetLineBreakMode(value LineBreakMode)
+	LineBreakMode() unsafe.Pointer
+	SetLineBreakMode(value unsafe.Pointer)
 	LineHeightMultiple() float64
 	SetLineHeightMultiple(value float64)
 	LineSpacing() float64
@@ -61,14 +61,14 @@ type IMutableParagraphStyle interface {
 	SetParagraphSpacing(value float64)
 	ParagraphSpacingBefore() float64
 	SetParagraphSpacingBefore(value float64)
-	TabStops() NSTextTab
-	SetTabStops(value ITextTab)
+	TabStops() TextTab
+	SetTabStops(value TextTab)
 	TailIndent() float64
 	SetTailIndent(value float64)
-	TextBlocks() NSTextBlock
-	SetTextBlocks(value ITextBlock)
-	TextLists() NSTextList
-	SetTextLists(value ITextList)
+	TextBlocks() TextBlock
+	SetTextBlocks(value TextBlock)
+	TextLists() TextList
+	SetTextLists(value TextList)
 	TighteningFactorForTruncation() float32
 	SetTighteningFactorForTruncation(value float32)
 	UsesDefaultHyphenation() bool
@@ -153,8 +153,8 @@ func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineBreakStrategy
-func (m_ MutableParagraphStyle) LineBreakStrategy() LineBreakStrategy {
-	rv := objc.Send[LineBreakStrategy](m_.ID, objc.Sel("lineBreakStrategy"))
+func (m_ MutableParagraphStyle) LineBreakStrategy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (m_ MutableParagraphStyle) LineBreakStrategy() LineBreakStrategy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/lineBreakStrategy
-func (m_ MutableParagraphStyle) SetLineBreakStrategy(value LineBreakStrategy) {
+func (m_ MutableParagraphStyle) SetLineBreakStrategy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
 
@@ -210,8 +210,8 @@ func (m_ MutableParagraphStyle) SetMinimumLineHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-func (m_ MutableParagraphStyle) Alignment() TextAlignment {
-	rv := objc.Send[TextAlignment](m_.ID, objc.Sel("alignment"))
+func (m_ MutableParagraphStyle) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -220,7 +220,7 @@ func (m_ MutableParagraphStyle) Alignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/alignment
-func (m_ MutableParagraphStyle) SetAlignment(value ITextAlignment) {
+func (m_ MutableParagraphStyle) SetAlignment(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -248,8 +248,8 @@ func (m_ MutableParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-func (m_ MutableParagraphStyle) BaseWritingDirection() WritingDirection {
-	rv := objc.Send[WritingDirection](m_.ID, objc.Sel("baseWritingDirection"))
+func (m_ MutableParagraphStyle) BaseWritingDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -258,7 +258,7 @@ func (m_ MutableParagraphStyle) BaseWritingDirection() WritingDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/basewritingdirection
-func (m_ MutableParagraphStyle) SetBaseWritingDirection(value IWritingDirection) {
+func (m_ MutableParagraphStyle) SetBaseWritingDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -343,8 +343,8 @@ func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-func (m_ MutableParagraphStyle) LineBreakMode() LineBreakMode {
-	rv := objc.Send[LineBreakMode](m_.ID, objc.Sel("lineBreakMode"))
+func (m_ MutableParagraphStyle) LineBreakMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -353,7 +353,7 @@ func (m_ MutableParagraphStyle) LineBreakMode() LineBreakMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/linebreakmode
-func (m_ MutableParagraphStyle) SetLineBreakMode(value LineBreakMode) {
+func (m_ MutableParagraphStyle) SetLineBreakMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
@@ -438,8 +438,8 @@ func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-func (m_ MutableParagraphStyle) TabStops() NSTextTab {
-	rv := objc.Send[NSTextTab](m_.ID, objc.Sel("tabStops"))
+func (m_ MutableParagraphStyle) TabStops() TextTab {
+	rv := objc.Send[TextTab](m_.ID, objc.Sel("tabStops"))
 	return rv
 }
 
@@ -448,7 +448,7 @@ func (m_ MutableParagraphStyle) TabStops() NSTextTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tabstops
-func (m_ MutableParagraphStyle) SetTabStops(value ITextTab) {
+func (m_ MutableParagraphStyle) SetTabStops(value TextTab) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTabStops:"), value)
 }
 
@@ -476,8 +476,8 @@ func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-func (m_ MutableParagraphStyle) TextBlocks() NSTextBlock {
-	rv := objc.Send[NSTextBlock](m_.ID, objc.Sel("textBlocks"))
+func (m_ MutableParagraphStyle) TextBlocks() TextBlock {
+	rv := objc.Send[TextBlock](m_.ID, objc.Sel("textBlocks"))
 	return rv
 }
 
@@ -486,7 +486,7 @@ func (m_ MutableParagraphStyle) TextBlocks() NSTextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textblocks
-func (m_ MutableParagraphStyle) SetTextBlocks(value ITextBlock) {
+func (m_ MutableParagraphStyle) SetTextBlocks(value TextBlock) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextBlocks:"), value)
 }
 
@@ -495,8 +495,8 @@ func (m_ MutableParagraphStyle) SetTextBlocks(value ITextBlock) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (m_ MutableParagraphStyle) TextLists() NSTextList {
-	rv := objc.Send[NSTextList](m_.ID, objc.Sel("textLists"))
+func (m_ MutableParagraphStyle) TextLists() TextList {
+	rv := objc.Send[TextList](m_.ID, objc.Sel("textLists"))
 	return rv
 }
 
@@ -505,7 +505,7 @@ func (m_ MutableParagraphStyle) TextLists() NSTextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists
-func (m_ MutableParagraphStyle) SetTextLists(value ITextList) {
+func (m_ MutableParagraphStyle) SetTextLists(value TextList) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTextLists:"), value)
 }
 

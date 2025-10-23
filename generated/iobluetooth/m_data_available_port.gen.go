@@ -30,6 +30,8 @@ type _mDataAvailablePortClass struct {
 // An interface definition for the [mDataAvailablePort] class.
 type ImDataAvailablePort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

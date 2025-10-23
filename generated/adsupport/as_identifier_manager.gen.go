@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,7 @@ type _IdentifierManagerClass struct {
 // An interface definition for the [IdentifierManager] class.
 type IIdentifierManager interface {
 	objectivec.IObject
-	AdvertisingIdentifier() foundation.UUID
+	AdvertisingIdentifier() NSUUID
 	AdvertisingTrackingEnabled() bool
 	IsAdvertisingTrackingEnabled() bool
 	SetIsAdvertisingTrackingEnabled(value bool)
@@ -92,7 +91,7 @@ func NewIdentifierManager() IdentifierManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/shared()
-func (ic _IdentifierManagerClass) SharedManager() IdentifierManager {
+func (ic _IdentifierManagerClass) SharedManager() IIdentifierManager {
 	rv := objc.Send[IdentifierManager](objc.ID(ic.class), objc.Sel("sharedManager"))
 	return rv
 }
@@ -102,8 +101,8 @@ func (ic _IdentifierManagerClass) SharedManager() IdentifierManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdSupport/ASIdentifierManager/advertisingIdentifier
-func (i_ IdentifierManager) AdvertisingIdentifier() foundation.UUID {
-	rv := objc.Send[foundation.UUID](i_.ID, objc.Sel("advertisingIdentifier"))
+func (i_ IdentifierManager) AdvertisingIdentifier() NSUUID {
+	rv := objc.Send[UUID](i_.ID, objc.Sel("advertisingIdentifier"))
 	return rv
 }
 

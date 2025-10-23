@@ -24,11 +24,11 @@ type PlatformInfo struct {
 
 // FrameworkInfo contains information about an available framework
 type FrameworkInfo struct {
-	Name        string          `json:"name"`
-	Title       string          `json:"title"`
-	URL         string          `json:"url"`
-	Description string          `json:"description,omitempty"`
-	Platforms   []PlatformInfo  `json:"platforms,omitempty"`
+	Name        string         `json:"name"`
+	Title       string         `json:"title"`
+	URL         string         `json:"url"`
+	Description string         `json:"description,omitempty"`
+	Platforms   []PlatformInfo `json:"platforms,omitempty"`
 }
 
 // FrameworkList contains the list of available frameworks
@@ -215,11 +215,11 @@ func getFrameworkPlatforms(cacheDir, frameworkName string) []PlatformInfo {
 		}
 
 		platform := PlatformInfo{
-			Name: getString(pMap, "name"),
+			Name:         getString(pMap, "name"),
 			IntroducedAt: getString(pMap, "introducedAt"),
-			Beta: getBool(pMap, "beta"),
-			Deprecated: getBool(pMap, "deprecated"),
-			Unavailable: getBool(pMap, "unavailable"),
+			Beta:         getBool(pMap, "beta"),
+			Deprecated:   getBool(pMap, "deprecated"),
+			Unavailable:  getBool(pMap, "unavailable"),
 		}
 
 		platforms = append(platforms, platform)

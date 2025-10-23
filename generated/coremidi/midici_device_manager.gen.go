@@ -96,7 +96,7 @@ func (m_ MIDICIDeviceManager) DiscoveredCIDevices() []MIDICIDevice {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/shared
-func (m_ MIDICIDeviceManager) SharedInstance() MIDICIDeviceManager {
+func (m_ MIDICIDeviceManager) SharedInstance() IMIDICIDeviceManager {
 	rv := objc.Send[MIDICIDeviceManager](m_.ID, objc.Sel("sharedInstance"))
 	return rv
 }

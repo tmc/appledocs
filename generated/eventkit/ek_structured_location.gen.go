@@ -32,12 +32,12 @@ type _EKStructuredLocationClass struct {
 type IEKStructuredLocation interface {
 	IEKObject
 	GeoLocation() corelocation.Location
-	SetGeoLocation(value corelocation.ILocation)
+	SetGeoLocation(value corelocation.Location)
 	Radius() float64
 	SetRadius(value float64)
 	Title() string
 	SetTitle(value string)
-	StructuredLocation() EKStructuredLocation
+	StructuredLocation() IEKStructuredLocation
 	SetStructuredLocation(value IEKStructuredLocation)
 }
 
@@ -100,7 +100,7 @@ func NewEKStructuredLocation() EKStructuredLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
-func NewEKStructuredLocationWithMapItem(mapItem mapkit.IMKMapItem) EKStructuredLocation {
+func NewEKStructuredLocationWithMapItem(mapItem mapkit.MKMapItem) EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
@@ -121,7 +121,7 @@ func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
-func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.IMKMapItem) unsafe.Pointer {
+func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.MKMapItem) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
@@ -151,7 +151,7 @@ func (e_ EKStructuredLocation) GeoLocation() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/geoLocation
-func (e_ EKStructuredLocation) SetGeoLocation(value corelocation.ILocation) {
+func (e_ EKStructuredLocation) SetGeoLocation(value corelocation.Location) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setGeoLocation:"), value)
 }
 
@@ -198,7 +198,7 @@ func (e_ EKStructuredLocation) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation
-func (e_ EKStructuredLocation) StructuredLocation() EKStructuredLocation {
+func (e_ EKStructuredLocation) StructuredLocation() IEKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](e_.ID, objc.Sel("structuredLocation"))
 	return rv
 }

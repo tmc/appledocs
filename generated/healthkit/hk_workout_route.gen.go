@@ -29,7 +29,9 @@ type _HKWorkoutRouteClass struct {
 // An interface definition for the [HKWorkoutRoute] class.
 type IHKWorkoutRoute interface {
 	IHKSeriesSample
+	// properties:
 	HKWorkoutRouteTypeIdentifier() string
+	// methods:
 }
 
 // A sample that contains a workout’s route data.

@@ -29,17 +29,19 @@ type _DataDetectorClass struct {
 // An interface definition for the [DataDetector] class.
 type IDataDetector interface {
 	IRegularExpression
-	CheckingTypes() unsafe.Pointer
-	SetCheckingTypes(value unsafe.Pointer)
-	NSNotFound() int
+	// properties:
+	CheckingTypes() TextCheckingTypes /* foo */
+	SetCheckingTypes(value TextCheckingTypes /* foo */)
+	NSNotFound() int /* primitive/slice/pointer */
 	Date() IDate
 	SetDate(value IDate)
-	Duration() TimeInterval
-	SetDuration(value TimeInterval)
+	Duration() TimeInterval /* foo */
+	SetDuration(value TimeInterval /* foo */)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	Url() IURL
 	SetUrl(value IURL)
+	// methods:
 }
 
 // A specialized regular expression object that matches natural language text for predefined data patterns.
@@ -101,8 +103,8 @@ func NewDataDetector() DataDetector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("checkingTypes"))
+func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* foo */ {
+	rv := objc.Send[TextCheckingTypes](d_.ID, objc.Sel("checkingTypes"))
 	return rv
 }
 
@@ -111,7 +113,7 @@ func (d_ DataDetector) CheckingTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdatadetector/checkingtypes
-func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
+func (d_ DataDetector) SetCheckingTypes(value TextCheckingTypes /* foo */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCheckingTypes:"), value)
 }
 
@@ -120,7 +122,7 @@ func (d_ DataDetector) SetCheckingTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (d_ DataDetector) NSNotFound() int {
+func (d_ DataDetector) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (d_ DataDetector) SetDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (d_ DataDetector) Duration() TimeInterval {
+func (d_ DataDetector) Duration() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (d_ DataDetector) Duration() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (d_ DataDetector) SetDuration(value TimeInterval) {
+func (d_ DataDetector) SetDuration(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 

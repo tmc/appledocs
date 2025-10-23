@@ -29,6 +29,8 @@ type _MessagePortNameServerClass struct {
 // An interface definition for the [MessagePortNameServer] class.
 type IMessagePortNameServer interface {
 	IPortNameServer
+	// properties:
+	// methods:
 }
 
 // A server takes and returns message ports.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKActivitySummaryQuery] class.
@@ -30,8 +29,10 @@ type _HKActivitySummaryQueryClass struct {
 // An interface definition for the [HKActivitySummaryQuery] class.
 type IHKActivitySummaryQuery interface {
 	IHKQuery
+	// properties:
 	UpdateHandler() unsafe.Pointer
 	SetUpdateHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // A query for reading activity summary objects from the HealthKit store.
@@ -89,19 +90,6 @@ func NewHKActivitySummaryQuery() HKActivitySummaryQuery {
 
 
 
-// Initializes a new active summary query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryQuery/init(predicate:resultsHandler:)
-func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate foundation.IPredicate, handler unsafe.Pointer) HKActivitySummaryQuery {
-	instance := getHKActivitySummaryQueryClass().Alloc()
-	rv := objc.Send[HKActivitySummaryQuery](instance.ID, objc.Sel("initWithPredicate:resultsHandler:"), predicate, handler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The handler for monitoring updates to activity summaries saved in the HealthKit store.
 //
 // [Full Topic]
@@ -119,5 +107,6 @@ func (h_ HKActivitySummaryQuery) UpdateHandler() unsafe.Pointer {
 func (h_ HKActivitySummaryQuery) SetUpdateHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUpdateHandler:"), value)
 }
+
 
 

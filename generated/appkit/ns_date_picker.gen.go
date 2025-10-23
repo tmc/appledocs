@@ -30,10 +30,10 @@ type _DatePickerClass struct {
 // An interface definition for the [DatePicker] class.
 type IDatePicker interface {
 	IControl
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	DatePickerMode() DatePickerMode
-	SetDatePickerMode(value DatePickerMode)
+	DatePickerMode() NSDatePickerMode
+	SetDatePickerMode(value NSDatePickerMode)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Bezeled() bool
@@ -41,23 +41,23 @@ type IDatePicker interface {
 	Bordered() bool
 	SetBordered(value bool)
 	Locale() foundation.Locale
-	SetLocale(value foundation.ILocale)
+	SetLocale(value foundation.Locale)
 	MaxDate() foundation.NSDate
-	SetMaxDate(value foundation.IDate)
+	SetMaxDate(value foundation.NSDate)
 	MinDate() foundation.NSDate
-	SetMinDate(value foundation.IDate)
+	SetMinDate(value foundation.NSDate)
 	PresentsCalendarOverlay() bool
 	SetPresentsCalendarOverlay(value bool)
-	TextColor() NSColor
+	TextColor() IColor
 	SetTextColor(value IColor)
 	Calendar() foundation.Calendar
-	SetCalendar(value foundation.ICalendar)
+	SetCalendar(value foundation.Calendar)
 	DatePickerElements() unsafe.Pointer
 	SetDatePickerElements(value unsafe.Pointer)
 	DatePickerStyle() unsafe.Pointer
 	SetDatePickerStyle(value unsafe.Pointer)
 	DateValue() foundation.Date
-	SetDateValue(value foundation.IDate)
+	SetDateValue(value foundation.Date)
 	DrawsBackground() bool
 	SetDrawsBackground(value bool)
 	IsBezeled() bool
@@ -67,7 +67,7 @@ type IDatePicker interface {
 	TimeInterval() unsafe.Pointer
 	SetTimeInterval(value unsafe.Pointer)
 	TimeZone() foundation.TimeZone
-	SetTimeZone(value foundation.ITimeZone)
+	SetTimeZone(value foundation.TimeZone)
 }
 
 // A display of a calendar date with controls for editing the date value.
@@ -129,8 +129,8 @@ func NewDatePicker() DatePicker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/backgroundColor
-func (d_ DatePicker) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](d_.ID, objc.Sel("backgroundColor"))
+func (d_ DatePicker) BackgroundColor() IColor {
+	rv := objc.Send[Color](d_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (d_ DatePicker) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/datePickerMode
-func (d_ DatePicker) DatePickerMode() DatePickerMode {
-	rv := objc.Send[DatePickerMode](d_.ID, objc.Sel("datePickerMode"))
+func (d_ DatePicker) DatePickerMode() NSDatePickerMode {
+	rv := objc.Send[NSDatePickerMode](d_.ID, objc.Sel("datePickerMode"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (d_ DatePicker) DatePickerMode() DatePickerMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/datePickerMode
-func (d_ DatePicker) SetDatePickerMode(value DatePickerMode) {
+func (d_ DatePicker) SetDatePickerMode(value NSDatePickerMode) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDatePickerMode:"), value)
 }
 
@@ -234,7 +234,7 @@ func (d_ DatePicker) Locale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/locale
-func (d_ DatePicker) SetLocale(value foundation.ILocale) {
+func (d_ DatePicker) SetLocale(value foundation.Locale) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -253,7 +253,7 @@ func (d_ DatePicker) MaxDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/maxDate
-func (d_ DatePicker) SetMaxDate(value foundation.IDate) {
+func (d_ DatePicker) SetMaxDate(value foundation.NSDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
 
@@ -272,7 +272,7 @@ func (d_ DatePicker) MinDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/minDate
-func (d_ DatePicker) SetMinDate(value foundation.IDate) {
+func (d_ DatePicker) SetMinDate(value foundation.NSDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
 
@@ -300,8 +300,8 @@ func (d_ DatePicker) SetPresentsCalendarOverlay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/textColor
-func (d_ DatePicker) TextColor() NSColor {
-	rv := objc.Send[NSColor](d_.ID, objc.Sel("textColor"))
+func (d_ DatePicker) TextColor() IColor {
+	rv := objc.Send[Color](d_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -329,7 +329,7 @@ func (d_ DatePicker) Calendar() foundation.Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/calendar
-func (d_ DatePicker) SetCalendar(value foundation.ICalendar) {
+func (d_ DatePicker) SetCalendar(value foundation.Calendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
@@ -386,7 +386,7 @@ func (d_ DatePicker) DateValue() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/datevalue
-func (d_ DatePicker) SetDateValue(value foundation.IDate) {
+func (d_ DatePicker) SetDateValue(value foundation.Date) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -481,7 +481,7 @@ func (d_ DatePicker) TimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepicker/timezone
-func (d_ DatePicker) SetTimeZone(value foundation.ITimeZone) {
+func (d_ DatePicker) SetTimeZone(value foundation.TimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 

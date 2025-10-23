@@ -30,14 +30,10 @@ type _EKCalendarItemClass struct {
 // An interface definition for the [EKCalendarItem] class.
 type IEKCalendarItem interface {
 	IEKObject
-	AddAlarm(alarm IEKAlarm)
-	AddRecurrenceRule(rule IEKRecurrenceRule)
-	RemoveAlarm(alarm IEKAlarm)
-	RemoveRecurrenceRule(rule IEKRecurrenceRule)
 	Alarms() []EKAlarm
 	SetAlarms(value []EKAlarm)
 	Attendees() []EKParticipant
-	Calendar() EKCalendar
+	Calendar() IEKCalendar
 	SetCalendar(value IEKCalendar)
 	CalendarItemExternalIdentifier() string
 	CalendarItemIdentifier() string
@@ -54,12 +50,16 @@ type IEKCalendarItem interface {
 	RecurrenceRules() []EKRecurrenceRule
 	SetRecurrenceRules(value []EKRecurrenceRule)
 	TimeZone() foundation.TimeZone
-	SetTimeZone(value foundation.ITimeZone)
+	SetTimeZone(value foundation.TimeZone)
 	Title() string
 	SetTitle(value string)
 	URL() foundation.URL
-	SetURL(value foundation.IURL)
+	SetURL(value foundation.URL)
 	UUID() string
+	AddAlarm(alarm IEKAlarm)
+	AddRecurrenceRule(rule IEKRecurrenceRule)
+	RemoveAlarm(alarm IEKAlarm)
+	RemoveRecurrenceRule(rule IEKRecurrenceRule)
 }
 
 // An abstract superclass for calendar events and reminders.
@@ -196,7 +196,7 @@ func (e_ EKCalendarItem) Attendees() []EKParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendar
-func (e_ EKCalendarItem) Calendar() EKCalendar {
+func (e_ EKCalendarItem) Calendar() IEKCalendar {
 	rv := objc.Send[EKCalendar](e_.ID, objc.Sel("calendar"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (e_ EKCalendarItem) TimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/timeZone
-func (e_ EKCalendarItem) SetTimeZone(value foundation.ITimeZone) {
+func (e_ EKCalendarItem) SetTimeZone(value foundation.TimeZone) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTimeZone:"), value)
 }
 
@@ -410,7 +410,7 @@ func (e_ EKCalendarItem) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) SetURL(value foundation.IURL) {
+func (e_ EKCalendarItem) SetURL(value foundation.URL) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setURL:"), value)
 }
 

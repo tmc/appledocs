@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +32,18 @@ type _TextAttachmentViewProviderClass struct {
 // An interface definition for the [TextAttachmentViewProvider] class.
 type ITextAttachmentViewProvider interface {
 	objectivec.IObject
-	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes unsafe.Pointer, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
-	LoadView()
-	View() NSView
+	View() IView
 	SetView(value IView)
 	Location() unsafe.Pointer
 	SetLocation(value unsafe.Pointer)
-	TextAttachment() NSTextAttachment
+	TextAttachment() ITextAttachment
 	SetTextAttachment(value ITextAttachment)
-	TextLayoutManager() NSTextLayoutManager
+	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
 	TracksTextAttachmentViewBounds() bool
 	SetTracksTextAttachmentViewBounds(value bool)
+	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer TextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
+	LoadView()
 }
 
 // A container object that associates a text attachment at a particular document location with a view object.
@@ -102,7 +103,7 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)
-func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes unsafe.Pointer, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
+func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer TextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
 	return rv
 }
@@ -121,8 +122,8 @@ func (t_ TextAttachmentViewProvider) LoadView() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/view
-func (t_ TextAttachmentViewProvider) View() NSView {
-	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
+func (t_ TextAttachmentViewProvider) View() IView {
+	rv := objc.Send[View](t_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -159,8 +160,8 @@ func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textattachment
-func (t_ TextAttachmentViewProvider) TextAttachment() NSTextAttachment {
-	rv := objc.Send[NSTextAttachment](t_.ID, objc.Sel("textAttachment"))
+func (t_ TextAttachmentViewProvider) TextAttachment() ITextAttachment {
+	rv := objc.Send[TextAttachment](t_.ID, objc.Sel("textAttachment"))
 	return rv
 }
 
@@ -178,8 +179,8 @@ func (t_ TextAttachmentViewProvider) SetTextAttachment(value ITextAttachment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
-func (t_ TextAttachmentViewProvider) TextLayoutManager() NSTextLayoutManager {
-	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextAttachmentViewProvider) TextLayoutManager() ITextLayoutManager {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 

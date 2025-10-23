@@ -29,10 +29,10 @@ type _PredicateEditorClass struct {
 // An interface definition for the [PredicateEditor] class.
 type IPredicateEditor interface {
 	IRuleEditor
-	RowTemplates() []PredicateEditorRowTemplate
-	SetRowTemplates(value []PredicateEditorRowTemplate)
 	ObjectValue() unsafe.Pointer
 	SetObjectValue(value unsafe.Pointer)
+	RowTemplates() PredicateEditorRowTemplate
+	SetRowTemplates(value PredicateEditorRowTemplate)
 }
 
 // A defined set of rules that allows the editing of predicate objects.
@@ -90,35 +90,6 @@ func NewPredicateEditor() PredicateEditor {
 
 
 
-// The row templates for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) RowTemplates() []PredicateEditorRowTemplate {
-	rv := objc.Send[[]PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
-	return rv
-}
-
-
-// The row templates for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditor/rowTemplates
-func (p_ PredicateEditor) SetRowTemplates(value []PredicateEditorRowTemplate) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), nsArray)
-}
-
-
 // The value of the receiver’s cell as an Objective-C object.
 //
 // [Full Topic]
@@ -135,6 +106,25 @@ func (p_ PredicateEditor) ObjectValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
 func (p_ PredicateEditor) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
+}
+
+
+// The row templates for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
+func (p_ PredicateEditor) RowTemplates() PredicateEditorRowTemplate {
+	rv := objc.Send[PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
+	return rv
+}
+
+
+// The row templates for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
+func (p_ PredicateEditor) SetRowTemplates(value PredicateEditorRowTemplate) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
 }
 
 

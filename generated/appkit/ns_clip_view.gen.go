@@ -31,28 +31,27 @@ type _ClipViewClass struct {
 // An interface definition for the [ClipView] class.
 type IClipView interface {
 	IView
-	Autoscroll(event IEvent) bool
-	ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect
-	ConstrainScrollPoint(newOrigin coregraphics.CGPoint) coregraphics.CGPoint
-	ScrollToPoint(newOrigin coregraphics.CGPoint)
-	ViewBoundsChanged(notification foundation.INotification)
-	ViewFrameChanged(notification foundation.INotification)
 	AutomaticallyAdjustsContentInsets() bool
 	SetAutomaticallyAdjustsContentInsets(value bool)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	ContentInsets() unsafe.Pointer
 	SetContentInsets(value unsafe.Pointer)
 	CopiesOnScroll() bool
 	SetCopiesOnScroll(value bool)
-	DocumentCursor() NSCursor
+	DocumentCursor() ICursor
 	SetDocumentCursor(value ICursor)
 	DocumentRect() coregraphics.CGRect
-	DocumentView() NSView
+	DocumentView() IView
 	SetDocumentView(value IView)
 	DocumentVisibleRect() coregraphics.CGRect
 	DrawsBackground() bool
 	SetDrawsBackground(value bool)
+	Autoscroll(event IEvent) bool
+	ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coregraphics.CGRect
+	ScrollToPoint(newOrigin coregraphics.CGPoint)
+	ViewBoundsChanged(notification foundation.Notification)
+	ViewFrameChanged(notification foundation.Notification)
 }
 
 // An object that clips a document view to a scroll view’s frame.
@@ -130,16 +129,6 @@ func (c_ ClipView) ConstrainBoundsRect(proposedBounds coregraphics.CGRect) coreg
 }
 
 
-// Returns a scroll point adjusted from the proposed new origin, if necessary, to guarantee the view will lie within its document view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/constrainScroll(_:)
-func (c_ ClipView) ConstrainScrollPoint(newOrigin coregraphics.CGPoint) coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("constrainScrollPoint:"), newOrigin)
-	return rv
-}
-
-
 // Changes the origin of the clip view’s bounds rectangle to .
 //
 // [Full Topic]
@@ -153,7 +142,7 @@ func (c_ ClipView) ScrollToPoint(newOrigin coregraphics.CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewBoundsChanged(_:)
-func (c_ ClipView) ViewBoundsChanged(notification foundation.INotification) {
+func (c_ ClipView) ViewBoundsChanged(notification foundation.Notification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewBoundsChanged:"), notification)
 }
 
@@ -162,7 +151,7 @@ func (c_ ClipView) ViewBoundsChanged(notification foundation.INotification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewFrameChanged(_:)
-func (c_ ClipView) ViewFrameChanged(notification foundation.INotification) {
+func (c_ ClipView) ViewFrameChanged(notification foundation.Notification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewFrameChanged:"), notification)
 }
 
@@ -190,8 +179,8 @@ func (c_ ClipView) SetAutomaticallyAdjustsContentInsets(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/backgroundColor
-func (c_ ClipView) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](c_.ID, objc.Sel("backgroundColor"))
+func (c_ ClipView) BackgroundColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -247,8 +236,8 @@ func (c_ ClipView) SetCopiesOnScroll(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentCursor
-func (c_ ClipView) DocumentCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("documentCursor"))
+func (c_ ClipView) DocumentCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("documentCursor"))
 	return rv
 }
 
@@ -276,8 +265,8 @@ func (c_ ClipView) DocumentRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/documentView
-func (c_ ClipView) DocumentView() NSView {
-	rv := objc.Send[NSView](c_.ID, objc.Sel("documentView"))
+func (c_ ClipView) DocumentView() IView {
+	rv := objc.Send[View](c_.ID, objc.Sel("documentView"))
 	return rv
 }
 

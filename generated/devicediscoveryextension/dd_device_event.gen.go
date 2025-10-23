@@ -30,7 +30,7 @@ type _DDDeviceEventClass struct {
 // An interface definition for the [DDDeviceEvent] class.
 type IDDDeviceEvent interface {
 	objectivec.IObject
-	Device() DDDevice
+	Device() IDDDevice
 	EventType() DDEventType
 }
 
@@ -104,7 +104,7 @@ func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device
-func (d_ DDDeviceEvent) Device() DDDevice {
+func (d_ DDDeviceEvent) Device() IDDDevice {
 	rv := objc.Send[DDDevice](d_.ID, objc.Sel("device"))
 	return rv
 }

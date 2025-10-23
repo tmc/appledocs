@@ -31,18 +31,18 @@ type _AMWorkflowClass struct {
 // An interface definition for the [AMWorkflow] class.
 type IAMWorkflow interface {
 	objectivec.IObject
+	Actions() []AMAction
+	FileURL() foundation.URL
+	Input() objc.ID
+	SetInput(value objc.ID)
+	Output() objc.ID
 	AddAction(action IAMAction)
 	InsertActionAtIndex(action IAMAction, index uint)
 	MoveActionAtIndexToIndex(startIndex uint, endIndex uint)
 	RemoveAction(action IAMAction)
 	SetValueForVariableWithName(value objectivec.IObject, variableName string) bool
 	ValueForVariableWithName(variableName string) objc.ID
-	WriteToURLError(fileURL foundation.IURL, outError unsafe.Pointer) bool
-	Actions() []AMAction
-	FileURL() foundation.URL
-	Input() objc.ID
-	SetInput(value objc.ID)
-	Output() objc.ID
+	WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool
 }
 
 // An object that lets you use an Automator workflow in your app.
@@ -102,7 +102,7 @@ func NewAMWorkflow() AMWorkflow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/init(contentsOf:)
-func NewAMWorkflowWithContentsOfURLError(fileURL foundation.IURL, outError unsafe.Pointer) AMWorkflow {
+func NewAMWorkflowWithContentsOfURLError(fileURL foundation.URL, outError unsafe.Pointer) AMWorkflow {
 	instance := getAMWorkflowClass().Alloc()
 	rv := objc.Send[AMWorkflow](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewAMWorkflowWithContentsOfURLError(fileURL foundation.IURL, outError unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/run(at:withInput:)
-func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.IURL, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.URL, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runWorkflowAtURL:withInput:error:"), fileURL, input, error_)
 	return rv
 }
@@ -181,7 +181,7 @@ func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/write(to:)
-func (a_ AMWorkflow) WriteToURLError(fileURL foundation.IURL, outError unsafe.Pointer) bool {
+func (a_ AMWorkflow) WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), fileURL, outError)
 	return rv
 }

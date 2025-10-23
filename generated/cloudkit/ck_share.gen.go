@@ -30,34 +30,33 @@ type _CKShareClass struct {
 // An interface definition for the [CKShare] class.
 type ICKShare interface {
 	ICKRecord
-	AddParticipant(participant ICKShareParticipant)
-	RemoveParticipant(participant ICKShareParticipant)
-	PublicPermission() CKShareParticipantPermission
-	SetPublicPermission(value ICKShareParticipantPermission)
-	URL() foundation.URL
 	RecordName() string
 	SetRecordName(value string)
-	Parent() CKReference
+	Parent() ICKReference
 	SetParent(value ICKReference)
 	RecordID() CKRecordID
-	SetRecordID(value ICKRecordID)
-	Share() CKReference
+	SetRecordID(value CKRecordID)
+	Share() ICKReference
 	SetShare(value ICKReference)
 	CKRecordNameZoneWideShare() string
-	UserIdentity() CKUserIdentity
+	UserIdentity() ICKUserIdentity
 	SetUserIdentity(value ICKUserIdentity)
 	AllowsAccessRequests() bool
 	SetAllowsAccessRequests(value bool)
-	BlockedIdentities() CKShareBlockedIdentity
+	BlockedIdentities() ICKShareBlockedIdentity
 	SetBlockedIdentities(value ICKShareBlockedIdentity)
 	CurrentUserParticipant() CKShareParticipant
-	SetCurrentUserParticipant(value ICKShareParticipant)
+	SetCurrentUserParticipant(value CKShareParticipant)
 	Owner() CKShareParticipant
-	SetOwner(value ICKShareParticipant)
+	SetOwner(value CKShareParticipant)
 	Participants() CKShareParticipant
-	SetParticipants(value ICKShareParticipant)
-	Requesters() CKShareAccessRequester
+	SetParticipants(value CKShareParticipant)
+	PublicPermission() unsafe.Pointer
+	SetPublicPermission(value unsafe.Pointer)
+	Requesters() ICKShareAccessRequester
 	SetRequesters(value ICKShareAccessRequester)
+	Url() foundation.URL
+	SetUrl(value foundation.URL)
 	HasiCloudAccount() bool
 	SetHasiCloudAccount(value bool)
 }
@@ -117,102 +116,6 @@ func NewCKShare() CKShare {
 
 
 
-// Creates a share from a serialized instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(coder:)
-func NewCKShareWithCoder(aDecoder foundation.ICoder) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a new share for the specified record zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(recordZoneID:)
-func NewCKShareWithRecordZoneID(recordZoneID ICKRecordZoneID) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRecordZoneID:"), recordZoneID)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a new share for the specified record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:)
-func NewCKShareWithRootRecord(rootRecord ICKRecord) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:"), rootRecord)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a new share for the specified record and record ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/init(rootRecord:shareID:)
-func NewCKShareWithRootRecordShareID(rootRecord ICKRecord, shareID ICKRecordID) CKShare {
-	instance := getCKShareClass().Alloc()
-	rv := objc.Send[CKShare](instance.ID, objc.Sel("initWithRootRecord:shareID:"), rootRecord, shareID)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Adds a participant to the share.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/addParticipant(_:)
-func (c_ CKShare) AddParticipant(participant ICKShareParticipant) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addParticipant:"), participant)
-}
-
-
-// Removes a participant from the share.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/removeParticipant(_:)
-func (c_ CKShare) RemoveParticipant(participant ICKShareParticipant) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeParticipant:"), participant)
-}
-
-
-// The permission for anyone with access to the share’s URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/publicPermission
-func (c_ CKShare) PublicPermission() CKShareParticipantPermission {
-	rv := objc.Send[CKShareParticipantPermission](c_.ID, objc.Sel("publicPermission"))
-	return rv
-}
-
-
-// The permission for anyone with access to the share’s URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/publicPermission
-func (c_ CKShare) SetPublicPermission(value ICKShareParticipantPermission) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPublicPermission:"), value)
-}
-
-
-// The URL for inviting participants to the share.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/url
-func (c_ CKShare) URL() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("URL"))
-	return rv
-}
-
-
 // The unique name of the record.
 //
 // [Full Topic]
@@ -236,7 +139,7 @@ func (c_ CKShare) SetRecordName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-func (c_ CKShare) Parent() CKReference {
+func (c_ CKShare) Parent() ICKReference {
 	rv := objc.Send[CKReference](c_.ID, objc.Sel("parent"))
 	return rv
 }
@@ -265,7 +168,7 @@ func (c_ CKShare) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-func (c_ CKShare) SetRecordID(value ICKRecordID) {
+func (c_ CKShare) SetRecordID(value CKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
 }
 
@@ -274,7 +177,7 @@ func (c_ CKShare) SetRecordID(value ICKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/share
-func (c_ CKShare) Share() CKReference {
+func (c_ CKShare) Share() ICKReference {
 	rv := objc.Send[CKReference](c_.ID, objc.Sel("share"))
 	return rv
 }
@@ -303,7 +206,7 @@ func (c_ CKShare) CKRecordNameZoneWideShare() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity
-func (c_ CKShare) UserIdentity() CKUserIdentity {
+func (c_ CKShare) UserIdentity() ICKUserIdentity {
 	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
 }
@@ -341,7 +244,7 @@ func (c_ CKShare) SetAllowsAccessRequests(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/blockedidentities
-func (c_ CKShare) BlockedIdentities() CKShareBlockedIdentity {
+func (c_ CKShare) BlockedIdentities() ICKShareBlockedIdentity {
 	rv := objc.Send[CKShareBlockedIdentity](c_.ID, objc.Sel("blockedIdentities"))
 	return rv
 }
@@ -370,7 +273,7 @@ func (c_ CKShare) CurrentUserParticipant() CKShareParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/currentuserparticipant
-func (c_ CKShare) SetCurrentUserParticipant(value ICKShareParticipant) {
+func (c_ CKShare) SetCurrentUserParticipant(value CKShareParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentUserParticipant:"), value)
 }
 
@@ -389,7 +292,7 @@ func (c_ CKShare) Owner() CKShareParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/owner
-func (c_ CKShare) SetOwner(value ICKShareParticipant) {
+func (c_ CKShare) SetOwner(value CKShareParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOwner:"), value)
 }
 
@@ -408,8 +311,27 @@ func (c_ CKShare) Participants() CKShareParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/participants
-func (c_ CKShare) SetParticipants(value ICKShareParticipant) {
+func (c_ CKShare) SetParticipants(value CKShareParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParticipants:"), value)
+}
+
+
+// The permission for anyone with access to the share’s URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
+func (c_ CKShare) PublicPermission() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("publicPermission"))
+	return rv
+}
+
+
+// The permission for anyone with access to the share’s URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/publicpermission
+func (c_ CKShare) SetPublicPermission(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPublicPermission:"), value)
 }
 
 
@@ -417,7 +339,7 @@ func (c_ CKShare) SetParticipants(value ICKShareParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/requesters
-func (c_ CKShare) Requesters() CKShareAccessRequester {
+func (c_ CKShare) Requesters() ICKShareAccessRequester {
 	rv := objc.Send[CKShareAccessRequester](c_.ID, objc.Sel("requesters"))
 	return rv
 }
@@ -429,6 +351,25 @@ func (c_ CKShare) Requesters() CKShareAccessRequester {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/requesters
 func (c_ CKShare) SetRequesters(value ICKShareAccessRequester) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequesters:"), value)
+}
+
+
+// The URL for inviting participants to the share.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+func (c_ CKShare) Url() foundation.URL {
+	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL for inviting participants to the share.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
+func (c_ CKShare) SetUrl(value foundation.URL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
 
@@ -449,5 +390,6 @@ func (c_ CKShare) HasiCloudAccount() bool {
 func (c_ CKShare) SetHasiCloudAccount(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
 }
+
 
 

@@ -31,10 +31,11 @@ type _MEComposeContextClass struct {
 // An interface definition for the [MEComposeContext] class.
 type IMEComposeContext interface {
 	objectivec.IObject
-	Action() MEComposeUserAction
-	OriginalMessage() MEMessage
+	// properties:
 	ContextID() foundation.UUID
-	SetContextID(value foundation.IUUID)
+	OriginalMessage() IMEMessage
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
 	IsEncrypted() bool
 	SetIsEncrypted(value bool)
 	IsSigned() bool
@@ -43,6 +44,7 @@ type IMEComposeContext interface {
 	SetShouldEncrypt(value bool)
 	ShouldSign() bool
 	SetShouldSign(value bool)
+	// methods:
 }
 
 
@@ -92,23 +94,7 @@ func NewMEComposeContext() MEComposeContext {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
-func (m_ MEComposeContext) Action() MEComposeUserAction {
-	rv := objc.Send[MEComposeUserAction](m_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/originalMessage
-func (m_ MEComposeContext) OriginalMessage() MEMessage {
-	rv := objc.Send[MEMessage](m_.ID, objc.Sel("originalMessage"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/contextID
 func (m_ MEComposeContext) ContextID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("contextID"))
 	return rv
@@ -116,9 +102,25 @@ func (m_ MEComposeContext) ContextID() foundation.UUID {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
-func (m_ MEComposeContext) SetContextID(value foundation.IUUID) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setContextID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/originalMessage
+func (m_ MEComposeContext) OriginalMessage() IMEMessage {
+	rv := objc.Send[MEMessage](m_.ID, objc.Sel("originalMessage"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/action
+func (m_ MEComposeContext) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/action
+func (m_ MEComposeContext) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
 }
 
 

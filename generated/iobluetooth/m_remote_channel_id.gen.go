@@ -30,6 +30,8 @@ type _mRemoteChannelIDClass struct {
 // An interface definition for the [mRemoteChannelID] class.
 type ImRemoteChannelID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

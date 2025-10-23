@@ -6,8 +6,8 @@ package corebluetooth
 // CBConnectionEventMatchingOption - A set of options to use when registering for connection events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBConnectionEventMatchingOption
-// CBConnectionEventMatchingOption has base type: NSString *
-type CBConnectionEventMatchingOption uintptr
+// CBConnectionEventMatchingOption is a string typedef
+type CBConnectionEventMatchingOption = string
 // CBL2CAPPSM - The type of PSM identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBL2CAPPSM

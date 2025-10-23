@@ -30,6 +30,8 @@ type _mIONotificationClass struct {
 // An interface definition for the [mIONotification] class.
 type ImIONotification interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

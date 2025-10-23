@@ -30,12 +30,17 @@ type _VZSingleDirectoryShareClass struct {
 type IVZSingleDirectoryShare interface {
 	IVZDirectoryShare
 	Directory() VZSharedDirectory
+	SetDirectory(value VZSharedDirectory)
 }
 
 // An object that defines the directory share for a single directory.
 //
 // This directory share exposes a single directory from the host file system to the guest.
+
+
+// An object that defines the directory share for a single directory.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare
 type VZSingleDirectoryShare struct {
 	VZDirectoryShare
@@ -83,24 +88,23 @@ func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 
 
 
-
-// Creates a directory share with a directory that you specify on the host.
+// The directory on the host to share with the guest VM.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/init(directory:)
-func NewVZSingleDirectoryShareWithDirectory(directory IVZSharedDirectory) VZSingleDirectoryShare {
-	instance := getVZSingleDirectoryShareClass().Alloc()
-	rv := objc.Send[VZSingleDirectoryShare](instance.ID, objc.Sel("initWithDirectory:"), directory)
-	rv.Autorelease()
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare/directory
+func (v_ VZSingleDirectoryShare) Directory() VZSharedDirectory {
+	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
 	return rv
 }
 
 
 // The directory on the host to share with the guest VM.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/directory
-func (v_ VZSingleDirectoryShare) Directory() VZSharedDirectory {
-	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare/directory
+func (v_ VZSingleDirectoryShare) SetDirectory(value VZSharedDirectory) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectory:"), value)
 }
+
 
 

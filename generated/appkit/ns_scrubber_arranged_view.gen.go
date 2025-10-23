@@ -29,7 +29,6 @@ type _ScrubberArrangedViewClass struct {
 // An interface definition for the [ScrubberArrangedView] class.
 type IScrubberArrangedView interface {
 	IView
-	ApplyLayoutAttributes(layoutAttributes IScrubberLayoutAttributes)
 	Highlighted() bool
 	SetHighlighted(value bool)
 	Selected() bool
@@ -38,6 +37,7 @@ type IScrubberArrangedView interface {
 	SetIsHighlighted(value bool)
 	IsSelected() bool
 	SetIsSelected(value bool)
+	ApplyLayoutAttributes(layoutAttributes ScrubberLayoutAttributes)
 }
 
 // An abstract base class for the views whose layout is managed by a scrubber.
@@ -97,7 +97,7 @@ func NewScrubberArrangedView() ScrubberArrangedView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberArrangedView/apply(_:)
-func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes IScrubberLayoutAttributes) {
+func (s_ ScrubberArrangedView) ApplyLayoutAttributes(layoutAttributes ScrubberLayoutAttributes) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("applyLayoutAttributes:"), layoutAttributes)
 }
 

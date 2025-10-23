@@ -29,7 +29,9 @@ type _QuitCommandClass struct {
 // An interface definition for the [QuitCommand] class.
 type IQuitCommand interface {
 	IScriptCommand
-	SaveOptions() NSSaveOptions
+	// properties:
+	SaveOptions() SaveOptions
+	// methods:
 }
 
 // A command that quits the specified app.
@@ -91,7 +93,7 @@ func NewQuitCommand() QuitCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand/saveOptions
-func (q_ QuitCommand) SaveOptions() NSSaveOptions {
+func (q_ QuitCommand) SaveOptions() SaveOptions {
 	rv := objc.Send[SaveOptions](q_.ID, objc.Sel("saveOptions"))
 	return rv
 }

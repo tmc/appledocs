@@ -30,31 +30,32 @@ type _GLKBaseEffectClass struct {
 // An interface definition for the [GLKBaseEffect] class.
 type IGLKBaseEffect interface {
 	objectivec.IObject
-	PrepareToDraw()
+	// properties:
 	ColorMaterialEnabled() unsafe.Pointer
 	SetColorMaterialEnabled(value unsafe.Pointer)
 	ConstantColor() GLKVector4
-	SetConstantColor(value IGLKVector4)
-	Fog() GLKEffectPropertyFog
+	SetConstantColor(value GLKVector4)
+	Fog() IGLKEffectPropertyFog
 	Label() string
 	SetLabel(value string)
-	Light0() GLKEffectPropertyLight
-	Light1() GLKEffectPropertyLight
-	Light2() GLKEffectPropertyLight
+	Light0() IGLKEffectPropertyLight
+	Light1() IGLKEffectPropertyLight
+	Light2() IGLKEffectPropertyLight
 	LightModelAmbientColor() GLKVector4
-	SetLightModelAmbientColor(value IGLKVector4)
+	SetLightModelAmbientColor(value GLKVector4)
 	LightModelTwoSided() unsafe.Pointer
 	SetLightModelTwoSided(value unsafe.Pointer)
 	LightingType() GLKLightingType
 	SetLightingType(value GLKLightingType)
-	Material() GLKEffectPropertyMaterial
-	Texture2d0() GLKEffectPropertyTexture
-	Texture2d1() GLKEffectPropertyTexture
+	Material() IGLKEffectPropertyMaterial
+	Texture2d0() IGLKEffectPropertyTexture
+	Texture2d1() IGLKEffectPropertyTexture
 	TextureOrder() []GLKEffectPropertyTexture
 	SetTextureOrder(value []GLKEffectPropertyTexture)
-	Transform() GLKEffectPropertyTransform
+	Transform() IGLKEffectPropertyTransform
 	UseConstantColor() unsafe.Pointer
 	SetUseConstantColor(value unsafe.Pointer)
+	// methods:
 }
 
 // A simple lighting and shading system for use in shader-based OpenGL rendering.
@@ -110,15 +111,6 @@ func NewGLKBaseEffect() GLKBaseEffect {
 
 
 
-// Prepares an effect for rendering.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/prepareToDraw()
-func (g_ GLKBaseEffect) PrepareToDraw() {
-	objc.Send[objc.ID](g_.ID, objc.Sel("prepareToDraw"))
-}
-
-
 // A Boolean value that indicates whether or not to use the color vertex attribute when calculating the light’s interaction with the material.
 //
 // [Full Topic]
@@ -152,7 +144,7 @@ func (g_ GLKBaseEffect) ConstantColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
-func (g_ GLKBaseEffect) SetConstantColor(value IGLKVector4) {
+func (g_ GLKBaseEffect) SetConstantColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConstantColor:"), value)
 }
 
@@ -161,7 +153,7 @@ func (g_ GLKBaseEffect) SetConstantColor(value IGLKVector4) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/fog
-func (g_ GLKBaseEffect) Fog() GLKEffectPropertyFog {
+func (g_ GLKBaseEffect) Fog() IGLKEffectPropertyFog {
 	rv := objc.Send[GLKEffectPropertyFog](g_.ID, objc.Sel("fog"))
 	return rv
 }
@@ -190,7 +182,7 @@ func (g_ GLKBaseEffect) SetLabel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light0
-func (g_ GLKBaseEffect) Light0() GLKEffectPropertyLight {
+func (g_ GLKBaseEffect) Light0() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light0"))
 	return rv
 }
@@ -200,7 +192,7 @@ func (g_ GLKBaseEffect) Light0() GLKEffectPropertyLight {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light1
-func (g_ GLKBaseEffect) Light1() GLKEffectPropertyLight {
+func (g_ GLKBaseEffect) Light1() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light1"))
 	return rv
 }
@@ -210,7 +202,7 @@ func (g_ GLKBaseEffect) Light1() GLKEffectPropertyLight {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light2
-func (g_ GLKBaseEffect) Light2() GLKEffectPropertyLight {
+func (g_ GLKBaseEffect) Light2() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light2"))
 	return rv
 }
@@ -230,7 +222,7 @@ func (g_ GLKBaseEffect) LightModelAmbientColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
-func (g_ GLKBaseEffect) SetLightModelAmbientColor(value IGLKVector4) {
+func (g_ GLKBaseEffect) SetLightModelAmbientColor(value GLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelAmbientColor:"), value)
 }
 
@@ -277,7 +269,7 @@ func (g_ GLKBaseEffect) SetLightingType(value GLKLightingType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/material
-func (g_ GLKBaseEffect) Material() GLKEffectPropertyMaterial {
+func (g_ GLKBaseEffect) Material() IGLKEffectPropertyMaterial {
 	rv := objc.Send[GLKEffectPropertyMaterial](g_.ID, objc.Sel("material"))
 	return rv
 }
@@ -287,7 +279,7 @@ func (g_ GLKBaseEffect) Material() GLKEffectPropertyMaterial {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/texture2d0
-func (g_ GLKBaseEffect) Texture2d0() GLKEffectPropertyTexture {
+func (g_ GLKBaseEffect) Texture2d0() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d0"))
 	return rv
 }
@@ -297,7 +289,7 @@ func (g_ GLKBaseEffect) Texture2d0() GLKEffectPropertyTexture {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/texture2d1
-func (g_ GLKBaseEffect) Texture2d1() GLKEffectPropertyTexture {
+func (g_ GLKBaseEffect) Texture2d1() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d1"))
 	return rv
 }
@@ -336,7 +328,7 @@ func (g_ GLKBaseEffect) SetTextureOrder(value []GLKEffectPropertyTexture) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/transform
-func (g_ GLKBaseEffect) Transform() GLKEffectPropertyTransform {
+func (g_ GLKBaseEffect) Transform() IGLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
 }

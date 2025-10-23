@@ -31,25 +31,18 @@ type _RulerViewClass struct {
 // An interface definition for the [RulerView] class.
 type IRulerView interface {
 	IView
-	AddMarker(marker IRulerMarker)
-	DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect)
-	DrawMarkersInRect(rect coregraphics.CGRect)
-	InvalidateHashMarks()
-	MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64)
-	RemoveMarker(marker IRulerMarker)
-	TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent) bool
-	AccessoryView() NSView
+	AccessoryView() IView
 	SetAccessoryView(value IView)
 	BaselineLocation() float64
-	ClientView() NSView
+	ClientView() IView
 	SetClientView(value IView)
 	Flipped() bool
 	Markers() []RulerMarker
 	SetMarkers(value []RulerMarker)
 	MeasurementUnits() RulerViewUnitName
-	SetMeasurementUnits(value IRulerViewUnitName)
-	Orientation() RulerOrientation
-	SetOrientation(value IRulerOrientation)
+	SetMeasurementUnits(value RulerViewUnitName)
+	Orientation() NSRulerOrientation
+	SetOrientation(value NSRulerOrientation)
 	OriginOffset() float64
 	SetOriginOffset(value float64)
 	RequiredThickness() float64
@@ -59,7 +52,7 @@ type IRulerView interface {
 	SetReservedThicknessForMarkers(value float64)
 	RuleThickness() float64
 	SetRuleThickness(value float64)
-	ScrollView() NSScrollView
+	ScrollView() IScrollView
 	SetScrollView(value IScrollView)
 	IsFlipped() bool
 	SetIsFlipped(value bool)
@@ -67,6 +60,13 @@ type IRulerView interface {
 	SetHasHorizontalRuler(value bool)
 	HasVerticalRuler() bool
 	SetHasVerticalRuler(value bool)
+	AddMarker(marker RulerMarker)
+	DrawHashMarksAndLabelsInRect(rect coregraphics.CGRect)
+	DrawMarkersInRect(rect coregraphics.CGRect)
+	InvalidateHashMarks()
+	MoveRulerlineFromLocationToLocation(oldLocation float64, newLocation float64)
+	RemoveMarker(marker RulerMarker)
+	TrackMarkerWithMouseEvent(marker RulerMarker, event IEvent) bool
 }
 
 // A ruler and the markers above or to the side of a scroll view’s document view.
@@ -126,7 +126,7 @@ func NewRulerView() RulerView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder foundation.ICoder) RulerView {
+func NewRulerViewWithCoder(coder foundation.Coder) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -138,7 +138,7 @@ func NewRulerViewWithCoder(coder foundation.ICoder) RulerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(scrollView:orientation:)
-func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation IRulerOrientation) RulerView {
+func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation NSRulerOrientation) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithScrollView:orientation:"), scrollView, orientation)
 	rv.Autorelease()
@@ -151,7 +151,7 @@ func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
-func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName IRulerViewUnitName, abbreviation string, conversionFactor float64, stepUpCycle []foundation.INumber, stepDownCycle []foundation.INumber) {
+func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName RulerViewUnitName, abbreviation string, conversionFactor float64, stepUpCycle []foundation.Number, stepDownCycle []foundation.Number) {
 	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, objc.String(abbreviation), conversionFactor, stepUpCycle, stepDownCycle)
 }
 
@@ -160,7 +160,7 @@ func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversion
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/addMarker(_:)
-func (r_ RulerView) AddMarker(marker IRulerMarker) {
+func (r_ RulerView) AddMarker(marker RulerMarker) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addMarker:"), marker)
 }
 
@@ -205,7 +205,7 @@ func (r_ RulerView) MoveRulerlineFromLocationToLocation(oldLocation float64, new
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/removeMarker(_:)
-func (r_ RulerView) RemoveMarker(marker IRulerMarker) {
+func (r_ RulerView) RemoveMarker(marker RulerMarker) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeMarker:"), marker)
 }
 
@@ -214,7 +214,7 @@ func (r_ RulerView) RemoveMarker(marker IRulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/trackMarker(_:withMouseEvent:)
-func (r_ RulerView) TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent) bool {
+func (r_ RulerView) TrackMarkerWithMouseEvent(marker RulerMarker, event IEvent) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("trackMarker:withMouseEvent:"), marker, event)
 	return rv
 }
@@ -224,8 +224,8 @@ func (r_ RulerView) TrackMarkerWithMouseEvent(marker IRulerMarker, event IEvent)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/accessoryView
-func (r_ RulerView) AccessoryView() NSView {
-	rv := objc.Send[NSView](r_.ID, objc.Sel("accessoryView"))
+func (r_ RulerView) AccessoryView() IView {
+	rv := objc.Send[View](r_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -253,8 +253,8 @@ func (r_ RulerView) BaselineLocation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/clientView
-func (r_ RulerView) ClientView() NSView {
-	rv := objc.Send[NSView](r_.ID, objc.Sel("clientView"))
+func (r_ RulerView) ClientView() IView {
+	rv := objc.Send[View](r_.ID, objc.Sel("clientView"))
 	return rv
 }
 
@@ -321,7 +321,7 @@ func (r_ RulerView) MeasurementUnits() RulerViewUnitName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/measurementUnits
-func (r_ RulerView) SetMeasurementUnits(value IRulerViewUnitName) {
+func (r_ RulerView) SetMeasurementUnits(value RulerViewUnitName) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMeasurementUnits:"), value)
 }
 
@@ -330,8 +330,8 @@ func (r_ RulerView) SetMeasurementUnits(value IRulerViewUnitName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/orientation-swift.property
-func (r_ RulerView) Orientation() RulerOrientation {
-	rv := objc.Send[RulerOrientation](r_.ID, objc.Sel("orientation"))
+func (r_ RulerView) Orientation() NSRulerOrientation {
+	rv := objc.Send[NSRulerOrientation](r_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -340,7 +340,7 @@ func (r_ RulerView) Orientation() RulerOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/orientation-swift.property
-func (r_ RulerView) SetOrientation(value IRulerOrientation) {
+func (r_ RulerView) SetOrientation(value NSRulerOrientation) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -435,8 +435,8 @@ func (r_ RulerView) SetRuleThickness(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/scrollView
-func (r_ RulerView) ScrollView() NSScrollView {
-	rv := objc.Send[NSScrollView](r_.ID, objc.Sel("scrollView"))
+func (r_ RulerView) ScrollView() IScrollView {
+	rv := objc.Send[ScrollView](r_.ID, objc.Sel("scrollView"))
 	return rv
 }
 

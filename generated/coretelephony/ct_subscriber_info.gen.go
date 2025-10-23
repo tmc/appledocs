@@ -32,7 +32,7 @@ type _SubscriberInfoClass struct {
 type ISubscriberInfo interface {
 	objectivec.IObject
 	CarrierToken() foundation.Data
-	SetCarrierToken(value foundation.IData)
+	SetCarrierToken(value foundation.Data)
 	Identifier() string
 	SetIdentifier(value string)
 }
@@ -94,7 +94,7 @@ func NewSubscriberInfo() SubscriberInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo/subscriber()
-func (sc _SubscriberInfoClass) Subscriber() Subscriber {
+func (sc _SubscriberInfoClass) Subscriber() ISubscriber {
 	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("subscriber"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (s_ SubscriberInfo) CarrierToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
+func (s_ SubscriberInfo) SetCarrierToken(value foundation.Data) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 

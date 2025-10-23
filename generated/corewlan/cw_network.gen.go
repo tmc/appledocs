@@ -31,9 +31,6 @@ type _CWNetworkClass struct {
 // An interface definition for the [CWNetwork] class.
 type ICWNetwork interface {
 	objectivec.IObject
-	IsEqualToNetwork(network ICWNetwork) bool
-	SupportsPHYMode(phyMode CWPHYMode) bool
-	SupportsSecurity(security ICWSecurity) bool
 	BeaconInterval() int
 	Bssid() string
 	CountryCode() string
@@ -43,7 +40,10 @@ type ICWNetwork interface {
 	RssiValue() int
 	Ssid() string
 	SsidData() foundation.NSData
-	WlanChannel() CWChannel
+	WlanChannel() ICWChannel
+	IsEqualToNetwork(network ICWNetwork) bool
+	SupportsPHYMode(phyMode CWPHYMode) bool
+	SupportsSecurity(security CWSecurity) bool
 }
 
 // Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
@@ -121,7 +121,7 @@ func (c_ CWNetwork) SupportsPHYMode(phyMode CWPHYMode) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/supportsSecurity(_:)
-func (c_ CWNetwork) SupportsSecurity(security ICWSecurity) bool {
+func (c_ CWNetwork) SupportsSecurity(security CWSecurity) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsSecurity:"), security)
 	return rv
 }
@@ -221,7 +221,7 @@ func (c_ CWNetwork) SsidData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetwork/wlanChannel
-func (c_ CWNetwork) WlanChannel() CWChannel {
+func (c_ CWNetwork) WlanChannel() ICWChannel {
 	rv := objc.Send[CWChannel](c_.ID, objc.Sel("wlanChannel"))
 	return rv
 }

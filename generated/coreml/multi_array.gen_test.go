@@ -15,7 +15,7 @@ func ExampleNewMultiArrayByConcatenatingMultiArraysAlongAxisDataType() {
 	_ = coreml.NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(
 		[]coreml.MultiArray{}, // multiArrays []MultiArray
 		0, // axis int
-		coreml.MultiArrayDataType{}, // dataType MultiArrayDataType
+		coreml.MLMultiArrayDataType{}, // dataType MLMultiArrayDataType
 	)
 	// Output:
 }

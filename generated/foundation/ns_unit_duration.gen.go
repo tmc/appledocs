@@ -29,6 +29,8 @@ type _UnitDurationClass struct {
 // An interface definition for the [UnitDuration] class.
 type IUnitDuration interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for a duration of time.

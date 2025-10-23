@@ -30,11 +30,11 @@ type _PersistentHistoryChangeRequestClass struct {
 // An interface definition for the [PersistentHistoryChangeRequest] class.
 type IPersistentHistoryChangeRequest interface {
 	IPersistentStoreRequest
-	FetchRequest() NSFetchRequest
+	FetchRequest() IFetchRequest
 	SetFetchRequest(value IFetchRequest)
-	ResultType() PersistentHistoryResultType
-	SetResultType(value PersistentHistoryResultType)
-	Token() NSPersistentHistoryToken
+	ResultType() NSPersistentHistoryResultType
+	SetResultType(value NSPersistentHistoryResultType)
+	Token() IPersistentHistoryToken
 	SetToken(value IPersistentHistoryToken)
 }
 
@@ -115,7 +115,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.IDate) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.NSDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
@@ -135,8 +135,8 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
-func (p_ PersistentHistoryChangeRequest) FetchRequest() NSFetchRequest {
-	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
+func (p_ PersistentHistoryChangeRequest) FetchRequest() IFetchRequest {
+	rv := objc.Send[FetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value IFetchRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultType {
-	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentHistoryChangeRequest) ResultType() NSPersistentHistoryResultType {
+	rv := objc.Send[NSPersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryResultType) {
+func (p_ PersistentHistoryChangeRequest) SetResultType(value NSPersistentHistoryResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -173,8 +173,8 @@ func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
-func (p_ PersistentHistoryChangeRequest) Token() NSPersistentHistoryToken {
-	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
+func (p_ PersistentHistoryChangeRequest) Token() IPersistentHistoryToken {
+	rv := objc.Send[PersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
 }
 

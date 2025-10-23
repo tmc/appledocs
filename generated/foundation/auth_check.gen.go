@@ -30,6 +30,8 @@ type _authCheckClass struct {
 // An interface definition for the [authCheck] class.
 type IauthCheck interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

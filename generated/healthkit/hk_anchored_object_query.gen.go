@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKAnchoredObjectQuery] class.
@@ -30,9 +29,11 @@ type _HKAnchoredObjectQueryClass struct {
 // An interface definition for the [HKAnchoredObjectQuery] class.
 type IHKAnchoredObjectQuery interface {
 	IHKQuery
+	// properties:
 	UpdateHandler() unsafe.Pointer
 	SetUpdateHandler(value unsafe.Pointer)
 	HKObjectQueryNoLimit() int
+	// methods:
 }
 
 // A query that returns changes to the HealthKit store, including a snapshot of new changes and continuous monitoring as a long-running query.
@@ -90,43 +91,6 @@ func NewHKAnchoredObjectQuery() HKAnchoredObjectQuery {
 
 
 
-// Creates an anchored object query that matches any of the query descriptors you provided.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(queryDescriptors:anchor:limit:resultsHandler:)
-func NewHKAnchoredObjectQueryWithQueryDescriptorsAnchorLimitResultsHandler(queryDescriptors []HKQueryDescriptor, anchor IHKQueryAnchor, limit int, handler unsafe.Pointer) HKAnchoredObjectQuery {
-	instance := getHKAnchoredObjectQueryClass().Alloc()
-	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithQueryDescriptors:anchor:limit:resultsHandler:"), queryDescriptors, anchor, limit, handler)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a new anchored object query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:completionHandler:)
-func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_ HKSampleType, predicate foundation.IPredicate, anchor uint, limit uint, handler unsafe.Pointer) HKAnchoredObjectQuery {
-	instance := getHKAnchoredObjectQueryClass().Alloc()
-	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:completionHandler:"), type_, predicate, anchor, limit, handler)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a new anchored object query.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:resultsHandler:)
-func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitResultsHandler(type_ HKSampleType, predicate foundation.IPredicate, anchor IHKQueryAnchor, limit uint, handler unsafe.Pointer) HKAnchoredObjectQuery {
-	instance := getHKAnchoredObjectQueryClass().Alloc()
-	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:resultsHandler:"), type_, predicate, anchor, limit, handler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Handler for monitoring updates to the HealthKit store.
 //
 // [Full Topic]
@@ -154,5 +118,6 @@ func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }
+
 
 

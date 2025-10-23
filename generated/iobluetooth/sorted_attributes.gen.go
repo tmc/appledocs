@@ -30,6 +30,8 @@ type _sortedAttributesClass struct {
 // An interface definition for the [sortedAttributes] class.
 type IsortedAttributes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

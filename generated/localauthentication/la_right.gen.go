@@ -30,13 +30,15 @@ type _RightClass struct {
 // An interface definition for the [Right] class.
 type IRight interface {
 	objectivec.IObject
+	// properties:
+	State() LARightState
+	Tag() int
+	SetTag(value int)
+	// methods:
 	AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer)
 	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
 	CheckCanAuthorizeWithCompletion(handler unsafe.Pointer)
 	DeauthorizeWithCompletion(handler unsafe.Pointer)
-	State() RightState
-	Tag() int
-	SetTag(value int)
 }
 
 // A grouped set of requirements that gate access to a resource or operation.
@@ -145,8 +147,8 @@ func (r_ Right) DeauthorizeWithCompletion(handler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/state-swift.property
-func (r_ Right) State() RightState {
-	rv := objc.Send[RightState](r_.ID, objc.Sel("state"))
+func (r_ Right) State() LARightState {
+	rv := objc.Send[LARightState](r_.ID, objc.Sel("state"))
 	return rv
 }
 

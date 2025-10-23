@@ -30,6 +30,8 @@ type _mAttributeIDClass struct {
 // An interface definition for the [mAttributeID] class.
 type ImAttributeID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

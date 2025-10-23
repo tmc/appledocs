@@ -33,9 +33,9 @@ type IWritingToolsCoordinatorContext interface {
 	objectivec.IObject
 	Range() foundation.Range
 	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.IAttributedString)
+	SetAttributedString(value foundation.AttributedString)
 	Identifier() foundation.UUID
-	SetIdentifier(value foundation.IUUID)
+	SetIdentifier(value foundation.UUID)
 	ResolvedRange() foundation.Range
 	SetResolvedRange(value foundation.Range)
 }
@@ -117,7 +117,7 @@ func (w_ WritingToolsCoordinatorContext) AttributedString() foundation.Attribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/attributedstring
-func (w_ WritingToolsCoordinatorContext) SetAttributedString(value foundation.IAttributedString) {
+func (w_ WritingToolsCoordinatorContext) SetAttributedString(value foundation.AttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -136,7 +136,7 @@ func (w_ WritingToolsCoordinatorContext) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/context/identifier
-func (w_ WritingToolsCoordinatorContext) SetIdentifier(value foundation.IUUID) {
+func (w_ WritingToolsCoordinatorContext) SetIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
 }
 

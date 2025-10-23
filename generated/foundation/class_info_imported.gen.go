@@ -30,6 +30,8 @@ type _classInfoImportedClass struct {
 // An interface definition for the [classInfoImported] class.
 type IclassInfoImported interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

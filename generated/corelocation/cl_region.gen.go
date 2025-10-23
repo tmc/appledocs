@@ -30,7 +30,6 @@ type _RegionClass struct {
 // An interface definition for the [Region] class.
 type IRegion interface {
 	objectivec.IObject
-	ContainsCoordinate(coordinate unsafe.Pointer) bool
 	Center() unsafe.Pointer
 	Identifier() string
 	NotifyOnEntry() bool
@@ -104,16 +103,6 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, ra
 	return rv
 }
 
-
-
-// Returns a Boolean value indicating whether the region contains the specified coordinate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/contains(_:)
-func (r_ Region) ContainsCoordinate(coordinate unsafe.Pointer) bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("containsCoordinate:"), coordinate)
-	return rv
-}
 
 
 // The center point of the region.

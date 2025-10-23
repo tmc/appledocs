@@ -31,7 +31,6 @@ type _VectorClass struct {
 // An interface definition for the [Vector] class.
 type IVector interface {
 	objectivec.IObject
-	ValueAtIndex(index Iuintptr) float64
 	CGAffineTransformValue() coregraphics.CGAffineTransform
 	CGPointValue() coregraphics.CGPoint
 	CGRectValue() coregraphics.CGRect
@@ -41,6 +40,7 @@ type IVector interface {
 	X() float64
 	Y() float64
 	Z() float64
+	ValueAtIndex(index uintptr) float64
 }
 
 // The Core Image class that defines a vector object.
@@ -148,7 +148,7 @@ func NewVectorWithString(representation string) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
-func NewVectorWithValuesCount(values coregraphics.float64, count Iuintptr) Vector {
+func NewVectorWithValuesCount(values coregraphics.float64, count uintptr) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
 	rv.Autorelease()
@@ -249,7 +249,7 @@ func (vc _VectorClass) VectorWithString(representation string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithValues:count:
-func (vc _VectorClass) VectorWithValuesCount(values coregraphics.float64, count Iuintptr) unsafe.Pointer {
+func (vc _VectorClass) VectorWithValuesCount(values coregraphics.float64, count uintptr) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithValues:count:"), values, count)
 	return rv
 }
@@ -299,7 +299,7 @@ func (vc _VectorClass) VectorWithXYZW(x float64, y float64, z float64, w float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/value(at:)
-func (v_ Vector) ValueAtIndex(index Iuintptr) float64 {
+func (v_ Vector) ValueAtIndex(index uintptr) float64 {
 	rv := objc.Send[float64](v_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }

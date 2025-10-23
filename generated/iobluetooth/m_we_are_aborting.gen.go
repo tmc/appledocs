@@ -30,6 +30,8 @@ type _mWeAreAbortingClass struct {
 // An interface definition for the [mWeAreAborting] class.
 type ImWeAreAborting interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -31,9 +31,9 @@ type _BAAssetPackManifestClass struct {
 // An interface definition for the [BAAssetPackManifest] class.
 type IBAAssetPackManifest interface {
 	objectivec.IObject
-	AllDownloads() unsafe.Pointer
-	AllDownloadsForContentRequest(contentRequest IBAContentRequest) unsafe.Pointer
 	AssetPacks() unsafe.Pointer
+	AllDownloads() unsafe.Pointer
+	AllDownloadsForContentRequest(contentRequest BAContentRequest) unsafe.Pointer
 }
 
 // A representation of a manifest that lists asset packs that are available to download.
@@ -93,7 +93,7 @@ func NewBAAssetPackManifest() BAAssetPackManifest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data foundation.IData, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
+func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data foundation.NSData, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
 	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, objc.String(applicationGroupIdentifier), error_)
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data foundati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initWithContentsOfURL:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL foundation.IURL, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
+func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL foundation.URL, applicationGroupIdentifier string, error_ unsafe.Pointer) BAAssetPackManifest {
 	instance := getBAAssetPackManifestClass().Alloc()
 	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, objc.String(applicationGroupIdentifier), error_)
 	rv.Autorelease()
@@ -128,7 +128,7 @@ func (b_ BAAssetPackManifest) AllDownloads() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/allDownloadsForContentRequest:
-func (b_ BAAssetPackManifest) AllDownloadsForContentRequest(contentRequest IBAContentRequest) unsafe.Pointer {
+func (b_ BAAssetPackManifest) AllDownloadsForContentRequest(contentRequest BAContentRequest) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("allDownloadsForContentRequest:"), contentRequest)
 	return rv
 }

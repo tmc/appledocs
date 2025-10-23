@@ -30,9 +30,9 @@ type _GCVirtualControllerClass struct {
 // An interface definition for the [GCVirtualController] class.
 type IGCVirtualController interface {
 	objectivec.IObject
+	Controller() IGCController
+	SetController(value IGCController)
 	ConnectWithReplyHandler(reply unsafe.Pointer)
-	SetValueForButtonElement(value float64, element string)
-	Controller() GCController
 }
 
 // A software emulation of a real controller that you configure specifically for your game.
@@ -92,23 +92,13 @@ func NewGCVirtualController() GCVirtualController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
-func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
+func NewGCVirtualControllerWithConfiguration(configuration GCVirtualControllerConfiguration) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// Creates a new virtual controller using the configuration you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:
-func (gc _GCVirtualControllerClass) VirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
-	rv := objc.Send[GCVirtualController](objc.ID(gc.class), objc.Sel("virtualControllerWithConfiguration:"), configuration)
-	return rv
-}
 
 
 // Connects the virtual controller to the device and displays it on the screen.
@@ -120,22 +110,22 @@ func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
 }
 
 
-// Changes the value of a button element in the virtual controller.
+// The underlying controller object that you use to access input elements.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)
-func (g_ GCVirtualController) SetValueForButtonElement(value float64, element string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, objc.String(element))
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/controller
+func (g_ GCVirtualController) Controller() IGCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
+	return rv
 }
 
 
 // The underlying controller object that you use to access input elements.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/controller
-func (g_ GCVirtualController) Controller() GCController {
-	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/controller
+func (g_ GCVirtualController) SetController(value IGCController) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
 }
 
 

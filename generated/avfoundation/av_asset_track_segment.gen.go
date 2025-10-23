@@ -30,10 +30,12 @@ type _AssetTrackSegmentClass struct {
 // An interface definition for the [AssetTrackSegment] class.
 type IAssetTrackSegment interface {
 	objectivec.IObject
-	IsEmpty() bool
-	SetIsEmpty(value bool)
-	TimeMapping() unsafe.Pointer
-	SetTimeMapping(value unsafe.Pointer)
+	// properties:
+	IsEmpty() bool /* primitive/slice/pointer */
+	SetIsEmpty(value bool /* primitive/slice/pointer */)
+	TimeMapping() CMTimeMapping /* foo */
+	SetTimeMapping(value CMTimeMapping /* foo */)
+	// methods:
 }
 
 // An object that represents a time range segment of an asset track.
@@ -91,7 +93,7 @@ func NewAssetTrackSegment() AssetTrackSegment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
-func (a_ AssetTrackSegment) IsEmpty() bool {
+func (a_ AssetTrackSegment) IsEmpty() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEmpty"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (a_ AssetTrackSegment) IsEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/isempty
-func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
+func (a_ AssetTrackSegment) SetIsEmpty(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEmpty:"), value)
 }
 
@@ -110,8 +112,8 @@ func (a_ AssetTrackSegment) SetIsEmpty(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
-func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timeMapping"))
+func (a_ AssetTrackSegment) TimeMapping() CMTimeMapping /* foo */ {
+	rv := objc.Send[TimeMapping](a_.ID, objc.Sel("timeMapping"))
 	return rv
 }
 
@@ -120,7 +122,7 @@ func (a_ AssetTrackSegment) TimeMapping() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettracksegment/timemapping
-func (a_ AssetTrackSegment) SetTimeMapping(value unsafe.Pointer) {
+func (a_ AssetTrackSegment) SetTimeMapping(value CMTimeMapping /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimeMapping:"), value)
 }
 

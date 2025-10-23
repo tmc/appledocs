@@ -29,6 +29,8 @@ type _HKSourceQueryClass struct {
 // An interface definition for the [HKSourceQuery] class.
 type IHKSourceQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store.

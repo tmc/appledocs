@@ -29,8 +29,10 @@ type _PersistedRightClass struct {
 // An interface definition for the [PersistedRight] class.
 type IPersistedRight interface {
 	IRight
-	Key() LAPrivateKey
-	Secret() LASecret
+	// properties:
+	Key() ILAPrivateKey
+	Secret() ILASecret
+	// methods:
 }
 
 // A right that gates access to a key and a secret.
@@ -92,8 +94,8 @@ func NewPersistedRight() PersistedRight {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/key
-func (p_ PersistedRight) Key() LAPrivateKey {
-	rv := objc.Send[LAPrivateKey](p_.ID, objc.Sel("key"))
+func (p_ PersistedRight) Key() ILAPrivateKey {
+	rv := objc.Send[PrivateKey](p_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -102,8 +104,8 @@ func (p_ PersistedRight) Key() LAPrivateKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/secret
-func (p_ PersistedRight) Secret() LASecret {
-	rv := objc.Send[LASecret](p_.ID, objc.Sel("secret"))
+func (p_ PersistedRight) Secret() ILASecret {
+	rv := objc.Send[Secret](p_.ID, objc.Sel("secret"))
 	return rv
 }
 

@@ -31,7 +31,7 @@ type IBackgroundExtensionView interface {
 	IView
 	AutomaticallyPlacesContentView() bool
 	SetAutomaticallyPlacesContentView(value bool)
-	ContentView() NSView
+	ContentView() IView
 	SetContentView(value IView)
 }
 
@@ -113,8 +113,8 @@ func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/contentView
-func (b_ BackgroundExtensionView) ContentView() NSView {
-	rv := objc.Send[NSView](b_.ID, objc.Sel("contentView"))
+func (b_ BackgroundExtensionView) ContentView() IView {
+	rv := objc.Send[View](b_.ID, objc.Sel("contentView"))
 	return rv
 }
 

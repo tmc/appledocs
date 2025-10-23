@@ -31,25 +31,27 @@ type _MEMessageClass struct {
 // An interface definition for the [MEMessage] class.
 type IMEMessage interface {
 	objectivec.IObject
+	// properties:
 	AllRecipientAddresses() []MEEmailAddress
-	DateReceived() foundation.NSDate
-	EncryptionState() MEMessageEncryptionState
-	Headers() foundation.IDictionary
-	Subject() string
-	BccAddresses() MEEmailAddress
-	SetBccAddresses(value IMEEmailAddress)
-	CcAddresses() MEEmailAddress
-	SetCcAddresses(value IMEEmailAddress)
-	FromAddress() MEEmailAddress
-	SetFromAddress(value IMEEmailAddress)
-	RawData() foundation.Data
-	SetRawData(value foundation.IData)
-	ReplyToAddresses() MEEmailAddress
-	SetReplyToAddresses(value IMEEmailAddress)
 	State() MEMessageState
-	SetState(value MEMessageState)
-	ToAddresses() MEEmailAddress
+	Subject() string
+	BccAddresses() IMEEmailAddress
+	SetBccAddresses(value IMEEmailAddress)
+	CcAddresses() IMEEmailAddress
+	SetCcAddresses(value IMEEmailAddress)
+	EncryptionState() unsafe.Pointer
+	SetEncryptionState(value unsafe.Pointer)
+	FromAddress() IMEEmailAddress
+	SetFromAddress(value IMEEmailAddress)
+	Headers() string
+	SetHeaders(value string)
+	RawData() foundation.Data
+	SetRawData(value foundation.Data)
+	ReplyToAddresses() IMEEmailAddress
+	SetReplyToAddresses(value IMEEmailAddress)
+	ToAddresses() IMEEmailAddress
 	SetToAddresses(value IMEEmailAddress)
+	// methods:
 }
 
 // An object that contains information about a mail message, such as the subject, addressees, date sent, and the message contents.
@@ -113,30 +115,12 @@ func (m_ MEMessage) AllRecipientAddresses() []MEEmailAddress {
 }
 
 
-// The date that the recipient received the message.
+// The state of the mail message.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/dateReceived
-func (m_ MEMessage) DateReceived() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("dateReceived"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/encryptionState
-func (m_ MEMessage) EncryptionState() MEMessageEncryptionState {
-	rv := objc.Send[MEMessageEncryptionState](m_.ID, objc.Sel("encryptionState"))
-	return rv
-}
-
-
-// A dictionary that contains the message’s header values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/headers
-func (m_ MEMessage) Headers() foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("headers"))
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/state
+func (m_ MEMessage) State() MEMessageState {
+	rv := objc.Send[MEMessageState](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -155,7 +139,7 @@ func (m_ MEMessage) Subject() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
-func (m_ MEMessage) BccAddresses() MEEmailAddress {
+func (m_ MEMessage) BccAddresses() IMEEmailAddress {
 	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("bccAddresses"))
 	return rv
 }
@@ -174,7 +158,7 @@ func (m_ MEMessage) SetBccAddresses(value IMEEmailAddress) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
-func (m_ MEMessage) CcAddresses() MEEmailAddress {
+func (m_ MEMessage) CcAddresses() IMEEmailAddress {
 	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("ccAddresses"))
 	return rv
 }
@@ -189,11 +173,26 @@ func (m_ MEMessage) SetCcAddresses(value IMEEmailAddress) {
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/encryptionstate
+func (m_ MEMessage) EncryptionState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("encryptionState"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/encryptionstate
+func (m_ MEMessage) SetEncryptionState(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncryptionState:"), value)
+}
+
+
 // The sender’s email address.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
-func (m_ MEMessage) FromAddress() MEEmailAddress {
+func (m_ MEMessage) FromAddress() IMEEmailAddress {
 	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("fromAddress"))
 	return rv
 }
@@ -205,6 +204,25 @@ func (m_ MEMessage) FromAddress() MEEmailAddress {
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
 func (m_ MEMessage) SetFromAddress(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFromAddress:"), value)
+}
+
+
+// A dictionary that contains the message’s header values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/headers
+func (m_ MEMessage) Headers() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("headers"))
+	return rv
+}
+
+
+// A dictionary that contains the message’s header values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/headers
+func (m_ MEMessage) SetHeaders(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHeaders:"), objc.String(value))
 }
 
 
@@ -222,7 +240,7 @@ func (m_ MEMessage) RawData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) SetRawData(value foundation.IData) {
+func (m_ MEMessage) SetRawData(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 
@@ -231,7 +249,7 @@ func (m_ MEMessage) SetRawData(value foundation.IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
-func (m_ MEMessage) ReplyToAddresses() MEEmailAddress {
+func (m_ MEMessage) ReplyToAddresses() IMEEmailAddress {
 	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("replyToAddresses"))
 	return rv
 }
@@ -246,30 +264,11 @@ func (m_ MEMessage) SetReplyToAddresses(value IMEEmailAddress) {
 }
 
 
-// The state of the mail message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) State() MEMessageState {
-	rv := objc.Send[MEMessageState](m_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// The state of the mail message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) SetState(value MEMessageState) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
-}
-
-
 // An array of email addresses for the primary recipients of the message.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
-func (m_ MEMessage) ToAddresses() MEEmailAddress {
+func (m_ MEMessage) ToAddresses() IMEEmailAddress {
 	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("toAddresses"))
 	return rv
 }

@@ -32,7 +32,7 @@ type _WaterSubmersionEventClass struct {
 type IWaterSubmersionEvent interface {
 	objectivec.IObject
 	Date() foundation.NSDate
-	State() WaterSubmersionState
+	State() CMWaterSubmersionState
 }
 
 // An event indicating that the device’s submersion state has changed.
@@ -100,8 +100,8 @@ func (w_ WaterSubmersionEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/state-swift.property
-func (w_ WaterSubmersionEvent) State() WaterSubmersionState {
-	rv := objc.Send[WaterSubmersionState](w_.ID, objc.Sel("state"))
+func (w_ WaterSubmersionEvent) State() CMWaterSubmersionState {
+	rv := objc.Send[CMWaterSubmersionState](w_.ID, objc.Sel("state"))
 	return rv
 }
 

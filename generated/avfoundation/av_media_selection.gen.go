@@ -30,9 +30,11 @@ type _MediaSelectionClass struct {
 // An interface definition for the [MediaSelection] class.
 type IMediaSelection interface {
 	objectivec.IObject
+	// properties:
 	Asset() IAVAsset
-	SetAsset(value IAVAsset)
-	SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IMediaSelectionOption
+	// methods:
+	MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer */
+	SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IAVMediaSelectionOption
 }
 
 // An object that represents a complete rendition of media selection options on an asset.
@@ -86,11 +88,21 @@ func NewMediaSelection() MediaSelection {
 
 
 
+// Indicates whether the specified media selection group is subject to automatic media selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection/mediaSelectionCriteriaCanBeAppliedAutomatically(to:)
+func (m_ MediaSelection) MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:"), mediaSelectionGroup)
+	return rv
+}
+
+
 // Returns the media selection option that’s currently selected in the specified group.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection/selectedMediaOption(in:)
-func (m_ MediaSelection) SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IMediaSelectionOption {
+func (m_ MediaSelection) SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IAVMediaSelectionOption {
 	rv := objc.Send[MediaSelectionOption](m_.ID, objc.Sel("selectedMediaOptionInMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
@@ -99,19 +111,10 @@ func (m_ MediaSelection) SelectedMediaOptionInMediaSelectionGroup(mediaSelection
 // The asset associated with the media selection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection/asset
 func (m_ MediaSelection) Asset() IAVAsset {
 	rv := objc.Send[Asset](m_.ID, objc.Sel("asset"))
 	return rv
-}
-
-
-// The asset associated with the media selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
-func (m_ MediaSelection) SetAsset(value IAVAsset) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAsset:"), value)
 }
 
 

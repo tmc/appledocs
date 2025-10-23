@@ -30,6 +30,8 @@ type _invalidateRPClass struct {
 // An interface definition for the [invalidateRP] class.
 type IinvalidateRP interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -34,7 +34,7 @@ type IDisplayManager interface {
 	DisplayCriteriaMatchingEnabled() bool
 	DisplayModeSwitchInProgress() bool
 	PreferredDisplayCriteria() avfoundation.DisplayCriteria
-	SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria)
+	SetPreferredDisplayCriteria(value avfoundation.DisplayCriteria)
 	IsDisplayCriteriaMatchingEnabled() bool
 	SetIsDisplayCriteriaMatchingEnabled(value bool)
 	IsDisplayModeSwitchInProgress() bool
@@ -128,7 +128,7 @@ func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria) {
+func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.DisplayCriteria) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 

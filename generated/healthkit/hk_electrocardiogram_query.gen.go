@@ -29,6 +29,8 @@ type _HKElectrocardiogramQueryClass struct {
 // An interface definition for the [HKElectrocardiogramQuery] class.
 type IHKElectrocardiogramQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A query that returns the underlying voltage measurements for an electrocardiogram sample.

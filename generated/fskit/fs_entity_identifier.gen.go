@@ -31,10 +31,10 @@ type _FSEntityIdentifierClass struct {
 // An interface definition for the [FSEntityIdentifier] class.
 type IFSEntityIdentifier interface {
 	objectivec.IObject
-	Qualifier() foundation.NSData
-	SetQualifier(value foundation.IData)
+	Qualifier() foundation.Data
+	SetQualifier(value foundation.Data)
 	Uuid() foundation.UUID
-	SetUuid(value foundation.IUUID)
+	SetUuid(value foundation.UUID)
 }
 
 // A base type that identifies containers and volumes.
@@ -90,23 +90,11 @@ func NewFSEntityIdentifier() FSEntityIdentifier {
 
 
 
-// Creates an entity identifier with the given UUID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:)
-func NewFSEntityIdentifierWithUUID(uuid foundation.IUUID) FSEntityIdentifier {
-	instance := getFSEntityIdentifierClass().Alloc()
-	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:"), uuid)
-	rv.Autorelease()
-	return rv
-}
-
-
 // Creates an entity identifier with the given UUID and qualifier data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:data:)
-func NewFSEntityIdentifierWithUUIDData(uuid foundation.IUUID, qualifierData foundation.IData) FSEntityIdentifier {
+func NewFSEntityIdentifierWithUUIDData(uuid foundation.UUID, qualifierData foundation.NSData) FSEntityIdentifier {
 	instance := getFSEntityIdentifierClass().Alloc()
 	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:data:"), uuid, qualifierData)
 	rv.Autorelease()
@@ -114,25 +102,13 @@ func NewFSEntityIdentifierWithUUIDData(uuid foundation.IUUID, qualifierData foun
 }
 
 
-// Creates an entity identifier with the given UUID and qualifier data as a 64-bit unsigned integer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/init(uuid:qualifier:)
-func NewFSEntityIdentifierWithUUIDQualifier(uuid foundation.IUUID, qualifier uint64) FSEntityIdentifier {
-	instance := getFSEntityIdentifierClass().Alloc()
-	rv := objc.Send[FSEntityIdentifier](instance.ID, objc.Sel("initWithUUID:qualifier:"), uuid, qualifier)
-	rv.Autorelease()
-	return rv
-}
-
-
 
 // An optional piece of data to distinguish entities that otherwise share the same UUID.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/qualifier
-func (f_ FSEntityIdentifier) Qualifier() foundation.NSData {
-	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("qualifier"))
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/qualifier
+func (f_ FSEntityIdentifier) Qualifier() foundation.Data {
+	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("qualifier"))
 	return rv
 }
 
@@ -140,8 +116,8 @@ func (f_ FSEntityIdentifier) Qualifier() foundation.NSData {
 // An optional piece of data to distinguish entities that otherwise share the same UUID.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/qualifier
-func (f_ FSEntityIdentifier) SetQualifier(value foundation.IData) {
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/qualifier
+func (f_ FSEntityIdentifier) SetQualifier(value foundation.Data) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQualifier:"), value)
 }
 
@@ -149,7 +125,7 @@ func (f_ FSEntityIdentifier) SetQualifier(value foundation.IData) {
 // A UUID to uniquely identify this entity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/uuid
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/uuid
 func (f_ FSEntityIdentifier) Uuid() foundation.UUID {
 	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("uuid"))
 	return rv
@@ -159,8 +135,8 @@ func (f_ FSEntityIdentifier) Uuid() foundation.UUID {
 // A UUID to uniquely identify this entity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSEntityIdentifier/uuid
-func (f_ FSEntityIdentifier) SetUuid(value foundation.IUUID) {
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsentityidentifier/uuid
+func (f_ FSEntityIdentifier) SetUuid(value foundation.UUID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUuid:"), value)
 }
 

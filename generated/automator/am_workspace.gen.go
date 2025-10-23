@@ -109,7 +109,7 @@ func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-func (a_ AMWorkspace) SharedWorkspace() AMWorkspace {
+func (a_ AMWorkspace) SharedWorkspace() IAMWorkspace {
 	rv := objc.Send[AMWorkspace](a_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }

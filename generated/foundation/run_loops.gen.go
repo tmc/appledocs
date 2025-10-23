@@ -30,6 +30,8 @@ type _runLoopsClass struct {
 // An interface definition for the [runLoops] class.
 type IrunLoops interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

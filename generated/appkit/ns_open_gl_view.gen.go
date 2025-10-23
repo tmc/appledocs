@@ -30,13 +30,9 @@ type _OpenGLViewClass struct {
 // An interface definition for the [OpenGLView] class.
 type IOpenGLView interface {
 	IView
-	ClearGLContext()
-	PrepareOpenGL()
-	Reshape()
-	Update()
-	OpenGLContext() NSOpenGLContext
+	OpenGLContext() IOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
-	PixelFormat() NSOpenGLPixelFormat
+	PixelFormat() IOpenGLPixelFormat
 	SetPixelFormat(value IOpenGLPixelFormat)
 	WantsBestResolutionOpenGLSurface() bool
 	SetWantsBestResolutionOpenGLSurface(value bool)
@@ -116,45 +112,9 @@ func NewOpenGLViewWithFramePixelFormat(frameRect coregraphics.CGRect, format IOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
-func (oc _OpenGLViewClass) DefaultPixelFormat() OpenGLPixelFormat {
+func (oc _OpenGLViewClass) DefaultPixelFormat() IOpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
 	return rv
-}
-
-
-// Releases the object associated with the view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/clearGLContext()
-func (o_ OpenGLView) ClearGLContext() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("clearGLContext"))
-}
-
-
-// Used by subclasses to initialize OpenGL state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/prepareOpenGL()
-func (o_ OpenGLView) PrepareOpenGL() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("prepareOpenGL"))
-}
-
-
-// Called by Cocoa when the view’s visible rectangle or bounds change.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/reshape()
-func (o_ OpenGLView) Reshape() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("reshape"))
-}
-
-
-// Called by Cocoa when the view’s window moves or when the view itself moves or is resized.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/update()
-func (o_ OpenGLView) Update() {
-	objc.Send[objc.ID](o_.ID, objc.Sel("update"))
 }
 
 
@@ -162,8 +122,8 @@ func (o_ OpenGLView) Update() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
-func (o_ OpenGLView) OpenGLContext() NSOpenGLContext {
-	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
+func (o_ OpenGLView) OpenGLContext() IOpenGLContext {
+	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
 }
 
@@ -181,8 +141,8 @@ func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
-func (o_ OpenGLView) PixelFormat() NSOpenGLPixelFormat {
-	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
+func (o_ OpenGLView) PixelFormat() IOpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 

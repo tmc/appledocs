@@ -90,7 +90,7 @@ func NewTKSmartCardToken() TKSmartCardToken {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/init(smartCard:aid:instanceID:tokenDriver:)
-func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.IData, instanceID string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
+func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.NSData, instanceID string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
 	instance := getTKSmartCardTokenClass().Alloc()
 	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, objc.String(instanceID), tokenDriver)
 	rv.Autorelease()

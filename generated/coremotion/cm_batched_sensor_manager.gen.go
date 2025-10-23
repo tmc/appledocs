@@ -30,12 +30,6 @@ type _BatchedSensorManagerClass struct {
 // An interface definition for the [BatchedSensorManager] class.
 type IBatchedSensorManager interface {
 	objectivec.IObject
-	StartAccelerometerUpdates()
-	StartAccelerometerUpdatesWithHandler(handler unsafe.Pointer)
-	StartDeviceMotionUpdates()
-	StartDeviceMotionUpdatesWithHandler(handler unsafe.Pointer)
-	StopAccelerometerUpdates()
-	StopDeviceMotionUpdates()
 	AccelerometerBatch() []AccelerometerData
 	AccelerometerDataFrequency() int
 	DeviceMotionBatch() []DeviceMotion
@@ -46,6 +40,12 @@ type IBatchedSensorManager interface {
 	SetIsAccelerometerActive(value bool)
 	IsDeviceMotionActive() bool
 	SetIsDeviceMotionActive(value bool)
+	StartAccelerometerUpdates()
+	StartAccelerometerUpdatesWithHandler(handler unsafe.Pointer)
+	StartDeviceMotionUpdates()
+	StartDeviceMotionUpdatesWithHandler(handler unsafe.Pointer)
+	StopAccelerometerUpdates()
+	StopDeviceMotionUpdates()
 }
 
 
@@ -96,8 +96,8 @@ func NewBatchedSensorManager() BatchedSensorManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (bc _BatchedSensorManagerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(bc.class), objc.Sel("authorizationStatus"))
+func (bc _BatchedSensorManagerClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(bc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -175,8 +175,8 @@ func (b_ BatchedSensorManager) AccelerometerDataFrequency() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (b_ BatchedSensorManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](b_.ID, objc.Sel("authorizationStatus"))
+func (b_ BatchedSensorManager) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](b_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

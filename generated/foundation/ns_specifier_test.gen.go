@@ -30,8 +30,10 @@ type _SpecifierTestClass struct {
 // An interface definition for the [SpecifierTest] class.
 type ISpecifierTest interface {
 	IScriptWhoseTest
-	ContainerIsObjectBeingTested() bool
-	SetContainerIsObjectBeingTested(value bool)
+	// properties:
+	ContainerIsObjectBeingTested() bool /* primitive/slice/pointer */
+	SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A comparison between an object specifier and a test object.
@@ -103,7 +105,7 @@ func NewSpecifierTestWithCoder(inCoder ICoder) SpecifierTest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
-func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp NSTestComparisonOperation, obj2 objectivec.IObject) SpecifierTest {
+func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp TestComparisonOperation, obj2 objectivec.IObject) SpecifierTest {
 	instance := getSpecifierTestClass().Alloc()
 	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithObjectSpecifier:comparisonOperator:testObject:"), obj1, compOp, obj2)
 	rv.Autorelease()
@@ -116,7 +118,7 @@ func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
-func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
+func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containerIsObjectBeingTested"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (s_ SpecifierTest) ContainerIsObjectBeingTested() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested
-func (s_ SpecifierTest) SetContainerIsObjectBeingTested(value bool) {
+func (s_ SpecifierTest) SetContainerIsObjectBeingTested(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerIsObjectBeingTested:"), value)
 }
 

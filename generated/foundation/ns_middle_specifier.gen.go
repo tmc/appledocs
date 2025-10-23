@@ -29,6 +29,8 @@ type _MiddleSpecifierClass struct {
 // An interface definition for the [MiddleSpecifier] class.
 type IMiddleSpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
+	// methods:
 }
 
 // A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.

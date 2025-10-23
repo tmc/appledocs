@@ -30,7 +30,7 @@ type _DerivedAttributeDescriptionClass struct {
 type IDerivedAttributeDescription interface {
 	IAttributeDescription
 	DerivationExpression() Expression
-	SetDerivationExpression(value IExpression)
+	SetDerivationExpression(value Expression)
 }
 
 // A description of an attribute that derives its value by performing a calculation on a related attribute.
@@ -102,7 +102,7 @@ func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-func (d_ DerivedAttributeDescription) SetDerivationExpression(value IExpression) {
+func (d_ DerivedAttributeDescription) SetDerivationExpression(value Expression) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
 }
 

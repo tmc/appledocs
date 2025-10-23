@@ -30,11 +30,6 @@ type _ParameterClass struct {
 // An interface definition for the [Parameter] class.
 type IParameter interface {
 	IParameterNode
-	SetValueOriginator(value IValue, originator IParameterObserverToken)
-	SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64)
-	SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType)
-	StringFromValue(value IAUValue) foundation.String
-	ValueFromString(string_ string) Value
 	Address() ParameterAddress
 	DependentParameters() []foundation.Number
 	Flags() AudioUnitParameterOptions
@@ -43,8 +38,13 @@ type IParameter interface {
 	Unit() AudioUnitParameterUnit
 	UnitName() string
 	Value() Value
-	SetValue(value IValue)
+	SetValue(value Value)
 	ValueStrings() []string
+	SetValueOriginator(value Value, originator ParameterObserverToken)
+	SetValueOriginatorAtHostTime(value Value, originator ParameterObserverToken, hostTime uint64)
+	SetValueOriginatorAtHostTimeEventType(value Value, originator ParameterObserverToken, hostTime uint64, eventType AUParameterAutomationEventType)
+	StringFromValue(value AUValue) foundation.String
+	ValueFromString(string_ string) Value
 }
 
 // An object that represents a single audio unit parameter.
@@ -104,7 +104,7 @@ func NewParameter() Parameter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:)
-func (p_ Parameter) SetValueOriginator(value IValue, originator IParameterObserverToken) {
+func (p_ Parameter) SetValueOriginator(value Value, originator ParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:"), value, originator)
 }
 
@@ -113,14 +113,14 @@ func (p_ Parameter) SetValueOriginator(value IValue, originator IParameterObserv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:)
-func (p_ Parameter) SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64) {
+func (p_ Parameter) SetValueOriginatorAtHostTime(value Value, originator ParameterObserverToken, hostTime uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:"), value, originator, hostTime)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:eventType:)
-func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType) {
+func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value Value, originator ParameterObserverToken, hostTime uint64, eventType AUParameterAutomationEventType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:eventType:"), value, originator, hostTime, eventType)
 }
 
@@ -129,7 +129,7 @@ func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value IValue, originat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/string(fromValue:)
-func (p_ Parameter) StringFromValue(value IAUValue) foundation.String {
+func (p_ Parameter) StringFromValue(value AUValue) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringFromValue:"), value)
 	return rv
 }
@@ -229,7 +229,7 @@ func (p_ Parameter) Value() Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
-func (p_ Parameter) SetValue(value IValue) {
+func (p_ Parameter) SetValue(value Value) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
 

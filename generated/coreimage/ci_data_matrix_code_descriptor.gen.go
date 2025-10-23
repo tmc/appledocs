@@ -31,7 +31,7 @@ type _DataMatrixCodeDescriptorClass struct {
 type IDataMatrixCodeDescriptor interface {
 	IBarcodeDescriptor
 	ColumnCount() int
-	EccVersion() DataMatrixCodeECCVersion
+	EccVersion() CIDataMatrixCodeECCVersion
 	ErrorCorrectedPayload() foundation.NSData
 	RowCount() int
 }
@@ -95,7 +95,7 @@ func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/init(payload:rowCount:columnCount:eccVersion:)
-func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.IData, rowCount int, columnCount int, eccVersion IDataMatrixCodeECCVersion) DataMatrixCodeDescriptor {
+func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.NSData, rowCount int, columnCount int, eccVersion CIDataMatrixCodeECCVersion) DataMatrixCodeDescriptor {
 	instance := getDataMatrixCodeDescriptorClass().Alloc()
 	rv := objc.Send[DataMatrixCodeDescriptor](instance.ID, objc.Sel("initWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/descriptorWithPayload:rowCount:columnCount:eccVersion:
-func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.IData, rowCount int, columnCount int, eccVersion IDataMatrixCodeECCVersion) unsafe.Pointer {
+func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.NSData, rowCount int, columnCount int, eccVersion CIDataMatrixCodeECCVersion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("descriptorWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	return rv
 }
@@ -128,8 +128,8 @@ func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-swift.property
-func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
-	rv := objc.Send[DataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
+func (d_ DataMatrixCodeDescriptor) EccVersion() CIDataMatrixCodeECCVersion {
+	rv := objc.Send[CIDataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
 	return rv
 }
 

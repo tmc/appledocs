@@ -30,12 +30,12 @@ type _MIDICIProfileStateClass struct {
 // An interface definition for the [MIDICIProfileState] class.
 type IMIDICIProfileState interface {
 	objectivec.IObject
-	DisabledProfiles() MIDICIProfile
+	DisabledProfiles() IMIDICIProfile
 	SetDisabledProfiles(value IMIDICIProfile)
-	EnabledProfiles() MIDICIProfile
+	EnabledProfiles() IMIDICIProfile
 	SetEnabledProfiles(value IMIDICIProfile)
 	MidiChannel() MIDIChannelNumber
-	SetMidiChannel(value IMIDIChannelNumber)
+	SetMidiChannel(value MIDIChannelNumber)
 }
 
 // An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.
@@ -93,7 +93,7 @@ func NewMIDICIProfileState() MIDICIProfileState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
-func (m_ MIDICIProfileState) DisabledProfiles() MIDICIProfile {
+func (m_ MIDICIProfileState) DisabledProfiles() IMIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("disabledProfiles"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (m_ MIDICIProfileState) SetDisabledProfiles(value IMIDICIProfile) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
-func (m_ MIDICIProfileState) EnabledProfiles() MIDICIProfile {
+func (m_ MIDICIProfileState) EnabledProfiles() IMIDICIProfile {
 	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("enabledProfiles"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (m_ MIDICIProfileState) MidiChannel() MIDIChannelNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
-func (m_ MIDICIProfileState) SetMidiChannel(value IMIDIChannelNumber) {
+func (m_ MIDICIProfileState) SetMidiChannel(value MIDIChannelNumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiChannel:"), value)
 }
 

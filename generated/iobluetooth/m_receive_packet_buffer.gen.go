@@ -30,6 +30,8 @@ type _mReceivePacketBufferClass struct {
 // An interface definition for the [mReceivePacketBuffer] class.
 type ImReceivePacketBuffer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

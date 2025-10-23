@@ -30,8 +30,10 @@ type _MKPointOfInterestFilterClass struct {
 // An interface definition for the [MKPointOfInterestFilter] class.
 type IMKPointOfInterestFilter interface {
 	objectivec.IObject
-	PointOfInterestFilter() MKPointOfInterestFilter
+	// properties:
+	PointOfInterestFilter() IMKPointOfInterestFilter
 	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
+	// methods:
 }
 
 // A filter that includes or excludes point of interest categories from a map view, local search, or local search completer.
@@ -91,7 +93,7 @@ func NewMKPointOfInterestFilter() MKPointOfInterestFilter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
-func (m_ MKPointOfInterestFilter) PointOfInterestFilter() MKPointOfInterestFilter {
+func (m_ MKPointOfInterestFilter) PointOfInterestFilter() IMKPointOfInterestFilter {
 	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }

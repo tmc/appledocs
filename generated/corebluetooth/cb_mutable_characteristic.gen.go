@@ -33,12 +33,12 @@ type ICBMutableCharacteristic interface {
 	Descriptors() []CBDescriptor
 	SetDescriptors(value []CBDescriptor)
 	Permissions() CBAttributePermissions
-	SetPermissions(value ICBAttributePermissions)
+	SetPermissions(value CBAttributePermissions)
 	Properties() CBCharacteristicProperties
-	SetProperties(value ICBCharacteristicProperties)
+	SetProperties(value CBCharacteristicProperties)
 	SubscribedCentrals() []CBCentral
 	Value() foundation.NSData
-	SetValue(value foundation.IData)
+	SetValue(value foundation.NSData)
 }
 
 // A characteristic of a local peripheral’s service.
@@ -100,7 +100,7 @@ func NewCBMutableCharacteristic() CBMutableCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/init(type:properties:value:permissions:)
-func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties ICBCharacteristicProperties, value foundation.IData, permissions ICBAttributePermissions) CBMutableCharacteristic {
+func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties CBCharacteristicProperties, value foundation.NSData, permissions CBAttributePermissions) CBMutableCharacteristic {
 	instance := getCBMutableCharacteristicClass().Alloc()
 	rv := objc.Send[CBMutableCharacteristic](instance.ID, objc.Sel("initWithType:properties:value:permissions:"), UUID, properties, value, permissions)
 	rv.Autorelease()
@@ -152,7 +152,7 @@ func (c_ CBMutableCharacteristic) Permissions() CBAttributePermissions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
-func (c_ CBMutableCharacteristic) SetPermissions(value ICBAttributePermissions) {
+func (c_ CBMutableCharacteristic) SetPermissions(value CBAttributePermissions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermissions:"), value)
 }
 
@@ -171,7 +171,7 @@ func (c_ CBMutableCharacteristic) Properties() CBCharacteristicProperties {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
-func (c_ CBMutableCharacteristic) SetProperties(value ICBCharacteristicProperties) {
+func (c_ CBMutableCharacteristic) SetProperties(value CBCharacteristicProperties) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProperties:"), value)
 }
 
@@ -200,7 +200,7 @@ func (c_ CBMutableCharacteristic) Value() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-func (c_ CBMutableCharacteristic) SetValue(value foundation.IData) {
+func (c_ CBMutableCharacteristic) SetValue(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 

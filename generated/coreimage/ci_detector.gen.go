@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _DetectorClass struct {
 type IDetector interface {
 	objectivec.IObject
 	FeaturesInImage(image ICIImage) []Feature
-	FeaturesInImageOptions(image ICIImage, options unsafe.Pointer) []Feature
+	FeaturesInImageOptions(image ICIImage, options foundation.IDictionary) []Feature
 }
 
 // An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
@@ -91,7 +92,7 @@ func NewDetector() Detector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func NewDetectorOfTypeContextOptions(type_ string, context ICIContext, options unsafe.Pointer) Detector {
+func NewDetectorOfTypeContextOptions(type_ string, context ICIContext, options foundation.IDictionary) Detector {
 	rv := objc.Send[Detector](objc.ID(getDetectorClass().class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
@@ -102,7 +103,7 @@ func NewDetectorOfTypeContextOptions(type_ string, context ICIContext, options u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/init(ofType:context:options:)
-func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context ICIContext, options unsafe.Pointer) Detector {
+func (dc _DetectorClass) DetectorOfTypeContextOptions(type_ string, context ICIContext, options foundation.IDictionary) IDetector {
 	rv := objc.Send[Detector](objc.ID(dc.class), objc.Sel("detectorOfType:context:options:"), objc.String(type_), context, options)
 	return rv
 }
@@ -122,7 +123,7 @@ func (d_ Detector) FeaturesInImage(image ICIImage) []Feature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDetector/features(in:options:)
-func (d_ Detector) FeaturesInImageOptions(image ICIImage, options unsafe.Pointer) []Feature {
+func (d_ Detector) FeaturesInImageOptions(image ICIImage, options foundation.IDictionary) []Feature {
 	rv := objc.Send[[]Feature](d_.ID, objc.Sel("featuresInImage:options:"), image, options)
 	return rv
 }

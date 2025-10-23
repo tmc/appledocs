@@ -29,24 +29,16 @@ type _FSBlockDeviceResourceClass struct {
 // An interface definition for the [FSBlockDeviceResource] class.
 type IFSBlockDeviceResource interface {
 	IFSResource
-	AsynchronousMetadataFlushWithError(error_ unsafe.Pointer) bool
-	DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
-	MetadataClearWithDelayedWritesError(rangesToClear []FSMetadataRange, withDelayedWrites bool, error_ unsafe.Pointer) bool
-	MetadataFlushWithError(error_ unsafe.Pointer) bool
-	MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool
-	MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
-	MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool
-	ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer)
-	ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr
-	WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer)
-	WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr
-	BlockCount() uint64
-	BlockSize() uint64
 	BSDName() string
-	Writable() bool
-	PhysicalBlockSize() uint64
+	BlockCount() uint64
+	SetBlockCount(value uint64)
+	BlockSize() uint64
+	SetBlockSize(value uint64)
 	IsWritable() bool
 	SetIsWritable(value bool)
+	PhysicalBlockSize() uint64
+	SetPhysicalBlockSize(value uint64)
+	MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool
 }
 
 // A resource that represents a block storage disk partition.
@@ -104,130 +96,12 @@ func NewFSBlockDeviceResource() FSBlockDeviceResource {
 
 
 
-// Asynchronously flushes the resource’s buffer cache.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/asynchronousMetadataFlush()
-func (f_ FSBlockDeviceResource) AsynchronousMetadataFlushWithError(error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("asynchronousMetadataFlushWithError:"), error_)
-	return rv
-}
-
-
-// Writes file system metadata from a buffer to a cache, prior to flushing it to the resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/delayedMetadataWriteFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("delayedMetadataWriteFrom:startingAt:length:error:"), buffer, offset, length, error_)
-	return rv
-}
-
-
-// Clears the given ranges within the buffer cache.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)
-func (f_ FSBlockDeviceResource) MetadataClearWithDelayedWritesError(rangesToClear []FSMetadataRange, withDelayedWrites bool, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("metadataClear:withDelayedWrites:error:"), rangesToClear, withDelayedWrites, error_)
-	return rv
-}
-
-
-// Synchronously flushes the resource’s buffer cache.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataFlush()
-func (f_ FSBlockDeviceResource) MetadataFlushWithError(error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("metadataFlushWithError:"), error_)
-	return rv
-}
-
-
 // Synchronously purges the given ranges from the buffer cache.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)
 func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataPurge:error:"), rangesToPurge, error_)
-	return rv
-}
-
-
-// Synchronously reads file system metadata from the resource into a buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataReadInto:startingAt:length:error:
-func (f_ FSBlockDeviceResource) MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("metadataReadInto:startingAt:length:error:"), buffer, offset, length, error_)
-	return rv
-}
-
-
-// Synchronously writes file system metadata from a buffer to the resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataWriteFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("metadataWriteFrom:startingAt:length:error:"), buffer, offset, length, error_)
-	return rv
-}
-
-
-// Reads data from the resource into a buffer and executes a block afterwards.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:completionHandler:
-func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("readInto:startingAt:length:completionHandler:"), buffer, offset, length, completionHandler)
-}
-
-
-// Synchronously reads data from the resource into a buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/readInto:startingAt:length:error:
-func (f_ FSBlockDeviceResource) ReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr {
-	rv := objc.Send[uintptr](f_.ID, objc.Sel("readInto:startingAt:length:error:"), buffer, offset, length, error_)
-	return rv
-}
-
-
-// Writes data from from a buffer to the resource and executes a block afterwards.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:completionHandler:
-func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("writeFrom:startingAt:length:completionHandler:"), buffer, offset, length, completionHandler)
-}
-
-
-// Synchronously writes data from from a buffer to the resource and executes a block afterwards.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/writeFrom:startingAt:length:error:
-func (f_ FSBlockDeviceResource) WriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length Iuintptr, error_ unsafe.Pointer) uintptr {
-	rv := objc.Send[uintptr](f_.ID, objc.Sel("writeFrom:startingAt:length:error:"), buffer, offset, length, error_)
-	return rv
-}
-
-
-// The block count on this resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/blockCount
-func (f_ FSBlockDeviceResource) BlockCount() uint64 {
-	rv := objc.Send[uint64](f_.ID, objc.Sel("blockCount"))
-	return rv
-}
-
-
-// The logical block size, the size of data blocks used by the file system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/blockSize
-func (f_ FSBlockDeviceResource) BlockSize() uint64 {
-	rv := objc.Send[uint64](f_.ID, objc.Sel("blockSize"))
 	return rv
 }
 
@@ -242,23 +116,41 @@ func (f_ FSBlockDeviceResource) BSDName() string {
 }
 
 
-// A Boolean property that indicates whether the resource can write data to the device.
+// The block count on this resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/isWritable
-func (f_ FSBlockDeviceResource) Writable() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("writable"))
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blockcount
+func (f_ FSBlockDeviceResource) BlockCount() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("blockCount"))
 	return rv
 }
 
 
-// The sector size of the device.
+// The block count on this resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/physicalBlockSize
-func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 {
-	rv := objc.Send[uint64](f_.ID, objc.Sel("physicalBlockSize"))
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blockcount
+func (f_ FSBlockDeviceResource) SetBlockCount(value uint64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockCount:"), value)
+}
+
+
+// The logical block size, the size of data blocks used by the file system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blocksize
+func (f_ FSBlockDeviceResource) BlockSize() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("blockSize"))
 	return rv
+}
+
+
+// The logical block size, the size of data blocks used by the file system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/blocksize
+func (f_ FSBlockDeviceResource) SetBlockSize(value uint64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setBlockSize:"), value)
 }
 
 
@@ -278,6 +170,25 @@ func (f_ FSBlockDeviceResource) IsWritable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/iswritable
 func (f_ FSBlockDeviceResource) SetIsWritable(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsWritable:"), value)
+}
+
+
+// The sector size of the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/physicalblocksize
+func (f_ FSBlockDeviceResource) PhysicalBlockSize() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("physicalBlockSize"))
+	return rv
+}
+
+
+// The sector size of the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsblockdeviceresource/physicalblocksize
+func (f_ FSBlockDeviceResource) SetPhysicalBlockSize(value uint64) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPhysicalBlockSize:"), value)
 }
 
 

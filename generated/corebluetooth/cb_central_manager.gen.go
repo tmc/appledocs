@@ -31,16 +31,16 @@ type _CBCentralManagerClass struct {
 // An interface definition for the [CBCentralManager] class.
 type ICBCentralManager interface {
 	ICBManager
-	CancelPeripheralConnection(peripheral ICBPeripheral)
-	ConnectPeripheralOptions(peripheral ICBPeripheral, options unsafe.Pointer)
-	RegisterForConnectionEventsWithOptions(options unsafe.Pointer)
-	RetrieveConnectedPeripheralsWithServices(serviceUUIDs []CBUUID) []CBPeripheral
-	RetrievePeripheralsWithIdentifiers(identifiers []foundation.IUUID) []CBPeripheral
-	ScanForPeripheralsWithServicesOptions(serviceUUIDs []CBUUID, options unsafe.Pointer)
-	StopScan()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	IsScanning() bool
+	CancelPeripheralConnection(peripheral ICBPeripheral)
+	ConnectPeripheralOptions(peripheral ICBPeripheral, options foundation.IDictionary)
+	RegisterForConnectionEventsWithOptions(options foundation.IDictionary)
+	RetrieveConnectedPeripheralsWithServices(serviceUUIDs []CBUUID) []CBPeripheral
+	RetrievePeripheralsWithIdentifiers(identifiers []foundation.UUID) []CBPeripheral
+	ScanForPeripheralsWithServicesOptions(serviceUUIDs []CBUUID, options foundation.IDictionary)
+	StopScan()
 }
 
 // An object that scans for, discovers, connects to, and manages peripherals.
@@ -114,7 +114,7 @@ func NewCBCentralManagerWithDelegateQueue(delegate objectivec.IObject, queue uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/init(delegate:queue:options:)
-func NewCBCentralManagerWithDelegateQueueOptions(delegate objectivec.IObject, queue unsafe.Pointer, options unsafe.Pointer) CBCentralManager {
+func NewCBCentralManagerWithDelegateQueueOptions(delegate objectivec.IObject, queue unsafe.Pointer, options foundation.IDictionary) CBCentralManager {
 	instance := getCBCentralManagerClass().Alloc()
 	rv := objc.Send[CBCentralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
 	rv.Autorelease()
@@ -127,7 +127,7 @@ func NewCBCentralManagerWithDelegateQueueOptions(delegate objectivec.IObject, qu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/supports(_:)
-func (cc _CBCentralManagerClass) SupportsFeatures(features ICBCentralManagerFeature) bool {
+func (cc _CBCentralManagerClass) SupportsFeatures(features CBCentralManagerFeature) bool {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("supportsFeatures:"), features)
 	return rv
 }
@@ -146,7 +146,7 @@ func (c_ CBCentralManager) CancelPeripheralConnection(peripheral ICBPeripheral) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/connect(_:options:)
-func (c_ CBCentralManager) ConnectPeripheralOptions(peripheral ICBPeripheral, options unsafe.Pointer) {
+func (c_ CBCentralManager) ConnectPeripheralOptions(peripheral ICBPeripheral, options foundation.IDictionary) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("connectPeripheral:options:"), peripheral, options)
 }
 
@@ -155,7 +155,7 @@ func (c_ CBCentralManager) ConnectPeripheralOptions(peripheral ICBPeripheral, op
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/registerForConnectionEvents(options:)
-func (c_ CBCentralManager) RegisterForConnectionEventsWithOptions(options unsafe.Pointer) {
+func (c_ CBCentralManager) RegisterForConnectionEventsWithOptions(options foundation.IDictionary) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerForConnectionEventsWithOptions:"), options)
 }
 
@@ -174,7 +174,7 @@ func (c_ CBCentralManager) RetrieveConnectedPeripheralsWithServices(serviceUUIDs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/retrievePeripherals(withIdentifiers:)
-func (c_ CBCentralManager) RetrievePeripheralsWithIdentifiers(identifiers []foundation.IUUID) []CBPeripheral {
+func (c_ CBCentralManager) RetrievePeripheralsWithIdentifiers(identifiers []foundation.UUID) []CBPeripheral {
 	rv := objc.Send[[]CBPeripheral](c_.ID, objc.Sel("retrievePeripheralsWithIdentifiers:"), identifiers)
 	return rv
 }
@@ -184,7 +184,7 @@ func (c_ CBCentralManager) RetrievePeripheralsWithIdentifiers(identifiers []foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentralManager/scanForPeripherals(withServices:options:)
-func (c_ CBCentralManager) ScanForPeripheralsWithServicesOptions(serviceUUIDs []CBUUID, options unsafe.Pointer) {
+func (c_ CBCentralManager) ScanForPeripheralsWithServicesOptions(serviceUUIDs []CBUUID, options foundation.IDictionary) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("scanForPeripheralsWithServices:options:"), serviceUUIDs, options)
 }
 

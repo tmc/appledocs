@@ -31,6 +31,8 @@ type _BAAssetPackManagerClass struct {
 // An interface definition for the [BAAssetPackManager] class.
 type IBAAssetPackManager interface {
 	objectivec.IObject
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	URLForPathError(path string, error_ unsafe.Pointer) foundation.URL
 	CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer)
 	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data
@@ -40,8 +42,6 @@ type IBAAssetPackManager interface {
 	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
 	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
 	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 }
 
 // A class that manages asset packs.
@@ -213,7 +213,7 @@ func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-func (b_ BAAssetPackManager) SharedManager() BAAssetPackManager {
+func (b_ BAAssetPackManager) SharedManager() IBAAssetPackManager {
 	rv := objc.Send[BAAssetPackManager](b_.ID, objc.Sel("sharedManager"))
 	return rv
 }

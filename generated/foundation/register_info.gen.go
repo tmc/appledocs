@@ -30,6 +30,8 @@ type _registerInfoClass struct {
 // An interface definition for the [registerInfo] class.
 type IregisterInfo interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

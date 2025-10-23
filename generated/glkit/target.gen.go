@@ -30,6 +30,8 @@ type _targetClass struct {
 // An interface definition for the [target] class.
 type Itarget interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

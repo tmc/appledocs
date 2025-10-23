@@ -33,20 +33,20 @@ type _FilterClass struct {
 // An interface definition for the [Filter] class.
 type IFilter interface {
 	objectivec.IObject
-	ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dict unsafe.Pointer) Image
-	Apply(k ICIKernel) Image
-	SetDefaults()
-	ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec.IObject, inKeys objectivec.IObject) quartz.IKFilterUIView
-	Attributes() unsafe.Pointer
+	Attributes() foundation.IDictionary
 	InputKeys() []string
 	Enabled() bool
 	SetEnabled(value bool)
 	Name() string
 	SetName(value string)
-	OutputImage() CIImage
+	OutputImage() ICIImage
 	OutputKeys() []string
 	IsEnabled() bool
 	SetIsEnabled(value bool)
+	ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dict foundation.IDictionary) IImage
+	Apply(k ICIKernel) IImage
+	SetDefaults()
+	ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec.IObject, inKeys objectivec.IObject) quartz.IKFilterUIView
 }
 
 // An image processor that produces an image by manipulating one or more input images or by generating new image data.
@@ -106,7 +106,7 @@ func NewFilter() Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options unsafe.Pointer) Filter {
+func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
 }
@@ -116,7 +116,7 @@ func NewFilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, pro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-func NewFilterWithImageDataOptions(data foundation.IData, options unsafe.Pointer) Filter {
+func NewFilterWithImageDataOptions(data foundation.NSData, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
 }
@@ -126,7 +126,7 @@ func NewFilterWithImageDataOptions(data foundation.IData, options unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-func NewFilterWithImageURLOptions(url foundation.IURL, options unsafe.Pointer) Filter {
+func NewFilterWithImageURLOptions(url foundation.URL, options foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
 }
@@ -146,7 +146,7 @@ func NewFilterWithName(name string) Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func NewFilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+func NewFilterWithNameWithInputParameters(name string, params foundation.IDictionary) Filter {
 	rv := objc.Send[Filter](objc.ID(getFilterClass().class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
 }
@@ -1117,7 +1117,7 @@ func (fc _FilterClass) FalseColorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterArray(fromSerializedXMP:inputImageExtent:error:)
-func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData foundation.IData, extent coregraphics.CGRect, outError unsafe.Pointer) []Filter {
+func (fc _FilterClass) FilterArrayFromSerializedXMPInputImageExtentError(xmpData foundation.NSData, extent coregraphics.CGRect, outError unsafe.Pointer) []Filter {
 	rv := objc.Send[[]Filter](objc.ID(fc.class), objc.Sel("filterArrayFromSerializedXMP:inputImageExtent:error:"), xmpData, extent, outError)
 	return rv
 }
@@ -1147,7 +1147,7 @@ func (fc _FilterClass) FilterNamesInCategory(category string) []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/filterWithName:keysAndValues:
-func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objectivec.IObject) Filter {
+func (fc _FilterClass) FilterWithNameKeysAndValues(name string, key0 objectivec.IObject) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:keysAndValues:"), objc.String(name), key0)
 	return rv
 }
@@ -1377,7 +1377,7 @@ func (fc _FilterClass) HueSaturationValueGradientFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(CVPixelBuffer:properties:options:)
-func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options unsafe.Pointer) Filter {
+func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsafe.Pointer, properties objectivec.IObject, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithCVPixelBuffer:properties:options:"), pixelBuffer, properties, options)
 	return rv
 }
@@ -1387,7 +1387,7 @@ func (fc _FilterClass) FilterWithCVPixelBufferPropertiesOptions(pixelBuffer unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageData:options:)
-func (fc _FilterClass) FilterWithImageDataOptions(data foundation.IData, options unsafe.Pointer) Filter {
+func (fc _FilterClass) FilterWithImageDataOptions(data foundation.NSData, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageData:options:"), data, options)
 	return rv
 }
@@ -1397,7 +1397,7 @@ func (fc _FilterClass) FilterWithImageDataOptions(data foundation.IData, options
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(imageURL:options:)
-func (fc _FilterClass) FilterWithImageURLOptions(url foundation.IURL, options unsafe.Pointer) Filter {
+func (fc _FilterClass) FilterWithImageURLOptions(url foundation.URL, options foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithImageURL:options:"), url, options)
 	return rv
 }
@@ -1407,7 +1407,7 @@ func (fc _FilterClass) FilterWithImageURLOptions(url foundation.IURL, options un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:)
-func (fc _FilterClass) FilterWithName(name string) Filter {
+func (fc _FilterClass) FilterWithName(name string) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:"), objc.String(name))
 	return rv
 }
@@ -1417,7 +1417,7 @@ func (fc _FilterClass) FilterWithName(name string) Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/init(name:withInputParameters:)
-func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params unsafe.Pointer) Filter {
+func (fc _FilterClass) FilterWithNameWithInputParameters(name string, params foundation.IDictionary) IFilter {
 	rv := objc.Send[Filter](objc.ID(fc.class), objc.Sel("filterWithName:withInputParameters:"), objc.String(name), params)
 	return rv
 }
@@ -2155,7 +2155,7 @@ func (fc _FilterClass) RandomGeneratorFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/registerName(_:constructor:classAttributes:)
-func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string, anObject objectivec.IObject, attributes unsafe.Pointer) {
+func (fc _FilterClass) RegisterFilterNameConstructorClassAttributes(name string, anObject objectivec.IObject, attributes foundation.IDictionary) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("registerFilterName:constructor:classAttributes:"), objc.String(name), anObject, attributes)
 }
 
@@ -2684,7 +2684,7 @@ func (fc _FilterClass) ZoomBlurFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/apply(_:arguments:options:)
-func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dict unsafe.Pointer) Image {
+func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dict foundation.IDictionary) IImage {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:arguments:options:"), k, args, dict)
 	return rv
 }
@@ -2694,7 +2694,7 @@ func (f_ Filter) ApplyArgumentsOptions(k ICIKernel, args objectivec.IObject, dic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/apply:
-func (f_ Filter) Apply(k ICIKernel) Image {
+func (f_ Filter) Apply(k ICIKernel) IImage {
 	rv := objc.Send[Image](f_.ID, objc.Sel("apply:"), k)
 	return rv
 }
@@ -2723,8 +2723,8 @@ func (f_ Filter) ViewForUIConfigurationExcludedKeys(inUIConfiguration objectivec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/attributes
-func (f_ Filter) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("attributes"))
+func (f_ Filter) Attributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](f_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -2781,8 +2781,8 @@ func (f_ Filter) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilter-swift.class/outputImage
-func (f_ Filter) OutputImage() CIImage {
-	rv := objc.Send[CIImage](f_.ID, objc.Sel("outputImage"))
+func (f_ Filter) OutputImage() ICIImage {
+	rv := objc.Send[Image](f_.ID, objc.Sel("outputImage"))
 	return rv
 }
 

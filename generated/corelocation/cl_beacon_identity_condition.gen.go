@@ -94,7 +94,7 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
-func NewBeaconIdentityConditionWithUUID(uuid foundation.IUUID) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUID(uuid foundation.UUID) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
@@ -106,7 +106,7 @@ func NewBeaconIdentityConditionWithUUID(uuid foundation.IUUID) BeaconIdentityCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
-func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.IUUID, major IBeaconMajorValue) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.UUID, major unsafe.Pointer) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:"), uuid, major)
 	rv.Autorelease()
@@ -118,7 +118,7 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.IUUID, major IBeaco
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
-func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid foundation.IUUID, major IBeaconMajorValue, minor IBeaconMinorValue) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid foundation.UUID, major unsafe.Pointer, minor unsafe.Pointer) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
 	rv.Autorelease()

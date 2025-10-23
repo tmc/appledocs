@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
@@ -31,11 +30,13 @@ type _SynchronizedLayerClass struct {
 // An interface definition for the [SynchronizedLayer] class.
 type ISynchronizedLayer interface {
 	quartzcore.ILayer
-	AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval
+	// properties:
+	AVCoreAnimationBeginTimeAtZero() CFTimeInterval /* foo */
 	PlayerItem() IAVPlayerItem
 	SetPlayerItem(value IAVPlayerItem)
-	BeginTime() foundation.TimeInterval
-	SetBeginTime(value foundation.TimeInterval)
+	BeginTime() CFTimeInterval /* foo */
+	SetBeginTime(value CFTimeInterval /* foo */)
+	// methods:
 }
 
 // A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
@@ -97,8 +98,8 @@ func NewSynchronizedLayer() SynchronizedLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero
-func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
+func (s_ SynchronizedLayer) AVCoreAnimationBeginTimeAtZero() CFTimeInterval /* foo */ {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("AVCoreAnimationBeginTimeAtZero"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (s_ SynchronizedLayer) SetPlayerItem(value IAVPlayerItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) BeginTime() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](s_.ID, objc.Sel("beginTime"))
+func (s_ SynchronizedLayer) BeginTime() CFTimeInterval /* foo */ {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("beginTime"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (s_ SynchronizedLayer) BeginTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTiming/beginTime
-func (s_ SynchronizedLayer) SetBeginTime(value foundation.TimeInterval) {
+func (s_ SynchronizedLayer) SetBeginTime(value CFTimeInterval /* foo */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBeginTime:"), value)
 }
 

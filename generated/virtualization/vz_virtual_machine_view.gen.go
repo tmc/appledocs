@@ -30,18 +30,22 @@ type _VZVirtualMachineViewClass struct {
 // An interface definition for the [VZVirtualMachineView] class.
 type IVZVirtualMachineView interface {
 	appkit.IView
-	AutomaticallyReconfiguresDisplay() bool
-	SetAutomaticallyReconfiguresDisplay(value bool)
 	CapturesSystemKeys() bool
 	SetCapturesSystemKeys(value bool)
-	VirtualMachine() VZVirtualMachine
+	VirtualMachine() IVZVirtualMachine
 	SetVirtualMachine(value IVZVirtualMachine)
+	AutomaticallyReconfiguresDisplay() bool
+	SetAutomaticallyReconfiguresDisplay(value bool)
 }
 
 // A view that allows user interaction with a VM.
 //
 // The is a UI element that shows the contents of the VM frame buffer that you can optionally configure to respond to changes in the host’s display settings. If the VM configuration includes a keyboard and a pointing device, the view forwards keyboard and mouse events to the VM through those devices.
+
+
+// A view that allows user interaction with a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView
 type VZVirtualMachineView struct {
 	appkit.View
@@ -88,26 +92,10 @@ func NewVZVirtualMachineView() VZVirtualMachineView {
 }
 
 
-// A Boolean value that indicates whether the graphics display associated with this view automatically reconfigures with respect to view changes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/automaticallyReconfiguresDisplay
-func (v_ VZVirtualMachineView) AutomaticallyReconfiguresDisplay() bool {
-	rv := objc.Send[bool](v_.ID, objc.Sel("automaticallyReconfiguresDisplay"))
-	return rv
-}
-
-
-// SetAutomaticallyReconfiguresDisplay sets the value of the automaticallyReconfiguresDisplay property.
-// A Boolean value that indicates whether the graphics display associated with this view automatically reconfigures with respect to view changes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/automaticallyReconfiguresDisplay
-func (v_ VZVirtualMachineView) SetAutomaticallyReconfiguresDisplay(value bool) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAutomaticallyReconfiguresDisplay:"), value)
-}
 
 // A Boolean value that determines whether the system should send certain system keyboard shortcuts to the guest instead of the host.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/capturesSystemKeys
 func (v_ VZVirtualMachineView) CapturesSystemKeys() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("capturesSystemKeys"))
@@ -115,32 +103,52 @@ func (v_ VZVirtualMachineView) CapturesSystemKeys() bool {
 }
 
 
-// SetCapturesSystemKeys sets the value of the capturesSystemKeys property.
 // A Boolean value that determines whether the system should send certain system keyboard shortcuts to the guest instead of the host.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/capturesSystemKeys
 func (v_ VZVirtualMachineView) SetCapturesSystemKeys(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCapturesSystemKeys:"), value)
 }
 
+
 // The VM to display in the view.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/virtualMachine
-func (v_ VZVirtualMachineView) VirtualMachine() VZVirtualMachine {
+func (v_ VZVirtualMachineView) VirtualMachine() IVZVirtualMachine {
 	rv := objc.Send[VZVirtualMachine](v_.ID, objc.Sel("virtualMachine"))
 	return rv
 }
 
 
-// SetVirtualMachine sets the value of the virtualMachine property.
 // The VM to display in the view.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/virtualMachine
 func (v_ VZVirtualMachineView) SetVirtualMachine(value IVZVirtualMachine) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVirtualMachine:"), value)
 }
+
+
+// A Boolean value that indicates whether the graphics display associated with this view automatically reconfigures with respect to view changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineview/automaticallyreconfiguresdisplay
+func (v_ VZVirtualMachineView) AutomaticallyReconfiguresDisplay() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("automaticallyReconfiguresDisplay"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the graphics display associated with this view automatically reconfigures with respect to view changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineview/automaticallyreconfiguresdisplay
+func (v_ VZVirtualMachineView) SetAutomaticallyReconfiguresDisplay(value bool) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAutomaticallyReconfiguresDisplay:"), value)
+}
+
 
 
 

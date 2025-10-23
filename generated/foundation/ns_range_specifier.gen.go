@@ -29,10 +29,12 @@ type _RangeSpecifierClass struct {
 // An interface definition for the [RangeSpecifier] class.
 type IRangeSpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
 	EndSpecifier() IScriptObjectSpecifier
 	SetEndSpecifier(value IScriptObjectSpecifier)
 	StartSpecifier() IScriptObjectSpecifier
 	SetStartSpecifier(value IScriptObjectSpecifier)
+	// methods:
 }
 
 // A specifier for a range of objects in a container.
@@ -104,7 +106,7 @@ func NewRangeSpecifierWithCoder(inCoder ICoder) RangeSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/init(containerClassDescription:containerSpecifier:key:start:end:)
-func NewRangeSpecifierWithContainerClassDescriptionContainerSpecifierKeyStartSpecifierEndSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, startSpec IScriptObjectSpecifier, endSpec IScriptObjectSpecifier) RangeSpecifier {
+func NewRangeSpecifierWithContainerClassDescriptionContainerSpecifierKeyStartSpecifierEndSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, startSpec IScriptObjectSpecifier, endSpec IScriptObjectSpecifier) RangeSpecifier {
 	instance := getRangeSpecifierClass().Alloc()
 	rv := objc.Send[RangeSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:"), classDesc, container, objc.String(property), startSpec, endSpec)
 	rv.Autorelease()

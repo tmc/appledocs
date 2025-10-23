@@ -30,10 +30,10 @@ type _MKMapItemRequestClass struct {
 // An interface definition for the [MKMapItemRequest] class.
 type IMKMapItemRequest interface {
 	objectivec.IObject
-	Loading() bool
+	// properties:
 	Feature() unsafe.Pointer
 	SetFeature(value unsafe.Pointer)
-	FeatureAnnotation() MKMapFeatureAnnotation
+	FeatureAnnotation() IMKMapFeatureAnnotation
 	SetFeatureAnnotation(value IMKMapFeatureAnnotation)
 	IsCancelled() bool
 	SetIsCancelled(value bool)
@@ -41,12 +41,13 @@ type IMKMapItemRequest interface {
 	SetIsLoading(value bool)
 	MapFeature() unsafe.Pointer
 	SetMapFeature(value unsafe.Pointer)
-	MapFeatureAnnotation() MKMapFeatureAnnotation
+	MapFeatureAnnotation() IMKMapFeatureAnnotation
 	SetMapFeatureAnnotation(value IMKMapFeatureAnnotation)
 	MapItemIdentifier() MKMapItemIdentifier
-	SetMapItemIdentifier(value IMKMapItemIdentifier)
+	SetMapItemIdentifier(value MKMapItemIdentifier)
 	PlaceDescriptor() unsafe.Pointer
 	SetPlaceDescriptor(value unsafe.Pointer)
+	// methods:
 }
 
 // A utility class you use to request additional information about a map feature.
@@ -100,16 +101,6 @@ func NewMKMapItemRequest() MKMapItemRequest {
 
 
 
-// A Boolean value that indicates if the request is loading.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemRequest/isLoading
-func (m_ MKMapItemRequest) Loading() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("loading"))
-	return rv
-}
-
-
 // The map feature.
 //
 // [Full Topic]
@@ -133,7 +124,7 @@ func (m_ MKMapItemRequest) SetFeature(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/featureannotation
-func (m_ MKMapItemRequest) FeatureAnnotation() MKMapFeatureAnnotation {
+func (m_ MKMapItemRequest) FeatureAnnotation() IMKMapFeatureAnnotation {
 	rv := objc.Send[MKMapFeatureAnnotation](m_.ID, objc.Sel("featureAnnotation"))
 	return rv
 }
@@ -209,7 +200,7 @@ func (m_ MKMapItemRequest) SetMapFeature(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapfeatureannotation
-func (m_ MKMapItemRequest) MapFeatureAnnotation() MKMapFeatureAnnotation {
+func (m_ MKMapItemRequest) MapFeatureAnnotation() IMKMapFeatureAnnotation {
 	rv := objc.Send[MKMapFeatureAnnotation](m_.ID, objc.Sel("mapFeatureAnnotation"))
 	return rv
 }
@@ -238,7 +229,7 @@ func (m_ MKMapItemRequest) MapItemIdentifier() MKMapItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapitemidentifier
-func (m_ MKMapItemRequest) SetMapItemIdentifier(value IMKMapItemIdentifier) {
+func (m_ MKMapItemRequest) SetMapItemIdentifier(value MKMapItemIdentifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItemIdentifier:"), value)
 }
 

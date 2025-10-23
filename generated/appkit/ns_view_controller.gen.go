@@ -32,6 +32,37 @@ type _ViewControllerClass struct {
 // An interface definition for the [ViewController] class.
 type IViewController interface {
 	IResponder
+	ChildViewControllers() []ViewController
+	SetChildViewControllers(value []ViewController)
+	ExtensionContext() foundation.NSExtensionContext
+	ViewLoaded() bool
+	NibBundle() foundation.Bundle
+	NibName() NibName
+	ParentViewController() IViewController
+	PreferredContentSize() coregraphics.CGSize
+	SetPreferredContentSize(value coregraphics.CGSize)
+	PreferredMaximumSize() coregraphics.CGSize
+	PreferredMinimumSize() coregraphics.CGSize
+	PreferredScreenOrigin() coregraphics.CGPoint
+	SetPreferredScreenOrigin(value coregraphics.CGPoint)
+	PresentedViewControllers() []ViewController
+	PresentingViewController() IViewController
+	RepresentedObject() objc.ID
+	SetRepresentedObject(value objc.ID)
+	SourceItemView() IView
+	SetSourceItemView(value IView)
+	Storyboard() IStoryboard
+	Title() string
+	SetTitle(value string)
+	View() IView
+	SetView(value IView)
+	ViewIfLoaded() IView
+	Children() IViewController
+	SetChildren(value IViewController)
+	IsViewLoaded() bool
+	SetIsViewLoaded(value bool)
+	Parent() IViewController
+	SetParent(value IViewController)
 	AddChildViewController(childViewController IViewController)
 	CommitEditing() bool
 	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objectivec.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
@@ -43,14 +74,13 @@ type IViewController interface {
 	LoadViewIfNeeded()
 	PreferredContentSizeDidChangeForViewController(viewController IViewController)
 	PresentViewControllerAnimator(viewController IViewController, animator objectivec.IObject)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior, hasFullSizeContent bool)
-	PresentViewControllerInWidget(viewController IViewController)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior NSPopoverBehavior)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior NSPopoverBehavior, hasFullSizeContent bool)
 	PresentViewControllerAsModalWindow(viewController IViewController)
 	PresentViewControllerAsSheet(viewController IViewController)
 	RemoveChildViewControllerAtIndex(index int)
 	RemoveFromParentViewController()
-	TransitionFromViewControllerToViewControllerOptionsCompletionHandler(fromViewController IViewController, toViewController IViewController, options ViewControllerTransitionOptions, completion unsafe.Pointer)
+	TransitionFromViewControllerToViewControllerOptionsCompletionHandler(fromViewController IViewController, toViewController IViewController, options NSViewControllerTransitionOptions, completion unsafe.Pointer)
 	UpdateViewConstraints()
 	ViewDidAppear()
 	ViewDidDisappear()
@@ -60,37 +90,6 @@ type IViewController interface {
 	ViewWillDisappear()
 	ViewWillLayout()
 	ViewWillTransitionToSize(newSize coregraphics.CGSize)
-	ChildViewControllers() []ViewController
-	SetChildViewControllers(value []ViewController)
-	ExtensionContext() foundation.NSExtensionContext
-	ViewLoaded() bool
-	NibBundle() foundation.Bundle
-	NibName() NibName
-	ParentViewController() NSViewController
-	PreferredContentSize() coregraphics.CGSize
-	SetPreferredContentSize(value coregraphics.CGSize)
-	PreferredMaximumSize() coregraphics.CGSize
-	PreferredMinimumSize() coregraphics.CGSize
-	PreferredScreenOrigin() coregraphics.CGPoint
-	SetPreferredScreenOrigin(value coregraphics.CGPoint)
-	PresentedViewControllers() []ViewController
-	PresentingViewController() NSViewController
-	RepresentedObject() objc.ID
-	SetRepresentedObject(value objc.ID)
-	SourceItemView() NSView
-	SetSourceItemView(value IView)
-	Storyboard() NSStoryboard
-	Title() string
-	SetTitle(value string)
-	View() NSView
-	SetView(value IView)
-	ViewIfLoaded() NSView
-	Children() NSViewController
-	SetChildren(value IViewController)
-	IsViewLoaded() bool
-	SetIsViewLoaded(value bool)
-	Parent() NSViewController
-	SetParent(value IViewController)
 }
 
 // A controller that manages a view, typically loaded from a nib file.
@@ -150,7 +149,7 @@ func NewViewController() ViewController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-func NewViewControllerWithCoder(coder foundation.ICoder) ViewController {
+func NewViewControllerWithCoder(coder foundation.Coder) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -162,7 +161,7 @@ func NewViewControllerWithCoder(coder foundation.ICoder) ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
-func NewViewControllerWithNibNameBundle(nibNameOrNil INibName, nibBundleOrNil foundation.IBundle) ViewController {
+func NewViewControllerWithNibNameBundle(nibNameOrNil NibName, nibBundleOrNil foundation.Bundle) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()
@@ -271,22 +270,15 @@ func (v_ ViewController) PresentViewControllerAnimator(viewController IViewContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior NSPopoverBehavior) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior PopoverBehavior, hasFullSizeContent bool) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect coregraphics.CGRect, positioningView IView, preferredEdge int, behavior NSPopoverBehavior, hasFullSizeContent bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(inWidget:)
-func (v_ ViewController) PresentViewControllerInWidget(viewController IViewController) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewControllerInWidget:"), viewController)
 }
 
 
@@ -330,7 +322,7 @@ func (v_ ViewController) RemoveFromParentViewController() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/transition(from:to:options:completionHandler:)
-func (v_ ViewController) TransitionFromViewControllerToViewControllerOptionsCompletionHandler(fromViewController IViewController, toViewController IViewController, options ViewControllerTransitionOptions, completion unsafe.Pointer) {
+func (v_ ViewController) TransitionFromViewControllerToViewControllerOptionsCompletionHandler(fromViewController IViewController, toViewController IViewController, options NSViewControllerTransitionOptions, completion unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("transitionFromViewController:toViewController:options:completionHandler:"), fromViewController, toViewController, options, completion)
 }
 
@@ -489,8 +481,8 @@ func (v_ ViewController) NibName() NibName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/parent
-func (v_ ViewController) ParentViewController() NSViewController {
-	rv := objc.Send[NSViewController](v_.ID, objc.Sel("parentViewController"))
+func (v_ ViewController) ParentViewController() IViewController {
+	rv := objc.Send[ViewController](v_.ID, objc.Sel("parentViewController"))
 	return rv
 }
 
@@ -567,8 +559,8 @@ func (v_ ViewController) PresentedViewControllers() []ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentingViewController
-func (v_ ViewController) PresentingViewController() NSViewController {
-	rv := objc.Send[NSViewController](v_.ID, objc.Sel("presentingViewController"))
+func (v_ ViewController) PresentingViewController() IViewController {
+	rv := objc.Send[ViewController](v_.ID, objc.Sel("presentingViewController"))
 	return rv
 }
 
@@ -594,8 +586,8 @@ func (v_ ViewController) SetRepresentedObject(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/sourceItemView
-func (v_ ViewController) SourceItemView() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("sourceItemView"))
+func (v_ ViewController) SourceItemView() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("sourceItemView"))
 	return rv
 }
 
@@ -611,8 +603,8 @@ func (v_ ViewController) SetSourceItemView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/storyboard
-func (v_ ViewController) Storyboard() NSStoryboard {
-	rv := objc.Send[NSStoryboard](v_.ID, objc.Sel("storyboard"))
+func (v_ ViewController) Storyboard() IStoryboard {
+	rv := objc.Send[Storyboard](v_.ID, objc.Sel("storyboard"))
 	return rv
 }
 
@@ -640,8 +632,8 @@ func (v_ ViewController) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/view
-func (v_ ViewController) View() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("view"))
+func (v_ ViewController) View() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -657,8 +649,8 @@ func (v_ ViewController) SetView(value IView) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/viewIfLoaded
-func (v_ ViewController) ViewIfLoaded() NSView {
-	rv := objc.Send[NSView](v_.ID, objc.Sel("viewIfLoaded"))
+func (v_ ViewController) ViewIfLoaded() IView {
+	rv := objc.Send[View](v_.ID, objc.Sel("viewIfLoaded"))
 	return rv
 }
 
@@ -667,8 +659,8 @@ func (v_ ViewController) ViewIfLoaded() NSView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
-func (v_ ViewController) Children() NSViewController {
-	rv := objc.Send[NSViewController](v_.ID, objc.Sel("children"))
+func (v_ ViewController) Children() IViewController {
+	rv := objc.Send[ViewController](v_.ID, objc.Sel("children"))
 	return rv
 }
 
@@ -705,8 +697,8 @@ func (v_ ViewController) SetIsViewLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/parent
-func (v_ ViewController) Parent() NSViewController {
-	rv := objc.Send[NSViewController](v_.ID, objc.Sel("parent"))
+func (v_ ViewController) Parent() IViewController {
+	rv := objc.Send[ViewController](v_.ID, objc.Sel("parent"))
 	return rv
 }
 

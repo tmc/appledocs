@@ -31,24 +31,23 @@ type _PersistentStoreClass struct {
 // An interface definition for the [PersistentStore] class.
 type IPersistentStore interface {
 	objectivec.IObject
-	LoadMetadata(error_ unsafe.Pointer) bool
-	ReadOnly() bool
-	SetReadOnly(value bool)
-	Metadata() unsafe.Pointer
-	SetMetadata(value unsafe.Pointer)
-	Options() objc.ID
-	PersistentStoreCoordinator() NSPersistentStoreCoordinator
+	Metadata() foundation.IDictionary
+	SetMetadata(value foundation.IDictionary)
 	Type() string
 	ConfigurationName() string
 	SetConfigurationName(value string)
-	CoreSpotlightExporter() NSCoreDataCoreSpotlightDelegate
+	CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate
 	SetCoreSpotlightExporter(value ICoreDataCoreSpotlightDelegate)
 	Identifier() string
 	SetIdentifier(value string)
 	IsReadOnly() bool
 	SetIsReadOnly(value bool)
+	Options() unsafe.Pointer
+	SetOptions(value unsafe.Pointer)
+	PersistentStoreCoordinator() IPersistentStoreCoordinator
+	SetPersistentStoreCoordinator(value IPersistentStoreCoordinator)
 	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	SetUrl(value foundation.URL)
 }
 
 // The abstract base class for all Core Data persistent stores.
@@ -108,7 +107,7 @@ func NewPersistentStore() PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/init(persistentStoreCoordinator:configurationName:at:options:)
-func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name string, url foundation.IURL, options objectivec.IObject) PersistentStore {
+func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions(root IPersistentStoreCoordinator, name string, url foundation.URL, options objectivec.IObject) PersistentStore {
 	instance := getPersistentStoreClass().Alloc()
 	rv := objc.Send[PersistentStore](instance.ID, objc.Sel("initWithPersistentStoreCoordinator:configurationName:URL:options:"), root, objc.String(name), url, options)
 	rv.Autorelease()
@@ -117,71 +116,12 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 
 
 
-// Returns the metadata from the persistent store at the given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadataForPersistentStore(with:)
-func (pc _PersistentStoreClass) MetadataForPersistentStoreWithURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreWithURL:error:"), url, error_)
-	return rv
-}
-
-
-// Returns the migration manager class for this store class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/migrationManagerClass()
-func (pc _PersistentStoreClass) MigrationManagerClass() objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(pc.class), objc.Sel("migrationManagerClass"))
-	return rv
-}
-
-
-// Sets the metadata for the store at a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/setMetadata(_:forPersistentStoreAt:)
-func (pc _PersistentStoreClass) SetMetadataForPersistentStoreWithURLError(metadata unsafe.Pointer, url foundation.IURL, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("setMetadata:forPersistentStoreWithURL:error:"), metadata, url, error_)
-	return rv
-}
-
-
-// Instructs the persistent store to load its metadata.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/loadMetadata()
-func (p_ PersistentStore) LoadMetadata(error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("loadMetadata:"), error_)
-	return rv
-}
-
-
-// A Boolean value that indicates whether the persistent store is read-only.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/isReadOnly
-func (p_ PersistentStore) ReadOnly() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("readOnly"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the persistent store is read-only.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/isReadOnly
-func (p_ PersistentStore) SetReadOnly(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
-}
-
-
 // The metadata for the persistent store.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
-func (p_ PersistentStore) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("metadata"))
+func (p_ PersistentStore) Metadata() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -190,28 +130,8 @@ func (p_ PersistentStore) Metadata() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/metadata
-func (p_ PersistentStore) SetMetadata(value unsafe.Pointer) {
+func (p_ PersistentStore) SetMetadata(value foundation.IDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
-}
-
-
-// The options that Core Data uses to create the store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/options
-func (p_ PersistentStore) Options() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// The persistent store coordinator that loads the persistent store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStore/persistentStoreCoordinator
-func (p_ PersistentStore) PersistentStoreCoordinator() NSPersistentStoreCoordinator {
-	rv := objc.Send[NSPersistentStoreCoordinator](p_.ID, objc.Sel("persistentStoreCoordinator"))
-	return rv
 }
 
 
@@ -248,8 +168,8 @@ func (p_ PersistentStore) SetConfigurationName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/corespotlightexporter
-func (p_ PersistentStore) CoreSpotlightExporter() NSCoreDataCoreSpotlightDelegate {
-	rv := objc.Send[NSCoreDataCoreSpotlightDelegate](p_.ID, objc.Sel("coreSpotlightExporter"))
+func (p_ PersistentStore) CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate {
+	rv := objc.Send[CoreDataCoreSpotlightDelegate](p_.ID, objc.Sel("coreSpotlightExporter"))
 	return rv
 }
 
@@ -301,6 +221,44 @@ func (p_ PersistentStore) SetIsReadOnly(value bool) {
 }
 
 
+// The options that Core Data uses to create the store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/options
+func (p_ PersistentStore) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// The options that Core Data uses to create the store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/options
+func (p_ PersistentStore) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
+}
+
+
+// The persistent store coordinator that loads the persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/persistentstorecoordinator
+func (p_ PersistentStore) PersistentStoreCoordinator() IPersistentStoreCoordinator {
+	rv := objc.Send[PersistentStoreCoordinator](p_.ID, objc.Sel("persistentStoreCoordinator"))
+	return rv
+}
+
+
+// The persistent store coordinator that loads the persistent store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/persistentstorecoordinator
+func (p_ PersistentStore) SetPersistentStoreCoordinator(value IPersistentStoreCoordinator) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreCoordinator:"), value)
+}
+
+
 // The URL for the persistent store.
 //
 // [Full Topic]
@@ -315,7 +273,7 @@ func (p_ PersistentStore) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstore/url
-func (p_ PersistentStore) SetUrl(value foundation.IURL) {
+func (p_ PersistentStore) SetUrl(value foundation.URL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

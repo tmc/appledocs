@@ -31,13 +31,13 @@ type _DecisionTreeClass struct {
 // An interface definition for the [DecisionTree] class.
 type IDecisionTree interface {
 	objectivec.IObject
-	ExportToURLError(url foundation.IURL, error_ foundation.IError) bool
-	FindActionForAnswers(answers unsafe.Pointer) objc.ID
-	RandomSource() GKRandomSource
+	RandomSource() IGKRandomSource
 	SetRandomSource(value IGKRandomSource)
-	RootNode() GKDecisionNode
+	RootNode() IGKDecisionNode
 	Description() string
 	SetDescription(value string)
+	ExportToURLError(url foundation.URL, error_ foundation.Error) bool
+	FindActionForAnswers(answers foundation.IDictionary) objc.ID
 }
 
 // A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
@@ -109,7 +109,7 @@ func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.IArray, actions []objc.ID, attributes []objc.ID) DecisionTree {
+func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.Array, actions []objc.ID, attributes []objc.ID) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
 	rv.Autorelease()
@@ -119,7 +119,7 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.IArray, 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url foundation.IURL, error_ foundation.IError) DecisionTree {
+func NewDecisionTreeWithURLError(url foundation.URL, error_ foundation.Error) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -130,7 +130,7 @@ func NewDecisionTreeWithURLError(url foundation.IURL, error_ foundation.IError) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-func (d_ DecisionTree) ExportToURLError(url foundation.IURL, error_ foundation.IError) bool {
+func (d_ DecisionTree) ExportToURLError(url foundation.URL, error_ foundation.Error) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
@@ -140,7 +140,7 @@ func (d_ DecisionTree) ExportToURLError(url foundation.IURL, error_ foundation.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/findAction(forAnswers:)
-func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
+func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
 }
@@ -150,8 +150,8 @@ func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
-func (d_ DecisionTree) RandomSource() GKRandomSource {
-	rv := objc.Send[GKRandomSource](d_.ID, objc.Sel("randomSource"))
+func (d_ DecisionTree) RandomSource() IGKRandomSource {
+	rv := objc.Send[RandomSource](d_.ID, objc.Sel("randomSource"))
 	return rv
 }
 
@@ -169,8 +169,8 @@ func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/rootNode
-func (d_ DecisionTree) RootNode() GKDecisionNode {
-	rv := objc.Send[GKDecisionNode](d_.ID, objc.Sel("rootNode"))
+func (d_ DecisionTree) RootNode() IGKDecisionNode {
+	rv := objc.Send[DecisionNode](d_.ID, objc.Sel("rootNode"))
 	return rv
 }
 

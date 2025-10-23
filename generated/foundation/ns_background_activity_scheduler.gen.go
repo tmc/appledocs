@@ -30,16 +30,18 @@ type _BackgroundActivitySchedulerClass struct {
 // An interface definition for the [BackgroundActivityScheduler] class.
 type IBackgroundActivityScheduler interface {
 	objectivec.IObject
-	Identifier() string
-	Interval() TimeInterval
-	SetInterval(value TimeInterval)
-	QualityOfService() NSQualityOfService
-	SetQualityOfService(value NSQualityOfService)
-	Repeats() bool
-	SetRepeats(value bool)
-	ShouldDefer() bool
-	Tolerance() TimeInterval
-	SetTolerance(value TimeInterval)
+	// properties:
+	Identifier() string /* primitive/slice/pointer */
+	Interval() TimeInterval /* foo */
+	SetInterval(value TimeInterval /* foo */)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value QualityOfService)
+	Repeats() bool /* primitive/slice/pointer */
+	SetRepeats(value bool /* primitive/slice/pointer */)
+	ShouldDefer() bool /* primitive/slice/pointer */
+	Tolerance() TimeInterval /* foo */
+	SetTolerance(value TimeInterval /* foo */)
+	// methods:
 	Invalidate()
 	ScheduleWithBlock(block unsafe.Pointer)
 }
@@ -101,7 +103,7 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)
-func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundActivityScheduler {
+func NewBackgroundActivitySchedulerWithIdentifier(identifier string /* primitive/slice/pointer */) BackgroundActivityScheduler {
 	instance := getBackgroundActivitySchedulerClass().Alloc()
 	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
 	rv.Autorelease()
@@ -132,7 +134,7 @@ func (b_ BackgroundActivityScheduler) ScheduleWithBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/identifier
-func (b_ BackgroundActivityScheduler) Identifier() string {
+func (b_ BackgroundActivityScheduler) Identifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (b_ BackgroundActivityScheduler) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/interval
-func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
+func (b_ BackgroundActivityScheduler) Interval() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("interval"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/interval
-func (b_ BackgroundActivityScheduler) SetInterval(value TimeInterval) {
+func (b_ BackgroundActivityScheduler) SetInterval(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
 }
 
@@ -161,7 +163,7 @@ func (b_ BackgroundActivityScheduler) SetInterval(value TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
-func (b_ BackgroundActivityScheduler) QualityOfService() NSQualityOfService {
+func (b_ BackgroundActivityScheduler) QualityOfService() QualityOfService {
 	rv := objc.Send[QualityOfService](b_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
@@ -171,7 +173,7 @@ func (b_ BackgroundActivityScheduler) QualityOfService() NSQualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
-func (b_ BackgroundActivityScheduler) SetQualityOfService(value NSQualityOfService) {
+func (b_ BackgroundActivityScheduler) SetQualityOfService(value QualityOfService) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -180,7 +182,7 @@ func (b_ BackgroundActivityScheduler) SetQualityOfService(value NSQualityOfServi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/repeats
-func (b_ BackgroundActivityScheduler) Repeats() bool {
+func (b_ BackgroundActivityScheduler) Repeats() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("repeats"))
 	return rv
 }
@@ -190,7 +192,7 @@ func (b_ BackgroundActivityScheduler) Repeats() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/repeats
-func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
+func (b_ BackgroundActivityScheduler) SetRepeats(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setRepeats:"), value)
 }
 
@@ -199,7 +201,7 @@ func (b_ BackgroundActivityScheduler) SetRepeats(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/shouldDefer
-func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
+func (b_ BackgroundActivityScheduler) ShouldDefer() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("shouldDefer"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (b_ BackgroundActivityScheduler) ShouldDefer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/tolerance
-func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
+func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("tolerance"))
 	return rv
 }
@@ -219,7 +221,7 @@ func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/tolerance
-func (b_ BackgroundActivityScheduler) SetTolerance(value TimeInterval) {
+func (b_ BackgroundActivityScheduler) SetTolerance(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
 }
 

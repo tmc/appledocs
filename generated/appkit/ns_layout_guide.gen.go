@@ -31,32 +31,33 @@ type _LayoutGuideClass struct {
 // An interface definition for the [LayoutGuide] class.
 type ILayoutGuide interface {
 	objectivec.IObject
-	BottomAnchor() NSLayoutYAxisAnchor
+	CenterXAnchor() ILayoutXAxisAnchor
 	Identifier() UserInterfaceItemIdentifier
-	SetIdentifier(value IUserInterfaceItemIdentifier)
-	LeadingAnchor() NSLayoutXAxisAnchor
-	CenterXAnchor() NSLayoutXAxisAnchor
-	SetCenterXAnchor(value ILayoutXAxisAnchor)
-	CenterYAnchor() NSLayoutYAxisAnchor
-	SetCenterYAnchor(value ILayoutYAxisAnchor)
+	SetIdentifier(value UserInterfaceItemIdentifier)
+	BottomAnchor() LayoutYAxisAnchor
+	SetBottomAnchor(value LayoutYAxisAnchor)
+	CenterYAnchor() LayoutYAxisAnchor
+	SetCenterYAnchor(value LayoutYAxisAnchor)
 	Frame() coregraphics.CGRect
 	SetFrame(value coregraphics.CGRect)
 	HasAmbiguousLayout() bool
 	SetHasAmbiguousLayout(value bool)
-	HeightAnchor() NSLayoutDimension
-	SetHeightAnchor(value ILayoutDimension)
-	LeftAnchor() NSLayoutXAxisAnchor
+	HeightAnchor() LayoutDimension
+	SetHeightAnchor(value LayoutDimension)
+	LeadingAnchor() ILayoutXAxisAnchor
+	SetLeadingAnchor(value ILayoutXAxisAnchor)
+	LeftAnchor() ILayoutXAxisAnchor
 	SetLeftAnchor(value ILayoutXAxisAnchor)
-	OwningView() NSView
+	OwningView() IView
 	SetOwningView(value IView)
-	RightAnchor() NSLayoutXAxisAnchor
+	RightAnchor() ILayoutXAxisAnchor
 	SetRightAnchor(value ILayoutXAxisAnchor)
-	TopAnchor() NSLayoutYAxisAnchor
-	SetTopAnchor(value ILayoutYAxisAnchor)
-	TrailingAnchor() NSLayoutXAxisAnchor
+	TopAnchor() LayoutYAxisAnchor
+	SetTopAnchor(value LayoutYAxisAnchor)
+	TrailingAnchor() ILayoutXAxisAnchor
 	SetTrailingAnchor(value ILayoutXAxisAnchor)
-	WidthAnchor() NSLayoutDimension
-	SetWidthAnchor(value ILayoutDimension)
+	WidthAnchor() LayoutDimension
+	SetWidthAnchor(value LayoutDimension)
 }
 
 // A rectangular area that can interact with Auto Layout.
@@ -112,12 +113,12 @@ func NewLayoutGuide() LayoutGuide {
 
 
 
-// A layout anchor representing the bottom edge of the layout guide’s frame.
+// A layout anchor representing the horizontal center of the layout guide’s frame.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/bottomAnchor
-func (l_ LayoutGuide) BottomAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](l_.ID, objc.Sel("bottomAnchor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/centerXAnchor
+func (l_ LayoutGuide) CenterXAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("centerXAnchor"))
 	return rv
 }
 
@@ -136,37 +137,27 @@ func (l_ LayoutGuide) Identifier() UserInterfaceItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/identifier
-func (l_ LayoutGuide) SetIdentifier(value IUserInterfaceItemIdentifier) {
+func (l_ LayoutGuide) SetIdentifier(value UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
-// A layout anchor representing the leading edge of the layout guide’s frame.
+// A layout anchor representing the bottom edge of the layout guide’s frame.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutGuide/leadingAnchor
-func (l_ LayoutGuide) LeadingAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leadingAnchor"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/bottomanchor
+func (l_ LayoutGuide) BottomAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](l_.ID, objc.Sel("bottomAnchor"))
 	return rv
 }
 
 
-// A layout anchor representing the horizontal center of the layout guide’s frame.
+// A layout anchor representing the bottom edge of the layout guide’s frame.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centerxanchor
-func (l_ LayoutGuide) CenterXAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("centerXAnchor"))
-	return rv
-}
-
-
-// A layout anchor representing the horizontal center of the layout guide’s frame.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centerxanchor
-func (l_ LayoutGuide) SetCenterXAnchor(value ILayoutXAxisAnchor) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setCenterXAnchor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/bottomanchor
+func (l_ LayoutGuide) SetBottomAnchor(value LayoutYAxisAnchor) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setBottomAnchor:"), value)
 }
 
 
@@ -174,8 +165,8 @@ func (l_ LayoutGuide) SetCenterXAnchor(value ILayoutXAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centeryanchor
-func (l_ LayoutGuide) CenterYAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](l_.ID, objc.Sel("centerYAnchor"))
+func (l_ LayoutGuide) CenterYAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](l_.ID, objc.Sel("centerYAnchor"))
 	return rv
 }
 
@@ -184,7 +175,7 @@ func (l_ LayoutGuide) CenterYAnchor() NSLayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/centeryanchor
-func (l_ LayoutGuide) SetCenterYAnchor(value ILayoutYAxisAnchor) {
+func (l_ LayoutGuide) SetCenterYAnchor(value LayoutYAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCenterYAnchor:"), value)
 }
 
@@ -227,8 +218,8 @@ func (l_ LayoutGuide) SetHasAmbiguousLayout(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/heightanchor
-func (l_ LayoutGuide) HeightAnchor() NSLayoutDimension {
-	rv := objc.Send[NSLayoutDimension](l_.ID, objc.Sel("heightAnchor"))
+func (l_ LayoutGuide) HeightAnchor() LayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("heightAnchor"))
 	return rv
 }
 
@@ -237,8 +228,27 @@ func (l_ LayoutGuide) HeightAnchor() NSLayoutDimension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/heightanchor
-func (l_ LayoutGuide) SetHeightAnchor(value ILayoutDimension) {
+func (l_ LayoutGuide) SetHeightAnchor(value LayoutDimension) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeightAnchor:"), value)
+}
+
+
+// A layout anchor representing the leading edge of the layout guide’s frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/leadinganchor
+func (l_ LayoutGuide) LeadingAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("leadingAnchor"))
+	return rv
+}
+
+
+// A layout anchor representing the leading edge of the layout guide’s frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/leadinganchor
+func (l_ LayoutGuide) SetLeadingAnchor(value ILayoutXAxisAnchor) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeadingAnchor:"), value)
 }
 
 
@@ -246,8 +256,8 @@ func (l_ LayoutGuide) SetHeightAnchor(value ILayoutDimension) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/leftanchor
-func (l_ LayoutGuide) LeftAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("leftAnchor"))
+func (l_ LayoutGuide) LeftAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("leftAnchor"))
 	return rv
 }
 
@@ -265,8 +275,8 @@ func (l_ LayoutGuide) SetLeftAnchor(value ILayoutXAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/owningview
-func (l_ LayoutGuide) OwningView() NSView {
-	rv := objc.Send[NSView](l_.ID, objc.Sel("owningView"))
+func (l_ LayoutGuide) OwningView() IView {
+	rv := objc.Send[View](l_.ID, objc.Sel("owningView"))
 	return rv
 }
 
@@ -284,8 +294,8 @@ func (l_ LayoutGuide) SetOwningView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/rightanchor
-func (l_ LayoutGuide) RightAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("rightAnchor"))
+func (l_ LayoutGuide) RightAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("rightAnchor"))
 	return rv
 }
 
@@ -303,8 +313,8 @@ func (l_ LayoutGuide) SetRightAnchor(value ILayoutXAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/topanchor
-func (l_ LayoutGuide) TopAnchor() NSLayoutYAxisAnchor {
-	rv := objc.Send[NSLayoutYAxisAnchor](l_.ID, objc.Sel("topAnchor"))
+func (l_ LayoutGuide) TopAnchor() LayoutYAxisAnchor {
+	rv := objc.Send[LayoutYAxisAnchor](l_.ID, objc.Sel("topAnchor"))
 	return rv
 }
 
@@ -313,7 +323,7 @@ func (l_ LayoutGuide) TopAnchor() NSLayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/topanchor
-func (l_ LayoutGuide) SetTopAnchor(value ILayoutYAxisAnchor) {
+func (l_ LayoutGuide) SetTopAnchor(value LayoutYAxisAnchor) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTopAnchor:"), value)
 }
 
@@ -322,8 +332,8 @@ func (l_ LayoutGuide) SetTopAnchor(value ILayoutYAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/trailinganchor
-func (l_ LayoutGuide) TrailingAnchor() NSLayoutXAxisAnchor {
-	rv := objc.Send[NSLayoutXAxisAnchor](l_.ID, objc.Sel("trailingAnchor"))
+func (l_ LayoutGuide) TrailingAnchor() ILayoutXAxisAnchor {
+	rv := objc.Send[LayoutXAxisAnchor](l_.ID, objc.Sel("trailingAnchor"))
 	return rv
 }
 
@@ -341,8 +351,8 @@ func (l_ LayoutGuide) SetTrailingAnchor(value ILayoutXAxisAnchor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/widthanchor
-func (l_ LayoutGuide) WidthAnchor() NSLayoutDimension {
-	rv := objc.Send[NSLayoutDimension](l_.ID, objc.Sel("widthAnchor"))
+func (l_ LayoutGuide) WidthAnchor() LayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("widthAnchor"))
 	return rv
 }
 
@@ -351,7 +361,7 @@ func (l_ LayoutGuide) WidthAnchor() NSLayoutDimension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutguide/widthanchor
-func (l_ LayoutGuide) SetWidthAnchor(value ILayoutDimension) {
+func (l_ LayoutGuide) SetWidthAnchor(value LayoutDimension) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWidthAnchor:"), value)
 }
 

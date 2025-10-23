@@ -29,19 +29,19 @@ type _CXCallDirectoryExtensionContextClass struct {
 // An interface definition for the [CXCallDirectoryExtensionContext] class.
 type ICXCallDirectoryExtensionContext interface {
 	IExtensionContext
-	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
-	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber ICXCallDirectoryPhoneNumber, label string)
-	CompleteRequestWithCompletionHandler(completion unsafe.Pointer)
-	RemoveAllBlockingEntries()
-	RemoveAllIdentificationEntries()
-	RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
-	RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Incremental() bool
 	IsIncremental() bool
 	SetIsIncremental(value bool)
 	CXCallDirectoryPhoneNumberMax() CXCallDirectoryPhoneNumber
+	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber)
+	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber CXCallDirectoryPhoneNumber, label string)
+	CompleteRequestWithCompletionHandler(completion unsafe.Pointer)
+	RemoveAllBlockingEntries()
+	RemoveAllIdentificationEntries()
+	RemoveBlockingEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber)
+	RemoveIdentificationEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber)
 }
 
 // A programmatic interface for adding identification and blocking entries to a Call Directory app extension.
@@ -103,7 +103,7 @@ func NewCXCallDirectoryExtensionContext() CXCallDirectoryExtensionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
+func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addBlockingEntryWithNextSequentialPhoneNumber:"), phoneNumber)
 }
 
@@ -112,7 +112,7 @@ func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)
-func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber ICXCallDirectoryPhoneNumber, label string) {
+func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber CXCallDirectoryPhoneNumber, label string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addIdentificationEntryWithNextSequentialPhoneNumber:label:"), phoneNumber, objc.String(label))
 }
 
@@ -148,7 +148,7 @@ func (c_ CXCallDirectoryExtensionContext) RemoveAllIdentificationEntries() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeBlockingEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
+func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeBlockingEntryWithPhoneNumber:"), phoneNumber)
 }
 
@@ -157,7 +157,7 @@ func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(pho
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeIdentificationEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
+func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber CXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeIdentificationEntryWithPhoneNumber:"), phoneNumber)
 }
 

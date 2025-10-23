@@ -31,59 +31,7 @@ type _BluetoothDeviceClass struct {
 // An interface definition for the [BluetoothDevice] class.
 type IBluetoothDevice interface {
 	IBluetoothObject
-	AddToFavorites() unsafe.Pointer
-	CloseConnection() unsafe.Pointer
-	GetAddress() unsafe.Pointer
-	GetAddressString() foundation.String
-	GetClassOfDevice() BluetoothClassOfDevice
-	GetClockOffset() BluetoothClockOffset
-	GetConnectionHandle() BluetoothConnectionHandle
-	GetDeviceClassMajor() BluetoothDeviceClassMajor
-	GetDeviceClassMinor() BluetoothDeviceClassMinor
-	GetDeviceRef() BluetoothDeviceRef
-	GetEncryptionMode() BluetoothHCIEncryptionMode
-	GetLastInquiryUpdate() foundation.Date
-	GetLastNameUpdate() foundation.Date
-	GetLastServicesUpdate() foundation.Date
-	GetLinkType() BluetoothLinkType
-	GetName() foundation.String
-	GetNameOrAddress() foundation.String
-	GetPageScanMode() BluetoothPageScanMode
-	GetPageScanPeriodMode() BluetoothPageScanPeriodMode
-	GetPageScanRepetitionMode() BluetoothPageScanRepetitionMode
-	GetServiceClassMajor() BluetoothServiceClassMajor
-	GetServiceRecordForUUID(sdpUUID IOBluetoothSDPUUID) BluetoothSDPServiceRecord
-	GetServices() foundation.Array
-	HandsFreeAudioGatewayDriverID() foundation.String
-	HandsFreeAudioGatewayServiceRecord() BluetoothSDPServiceRecord
-	HandsFreeDeviceDriverID() foundation.String
-	HandsFreeDeviceServiceRecord() BluetoothSDPServiceRecord
-	IsConnected() bool
-	IsFavorite() bool
-	IsIncoming() bool
-	IsPaired() bool
-	OpenConnection() unsafe.Pointer
-	OpenConnectionWithPageTimeoutAuthenticationRequired(target objectivec.IObject, pageTimeoutValue IBluetoothHCIPageTimeout, authenticationRequired bool) unsafe.Pointer
-	OpenL2CAPChannelFindExistingNewChannel(psm IBluetoothL2CAPPSM, findExisting bool, newChannel IOBluetoothL2CAPChannel) unsafe.Pointer
-	OpenL2CAPChannelAsyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer
-	OpenL2CAPChannelAsyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer
-	OpenL2CAPChannelSyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer
-	OpenL2CAPChannelSyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer
-	OpenRFCOMMChannelChannel(channelID IBluetoothRFCOMMChannelID, rfcommChannel IOBluetoothRFCOMMChannel) unsafe.Pointer
-	OpenRFCOMMChannelAsyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID IBluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer
-	OpenRFCOMMChannelSyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID IBluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer
-	PerformSDPQuery(target objectivec.IObject) unsafe.Pointer
-	PerformSDPQueryUuids(target objectivec.IObject, uuidArray objectivec.IObject) unsafe.Pointer
-	RawRSSI() BluetoothHCIRSSIValue
-	RecentAccessDate() foundation.Date
-	RegisterForDisconnectNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification
-	RemoteNameRequest(target objectivec.IObject) unsafe.Pointer
-	RemoteNameRequestWithPageTimeout(target objectivec.IObject, pageTimeoutValue IBluetoothHCIPageTimeout) unsafe.Pointer
-	RemoveFromFavorites() unsafe.Pointer
-	RequestAuthentication() unsafe.Pointer
-	RSSI() BluetoothHCIRSSIValue
-	SendL2CAPEchoRequestLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
-	SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.Pointer
+	// properties:
 	AddressString() string
 	ClassOfDevice() BluetoothClassOfDevice
 	ConnectionHandle() BluetoothConnectionHandle
@@ -100,6 +48,45 @@ type IBluetoothDevice interface {
 	SetIsHandsFreeAudioGateway(value bool)
 	IsHandsFreeDevice() bool
 	SetIsHandsFreeDevice(value bool)
+	// methods:
+	AddToFavorites() unsafe.Pointer
+	CloseConnection() unsafe.Pointer
+	GetAddress() unsafe.Pointer
+	GetClockOffset() BluetoothClockOffset
+	GetEncryptionMode() BluetoothHCIEncryptionMode
+	GetLastInquiryUpdate() foundation.Date
+	GetLastServicesUpdate() foundation.Date
+	GetLinkType() BluetoothLinkType
+	GetPageScanMode() BluetoothPageScanMode
+	GetPageScanPeriodMode() BluetoothPageScanPeriodMode
+	GetPageScanRepetitionMode() BluetoothPageScanRepetitionMode
+	GetServiceRecordForUUID(sdpUUID IOBluetoothSDPUUID) IBluetoothSDPServiceRecord
+	HandsFreeAudioGatewayServiceRecord() IBluetoothSDPServiceRecord
+	HandsFreeDeviceServiceRecord() IBluetoothSDPServiceRecord
+	IsConnected() bool
+	IsFavorite() bool
+	IsIncoming() bool
+	IsPaired() bool
+	OpenConnection() unsafe.Pointer
+	OpenConnectionWithPageTimeoutAuthenticationRequired(target objectivec.IObject, pageTimeoutValue BluetoothHCIPageTimeout, authenticationRequired bool) unsafe.Pointer
+	OpenL2CAPChannelAsyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer
+	OpenL2CAPChannelAsyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer
+	OpenL2CAPChannelSyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer
+	OpenL2CAPChannelSyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer
+	OpenRFCOMMChannelAsyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID BluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer
+	OpenRFCOMMChannelSyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID BluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer
+	PerformSDPQuery(target objectivec.IObject) unsafe.Pointer
+	PerformSDPQueryUuids(target objectivec.IObject, uuidArray objectivec.IObject) unsafe.Pointer
+	RawRSSI() BluetoothHCIRSSIValue
+	RecentAccessDate() foundation.Date
+	RegisterForDisconnectNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification
+	RemoteNameRequest(target objectivec.IObject) unsafe.Pointer
+	RemoteNameRequestWithPageTimeout(target objectivec.IObject, pageTimeoutValue BluetoothHCIPageTimeout) unsafe.Pointer
+	RemoveFromFavorites() unsafe.Pointer
+	RequestAuthentication() unsafe.Pointer
+	RSSI() BluetoothHCIRSSIValue
+	SendL2CAPEchoRequestLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
+	SetSupervisionTimeout(timeout unsafe.Pointer) unsafe.Pointer
 }
 
 // An instance of IOBluetoothDevice represents a single remote Bluetooth device.
@@ -232,7 +219,7 @@ func (bc _BluetoothDeviceClass) RecentDevices(numDevices unsafe.Pointer) foundat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/register(forConnectNotifications:selector:)
-func (bc _BluetoothDeviceClass) RegisterForConnectNotificationsSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification {
+func (bc _BluetoothDeviceClass) RegisterForConnectNotificationsSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForConnectNotifications:selector:"), observer, inSelector)
 	return rv
 }
@@ -250,7 +237,7 @@ func (bc _BluetoothDeviceClass) WithAddress(address unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/withDeviceRef:
-func (bc _BluetoothDeviceClass) WithDeviceRef(deviceRef IBluetoothDeviceRef) unsafe.Pointer {
+func (bc _BluetoothDeviceClass) WithDeviceRef(deviceRef BluetoothDeviceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withDeviceRef:"), deviceRef)
 	return rv
 }
@@ -268,7 +255,7 @@ func (b_ BluetoothDevice) AddToFavorites() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/awakeAfter(using:)
-func (b_ BluetoothDevice) AwakeAfterUsingCoder(coder foundation.ICoder) objc.ID {
+func (b_ BluetoothDevice) AwakeAfterUsingCoder(coder foundation.Coder) objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("awakeAfterUsingCoder:"), coder)
 	return rv
 }
@@ -294,72 +281,12 @@ func (b_ BluetoothDevice) GetAddress() unsafe.Pointer {
 }
 
 
-// Get a string representation of the Bluetooth device address for the target device. The format of the string is the same as returned by IOBluetoothNSStringFromDeviceAddress().
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getAddressString
-func (b_ BluetoothDevice) GetAddressString() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getAddressString"))
-	return rv
-}
-
-
-// Gets the full class of device value for the remote device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getClassOfDevice
-func (b_ BluetoothDevice) GetClassOfDevice() BluetoothClassOfDevice {
-	rv := objc.Send[BluetoothClassOfDevice](b_.ID, objc.Sel("getClassOfDevice"))
-	return rv
-}
-
-
 // Get the clock offset value of the device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getClockOffset()
 func (b_ BluetoothDevice) GetClockOffset() BluetoothClockOffset {
 	rv := objc.Send[BluetoothClockOffset](b_.ID, objc.Sel("getClockOffset"))
-	return rv
-}
-
-
-// Get the connection handle for the baseband connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getConnectionHandle
-func (b_ BluetoothDevice) GetConnectionHandle() BluetoothConnectionHandle {
-	rv := objc.Send[BluetoothConnectionHandle](b_.ID, objc.Sel("getConnectionHandle"))
-	return rv
-}
-
-
-// Get the major device class of the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getDeviceClassMajor
-func (b_ BluetoothDevice) GetDeviceClassMajor() BluetoothDeviceClassMajor {
-	rv := objc.Send[BluetoothDeviceClassMajor](b_.ID, objc.Sel("getDeviceClassMajor"))
-	return rv
-}
-
-
-// Get the minor service class of the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getDeviceClassMinor
-func (b_ BluetoothDevice) GetDeviceClassMinor() BluetoothDeviceClassMinor {
-	rv := objc.Send[BluetoothDeviceClassMinor](b_.ID, objc.Sel("getDeviceClassMinor"))
-	return rv
-}
-
-
-// Returns an IOBluetoothDeviceRef representation of the target IOBluetoothDevice object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getDeviceRef
-func (b_ BluetoothDevice) GetDeviceRef() BluetoothDeviceRef {
-	rv := objc.Send[BluetoothDeviceRef](b_.ID, objc.Sel("getDeviceRef"))
 	return rv
 }
 
@@ -384,16 +311,6 @@ func (b_ BluetoothDevice) GetLastInquiryUpdate() foundation.Date {
 }
 
 
-// Get the date/time of the last successful remote name request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getLastNameUpdate
-func (b_ BluetoothDevice) GetLastNameUpdate() foundation.Date {
-	rv := objc.Send[foundation.Date](b_.ID, objc.Sel("getLastNameUpdate"))
-	return rv
-}
-
-
 // Get the date/time of the last SDP query.
 //
 // [Full Topic]
@@ -410,26 +327,6 @@ func (b_ BluetoothDevice) GetLastServicesUpdate() foundation.Date {
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getLinkType()
 func (b_ BluetoothDevice) GetLinkType() BluetoothLinkType {
 	rv := objc.Send[BluetoothLinkType](b_.ID, objc.Sel("getLinkType"))
-	return rv
-}
-
-
-// Get the human readable name of the remote device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getName
-func (b_ BluetoothDevice) GetName() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getName"))
-	return rv
-}
-
-
-// Get the human readable name of the remote device. If the name is not present, it will return a string containing the device’s address.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getNameOrAddress
-func (b_ BluetoothDevice) GetNameOrAddress() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getNameOrAddress"))
 	return rv
 }
 
@@ -464,61 +361,27 @@ func (b_ BluetoothDevice) GetPageScanRepetitionMode() BluetoothPageScanRepetitio
 }
 
 
-// Get the major service class of the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getServiceClassMajor
-func (b_ BluetoothDevice) GetServiceClassMajor() BluetoothServiceClassMajor {
-	rv := objc.Send[BluetoothServiceClassMajor](b_.ID, objc.Sel("getServiceClassMajor"))
-	return rv
-}
-
-
 // Search for a service record containing the given UUID.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getServiceRecord(for:)
-func (b_ BluetoothDevice) GetServiceRecordForUUID(sdpUUID IOBluetoothSDPUUID) BluetoothSDPServiceRecord {
+func (b_ BluetoothDevice) GetServiceRecordForUUID(sdpUUID IOBluetoothSDPUUID) IBluetoothSDPServiceRecord {
 	rv := objc.Send[BluetoothSDPServiceRecord](b_.ID, objc.Sel("getServiceRecordForUUID:"), sdpUUID)
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/getServices
-func (b_ BluetoothDevice) GetServices() foundation.Array {
-	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("getServices"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeAudioGatewayDriverID
-func (b_ BluetoothDevice) HandsFreeAudioGatewayDriverID() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("handsFreeAudioGatewayDriverID"))
-	return rv
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeAudioGatewayServiceRecord()
-func (b_ BluetoothDevice) HandsFreeAudioGatewayServiceRecord() BluetoothSDPServiceRecord {
+func (b_ BluetoothDevice) HandsFreeAudioGatewayServiceRecord() IBluetoothSDPServiceRecord {
 	rv := objc.Send[BluetoothSDPServiceRecord](b_.ID, objc.Sel("handsFreeAudioGatewayServiceRecord"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeDeviceDriverID
-func (b_ BluetoothDevice) HandsFreeDeviceDriverID() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("handsFreeDeviceDriverID"))
-	return rv
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/handsFreeDeviceServiceRecord()
-func (b_ BluetoothDevice) HandsFreeDeviceServiceRecord() BluetoothSDPServiceRecord {
+func (b_ BluetoothDevice) HandsFreeDeviceServiceRecord() IBluetoothSDPServiceRecord {
 	rv := objc.Send[BluetoothSDPServiceRecord](b_.ID, objc.Sel("handsFreeDeviceServiceRecord"))
 	return rv
 }
@@ -578,18 +441,8 @@ func (b_ BluetoothDevice) OpenConnection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openConnection(_:withPageTimeout:authenticationRequired:)
-func (b_ BluetoothDevice) OpenConnectionWithPageTimeoutAuthenticationRequired(target objectivec.IObject, pageTimeoutValue IBluetoothHCIPageTimeout, authenticationRequired bool) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenConnectionWithPageTimeoutAuthenticationRequired(target objectivec.IObject, pageTimeoutValue BluetoothHCIPageTimeout, authenticationRequired bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openConnection:withPageTimeout:authenticationRequired:"), target, pageTimeoutValue, authenticationRequired)
-	return rv
-}
-
-
-// Opens a new L2CAP channel to the target device. Returns immedialty after starting the opening process.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openL2CAPChannel:findExisting:newChannel:
-func (b_ BluetoothDevice) OpenL2CAPChannelFindExistingNewChannel(psm IBluetoothL2CAPPSM, findExisting bool, newChannel IOBluetoothL2CAPChannel) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openL2CAPChannel:findExisting:newChannel:"), psm, findExisting, newChannel)
 	return rv
 }
 
@@ -598,7 +451,7 @@ func (b_ BluetoothDevice) OpenL2CAPChannelFindExistingNewChannel(psm IBluetoothL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openL2CAPChannelAsync(_:withPSM:delegate:)
-func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openL2CAPChannelAsync:withPSM:delegate:"), newChannel, psm, channelDelegate)
 	return rv
 }
@@ -608,7 +461,7 @@ func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMDelegate(newChannel IOBlue
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openL2CAPChannelAsync(_:withPSM:withConfiguration:delegate:)
-func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openL2CAPChannelAsync:withPSM:withConfiguration:delegate:"), newChannel, psm, channelConfiguration, channelDelegate)
 	return rv
 }
@@ -618,7 +471,7 @@ func (b_ BluetoothDevice) OpenL2CAPChannelAsyncWithPSMWithConfigurationDelegate(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openL2CAPChannelSync(_:withPSM:delegate:)
-func (b_ BluetoothDevice) OpenL2CAPChannelSyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenL2CAPChannelSyncWithPSMDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openL2CAPChannelSync:withPSM:delegate:"), newChannel, psm, channelDelegate)
 	return rv
 }
@@ -628,18 +481,8 @@ func (b_ BluetoothDevice) OpenL2CAPChannelSyncWithPSMDelegate(newChannel IOBluet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openL2CAPChannelSync(_:withPSM:withConfiguration:delegate:)
-func (b_ BluetoothDevice) OpenL2CAPChannelSyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm IBluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenL2CAPChannelSyncWithPSMWithConfigurationDelegate(newChannel IOBluetoothL2CAPChannel, psm BluetoothL2CAPPSM, channelConfiguration objectivec.IObject, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openL2CAPChannelSync:withPSM:withConfiguration:delegate:"), newChannel, psm, channelConfiguration, channelDelegate)
-	return rv
-}
-
-
-// Opens a new RFCOMM channel to the target device. Returns only once the channel is open or failed to open.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openRFCOMMChannel:channel:
-func (b_ BluetoothDevice) OpenRFCOMMChannelChannel(channelID IBluetoothRFCOMMChannelID, rfcommChannel IOBluetoothRFCOMMChannel) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openRFCOMMChannel:channel:"), channelID, rfcommChannel)
 	return rv
 }
 
@@ -648,7 +491,7 @@ func (b_ BluetoothDevice) OpenRFCOMMChannelChannel(channelID IBluetoothRFCOMMCha
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openRFCOMMChannelAsync(_:withChannelID:delegate:)
-func (b_ BluetoothDevice) OpenRFCOMMChannelAsyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID IBluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenRFCOMMChannelAsyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID BluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openRFCOMMChannelAsync:withChannelID:delegate:"), rfcommChannel, channelID, channelDelegate)
 	return rv
 }
@@ -658,7 +501,7 @@ func (b_ BluetoothDevice) OpenRFCOMMChannelAsyncWithChannelIDDelegate(rfcommChan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/openRFCOMMChannelSync(_:withChannelID:delegate:)
-func (b_ BluetoothDevice) OpenRFCOMMChannelSyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID IBluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer {
+func (b_ BluetoothDevice) OpenRFCOMMChannelSyncWithChannelIDDelegate(rfcommChannel IOBluetoothRFCOMMChannel, channelID BluetoothRFCOMMChannelID, channelDelegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("openRFCOMMChannelSync:withChannelID:delegate:"), rfcommChannel, channelID, channelDelegate)
 	return rv
 }
@@ -708,7 +551,7 @@ func (b_ BluetoothDevice) RecentAccessDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/register(forDisconnectNotification:selector:)
-func (b_ BluetoothDevice) RegisterForDisconnectNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) BluetoothUserNotification {
+func (b_ BluetoothDevice) RegisterForDisconnectNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](b_.ID, objc.Sel("registerForDisconnectNotification:selector:"), observer, inSelector)
 	return rv
 }
@@ -728,7 +571,7 @@ func (b_ BluetoothDevice) RemoteNameRequest(target objectivec.IObject) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/remoteNameRequest(_:withPageTimeout:)
-func (b_ BluetoothDevice) RemoteNameRequestWithPageTimeout(target objectivec.IObject, pageTimeoutValue IBluetoothHCIPageTimeout) unsafe.Pointer {
+func (b_ BluetoothDevice) RemoteNameRequestWithPageTimeout(target objectivec.IObject, pageTimeoutValue BluetoothHCIPageTimeout) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("remoteNameRequest:withPageTimeout:"), target, pageTimeoutValue)
 	return rv
 }

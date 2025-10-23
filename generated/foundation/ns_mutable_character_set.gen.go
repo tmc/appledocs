@@ -29,13 +29,15 @@ type _MutableCharacterSetClass struct {
 // An interface definition for the [MutableCharacterSet] class.
 type IMutableCharacterSet interface {
 	ICharacterSet
-	AddCharactersInRange(aRange Range)
-	AddCharactersInString(aString string)
+	// properties:
+	// methods:
+	AddCharactersInRange(aRange Range /* foo */)
+	AddCharactersInString(aString string /* primitive/slice/pointer */)
 	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
 	FormUnionWithCharacterSet(otherSet ICharacterSet)
 	Invert()
-	RemoveCharactersInRange(aRange Range)
-	RemoveCharactersInString(aString string)
+	RemoveCharactersInRange(aRange Range /* foo */)
+	RemoveCharactersInString(aString string /* primitive/slice/pointer */)
 }
 
 // An object representing a mutable set of Unicode character values for use in search operations.
@@ -107,7 +109,7 @@ func NewMutableCharacterSetWithBitmapRepresentation(data IData) MutableCharacter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
-func NewMutableCharacterSetWithCharactersInString(aString string) MutableCharacterSet {
+func NewMutableCharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
@@ -117,7 +119,7 @@ func NewMutableCharacterSetWithCharactersInString(aString string) MutableCharact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet {
+func NewMutableCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
@@ -127,7 +129,7 @@ func NewMutableCharacterSetWithContentsOfFile(fName string) MutableCharacterSet 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
+func NewMutableCharacterSetWithRange(aRange Range /* foo */) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -208,7 +210,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(charactersIn:)
-func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string) IMutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
@@ -218,7 +220,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithCharactersInString(aString s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
-func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string) IMutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
@@ -228,7 +230,7 @@ func (mc _MutableCharacterSetClass) CharacterSetWithContentsOfFile(fName string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(range:)
-func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range) IMutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithRange(aRange Range /* foo */) IMutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -328,7 +330,7 @@ func (mc _MutableCharacterSetClass) WhitespaceAndNewlineCharacterSet() IMutableC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-4ppyw
-func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
+func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInRange:"), aRange)
 }
 
@@ -337,7 +339,7 @@ func (m_ MutableCharacterSet) AddCharactersInRange(aRange Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/addCharacters(in:)-7q02
-func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
+func (m_ MutableCharacterSet) AddCharactersInString(aString string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addCharactersInString:"), objc.String(aString))
 }
 
@@ -373,7 +375,7 @@ func (m_ MutableCharacterSet) Invert() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-70nqp
-func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange Range) {
+func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInRange:"), aRange)
 }
 
@@ -382,7 +384,7 @@ func (m_ MutableCharacterSet) RemoveCharactersInRange(aRange Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/removeCharacters(in:)-762gt
-func (m_ MutableCharacterSet) RemoveCharactersInString(aString string) {
+func (m_ MutableCharacterSet) RemoveCharactersInString(aString string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), objc.String(aString))
 }
 

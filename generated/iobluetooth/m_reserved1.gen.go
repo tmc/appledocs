@@ -30,6 +30,8 @@ type _mReserved1Class struct {
 // An interface definition for the [mReserved1] class.
 type ImReserved1 interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

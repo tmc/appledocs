@@ -31,36 +31,36 @@ type _EntityDescriptionClass struct {
 // An interface definition for the [EntityDescription] class.
 type IEntityDescription interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
 	VersionHash() foundation.NSData
-	AttributesByName() NSAttributeDescription
+	AttributesByName() IAttributeDescription
 	SetAttributesByName(value IAttributeDescription)
 	CompoundIndexes() unsafe.Pointer
 	SetCompoundIndexes(value unsafe.Pointer)
 	CoreSpotlightDisplayNameExpression() Expression
-	SetCoreSpotlightDisplayNameExpression(value IExpression)
+	SetCoreSpotlightDisplayNameExpression(value Expression)
 	Indexes() unsafe.Pointer
 	SetIndexes(value unsafe.Pointer)
 	IsAbstract() bool
 	SetIsAbstract(value bool)
 	ManagedObjectClassName() string
 	SetManagedObjectClassName(value string)
-	ManagedObjectModel() NSManagedObjectModel
+	ManagedObjectModel() IManagedObjectModel
 	SetManagedObjectModel(value IManagedObjectModel)
-	Properties() NSPropertyDescription
+	Name() string
+	SetName(value string)
+	Properties() IPropertyDescription
 	SetProperties(value IPropertyDescription)
-	PropertiesByName() NSPropertyDescription
+	PropertiesByName() IPropertyDescription
 	SetPropertiesByName(value IPropertyDescription)
-	RelationshipsByName() NSRelationshipDescription
+	RelationshipsByName() IRelationshipDescription
 	SetRelationshipsByName(value IRelationshipDescription)
 	RenamingIdentifier() string
 	SetRenamingIdentifier(value string)
-	Subentities() NSEntityDescription
+	Subentities() IEntityDescription
 	SetSubentities(value IEntityDescription)
-	SubentitiesByName() NSEntityDescription
+	SubentitiesByName() IEntityDescription
 	SetSubentitiesByName(value IEntityDescription)
-	Superentity() NSEntityDescription
+	Superentity() IEntityDescription
 	SetSuperentity(value IEntityDescription)
 	UniquenessConstraints() unsafe.Pointer
 	SetUniquenessConstraints(value unsafe.Pointer)
@@ -123,35 +123,6 @@ func NewEntityDescription() EntityDescription {
 
 
 
-// Creates, configures, and returns an instance of the class for the entity with a given name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/insertNewObject(forEntityName:into:)
-func (ec _EntityDescriptionClass) InsertNewObjectForEntityForNameInManagedObjectContext(entityName string, context IManagedObjectContext) ManagedObject {
-	rv := objc.Send[ManagedObject](objc.ID(ec.class), objc.Sel("insertNewObjectForEntityForName:inManagedObjectContext:"), objc.String(entityName), context)
-	return rv
-}
-
-
-// The entity name of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The entity name of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) SetName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
-}
-
-
 // The version hash for the receiver.
 //
 // [Full Topic]
@@ -166,8 +137,8 @@ func (e_ EntityDescription) VersionHash() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/attributesbyname
-func (e_ EntityDescription) AttributesByName() NSAttributeDescription {
-	rv := objc.Send[NSAttributeDescription](e_.ID, objc.Sel("attributesByName"))
+func (e_ EntityDescription) AttributesByName() IAttributeDescription {
+	rv := objc.Send[AttributeDescription](e_.ID, objc.Sel("attributesByName"))
 	return rv
 }
 
@@ -214,7 +185,7 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value IExpression) {
+func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value Expression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCoreSpotlightDisplayNameExpression:"), value)
 }
 
@@ -280,8 +251,8 @@ func (e_ EntityDescription) SetManagedObjectClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectmodel
-func (e_ EntityDescription) ManagedObjectModel() NSManagedObjectModel {
-	rv := objc.Send[NSManagedObjectModel](e_.ID, objc.Sel("managedObjectModel"))
+func (e_ EntityDescription) ManagedObjectModel() IManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](e_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
 
@@ -295,12 +266,31 @@ func (e_ EntityDescription) SetManagedObjectModel(value IManagedObjectModel) {
 }
 
 
+// The entity name of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
+func (e_ EntityDescription) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// The entity name of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
+func (e_ EntityDescription) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
 // An array containing the properties of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/properties
-func (e_ EntityDescription) Properties() NSPropertyDescription {
-	rv := objc.Send[NSPropertyDescription](e_.ID, objc.Sel("properties"))
+func (e_ EntityDescription) Properties() IPropertyDescription {
+	rv := objc.Send[PropertyDescription](e_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -318,8 +308,8 @@ func (e_ EntityDescription) SetProperties(value IPropertyDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/propertiesbyname
-func (e_ EntityDescription) PropertiesByName() NSPropertyDescription {
-	rv := objc.Send[NSPropertyDescription](e_.ID, objc.Sel("propertiesByName"))
+func (e_ EntityDescription) PropertiesByName() IPropertyDescription {
+	rv := objc.Send[PropertyDescription](e_.ID, objc.Sel("propertiesByName"))
 	return rv
 }
 
@@ -337,8 +327,8 @@ func (e_ EntityDescription) SetPropertiesByName(value IPropertyDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/relationshipsbyname
-func (e_ EntityDescription) RelationshipsByName() NSRelationshipDescription {
-	rv := objc.Send[NSRelationshipDescription](e_.ID, objc.Sel("relationshipsByName"))
+func (e_ EntityDescription) RelationshipsByName() IRelationshipDescription {
+	rv := objc.Send[RelationshipDescription](e_.ID, objc.Sel("relationshipsByName"))
 	return rv
 }
 
@@ -375,8 +365,8 @@ func (e_ EntityDescription) SetRenamingIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentities
-func (e_ EntityDescription) Subentities() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("subentities"))
+func (e_ EntityDescription) Subentities() IEntityDescription {
+	rv := objc.Send[EntityDescription](e_.ID, objc.Sel("subentities"))
 	return rv
 }
 
@@ -394,8 +384,8 @@ func (e_ EntityDescription) SetSubentities(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentitiesbyname
-func (e_ EntityDescription) SubentitiesByName() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("subentitiesByName"))
+func (e_ EntityDescription) SubentitiesByName() IEntityDescription {
+	rv := objc.Send[EntityDescription](e_.ID, objc.Sel("subentitiesByName"))
 	return rv
 }
 
@@ -413,8 +403,8 @@ func (e_ EntityDescription) SetSubentitiesByName(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/superentity
-func (e_ EntityDescription) Superentity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("superentity"))
+func (e_ EntityDescription) Superentity() IEntityDescription {
+	rv := objc.Send[EntityDescription](e_.ID, objc.Sel("superentity"))
 	return rv
 }
 

@@ -35,7 +35,11 @@ type IVZEntropyDeviceConfiguration interface {
 // The common configuration traits for entropy devices.
 //
 // Don’t create a VZEntropyDeviceConfiguration object directly. Instead, instantiate a subclass such as to configure a source of entropy for your virtual machine.
+
+
+// The common configuration traits for entropy devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEntropyDeviceConfiguration
 type VZEntropyDeviceConfiguration struct {
 	objectivec.Object

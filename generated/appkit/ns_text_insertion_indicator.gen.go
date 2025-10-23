@@ -29,12 +29,12 @@ type _TextInsertionIndicatorClass struct {
 // An interface definition for the [TextInsertionIndicator] class.
 type ITextInsertionIndicator interface {
 	IView
-	AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions
-	SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions)
-	Color() NSColor
+	AutomaticModeOptions() NSTextInsertionIndicatorAutomaticModeOptions
+	SetAutomaticModeOptions(value NSTextInsertionIndicatorAutomaticModeOptions)
+	Color() IColor
 	SetColor(value IColor)
-	DisplayMode() TextInsertionIndicatorDisplayMode
-	SetDisplayMode(value TextInsertionIndicatorDisplayMode)
+	DisplayMode() NSTextInsertionIndicatorDisplayMode
+	SetDisplayMode(value NSTextInsertionIndicatorDisplayMode)
 	EffectsViewInserter() unsafe.Pointer
 	SetEffectsViewInserter(value unsafe.Pointer)
 }
@@ -98,8 +98,8 @@ func NewTextInsertionIndicator() TextInsertionIndicator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-func (t_ TextInsertionIndicator) AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions {
-	rv := objc.Send[TextInsertionIndicatorAutomaticModeOptions](t_.ID, objc.Sel("automaticModeOptions"))
+func (t_ TextInsertionIndicator) AutomaticModeOptions() NSTextInsertionIndicatorAutomaticModeOptions {
+	rv := objc.Send[NSTextInsertionIndicatorAutomaticModeOptions](t_.ID, objc.Sel("automaticModeOptions"))
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (t_ TextInsertionIndicator) AutomaticModeOptions() TextInsertionIndicatorAu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions) {
+func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value NSTextInsertionIndicatorAutomaticModeOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
 }
 
@@ -117,8 +117,8 @@ func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value TextInsertionIndi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
-func (t_ TextInsertionIndicator) Color() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("color"))
+func (t_ TextInsertionIndicator) Color() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -136,8 +136,8 @@ func (t_ TextInsertionIndicator) SetColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
-func (t_ TextInsertionIndicator) DisplayMode() TextInsertionIndicatorDisplayMode {
-	rv := objc.Send[TextInsertionIndicatorDisplayMode](t_.ID, objc.Sel("displayMode"))
+func (t_ TextInsertionIndicator) DisplayMode() NSTextInsertionIndicatorDisplayMode {
+	rv := objc.Send[NSTextInsertionIndicatorDisplayMode](t_.ID, objc.Sel("displayMode"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (t_ TextInsertionIndicator) DisplayMode() TextInsertionIndicatorDisplayMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/displayMode-swift.property
-func (t_ TextInsertionIndicator) SetDisplayMode(value TextInsertionIndicatorDisplayMode) {
+func (t_ TextInsertionIndicator) SetDisplayMode(value NSTextInsertionIndicatorDisplayMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
 

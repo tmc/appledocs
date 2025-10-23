@@ -91,7 +91,7 @@ func NewCNRenderingSessionAttributes() CNRenderingSessionAttributes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/loadFromAsset:completionHandler:
-func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
+func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset avfoundation.Asset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 

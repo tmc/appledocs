@@ -30,6 +30,8 @@ type _msgidClass struct {
 // An interface definition for the [msgid] class.
 type Imsgid interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

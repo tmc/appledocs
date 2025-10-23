@@ -29,16 +29,18 @@ type _WhoseSpecifierClass struct {
 // An interface definition for the [WhoseSpecifier] class.
 type IWhoseSpecifier interface {
 	IScriptObjectSpecifier
-	EndSubelementIdentifier() NSWhoseSubelementIdentifier
-	SetEndSubelementIdentifier(value NSWhoseSubelementIdentifier)
-	EndSubelementIndex() int
-	SetEndSubelementIndex(value int)
-	StartSubelementIdentifier() NSWhoseSubelementIdentifier
-	SetStartSubelementIdentifier(value NSWhoseSubelementIdentifier)
-	StartSubelementIndex() int
-	SetStartSubelementIndex(value int)
+	// properties:
+	EndSubelementIdentifier() WhoseSubelementIdentifier
+	SetEndSubelementIdentifier(value WhoseSubelementIdentifier)
+	EndSubelementIndex() int /* primitive/slice/pointer */
+	SetEndSubelementIndex(value int /* primitive/slice/pointer */)
+	StartSubelementIdentifier() WhoseSubelementIdentifier
+	SetStartSubelementIdentifier(value WhoseSubelementIdentifier)
+	StartSubelementIndex() int /* primitive/slice/pointer */
+	SetStartSubelementIndex(value int /* primitive/slice/pointer */)
 	Test() IScriptWhoseTest
 	SetTest(value IScriptWhoseTest)
+	// methods:
 }
 
 // A specifier that indicates every object in a collection matching a condition.
@@ -110,7 +112,7 @@ func NewWhoseSpecifierWithCoder(inCoder ICoder) WhoseSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/init(containerClassDescription:containerSpecifier:key:test:)
-func NewWhoseSpecifierWithContainerClassDescriptionContainerSpecifierKeyTest(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, test IScriptWhoseTest) WhoseSpecifier {
+func NewWhoseSpecifierWithContainerClassDescriptionContainerSpecifierKeyTest(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, test IScriptWhoseTest) WhoseSpecifier {
 	instance := getWhoseSpecifierClass().Alloc()
 	rv := objc.Send[WhoseSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:test:"), classDesc, container, objc.String(property), test)
 	rv.Autorelease()
@@ -123,7 +125,7 @@ func NewWhoseSpecifierWithContainerClassDescriptionContainerSpecifierKeyTest(cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIdentifier
-func (w_ WhoseSpecifier) EndSubelementIdentifier() NSWhoseSubelementIdentifier {
+func (w_ WhoseSpecifier) EndSubelementIdentifier() WhoseSubelementIdentifier {
 	rv := objc.Send[WhoseSubelementIdentifier](w_.ID, objc.Sel("endSubelementIdentifier"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (w_ WhoseSpecifier) EndSubelementIdentifier() NSWhoseSubelementIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIdentifier
-func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value NSWhoseSubelementIdentifier) {
+func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value WhoseSubelementIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIdentifier:"), value)
 }
 
@@ -142,7 +144,7 @@ func (w_ WhoseSpecifier) SetEndSubelementIdentifier(value NSWhoseSubelementIdent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIndex
-func (w_ WhoseSpecifier) EndSubelementIndex() int {
+func (w_ WhoseSpecifier) EndSubelementIndex() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](w_.ID, objc.Sel("endSubelementIndex"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (w_ WhoseSpecifier) EndSubelementIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/endSubelementIndex
-func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
+func (w_ WhoseSpecifier) SetEndSubelementIndex(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEndSubelementIndex:"), value)
 }
 
@@ -161,7 +163,7 @@ func (w_ WhoseSpecifier) SetEndSubelementIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIdentifier
-func (w_ WhoseSpecifier) StartSubelementIdentifier() NSWhoseSubelementIdentifier {
+func (w_ WhoseSpecifier) StartSubelementIdentifier() WhoseSubelementIdentifier {
 	rv := objc.Send[WhoseSubelementIdentifier](w_.ID, objc.Sel("startSubelementIdentifier"))
 	return rv
 }
@@ -171,7 +173,7 @@ func (w_ WhoseSpecifier) StartSubelementIdentifier() NSWhoseSubelementIdentifier
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIdentifier
-func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value NSWhoseSubelementIdentifier) {
+func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value WhoseSubelementIdentifier) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIdentifier:"), value)
 }
 
@@ -180,7 +182,7 @@ func (w_ WhoseSpecifier) SetStartSubelementIdentifier(value NSWhoseSubelementIde
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIndex
-func (w_ WhoseSpecifier) StartSubelementIndex() int {
+func (w_ WhoseSpecifier) StartSubelementIndex() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](w_.ID, objc.Sel("startSubelementIndex"))
 	return rv
 }
@@ -190,7 +192,7 @@ func (w_ WhoseSpecifier) StartSubelementIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/startSubelementIndex
-func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
+func (w_ WhoseSpecifier) SetStartSubelementIndex(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStartSubelementIndex:"), value)
 }
 

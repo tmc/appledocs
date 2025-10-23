@@ -30,6 +30,8 @@ type _mIsServerClass struct {
 // An interface definition for the [mIsServer] class.
 type ImIsServer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -31,12 +31,12 @@ type _CXTransactionClass struct {
 // An interface definition for the [CXTransaction] class.
 type ICXTransaction interface {
 	objectivec.IObject
-	AddAction(action ICXAction)
 	Actions() []CXAction
 	Complete() bool
 	UUID() foundation.UUID
 	IsComplete() bool
 	SetIsComplete(value bool)
+	AddAction(action ICXAction)
 }
 
 // An object that contains zero or more action objects for a call controller to perform.

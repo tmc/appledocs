@@ -33,7 +33,6 @@ type ICNScriptChanges interface {
 	objectivec.IObject
 	AddedDetectionTracks() []CNDetectionTrack
 	DataRepresentation() foundation.NSData
-	UserDecisions() []CNDecision
 }
 
 // An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.
@@ -105,16 +104,6 @@ func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
 func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
-	return rv
-}
-
-
-// All active user decisions, including those made at recording time, unless removed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/userDecisions
-func (c_ CNScriptChanges) UserDecisions() []CNDecision {
-	rv := objc.Send[[]CNDecision](c_.ID, objc.Sel("userDecisions"))
 	return rv
 }
 

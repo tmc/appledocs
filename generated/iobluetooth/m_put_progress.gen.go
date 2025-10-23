@@ -30,6 +30,8 @@ type _mPUTProgressClass struct {
 // An interface definition for the [mPUTProgress] class.
 type ImPUTProgress interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

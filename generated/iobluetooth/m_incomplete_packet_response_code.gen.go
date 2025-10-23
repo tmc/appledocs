@@ -30,6 +30,8 @@ type _mIncompletePacketResponseCodeClass struct {
 // An interface definition for the [mIncompletePacketResponseCode] class.
 type ImIncompletePacketResponseCode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

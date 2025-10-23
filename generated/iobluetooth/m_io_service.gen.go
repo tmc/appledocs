@@ -30,6 +30,8 @@ type _mIOServiceClass struct {
 // An interface definition for the [mIOService] class.
 type ImIOService interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

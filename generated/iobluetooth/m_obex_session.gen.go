@@ -30,6 +30,8 @@ type _mOBEXSessionClass struct {
 // An interface definition for the [mOBEXSession] class.
 type ImOBEXSession interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

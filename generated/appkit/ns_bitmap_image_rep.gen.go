@@ -30,8 +30,6 @@ type _BitmapImageRepClass struct {
 // An interface definition for the [BitmapImageRep] class.
 type IBitmapImageRep interface {
 	IImageRep
-	RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties unsafe.Pointer) foundation.Data
-	TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data
 	TIFFRepresentation() foundation.NSData
 	BitmapData() unsafe.Pointer
 	SetBitmapData(value unsafe.Pointer)
@@ -43,16 +41,18 @@ type IBitmapImageRep interface {
 	SetBytesPerPlane(value int)
 	BytesPerRow() int
 	SetBytesPerRow(value int)
-	CgImage() Image
+	CgImage() IImage
 	SetCgImage(value IImage)
-	ColorSpace() NSColorSpace
-	SetColorSpace(value IColorSpace)
+	ColorSpace() ColorSpace
+	SetColorSpace(value ColorSpace)
 	IsPlanar() bool
 	SetIsPlanar(value bool)
 	NumberOfPlanes() int
 	SetNumberOfPlanes(value int)
 	SamplesPerPixel() int
 	SetSamplesPerPixel(value int)
+	RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties foundation.IDictionary) foundation.Data
+	TIFFRepresentationUsingCompressionFactor(comp NSTIFFCompression, factor float32) foundation.Data
 }
 
 // An object that renders an image from bitmap data.
@@ -114,7 +114,7 @@ func NewBitmapImageRep() BitmapImageRep {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/representation(using:properties:)
-func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties unsafe.Pointer) foundation.Data {
+func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType unsafe.Pointer, properties foundation.IDictionary) foundation.Data {
 	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("representationUsingType:properties:"), storageType, properties)
 	return rv
 }
@@ -124,7 +124,7 @@ func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/tiffRepresentation(using:factor:)
-func (b_ BitmapImageRep) TIFFRepresentationUsingCompressionFactor(comp ITIFFCompression, factor float32) foundation.Data {
+func (b_ BitmapImageRep) TIFFRepresentationUsingCompressionFactor(comp NSTIFFCompression, factor float32) foundation.Data {
 	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("TIFFRepresentationUsingCompression:factor:"), comp, factor)
 	return rv
 }
@@ -239,7 +239,7 @@ func (b_ BitmapImageRep) SetBytesPerRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/cgimage
-func (b_ BitmapImageRep) CgImage() Image {
+func (b_ BitmapImageRep) CgImage() IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("cgImage"))
 	return rv
 }
@@ -258,8 +258,8 @@ func (b_ BitmapImageRep) SetCgImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-func (b_ BitmapImageRep) ColorSpace() NSColorSpace {
-	rv := objc.Send[NSColorSpace](b_.ID, objc.Sel("colorSpace"))
+func (b_ BitmapImageRep) ColorSpace() ColorSpace {
+	rv := objc.Send[ColorSpace](b_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -268,7 +268,7 @@ func (b_ BitmapImageRep) ColorSpace() NSColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/colorspace
-func (b_ BitmapImageRep) SetColorSpace(value IColorSpace) {
+func (b_ BitmapImageRep) SetColorSpace(value ColorSpace) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColorSpace:"), value)
 }
 

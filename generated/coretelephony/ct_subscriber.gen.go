@@ -31,12 +31,12 @@ type _SubscriberClass struct {
 // An interface definition for the [Subscriber] class.
 type ISubscriber interface {
 	objectivec.IObject
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	CarrierToken() foundation.Data
-	SetCarrierToken(value foundation.IData)
 	Identifier() string
-	SetIdentifier(value string)
+	SIMInserted() bool
+	CarrierToken() foundation.Data
+	SetCarrierToken(value foundation.Data)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	IsSIMInserted() bool
 	SetIsSIMInserted(value bool)
 	CTSubscriberTokenRefreshed() string
@@ -93,22 +93,23 @@ func NewSubscriber() Subscriber {
 
 
 
-// A delegate that receives updates on the subscriber information.
+// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
-func (s_ Subscriber) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/identifier
+func (s_ Subscriber) Identifier() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// A delegate that receives updates on the subscriber information.
+// A Boolean property that indicates whether a SIM is present.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/delegate
-func (s_ Subscriber) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/isSIMInserted
+func (s_ Subscriber) SIMInserted() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("SIMInserted"))
+	return rv
 }
 
 
@@ -126,27 +127,27 @@ func (s_ Subscriber) CarrierToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) SetCarrierToken(value foundation.IData) {
+func (s_ Subscriber) SetCarrierToken(value foundation.Data) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
 
-// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+// A delegate that receives updates on the subscriber information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
+func (s_ Subscriber) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
 
-// An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
+// A delegate that receives updates on the subscriber information.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
+func (s_ Subscriber) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
 

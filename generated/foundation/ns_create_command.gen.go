@@ -29,8 +29,10 @@ type _CreateCommandClass struct {
 // An interface definition for the [CreateCommand] class.
 type ICreateCommand interface {
 	IScriptCommand
+	// properties:
 	CreateClassDescription() IScriptClassDescription
-	ResolvedKeyDictionary() IDictionary
+	ResolvedKeyDictionary() IDictionary /* already interface */
+	// methods:
 }
 
 // A command that creates a scriptable object.
@@ -102,7 +104,7 @@ func (c_ CreateCommand) CreateClassDescription() IScriptClassDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/resolvedKeyDictionary
-func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary {
+func (c_ CreateCommand) ResolvedKeyDictionary() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
 }

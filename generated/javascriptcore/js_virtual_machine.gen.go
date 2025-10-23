@@ -30,6 +30,8 @@ type _JSVirtualMachineClass struct {
 // An interface definition for the [JSVirtualMachine] class.
 type IJSVirtualMachine interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	AddManagedReferenceWithOwner(object objectivec.IObject, owner objectivec.IObject)
 	RemoveManagedReferenceWithOwner(object objectivec.IObject, owner objectivec.IObject)
 }

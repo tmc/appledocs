@@ -31,6 +31,7 @@ type _INPersonClass struct {
 // An interface definition for the [INPerson] class.
 type IINPerson interface {
 	objectivec.IObject
+	// properties:
 	Aliases() INPersonHandle
 	SetAliases(value INPersonHandle)
 	ContactIdentifier() string
@@ -48,7 +49,7 @@ type IINPerson interface {
 	IsMe() bool
 	SetIsMe(value bool)
 	NameComponents() foundation.PersonNameComponents
-	SetNameComponents(value foundation.IPersonNameComponents)
+	SetNameComponents(value foundation.PersonNameComponents)
 	PersonHandle() INPersonHandle
 	SetPersonHandle(value INPersonHandle)
 	Relationship() unsafe.Pointer
@@ -59,6 +60,7 @@ type IINPerson interface {
 	SetSuggestionType(value INPersonSuggestionType)
 	SpokenPhrase() string
 	SetSpokenPhrase(value string)
+	// methods:
 }
 
 // Information about a person participating in a SiriKit interaction.
@@ -280,7 +282,7 @@ func (i_ INPerson) NameComponents() foundation.PersonNameComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inperson/namecomponents
-func (i_ INPerson) SetNameComponents(value foundation.IPersonNameComponents) {
+func (i_ INPerson) SetNameComponents(value foundation.PersonNameComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNameComponents:"), value)
 }
 

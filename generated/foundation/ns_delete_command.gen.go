@@ -29,7 +29,9 @@ type _DeleteCommandClass struct {
 // An interface definition for the [DeleteCommand] class.
 type IDeleteCommand interface {
 	IScriptCommand
+	// properties:
 	KeySpecifier() IScriptObjectSpecifier
+	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 

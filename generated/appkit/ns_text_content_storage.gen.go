@@ -31,18 +31,16 @@ type _TextContentStorageClass struct {
 // An interface definition for the [TextContentStorage] class.
 type ITextContentStorage interface {
 	ITextContentManager
-	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange
-	LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID
-	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int
-	TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement
 	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.IAttributedString)
-	IncludesTextListMarkers() bool
-	SetIncludesTextListMarkers(value bool)
+	SetAttributedString(value foundation.AttributedString)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	DocumentRange() NSTextRange
+	IncludesTextListMarkers() bool
+	SetIncludesTextListMarkers(value bool)
+	DocumentRange() ITextRange
 	SetDocumentRange(value ITextRange)
+	LocationFromLocationWithOffset(location objectivec.IObject, offset int) objc.ID
+	OffsetFromLocationToLocation(from objectivec.IObject, to objectivec.IObject) int
 }
 
 // A concrete object for managing your view’s text content and generating the text elements necessary for layout.
@@ -100,16 +98,6 @@ func NewTextContentStorage() TextContentStorage {
 
 
 
-// Returns the text range, if any, in the backing store that required manual adjustment after editing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/adjustedRange(from:forEditingTextSelection:)
-func (t_ TextContentStorage) AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange {
-	rv := objc.Send[TextRange](t_.ID, objc.Sel("adjustedRangeFromRange:forEditingTextSelection:"), textRange, forEditingTextSelection)
-	return rv
-}
-
-
 // Returns a new text location object based on an existing location and offset you provide.
 //
 // [Full Topic]
@@ -130,16 +118,6 @@ func (t_ TextContentStorage) OffsetFromLocationToLocation(from objectivec.IObjec
 }
 
 
-// Returns the text element corresponding to object’s attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/textElement(for:)
-func (t_ TextContentStorage) TextElementForAttributedString(attributedString foundation.IAttributedString) TextElement {
-	rv := objc.Send[TextElement](t_.ID, objc.Sel("textElementForAttributedString:"), attributedString)
-	return rv
-}
-
-
 // An attributed string that contains the contents of the document.
 //
 // [Full Topic]
@@ -154,23 +132,8 @@ func (t_ TextContentStorage) AttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/attributedString
-func (t_ TextContentStorage) SetAttributedString(value foundation.IAttributedString) {
+func (t_ TextContentStorage) SetAttributedString(value foundation.AttributedString) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
-func (t_ TextContentStorage) IncludesTextListMarkers() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentStorage/includesTextListMarkers
-func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
 }
 
 
@@ -193,12 +156,27 @@ func (t_ TextContentStorage) SetDelegate(value unsafe.Pointer) {
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/includestextlistmarkers
+func (t_ TextContentStorage) IncludesTextListMarkers() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("includesTextListMarkers"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontentstorage/includestextlistmarkers
+func (t_ TextContentStorage) SetIncludesTextListMarkers(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
+}
+
+
 // Describes the starting and ending locations for the document.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextelementprovider/documentrange
-func (t_ TextContentStorage) DocumentRange() NSTextRange {
-	rv := objc.Send[NSTextRange](t_.ID, objc.Sel("documentRange"))
+func (t_ TextContentStorage) DocumentRange() ITextRange {
+	rv := objc.Send[TextRange](t_.ID, objc.Sel("documentRange"))
 	return rv
 }
 

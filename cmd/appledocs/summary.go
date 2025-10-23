@@ -12,25 +12,25 @@ import (
 
 // FrameworkSummary contains high-level statistics about a framework
 type FrameworkSummary struct {
-	Name                 string            `json:"name"`
-	Version              string            `json:"version,omitempty"`
-	Platforms            []string          `json:"platforms,omitempty"`
-	ClassCount           int               `json:"class_count"`
-	ProtocolCount        int               `json:"protocol_count"`
-	EnumCount            int               `json:"enum_count"`
-	StructCount          int               `json:"struct_count"`
-	TypeAliasCount       int               `json:"type_alias_count"`
-	FunctionCount        int               `json:"function_count"`
-	ConstantCount        int               `json:"constant_count"`
-	TotalSymbols         int               `json:"total_symbols"`
-	TotalMethods         int               `json:"total_methods"`
-	TotalProperties      int               `json:"total_properties"`
-	TopLevelCategories   []string          `json:"top_level_categories,omitempty"`
-	Dependencies         []string          `json:"dependencies,omitempty"`
-	APICoverage          float64           `json:"api_coverage_percent,omitempty"`
-	LastCacheUpdate      time.Time         `json:"last_cache_update,omitempty"`
-	CachedFiles          int               `json:"cached_files"`
-	SymbolsByKind        map[string]int    `json:"symbols_by_kind,omitempty"`
+	Name               string         `json:"name"`
+	Version            string         `json:"version,omitempty"`
+	Platforms          []string       `json:"platforms,omitempty"`
+	ClassCount         int            `json:"class_count"`
+	ProtocolCount      int            `json:"protocol_count"`
+	EnumCount          int            `json:"enum_count"`
+	StructCount        int            `json:"struct_count"`
+	TypeAliasCount     int            `json:"type_alias_count"`
+	FunctionCount      int            `json:"function_count"`
+	ConstantCount      int            `json:"constant_count"`
+	TotalSymbols       int            `json:"total_symbols"`
+	TotalMethods       int            `json:"total_methods"`
+	TotalProperties    int            `json:"total_properties"`
+	TopLevelCategories []string       `json:"top_level_categories,omitempty"`
+	Dependencies       []string       `json:"dependencies,omitempty"`
+	APICoverage        float64        `json:"api_coverage_percent,omitempty"`
+	LastCacheUpdate    time.Time      `json:"last_cache_update,omitempty"`
+	CachedFiles        int            `json:"cached_files"`
+	SymbolsByKind      map[string]int `json:"symbols_by_kind,omitempty"`
 }
 
 // generateFrameworkSummary analyzes cached framework data and generates a summary

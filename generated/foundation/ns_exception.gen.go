@@ -30,15 +30,17 @@ type _ExceptionClass struct {
 // An interface definition for the [Exception] class.
 type IException interface {
 	objectivec.IObject
+	// properties:
 	UserInfo() objc.ID
 	CallStackReturnAddresses() INumber
 	SetCallStackReturnAddresses(value INumber)
-	CallStackSymbols() string
-	SetCallStackSymbols(value string)
-	Name() unsafe.Pointer
-	SetName(value unsafe.Pointer)
-	Reason() string
-	SetReason(value string)
+	CallStackSymbols() string /* primitive/slice/pointer */
+	SetCallStackSymbols(value string /* primitive/slice/pointer */)
+	Name() ExceptionName /* foo */
+	SetName(value ExceptionName /* foo */)
+	Reason() string /* primitive/slice/pointer */
+	SetReason(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An object that represents a special condition that interrupts the normal flow of program execution.
@@ -127,7 +129,7 @@ func (e_ Exception) SetCallStackReturnAddresses(value INumber) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstacksymbols
-func (e_ Exception) CallStackSymbols() string {
+func (e_ Exception) CallStackSymbols() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("callStackSymbols"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (e_ Exception) CallStackSymbols() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstacksymbols
-func (e_ Exception) SetCallStackSymbols(value string) {
+func (e_ Exception) SetCallStackSymbols(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCallStackSymbols:"), objc.String(value))
 }
 
@@ -146,8 +148,8 @@ func (e_ Exception) SetCallStackSymbols(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
-func (e_ Exception) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ Exception) Name() ExceptionName /* foo */ {
+	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -156,7 +158,7 @@ func (e_ Exception) Name() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
-func (e_ Exception) SetName(value unsafe.Pointer) {
+func (e_ Exception) SetName(value ExceptionName /* foo */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
@@ -165,7 +167,7 @@ func (e_ Exception) SetName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/reason-swift.property
-func (e_ Exception) Reason() string {
+func (e_ Exception) Reason() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (e_ Exception) Reason() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/reason-swift.property
-func (e_ Exception) SetReason(value string) {
+func (e_ Exception) SetReason(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setReason:"), objc.String(value))
 }
 

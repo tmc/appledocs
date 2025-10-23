@@ -102,7 +102,7 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider foundation.IItemProvider, iconProvider foundation.IItemProvider) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider foundation.ItemProvider, iconProvider foundation.ItemProvider) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, objc.String(title), imageProvider, iconProvider)
 	rv.Autorelease()

@@ -30,6 +30,7 @@ type _PlayerInterstitialEventMonitorClass struct {
 // An interface definition for the [PlayerInterstitialEventMonitor] class.
 type IPlayerInterstitialEventMonitor interface {
 	objectivec.IObject
+	// properties:
 	ReasonForWaitingToPlay() unsafe.Pointer
 	SetReasonForWaitingToPlay(value unsafe.Pointer)
 	TimeControlStatus() unsafe.Pointer
@@ -38,8 +39,8 @@ type IPlayerInterstitialEventMonitor interface {
 	SetTemplateItems(value IAVPlayerItem)
 	CurrentEvent() IAVPlayerInterstitialEvent
 	SetCurrentEvent(value IAVPlayerInterstitialEvent)
-	CurrentEventSkipControlLabel() string
-	SetCurrentEventSkipControlLabel(value string)
+	CurrentEventSkipControlLabel() string /* primitive/slice/pointer */
+	SetCurrentEventSkipControlLabel(value string /* primitive/slice/pointer */)
 	CurrentEventSkippableState() unsafe.Pointer
 	SetCurrentEventSkippableState(value unsafe.Pointer)
 	Events() IAVPlayerInterstitialEvent
@@ -48,6 +49,7 @@ type IPlayerInterstitialEventMonitor interface {
 	SetInterstitialPlayer(value IAVQueuePlayer)
 	PrimaryPlayer() IAVPlayer
 	SetPrimaryPlayer(value IAVPlayer)
+	// methods:
 }
 
 // An object that monitors the scheduling and progress of interstitial events.
@@ -183,7 +185,7 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerIntersti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
+func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
 }
@@ -193,7 +195,7 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string) {
+func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
 }
 

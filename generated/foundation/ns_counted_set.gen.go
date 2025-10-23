@@ -29,8 +29,10 @@ type _CountedSetClass struct {
 // An interface definition for the [CountedSet] class.
 type ICountedSet interface {
 	IMutableSet
-	Count() int
-	SetCount(value int)
+	// properties:
+	Count() int /* primitive/slice/pointer */
+	SetCount(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A mutable, unordered collection of distinct objects that may appear more than once in the collection.
@@ -92,7 +94,7 @@ func NewCountedSet() CountedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) Count() int {
+func (c_ CountedSet) Count() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("count"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (c_ CountedSet) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) SetCount(value int) {
+func (c_ CountedSet) SetCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
 }
 

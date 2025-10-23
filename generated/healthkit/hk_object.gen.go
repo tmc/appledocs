@@ -31,13 +31,20 @@ type _HKObjectClass struct {
 // An interface definition for the [HKObject] class.
 type IHKObject interface {
 	objectivec.IObject
-	Device() HKDevice
-	Metadata() unsafe.Pointer
-	Source() HKSource
-	SourceRevision() HKSourceRevision
-	UUID() foundation.UUID
+	// properties:
+	Device() IHKDevice
+	SetDevice(value IHKDevice)
+	Metadata() string
+	SetMetadata(value string)
+	Source() IHKSource
+	SetSource(value IHKSource)
+	SourceRevision() IHKSourceRevision
+	SetSourceRevision(value IHKSourceRevision)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.UUID)
 	HKPredicateKeyPathMetadata() string
 	HKPredicateKeyPathUUID() string
+	// methods:
 }
 
 // A piece of data that can be stored inside the HealthKit store.
@@ -96,9 +103,28 @@ func NewHKObject() HKObject {
 // The device that generated the data for this object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/device
-func (h_ HKObject) Device() HKDevice {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/device
+func (h_ HKObject) Device() IHKDevice {
 	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
+	return rv
+}
+
+
+// The device that generated the data for this object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/device
+func (h_ HKObject) SetDevice(value IHKDevice) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
+}
+
+
+// The metadata for this HealthKit object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/metadata
+func (h_ HKObject) Metadata() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -106,9 +132,18 @@ func (h_ HKObject) Device() HKDevice {
 // The metadata for this HealthKit object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/metadata
-func (h_ HKObject) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("metadata"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/metadata
+func (h_ HKObject) SetMetadata(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+}
+
+
+// A HealthKit source, representing the app or device that created this object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/source
+func (h_ HKObject) Source() IHKSource {
+	rv := objc.Send[HKSource](h_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -116,9 +151,18 @@ func (h_ HKObject) Metadata() unsafe.Pointer {
 // A HealthKit source, representing the app or device that created this object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/source
-func (h_ HKObject) Source() HKSource {
-	rv := objc.Send[HKSource](h_.ID, objc.Sel("source"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/source
+func (h_ HKObject) SetSource(value IHKSource) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSource:"), value)
+}
+
+
+// The app or device that created this object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKObject) SourceRevision() IHKSourceRevision {
+	rv := objc.Send[HKSourceRevision](h_.ID, objc.Sel("sourceRevision"))
 	return rv
 }
 
@@ -126,9 +170,18 @@ func (h_ HKObject) Source() HKSource {
 // The app or device that created this object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/sourceRevision
-func (h_ HKObject) SourceRevision() HKSourceRevision {
-	rv := objc.Send[HKSourceRevision](h_.ID, objc.Sel("sourceRevision"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision
+func (h_ HKObject) SetSourceRevision(value IHKSourceRevision) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceRevision:"), value)
+}
+
+
+// The universally unique identifier (UUID) for this HealthKit object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/uuid
+func (h_ HKObject) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
 
@@ -136,10 +189,9 @@ func (h_ HKObject) SourceRevision() HKSourceRevision {
 // The universally unique identifier (UUID) for this HealthKit object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObject/uuid
-func (h_ HKObject) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/uuid
+func (h_ HKObject) SetUuid(value foundation.UUID) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 
 

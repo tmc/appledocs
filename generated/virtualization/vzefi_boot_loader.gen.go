@@ -30,11 +30,15 @@ type _VZEFIBootLoaderClass struct {
 type IVZEFIBootLoader interface {
 	IVZBootLoader
 	VariableStore() VZEFIVariableStore
-	SetVariableStore(value IVZEFIVariableStore)
+	SetVariableStore(value VZEFIVariableStore)
 }
 
 // The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.
+
+
+// The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader
 type VZEFIBootLoader struct {
 	VZBootLoader
@@ -82,8 +86,10 @@ func NewVZEFIBootLoader() VZEFIBootLoader {
 
 
 
+
 // The boot loader’s EFI variable store.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader/variableStore
 func (v_ VZEFIBootLoader) VariableStore() VZEFIVariableStore {
 	rv := objc.Send[VZEFIVariableStore](v_.ID, objc.Sel("variableStore"))
@@ -91,12 +97,11 @@ func (v_ VZEFIBootLoader) VariableStore() VZEFIVariableStore {
 }
 
 
-// SetVariableStore sets the value of the variableStore property.
 // The boot loader’s EFI variable store.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader/variableStore
-func (v_ VZEFIBootLoader) SetVariableStore(value IVZEFIVariableStore) {
+func (v_ VZEFIBootLoader) SetVariableStore(value VZEFIVariableStore) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVariableStore:"), value)
 }
 

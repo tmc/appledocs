@@ -29,8 +29,8 @@ type _CNChangeHistoryRemoveMemberFromGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryRemoveMemberFromGroupEvent] class.
 type ICNChangeHistoryRemoveMemberFromGroupEvent interface {
 	ICNChangeHistoryEvent
-	Group() CNGroup
-	Member() CNContact
+	Group() ICNGroup
+	Member() ICNContact
 }
 
 // An object that represents a user removing a contact from a group.
@@ -90,7 +90,7 @@ func NewCNChangeHistoryRemoveMemberFromGroupEvent() CNChangeHistoryRemoveMemberF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/group
-func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() CNGroup {
+func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
@@ -100,7 +100,7 @@ func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/member
-func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Member() CNContact {
+func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Member() ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("member"))
 	return rv
 }

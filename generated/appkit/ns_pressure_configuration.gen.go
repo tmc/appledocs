@@ -30,9 +30,9 @@ type _PressureConfigurationClass struct {
 // An interface definition for the [PressureConfiguration] class.
 type IPressureConfiguration interface {
 	objectivec.IObject
+	PressureBehavior() NSPressureBehavior
+	SetPressureBehavior(value NSPressureBehavior)
 	Set()
-	PressureBehavior() unsafe.Pointer
-	SetPressureBehavior(value unsafe.Pointer)
 }
 
 // An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
@@ -88,6 +88,19 @@ func NewPressureConfiguration() PressureConfiguration {
 
 
 
+// Initializes a pressure configuration object with a specified pressure behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/init(pressureBehavior:)
+func NewPressureConfigurationWithPressureBehavior(pressureBehavior NSPressureBehavior) PressureConfiguration {
+	instance := getPressureConfigurationClass().Alloc()
+	rv := objc.Send[PressureConfiguration](instance.ID, objc.Sel("initWithPressureBehavior:"), pressureBehavior)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Changes the pressure configuration of the trackpad to the initialized pressure configuration.
 //
 // [Full Topic]
@@ -101,8 +114,8 @@ func (p_ PressureConfiguration) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-func (p_ PressureConfiguration) PressureBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pressureBehavior"))
+func (p_ PressureConfiguration) PressureBehavior() NSPressureBehavior {
+	rv := objc.Send[PressureBehavior](p_.ID, objc.Sel("pressureBehavior"))
 	return rv
 }
 
@@ -111,9 +124,8 @@ func (p_ PressureConfiguration) PressureBehavior() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-func (p_ PressureConfiguration) SetPressureBehavior(value unsafe.Pointer) {
+func (p_ PressureConfiguration) SetPressureBehavior(value NSPressureBehavior) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressureBehavior:"), value)
 }
-
 
 

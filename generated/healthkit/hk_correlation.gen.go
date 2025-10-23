@@ -29,11 +29,14 @@ type _HKCorrelationClass struct {
 // An interface definition for the [HKCorrelation] class.
 type IHKCorrelation interface {
 	IHKSample
-	CorrelationType() HKCorrelationType
-	Objects() HKSample
+	// properties:
+	CorrelationType() IHKCorrelationType
+	SetCorrelationType(value IHKCorrelationType)
+	Objects() IHKSample
 	SetObjects(value IHKSample)
 	HKMetadataKeyFoodType() string
 	HKPredicateKeyPathCorrelation() string
+	// methods:
 }
 
 // A sample that groups multiple related samples into a single entry.
@@ -94,10 +97,19 @@ func NewHKCorrelation() HKCorrelation {
 // The type for this correlation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelation/correlationType
-func (h_ HKCorrelation) CorrelationType() HKCorrelationType {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/correlationtype
+func (h_ HKCorrelation) CorrelationType() IHKCorrelationType {
 	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
+}
+
+
+// The type for this correlation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/correlationtype
+func (h_ HKCorrelation) SetCorrelationType(value IHKCorrelationType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCorrelationType:"), value)
 }
 
 
@@ -105,7 +117,7 @@ func (h_ HKCorrelation) CorrelationType() HKCorrelationType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelation/objects
-func (h_ HKCorrelation) Objects() HKSample {
+func (h_ HKCorrelation) Objects() IHKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("objects"))
 	return rv
 }

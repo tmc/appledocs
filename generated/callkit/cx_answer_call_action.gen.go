@@ -30,7 +30,7 @@ type _CXAnswerCallActionClass struct {
 // An interface definition for the [CXAnswerCallAction] class.
 type ICXAnswerCallAction interface {
 	ICXCallAction
-	FulfillWithDateConnected(dateConnected foundation.IDate)
+	FulfillWithDateConnected(dateConnected foundation.NSDate)
 }
 
 // An encapsulation of the act of answering an incoming call.
@@ -92,7 +92,7 @@ func NewCXAnswerCallAction() CXAnswerCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction/fulfill(withDateConnected:)
-func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.IDate) {
+func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateConnected:"), dateConnected)
 }
 

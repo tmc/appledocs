@@ -718,81 +718,81 @@ type BluetoothSimplePairingDebugMode uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothTransportInfoPtr
 // BluetoothTransportInfoPtr has base type: BluetoothTransportInfo *
 type BluetoothTransportInfoPtr uintptr
-// IOBluetoothDeviceRef - An object that represents a Bluetooth I/O device.
+// BluetoothDeviceRef - An object that represents a Bluetooth I/O device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceRef
 // IOBluetoothDeviceRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothDeviceRef uintptr
-// IOBluetoothDeviceSearchOptions type alias
+type BluetoothDeviceRef uintptr
+// BluetoothDeviceSearchOptions type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchOptions
 // IOBluetoothDeviceSearchOptions has base type: UInt32
-type IOBluetoothDeviceSearchOptions uintptr
-// IOBluetoothDeviceSearchTypes type alias
+type BluetoothDeviceSearchOptions uintptr
+// BluetoothDeviceSearchTypes type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchTypes
 // IOBluetoothDeviceSearchTypes has base type: UInt32
-type IOBluetoothDeviceSearchTypes uintptr
-// IOBluetoothL2CAPChannelIncomingDataListener type alias
+type BluetoothDeviceSearchTypes uintptr
+// BluetoothL2CAPChannelIncomingDataListener type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelIncomingDataListener
 // IOBluetoothL2CAPChannelIncomingDataListener has base type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, unsigned short, void *)
-type IOBluetoothL2CAPChannelIncomingDataListener uintptr
-// IOBluetoothL2CAPChannelIncomingEventListener type alias
+type BluetoothL2CAPChannelIncomingDataListener uintptr
+// BluetoothL2CAPChannelIncomingEventListener type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelIncomingEventListener
 // IOBluetoothL2CAPChannelIncomingEventListener has base type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, struct IOBluetoothL2CAPChannelEvent *)
-type IOBluetoothL2CAPChannelIncomingEventListener uintptr
-// IOBluetoothL2CAPChannelRef type alias
+type BluetoothL2CAPChannelIncomingEventListener uintptr
+// BluetoothL2CAPChannelRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef
 // IOBluetoothL2CAPChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothL2CAPChannelRef uintptr
-// IOBluetoothOBEXSessionOpenConnectionCallback type alias
+type BluetoothL2CAPChannelRef uintptr
+// BluetoothOBEXSessionOpenConnectionCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionOpenConnectionCallback
 // IOBluetoothOBEXSessionOpenConnectionCallback has base type: void (*)(struct OpaqueOBEXSessionRef *, int, void *)
-type IOBluetoothOBEXSessionOpenConnectionCallback uintptr
-// IOBluetoothObjectID type alias
+type BluetoothOBEXSessionOpenConnectionCallback uintptr
+// BluetoothObjectID type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectID
 // IOBluetoothObjectID has base type: unsigned long
-type IOBluetoothObjectID uintptr
-// IOBluetoothObjectRef type alias
+type BluetoothObjectID uintptr
+// BluetoothObjectRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectRef
 // IOBluetoothObjectRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothObjectRef uintptr
-// IOBluetoothRFCOMMChannelRef type alias
+type BluetoothObjectRef uintptr
+// BluetoothRFCOMMChannelRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef
 // IOBluetoothRFCOMMChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothRFCOMMChannelRef uintptr
-// IOBluetoothSDPDataElementRef type alias
+type BluetoothRFCOMMChannelRef uintptr
+// BluetoothSDPDataElementRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElementRef
 // IOBluetoothSDPDataElementRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothSDPDataElementRef uintptr
-// IOBluetoothSDPServiceRecordRef type alias
+type BluetoothSDPDataElementRef uintptr
+// BluetoothSDPServiceRecordRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecordRef
 // IOBluetoothSDPServiceRecordRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothSDPServiceRecordRef uintptr
-// IOBluetoothSDPUUIDRef type alias
+type BluetoothSDPServiceRecordRef uintptr
+// BluetoothSDPUUIDRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUIDRef
 // IOBluetoothSDPUUIDRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothSDPUUIDRef uintptr
-// IOBluetoothUserNotificationCallback - Callback function definition for user notifications.
+type BluetoothSDPUUIDRef uintptr
+// BluetoothUserNotificationCallback - Callback function definition for user notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationCallback
 // IOBluetoothUserNotificationCallback has base type: void (*)(void *, struct OpaqueIOBluetoothObjectRef *, struct OpaqueIOBluetoothObjectRef *)
-type IOBluetoothUserNotificationCallback uintptr
-// IOBluetoothUserNotificationRef type alias
+type BluetoothUserNotificationCallback uintptr
+// BluetoothUserNotificationRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationRef
 // IOBluetoothUserNotificationRef has base type: struct OpaqueIOBluetoothObjectRef *
-type IOBluetoothUserNotificationRef uintptr
+type BluetoothUserNotificationRef uintptr
 // OBEXConstants type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXConstants

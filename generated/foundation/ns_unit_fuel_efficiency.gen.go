@@ -29,6 +29,8 @@ type _UnitFuelEfficiencyClass struct {
 // An interface definition for the [UnitFuelEfficiency] class.
 type IUnitFuelEfficiency interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for fuel efficiency.

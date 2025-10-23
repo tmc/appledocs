@@ -31,16 +31,14 @@ type _TableColumnClass struct {
 // An interface definition for the [TableColumn] class.
 type ITableColumn interface {
 	objectivec.IObject
-	DataCell() objc.ID
-	SetDataCell(value objc.ID)
-	Editable() bool
-	SetEditable(value bool)
-	HeaderCell() NSTableHeaderCell
-	SetHeaderCell(value ITableHeaderCell)
+	DataCell() unsafe.Pointer
+	SetDataCell(value unsafe.Pointer)
+	HeaderCell() TableHeaderCell
+	SetHeaderCell(value TableHeaderCell)
 	HeaderToolTip() string
 	SetHeaderToolTip(value string)
 	Identifier() UserInterfaceItemIdentifier
-	SetIdentifier(value IUserInterfaceItemIdentifier)
+	SetIdentifier(value UserInterfaceItemIdentifier)
 	IsEditable() bool
 	SetIsEditable(value bool)
 	IsHidden() bool
@@ -52,9 +50,9 @@ type ITableColumn interface {
 	ResizingMask() unsafe.Pointer
 	SetResizingMask(value unsafe.Pointer)
 	SortDescriptorPrototype() foundation.SortDescriptor
-	SetSortDescriptorPrototype(value foundation.ISortDescriptor)
-	TableView() NSTableView
-	SetTableView(value ITableView)
+	SetSortDescriptorPrototype(value foundation.SortDescriptor)
+	TableView() TableView
+	SetTableView(value TableView)
 	Title() string
 	SetTitle(value string)
 	Width() float64
@@ -117,9 +115,9 @@ func NewTableColumn() TableColumn {
 // The cell prototype used by the table column to draw individual cells.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
-func (t_ TableColumn) DataCell() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("dataCell"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/datacell
+func (t_ TableColumn) DataCell() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataCell"))
 	return rv
 }
 
@@ -127,37 +125,18 @@ func (t_ TableColumn) DataCell() objc.ID {
 // The cell prototype used by the table column to draw individual cells.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/dataCell
-func (t_ TableColumn) SetDataCell(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/datacell
+func (t_ TableColumn) SetDataCell(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataCell:"), value)
 }
 
 
-// A Boolean that indicates whether a cell-based table’s column cells are user editable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/isEditable
-func (t_ TableColumn) Editable() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
-	return rv
-}
-
-
-// A Boolean that indicates whether a cell-based table’s column cells are user editable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/isEditable
-func (t_ TableColumn) SetEditable(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
-}
-
-
 // The cell used to draw the table column’s header.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) HeaderCell() NSTableHeaderCell {
-	rv := objc.Send[NSTableHeaderCell](t_.ID, objc.Sel("headerCell"))
+func (t_ TableColumn) HeaderCell() TableHeaderCell {
+	rv := objc.Send[TableHeaderCell](t_.ID, objc.Sel("headerCell"))
 	return rv
 }
 
@@ -166,7 +145,7 @@ func (t_ TableColumn) HeaderCell() NSTableHeaderCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) SetHeaderCell(value ITableHeaderCell) {
+func (t_ TableColumn) SetHeaderCell(value TableHeaderCell) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderCell:"), value)
 }
 
@@ -204,7 +183,7 @@ func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-func (t_ TableColumn) SetIdentifier(value IUserInterfaceItemIdentifier) {
+func (t_ TableColumn) SetIdentifier(value UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -318,7 +297,7 @@ func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.ISortDescriptor) {
+func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.SortDescriptor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
 }
 
@@ -327,8 +306,8 @@ func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.ISortDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) TableView() NSTableView {
-	rv := objc.Send[NSTableView](t_.ID, objc.Sel("tableView"))
+func (t_ TableColumn) TableView() TableView {
+	rv := objc.Send[TableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
 
@@ -337,7 +316,7 @@ func (t_ TableColumn) TableView() NSTableView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) SetTableView(value ITableView) {
+func (t_ TableColumn) SetTableView(value TableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 

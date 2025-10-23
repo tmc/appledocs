@@ -30,6 +30,8 @@ type _MethodSignatureClass struct {
 // An interface definition for the [MethodSignature] class.
 type IMethodSignature interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A record of the type information for the return value and parameters of a method.

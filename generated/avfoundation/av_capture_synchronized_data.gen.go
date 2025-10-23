@@ -30,6 +30,8 @@ type _CaptureSynchronizedDataClass struct {
 // An interface definition for the [CaptureSynchronizedData] class.
 type ICaptureSynchronizedData interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AVFoundation classes.

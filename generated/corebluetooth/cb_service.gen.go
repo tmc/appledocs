@@ -32,7 +32,7 @@ type ICBService interface {
 	Characteristics() []CBCharacteristic
 	IncludedServices() []CBService
 	IsPrimary() bool
-	Peripheral() CBPeripheral
+	Peripheral() ICBPeripheral
 }
 
 // A collection of data and associated behaviors that accomplish a function or feature of a device.
@@ -124,7 +124,7 @@ func (c_ CBService) IsPrimary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/peripheral
-func (c_ CBService) Peripheral() CBPeripheral {
+func (c_ CBService) Peripheral() ICBPeripheral {
 	rv := objc.Send[CBPeripheral](c_.ID, objc.Sel("peripheral"))
 	return rv
 }

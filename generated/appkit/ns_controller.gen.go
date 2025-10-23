@@ -85,7 +85,6 @@ func NewController() Controller {
 
 
 
-
 // A Boolean value indicating if any editors are registered with the controller.
 //
 // [Full Topic]
@@ -103,5 +102,6 @@ func (c_ Controller) IsEditing() bool {
 func (c_ Controller) SetIsEditing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
 }
+
 
 

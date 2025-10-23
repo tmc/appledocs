@@ -38,7 +38,11 @@ type IVZLinuxRosettaDirectoryShare interface {
 // The Linux directory share for Rosetta.
 //
 // This directory share exposes the Rosetta directory from the host file system to the guest. The example below shows the process of creating a , and then associating the Rosetta directory share with the VM configuration. For complete instructions on installing Rosetta see , which includes additional information about checking for Rosetta availability, mounting the directory share, and registering the Rosetta runtime binary to run Intel binaries in a guest VM. For information on using a custom kernel to enhance Rosetta performance, see .
+
+
+// The Linux directory share for Rosetta.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare
 type VZLinuxRosettaDirectoryShare struct {
 	VZDirectoryShare
@@ -86,42 +90,9 @@ func NewVZLinuxRosettaDirectoryShare() VZLinuxRosettaDirectoryShare {
 
 
 
-
-// Creates a new Rosetta directory share, or returns an error if Rosetta isn’t installed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/init()
-func NewVZLinuxRosettaDirectoryShareWithError(error_ unsafe.Pointer) VZLinuxRosettaDirectoryShare {
-	instance := getVZLinuxRosettaDirectoryShareClass().Alloc()
-	rv := objc.Send[VZLinuxRosettaDirectoryShare](instance.ID, objc.Sel("initWithError:"), error_)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Starts the installation of Rosetta.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/installRosetta(completionHandler:)
-func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("installRosettaWithCompletionHandler:"), completionHandler)
-}
-
-// A value that indicates the current state of Rosetta’s availability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
-func (vc _VZLinuxRosettaDirectoryShareClass) Availability() VZLinuxRosettaAvailability {
-	rv := objc.Send[VZLinuxRosettaAvailability](objc.ID(vc.class), objc.Sel("availability"))
-	return rv
-}
-// A value that indicates the current state of Rosetta’s availability.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
-func (v_ VZLinuxRosettaDirectoryShare) Availability() VZLinuxRosettaAvailability {
-	rv := objc.Send[VZLinuxRosettaAvailability](v_.ID, objc.Sel("availability"))
-	return rv
-}
-
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
 func (v_ VZLinuxRosettaDirectoryShare) Options() VZLinuxRosettaCachingOptions {
 	rv := objc.Send[VZLinuxRosettaCachingOptions](v_.ID, objc.Sel("options"))
@@ -129,17 +100,18 @@ func (v_ VZLinuxRosettaDirectoryShare) Options() VZLinuxRosettaCachingOptions {
 }
 
 
-// SetOptions sets the value of the options property.
 // The value that enables translation caching and configures the socket communication type for Rosetta.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
 func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value VZLinuxRosettaCachingOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
 }
 
+
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
 func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("cachingOptions"))
@@ -147,13 +119,13 @@ func (v_ VZLinuxRosettaDirectoryShare) CachingOptions() unsafe.Pointer {
 }
 
 
-// SetCachingOptions sets the value of the cachingOptions property.
 // The value that enables translation caching and configures the socket communication type for Rosetta.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare/cachingoptions-swift.property
 func (v_ VZLinuxRosettaDirectoryShare) SetCachingOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingOptions:"), value)
 }
+
 
 

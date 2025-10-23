@@ -32,23 +32,24 @@ type _AudioSessionDataSourceDescriptionClass struct {
 // An interface definition for the [AudioSessionDataSourceDescription] class.
 type IAudioSessionDataSourceDescription interface {
 	objectivec.IObject
-	SetPreferredPolarPatternError(pattern IAudioSessionPolarPattern, outError unsafe.Pointer) bool
-	PreferredPolarPattern() AudioSessionPolarPattern
-	SelectedPolarPattern() AudioSessionPolarPattern
 	SupportedPolarPatterns() []string
-	OutputDataSource() AVAudioSessionDataSourceDescription
+	OutputDataSource() IAVAudioSessionDataSourceDescription
 	SetOutputDataSource(value IAVAudioSessionDataSourceDescription)
-	OutputDataSources() AVAudioSessionDataSourceDescription
+	OutputDataSources() IAVAudioSessionDataSourceDescription
 	SetOutputDataSources(value IAVAudioSessionDataSourceDescription)
 	DataSourceID() foundation.Number
-	SetDataSourceID(value foundation.INumber)
+	SetDataSourceID(value foundation.Number)
 	DataSourceName() string
 	SetDataSourceName(value string)
 	Location() corelocation.Location
-	SetLocation(value corelocation.ILocation)
+	SetLocation(value corelocation.Location)
 	Orientation() unsafe.Pointer
 	SetOrientation(value unsafe.Pointer)
-	DataSources() AVAudioSessionDataSourceDescription
+	PreferredPolarPattern() unsafe.Pointer
+	SetPreferredPolarPattern(value unsafe.Pointer)
+	SelectedPolarPattern() unsafe.Pointer
+	SetSelectedPolarPattern(value unsafe.Pointer)
+	DataSources() IAVAudioSessionDataSourceDescription
 	SetDataSources(value IAVAudioSessionDataSourceDescription)
 }
 
@@ -105,36 +106,6 @@ func NewAudioSessionDataSourceDescription() AudioSessionDataSourceDescription {
 
 
 
-// Selects the preferred directivity configuration for the data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/setPreferredPolarPattern(_:)
-func (a_ AudioSessionDataSourceDescription) SetPreferredPolarPatternError(pattern IAudioSessionPolarPattern, outError unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredPolarPattern:error:"), pattern, outError)
-	return rv
-}
-
-
-// The preferred directivity configuration for the data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/preferredPolarPattern
-func (a_ AudioSessionDataSourceDescription) PreferredPolarPattern() AudioSessionPolarPattern {
-	rv := objc.Send[AudioSessionPolarPattern](a_.ID, objc.Sel("preferredPolarPattern"))
-	return rv
-}
-
-
-// The data source’s active polar pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/selectedPolarPattern
-func (a_ AudioSessionDataSourceDescription) SelectedPolarPattern() AudioSessionPolarPattern {
-	rv := objc.Send[AudioSessionPolarPattern](a_.ID, objc.Sel("selectedPolarPattern"))
-	return rv
-}
-
-
 // The set of directivity configurations supported by the data source.
 //
 // [Full Topic]
@@ -149,8 +120,8 @@ func (a_ AudioSessionDataSourceDescription) SupportedPolarPatterns() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasource
-func (a_ AudioSessionDataSourceDescription) OutputDataSource() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSource"))
+func (a_ AudioSessionDataSourceDescription) OutputDataSource() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSource"))
 	return rv
 }
 
@@ -168,8 +139,8 @@ func (a_ AudioSessionDataSourceDescription) SetOutputDataSource(value IAVAudioSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/outputdatasources
-func (a_ AudioSessionDataSourceDescription) OutputDataSources() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSources"))
+func (a_ AudioSessionDataSourceDescription) OutputDataSources() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSources"))
 	return rv
 }
 
@@ -197,7 +168,7 @@ func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
-func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.INumber) {
+func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.Number) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceID:"), value)
 }
 
@@ -235,7 +206,7 @@ func (a_ AudioSessionDataSourceDescription) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
-func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.ILocation) {
+func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.Location) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -259,12 +230,50 @@ func (a_ AudioSessionDataSourceDescription) SetOrientation(value unsafe.Pointer)
 }
 
 
+// The preferred directivity configuration for the data source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/preferredpolarpattern
+func (a_ AudioSessionDataSourceDescription) PreferredPolarPattern() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredPolarPattern"))
+	return rv
+}
+
+
+// The preferred directivity configuration for the data source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/preferredpolarpattern
+func (a_ AudioSessionDataSourceDescription) SetPreferredPolarPattern(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredPolarPattern:"), value)
+}
+
+
+// The data source’s active polar pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/selectedpolarpattern
+func (a_ AudioSessionDataSourceDescription) SelectedPolarPattern() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selectedPolarPattern"))
+	return rv
+}
+
+
+// The data source’s active polar pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/selectedpolarpattern
+func (a_ AudioSessionDataSourceDescription) SetSelectedPolarPattern(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedPolarPattern:"), value)
+}
+
+
 // The available data sources for the port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources
-func (a_ AudioSessionDataSourceDescription) DataSources() AVAudioSessionDataSourceDescription {
-	rv := objc.Send[AVAudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
+func (a_ AudioSessionDataSourceDescription) DataSources() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("dataSources"))
 	return rv
 }
 

@@ -95,7 +95,7 @@ func NewCXPlayDTMFCallAction() CXPlayDTMFCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(call:digits:type:)
-func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID foundation.IUUID, digits string, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID foundation.UUID, digits string, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
 	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCallUUID:digits:type:"), callUUID, objc.String(digits), type_)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID foundation.IUUID, di
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(coder:)
-func NewCXPlayDTMFCallActionWithCoder(aDecoder foundation.ICoder) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCoder(aDecoder foundation.Coder) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
 	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

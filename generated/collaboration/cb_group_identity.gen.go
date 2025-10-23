@@ -30,8 +30,8 @@ type _CBGroupIdentityClass struct {
 type ICBGroupIdentity interface {
 	ICBIdentity
 	MemberIdentities() []CBIdentity
-	Members() objc.ID
 	PosixGID() unsafe.Pointer
+	SetPosixGID(value unsafe.Pointer)
 }
 
 // An object of the class represents a group identity and is used for viewing the attributes of group identities from an identity authority. The principal attributes of a object are a POSIX group identifier (GID) and a list of members.
@@ -87,27 +87,6 @@ func NewCBGroupIdentity() CBGroupIdentity {
 
 
 
-// Returns the group identity with the given POSIX GID in the specified identity authority.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/init(posixGID:authority:)
-func NewCBGroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority ICBIdentityAuthority) CBGroupIdentity {
-	rv := objc.Send[CBGroupIdentity](objc.ID(getCBGroupIdentityClass().class), objc.Sel("groupIdentityWithPosixGID:authority:"), gid, authority)
-	return rv
-}
-
-
-
-// Returns the group identity with the given POSIX GID in the specified identity authority.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/init(posixGID:authority:)
-func (cc _CBGroupIdentityClass) GroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority ICBIdentityAuthority) CBGroupIdentity {
-	rv := objc.Send[CBGroupIdentity](objc.ID(cc.class), objc.Sel("groupIdentityWithPosixGID:authority:"), gid, authority)
-	return rv
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/memberIdentities
 func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity {
@@ -116,12 +95,12 @@ func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity {
 }
 
 
-// Returns the members of the group.
+// Returns the POSIX GID of the identity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/members
-func (c_ CBGroupIdentity) Members() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("members"))
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbgroupidentity/posixgid
+func (c_ CBGroupIdentity) PosixGID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixGID"))
 	return rv
 }
 
@@ -129,10 +108,10 @@ func (c_ CBGroupIdentity) Members() objc.ID {
 // Returns the POSIX GID of the identity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/posixGID
-func (c_ CBGroupIdentity) PosixGID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("posixGID"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbgroupidentity/posixgid
+func (c_ CBGroupIdentity) SetPosixGID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPosixGID:"), value)
 }
+
 
 

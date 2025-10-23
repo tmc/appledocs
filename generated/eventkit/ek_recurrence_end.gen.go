@@ -92,7 +92,7 @@ func NewEKRecurrenceEnd() EKRecurrenceEnd {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func NewEKRecurrenceEndWithEndDate(endDate foundation.IDate) EKRecurrenceEnd {
+func NewEKRecurrenceEndWithEndDate(endDate foundation.NSDate) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
@@ -113,7 +113,7 @@ func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint) EKRecurrenceEnd
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.IDate) unsafe.Pointer {
+func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.NSDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }

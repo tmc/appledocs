@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,10 +31,10 @@ type _OctreeClass struct {
 // An interface definition for the [Octree] class.
 type IOctree interface {
 	objectivec.IObject
-	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) OctreeNode
-	AddElementWithBox(element unsafe.Pointer, box appkit.IBox) OctreeNode
-	ElementsAtPoint(point unsafe.Pointer) []foundation.Object
-	ElementsInBox(box appkit.IBox) []foundation.Object
+	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IOctreeNode
+	AddElementWithBox(element unsafe.Pointer, box appkit.Box) IOctreeNode
+	ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject
+	ElementsInBox(box appkit.Box) []objectivec.IObject
 	RemoveElement(element unsafe.Pointer) bool
 	RemoveElementWithNode(element unsafe.Pointer, node IGKOctreeNode) bool
 }
@@ -97,7 +96,7 @@ func NewOctree() Octree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/init(boundingBox:minimumCellSize:)
-func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) Octree {
+func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.Box, minCellSize float32) Octree {
 	instance := getOctreeClass().Alloc()
 	rv := objc.Send[Octree](instance.ID, objc.Sel("initWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	rv.Autorelease()
@@ -110,7 +109,7 @@ func NewOctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float3
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/octreeWithBoundingBox:minimumCellSize:
-func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, minCellSize float32) unsafe.Pointer {
+func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.Box, minCellSize float32) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("octreeWithBoundingBox:minimumCellSize:"), box, minCellSize)
 	return rv
 }
@@ -120,7 +119,7 @@ func (oc _OctreeClass) OctreeWithBoundingBoxMinimumCellSize(box appkit.IBox, min
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/add(_:at:)
-func (o_ Octree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) OctreeNode {
+func (o_ Octree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IOctreeNode {
 	rv := objc.Send[OctreeNode](o_.ID, objc.Sel("addElement:withPoint:"), element, point)
 	return rv
 }
@@ -130,7 +129,7 @@ func (o_ Octree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/add(_:in:)
-func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box appkit.IBox) OctreeNode {
+func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box appkit.Box) IOctreeNode {
 	rv := objc.Send[OctreeNode](o_.ID, objc.Sel("addElement:withBox:"), element, box)
 	return rv
 }
@@ -140,8 +139,8 @@ func (o_ Octree) AddElementWithBox(element unsafe.Pointer, box appkit.IBox) Octr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(at:)
-func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
-	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsAtPoint:"), point)
+func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](o_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
 
@@ -150,8 +149,8 @@ func (o_ Octree) ElementsAtPoint(point unsafe.Pointer) []foundation.Object {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKOctree/elements(in:)
-func (o_ Octree) ElementsInBox(box appkit.IBox) []foundation.Object {
-	rv := objc.Send[[]foundation.Object](o_.ID, objc.Sel("elementsInBox:"), box)
+func (o_ Octree) ElementsInBox(box appkit.Box) []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](o_.ID, objc.Sel("elementsInBox:"), box)
 	return rv
 }
 

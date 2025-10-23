@@ -29,7 +29,9 @@ type _HKHeartbeatSeriesSampleClass struct {
 // An interface definition for the [HKHeartbeatSeriesSample] class.
 type IHKHeartbeatSeriesSample interface {
 	IHKSeriesSample
+	// properties:
 	HKMetadataKeyAlgorithmVersion() string
+	// methods:
 }
 
 // A sample that represents a series of heartbeats.

@@ -30,12 +30,14 @@ type _HKVisionPrescriptionClass struct {
 // An interface definition for the [HKVisionPrescription] class.
 type IHKVisionPrescription interface {
 	IHKSample
+	// properties:
 	DateIssued() foundation.Date
-	SetDateIssued(value foundation.IDate)
+	SetDateIssued(value foundation.Date)
 	ExpirationDate() foundation.Date
-	SetExpirationDate(value foundation.IDate)
+	SetExpirationDate(value foundation.Date)
 	PrescriptionType() unsafe.Pointer
 	SetPrescriptionType(value unsafe.Pointer)
+	// methods:
 }
 
 // A sample that stores a vision prescription.
@@ -107,7 +109,7 @@ func (h_ HKVisionPrescription) DateIssued() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-func (h_ HKVisionPrescription) SetDateIssued(value foundation.IDate) {
+func (h_ HKVisionPrescription) SetDateIssued(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
 }
 
@@ -126,7 +128,7 @@ func (h_ HKVisionPrescription) ExpirationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) SetExpirationDate(value foundation.IDate) {
+func (h_ HKVisionPrescription) SetExpirationDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 

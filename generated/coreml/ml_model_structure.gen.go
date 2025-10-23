@@ -31,9 +31,9 @@ type _ModelStructureClass struct {
 // An interface definition for the [ModelStructure] class.
 type IModelStructure interface {
 	objectivec.IObject
-	NeuralNetwork() MLModelStructureNeuralNetwork
-	Pipeline() MLModelStructurePipeline
-	Program() MLModelStructureProgram
+	NeuralNetwork() IMLModelStructureNeuralNetwork
+	Pipeline() IMLModelStructurePipeline
+	Program() IMLModelStructureProgram
 }
 
 // A class representing the structure of a model.
@@ -91,7 +91,7 @@ func NewModelStructure() ModelStructure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.IURL, handler unsafe.Pointer) {
+func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.URL, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
 
@@ -109,8 +109,8 @@ func (mc _ModelStructureClass) LoadModelAssetCompletionHandler(asset IMLModelAss
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/neuralNetwork
-func (m_ ModelStructure) NeuralNetwork() MLModelStructureNeuralNetwork {
-	rv := objc.Send[MLModelStructureNeuralNetwork](m_.ID, objc.Sel("neuralNetwork"))
+func (m_ ModelStructure) NeuralNetwork() IMLModelStructureNeuralNetwork {
+	rv := objc.Send[ModelStructureNeuralNetwork](m_.ID, objc.Sel("neuralNetwork"))
 	return rv
 }
 
@@ -119,8 +119,8 @@ func (m_ ModelStructure) NeuralNetwork() MLModelStructureNeuralNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/pipeline
-func (m_ ModelStructure) Pipeline() MLModelStructurePipeline {
-	rv := objc.Send[MLModelStructurePipeline](m_.ID, objc.Sel("pipeline"))
+func (m_ ModelStructure) Pipeline() IMLModelStructurePipeline {
+	rv := objc.Send[ModelStructurePipeline](m_.ID, objc.Sel("pipeline"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (m_ ModelStructure) Pipeline() MLModelStructurePipeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/program
-func (m_ ModelStructure) Program() MLModelStructureProgram {
-	rv := objc.Send[MLModelStructureProgram](m_.ID, objc.Sel("program"))
+func (m_ ModelStructure) Program() IMLModelStructureProgram {
+	rv := objc.Send[ModelStructureProgram](m_.ID, objc.Sel("program"))
 	return rv
 }
 

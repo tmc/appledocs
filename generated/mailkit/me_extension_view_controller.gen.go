@@ -30,6 +30,8 @@ type _MEExtensionViewControllerClass struct {
 // An interface definition for the [MEExtensionViewController] class.
 type IMEExtensionViewController interface {
 	appkit.IViewController
+	// properties:
+	// methods:
 }
 
 // An object that manages a view for compose session and message security handlers.

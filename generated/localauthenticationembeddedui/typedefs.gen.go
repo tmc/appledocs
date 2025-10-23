@@ -3,9 +3,9 @@
 package localauthenticationembeddedui
 
 // Type aliases and typedefs
-// LAPresentationContext type alias
+// PresentationContext type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAPresentationContext
 // LAPresentationContext has base type: NSWindow *
-type LAPresentationContext uintptr
+type PresentationContext uintptr
 

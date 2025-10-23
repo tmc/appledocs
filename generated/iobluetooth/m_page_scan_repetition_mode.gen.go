@@ -30,6 +30,8 @@ type _mPageScanRepetitionModeClass struct {
 // An interface definition for the [mPageScanRepetitionMode] class.
 type ImPageScanRepetitionMode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

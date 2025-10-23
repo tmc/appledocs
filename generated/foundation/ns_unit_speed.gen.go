@@ -29,6 +29,8 @@ type _UnitSpeedClass struct {
 // An interface definition for the [UnitSpeed] class.
 type IUnitSpeed interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for speed.

@@ -30,11 +30,9 @@ type _FSResourceClass struct {
 // An interface definition for the [FSResource] class.
 type IFSResource interface {
 	objectivec.IObject
-	MakeProxy() unsafe.Pointer
-	Revoke()
-	Revoked() bool
 	IsRevoked() bool
 	SetIsRevoked(value bool)
+	Revoke()
 }
 
 // An abstract resource a file system uses to provide data for a volume.
@@ -90,32 +88,12 @@ func NewFSResource() FSResource {
 
 
 
-// Creates a proxy object of this resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/makeProxy()
-func (f_ FSResource) MakeProxy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("makeProxy"))
-	return rv
-}
-
-
 // Revokes the resource.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/revoke()
 func (f_ FSResource) Revoke() {
 	objc.Send[objc.ID](f_.ID, objc.Sel("revoke"))
-}
-
-
-// A Boolean value that indicates whether the resource is revoked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSResource/isRevoked
-func (f_ FSResource) Revoked() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("revoked"))
-	return rv
 }
 
 

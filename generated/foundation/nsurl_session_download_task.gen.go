@@ -29,8 +29,11 @@ type _URLSessionDownloadTaskClass struct {
 // An interface definition for the [URLSessionDownloadTask] class.
 type IURLSessionDownloadTask interface {
 	IURLSessionTask
+	// properties:
 	Response() IURLResponse
 	SetResponse(value IURLResponse)
+	// methods:
+	CancelByProducingResumeData(completionHandler unsafe.Pointer)
 }
 
 // A URL session task that stores downloaded data to a file.
@@ -86,6 +89,15 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 	return getURLSessionDownloadTaskClass().New()
 }
 
+
+
+// Cancels a download and calls a callback with resume data for later use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDownloadTask/cancel(byProducingResumeData:)
+func (u_ URLSessionDownloadTask) CancelByProducingResumeData(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("cancelByProducingResumeData:"), completionHandler)
+}
 
 
 // The server’s response to the currently active request.

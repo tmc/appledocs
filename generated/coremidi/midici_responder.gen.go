@@ -31,7 +31,7 @@ type _MIDICIResponderClass struct {
 type IMIDICIResponder interface {
 	objectivec.IObject
 	DeviceInfo() MIDICIDeviceInfo
-	SetDeviceInfo(value IMIDICIDeviceInfo)
+	SetDeviceInfo(value MIDICIDeviceInfo)
 	Initiators() unsafe.Pointer
 	SetInitiators(value unsafe.Pointer)
 	ProfileDelegate() unsafe.Pointer
@@ -103,7 +103,7 @@ func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIResponder) SetDeviceInfo(value IMIDICIDeviceInfo) {
+func (m_ MIDICIResponder) SetDeviceInfo(value MIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 

@@ -30,9 +30,6 @@ type _PathClass struct {
 // An interface definition for the [Path] class.
 type IPath interface {
 	objectivec.IObject
-	Float2AtIndex(index uint) unsafe.Pointer
-	Float3AtIndex(index uint) unsafe.Pointer
-	PointAtIndex(index uint) unsafe.Pointer
 	Cyclical() bool
 	SetCyclical(value bool)
 	NumPoints() uint
@@ -40,6 +37,8 @@ type IPath interface {
 	SetRadius(value float32)
 	IsCyclical() bool
 	SetIsCyclical(value bool)
+	Float2AtIndex(index uint) unsafe.Pointer
+	Float3AtIndex(index uint) unsafe.Pointer
 }
 
 // A polygonal path that can be followed by an agent.
@@ -99,7 +98,7 @@ func NewPath() Path {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithFloat3Points:count:radius:cyclical:
-func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
+func NewPathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count uintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
 	rv.Autorelease()
@@ -123,7 +122,7 @@ func NewPathWithGraphNodesRadius(graphNodes []GraphNode, radius float32) Path {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/initWithPoints:count:radius:cyclical:
-func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) Path {
+func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count uintptr, radius float32, cyclical bool) Path {
 	instance := getPathClass().Alloc()
 	rv := objc.Send[Path](instance.ID, objc.Sel("initWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
 	rv.Autorelease()
@@ -136,7 +135,7 @@ func NewPathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithFloat3Points:count:radius:cyclical:
-func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
+func (pc _PathClass) PathWithFloat3PointsCountRadiusCyclical(points unsafe.Pointer, count uintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithFloat3Points:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
@@ -156,7 +155,7 @@ func (pc _PathClass) PathWithGraphNodesRadius(graphNodes []GraphNode, radius flo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/pathWithPoints:count:radius:cyclical:
-func (pc _PathClass) PathWithPointsCountRadiusCyclical(points unsafe.Pointer, count Iuintptr, radius float32, cyclical bool) unsafe.Pointer {
+func (pc _PathClass) PathWithPointsCountRadiusCyclical(points unsafe.Pointer, count uintptr, radius float32, cyclical bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pathWithPoints:count:radius:cyclical:"), points, count, radius, cyclical)
 	return rv
 }
@@ -178,16 +177,6 @@ func (p_ Path) Float2AtIndex(index uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/float3(at:)
 func (p_ Path) Float3AtIndex(index uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("float3AtIndex:"), index)
-	return rv
-}
-
-
-// Returns the 2D point at the specified index in the path’s list of vertices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPath/point(at:)
-func (p_ Path) PointAtIndex(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pointAtIndex:"), index)
 	return rv
 }
 

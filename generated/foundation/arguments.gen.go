@@ -30,6 +30,8 @@ type _argumentsClass struct {
 // An interface definition for the [arguments] class.
 type Iarguments interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

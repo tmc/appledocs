@@ -31,7 +31,6 @@ type _CXCallClass struct {
 // An interface definition for the [CXCall] class.
 type ICXCall interface {
 	objectivec.IObject
-	IsEqualToCall(call ICXCall) bool
 	HasConnected() bool
 	HasEnded() bool
 	OnHold() bool
@@ -41,8 +40,9 @@ type ICXCall interface {
 	SetIsOnHold(value bool)
 	IsOutgoing() bool
 	SetIsOutgoing(value bool)
-	Calls() CXCall
+	Calls() ICXCall
 	SetCalls(value ICXCall)
+	IsEqualToCall(call ICXCall) bool
 }
 
 // A telephony call.
@@ -200,7 +200,7 @@ func (c_ CXCall) SetIsOutgoing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
-func (c_ CXCall) Calls() CXCall {
+func (c_ CXCall) Calls() ICXCall {
 	rv := objc.Send[CXCall](c_.ID, objc.Sel("calls"))
 	return rv
 }

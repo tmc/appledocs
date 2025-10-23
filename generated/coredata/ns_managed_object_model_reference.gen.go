@@ -30,7 +30,7 @@ type _ManagedObjectModelReferenceClass struct {
 // An interface definition for the [ManagedObjectModelReference] class.
 type IManagedObjectModelReference interface {
 	objectivec.IObject
-	ResolvedModel() NSManagedObjectModel
+	ResolvedModel() IManagedObjectModel
 	SetResolvedModel(value IManagedObjectModel)
 	VersionChecksum() string
 	SetVersionChecksum(value string)
@@ -91,8 +91,8 @@ func NewManagedObjectModelReference() ManagedObjectModelReference {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/resolvedmodel
-func (m_ ManagedObjectModelReference) ResolvedModel() NSManagedObjectModel {
-	rv := objc.Send[NSManagedObjectModel](m_.ID, objc.Sel("resolvedModel"))
+func (m_ ManagedObjectModelReference) ResolvedModel() IManagedObjectModel {
+	rv := objc.Send[ManagedObjectModel](m_.ID, objc.Sel("resolvedModel"))
 	return rv
 }
 

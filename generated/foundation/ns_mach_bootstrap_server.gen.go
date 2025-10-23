@@ -29,6 +29,8 @@ type _MachBootstrapServerClass struct {
 // An interface definition for the [MachBootstrapServer] class.
 type IMachBootstrapServer interface {
 	IPortNameServer
+	// properties:
+	// methods:
 }
 
 // A port name server that takes and returns Mach port objects.

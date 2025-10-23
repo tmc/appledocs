@@ -30,6 +30,8 @@ type _mNameClass struct {
 // An interface definition for the [mName] class.
 type ImName interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -31,27 +31,26 @@ type _CKRecordClass struct {
 // An interface definition for the [CKRecord] class.
 type ICKRecord interface {
 	objectivec.IObject
-	AllKeys() []string
-	AllTokens() []string
-	ChangedKeys() []string
-	EncodeSystemFieldsWithCoder(coder foundation.ICoder)
-	ObjectForKey(key unsafe.Pointer) objc.ID
-	SetObjectForKey(object objectivec.IObject, key unsafe.Pointer)
-	SetObjectForKeyedSubscript(object objectivec.IObject, key unsafe.Pointer)
-	SetParentReferenceFromRecord(parentRecord ICKRecord)
-	SetParentReferenceFromRecordID(parentRecordID ICKRecordID)
-	ObjectForKeyedSubscript(key unsafe.Pointer) objc.ID
-	CreationDate() foundation.NSDate
+	CreationDate() foundation.Date
+	SetCreationDate(value foundation.Date)
 	CreatorUserRecordID() CKRecordID
-	EncryptedValues() objc.ID
+	SetCreatorUserRecordID(value CKRecordID)
+	EncryptedValues() unsafe.Pointer
+	SetEncryptedValues(value unsafe.Pointer)
 	LastModifiedUserRecordID() CKRecordID
-	ModificationDate() foundation.NSDate
-	Parent() CKReference
+	SetLastModifiedUserRecordID(value CKRecordID)
+	ModificationDate() foundation.Date
+	SetModificationDate(value foundation.Date)
+	Parent() ICKReference
 	SetParent(value ICKReference)
 	RecordChangeTag() string
+	SetRecordChangeTag(value string)
 	RecordID() CKRecordID
+	SetRecordID(value CKRecordID)
 	RecordType() unsafe.Pointer
-	Share() CKReference
+	SetRecordType(value unsafe.Pointer)
+	Share() ICKReference
+	SetShare(value ICKReference)
 }
 
 // A collection of key-value pairs that store your app’s data.
@@ -107,134 +106,12 @@ func NewCKRecord() CKRecord {
 
 
 
-// Creates a new record of the specified type.
+// The time when CloudKit first saves the record to the server.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:
-func NewCKRecordWithRecordType(recordType unsafe.Pointer) CKRecord {
-	instance := getCKRecordClass().Alloc()
-	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:"), recordType)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a record using an ID that you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:recordID:
-func NewCKRecordWithRecordTypeRecordID(recordType unsafe.Pointer, recordID ICKRecordID) CKRecord {
-	instance := getCKRecordClass().Alloc()
-	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:recordID:"), recordType, recordID)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a record in the specified zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:
-func NewCKRecordWithRecordTypeZoneID(recordType unsafe.Pointer, zoneID ICKRecordZoneID) CKRecord {
-	instance := getCKRecordClass().Alloc()
-	rv := objc.Send[CKRecord](instance.ID, objc.Sel("initWithRecordType:zoneID:"), recordType, zoneID)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns an array of the record’s keys.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/allKeys
-func (c_ CKRecord) AllKeys() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("allKeys"))
-	return rv
-}
-
-
-// Returns an array of strings to use for full-text searches of the field’s string-based values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/allTokens()
-func (c_ CKRecord) AllTokens() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("allTokens"))
-	return rv
-}
-
-
-// Returns an array of keys with recent changes to their values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/changedKeys
-func (c_ CKRecord) ChangedKeys() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("changedKeys"))
-	return rv
-}
-
-
-// Encodes the record’s system fields using the specified archiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/encodeSystemFields(with:)
-func (c_ CKRecord) EncodeSystemFieldsWithCoder(coder foundation.ICoder) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("encodeSystemFieldsWithCoder:"), coder)
-}
-
-
-// Returns the object that the record stores for the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/objectForKey:
-func (c_ CKRecord) ObjectForKey(key unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectForKey:"), key)
-	return rv
-}
-
-
-// Stores an object in the record using the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/setObject:forKey:
-func (c_ CKRecord) SetObjectForKey(object objectivec.IObject, key unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:"), object, key)
-}
-
-
-// Stores an object in the record using the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/setObject:forKeyedSubscript:
-func (c_ CKRecord) SetObjectForKeyedSubscript(object objectivec.IObject, key unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKeyedSubscript:"), object, key)
-}
-
-
-// Creates and sets a reference object for a parent from its record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/setParent(_:)-23du1
-func (c_ CKRecord) SetParentReferenceFromRecord(parentRecord ICKRecord) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setParentReferenceFromRecord:"), parentRecord)
-}
-
-
-// Creates and sets a reference object for a parent from the parent’s record ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/setParent(_:)-7egcx
-func (c_ CKRecord) SetParentReferenceFromRecordID(parentRecordID ICKRecordID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setParentReferenceFromRecordID:"), parentRecordID)
-}
-
-
-// Returns the object that the record stores for the specified key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/subscript(_:)-51whk
-func (c_ CKRecord) ObjectForKeyedSubscript(key unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectForKeyedSubscript:"), key)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
+func (c_ CKRecord) CreationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -242,9 +119,18 @@ func (c_ CKRecord) ObjectForKeyedSubscript(key unsafe.Pointer) objc.ID {
 // The time when CloudKit first saves the record to the server.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/creationDate
-func (c_ CKRecord) CreationDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("creationDate"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
+func (c_ CKRecord) SetCreationDate(value foundation.Date) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
+}
+
+
+// The ID of the user who creates the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
+func (c_ CKRecord) CreatorUserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("creatorUserRecordID"))
 	return rv
 }
 
@@ -252,9 +138,18 @@ func (c_ CKRecord) CreationDate() foundation.NSDate {
 // The ID of the user who creates the record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/creatorUserRecordID
-func (c_ CKRecord) CreatorUserRecordID() CKRecordID {
-	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("creatorUserRecordID"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
+func (c_ CKRecord) SetCreatorUserRecordID(value CKRecordID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
+}
+
+
+// An object that manages the record’s encrypted key-value pairs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/encryptedvalues
+func (c_ CKRecord) EncryptedValues() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("encryptedValues"))
 	return rv
 }
 
@@ -262,9 +157,18 @@ func (c_ CKRecord) CreatorUserRecordID() CKRecordID {
 // An object that manages the record’s encrypted key-value pairs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/encryptedValues
-func (c_ CKRecord) EncryptedValues() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("encryptedValues"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/encryptedvalues
+func (c_ CKRecord) SetEncryptedValues(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEncryptedValues:"), value)
+}
+
+
+// The ID of the user who most recently modified the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
+func (c_ CKRecord) LastModifiedUserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("lastModifiedUserRecordID"))
 	return rv
 }
 
@@ -272,9 +176,18 @@ func (c_ CKRecord) EncryptedValues() objc.ID {
 // The ID of the user who most recently modified the record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/lastModifiedUserRecordID
-func (c_ CKRecord) LastModifiedUserRecordID() CKRecordID {
-	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("lastModifiedUserRecordID"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
+func (c_ CKRecord) SetLastModifiedUserRecordID(value CKRecordID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLastModifiedUserRecordID:"), value)
+}
+
+
+// The most recent time that CloudKit saved the record to the server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
+func (c_ CKRecord) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -282,18 +195,17 @@ func (c_ CKRecord) LastModifiedUserRecordID() CKRecordID {
 // The most recent time that CloudKit saved the record to the server.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/modificationDate
-func (c_ CKRecord) ModificationDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("modificationDate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
+func (c_ CKRecord) SetModificationDate(value foundation.Date) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
 }
 
 
 // A reference to the record’s parent record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/parent
-func (c_ CKRecord) Parent() CKReference {
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
+func (c_ CKRecord) Parent() ICKReference {
 	rv := objc.Send[CKReference](c_.ID, objc.Sel("parent"))
 	return rv
 }
@@ -302,7 +214,7 @@ func (c_ CKRecord) Parent() CKReference {
 // A reference to the record’s parent record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/parent
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
 func (c_ CKRecord) SetParent(value ICKReference) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
 }
@@ -311,9 +223,28 @@ func (c_ CKRecord) SetParent(value ICKReference) {
 // The server change token for the record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordChangeTag
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
 func (c_ CKRecord) RecordChangeTag() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+	return rv
+}
+
+
+// The server change token for the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
+func (c_ CKRecord) SetRecordChangeTag(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
+}
+
+
+// The unique ID of the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
+func (c_ CKRecord) RecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 
@@ -321,9 +252,18 @@ func (c_ CKRecord) RecordChangeTag() string {
 // The unique ID of the record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordID
-func (c_ CKRecord) RecordID() CKRecordID {
-	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
+func (c_ CKRecord) SetRecordID(value CKRecordID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
+}
+
+
+// The value that your app defines to identify the type of record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
+func (c_ CKRecord) RecordType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
 	return rv
 }
 
@@ -331,9 +271,18 @@ func (c_ CKRecord) RecordID() CKRecordID {
 // The value that your app defines to identify the type of record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordType-9s09b
-func (c_ CKRecord) RecordType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordtype-6v7au
+func (c_ CKRecord) SetRecordType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
+}
+
+
+// A reference to the share object that determines the share status of the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/share
+func (c_ CKRecord) Share() ICKReference {
+	rv := objc.Send[CKReference](c_.ID, objc.Sel("share"))
 	return rv
 }
 
@@ -341,10 +290,10 @@ func (c_ CKRecord) RecordType() unsafe.Pointer {
 // A reference to the share object that determines the share status of the record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/share
-func (c_ CKRecord) Share() CKReference {
-	rv := objc.Send[CKReference](c_.ID, objc.Sel("share"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/share
+func (c_ CKRecord) SetShare(value ICKReference) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShare:"), value)
 }
+
 
 

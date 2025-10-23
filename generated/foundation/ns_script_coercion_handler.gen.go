@@ -30,6 +30,8 @@ type _ScriptCoercionHandlerClass struct {
 // An interface definition for the [ScriptCoercionHandler] class.
 type IScriptCoercionHandler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	CoerceValueToClass(value objectivec.IObject, toClass objc.Class) objc.ID
 	RegisterCoercerSelectorToConvertFromClassToClass(coercer objectivec.IObject, selector objc.SEL, fromClass objc.Class, toClass objc.Class)
 }

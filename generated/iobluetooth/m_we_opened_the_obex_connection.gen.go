@@ -30,6 +30,8 @@ type _mWeOpenedTheOBEXConnectionClass struct {
 // An interface definition for the [mWeOpenedTheOBEXConnection] class.
 type ImWeOpenedTheOBEXConnection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

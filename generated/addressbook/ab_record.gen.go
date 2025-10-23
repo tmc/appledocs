@@ -30,13 +30,13 @@ type _ABRecordClass struct {
 // An interface definition for the [ABRecord] class.
 type IABRecord interface {
 	objectivec.IObject
+	DisplayName() string
+	UniqueId() string
 	IsReadOnly() bool
 	RemoveValueForProperty(property string) bool
 	SetValueForProperty(value objectivec.IObject, property string) bool
 	SetValueForPropertyError(value objectivec.IObject, property string, error_ unsafe.Pointer) bool
 	ValueForProperty(property string) objc.ID
-	DisplayName() string
-	UniqueId() string
 }
 
 // An abstract class that defines the common properties for all Address Book records.

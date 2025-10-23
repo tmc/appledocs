@@ -29,17 +29,16 @@ type _SplitViewItemAccessoryViewControllerClass struct {
 // An interface definition for the [SplitViewItemAccessoryViewController] class.
 type ISplitViewItemAccessoryViewController interface {
 	IViewController
-	ViewWillDisappear()
 	AutomaticallyAppliesContentInsets() bool
 	SetAutomaticallyAppliesContentInsets(value bool)
-	BottomAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController
+	BottomAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
-	TopAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController
+	TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
 	IsHidden() bool
 	SetIsHidden(value bool)
-	PreferredScrollEdgeEffectStyle() NSScrollEdgeEffectStyle
-	SetPreferredScrollEdgeEffectStyle(value NSScrollEdgeEffectStyle)
+	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
+	SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle)
 }
 
 
@@ -90,13 +89,6 @@ func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewControl
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewWillDisappear()
-func (s_ SplitViewItemAccessoryViewController) ViewWillDisappear() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("viewWillDisappear"))
-}
-
-
 // Whether or not standard content insets should be applied to the view. Defaults to YES.
 //
 // [Full Topic]
@@ -118,8 +110,8 @@ func (s_ SplitViewItemAccessoryViewController) SetAutomaticallyAppliesContentIns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
-	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
+func (s_ SplitViewItemAccessoryViewController) BottomAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController {
+	rv := objc.Send[SplitViewItemAccessoryViewController](s_.ID, objc.Sel("bottomAlignedAccessoryViewControllers"))
 	return rv
 }
 
@@ -135,8 +127,8 @@ func (s_ SplitViewItemAccessoryViewController) SetBottomAlignedAccessoryViewCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
-func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewControllers() NSSplitViewItemAccessoryViewController {
-	rv := objc.Send[NSSplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
+func (s_ SplitViewItemAccessoryViewController) TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController {
+	rv := objc.Send[SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
 	return rv
 }
 
@@ -173,8 +165,8 @@ func (s_ SplitViewItemAccessoryViewController) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (s_ SplitViewItemAccessoryViewController) PreferredScrollEdgeEffectStyle() NSScrollEdgeEffectStyle {
-	rv := objc.Send[NSScrollEdgeEffectStyle](s_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
+func (s_ SplitViewItemAccessoryViewController) PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
 	return rv
 }
 
@@ -183,7 +175,7 @@ func (s_ SplitViewItemAccessoryViewController) PreferredScrollEdgeEffectStyle() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (s_ SplitViewItemAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value NSScrollEdgeEffectStyle) {
+func (s_ SplitViewItemAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredScrollEdgeEffectStyle:"), value)
 }
 

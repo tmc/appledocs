@@ -29,13 +29,15 @@ type _UserUnixTaskClass struct {
 // An interface definition for the [UserUnixTask] class.
 type IUserUnixTask interface {
 	IUserScriptTask
+	// properties:
 	StandardError() IFileHandle
 	SetStandardError(value IFileHandle)
 	StandardInput() IFileHandle
 	SetStandardInput(value IFileHandle)
 	StandardOutput() IFileHandle
 	SetStandardOutput(value IFileHandle)
-	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
+	// methods:
+	ExecuteWithArgumentsCompletionHandler(arguments []string /* primitive/slice/pointer */, handler UserUnixTaskCompletionHandler /* foo */)
 }
 
 // An object that executes unix applications.
@@ -97,7 +99,7 @@ func NewUserUnixTask() UserUnixTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/execute(withArguments:completionHandler:)
-func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer) {
+func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string /* primitive/slice/pointer */, handler UserUnixTaskCompletionHandler /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithArguments:completionHandler:"), arguments, handler)
 }
 

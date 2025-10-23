@@ -31,8 +31,6 @@ type _CNPostalAddressFormatterClass struct {
 // An interface definition for the [CNPostalAddressFormatter] class.
 type ICNPostalAddressFormatter interface {
 	foundation.IFormatter
-	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objectivec.IObject) foundation.AttributedString
-	StringFromPostalAddress(postalAddress ICNPostalAddress) foundation.String
 	Style() CNPostalAddressFormatterStyle
 	SetStyle(value CNPostalAddressFormatterStyle)
 	CNPostalAddressCityKey() string
@@ -45,6 +43,8 @@ type ICNPostalAddressFormatter interface {
 	CNPostalAddressStreetKey() string
 	CNPostalAddressSubAdministrativeAreaKey() string
 	CNPostalAddressSubLocalityKey() string
+	AttributedStringFromPostalAddressWithDefaultAttributes(postalAddress ICNPostalAddress, attributes objectivec.IObject) foundation.AttributedString
+	StringFromPostalAddress(postalAddress ICNPostalAddress) foundation.String
 }
 
 // An object that you use to format a contact’s postal addresses.

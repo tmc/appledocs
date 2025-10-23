@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INStartCallIntentResponse] class.
@@ -30,7 +29,10 @@ type _INStartCallIntentResponseClass struct {
 // An interface definition for the [INStartCallIntentResponse] class.
 type IINStartCallIntentResponse interface {
 	IINIntentResponse
-	Code() INStartCallIntentResponseCode
+	// properties:
+	Code() unsafe.Pointer
+	SetCode(value unsafe.Pointer)
+	// methods:
 }
 
 // Your app’s response to a start call intent.
@@ -88,26 +90,23 @@ func NewINStartCallIntentResponse() INStartCallIntentResponse {
 
 
 
-// Initializes the response object with the specified code and user activity object.
+// The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntentResponse/init(code:userActivity:)
-func NewINStartCallIntentResponseWithCodeUserActivity(code INStartCallIntentResponseCode, userActivity foundation.IUserActivity) INStartCallIntentResponse {
-	instance := getINStartCallIntentResponseClass().Alloc()
-	rv := objc.Send[INStartCallIntentResponse](instance.ID, objc.Sel("initWithCode:userActivity:"), code, userActivity)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintentresponse/code
+func (i_ INStartCallIntentResponse) Code() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
 	return rv
 }
-
 
 
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntentResponse/code
-func (i_ INStartCallIntentResponse) Code() INStartCallIntentResponseCode {
-	rv := objc.Send[INStartCallIntentResponseCode](i_.ID, objc.Sel("code"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintentresponse/code
+func (i_ INStartCallIntentResponse) SetCode(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
+
 
 

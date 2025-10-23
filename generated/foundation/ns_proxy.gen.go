@@ -30,10 +30,12 @@ type _ProxyClass struct {
 // An interface definition for the [Proxy] class.
 type IProxy interface {
 	objectivec.IObject
-	DebugDescription() string
-	SetDebugDescription(value string)
-	Description() string
-	SetDescription(value string)
+	// properties:
+	DebugDescription() string /* primitive/slice/pointer */
+	SetDebugDescription(value string /* primitive/slice/pointer */)
+	Description() string /* primitive/slice/pointer */
+	SetDescription(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.
@@ -91,7 +93,7 @@ func NewProxy() Proxy {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
-func (p_ Proxy) DebugDescription() string {
+func (p_ Proxy) DebugDescription() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("debugDescription"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (p_ Proxy) DebugDescription() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/debugdescription
-func (p_ Proxy) SetDebugDescription(value string) {
+func (p_ Proxy) SetDebugDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDebugDescription:"), objc.String(value))
 }
 
@@ -108,7 +110,7 @@ func (p_ Proxy) SetDebugDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
-func (p_ Proxy) Description() string {
+func (p_ Proxy) Description() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("description"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (p_ Proxy) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsproxy/description
-func (p_ Proxy) SetDescription(value string) {
+func (p_ Proxy) SetDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 

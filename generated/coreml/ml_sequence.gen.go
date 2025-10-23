@@ -32,11 +32,11 @@ type _SequenceClass struct {
 type ISequence interface {
 	objectivec.IObject
 	Int64Values() foundation.Number
-	SetInt64Values(value foundation.INumber)
+	SetInt64Values(value foundation.Number)
 	StringValues() string
 	SetStringValues(value string)
-	Type() FeatureType
-	SetType(value FeatureType)
+	Type() MLFeatureType
+	SetType(value MLFeatureType)
 }
 
 // A machine learning collection type that stores a series of strings or integers.
@@ -106,7 +106,7 @@ func (s_ Sequence) Int64Values() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) SetInt64Values(value foundation.INumber) {
+func (s_ Sequence) SetInt64Values(value foundation.Number) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
 }
 
@@ -134,8 +134,8 @@ func (s_ Sequence) SetStringValues(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) Type() FeatureType {
-	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
+func (s_ Sequence) Type() MLFeatureType {
+	rv := objc.Send[MLFeatureType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (s_ Sequence) Type() FeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) SetType(value FeatureType) {
+func (s_ Sequence) SetType(value MLFeatureType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }
 

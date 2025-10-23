@@ -31,16 +31,16 @@ type _FIFinderSyncControllerClass struct {
 // An interface definition for the [FIFinderSyncController] class.
 type IFIFinderSyncController interface {
 	foundation.IExtensionContext
-	LastUsedDateForItemWithURL(itemURL foundation.IURL) foundation.Date
-	SelectedItemURLs() []foundation.URL
-	SetBadgeIdentifierForURL(badgeID string, url foundation.IURL)
-	SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label string, badgeID string)
-	SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.IDate, itemURL foundation.IURL, completion unsafe.Pointer)
-	SetTagDataForItemWithURLCompletion(tagData foundation.IData, itemURL foundation.IURL, completion unsafe.Pointer)
-	TagDataForItemWithURL(itemURL foundation.IURL) foundation.Data
-	TargetedURL() foundation.URL
 	DirectoryURLs() unsafe.Pointer
 	SetDirectoryURLs(value unsafe.Pointer)
+	LastUsedDateForItemWithURL(itemURL foundation.URL) foundation.Date
+	SelectedItemURLs() []foundation.URL
+	SetBadgeIdentifierForURL(badgeID string, url foundation.URL)
+	SetBadgeImageLabelForBadgeIdentifier(image appkit.Image, label string, badgeID string)
+	SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.NSDate, itemURL foundation.URL, completion unsafe.Pointer)
+	SetTagDataForItemWithURLCompletion(tagData foundation.NSData, itemURL foundation.URL, completion unsafe.Pointer)
+	TagDataForItemWithURL(itemURL foundation.URL) foundation.Data
+	TargetedURL() foundation.URL
 }
 
 // A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
@@ -124,7 +124,7 @@ func (fc _FIFinderSyncControllerClass) ExtensionEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/lastUsedDateForItem(with:)
-func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.IURL) foundation.Date {
+func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.URL) foundation.Date {
 	rv := objc.Send[foundation.Date](f_.ID, objc.Sel("lastUsedDateForItemWithURL:"), itemURL)
 	return rv
 }
@@ -144,7 +144,7 @@ func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeIdentifier(_:for:)
-func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url foundation.IURL) {
+func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url foundation.URL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeIdentifier:forURL:"), objc.String(badgeID), url)
 }
 
@@ -153,28 +153,28 @@ func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeImage(_:label:forBadgeIdentifier:)
-func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.IImage, label string, badgeID string) {
+func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.Image, label string, badgeID string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeImage:label:forBadgeIdentifier:"), image, objc.String(label), objc.String(badgeID))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setLastUsedDate(_:forItemWith:completion:)
-func (f_ FIFinderSyncController) SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.IDate, itemURL foundation.IURL, completion unsafe.Pointer) {
+func (f_ FIFinderSyncController) SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.NSDate, itemURL foundation.URL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLastUsedDate:forItemWithURL:completion:"), lastUsedDate, itemURL, completion)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setTagData(_:forItemWith:completion:)
-func (f_ FIFinderSyncController) SetTagDataForItemWithURLCompletion(tagData foundation.IData, itemURL foundation.IURL, completion unsafe.Pointer) {
+func (f_ FIFinderSyncController) SetTagDataForItemWithURLCompletion(tagData foundation.NSData, itemURL foundation.URL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTagData:forItemWithURL:completion:"), tagData, itemURL, completion)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/tagDataForItem(with:)
-func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.IURL) foundation.Data {
+func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.URL) foundation.Data {
 	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("tagDataForItemWithURL:"), itemURL)
 	return rv
 }

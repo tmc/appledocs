@@ -30,6 +30,8 @@ type _mConnectionIDClass struct {
 // An interface definition for the [mConnectionID] class.
 type ImConnectionID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,6 +29,8 @@ type _ExistsCommandClass struct {
 // An interface definition for the [ExistsCommand] class.
 type IExistsCommand interface {
 	IScriptCommand
+	// properties:
+	// methods:
 }
 
 // A command that determines whether a scriptable object exists.

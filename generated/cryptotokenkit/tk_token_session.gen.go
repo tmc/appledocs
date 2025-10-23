@@ -32,7 +32,7 @@ type ITKTokenSession interface {
 	objectivec.IObject
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Token() TKToken
+	Token() ITKToken
 }
 
 // A token session that manages the authentication state of a token.
@@ -124,7 +124,7 @@ func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/token
-func (t_ TKTokenSession) Token() TKToken {
+func (t_ TKTokenSession) Token() ITKToken {
 	rv := objc.Send[TKToken](t_.ID, objc.Sel("token"))
 	return rv
 }

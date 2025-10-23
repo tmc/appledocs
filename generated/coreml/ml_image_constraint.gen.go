@@ -30,14 +30,18 @@ type _ImageConstraintClass struct {
 // An interface definition for the [ImageConstraint] class.
 type IImageConstraint interface {
 	objectivec.IObject
-	PixelFormatType() unsafe.Pointer
-	PixelsHigh() int
-	PixelsWide() int
-	SizeConstraint() MLImageSizeConstraint
-	ImageConstraint() MLImageConstraint
+	ImageConstraint() IMLImageConstraint
 	SetImageConstraint(value IMLImageConstraint)
-	Type() FeatureType
-	SetType(value FeatureType)
+	Type() MLFeatureType
+	SetType(value MLFeatureType)
+	PixelFormatType() unsafe.Pointer
+	SetPixelFormatType(value unsafe.Pointer)
+	PixelsHigh() int
+	SetPixelsHigh(value int)
+	PixelsWide() int
+	SetPixelsWide(value int)
+	SizeConstraint() ImageSizeConstraint
+	SetSizeConstraint(value ImageSizeConstraint)
 }
 
 // The width, height, and pixel format constraints of an image feature.
@@ -93,52 +97,12 @@ func NewImageConstraint() ImageConstraint {
 
 
 
-// The model’s pixel format for an image feature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelFormatType
-func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pixelFormatType"))
-	return rv
-}
-
-
-// The model’s default height for an image feature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelsHigh
-func (i_ ImageConstraint) PixelsHigh() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
-	return rv
-}
-
-
-// The model’s default width for an image feature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/pixelsWide
-func (i_ ImageConstraint) PixelsWide() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
-	return rv
-}
-
-
-// Additional sizes this image feature supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/sizeConstraint
-func (i_ ImageConstraint) SizeConstraint() MLImageSizeConstraint {
-	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
-	return rv
-}
-
-
 // The size and format constraints for an image feature.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-func (i_ ImageConstraint) ImageConstraint() MLImageConstraint {
-	rv := objc.Send[MLImageConstraint](i_.ID, objc.Sel("imageConstraint"))
+func (i_ ImageConstraint) ImageConstraint() IMLImageConstraint {
+	rv := objc.Send[ImageConstraint](i_.ID, objc.Sel("imageConstraint"))
 	return rv
 }
 
@@ -156,8 +120,8 @@ func (i_ ImageConstraint) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) Type() FeatureType {
-	rv := objc.Send[FeatureType](i_.ID, objc.Sel("type"))
+func (i_ ImageConstraint) Type() MLFeatureType {
+	rv := objc.Send[MLFeatureType](i_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -166,8 +130,84 @@ func (i_ ImageConstraint) Type() FeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) SetType(value FeatureType) {
+func (i_ ImageConstraint) SetType(value MLFeatureType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
+}
+
+
+// The model’s pixel format for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelformattype
+func (i_ ImageConstraint) PixelFormatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pixelFormatType"))
+	return rv
+}
+
+
+// The model’s pixel format for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelformattype
+func (i_ ImageConstraint) SetPixelFormatType(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelFormatType:"), value)
+}
+
+
+// The model’s default height for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+func (i_ ImageConstraint) PixelsHigh() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
+	return rv
+}
+
+
+// The model’s default height for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
+func (i_ ImageConstraint) SetPixelsHigh(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
+}
+
+
+// The model’s default width for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+func (i_ ImageConstraint) PixelsWide() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
+	return rv
+}
+
+
+// The model’s default width for an image feature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
+func (i_ ImageConstraint) SetPixelsWide(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
+}
+
+
+// Additional sizes this image feature supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+func (i_ ImageConstraint) SizeConstraint() ImageSizeConstraint {
+	rv := objc.Send[ImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
+	return rv
+}
+
+
+// Additional sizes this image feature supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
+func (i_ ImageConstraint) SetSizeConstraint(value ImageSizeConstraint) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
 }
 
 

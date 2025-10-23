@@ -31,11 +31,12 @@ type _ValueClass struct {
 // An interface definition for the [Value] class.
 type IValue interface {
 	objectivec.IObject
+	// properties:
 	ObjCType() unsafe.Pointer
-	Hash() int
-	SetHash(value int)
-	CaTransform3DValue() unsafe.Pointer
-	SetCaTransform3DValue(value unsafe.Pointer)
+	Hash() int /* primitive/slice/pointer */
+	SetHash(value int /* primitive/slice/pointer */)
+	CaTransform3DValue() Transform3D /* foo */
+	SetCaTransform3DValue(value Transform3D /* foo */)
 	CgAffineTransformValue() coregraphics.CGAffineTransform
 	SetCgAffineTransformValue(value coregraphics.CGAffineTransform)
 	CgPointValue() coregraphics.CGPoint
@@ -46,46 +47,47 @@ type IValue interface {
 	SetCgSizeValue(value coregraphics.CGSize)
 	CgVectorValue() coregraphics.CGVector
 	SetCgVectorValue(value coregraphics.CGVector)
-	DirectionalEdgeInsetsValue() unsafe.Pointer
-	SetDirectionalEdgeInsetsValue(value unsafe.Pointer)
-	EdgeInsetsValue() unsafe.Pointer
-	SetEdgeInsetsValue(value unsafe.Pointer)
+	DirectionalEdgeInsetsValue() DirectionalEdgeInsets /* foo */
+	SetDirectionalEdgeInsetsValue(value DirectionalEdgeInsets /* foo */)
+	EdgeInsetsValue() EdgeInsets /* foo */
+	SetEdgeInsetsValue(value EdgeInsets /* foo */)
 	GcPoint2Value() unsafe.Pointer
 	SetGcPoint2Value(value unsafe.Pointer)
 	MkCoordinateSpanValue() unsafe.Pointer
 	SetMkCoordinateSpanValue(value unsafe.Pointer)
-	MkCoordinateValue() unsafe.Pointer
-	SetMkCoordinateValue(value unsafe.Pointer)
+	MkCoordinateValue() LocationCoordinate2D /* foo */
+	SetMkCoordinateValue(value LocationCoordinate2D /* foo */)
 	NonretainedObjectValue() unsafe.Pointer
 	SetNonretainedObjectValue(value unsafe.Pointer)
-	PointValue() Point
-	SetPointValue(value Point)
+	PointValue() Point /* foo */
+	SetPointValue(value Point /* foo */)
 	PointerValue() unsafe.Pointer
 	SetPointerValue(value unsafe.Pointer)
-	RangeValue() Range
-	SetRangeValue(value Range)
-	RectValue() Rect
-	SetRectValue(value Rect)
-	ScnMatrix4Value() unsafe.Pointer
-	SetScnMatrix4Value(value unsafe.Pointer)
-	ScnVector3Value() unsafe.Pointer
-	SetScnVector3Value(value unsafe.Pointer)
-	ScnVector4Value() unsafe.Pointer
-	SetScnVector4Value(value unsafe.Pointer)
-	SizeValue() Size
-	SetSizeValue(value Size)
-	TimeMappingValue() unsafe.Pointer
-	SetTimeMappingValue(value unsafe.Pointer)
-	TimeRangeValue() unsafe.Pointer
-	SetTimeRangeValue(value unsafe.Pointer)
-	TimeValue() unsafe.Pointer
-	SetTimeValue(value unsafe.Pointer)
-	UiEdgeInsetsValue() unsafe.Pointer
-	SetUiEdgeInsetsValue(value unsafe.Pointer)
-	UiOffsetValue() unsafe.Pointer
-	SetUiOffsetValue(value unsafe.Pointer)
-	VideoDimensionsValue() unsafe.Pointer
-	SetVideoDimensionsValue(value unsafe.Pointer)
+	RangeValue() Range /* foo */
+	SetRangeValue(value Range /* foo */)
+	RectValue() Rect /* foo */
+	SetRectValue(value Rect /* foo */)
+	ScnMatrix4Value() NMatrix4 /* foo */
+	SetScnMatrix4Value(value NMatrix4 /* foo */)
+	ScnVector3Value() NVector3 /* foo */
+	SetScnVector3Value(value NVector3 /* foo */)
+	ScnVector4Value() NVector4 /* foo */
+	SetScnVector4Value(value NVector4 /* foo */)
+	SizeValue() Size /* foo */
+	SetSizeValue(value Size /* foo */)
+	TimeMappingValue() TimeMapping /* foo */
+	SetTimeMappingValue(value TimeMapping /* foo */)
+	TimeRangeValue() TimeRange /* foo */
+	SetTimeRangeValue(value TimeRange /* foo */)
+	TimeValue() Time /* foo */
+	SetTimeValue(value Time /* foo */)
+	UiEdgeInsetsValue() EdgeInsets /* foo */
+	SetUiEdgeInsetsValue(value EdgeInsets /* foo */)
+	UiOffsetValue() Offset /* foo */
+	SetUiOffsetValue(value Offset /* foo */)
+	VideoDimensionsValue() VideoDimensions /* foo */
+	SetVideoDimensionsValue(value VideoDimensions /* foo */)
+	// methods:
 }
 
 // A simple container for a single C or Objective-C data item.
@@ -198,7 +200,7 @@ func (v_ Value) ObjCType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) Hash() int {
+func (v_ Value) Hash() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](v_.ID, objc.Sel("hash"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (v_ Value) Hash() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (v_ Value) SetHash(value int) {
+func (v_ Value) SetHash(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHash:"), value)
 }
 
@@ -217,8 +219,8 @@ func (v_ Value) SetHash(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/catransform3dvalue
-func (v_ Value) CaTransform3DValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("caTransform3DValue"))
+func (v_ Value) CaTransform3DValue() Transform3D /* foo */ {
+	rv := objc.Send[Transform3D](v_.ID, objc.Sel("caTransform3DValue"))
 	return rv
 }
 
@@ -227,7 +229,7 @@ func (v_ Value) CaTransform3DValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/catransform3dvalue
-func (v_ Value) SetCaTransform3DValue(value unsafe.Pointer) {
+func (v_ Value) SetCaTransform3DValue(value Transform3D /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCaTransform3DValue:"), value)
 }
 
@@ -329,30 +331,30 @@ func (v_ Value) SetCgVectorValue(value coregraphics.CGVector) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/directionaledgeinsetsvalue
-func (v_ Value) DirectionalEdgeInsetsValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directionalEdgeInsetsValue"))
+func (v_ Value) DirectionalEdgeInsetsValue() DirectionalEdgeInsets /* foo */ {
+	rv := objc.Send[DirectionalEdgeInsets](v_.ID, objc.Sel("directionalEdgeInsetsValue"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/directionaledgeinsetsvalue
-func (v_ Value) SetDirectionalEdgeInsetsValue(value unsafe.Pointer) {
+func (v_ Value) SetDirectionalEdgeInsetsValue(value DirectionalEdgeInsets /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectionalEdgeInsetsValue:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/edgeinsetsvalue
-func (v_ Value) EdgeInsetsValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("edgeInsetsValue"))
+func (v_ Value) EdgeInsetsValue() EdgeInsets /* foo */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("edgeInsetsValue"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/edgeinsetsvalue
-func (v_ Value) SetEdgeInsetsValue(value unsafe.Pointer) {
+func (v_ Value) SetEdgeInsetsValue(value EdgeInsets /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEdgeInsetsValue:"), value)
 }
 
@@ -395,8 +397,8 @@ func (v_ Value) SetMkCoordinateSpanValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/mkcoordinatevalue
-func (v_ Value) MkCoordinateValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mkCoordinateValue"))
+func (v_ Value) MkCoordinateValue() LocationCoordinate2D /* foo */ {
+	rv := objc.Send[LocationCoordinate2D](v_.ID, objc.Sel("mkCoordinateValue"))
 	return rv
 }
 
@@ -405,7 +407,7 @@ func (v_ Value) MkCoordinateValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/mkcoordinatevalue
-func (v_ Value) SetMkCoordinateValue(value unsafe.Pointer) {
+func (v_ Value) SetMkCoordinateValue(value LocationCoordinate2D /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMkCoordinateValue:"), value)
 }
 
@@ -433,7 +435,7 @@ func (v_ Value) SetNonretainedObjectValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/pointvalue
-func (v_ Value) PointValue() Point {
+func (v_ Value) PointValue() Point /* foo */ {
 	rv := objc.Send[Point](v_.ID, objc.Sel("pointValue"))
 	return rv
 }
@@ -443,7 +445,7 @@ func (v_ Value) PointValue() Point {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/pointvalue
-func (v_ Value) SetPointValue(value Point) {
+func (v_ Value) SetPointValue(value Point /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPointValue:"), value)
 }
 
@@ -471,7 +473,7 @@ func (v_ Value) SetPointerValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rangevalue
-func (v_ Value) RangeValue() Range {
+func (v_ Value) RangeValue() Range /* foo */ {
 	rv := objc.Send[Range](v_.ID, objc.Sel("rangeValue"))
 	return rv
 }
@@ -481,7 +483,7 @@ func (v_ Value) RangeValue() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rangevalue
-func (v_ Value) SetRangeValue(value Range) {
+func (v_ Value) SetRangeValue(value Range /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRangeValue:"), value)
 }
 
@@ -490,7 +492,7 @@ func (v_ Value) SetRangeValue(value Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rectvalue
-func (v_ Value) RectValue() Rect {
+func (v_ Value) RectValue() Rect /* foo */ {
 	rv := objc.Send[Rect](v_.ID, objc.Sel("rectValue"))
 	return rv
 }
@@ -500,7 +502,7 @@ func (v_ Value) RectValue() Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/rectvalue
-func (v_ Value) SetRectValue(value Rect) {
+func (v_ Value) SetRectValue(value Rect /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRectValue:"), value)
 }
 
@@ -509,8 +511,8 @@ func (v_ Value) SetRectValue(value Rect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnmatrix4value
-func (v_ Value) ScnMatrix4Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scnMatrix4Value"))
+func (v_ Value) ScnMatrix4Value() NMatrix4 /* foo */ {
+	rv := objc.Send[NMatrix4](v_.ID, objc.Sel("scnMatrix4Value"))
 	return rv
 }
 
@@ -519,7 +521,7 @@ func (v_ Value) ScnMatrix4Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnmatrix4value
-func (v_ Value) SetScnMatrix4Value(value unsafe.Pointer) {
+func (v_ Value) SetScnMatrix4Value(value NMatrix4 /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScnMatrix4Value:"), value)
 }
 
@@ -528,8 +530,8 @@ func (v_ Value) SetScnMatrix4Value(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnvector3value
-func (v_ Value) ScnVector3Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scnVector3Value"))
+func (v_ Value) ScnVector3Value() NVector3 /* foo */ {
+	rv := objc.Send[NVector3](v_.ID, objc.Sel("scnVector3Value"))
 	return rv
 }
 
@@ -538,7 +540,7 @@ func (v_ Value) ScnVector3Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnvector3value
-func (v_ Value) SetScnVector3Value(value unsafe.Pointer) {
+func (v_ Value) SetScnVector3Value(value NVector3 /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScnVector3Value:"), value)
 }
 
@@ -547,8 +549,8 @@ func (v_ Value) SetScnVector3Value(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnvector4value
-func (v_ Value) ScnVector4Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scnVector4Value"))
+func (v_ Value) ScnVector4Value() NVector4 /* foo */ {
+	rv := objc.Send[NVector4](v_.ID, objc.Sel("scnVector4Value"))
 	return rv
 }
 
@@ -557,7 +559,7 @@ func (v_ Value) ScnVector4Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/scnvector4value
-func (v_ Value) SetScnVector4Value(value unsafe.Pointer) {
+func (v_ Value) SetScnVector4Value(value NVector4 /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScnVector4Value:"), value)
 }
 
@@ -566,7 +568,7 @@ func (v_ Value) SetScnVector4Value(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/sizevalue
-func (v_ Value) SizeValue() Size {
+func (v_ Value) SizeValue() Size /* foo */ {
 	rv := objc.Send[Size](v_.ID, objc.Sel("sizeValue"))
 	return rv
 }
@@ -576,7 +578,7 @@ func (v_ Value) SizeValue() Size {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/sizevalue
-func (v_ Value) SetSizeValue(value Size) {
+func (v_ Value) SetSizeValue(value Size /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSizeValue:"), value)
 }
 
@@ -585,8 +587,8 @@ func (v_ Value) SetSizeValue(value Size) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
-func (v_ Value) TimeMappingValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeMappingValue"))
+func (v_ Value) TimeMappingValue() TimeMapping /* foo */ {
+	rv := objc.Send[TimeMapping](v_.ID, objc.Sel("timeMappingValue"))
 	return rv
 }
 
@@ -595,7 +597,7 @@ func (v_ Value) TimeMappingValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
-func (v_ Value) SetTimeMappingValue(value unsafe.Pointer) {
+func (v_ Value) SetTimeMappingValue(value TimeMapping /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeMappingValue:"), value)
 }
 
@@ -604,8 +606,8 @@ func (v_ Value) SetTimeMappingValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timerangevalue
-func (v_ Value) TimeRangeValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeRangeValue"))
+func (v_ Value) TimeRangeValue() TimeRange /* foo */ {
+	rv := objc.Send[TimeRange](v_.ID, objc.Sel("timeRangeValue"))
 	return rv
 }
 
@@ -614,7 +616,7 @@ func (v_ Value) TimeRangeValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timerangevalue
-func (v_ Value) SetTimeRangeValue(value unsafe.Pointer) {
+func (v_ Value) SetTimeRangeValue(value TimeRange /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeRangeValue:"), value)
 }
 
@@ -623,8 +625,8 @@ func (v_ Value) SetTimeRangeValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timevalue
-func (v_ Value) TimeValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("timeValue"))
+func (v_ Value) TimeValue() Time /* foo */ {
+	rv := objc.Send[Time](v_.ID, objc.Sel("timeValue"))
 	return rv
 }
 
@@ -633,7 +635,7 @@ func (v_ Value) TimeValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timevalue
-func (v_ Value) SetTimeValue(value unsafe.Pointer) {
+func (v_ Value) SetTimeValue(value Time /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeValue:"), value)
 }
 
@@ -642,8 +644,8 @@ func (v_ Value) SetTimeValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uiedgeinsetsvalue
-func (v_ Value) UiEdgeInsetsValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("uiEdgeInsetsValue"))
+func (v_ Value) UiEdgeInsetsValue() EdgeInsets /* foo */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("uiEdgeInsetsValue"))
 	return rv
 }
 
@@ -652,7 +654,7 @@ func (v_ Value) UiEdgeInsetsValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uiedgeinsetsvalue
-func (v_ Value) SetUiEdgeInsetsValue(value unsafe.Pointer) {
+func (v_ Value) SetUiEdgeInsetsValue(value EdgeInsets /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUiEdgeInsetsValue:"), value)
 }
 
@@ -661,8 +663,8 @@ func (v_ Value) SetUiEdgeInsetsValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uioffsetvalue
-func (v_ Value) UiOffsetValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("uiOffsetValue"))
+func (v_ Value) UiOffsetValue() Offset /* foo */ {
+	rv := objc.Send[Offset](v_.ID, objc.Sel("uiOffsetValue"))
 	return rv
 }
 
@@ -671,22 +673,22 @@ func (v_ Value) UiOffsetValue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/uioffsetvalue
-func (v_ Value) SetUiOffsetValue(value unsafe.Pointer) {
+func (v_ Value) SetUiOffsetValue(value Offset /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUiOffsetValue:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
-func (v_ Value) VideoDimensionsValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("videoDimensionsValue"))
+func (v_ Value) VideoDimensionsValue() VideoDimensions /* foo */ {
+	rv := objc.Send[VideoDimensions](v_.ID, objc.Sel("videoDimensionsValue"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
-func (v_ Value) SetVideoDimensionsValue(value unsafe.Pointer) {
+func (v_ Value) SetVideoDimensionsValue(value VideoDimensions /* foo */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVideoDimensionsValue:"), value)
 }
 

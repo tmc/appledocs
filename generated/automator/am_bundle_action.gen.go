@@ -31,12 +31,14 @@ type _AMBundleActionClass struct {
 // An interface definition for the [AMBundleAction] class.
 type IAMBundleAction interface {
 	IAMAction
-	AwakeFromBundle()
 	Bundle() foundation.Bundle
+	SetBundle(value foundation.Bundle)
 	HasView() bool
-	Parameters() unsafe.Pointer
-	SetParameters(value unsafe.Pointer)
+	SetHasView(value bool)
+	Parameters() foundation.MutableDictionary
+	SetParameters(value foundation.MutableDictionary)
 	View() appkit.View
+	SetView(value appkit.View)
 }
 
 // An object that represents an Automator action that’s a loadable bundle.
@@ -94,21 +96,31 @@ func NewAMBundleAction() AMBundleAction {
 
 
 
-// Allows the action object to perform setup tasks requiring the presence of all bundle objects.
+// The action’s bundle object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/awakeFromBundle()
-func (a_ AMBundleAction) AwakeFromBundle() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("awakeFromBundle"))
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/bundle
+func (a_ AMBundleAction) Bundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
+	return rv
 }
 
 
 // The action’s bundle object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/bundle
-func (a_ AMBundleAction) Bundle() foundation.Bundle {
-	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/bundle
+func (a_ AMBundleAction) SetBundle(value foundation.Bundle) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setBundle:"), value)
+}
+
+
+// A Boolean value that indicates whether the action has a view associated with it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/hasview
+func (a_ AMBundleAction) HasView() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("hasView"))
 	return rv
 }
 
@@ -116,9 +128,18 @@ func (a_ AMBundleAction) Bundle() foundation.Bundle {
 // A Boolean value that indicates whether the action has a view associated with it.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/hasView
-func (a_ AMBundleAction) HasView() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("hasView"))
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/hasview
+func (a_ AMBundleAction) SetHasView(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setHasView:"), value)
+}
+
+
+// The action’s parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/parameters
+func (a_ AMBundleAction) Parameters() foundation.MutableDictionary {
+	rv := objc.Send[foundation.MutableDictionary](a_.ID, objc.Sel("parameters"))
 	return rv
 }
 
@@ -126,18 +147,8 @@ func (a_ AMBundleAction) HasView() bool {
 // The action’s parameters.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
-func (a_ AMBundleAction) Parameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("parameters"))
-	return rv
-}
-
-
-// The action’s parameters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/parameters
-func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/parameters
+func (a_ AMBundleAction) SetParameters(value foundation.MutableDictionary) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameters:"), value)
 }
 
@@ -145,10 +156,19 @@ func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 // The action’s view object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/view
 func (a_ AMBundleAction) View() appkit.View {
 	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
 	return rv
+}
+
+
+// The action’s view object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/view
+func (a_ AMBundleAction) SetView(value appkit.View) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setView:"), value)
 }
 
 

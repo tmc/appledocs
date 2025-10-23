@@ -29,8 +29,10 @@ type _IndexSpecifierClass struct {
 // An interface definition for the [IndexSpecifier] class.
 type IIndexSpecifier interface {
 	IScriptObjectSpecifier
-	Index() int
-	SetIndex(value int)
+	// properties:
+	Index() int /* primitive/slice/pointer */
+	SetIndex(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A specifier representing an object in a collection (or container) with an index number.
@@ -92,7 +94,7 @@ func NewIndexSpecifier() IndexSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
-func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, index int) IndexSpecifier {
+func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, index int /* primitive/slice/pointer */) IndexSpecifier {
 	instance := getIndexSpecifierClass().Alloc()
 	rv := objc.Send[IndexSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:index:"), classDesc, container, objc.String(property), index)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-func (i_ IndexSpecifier) Index() int {
+func (i_ IndexSpecifier) Index() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("index"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (i_ IndexSpecifier) Index() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
-func (i_ IndexSpecifier) SetIndex(value int) {
+func (i_ IndexSpecifier) SetIndex(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }
 

@@ -31,7 +31,7 @@ type _GenericViewControllerClass struct {
 type IGenericViewController interface {
 	IViewController
 	AuAudioUnit() audiotoolbox.AudioUnit
-	SetAuAudioUnit(value audiotoolbox.IAudioUnit)
+	SetAuAudioUnit(value audiotoolbox.AudioUnit)
 }
 
 
@@ -92,7 +92,7 @@ func (g_ GenericViewController) AuAudioUnit() audiotoolbox.AudioUnit {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
-func (g_ GenericViewController) SetAuAudioUnit(value audiotoolbox.IAudioUnit) {
+func (g_ GenericViewController) SetAuAudioUnit(value audiotoolbox.AudioUnit) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAuAudioUnit:"), value)
 }
 

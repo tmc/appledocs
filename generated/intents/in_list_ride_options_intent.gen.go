@@ -30,10 +30,12 @@ type _INListRideOptionsIntentClass struct {
 // An interface definition for the [INListRideOptionsIntent] class.
 type IINListRideOptionsIntent interface {
 	IINIntent
+	// properties:
 	DropOffLocation() corelocation.Placemark
-	SetDropOffLocation(value corelocation.IPlacemark)
+	SetDropOffLocation(value corelocation.Placemark)
 	PickupLocation() corelocation.Placemark
-	SetPickupLocation(value corelocation.IPlacemark)
+	SetPickupLocation(value corelocation.Placemark)
+	// methods:
 }
 
 // An intent for getting the types of rides available from a ride-booking service.
@@ -105,7 +107,7 @@ func (i_ INListRideOptionsIntent) DropOffLocation() corelocation.Placemark {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
-func (i_ INListRideOptionsIntent) SetDropOffLocation(value corelocation.IPlacemark) {
+func (i_ INListRideOptionsIntent) SetDropOffLocation(value corelocation.Placemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
@@ -124,7 +126,7 @@ func (i_ INListRideOptionsIntent) PickupLocation() corelocation.Placemark {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
-func (i_ INListRideOptionsIntent) SetPickupLocation(value corelocation.IPlacemark) {
+func (i_ INListRideOptionsIntent) SetPickupLocation(value corelocation.Placemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 

@@ -72,6 +72,11 @@ type KeyValueChangeKey = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueOperator
 // NSKeyValueOperator is a string typedef
 type KeyValueOperator = string
+// LinguisticTag - A token, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTag
+// NSLinguisticTag is a string typedef
+type LinguisticTag = string
 // LocaleKey - The keys used to access components of a locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/Key

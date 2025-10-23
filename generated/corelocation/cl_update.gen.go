@@ -37,7 +37,7 @@ type IUpdate interface {
 	AuthorizationRestricted() bool
 	InsufficientlyInUse() bool
 	IsStationary() bool
-	Location() CLLocation
+	Location() ICLLocation
 	LocationUnavailable() bool
 	ServiceSessionRequired() bool
 	Stationary() bool
@@ -156,8 +156,8 @@ func (u_ Update) IsStationary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/location
-func (u_ Update) Location() CLLocation {
-	rv := objc.Send[CLLocation](u_.ID, objc.Sel("location"))
+func (u_ Update) Location() ICLLocation {
+	rv := objc.Send[Location](u_.ID, objc.Sel("location"))
 	return rv
 }
 

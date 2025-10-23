@@ -30,12 +30,14 @@ type _HKWorkoutEffortRelationshipClass struct {
 // An interface definition for the [HKWorkoutEffortRelationship] class.
 type IHKWorkoutEffortRelationship interface {
 	objectivec.IObject
-	Activity() HKWorkoutActivity
+	// properties:
+	Activity() IHKWorkoutActivity
 	SetActivity(value IHKWorkoutActivity)
-	Samples() HKSample
+	Samples() IHKSample
 	SetSamples(value IHKSample)
-	Workout() HKWorkout
+	Workout() IHKWorkout
 	SetWorkout(value IHKWorkout)
+	// methods:
 }
 
 
@@ -86,7 +88,7 @@ func NewHKWorkoutEffortRelationship() HKWorkoutEffortRelationship {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/activity
-func (h_ HKWorkoutEffortRelationship) Activity() HKWorkoutActivity {
+func (h_ HKWorkoutEffortRelationship) Activity() IHKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("activity"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (h_ HKWorkoutEffortRelationship) SetActivity(value IHKWorkoutActivity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/samples
-func (h_ HKWorkoutEffortRelationship) Samples() HKSample {
+func (h_ HKWorkoutEffortRelationship) Samples() IHKSample {
 	rv := objc.Send[HKSample](h_.ID, objc.Sel("samples"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (h_ HKWorkoutEffortRelationship) SetSamples(value IHKSample) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship/workout
-func (h_ HKWorkoutEffortRelationship) Workout() HKWorkout {
+func (h_ HKWorkoutEffortRelationship) Workout() IHKWorkout {
 	rv := objc.Send[HKWorkout](h_.ID, objc.Sel("workout"))
 	return rv
 }

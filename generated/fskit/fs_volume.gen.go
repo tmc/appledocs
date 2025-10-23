@@ -30,9 +30,10 @@ type _FSVolumeClass struct {
 // An interface definition for the [FSVolume] class.
 type IFSVolume interface {
 	objectivec.IObject
-	Name() FSFileName
+	Name() IFSFileName
 	SetName(value IFSFileName)
 	VolumeID() FSVolumeIdentifier
+	SetVolumeID(value FSVolumeIdentifier)
 }
 
 // A directory structure for files and folders.
@@ -88,24 +89,11 @@ func NewFSVolume() FSVolume {
 
 
 
-// Creates a volume with the given identifier and name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/init(volumeID:volumeName:)
-func NewFSVolumeWithVolumeIDVolumeName(volumeID IFSVolumeIdentifier, volumeName IFSFileName) FSVolume {
-	instance := getFSVolumeClass().Alloc()
-	rv := objc.Send[FSVolume](instance.ID, objc.Sel("initWithVolumeID:volumeName:"), volumeID, volumeName)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The name of the volume.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
-func (f_ FSVolume) Name() FSFileName {
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/name
+func (f_ FSVolume) Name() IFSFileName {
 	rv := objc.Send[FSFileName](f_.ID, objc.Sel("name"))
 	return rv
 }
@@ -114,7 +102,7 @@ func (f_ FSVolume) Name() FSFileName {
 // The name of the volume.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/name
 func (f_ FSVolume) SetName(value IFSFileName) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
@@ -123,10 +111,21 @@ func (f_ FSVolume) SetName(value IFSFileName) {
 // An identifier that uniquely identifies the volume.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/volumeID
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/volumeid
 func (f_ FSVolume) VolumeID() FSVolumeIdentifier {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeID"))
 	return rv
 }
+
+
+// An identifier that uniquely identifies the volume.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/volumeid
+func (f_ FSVolume) SetVolumeID(value FSVolumeIdentifier) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeID:"), value)
+}
+
+
 
 

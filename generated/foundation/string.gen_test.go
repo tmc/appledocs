@@ -49,11 +49,60 @@ func ExampleNewStringWithContentsOfFile() {
 	)
 	// Output:
 }
+// ExampleNewStringWithContentsOfFileEncodingError demonstrates how to create a String instance using NewStringWithContentsOfFileEncodingError.
+// Returns an   object initialized by reading data from the file at a given path using a given encoding.
+func ExampleNewStringWithContentsOfFileEncodingError() {
+	_ = foundation.NewStringWithContentsOfFileEncodingError(
+		"/tmp/test", // path string
+		foundation.StringEncoding{}, // enc StringEncoding
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
+// ExampleNewStringWithContentsOfFileUsedEncodingError demonstrates how to create a String instance using NewStringWithContentsOfFileUsedEncodingError.
+// Returns an   object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters.
+func ExampleNewStringWithContentsOfFileUsedEncodingError() {
+	_ = foundation.NewStringWithContentsOfFileUsedEncodingError(
+		"/tmp/test", // path string
+		foundation.StringEncoding{}, // enc StringEncoding
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
 // ExampleNewStringWithContentsOfURL demonstrates how to create a String instance using NewStringWithContentsOfURL.
 // Initializes the receiver, a newly allocated   object, by reading data from the location named by a given URL.
 func ExampleNewStringWithContentsOfURL() {
 	_ = foundation.NewStringWithContentsOfURL(
 		foundation.URL{}, // url URL
+	)
+	// Output:
+}
+// ExampleNewStringWithContentsOfURLEncodingError demonstrates how to create a String instance using NewStringWithContentsOfURLEncodingError.
+// Returns an   object initialized by reading data from a given URL interpreted using a given encoding.
+func ExampleNewStringWithContentsOfURLEncodingError() {
+	_ = foundation.NewStringWithContentsOfURLEncodingError(
+		foundation.URL{}, // url URL
+		foundation.StringEncoding{}, // enc StringEncoding
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
+// ExampleNewStringWithContentsOfURLUsedEncodingError demonstrates how to create a String instance using NewStringWithContentsOfURLUsedEncodingError.
+// Returns an   object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
+func ExampleNewStringWithContentsOfURLUsedEncodingError() {
+	_ = foundation.NewStringWithContentsOfURLUsedEncodingError(
+		foundation.URL{}, // url URL
+		foundation.StringEncoding{}, // enc StringEncoding
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
+// ExampleNewStringWithDataEncoding demonstrates how to create a String instance using NewStringWithDataEncoding.
+// Returns an   object initialized by converting given data into UTF-16 code units using a given encoding.
+func ExampleNewStringWithDataEncoding() {
+	_ = foundation.NewStringWithDataEncoding(
+		foundation.NSData{}, // data NSData
+		foundation.StringEncoding{}, // encoding StringEncoding
 	)
 	// Output:
 }

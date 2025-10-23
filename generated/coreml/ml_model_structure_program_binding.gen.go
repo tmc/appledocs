@@ -31,7 +31,7 @@ type _ModelStructureProgramBindingClass struct {
 type IModelStructureProgramBinding interface {
 	objectivec.IObject
 	Name() string
-	Value() MLModelStructureProgramValue
+	Value() IMLModelStructureProgramValue
 }
 
 // A class representing a binding in the Program
@@ -101,8 +101,8 @@ func (m_ ModelStructureProgramBinding) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/value
-func (m_ ModelStructureProgramBinding) Value() MLModelStructureProgramValue {
-	rv := objc.Send[MLModelStructureProgramValue](m_.ID, objc.Sel("value"))
+func (m_ ModelStructureProgramBinding) Value() IMLModelStructureProgramValue {
+	rv := objc.Send[ModelStructureProgramValue](m_.ID, objc.Sel("value"))
 	return rv
 }
 

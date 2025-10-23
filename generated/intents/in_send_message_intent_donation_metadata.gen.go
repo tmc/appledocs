@@ -29,6 +29,7 @@ type _INSendMessageIntentDonationMetadataClass struct {
 // An interface definition for the [INSendMessageIntentDonationMetadata] class.
 type IINSendMessageIntentDonationMetadata interface {
 	IINIntentDonationMetadata
+	// properties:
 	ReplyToCurrentUser() bool
 	SetReplyToCurrentUser(value bool)
 	MentionsCurrentUser() bool
@@ -39,6 +40,7 @@ type IINSendMessageIntentDonationMetadata interface {
 	SetRecipientCount(value uint)
 	IsReplyToCurrentUser() bool
 	SetIsReplyToCurrentUser(value bool)
+	// methods:
 }
 
 
@@ -86,7 +88,6 @@ func (i_ INSendMessageIntentDonationMetadata) Autorelease() INSendMessageIntentD
 func NewINSendMessageIntentDonationMetadata() INSendMessageIntentDonationMetadata {
 	return getINSendMessageIntentDonationMetadataClass().New()
 }
-
 
 
 
@@ -163,5 +164,6 @@ func (i_ INSendMessageIntentDonationMetadata) IsReplyToCurrentUser() bool {
 func (i_ INSendMessageIntentDonationMetadata) SetIsReplyToCurrentUser(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReplyToCurrentUser:"), value)
 }
+
 
 

@@ -35,7 +35,11 @@ type IVZPointingDeviceConfiguration interface {
 // The base class for a pointing device configuration.
 //
 // Don’t instantiate a directly, use one of its subclasses like instead.
+
+
+// The base class for a pointing device configuration.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZPointingDeviceConfiguration
 type VZPointingDeviceConfiguration struct {
 	objectivec.Object

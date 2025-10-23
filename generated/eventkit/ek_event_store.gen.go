@@ -31,41 +31,40 @@ type _EKEventStoreClass struct {
 // An interface definition for the [EKEventStore] class.
 type IEKEventStore interface {
 	objectivec.IObject
-	CalendarWithIdentifier(identifier string) EKCalendar
-	CalendarItemWithIdentifier(identifier string) EKCalendarItem
+	Calendars() []EKCalendar
+	DefaultCalendarForNewEvents() IEKCalendar
+	DelegateSources() []EKSource
+	EventStoreIdentifier() string
+	Sources() []EKSource
+	CalendarWithIdentifier(identifier string) IEKCalendar
+	CalendarItemWithIdentifier(identifier string) IEKCalendarItem
 	CalendarItemsWithExternalIdentifier(externalIdentifier string) []EKCalendarItem
 	CalendarsForEntityType(entityType EKEntityType) []EKCalendar
 	CancelFetchRequest(fetchIdentifier objectivec.IObject)
 	Commit(error_ unsafe.Pointer) bool
-	DefaultCalendarForNewReminders() EKCalendar
-	EnumerateEventsMatchingPredicateUsingBlock(predicate foundation.IPredicate, block unsafe.Pointer)
-	EventWithIdentifier(identifier string) EKEvent
-	EventsMatchingPredicate(predicate foundation.IPredicate) []EKEvent
-	FetchRemindersMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) objc.ID
-	PredicateForCompletedRemindersWithCompletionDateStartingEndingCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate
-	PredicateForEventsWithStartDateEndDateCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate
-	PredicateForIncompleteRemindersWithDueDateStartingEndingCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate
+	DefaultCalendarForNewReminders() IEKCalendar
+	EnumerateEventsMatchingPredicateUsingBlock(predicate foundation.Predicate, block unsafe.Pointer)
+	EventWithIdentifier(identifier string) IEKEvent
+	EventsMatchingPredicate(predicate foundation.Predicate) []EKEvent
+	FetchRemindersMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer) objc.ID
+	PredicateForCompletedRemindersWithCompletionDateStartingEndingCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate
+	PredicateForEventsWithStartDateEndDateCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate
+	PredicateForIncompleteRemindersWithDueDateStartingEndingCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate
 	PredicateForRemindersInCalendars(calendars []EKCalendar) foundation.Predicate
 	RefreshSourcesIfNecessary()
 	RemoveReminderCommitError(reminder IEKReminder, commit bool, error_ unsafe.Pointer) bool
-	RemoveEventSpanError(event IEKEvent, span IEKSpan, error_ unsafe.Pointer) bool
-	RemoveEventSpanCommitError(event IEKEvent, span IEKSpan, commit bool, error_ unsafe.Pointer) bool
+	RemoveEventSpanError(event IEKEvent, span EKSpan, error_ unsafe.Pointer) bool
+	RemoveEventSpanCommitError(event IEKEvent, span EKSpan, commit bool, error_ unsafe.Pointer) bool
 	RemoveCalendarCommitError(calendar IEKCalendar, commit bool, error_ unsafe.Pointer) bool
-	RequestAccessToEntityTypeCompletion(entityType EKEntityType, completion unsafe.Pointer)
 	RequestFullAccessToEventsWithCompletion(completion unsafe.Pointer)
 	RequestFullAccessToRemindersWithCompletion(completion unsafe.Pointer)
 	RequestWriteOnlyAccessToEventsWithCompletion(completion unsafe.Pointer)
 	Reset()
 	SaveReminderCommitError(reminder IEKReminder, commit bool, error_ unsafe.Pointer) bool
-	SaveEventSpanError(event IEKEvent, span IEKSpan, error_ unsafe.Pointer) bool
-	SaveEventSpanCommitError(event IEKEvent, span IEKSpan, commit bool, error_ unsafe.Pointer) bool
+	SaveEventSpanError(event IEKEvent, span EKSpan, error_ unsafe.Pointer) bool
+	SaveEventSpanCommitError(event IEKEvent, span EKSpan, commit bool, error_ unsafe.Pointer) bool
 	SaveCalendarCommitError(calendar IEKCalendar, commit bool, error_ unsafe.Pointer) bool
-	SourceWithIdentifier(identifier string) EKSource
-	Calendars() []EKCalendar
-	DefaultCalendarForNewEvents() EKCalendar
-	DelegateSources() []EKSource
-	EventStoreIdentifier() string
-	Sources() []EKSource
+	SourceWithIdentifier(identifier string) IEKSource
 }
 
 // An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.
@@ -125,7 +124,7 @@ func NewEKEventStore() EKEventStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/initWithAccessToEntityTypes:
-func NewEKEventStoreWithAccessToEntityTypes(entityTypes EKEntityMask) EKEventStore {
+func NewEKEventStoreWithAccessToEntityTypes(entityTypes unsafe.Pointer) EKEventStore {
 	instance := getEKEventStoreClass().Alloc()
 	rv := objc.Send[EKEventStore](instance.ID, objc.Sel("initWithAccessToEntityTypes:"), entityTypes)
 	rv.Autorelease()
@@ -160,7 +159,7 @@ func (ec _EKEventStoreClass) AuthorizationStatusForEntityType(entityType EKEntit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/calendar(withIdentifier:)
-func (e_ EKEventStore) CalendarWithIdentifier(identifier string) EKCalendar {
+func (e_ EKEventStore) CalendarWithIdentifier(identifier string) IEKCalendar {
 	rv := objc.Send[EKCalendar](e_.ID, objc.Sel("calendarWithIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -170,7 +169,7 @@ func (e_ EKEventStore) CalendarWithIdentifier(identifier string) EKCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/calendarItem(withIdentifier:)
-func (e_ EKEventStore) CalendarItemWithIdentifier(identifier string) EKCalendarItem {
+func (e_ EKEventStore) CalendarItemWithIdentifier(identifier string) IEKCalendarItem {
 	rv := objc.Send[EKCalendarItem](e_.ID, objc.Sel("calendarItemWithIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -219,7 +218,7 @@ func (e_ EKEventStore) Commit(error_ unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/defaultCalendarForNewReminders()
-func (e_ EKEventStore) DefaultCalendarForNewReminders() EKCalendar {
+func (e_ EKEventStore) DefaultCalendarForNewReminders() IEKCalendar {
 	rv := objc.Send[EKCalendar](e_.ID, objc.Sel("defaultCalendarForNewReminders"))
 	return rv
 }
@@ -229,7 +228,7 @@ func (e_ EKEventStore) DefaultCalendarForNewReminders() EKCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/enumerateEvents(matching:using:)
-func (e_ EKEventStore) EnumerateEventsMatchingPredicateUsingBlock(predicate foundation.IPredicate, block unsafe.Pointer) {
+func (e_ EKEventStore) EnumerateEventsMatchingPredicateUsingBlock(predicate foundation.Predicate, block unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateEventsMatchingPredicate:usingBlock:"), predicate, block)
 }
 
@@ -238,7 +237,7 @@ func (e_ EKEventStore) EnumerateEventsMatchingPredicateUsingBlock(predicate foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/event(withIdentifier:)
-func (e_ EKEventStore) EventWithIdentifier(identifier string) EKEvent {
+func (e_ EKEventStore) EventWithIdentifier(identifier string) IEKEvent {
 	rv := objc.Send[EKEvent](e_.ID, objc.Sel("eventWithIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -248,7 +247,7 @@ func (e_ EKEventStore) EventWithIdentifier(identifier string) EKEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/events(matching:)
-func (e_ EKEventStore) EventsMatchingPredicate(predicate foundation.IPredicate) []EKEvent {
+func (e_ EKEventStore) EventsMatchingPredicate(predicate foundation.Predicate) []EKEvent {
 	rv := objc.Send[[]EKEvent](e_.ID, objc.Sel("eventsMatchingPredicate:"), predicate)
 	return rv
 }
@@ -258,7 +257,7 @@ func (e_ EKEventStore) EventsMatchingPredicate(predicate foundation.IPredicate) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/fetchReminders(matching:completion:)
-func (e_ EKEventStore) FetchRemindersMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) objc.ID {
+func (e_ EKEventStore) FetchRemindersMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("fetchRemindersMatchingPredicate:completion:"), predicate, completion)
 	return rv
 }
@@ -268,7 +267,7 @@ func (e_ EKEventStore) FetchRemindersMatchingPredicateCompletion(predicate found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/predicateForCompletedReminders(withCompletionDateStarting:ending:calendars:)
-func (e_ EKEventStore) PredicateForCompletedRemindersWithCompletionDateStartingEndingCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate {
+func (e_ EKEventStore) PredicateForCompletedRemindersWithCompletionDateStartingEndingCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:"), startDate, endDate, calendars)
 	return rv
 }
@@ -278,7 +277,7 @@ func (e_ EKEventStore) PredicateForCompletedRemindersWithCompletionDateStartingE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/predicateForEvents(withStart:end:calendars:)
-func (e_ EKEventStore) PredicateForEventsWithStartDateEndDateCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate {
+func (e_ EKEventStore) PredicateForEventsWithStartDateEndDateCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("predicateForEventsWithStartDate:endDate:calendars:"), startDate, endDate, calendars)
 	return rv
 }
@@ -288,7 +287,7 @@ func (e_ EKEventStore) PredicateForEventsWithStartDateEndDateCalendars(startDate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/predicateForIncompleteReminders(withDueDateStarting:ending:calendars:)
-func (e_ EKEventStore) PredicateForIncompleteRemindersWithDueDateStartingEndingCalendars(startDate foundation.IDate, endDate foundation.IDate, calendars []EKCalendar) foundation.Predicate {
+func (e_ EKEventStore) PredicateForIncompleteRemindersWithDueDateStartingEndingCalendars(startDate foundation.NSDate, endDate foundation.NSDate, calendars []EKCalendar) foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:"), startDate, endDate, calendars)
 	return rv
 }
@@ -327,7 +326,7 @@ func (e_ EKEventStore) RemoveReminderCommitError(reminder IEKReminder, commit bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/remove(_:span:)
-func (e_ EKEventStore) RemoveEventSpanError(event IEKEvent, span IEKSpan, error_ unsafe.Pointer) bool {
+func (e_ EKEventStore) RemoveEventSpanError(event IEKEvent, span EKSpan, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("removeEvent:span:error:"), event, span, error_)
 	return rv
 }
@@ -337,7 +336,7 @@ func (e_ EKEventStore) RemoveEventSpanError(event IEKEvent, span IEKSpan, error_
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/remove(_:span:commit:)
-func (e_ EKEventStore) RemoveEventSpanCommitError(event IEKEvent, span IEKSpan, commit bool, error_ unsafe.Pointer) bool {
+func (e_ EKEventStore) RemoveEventSpanCommitError(event IEKEvent, span EKSpan, commit bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("removeEvent:span:commit:error:"), event, span, commit, error_)
 	return rv
 }
@@ -350,15 +349,6 @@ func (e_ EKEventStore) RemoveEventSpanCommitError(event IEKEvent, span IEKSpan, 
 func (e_ EKEventStore) RemoveCalendarCommitError(calendar IEKCalendar, commit bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("removeCalendar:commit:error:"), calendar, commit, error_)
 	return rv
-}
-
-
-// Prompts the person using your app to grant or deny access to event or reminder data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/requestAccess(to:completion:)
-func (e_ EKEventStore) RequestAccessToEntityTypeCompletion(entityType EKEntityType, completion unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("requestAccessToEntityType:completion:"), entityType, completion)
 }
 
 
@@ -412,7 +402,7 @@ func (e_ EKEventStore) SaveReminderCommitError(reminder IEKReminder, commit bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/save(_:span:)
-func (e_ EKEventStore) SaveEventSpanError(event IEKEvent, span IEKSpan, error_ unsafe.Pointer) bool {
+func (e_ EKEventStore) SaveEventSpanError(event IEKEvent, span EKSpan, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("saveEvent:span:error:"), event, span, error_)
 	return rv
 }
@@ -422,7 +412,7 @@ func (e_ EKEventStore) SaveEventSpanError(event IEKEvent, span IEKSpan, error_ u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/save(_:span:commit:)
-func (e_ EKEventStore) SaveEventSpanCommitError(event IEKEvent, span IEKSpan, commit bool, error_ unsafe.Pointer) bool {
+func (e_ EKEventStore) SaveEventSpanCommitError(event IEKEvent, span EKSpan, commit bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("saveEvent:span:commit:error:"), event, span, commit, error_)
 	return rv
 }
@@ -442,7 +432,7 @@ func (e_ EKEventStore) SaveCalendarCommitError(calendar IEKCalendar, commit bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/source(withIdentifier:)
-func (e_ EKEventStore) SourceWithIdentifier(identifier string) EKSource {
+func (e_ EKEventStore) SourceWithIdentifier(identifier string) IEKSource {
 	rv := objc.Send[EKSource](e_.ID, objc.Sel("sourceWithIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -462,7 +452,7 @@ func (e_ EKEventStore) Calendars() []EKCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/defaultCalendarForNewEvents
-func (e_ EKEventStore) DefaultCalendarForNewEvents() EKCalendar {
+func (e_ EKEventStore) DefaultCalendarForNewEvents() IEKCalendar {
 	rv := objc.Send[EKCalendar](e_.ID, objc.Sel("defaultCalendarForNewEvents"))
 	return rv
 }

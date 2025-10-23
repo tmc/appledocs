@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +30,6 @@ type _ColorListClass struct {
 // An interface definition for the [ColorList] class.
 type IColorList interface {
 	objectivec.IObject
-	WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool
-	Editable() bool
 	AllKeys() unsafe.Pointer
 	SetAllKeys(value unsafe.Pointer)
 	IsEditable() bool
@@ -94,22 +91,23 @@ func NewColorList() ColorList {
 
 
 
-// Saves the color list to the file at the specified URL.
+// Searches the available color lists array and returns the color list with the specified name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/write(to:)
-func (c_ ColorList) WriteToURLError(url foundation.IURL, errPtr unsafe.Pointer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("writeToURL:error:"), url, errPtr)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/init(named:)
+func NewColorListNamed(name unsafe.Pointer) ColorList {
+	rv := objc.Send[ColorList](objc.ID(getColorListClass().class), objc.Sel("colorListNamed:"), name)
 	return rv
 }
 
 
-// A Boolean value that indicates whether the color list can be modified.
+
+// Searches the available color lists array and returns the color list with the specified name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/isEditable
-func (c_ ColorList) Editable() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("editable"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/init(named:)
+func (cc _ColorListClass) ColorListNamed(name unsafe.Pointer) IColorList {
+	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("colorListNamed:"), name)
 	return rv
 }
 
@@ -169,6 +167,5 @@ func (c_ ColorList) Name() unsafe.Pointer {
 func (c_ ColorList) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
-
 
 

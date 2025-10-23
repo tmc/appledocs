@@ -30,6 +30,8 @@ type _mIncomingChannelClass struct {
 // An interface definition for the [mIncomingChannel] class.
 type ImIncomingChannel interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

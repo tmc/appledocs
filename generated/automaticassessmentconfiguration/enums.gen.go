@@ -8,21 +8,6 @@ package automaticassessmentconfiguration
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct
 type AEAutocorrectMode uint
 
-const (
-	// AEAutocorrectModePunctuation - A mode in which autocorrect checks punctuation as the user types.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation
-	AEAutocorrectModePunctuation AEAutocorrectMode = 0
-	// AEAutocorrectModeSpelling - A mode in which autocorrect checks for spelling as the user types.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling
-	AEAutocorrectModeSpelling AEAutocorrectMode = 0
-	// AEAutocorrectModeNone - A mode that indicates autocorrect doesn’t check anything.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAutocorrectMode/AEAutocorrectModeNone
-	AEAutocorrectModeNone AEAutocorrectMode = 0
-)
-
 // AEAssessmentErrorCode - Error codes that the framework returns if a session fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentError/Code

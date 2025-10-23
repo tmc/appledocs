@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKObserverQuery] class.
@@ -30,6 +29,8 @@ type _HKObserverQueryClass struct {
 // An interface definition for the [HKObserverQuery] class.
 type IHKObserverQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A long-running query that monitors the HealthKit store and updates your app when the HealthKit store saves or deletes a matching sample.
@@ -85,30 +86,6 @@ func NewHKObserverQuery() HKObserverQuery {
 	return getHKObserverQueryClass().New()
 }
 
-
-
-// Creates a query that monitors the HealthKit store and responds to any changes matching any of the query descriptors you provided.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObserverQuery/init(queryDescriptors:updateHandler:)
-func NewHKObserverQueryWithQueryDescriptorsUpdateHandler(queryDescriptors []HKQueryDescriptor, updateHandler unsafe.Pointer) HKObserverQuery {
-	instance := getHKObserverQueryClass().Alloc()
-	rv := objc.Send[HKObserverQuery](instance.ID, objc.Sel("initWithQueryDescriptors:updateHandler:"), queryDescriptors, updateHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Instantiates and returns a query that monitors the HealthKit store and responds to changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObserverQuery/init(sampleType:predicate:updateHandler:)
-func NewHKObserverQueryWithSampleTypePredicateUpdateHandler(sampleType HKSampleType, predicate foundation.IPredicate, updateHandler unsafe.Pointer) HKObserverQuery {
-	instance := getHKObserverQueryClass().Alloc()
-	rv := objc.Send[HKObserverQuery](instance.ID, objc.Sel("initWithSampleType:predicate:updateHandler:"), sampleType, predicate, updateHandler)
-	rv.Autorelease()
-	return rv
-}
 
 
 

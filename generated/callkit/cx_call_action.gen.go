@@ -92,7 +92,7 @@ func NewCXCallAction() CXCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(call:)
-func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
+func NewCXCallActionWithCallUUID(callUUID foundation.UUID) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCallUUID:"), callUUID)
 	rv.Autorelease()
@@ -104,7 +104,7 @@ func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(coder:)
-func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
+func NewCXCallActionWithCoder(aDecoder foundation.Coder) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

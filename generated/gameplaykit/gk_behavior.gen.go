@@ -31,16 +31,16 @@ type _BehaviorClass struct {
 // An interface definition for the [Behavior] class.
 type IBehavior interface {
 	objectivec.IObject
+	GoalCount() int
+	Behavior() IGKBehavior
+	SetBehavior(value IGKBehavior)
 	RemoveGoal(goal IGKGoal)
 	RemoveAllGoals()
-	SetObjectForKeyedSubscript(weight foundation.INumber, goal IGKGoal)
+	SetObjectForKeyedSubscript(weight foundation.Number, goal IGKGoal)
 	SetWeightForGoal(weight float32, goal IGKGoal)
 	ObjectForKeyedSubscript(goal IGKGoal) foundation.Number
-	ObjectAtIndexedSubscript(idx uint) Goal
+	ObjectAtIndexedSubscript(idx uint) IGoal
 	WeightForGoal(goal IGKGoal) float32
-	GoalCount() int
-	Behavior() GKBehavior
-	SetBehavior(value GKBehavior)
 }
 
 // A set of goals that together influence the movement of an agent.
@@ -120,7 +120,7 @@ func NewBehaviorWithGoals(goals []Goal) Behavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:andWeights:)
-func NewBehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.INumber) Behavior {
+func NewBehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.Number) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoals:andWeights:"), goals, weights)
 	return rv
 }
@@ -130,7 +130,7 @@ func NewBehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.INumber) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(weightedGoals:)
-func NewBehaviorWithWeightedGoals(weightedGoals unsafe.Pointer) Behavior {
+func NewBehaviorWithWeightedGoals(weightedGoals foundation.IDictionary) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithWeightedGoals:"), weightedGoals)
 	return rv
 }
@@ -161,7 +161,7 @@ func (bc _BehaviorClass) BehaviorWithGoals(goals []Goal) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:andWeights:)
-func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.INumber) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.Number) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithGoals:andWeights:"), goals, weights)
 	return rv
 }
@@ -171,7 +171,7 @@ func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal, weights []fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(weightedGoals:)
-func (bc _BehaviorClass) BehaviorWithWeightedGoals(weightedGoals unsafe.Pointer) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithWeightedGoals(weightedGoals foundation.IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithWeightedGoals:"), weightedGoals)
 	return rv
 }
@@ -199,7 +199,7 @@ func (b_ Behavior) RemoveAllGoals() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/setObject:forKeyedSubscript:
-func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.INumber, goal IGKGoal) {
+func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.Number, goal IGKGoal) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, goal)
 }
 
@@ -227,7 +227,7 @@ func (b_ Behavior) ObjectForKeyedSubscript(goal IGKGoal) foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/subscript(_:)-997a9
-func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) Goal {
+func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) IGoal {
 	rv := objc.Send[Goal](b_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
@@ -257,8 +257,8 @@ func (b_ Behavior) GoalCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
-func (b_ Behavior) Behavior() GKBehavior {
-	rv := objc.Send[GKBehavior](b_.ID, objc.Sel("behavior"))
+func (b_ Behavior) Behavior() IGKBehavior {
+	rv := objc.Send[Behavior](b_.ID, objc.Sel("behavior"))
 	return rv
 }
 
@@ -267,7 +267,7 @@ func (b_ Behavior) Behavior() GKBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
-func (b_ Behavior) SetBehavior(value GKBehavior) {
+func (b_ Behavior) SetBehavior(value IGKBehavior) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBehavior:"), value)
 }
 

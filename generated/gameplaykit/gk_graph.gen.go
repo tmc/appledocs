@@ -30,11 +30,11 @@ type _GraphClass struct {
 // An interface definition for the [Graph] class.
 type IGraph interface {
 	objectivec.IObject
+	Nodes() []GraphNode
 	AddNodes(nodes []GraphNode)
 	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool)
 	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode
 	RemoveNodes(nodes []GraphNode)
-	Nodes() []GraphNode
 }
 
 // A collection of nodes that describes the navigability of a game world and provides methods to search for routes through that space.

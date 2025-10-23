@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,9 @@ type _IMKServerClass struct {
 // An interface definition for the [IMKServer] class.
 type IIMKServer interface {
 	objectivec.IObject
-	Bundle() foundation.Bundle
+	// properties:
+	// methods:
+	Bundle() NSBundle
 	LastKeyEventWasDeadKey() bool
 	PaletteWillTerminate() bool
 }
@@ -116,8 +117,8 @@ func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerCla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/bundle()
-func (i_ IMKServer) Bundle() foundation.Bundle {
-	rv := objc.Send[foundation.Bundle](i_.ID, objc.Sel("bundle"))
+func (i_ IMKServer) Bundle() NSBundle {
+	rv := objc.Send[Bundle](i_.ID, objc.Sel("bundle"))
 	return rv
 }
 

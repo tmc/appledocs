@@ -30,12 +30,12 @@ type _AttitudeClass struct {
 // An interface definition for the [Attitude] class.
 type IAttitude interface {
 	objectivec.IObject
-	MultiplyByInverseOfAttitude(attitude ICMAttitude)
 	Pitch() float64
 	Quaternion() unsafe.Pointer
 	Roll() float64
 	RotationMatrix() unsafe.Pointer
 	Yaw() float64
+	MultiplyByInverseOfAttitude(attitude ICMAttitude)
 }
 
 // The device’s orientation relative to a known frame of reference at a point in time.

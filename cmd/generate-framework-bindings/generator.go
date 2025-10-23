@@ -188,7 +188,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			interfaceType := g.TypeToInterfaceType(typeName)
 			return pkg + "." + interfaceType
 		}
-		return goType
+		return goType + " /* malformed qualified type */"
 	}
 
 	// Don't convert primitives, slices, pointers
@@ -204,41 +204,35 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		goType == "float64" ||
 		goType == "bool" ||
 		goType == "unsafe.Pointer" {
-		return goType
+		return goType + " /* primitive/slice/pointer */"
 	}
 
 	// Don't convert CoreGraphics types (structs and refs like CGPoint, CGContextRef)
 	if strings.HasPrefix(goType, "CG") {
-		return goType
+		return goType + " /* CoreGraphics type */"
 	}
 
 	// Don't convert NSInteger/NSUInteger - these are typedefs, not classes
 	if strings.HasPrefix(goType, "NS") && (strings.HasSuffix(goType, "Integer") || strings.HasSuffix(goType, "UInteger")) {
-		return goType
+		return goType + " /* NSInteger/NSUInteger typedef */"
 	}
-
-	// REMOVED: Hardcoded geometry/alias checks - now fully data-driven
-	// TimeInterval and other template-defined types are added to Typedefs synthetically
-	// during preparation, so IsTypedefType check above catches them.
 
 	// If it already starts with I and next char is uppercase, it's already an interface
 	if strings.HasPrefix(goType, "I") && len(goType) > 1 && goType[1] >= 'A' && goType[1] <= 'Z' {
-		return goType
+		return goType + " /* already interface */"
 	}
 
 	// DATA-DRIVEN: Check if this is an enum or typedef - don't convert those
-	// For enums, return the full name (with NS/CG prefix) if available
+	// For enums, return the goType as-is (which is already the stripped/Go name)
+	// The goType parameter has already been mapped by mapObjCTypeToGo
 	if g.IsEnumType(goType) {
-		if enum, ok := g.enumIndex[goType]; ok {
-			if os.Getenv("DEBUG_ENUM_TYPE") == "1" && strings.Contains(enum.Name, "Compression") {
-				fmt.Fprintf(os.Stderr, "DEBUG: ToInterfaceType: %s -> %s (enum)\n", goType, enum.Name)
-			}
-			return enum.Name // Return the full enum name (e.g., NSDataCompressionAlgorithm)
+		if os.Getenv("DEBUG_ENUM_TYPE") == "1" && strings.Contains(goType, "Compression") {
+			fmt.Fprintf(os.Stderr, "DEBUG: ToInterfaceType: %s is enum, returning as-is\n", goType)
 		}
-		return goType
+		return goType // Return the mapped Go type name, not the original ObjC name
 	}
 	if g.IsTypedefType(goType) {
-		return goType
+		return goType + " /* typedef */"
 	}
 
 	// Strip ObjC prefixes first before checking if it's a class
@@ -263,7 +257,7 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(goType, "Character") {
 			fmt.Fprintf(os.Stderr, "DEBUG TypeToInterfaceType: NOT a class, returning goType=%s unchanged\n", goType)
 		}
-		return goType
+		return goType + " /* foo */"
 	}
 
 	// Convert to interface type: "Data" -> "IData"

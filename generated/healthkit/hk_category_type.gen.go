@@ -29,6 +29,8 @@ type _HKCategoryTypeClass struct {
 // An interface definition for the [HKCategoryType] class.
 type IHKCategoryType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that contain a value from a small set of possible values.

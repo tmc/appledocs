@@ -181,7 +181,7 @@ var typeRegistry = []TypeMapping{
 	// Foundation date/time types - unqualified within Foundation
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "Foundation"},
 
-	// Foundation enum types - preserve NS prefix
+	// Foundation enum/options types - preserve NS prefix for enums defined in docs
 	{ObjCType: "NSISO8601DateFormatOptions", GoType: "NSISO8601DateFormatOptions", Framework: "Foundation"},
 	{ObjCType: "NSTimeInterval", GoType: "TimeInterval", Framework: "ObjectiveC"},
 	{ObjCType: "NSObject", GoType: "objectivec.IObject", Framework: "*"}, // NSObject should always map to objectivec.IObject
@@ -325,16 +325,9 @@ var typeRegistry = []TypeMapping{
 func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
 
-	if strings.Contains(objcType, "Quality") {
-		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping ENTRY: objcType=%q framework=%q\n", objcType, framework)
-	}
-
 	// Direct lookup - try framework-specific first
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType && mapping.Framework != "" && mapping.Framework == framework {
-			if strings.Contains(objcType, "Quality") {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping FOUND framework-specific: %q -> %q\n", objcType, mapping.GoType)
-			}
 			return mapping.GoType, true
 		}
 	}
@@ -399,7 +392,7 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Try with both ObjC names (NSColor, NSImageScaling) and Go names (Color, ImageScaling)
 	// First try the stripped name (preferred) to avoid returning NSCellAttribute when we want CellAttribute
 	strippedType := stripObjCPrefix(objcType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error") || strings.Contains(objcType, "Quality")) {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Coder") || strings.Contains(objcType, "Error")) {
 		fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: objcType=%s strippedType=%s (stripped=%v)\n",
 			objcType, strippedType, strippedType != objcType)
 	}
@@ -407,10 +400,6 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// IMPORTANT: Check if the stripped type exists in the current framework BEFORE checking cross-framework registry
 	// This prevents "Cursor" in CloudKit from resolving to appkit.Cursor instead of CKQueryCursor
 	if strippedType != objcType {
-		if strings.Contains(objcType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: checking current framework for %q (stripped=%q)\n", objcType, strippedType)
-			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: currentFrameworkEnums[%q]=%v (map size=%d)\n", strippedType, currentFrameworkEnums[strippedType], len(currentFrameworkEnums))
-		}
 		// Check if this stripped type is a class in the current framework
 		if currentFrameworkClasses[strippedType] {
 			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
@@ -421,27 +410,32 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		}
 
 		// Check if it's an enum in the current framework
-		// IMPORTANT: Enums must keep their NS/CG/CA prefix (e.g., NSQualityOfService not QualityOfService)
-		// This is because objc.Send[T] requires the concrete enum type name
+		// Enums are generated with stripped names (e.g., ComparisonResult not NSComparisonResult)
+		// so we must return the stripped name to match the generated enum type
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "Comparison") {
+			fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: checking if %s is in currentFrameworkEnums (size=%d)\n",
+				strippedType, len(currentFrameworkEnums))
+		}
 		if currentFrameworkEnums[strippedType] {
 			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, returning FULL name %s\n",
-					strippedType, framework, objcType)
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: stripped type %s found in current framework %s enums, returning STRIPPED name %s\n",
+					strippedType, framework, strippedType)
 			}
-			return objcType, true // Return FULL name with NS prefix, not stripped
+			return strippedType, true // Return STRIPPED name to match generated enum types
 		}
 
 		// HEURISTIC: If currentFrameworkEnums is empty (not populated yet), use a heuristic:
 		// Types with NS/CG/CA prefix that are NOT pointer types are likely enums
 		// Classes are always used as pointers (*), but enums are value types
 		// Only apply this if objcType does NOT contain " *" (not a pointer type)
+		// IMPORTANT: Return STRIPPED name since enums are generated without prefixes
 		if len(currentFrameworkEnums) == 0 && !strings.Contains(objcType, " *") {
 			// Type has a prefix and is not a pointer type - likely an enum
 			if os.Getenv("DEBUG_TYPEMAP") == "1" {
-				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: HEURISTIC - %s is non-pointer with prefix, likely enum, returning FULL name %s\n",
-					strippedType, objcType)
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: HEURISTIC - %s is non-pointer with prefix, likely enum, returning STRIPPED name %s\n",
+					strippedType, strippedType)
 			}
-			return objcType, true // Return FULL name with NS prefix
+			return strippedType, true // Return STRIPPED name to match generated enum types
 		}
 
 		// Check if it's a typedef in the current framework

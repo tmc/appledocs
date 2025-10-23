@@ -29,6 +29,8 @@ type _MutableSetClass struct {
 // An interface definition for the [MutableSet] class.
 type IMutableSet interface {
 	ISet
+	// properties:
+	// methods:
 }
 
 // A dynamic unordered collection of unique objects.

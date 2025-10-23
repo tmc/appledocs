@@ -32,34 +32,33 @@ type _TextLayoutManagerClass struct {
 // An interface definition for the [TextLayoutManager] class.
 type ITextLayoutManager interface {
 	objectivec.IObject
-	EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer)
-	ReplaceTextContentManager(textContentManager ITextContentManager)
-	ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.IAttributedString)
-	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
-	TextContainer() NSTextContainer
-	SetTextContainer(value ITextContainer)
-	TextContentManager() NSTextContentManager
-	TextSelectionNavigation() NSTextSelectionNavigation
-	SetTextSelectionNavigation(value ITextSelectionNavigation)
-	TextSelections() []TextSelection
-	SetTextSelections(value []TextSelection)
-	UsageBoundsForTextContainer() coregraphics.CGRect
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	LayoutQueue() foundation.OperationQueue
-	SetLayoutQueue(value foundation.IOperationQueue)
+	SetLayoutQueue(value foundation.OperationQueue)
 	LimitsLayoutForSuspiciousContents() bool
 	SetLimitsLayoutForSuspiciousContents(value bool)
 	RenderingAttributesValidator() unsafe.Pointer
 	SetRenderingAttributesValidator(value unsafe.Pointer)
 	ResolvesNaturalAlignmentWithBaseWritingDirection() bool
 	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool)
-	TextViewportLayoutController() NSTextViewportLayoutController
-	SetTextViewportLayoutController(value ITextViewportLayoutController)
+	TextContainer() TextContainer
+	SetTextContainer(value TextContainer)
+	TextContentManager() TextContentManager
+	SetTextContentManager(value TextContentManager)
+	TextSelectionNavigation() TextSelectionNavigation
+	SetTextSelectionNavigation(value TextSelectionNavigation)
+	TextSelections() TextSelection
+	SetTextSelections(value TextSelection)
+	TextViewportLayoutController() TextViewportLayoutController
+	SetTextViewportLayoutController(value TextViewportLayoutController)
+	UsageBoundsForTextContainer() coregraphics.CGRect
+	SetUsageBoundsForTextContainer(value coregraphics.CGRect)
 	UsesFontLeading() bool
 	SetUsesFontLeading(value bool)
 	UsesHyphenation() bool
 	SetUsesHyphenation(value bool)
+	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange)
 }
 
 // The primary class that you use to manage text layout and presentation for custom text displays.
@@ -115,126 +114,12 @@ func NewTextLayoutManager() TextLayoutManager {
 
 
 
-// Enumerates text segments of a specific type and in the text range you provide.
+// Sets the rendering attributes for the range you specify.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/enumerateTextSegments(in:type:options:using:)
-func (t_ TextLayoutManager) EnumerateTextSegmentsInRangeTypeOptionsUsingBlock(textRange ITextRange, type_ TextLayoutManagerSegmentType, options TextLayoutManagerSegmentOptions, block unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("enumerateTextSegmentsInRange:type:options:usingBlock:"), textRange, type_, options, block)
-}
-
-
-// Replaces the current text content manager with a new one you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replace(_:)
-func (t_ TextLayoutManager) ReplaceTextContentManager(textContentManager ITextContentManager) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("replaceTextContentManager:"), textContentManager)
-}
-
-
-// Replaces content at the location you specify with an attributed string you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-2elb
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithAttributedString(range_ ITextRange, attributedString foundation.IAttributedString) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withAttributedString:"), range_, attributedString)
-}
-
-
-// Replaces content at the location you specify with the text elements string you provide.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/replaceContents(in:with:)-80j0b
-func (t_ TextLayoutManager) ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("replaceContentsInRange:withTextElements:"), range_, textElements)
-}
-
-
-// The text container object that provides geometric information for the layout destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContainer
-func (t_ TextLayoutManager) TextContainer() NSTextContainer {
-	rv := objc.Send[NSTextContainer](t_.ID, objc.Sel("textContainer"))
-	return rv
-}
-
-
-// The text container object that provides geometric information for the layout destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContainer
-func (t_ TextLayoutManager) SetTextContainer(value ITextContainer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
-}
-
-
-// Returns the text content manager associated with this text layout manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textContentManager
-func (t_ TextLayoutManager) TextContentManager() NSTextContentManager {
-	rv := objc.Send[NSTextContentManager](t_.ID, objc.Sel("textContentManager"))
-	return rv
-}
-
-
-// Returns a text selection manager configured to have the text layout manager as its data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelectionNavigation
-func (t_ TextLayoutManager) TextSelectionNavigation() NSTextSelectionNavigation {
-	rv := objc.Send[NSTextSelectionNavigation](t_.ID, objc.Sel("textSelectionNavigation"))
-	return rv
-}
-
-
-// Returns a text selection manager configured to have the text layout manager as its data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelectionNavigation
-func (t_ TextLayoutManager) SetTextSelectionNavigation(value ITextSelectionNavigation) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
-}
-
-
-// An array of text selections associated by the text layout manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelections
-func (t_ TextLayoutManager) TextSelections() []TextSelection {
-	rv := objc.Send[[]TextSelection](t_.ID, objc.Sel("textSelections"))
-	return rv
-}
-
-
-// An array of text selections associated by the text layout manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/textSelections
-func (t_ TextLayoutManager) SetTextSelections(value []TextSelection) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), nsArray)
-}
-
-
-// Returns the usage bounds for the text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/usageBoundsForTextContainer
-func (t_ TextLayoutManager) UsageBoundsForTextContainer() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/setRenderingAttributes(_:for:)
+func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingAttributes:forTextRange:"), renderingAttributes, textRange)
 }
 
 
@@ -271,7 +156,7 @@ func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) SetLayoutQueue(value foundation.IOperationQueue) {
+func (t_ TextLayoutManager) SetLayoutQueue(value foundation.OperationQueue) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -333,12 +218,88 @@ func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(
 }
 
 
+// The text container object that provides geometric information for the layout destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontainer
+func (t_ TextLayoutManager) TextContainer() TextContainer {
+	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
+	return rv
+}
+
+
+// The text container object that provides geometric information for the layout destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontainer
+func (t_ TextLayoutManager) SetTextContainer(value TextContainer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
+}
+
+
+// Returns the text content manager associated with this text layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontentmanager
+func (t_ TextLayoutManager) TextContentManager() TextContentManager {
+	rv := objc.Send[TextContentManager](t_.ID, objc.Sel("textContentManager"))
+	return rv
+}
+
+
+// Returns the text content manager associated with this text layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontentmanager
+func (t_ TextLayoutManager) SetTextContentManager(value TextContentManager) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContentManager:"), value)
+}
+
+
+// Returns a text selection manager configured to have the text layout manager as its data source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselectionnavigation
+func (t_ TextLayoutManager) TextSelectionNavigation() TextSelectionNavigation {
+	rv := objc.Send[TextSelectionNavigation](t_.ID, objc.Sel("textSelectionNavigation"))
+	return rv
+}
+
+
+// Returns a text selection manager configured to have the text layout manager as its data source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselectionnavigation
+func (t_ TextLayoutManager) SetTextSelectionNavigation(value TextSelectionNavigation) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
+}
+
+
+// An array of text selections associated by the text layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselections
+func (t_ TextLayoutManager) TextSelections() TextSelection {
+	rv := objc.Send[TextSelection](t_.ID, objc.Sel("textSelections"))
+	return rv
+}
+
+
+// An array of text selections associated by the text layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselections
+func (t_ TextLayoutManager) SetTextSelections(value TextSelection) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), value)
+}
+
+
 // The text viewport layout controller associated with the layout manager’s text container.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) TextViewportLayoutController() NSTextViewportLayoutController {
-	rv := objc.Send[NSTextViewportLayoutController](t_.ID, objc.Sel("textViewportLayoutController"))
+func (t_ TextLayoutManager) TextViewportLayoutController() TextViewportLayoutController {
+	rv := objc.Send[TextViewportLayoutController](t_.ID, objc.Sel("textViewportLayoutController"))
 	return rv
 }
 
@@ -347,8 +308,27 @@ func (t_ TextLayoutManager) TextViewportLayoutController() NSTextViewportLayoutC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) SetTextViewportLayoutController(value ITextViewportLayoutController) {
+func (t_ TextLayoutManager) SetTextViewportLayoutController(value TextViewportLayoutController) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextViewportLayoutController:"), value)
+}
+
+
+// Returns the usage bounds for the text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usageboundsfortextcontainer
+func (t_ TextLayoutManager) UsageBoundsForTextContainer() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("usageBoundsForTextContainer"))
+	return rv
+}
+
+
+// Returns the usage bounds for the text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usageboundsfortextcontainer
+func (t_ TextLayoutManager) SetUsageBoundsForTextContainer(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUsageBoundsForTextContainer:"), value)
 }
 
 

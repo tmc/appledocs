@@ -30,12 +30,14 @@ type _SpeechSynthesisVoiceClass struct {
 // An interface definition for the [SpeechSynthesisVoice] class.
 type ISpeechSynthesisVoice interface {
 	objectivec.IObject
-	Gender() unsafe.Pointer
-	Language() string
 	AudioFileSettings() string
 	SetAudioFileSettings(value string)
+	Gender() unsafe.Pointer
+	SetGender(value unsafe.Pointer)
 	Identifier() string
 	SetIdentifier(value string)
+	Language() string
+	SetLanguage(value string)
 	Name() string
 	SetName(value string)
 	Quality() unsafe.Pointer
@@ -43,7 +45,7 @@ type ISpeechSynthesisVoice interface {
 	VoiceTraits() unsafe.Pointer
 	SetVoiceTraits(value unsafe.Pointer)
 	AVSpeechSynthesisVoiceIdentifierAlex() string
-	Voice() AVSpeechSynthesisVoice
+	Voice() IAVSpeechSynthesisVoice
 	SetVoice(value IAVSpeechSynthesisVoice)
 }
 
@@ -100,26 +102,6 @@ func NewSpeechSynthesisVoice() SpeechSynthesisVoice {
 
 
 
-// The gender for a voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/gender
-func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gender"))
-	return rv
-}
-
-
-// A BCP 47 code that contains the voice’s language and locale.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisVoice/language
-func (s_ SpeechSynthesisVoice) Language() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("language"))
-	return rv
-}
-
-
 // A dictionary that contains audio file settings.
 //
 // [Full Topic]
@@ -139,6 +121,25 @@ func (s_ SpeechSynthesisVoice) SetAudioFileSettings(value string) {
 }
 
 
+// The gender for a voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/gender
+func (s_ SpeechSynthesisVoice) Gender() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("gender"))
+	return rv
+}
+
+
+// The gender for a voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/gender
+func (s_ SpeechSynthesisVoice) SetGender(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setGender:"), value)
+}
+
+
 // The unique identifier of a voice.
 //
 // [Full Topic]
@@ -155,6 +156,25 @@ func (s_ SpeechSynthesisVoice) Identifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/identifier
 func (s_ SpeechSynthesisVoice) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
+// A BCP 47 code that contains the voice’s language and locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/language
+func (s_ SpeechSynthesisVoice) Language() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("language"))
+	return rv
+}
+
+
+// A BCP 47 code that contains the voice’s language and locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/language
+func (s_ SpeechSynthesisVoice) SetLanguage(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLanguage:"), objc.String(value))
 }
 
 
@@ -229,8 +249,8 @@ func (s_ SpeechSynthesisVoice) AVSpeechSynthesisVoiceIdentifierAlex() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-func (s_ SpeechSynthesisVoice) Voice() AVSpeechSynthesisVoice {
-	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
+func (s_ SpeechSynthesisVoice) Voice() IAVSpeechSynthesisVoice {
+	rv := objc.Send[SpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
 }
 

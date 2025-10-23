@@ -30,20 +30,22 @@ type _PropertyListSerializationClass struct {
 // An interface definition for the [PropertyListSerialization] class.
 type IPropertyListSerialization interface {
 	objectivec.IObject
-	NSPropertyListErrorMaximum() int
-	SetNSPropertyListErrorMaximum(value int)
-	NSPropertyListErrorMinimum() int
-	SetNSPropertyListErrorMinimum(value int)
-	NSPropertyListReadCorruptError() int
-	SetNSPropertyListReadCorruptError(value int)
-	NSPropertyListReadStreamError() int
-	SetNSPropertyListReadStreamError(value int)
-	NSPropertyListReadUnknownVersionError() int
-	SetNSPropertyListReadUnknownVersionError(value int)
-	NSPropertyListWriteInvalidError() int
-	SetNSPropertyListWriteInvalidError(value int)
-	NSPropertyListWriteStreamError() int
-	SetNSPropertyListWriteStreamError(value int)
+	// properties:
+	NSPropertyListErrorMaximum() int /* primitive/slice/pointer */
+	SetNSPropertyListErrorMaximum(value int /* primitive/slice/pointer */)
+	NSPropertyListErrorMinimum() int /* primitive/slice/pointer */
+	SetNSPropertyListErrorMinimum(value int /* primitive/slice/pointer */)
+	NSPropertyListReadCorruptError() int /* primitive/slice/pointer */
+	SetNSPropertyListReadCorruptError(value int /* primitive/slice/pointer */)
+	NSPropertyListReadStreamError() int /* primitive/slice/pointer */
+	SetNSPropertyListReadStreamError(value int /* primitive/slice/pointer */)
+	NSPropertyListReadUnknownVersionError() int /* primitive/slice/pointer */
+	SetNSPropertyListReadUnknownVersionError(value int /* primitive/slice/pointer */)
+	NSPropertyListWriteInvalidError() int /* primitive/slice/pointer */
+	SetNSPropertyListWriteInvalidError(value int /* primitive/slice/pointer */)
+	NSPropertyListWriteStreamError() int /* primitive/slice/pointer */
+	SetNSPropertyListWriteStreamError(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An object that converts between a property list and one of several serialized representations.
@@ -103,7 +105,7 @@ func NewPropertyListSerialization() PropertyListSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylisterrormaximum-swift.var
-func (p_ PropertyListSerialization) NSPropertyListErrorMaximum() int {
+func (p_ PropertyListSerialization) NSPropertyListErrorMaximum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListErrorMaximum"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (p_ PropertyListSerialization) NSPropertyListErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylisterrormaximum-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListErrorMaximum(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListErrorMaximum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListErrorMaximum:"), value)
 }
 
@@ -122,7 +124,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylisterrorminimum-swift.var
-func (p_ PropertyListSerialization) NSPropertyListErrorMinimum() int {
+func (p_ PropertyListSerialization) NSPropertyListErrorMinimum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListErrorMinimum"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (p_ PropertyListSerialization) NSPropertyListErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylisterrorminimum-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListErrorMinimum(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListErrorMinimum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListErrorMinimum:"), value)
 }
 
@@ -141,7 +143,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadcorrupterror-swift.var
-func (p_ PropertyListSerialization) NSPropertyListReadCorruptError() int {
+func (p_ PropertyListSerialization) NSPropertyListReadCorruptError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListReadCorruptError"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (p_ PropertyListSerialization) NSPropertyListReadCorruptError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadcorrupterror-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListReadCorruptError(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListReadCorruptError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListReadCorruptError:"), value)
 }
 
@@ -160,7 +162,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListReadCorruptError(value int)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadstreamerror-swift.var
-func (p_ PropertyListSerialization) NSPropertyListReadStreamError() int {
+func (p_ PropertyListSerialization) NSPropertyListReadStreamError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListReadStreamError"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (p_ PropertyListSerialization) NSPropertyListReadStreamError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadstreamerror-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListReadStreamError(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListReadStreamError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListReadStreamError:"), value)
 }
 
@@ -179,7 +181,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListReadStreamError(value int) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadunknownversionerror-swift.var
-func (p_ PropertyListSerialization) NSPropertyListReadUnknownVersionError() int {
+func (p_ PropertyListSerialization) NSPropertyListReadUnknownVersionError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListReadUnknownVersionError"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (p_ PropertyListSerialization) NSPropertyListReadUnknownVersionError() int 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistreadunknownversionerror-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListReadUnknownVersionError(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListReadUnknownVersionError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListReadUnknownVersionError:"), value)
 }
 
@@ -198,7 +200,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListReadUnknownVersionError(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistwriteinvaliderror-swift.var
-func (p_ PropertyListSerialization) NSPropertyListWriteInvalidError() int {
+func (p_ PropertyListSerialization) NSPropertyListWriteInvalidError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListWriteInvalidError"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (p_ PropertyListSerialization) NSPropertyListWriteInvalidError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistwriteinvaliderror-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListWriteInvalidError(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListWriteInvalidError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListWriteInvalidError:"), value)
 }
 
@@ -217,7 +219,7 @@ func (p_ PropertyListSerialization) SetNSPropertyListWriteInvalidError(value int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistwritestreamerror-swift.var
-func (p_ PropertyListSerialization) NSPropertyListWriteStreamError() int {
+func (p_ PropertyListSerialization) NSPropertyListWriteStreamError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("NSPropertyListWriteStreamError"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (p_ PropertyListSerialization) NSPropertyListWriteStreamError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspropertylistwritestreamerror-swift.var
-func (p_ PropertyListSerialization) SetNSPropertyListWriteStreamError(value int) {
+func (p_ PropertyListSerialization) SetNSPropertyListWriteStreamError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNSPropertyListWriteStreamError:"), value)
 }
 

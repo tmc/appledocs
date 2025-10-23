@@ -35,8 +35,8 @@ type IGlyphInfo interface {
 	SetBaseString(value string)
 	CharacterCollection() unsafe.Pointer
 	SetCharacterCollection(value unsafe.Pointer)
-	GlyphID() Glyph
-	SetGlyphID(value IGlyph)
+	GlyphID() unsafe.Pointer
+	SetGlyphID(value unsafe.Pointer)
 	GlyphName() string
 	SetGlyphName(value string)
 }
@@ -146,8 +146,8 @@ func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) GlyphID() Glyph {
-	rv := objc.Send[Glyph](g_.ID, objc.Sel("glyphID"))
+func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("glyphID"))
 	return rv
 }
 
@@ -156,7 +156,7 @@ func (g_ GlyphInfo) GlyphID() Glyph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) SetGlyphID(value IGlyph) {
+func (g_ GlyphInfo) SetGlyphID(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphID:"), value)
 }
 

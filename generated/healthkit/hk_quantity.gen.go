@@ -30,9 +30,8 @@ type _HKQuantityClass struct {
 // An interface definition for the [HKQuantity] class.
 type IHKQuantity interface {
 	objectivec.IObject
-	Compare(quantity IHKQuantity) unsafe.Pointer
-	DoubleValueForUnit(unit IHKUnit) float64
-	IsCompatibleWithUnit(unit IHKUnit) bool
+	// properties:
+	// methods:
 }
 
 // An object that stores a value for a given unit.
@@ -87,55 +86,5 @@ func NewHKQuantity() HKQuantity {
 }
 
 
-
-// Instantiates and returns a new quantity object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func NewHKQuantityWithUnitDoubleValue(unit IHKUnit, value float64) HKQuantity {
-	rv := objc.Send[HKQuantity](objc.ID(getHKQuantityClass().class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
-	return rv
-}
-
-
-
-// Instantiates and returns a new quantity object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit IHKUnit, value float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
-	return rv
-}
-
-
-// Compares two values after converting them to the same units.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/compare(_:)
-func (h_ HKQuantity) Compare(quantity IHKQuantity) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("compare:"), quantity)
-	return rv
-}
-
-
-// Returns the quantity’s value in the provided unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/doubleValue(for:)
-func (h_ HKQuantity) DoubleValueForUnit(unit IHKUnit) float64 {
-	rv := objc.Send[float64](h_.ID, objc.Sel("doubleValueForUnit:"), unit)
-	return rv
-}
-
-
-// Returns a boolean value indicating whether the quantity is compatible with the provided unit.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/is(compatibleWith:)
-func (h_ HKQuantity) IsCompatibleWithUnit(unit IHKUnit) bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isCompatibleWithUnit:"), unit)
-	return rv
-}
 
 

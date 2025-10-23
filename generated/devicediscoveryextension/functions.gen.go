@@ -56,8 +56,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)
 func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceCategoryToString(inValue)
-	}
-
+}
 
 // Returns human-readable text for the specified media playback state.
 
@@ -67,8 +66,7 @@ func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)
 func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceMediaPlaybackStateToString(inValue)
-	}
-
+}
 
 // Returns human-readable text for the specified protocol identifier.
 
@@ -78,8 +76,7 @@ func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)
 func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceProtocolToString(inValue)
-	}
-
+}
 
 // Returns human-readable text for the specified identifier that describes a device’s status.
 
@@ -89,8 +86,7 @@ func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)
 func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDDeviceStateToString(inValue)
-	}
-
+}
 
 // Returns human-readable text for the specified event identifier.
 
@@ -100,8 +96,7 @@ func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)
 func DDEventTypeToString(inValue unsafe.Pointer) unsafe.Pointer {
 	return _DDEventTypeToString(inValue)
-	}
-
+}
 
 
 

@@ -30,16 +30,18 @@ type _AppleEventManagerClass struct {
 // An interface definition for the [AppleEventManager] class.
 type IAppleEventManager interface {
 	objectivec.IObject
+	// properties:
 	CurrentAppleEvent() IAppleEventDescriptor
 	CurrentReplyAppleEvent() IAppleEventDescriptor
-	AppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID) IAppleEventDescriptor
+	// methods:
+	AppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) IAppleEventDescriptor
 	DispatchRawAppleEventWithRawReplyHandlerRefCon(theAppleEvent unsafe.Pointer, theReply unsafe.Pointer, handlerRefCon unsafe.Pointer) unsafe.Pointer
 	RemoveEventHandlerForEventClassAndEventID(eventClass unsafe.Pointer, eventID unsafe.Pointer)
-	ReplyAppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID) IAppleEventDescriptor
-	ResumeWithSuspensionID(suspensionID AppleEventManagerSuspensionID)
-	SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID AppleEventManagerSuspensionID)
+	ReplyAppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) IAppleEventDescriptor
+	ResumeWithSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */)
+	SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */)
 	SetEventHandlerAndSelectorForEventClassAndEventID(handler objectivec.IObject, handleEventSelector objc.SEL, eventClass unsafe.Pointer, eventID unsafe.Pointer)
-	SuspendCurrentAppleEvent() AppleEventManagerSuspensionID
+	SuspendCurrentAppleEvent() AppleEventManagerSuspensionID /* foo */
 }
 
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
@@ -109,7 +111,7 @@ func (ac _AppleEventManagerClass) SharedAppleEventManager() IAppleEventManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/appleEvent(forSuspensionID:)
-func (a_ AppleEventManager) AppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID) IAppleEventDescriptor {
+func (a_ AppleEventManager) AppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("appleEventForSuspensionID:"), suspensionID)
 	return rv
 }
@@ -138,7 +140,7 @@ func (a_ AppleEventManager) RemoveEventHandlerForEventClassAndEventID(eventClass
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/replyAppleEvent(forSuspensionID:)
-func (a_ AppleEventManager) ReplyAppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID) IAppleEventDescriptor {
+func (a_ AppleEventManager) ReplyAppleEventForSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("replyAppleEventForSuspensionID:"), suspensionID)
 	return rv
 }
@@ -148,7 +150,7 @@ func (a_ AppleEventManager) ReplyAppleEventForSuspensionID(suspensionID AppleEve
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/resume(withSuspensionID:)
-func (a_ AppleEventManager) ResumeWithSuspensionID(suspensionID AppleEventManagerSuspensionID) {
+func (a_ AppleEventManager) ResumeWithSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("resumeWithSuspensionID:"), suspensionID)
 }
 
@@ -157,7 +159,7 @@ func (a_ AppleEventManager) ResumeWithSuspensionID(suspensionID AppleEventManage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/setCurrentAppleEventAndReplyEventWithSuspensionID(_:)
-func (a_ AppleEventManager) SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID AppleEventManagerSuspensionID) {
+func (a_ AppleEventManager) SetCurrentAppleEventAndReplyEventWithSuspensionID(suspensionID AppleEventManagerSuspensionID /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEventAndReplyEventWithSuspensionID:"), suspensionID)
 }
 
@@ -175,7 +177,7 @@ func (a_ AppleEventManager) SetEventHandlerAndSelectorForEventClassAndEventID(ha
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/suspendCurrentAppleEvent()
-func (a_ AppleEventManager) SuspendCurrentAppleEvent() AppleEventManagerSuspensionID {
+func (a_ AppleEventManager) SuspendCurrentAppleEvent() AppleEventManagerSuspensionID /* foo */ {
 	rv := objc.Send[AppleEventManagerSuspensionID](a_.ID, objc.Sel("suspendCurrentAppleEvent"))
 	return rv
 }

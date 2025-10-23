@@ -30,14 +30,16 @@ type _IndexPathClass struct {
 // An interface definition for the [IndexPath] class.
 type IIndexPath interface {
 	objectivec.IObject
-	Item() int
-	SetItem(value int)
-	Length() int
-	SetLength(value int)
-	Row() int
-	SetRow(value int)
-	Section() int
-	SetSection(value int)
+	// properties:
+	Item() int /* primitive/slice/pointer */
+	SetItem(value int /* primitive/slice/pointer */)
+	Length() int /* primitive/slice/pointer */
+	SetLength(value int /* primitive/slice/pointer */)
+	Row() int /* primitive/slice/pointer */
+	SetRow(value int /* primitive/slice/pointer */)
+	Section() int /* primitive/slice/pointer */
+	SetSection(value int /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays.
@@ -97,7 +99,7 @@ func NewIndexPath() IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-func (i_ IndexPath) Item() int {
+func (i_ IndexPath) Item() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("item"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (i_ IndexPath) Item() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/item
-func (i_ IndexPath) SetItem(value int) {
+func (i_ IndexPath) SetItem(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setItem:"), value)
 }
 
@@ -116,7 +118,7 @@ func (i_ IndexPath) SetItem(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-func (i_ IndexPath) Length() int {
+func (i_ IndexPath) Length() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("length"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (i_ IndexPath) Length() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
-func (i_ IndexPath) SetLength(value int) {
+func (i_ IndexPath) SetLength(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLength:"), value)
 }
 
@@ -135,7 +137,7 @@ func (i_ IndexPath) SetLength(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
-func (i_ IndexPath) Row() int {
+func (i_ IndexPath) Row() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("row"))
 	return rv
 }
@@ -145,7 +147,7 @@ func (i_ IndexPath) Row() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
-func (i_ IndexPath) SetRow(value int) {
+func (i_ IndexPath) SetRow(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRow:"), value)
 }
 
@@ -154,7 +156,7 @@ func (i_ IndexPath) SetRow(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
-func (i_ IndexPath) Section() int {
+func (i_ IndexPath) Section() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("section"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (i_ IndexPath) Section() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
-func (i_ IndexPath) SetSection(value int) {
+func (i_ IndexPath) SetSection(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSection:"), value)
 }
 

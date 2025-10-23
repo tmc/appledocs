@@ -30,18 +30,10 @@ type _FSItemAttributesClass struct {
 // An interface definition for the [FSItemAttributes] class.
 type IFSItemAttributes interface {
 	objectivec.IObject
-	InvalidateAllProperties()
-	IsValid(attribute FSItemAttribute) bool
-	AddedTime() unsafe.Pointer
-	SetAddedTime(value unsafe.Pointer)
-	FileID() FSItemID
-	SetFileID(value IFSItemID)
-	Mode() uint32
-	SetMode(value Iuint32)
-	SupportsLimitedXAttrs() bool
-	SetSupportsLimitedXAttrs(value bool)
 	AccessTime() unsafe.Pointer
 	SetAccessTime(value unsafe.Pointer)
+	AddedTime() unsafe.Pointer
+	SetAddedTime(value unsafe.Pointer)
 	AllocSize() uint64
 	SetAllocSize(value uint64)
 	BackupTime() unsafe.Pointer
@@ -50,6 +42,8 @@ type IFSItemAttributes interface {
 	SetBirthTime(value unsafe.Pointer)
 	ChangeTime() unsafe.Pointer
 	SetChangeTime(value unsafe.Pointer)
+	FileID() unsafe.Pointer
+	SetFileID(value unsafe.Pointer)
 	Flags() unsafe.Pointer
 	SetFlags(value unsafe.Pointer)
 	Gid() unsafe.Pointer
@@ -58,16 +52,21 @@ type IFSItemAttributes interface {
 	SetInhibitKernelOffloadedIO(value bool)
 	LinkCount() unsafe.Pointer
 	SetLinkCount(value unsafe.Pointer)
+	Mode() unsafe.Pointer
+	SetMode(value unsafe.Pointer)
 	ModifyTime() unsafe.Pointer
 	SetModifyTime(value unsafe.Pointer)
 	ParentID() unsafe.Pointer
 	SetParentID(value unsafe.Pointer)
 	Size() uint64
 	SetSize(value uint64)
+	SupportsLimitedXAttrs() bool
+	SetSupportsLimitedXAttrs(value bool)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
 	Uid() unsafe.Pointer
 	SetUid(value unsafe.Pointer)
+	IsValid(attribute unsafe.Pointer) bool
 }
 
 // Attributes of an item, such as size, creation and modification times, and user and group identifiers.
@@ -121,98 +120,13 @@ func NewFSItemAttributes() FSItemAttributes {
 
 
 
-// Marks all attributes inactive.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/invalidateAllProperties()
-func (f_ FSItemAttributes) InvalidateAllProperties() {
-	objc.Send[objc.ID](f_.ID, objc.Sel("invalidateAllProperties"))
-}
-
-
 // Returns a Boolean value that indicates whether the attribute is valid.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/isValid(_:)
-func (f_ FSItemAttributes) IsValid(attribute FSItemAttribute) bool {
+func (f_ FSItemAttributes) IsValid(attribute unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isValid:"), attribute)
 	return rv
-}
-
-
-// The item’s added time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/addedTime
-func (f_ FSItemAttributes) AddedTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("addedTime"))
-	return rv
-}
-
-
-// The item’s added time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/addedTime
-func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAddedTime:"), value)
-}
-
-
-// The item’s file identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-func (f_ FSItemAttributes) FileID() FSItemID {
-	rv := objc.Send[FSItemID](f_.ID, objc.Sel("fileID"))
-	return rv
-}
-
-
-// The item’s file identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-func (f_ FSItemAttributes) SetFileID(value IFSItemID) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileID:"), value)
-}
-
-
-// The mode of the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-func (f_ FSItemAttributes) Mode() uint32 {
-	rv := objc.Send[uint32](f_.ID, objc.Sel("mode"))
-	return rv
-}
-
-
-// The mode of the item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/mode
-func (f_ FSItemAttributes) SetMode(value Iuint32) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setMode:"), value)
-}
-
-
-// A Boolean value that indicates whether the item supports a limited set of extended attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/supportsLimitedXAttrs
-func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("supportsLimitedXAttrs"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the item supports a limited set of extended attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/supportsLimitedXAttrs
-func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsLimitedXAttrs:"), value)
 }
 
 
@@ -232,6 +146,25 @@ func (f_ FSItemAttributes) AccessTime() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/accesstime
 func (f_ FSItemAttributes) SetAccessTime(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAccessTime:"), value)
+}
+
+
+// The item’s added time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/addedtime
+func (f_ FSItemAttributes) AddedTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("addedTime"))
+	return rv
+}
+
+
+// The item’s added time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/addedtime
+func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAddedTime:"), value)
 }
 
 
@@ -311,6 +244,25 @@ func (f_ FSItemAttributes) SetChangeTime(value unsafe.Pointer) {
 }
 
 
+// The item’s file identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/fileid
+func (f_ FSItemAttributes) FileID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileID"))
+	return rv
+}
+
+
+// The item’s file identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/fileid
+func (f_ FSItemAttributes) SetFileID(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileID:"), value)
+}
+
+
 // The item’s behavior flags.
 //
 // [Full Topic]
@@ -387,6 +339,25 @@ func (f_ FSItemAttributes) SetLinkCount(value unsafe.Pointer) {
 }
 
 
+// The mode of the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/mode
+func (f_ FSItemAttributes) Mode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("mode"))
+	return rv
+}
+
+
+// The mode of the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/mode
+func (f_ FSItemAttributes) SetMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setMode:"), value)
+}
+
+
 // The item’s last-modified time.
 //
 // [Full Topic]
@@ -441,6 +412,25 @@ func (f_ FSItemAttributes) Size() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/size
 func (f_ FSItemAttributes) SetSize(value uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSize:"), value)
+}
+
+
+// A Boolean value that indicates whether the item supports a limited set of extended attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/supportslimitedxattrs
+func (f_ FSItemAttributes) SupportsLimitedXAttrs() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("supportsLimitedXAttrs"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the item supports a limited set of extended attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/attributes/supportslimitedxattrs
+func (f_ FSItemAttributes) SetSupportsLimitedXAttrs(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsLimitedXAttrs:"), value)
 }
 
 

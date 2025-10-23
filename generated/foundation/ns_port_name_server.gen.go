@@ -30,6 +30,8 @@ type _PortNameServerClass struct {
 // An interface definition for the [PortNameServer] class.
 type IPortNameServer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object-oriented interface to the port registration service used by the distributed objects system.

@@ -29,6 +29,8 @@ type _UnitElectricResistanceClass struct {
 // An interface definition for the [UnitElectricResistance] class.
 type IUnitElectricResistance interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for electric resistance.

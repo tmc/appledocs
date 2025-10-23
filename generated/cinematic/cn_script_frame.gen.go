@@ -30,10 +30,8 @@ type _CNScriptFrameClass struct {
 // An interface definition for the [CNScriptFrame] class.
 type ICNScriptFrame interface {
 	objectivec.IObject
-	DetectionForID(detectionID ICNDetectionID) CNDetection
-	AllDetections() []CNDetection
-	FocusDetection() CNDetection
-	FocusDisparity() float32
+	BestDetectionForGroupID(detectionGroupID CNDetectionGroupID) ICNDetection
+	DetectionForID(detectionID CNDetectionID) ICNDetection
 }
 
 // An object that represents what to focus on, and where to focus, in a given movie frame.
@@ -87,42 +85,22 @@ func NewCNScriptFrame() CNScriptFrame {
 
 
 
+// The best detection to focus on in a frame among those within the given detection group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/bestDetectionForGroupID:
+func (c_ CNScriptFrame) BestDetectionForGroupID(detectionGroupID CNDetectionGroupID) ICNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("bestDetectionForGroupID:"), detectionGroupID)
+	return rv
+}
+
+
 // The detection in the frame with the given detection ID, if any.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/detectionForID:
-func (c_ CNScriptFrame) DetectionForID(detectionID ICNDetectionID) CNDetection {
+func (c_ CNScriptFrame) DetectionForID(detectionID CNDetectionID) ICNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionForID:"), detectionID)
-	return rv
-}
-
-
-// All detections for the Cinematic movie.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/allDetections
-func (c_ CNScriptFrame) AllDetections() []CNDetection {
-	rv := objc.Send[[]CNDetection](c_.ID, objc.Sel("allDetections"))
-	return rv
-}
-
-
-// What to focus on in a given frame of the movie.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/focusDetection
-func (c_ CNScriptFrame) FocusDetection() CNDetection {
-	rv := objc.Send[CNDetection](c_.ID, objc.Sel("focusDetection"))
-	return rv
-}
-
-
-// Where to focus in a given frame of the movie.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/focusDisparity
-func (c_ CNScriptFrame) FocusDisparity() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }
 

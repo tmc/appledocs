@@ -32,10 +32,10 @@ type IPropertyMapping interface {
 	objectivec.IObject
 	Name() string
 	SetName(value string)
-	UserInfo() objc.ID
-	SetUserInfo(value objc.ID)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	ValueExpression() Expression
-	SetValueExpression(value IExpression)
+	SetValueExpression(value Expression)
 }
 
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
@@ -111,9 +111,9 @@ func (p_ PropertyMapping) SetName(value string) {
 // The user info for the property mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-func (p_ PropertyMapping) UserInfo() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/userinfo
+func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -121,8 +121,8 @@ func (p_ PropertyMapping) UserInfo() objc.ID {
 // The user info for the property mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/userinfo
+func (p_ PropertyMapping) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
 
@@ -130,7 +130,7 @@ func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
 // The value expression for the property mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/valueexpression
 func (p_ PropertyMapping) ValueExpression() Expression {
 	rv := objc.Send[Expression](p_.ID, objc.Sel("valueExpression"))
 	return rv
@@ -140,8 +140,8 @@ func (p_ PropertyMapping) ValueExpression() Expression {
 // The value expression for the property mapping.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-func (p_ PropertyMapping) SetValueExpression(value IExpression) {
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/valueexpression
+func (p_ PropertyMapping) SetValueExpression(value Expression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
 

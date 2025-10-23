@@ -29,6 +29,8 @@ type _HKStateOfMindTypeClass struct {
 // An interface definition for the [HKStateOfMindType] class.
 type IHKStateOfMindType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 

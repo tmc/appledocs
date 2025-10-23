@@ -30,6 +30,8 @@ type _mEncryptionModeClass struct {
 // An interface definition for the [mEncryptionMode] class.
 type ImEncryptionMode interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

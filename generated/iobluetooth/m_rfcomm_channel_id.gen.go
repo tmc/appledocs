@@ -30,6 +30,8 @@ type _mRFCOMMChannelIDClass struct {
 // An interface definition for the [mRFCOMMChannelID] class.
 type ImRFCOMMChannelID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,30 +30,19 @@ type _AuthorizationRequestClass struct {
 // An interface definition for the [AuthorizationRequest] class.
 type IAuthorizationRequest interface {
 	objectivec.IObject
-	AuthorizationRequests() ASAuthorizationRequest
-	SetAuthorizationRequests(value IASAuthorizationRequest)
-	CustomAuthorizationMethods() AuthorizationCustomMethod
-	SetCustomAuthorizationMethods(value IAuthorizationCustomMethod)
-	Provider() unsafe.Pointer
-	SetProvider(value unsafe.Pointer)
 }
 
-// A base class for different kinds of authorization requests.
-//
-// Use one of the concrete requests, like , , or . You typically generate one of these using the corresponding provider, which is an instance of , , or , respectively.
+// A parent class referenced by other AuthenticationServices classes.
 
 
-// A base class for different kinds of authorization requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationRequest
+// A parent class referenced by other AuthenticationServices classes. [Full Topic]
 type AuthorizationRequest struct {
 	objectivec.Object
 }
 
 // AuthorizationRequestFrom constructs a [AuthorizationRequest] from an unsafe.Pointer.
 //
-// A base class for different kinds of authorization requests.
+// A parent class referenced by other AuthenticationServices classes.
 func AuthorizationRequestFrom(ptr unsafe.Pointer) AuthorizationRequest {
 	return AuthorizationRequest{objectivec.Object{objc.ID(ptr)}}
 }
@@ -89,63 +78,6 @@ func NewAuthorizationRequest() AuthorizationRequest {
 	return getAuthorizationRequestClass().New()
 }
 
-
-
-// The authorization requests that the controller manages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) AuthorizationRequests() ASAuthorizationRequest {
-	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
-	return rv
-}
-
-
-// The authorization requests that the controller manages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) SetAuthorizationRequests(value IASAuthorizationRequest) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
-}
-
-
-// An array of custom authorization methods for the user to choose.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-func (a_ AuthorizationRequest) CustomAuthorizationMethods() AuthorizationCustomMethod {
-	rv := objc.Send[AuthorizationCustomMethod](a_.ID, objc.Sel("customAuthorizationMethods"))
-	return rv
-}
-
-
-// An array of custom authorization methods for the user to choose.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value IAuthorizationCustomMethod) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), value)
-}
-
-
-// The provider servicing the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-func (a_ AuthorizationRequest) Provider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
-	return rv
-}
-
-
-// The provider servicing the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest/provider
-func (a_ AuthorizationRequest) SetProvider(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
-}
 
 
 

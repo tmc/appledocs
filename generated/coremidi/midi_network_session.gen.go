@@ -30,11 +30,6 @@ type _MIDINetworkSessionClass struct {
 // An interface definition for the [MIDINetworkSession] class.
 type IMIDINetworkSession interface {
 	objectivec.IObject
-	AddConnection(connection IMIDINetworkConnection) bool
-	RemoveConnection(connection IMIDINetworkConnection) bool
-	Enabled() bool
-	SetEnabled(value bool)
-	NetworkPort() uint
 	MIDINetworkNotificationContactsDidChange() string
 	MIDINetworkNotificationSessionDidChange() string
 	ConnectionPolicy() MIDINetworkConnectionPolicy
@@ -45,6 +40,8 @@ type IMIDINetworkSession interface {
 	SetLocalName(value string)
 	NetworkName() string
 	SetNetworkName(value string)
+	NetworkPort() int
+	SetNetworkPort(value int)
 }
 
 // An object that represents a pairing of a source and destination.
@@ -98,55 +95,6 @@ func NewMIDINetworkSession() MIDINetworkSession {
 	return getMIDINetworkSessionClass().New()
 }
 
-
-
-// Adds a new connection to this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/addConnection(_:)
-func (m_ MIDINetworkSession) AddConnection(connection IMIDINetworkConnection) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("addConnection:"), connection)
-	return rv
-}
-
-
-// Removes a connection from this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/removeConnection(_:)
-func (m_ MIDINetworkSession) RemoveConnection(connection IMIDINetworkConnection) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("removeConnection:"), connection)
-	return rv
-}
-
-
-// A Boolean value that determines whether the session is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-func (m_ MIDINetworkSession) Enabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the session is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/isEnabled
-func (m_ MIDINetworkSession) SetEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
-}
-
-
-// The session’s UDP port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/networkPort
-func (m_ MIDINetworkSession) NetworkPort() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("networkPort"))
-	return rv
-}
 
 
 // Indicates that the list of contacts changed.
@@ -242,6 +190,25 @@ func (m_ MIDINetworkSession) NetworkName() string {
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
 func (m_ MIDINetworkSession) SetNetworkName(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+}
+
+
+// The session’s UDP port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkport
+func (m_ MIDINetworkSession) NetworkPort() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("networkPort"))
+	return rv
+}
+
+
+// The session’s UDP port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkport
+func (m_ MIDINetworkSession) SetNetworkPort(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkPort:"), value)
 }
 
 

@@ -5,8 +5,14 @@ import (
 	"unsafe"
 )
 
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
+
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+type IOBluetoothDeviceSearchAttributes unsafe.Pointer
+
+type IOReturn unsafe.Pointer
 
 
 

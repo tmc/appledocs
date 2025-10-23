@@ -30,6 +30,8 @@ type _localPortClass struct {
 // An interface definition for the [localPort] class.
 type IlocalPort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

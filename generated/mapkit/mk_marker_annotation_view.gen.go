@@ -30,24 +30,26 @@ type _MKMarkerAnnotationViewClass struct {
 // An interface definition for the [MKMarkerAnnotationView] class.
 type IMKMarkerAnnotationView interface {
 	IMKAnnotationView
+	// properties:
 	GlyphImage() appkit.Image
-	SetGlyphImage(value appkit.IImage)
-	GlyphTintColor() appkit.Color
-	SetGlyphTintColor(value appkit.IColor)
+	SetGlyphImage(value appkit.Image)
 	MarkerTintColor() appkit.Color
-	SetMarkerTintColor(value appkit.IColor)
+	SetMarkerTintColor(value appkit.Color)
 	DisplayPriority() unsafe.Pointer
 	SetDisplayPriority(value unsafe.Pointer)
 	AnimatesWhenAdded() bool
 	SetAnimatesWhenAdded(value bool)
 	GlyphText() string
 	SetGlyphText(value string)
+	GlyphTintColor() appkit.Color
+	SetGlyphTintColor(value appkit.Color)
 	SelectedGlyphImage() appkit.Image
-	SetSelectedGlyphImage(value appkit.IImage)
+	SetSelectedGlyphImage(value appkit.Image)
 	SubtitleVisibility() unsafe.Pointer
 	SetSubtitleVisibility(value unsafe.Pointer)
 	TitleVisibility() unsafe.Pointer
 	SetTitleVisibility(value unsafe.Pointer)
+	// methods:
 }
 
 // An annotation view that displays a balloon-shaped marker at the designated location.
@@ -119,27 +121,8 @@ func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
-func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.IImage) {
+func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.Image) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphImage:"), value)
-}
-
-
-// The color to apply to the glyph text or image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
-func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("glyphTintColor"))
-	return rv
-}
-
-
-// The color to apply to the glyph text or image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
-func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.IColor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
 }
 
 
@@ -157,7 +140,7 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
-func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value appkit.IColor) {
+func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value appkit.Color) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
 }
 
@@ -219,6 +202,25 @@ func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
 }
 
 
+// The color to apply to the glyph text or image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtintcolor
+func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("glyphTintColor"))
+	return rv
+}
+
+
+// The color to apply to the glyph text or image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtintcolor
+func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.Color) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
+}
+
+
 // An image to display when the user selects the marker.
 //
 // [Full Topic]
@@ -233,7 +235,7 @@ func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value appkit.IImage) {
+func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value appkit.Image) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
 }
 

@@ -30,6 +30,8 @@ type _mAddressClass struct {
 // An interface definition for the [mAddress] class.
 type ImAddress interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,6 +29,29 @@ type _ImageViewClass struct {
 // An interface definition for the [ImageView] class.
 type IImageView interface {
 	IControl
+	AllowsCutCopyPaste() bool
+	SetAllowsCutCopyPaste(value bool)
+	Animates() bool
+	SetAnimates(value bool)
+	ContentTintColor() IColor
+	SetContentTintColor(value IColor)
+	Image() IImage
+	SetImage(value IImage)
+	ImageAlignment() unsafe.Pointer
+	SetImageAlignment(value unsafe.Pointer)
+	ImageDynamicRange() NSImageDynamicRange
+	ImageFrameStyle() unsafe.Pointer
+	SetImageFrameStyle(value unsafe.Pointer)
+	ImageScaling() ImageScaling
+	SetImageScaling(value ImageScaling)
+	Editable() bool
+	SetEditable(value bool)
+	PreferredImageDynamicRange() NSImageDynamicRange
+	SetPreferredImageDynamicRange(value NSImageDynamicRange)
+	SymbolConfiguration() IImageSymbolConfiguration
+	SetSymbolConfiguration(value IImageSymbolConfiguration)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	AddSymbolEffect(symbolEffect unsafe.Pointer)
 	AddSymbolEffectOptions(symbolEffect unsafe.Pointer, options unsafe.Pointer)
 	AddSymbolEffectOptionsAnimated(symbolEffect unsafe.Pointer, options unsafe.Pointer, animated bool)
@@ -40,29 +63,6 @@ type IImageView interface {
 	RemoveSymbolEffectOfTypeOptionsAnimated(symbolEffect unsafe.Pointer, options unsafe.Pointer, animated bool)
 	SetSymbolImageWithContentTransition(symbolImage IImage, transition unsafe.Pointer)
 	SetSymbolImageWithContentTransitionOptions(symbolImage IImage, transition unsafe.Pointer, options unsafe.Pointer)
-	AllowsCutCopyPaste() bool
-	SetAllowsCutCopyPaste(value bool)
-	Animates() bool
-	SetAnimates(value bool)
-	ContentTintColor() NSColor
-	SetContentTintColor(value IColor)
-	Image() Image
-	SetImage(value IImage)
-	ImageAlignment() unsafe.Pointer
-	SetImageAlignment(value unsafe.Pointer)
-	ImageDynamicRange() ImageDynamicRange
-	ImageFrameStyle() unsafe.Pointer
-	SetImageFrameStyle(value unsafe.Pointer)
-	ImageScaling() ImageScaling
-	SetImageScaling(value IImageScaling)
-	Editable() bool
-	SetEditable(value bool)
-	PreferredImageDynamicRange() ImageDynamicRange
-	SetPreferredImageDynamicRange(value IImageDynamicRange)
-	SymbolConfiguration() ImageSymbolConfiguration
-	SetSymbolConfiguration(value IImageSymbolConfiguration)
-	IsEditable() bool
-	SetIsEditable(value bool)
 }
 
 // A display of image data in a frame.
@@ -141,8 +141,8 @@ func (ic _ImageViewClass) ImageViewWithImage(image IImage) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/defaultPreferredImageDynamicRange
-func (ic _ImageViewClass) DefaultPreferredImageDynamicRange() ImageDynamicRange {
-	rv := objc.Send[ImageDynamicRange](objc.ID(ic.class), objc.Sel("defaultPreferredImageDynamicRange"))
+func (ic _ImageViewClass) DefaultPreferredImageDynamicRange() NSImageDynamicRange {
+	rv := objc.Send[NSImageDynamicRange](objc.ID(ic.class), objc.Sel("defaultPreferredImageDynamicRange"))
 	return rv
 }
 
@@ -285,8 +285,8 @@ func (i_ ImageView) SetAnimates(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/contentTintColor
-func (i_ ImageView) ContentTintColor() NSColor {
-	rv := objc.Send[NSColor](i_.ID, objc.Sel("contentTintColor"))
+func (i_ ImageView) ContentTintColor() IColor {
+	rv := objc.Send[Color](i_.ID, objc.Sel("contentTintColor"))
 	return rv
 }
 
@@ -302,8 +302,8 @@ func (i_ ImageView) SetContentTintColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/defaultPreferredImageDynamicRange
-func (i_ ImageView) DefaultPreferredImageDynamicRange() ImageDynamicRange {
-	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("defaultPreferredImageDynamicRange"))
+func (i_ ImageView) DefaultPreferredImageDynamicRange() NSImageDynamicRange {
+	rv := objc.Send[NSImageDynamicRange](i_.ID, objc.Sel("defaultPreferredImageDynamicRange"))
 	return rv
 }
 
@@ -312,7 +312,7 @@ func (i_ ImageView) DefaultPreferredImageDynamicRange() ImageDynamicRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/defaultPreferredImageDynamicRange
-func (i_ ImageView) SetDefaultPreferredImageDynamicRange(value IImageDynamicRange) {
+func (i_ ImageView) SetDefaultPreferredImageDynamicRange(value NSImageDynamicRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultPreferredImageDynamicRange:"), value)
 }
 
@@ -321,7 +321,7 @@ func (i_ ImageView) SetDefaultPreferredImageDynamicRange(value IImageDynamicRang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/image
-func (i_ ImageView) Image() Image {
+func (i_ ImageView) Image() IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("image"))
 	return rv
 }
@@ -359,8 +359,8 @@ func (i_ ImageView) SetImageAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageDynamicRange
-func (i_ ImageView) ImageDynamicRange() ImageDynamicRange {
-	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("imageDynamicRange"))
+func (i_ ImageView) ImageDynamicRange() NSImageDynamicRange {
+	rv := objc.Send[NSImageDynamicRange](i_.ID, objc.Sel("imageDynamicRange"))
 	return rv
 }
 
@@ -398,7 +398,7 @@ func (i_ ImageView) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageScaling
-func (i_ ImageView) SetImageScaling(value IImageScaling) {
+func (i_ ImageView) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageScaling:"), value)
 }
 
@@ -426,8 +426,8 @@ func (i_ ImageView) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/preferredImageDynamicRange
-func (i_ ImageView) PreferredImageDynamicRange() ImageDynamicRange {
-	rv := objc.Send[ImageDynamicRange](i_.ID, objc.Sel("preferredImageDynamicRange"))
+func (i_ ImageView) PreferredImageDynamicRange() NSImageDynamicRange {
+	rv := objc.Send[NSImageDynamicRange](i_.ID, objc.Sel("preferredImageDynamicRange"))
 	return rv
 }
 
@@ -436,14 +436,14 @@ func (i_ ImageView) PreferredImageDynamicRange() ImageDynamicRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/preferredImageDynamicRange
-func (i_ ImageView) SetPreferredImageDynamicRange(value IImageDynamicRange) {
+func (i_ ImageView) SetPreferredImageDynamicRange(value NSImageDynamicRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredImageDynamicRange:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/symbolConfiguration
-func (i_ ImageView) SymbolConfiguration() ImageSymbolConfiguration {
+func (i_ ImageView) SymbolConfiguration() IImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](i_.ID, objc.Sel("symbolConfiguration"))
 	return rv
 }

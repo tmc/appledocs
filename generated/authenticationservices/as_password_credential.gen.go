@@ -86,16 +86,6 @@ func NewPasswordCredential() PasswordCredential {
 
 
 
-// Creates a password credential instance with a given user name and password.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/credentialWithUser:password:
-func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, password string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("credentialWithUser:password:"), objc.String(user), objc.String(password))
-	return rv
-}
-
-
 // The password for a password credential object.
 //
 // [Full Topic]

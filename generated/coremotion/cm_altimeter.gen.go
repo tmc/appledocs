@@ -31,8 +31,8 @@ type _AltimeterClass struct {
 // An interface definition for the [Altimeter] class.
 type IAltimeter interface {
 	objectivec.IObject
-	StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
-	StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
+	StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
 	StopAbsoluteAltitudeUpdates()
 	StopRelativeAltitudeUpdates()
 }
@@ -94,8 +94,8 @@ func NewAltimeter() Altimeter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/authorizationStatus()
-func (ac _AltimeterClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(ac.class), objc.Sel("authorizationStatus"))
+func (ac _AltimeterClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(ac.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (ac _AltimeterClass) IsRelativeAltitudeAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startAbsoluteAltitudeUpdates(to:withHandler:)
-func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
+func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startAbsoluteAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -133,7 +133,7 @@ func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startRelativeAltitudeUpdates(to:withHandler:)
-func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
+func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startRelativeAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 

@@ -30,13 +30,13 @@ type _EKObjectClass struct {
 // An interface definition for the [EKObject] class.
 type IEKObject interface {
 	objectivec.IObject
-	Refresh() bool
-	Reset()
-	Rollback()
 	HasChanges() bool
 	New() bool
 	IsNew() bool
 	SetIsNew(value bool)
+	Refresh() bool
+	Reset()
+	Rollback()
 }
 
 // An abstract superclass for all EventKit classes that have persistent instances.

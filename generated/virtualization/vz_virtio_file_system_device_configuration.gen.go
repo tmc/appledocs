@@ -30,7 +30,7 @@ type _VZVirtioFileSystemDeviceConfigurationClass struct {
 type IVZVirtioFileSystemDeviceConfiguration interface {
 	IVZDirectorySharingDeviceConfiguration
 	Share() VZDirectoryShare
-	SetShare(value IVZDirectoryShare)
+	SetShare(value VZDirectoryShare)
 	Tag() string
 	SetTag(value string)
 }
@@ -38,7 +38,11 @@ type IVZVirtioFileSystemDeviceConfiguration interface {
 // An object that represents the configuration of a Virtio file system device.
 //
 // Use to create a Virtio file system device which allows the host to expose directories to a guest using a label. The example below shows the creation of a that shares a single directory that the user can manually mount after creating a mount point in the guest VM: A can also share multiple directories. The example below demonstrates sharing the and directories from the user’s home directory to the guest VM:
+
+
+// An object that represents the configuration of a Virtio file system device.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration
 type VZVirtioFileSystemDeviceConfiguration struct {
 	VZDirectorySharingDeviceConfiguration
@@ -86,75 +90,52 @@ func NewVZVirtioFileSystemDeviceConfiguration() VZVirtioFileSystemDeviceConfigur
 
 
 
-
-// Creates a configuration for a VIRTIO file system device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/init(tag:)
-func NewVZVirtioFileSystemDeviceConfigurationWithTag(tag string) VZVirtioFileSystemDeviceConfiguration {
-	instance := getVZVirtioFileSystemDeviceConfigurationClass().Alloc()
-	rv := objc.Send[VZVirtioFileSystemDeviceConfiguration](instance.ID, objc.Sel("initWithTag:"), objc.String(tag))
-	rv.Autorelease()
-	return rv
-}
-
-
 // Checks to see whether a Virtio tag is valid.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/validateTag(_:)
 func (vc _VZVirtioFileSystemDeviceConfigurationClass) ValidateTagError(tag string, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateTag:error:"), objc.String(tag), error_)
 	return rv
 }
 
-// A value that indicates that the guest needs to automount this file system device in the guest VM.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() string {
-	rv := objc.Send[string](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
-	return rv
-}
-// A value that indicates that the guest needs to automount this file system device in the guest VM.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
-func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("macOSGuestAutomountTag"))
-	return rv
-}
 
 // A value that defines how the host exposes resources to the guest virtual machine.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/share
 func (v_ VZVirtioFileSystemDeviceConfiguration) Share() VZDirectoryShare {
 	rv := objc.Send[VZDirectoryShare](v_.ID, objc.Sel("share"))
 	return rv
 }
 
 
-// SetShare sets the value of the share property.
 // A value that defines how the host exposes resources to the guest virtual machine.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share
-func (v_ VZVirtioFileSystemDeviceConfiguration) SetShare(value IVZDirectoryShare) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/share
+func (v_ VZVirtioFileSystemDeviceConfiguration) SetShare(value VZDirectoryShare) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShare:"), value)
 }
 
+
 // A label that identifies this device in the guest VM.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/tag
 func (v_ VZVirtioFileSystemDeviceConfiguration) Tag() string {
 	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 
 
-// SetTag sets the value of the tag property.
 // A label that identifies this device in the guest VM.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/tag
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration/tag
 func (v_ VZVirtioFileSystemDeviceConfiguration) SetTag(value string) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTag:"), objc.String(value))
 }
+
 
 

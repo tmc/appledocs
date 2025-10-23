@@ -30,6 +30,8 @@ type _mCurrentRemoteDirectoryClass struct {
 // An interface definition for the [mCurrentRemoteDirectory] class.
 type ImCurrentRemoteDirectory interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,6 +29,8 @@ type _HKElectrocardiogramTypeClass struct {
 // An interface definition for the [HKElectrocardiogramType] class.
 type IHKElectrocardiogramType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples containing electrocardiogram data.

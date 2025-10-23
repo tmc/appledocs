@@ -29,7 +29,10 @@ type _INShareFocusStatusIntentClass struct {
 // An interface definition for the [INShareFocusStatusIntent] class.
 type IINShareFocusStatusIntent interface {
 	IINIntent
+	// properties:
 	FocusStatus() INFocusStatus
+	SetFocusStatus(value INFocusStatus)
+	// methods:
 }
 
 // An object that indicates the user’s focus status is changing.
@@ -85,26 +88,23 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 
 
 
-// Creates an intent with the specified focus status.
+// The user’s preference for receiving communication notifications.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/init(focusStatus:)
-func NewINShareFocusStatusIntentWithFocusStatus(focusStatus INFocusStatus) INShareFocusStatusIntent {
-	instance := getINShareFocusStatusIntentClass().Alloc()
-	rv := objc.Send[INShareFocusStatusIntent](instance.ID, objc.Sel("initWithFocusStatus:"), focusStatus)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/intents/insharefocusstatusintent/focusstatus
+func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
+	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
-
 
 
 // The user’s preference for receiving communication notifications.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/focusStatus
-func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
-	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/intents/insharefocusstatusintent/focusstatus
+func (i_ INShareFocusStatusIntent) SetFocusStatus(value INFocusStatus) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
+
 
 

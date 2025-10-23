@@ -31,11 +31,18 @@ type _HKFHIRResourceClass struct {
 // An interface definition for the [HKFHIRResource] class.
 type IHKFHIRResource interface {
 	objectivec.IObject
-	Data() foundation.NSData
-	FHIRVersion() HKFHIRVersion
+	// properties:
+	Data() foundation.Data
+	SetData(value foundation.Data)
+	FhirVersion() HKFHIRVersion
+	SetFhirVersion(value HKFHIRVersion)
 	Identifier() string
-	ResourceType() HKFHIRResourceType
+	SetIdentifier(value string)
+	ResourceType() unsafe.Pointer
+	SetResourceType(value unsafe.Pointer)
 	SourceURL() foundation.URL
+	SetSourceURL(value foundation.URL)
+	// methods:
 }
 
 // An object containing Fast Healthcare Interoperability Resources (FHIR) data.
@@ -92,9 +99,28 @@ func NewHKFHIRResource() HKFHIRResource {
 // The JSON representation of the FHIR resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/data
-func (h_ HKFHIRResource) Data() foundation.NSData {
-	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
+func (h_ HKFHIRResource) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("data"))
+	return rv
+}
+
+
+// The JSON representation of the FHIR resource.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
+func (h_ HKFHIRResource) SetData(value foundation.Data) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setData:"), value)
+}
+
+
+// The FHIR version used by this resource.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
+func (h_ HKFHIRResource) FhirVersion() HKFHIRVersion {
+	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("fhirVersion"))
 	return rv
 }
 
@@ -102,29 +128,56 @@ func (h_ HKFHIRResource) Data() foundation.NSData {
 // The FHIR version used by this resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/fhirVersion
-func (h_ HKFHIRResource) FHIRVersion() HKFHIRVersion {
-	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("FHIRVersion"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
+func (h_ HKFHIRResource) SetFhirVersion(value HKFHIRVersion) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFhirVersion:"), value)
 }
 
 
-// The value from the FHIR resource’s field.
+// The value from the FHIR resource’s
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
 func (h_ HKFHIRResource) Identifier() string {
 	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 
-// The value from the FHIR resource’s field.
+// The value from the FHIR resource’s
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/resourceType
-func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType {
-	rv := objc.Send[HKFHIRResourceType](h_.ID, objc.Sel("resourceType"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
+func (h_ HKFHIRResource) SetIdentifier(value string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
+// The value from the FHIR resource’s
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
+func (h_ HKFHIRResource) ResourceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("resourceType"))
+	return rv
+}
+
+
+// The value from the FHIR resource’s
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
+func (h_ HKFHIRResource) SetResourceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setResourceType:"), value)
+}
+
+
+// The full URL for the source of the FHIR resource.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
+func (h_ HKFHIRResource) SourceURL() foundation.URL {
+	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
 	return rv
 }
 
@@ -132,10 +185,9 @@ func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType {
 // The full URL for the source of the FHIR resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/sourceURL
-func (h_ HKFHIRResource) SourceURL() foundation.URL {
-	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
+func (h_ HKFHIRResource) SetSourceURL(value foundation.URL) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceURL:"), value)
 }
 
 

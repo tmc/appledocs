@@ -29,7 +29,7 @@ type _AudioIONodeClass struct {
 // An interface definition for the [AudioIONode] class.
 type IAudioIONode interface {
 	IAudioNode
-	AudioUnit() AudioUnit
+	AudioUnit() IAudioUnit
 	SetAudioUnit(value IAudioUnit)
 	IsVoiceProcessingEnabled() bool
 	SetIsVoiceProcessingEnabled(value bool)
@@ -96,7 +96,7 @@ func NewAudioIONode() AudioIONode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/audiounit
-func (a_ AudioIONode) AudioUnit() AudioUnit {
+func (a_ AudioIONode) AudioUnit() IAudioUnit {
 	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("audioUnit"))
 	return rv
 }

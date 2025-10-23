@@ -31,7 +31,7 @@ type _EPExecutionPolicyClass struct {
 // An interface definition for the [EPExecutionPolicy] class.
 type IEPExecutionPolicy interface {
 	objectivec.IObject
-	AddPolicyExceptionForURLError(url foundation.IURL, error_ unsafe.Pointer) bool
+	AddPolicyExceptionForURLError(url foundation.URL, error_ unsafe.Pointer) bool
 }
 
 
@@ -83,7 +83,7 @@ func NewEPExecutionPolicy() EPExecutionPolicy {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPExecutionPolicy/addException(for:)
-func (e_ EPExecutionPolicy) AddPolicyExceptionForURLError(url foundation.IURL, error_ unsafe.Pointer) bool {
+func (e_ EPExecutionPolicy) AddPolicyExceptionForURLError(url foundation.URL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("addPolicyExceptionForURL:error:"), url, error_)
 	return rv
 }

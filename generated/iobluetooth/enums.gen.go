@@ -206,66 +206,57 @@ type FTSFileType uint
 // IOBluetoothDeviceSearchOptionsBits enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchOptionsBits
-type BluetoothDeviceSearchOptionsBits uint
+type IOBluetoothDeviceSearchOptionsBits uint
 
 // IOBluetoothDeviceSearchTypesBits - Bits to determine what Bluetooth devices to search for
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchTypesBits
-type BluetoothDeviceSearchTypesBits uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kIOBluetoothDeviceSearchClassic
-	kIOBluetoothDeviceSearchClassic BluetoothDeviceSearchTypesBits = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kIOBluetoothDeviceSearchLE
-	kIOBluetoothDeviceSearchLE BluetoothDeviceSearchTypesBits = 0
-)
+type IOBluetoothDeviceSearchTypesBits uint
 
 // IOBluetoothHandsFreeAudioGatewayFeatures enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGatewayFeatures
-type BluetoothHandsFreeAudioGatewayFeatures uint
+type IOBluetoothHandsFreeAudioGatewayFeatures uint
 
 // IOBluetoothHandsFreeCallHoldModes enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeCallHoldModes
-type BluetoothHandsFreeCallHoldModes uint
+type IOBluetoothHandsFreeCallHoldModes uint
 
 // IOBluetoothHandsFreeCodecID enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeCodecID
-type BluetoothHandsFreeCodecID uint
+type IOBluetoothHandsFreeCodecID uint
 
 // IOBluetoothHandsFreeDeviceFeatures enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDeviceFeatures
-type BluetoothHandsFreeDeviceFeatures uint
+type IOBluetoothHandsFreeDeviceFeatures uint
 
 // IOBluetoothHandsFreePDUMessageStatus enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreePDUMessageStatus
-type BluetoothHandsFreePDUMessageStatus uint
+type IOBluetoothHandsFreePDUMessageStatus uint
 
 // IOBluetoothHandsFreeSMSSupport enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeSMSSupport
-type BluetoothHandsFreeSMSSupport uint
+type IOBluetoothHandsFreeSMSSupport uint
 
 // IOBluetoothL2CAPChannelEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelEventType
-type BluetoothL2CAPChannelEventType uint
+type IOBluetoothL2CAPChannelEventType uint
 
 // IOBluetoothSMSMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSMSMode
-type BluetoothSMSMode uint
+type IOBluetoothSMSMode uint
 
 // IOBluetoothUserNotificationChannelDirection enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationChannelDirection
-type BluetoothUserNotificationChannelDirection uint
+type IOBluetoothUserNotificationChannelDirection uint
 
 // OBEXConnectFlagValues - Flags for Connect command.
 //
@@ -276,18 +267,6 @@ type OBEXConnectFlagValues uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXErrorCodes
 type OBEXErrorCodes uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXBadArgumentError
-	kOBEXBadArgumentError OBEXErrorCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXNoResourcesError
-	kOBEXNoResourcesError OBEXErrorCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXSessionNoTransportError
-	kOBEXSessionNoTransportError OBEXErrorCodes = 0
-)
 
 // OBEXHeaderIdentifiers - Identifiers for OBEX Headers.
 //
@@ -318,36 +297,6 @@ type OBEXOpCodeSessionValues uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXPutFlagValues
 type OBEXPutFlagValues uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag2Reserved
-	kOBEXPutFlag2Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag3Reserved
-	kOBEXPutFlag3Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag4Reserved
-	kOBEXPutFlag4Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag5Reserved
-	kOBEXPutFlag5Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag6Reserved
-	kOBEXPutFlag6Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlag7Reserved
-	kOBEXPutFlag7Reserved OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlagDontCreateDirectory
-	kOBEXPutFlagDontCreateDirectory OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlagGoToParentDirFirst
-	kOBEXPutFlagGoToParentDirFirst OBEXPutFlagValues = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kOBEXPutFlagNone
-	kOBEXPutFlagNone OBEXPutFlagValues = 0
-)
 
 // OBEXRealmValues - Values for Realm during digest response.
 //
@@ -388,186 +337,6 @@ type SDPAttributeDeviceIdentificationRecord uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/SDPAttributeIdentifierCodes
 type SDPAttributeIdentifierCodes uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierAdditionalProtocolsDescriptorList
-	kBluetoothSDPAttributeIdentifierAdditionalProtocolsDescriptorList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierAudioFeedbackSupport
-	kBluetoothSDPAttributeIdentifierAudioFeedbackSupport SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierBluetoothProfileDescriptorList
-	kBluetoothSDPAttributeIdentifierBluetoothProfileDescriptorList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierBrowseGroupList
-	kBluetoothSDPAttributeIdentifierBrowseGroupList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierClientExecutableURL
-	kBluetoothSDPAttributeIdentifierClientExecutableURL SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierDocumentationURL
-	kBluetoothSDPAttributeIdentifierDocumentationURL SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierExternalNetwork
-	kBluetoothSDPAttributeIdentifierExternalNetwork SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierFaxClass1Support
-	kBluetoothSDPAttributeIdentifierFaxClass1Support SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierFaxClass2Support
-	kBluetoothSDPAttributeIdentifierFaxClass2Support SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierFaxClass2_0Support
-	kBluetoothSDPAttributeIdentifierFaxClass2_0Support SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierGroupID
-	kBluetoothSDPAttributeIdentifierGroupID SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDBatteryPower
-	kBluetoothSDPAttributeIdentifierHIDBatteryPower SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDBootDevice
-	kBluetoothSDPAttributeIdentifierHIDBootDevice SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDCountryCode
-	kBluetoothSDPAttributeIdentifierHIDCountryCode SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDDescriptorList
-	kBluetoothSDPAttributeIdentifierHIDDescriptorList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDDeviceSubclass
-	kBluetoothSDPAttributeIdentifierHIDDeviceSubclass SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDLangIDBaseList
-	kBluetoothSDPAttributeIdentifierHIDLangIDBaseList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDNormallyConnectable
-	kBluetoothSDPAttributeIdentifierHIDNormallyConnectable SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDParserVersion
-	kBluetoothSDPAttributeIdentifierHIDParserVersion SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDProfileVersion
-	kBluetoothSDPAttributeIdentifierHIDProfileVersion SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDReconnectInitiate
-	kBluetoothSDPAttributeIdentifierHIDReconnectInitiate SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDReleaseNumber
-	kBluetoothSDPAttributeIdentifierHIDReleaseNumber SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDRemoteWake
-	kBluetoothSDPAttributeIdentifierHIDRemoteWake SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDSDPDisable
-	kBluetoothSDPAttributeIdentifierHIDSDPDisable SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDSSRHostMaxLatency
-	kBluetoothSDPAttributeIdentifierHIDSSRHostMaxLatency SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDSSRHostMinTimeout
-	kBluetoothSDPAttributeIdentifierHIDSSRHostMinTimeout SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDSupervisionTimeout
-	kBluetoothSDPAttributeIdentifierHIDSupervisionTimeout SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHIDVirtualCable
-	kBluetoothSDPAttributeIdentifierHIDVirtualCable SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierHomepageURL
-	kBluetoothSDPAttributeIdentifierHomepageURL SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierIPSubnet
-	kBluetoothSDPAttributeIdentifierIPSubnet SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierIconURL
-	kBluetoothSDPAttributeIdentifierIconURL SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierLanguageBaseAttributeIDList
-	kBluetoothSDPAttributeIdentifierLanguageBaseAttributeIDList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierMaxNetAccessRate
-	kBluetoothSDPAttributeIdentifierMaxNetAccessRate SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierNetAccessType
-	kBluetoothSDPAttributeIdentifierNetAccessType SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierNetwork
-	kBluetoothSDPAttributeIdentifierNetwork SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierNetworkAddress
-	kBluetoothSDPAttributeIdentifierNetworkAddress SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierProtocolDescriptorList
-	kBluetoothSDPAttributeIdentifierProtocolDescriptorList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierProviderName
-	kBluetoothSDPAttributeIdentifierProviderName SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierRemoteAudioVolumeControl
-	kBluetoothSDPAttributeIdentifierRemoteAudioVolumeControl SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSecurityDescription
-	kBluetoothSDPAttributeIdentifierSecurityDescription SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceAvailability
-	kBluetoothSDPAttributeIdentifierServiceAvailability SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceClassIDList
-	kBluetoothSDPAttributeIdentifierServiceClassIDList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceDatabaseState
-	kBluetoothSDPAttributeIdentifierServiceDatabaseState SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceDescription
-	kBluetoothSDPAttributeIdentifierServiceDescription SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceID
-	kBluetoothSDPAttributeIdentifierServiceID SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceInfoTimeToLive
-	kBluetoothSDPAttributeIdentifierServiceInfoTimeToLive SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceName
-	kBluetoothSDPAttributeIdentifierServiceName SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceRecordHandle
-	kBluetoothSDPAttributeIdentifierServiceRecordHandle SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceRecordState
-	kBluetoothSDPAttributeIdentifierServiceRecordState SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierServiceVersion
-	kBluetoothSDPAttributeIdentifierServiceVersion SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSupportedCapabilities
-	kBluetoothSDPAttributeIdentifierSupportedCapabilities SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSupportedDataStoresList
-	kBluetoothSDPAttributeIdentifierSupportedDataStoresList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSupportedFeatures
-	kBluetoothSDPAttributeIdentifierSupportedFeatures SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSupportedFunctions
-	kBluetoothSDPAttributeIdentifierSupportedFunctions SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierSupporterFormatsList
-	kBluetoothSDPAttributeIdentifierSupporterFormatsList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierTotalImagingDataCapacity
-	kBluetoothSDPAttributeIdentifierTotalImagingDataCapacity SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierVersionNumberList
-	kBluetoothSDPAttributeIdentifierVersionNumberList SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierWAPGateway
-	kBluetoothSDPAttributeIdentifierWAPGateway SDPAttributeIdentifierCodes = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/kBluetoothSDPAttributeIdentifierWAPStackType
-	kBluetoothSDPAttributeIdentifierWAPStackType SDPAttributeIdentifierCodes = 0
-)
 
 // SDPServiceClasses enum type
 //

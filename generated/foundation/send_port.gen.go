@@ -30,6 +30,8 @@ type _sendPortClass struct {
 // An interface definition for the [sendPort] class.
 type IsendPort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

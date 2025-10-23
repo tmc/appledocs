@@ -30,11 +30,13 @@ type _AttributedStringMarkdownSourcePositionClass struct {
 // An interface definition for the [AttributedStringMarkdownSourcePosition] class.
 type IAttributedStringMarkdownSourcePosition interface {
 	objectivec.IObject
-	EndColumn() int
-	EndLine() int
-	StartColumn() int
-	StartLine() int
-	RangeInString(string_ string) Range
+	// properties:
+	EndColumn() int /* primitive/slice/pointer */
+	EndLine() int /* primitive/slice/pointer */
+	StartColumn() int /* primitive/slice/pointer */
+	StartLine() int /* primitive/slice/pointer */
+	// methods:
+	RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */
 }
 
 // The position of attributed string text in its original Markdown source string.
@@ -92,7 +94,7 @@ func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourceP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/initWithStartLine:startColumn:endLine:endColumn:
-func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn(startLine int, startColumn int, endLine int, endColumn int) AttributedStringMarkdownSourcePosition {
+func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn(startLine int /* primitive/slice/pointer */, startColumn int /* primitive/slice/pointer */, endLine int /* primitive/slice/pointer */, endColumn int /* primitive/slice/pointer */) AttributedStringMarkdownSourcePosition {
 	instance := getAttributedStringMarkdownSourcePositionClass().Alloc()
 	rv := objc.Send[AttributedStringMarkdownSourcePosition](instance.ID, objc.Sel("initWithStartLine:startColumn:endLine:endColumn:"), startLine, startColumn, endLine, endColumn)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEnd
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/rangeInString:
-func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string) Range {
+func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeInString:"), objc.String(string_))
 	return rv
 }
@@ -115,7 +117,7 @@ func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string) R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endColumn
-func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
+func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("endColumn"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endLine
-func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
+func (a_ AttributedStringMarkdownSourcePosition) EndLine() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("endLine"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (a_ AttributedStringMarkdownSourcePosition) EndLine() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startColumn
-func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
+func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("startColumn"))
 	return rv
 }
@@ -145,7 +147,7 @@ func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startLine
-func (a_ AttributedStringMarkdownSourcePosition) StartLine() int {
+func (a_ AttributedStringMarkdownSourcePosition) StartLine() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("startLine"))
 	return rv
 }

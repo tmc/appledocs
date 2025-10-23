@@ -29,6 +29,8 @@ type _UnitLengthClass struct {
 // An interface definition for the [UnitLength] class.
 type IUnitLength interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for length.

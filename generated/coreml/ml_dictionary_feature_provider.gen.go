@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _DictionaryFeatureProviderClass struct {
 // An interface definition for the [DictionaryFeatureProvider] class.
 type IDictionaryFeatureProvider interface {
 	objectivec.IObject
-	ObjectForKeyedSubscript(featureName string) FeatureValue
-	Dictionary() unsafe.Pointer
+	Dictionary() foundation.IDictionary
+	ObjectForKeyedSubscript(featureName string) IFeatureValue
 }
 
 // A convenience wrapper for the given dictionary of data.
@@ -91,7 +92,7 @@ func NewDictionaryFeatureProvider() DictionaryFeatureProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/init(dictionary:)
-func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) DictionaryFeatureProvider {
+func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDictionary, error_ unsafe.Pointer) DictionaryFeatureProvider {
 	instance := getDictionaryFeatureProviderClass().Alloc()
 	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
@@ -104,7 +105,7 @@ func NewDictionaryFeatureProviderWithDictionaryError(dictionary unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/subscript(_:)
-func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) FeatureValue {
+func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) IFeatureValue {
 	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), objc.String(featureName))
 	return rv
 }
@@ -114,8 +115,8 @@ func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/dictionary
-func (d_ DictionaryFeatureProvider) Dictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dictionary"))
+func (d_ DictionaryFeatureProvider) Dictionary() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](d_.ID, objc.Sel("dictionary"))
 	return rv
 }
 

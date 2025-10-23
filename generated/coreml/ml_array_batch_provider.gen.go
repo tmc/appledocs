@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,7 +91,7 @@ func NewArrayBatchProvider() ArrayBatchProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
-func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ unsafe.Pointer) ArrayBatchProvider {
+func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary, error_ unsafe.Pointer) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()

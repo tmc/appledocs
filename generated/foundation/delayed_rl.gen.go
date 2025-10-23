@@ -30,6 +30,8 @@ type _delayedRLClass struct {
 // An interface definition for the [delayedRL] class.
 type IdelayedRL interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,24 +29,24 @@ type _CKQueryOperationClass struct {
 // An interface definition for the [CKQueryOperation] class.
 type ICKQueryOperation interface {
 	ICKDatabaseOperation
-	Cursor() CKQueryCursor
-	SetCursor(value ICKQueryCursor)
 	DesiredKeys() []string
 	SetDesiredKeys(value []string)
-	Query() CKQuery
+	Cursor() CKQueryCursor
+	SetCursor(value CKQueryCursor)
+	Query() ICKQuery
 	SetQuery(value ICKQuery)
 	QueryCompletionBlock() unsafe.Pointer
 	SetQueryCompletionBlock(value unsafe.Pointer)
+	QueryResultBlock() unsafe.Pointer
+	SetQueryResultBlock(value unsafe.Pointer)
 	RecordFetchedBlock() unsafe.Pointer
 	SetRecordFetchedBlock(value unsafe.Pointer)
 	RecordMatchedBlock() unsafe.Pointer
 	SetRecordMatchedBlock(value unsafe.Pointer)
-	ResultsLimit() uint
-	SetResultsLimit(value uint)
-	ZoneID() CKRecordZoneID
+	ResultsLimit() int
+	SetResultsLimit(value int)
+	ZoneID() ICKRecordZoneID
 	SetZoneID(value ICKRecordZoneID)
-	QueryResultBlock() unsafe.Pointer
-	SetQueryResultBlock(value unsafe.Pointer)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 }
@@ -106,50 +106,6 @@ func NewCKQueryOperation() CKQueryOperation {
 
 
 
-// Creates an operation with additional results from a previous search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/init(cursor:)
-func NewCKQueryOperationWithCursor(cursor ICKQueryCursor) CKQueryOperation {
-	instance := getCKQueryOperationClass().Alloc()
-	rv := objc.Send[CKQueryOperation](instance.ID, objc.Sel("initWithCursor:"), cursor)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates an operation that searches for records in the specified record zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/init(query:)
-func NewCKQueryOperationWithQuery(query ICKQuery) CKQueryOperation {
-	instance := getCKQueryOperationClass().Alloc()
-	rv := objc.Send[CKQueryOperation](instance.ID, objc.Sel("initWithQuery:"), query)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The cursor for continuing the search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/cursor-swift.property
-func (c_ CKQueryOperation) Cursor() CKQueryCursor {
-	rv := objc.Send[CKQueryCursor](c_.ID, objc.Sel("cursor"))
-	return rv
-}
-
-
-// The cursor for continuing the search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/cursor-swift.property
-func (c_ CKQueryOperation) SetCursor(value ICKQueryCursor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCursor:"), value)
-}
-
-
 // The fields of the records to fetch.
 //
 // [Full Topic]
@@ -179,11 +135,30 @@ func (c_ CKQueryOperation) SetDesiredKeys(value []string) {
 }
 
 
+// The cursor for continuing the search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
+func (c_ CKQueryOperation) Cursor() CKQueryCursor {
+	rv := objc.Send[CKQueryCursor](c_.ID, objc.Sel("cursor"))
+	return rv
+}
+
+
+// The cursor for continuing the search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
+func (c_ CKQueryOperation) SetCursor(value CKQueryCursor) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCursor:"), value)
+}
+
+
 // The query for the search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/query
-func (c_ CKQueryOperation) Query() CKQuery {
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
+func (c_ CKQueryOperation) Query() ICKQuery {
 	rv := objc.Send[CKQuery](c_.ID, objc.Sel("query"))
 	return rv
 }
@@ -192,7 +167,7 @@ func (c_ CKQueryOperation) Query() CKQuery {
 // The query for the search.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/query
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
 func (c_ CKQueryOperation) SetQuery(value ICKQuery) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuery:"), value)
 }
@@ -201,7 +176,7 @@ func (c_ CKQueryOperation) SetQuery(value ICKQuery) {
 // The closure to execute after CloudKit retrieves all of the records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/queryCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/querycompletionblock
 func (c_ CKQueryOperation) QueryCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("queryCompletionBlock"))
 	return rv
@@ -211,81 +186,9 @@ func (c_ CKQueryOperation) QueryCompletionBlock() unsafe.Pointer {
 // The closure to execute after CloudKit retrieves all of the records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/queryCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/querycompletionblock
 func (c_ CKQueryOperation) SetQueryCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQueryCompletionBlock:"), value)
-}
-
-
-// The closure to execute when a record becomes available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/recordFetchedBlock
-func (c_ CKQueryOperation) RecordFetchedBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordFetchedBlock"))
-	return rv
-}
-
-
-// The closure to execute when a record becomes available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/recordFetchedBlock
-func (c_ CKQueryOperation) SetRecordFetchedBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFetchedBlock:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/recordMatchedBlock-7kek0
-func (c_ CKQueryOperation) RecordMatchedBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordMatchedBlock"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/recordMatchedBlock-7kek0
-func (c_ CKQueryOperation) SetRecordMatchedBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordMatchedBlock:"), value)
-}
-
-
-// The maximum number of records to return at one time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/resultsLimit
-func (c_ CKQueryOperation) ResultsLimit() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("resultsLimit"))
-	return rv
-}
-
-
-// The maximum number of records to return at one time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/resultsLimit
-func (c_ CKQueryOperation) SetResultsLimit(value uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
-}
-
-
-// The ID of the record zone that contains the records to search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/zoneID
-func (c_ CKQueryOperation) ZoneID() CKRecordZoneID {
-	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
-	return rv
-}
-
-
-// The ID of the record zone that contains the records to search.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryOperation/zoneID
-func (c_ CKQueryOperation) SetZoneID(value ICKRecordZoneID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }
 
 
@@ -301,6 +204,78 @@ func (c_ CKQueryOperation) QueryResultBlock() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/queryresultblock
 func (c_ CKQueryOperation) SetQueryResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQueryResultBlock:"), value)
+}
+
+
+// The closure to execute when a record becomes available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/recordfetchedblock
+func (c_ CKQueryOperation) RecordFetchedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordFetchedBlock"))
+	return rv
+}
+
+
+// The closure to execute when a record becomes available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/recordfetchedblock
+func (c_ CKQueryOperation) SetRecordFetchedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordFetchedBlock:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/recordmatchedblock-2qze7
+func (c_ CKQueryOperation) RecordMatchedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordMatchedBlock"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/recordmatchedblock-2qze7
+func (c_ CKQueryOperation) SetRecordMatchedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordMatchedBlock:"), value)
+}
+
+
+// The maximum number of records to return at one time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
+func (c_ CKQueryOperation) ResultsLimit() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
+	return rv
+}
+
+
+// The maximum number of records to return at one time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit
+func (c_ CKQueryOperation) SetResultsLimit(value int) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
+}
+
+
+// The ID of the record zone that contains the records to search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
+func (c_ CKQueryOperation) ZoneID() ICKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
+	return rv
+}
+
+
+// The ID of the record zone that contains the records to search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
+func (c_ CKQueryOperation) SetZoneID(value ICKRecordZoneID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }
 
 
@@ -321,5 +296,6 @@ func (c_ CKQueryOperation) CompletionBlock() unsafe.Pointer {
 func (c_ CKQueryOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
+
 
 

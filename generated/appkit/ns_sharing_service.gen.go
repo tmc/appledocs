@@ -31,29 +31,29 @@ type _SharingServiceClass struct {
 // An interface definition for the [SharingService] class.
 type ISharingService interface {
 	objectivec.IObject
-	CanPerformWithItems(items objectivec.IObject) bool
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	AccountName() string
 	SetAccountName(value string)
-	AlternateImage() Image
+	AlternateImage() IImage
 	SetAlternateImage(value IImage)
 	AttachmentFileURLs() foundation.URL
-	SetAttachmentFileURLs(value foundation.IURL)
-	Image() Image
+	SetAttachmentFileURLs(value foundation.URL)
+	Image() IImage
 	SetImage(value IImage)
 	MenuItemTitle() string
 	SetMenuItemTitle(value string)
 	MessageBody() string
 	SetMessageBody(value string)
 	PermanentLink() foundation.URL
-	SetPermanentLink(value foundation.IURL)
+	SetPermanentLink(value foundation.URL)
 	Recipients() string
 	SetRecipients(value string)
 	Subject() string
 	SetSubject(value string)
 	Title() string
 	SetTitle(value string)
+	CanPerformWithItems(items objectivec.IObject) bool
 }
 
 // An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
@@ -109,49 +109,6 @@ func NewSharingService() SharingService {
 
 
 
-// Returns a sharing service instance representing the specified service name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-func NewSharingServiceNamed(serviceName ISharingServiceName) SharingService {
-	rv := objc.Send[SharingService](objc.ID(getSharingServiceClass().class), objc.Sel("sharingServiceNamed:"), serviceName)
-	return rv
-}
-
-
-// Creates a custom sharing service object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(title:image:alternateImage:handler:)
-func NewSharingServiceWithTitleImageAlternateImageHandler(title string, image IImage, alternateImage IImage, block unsafe.Pointer) SharingService {
-	instance := getSharingServiceClass().Alloc()
-	rv := objc.Send[SharingService](instance.ID, objc.Sel("initWithTitle:image:alternateImage:handler:"), objc.String(title), image, alternateImage, block)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a sharing service instance representing the specified service name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/init(named:)
-func (sc _SharingServiceClass) SharingServiceNamed(serviceName ISharingServiceName) SharingService {
-	rv := objc.Send[SharingService](objc.ID(sc.class), objc.Sel("sharingServiceNamed:"), serviceName)
-	return rv
-}
-
-
-// Returns a list of sharing services which could share all the provided items together.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/sharingServices(forItems:)
-func (sc _SharingServiceClass) SharingServicesForItems(items objectivec.IObject) []SharingService {
-	rv := objc.Send[[]SharingService](objc.ID(sc.class), objc.Sel("sharingServicesForItems:"), items)
-	return rv
-}
-
-
 // Returns whether the service can share all the specified items.
 //
 // [Full Topic]
@@ -204,7 +161,7 @@ func (s_ SharingService) SetAccountName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/alternateimage
-func (s_ SharingService) AlternateImage() Image {
+func (s_ SharingService) AlternateImage() IImage {
 	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
 	return rv
 }
@@ -233,7 +190,7 @@ func (s_ SharingService) AttachmentFileURLs() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/attachmentfileurls
-func (s_ SharingService) SetAttachmentFileURLs(value foundation.IURL) {
+func (s_ SharingService) SetAttachmentFileURLs(value foundation.URL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachmentFileURLs:"), value)
 }
 
@@ -242,7 +199,7 @@ func (s_ SharingService) SetAttachmentFileURLs(value foundation.IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/image
-func (s_ SharingService) Image() Image {
+func (s_ SharingService) Image() IImage {
 	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
 }
@@ -309,7 +266,7 @@ func (s_ SharingService) PermanentLink() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservice/permanentlink
-func (s_ SharingService) SetPermanentLink(value foundation.IURL) {
+func (s_ SharingService) SetPermanentLink(value foundation.URL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPermanentLink:"), value)
 }
 
@@ -369,5 +326,6 @@ func (s_ SharingService) Title() string {
 func (s_ SharingService) SetTitle(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
+
 
 

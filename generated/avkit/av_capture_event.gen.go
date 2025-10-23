@@ -30,9 +30,9 @@ type _CaptureEventClass struct {
 // An interface definition for the [CaptureEvent] class.
 type ICaptureEvent interface {
 	objectivec.IObject
-	PlaySound(sound IAVCaptureEventSound) bool
-	Phase() CaptureEventPhase
+	Phase() AVCaptureEventPhase
 	ShouldPlaySound() bool
+	PlaySound(sound IAVCaptureEventSound) bool
 }
 
 // An object that describes a user interaction with a system hardware button.
@@ -102,8 +102,8 @@ func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
-func (c_ CaptureEvent) Phase() CaptureEventPhase {
-	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
+func (c_ CaptureEvent) Phase() AVCaptureEventPhase {
+	rv := objc.Send[AVCaptureEventPhase](c_.ID, objc.Sel("phase"))
 	return rv
 }
 

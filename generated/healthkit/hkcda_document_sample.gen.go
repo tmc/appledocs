@@ -29,12 +29,15 @@ type _HKCDADocumentSampleClass struct {
 // An interface definition for the [HKCDADocumentSample] class.
 type IHKCDADocumentSample interface {
 	IHKDocumentSample
+	// properties:
 	Document() unsafe.Pointer
+	SetDocument(value unsafe.Pointer)
 	HKDetailedCDAValidationErrorKey() string
 	HKPredicateKeyPathCDAAuthorName() string
 	HKPredicateKeyPathCDACustodianName() string
 	HKPredicateKeyPathCDAPatientName() string
 	HKPredicateKeyPathCDATitle() string
+	// methods:
 }
 
 // A Clinical Document Architecture (CDA) sample that stores a single document.
@@ -95,10 +98,19 @@ func NewHKCDADocumentSample() HKCDADocumentSample {
 // The CDA document.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample/document
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document
 func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("document"))
 	return rv
+}
+
+
+// The CDA document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document
+func (h_ HKCDADocumentSample) SetDocument(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDocument:"), value)
 }
 
 

@@ -31,14 +31,16 @@ type _CoordinatedPlaybackParticipantClass struct {
 // An interface definition for the [CoordinatedPlaybackParticipant] class.
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
-	Identifier() foundation.UUID
-	SetIdentifier(value foundation.UUID)
-	IsReadyToPlay() bool
-	SetIsReadyToPlay(value bool)
+	// properties:
+	Identifier() foundation.UUID /* foo */
+	SetIdentifier(value foundation.UUID /* foo */)
+	IsReadyToPlay() bool /* primitive/slice/pointer */
+	SetIsReadyToPlay(value bool /* primitive/slice/pointer */)
 	SuspensionReasons() unsafe.Pointer
 	SetSuspensionReasons(value unsafe.Pointer)
 	OtherParticipants() IAVCoordinatedPlaybackParticipant
 	SetOtherParticipants(value IAVCoordinatedPlaybackParticipant)
+	// methods:
 }
 
 // An object that represents a participant in a coordinated playback session.
@@ -98,7 +100,7 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID {
+func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* foo */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -117,7 +119,7 @@ func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool {
+func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isReadyToPlay"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool) {
+func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsReadyToPlay:"), value)
 }
 

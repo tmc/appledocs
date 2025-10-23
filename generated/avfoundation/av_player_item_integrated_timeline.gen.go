@@ -31,12 +31,14 @@ type _PlayerItemIntegratedTimelineClass struct {
 // An interface definition for the [PlayerItemIntegratedTimeline] class.
 type IPlayerItemIntegratedTimeline interface {
 	objectivec.IObject
-	CurrentDate() foundation.Date
-	SetCurrentDate(value foundation.Date)
-	CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot
-	SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot)
-	CurrentTime() unsafe.Pointer
-	SetCurrentTime(value unsafe.Pointer)
+	// properties:
+	CurrentDate() foundation.Date /* foo */
+	SetCurrentDate(value foundation.Date /* foo */)
+	CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot /* foo */
+	SetCurrentSnapshot(value AVPlayerItemIntegratedTimelineSnapshot /* foo */)
+	CurrentTime() CMTime /* foo */
+	SetCurrentTime(value CMTime /* foo */)
+	// methods:
 }
 
 // An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
@@ -96,7 +98,7 @@ func NewPlayerItemIntegratedTimeline() PlayerItemIntegratedTimeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
+func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date /* foo */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
@@ -115,7 +117,7 @@ func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot {
+func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot /* foo */ {
 	rv := objc.Send[PlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() PlayerItemIntegratedTim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value AVPlayerItemIntegratedTimelineSnapshot /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }
 
@@ -134,8 +136,8 @@ func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value PlayerItemIntegr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
-func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentTime"))
+func (p_ PlayerItemIntegratedTimeline) CurrentTime() CMTime /* foo */ {
+	rv := objc.Send[Time](p_.ID, objc.Sel("currentTime"))
 	return rv
 }
 
@@ -144,7 +146,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currenttime
-func (p_ PlayerItemIntegratedTimeline) SetCurrentTime(value unsafe.Pointer) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentTime(value CMTime /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentTime:"), value)
 }
 

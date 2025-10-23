@@ -30,9 +30,13 @@ type _INFocusStatusCenterClass struct {
 // An interface definition for the [INFocusStatusCenter] class.
 type IINFocusStatusCenter interface {
 	objectivec.IObject
-	RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer)
-	AuthorizationStatus() INFocusStatusAuthorizationStatus
+	// properties:
+	AuthorizationStatus() unsafe.Pointer
+	SetAuthorizationStatus(value unsafe.Pointer)
 	FocusStatus() INFocusStatus
+	SetFocusStatus(value INFocusStatus)
+	// methods:
+	RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // An object that maintains the user’s current focus status and your app’s ability to access it.
@@ -86,15 +90,6 @@ func NewINFocusStatusCenter() INFocusStatusCenter {
 
 
 
-// The systemwide object that holds the user’s focus status.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
-func (ic _INFocusStatusCenterClass) DefaultCenter() INFocusStatusCenter {
-	rv := objc.Send[INFocusStatusCenter](objc.ID(ic.class), objc.Sel("defaultCenter"))
-	return rv
-}
-
 // Asks the system for access to the user’s focus status.
 //
 // [Full Topic]
@@ -107,19 +102,28 @@ func (i_ INFocusStatusCenter) RequestAuthorizationWithCompletionHandler(completi
 // Returns your app’s current ability to access the user’s focus status.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/authorizationStatus
-func (i_ INFocusStatusCenter) AuthorizationStatus() INFocusStatusAuthorizationStatus {
-	rv := objc.Send[INFocusStatusAuthorizationStatus](i_.ID, objc.Sel("authorizationStatus"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/authorizationstatus
+func (i_ INFocusStatusCenter) AuthorizationStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
 
-// The systemwide object that holds the user’s focus status.
+// Returns your app’s current ability to access the user’s focus status.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
-func (i_ INFocusStatusCenter) DefaultCenter() INFocusStatusCenter {
-	rv := objc.Send[INFocusStatusCenter](i_.ID, objc.Sel("defaultCenter"))
+// [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/authorizationstatus
+func (i_ INFocusStatusCenter) SetAuthorizationStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAuthorizationStatus:"), value)
+}
+
+
+// The user’s ability to receive notifications.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/focusstatus
+func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
+	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
 
@@ -127,10 +131,9 @@ func (i_ INFocusStatusCenter) DefaultCenter() INFocusStatusCenter {
 // The user’s ability to receive notifications.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/focusStatus
-func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
-	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/focusstatus
+func (i_ INFocusStatusCenter) SetFocusStatus(value INFocusStatus) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
 
 

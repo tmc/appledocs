@@ -30,6 +30,8 @@ type _mUUIDDataClass struct {
 // An interface definition for the [mUUIDData] class.
 type ImUUIDData interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

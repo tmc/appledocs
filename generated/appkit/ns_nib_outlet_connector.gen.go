@@ -29,7 +29,6 @@ type _NibOutletConnectorClass struct {
 // An interface definition for the [NibOutletConnector] class.
 type INibOutletConnector interface {
 	INibConnector
-	EstablishConnection()
 }
 
 // An outlet connection between Interface Builder objects.
@@ -83,13 +82,6 @@ func NewNibOutletConnector() NibOutletConnector {
 	return getNibOutletConnectorClass().New()
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector/establishConnection
-func (n_ NibOutletConnector) EstablishConnection() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
-}
 
 
 

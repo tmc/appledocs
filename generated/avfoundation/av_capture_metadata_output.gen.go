@@ -30,17 +30,20 @@ type _CaptureMetadataOutputClass struct {
 // An interface definition for the [CaptureMetadataOutput] class.
 type ICaptureMetadataOutput interface {
 	ICaptureOutput
-	MetadataObjectsCallbackQueue() unsafe.Pointer
+	// properties:
 	AvailableMetadataObjectTypes() unsafe.Pointer
 	SetAvailableMetadataObjectTypes(value unsafe.Pointer)
 	MetadataObjectTypes() unsafe.Pointer
 	SetMetadataObjectTypes(value unsafe.Pointer)
-	MetadataObjectsDelegate() unsafe.Pointer
-	SetMetadataObjectsDelegate(value unsafe.Pointer)
+	MetadataObjectsCallbackQueue() unsafe.Pointer
+	SetMetadataObjectsCallbackQueue(value unsafe.Pointer)
+	MetadataObjectsDelegate() AVCaptureMetadataOutputObjectsDelegate /* foo */
+	SetMetadataObjectsDelegate(value AVCaptureMetadataOutputObjectsDelegate /* foo */)
 	RectOfInterest() coregraphics.CGRect
 	SetRectOfInterest(value coregraphics.CGRect)
 	RequiredMetadataObjectTypesForCinematicVideoCapture() unsafe.Pointer
 	SetRequiredMetadataObjectTypesForCinematicVideoCapture(value unsafe.Pointer)
+	// methods:
 }
 
 // A capture output for processing timed metadata produced by a capture session.
@@ -98,16 +101,6 @@ func NewCaptureMetadataOutput() CaptureMetadataOutput {
 
 
 
-// The dispatch queue on which to execute the delegate’s methods.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput/metadataObjectsCallbackQueue
-func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
-	return rv
-}
-
-
 // An array of strings identifying the types of metadata objects that can be captured.
 //
 // [Full Topic]
@@ -146,12 +139,31 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value unsafe.Pointer) {
 }
 
 
+// The dispatch queue on which to execute the delegate’s methods.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectscallbackqueue
+func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
+	return rv
+}
+
+
+// The dispatch queue on which to execute the delegate’s methods.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectscallbackqueue
+func (c_ CaptureMetadataOutput) SetMetadataObjectsCallbackQueue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsCallbackQueue:"), value)
+}
+
+
 // The delegate of the capture metadata output object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsDelegate"))
+func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() AVCaptureMetadataOutputObjectsDelegate /* foo */ {
+	rv := objc.Send[CaptureMetadataOutputObjectsDelegate](c_.ID, objc.Sel("metadataObjectsDelegate"))
 	return rv
 }
 
@@ -160,7 +172,7 @@ func (c_ CaptureMetadataOutput) MetadataObjectsDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectsdelegate
-func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value unsafe.Pointer) {
+func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value AVCaptureMetadataOutputObjectsDelegate /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsDelegate:"), value)
 }
 

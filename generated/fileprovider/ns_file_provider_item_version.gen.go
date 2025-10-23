@@ -31,8 +31,10 @@ type _FileProviderItemVersionClass struct {
 // An interface definition for the [FileProviderItemVersion] class.
 type IFileProviderItemVersion interface {
 	objectivec.IObject
-	ContentVersion() foundation.NSData
-	MetadataVersion() foundation.NSData
+	ContentVersion() foundation.Data
+	SetContentVersion(value foundation.Data)
+	MetadataVersion() foundation.Data
+	SetMetadataVersion(value foundation.Data)
 }
 
 // The version of the item’s content and its metadata.
@@ -88,34 +90,12 @@ func NewFileProviderItemVersion() FileProviderItemVersion {
 
 
 
-// Creates a new version object.
+// An opaque object used to track versions of the item’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/init(contentVersion:metadataVersion:)
-func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion foundation.IData, metadataVersion foundation.IData) FileProviderItemVersion {
-	instance := getFileProviderItemVersionClass().Alloc()
-	rv := objc.Send[FileProviderItemVersion](instance.ID, objc.Sel("initWithContentVersion:metadataVersion:"), contentVersion, metadataVersion)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// A Boolean value indicating that this version predates the version returned by the file provider extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
-func (fc _FileProviderItemVersionClass) BeforeFirstSyncComponent() foundation.NSData {
-	rv := objc.Send[foundation.NSData](objc.ID(fc.class), objc.Sel("beforeFirstSyncComponent"))
-	return rv
-}
-
-// A Boolean value indicating that this version predates the version returned by the file provider extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
-func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() foundation.NSData {
-	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("beforeFirstSyncComponent"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/contentversion
+func (f_ FileProviderItemVersion) ContentVersion() foundation.Data {
+	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("contentVersion"))
 	return rv
 }
 
@@ -123,9 +103,18 @@ func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() foundation.NSData {
 // An opaque object used to track versions of the item’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/contentVersion
-func (f_ FileProviderItemVersion) ContentVersion() foundation.NSData {
-	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("contentVersion"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/contentversion
+func (f_ FileProviderItemVersion) SetContentVersion(value foundation.Data) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setContentVersion:"), value)
+}
+
+
+// An opaque object used to track versions of the item’s metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/metadataversion
+func (f_ FileProviderItemVersion) MetadataVersion() foundation.Data {
+	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("metadataVersion"))
 	return rv
 }
 
@@ -133,10 +122,10 @@ func (f_ FileProviderItemVersion) ContentVersion() foundation.NSData {
 // An opaque object used to track versions of the item’s metadata.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/metadataVersion
-func (f_ FileProviderItemVersion) MetadataVersion() foundation.NSData {
-	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("metadataVersion"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/metadataversion
+func (f_ FileProviderItemVersion) SetMetadataVersion(value foundation.Data) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setMetadataVersion:"), value)
 }
+
 
 

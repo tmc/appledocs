@@ -31,16 +31,18 @@ type _CaptionClass struct {
 // An interface definition for the [Caption] class.
 type ICaption interface {
 	objectivec.IObject
-	Animation() appkit.Animation
-	SetAnimation(value appkit.Animation)
-	Region() unsafe.Pointer
-	SetRegion(value unsafe.Pointer)
-	Text() string
-	SetText(value string)
+	// properties:
+	Animation() appkit.Animation /* foo */
+	SetAnimation(value appkit.Animation /* foo */)
+	Region() AVCaptionRegion /* foo */
+	SetRegion(value AVCaptionRegion /* foo */)
+	Text() string /* primitive/slice/pointer */
+	SetText(value string /* primitive/slice/pointer */)
 	TextAlignment() unsafe.Pointer
 	SetTextAlignment(value unsafe.Pointer)
-	TimeRange() unsafe.Pointer
-	SetTimeRange(value unsafe.Pointer)
+	TimeRange() CMTimeRange /* foo */
+	SetTimeRange(value CMTimeRange /* foo */)
+	// methods:
 }
 
 // An object that represents text to present over a time range.
@@ -100,7 +102,7 @@ func NewCaption() Caption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) Animation() appkit.Animation {
+func (c_ Caption) Animation() appkit.Animation /* foo */ {
 	rv := objc.Send[appkit.Animation](c_.ID, objc.Sel("animation"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (c_ Caption) Animation() appkit.Animation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) SetAnimation(value appkit.Animation) {
+func (c_ Caption) SetAnimation(value appkit.Animation /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAnimation:"), value)
 }
 
@@ -119,8 +121,8 @@ func (c_ Caption) SetAnimation(value appkit.Animation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/region
-func (c_ Caption) Region() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("region"))
+func (c_ Caption) Region() AVCaptionRegion /* foo */ {
+	rv := objc.Send[CaptionRegion](c_.ID, objc.Sel("region"))
 	return rv
 }
 
@@ -129,7 +131,7 @@ func (c_ Caption) Region() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/region
-func (c_ Caption) SetRegion(value unsafe.Pointer) {
+func (c_ Caption) SetRegion(value AVCaptionRegion /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRegion:"), value)
 }
 
@@ -138,7 +140,7 @@ func (c_ Caption) SetRegion(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) Text() string {
+func (c_ Caption) Text() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("text"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (c_ Caption) Text() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) SetText(value string) {
+func (c_ Caption) SetText(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), objc.String(value))
 }
 
@@ -176,8 +178,8 @@ func (c_ Caption) SetTextAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
-func (c_ Caption) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeRange"))
+func (c_ Caption) TimeRange() CMTimeRange /* foo */ {
+	rv := objc.Send[TimeRange](c_.ID, objc.Sel("timeRange"))
 	return rv
 }
 
@@ -186,7 +188,7 @@ func (c_ Caption) TimeRange() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/timerange
-func (c_ Caption) SetTimeRange(value unsafe.Pointer) {
+func (c_ Caption) SetTimeRange(value CMTimeRange /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeRange:"), value)
 }
 

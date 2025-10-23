@@ -29,12 +29,14 @@ type _ComparisonPredicateClass struct {
 // An interface definition for the [ComparisonPredicate] class.
 type IComparisonPredicate interface {
 	IPredicate
-	ComparisonPredicateModifier() NSComparisonPredicateModifier
+	// properties:
+	ComparisonPredicateModifier() ComparisonPredicateModifier
 	CustomSelector() objc.SEL
 	LeftExpression() IExpression
-	Options() NSComparisonPredicateOptions
-	PredicateOperatorType() NSPredicateOperatorType
+	Options() ComparisonPredicateOptions
+	PredicateOperatorType() PredicateOperatorType
 	RightExpression() IExpression
+	// methods:
 }
 
 // A specialized predicate for comparing expressions.
@@ -120,7 +122,7 @@ func NewComparisonPredicateWithLeftExpressionRightExpressionCustomSelector(lhs I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/init(leftExpression:rightExpression:modifier:type:options:)
-func NewComparisonPredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier NSComparisonPredicateModifier, type_ NSPredicateOperatorType, options NSComparisonPredicateOptions) ComparisonPredicate {
+func NewComparisonPredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier ComparisonPredicateModifier, type_ PredicateOperatorType, options ComparisonPredicateOptions) ComparisonPredicate {
 	instance := getComparisonPredicateClass().Alloc()
 	rv := objc.Send[ComparisonPredicate](instance.ID, objc.Sel("initWithLeftExpression:rightExpression:modifier:type:options:"), lhs, rhs, modifier, type_, options)
 	rv.Autorelease()
@@ -143,7 +145,7 @@ func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionCu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/predicateWithLeftExpression:rightExpression:modifier:type:options:
-func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier NSComparisonPredicateModifier, type_ NSPredicateOperatorType, options NSComparisonPredicateOptions) IComparisonPredicate {
+func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionModifierTypeOptions(lhs IExpression, rhs IExpression, modifier ComparisonPredicateModifier, type_ PredicateOperatorType, options ComparisonPredicateOptions) IComparisonPredicate {
 	rv := objc.Send[ComparisonPredicate](objc.ID(cc.class), objc.Sel("predicateWithLeftExpression:rightExpression:modifier:type:options:"), lhs, rhs, modifier, type_, options)
 	return rv
 }
@@ -153,7 +155,7 @@ func (cc _ComparisonPredicateClass) PredicateWithLeftExpressionRightExpressionMo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/comparisonPredicateModifier
-func (c_ ComparisonPredicate) ComparisonPredicateModifier() NSComparisonPredicateModifier {
+func (c_ ComparisonPredicate) ComparisonPredicateModifier() ComparisonPredicateModifier {
 	rv := objc.Send[ComparisonPredicateModifier](c_.ID, objc.Sel("comparisonPredicateModifier"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (c_ ComparisonPredicate) LeftExpression() IExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/options-swift.property
-func (c_ ComparisonPredicate) Options() NSComparisonPredicateOptions {
+func (c_ ComparisonPredicate) Options() ComparisonPredicateOptions {
 	rv := objc.Send[ComparisonPredicateOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
@@ -193,7 +195,7 @@ func (c_ ComparisonPredicate) Options() NSComparisonPredicateOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/predicateOperatorType
-func (c_ ComparisonPredicate) PredicateOperatorType() NSPredicateOperatorType {
+func (c_ ComparisonPredicate) PredicateOperatorType() PredicateOperatorType {
 	rv := objc.Send[PredicateOperatorType](c_.ID, objc.Sel("predicateOperatorType"))
 	return rv
 }

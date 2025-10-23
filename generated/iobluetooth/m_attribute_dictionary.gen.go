@@ -30,6 +30,8 @@ type _mAttributeDictionaryClass struct {
 // An interface definition for the [mAttributeDictionary] class.
 type ImAttributeDictionary interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -90,7 +90,7 @@ func NewQueryGenerationToken() QueryGenerationToken {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
 func (qc _QueryGenerationTokenClass) CurrentQueryGenerationToken() QueryGenerationToken {
-	rv := objc.Send[NSQueryGenerationToken](objc.ID(qc.class), objc.Sel("currentQueryGenerationToken"))
+	rv := objc.Send[QueryGenerationToken](objc.ID(qc.class), objc.Sel("currentQueryGenerationToken"))
 	return rv
 }
 
@@ -98,8 +98,8 @@ func (qc _QueryGenerationTokenClass) CurrentQueryGenerationToken() QueryGenerati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSQueryGenerationToken/current
-func (q_ QueryGenerationToken) CurrentQueryGenerationToken() NSQueryGenerationToken {
-	rv := objc.Send[NSQueryGenerationToken](q_.ID, objc.Sel("currentQueryGenerationToken"))
+func (q_ QueryGenerationToken) CurrentQueryGenerationToken() IQueryGenerationToken {
+	rv := objc.Send[QueryGenerationToken](q_.ID, objc.Sel("currentQueryGenerationToken"))
 	return rv
 }
 

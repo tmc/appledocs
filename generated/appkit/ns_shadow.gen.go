@@ -31,13 +31,13 @@ type _ShadowClass struct {
 // An interface definition for the [Shadow] class.
 type IShadow interface {
 	objectivec.IObject
-	Set()
 	ShadowBlurRadius() float64
 	SetShadowBlurRadius(value float64)
-	ShadowColor() NSColor
+	ShadowColor() IColor
 	SetShadowColor(value IColor)
 	ShadowOffset() coregraphics.CGSize
 	SetShadowOffset(value coregraphics.CGSize)
+	Set()
 }
 
 // An object you use to specify attributes to create and style a drop shadow during drawing operations.
@@ -93,7 +93,6 @@ func NewShadow() Shadow {
 
 
 
-
 // Sets the shadow of subsequent drawing operations to the current shadow.
 //
 // [Full Topic]
@@ -126,8 +125,8 @@ func (s_ Shadow) SetShadowBlurRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowColor
-func (s_ Shadow) ShadowColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("shadowColor"))
+func (s_ Shadow) ShadowColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("shadowColor"))
 	return rv
 }
 
@@ -144,7 +143,7 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
 func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
 	return rv
@@ -154,9 +153,10 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }
+
 
 

@@ -29,10 +29,12 @@ type _HKContactsLensSpecificationClass struct {
 // An interface definition for the [HKContactsLensSpecification] class.
 type IHKContactsLensSpecification interface {
 	IHKLensSpecification
-	BaseCurve() HKQuantity
+	// properties:
+	BaseCurve() IHKQuantity
 	SetBaseCurve(value IHKQuantity)
-	Diameter() HKQuantity
+	Diameter() IHKQuantity
 	SetDiameter(value IHKQuantity)
+	// methods:
 }
 
 // An object that contains the contacts prescription data for one eye.
@@ -94,7 +96,7 @@ func NewHKContactsLensSpecification() HKContactsLensSpecification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
-func (h_ HKContactsLensSpecification) BaseCurve() HKQuantity {
+func (h_ HKContactsLensSpecification) BaseCurve() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("baseCurve"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (h_ HKContactsLensSpecification) SetBaseCurve(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
-func (h_ HKContactsLensSpecification) Diameter() HKQuantity {
+func (h_ HKContactsLensSpecification) Diameter() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("diameter"))
 	return rv
 }

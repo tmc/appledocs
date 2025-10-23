@@ -30,10 +30,9 @@ type _TKSmartCardSlotManagerClass struct {
 // An interface definition for the [TKSmartCardSlotManager] class.
 type ITKSmartCardSlotManager interface {
 	objectivec.IObject
-	CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer)
-	IsNFCSupported() bool
-	SlotNamed(name string) TKSmartCardSlot
 	SlotNames() []string
+	CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer)
+	SlotNamed(name string) ITKSmartCardSlot
 }
 
 // An interface to all available smart card reader slots.
@@ -89,15 +88,6 @@ func NewTKSmartCardSlotManager() TKSmartCardSlotManager {
 
 
 
-// The shared singleton Smart Card reader slot manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
-	rv := objc.Send[TKSmartCardSlotManager](objc.ID(tc.class), objc.Sel("defaultManager"))
-	return rv
-}
-
 // Creates an NFC smart card slot using the device’s hardware and presents a system UI.
 //
 // [Full Topic]
@@ -107,32 +97,12 @@ func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message stri
 }
 
 
-// Determines whether NFC (Near Field Communication) is supported on this device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/isNFCSupported()
-func (t_ TKSmartCardSlotManager) IsNFCSupported() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("isNFCSupported"))
-	return rv
-}
-
-
 // Returns the Smart Card slot with a given name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-func (t_ TKSmartCardSlotManager) SlotNamed(name string) TKSmartCardSlot {
+func (t_ TKSmartCardSlotManager) SlotNamed(name string) ITKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
-	return rv
-}
-
-
-// The shared singleton Smart Card reader slot manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-func (t_ TKSmartCardSlotManager) DefaultManager() TKSmartCardSlotManager {
-	rv := objc.Send[TKSmartCardSlotManager](t_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 

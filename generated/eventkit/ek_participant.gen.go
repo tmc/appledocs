@@ -31,8 +31,6 @@ type _EKParticipantClass struct {
 // An interface definition for the [EKParticipant] class.
 type IEKParticipant interface {
 	IEKObject
-	ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson
-	ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef
 	ContactPredicate() foundation.Predicate
 	CurrentUser() bool
 	Name() string
@@ -42,6 +40,7 @@ type IEKParticipant interface {
 	URL() foundation.URL
 	IsCurrentUser() bool
 	SetIsCurrentUser(value bool)
+	ABRecordWithAddressBook(addressBook ABAddressBookRef) ABRecordRef
 }
 
 // A class that represents person, group, or room invited to a calendar event.
@@ -102,18 +101,8 @@ func NewEKParticipant() EKParticipant {
 // Returns the address book record that represents the participant.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abPerson(in:)
-func (e_ EKParticipant) ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson {
-	rv := objc.Send[addressbook.ABPerson](e_.ID, objc.Sel("ABPersonInAddressBook:"), addressBook)
-	return rv
-}
-
-
-// Returns the address book record that represents the participant.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
-func (e_ EKParticipant) ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef {
+func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef) ABRecordRef {
 	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
 }

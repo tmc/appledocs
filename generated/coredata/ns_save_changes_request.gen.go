@@ -29,10 +29,13 @@ type _SaveChangesRequestClass struct {
 // An interface definition for the [SaveChangesRequest] class.
 type ISaveChangesRequest interface {
 	IPersistentStoreRequest
-	DeletedObjects() unsafe.Pointer
-	InsertedObjects() unsafe.Pointer
-	LockedObjects() unsafe.Pointer
 	UpdatedObjects() unsafe.Pointer
+	DeletedObjects() IManagedObject
+	SetDeletedObjects(value IManagedObject)
+	InsertedObjects() IManagedObject
+	SetInsertedObjects(value IManagedObject)
+	LockedObjects() IManagedObject
+	SetLockedObjects(value IManagedObject)
 }
 
 // An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.
@@ -88,49 +91,6 @@ func NewSaveChangesRequest() SaveChangesRequest {
 
 
 
-// Initializes a save changes request with collections of given changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/init(inserted:updated:deleted:locked:)
-func NewSaveChangesRequestWithInsertedObjectsUpdatedObjectsDeletedObjectsLockedObjects(insertedObjects unsafe.Pointer, updatedObjects unsafe.Pointer, deletedObjects unsafe.Pointer, lockedObjects unsafe.Pointer) SaveChangesRequest {
-	instance := getSaveChangesRequestClass().Alloc()
-	rv := objc.Send[SaveChangesRequest](instance.ID, objc.Sel("initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:"), insertedObjects, updatedObjects, deletedObjects, lockedObjects)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The objects that were deleted in the calling context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/deletedObjects
-func (s_ SaveChangesRequest) DeletedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("deletedObjects"))
-	return rv
-}
-
-
-// The objects that were inserted into the calling context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/insertedObjects
-func (s_ SaveChangesRequest) InsertedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("insertedObjects"))
-	return rv
-}
-
-
-// The objects that were flagged for optimistic locking on the calling context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSSaveChangesRequest/lockedObjects
-func (s_ SaveChangesRequest) LockedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lockedObjects"))
-	return rv
-}
-
-
 // The objects that were modified in the calling context.
 //
 // [Full Topic]
@@ -139,5 +99,63 @@ func (s_ SaveChangesRequest) UpdatedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("updatedObjects"))
 	return rv
 }
+
+
+// The objects that were deleted in the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/deletedobjects
+func (s_ SaveChangesRequest) DeletedObjects() IManagedObject {
+	rv := objc.Send[ManagedObject](s_.ID, objc.Sel("deletedObjects"))
+	return rv
+}
+
+
+// The objects that were deleted in the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/deletedobjects
+func (s_ SaveChangesRequest) SetDeletedObjects(value IManagedObject) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletedObjects:"), value)
+}
+
+
+// The objects that were inserted into the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/insertedobjects
+func (s_ SaveChangesRequest) InsertedObjects() IManagedObject {
+	rv := objc.Send[ManagedObject](s_.ID, objc.Sel("insertedObjects"))
+	return rv
+}
+
+
+// The objects that were inserted into the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/insertedobjects
+func (s_ SaveChangesRequest) SetInsertedObjects(value IManagedObject) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInsertedObjects:"), value)
+}
+
+
+// The objects that were flagged for optimistic locking on the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/lockedobjects
+func (s_ SaveChangesRequest) LockedObjects() IManagedObject {
+	rv := objc.Send[ManagedObject](s_.ID, objc.Sel("lockedObjects"))
+	return rv
+}
+
+
+// The objects that were flagged for optimistic locking on the calling context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nssavechangesrequest/lockedobjects
+func (s_ SaveChangesRequest) SetLockedObjects(value IManagedObject) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLockedObjects:"), value)
+}
+
 
 

@@ -30,11 +30,11 @@ type _CXCallControllerClass struct {
 // An interface definition for the [CXCallController] class.
 type ICXCallController interface {
 	objectivec.IObject
+	CallObserver() ICXCallObserver
+	CXErrorDomainRequestTransaction() string
 	RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer)
 	RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer)
 	RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer)
-	CallObserver() CXCallObserver
-	CXErrorDomainRequestTransaction() string
 }
 
 // A programmatic interface for interacting with and observing calls.
@@ -134,7 +134,7 @@ func (c_ CXCallController) RequestTransactionWithActionCompletion(action ICXActi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/callObserver
-func (c_ CXCallController) CallObserver() CXCallObserver {
+func (c_ CXCallController) CallObserver() ICXCallObserver {
 	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
 	return rv
 }

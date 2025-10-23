@@ -30,9 +30,11 @@ type _DistributedLockClass struct {
 // An interface definition for the [DistributedLock] class.
 type IDistributedLock interface {
 	objectivec.IObject
+	// properties:
 	LockDate() IDate
+	// methods:
 	BreakLock()
-	TryLock() bool
+	TryLock() bool /* primitive/slice/pointer */
 	Unlock()
 }
 
@@ -93,7 +95,7 @@ func NewDistributedLock() DistributedLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/init(path:)
-func NewDistributedLockWithPath(path string) DistributedLock {
+func NewDistributedLockWithPath(path string /* primitive/slice/pointer */) DistributedLock {
 	instance := getDistributedLockClass().Alloc()
 	rv := objc.Send[DistributedLock](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
 	rv.Autorelease()
@@ -106,7 +108,7 @@ func NewDistributedLockWithPath(path string) DistributedLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockWithPath:
-func (dc _DistributedLockClass) LockWithPath(path string) IDistributedLock {
+func (dc _DistributedLockClass) LockWithPath(path string /* primitive/slice/pointer */) IDistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("lockWithPath:"), objc.String(path))
 	return rv
 }
@@ -125,7 +127,7 @@ func (d_ DistributedLock) BreakLock() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/try()
-func (d_ DistributedLock) TryLock() bool {
+func (d_ DistributedLock) TryLock() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("tryLock"))
 	return rv
 }

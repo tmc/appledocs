@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKVerifiableClinicalRecordQuery] class.
@@ -30,10 +29,12 @@ type _HKVerifiableClinicalRecordQueryClass struct {
 // An interface definition for the [HKVerifiableClinicalRecordQuery] class.
 type IHKVerifiableClinicalRecordQuery interface {
 	IHKQuery
+	// properties:
 	RecordTypes() string
 	SetRecordTypes(value string)
 	SourceTypes() HKVerifiableClinicalRecordSourceType
 	SetSourceTypes(value HKVerifiableClinicalRecordSourceType)
+	// methods:
 }
 
 // A query for one-time access to a SMART Health Card or EU Digital COVID Certificate.
@@ -91,19 +92,6 @@ func NewHKVerifiableClinicalRecordQuery() HKVerifiableClinicalRecordQuery {
 
 
 
-// Creates a query for one-time access to a verifiable clinical record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordQuery/init(recordTypes:sourceTypes:predicate:resultsHandler:)
-func NewHKVerifiableClinicalRecordQueryWithRecordTypesSourceTypesPredicateResultsHandler(recordTypes []string, sourceTypes []string, predicate foundation.IPredicate, resultsHandler unsafe.Pointer) HKVerifiableClinicalRecordQuery {
-	instance := getHKVerifiableClinicalRecordQueryClass().Alloc()
-	rv := objc.Send[HKVerifiableClinicalRecordQuery](instance.ID, objc.Sel("initWithRecordTypes:sourceTypes:predicate:resultsHandler:"), recordTypes, sourceTypes, predicate, resultsHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The type of records that this query returns.
 //
 // [Full Topic]
@@ -140,5 +128,6 @@ func (h_ HKVerifiableClinicalRecordQuery) SourceTypes() HKVerifiableClinicalReco
 func (h_ HKVerifiableClinicalRecordQuery) SetSourceTypes(value HKVerifiableClinicalRecordSourceType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceTypes:"), value)
 }
+
 
 

@@ -31,15 +31,15 @@ type _CaptureViewClass struct {
 // An interface definition for the [CaptureView] class.
 type ICaptureView interface {
 	appkit.IView
-	SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool)
-	ControlsStyle() CaptureViewControlsStyle
-	SetControlsStyle(value CaptureViewControlsStyle)
+	ControlsStyle() AVCaptureViewControlsStyle
+	SetControlsStyle(value AVCaptureViewControlsStyle)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	FileOutput() avfoundation.CaptureFileOutput
 	Session() avfoundation.CaptureSession
 	VideoGravity() unsafe.Pointer
 	SetVideoGravity(value unsafe.Pointer)
+	SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.CaptureSession, showVideoPreview bool, showAudioPreview bool)
 }
 
 // A view that displays standard user interface controls for capturing media data.
@@ -99,7 +99,7 @@ func NewCaptureView() CaptureView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/setSession(_:showVideoPreview:showAudioPreview:)
-func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool) {
+func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.CaptureSession, showVideoPreview bool, showAudioPreview bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:showVideoPreview:showAudioPreview:"), session, showVideoPreview, showAudioPreview)
 }
 
@@ -108,8 +108,8 @@ func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session avfound
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
-func (c_ CaptureView) ControlsStyle() CaptureViewControlsStyle {
-	rv := objc.Send[CaptureViewControlsStyle](c_.ID, objc.Sel("controlsStyle"))
+func (c_ CaptureView) ControlsStyle() AVCaptureViewControlsStyle {
+	rv := objc.Send[AVCaptureViewControlsStyle](c_.ID, objc.Sel("controlsStyle"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (c_ CaptureView) ControlsStyle() CaptureViewControlsStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
-func (c_ CaptureView) SetControlsStyle(value CaptureViewControlsStyle) {
+func (c_ CaptureView) SetControlsStyle(value AVCaptureViewControlsStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsStyle:"), value)
 }
 

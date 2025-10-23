@@ -29,8 +29,10 @@ type _HKScoredAssessmentClass struct {
 // An interface definition for the [HKScoredAssessment] class.
 type IHKScoredAssessment interface {
 	IHKSample
+	// properties:
 	Score() int
 	SetScore(value int)
+	// methods:
 }
 
 

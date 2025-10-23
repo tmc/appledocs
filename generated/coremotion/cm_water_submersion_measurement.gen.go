@@ -34,7 +34,7 @@ type IWaterSubmersionMeasurement interface {
 	Date() foundation.NSDate
 	Depth() unsafe.Pointer
 	Pressure() unsafe.Pointer
-	SubmersionState() WaterSubmersionDepthState
+	SubmersionState() CMWaterSubmersionDepthState
 	SurfacePressure() unsafe.Pointer
 }
 
@@ -123,8 +123,8 @@ func (w_ WaterSubmersionMeasurement) Pressure() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/submersionState
-func (w_ WaterSubmersionMeasurement) SubmersionState() WaterSubmersionDepthState {
-	rv := objc.Send[WaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
+func (w_ WaterSubmersionMeasurement) SubmersionState() CMWaterSubmersionDepthState {
+	rv := objc.Send[CMWaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
 	return rv
 }
 

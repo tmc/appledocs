@@ -29,8 +29,10 @@ type _BatchInsertResultClass struct {
 // An interface definition for the [BatchInsertResult] class.
 type IBatchInsertResult interface {
 	IPersistentStoreResult
-	Result() objc.ID
-	ResultType() BatchInsertRequestResultType
+	Result() unsafe.Pointer
+	SetResult(value unsafe.Pointer)
+	ResultType() NSBatchInsertRequestResultType
+	SetResultType(value NSBatchInsertRequestResultType)
 }
 
 // The result that Core Data returns when executing a batch-insertion request.
@@ -89,9 +91,28 @@ func NewBatchInsertResult() BatchInsertResult {
 // The result of a batch-insertion request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/result
-func (b_ BatchInsertResult) Result() objc.ID {
-	rv := objc.Send[objc.ID](b_.ID, objc.Sel("result"))
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertresult/result
+func (b_ BatchInsertResult) Result() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("result"))
+	return rv
+}
+
+
+// The result of a batch-insertion request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertresult/result
+func (b_ BatchInsertResult) SetResult(value unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setResult:"), value)
+}
+
+
+// The type of result that Core Data returns from this request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertresult/resulttype
+func (b_ BatchInsertResult) ResultType() NSBatchInsertRequestResultType {
+	rv := objc.Send[NSBatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -99,10 +120,9 @@ func (b_ BatchInsertResult) Result() objc.ID {
 // The type of result that Core Data returns from this request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/resultType
-func (b_ BatchInsertResult) ResultType() BatchInsertRequestResultType {
-	rv := objc.Send[BatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertresult/resulttype
+func (b_ BatchInsertResult) SetResultType(value NSBatchInsertRequestResultType) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
 
 

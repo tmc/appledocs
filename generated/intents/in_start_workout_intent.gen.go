@@ -30,14 +30,16 @@ type _INStartWorkoutIntentClass struct {
 // An interface definition for the [INStartWorkoutIntent] class.
 type IINStartWorkoutIntent interface {
 	IINIntent
+	// properties:
+	GoalValue() foundation.Number
 	WorkoutGoalUnitType() unsafe.Pointer
-	WorkoutName() INSpeakableString
-	GoalValue() float64
-	SetGoalValue(value float64)
 	IsOpenEnded() bool
 	SetIsOpenEnded(value bool)
 	WorkoutLocationType() unsafe.Pointer
 	SetWorkoutLocationType(value unsafe.Pointer)
+	WorkoutName() INSpeakableString
+	SetWorkoutName(value INSpeakableString)
+	// methods:
 }
 
 // A request to start a workout for the user.
@@ -95,17 +97,14 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 
 
 
-// Initializes an intent object with the specified workout information.
+// The numerical goal of the workout.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:
-func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName INSpeakableString, goalValue foundation.INumber, workoutGoalUnitType unsafe.Pointer, workoutLocationType unsafe.Pointer, isOpenEnded foundation.INumber) INStartWorkoutIntent {
-	instance := getINStartWorkoutIntentClass().Alloc()
-	rv := objc.Send[INStartWorkoutIntent](instance.ID, objc.Sel("initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:"), workoutName, goalValue, workoutGoalUnitType, workoutLocationType, isOpenEnded)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/goalValue-1dzvb
+func (i_ INStartWorkoutIntent) GoalValue() foundation.Number {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("goalValue"))
 	return rv
 }
-
 
 
 // The units associated with the workout goal.
@@ -115,35 +114,6 @@ func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLo
 func (i_ INStartWorkoutIntent) WorkoutGoalUnitType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutGoalUnitType"))
 	return rv
-}
-
-
-// The name of the workout.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/workoutName
-func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
-	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
-	return rv
-}
-
-
-// The user-supplied numerical goal of the workout.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
-func (i_ INStartWorkoutIntent) GoalValue() float64 {
-	rv := objc.Send[float64](i_.ID, objc.Sel("goalValue"))
-	return rv
-}
-
-
-// The user-supplied numerical goal of the workout.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/goalvalue-5oazy
-func (i_ INStartWorkoutIntent) SetGoalValue(value float64) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGoalValue:"), value)
 }
 
 
@@ -183,5 +153,25 @@ func (i_ INStartWorkoutIntent) WorkoutLocationType() unsafe.Pointer {
 func (i_ INStartWorkoutIntent) SetWorkoutLocationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutLocationType:"), value)
 }
+
+
+// The name of the workout.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutname
+func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
+	return rv
+}
+
+
+// The name of the workout.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/instartworkoutintent/workoutname
+func (i_ INStartWorkoutIntent) SetWorkoutName(value INSpeakableString) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
+}
+
 
 

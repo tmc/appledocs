@@ -30,6 +30,8 @@ type _BiometryFallbackRequirementClass struct {
 // An interface definition for the [BiometryFallbackRequirement] class.
 type IBiometryFallbackRequirement interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A set of requirements to fall back on if biometrics aren’t present.
@@ -88,7 +90,7 @@ func NewBiometryFallbackRequirement() BiometryFallbackRequirement {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
 func (bc _BiometryFallbackRequirementClass) DefaultRequirement() BiometryFallbackRequirement {
-	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("defaultRequirement"))
+	rv := objc.Send[BiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("defaultRequirement"))
 	return rv
 }
 
@@ -97,7 +99,7 @@ func (bc _BiometryFallbackRequirementClass) DefaultRequirement() BiometryFallbac
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
 func (bc _BiometryFallbackRequirementClass) DevicePasscodeRequirement() BiometryFallbackRequirement {
-	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("devicePasscodeRequirement"))
+	rv := objc.Send[BiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("devicePasscodeRequirement"))
 	return rv
 }
 
@@ -105,8 +107,8 @@ func (bc _BiometryFallbackRequirementClass) DevicePasscodeRequirement() Biometry
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
-func (b_ BiometryFallbackRequirement) DefaultRequirement() LABiometryFallbackRequirement {
-	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("defaultRequirement"))
+func (b_ BiometryFallbackRequirement) DefaultRequirement() ILABiometryFallbackRequirement {
+	rv := objc.Send[BiometryFallbackRequirement](b_.ID, objc.Sel("defaultRequirement"))
 	return rv
 }
 
@@ -115,8 +117,8 @@ func (b_ BiometryFallbackRequirement) DefaultRequirement() LABiometryFallbackReq
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
-func (b_ BiometryFallbackRequirement) DevicePasscodeRequirement() LABiometryFallbackRequirement {
-	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("devicePasscodeRequirement"))
+func (b_ BiometryFallbackRequirement) DevicePasscodeRequirement() ILABiometryFallbackRequirement {
+	rv := objc.Send[BiometryFallbackRequirement](b_.ID, objc.Sel("devicePasscodeRequirement"))
 	return rv
 }
 

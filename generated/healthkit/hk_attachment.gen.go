@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [HKAttachment] class.
@@ -32,18 +31,20 @@ type _HKAttachmentClass struct {
 // An interface definition for the [HKAttachment] class.
 type IHKAttachment interface {
 	objectivec.IObject
-	ContentType() uniformtypeidentifiers.UTType
-	SetContentType(value uniformtypeidentifiers.UTType)
+	// properties:
+	ContentType() objectivec.IObject
+	SetContentType(value objectivec.IObject)
 	CreationDate() foundation.Date
-	SetCreationDate(value foundation.IDate)
+	SetCreationDate(value foundation.Date)
 	Identifier() foundation.UUID
-	SetIdentifier(value foundation.IUUID)
+	SetIdentifier(value foundation.UUID)
 	Metadata() string
 	SetMetadata(value string)
 	Name() string
 	SetName(value string)
 	Size() int
 	SetSize(value int)
+	// methods:
 }
 
 // A file that is attached to a sample in the HealthKit store.
@@ -103,8 +104,8 @@ func NewHKAttachment() HKAttachment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) ContentType() uniformtypeidentifiers.UTType {
-	rv := objc.Send[uniformtypeidentifiers.UTType](h_.ID, objc.Sel("contentType"))
+func (h_ HKAttachment) ContentType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (h_ HKAttachment) ContentType() uniformtypeidentifiers.UTType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) SetContentType(value uniformtypeidentifiers.UTType) {
+func (h_ HKAttachment) SetContentType(value objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContentType:"), value)
 }
 
@@ -132,7 +133,7 @@ func (h_ HKAttachment) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/creationdate
-func (h_ HKAttachment) SetCreationDate(value foundation.IDate) {
+func (h_ HKAttachment) SetCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -151,7 +152,7 @@ func (h_ HKAttachment) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
-func (h_ HKAttachment) SetIdentifier(value foundation.IUUID) {
+func (h_ HKAttachment) SetIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 

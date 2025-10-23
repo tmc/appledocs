@@ -29,8 +29,10 @@ type _NameSpecifierClass struct {
 // An interface definition for the [NameSpecifier] class.
 type INameSpecifier interface {
 	IScriptObjectSpecifier
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A specifier for an object in a collection (or container) by name.
@@ -102,7 +104,7 @@ func NewNameSpecifierWithCoder(inCoder ICoder) NameSpecifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/init(containerClassDescription:containerSpecifier:key:name:)
-func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, name string) NameSpecifier {
+func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string /* primitive/slice/pointer */, name string /* primitive/slice/pointer */) NameSpecifier {
 	instance := getNameSpecifierClass().Alloc()
 	rv := objc.Send[NameSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:name:"), classDesc, container, objc.String(property), objc.String(name))
 	rv.Autorelease()
@@ -115,7 +117,7 @@ func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/name
-func (n_ NameSpecifier) Name() string {
+func (n_ NameSpecifier) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (n_ NameSpecifier) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/name
-func (n_ NameSpecifier) SetName(value string) {
+func (n_ NameSpecifier) SetName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

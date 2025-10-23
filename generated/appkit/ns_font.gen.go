@@ -31,17 +31,16 @@ type _FontClass struct {
 // An interface definition for the [Font] class.
 type IFont interface {
 	objectivec.IObject
-	Set()
-	CoveredCharacterSet() foundation.CharacterSet
-	PrinterFont() NSFont
 	NSControlGlyph() int
 	SetNSControlGlyph(value int)
+	CoveredCharacterSet() foundation.CharacterSet
+	SetCoveredCharacterSet(value foundation.CharacterSet)
 	DisplayName() string
 	SetDisplayName(value string)
 	FamilyName() string
 	SetFamilyName(value string)
-	FontDescriptor() NSFontDescriptor
-	SetFontDescriptor(value IFontDescriptor)
+	FontDescriptor() FontDescriptor
+	SetFontDescriptor(value FontDescriptor)
 	FontName() string
 	SetFontName(value string)
 	IsFixedPitch() bool
@@ -54,13 +53,13 @@ type IFont interface {
 	SetNumberOfGlyphs(value int)
 	PointSize() float64
 	SetPointSize(value float64)
-	Printer() NSFont
+	Printer() IFont
 	SetPrinter(value IFont)
-	RenderingMode() FontRenderingMode
-	SetRenderingMode(value FontRenderingMode)
-	Screen() NSFont
+	RenderingMode() unsafe.Pointer
+	SetRenderingMode(value unsafe.Pointer)
+	Screen() IFont
 	SetScreen(value IFont)
-	Vertical() NSFont
+	Vertical() IFont
 	SetVertical(value IFont)
 	NSNullGlyph() int
 	SetNSNullGlyph(value int)
@@ -119,51 +118,10 @@ func NewFont() Font {
 
 
 
-// Returns the font used for menu bar items, in the specified size.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/menuBarFont(ofSize:)
-func (fc _FontClass) MenuBarFontOfSize(fontSize float64) Font {
-	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("menuBarFontOfSize:"), fontSize)
-	return rv
-}
-
-
-// Returns the standard system font with the specified size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:)
-func (fc _FontClass) SystemFontOfSize(fontSize float64) Font {
-	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:"), fontSize)
-	return rv
-}
-
-
-// Sets this font as the font for the current graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/set()
-func (f_ Font) Set() {
-	objc.Send[objc.ID](f_.ID, objc.Sel("set"))
-}
-
-
-// The character set containing all of the nominal characters that the font can render.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/coveredCharacterSet
-func (f_ Font) CoveredCharacterSet() foundation.CharacterSet {
-	rv := objc.Send[foundation.CharacterSet](f_.ID, objc.Sel("coveredCharacterSet"))
-	return rv
-}
-
-
-// The scalable PostScript font corresponding to current font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/printer
-func (f_ Font) PrinterFont() NSFont {
-	rv := objc.Send[NSFont](f_.ID, objc.Sel("printerFont"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/systemFont(ofSize:weight:width:)
+func (fc _FontClass) SystemFontOfSizeWeightWidth(fontSize float64, weight unsafe.Pointer, width FontWidth) IFont {
+	rv := objc.Send[Font](objc.ID(fc.class), objc.Sel("systemFontOfSize:weight:width:"), fontSize, weight, width)
 	return rv
 }
 
@@ -184,6 +142,25 @@ func (f_ Font) NSControlGlyph() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrolglyph
 func (f_ Font) SetNSControlGlyph(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNSControlGlyph:"), value)
+}
+
+
+// The character set containing all of the nominal characters that the font can render.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/coveredcharacterset
+func (f_ Font) CoveredCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](f_.ID, objc.Sel("coveredCharacterSet"))
+	return rv
+}
+
+
+// The character set containing all of the nominal characters that the font can render.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/coveredcharacterset
+func (f_ Font) SetCoveredCharacterSet(value foundation.CharacterSet) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setCoveredCharacterSet:"), value)
 }
 
 
@@ -229,8 +206,8 @@ func (f_ Font) SetFamilyName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
-func (f_ Font) FontDescriptor() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("fontDescriptor"))
+func (f_ Font) FontDescriptor() FontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptor"))
 	return rv
 }
 
@@ -239,7 +216,7 @@ func (f_ Font) FontDescriptor() NSFontDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/fontdescriptor
-func (f_ Font) SetFontDescriptor(value IFontDescriptor) {
+func (f_ Font) SetFontDescriptor(value FontDescriptor) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFontDescriptor:"), value)
 }
 
@@ -362,8 +339,8 @@ func (f_ Font) SetPointSize(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/printer
-func (f_ Font) Printer() NSFont {
-	rv := objc.Send[NSFont](f_.ID, objc.Sel("printer"))
+func (f_ Font) Printer() IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("printer"))
 	return rv
 }
 
@@ -381,8 +358,8 @@ func (f_ Font) SetPrinter(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
-func (f_ Font) RenderingMode() FontRenderingMode {
-	rv := objc.Send[FontRenderingMode](f_.ID, objc.Sel("renderingMode"))
+func (f_ Font) RenderingMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("renderingMode"))
 	return rv
 }
 
@@ -391,7 +368,7 @@ func (f_ Font) RenderingMode() FontRenderingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/renderingmode
-func (f_ Font) SetRenderingMode(value FontRenderingMode) {
+func (f_ Font) SetRenderingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRenderingMode:"), value)
 }
 
@@ -400,8 +377,8 @@ func (f_ Font) SetRenderingMode(value FontRenderingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/screen
-func (f_ Font) Screen() NSFont {
-	rv := objc.Send[NSFont](f_.ID, objc.Sel("screen"))
+func (f_ Font) Screen() IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("screen"))
 	return rv
 }
 
@@ -419,8 +396,8 @@ func (f_ Font) SetScreen(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfont/vertical-6ym79
-func (f_ Font) Vertical() NSFont {
-	rv := objc.Send[NSFont](f_.ID, objc.Sel("vertical"))
+func (f_ Font) Vertical() IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("vertical"))
 	return rv
 }
 

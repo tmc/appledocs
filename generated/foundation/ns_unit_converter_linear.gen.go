@@ -29,8 +29,10 @@ type _UnitConverterLinearClass struct {
 // An interface definition for the [UnitConverterLinear] class.
 type IUnitConverterLinear interface {
 	IUnitConverter
-	Coefficient() float64
-	Constant() float64
+	// properties:
+	Coefficient() float64 /* primitive/slice/pointer */
+	Constant() float64 /* primitive/slice/pointer */
+	// methods:
 }
 
 // A description of how to convert between units using a linear equation.
@@ -92,7 +94,7 @@ func NewUnitConverterLinear() UnitConverterLinear {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:)
-func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLinear {
+func NewUnitConverterLinearWithCoefficient(coefficient float64 /* primitive/slice/pointer */) UnitConverterLinear {
 	instance := getUnitConverterLinearClass().Alloc()
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:"), coefficient)
 	rv.Autorelease()
@@ -104,7 +106,7 @@ func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/init(coefficient:constant:)
-func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant float64) UnitConverterLinear {
+func NewUnitConverterLinearWithCoefficientConstant(coefficient float64 /* primitive/slice/pointer */, constant float64 /* primitive/slice/pointer */) UnitConverterLinear {
 	instance := getUnitConverterLinearClass().Alloc()
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:constant:"), coefficient, constant)
 	rv.Autorelease()
@@ -117,7 +119,7 @@ func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/coefficient
-func (u_ UnitConverterLinear) Coefficient() float64 {
+func (u_ UnitConverterLinear) Coefficient() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (u_ UnitConverterLinear) Coefficient() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/constant
-func (u_ UnitConverterLinear) Constant() float64 {
+func (u_ UnitConverterLinear) Constant() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
 	return rv
 }

@@ -29,19 +29,21 @@ type _XMLDTDClass struct {
 // An interface definition for the [XMLDTD] class.
 type IXMLDTD interface {
 	IXMLNode
-	PublicID() string
-	SetPublicID(value string)
-	SystemID() string
-	SetSystemID(value string)
+	// properties:
+	PublicID() string /* primitive/slice/pointer */
+	SetPublicID(value string /* primitive/slice/pointer */)
+	SystemID() string /* primitive/slice/pointer */
+	SetSystemID(value string /* primitive/slice/pointer */)
 	Dtd() IXMLDTD
 	SetDtd(value IXMLDTD)
-	AttributeDeclarationForNameElementName(name string, elementName string) IXMLDTDNode
-	ElementDeclarationForName(name string) IXMLDTDNode
-	EntityDeclarationForName(name string) IXMLDTDNode
-	InsertChildAtIndex(child IXMLNode, index uint)
-	InsertChildrenAtIndex(children []XMLNode, index uint)
-	NotationDeclarationForName(name string) IXMLDTDNode
-	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
+	// methods:
+	AttributeDeclarationForNameElementName(name string /* primitive/slice/pointer */, elementName string /* primitive/slice/pointer */) IXMLDTDNode
+	ElementDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode
+	EntityDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode
+	InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */)
+	InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */)
+	NotationDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode
+	ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode)
 }
 
 // A representation of a Document Type Definition.
@@ -103,7 +105,7 @@ func NewXMLDTD() XMLDTD {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
-func NewXMLDTDWithDataOptionsError(data IData, mask NSXMLNodeOptions, error_ IError) XMLDTD {
+func NewXMLDTDWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
@@ -116,7 +118,7 @@ func NewXMLDTDWithDataOptionsError(data IData, mask NSXMLNodeOptions, error_ IEr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/predefinedEntityDeclaration(forName:)
-func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) IXMLDTDNode {
+func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](objc.ID(xc.class), objc.Sel("predefinedEntityDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -126,7 +128,7 @@ func (xc _XMLDTDClass) PredefinedEntityDeclarationForName(name string) IXMLDTDNo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/attributeDeclaration(forName:elementName:)
-func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName string) IXMLDTDNode {
+func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string /* primitive/slice/pointer */, elementName string /* primitive/slice/pointer */) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("attributeDeclarationForName:elementName:"), objc.String(name), objc.String(elementName))
 	return rv
 }
@@ -136,7 +138,7 @@ func (x_ XMLDTD) AttributeDeclarationForNameElementName(name string, elementName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/elementDeclaration(forName:)
-func (x_ XMLDTD) ElementDeclarationForName(name string) IXMLDTDNode {
+func (x_ XMLDTD) ElementDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("elementDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -146,7 +148,7 @@ func (x_ XMLDTD) ElementDeclarationForName(name string) IXMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/entityDeclaration(forName:)
-func (x_ XMLDTD) EntityDeclarationForName(name string) IXMLDTDNode {
+func (x_ XMLDTD) EntityDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("entityDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -156,7 +158,7 @@ func (x_ XMLDTD) EntityDeclarationForName(name string) IXMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/insertChild(_:at:)
-func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint) {
+func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
 
@@ -165,7 +167,7 @@ func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/insertChildren(_:at:)
-func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode, index uint) {
+func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode /* primitive/slice/pointer */, index uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
@@ -174,7 +176,7 @@ func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/notationDeclaration(forName:)
-func (x_ XMLDTD) NotationDeclarationForName(name string) IXMLDTDNode {
+func (x_ XMLDTD) NotationDeclarationForName(name string /* primitive/slice/pointer */) IXMLDTDNode {
 	rv := objc.Send[XMLDTDNode](x_.ID, objc.Sel("notationDeclarationForName:"), objc.String(name))
 	return rv
 }
@@ -184,7 +186,7 @@ func (x_ XMLDTD) NotationDeclarationForName(name string) IXMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/replaceChild(at:with:)
-func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
+func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint /* primitive/slice/pointer */, node IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
 
@@ -193,7 +195,7 @@ func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/publicID
-func (x_ XMLDTD) PublicID() string {
+func (x_ XMLDTD) PublicID() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
@@ -203,7 +205,7 @@ func (x_ XMLDTD) PublicID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/publicID
-func (x_ XMLDTD) SetPublicID(value string) {
+func (x_ XMLDTD) SetPublicID(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
 
@@ -212,7 +214,7 @@ func (x_ XMLDTD) SetPublicID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
-func (x_ XMLDTD) SystemID() string {
+func (x_ XMLDTD) SystemID() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
@@ -222,7 +224,7 @@ func (x_ XMLDTD) SystemID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
-func (x_ XMLDTD) SetSystemID(value string) {
+func (x_ XMLDTD) SetSystemID(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 

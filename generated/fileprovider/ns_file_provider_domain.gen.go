@@ -39,15 +39,15 @@ type IFileProviderDomain interface {
 	SetHidden(value bool)
 	Replicated() bool
 	PathRelativeToDocumentStorage() string
-	ReplicatedKnownFolders() FileProviderKnownFolders
-	SupportedKnownFolders() FileProviderKnownFolders
-	SetSupportedKnownFolders(value IFileProviderKnownFolders)
+	ReplicatedKnownFolders() NSFileProviderKnownFolders
+	SupportedKnownFolders() NSFileProviderKnownFolders
+	SetSupportedKnownFolders(value NSFileProviderKnownFolders)
 	SupportsStringSearchRequest() bool
 	SetSupportsStringSearchRequest(value bool)
 	SupportsSyncingTrash() bool
 	SetSupportsSyncingTrash(value bool)
-	TestingModes() FileProviderDomainTestingModes
-	SetTestingModes(value IFileProviderDomainTestingModes)
+	TestingModes() NSFileProviderDomainTestingModes
+	SetTestingModes(value NSFileProviderDomainTestingModes)
 	UserEnabled() bool
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
@@ -58,7 +58,7 @@ type IFileProviderDomain interface {
 	SetIsHidden(value bool)
 	IsReplicated() bool
 	SetIsReplicated(value bool)
-	Domain() NSFileProviderDomain
+	Domain() IFileProviderDomain
 	SetDomain(value IFileProviderDomain)
 }
 
@@ -119,7 +119,7 @@ func NewFileProviderDomain() FileProviderDomain {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objectivec.IObject, volumeURL foundation.IURL) FileProviderDomain {
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objectivec.IObject, volumeURL foundation.URL) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
 	rv.Autorelease()
@@ -131,7 +131,7 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
-func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDomainIdentifier, displayName string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayName(identifier FileProviderDomainIdentifier, displayName string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, objc.String(displayName))
 	rv.Autorelease()
@@ -143,7 +143,7 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDoma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:pathRelativeToDocumentStorage:)
-func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier IFileProviderDomainIdentifier, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier FileProviderDomainIdentifier, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, objc.String(displayName), objc.String(pathRelativeToDocumentStorage))
 	rv.Autorelease()
@@ -233,8 +233,8 @@ func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders
-func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
-	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
+func (f_ FileProviderDomain) ReplicatedKnownFolders() NSFileProviderKnownFolders {
+	rv := objc.Send[NSFileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
 	return rv
 }
 
@@ -243,8 +243,8 @@ func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
-	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
+func (f_ FileProviderDomain) SupportedKnownFolders() NSFileProviderKnownFolders {
+	rv := objc.Send[NSFileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
 	return rv
 }
 
@@ -253,7 +253,7 @@ func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SetSupportedKnownFolders(value IFileProviderKnownFolders) {
+func (f_ FileProviderDomain) SetSupportedKnownFolders(value NSFileProviderKnownFolders) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedKnownFolders:"), value)
 }
 
@@ -296,8 +296,8 @@ func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
-	rv := objc.Send[FileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
+func (f_ FileProviderDomain) TestingModes() NSFileProviderDomainTestingModes {
+	rv := objc.Send[NSFileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
 	return rv
 }
 
@@ -306,7 +306,7 @@ func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) SetTestingModes(value IFileProviderDomainTestingModes) {
+func (f_ FileProviderDomain) SetTestingModes(value NSFileProviderDomainTestingModes) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTestingModes:"), value)
 }
 
@@ -401,8 +401,8 @@ func (f_ FileProviderDomain) SetIsReplicated(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
-func (f_ FileProviderDomain) Domain() NSFileProviderDomain {
-	rv := objc.Send[NSFileProviderDomain](f_.ID, objc.Sel("domain"))
+func (f_ FileProviderDomain) Domain() IFileProviderDomain {
+	rv := objc.Send[FileProviderDomain](f_.ID, objc.Sel("domain"))
 	return rv
 }
 

@@ -29,14 +29,16 @@ type _MutableStringClass struct {
 // An interface definition for the [MutableString] class.
 type IMutableString interface {
 	IString
-	AppendString(aString string)
-	AppendFormat(format string)
-	ApplyTransformReverseRangeUpdatedRange(transform unsafe.Pointer, reverse bool, range_ Range, resultingRange unsafe.Pointer) bool
-	DeleteCharactersInRange(range_ Range)
-	InsertStringAtIndex(aString string, loc uint)
-	ReplaceCharactersInRangeWithString(range_ Range, aString string)
-	ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options NSStringCompareOptions, searchRange Range) uint
-	SetString(aString string)
+	// properties:
+	// methods:
+	AppendString(aString string /* primitive/slice/pointer */)
+	AppendFormat(format string /* primitive/slice/pointer */)
+	ApplyTransformReverseRangeUpdatedRange(transform StringTransform /* foo */, reverse bool /* primitive/slice/pointer */, range_ Range /* foo */, resultingRange RangePointer /* foo */) bool /* primitive/slice/pointer */
+	DeleteCharactersInRange(range_ Range /* foo */)
+	InsertStringAtIndex(aString string /* primitive/slice/pointer */, loc uint /* primitive/slice/pointer */)
+	ReplaceCharactersInRangeWithString(range_ Range /* foo */, aString string /* primitive/slice/pointer */)
+	ReplaceOccurrencesOfStringWithStringOptionsRange(target string /* primitive/slice/pointer */, replacement string /* primitive/slice/pointer */, options StringCompareOptions, searchRange Range /* foo */) uint /* primitive/slice/pointer */
+	SetString(aString string /* primitive/slice/pointer */)
 }
 
 // A dynamic plain-text Unicode string object.
@@ -98,7 +100,7 @@ func NewMutableString() MutableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)
-func NewMutableStringWithCapacity(capacity uint) MutableString {
+func NewMutableStringWithCapacity(capacity uint /* primitive/slice/pointer */) MutableString {
 	instance := getMutableStringClass().Alloc()
 	rv := objc.Send[MutableString](instance.ID, objc.Sel("initWithCapacity:"), capacity)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewMutableStringWithCapacity(capacity uint) MutableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/stringWithCapacity:
-func (mc _MutableStringClass) StringWithCapacity(capacity uint) IMutableString {
+func (mc _MutableStringClass) StringWithCapacity(capacity uint /* primitive/slice/pointer */) IMutableString {
 	rv := objc.Send[MutableString](objc.ID(mc.class), objc.Sel("stringWithCapacity:"), capacity)
 	return rv
 }
@@ -121,7 +123,7 @@ func (mc _MutableStringClass) StringWithCapacity(capacity uint) IMutableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/append(_:)
-func (m_ MutableString) AppendString(aString string) {
+func (m_ MutableString) AppendString(aString string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendString:"), objc.String(aString))
 }
 
@@ -130,7 +132,7 @@ func (m_ MutableString) AppendString(aString string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/appendFormat:
-func (m_ MutableString) AppendFormat(format string) {
+func (m_ MutableString) AppendFormat(format string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendFormat:"), objc.String(format))
 }
 
@@ -139,7 +141,7 @@ func (m_ MutableString) AppendFormat(format string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/applyTransform(_:reverse:range:updatedRange:)
-func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform unsafe.Pointer, reverse bool, range_ Range, resultingRange unsafe.Pointer) bool {
+func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform StringTransform /* foo */, reverse bool /* primitive/slice/pointer */, range_ Range /* foo */, resultingRange RangePointer /* foo */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("applyTransform:reverse:range:updatedRange:"), transform, reverse, range_, resultingRange)
 	return rv
 }
@@ -149,7 +151,7 @@ func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/deleteCharacters(in:)
-func (m_ MutableString) DeleteCharactersInRange(range_ Range) {
+func (m_ MutableString) DeleteCharactersInRange(range_ Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteCharactersInRange:"), range_)
 }
 
@@ -158,7 +160,7 @@ func (m_ MutableString) DeleteCharactersInRange(range_ Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/insert(_:at:)
-func (m_ MutableString) InsertStringAtIndex(aString string, loc uint) {
+func (m_ MutableString) InsertStringAtIndex(aString string /* primitive/slice/pointer */, loc uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertString:atIndex:"), objc.String(aString), loc)
 }
 
@@ -167,7 +169,7 @@ func (m_ MutableString) InsertStringAtIndex(aString string, loc uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceCharacters(in:with:)
-func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range, aString string) {
+func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range /* foo */, aString string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withString:"), range_, objc.String(aString))
 }
 
@@ -176,7 +178,7 @@ func (m_ MutableString) ReplaceCharactersInRangeWithString(range_ Range, aString
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/replaceOccurrences(of:with:options:range:)
-func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options NSStringCompareOptions, searchRange Range) uint {
+func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target string /* primitive/slice/pointer */, replacement string /* primitive/slice/pointer */, options StringCompareOptions, searchRange Range /* foo */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("replaceOccurrencesOfString:withString:options:range:"), objc.String(target), objc.String(replacement), options, searchRange)
 	return rv
 }
@@ -186,7 +188,7 @@ func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/setString(_:)
-func (m_ MutableString) SetString(aString string) {
+func (m_ MutableString) SetString(aString string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setString:"), objc.String(aString))
 }
 

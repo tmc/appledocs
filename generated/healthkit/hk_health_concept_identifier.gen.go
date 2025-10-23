@@ -30,7 +30,10 @@ type _HKHealthConceptIdentifierClass struct {
 // An interface definition for the [HKHealthConceptIdentifier] class.
 type IHKHealthConceptIdentifier interface {
 	objectivec.IObject
+	// properties:
 	Domain() HKHealthConceptDomain
+	SetDomain(value HKHealthConceptDomain)
+	// methods:
 }
 
 // A unique identifier for a specific health concept within a domain.
@@ -89,10 +92,19 @@ func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 // The domain this identifier belongs to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier/domain
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
 func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
 	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
 	return rv
+}
+
+
+// The domain this identifier belongs to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
+func (h_ HKHealthConceptIdentifier) SetDomain(value HKHealthConceptDomain) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
 }
 
 

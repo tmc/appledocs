@@ -31,11 +31,10 @@ type _EPSImageRepClass struct {
 // An interface definition for the [EPSImageRep] class.
 type IEPSImageRep interface {
 	IImageRep
-	PrepareGState()
 	BoundingBox() coregraphics.CGRect
 	SetBoundingBox(value coregraphics.CGRect)
 	EpsRepresentation() foundation.Data
-	SetEpsRepresentation(value foundation.IData)
+	SetEpsRepresentation(value foundation.Data)
 }
 
 // An object that can render an image from encapsulated PostScript (EPS) code.
@@ -91,12 +90,13 @@ func NewEPSImageRep() EPSImageRep {
 
 
 
-// Implemented by subclasses to configure the graphics state prior to drawing.
+// Creates and returns a representation of an image initialized with the specified EPS data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/prepareGState()
-func (e_ EPSImageRep) PrepareGState() {
-	objc.Send[objc.ID](e_.ID, objc.Sel("prepareGState"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/imageRepWithData:
+func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.NSData) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("imageRepWithData:"), epsData)
+	return rv
 }
 
 
@@ -133,7 +133,7 @@ func (e_ EPSImageRep) EpsRepresentation() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-func (e_ EPSImageRep) SetEpsRepresentation(value foundation.IData) {
+func (e_ EPSImageRep) SetEpsRepresentation(value foundation.Data) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
 }
 

@@ -30,10 +30,10 @@ type _PersistentStoreAsynchronousResultClass struct {
 // An interface definition for the [PersistentStoreAsynchronousResult] class.
 type IPersistentStoreAsynchronousResult interface {
 	IPersistentStoreResult
-	Cancel()
-	ManagedObjectContext() NSManagedObjectContext
+	ManagedObjectContext() IManagedObjectContext
 	OperationError() foundation.Error
 	Progress() foundation.Progress
+	Cancel()
 }
 
 // A concrete class used to represent the results of an asynchronous request.
@@ -102,8 +102,8 @@ func (p_ PersistentStoreAsynchronousResult) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/managedObjectContext
-func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
+func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 

@@ -30,7 +30,9 @@ type _JSManagedValueClass struct {
 // An interface definition for the [JSManagedValue] class.
 type IJSManagedValue interface {
 	objectivec.IObject
-	Value() JSValue
+	// properties:
+	Value() IJSValue
+	// methods:
 }
 
 // A JavaScript value with conditional retain behavior to provide automatic memory management.
@@ -99,21 +101,11 @@ func NewJSManagedValueWithValue(value IJSValue) JSManagedValue {
 
 
 
-// Creates a managed value with the specified JavaScript value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/managedValueWithValue:
-func (jc _JSManagedValueClass) ManagedValueWithValue(value IJSValue) JSManagedValue {
-	rv := objc.Send[JSManagedValue](objc.ID(jc.class), objc.Sel("managedValueWithValue:"), value)
-	return rv
-}
-
-
 // The managed value’s underlying JavaScript value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/value
-func (j_ JSManagedValue) Value() JSValue {
+func (j_ JSManagedValue) Value() IJSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("value"))
 	return rv
 }

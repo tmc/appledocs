@@ -31,11 +31,11 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
-	DidEnterWithPreviousState(previousState GKState)
+	StateMachine() IGKStateMachine
+	DidEnterWithPreviousState(previousState IGKState)
 	IsValidNextState(stateClass objc.Class) bool
-	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
-	WillExitWithNextState(nextState GKState)
-	StateMachine() GKStateMachine
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	WillExitWithNextState(nextState IGKState)
 }
 
 // The abstract superclass for defining state-specific logic as part of a state machine.
@@ -106,7 +106,7 @@ func (sc _StateClass) State() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/didEnter(from:)
-func (s_ State) DidEnterWithPreviousState(previousState GKState) {
+func (s_ State) DidEnterWithPreviousState(previousState IGKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didEnterWithPreviousState:"), previousState)
 }
 
@@ -125,7 +125,7 @@ func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-func (s_ State) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
+func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -134,7 +134,7 @@ func (s_ State) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/willExit(to:)
-func (s_ State) WillExitWithNextState(nextState GKState) {
+func (s_ State) WillExitWithNextState(nextState IGKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("willExitWithNextState:"), nextState)
 }
 
@@ -143,8 +143,8 @@ func (s_ State) WillExitWithNextState(nextState GKState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/stateMachine
-func (s_ State) StateMachine() GKStateMachine {
-	rv := objc.Send[GKStateMachine](s_.ID, objc.Sel("stateMachine"))
+func (s_ State) StateMachine() IGKStateMachine {
+	rv := objc.Send[StateMachine](s_.ID, objc.Sel("stateMachine"))
 	return rv
 }
 

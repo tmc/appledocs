@@ -33,8 +33,8 @@ type IACAccountType interface {
 	AccessGranted() bool
 	AccountTypeDescription() string
 	Identifier() string
-	AccountType() ACAccountType
-	SetAccountType(value ACAccountType)
+	AccountType() IACAccountType
+	SetAccountType(value IACAccountType)
 }
 
 // An object that encapsulates information about all accounts of a particular type.
@@ -124,7 +124,7 @@ func (a_ ACAccountType) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-func (a_ ACAccountType) AccountType() ACAccountType {
+func (a_ ACAccountType) AccountType() IACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
 }
@@ -134,7 +134,7 @@ func (a_ ACAccountType) AccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-func (a_ ACAccountType) SetAccountType(value ACAccountType) {
+func (a_ ACAccountType) SetAccountType(value IACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
 

@@ -30,6 +30,8 @@ type _mOpenConnectionSelectorClass struct {
 // An interface definition for the [mOpenConnectionSelector] class.
 type ImOpenConnectionSelector interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -35,7 +35,11 @@ type IVZMemoryBalloonDeviceConfiguration interface {
 // The common configuration traits for memory balloon devices.
 //
 // Don’t instantiate this abstract class directly. Instead, instantiate one of its subclasses such as .
+
+
+// The common configuration traits for memory balloon devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMemoryBalloonDeviceConfiguration
 type VZMemoryBalloonDeviceConfiguration struct {
 	objectivec.Object

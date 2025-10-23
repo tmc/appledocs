@@ -32,8 +32,10 @@ type _IMKCandidatesClass struct {
 // An interface definition for the [IMKCandidates] class.
 type IIMKCandidates interface {
 	appkit.IResponder
+	// properties:
+	// methods:
 	AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType)
-	Attributes() foundation.Dictionary
+	Attributes() NSDictionary
 	CandidateFrame() foundation.Rect
 	CandidateIdentifierAtLineNumber(lineNumber int) int
 	CandidateStringIdentifier(candidateString objectivec.IObject) int
@@ -48,8 +50,8 @@ type IIMKCandidates interface {
 	SelectCandidate(candidateIdentifier int)
 	SelectCandidateWithIdentifier(candidateIdentifier int) bool
 	SelectedCandidate() int
-	SelectedCandidateString() foundation.AttributedString
-	SelectionKeys() foundation.Array
+	SelectedCandidateString() NSAttributedString
+	SelectionKeys() NSArray
 	SelectionKeysKeylayout() unsafe.Pointer
 	SetAttributes(attributes objectivec.IObject)
 	SetCandidateData(candidatesArray objectivec.IObject)
@@ -60,7 +62,7 @@ type IIMKCandidates interface {
 	SetSelectionKeysKeylayout(layout unsafe.Pointer)
 	ShowCandidates()
 	Show(locationHint IMKCandidatesLocationHint)
-	ShowAnnotation(annotationString foundation.IAttributedString)
+	ShowAnnotation(annotationString NSAttributedString)
 	ShowChild()
 	ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject)
 	UpdateCandidates()
@@ -155,8 +157,8 @@ func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates, candidat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attributes()
-func (i_ IMKCandidates) Attributes() foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("attributes"))
+func (i_ IMKCandidates) Attributes() NSDictionary {
+	rv := objc.Send[Dictionary](i_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -278,8 +280,8 @@ func (i_ IMKCandidates) SelectedCandidate() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()
-func (i_ IMKCandidates) SelectedCandidateString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
+func (i_ IMKCandidates) SelectedCandidateString() NSAttributedString {
+	rv := objc.Send[AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
 	return rv
 }
 
@@ -288,8 +290,8 @@ func (i_ IMKCandidates) SelectedCandidateString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectionKeys()
-func (i_ IMKCandidates) SelectionKeys() foundation.Array {
-	rv := objc.Send[foundation.Array](i_.ID, objc.Sel("selectionKeys"))
+func (i_ IMKCandidates) SelectionKeys() NSArray {
+	rv := objc.Send[Array](i_.ID, objc.Sel("selectionKeys"))
 	return rv
 }
 
@@ -383,7 +385,7 @@ func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)
-func (i_ IMKCandidates) ShowAnnotation(annotationString foundation.IAttributedString) {
+func (i_ IMKCandidates) ShowAnnotation(annotationString NSAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showAnnotation:"), annotationString)
 }
 

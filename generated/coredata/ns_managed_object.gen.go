@@ -30,23 +30,16 @@ type _ManagedObjectClass struct {
 // An interface definition for the [ManagedObject] class.
 type IManagedObject interface {
 	objectivec.IObject
-	ChangedValuesForCurrentEvent() unsafe.Pointer
-	ObjectIDsForRelationshipNamed(key string) []ManagedObjectID
-	PrimitiveValueForKey(key string) objc.ID
-	SetObservationInfo(inObservationInfo unsafe.Pointer)
-	SetPrimitiveValueForKey(value objectivec.IObject, key string)
-	WillSave()
-	WillTurnIntoFault()
-	Entity() NSEntityDescription
-	FaultingState() uint
-	HasChanges() bool
-	HasPersistentChangedValues() bool
-	Deleted() bool
-	Fault() bool
+	Entity() IEntityDescription
 	Inserted() bool
-	Updated() bool
-	ManagedObjectContext() NSManagedObjectContext
-	ObjectID() NSManagedObjectID
+	ManagedObjectContext() IManagedObjectContext
+	ObjectID() IManagedObjectID
+	FaultingState() int
+	SetFaultingState(value int)
+	HasChanges() bool
+	SetHasChanges(value bool)
+	HasPersistentChangedValues() bool
+	SetHasPersistentChangedValues(value bool)
 	IsDeleted() bool
 	SetIsDeleted(value bool)
 	IsFault() bool
@@ -133,167 +126,12 @@ func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity IEntityDesc
 
 
 
-// Returns the entity description that is associated with this subclass.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity()
-func (mc _ManagedObjectClass) Entity() EntityDescription {
-	rv := objc.Send[EntityDescription](objc.ID(mc.class), objc.Sel("entity"))
-	return rv
-}
-
-
-// Returns an initialized fetch request with the entity this subclass represents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/fetchRequest
-func (mc _ManagedObjectClass) FetchRequest() FetchRequest {
-	rv := objc.Send[FetchRequest](objc.ID(mc.class), objc.Sel("fetchRequest"))
-	return rv
-}
-
-
-// Returns a dictionary containing the keys and new values of persistent properties with changes since the last fetching or saving of the managed object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/changedValuesForCurrentEvent()
-func (m_ ManagedObject) ChangedValuesForCurrentEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("changedValuesForCurrentEvent"))
-	return rv
-}
-
-
-// Provides an opportunity to respond when a value of a given property has changed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/didChangeValue(forKey:)
-func (m_ ManagedObject) DidChangeValueForKey(key string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("didChangeValueForKey:"), objc.String(key))
-}
-
-
-// Returns the object IDs for all of the managed objects that are in the named relationship.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectIDs(forRelationshipNamed:)
-func (m_ ManagedObject) ObjectIDsForRelationshipNamed(key string) []ManagedObjectID {
-	rv := objc.Send[[]ManagedObjectID](m_.ID, objc.Sel("objectIDsForRelationshipNamed:"), objc.String(key))
-	return rv
-}
-
-
-// Returns the value for the specified property from the managed object’s private internal storage .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/primitiveValue(forKey:)
-func (m_ ManagedObject) PrimitiveValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("primitiveValueForKey:"), objc.String(key))
-	return rv
-}
-
-
-// Sets the observation info of the managed object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/setObservationInfo(_:)
-func (m_ ManagedObject) SetObservationInfo(inObservationInfo unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setObservationInfo:"), inObservationInfo)
-}
-
-
-// Sets the value of a given property in the managed object’s private internal storage.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/setPrimitiveValue(_:forKey:)
-func (m_ ManagedObject) SetPrimitiveValueForKey(value objectivec.IObject, key string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveValue:forKey:"), value, objc.String(key))
-}
-
-
-// Returns the value for the property specified by .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/value(forKey:)
-func (m_ ManagedObject) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForKey:"), objc.String(key))
-	return rv
-}
-
-
-// Provides an opportunity to add code into the life cycle of the managed object before saving it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/willSave()
-func (m_ ManagedObject) WillSave() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("willSave"))
-}
-
-
-// Provides an opportunity to add code into the life cycle of the managed object before converting it to a fault.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/willTurnIntoFault()
-func (m_ ManagedObject) WillTurnIntoFault() {
-	objc.Send[objc.ID](m_.ID, objc.Sel("willTurnIntoFault"))
-}
-
-
 // The entity description of the managed object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity-swift.property
-func (m_ ManagedObject) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entity"))
-	return rv
-}
-
-
-// The faulting state of the managed object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/faultingState
-func (m_ ManagedObject) FaultingState() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("faultingState"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the managed object has been inserted, has been deleted, or has unsaved changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/hasChanges
-func (m_ ManagedObject) HasChanges() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the managed object has persistent changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/hasPersistentChangedValues
-func (m_ ManagedObject) HasPersistentChangedValues() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasPersistentChangedValues"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the managed object will be deleted during the next save.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isDeleted
-func (m_ ManagedObject) Deleted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("deleted"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the managed object is a fault.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isFault
-func (m_ ManagedObject) Fault() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("fault"))
+func (m_ ManagedObject) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -308,22 +146,12 @@ func (m_ ManagedObject) Inserted() bool {
 }
 
 
-// A Boolean value that indicates whether the managed object has unsaved changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isUpdated
-func (m_ ManagedObject) Updated() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("updated"))
-	return rv
-}
-
-
 // The managed object context with which the managed object is registered.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/managedObjectContext
-func (m_ ManagedObject) ManagedObjectContext() NSManagedObjectContext {
-	rv := objc.Send[NSManagedObjectContext](m_.ID, objc.Sel("managedObjectContext"))
+func (m_ ManagedObject) ManagedObjectContext() IManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](m_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
@@ -332,9 +160,66 @@ func (m_ ManagedObject) ManagedObjectContext() NSManagedObjectContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectID
-func (m_ ManagedObject) ObjectID() NSManagedObjectID {
-	rv := objc.Send[NSManagedObjectID](m_.ID, objc.Sel("objectID"))
+func (m_ ManagedObject) ObjectID() IManagedObjectID {
+	rv := objc.Send[ManagedObjectID](m_.ID, objc.Sel("objectID"))
 	return rv
+}
+
+
+// The faulting state of the managed object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/faultingstate
+func (m_ ManagedObject) FaultingState() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("faultingState"))
+	return rv
+}
+
+
+// The faulting state of the managed object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/faultingstate
+func (m_ ManagedObject) SetFaultingState(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultingState:"), value)
+}
+
+
+// A Boolean value that indicates whether the managed object has been inserted, has been deleted, or has unsaved changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haschanges
+func (m_ ManagedObject) HasChanges() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the managed object has been inserted, has been deleted, or has unsaved changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haschanges
+func (m_ ManagedObject) SetHasChanges(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasChanges:"), value)
+}
+
+
+// A Boolean value that indicates whether the managed object has persistent changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haspersistentchangedvalues
+func (m_ ManagedObject) HasPersistentChangedValues() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasPersistentChangedValues"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the managed object has persistent changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haspersistentchangedvalues
+func (m_ ManagedObject) SetHasPersistentChangedValues(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasPersistentChangedValues:"), value)
 }
 
 

@@ -29,12 +29,12 @@ type _EKSourceClass struct {
 // An interface definition for the [EKSource] class.
 type IEKSource interface {
 	IEKObject
-	CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer
 	Calendars() unsafe.Pointer
 	IsDelegate() bool
 	SourceIdentifier() string
 	SourceType() EKSourceType
 	Title() string
+	CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer
 }
 
 // An abstract superclass that represents the account a calendar belongs to.

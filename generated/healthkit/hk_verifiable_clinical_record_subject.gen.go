@@ -31,10 +31,12 @@ type _HKVerifiableClinicalRecordSubjectClass struct {
 // An interface definition for the [HKVerifiableClinicalRecordSubject] class.
 type IHKVerifiableClinicalRecordSubject interface {
 	objectivec.IObject
+	// properties:
 	DateOfBirthComponents() foundation.DateComponents
-	SetDateOfBirthComponents(value foundation.IDateComponents)
+	SetDateOfBirthComponents(value foundation.DateComponents)
 	FullName() string
 	SetFullName(value string)
+	// methods:
 }
 
 // The subject associated with a signed clinical record.
@@ -104,7 +106,7 @@ func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value foundation.IDateComponents) {
+func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value foundation.DateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
 }
 

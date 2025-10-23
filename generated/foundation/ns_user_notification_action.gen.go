@@ -30,12 +30,14 @@ type _UserNotificationActionClass struct {
 // An interface definition for the [UserNotificationAction] class.
 type IUserNotificationAction interface {
 	objectivec.IObject
-	Identifier() string
-	Title() string
+	// properties:
+	Identifier() string /* primitive/slice/pointer */
+	Title() string /* primitive/slice/pointer */
 	AdditionalActions() IUserNotificationAction
 	SetAdditionalActions(value IUserNotificationAction)
 	AdditionalActivationAction() IUserNotificationAction
 	SetAdditionalActivationAction(value IUserNotificationAction)
+	// methods:
 }
 
 // An action that the user can take in response to receiving a notification.
@@ -95,7 +97,7 @@ func NewUserNotificationAction() UserNotificationAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func NewUserNotificationActionWithIdentifierTitle(identifier string, title string) UserNotificationAction {
+func NewUserNotificationActionWithIdentifierTitle(identifier string /* primitive/slice/pointer */, title string /* primitive/slice/pointer */) UserNotificationAction {
 	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
@@ -106,7 +108,7 @@ func NewUserNotificationActionWithIdentifierTitle(identifier string, title strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier string, title string) unsafe.Pointer {
+func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier string /* primitive/slice/pointer */, title string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
@@ -116,7 +118,7 @@ func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() string {
+func (u_ UserNotificationAction) Identifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (u_ UserNotificationAction) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() string {
+func (u_ UserNotificationAction) Title() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }

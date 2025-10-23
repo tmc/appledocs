@@ -30,10 +30,10 @@ type _CXCallDirectoryManagerClass struct {
 // An interface definition for the [CXCallDirectoryManager] class.
 type ICXCallDirectoryManager interface {
 	objectivec.IObject
+	CXErrorDomainCallDirectoryManager() string
 	GetEnabledStatusForExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer)
 	OpenSettingsWithCompletionHandler(completion unsafe.Pointer)
 	ReloadExtensionWithIdentifierCompletionHandler(identifier string, completion unsafe.Pointer)
-	CXErrorDomainCallDirectoryManager() string
 }
 
 // The programmatic interface to an object that manages a Call Directory app extension.
@@ -127,7 +127,7 @@ func (c_ CXCallDirectoryManager) ReloadExtensionWithIdentifierCompletionHandler(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/sharedInstance
-func (c_ CXCallDirectoryManager) SharedInstance() CXCallDirectoryManager {
+func (c_ CXCallDirectoryManager) SharedInstance() ICXCallDirectoryManager {
 	rv := objc.Send[CXCallDirectoryManager](c_.ID, objc.Sel("sharedInstance"))
 	return rv
 }

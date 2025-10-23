@@ -30,6 +30,8 @@ type _rootObjectClass struct {
 // An interface definition for the [rootObject] class.
 type IrootObject interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

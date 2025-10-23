@@ -30,7 +30,10 @@ type _HKActivityMoveModeObjectClass struct {
 // An interface definition for the [HKActivityMoveModeObject] class.
 type IHKActivityMoveModeObject interface {
 	objectivec.IObject
-	ActivityMoveMode() HKActivityMoveMode
+	// properties:
+	ActivityMoveMode() unsafe.Pointer
+	SetActivityMoveMode(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that contains a movement mode value.
@@ -87,10 +90,19 @@ func NewHKActivityMoveModeObject() HKActivityMoveModeObject {
 // A property that contains the movement mode value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivityMoveModeObject/activityMoveMode
-func (h_ HKActivityMoveModeObject) ActivityMoveMode() HKActivityMoveMode {
-	rv := objc.Send[HKActivityMoveMode](h_.ID, objc.Sel("activityMoveMode"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject/activitymovemode
+func (h_ HKActivityMoveModeObject) ActivityMoveMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activityMoveMode"))
 	return rv
+}
+
+
+// A property that contains the movement mode value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject/activitymovemode
+func (h_ HKActivityMoveModeObject) SetActivityMoveMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityMoveMode:"), value)
 }
 
 

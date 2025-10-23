@@ -30,13 +30,20 @@ type _VZMacOSConfigurationRequirementsClass struct {
 // An interface definition for the [VZMacOSConfigurationRequirements] class.
 type IVZMacOSConfigurationRequirements interface {
 	objectivec.IObject
-	HardwareModel() VZMacHardwareModel
-	MinimumSupportedCPUCount() uint
+	HardwareModel() IVZMacHardwareModel
+	SetHardwareModel(value IVZMacHardwareModel)
+	MinimumSupportedCPUCount() int
+	SetMinimumSupportedCPUCount(value int)
 	MinimumSupportedMemorySize() uint64
+	SetMinimumSupportedMemorySize(value uint64)
 }
 
 // An object that describes the parameter constraints required by a specific configuration of macOS.
+
+
+// An object that describes the parameter constraints required by a specific configuration of macOS.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements
 type VZMacOSConfigurationRequirements struct {
 	objectivec.Object
@@ -81,28 +88,61 @@ func NewVZMacOSConfigurationRequirements() VZMacOSConfigurationRequirements {
 }
 
 
+
 // The hardware model for this configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel
-func (v_ VZMacOSConfigurationRequirements) HardwareModel() VZMacHardwareModel {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel
+func (v_ VZMacOSConfigurationRequirements) HardwareModel() IVZMacHardwareModel {
 	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 
+
+// The hardware model for this configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel
+func (v_ VZMacOSConfigurationRequirements) SetHardwareModel(value IVZMacHardwareModel) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
+}
+
+
 // The minimum supported number of CPUs for this configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements/minimumSupportedCPUCount
-func (v_ VZMacOSConfigurationRequirements) MinimumSupportedCPUCount() uint {
-	rv := objc.Send[uint](v_.ID, objc.Sel("minimumSupportedCPUCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/minimumsupportedcpucount
+func (v_ VZMacOSConfigurationRequirements) MinimumSupportedCPUCount() int {
+	rv := objc.Send[int](v_.ID, objc.Sel("minimumSupportedCPUCount"))
 	return rv
 }
 
+
+// The minimum supported number of CPUs for this configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/minimumsupportedcpucount
+func (v_ VZMacOSConfigurationRequirements) SetMinimumSupportedCPUCount(value int) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMinimumSupportedCPUCount:"), value)
+}
+
+
 // The minimum supported memory size for this configuration.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements/minimumSupportedMemorySize
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/minimumsupportedmemorysize
 func (v_ VZMacOSConfigurationRequirements) MinimumSupportedMemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("minimumSupportedMemorySize"))
 	return rv
+}
+
+
+// The minimum supported memory size for this configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/minimumsupportedmemorysize
+func (v_ VZMacOSConfigurationRequirements) SetMinimumSupportedMemorySize(value uint64) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMinimumSupportedMemorySize:"), value)
 }
 
 

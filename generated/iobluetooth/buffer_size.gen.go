@@ -30,6 +30,8 @@ type _bufferSizeClass struct {
 // An interface definition for the [bufferSize] class.
 type IbufferSize interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

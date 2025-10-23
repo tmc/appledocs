@@ -32,22 +32,22 @@ type IAttributeDescription interface {
 	IPropertyDescription
 	AllowsCloudEncryption() bool
 	SetAllowsCloudEncryption(value bool)
+	AttributeType() NSAttributeType
+	SetAttributeType(value NSAttributeType)
 	AllowsExternalBinaryDataStorage() bool
 	SetAllowsExternalBinaryDataStorage(value bool)
-	AttributeType() AttributeType
-	SetAttributeType(value AttributeType)
 	AttributeValueClassName() string
 	SetAttributeValueClassName(value string)
 	DefaultValue() unsafe.Pointer
 	SetDefaultValue(value unsafe.Pointer)
 	PreservesValueInHistoryOnDeletion() bool
 	SetPreservesValueInHistoryOnDeletion(value bool)
-	Type() AttributeType
-	SetType(value AttributeType)
+	Type() NSAttributeType
+	SetType(value NSAttributeType)
 	ValueTransformerName() string
 	SetValueTransformerName(value string)
 	VersionHash() foundation.Data
-	SetVersionHash(value foundation.IData)
+	SetVersionHash(value foundation.Data)
 }
 
 // A description of a single attribute belonging to an entity.
@@ -124,10 +124,29 @@ func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 }
 
 
+// The attribute’s type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) AttributeType() NSAttributeType {
+	rv := objc.Send[NSAttributeType](a_.ID, objc.Sel("attributeType"))
+	return rv
+}
+
+
+// The attribute’s type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
+func (a_ AttributeDescription) SetAttributeType(value NSAttributeType) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
+}
+
+
 // A Boolean value that indicates whether the attribute allows external binary storage.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
 func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
 	return rv
@@ -137,28 +156,9 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 // A Boolean value that indicates whether the attribute allows external binary storage.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsExternalBinaryDataStorage
+// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
 func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
-}
-
-
-// The attribute’s type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) AttributeType() AttributeType {
-	rv := objc.Send[AttributeType](a_.ID, objc.Sel("attributeType"))
-	return rv
-}
-
-
-// The attribute’s type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
 
 
@@ -223,7 +223,7 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) Type() AttributeType {
+func (a_ AttributeDescription) Type() NSAttributeType {
 	rv := objc.Send[AttributeType](a_.ID, objc.Sel("type"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (a_ AttributeDescription) Type() AttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) SetType(value AttributeType) {
+func (a_ AttributeDescription) SetType(value NSAttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
 
@@ -271,7 +271,7 @@ func (a_ AttributeDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) SetVersionHash(value foundation.IData) {
+func (a_ AttributeDescription) SetVersionHash(value foundation.Data) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }
 

@@ -31,8 +31,9 @@ type _CNFetchResultClass struct {
 // An interface definition for the [CNFetchResult] class.
 type ICNFetchResult interface {
 	objectivec.IObject
-	CurrentHistoryToken() foundation.NSData
 	Value() unsafe.Pointer
+	CurrentHistoryToken() foundation.Data
+	SetCurrentHistoryToken(value foundation.Data)
 }
 
 // An object that represents the result of a change-history fetch request.
@@ -86,16 +87,6 @@ func NewCNFetchResult() CNFetchResult {
 
 
 
-// An opaque token that indicates a point in history in the user’s Contacts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/currentHistoryToken
-func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
-	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
-	return rv
-}
-
-
 // The result of the fetch request, expressed as the value type you specify.
 //
 // [Full Topic]
@@ -103,6 +94,25 @@ func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
 func (c_ CNFetchResult) Value() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
 	return rv
+}
+
+
+// An opaque token that indicates a point in history in the user’s Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
+func (c_ CNFetchResult) CurrentHistoryToken() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("currentHistoryToken"))
+	return rv
+}
+
+
+// An opaque token that indicates a point in history in the user’s Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
+func (c_ CNFetchResult) SetCurrentHistoryToken(value foundation.Data) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentHistoryToken:"), value)
 }
 
 

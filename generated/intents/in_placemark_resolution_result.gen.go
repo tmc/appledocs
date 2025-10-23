@@ -30,6 +30,8 @@ type _INPlacemarkResolutionResultClass struct {
 // An interface definition for the [INPlacemarkResolutionResult] class.
 type IINPlacemarkResolutionResult interface {
 	IINIntentResolutionResult
+	// properties:
+	// methods:
 }
 
 // A resolution result for placemark information associated with an intent.
@@ -91,18 +93,8 @@ func NewINPlacemarkResolutionResult() INPlacemarkResolutionResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/confirmationRequired(with:)
-func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm corelocation.IPlacemark) unsafe.Pointer {
+func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm corelocation.Placemark) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("confirmationRequiredWithPlacemarkToConfirm:"), placemarkToConfirm)
-	return rv
-}
-
-
-// Creates an object whose resolution requires the user to select from among the specified objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/disambiguation(with:)
-func (ic _INPlacemarkResolutionResultClass) DisambiguationWithPlacemarksToDisambiguate(placemarksToDisambiguate []corelocation.IPlacemark) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("disambiguationWithPlacemarksToDisambiguate:"), placemarksToDisambiguate)
 	return rv
 }
 

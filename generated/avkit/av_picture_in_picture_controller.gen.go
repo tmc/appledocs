@@ -32,13 +32,10 @@ type _PictureInPictureControllerClass struct {
 // An interface definition for the [PictureInPictureController] class.
 type IPictureInPictureController interface {
 	objectivec.IObject
-	InvalidatePlaybackState()
-	StartPictureInPicture()
-	StopPictureInPicture()
 	CanStartPictureInPictureAutomaticallyFromInline() bool
 	SetCanStartPictureInPictureAutomaticallyFromInline(value bool)
 	CanStopPictureInPicture() bool
-	ContentSource() AVPictureInPictureControllerContentSource
+	ContentSource() IAVPictureInPictureControllerContentSource
 	SetContentSource(value IAVPictureInPictureControllerContentSource)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -54,6 +51,9 @@ type IPictureInPictureController interface {
 	SetIsPictureInPicturePossible(value bool)
 	IsPictureInPictureSuspended() bool
 	SetIsPictureInPictureSuspended(value bool)
+	InvalidatePlaybackState()
+	StartPictureInPicture()
+	StopPictureInPicture()
 }
 
 // A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.
@@ -125,7 +125,7 @@ func NewPictureInPictureControllerWithContentSource(contentSource IAVPictureInPi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/init(playerLayer:)
-func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.IPlayerLayer) PictureInPictureController {
+func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.PlayerLayer) PictureInPictureController {
 	instance := getPictureInPictureControllerClass().Alloc()
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithPlayerLayer:"), playerLayer)
 	rv.Autorelease()
@@ -242,8 +242,8 @@ func (p_ PictureInPictureController) CanStopPictureInPicture() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/contentSource-swift.property
-func (p_ PictureInPictureController) ContentSource() AVPictureInPictureControllerContentSource {
-	rv := objc.Send[AVPictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
+func (p_ PictureInPictureController) ContentSource() IAVPictureInPictureControllerContentSource {
+	rv := objc.Send[PictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
 }
 

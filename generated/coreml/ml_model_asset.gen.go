@@ -93,7 +93,7 @@ func NewModelAsset() ModelAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:blobMapping:)
-func NewModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.IData, blobMapping unsafe.Pointer, error_ unsafe.Pointer) ModelAsset {
+func NewModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.NSData, blobMapping foundation.IDictionary, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:blobMapping:error:"), specificationData, blobMapping, error_)
 	return rv
 }
@@ -103,7 +103,7 @@ func NewModelAssetWithSpecificationDataBlobMappingError(specificationData founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
-func NewModelAssetWithSpecificationDataError(specificationData foundation.IData, error_ unsafe.Pointer) ModelAsset {
+func NewModelAssetWithSpecificationDataError(specificationData foundation.NSData, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
 	return rv
 }
@@ -113,7 +113,7 @@ func NewModelAssetWithSpecificationDataError(specificationData foundation.IData,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-func NewModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.Pointer) ModelAsset {
+func NewModelAssetWithURLError(compiledModelURL foundation.URL, error_ unsafe.Pointer) ModelAsset {
 	rv := objc.Send[ModelAsset](objc.ID(getModelAssetClass().class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
 }
@@ -124,7 +124,7 @@ func NewModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:)
-func (mc _ModelAssetClass) ModelAssetWithSpecificationDataError(specificationData foundation.IData, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelAssetClass) ModelAssetWithSpecificationDataError(specificationData foundation.NSData, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithSpecificationData:error:"), specificationData, error_)
 	return rv
 }
@@ -134,7 +134,7 @@ func (mc _ModelAssetClass) ModelAssetWithSpecificationDataError(specificationDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(specification:blobMapping:)
-func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.IData, blobMapping unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(specificationData foundation.NSData, blobMapping foundation.IDictionary, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithSpecificationData:blobMapping:error:"), specificationData, blobMapping, error_)
 	return rv
 }
@@ -144,7 +144,7 @@ func (mc _ModelAssetClass) ModelAssetWithSpecificationDataBlobMappingError(speci
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelAsset/init(url:)
-func (mc _ModelAssetClass) ModelAssetWithURLError(compiledModelURL foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelAssetClass) ModelAssetWithURLError(compiledModelURL foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelAssetWithURL:error:"), compiledModelURL, error_)
 	return rv
 }

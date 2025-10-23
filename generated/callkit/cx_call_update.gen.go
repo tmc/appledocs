@@ -34,7 +34,7 @@ type ICXCallUpdate interface {
 	SetHasVideo(value bool)
 	LocalizedCallerName() string
 	SetLocalizedCallerName(value string)
-	RemoteHandle() CXHandle
+	RemoteHandle() ICXHandle
 	SetRemoteHandle(value ICXHandle)
 	SupportsDTMF() bool
 	SetSupportsDTMF(value bool)
@@ -141,7 +141,7 @@ func (c_ CXCallUpdate) SetLocalizedCallerName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
-func (c_ CXCallUpdate) RemoteHandle() CXHandle {
+func (c_ CXCallUpdate) RemoteHandle() ICXHandle {
 	rv := objc.Send[CXHandle](c_.ID, objc.Sel("remoteHandle"))
 	return rv
 }

@@ -30,8 +30,10 @@ type _AffineTransformClass struct {
 // An interface definition for the [AffineTransform] class.
 type IAffineTransform interface {
 	objectivec.IObject
-	TransformStruct() unsafe.Pointer
-	SetTransformStruct(value unsafe.Pointer)
+	// properties:
+	TransformStruct() AffineTransformStruct /* foo */
+	SetTransformStruct(value AffineTransformStruct /* foo */)
+	// methods:
 }
 
 // A graphics coordinate transformation.
@@ -91,8 +93,8 @@ func NewAffineTransform() AffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
-func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformStruct"))
+func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
+	rv := objc.Send[AffineTransformStruct](a_.ID, objc.Sel("transformStruct"))
 	return rv
 }
 
@@ -101,7 +103,7 @@ func (a_ AffineTransform) TransformStruct() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsaffinetransform/transformstruct
-func (a_ AffineTransform) SetTransformStruct(value unsafe.Pointer) {
+func (a_ AffineTransform) SetTransformStruct(value AffineTransformStruct /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }
 

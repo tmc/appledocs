@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +30,23 @@ type _JSContextClass struct {
 // An interface definition for the [JSContext] class.
 type IJSContext interface {
 	objectivec.IObject
-	EvaluateScriptWithSourceURL(script string, sourceURL foundation.IURL) JSValue
-	ObjectForKeyedSubscript(key objectivec.IObject) JSValue
-	Exception() JSValue
+	// properties:
+	Exception() IJSValue
 	SetException(value IJSValue)
-	VirtualMachine() JSVirtualMachine
 	ExceptionHandler() unsafe.Pointer
 	SetExceptionHandler(value unsafe.Pointer)
-	GlobalObject() JSValue
+	GlobalObject() IJSValue
 	SetGlobalObject(value IJSValue)
 	IsInspectable() bool
 	SetIsInspectable(value bool)
-	JsGlobalContextRef() JSGlobalContextRef
-	SetJsGlobalContextRef(value IJSGlobalContextRef)
+	JsGlobalContextRef() unsafe.Pointer
+	SetJsGlobalContextRef(value unsafe.Pointer)
 	Name() string
 	SetName(value string)
+	VirtualMachine() IJSVirtualMachine
+	SetVirtualMachine(value IJSVirtualMachine)
+	// methods:
+	ObjectForKeyedSubscript(key objectivec.IObject) IJSValue
 }
 
 // A JavaScript execution environment.
@@ -101,31 +102,11 @@ func NewJSContext() JSContext {
 
 
 
-// Returns the currently executing JavaScript function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/currentCallee()
-func (jc _JSContextClass) CurrentCallee() JSValue {
-	rv := objc.Send[JSValue](objc.ID(jc.class), objc.Sel("currentCallee"))
-	return rv
-}
-
-
-// Executes the specified JavaScript code, treating the specified URL as its source location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/evaluateScript(_:withSourceURL:)
-func (j_ JSContext) EvaluateScriptWithSourceURL(script string, sourceURL foundation.IURL) JSValue {
-	rv := objc.Send[JSValue](j_.ID, objc.Sel("evaluateScript:withSourceURL:"), objc.String(script), sourceURL)
-	return rv
-}
-
-
 // Returns the value of the specified JavaScript property in the context’s global object, allowing subscript getter syntax.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/objectForKeyedSubscript(_:)
-func (j_ JSContext) ObjectForKeyedSubscript(key objectivec.IObject) JSValue {
+func (j_ JSContext) ObjectForKeyedSubscript(key objectivec.IObject) IJSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
 }
@@ -134,8 +115,8 @@ func (j_ JSContext) ObjectForKeyedSubscript(key objectivec.IObject) JSValue {
 // A JavaScript exception to be thrown in evaluation of the script.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
-func (j_ JSContext) Exception() JSValue {
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exception
+func (j_ JSContext) Exception() IJSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("exception"))
 	return rv
 }
@@ -144,19 +125,9 @@ func (j_ JSContext) Exception() JSValue {
 // A JavaScript exception to be thrown in evaluation of the script.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/exception
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/exception
 func (j_ JSContext) SetException(value IJSValue) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setException:"), value)
-}
-
-
-// The JavaScript virtual machine to which the context belongs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSContext/virtualMachine
-func (j_ JSContext) VirtualMachine() JSVirtualMachine {
-	rv := objc.Send[JSVirtualMachine](j_.ID, objc.Sel("virtualMachine"))
-	return rv
 }
 
 
@@ -183,7 +154,7 @@ func (j_ JSContext) SetExceptionHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/globalobject
-func (j_ JSContext) GlobalObject() JSValue {
+func (j_ JSContext) GlobalObject() IJSValue {
 	rv := objc.Send[JSValue](j_.ID, objc.Sel("globalObject"))
 	return rv
 }
@@ -221,8 +192,8 @@ func (j_ JSContext) SetIsInspectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
-func (j_ JSContext) JsGlobalContextRef() JSGlobalContextRef {
-	rv := objc.Send[JSGlobalContextRef](j_.ID, objc.Sel("jsGlobalContextRef"))
+func (j_ JSContext) JsGlobalContextRef() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("jsGlobalContextRef"))
 	return rv
 }
 
@@ -231,7 +202,7 @@ func (j_ JSContext) JsGlobalContextRef() JSGlobalContextRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/jsglobalcontextref
-func (j_ JSContext) SetJsGlobalContextRef(value IJSGlobalContextRef) {
+func (j_ JSContext) SetJsGlobalContextRef(value unsafe.Pointer) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsGlobalContextRef:"), value)
 }
 
@@ -252,6 +223,25 @@ func (j_ JSContext) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
 func (j_ JSContext) SetName(value string) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The JavaScript virtual machine to which the context belongs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/virtualmachine
+func (j_ JSContext) VirtualMachine() IJSVirtualMachine {
+	rv := objc.Send[JSVirtualMachine](j_.ID, objc.Sel("virtualMachine"))
+	return rv
+}
+
+
+// The JavaScript virtual machine to which the context belongs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/virtualmachine
+func (j_ JSContext) SetVirtualMachine(value IJSVirtualMachine) {
+	objc.Send[objc.ID](j_.ID, objc.Sel("setVirtualMachine:"), value)
 }
 
 

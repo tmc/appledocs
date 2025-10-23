@@ -31,14 +31,16 @@ type _HKQueryClass struct {
 // An interface definition for the [HKQuery] class.
 type IHKQuery interface {
 	objectivec.IObject
+	// properties:
 	HKPredicateKeyPathMetadata() string
 	HKPredicateKeyPathUUID() string
-	ObjectType() HKObjectType
-	SetObjectType(value HKObjectType)
+	ObjectType() IHKObjectType
+	SetObjectType(value IHKObjectType)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
-	SampleType() HKSampleType
-	SetSampleType(value HKSampleType)
+	SetPredicate(value foundation.Predicate)
+	SampleType() IHKSampleType
+	SetSampleType(value IHKSampleType)
+	// methods:
 }
 
 // An abstract class for all the query classes in HealthKit.
@@ -94,36 +96,6 @@ func NewHKQuery() HKQuery {
 
 
 
-// Returns a predicate for a specific FHIR resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)
-func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, objc.String(identifier))
-	return rv
-}
-
-
-// Returns a predicate for a specific FHIR type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)
-func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resourceType HKFHIRResourceType) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsWithFHIRResourceType:"), resourceType)
-	return rv
-}
-
-
-// Returns a predicate that matches any objects that have been associated with the provided workout.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForObjects(from:)-5irg9
-func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForObjectsFromWorkout:"), workout)
-	return rv
-}
-
-
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
 // [Full Topic]
@@ -148,7 +120,7 @@ func (h_ HKQuery) HKPredicateKeyPathUUID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) ObjectType() HKObjectType {
+func (h_ HKQuery) ObjectType() IHKObjectType {
 	rv := objc.Send[HKObjectType](h_.ID, objc.Sel("objectType"))
 	return rv
 }
@@ -158,7 +130,7 @@ func (h_ HKQuery) ObjectType() HKObjectType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) SetObjectType(value HKObjectType) {
+func (h_ HKQuery) SetObjectType(value IHKObjectType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
 }
 
@@ -177,7 +149,7 @@ func (h_ HKQuery) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
-func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
+func (h_ HKQuery) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -186,7 +158,7 @@ func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SampleType() HKSampleType {
+func (h_ HKQuery) SampleType() IHKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
@@ -196,7 +168,7 @@ func (h_ HKQuery) SampleType() HKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SetSampleType(value HKSampleType) {
+func (h_ HKQuery) SetSampleType(value IHKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 

@@ -32,12 +32,12 @@ type _ABPersonPickerClass struct {
 // An interface definition for the [ABPersonPicker] class.
 type IABPersonPicker interface {
 	objectivec.IObject
-	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Properties() objc.ID
 	SetProperties(value objc.ID)
+	Close()
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.View, preferredEdge foundation.RectEdge)
 }
 
 // A picker object that you display when you want the user to select contacts.
@@ -104,7 +104,7 @@ func (a_ ABPersonPicker) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.IView, preferredEdge foundation.IRectEdge) {
+func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.View, preferredEdge foundation.RectEdge) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 

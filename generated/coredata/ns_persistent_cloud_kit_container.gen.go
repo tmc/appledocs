@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/cloudkit"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PersistentCloudKitContainer] class.
@@ -32,18 +34,20 @@ type IPersistentCloudKitContainer interface {
 	IPersistentContainer
 	AcceptShareInvitations()
 	FetchParticipants()
-	FetchShares()
 	PersistUpdatedShare()
 	Share()
-	AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata []cloudkit.ICKShareMetadata, persistentStore IPersistentStore, completion unsafe.Pointer)
+	AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata []cloudkit.CKShareMetadata, persistentStore IPersistentStore, completion unsafe.Pointer)
 	CanDeleteRecordForManagedObjectWithID(objectID IManagedObjectID) bool
 	CanModifyManagedObjectsInStore(store IPersistentStore) bool
 	CanUpdateRecordForManagedObjectWithID(objectID IManagedObjectID) bool
-	FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos []cloudkit.ICKUserIdentityLookupInfo, persistentStore IPersistentStore, completion unsafe.Pointer)
+	FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos []cloudkit.CKUserIdentityLookupInfo, persistentStore IPersistentStore, completion unsafe.Pointer)
 	FetchSharesInPersistentStoreError(persistentStore IPersistentStore, error_ unsafe.Pointer) []cloudkit.CKShare
-	FetchSharesMatchingObjectIDsError(objectIDs []ManagedObjectID, error_ unsafe.Pointer) unsafe.Pointer
-	RecordIDsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) unsafe.Pointer
-	RecordsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) unsafe.Pointer
+	FetchSharesMatchingObjectIDsError(objectIDs []ManagedObjectID, error_ unsafe.Pointer) foundation.IDictionary
+	PersistUpdatedShareInPersistentStoreCompletion(share objectivec.IObject, persistentStore IPersistentStore, completion unsafe.Pointer)
+	PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID objectivec.IObject, persistentStore IPersistentStore, completion unsafe.Pointer)
+	RecordIDsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) foundation.IDictionary
+	RecordsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) foundation.IDictionary
+	ShareManagedObjectsToShareCompletion(managedObjects []ManagedObject, share objectivec.IObject, completion unsafe.Pointer)
 }
 
 // A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.
@@ -105,7 +109,7 @@ func NewPersistentCloudKitContainer() PersistentCloudKitContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/initializeCloudKitSchema(options:)
-func NewPersistentCloudKitContainerializeCloudKitSchemaWithOptionsError(options PersistentCloudKitContainerSchemaInitializationOptions, error_ unsafe.Pointer) PersistentCloudKitContainer {
+func NewPersistentCloudKitContainerializeCloudKitSchemaWithOptionsError(options NSPersistentCloudKitContainerSchemaInitializationOptions, error_ unsafe.Pointer) PersistentCloudKitContainer {
 	instance := getPersistentCloudKitContainerClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainer](instance.ID, objc.Sel("initializeCloudKitSchemaWithOptions:error:"), options, error_)
 	rv.Autorelease()
@@ -132,15 +136,6 @@ func (p_ PersistentCloudKitContainer) FetchParticipants() {
 }
 
 
-// Returns an array that contains all share records in the specified persistent store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/3746830-fetchshares
-func (p_ PersistentCloudKitContainer) FetchShares() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("fetchShares"))
-}
-
-
 // Saves the share record and schedules it for export to iCloud.
 //
 // [Full Topic]
@@ -163,7 +158,7 @@ func (p_ PersistentCloudKitContainer) Share() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/acceptShareInvitationsFromMetadata:intoPersistentStore:completion:
-func (p_ PersistentCloudKitContainer) AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata []cloudkit.ICKShareMetadata, persistentStore IPersistentStore, completion unsafe.Pointer) {
+func (p_ PersistentCloudKitContainer) AcceptShareInvitationsFromMetadataIntoPersistentStoreCompletion(metadata []cloudkit.CKShareMetadata, persistentStore IPersistentStore, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("acceptShareInvitationsFromMetadata:intoPersistentStore:completion:"), metadata, persistentStore, completion)
 }
 
@@ -202,7 +197,7 @@ func (p_ PersistentCloudKitContainer) CanUpdateRecordForManagedObjectWithID(obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:
-func (p_ PersistentCloudKitContainer) FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos []cloudkit.ICKUserIdentityLookupInfo, persistentStore IPersistentStore, completion unsafe.Pointer) {
+func (p_ PersistentCloudKitContainer) FetchParticipantsMatchingLookupInfosIntoPersistentStoreCompletion(lookupInfos []cloudkit.CKUserIdentityLookupInfo, persistentStore IPersistentStore, completion unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:"), lookupInfos, persistentStore, completion)
 }
 
@@ -221,9 +216,27 @@ func (p_ PersistentCloudKitContainer) FetchSharesInPersistentStoreError(persiste
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/fetchSharesMatchingObjectIDs:error:
-func (p_ PersistentCloudKitContainer) FetchSharesMatchingObjectIDsError(objectIDs []ManagedObjectID, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchSharesMatchingObjectIDs:error:"), objectIDs, error_)
+func (p_ PersistentCloudKitContainer) FetchSharesMatchingObjectIDsError(objectIDs []ManagedObjectID, error_ unsafe.Pointer) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("fetchSharesMatchingObjectIDs:error:"), objectIDs, error_)
 	return rv
+}
+
+
+// Saves the share record and schedules it for export to iCloud.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/persistUpdatedShare:inPersistentStore:completion:
+func (p_ PersistentCloudKitContainer) PersistUpdatedShareInPersistentStoreCompletion(share objectivec.IObject, persistentStore IPersistentStore, completion unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("persistUpdatedShare:inPersistentStore:completion:"), share, persistentStore, completion)
+}
+
+
+// Deletes all CloudKit records in the specified record zone, along with their corresponding managed objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:
+func (p_ PersistentCloudKitContainer) PurgeObjectsAndRecordsInZoneWithIDInPersistentStoreCompletion(zoneID objectivec.IObject, persistentStore IPersistentStore, completion unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:"), zoneID, persistentStore, completion)
 }
 
 
@@ -231,8 +244,8 @@ func (p_ PersistentCloudKitContainer) FetchSharesMatchingObjectIDsError(objectID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordIDsForManagedObjectIDs:
-func (p_ PersistentCloudKitContainer) RecordIDsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordIDsForManagedObjectIDs:"), managedObjectIDs)
+func (p_ PersistentCloudKitContainer) RecordIDsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("recordIDsForManagedObjectIDs:"), managedObjectIDs)
 	return rv
 }
 
@@ -241,9 +254,18 @@ func (p_ PersistentCloudKitContainer) RecordIDsForManagedObjectIDs(managedObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/recordsForManagedObjectIDs:
-func (p_ PersistentCloudKitContainer) RecordsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("recordsForManagedObjectIDs:"), managedObjectIDs)
+func (p_ PersistentCloudKitContainer) RecordsForManagedObjectIDs(managedObjectIDs []ManagedObjectID) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("recordsForManagedObjectIDs:"), managedObjectIDs)
 	return rv
+}
+
+
+// Associates the specified managed objects with a new or existing share record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/shareManagedObjects:toShare:completion:
+func (p_ PersistentCloudKitContainer) ShareManagedObjectsToShareCompletion(managedObjects []ManagedObject, share objectivec.IObject, completion unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("shareManagedObjects:toShare:completion:"), managedObjects, share, completion)
 }
 
 

@@ -30,7 +30,7 @@ type _GCStylusClass struct {
 // An interface definition for the [GCStylus] class.
 type IGCStylus interface {
 	objectivec.IObject
-	Haptics() GCDeviceHaptics
+	Haptics() IGCDeviceHaptics
 	GCInputStylusPrimaryButton() string
 	SetGCInputStylusPrimaryButton(value string)
 	GCInputStylusSecondaryButton() string
@@ -98,7 +98,7 @@ func NewGCStylus() GCStylus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/haptics
-func (g_ GCStylus) Haptics() GCDeviceHaptics {
+func (g_ GCStylus) Haptics() IGCDeviceHaptics {
 	rv := objc.Send[GCDeviceHaptics](g_.ID, objc.Sel("haptics"))
 	return rv
 }

@@ -30,12 +30,17 @@ type _EAWiFiUnconfiguredAccessoryClass struct {
 // An interface definition for the [EAWiFiUnconfiguredAccessory] class.
 type IEAWiFiUnconfiguredAccessory interface {
 	objectivec.IObject
-	MacAddress() string
 	Manufacturer() string
+	MacAddress() string
+	SetMacAddress(value string)
 	Model() string
+	SetModel(value string)
 	Name() string
+	SetName(value string)
 	Properties() EAWiFiUnconfiguredAccessoryProperties
+	SetProperties(value EAWiFiUnconfiguredAccessoryProperties)
 	Ssid() string
+	SetSsid(value string)
 }
 
 // An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
@@ -89,16 +94,6 @@ func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 
 
 
-// The primary MAC address of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/macAddress
-func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
-	return rv
-}
-
-
 // The name of the accessory’s manufacturer.
 //
 // [Full Topic]
@@ -109,12 +104,50 @@ func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
 }
 
 
+// The primary MAC address of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
+func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
+	return rv
+}
+
+
+// The primary MAC address of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
+func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMacAddress:"), objc.String(value))
+}
+
+
 // The model name of accessory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/model
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
 func (e_ EAWiFiUnconfiguredAccessory) Model() string {
 	rv := objc.Send[string](e_.ID, objc.Sel("model"))
+	return rv
+}
+
+
+// The model name of accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
+func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setModel:"), objc.String(value))
+}
+
+
+// The name of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
+func (e_ EAWiFiUnconfiguredAccessory) Name() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -122,9 +155,18 @@ func (e_ EAWiFiUnconfiguredAccessory) Model() string {
 // The name of the accessory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
+func (e_ EAWiFiUnconfiguredAccessory) SetName(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The properties the accessory supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/properties
+func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryProperties {
+	rv := objc.Send[EAWiFiUnconfiguredAccessoryProperties](e_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -132,9 +174,18 @@ func (e_ EAWiFiUnconfiguredAccessory) Name() string {
 // The properties the accessory supports.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/properties
-func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryProperties {
-	rv := objc.Send[EAWiFiUnconfiguredAccessoryProperties](e_.ID, objc.Sel("properties"))
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/properties
+func (e_ EAWiFiUnconfiguredAccessory) SetProperties(value EAWiFiUnconfiguredAccessoryProperties) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
+}
+
+
+// The Wi-Fi SSID of the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
+func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -142,10 +193,9 @@ func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryPr
 // The Wi-Fi SSID of the accessory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
+func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSsid:"), objc.String(value))
 }
 
 

@@ -30,9 +30,9 @@ type _CKSyncEngineFetchChangesScopeClass struct {
 // An interface definition for the [CKSyncEngineFetchChangesScope] class.
 type ICKSyncEngineFetchChangesScope interface {
 	objectivec.IObject
-	ContainsZoneID(zoneID ICKRecordZoneID) bool
 	ExcludedZoneIDs() unsafe.Pointer
 	ZoneIDs() unsafe.Pointer
+	ContainsZoneID(zoneID ICKRecordZoneID) bool
 }
 
 

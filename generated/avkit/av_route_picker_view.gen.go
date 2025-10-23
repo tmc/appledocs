@@ -32,24 +32,24 @@ type _RoutePickerViewClass struct {
 // An interface definition for the [RoutePickerView] class.
 type IRoutePickerView interface {
 	appkit.IView
-	RoutePickerButtonColorForState(state RoutePickerViewButtonState) appkit.Color
-	SetRoutePickerButtonColorForState(color appkit.IColor, state RoutePickerViewButtonState)
 	ActiveTintColor() appkit.Color
-	SetActiveTintColor(value appkit.IColor)
+	SetActiveTintColor(value appkit.Color)
 	CustomRoutingController() avrouting.CustomRoutingController
-	SetCustomRoutingController(value avrouting.ICustomRoutingController)
+	SetCustomRoutingController(value avrouting.CustomRoutingController)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	RoutePickerButtonBordered() bool
 	SetRoutePickerButtonBordered(value bool)
 	Player() avfoundation.Player
-	SetPlayer(value avfoundation.IPlayer)
+	SetPlayer(value avfoundation.Player)
 	PrioritizesVideoDevices() bool
 	SetPrioritizesVideoDevices(value bool)
-	RoutePickerButtonStyle() RoutePickerViewButtonStyle
-	SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle)
+	RoutePickerButtonStyle() AVRoutePickerViewButtonStyle
+	SetRoutePickerButtonStyle(value AVRoutePickerViewButtonStyle)
 	IsRoutePickerButtonBordered() bool
 	SetIsRoutePickerButtonBordered(value bool)
+	RoutePickerButtonColorForState(state AVRoutePickerViewButtonState) appkit.Color
+	SetRoutePickerButtonColorForState(color appkit.Color, state AVRoutePickerViewButtonState)
 }
 
 // A view that presents a list of nearby media receivers.
@@ -111,7 +111,7 @@ func NewRoutePickerView() RoutePickerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonColor(for:)
-func (r_ RoutePickerView) RoutePickerButtonColorForState(state RoutePickerViewButtonState) appkit.Color {
+func (r_ RoutePickerView) RoutePickerButtonColorForState(state AVRoutePickerViewButtonState) appkit.Color {
 	rv := objc.Send[appkit.Color](r_.ID, objc.Sel("routePickerButtonColorForState:"), state)
 	return rv
 }
@@ -121,7 +121,7 @@ func (r_ RoutePickerView) RoutePickerButtonColorForState(state RoutePickerViewBu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/setRoutePickerButtonColor(_:for:)
-func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color appkit.IColor, state RoutePickerViewButtonState) {
+func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color appkit.Color, state AVRoutePickerViewButtonState) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonColor:forState:"), color, state)
 }
 
@@ -140,7 +140,7 @@ func (r_ RoutePickerView) ActiveTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) SetActiveTintColor(value appkit.IColor) {
+func (r_ RoutePickerView) SetActiveTintColor(value appkit.Color) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveTintColor:"), value)
 }
 
@@ -159,7 +159,7 @@ func (r_ RoutePickerView) CustomRoutingController() avrouting.CustomRoutingContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) SetCustomRoutingController(value avrouting.ICustomRoutingController) {
+func (r_ RoutePickerView) SetCustomRoutingController(value avrouting.CustomRoutingController) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomRoutingController:"), value)
 }
 
@@ -216,7 +216,7 @@ func (r_ RoutePickerView) Player() avfoundation.Player {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/player
-func (r_ RoutePickerView) SetPlayer(value avfoundation.IPlayer) {
+func (r_ RoutePickerView) SetPlayer(value avfoundation.Player) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPlayer:"), value)
 }
 
@@ -244,8 +244,8 @@ func (r_ RoutePickerView) SetPrioritizesVideoDevices(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) RoutePickerButtonStyle() RoutePickerViewButtonStyle {
-	rv := objc.Send[RoutePickerViewButtonStyle](r_.ID, objc.Sel("routePickerButtonStyle"))
+func (r_ RoutePickerView) RoutePickerButtonStyle() AVRoutePickerViewButtonStyle {
+	rv := objc.Send[AVRoutePickerViewButtonStyle](r_.ID, objc.Sel("routePickerButtonStyle"))
 	return rv
 }
 
@@ -254,7 +254,7 @@ func (r_ RoutePickerView) RoutePickerButtonStyle() RoutePickerViewButtonStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle) {
+func (r_ RoutePickerView) SetRoutePickerButtonStyle(value AVRoutePickerViewButtonStyle) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonStyle:"), value)
 }
 

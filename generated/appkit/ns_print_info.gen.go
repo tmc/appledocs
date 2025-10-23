@@ -32,18 +32,10 @@ type _PrintInfoClass struct {
 // An interface definition for the [PrintInfo] class.
 type IPrintInfo interface {
 	objectivec.IObject
-	Dictionary() unsafe.Pointer
-	PMPageFormat()
-	PMPrintSession()
-	PMPrintSettings()
-	SetUpPrintOperationDefaultValues()
-	TakeSettingsFromPDFInfo(inPDFInfo IPDFInfo)
-	UpdateFromPMPageFormat()
-	UpdateFromPMPrintSettings()
 	BottomMargin() float64
 	SetBottomMargin(value float64)
-	HorizontalPagination() PrintingPaginationMode
-	SetHorizontalPagination(value PrintingPaginationMode)
+	HorizontalPagination() NSPrintingPaginationMode
+	SetHorizontalPagination(value NSPrintingPaginationMode)
 	ImageablePageBounds() coregraphics.CGRect
 	HorizontallyCentered() bool
 	SetHorizontallyCentered(value bool)
@@ -52,18 +44,18 @@ type IPrintInfo interface {
 	VerticallyCentered() bool
 	SetVerticallyCentered(value bool)
 	JobDisposition() PrintJobDispositionValue
-	SetJobDisposition(value IPrintJobDispositionValue)
+	SetJobDisposition(value PrintJobDispositionValue)
 	LeftMargin() float64
 	SetLeftMargin(value float64)
 	LocalizedPaperName() string
-	Orientation() PaperOrientation
-	SetOrientation(value IPaperOrientation)
+	Orientation() NSPaperOrientation
+	SetOrientation(value NSPaperOrientation)
 	PaperName() PrinterPaperName
-	SetPaperName(value IPrinterPaperName)
+	SetPaperName(value PrinterPaperName)
 	PaperSize() coregraphics.CGSize
 	SetPaperSize(value coregraphics.CGSize)
 	PrintSettings() unsafe.Pointer
-	Printer() NSPrinter
+	Printer() IPrinter
 	SetPrinter(value IPrinter)
 	RightMargin() float64
 	SetRightMargin(value float64)
@@ -71,14 +63,22 @@ type IPrintInfo interface {
 	SetScalingFactor(value float64)
 	TopMargin() float64
 	SetTopMargin(value float64)
-	VerticalPagination() PrintingPaginationMode
-	SetVerticalPagination(value PrintingPaginationMode)
+	VerticalPagination() NSPrintingPaginationMode
+	SetVerticalPagination(value NSPrintingPaginationMode)
 	IsHorizontallyCentered() bool
 	SetIsHorizontallyCentered(value bool)
 	IsSelectionOnly() bool
 	SetIsSelectionOnly(value bool)
 	IsVerticallyCentered() bool
 	SetIsVerticallyCentered(value bool)
+	Dictionary() unsafe.Pointer
+	PMPageFormat()
+	PMPrintSession()
+	PMPrintSettings()
+	SetUpPrintOperationDefaultValues()
+	TakeSettingsFromPDFInfo(inPDFInfo PDFInfo)
+	UpdateFromPMPageFormat()
+	UpdateFromPMPrintSettings()
 }
 
 // An object that stores information that’s used to generate printed output.
@@ -138,7 +138,7 @@ func NewPrintInfo() PrintInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/init(coder:)
-func NewPrintInfoWithCoder(coder foundation.ICoder) PrintInfo {
+func NewPrintInfoWithCoder(coder foundation.Coder) PrintInfo {
 	instance := getPrintInfoClass().Alloc()
 	rv := objc.Send[PrintInfo](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -150,7 +150,7 @@ func NewPrintInfoWithCoder(coder foundation.ICoder) PrintInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/init(dictionary:)
-func NewPrintInfoWithDictionary(attributes unsafe.Pointer) PrintInfo {
+func NewPrintInfoWithDictionary(attributes foundation.IDictionary) PrintInfo {
 	instance := getPrintInfoClass().Alloc()
 	rv := objc.Send[PrintInfo](instance.ID, objc.Sel("initWithDictionary:"), attributes)
 	rv.Autorelease()
@@ -172,7 +172,7 @@ func (pc _PrintInfoClass) SetDefaultPrinter(printer IPrinter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/sizeForPaperName:
-func (pc _PrintInfoClass) SizeForPaperName(name IPrinterPaperName) coregraphics.CGSize {
+func (pc _PrintInfoClass) SizeForPaperName(name PrinterPaperName) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(pc.class), objc.Sel("sizeForPaperName:"), name)
 	return rv
 }
@@ -182,8 +182,8 @@ func (pc _PrintInfoClass) SizeForPaperName(name IPrinterPaperName) coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/defaultPrinter
-func (pc _PrintInfoClass) DefaultPrinter() NSPrinter {
-	rv := objc.Send[NSPrinter](objc.ID(pc.class), objc.Sel("defaultPrinter"))
+func (pc _PrintInfoClass) DefaultPrinter() IPrinter {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("defaultPrinter"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (pc _PrintInfoClass) DefaultPrinter() NSPrinter {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/shared
 func (pc _PrintInfoClass) SharedPrintInfo() PrintInfo {
-	rv := objc.Send[NSPrintInfo](objc.ID(pc.class), objc.Sel("sharedPrintInfo"))
+	rv := objc.Send[PrintInfo](objc.ID(pc.class), objc.Sel("sharedPrintInfo"))
 	return rv
 }
 
@@ -246,7 +246,7 @@ func (p_ PrintInfo) SetUpPrintOperationDefaultValues() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/takeSettings(from:)
-func (p_ PrintInfo) TakeSettingsFromPDFInfo(inPDFInfo IPDFInfo) {
+func (p_ PrintInfo) TakeSettingsFromPDFInfo(inPDFInfo PDFInfo) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("takeSettingsFromPDFInfo:"), inPDFInfo)
 }
 
@@ -292,8 +292,8 @@ func (p_ PrintInfo) SetBottomMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/defaultPrinter
-func (p_ PrintInfo) DefaultPrinter() NSPrinter {
-	rv := objc.Send[NSPrinter](p_.ID, objc.Sel("defaultPrinter"))
+func (p_ PrintInfo) DefaultPrinter() IPrinter {
+	rv := objc.Send[Printer](p_.ID, objc.Sel("defaultPrinter"))
 	return rv
 }
 
@@ -302,8 +302,8 @@ func (p_ PrintInfo) DefaultPrinter() NSPrinter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/horizontalPagination
-func (p_ PrintInfo) HorizontalPagination() PrintingPaginationMode {
-	rv := objc.Send[PrintingPaginationMode](p_.ID, objc.Sel("horizontalPagination"))
+func (p_ PrintInfo) HorizontalPagination() NSPrintingPaginationMode {
+	rv := objc.Send[NSPrintingPaginationMode](p_.ID, objc.Sel("horizontalPagination"))
 	return rv
 }
 
@@ -312,7 +312,7 @@ func (p_ PrintInfo) HorizontalPagination() PrintingPaginationMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/horizontalPagination
-func (p_ PrintInfo) SetHorizontalPagination(value PrintingPaginationMode) {
+func (p_ PrintInfo) SetHorizontalPagination(value NSPrintingPaginationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHorizontalPagination:"), value)
 }
 
@@ -398,7 +398,7 @@ func (p_ PrintInfo) JobDisposition() PrintJobDispositionValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/jobDisposition-swift.property
-func (p_ PrintInfo) SetJobDisposition(value IPrintJobDispositionValue) {
+func (p_ PrintInfo) SetJobDisposition(value PrintJobDispositionValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobDisposition:"), value)
 }
 
@@ -436,8 +436,8 @@ func (p_ PrintInfo) LocalizedPaperName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/orientation-swift.property
-func (p_ PrintInfo) Orientation() PaperOrientation {
-	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
+func (p_ PrintInfo) Orientation() NSPaperOrientation {
+	rv := objc.Send[NSPaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -446,7 +446,7 @@ func (p_ PrintInfo) Orientation() PaperOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/orientation-swift.property
-func (p_ PrintInfo) SetOrientation(value IPaperOrientation) {
+func (p_ PrintInfo) SetOrientation(value NSPaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -465,7 +465,7 @@ func (p_ PrintInfo) PaperName() PrinterPaperName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/paperName
-func (p_ PrintInfo) SetPaperName(value IPrinterPaperName) {
+func (p_ PrintInfo) SetPaperName(value PrinterPaperName) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperName:"), value)
 }
 
@@ -503,8 +503,8 @@ func (p_ PrintInfo) PrintSettings() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/printer
-func (p_ PrintInfo) Printer() NSPrinter {
-	rv := objc.Send[NSPrinter](p_.ID, objc.Sel("printer"))
+func (p_ PrintInfo) Printer() IPrinter {
+	rv := objc.Send[Printer](p_.ID, objc.Sel("printer"))
 	return rv
 }
 
@@ -560,8 +560,8 @@ func (p_ PrintInfo) SetScalingFactor(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/shared
-func (p_ PrintInfo) SharedPrintInfo() NSPrintInfo {
-	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("sharedPrintInfo"))
+func (p_ PrintInfo) SharedPrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("sharedPrintInfo"))
 	return rv
 }
 
@@ -598,8 +598,8 @@ func (p_ PrintInfo) SetTopMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/verticalPagination
-func (p_ PrintInfo) VerticalPagination() PrintingPaginationMode {
-	rv := objc.Send[PrintingPaginationMode](p_.ID, objc.Sel("verticalPagination"))
+func (p_ PrintInfo) VerticalPagination() NSPrintingPaginationMode {
+	rv := objc.Send[NSPrintingPaginationMode](p_.ID, objc.Sel("verticalPagination"))
 	return rv
 }
 
@@ -608,7 +608,7 @@ func (p_ PrintInfo) VerticalPagination() PrintingPaginationMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/verticalPagination
-func (p_ PrintInfo) SetVerticalPagination(value PrintingPaginationMode) {
+func (p_ PrintInfo) SetVerticalPagination(value NSPrintingPaginationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVerticalPagination:"), value)
 }
 

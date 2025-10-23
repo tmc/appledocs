@@ -29,8 +29,8 @@ type _HeadTrackedSpatialAudioClass struct {
 // An interface definition for the [HeadTrackedSpatialAudio] class.
 type IHeadTrackedSpatialAudio interface {
 	ISpatialAudioExperience
-	AnchoringStrategy() CAAnchoringStrategy
-	SoundStageSize() SoundStageSize
+	AnchoringStrategy() IAnchoringStrategy
+	SoundStageSize() CASoundStageSize
 }
 
 // A spatial experience that takes user motion into account.
@@ -90,7 +90,7 @@ func NewHeadTrackedSpatialAudio() HeadTrackedSpatialAudio {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/initWithSoundStageSize:anchoringStrategy:
-func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSize ISoundStageSize, anchoringStrategy CAAnchoringStrategy) HeadTrackedSpatialAudio {
+func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSize CASoundStageSize, anchoringStrategy IAnchoringStrategy) HeadTrackedSpatialAudio {
 	instance := getHeadTrackedSpatialAudioClass().Alloc()
 	rv := objc.Send[HeadTrackedSpatialAudio](instance.ID, objc.Sel("initWithSoundStageSize:anchoringStrategy:"), soundStageSize, anchoringStrategy)
 	rv.Autorelease()
@@ -103,8 +103,8 @@ func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/anchoringStrategy
-func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() CAAnchoringStrategy {
-	rv := objc.Send[CAAnchoringStrategy](h_.ID, objc.Sel("anchoringStrategy"))
+func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() IAnchoringStrategy {
+	rv := objc.Send[AnchoringStrategy](h_.ID, objc.Sel("anchoringStrategy"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() CAAnchoringStrategy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/soundStageSize
-func (h_ HeadTrackedSpatialAudio) SoundStageSize() SoundStageSize {
-	rv := objc.Send[SoundStageSize](h_.ID, objc.Sel("soundStageSize"))
+func (h_ HeadTrackedSpatialAudio) SoundStageSize() CASoundStageSize {
+	rv := objc.Send[CASoundStageSize](h_.ID, objc.Sel("soundStageSize"))
 	return rv
 }
 

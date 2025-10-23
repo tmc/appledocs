@@ -29,34 +29,36 @@ type _MutableOrderedSetClass struct {
 // An interface definition for the [MutableOrderedSet] class.
 type IMutableOrderedSet interface {
 	IOrderedSet
+	// properties:
+	// methods:
 	AddObject(object unsafe.Pointer)
-	AddObjectsCount(objects unsafe.Pointer, count uint)
-	AddObjectsFromArray(array []objc.ID)
+	AddObjectsCount(objects unsafe.Pointer, count uint /* primitive/slice/pointer */)
+	AddObjectsFromArray(array []objc.ID /* already interface */)
 	ApplyDifference(difference unsafe.Pointer)
-	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint)
+	ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer */, idx2 uint /* primitive/slice/pointer */)
 	FilterUsingPredicate(p IPredicate)
-	InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet)
-	InsertObjectAtIndex(object unsafe.Pointer, idx uint)
+	InsertObjectsAtIndexes(objects []objc.ID /* already interface */, indexes IIndexSet)
+	InsertObjectAtIndex(object unsafe.Pointer, idx uint /* primitive/slice/pointer */)
 	IntersectOrderedSet(other unsafe.Pointer)
 	IntersectSet(other unsafe.Pointer)
 	MinusOrderedSet(other unsafe.Pointer)
 	MinusSet(other unsafe.Pointer)
-	MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint)
+	MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint /* primitive/slice/pointer */)
 	RemoveObject(object unsafe.Pointer)
 	RemoveAllObjects()
-	RemoveObjectAtIndex(idx uint)
+	RemoveObjectAtIndex(idx uint /* primitive/slice/pointer */)
 	RemoveObjectsAtIndexes(indexes IIndexSet)
-	RemoveObjectsInArray(array []objc.ID)
-	RemoveObjectsInRange(range_ Range)
-	ReplaceObjectAtIndexWithObject(idx uint, object unsafe.Pointer)
-	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
-	ReplaceObjectsInRangeWithObjectsCount(range_ Range, objects unsafe.Pointer, count uint)
-	SetObjectAtIndex(obj unsafe.Pointer, idx uint)
-	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
-	SortUsingComparator(cmptr unsafe.Pointer)
-	SortWithOptionsUsingComparator(opts NSSortOptions, cmptr unsafe.Pointer)
-	SortUsingDescriptors(sortDescriptors []SortDescriptor)
-	SortRangeOptionsUsingComparator(range_ Range, opts NSSortOptions, cmptr unsafe.Pointer)
+	RemoveObjectsInArray(array []objc.ID /* already interface */)
+	RemoveObjectsInRange(range_ Range /* foo */)
+	ReplaceObjectAtIndexWithObject(idx uint /* primitive/slice/pointer */, object unsafe.Pointer)
+	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */)
+	ReplaceObjectsInRangeWithObjectsCount(range_ Range /* foo */, objects unsafe.Pointer, count uint /* primitive/slice/pointer */)
+	SetObjectAtIndex(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
+	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */)
+	SortUsingComparator(cmptr Comparator /* foo */)
+	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */)
+	SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */)
+	SortRangeOptionsUsingComparator(range_ Range /* foo */, opts SortOptions, cmptr Comparator /* foo */)
 	UnionOrderedSet(other unsafe.Pointer)
 	UnionSet(other unsafe.Pointer)
 }
@@ -120,7 +122,7 @@ func NewMutableOrderedSet() MutableOrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/init(capacity:)
-func NewMutableOrderedSetWithCapacity(numItems uint) MutableOrderedSet {
+func NewMutableOrderedSetWithCapacity(numItems uint /* primitive/slice/pointer */) MutableOrderedSet {
 	instance := getMutableOrderedSetClass().Alloc()
 	rv := objc.Send[MutableOrderedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
@@ -143,7 +145,7 @@ func NewMutableOrderedSetWithCoder(coder ICoder) MutableOrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/orderedSetWithCapacity:
-func (mc _MutableOrderedSetClass) OrderedSetWithCapacity(numItems uint) unsafe.Pointer {
+func (mc _MutableOrderedSetClass) OrderedSetWithCapacity(numItems uint /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("orderedSetWithCapacity:"), numItems)
 	return rv
 }
@@ -162,7 +164,7 @@ func (m_ MutableOrderedSet) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/add(_:count:)
-func (m_ MutableOrderedSet) AddObjectsCount(objects unsafe.Pointer, count uint) {
+func (m_ MutableOrderedSet) AddObjectsCount(objects unsafe.Pointer, count uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjects:count:"), objects, count)
 }
 
@@ -171,7 +173,7 @@ func (m_ MutableOrderedSet) AddObjectsCount(objects unsafe.Pointer, count uint) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/addObjects(from:)
-func (m_ MutableOrderedSet) AddObjectsFromArray(array []objc.ID) {
+func (m_ MutableOrderedSet) AddObjectsFromArray(array []objc.ID /* already interface */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
 }
 
@@ -187,7 +189,7 @@ func (m_ MutableOrderedSet) ApplyDifference(difference unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/exchangeObject(at:withObjectAt:)
-func (m_ MutableOrderedSet) ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint, idx2 uint) {
+func (m_ MutableOrderedSet) ExchangeObjectAtIndexWithObjectAtIndex(idx1 uint /* primitive/slice/pointer */, idx2 uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("exchangeObjectAtIndex:withObjectAtIndex:"), idx1, idx2)
 }
 
@@ -205,7 +207,7 @@ func (m_ MutableOrderedSet) FilterUsingPredicate(p IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/insert(_:at:)-3ncnm
-func (m_ MutableOrderedSet) InsertObjectsAtIndexes(objects []objc.ID, indexes IIndexSet) {
+func (m_ MutableOrderedSet) InsertObjectsAtIndexes(objects []objc.ID /* already interface */, indexes IIndexSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObjects:atIndexes:"), objects, indexes)
 }
 
@@ -214,7 +216,7 @@ func (m_ MutableOrderedSet) InsertObjectsAtIndexes(objects []objc.ID, indexes II
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/insert(_:at:)-7qg51
-func (m_ MutableOrderedSet) InsertObjectAtIndex(object unsafe.Pointer, idx uint) {
+func (m_ MutableOrderedSet) InsertObjectAtIndex(object unsafe.Pointer, idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:atIndex:"), object, idx)
 }
 
@@ -259,7 +261,7 @@ func (m_ MutableOrderedSet) MinusSet(other unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/moveObjects(at:to:)
-func (m_ MutableOrderedSet) MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint) {
+func (m_ MutableOrderedSet) MoveObjectsAtIndexesToIndex(indexes IIndexSet, idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("moveObjectsAtIndexes:toIndex:"), indexes, idx)
 }
 
@@ -286,7 +288,7 @@ func (m_ MutableOrderedSet) RemoveAllObjects() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObject(at:)
-func (m_ MutableOrderedSet) RemoveObjectAtIndex(idx uint) {
+func (m_ MutableOrderedSet) RemoveObjectAtIndex(idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectAtIndex:"), idx)
 }
 
@@ -304,7 +306,7 @@ func (m_ MutableOrderedSet) RemoveObjectsAtIndexes(indexes IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-8h2kh
-func (m_ MutableOrderedSet) RemoveObjectsInArray(array []objc.ID) {
+func (m_ MutableOrderedSet) RemoveObjectsInArray(array []objc.ID /* already interface */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInArray:"), array)
 }
 
@@ -313,7 +315,7 @@ func (m_ MutableOrderedSet) RemoveObjectsInArray(array []objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
-func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range) {
+func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
 }
 
@@ -322,7 +324,7 @@ func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObject(at:with:)
-func (m_ MutableOrderedSet) ReplaceObjectAtIndexWithObject(idx uint, object unsafe.Pointer) {
+func (m_ MutableOrderedSet) ReplaceObjectAtIndexWithObject(idx uint /* primitive/slice/pointer */, object unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectAtIndex:withObject:"), idx, object)
 }
 
@@ -331,7 +333,7 @@ func (m_ MutableOrderedSet) ReplaceObjectAtIndexWithObject(idx uint, object unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(at:with:)
-func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
+func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID /* already interface */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
 }
 
@@ -340,7 +342,7 @@ func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(in:with:count:)
-func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range, objects unsafe.Pointer, count uint) {
+func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range /* foo */, objects unsafe.Pointer, count uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjects:count:"), range_, objects, count)
 }
 
@@ -349,7 +351,7 @@ func (m_ MutableOrderedSet) ReplaceObjectsInRangeWithObjectsCount(range_ Range, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject(_:at:)
-func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint) {
+func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndex:"), obj, idx)
 }
 
@@ -358,7 +360,7 @@ func (m_ MutableOrderedSet) SetObjectAtIndex(obj unsafe.Pointer, idx uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/setObject:atIndexedSubscript:
-func (m_ MutableOrderedSet) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint) {
+func (m_ MutableOrderedSet) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
 }
 
@@ -367,7 +369,7 @@ func (m_ MutableOrderedSet) SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(comparator:)
-func (m_ MutableOrderedSet) SortUsingComparator(cmptr unsafe.Pointer) {
+func (m_ MutableOrderedSet) SortUsingComparator(cmptr Comparator /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingComparator:"), cmptr)
 }
 
@@ -376,7 +378,7 @@ func (m_ MutableOrderedSet) SortUsingComparator(cmptr unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(options:usingComparator:)
-func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts NSSortOptions, cmptr unsafe.Pointer) {
+func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortWithOptions:usingComparator:"), opts, cmptr)
 }
 
@@ -385,7 +387,7 @@ func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts NSSortOptions, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(using:)
-func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
+func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 
@@ -394,7 +396,7 @@ func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sortRange(_:options:usingComparator:)
-func (m_ MutableOrderedSet) SortRangeOptionsUsingComparator(range_ Range, opts NSSortOptions, cmptr unsafe.Pointer) {
+func (m_ MutableOrderedSet) SortRangeOptionsUsingComparator(range_ Range /* foo */, opts SortOptions, cmptr Comparator /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortRange:options:usingComparator:"), range_, opts, cmptr)
 }
 

@@ -30,8 +30,10 @@ type _MediaPresentationSettingClass struct {
 // An interface definition for the [MediaPresentationSetting] class.
 type IMediaPresentationSetting interface {
 	objectivec.IObject
-	MediaCharacteristic() unsafe.Pointer
-	SetMediaCharacteristic(value unsafe.Pointer)
+	// properties:
+	MediaCharacteristic() AVMediaCharacteristic /* foo */
+	SetMediaCharacteristic(value AVMediaCharacteristic /* foo */)
+	// methods:
 }
 
 // For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
@@ -91,8 +93,8 @@ func NewMediaPresentationSetting() MediaPresentationSetting {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaCharacteristic"))
+func (m_ MediaPresentationSetting) MediaCharacteristic() AVMediaCharacteristic /* foo */ {
+	rv := objc.Send[MediaCharacteristic](m_.ID, objc.Sel("mediaCharacteristic"))
 	return rv
 }
 
@@ -101,7 +103,7 @@ func (m_ MediaPresentationSetting) MediaCharacteristic() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting/mediacharacteristic
-func (m_ MediaPresentationSetting) SetMediaCharacteristic(value unsafe.Pointer) {
+func (m_ MediaPresentationSetting) SetMediaCharacteristic(value AVMediaCharacteristic /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaCharacteristic:"), value)
 }
 

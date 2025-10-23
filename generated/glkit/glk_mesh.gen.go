@@ -30,11 +30,13 @@ type _GLKMeshClass struct {
 // An interface definition for the [GLKMesh] class.
 type IGLKMesh interface {
 	objectivec.IObject
+	// properties:
 	Name() string
 	Submeshes() []GLKSubmesh
 	VertexBuffers() []GLKMeshBuffer
 	VertexCount() uint
 	VertexDescriptor() unsafe.Pointer
+	// methods:
 }
 
 

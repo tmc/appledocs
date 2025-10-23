@@ -30,17 +30,21 @@ type _INIntentDonationMetadataClass struct {
 // An interface definition for the [INIntentDonationMetadata] class.
 type IINIntentDonationMetadata interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
+// A parent class referenced by other Intents classes.
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INIntentDonationMetadata
+// A parent class referenced by other Intents classes. [Full Topic]
 type INIntentDonationMetadata struct {
 	objectivec.Object
 }
 
 // INIntentDonationMetadataFrom constructs a [INIntentDonationMetadata] from an unsafe.Pointer.
+//
+// A parent class referenced by other Intents classes.
 func INIntentDonationMetadataFrom(ptr unsafe.Pointer) INIntentDonationMetadata {
 	return INIntentDonationMetadata{objectivec.Object{objc.ID(ptr)}}
 }

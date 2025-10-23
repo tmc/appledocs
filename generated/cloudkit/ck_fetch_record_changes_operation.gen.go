@@ -29,21 +29,22 @@ type _CKFetchRecordChangesOperationClass struct {
 // An interface definition for the [CKFetchRecordChangesOperation] class.
 type ICKFetchRecordChangesOperation interface {
 	ICKDatabaseOperation
-	DesiredKeys() []string
-	SetDesiredKeys(value []string)
+	DesiredKeys() string
+	SetDesiredKeys(value string)
 	FetchRecordChangesCompletionBlock() unsafe.Pointer
 	SetFetchRecordChangesCompletionBlock(value unsafe.Pointer)
 	MoreComing() bool
-	PreviousServerChangeToken() CKServerChangeToken
+	SetMoreComing(value bool)
+	PreviousServerChangeToken() ICKServerChangeToken
 	SetPreviousServerChangeToken(value ICKServerChangeToken)
 	RecordChangedBlock() unsafe.Pointer
 	SetRecordChangedBlock(value unsafe.Pointer)
 	RecordWithIDWasDeletedBlock() unsafe.Pointer
 	SetRecordWithIDWasDeletedBlock(value unsafe.Pointer)
-	RecordZoneID() CKRecordZoneID
+	RecordZoneID() ICKRecordZoneID
 	SetRecordZoneID(value ICKRecordZoneID)
-	ResultsLimit() uint
-	SetResultsLimit(value uint)
+	ResultsLimit() int
+	SetResultsLimit(value int)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 }
@@ -103,25 +104,12 @@ func NewCKFetchRecordChangesOperation() CKFetchRecordChangesOperation {
 
 
 
-// Creates an operation for fetching changes in the specified record zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/init(recordZoneID:previousServerChangeToken:)
-func NewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken(recordZoneID ICKRecordZoneID, previousServerChangeToken ICKServerChangeToken) CKFetchRecordChangesOperation {
-	instance := getCKFetchRecordChangesOperationClass().Alloc()
-	rv := objc.Send[CKFetchRecordChangesOperation](instance.ID, objc.Sel("initWithRecordZoneID:previousServerChangeToken:"), recordZoneID, previousServerChangeToken)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The fields to fetch for the requested records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys
-func (c_ CKFetchRecordChangesOperation) DesiredKeys() []string {
-	rv := objc.Send[[]string](c_.ID, objc.Sel("desiredKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
+func (c_ CKFetchRecordChangesOperation) DesiredKeys() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
 
@@ -129,26 +117,16 @@ func (c_ CKFetchRecordChangesOperation) DesiredKeys() []string {
 // The fields to fetch for the requested records.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/desiredKeys
-func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
+func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), objc.String(value))
 }
 
 
 // The block to execute when the system finishes processing all changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/fetchrecordchangescompletionblock
 func (c_ CKFetchRecordChangesOperation) FetchRecordChangesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordChangesCompletionBlock"))
 	return rv
@@ -158,7 +136,7 @@ func (c_ CKFetchRecordChangesOperation) FetchRecordChangesCompletionBlock() unsa
 // The block to execute when the system finishes processing all changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/fetchRecordChangesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/fetchrecordchangescompletionblock
 func (c_ CKFetchRecordChangesOperation) SetFetchRecordChangesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordChangesCompletionBlock:"), value)
 }
@@ -167,18 +145,27 @@ func (c_ CKFetchRecordChangesOperation) SetFetchRecordChangesCompletionBlock(val
 // A Boolean value that indicates whether more results are available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/moreComing
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
 func (c_ CKFetchRecordChangesOperation) MoreComing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("moreComing"))
 	return rv
 }
 
 
+// A Boolean value that indicates whether more results are available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
+func (c_ CKFetchRecordChangesOperation) SetMoreComing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMoreComing:"), value)
+}
+
+
 // The token that identifies the starting point for retrieving changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken
-func (c_ CKFetchRecordChangesOperation) PreviousServerChangeToken() CKServerChangeToken {
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/previousserverchangetoken
+func (c_ CKFetchRecordChangesOperation) PreviousServerChangeToken() ICKServerChangeToken {
 	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
 }
@@ -187,7 +174,7 @@ func (c_ CKFetchRecordChangesOperation) PreviousServerChangeToken() CKServerChan
 // The token that identifies the starting point for retrieving changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/previousServerChangeToken
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/previousserverchangetoken
 func (c_ CKFetchRecordChangesOperation) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
@@ -196,7 +183,7 @@ func (c_ CKFetchRecordChangesOperation) SetPreviousServerChangeToken(value ICKSe
 // The block to execute with the contents of a changed record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordchangedblock
 func (c_ CKFetchRecordChangesOperation) RecordChangedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordChangedBlock"))
 	return rv
@@ -206,7 +193,7 @@ func (c_ CKFetchRecordChangesOperation) RecordChangedBlock() unsafe.Pointer {
 // The block to execute with the contents of a changed record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordChangedBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordchangedblock
 func (c_ CKFetchRecordChangesOperation) SetRecordChangedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangedBlock:"), value)
 }
@@ -215,7 +202,7 @@ func (c_ CKFetchRecordChangesOperation) SetRecordChangedBlock(value unsafe.Point
 // The block to execute with the ID of a deleted record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordwithidwasdeletedblock
 func (c_ CKFetchRecordChangesOperation) RecordWithIDWasDeletedBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordWithIDWasDeletedBlock"))
 	return rv
@@ -225,7 +212,7 @@ func (c_ CKFetchRecordChangesOperation) RecordWithIDWasDeletedBlock() unsafe.Poi
 // The block to execute with the ID of a deleted record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordWithIDWasDeletedBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordwithidwasdeletedblock
 func (c_ CKFetchRecordChangesOperation) SetRecordWithIDWasDeletedBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordWithIDWasDeletedBlock:"), value)
 }
@@ -234,8 +221,8 @@ func (c_ CKFetchRecordChangesOperation) SetRecordWithIDWasDeletedBlock(value uns
 // The ID of the record zone with the records you want to fetch.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID
-func (c_ CKFetchRecordChangesOperation) RecordZoneID() CKRecordZoneID {
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordzoneid
+func (c_ CKFetchRecordChangesOperation) RecordZoneID() ICKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneID"))
 	return rv
 }
@@ -244,7 +231,7 @@ func (c_ CKFetchRecordChangesOperation) RecordZoneID() CKRecordZoneID {
 // The ID of the record zone with the records you want to fetch.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/recordZoneID
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/recordzoneid
 func (c_ CKFetchRecordChangesOperation) SetRecordZoneID(value ICKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneID:"), value)
 }
@@ -253,9 +240,9 @@ func (c_ CKFetchRecordChangesOperation) SetRecordZoneID(value ICKRecordZoneID) {
 // The maximum number of changed records to report with this operation object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit
-func (c_ CKFetchRecordChangesOperation) ResultsLimit() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("resultsLimit"))
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
+func (c_ CKFetchRecordChangesOperation) ResultsLimit() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
 
@@ -263,8 +250,8 @@ func (c_ CKFetchRecordChangesOperation) ResultsLimit() uint {
 // The maximum number of changed records to report with this operation object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordChangesOperation/resultsLimit
-func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value uint) {
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
+func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
 
@@ -286,5 +273,6 @@ func (c_ CKFetchRecordChangesOperation) CompletionBlock() unsafe.Pointer {
 func (c_ CKFetchRecordChangesOperation) SetCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletionBlock:"), value)
 }
+
 
 

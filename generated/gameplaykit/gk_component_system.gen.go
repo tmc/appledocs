@@ -31,15 +31,15 @@ type _ComponentSystemClass struct {
 // An interface definition for the [ComponentSystem] class.
 type IComponentSystem interface {
 	objectivec.IObject
+	ComponentClass() objc.Class
+	Components() []Component
 	AddComponent(component unsafe.Pointer)
 	AddComponentWithEntity(entity IGKEntity)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	RemoveComponent(component unsafe.Pointer)
 	RemoveComponentWithEntity(entity IGKEntity)
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
-	ComponentClass() objc.Class
-	Components() []Component
+	UpdateWithDeltaTime(seconds foundation.TimeInterval)
 }
 
 // Manages periodic update messages for all component objects of a specified class.
@@ -166,7 +166,7 @@ func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/update(deltaTime:)
-func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
+func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

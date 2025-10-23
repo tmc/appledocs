@@ -30,7 +30,7 @@ type _BatchDeleteResultClass struct {
 type IBatchDeleteResult interface {
 	IPersistentStoreResult
 	Result() objc.ID
-	ResultType() BatchDeleteRequestResultType
+	ResultType() NSBatchDeleteRequestResultType
 }
 
 // An object that describes the result of a batch delete request.
@@ -100,8 +100,8 @@ func (b_ BatchDeleteResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteResult/resultType
-func (b_ BatchDeleteResult) ResultType() BatchDeleteRequestResultType {
-	rv := objc.Send[BatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
+func (b_ BatchDeleteResult) ResultType() NSBatchDeleteRequestResultType {
+	rv := objc.Send[NSBatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 

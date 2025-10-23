@@ -31,7 +31,7 @@ type IBatchInsertRequest interface {
 	IPersistentStoreRequest
 	DictionaryHandler() bool
 	SetDictionaryHandler(value bool)
-	Entity() NSEntityDescription
+	Entity() IEntityDescription
 	SetEntity(value IEntityDescription)
 	EntityName() string
 	SetEntityName(value string)
@@ -39,8 +39,8 @@ type IBatchInsertRequest interface {
 	SetManagedObjectHandler(value bool)
 	ObjectsToInsert() string
 	SetObjectsToInsert(value string)
-	ResultType() BatchInsertRequestResultType
-	SetResultType(value BatchInsertRequestResultType)
+	ResultType() NSBatchInsertRequestResultType
+	SetResultType(value NSBatchInsertRequestResultType)
 }
 
 // A request to insert a batch of data in a persistent store.
@@ -166,8 +166,8 @@ func (b_ BatchInsertRequest) SetDictionaryHandler(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/entity
-func (b_ BatchInsertRequest) Entity() NSEntityDescription {
-	rv := objc.Send[NSEntityDescription](b_.ID, objc.Sel("entity"))
+func (b_ BatchInsertRequest) Entity() IEntityDescription {
+	rv := objc.Send[EntityDescription](b_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -242,8 +242,8 @@ func (b_ BatchInsertRequest) SetObjectsToInsert(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/resulttype
-func (b_ BatchInsertRequest) ResultType() BatchInsertRequestResultType {
-	rv := objc.Send[BatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
+func (b_ BatchInsertRequest) ResultType() NSBatchInsertRequestResultType {
+	rv := objc.Send[NSBatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -252,7 +252,7 @@ func (b_ BatchInsertRequest) ResultType() BatchInsertRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchinsertrequest/resulttype
-func (b_ BatchInsertRequest) SetResultType(value BatchInsertRequestResultType) {
+func (b_ BatchInsertRequest) SetResultType(value NSBatchInsertRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
 

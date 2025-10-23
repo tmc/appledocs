@@ -30,18 +30,6 @@ type _CBPeripheralClass struct {
 // An interface definition for the [CBPeripheral] class.
 type ICBPeripheral interface {
 	ICBPeer
-	DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService)
-	DiscoverDescriptorsForCharacteristic(characteristic ICBCharacteristic)
-	DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService)
-	DiscoverServices(serviceUUIDs []CBUUID)
-	MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint
-	OpenL2CAPChannel(PSM ICBL2CAPPSM)
-	ReadRSSI()
-	ReadValueForCharacteristic(characteristic ICBCharacteristic)
-	ReadValueForDescriptor(descriptor ICBDescriptor)
-	SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic)
-	WriteValueForDescriptor(data foundation.IData, descriptor ICBDescriptor)
-	WriteValueForCharacteristicType(data foundation.IData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
 	AncsAuthorized() bool
 	CanSendWriteWithoutResponse() bool
 	Delegate() objc.ID
@@ -50,6 +38,18 @@ type ICBPeripheral interface {
 	RSSI() foundation.Number
 	Services() []CBService
 	State() CBPeripheralState
+	DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService)
+	DiscoverDescriptorsForCharacteristic(characteristic ICBCharacteristic)
+	DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService)
+	DiscoverServices(serviceUUIDs []CBUUID)
+	MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint
+	OpenL2CAPChannel(PSM CBL2CAPPSM)
+	ReadRSSI()
+	ReadValueForCharacteristic(characteristic ICBCharacteristic)
+	ReadValueForDescriptor(descriptor ICBDescriptor)
+	SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic)
+	WriteValueForDescriptor(data foundation.NSData, descriptor ICBDescriptor)
+	WriteValueForCharacteristicType(data foundation.NSData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
 }
 
 // A remote peripheral device.
@@ -157,7 +157,7 @@ func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ CBCharacteristicWrit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/openL2CAPChannel(_:)
-func (c_ CBPeripheral) OpenL2CAPChannel(PSM ICBL2CAPPSM) {
+func (c_ CBPeripheral) OpenL2CAPChannel(PSM CBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("openL2CAPChannel:"), PSM)
 }
 
@@ -202,7 +202,7 @@ func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool, characteris
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:)
-func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.IData, descriptor ICBDescriptor) {
+func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.NSData, descriptor ICBDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forDescriptor:"), data, descriptor)
 }
 
@@ -211,7 +211,7 @@ func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.IData, descriptor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:type:)
-func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.IData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType) {
+func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.NSData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forCharacteristic:type:"), data, characteristic, type_)
 }
 

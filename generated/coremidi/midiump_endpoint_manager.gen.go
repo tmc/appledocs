@@ -88,7 +88,7 @@ func (mc _MIDIUMPEndpointManagerClass) SharedInstance() MIDIUMPEndpointManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/shared
-func (m_ MIDIUMPEndpointManager) SharedInstance() MIDIUMPEndpointManager {
+func (m_ MIDIUMPEndpointManager) SharedInstance() IMIDIUMPEndpointManager {
 	rv := objc.Send[MIDIUMPEndpointManager](m_.ID, objc.Sel("sharedInstance"))
 	return rv
 }

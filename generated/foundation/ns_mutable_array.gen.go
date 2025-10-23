@@ -29,7 +29,9 @@ type _MutableArrayClass struct {
 // An interface definition for the [MutableArray] class.
 type IMutableArray interface {
 	IArray
-	SortUsingDescriptors(sortDescriptors []SortDescriptor)
+	// properties:
+	// methods:
+	SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */)
 }
 
 // A dynamic ordered collection of objects.
@@ -91,7 +93,7 @@ func NewMutableArray() MutableArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/sort(using:)-4eh07
-func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
+func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 

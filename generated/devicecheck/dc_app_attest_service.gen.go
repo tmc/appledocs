@@ -31,12 +31,12 @@ type _DCAppAttestServiceClass struct {
 // An interface definition for the [DCAppAttestService] class.
 type IDCAppAttestService interface {
 	objectivec.IObject
-	AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
-	GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer)
-	GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer)
 	Supported() bool
 	IsSupported() bool
 	SetIsSupported(value bool)
+	AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer)
+	GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer)
+	GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // A service that you use to validate the instance of your app running on a device.
@@ -105,7 +105,7 @@ func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
+func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
@@ -114,7 +114,7 @@ func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.IData, completionHandler unsafe.Pointer) {
+func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
@@ -142,7 +142,7 @@ func (d_ DCAppAttestService) Supported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/shared
-func (d_ DCAppAttestService) SharedService() DCAppAttestService {
+func (d_ DCAppAttestService) SharedService() IDCAppAttestService {
 	rv := objc.Send[DCAppAttestService](d_.ID, objc.Sel("sharedService"))
 	return rv
 }

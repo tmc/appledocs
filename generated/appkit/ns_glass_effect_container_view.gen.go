@@ -29,7 +29,7 @@ type _GlassEffectContainerViewClass struct {
 // An interface definition for the [GlassEffectContainerView] class.
 type IGlassEffectContainerView interface {
 	IView
-	ContentView() NSView
+	ContentView() IView
 	SetContentView(value IView)
 	Spacing() float64
 	SetSpacing(value float64)
@@ -92,8 +92,8 @@ func NewGlassEffectContainerView() GlassEffectContainerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/contentView
-func (g_ GlassEffectContainerView) ContentView() NSView {
-	rv := objc.Send[NSView](g_.ID, objc.Sel("contentView"))
+func (g_ GlassEffectContainerView) ContentView() IView {
+	rv := objc.Send[View](g_.ID, objc.Sel("contentView"))
 	return rv
 }
 

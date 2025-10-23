@@ -31,8 +31,6 @@ type _CNBoundsPredictionClass struct {
 // An interface definition for the [CNBoundsPrediction] class.
 type ICNBoundsPrediction interface {
 	objectivec.IObject
-	Confidence() float32
-	SetConfidence(value float32)
 	NormalizedBounds() coregraphics.CGRect
 	SetNormalizedBounds(value coregraphics.CGRect)
 }
@@ -86,25 +84,6 @@ func NewCNBoundsPrediction() CNBoundsPrediction {
 	return getCNBoundsPredictionClass().New()
 }
 
-
-
-// A number between 0.0 and 1.0 representing the probability that a defined object is within the bounds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-func (c_ CNBoundsPrediction) Confidence() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("confidence"))
-	return rv
-}
-
-
-// A number between 0.0 and 1.0 representing the probability that a defined object is within the bounds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNBoundsPrediction-c.class/confidence
-func (c_ CNBoundsPrediction) SetConfidence(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
-}
 
 
 // The bounds of the detected object in normalized coordinates where (0.0, 0.0) is the upper-left corner, and (1.0, 1.0) is the lower-right.

@@ -29,6 +29,8 @@ type _HKWorkoutEffortRelationshipQueryClass struct {
 // An interface definition for the [HKWorkoutEffortRelationshipQuery] class.
 type IHKWorkoutEffortRelationshipQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 

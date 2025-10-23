@@ -31,8 +31,10 @@ type _DomainStateBiometryClass struct {
 // An interface definition for the [DomainStateBiometry] class.
 type IDomainStateBiometry interface {
 	objectivec.IObject
-	BiometryType() BiometryType
+	// properties:
+	BiometryType() LABiometryType
 	StateHash() foundation.NSData
+	// methods:
 }
 
 
@@ -85,8 +87,8 @@ func NewDomainStateBiometry() DomainStateBiometry {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/biometryType
-func (d_ DomainStateBiometry) BiometryType() BiometryType {
-	rv := objc.Send[BiometryType](d_.ID, objc.Sel("biometryType"))
+func (d_ DomainStateBiometry) BiometryType() LABiometryType {
+	rv := objc.Send[LABiometryType](d_.ID, objc.Sel("biometryType"))
 	return rv
 }
 

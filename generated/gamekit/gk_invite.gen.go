@@ -37,7 +37,7 @@ type IInvite interface {
 	SetIsHosted(value bool)
 	PlayerAttributes() unsafe.Pointer
 	SetPlayerAttributes(value unsafe.Pointer)
-	Sender() GKPlayer
+	Sender() IGKPlayer
 	SetSender(value IGKPlayer)
 }
 
@@ -165,8 +165,8 @@ func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
-func (i_ Invite) Sender() GKPlayer {
-	rv := objc.Send[GKPlayer](i_.ID, objc.Sel("sender"))
+func (i_ Invite) Sender() IGKPlayer {
+	rv := objc.Send[Player](i_.ID, objc.Sel("sender"))
 	return rv
 }
 

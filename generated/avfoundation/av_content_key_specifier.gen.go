@@ -30,12 +30,14 @@ type _ContentKeySpecifierClass struct {
 // An interface definition for the [ContentKeySpecifier] class.
 type IContentKeySpecifier interface {
 	objectivec.IObject
+	// properties:
 	Identifier() unsafe.Pointer
 	SetIdentifier(value unsafe.Pointer)
-	KeySystem() unsafe.Pointer
-	SetKeySystem(value unsafe.Pointer)
+	KeySystem() AVContentKeySystem /* foo */
+	SetKeySystem(value AVContentKeySystem /* foo */)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that uniquely identifies a content key.
@@ -112,8 +114,8 @@ func (c_ ContentKeySpecifier) SetIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-func (c_ ContentKeySpecifier) KeySystem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySystem"))
+func (c_ ContentKeySpecifier) KeySystem() AVContentKeySystem /* foo */ {
+	rv := objc.Send[ContentKeySystem](c_.ID, objc.Sel("keySystem"))
 	return rv
 }
 
@@ -122,7 +124,7 @@ func (c_ ContentKeySpecifier) KeySystem() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/keysystem
-func (c_ ContentKeySpecifier) SetKeySystem(value unsafe.Pointer) {
+func (c_ ContentKeySpecifier) SetKeySystem(value AVContentKeySystem /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySystem:"), value)
 }
 

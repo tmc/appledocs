@@ -9,16 +9,13 @@ import (
 )
 
 
-// CoreMediaIO Functions (4 total)
+// CoreMediaIO Functions (1 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CMIODeviceStartStream func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CMIOObjectIsPropertySettable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CMIOSampleBufferGetSequenceNumber func(unsafe.Pointer) unsafe.Pointer
-	_CMIOStreamDeckJog func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CMIOStreamClockConvertHostTimeToDeviceTime func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -26,10 +23,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_CMIODeviceStartStream, lib, "CMIODeviceStartStream")
-	tryRegister(&_CMIOObjectIsPropertySettable, lib, "CMIOObjectIsPropertySettable")
-	tryRegister(&_CMIOSampleBufferGetSequenceNumber, lib, "CMIOSampleBufferGetSequenceNumber")
-	tryRegister(&_CMIOStreamDeckJog, lib, "CMIOStreamDeckJog")
+	tryRegister(&_CMIOStreamClockConvertHostTimeToDeviceTime, lib, "CMIOStreamClockConvertHostTimeToDeviceTime")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -46,49 +40,14 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// CMIODeviceStartStream is a CoreMediaIO function.
+// CMIOStreamClockConvertHostTimeToDeviceTime is a CoreMediaIO function.
 //
 // Added in macOS 10.7.
-
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIODeviceStartStream(_:_:)
-func CMIODeviceStartStream(deviceID unsafe.Pointer, streamID unsafe.Pointer) unsafe.Pointer {
-	return _CMIODeviceStartStream(deviceID, streamID)
-	}
-
-
-// CMIOObjectIsPropertySettable is a CoreMediaIO function.
-//
-// Added in macOS 10.7.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOObjectIsPropertySettable(_:_:_:)
-func CMIOObjectIsPropertySettable(objectID unsafe.Pointer, address unsafe.Pointer, isSettable unsafe.Pointer) unsafe.Pointer {
-	return _CMIOObjectIsPropertySettable(objectID, address, isSettable)
-	}
-
-
-// CMIOSampleBufferGetSequenceNumber is a CoreMediaIO function.
-//
-// Added in macOS 10.7.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOSampleBufferGetSequenceNumber
-func CMIOSampleBufferGetSequenceNumber(sbuf unsafe.Pointer) unsafe.Pointer {
-	return _CMIOSampleBufferGetSequenceNumber(sbuf)
-	}
-
-
-// CMIOStreamDeckJog is a CoreMediaIO function.
-//
-// Added in macOS 10.7.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamDeckJog(_:_:)
-func CMIOStreamDeckJog(streamID unsafe.Pointer, speed unsafe.Pointer) unsafe.Pointer {
-	return _CMIOStreamDeckJog(streamID, speed)
-	}
-
+// [Full Topic]: https://developer.apple.com/documentation/CoreMediaIO/CMIOStreamClockConvertHostTimeToDeviceTime(_:_:)
+func CMIOStreamClockConvertHostTimeToDeviceTime(hostTime unsafe.Pointer, clock unsafe.Pointer) unsafe.Pointer {
+	return _CMIOStreamClockConvertHostTimeToDeviceTime(hostTime, clock)
+}
 
 
 

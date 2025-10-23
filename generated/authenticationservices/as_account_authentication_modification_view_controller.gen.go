@@ -31,9 +31,9 @@ type _AccountAuthenticationModificationViewControllerClass struct {
 // An interface definition for the [AccountAuthenticationModificationViewController] class.
 type IAccountAuthenticationModificationViewController interface {
 	appkit.IViewController
-	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
-	ExtensionContext() ASAccountAuthenticationModificationExtensionContext
+	ExtensionContext() IASAccountAuthenticationModificationExtensionContext
 	SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext)
+	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
 }
 
 // A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.
@@ -104,8 +104,8 @@ func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
-func (a_ AccountAuthenticationModificationViewController) ExtensionContext() ASAccountAuthenticationModificationExtensionContext {
-	rv := objc.Send[ASAccountAuthenticationModificationExtensionContext](a_.ID, objc.Sel("extensionContext"))
+func (a_ AccountAuthenticationModificationViewController) ExtensionContext() IASAccountAuthenticationModificationExtensionContext {
+	rv := objc.Send[AccountAuthenticationModificationExtensionContext](a_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 

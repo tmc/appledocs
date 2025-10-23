@@ -30,6 +30,8 @@ type _mConnectionHandleClass struct {
 // An interface definition for the [mConnectionHandle] class.
 type ImConnectionHandle interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

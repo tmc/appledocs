@@ -32,20 +32,9 @@ type _ScrubberClass struct {
 // An interface definition for the [Scrubber] class.
 type IScrubber interface {
 	IView
-	InsertItemsAtIndexes(indexes foundation.IIndexSet)
-	ItemViewForItemAtIndex(index int) ScrubberItemView
-	MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView
-	MoveItemAtIndexToIndex(oldIndex int, newIndex int)
-	PerformSequentialBatchUpdates(updateBlock unsafe.Pointer)
-	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier)
-	RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier)
-	ReloadData()
-	ReloadItemsAtIndexes(indexes foundation.IIndexSet)
-	RemoveItemsAtIndexes(indexes foundation.IIndexSet)
-	ScrollItemAtIndexToAlignment(index int, alignment IScrubberAlignment)
-	BackgroundColor() NSColor
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	BackgroundView() NSView
+	BackgroundView() IView
 	SetBackgroundView(value IView)
 	DataSource() objc.ID
 	SetDataSource(value objc.ID)
@@ -56,19 +45,19 @@ type IScrubber interface {
 	HighlightedIndex() int
 	Continuous() bool
 	SetContinuous(value bool)
-	ItemAlignment() ScrubberAlignment
-	SetItemAlignment(value IScrubberAlignment)
-	Mode() ScrubberMode
-	SetMode(value ScrubberMode)
+	ItemAlignment() NSScrubberAlignment
+	SetItemAlignment(value NSScrubberAlignment)
+	Mode() NSScrubberMode
+	SetMode(value NSScrubberMode)
 	NumberOfItems() int
-	ScrubberLayout() NSScrubberLayout
-	SetScrubberLayout(value IScrubberLayout)
+	ScrubberLayout() ScrubberLayout
+	SetScrubberLayout(value ScrubberLayout)
 	SelectedIndex() int
 	SetSelectedIndex(value int)
-	SelectionBackgroundStyle() NSScrubberSelectionStyle
-	SetSelectionBackgroundStyle(value NSScrubberSelectionStyle)
-	SelectionOverlayStyle() NSScrubberSelectionStyle
-	SetSelectionOverlayStyle(value NSScrubberSelectionStyle)
+	SelectionBackgroundStyle() ScrubberSelectionStyle
+	SetSelectionBackgroundStyle(value ScrubberSelectionStyle)
+	SelectionOverlayStyle() ScrubberSelectionStyle
+	SetSelectionOverlayStyle(value ScrubberSelectionStyle)
 	ShowsAdditionalContentIndicators() bool
 	SetShowsAdditionalContentIndicators(value bool)
 	ShowsArrowButtons() bool
@@ -77,7 +66,7 @@ type IScrubber interface {
 	SetIsContinuous(value bool)
 	ImageAlignment() unsafe.Pointer
 	SetImageAlignment(value unsafe.Pointer)
-	ImageView() NSImageView
+	ImageView() IImageView
 	SetImageView(value IImageView)
 	ScrubberContentSize() coregraphics.CGSize
 	SetScrubberContentSize(value coregraphics.CGSize)
@@ -91,8 +80,19 @@ type IScrubber interface {
 	SetFrame(value coregraphics.CGRect)
 	ItemIndex() int
 	SetItemIndex(value int)
-	TextField() NSTextField
-	SetTextField(value ITextField)
+	TextField() TextField
+	SetTextField(value TextField)
+	InsertItemsAtIndexes(indexes foundation.IndexSet)
+	ItemViewForItemAtIndex(index int) ScrubberItemView
+	MakeItemWithIdentifierOwner(itemIdentifier UserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView
+	MoveItemAtIndexToIndex(oldIndex int, newIndex int)
+	PerformSequentialBatchUpdates(updateBlock unsafe.Pointer)
+	RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier UserInterfaceItemIdentifier)
+	RegisterNibForItemIdentifier(nib INib, itemIdentifier UserInterfaceItemIdentifier)
+	ReloadData()
+	ReloadItemsAtIndexes(indexes foundation.IndexSet)
+	RemoveItemsAtIndexes(indexes foundation.IndexSet)
+	ScrollItemAtIndexToAlignment(index int, alignment NSScrubberAlignment)
 }
 
 // A customizable item picker control for the Touch Bar.
@@ -154,7 +154,7 @@ func NewScrubber() Scrubber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-func NewScrubberWithCoder(coder foundation.ICoder) Scrubber {
+func NewScrubberWithCoder(coder foundation.Coder) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -179,7 +179,7 @@ func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/insertItems(at:)
-func (s_ Scrubber) InsertItemsAtIndexes(indexes foundation.IIndexSet) {
+func (s_ Scrubber) InsertItemsAtIndexes(indexes foundation.IndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertItemsAtIndexes:"), indexes)
 }
 
@@ -198,7 +198,7 @@ func (s_ Scrubber) ItemViewForItemAtIndex(index int) ScrubberItemView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/makeItem(withIdentifier:owner:)
-func (s_ Scrubber) MakeItemWithIdentifierOwner(itemIdentifier IUserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView {
+func (s_ Scrubber) MakeItemWithIdentifierOwner(itemIdentifier UserInterfaceItemIdentifier, owner objectivec.IObject) ScrubberItemView {
 	rv := objc.Send[ScrubberItemView](s_.ID, objc.Sel("makeItemWithIdentifier:owner:"), itemIdentifier, owner)
 	return rv
 }
@@ -226,7 +226,7 @@ func (s_ Scrubber) PerformSequentialBatchUpdates(updateBlock unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-2rb69
-func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier IUserInterfaceItemIdentifier) {
+func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, itemIdentifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerClass:forItemIdentifier:"), itemViewClass, itemIdentifier)
 }
 
@@ -235,7 +235,7 @@ func (s_ Scrubber) RegisterClassForItemIdentifier(itemViewClass objc.Class, item
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/register(_:forItemIdentifier:)-6jye0
-func (s_ Scrubber) RegisterNibForItemIdentifier(nib INib, itemIdentifier IUserInterfaceItemIdentifier) {
+func (s_ Scrubber) RegisterNibForItemIdentifier(nib INib, itemIdentifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerNib:forItemIdentifier:"), nib, itemIdentifier)
 }
 
@@ -253,7 +253,7 @@ func (s_ Scrubber) ReloadData() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/reloadItems(at:)
-func (s_ Scrubber) ReloadItemsAtIndexes(indexes foundation.IIndexSet) {
+func (s_ Scrubber) ReloadItemsAtIndexes(indexes foundation.IndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("reloadItemsAtIndexes:"), indexes)
 }
 
@@ -262,7 +262,7 @@ func (s_ Scrubber) ReloadItemsAtIndexes(indexes foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/removeItems(at:)
-func (s_ Scrubber) RemoveItemsAtIndexes(indexes foundation.IIndexSet) {
+func (s_ Scrubber) RemoveItemsAtIndexes(indexes foundation.IndexSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeItemsAtIndexes:"), indexes)
 }
 
@@ -271,7 +271,7 @@ func (s_ Scrubber) RemoveItemsAtIndexes(indexes foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrollItem(at:to:)
-func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment IScrubberAlignment) {
+func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment NSScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollItemAtIndex:toAlignment:"), index, alignment)
 }
 
@@ -280,8 +280,8 @@ func (s_ Scrubber) ScrollItemAtIndexToAlignment(index int, alignment IScrubberAl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundColor
-func (s_ Scrubber) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("backgroundColor"))
+func (s_ Scrubber) BackgroundColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -299,8 +299,8 @@ func (s_ Scrubber) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/backgroundView
-func (s_ Scrubber) BackgroundView() NSView {
-	rv := objc.Send[NSView](s_.ID, objc.Sel("backgroundView"))
+func (s_ Scrubber) BackgroundView() IView {
+	rv := objc.Send[View](s_.ID, objc.Sel("backgroundView"))
 	return rv
 }
 
@@ -404,8 +404,8 @@ func (s_ Scrubber) SetContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-func (s_ Scrubber) ItemAlignment() ScrubberAlignment {
-	rv := objc.Send[ScrubberAlignment](s_.ID, objc.Sel("itemAlignment"))
+func (s_ Scrubber) ItemAlignment() NSScrubberAlignment {
+	rv := objc.Send[NSScrubberAlignment](s_.ID, objc.Sel("itemAlignment"))
 	return rv
 }
 
@@ -414,7 +414,7 @@ func (s_ Scrubber) ItemAlignment() ScrubberAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/itemAlignment
-func (s_ Scrubber) SetItemAlignment(value IScrubberAlignment) {
+func (s_ Scrubber) SetItemAlignment(value NSScrubberAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemAlignment:"), value)
 }
 
@@ -423,8 +423,8 @@ func (s_ Scrubber) SetItemAlignment(value IScrubberAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-func (s_ Scrubber) Mode() ScrubberMode {
-	rv := objc.Send[ScrubberMode](s_.ID, objc.Sel("mode"))
+func (s_ Scrubber) Mode() NSScrubberMode {
+	rv := objc.Send[NSScrubberMode](s_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -433,7 +433,7 @@ func (s_ Scrubber) Mode() ScrubberMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/mode-swift.property
-func (s_ Scrubber) SetMode(value ScrubberMode) {
+func (s_ Scrubber) SetMode(value NSScrubberMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMode:"), value)
 }
 
@@ -452,8 +452,8 @@ func (s_ Scrubber) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-func (s_ Scrubber) ScrubberLayout() NSScrubberLayout {
-	rv := objc.Send[NSScrubberLayout](s_.ID, objc.Sel("scrubberLayout"))
+func (s_ Scrubber) ScrubberLayout() ScrubberLayout {
+	rv := objc.Send[ScrubberLayout](s_.ID, objc.Sel("scrubberLayout"))
 	return rv
 }
 
@@ -462,7 +462,7 @@ func (s_ Scrubber) ScrubberLayout() NSScrubberLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/scrubberLayout
-func (s_ Scrubber) SetScrubberLayout(value IScrubberLayout) {
+func (s_ Scrubber) SetScrubberLayout(value ScrubberLayout) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrubberLayout:"), value)
 }
 
@@ -490,8 +490,8 @@ func (s_ Scrubber) SetSelectedIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-func (s_ Scrubber) SelectionBackgroundStyle() NSScrubberSelectionStyle {
-	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionBackgroundStyle"))
+func (s_ Scrubber) SelectionBackgroundStyle() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("selectionBackgroundStyle"))
 	return rv
 }
 
@@ -500,7 +500,7 @@ func (s_ Scrubber) SelectionBackgroundStyle() NSScrubberSelectionStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionBackgroundStyle
-func (s_ Scrubber) SetSelectionBackgroundStyle(value NSScrubberSelectionStyle) {
+func (s_ Scrubber) SetSelectionBackgroundStyle(value ScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionBackgroundStyle:"), value)
 }
 
@@ -509,8 +509,8 @@ func (s_ Scrubber) SetSelectionBackgroundStyle(value NSScrubberSelectionStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-func (s_ Scrubber) SelectionOverlayStyle() NSScrubberSelectionStyle {
-	rv := objc.Send[NSScrubberSelectionStyle](s_.ID, objc.Sel("selectionOverlayStyle"))
+func (s_ Scrubber) SelectionOverlayStyle() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("selectionOverlayStyle"))
 	return rv
 }
 
@@ -519,7 +519,7 @@ func (s_ Scrubber) SelectionOverlayStyle() NSScrubberSelectionStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/selectionOverlayStyle
-func (s_ Scrubber) SetSelectionOverlayStyle(value NSScrubberSelectionStyle) {
+func (s_ Scrubber) SetSelectionOverlayStyle(value ScrubberSelectionStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectionOverlayStyle:"), value)
 }
 
@@ -604,8 +604,8 @@ func (s_ Scrubber) SetImageAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-func (s_ Scrubber) ImageView() NSImageView {
-	rv := objc.Send[NSImageView](s_.ID, objc.Sel("imageView"))
+func (s_ Scrubber) ImageView() IImageView {
+	rv := objc.Send[ImageView](s_.ID, objc.Sel("imageView"))
 	return rv
 }
 
@@ -737,8 +737,8 @@ func (s_ Scrubber) SetItemIndex(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-func (s_ Scrubber) TextField() NSTextField {
-	rv := objc.Send[NSTextField](s_.ID, objc.Sel("textField"))
+func (s_ Scrubber) TextField() TextField {
+	rv := objc.Send[TextField](s_.ID, objc.Sel("textField"))
 	return rv
 }
 
@@ -747,7 +747,7 @@ func (s_ Scrubber) TextField() NSTextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-func (s_ Scrubber) SetTextField(value ITextField) {
+func (s_ Scrubber) SetTextField(value TextField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
 }
 

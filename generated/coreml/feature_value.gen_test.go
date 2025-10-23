@@ -13,7 +13,7 @@ var _ = coreml.NewFeatureValue
 // Creates a feature value with a type that represents an undefined or missing value.
 func ExampleNewFeatureValueUndefinedFeatureValueWithType() {
 	_ = coreml.NewFeatureValueUndefinedFeatureValueWithType(
-		coreml.FeatureType{}, // type FeatureType
+		coreml.MLFeatureType{}, // type MLFeatureType
 	)
 	// Output:
 }

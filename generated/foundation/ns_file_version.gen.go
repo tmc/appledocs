@@ -30,27 +30,29 @@ type _FileVersionClass struct {
 // An interface definition for the [FileVersion] class.
 type IFileVersion interface {
 	objectivec.IObject
-	HasLocalContents() bool
-	HasThumbnail() bool
-	Conflict() bool
-	Discardable() bool
-	SetDiscardable(value bool)
-	Resolved() bool
-	SetResolved(value bool)
-	LocalizedName() string
-	LocalizedNameOfSavingComputer() string
+	// properties:
+	HasLocalContents() bool /* primitive/slice/pointer */
+	HasThumbnail() bool /* primitive/slice/pointer */
+	Conflict() bool /* primitive/slice/pointer */
+	Discardable() bool /* primitive/slice/pointer */
+	SetDiscardable(value bool /* primitive/slice/pointer */)
+	Resolved() bool /* primitive/slice/pointer */
+	SetResolved(value bool /* primitive/slice/pointer */)
+	LocalizedName() string /* primitive/slice/pointer */
+	LocalizedNameOfSavingComputer() string /* primitive/slice/pointer */
 	ModificationDate() IDate
 	OriginatorNameComponents() IPersonNameComponents
 	PersistentIdentifier() objc.ID
 	URL() IURL
-	IsConflict() bool
-	SetIsConflict(value bool)
-	IsDiscardable() bool
-	SetIsDiscardable(value bool)
-	IsResolved() bool
-	SetIsResolved(value bool)
-	RemoveAndReturnError(outError IError) bool
-	ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) IURL
+	IsConflict() bool /* primitive/slice/pointer */
+	SetIsConflict(value bool /* primitive/slice/pointer */)
+	IsDiscardable() bool /* primitive/slice/pointer */
+	SetIsDiscardable(value bool /* primitive/slice/pointer */)
+	IsResolved() bool /* primitive/slice/pointer */
+	SetIsResolved(value bool /* primitive/slice/pointer */)
+	// methods:
+	RemoveAndReturnError(outError IError) bool /* primitive/slice/pointer */
+	ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL
 }
 
 // A snapshot of a file at a specific point in time.
@@ -110,7 +112,7 @@ func NewFileVersion() FileVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/addOfItem(at:withContentsOf:options:)
-func (fc _FileVersionClass) AddVersionOfItemAtURLWithContentsOfURLOptionsError(url IURL, contentsURL IURL, options NSFileVersionAddingOptions, outError IError) IFileVersion {
+func (fc _FileVersionClass) AddVersionOfItemAtURLWithContentsOfURLOptionsError(url IURL, contentsURL IURL, options FileVersionAddingOptions, outError IError) IFileVersion {
 	rv := objc.Send[FileVersion](objc.ID(fc.class), objc.Sel("addVersionOfItemAtURL:withContentsOfURL:options:error:"), url, contentsURL, options, outError)
 	return rv
 }
@@ -137,7 +139,7 @@ func (fc _FileVersionClass) GetNonlocalVersionsOfItemAtURLCompletionHandler(url 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/otherVersionsOfItem(at:)
-func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion {
+func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion /* primitive/slice/pointer */ {
 	rv := objc.Send[[]FileVersion](objc.ID(fc.class), objc.Sel("otherVersionsOfItemAtURL:"), url)
 	return rv
 }
@@ -147,7 +149,7 @@ func (fc _FileVersionClass) OtherVersionsOfItemAtURL(url IURL) []FileVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/removeOtherVersionsOfItem(at:)
-func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool {
+func (fc _FileVersionClass) RemoveOtherVersionsOfItemAtURLError(url IURL, outError IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("removeOtherVersionsOfItemAtURL:error:"), url, outError)
 	return rv
 }
@@ -167,7 +169,7 @@ func (fc _FileVersionClass) TemporaryDirectoryURLForNewVersionOfItemAtURL(url IU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/unresolvedConflictVersionsOfItem(at:)
-func (fc _FileVersionClass) UnresolvedConflictVersionsOfItemAtURL(url IURL) []FileVersion {
+func (fc _FileVersionClass) UnresolvedConflictVersionsOfItemAtURL(url IURL) []FileVersion /* primitive/slice/pointer */ {
 	rv := objc.Send[[]FileVersion](objc.ID(fc.class), objc.Sel("unresolvedConflictVersionsOfItemAtURL:"), url)
 	return rv
 }
@@ -187,7 +189,7 @@ func (fc _FileVersionClass) VersionOfItemAtURLForPersistentIdentifier(url IURL, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/remove()
-func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
+func (f_ FileVersion) RemoveAndReturnError(outError IError) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("removeAndReturnError:"), outError)
 	return rv
 }
@@ -197,7 +199,7 @@ func (f_ FileVersion) RemoveAndReturnError(outError IError) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/replaceItem(at:options:)
-func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) IURL {
+func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options FileVersionReplacingOptions, error_ IError) IURL {
 	rv := objc.Send[URL](f_.ID, objc.Sel("replaceItemAtURL:options:error:"), url, options, error_)
 	return rv
 }
@@ -205,7 +207,7 @@ func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
-func (f_ FileVersion) HasLocalContents() bool {
+func (f_ FileVersion) HasLocalContents() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
 	return rv
 }
@@ -213,7 +215,7 @@ func (f_ FileVersion) HasLocalContents() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasThumbnail
-func (f_ FileVersion) HasThumbnail() bool {
+func (f_ FileVersion) HasThumbnail() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasThumbnail"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (f_ FileVersion) HasThumbnail() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isConflict
-func (f_ FileVersion) Conflict() bool {
+func (f_ FileVersion) Conflict() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("conflict"))
 	return rv
 }
@@ -233,7 +235,7 @@ func (f_ FileVersion) Conflict() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isDiscardable
-func (f_ FileVersion) Discardable() bool {
+func (f_ FileVersion) Discardable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("discardable"))
 	return rv
 }
@@ -243,7 +245,7 @@ func (f_ FileVersion) Discardable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isDiscardable
-func (f_ FileVersion) SetDiscardable(value bool) {
+func (f_ FileVersion) SetDiscardable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDiscardable:"), value)
 }
 
@@ -252,7 +254,7 @@ func (f_ FileVersion) SetDiscardable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isResolved
-func (f_ FileVersion) Resolved() bool {
+func (f_ FileVersion) Resolved() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("resolved"))
 	return rv
 }
@@ -262,7 +264,7 @@ func (f_ FileVersion) Resolved() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/isResolved
-func (f_ FileVersion) SetResolved(value bool) {
+func (f_ FileVersion) SetResolved(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResolved:"), value)
 }
 
@@ -271,7 +273,7 @@ func (f_ FileVersion) SetResolved(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/localizedName
-func (f_ FileVersion) LocalizedName() string {
+func (f_ FileVersion) LocalizedName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
 	return rv
 }
@@ -281,7 +283,7 @@ func (f_ FileVersion) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/localizedNameOfSavingComputer
-func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
+func (f_ FileVersion) LocalizedNameOfSavingComputer() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
 }
@@ -329,7 +331,7 @@ func (f_ FileVersion) URL() IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-func (f_ FileVersion) IsConflict() bool {
+func (f_ FileVersion) IsConflict() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isConflict"))
 	return rv
 }
@@ -339,7 +341,7 @@ func (f_ FileVersion) IsConflict() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isconflict
-func (f_ FileVersion) SetIsConflict(value bool) {
+func (f_ FileVersion) SetIsConflict(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsConflict:"), value)
 }
 
@@ -348,7 +350,7 @@ func (f_ FileVersion) SetIsConflict(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) IsDiscardable() bool {
+func (f_ FileVersion) IsDiscardable() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDiscardable"))
 	return rv
 }
@@ -358,7 +360,7 @@ func (f_ FileVersion) IsDiscardable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isdiscardable
-func (f_ FileVersion) SetIsDiscardable(value bool) {
+func (f_ FileVersion) SetIsDiscardable(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDiscardable:"), value)
 }
 
@@ -367,7 +369,7 @@ func (f_ FileVersion) SetIsDiscardable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-func (f_ FileVersion) IsResolved() bool {
+func (f_ FileVersion) IsResolved() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isResolved"))
 	return rv
 }
@@ -377,7 +379,7 @@ func (f_ FileVersion) IsResolved() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/isresolved
-func (f_ FileVersion) SetIsResolved(value bool) {
+func (f_ FileVersion) SetIsResolved(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsResolved:"), value)
 }
 

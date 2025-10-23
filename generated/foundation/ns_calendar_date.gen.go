@@ -29,6 +29,8 @@ type _CalendarDateClass struct {
 // An interface definition for the [CalendarDate] class.
 type ICalendarDate interface {
 	IDate
+	// properties:
+	// methods:
 }
 
 // A specialized date object with embedded calendar information.

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSetSeatSettingsInCarIntent] class.
@@ -30,9 +29,11 @@ type _INSetSeatSettingsInCarIntentClass struct {
 // An interface definition for the [INSetSeatSettingsInCarIntent] class.
 type IINSetSeatSettingsInCarIntent interface {
 	IINIntent
-	EnableCooling() foundation.Number
+	// properties:
 	CarName() INSpeakableString
 	SetCarName(value INSpeakableString)
+	EnableCooling() bool
+	SetEnableCooling(value bool)
 	EnableHeating() bool
 	SetEnableHeating(value bool)
 	EnableMassage() bool
@@ -43,6 +44,7 @@ type IINSetSeatSettingsInCarIntent interface {
 	SetRelativeLevelSetting(value unsafe.Pointer)
 	Seat() unsafe.Pointer
 	SetSeat(value unsafe.Pointer)
+	// methods:
 }
 
 // A request to change the seat-related settings in a CarPlay-enabled vehicle.
@@ -100,16 +102,6 @@ func NewINSetSeatSettingsInCarIntent() INSetSeatSettingsInCarIntent {
 
 
 
-// A Boolean value indicating whether to enable the seat cooling system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INSetSeatSettingsInCarIntent/enableCooling-6bcu7
-func (i_ INSetSeatSettingsInCarIntent) EnableCooling() foundation.Number {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("enableCooling"))
-	return rv
-}
-
-
 // The name of the car you applied the settings to.
 //
 // [Full Topic]
@@ -126,6 +118,25 @@ func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
 func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
+}
+
+
+// A Boolean value indicating whether to enable the seat cooling system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablecooling-8qqx3
+func (i_ INSetSeatSettingsInCarIntent) EnableCooling() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("enableCooling"))
+	return rv
+}
+
+
+// A Boolean value indicating whether to enable the seat cooling system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablecooling-8qqx3
+func (i_ INSetSeatSettingsInCarIntent) SetEnableCooling(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableCooling:"), value)
 }
 
 

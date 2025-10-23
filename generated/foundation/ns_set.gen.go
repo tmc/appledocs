@@ -30,29 +30,31 @@ type _SetClass struct {
 // An interface definition for the [Set] class.
 type ISet interface {
 	objectivec.IObject
-	AllObjects() []objc.ID
-	Count() uint
-	Description() string
+	// properties:
+	AllObjects() []objc.ID /* already interface */
+	Count() uint /* primitive/slice/pointer */
+	Description() string /* primitive/slice/pointer */
+	// methods:
 	SetByAddingObject(anObject unsafe.Pointer) unsafe.Pointer
 	SetByAddingObjectsFromSet(other unsafe.Pointer) unsafe.Pointer
-	SetByAddingObjectsFromArray(other []objc.ID) unsafe.Pointer
+	SetByAddingObjectsFromArray(other []objc.ID /* already interface */) unsafe.Pointer
 	AnyObject() unsafe.Pointer
-	ContainsObject(anObject unsafe.Pointer) bool
+	ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer */
 	DescriptionWithLocale(locale objectivec.IObject) IString
-	EnumerateIndexPathsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
+	EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
-	EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
+	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FilteredSetUsingPredicate(predicate IPredicate) unsafe.Pointer
-	IntersectsSet(otherSet unsafe.Pointer) bool
-	IsEqualToSet(otherSet unsafe.Pointer) bool
-	IsSubsetOfSet(otherSet unsafe.Pointer) bool
+	IntersectsSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */
+	IsEqualToSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */
+	IsSubsetOfSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */
 	MakeObjectsPerformSelector(aSelector objc.SEL)
 	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
 	Member(object unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
-	ObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
+	ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer
-	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
+	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */) []objc.ID /* already interface */
 }
 
 // A static, unordered collection of unique objects.
@@ -112,7 +114,7 @@ func NewSet() Set {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(array:)
-func NewSetWithArray(array []objc.ID) Set {
+func NewSetWithArray(array []objc.ID /* already interface */) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()
@@ -140,7 +142,7 @@ func NewSetWithCollectionViewIndexPath(indexPath IIndexPath) Set {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
-func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath) Set {
+func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath /* primitive/slice/pointer */) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
 }
@@ -172,7 +174,7 @@ func NewSetWithObjects(firstObj unsafe.Pointer) Set {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-7kift
-func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint) Set {
+func NewSetWithObjectsCount(objects unsafe.Pointer, cnt uint /* primitive/slice/pointer */) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
 	rv.Autorelease()
@@ -196,7 +198,7 @@ func NewSetWithSet(set unsafe.Pointer) Set {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(set:copyItems:)
-func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool) Set {
+func NewSetWithSetCopyItems(set unsafe.Pointer, flag bool /* primitive/slice/pointer */) Set {
 	instance := getSetClass().Alloc()
 	rv := objc.Send[Set](instance.ID, objc.Sel("initWithSet:copyItems:"), set, flag)
 	rv.Autorelease()
@@ -215,7 +217,7 @@ func (sc _SetClass) SetWithCollectionViewIndexPath(indexPath IIndexPath) unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
-func (sc _SetClass) SetWithCollectionViewIndexPaths(indexPaths []IndexPath) unsafe.Pointer {
+func (sc _SetClass) SetWithCollectionViewIndexPaths(indexPaths []IndexPath /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
 }
@@ -235,7 +237,7 @@ func (sc _SetClass) SetWithObject(object unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(objects:count:)-65ni4
-func (sc _SetClass) SetWithObjectsCount(objects unsafe.Pointer, cnt uint) unsafe.Pointer {
+func (sc _SetClass) SetWithObjectsCount(objects unsafe.Pointer, cnt uint /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithObjects:count:"), objects, cnt)
 	return rv
 }
@@ -255,7 +257,7 @@ func (sc _SetClass) Set() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setWithArray:
-func (sc _SetClass) SetWithArray(array []objc.ID) unsafe.Pointer {
+func (sc _SetClass) SetWithArray(array []objc.ID /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithArray:"), array)
 	return rv
 }
@@ -285,7 +287,7 @@ func (sc _SetClass) SetWithSet(set unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/addObserver(_:forKeyPath:options:context:)
-func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options NSKeyValueObservingOptions, context unsafe.Pointer) {
+func (s_ Set) AddObserverForKeyPathOptionsContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer */, options KeyValueObservingOptions, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addObserver:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
@@ -314,7 +316,7 @@ func (s_ Set) SetByAddingObjectsFromSet(other unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/addingObjects(from:)-544m9
-func (s_ Set) SetByAddingObjectsFromArray(other []objc.ID) unsafe.Pointer {
+func (s_ Set) SetByAddingObjectsFromArray(other []objc.ID /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("setByAddingObjectsFromArray:"), other)
 	return rv
 }
@@ -334,7 +336,7 @@ func (s_ Set) AnyObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/contains(_:)
-func (s_ Set) ContainsObject(anObject unsafe.Pointer) bool {
+func (s_ Set) ContainsObject(anObject unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containsObject:"), anObject)
 	return rv
 }
@@ -352,7 +354,7 @@ func (s_ Set) DescriptionWithLocale(locale objectivec.IObject) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateIndexPaths(options:using:)
-func (s_ Set) EnumerateIndexPathsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
+func (s_ Set) EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateIndexPathsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -370,7 +372,7 @@ func (s_ Set) EnumerateObjectsUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/enumerateObjects(options:using:)
-func (s_ Set) EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
+func (s_ Set) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -389,7 +391,7 @@ func (s_ Set) FilteredSetUsingPredicate(predicate IPredicate) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/intersects(_:)
-func (s_ Set) IntersectsSet(otherSet unsafe.Pointer) bool {
+func (s_ Set) IntersectsSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("intersectsSet:"), otherSet)
 	return rv
 }
@@ -399,7 +401,7 @@ func (s_ Set) IntersectsSet(otherSet unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/isEqual(to:)
-func (s_ Set) IsEqualToSet(otherSet unsafe.Pointer) bool {
+func (s_ Set) IsEqualToSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToSet:"), otherSet)
 	return rv
 }
@@ -409,7 +411,7 @@ func (s_ Set) IsEqualToSet(otherSet unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/isSubset(of:)
-func (s_ Set) IsSubsetOfSet(otherSet unsafe.Pointer) bool {
+func (s_ Set) IsSubsetOfSet(otherSet unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSubsetOfSet:"), otherSet)
 	return rv
 }
@@ -457,7 +459,7 @@ func (s_ Set) ObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/objects(options:passingTest:)
-func (s_ Set) ObjectsWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
+func (s_ Set) ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -477,7 +479,7 @@ func (s_ Set) ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:)
-func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath string) {
+func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:"), observer, objc.String(keyPath))
 }
 
@@ -486,7 +488,7 @@ func (s_ Set) RemoveObserverForKeyPath(observer objectivec.IObject, keyPath stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/removeObserver(_:forKeyPath:context:)
-func (s_ Set) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer) {
+func (s_ Set) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer */, context unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeObserver:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
@@ -495,7 +497,7 @@ func (s_ Set) RemoveObserverForKeyPathContext(observer objectivec.IObject, keyPa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setValue(_:forKey:)
-func (s_ Set) SetValueForKey(value objectivec.IObject, key string) {
+func (s_ Set) SetValueForKey(value objectivec.IObject, key string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
 
@@ -504,7 +506,7 @@ func (s_ Set) SetValueForKey(value objectivec.IObject, key string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/sortedArray(using:)
-func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
+func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor /* primitive/slice/pointer */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }
@@ -514,7 +516,7 @@ func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/value(forKey:)
-func (s_ Set) ValueForKey(key string) objc.ID {
+func (s_ Set) ValueForKey(key string /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("valueForKey:"), objc.String(key))
 	return rv
 }
@@ -524,7 +526,7 @@ func (s_ Set) ValueForKey(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/allObjects
-func (s_ Set) AllObjects() []objc.ID {
+func (s_ Set) AllObjects() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("allObjects"))
 	return rv
 }
@@ -534,7 +536,7 @@ func (s_ Set) AllObjects() []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/count
-func (s_ Set) Count() uint {
+func (s_ Set) Count() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](s_.ID, objc.Sel("count"))
 	return rv
 }
@@ -544,7 +546,7 @@ func (s_ Set) Count() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/description
-func (s_ Set) Description() string {
+func (s_ Set) Description() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("description"))
 	return rv
 }

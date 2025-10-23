@@ -29,6 +29,8 @@ type _UnitFrequencyClass struct {
 // An interface definition for the [UnitFrequency] class.
 type IUnitFrequency interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for frequency.

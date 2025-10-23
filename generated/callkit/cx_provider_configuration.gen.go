@@ -32,7 +32,7 @@ type _CXProviderConfigurationClass struct {
 type ICXProviderConfiguration interface {
 	objectivec.IObject
 	IconTemplateImageData() foundation.NSData
-	SetIconTemplateImageData(value foundation.IData)
+	SetIconTemplateImageData(value foundation.NSData)
 	IncludesCallsInRecents() bool
 	SetIncludesCallsInRecents(value bool)
 	LocalizedName() string
@@ -130,7 +130,7 @@ func (c_ CXProviderConfiguration) IconTemplateImageData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/iconTemplateImageData
-func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.IData) {
+func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.NSData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIconTemplateImageData:"), value)
 }
 

@@ -30,8 +30,10 @@ type _CustomRoutingEventClass struct {
 // An interface definition for the [CustomRoutingEvent] class.
 type ICustomRoutingEvent interface {
 	objectivec.IObject
-	Reason() CustomRoutingEventReason
-	Route() AVCustomDeviceRoute
+	Reason() AVCustomRoutingEventReason
+	SetReason(value AVCustomRoutingEventReason)
+	Route() IAVCustomDeviceRoute
+	SetRoute(value IAVCustomDeviceRoute)
 }
 
 // An object that represents an event that occurs on a route.
@@ -90,9 +92,28 @@ func NewCustomRoutingEvent() CustomRoutingEvent {
 // A reason for an event, such as a user request to activate or deactivate a route.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/reason
-func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason {
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+func (c_ CustomRoutingEvent) Reason() AVCustomRoutingEventReason {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
+	return rv
+}
+
+
+// A reason for an event, such as a user request to activate or deactivate a route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
+func (c_ CustomRoutingEvent) SetReason(value AVCustomRoutingEventReason) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
+}
+
+
+// A route for the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+func (c_ CustomRoutingEvent) Route() IAVCustomDeviceRoute {
+	rv := objc.Send[CustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv
 }
 
@@ -100,10 +121,9 @@ func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason {
 // A route for the event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent/route
-func (c_ CustomRoutingEvent) Route() AVCustomDeviceRoute {
-	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
+func (c_ CustomRoutingEvent) SetRoute(value IAVCustomDeviceRoute) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
 }
 
 

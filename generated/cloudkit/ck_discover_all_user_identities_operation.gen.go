@@ -31,10 +31,10 @@ type ICKDiscoverAllUserIdentitiesOperation interface {
 	ICKOperation
 	DiscoverAllUserIdentitiesCompletionBlock() unsafe.Pointer
 	SetDiscoverAllUserIdentitiesCompletionBlock(value unsafe.Pointer)
-	UserIdentityDiscoveredBlock() unsafe.Pointer
-	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
 	DiscoverAllUserIdentitiesResultBlock() unsafe.Pointer
 	SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer)
+	UserIdentityDiscoveredBlock() unsafe.Pointer
+	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
 	ContactIdentifiers() string
 	SetContactIdentifiers(value string)
 	CompletionBlock() unsafe.Pointer
@@ -98,11 +98,10 @@ func NewCKDiscoverAllUserIdentitiesOperation() CKDiscoverAllUserIdentitiesOperat
 
 
 
-
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/discoverAllUserIdentitiesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiescompletionblock
 func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesCompletionBlock() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverAllUserIdentitiesCompletionBlock"))
 	return rv
@@ -112,28 +111,9 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesCompleti
 // The closure to execute when the operation finishes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/discoverAllUserIdentitiesCompletionBlock
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiescompletionblock
 func (c_ CKDiscoverAllUserIdentitiesOperation) SetDiscoverAllUserIdentitiesCompletionBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverAllUserIdentitiesCompletionBlock:"), value)
-}
-
-
-// The closure to execute for each user identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/userIdentityDiscoveredBlock
-func (c_ CKDiscoverAllUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
-	return rv
-}
-
-
-// The closure to execute for each user identity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/userIdentityDiscoveredBlock
-func (c_ CKDiscoverAllUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
 }
 
 
@@ -149,6 +129,25 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesResultBl
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiesresultblock
 func (c_ CKDiscoverAllUserIdentitiesOperation) SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverAllUserIdentitiesResultBlock:"), value)
+}
+
+
+// The closure to execute for each user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/useridentitydiscoveredblock
+func (c_ CKDiscoverAllUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
+	return rv
+}
+
+
+// The closure to execute for each user identity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/useridentitydiscoveredblock
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
 }
 
 
@@ -207,5 +206,6 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) QualityOfService() unsafe.Pointer
 func (c_ CKDiscoverAllUserIdentitiesOperation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }
+
 
 

@@ -29,17 +29,19 @@ type _XMLDTDNodeClass struct {
 // An interface definition for the [XMLDTDNode] class.
 type IXMLDTDNode interface {
 	IXMLNode
-	DTDKind() NSXMLDTDNodeKind
-	SetDTDKind(value NSXMLDTDNodeKind)
-	External() bool
-	NotationName() string
-	SetNotationName(value string)
-	PublicID() string
-	SetPublicID(value string)
-	SystemID() string
-	SetSystemID(value string)
-	IsExternal() bool
-	SetIsExternal(value bool)
+	// properties:
+	DTDKind() XMLDTDNodeKind
+	SetDTDKind(value XMLDTDNodeKind)
+	External() bool /* primitive/slice/pointer */
+	NotationName() string /* primitive/slice/pointer */
+	SetNotationName(value string /* primitive/slice/pointer */)
+	PublicID() string /* primitive/slice/pointer */
+	SetPublicID(value string /* primitive/slice/pointer */)
+	SystemID() string /* primitive/slice/pointer */
+	SetSystemID(value string /* primitive/slice/pointer */)
+	IsExternal() bool /* primitive/slice/pointer */
+	SetIsExternal(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.
@@ -99,7 +101,7 @@ func NewXMLDTDNode() XMLDTDNode {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(kind:options:)
-func NewXMLDTDNodeWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) XMLDTDNode {
+func NewXMLDTDNodeWithKindOptions(kind XMLNodeKind, options XMLNodeOptions) XMLDTDNode {
 	instance := getXMLDTDNodeClass().Alloc()
 	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewXMLDTDNodeWithKindOptions(kind NSXMLNodeKind, options NSXMLNodeOptions) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/init(xmlString:)
-func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
+func NewXMLDTDNodeWithXMLString(string_ string /* primitive/slice/pointer */) XMLDTDNode {
 	instance := getXMLDTDNodeClass().Alloc()
 	rv := objc.Send[XMLDTDNode](instance.ID, objc.Sel("initWithXMLString:"), objc.String(string_))
 	rv.Autorelease()
@@ -124,7 +126,7 @@ func NewXMLDTDNodeWithXMLString(string_ string) XMLDTDNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
-func (x_ XMLDTDNode) DTDKind() NSXMLDTDNodeKind {
+func (x_ XMLDTDNode) DTDKind() XMLDTDNodeKind {
 	rv := objc.Send[XMLDTDNodeKind](x_.ID, objc.Sel("DTDKind"))
 	return rv
 }
@@ -134,14 +136,14 @@ func (x_ XMLDTDNode) DTDKind() NSXMLDTDNodeKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/dtdKind-swift.property
-func (x_ XMLDTDNode) SetDTDKind(value NSXMLDTDNodeKind) {
+func (x_ XMLDTDNode) SetDTDKind(value XMLDTDNodeKind) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDTDKind:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/isExternal
-func (x_ XMLDTDNode) External() bool {
+func (x_ XMLDTDNode) External() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("external"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (x_ XMLDTDNode) External() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/notationName
-func (x_ XMLDTDNode) NotationName() string {
+func (x_ XMLDTDNode) NotationName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("notationName"))
 	return rv
 }
@@ -161,7 +163,7 @@ func (x_ XMLDTDNode) NotationName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/notationName
-func (x_ XMLDTDNode) SetNotationName(value string) {
+func (x_ XMLDTDNode) SetNotationName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNotationName:"), objc.String(value))
 }
 
@@ -170,7 +172,7 @@ func (x_ XMLDTDNode) SetNotationName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/publicID
-func (x_ XMLDTDNode) PublicID() string {
+func (x_ XMLDTDNode) PublicID() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (x_ XMLDTDNode) PublicID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/publicID
-func (x_ XMLDTDNode) SetPublicID(value string) {
+func (x_ XMLDTDNode) SetPublicID(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
 
@@ -189,7 +191,7 @@ func (x_ XMLDTDNode) SetPublicID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/systemID
-func (x_ XMLDTDNode) SystemID() string {
+func (x_ XMLDTDNode) SystemID() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
@@ -199,14 +201,14 @@ func (x_ XMLDTDNode) SystemID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTDNode/systemID
-func (x_ XMLDTDNode) SetSystemID(value string) {
+func (x_ XMLDTDNode) SetSystemID(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) IsExternal() bool {
+func (x_ XMLDTDNode) IsExternal() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isExternal"))
 	return rv
 }
@@ -214,7 +216,7 @@ func (x_ XMLDTDNode) IsExternal() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldtdnode/isexternal
-func (x_ XMLDTDNode) SetIsExternal(value bool) {
+func (x_ XMLDTDNode) SetIsExternal(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsExternal:"), value)
 }
 

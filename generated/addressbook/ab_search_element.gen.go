@@ -90,7 +90,7 @@ func NewABSearchElement() ABSearchElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-func NewABSearchElementForConjunctionChildren(conjuction IABSearchConjunction, children objectivec.IObject) ABSearchElement {
+func NewABSearchElementForConjunctionChildren(conjuction ABSearchConjunction, children objectivec.IObject) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(getABSearchElementClass().class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
 }
@@ -101,7 +101,7 @@ func NewABSearchElementForConjunctionChildren(conjuction IABSearchConjunction, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElement/init(forConjunction:children:)
-func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction IABSearchConjunction, children objectivec.IObject) ABSearchElement {
+func (ac _ABSearchElementClass) SearchElementForConjunctionChildren(conjuction ABSearchConjunction, children objectivec.IObject) ABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForConjunction:children:"), conjuction, children)
 	return rv
 }

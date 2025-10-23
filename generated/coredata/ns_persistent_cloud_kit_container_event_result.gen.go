@@ -30,7 +30,7 @@ type _PersistentCloudKitContainerEventResultClass struct {
 type IPersistentCloudKitContainerEventResult interface {
 	IPersistentStoreResult
 	Result() objc.ID
-	ResultType() PersistentCloudKitContainerEventResultType
+	ResultType() NSPersistentCloudKitContainerEventResultType
 }
 
 // The result of a request to fetch persistent CloudKit container events.
@@ -100,8 +100,8 @@ func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventResult/resultType-swift.property
-func (p_ PersistentCloudKitContainerEventResult) ResultType() PersistentCloudKitContainerEventResultType {
-	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentCloudKitContainerEventResult) ResultType() NSPersistentCloudKitContainerEventResultType {
+	rv := objc.Send[NSPersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 

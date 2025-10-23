@@ -30,6 +30,8 @@ type _mEventDataListenerClass struct {
 // An interface definition for the [mEventDataListener] class.
 type ImEventDataListener interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

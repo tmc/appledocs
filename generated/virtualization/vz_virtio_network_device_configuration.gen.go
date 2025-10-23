@@ -30,15 +30,19 @@ type _VZVirtioNetworkDeviceConfigurationClass struct {
 type IVZVirtioNetworkDeviceConfiguration interface {
 	IVZNetworkDeviceConfiguration
 	Attachment() VZNetworkDeviceAttachment
-	SetAttachment(value IVZNetworkDeviceAttachment)
+	SetAttachment(value VZNetworkDeviceAttachment)
 	NetworkDevices() VZNetworkDeviceConfiguration
-	SetNetworkDevices(value IVZNetworkDeviceConfiguration)
+	SetNetworkDevices(value VZNetworkDeviceConfiguration)
 }
 
 // A configuration object that requests the creation of a network device for the guest system.
 //
 // Use a object to configure one network interface of your virtual machine. After creating this object, assign an appropriate value to its inherited property to define the type of network interface you want. You can also assign a specific MAC address, or let the system generate a random address for you. After creating and configuring a object, assign it to the property of your virtual machine’s configuration.
+
+
+// A configuration object that requests the creation of a network device for the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioNetworkDeviceConfiguration
 type VZVirtioNetworkDeviceConfiguration struct {
 	VZNetworkDeviceConfiguration
@@ -88,6 +92,7 @@ func NewVZVirtioNetworkDeviceConfiguration() VZVirtioNetworkDeviceConfiguration 
 
 // The object that defines how the virtual network device communicates with the host system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
 func (v_ VZVirtioNetworkDeviceConfiguration) Attachment() VZNetworkDeviceAttachment {
 	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
@@ -95,17 +100,18 @@ func (v_ VZVirtioNetworkDeviceConfiguration) Attachment() VZNetworkDeviceAttachm
 }
 
 
-// SetAttachment sets the value of the attachment property.
 // The object that defines how the virtual network device communicates with the host system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZVirtioNetworkDeviceConfiguration) SetAttachment(value IVZNetworkDeviceAttachment) {
+func (v_ VZVirtioNetworkDeviceConfiguration) SetAttachment(value VZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
+
 // The array of network devices that you expose to the guest operating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
 func (v_ VZVirtioNetworkDeviceConfiguration) NetworkDevices() VZNetworkDeviceConfiguration {
 	rv := objc.Send[VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
@@ -113,13 +119,13 @@ func (v_ VZVirtioNetworkDeviceConfiguration) NetworkDevices() VZNetworkDeviceCon
 }
 
 
-// SetNetworkDevices sets the value of the networkDevices property.
 // The array of network devices that you expose to the guest operating system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZVirtioNetworkDeviceConfiguration) SetNetworkDevices(value IVZNetworkDeviceConfiguration) {
+func (v_ VZVirtioNetworkDeviceConfiguration) SetNetworkDevices(value VZNetworkDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
 }
+
 
 

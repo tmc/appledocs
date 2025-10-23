@@ -32,7 +32,7 @@ type IABPersonView interface {
 	appkit.IView
 	Editing() bool
 	SetEditing(value bool)
-	Person() ABPerson
+	Person() IABPerson
 	SetPerson(value IABPerson)
 	ShouldShowLinkedPeople() bool
 	SetShouldShowLinkedPeople(value bool)
@@ -114,7 +114,7 @@ func (a_ ABPersonView) SetEditing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
-func (a_ ABPersonView) Person() ABPerson {
+func (a_ ABPersonView) Person() IABPerson {
 	rv := objc.Send[ABPerson](a_.ID, objc.Sel("person"))
 	return rv
 }

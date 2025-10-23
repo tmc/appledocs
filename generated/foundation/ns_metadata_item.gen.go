@@ -30,190 +30,192 @@ type _MetadataItemClass struct {
 // An interface definition for the [MetadataItem] class.
 type IMetadataItem interface {
 	objectivec.IObject
-	Attributes() []string
-	NSMetadataItemAcquisitionMakeKey() string
-	NSMetadataItemAcquisitionModelKey() string
-	NSMetadataItemAlbumKey() string
-	NSMetadataItemAltitudeKey() string
-	NSMetadataItemApertureKey() string
-	NSMetadataItemAppleLoopDescriptorsKey() string
-	NSMetadataItemAppleLoopsKeyFilterTypeKey() string
-	NSMetadataItemAppleLoopsLoopModeKey() string
-	NSMetadataItemAppleLoopsRootKeyKey() string
-	NSMetadataItemApplicationCategoriesKey() string
-	NSMetadataItemAttributeChangeDateKey() string
-	NSMetadataItemAudiencesKey() string
-	NSMetadataItemAudioBitRateKey() string
-	NSMetadataItemAudioChannelCountKey() string
-	NSMetadataItemAudioEncodingApplicationKey() string
-	NSMetadataItemAudioSampleRateKey() string
-	NSMetadataItemAudioTrackNumberKey() string
-	NSMetadataItemAuthorAddressesKey() string
-	NSMetadataItemAuthorEmailAddressesKey() string
-	NSMetadataItemAuthorsKey() string
-	NSMetadataItemBitsPerSampleKey() string
-	NSMetadataItemCFBundleIdentifierKey() string
-	NSMetadataItemCameraOwnerKey() string
-	NSMetadataItemCityKey() string
-	NSMetadataItemCodecsKey() string
-	NSMetadataItemColorSpaceKey() string
-	NSMetadataItemCommentKey() string
-	NSMetadataItemComposerKey() string
-	NSMetadataItemContactKeywordsKey() string
-	NSMetadataItemContentCreationDateKey() string
-	NSMetadataItemContentModificationDateKey() string
-	NSMetadataItemContentTypeKey() string
-	NSMetadataItemContentTypeTreeKey() string
-	NSMetadataItemContributorsKey() string
-	NSMetadataItemCopyrightKey() string
-	NSMetadataItemCountryKey() string
-	NSMetadataItemCoverageKey() string
-	NSMetadataItemCreatorKey() string
-	NSMetadataItemDateAddedKey() string
-	NSMetadataItemDeliveryTypeKey() string
-	NSMetadataItemDescriptionKey() string
-	NSMetadataItemDirectorKey() string
-	NSMetadataItemDisplayNameKey() string
-	NSMetadataItemDownloadedDateKey() string
-	NSMetadataItemDueDateKey() string
-	NSMetadataItemDurationSecondsKey() string
-	NSMetadataItemEXIFGPSVersionKey() string
-	NSMetadataItemEXIFVersionKey() string
-	NSMetadataItemEditorsKey() string
-	NSMetadataItemEmailAddressesKey() string
-	NSMetadataItemEncodingApplicationsKey() string
-	NSMetadataItemExecutableArchitecturesKey() string
-	NSMetadataItemExecutablePlatformKey() string
-	NSMetadataItemExposureModeKey() string
-	NSMetadataItemExposureProgramKey() string
-	NSMetadataItemExposureTimeSecondsKey() string
-	NSMetadataItemExposureTimeStringKey() string
-	NSMetadataItemFNumberKey() string
-	NSMetadataItemFSContentChangeDateKey() string
-	NSMetadataItemFSCreationDateKey() string
-	NSMetadataItemFSNameKey() string
-	NSMetadataItemFSSizeKey() string
-	NSMetadataItemFinderCommentKey() string
-	NSMetadataItemFlashOnOffKey() string
-	NSMetadataItemFocalLength35mmKey() string
-	NSMetadataItemFocalLengthKey() string
-	NSMetadataItemFontsKey() string
-	NSMetadataItemGPSAreaInformationKey() string
-	NSMetadataItemGPSDOPKey() string
-	NSMetadataItemGPSDateStampKey() string
-	NSMetadataItemGPSDestBearingKey() string
-	NSMetadataItemGPSDestDistanceKey() string
-	NSMetadataItemGPSDestLatitudeKey() string
-	NSMetadataItemGPSDestLongitudeKey() string
-	NSMetadataItemGPSDifferentalKey() string
-	NSMetadataItemGPSMapDatumKey() string
-	NSMetadataItemGPSMeasureModeKey() string
-	NSMetadataItemGPSProcessingMethodKey() string
-	NSMetadataItemGPSStatusKey() string
-	NSMetadataItemGPSTrackKey() string
-	NSMetadataItemGenreKey() string
-	NSMetadataItemHasAlphaChannelKey() string
-	NSMetadataItemHeadlineKey() string
-	NSMetadataItemISOSpeedKey() string
-	NSMetadataItemIdentifierKey() string
-	NSMetadataItemImageDirectionKey() string
-	NSMetadataItemInformationKey() string
-	NSMetadataItemInstantMessageAddressesKey() string
-	NSMetadataItemInstructionsKey() string
-	NSMetadataItemIsApplicationManagedKey() string
-	NSMetadataItemIsGeneralMIDISequenceKey() string
-	NSMetadataItemIsLikelyJunkKey() string
-	NSMetadataItemIsUbiquitousKey() string
-	NSMetadataItemKeySignatureKey() string
-	NSMetadataItemKeywordsKey() string
-	NSMetadataItemKindKey() string
-	NSMetadataItemLanguagesKey() string
-	NSMetadataItemLastUsedDateKey() string
-	NSMetadataItemLatitudeKey() string
-	NSMetadataItemLayerNamesKey() string
-	NSMetadataItemLensModelKey() string
-	NSMetadataItemLongitudeKey() string
-	NSMetadataItemLyricistKey() string
-	NSMetadataItemMaxApertureKey() string
-	NSMetadataItemMediaTypesKey() string
-	NSMetadataItemMeteringModeKey() string
-	NSMetadataItemMusicalGenreKey() string
-	NSMetadataItemMusicalInstrumentCategoryKey() string
-	NSMetadataItemMusicalInstrumentNameKey() string
-	NSMetadataItemNamedLocationKey() string
-	NSMetadataItemNumberOfPagesKey() string
-	NSMetadataItemOrganizationsKey() string
-	NSMetadataItemOrientationKey() string
-	NSMetadataItemOriginalFormatKey() string
-	NSMetadataItemOriginalSourceKey() string
-	NSMetadataItemPageHeightKey() string
-	NSMetadataItemPageWidthKey() string
-	NSMetadataItemParticipantsKey() string
-	NSMetadataItemPathKey() string
-	NSMetadataItemPerformersKey() string
-	NSMetadataItemPhoneNumbersKey() string
-	NSMetadataItemPixelCountKey() string
-	NSMetadataItemPixelHeightKey() string
-	NSMetadataItemPixelWidthKey() string
-	NSMetadataItemProducerKey() string
-	NSMetadataItemProfileNameKey() string
-	NSMetadataItemProjectsKey() string
-	NSMetadataItemPublishersKey() string
-	NSMetadataItemRecipientAddressesKey() string
-	NSMetadataItemRecipientEmailAddressesKey() string
-	NSMetadataItemRecipientsKey() string
-	NSMetadataItemRecordingDateKey() string
-	NSMetadataItemRecordingYearKey() string
-	NSMetadataItemRedEyeOnOffKey() string
-	NSMetadataItemResolutionHeightDPIKey() string
-	NSMetadataItemResolutionWidthDPIKey() string
-	NSMetadataItemRightsKey() string
-	NSMetadataItemSecurityMethodKey() string
-	NSMetadataItemSpeedKey() string
-	NSMetadataItemStarRatingKey() string
-	NSMetadataItemStateOrProvinceKey() string
-	NSMetadataItemStreamableKey() string
-	NSMetadataItemSubjectKey() string
-	NSMetadataItemTempoKey() string
-	NSMetadataItemTextContentKey() string
-	NSMetadataItemThemeKey() string
-	NSMetadataItemTimeSignatureKey() string
-	NSMetadataItemTimestampKey() string
-	NSMetadataItemTitleKey() string
-	NSMetadataItemTotalBitRateKey() string
-	NSMetadataItemURLKey() string
-	NSMetadataItemVersionKey() string
-	NSMetadataItemVideoBitRateKey() string
-	NSMetadataItemWhereFromsKey() string
-	NSMetadataItemWhiteBalanceKey() string
-	NSMetadataUbiquitousItemContainerDisplayNameKey() string
-	NSMetadataUbiquitousItemDownloadRequestedKey() string
-	NSMetadataUbiquitousItemDownloadingErrorKey() string
-	NSMetadataUbiquitousItemDownloadingStatusCurrent() string
-	NSMetadataUbiquitousItemDownloadingStatusDownloaded() string
-	NSMetadataUbiquitousItemDownloadingStatusKey() string
-	NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() string
-	NSMetadataUbiquitousItemHasUnresolvedConflictsKey() string
-	NSMetadataUbiquitousItemIsDownloadedKey() string
-	NSMetadataUbiquitousItemIsDownloadingKey() string
-	NSMetadataUbiquitousItemIsExternalDocumentKey() string
-	NSMetadataUbiquitousItemIsSharedKey() string
-	NSMetadataUbiquitousItemIsUploadedKey() string
-	NSMetadataUbiquitousItemIsUploadingKey() string
-	NSMetadataUbiquitousItemPercentDownloadedKey() string
-	NSMetadataUbiquitousItemPercentUploadedKey() string
-	NSMetadataUbiquitousItemURLInLocalContainerKey() string
-	NSMetadataUbiquitousItemUploadingErrorKey() string
-	NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey() string
-	NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string
-	NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey() string
-	NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() string
-	NSMetadataUbiquitousSharedItemPermissionsReadOnly() string
-	NSMetadataUbiquitousSharedItemPermissionsReadWrite() string
-	NSMetadataUbiquitousSharedItemRoleOwner() string
-	NSMetadataUbiquitousSharedItemRoleParticipant() string
-	ValueForAttribute(key string) objc.ID
-	ValuesForAttributes(keys []string) IDictionary
+	// properties:
+	Attributes() []string /* primitive/slice/pointer */
+	NSMetadataItemAcquisitionMakeKey() string /* primitive/slice/pointer */
+	NSMetadataItemAcquisitionModelKey() string /* primitive/slice/pointer */
+	NSMetadataItemAlbumKey() string /* primitive/slice/pointer */
+	NSMetadataItemAltitudeKey() string /* primitive/slice/pointer */
+	NSMetadataItemApertureKey() string /* primitive/slice/pointer */
+	NSMetadataItemAppleLoopDescriptorsKey() string /* primitive/slice/pointer */
+	NSMetadataItemAppleLoopsKeyFilterTypeKey() string /* primitive/slice/pointer */
+	NSMetadataItemAppleLoopsLoopModeKey() string /* primitive/slice/pointer */
+	NSMetadataItemAppleLoopsRootKeyKey() string /* primitive/slice/pointer */
+	NSMetadataItemApplicationCategoriesKey() string /* primitive/slice/pointer */
+	NSMetadataItemAttributeChangeDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudiencesKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudioBitRateKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudioChannelCountKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudioEncodingApplicationKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudioSampleRateKey() string /* primitive/slice/pointer */
+	NSMetadataItemAudioTrackNumberKey() string /* primitive/slice/pointer */
+	NSMetadataItemAuthorAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemAuthorEmailAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemAuthorsKey() string /* primitive/slice/pointer */
+	NSMetadataItemBitsPerSampleKey() string /* primitive/slice/pointer */
+	NSMetadataItemCFBundleIdentifierKey() string /* primitive/slice/pointer */
+	NSMetadataItemCameraOwnerKey() string /* primitive/slice/pointer */
+	NSMetadataItemCityKey() string /* primitive/slice/pointer */
+	NSMetadataItemCodecsKey() string /* primitive/slice/pointer */
+	NSMetadataItemColorSpaceKey() string /* primitive/slice/pointer */
+	NSMetadataItemCommentKey() string /* primitive/slice/pointer */
+	NSMetadataItemComposerKey() string /* primitive/slice/pointer */
+	NSMetadataItemContactKeywordsKey() string /* primitive/slice/pointer */
+	NSMetadataItemContentCreationDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemContentModificationDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemContentTypeKey() string /* primitive/slice/pointer */
+	NSMetadataItemContentTypeTreeKey() string /* primitive/slice/pointer */
+	NSMetadataItemContributorsKey() string /* primitive/slice/pointer */
+	NSMetadataItemCopyrightKey() string /* primitive/slice/pointer */
+	NSMetadataItemCountryKey() string /* primitive/slice/pointer */
+	NSMetadataItemCoverageKey() string /* primitive/slice/pointer */
+	NSMetadataItemCreatorKey() string /* primitive/slice/pointer */
+	NSMetadataItemDateAddedKey() string /* primitive/slice/pointer */
+	NSMetadataItemDeliveryTypeKey() string /* primitive/slice/pointer */
+	NSMetadataItemDescriptionKey() string /* primitive/slice/pointer */
+	NSMetadataItemDirectorKey() string /* primitive/slice/pointer */
+	NSMetadataItemDisplayNameKey() string /* primitive/slice/pointer */
+	NSMetadataItemDownloadedDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemDueDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemDurationSecondsKey() string /* primitive/slice/pointer */
+	NSMetadataItemEXIFGPSVersionKey() string /* primitive/slice/pointer */
+	NSMetadataItemEXIFVersionKey() string /* primitive/slice/pointer */
+	NSMetadataItemEditorsKey() string /* primitive/slice/pointer */
+	NSMetadataItemEmailAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemEncodingApplicationsKey() string /* primitive/slice/pointer */
+	NSMetadataItemExecutableArchitecturesKey() string /* primitive/slice/pointer */
+	NSMetadataItemExecutablePlatformKey() string /* primitive/slice/pointer */
+	NSMetadataItemExposureModeKey() string /* primitive/slice/pointer */
+	NSMetadataItemExposureProgramKey() string /* primitive/slice/pointer */
+	NSMetadataItemExposureTimeSecondsKey() string /* primitive/slice/pointer */
+	NSMetadataItemExposureTimeStringKey() string /* primitive/slice/pointer */
+	NSMetadataItemFNumberKey() string /* primitive/slice/pointer */
+	NSMetadataItemFSContentChangeDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemFSCreationDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemFSNameKey() string /* primitive/slice/pointer */
+	NSMetadataItemFSSizeKey() string /* primitive/slice/pointer */
+	NSMetadataItemFinderCommentKey() string /* primitive/slice/pointer */
+	NSMetadataItemFlashOnOffKey() string /* primitive/slice/pointer */
+	NSMetadataItemFocalLength35mmKey() string /* primitive/slice/pointer */
+	NSMetadataItemFocalLengthKey() string /* primitive/slice/pointer */
+	NSMetadataItemFontsKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSAreaInformationKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDOPKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDateStampKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDestBearingKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDestDistanceKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDestLatitudeKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDestLongitudeKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSDifferentalKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSMapDatumKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSMeasureModeKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSProcessingMethodKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSStatusKey() string /* primitive/slice/pointer */
+	NSMetadataItemGPSTrackKey() string /* primitive/slice/pointer */
+	NSMetadataItemGenreKey() string /* primitive/slice/pointer */
+	NSMetadataItemHasAlphaChannelKey() string /* primitive/slice/pointer */
+	NSMetadataItemHeadlineKey() string /* primitive/slice/pointer */
+	NSMetadataItemISOSpeedKey() string /* primitive/slice/pointer */
+	NSMetadataItemIdentifierKey() string /* primitive/slice/pointer */
+	NSMetadataItemImageDirectionKey() string /* primitive/slice/pointer */
+	NSMetadataItemInformationKey() string /* primitive/slice/pointer */
+	NSMetadataItemInstantMessageAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemInstructionsKey() string /* primitive/slice/pointer */
+	NSMetadataItemIsApplicationManagedKey() string /* primitive/slice/pointer */
+	NSMetadataItemIsGeneralMIDISequenceKey() string /* primitive/slice/pointer */
+	NSMetadataItemIsLikelyJunkKey() string /* primitive/slice/pointer */
+	NSMetadataItemIsUbiquitousKey() string /* primitive/slice/pointer */
+	NSMetadataItemKeySignatureKey() string /* primitive/slice/pointer */
+	NSMetadataItemKeywordsKey() string /* primitive/slice/pointer */
+	NSMetadataItemKindKey() string /* primitive/slice/pointer */
+	NSMetadataItemLanguagesKey() string /* primitive/slice/pointer */
+	NSMetadataItemLastUsedDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemLatitudeKey() string /* primitive/slice/pointer */
+	NSMetadataItemLayerNamesKey() string /* primitive/slice/pointer */
+	NSMetadataItemLensModelKey() string /* primitive/slice/pointer */
+	NSMetadataItemLongitudeKey() string /* primitive/slice/pointer */
+	NSMetadataItemLyricistKey() string /* primitive/slice/pointer */
+	NSMetadataItemMaxApertureKey() string /* primitive/slice/pointer */
+	NSMetadataItemMediaTypesKey() string /* primitive/slice/pointer */
+	NSMetadataItemMeteringModeKey() string /* primitive/slice/pointer */
+	NSMetadataItemMusicalGenreKey() string /* primitive/slice/pointer */
+	NSMetadataItemMusicalInstrumentCategoryKey() string /* primitive/slice/pointer */
+	NSMetadataItemMusicalInstrumentNameKey() string /* primitive/slice/pointer */
+	NSMetadataItemNamedLocationKey() string /* primitive/slice/pointer */
+	NSMetadataItemNumberOfPagesKey() string /* primitive/slice/pointer */
+	NSMetadataItemOrganizationsKey() string /* primitive/slice/pointer */
+	NSMetadataItemOrientationKey() string /* primitive/slice/pointer */
+	NSMetadataItemOriginalFormatKey() string /* primitive/slice/pointer */
+	NSMetadataItemOriginalSourceKey() string /* primitive/slice/pointer */
+	NSMetadataItemPageHeightKey() string /* primitive/slice/pointer */
+	NSMetadataItemPageWidthKey() string /* primitive/slice/pointer */
+	NSMetadataItemParticipantsKey() string /* primitive/slice/pointer */
+	NSMetadataItemPathKey() string /* primitive/slice/pointer */
+	NSMetadataItemPerformersKey() string /* primitive/slice/pointer */
+	NSMetadataItemPhoneNumbersKey() string /* primitive/slice/pointer */
+	NSMetadataItemPixelCountKey() string /* primitive/slice/pointer */
+	NSMetadataItemPixelHeightKey() string /* primitive/slice/pointer */
+	NSMetadataItemPixelWidthKey() string /* primitive/slice/pointer */
+	NSMetadataItemProducerKey() string /* primitive/slice/pointer */
+	NSMetadataItemProfileNameKey() string /* primitive/slice/pointer */
+	NSMetadataItemProjectsKey() string /* primitive/slice/pointer */
+	NSMetadataItemPublishersKey() string /* primitive/slice/pointer */
+	NSMetadataItemRecipientAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemRecipientEmailAddressesKey() string /* primitive/slice/pointer */
+	NSMetadataItemRecipientsKey() string /* primitive/slice/pointer */
+	NSMetadataItemRecordingDateKey() string /* primitive/slice/pointer */
+	NSMetadataItemRecordingYearKey() string /* primitive/slice/pointer */
+	NSMetadataItemRedEyeOnOffKey() string /* primitive/slice/pointer */
+	NSMetadataItemResolutionHeightDPIKey() string /* primitive/slice/pointer */
+	NSMetadataItemResolutionWidthDPIKey() string /* primitive/slice/pointer */
+	NSMetadataItemRightsKey() string /* primitive/slice/pointer */
+	NSMetadataItemSecurityMethodKey() string /* primitive/slice/pointer */
+	NSMetadataItemSpeedKey() string /* primitive/slice/pointer */
+	NSMetadataItemStarRatingKey() string /* primitive/slice/pointer */
+	NSMetadataItemStateOrProvinceKey() string /* primitive/slice/pointer */
+	NSMetadataItemStreamableKey() string /* primitive/slice/pointer */
+	NSMetadataItemSubjectKey() string /* primitive/slice/pointer */
+	NSMetadataItemTempoKey() string /* primitive/slice/pointer */
+	NSMetadataItemTextContentKey() string /* primitive/slice/pointer */
+	NSMetadataItemThemeKey() string /* primitive/slice/pointer */
+	NSMetadataItemTimeSignatureKey() string /* primitive/slice/pointer */
+	NSMetadataItemTimestampKey() string /* primitive/slice/pointer */
+	NSMetadataItemTitleKey() string /* primitive/slice/pointer */
+	NSMetadataItemTotalBitRateKey() string /* primitive/slice/pointer */
+	NSMetadataItemURLKey() string /* primitive/slice/pointer */
+	NSMetadataItemVersionKey() string /* primitive/slice/pointer */
+	NSMetadataItemVideoBitRateKey() string /* primitive/slice/pointer */
+	NSMetadataItemWhereFromsKey() string /* primitive/slice/pointer */
+	NSMetadataItemWhiteBalanceKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemContainerDisplayNameKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadRequestedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadingErrorKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadingStatusCurrent() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadingStatusDownloaded() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadingStatusKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemHasUnresolvedConflictsKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsDownloadedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsDownloadingKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsExternalDocumentKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsSharedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsUploadedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemIsUploadingKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemPercentDownloadedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemPercentUploadedKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemURLInLocalContainerKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousItemUploadingErrorKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemPermissionsReadOnly() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemPermissionsReadWrite() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemRoleOwner() string /* primitive/slice/pointer */
+	NSMetadataUbiquitousSharedItemRoleParticipant() string /* primitive/slice/pointer */
+	// methods:
+	ValueForAttribute(key string /* primitive/slice/pointer */) objc.ID
+	ValuesForAttributes(keys []string /* primitive/slice/pointer */) IDictionary /* already interface */
 }
 
 // The metadata associated with a file.
@@ -286,7 +288,7 @@ func NewMetadataItemWithURL(url IURL) MetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/value(forAttribute:)
-func (m_ MetadataItem) ValueForAttribute(key string) objc.ID {
+func (m_ MetadataItem) ValueForAttribute(key string /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForAttribute:"), objc.String(key))
 	return rv
 }
@@ -296,7 +298,7 @@ func (m_ MetadataItem) ValueForAttribute(key string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/values(forAttributes:)
-func (m_ MetadataItem) ValuesForAttributes(keys []string) IDictionary {
+func (m_ MetadataItem) ValuesForAttributes(keys []string /* primitive/slice/pointer */) IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](m_.ID, objc.Sel("valuesForAttributes:"), keys)
 	return rv
 }
@@ -306,7 +308,7 @@ func (m_ MetadataItem) ValuesForAttributes(keys []string) IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/attributes
-func (m_ MetadataItem) Attributes() []string {
+func (m_ MetadataItem) Attributes() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("attributes"))
 	return rv
 }
@@ -314,7 +316,7 @@ func (m_ MetadataItem) Attributes() []string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemacquisitionmakekey
-func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() string {
+func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAcquisitionMakeKey"))
 	return rv
 }
@@ -322,7 +324,7 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionMakeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemacquisitionmodelkey
-func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() string {
+func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAcquisitionModelKey"))
 	return rv
 }
@@ -330,7 +332,7 @@ func (m_ MetadataItem) NSMetadataItemAcquisitionModelKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemalbumkey
-func (m_ MetadataItem) NSMetadataItemAlbumKey() string {
+func (m_ MetadataItem) NSMetadataItemAlbumKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAlbumKey"))
 	return rv
 }
@@ -338,7 +340,7 @@ func (m_ MetadataItem) NSMetadataItemAlbumKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaltitudekey
-func (m_ MetadataItem) NSMetadataItemAltitudeKey() string {
+func (m_ MetadataItem) NSMetadataItemAltitudeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAltitudeKey"))
 	return rv
 }
@@ -346,7 +348,7 @@ func (m_ MetadataItem) NSMetadataItemAltitudeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaperturekey
-func (m_ MetadataItem) NSMetadataItemApertureKey() string {
+func (m_ MetadataItem) NSMetadataItemApertureKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemApertureKey"))
 	return rv
 }
@@ -354,7 +356,7 @@ func (m_ MetadataItem) NSMetadataItemApertureKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopdescriptorskey
-func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() string {
+func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAppleLoopDescriptorsKey"))
 	return rv
 }
@@ -362,7 +364,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopDescriptorsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopskeyfiltertypekey
-func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() string {
+func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAppleLoopsKeyFilterTypeKey"))
 	return rv
 }
@@ -370,7 +372,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsKeyFilterTypeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopsloopmodekey
-func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() string {
+func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAppleLoopsLoopModeKey"))
 	return rv
 }
@@ -378,7 +380,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsLoopModeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemappleloopsrootkeykey
-func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() string {
+func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAppleLoopsRootKeyKey"))
 	return rv
 }
@@ -386,7 +388,7 @@ func (m_ MetadataItem) NSMetadataItemAppleLoopsRootKeyKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemapplicationcategorieskey
-func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() string {
+func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemApplicationCategoriesKey"))
 	return rv
 }
@@ -394,7 +396,7 @@ func (m_ MetadataItem) NSMetadataItemApplicationCategoriesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemattributechangedatekey
-func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() string {
+func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAttributeChangeDateKey"))
 	return rv
 }
@@ -402,7 +404,7 @@ func (m_ MetadataItem) NSMetadataItemAttributeChangeDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudienceskey
-func (m_ MetadataItem) NSMetadataItemAudiencesKey() string {
+func (m_ MetadataItem) NSMetadataItemAudiencesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudiencesKey"))
 	return rv
 }
@@ -410,7 +412,7 @@ func (m_ MetadataItem) NSMetadataItemAudiencesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiobitratekey
-func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() string {
+func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudioBitRateKey"))
 	return rv
 }
@@ -418,7 +420,7 @@ func (m_ MetadataItem) NSMetadataItemAudioBitRateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiochannelcountkey
-func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() string {
+func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudioChannelCountKey"))
 	return rv
 }
@@ -426,7 +428,7 @@ func (m_ MetadataItem) NSMetadataItemAudioChannelCountKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudioencodingapplicationkey
-func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() string {
+func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudioEncodingApplicationKey"))
 	return rv
 }
@@ -434,7 +436,7 @@ func (m_ MetadataItem) NSMetadataItemAudioEncodingApplicationKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiosampleratekey
-func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() string {
+func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudioSampleRateKey"))
 	return rv
 }
@@ -442,7 +444,7 @@ func (m_ MetadataItem) NSMetadataItemAudioSampleRateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemaudiotracknumberkey
-func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() string {
+func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAudioTrackNumberKey"))
 	return rv
 }
@@ -450,7 +452,7 @@ func (m_ MetadataItem) NSMetadataItemAudioTrackNumberKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthoraddresseskey
-func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAuthorAddressesKey"))
 	return rv
 }
@@ -458,7 +460,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthoremailaddresseskey
-func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAuthorEmailAddressesKey"))
 	return rv
 }
@@ -466,7 +468,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorEmailAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemauthorskey
-func (m_ MetadataItem) NSMetadataItemAuthorsKey() string {
+func (m_ MetadataItem) NSMetadataItemAuthorsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemAuthorsKey"))
 	return rv
 }
@@ -474,7 +476,7 @@ func (m_ MetadataItem) NSMetadataItemAuthorsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitembitspersamplekey
-func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() string {
+func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemBitsPerSampleKey"))
 	return rv
 }
@@ -482,7 +484,7 @@ func (m_ MetadataItem) NSMetadataItemBitsPerSampleKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcfbundleidentifierkey
-func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() string {
+func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCFBundleIdentifierKey"))
 	return rv
 }
@@ -490,7 +492,7 @@ func (m_ MetadataItem) NSMetadataItemCFBundleIdentifierKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcameraownerkey
-func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() string {
+func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCameraOwnerKey"))
 	return rv
 }
@@ -498,7 +500,7 @@ func (m_ MetadataItem) NSMetadataItemCameraOwnerKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcitykey
-func (m_ MetadataItem) NSMetadataItemCityKey() string {
+func (m_ MetadataItem) NSMetadataItemCityKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCityKey"))
 	return rv
 }
@@ -506,7 +508,7 @@ func (m_ MetadataItem) NSMetadataItemCityKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcodecskey
-func (m_ MetadataItem) NSMetadataItemCodecsKey() string {
+func (m_ MetadataItem) NSMetadataItemCodecsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCodecsKey"))
 	return rv
 }
@@ -514,7 +516,7 @@ func (m_ MetadataItem) NSMetadataItemCodecsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcolorspacekey
-func (m_ MetadataItem) NSMetadataItemColorSpaceKey() string {
+func (m_ MetadataItem) NSMetadataItemColorSpaceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemColorSpaceKey"))
 	return rv
 }
@@ -522,7 +524,7 @@ func (m_ MetadataItem) NSMetadataItemColorSpaceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcommentkey
-func (m_ MetadataItem) NSMetadataItemCommentKey() string {
+func (m_ MetadataItem) NSMetadataItemCommentKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCommentKey"))
 	return rv
 }
@@ -530,7 +532,7 @@ func (m_ MetadataItem) NSMetadataItemCommentKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcomposerkey
-func (m_ MetadataItem) NSMetadataItemComposerKey() string {
+func (m_ MetadataItem) NSMetadataItemComposerKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemComposerKey"))
 	return rv
 }
@@ -538,7 +540,7 @@ func (m_ MetadataItem) NSMetadataItemComposerKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontactkeywordskey
-func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() string {
+func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContactKeywordsKey"))
 	return rv
 }
@@ -546,7 +548,7 @@ func (m_ MetadataItem) NSMetadataItemContactKeywordsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontentcreationdatekey
-func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() string {
+func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContentCreationDateKey"))
 	return rv
 }
@@ -554,7 +556,7 @@ func (m_ MetadataItem) NSMetadataItemContentCreationDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontentmodificationdatekey
-func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() string {
+func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContentModificationDateKey"))
 	return rv
 }
@@ -562,7 +564,7 @@ func (m_ MetadataItem) NSMetadataItemContentModificationDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypekey
-func (m_ MetadataItem) NSMetadataItemContentTypeKey() string {
+func (m_ MetadataItem) NSMetadataItemContentTypeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContentTypeKey"))
 	return rv
 }
@@ -570,7 +572,7 @@ func (m_ MetadataItem) NSMetadataItemContentTypeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontenttypetreekey
-func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() string {
+func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContentTypeTreeKey"))
 	return rv
 }
@@ -578,7 +580,7 @@ func (m_ MetadataItem) NSMetadataItemContentTypeTreeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcontributorskey
-func (m_ MetadataItem) NSMetadataItemContributorsKey() string {
+func (m_ MetadataItem) NSMetadataItemContributorsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemContributorsKey"))
 	return rv
 }
@@ -586,7 +588,7 @@ func (m_ MetadataItem) NSMetadataItemContributorsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcopyrightkey
-func (m_ MetadataItem) NSMetadataItemCopyrightKey() string {
+func (m_ MetadataItem) NSMetadataItemCopyrightKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCopyrightKey"))
 	return rv
 }
@@ -594,7 +596,7 @@ func (m_ MetadataItem) NSMetadataItemCopyrightKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcountrykey
-func (m_ MetadataItem) NSMetadataItemCountryKey() string {
+func (m_ MetadataItem) NSMetadataItemCountryKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCountryKey"))
 	return rv
 }
@@ -602,7 +604,7 @@ func (m_ MetadataItem) NSMetadataItemCountryKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcoveragekey
-func (m_ MetadataItem) NSMetadataItemCoverageKey() string {
+func (m_ MetadataItem) NSMetadataItemCoverageKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCoverageKey"))
 	return rv
 }
@@ -610,7 +612,7 @@ func (m_ MetadataItem) NSMetadataItemCoverageKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemcreatorkey
-func (m_ MetadataItem) NSMetadataItemCreatorKey() string {
+func (m_ MetadataItem) NSMetadataItemCreatorKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemCreatorKey"))
 	return rv
 }
@@ -618,7 +620,7 @@ func (m_ MetadataItem) NSMetadataItemCreatorKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdateaddedkey
-func (m_ MetadataItem) NSMetadataItemDateAddedKey() string {
+func (m_ MetadataItem) NSMetadataItemDateAddedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDateAddedKey"))
 	return rv
 }
@@ -626,7 +628,7 @@ func (m_ MetadataItem) NSMetadataItemDateAddedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdeliverytypekey
-func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() string {
+func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDeliveryTypeKey"))
 	return rv
 }
@@ -634,7 +636,7 @@ func (m_ MetadataItem) NSMetadataItemDeliveryTypeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdescriptionkey
-func (m_ MetadataItem) NSMetadataItemDescriptionKey() string {
+func (m_ MetadataItem) NSMetadataItemDescriptionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDescriptionKey"))
 	return rv
 }
@@ -642,7 +644,7 @@ func (m_ MetadataItem) NSMetadataItemDescriptionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdirectorkey
-func (m_ MetadataItem) NSMetadataItemDirectorKey() string {
+func (m_ MetadataItem) NSMetadataItemDirectorKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDirectorKey"))
 	return rv
 }
@@ -650,7 +652,7 @@ func (m_ MetadataItem) NSMetadataItemDirectorKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdisplaynamekey
-func (m_ MetadataItem) NSMetadataItemDisplayNameKey() string {
+func (m_ MetadataItem) NSMetadataItemDisplayNameKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDisplayNameKey"))
 	return rv
 }
@@ -658,7 +660,7 @@ func (m_ MetadataItem) NSMetadataItemDisplayNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdownloadeddatekey
-func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() string {
+func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDownloadedDateKey"))
 	return rv
 }
@@ -666,7 +668,7 @@ func (m_ MetadataItem) NSMetadataItemDownloadedDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemduedatekey
-func (m_ MetadataItem) NSMetadataItemDueDateKey() string {
+func (m_ MetadataItem) NSMetadataItemDueDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDueDateKey"))
 	return rv
 }
@@ -674,7 +676,7 @@ func (m_ MetadataItem) NSMetadataItemDueDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemdurationsecondskey
-func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() string {
+func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemDurationSecondsKey"))
 	return rv
 }
@@ -682,7 +684,7 @@ func (m_ MetadataItem) NSMetadataItemDurationSecondsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexifgpsversionkey
-func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() string {
+func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemEXIFGPSVersionKey"))
 	return rv
 }
@@ -690,7 +692,7 @@ func (m_ MetadataItem) NSMetadataItemEXIFGPSVersionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexifversionkey
-func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() string {
+func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemEXIFVersionKey"))
 	return rv
 }
@@ -698,7 +700,7 @@ func (m_ MetadataItem) NSMetadataItemEXIFVersionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemeditorskey
-func (m_ MetadataItem) NSMetadataItemEditorsKey() string {
+func (m_ MetadataItem) NSMetadataItemEditorsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemEditorsKey"))
 	return rv
 }
@@ -706,7 +708,7 @@ func (m_ MetadataItem) NSMetadataItemEditorsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitememailaddresseskey
-func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemEmailAddressesKey"))
 	return rv
 }
@@ -714,7 +716,7 @@ func (m_ MetadataItem) NSMetadataItemEmailAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemencodingapplicationskey
-func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() string {
+func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemEncodingApplicationsKey"))
 	return rv
 }
@@ -722,7 +724,7 @@ func (m_ MetadataItem) NSMetadataItemEncodingApplicationsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexecutablearchitectureskey
-func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() string {
+func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExecutableArchitecturesKey"))
 	return rv
 }
@@ -730,7 +732,7 @@ func (m_ MetadataItem) NSMetadataItemExecutableArchitecturesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexecutableplatformkey
-func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() string {
+func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExecutablePlatformKey"))
 	return rv
 }
@@ -738,7 +740,7 @@ func (m_ MetadataItem) NSMetadataItemExecutablePlatformKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuremodekey
-func (m_ MetadataItem) NSMetadataItemExposureModeKey() string {
+func (m_ MetadataItem) NSMetadataItemExposureModeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExposureModeKey"))
 	return rv
 }
@@ -746,7 +748,7 @@ func (m_ MetadataItem) NSMetadataItemExposureModeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposureprogramkey
-func (m_ MetadataItem) NSMetadataItemExposureProgramKey() string {
+func (m_ MetadataItem) NSMetadataItemExposureProgramKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExposureProgramKey"))
 	return rv
 }
@@ -754,7 +756,7 @@ func (m_ MetadataItem) NSMetadataItemExposureProgramKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuretimesecondskey
-func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() string {
+func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExposureTimeSecondsKey"))
 	return rv
 }
@@ -762,7 +764,7 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeSecondsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemexposuretimestringkey
-func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() string {
+func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemExposureTimeStringKey"))
 	return rv
 }
@@ -770,7 +772,7 @@ func (m_ MetadataItem) NSMetadataItemExposureTimeStringKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfnumberkey
-func (m_ MetadataItem) NSMetadataItemFNumberKey() string {
+func (m_ MetadataItem) NSMetadataItemFNumberKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFNumberKey"))
 	return rv
 }
@@ -778,7 +780,7 @@ func (m_ MetadataItem) NSMetadataItemFNumberKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfscontentchangedatekey
-func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() string {
+func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFSContentChangeDateKey"))
 	return rv
 }
@@ -786,7 +788,7 @@ func (m_ MetadataItem) NSMetadataItemFSContentChangeDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfscreationdatekey
-func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() string {
+func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFSCreationDateKey"))
 	return rv
 }
@@ -794,7 +796,7 @@ func (m_ MetadataItem) NSMetadataItemFSCreationDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfsnamekey
-func (m_ MetadataItem) NSMetadataItemFSNameKey() string {
+func (m_ MetadataItem) NSMetadataItemFSNameKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFSNameKey"))
 	return rv
 }
@@ -802,7 +804,7 @@ func (m_ MetadataItem) NSMetadataItemFSNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfssizekey
-func (m_ MetadataItem) NSMetadataItemFSSizeKey() string {
+func (m_ MetadataItem) NSMetadataItemFSSizeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFSSizeKey"))
 	return rv
 }
@@ -810,7 +812,7 @@ func (m_ MetadataItem) NSMetadataItemFSSizeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfindercommentkey
-func (m_ MetadataItem) NSMetadataItemFinderCommentKey() string {
+func (m_ MetadataItem) NSMetadataItemFinderCommentKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFinderCommentKey"))
 	return rv
 }
@@ -818,7 +820,7 @@ func (m_ MetadataItem) NSMetadataItemFinderCommentKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemflashonoffkey
-func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() string {
+func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFlashOnOffKey"))
 	return rv
 }
@@ -826,7 +828,7 @@ func (m_ MetadataItem) NSMetadataItemFlashOnOffKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfocallength35mmkey
-func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() string {
+func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFocalLength35mmKey"))
 	return rv
 }
@@ -834,7 +836,7 @@ func (m_ MetadataItem) NSMetadataItemFocalLength35mmKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfocallengthkey
-func (m_ MetadataItem) NSMetadataItemFocalLengthKey() string {
+func (m_ MetadataItem) NSMetadataItemFocalLengthKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFocalLengthKey"))
 	return rv
 }
@@ -842,7 +844,7 @@ func (m_ MetadataItem) NSMetadataItemFocalLengthKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemfontskey
-func (m_ MetadataItem) NSMetadataItemFontsKey() string {
+func (m_ MetadataItem) NSMetadataItemFontsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemFontsKey"))
 	return rv
 }
@@ -850,7 +852,7 @@ func (m_ MetadataItem) NSMetadataItemFontsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsareainformationkey
-func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSAreaInformationKey"))
 	return rv
 }
@@ -858,7 +860,7 @@ func (m_ MetadataItem) NSMetadataItemGPSAreaInformationKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdopkey
-func (m_ MetadataItem) NSMetadataItemGPSDOPKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDOPKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDOPKey"))
 	return rv
 }
@@ -866,7 +868,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDOPKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdatestampkey
-func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDateStampKey"))
 	return rv
 }
@@ -874,7 +876,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDateStampKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestbearingkey
-func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDestBearingKey"))
 	return rv
 }
@@ -882,7 +884,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestBearingKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestdistancekey
-func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDestDistanceKey"))
 	return rv
 }
@@ -890,7 +892,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestDistanceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestlatitudekey
-func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDestLatitudeKey"))
 	return rv
 }
@@ -898,7 +900,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLatitudeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdestlongitudekey
-func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDestLongitudeKey"))
 	return rv
 }
@@ -906,7 +908,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDestLongitudeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsdifferentalkey
-func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSDifferentalKey"))
 	return rv
 }
@@ -914,7 +916,7 @@ func (m_ MetadataItem) NSMetadataItemGPSDifferentalKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsmapdatumkey
-func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSMapDatumKey"))
 	return rv
 }
@@ -922,7 +924,7 @@ func (m_ MetadataItem) NSMetadataItemGPSMapDatumKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsmeasuremodekey
-func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSMeasureModeKey"))
 	return rv
 }
@@ -930,7 +932,7 @@ func (m_ MetadataItem) NSMetadataItemGPSMeasureModeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsprocessingmethodkey
-func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSProcessingMethodKey"))
 	return rv
 }
@@ -938,7 +940,7 @@ func (m_ MetadataItem) NSMetadataItemGPSProcessingMethodKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpsstatuskey
-func (m_ MetadataItem) NSMetadataItemGPSStatusKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSStatusKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSStatusKey"))
 	return rv
 }
@@ -946,7 +948,7 @@ func (m_ MetadataItem) NSMetadataItemGPSStatusKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgpstrackkey
-func (m_ MetadataItem) NSMetadataItemGPSTrackKey() string {
+func (m_ MetadataItem) NSMetadataItemGPSTrackKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGPSTrackKey"))
 	return rv
 }
@@ -954,7 +956,7 @@ func (m_ MetadataItem) NSMetadataItemGPSTrackKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemgenrekey
-func (m_ MetadataItem) NSMetadataItemGenreKey() string {
+func (m_ MetadataItem) NSMetadataItemGenreKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemGenreKey"))
 	return rv
 }
@@ -962,7 +964,7 @@ func (m_ MetadataItem) NSMetadataItemGenreKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemhasalphachannelkey
-func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() string {
+func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemHasAlphaChannelKey"))
 	return rv
 }
@@ -970,7 +972,7 @@ func (m_ MetadataItem) NSMetadataItemHasAlphaChannelKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemheadlinekey
-func (m_ MetadataItem) NSMetadataItemHeadlineKey() string {
+func (m_ MetadataItem) NSMetadataItemHeadlineKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemHeadlineKey"))
 	return rv
 }
@@ -978,7 +980,7 @@ func (m_ MetadataItem) NSMetadataItemHeadlineKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisospeedkey
-func (m_ MetadataItem) NSMetadataItemISOSpeedKey() string {
+func (m_ MetadataItem) NSMetadataItemISOSpeedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemISOSpeedKey"))
 	return rv
 }
@@ -986,7 +988,7 @@ func (m_ MetadataItem) NSMetadataItemISOSpeedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemidentifierkey
-func (m_ MetadataItem) NSMetadataItemIdentifierKey() string {
+func (m_ MetadataItem) NSMetadataItemIdentifierKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemIdentifierKey"))
 	return rv
 }
@@ -994,7 +996,7 @@ func (m_ MetadataItem) NSMetadataItemIdentifierKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemimagedirectionkey
-func (m_ MetadataItem) NSMetadataItemImageDirectionKey() string {
+func (m_ MetadataItem) NSMetadataItemImageDirectionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemImageDirectionKey"))
 	return rv
 }
@@ -1002,7 +1004,7 @@ func (m_ MetadataItem) NSMetadataItemImageDirectionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminformationkey
-func (m_ MetadataItem) NSMetadataItemInformationKey() string {
+func (m_ MetadataItem) NSMetadataItemInformationKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemInformationKey"))
 	return rv
 }
@@ -1010,7 +1012,7 @@ func (m_ MetadataItem) NSMetadataItemInformationKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminstantmessageaddresseskey
-func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemInstantMessageAddressesKey"))
 	return rv
 }
@@ -1018,7 +1020,7 @@ func (m_ MetadataItem) NSMetadataItemInstantMessageAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataiteminstructionskey
-func (m_ MetadataItem) NSMetadataItemInstructionsKey() string {
+func (m_ MetadataItem) NSMetadataItemInstructionsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemInstructionsKey"))
 	return rv
 }
@@ -1026,7 +1028,7 @@ func (m_ MetadataItem) NSMetadataItemInstructionsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisapplicationmanagedkey
-func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() string {
+func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemIsApplicationManagedKey"))
 	return rv
 }
@@ -1034,7 +1036,7 @@ func (m_ MetadataItem) NSMetadataItemIsApplicationManagedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisgeneralmidisequencekey
-func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() string {
+func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemIsGeneralMIDISequenceKey"))
 	return rv
 }
@@ -1042,7 +1044,7 @@ func (m_ MetadataItem) NSMetadataItemIsGeneralMIDISequenceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemislikelyjunkkey
-func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() string {
+func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemIsLikelyJunkKey"))
 	return rv
 }
@@ -1050,7 +1052,7 @@ func (m_ MetadataItem) NSMetadataItemIsLikelyJunkKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemisubiquitouskey
-func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() string {
+func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemIsUbiquitousKey"))
 	return rv
 }
@@ -1058,7 +1060,7 @@ func (m_ MetadataItem) NSMetadataItemIsUbiquitousKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkeysignaturekey
-func (m_ MetadataItem) NSMetadataItemKeySignatureKey() string {
+func (m_ MetadataItem) NSMetadataItemKeySignatureKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemKeySignatureKey"))
 	return rv
 }
@@ -1066,7 +1068,7 @@ func (m_ MetadataItem) NSMetadataItemKeySignatureKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkeywordskey
-func (m_ MetadataItem) NSMetadataItemKeywordsKey() string {
+func (m_ MetadataItem) NSMetadataItemKeywordsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemKeywordsKey"))
 	return rv
 }
@@ -1074,7 +1076,7 @@ func (m_ MetadataItem) NSMetadataItemKeywordsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemkindkey
-func (m_ MetadataItem) NSMetadataItemKindKey() string {
+func (m_ MetadataItem) NSMetadataItemKindKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemKindKey"))
 	return rv
 }
@@ -1082,7 +1084,7 @@ func (m_ MetadataItem) NSMetadataItemKindKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlanguageskey
-func (m_ MetadataItem) NSMetadataItemLanguagesKey() string {
+func (m_ MetadataItem) NSMetadataItemLanguagesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLanguagesKey"))
 	return rv
 }
@@ -1090,7 +1092,7 @@ func (m_ MetadataItem) NSMetadataItemLanguagesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlastuseddatekey
-func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() string {
+func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLastUsedDateKey"))
 	return rv
 }
@@ -1098,7 +1100,7 @@ func (m_ MetadataItem) NSMetadataItemLastUsedDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlatitudekey
-func (m_ MetadataItem) NSMetadataItemLatitudeKey() string {
+func (m_ MetadataItem) NSMetadataItemLatitudeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLatitudeKey"))
 	return rv
 }
@@ -1106,7 +1108,7 @@ func (m_ MetadataItem) NSMetadataItemLatitudeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlayernameskey
-func (m_ MetadataItem) NSMetadataItemLayerNamesKey() string {
+func (m_ MetadataItem) NSMetadataItemLayerNamesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLayerNamesKey"))
 	return rv
 }
@@ -1114,7 +1116,7 @@ func (m_ MetadataItem) NSMetadataItemLayerNamesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlensmodelkey
-func (m_ MetadataItem) NSMetadataItemLensModelKey() string {
+func (m_ MetadataItem) NSMetadataItemLensModelKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLensModelKey"))
 	return rv
 }
@@ -1122,7 +1124,7 @@ func (m_ MetadataItem) NSMetadataItemLensModelKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlongitudekey
-func (m_ MetadataItem) NSMetadataItemLongitudeKey() string {
+func (m_ MetadataItem) NSMetadataItemLongitudeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLongitudeKey"))
 	return rv
 }
@@ -1130,7 +1132,7 @@ func (m_ MetadataItem) NSMetadataItemLongitudeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemlyricistkey
-func (m_ MetadataItem) NSMetadataItemLyricistKey() string {
+func (m_ MetadataItem) NSMetadataItemLyricistKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemLyricistKey"))
 	return rv
 }
@@ -1138,7 +1140,7 @@ func (m_ MetadataItem) NSMetadataItemLyricistKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmaxaperturekey
-func (m_ MetadataItem) NSMetadataItemMaxApertureKey() string {
+func (m_ MetadataItem) NSMetadataItemMaxApertureKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMaxApertureKey"))
 	return rv
 }
@@ -1146,7 +1148,7 @@ func (m_ MetadataItem) NSMetadataItemMaxApertureKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmediatypeskey
-func (m_ MetadataItem) NSMetadataItemMediaTypesKey() string {
+func (m_ MetadataItem) NSMetadataItemMediaTypesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMediaTypesKey"))
 	return rv
 }
@@ -1154,7 +1156,7 @@ func (m_ MetadataItem) NSMetadataItemMediaTypesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmeteringmodekey
-func (m_ MetadataItem) NSMetadataItemMeteringModeKey() string {
+func (m_ MetadataItem) NSMetadataItemMeteringModeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMeteringModeKey"))
 	return rv
 }
@@ -1162,7 +1164,7 @@ func (m_ MetadataItem) NSMetadataItemMeteringModeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalgenrekey
-func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() string {
+func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMusicalGenreKey"))
 	return rv
 }
@@ -1170,7 +1172,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalGenreKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalinstrumentcategorykey
-func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() string {
+func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMusicalInstrumentCategoryKey"))
 	return rv
 }
@@ -1178,7 +1180,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentCategoryKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemmusicalinstrumentnamekey
-func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() string {
+func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemMusicalInstrumentNameKey"))
 	return rv
 }
@@ -1186,7 +1188,7 @@ func (m_ MetadataItem) NSMetadataItemMusicalInstrumentNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemnamedlocationkey
-func (m_ MetadataItem) NSMetadataItemNamedLocationKey() string {
+func (m_ MetadataItem) NSMetadataItemNamedLocationKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemNamedLocationKey"))
 	return rv
 }
@@ -1194,7 +1196,7 @@ func (m_ MetadataItem) NSMetadataItemNamedLocationKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemnumberofpageskey
-func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() string {
+func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemNumberOfPagesKey"))
 	return rv
 }
@@ -1202,7 +1204,7 @@ func (m_ MetadataItem) NSMetadataItemNumberOfPagesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemorganizationskey
-func (m_ MetadataItem) NSMetadataItemOrganizationsKey() string {
+func (m_ MetadataItem) NSMetadataItemOrganizationsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemOrganizationsKey"))
 	return rv
 }
@@ -1210,7 +1212,7 @@ func (m_ MetadataItem) NSMetadataItemOrganizationsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemorientationkey
-func (m_ MetadataItem) NSMetadataItemOrientationKey() string {
+func (m_ MetadataItem) NSMetadataItemOrientationKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemOrientationKey"))
 	return rv
 }
@@ -1218,7 +1220,7 @@ func (m_ MetadataItem) NSMetadataItemOrientationKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemoriginalformatkey
-func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() string {
+func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemOriginalFormatKey"))
 	return rv
 }
@@ -1226,7 +1228,7 @@ func (m_ MetadataItem) NSMetadataItemOriginalFormatKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemoriginalsourcekey
-func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() string {
+func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemOriginalSourceKey"))
 	return rv
 }
@@ -1234,7 +1236,7 @@ func (m_ MetadataItem) NSMetadataItemOriginalSourceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempageheightkey
-func (m_ MetadataItem) NSMetadataItemPageHeightKey() string {
+func (m_ MetadataItem) NSMetadataItemPageHeightKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPageHeightKey"))
 	return rv
 }
@@ -1242,7 +1244,7 @@ func (m_ MetadataItem) NSMetadataItemPageHeightKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempagewidthkey
-func (m_ MetadataItem) NSMetadataItemPageWidthKey() string {
+func (m_ MetadataItem) NSMetadataItemPageWidthKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPageWidthKey"))
 	return rv
 }
@@ -1250,7 +1252,7 @@ func (m_ MetadataItem) NSMetadataItemPageWidthKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemparticipantskey
-func (m_ MetadataItem) NSMetadataItemParticipantsKey() string {
+func (m_ MetadataItem) NSMetadataItemParticipantsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemParticipantsKey"))
 	return rv
 }
@@ -1258,7 +1260,7 @@ func (m_ MetadataItem) NSMetadataItemParticipantsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempathkey
-func (m_ MetadataItem) NSMetadataItemPathKey() string {
+func (m_ MetadataItem) NSMetadataItemPathKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPathKey"))
 	return rv
 }
@@ -1266,7 +1268,7 @@ func (m_ MetadataItem) NSMetadataItemPathKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemperformerskey
-func (m_ MetadataItem) NSMetadataItemPerformersKey() string {
+func (m_ MetadataItem) NSMetadataItemPerformersKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPerformersKey"))
 	return rv
 }
@@ -1274,7 +1276,7 @@ func (m_ MetadataItem) NSMetadataItemPerformersKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemphonenumberskey
-func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() string {
+func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPhoneNumbersKey"))
 	return rv
 }
@@ -1282,7 +1284,7 @@ func (m_ MetadataItem) NSMetadataItemPhoneNumbersKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelcountkey
-func (m_ MetadataItem) NSMetadataItemPixelCountKey() string {
+func (m_ MetadataItem) NSMetadataItemPixelCountKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPixelCountKey"))
 	return rv
 }
@@ -1290,7 +1292,7 @@ func (m_ MetadataItem) NSMetadataItemPixelCountKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelheightkey
-func (m_ MetadataItem) NSMetadataItemPixelHeightKey() string {
+func (m_ MetadataItem) NSMetadataItemPixelHeightKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPixelHeightKey"))
 	return rv
 }
@@ -1298,7 +1300,7 @@ func (m_ MetadataItem) NSMetadataItemPixelHeightKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempixelwidthkey
-func (m_ MetadataItem) NSMetadataItemPixelWidthKey() string {
+func (m_ MetadataItem) NSMetadataItemPixelWidthKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPixelWidthKey"))
 	return rv
 }
@@ -1306,7 +1308,7 @@ func (m_ MetadataItem) NSMetadataItemPixelWidthKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemproducerkey
-func (m_ MetadataItem) NSMetadataItemProducerKey() string {
+func (m_ MetadataItem) NSMetadataItemProducerKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemProducerKey"))
 	return rv
 }
@@ -1314,7 +1316,7 @@ func (m_ MetadataItem) NSMetadataItemProducerKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemprofilenamekey
-func (m_ MetadataItem) NSMetadataItemProfileNameKey() string {
+func (m_ MetadataItem) NSMetadataItemProfileNameKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemProfileNameKey"))
 	return rv
 }
@@ -1322,7 +1324,7 @@ func (m_ MetadataItem) NSMetadataItemProfileNameKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemprojectskey
-func (m_ MetadataItem) NSMetadataItemProjectsKey() string {
+func (m_ MetadataItem) NSMetadataItemProjectsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemProjectsKey"))
 	return rv
 }
@@ -1330,7 +1332,7 @@ func (m_ MetadataItem) NSMetadataItemProjectsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitempublisherskey
-func (m_ MetadataItem) NSMetadataItemPublishersKey() string {
+func (m_ MetadataItem) NSMetadataItemPublishersKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemPublishersKey"))
 	return rv
 }
@@ -1338,7 +1340,7 @@ func (m_ MetadataItem) NSMetadataItemPublishersKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientaddresseskey
-func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRecipientAddressesKey"))
 	return rv
 }
@@ -1346,7 +1348,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientemailaddresseskey
-func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() string {
+func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRecipientEmailAddressesKey"))
 	return rv
 }
@@ -1354,7 +1356,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientEmailAddressesKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecipientskey
-func (m_ MetadataItem) NSMetadataItemRecipientsKey() string {
+func (m_ MetadataItem) NSMetadataItemRecipientsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRecipientsKey"))
 	return rv
 }
@@ -1362,7 +1364,7 @@ func (m_ MetadataItem) NSMetadataItemRecipientsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecordingdatekey
-func (m_ MetadataItem) NSMetadataItemRecordingDateKey() string {
+func (m_ MetadataItem) NSMetadataItemRecordingDateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRecordingDateKey"))
 	return rv
 }
@@ -1370,7 +1372,7 @@ func (m_ MetadataItem) NSMetadataItemRecordingDateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrecordingyearkey
-func (m_ MetadataItem) NSMetadataItemRecordingYearKey() string {
+func (m_ MetadataItem) NSMetadataItemRecordingYearKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRecordingYearKey"))
 	return rv
 }
@@ -1378,7 +1380,7 @@ func (m_ MetadataItem) NSMetadataItemRecordingYearKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemredeyeonoffkey
-func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() string {
+func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRedEyeOnOffKey"))
 	return rv
 }
@@ -1386,7 +1388,7 @@ func (m_ MetadataItem) NSMetadataItemRedEyeOnOffKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemresolutionheightdpikey
-func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() string {
+func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemResolutionHeightDPIKey"))
 	return rv
 }
@@ -1394,7 +1396,7 @@ func (m_ MetadataItem) NSMetadataItemResolutionHeightDPIKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemresolutionwidthdpikey
-func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() string {
+func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemResolutionWidthDPIKey"))
 	return rv
 }
@@ -1402,7 +1404,7 @@ func (m_ MetadataItem) NSMetadataItemResolutionWidthDPIKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemrightskey
-func (m_ MetadataItem) NSMetadataItemRightsKey() string {
+func (m_ MetadataItem) NSMetadataItemRightsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemRightsKey"))
 	return rv
 }
@@ -1410,7 +1412,7 @@ func (m_ MetadataItem) NSMetadataItemRightsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemsecuritymethodkey
-func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() string {
+func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemSecurityMethodKey"))
 	return rv
 }
@@ -1418,7 +1420,7 @@ func (m_ MetadataItem) NSMetadataItemSecurityMethodKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemspeedkey
-func (m_ MetadataItem) NSMetadataItemSpeedKey() string {
+func (m_ MetadataItem) NSMetadataItemSpeedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemSpeedKey"))
 	return rv
 }
@@ -1426,7 +1428,7 @@ func (m_ MetadataItem) NSMetadataItemSpeedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstarratingkey
-func (m_ MetadataItem) NSMetadataItemStarRatingKey() string {
+func (m_ MetadataItem) NSMetadataItemStarRatingKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemStarRatingKey"))
 	return rv
 }
@@ -1434,7 +1436,7 @@ func (m_ MetadataItem) NSMetadataItemStarRatingKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstateorprovincekey
-func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() string {
+func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemStateOrProvinceKey"))
 	return rv
 }
@@ -1442,7 +1444,7 @@ func (m_ MetadataItem) NSMetadataItemStateOrProvinceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemstreamablekey
-func (m_ MetadataItem) NSMetadataItemStreamableKey() string {
+func (m_ MetadataItem) NSMetadataItemStreamableKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemStreamableKey"))
 	return rv
 }
@@ -1450,7 +1452,7 @@ func (m_ MetadataItem) NSMetadataItemStreamableKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemsubjectkey
-func (m_ MetadataItem) NSMetadataItemSubjectKey() string {
+func (m_ MetadataItem) NSMetadataItemSubjectKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemSubjectKey"))
 	return rv
 }
@@ -1458,7 +1460,7 @@ func (m_ MetadataItem) NSMetadataItemSubjectKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtempokey
-func (m_ MetadataItem) NSMetadataItemTempoKey() string {
+func (m_ MetadataItem) NSMetadataItemTempoKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTempoKey"))
 	return rv
 }
@@ -1466,7 +1468,7 @@ func (m_ MetadataItem) NSMetadataItemTempoKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtextcontentkey
-func (m_ MetadataItem) NSMetadataItemTextContentKey() string {
+func (m_ MetadataItem) NSMetadataItemTextContentKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTextContentKey"))
 	return rv
 }
@@ -1474,7 +1476,7 @@ func (m_ MetadataItem) NSMetadataItemTextContentKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemthemekey
-func (m_ MetadataItem) NSMetadataItemThemeKey() string {
+func (m_ MetadataItem) NSMetadataItemThemeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemThemeKey"))
 	return rv
 }
@@ -1482,7 +1484,7 @@ func (m_ MetadataItem) NSMetadataItemThemeKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtimesignaturekey
-func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() string {
+func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTimeSignatureKey"))
 	return rv
 }
@@ -1490,7 +1492,7 @@ func (m_ MetadataItem) NSMetadataItemTimeSignatureKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtimestampkey
-func (m_ MetadataItem) NSMetadataItemTimestampKey() string {
+func (m_ MetadataItem) NSMetadataItemTimestampKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTimestampKey"))
 	return rv
 }
@@ -1498,7 +1500,7 @@ func (m_ MetadataItem) NSMetadataItemTimestampKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtitlekey
-func (m_ MetadataItem) NSMetadataItemTitleKey() string {
+func (m_ MetadataItem) NSMetadataItemTitleKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTitleKey"))
 	return rv
 }
@@ -1506,7 +1508,7 @@ func (m_ MetadataItem) NSMetadataItemTitleKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemtotalbitratekey
-func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() string {
+func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemTotalBitRateKey"))
 	return rv
 }
@@ -1514,7 +1516,7 @@ func (m_ MetadataItem) NSMetadataItemTotalBitRateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemurlkey
-func (m_ MetadataItem) NSMetadataItemURLKey() string {
+func (m_ MetadataItem) NSMetadataItemURLKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemURLKey"))
 	return rv
 }
@@ -1522,7 +1524,7 @@ func (m_ MetadataItem) NSMetadataItemURLKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemversionkey
-func (m_ MetadataItem) NSMetadataItemVersionKey() string {
+func (m_ MetadataItem) NSMetadataItemVersionKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemVersionKey"))
 	return rv
 }
@@ -1530,7 +1532,7 @@ func (m_ MetadataItem) NSMetadataItemVersionKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemvideobitratekey
-func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() string {
+func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemVideoBitRateKey"))
 	return rv
 }
@@ -1538,7 +1540,7 @@ func (m_ MetadataItem) NSMetadataItemVideoBitRateKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemwherefromskey
-func (m_ MetadataItem) NSMetadataItemWhereFromsKey() string {
+func (m_ MetadataItem) NSMetadataItemWhereFromsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemWhereFromsKey"))
 	return rv
 }
@@ -1546,7 +1548,7 @@ func (m_ MetadataItem) NSMetadataItemWhereFromsKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataitemwhitebalancekey
-func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() string {
+func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataItemWhiteBalanceKey"))
 	return rv
 }
@@ -1554,7 +1556,7 @@ func (m_ MetadataItem) NSMetadataItemWhiteBalanceKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemcontainerdisplaynamekey
-func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemContainerDisplayNameKey"))
 	return rv
 }
@@ -1562,7 +1564,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemContainerDisplayNameKey() string 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadrequestedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadRequestedKey"))
 	return rv
 }
@@ -1570,7 +1572,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadRequestedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingerrorkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingErrorKey"))
 	return rv
 }
@@ -1578,7 +1580,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingErrorKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuscurrent
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusCurrent"))
 	return rv
 }
@@ -1586,7 +1588,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusCurrent() string
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusdownloaded
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusDownloaded"))
 	return rv
 }
@@ -1594,7 +1596,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusDownloaded() str
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatuskey
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusKey"))
 	return rv
 }
@@ -1602,7 +1604,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemdownloadingstatusnotdownloaded
-func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemDownloadingStatusNotDownloaded"))
 	return rv
 }
@@ -1610,7 +1612,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemDownloadingStatusNotDownloaded() 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemhasunresolvedconflictskey
-func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemHasUnresolvedConflictsKey"))
 	return rv
 }
@@ -1618,7 +1620,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemHasUnresolvedConflictsKey() strin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsDownloadedKey"))
 	return rv
 }
@@ -1626,7 +1628,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisdownloadingkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsDownloadingKey"))
 	return rv
 }
@@ -1634,7 +1636,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsDownloadingKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisexternaldocumentkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsExternalDocumentKey"))
 	return rv
 }
@@ -1642,7 +1644,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsExternalDocumentKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemissharedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsSharedKey"))
 	return rv
 }
@@ -1650,7 +1652,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsSharedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsUploadedKey"))
 	return rv
 }
@@ -1658,7 +1660,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemisuploadingkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemIsUploadingKey"))
 	return rv
 }
@@ -1666,7 +1668,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemIsUploadingKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentdownloadedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemPercentDownloadedKey"))
 	return rv
 }
@@ -1674,7 +1676,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentDownloadedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentuploadedkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemPercentUploadedKey"))
 	return rv
 }
@@ -1682,7 +1684,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemPercentUploadedKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemurlinlocalcontainerkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemURLInLocalContainerKey"))
 	return rv
 }
@@ -1690,7 +1692,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemURLInLocalContainerKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitemuploadingerrorkey
-func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousItemUploadingErrorKey"))
 	return rv
 }
@@ -1698,7 +1700,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousItemUploadingErrorKey() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserpermissionskey
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey"))
 	return rv
 }
@@ -1706,7 +1708,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserPermissionsKey()
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemcurrentuserrolekey
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemCurrentUserRoleKey"))
 	return rv
 }
@@ -1714,7 +1716,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemCurrentUserRoleKey() string
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemmostrecenteditornamecomponentskey
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemMostRecentEditorNameComponentsKey"))
 	return rv
 }
@@ -1722,7 +1724,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemMostRecentEditorNameCompone
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemownernamecomponentskey
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemOwnerNameComponentsKey"))
 	return rv
 }
@@ -1730,7 +1732,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemOwnerNameComponentsKey() st
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadonly
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemPermissionsReadOnly"))
 	return rv
 }
@@ -1738,7 +1740,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadOnly() strin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditempermissionsreadwrite
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemPermissionsReadWrite"))
 	return rv
 }
@@ -1746,7 +1748,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemPermissionsReadWrite() stri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleowner
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemRoleOwner"))
 	return rv
 }
@@ -1754,7 +1756,7 @@ func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleOwner() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataubiquitousshareditemroleparticipant
-func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleParticipant() string {
+func (m_ MetadataItem) NSMetadataUbiquitousSharedItemRoleParticipant() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSMetadataUbiquitousSharedItemRoleParticipant"))
 	return rv
 }

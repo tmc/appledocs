@@ -30,8 +30,7 @@ type _ICCameraDeviceClass struct {
 // An interface definition for the [ICCameraDevice] class.
 type IICCameraDevice interface {
 	IICDevice
-	CancelDelete()
-	RequestSyncClock()
+	// properties:
 	BatteryLevel() int
 	SetBatteryLevel(value int)
 	BatteryLevelAvailable() bool
@@ -50,8 +49,8 @@ type IICCameraDevice interface {
 	SetIsLocked(value bool)
 	MediaFiles() ICCameraItem
 	SetMediaFiles(value ICCameraItem)
-	MediaPresentation() unsafe.Pointer
-	SetMediaPresentation(value unsafe.Pointer)
+	MediaPresentation() ICMediaPresentation
+	SetMediaPresentation(value ICMediaPresentation)
 	MountPoint() string
 	SetMountPoint(value string)
 	PtpEventHandler() unsafe.Pointer
@@ -60,6 +59,9 @@ type IICCameraDevice interface {
 	SetTetheredCaptureEnabled(value bool)
 	TimeOffset() unsafe.Pointer
 	SetTimeOffset(value unsafe.Pointer)
+	// methods:
+	CancelDelete()
+	RequestDeleteFiles(files []ICCameraItem)
 }
 
 // An object that represents a camera.
@@ -124,12 +126,12 @@ func (i_ ICCameraDevice) CancelDelete() {
 }
 
 
-// Synchronizes the camera’s clock with the computer’s clock.
+// Deletes files from the camera.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice/requestSyncClock()
-func (i_ ICCameraDevice) RequestSyncClock() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("requestSyncClock"))
+// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice/requestDeleteFiles(_:)
+func (i_ ICCameraDevice) RequestDeleteFiles(files []ICCameraItem) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("requestDeleteFiles:"), files)
 }
 
 
@@ -306,15 +308,15 @@ func (i_ ICCameraDevice) SetMediaFiles(value ICCameraItem) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
-func (i_ ICCameraDevice) MediaPresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaPresentation"))
+func (i_ ICCameraDevice) MediaPresentation() ICMediaPresentation {
+	rv := objc.Send[ICMediaPresentation](i_.ID, objc.Sel("mediaPresentation"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
-func (i_ ICCameraDevice) SetMediaPresentation(value unsafe.Pointer) {
+func (i_ ICCameraDevice) SetMediaPresentation(value ICMediaPresentation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaPresentation:"), value)
 }
 

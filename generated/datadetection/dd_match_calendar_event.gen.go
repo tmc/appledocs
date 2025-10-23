@@ -31,10 +31,10 @@ type _DDMatchCalendarEventClass struct {
 type IDDMatchCalendarEvent interface {
 	IDDMatch
 	EndDate() foundation.NSDate
-	EndTimeZone() foundation.TimeZone
+	EndTimeZone() NSTimeZone
 	AllDay() bool
 	StartDate() foundation.NSDate
-	StartTimeZone() foundation.TimeZone
+	StartTimeZone() NSTimeZone
 	IsAllDay() bool
 	SetIsAllDay(value bool)
 }
@@ -108,8 +108,8 @@ func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
-func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
-	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("endTimeZone"))
+func (d_ DDMatchCalendarEvent) EndTimeZone() NSTimeZone {
+	rv := objc.Send[TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
-func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
-	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("startTimeZone"))
+func (d_ DDMatchCalendarEvent) StartTimeZone() NSTimeZone {
+	rv := objc.Send[TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
 }
 

@@ -30,20 +30,22 @@ type _PersonNameComponentsClass struct {
 // An interface definition for the [PersonNameComponents] class.
 type IPersonNameComponents interface {
 	objectivec.IObject
-	FamilyName() string
-	SetFamilyName(value string)
-	GivenName() string
-	SetGivenName(value string)
-	MiddleName() string
-	SetMiddleName(value string)
-	NamePrefix() string
-	SetNamePrefix(value string)
-	NameSuffix() string
-	SetNameSuffix(value string)
-	Nickname() string
-	SetNickname(value string)
+	// properties:
+	FamilyName() string /* primitive/slice/pointer */
+	SetFamilyName(value string /* primitive/slice/pointer */)
+	GivenName() string /* primitive/slice/pointer */
+	SetGivenName(value string /* primitive/slice/pointer */)
+	MiddleName() string /* primitive/slice/pointer */
+	SetMiddleName(value string /* primitive/slice/pointer */)
+	NamePrefix() string /* primitive/slice/pointer */
+	SetNamePrefix(value string /* primitive/slice/pointer */)
+	NameSuffix() string /* primitive/slice/pointer */
+	SetNameSuffix(value string /* primitive/slice/pointer */)
+	Nickname() string /* primitive/slice/pointer */
+	SetNickname(value string /* primitive/slice/pointer */)
 	PhoneticRepresentation() IPersonNameComponents
 	SetPhoneticRepresentation(value IPersonNameComponents)
+	// methods:
 }
 
 // An object that manages the separate parts of a person’s name to allow locale-aware formatting.
@@ -103,7 +105,7 @@ func NewPersonNameComponents() PersonNameComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
-func (p_ PersonNameComponents) FamilyName() string {
+func (p_ PersonNameComponents) FamilyName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("familyName"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (p_ PersonNameComponents) FamilyName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
-func (p_ PersonNameComponents) SetFamilyName(value string) {
+func (p_ PersonNameComponents) SetFamilyName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFamilyName:"), objc.String(value))
 }
 
@@ -122,7 +124,7 @@ func (p_ PersonNameComponents) SetFamilyName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
-func (p_ PersonNameComponents) GivenName() string {
+func (p_ PersonNameComponents) GivenName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("givenName"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (p_ PersonNameComponents) GivenName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
-func (p_ PersonNameComponents) SetGivenName(value string) {
+func (p_ PersonNameComponents) SetGivenName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), objc.String(value))
 }
 
@@ -141,7 +143,7 @@ func (p_ PersonNameComponents) SetGivenName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
-func (p_ PersonNameComponents) MiddleName() string {
+func (p_ PersonNameComponents) MiddleName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("middleName"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (p_ PersonNameComponents) MiddleName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
-func (p_ PersonNameComponents) SetMiddleName(value string) {
+func (p_ PersonNameComponents) SetMiddleName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMiddleName:"), objc.String(value))
 }
 
@@ -160,7 +162,7 @@ func (p_ PersonNameComponents) SetMiddleName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
-func (p_ PersonNameComponents) NamePrefix() string {
+func (p_ PersonNameComponents) NamePrefix() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("namePrefix"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (p_ PersonNameComponents) NamePrefix() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
-func (p_ PersonNameComponents) SetNamePrefix(value string) {
+func (p_ PersonNameComponents) SetNamePrefix(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNamePrefix:"), objc.String(value))
 }
 
@@ -179,7 +181,7 @@ func (p_ PersonNameComponents) SetNamePrefix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
-func (p_ PersonNameComponents) NameSuffix() string {
+func (p_ PersonNameComponents) NameSuffix() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (p_ PersonNameComponents) NameSuffix() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
-func (p_ PersonNameComponents) SetNameSuffix(value string) {
+func (p_ PersonNameComponents) SetNameSuffix(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNameSuffix:"), objc.String(value))
 }
 
@@ -198,7 +200,7 @@ func (p_ PersonNameComponents) SetNameSuffix(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
-func (p_ PersonNameComponents) Nickname() string {
+func (p_ PersonNameComponents) Nickname() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("nickname"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (p_ PersonNameComponents) Nickname() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
-func (p_ PersonNameComponents) SetNickname(value string) {
+func (p_ PersonNameComponents) SetNickname(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNickname:"), objc.String(value))
 }
 

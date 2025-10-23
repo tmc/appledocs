@@ -156,6 +156,49 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties
 type CBCharacteristicProperties uint
 
+const (
+	// CBCharacteristicPropertyAuthenticatedSignedWrites - A property that indicates the perhipheral allows signed writes of the characteristic’s value, without a response to indicate the write succeeded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/authenticatedSignedWrites
+	CBCharacteristicPropertyAuthenticatedSignedWrites CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyBroadcast - A property that indicates the characteristic can broadcast its value using a characteristic configuration descriptor.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/broadcast
+	CBCharacteristicPropertyBroadcast CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyExtendedProperties - A property that indicates the characteristic defines additional properties in the extended properties descriptor.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/extendedProperties
+	CBCharacteristicPropertyExtendedProperties CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyIndicate - A property that indicates the peripheral permits notifications of the characteristic’s value, with a response from the central to indicate receipt of the notification.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/indicate
+	CBCharacteristicPropertyIndicate CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyIndicateEncryptionRequired - A property that indicates only trusted devices can enable indications of the characteristic’s value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/indicateEncryptionRequired
+	CBCharacteristicPropertyIndicateEncryptionRequired CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyNotify - A property that indicates the peripheral permits notifications of the characteristic’s value, without a response from the central to indicate receipt of the notification.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/notify
+	CBCharacteristicPropertyNotify CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyNotifyEncryptionRequired - A property that indicates that only trusted devices can enable notifications of the characteristic’s value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/notifyEncryptionRequired
+	CBCharacteristicPropertyNotifyEncryptionRequired CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyRead - A property that indicates a peripheral can read the characteristic’s value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/read
+	CBCharacteristicPropertyRead CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyWrite - A property that indicates a peripheral can write the characteristic’s value, with a response to indicate that the write succeeded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/write
+	CBCharacteristicPropertyWrite CBCharacteristicProperties = 0
+	// CBCharacteristicPropertyWriteWithoutResponse - A property that indicates a peripheral can write the characteristic’s value, without a response to indicate that the write succeeded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicProperties/writeWithoutResponse
+	CBCharacteristicPropertyWriteWithoutResponse CBCharacteristicProperties = 0
+)
+
 // CBCharacteristicWriteType - Values representing the possible write types to a characteristic’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristicWriteType
@@ -278,6 +321,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerAuthorization/notDetermined
 	CBManagerAuthorizationNotDetermined CBManagerAuthorization = 0
+	// CBManagerAuthorizationRestricted - A state that indicates this app isn’t authorized to use Bluetooth.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerAuthorization/restricted
+	CBManagerAuthorizationRestricted CBManagerAuthorization = 0
 )
 
 // CBManagerState - The possible states of a Core Bluetooth manager.
@@ -294,22 +341,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/poweredOn
 	CBManagerStatePoweredOn CBManagerState = 0
-	// CBManagerStateResetting - A state that indicates the connection with the system service was momentarily lost.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/resetting
-	CBManagerStateResetting CBManagerState = 0
-	// CBManagerStateUnauthorized - A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unauthorized
-	CBManagerStateUnauthorized CBManagerState = 0
-	// CBManagerStateUnknown - The manager’s state is unknown.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unknown
-	CBManagerStateUnknown CBManagerState = 0
-	// CBManagerStateUnsupported - A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManagerState/unsupported
-	CBManagerStateUnsupported CBManagerState = 0
 )
 
 // CBPeripheralManagerAuthorizationStatus - Values representing the current authorization state of the peripheral manager.

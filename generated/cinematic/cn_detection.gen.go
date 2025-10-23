@@ -88,26 +88,6 @@ func NewCNDetection() CNDetection {
 
 
 
-// Determines the disparity to use to focus on the object in the rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:
-func (cc _CNDetectionClass) DisparityInNormalizedRectSourceDisparityDetectionTypePriorDisparity(normalizedRect coregraphics.CGRect, sourceDisparity unsafe.Pointer, detectionType CNDetectionType, priorDisparity float32) float32 {
-	rv := objc.Send[float32](objc.ID(cc.class), objc.Sel("disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:"), normalizedRect, sourceDisparity, detectionType, priorDisparity)
-	return rv
-}
-
-
-// Determines whether a given detection ID is valid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/isValidDetectionID:
-func (cc _CNDetectionClass) IsValidDetectionID(detectionID ICNDetectionID) bool {
-	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isValidDetectionID:"), detectionID)
-	return rv
-}
-
-
 // The disparity to use in order to focus on the object.
 //
 // [Full Topic]

@@ -30,8 +30,8 @@ type _AudioSessionPortExtensionBluetoothMicrophoneClass struct {
 // An interface definition for the [AudioSessionPortExtensionBluetoothMicrophone] class.
 type IAudioSessionPortExtensionBluetoothMicrophone interface {
 	objectivec.IObject
-	FarFieldCapture() AVAudioSessionCapability
-	HighQualityRecording() AVAudioSessionCapability
+	FarFieldCapture() IAVAudioSessionCapability
+	HighQualityRecording() IAVAudioSessionCapability
 }
 
 // An object that describes capabilities of Bluetooth microphone ports.
@@ -89,8 +89,8 @@ func NewAudioSessionPortExtensionBluetoothMicrophone() AudioSessionPortExtension
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/farFieldCapture
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() AVAudioSessionCapability {
-	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("farFieldCapture"))
+func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() IAVAudioSessionCapability {
+	rv := objc.Send[AudioSessionCapability](a_.ID, objc.Sel("farFieldCapture"))
 	return rv
 }
 
@@ -99,8 +99,8 @@ func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() AVAudio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/highQualityRecording
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() AVAudioSessionCapability {
-	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("highQualityRecording"))
+func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() IAVAudioSessionCapability {
+	rv := objc.Send[AudioSessionCapability](a_.ID, objc.Sel("highQualityRecording"))
 	return rv
 }
 

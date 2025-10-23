@@ -29,8 +29,8 @@ type _AgentClass struct {
 // An interface definition for the [Agent] class.
 type IAgent interface {
 	IComponent
-	Behavior() GKBehavior
-	SetBehavior(value GKBehavior)
+	Behavior() IGKBehavior
+	SetBehavior(value IGKBehavior)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Mass() float32
@@ -104,8 +104,8 @@ func NewAgent() Agent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-func (a_ Agent) Behavior() GKBehavior {
-	rv := objc.Send[GKBehavior](a_.ID, objc.Sel("behavior"))
+func (a_ Agent) Behavior() IGKBehavior {
+	rv := objc.Send[Behavior](a_.ID, objc.Sel("behavior"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (a_ Agent) Behavior() GKBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-func (a_ Agent) SetBehavior(value GKBehavior) {
+func (a_ Agent) SetBehavior(value IGKBehavior) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBehavior:"), value)
 }
 

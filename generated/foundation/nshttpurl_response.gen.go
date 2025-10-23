@@ -29,8 +29,10 @@ type _HTTPURLResponseClass struct {
 // An interface definition for the [HTTPURLResponse] class.
 type IHTTPURLResponse interface {
 	IURLResponse
+	// properties:
 	AllHeaderFields() objc.ID
-	StatusCode() int
+	StatusCode() int /* primitive/slice/pointer */
+	// methods:
 }
 
 // The metadata associated with the response to an HTTP protocol URL load request.
@@ -88,6 +90,16 @@ func NewHTTPURLResponse() HTTPURLResponse {
 
 
 
+// Returns a localized string corresponding to a specified HTTP status code.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
+func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int /* primitive/slice/pointer */) IString {
+	rv := objc.Send[String](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
+	return rv
+}
+
+
 // All HTTP header fields of the response.
 //
 // [Full Topic]
@@ -102,7 +114,7 @@ func (h_ HTTPURLResponse) AllHeaderFields() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/statusCode
-func (h_ HTTPURLResponse) StatusCode() int {
+func (h_ HTTPURLResponse) StatusCode() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv
 }

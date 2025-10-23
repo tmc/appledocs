@@ -30,11 +30,14 @@ type _MenuItemBadgeClass struct {
 // An interface definition for the [MenuItemBadge] class.
 type IMenuItemBadge interface {
 	objectivec.IObject
-	ItemCount() int
-	StringValue() string
-	Type() MenuItemBadgeType
-	Badge() NSMenuItemBadge
+	Badge() IMenuItemBadge
 	SetBadge(value IMenuItemBadge)
+	ItemCount() int
+	SetItemCount(value int)
+	StringValue() string
+	SetStringValue(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 }
 
 // A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
@@ -90,105 +93,10 @@ func NewMenuItemBadge() MenuItemBadge {
 
 
 
-// Creates a badge with a count and an empty string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/init(count:)
-func NewMenuItemBadgeWithCount(itemCount int) MenuItemBadge {
-	instance := getMenuItemBadgeClass().Alloc()
-	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithCount:"), itemCount)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/initWithCount:type:
-func NewMenuItemBadgeWithCountType(itemCount int, type_ MenuItemBadgeType) MenuItemBadge {
-	instance := getMenuItemBadgeClass().Alloc()
-	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithCount:type:"), itemCount, type_)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a badge with the provided custom string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/init(string:)
-func NewMenuItemBadgeWithString(string_ string) MenuItemBadge {
-	instance := getMenuItemBadgeClass().Alloc()
-	rv := objc.Send[MenuItemBadge](instance.ID, objc.Sel("initWithString:"), objc.String(string_))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates an alert-style badge with an integer count and a predefined label that represents the number of alerts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/alerts(count:)
-func (mc _MenuItemBadgeClass) AlertsWithCount(itemCount int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("alertsWithCount:"), itemCount)
-	return rv
-}
-
-
-// Creates a new item-style badge with an integer count and a predefined label that represents the number of new items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/newItems(count:)
-func (mc _MenuItemBadgeClass) NewItemsWithCount(itemCount int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("newItemsWithCount:"), itemCount)
-	return rv
-}
-
-
-// Creates an update-style badge with an integer count and a predefined label that represents the number of available updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/updates(count:)
-func (mc _MenuItemBadgeClass) UpdatesWithCount(itemCount int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("updatesWithCount:"), itemCount)
-	return rv
-}
-
-
-// The number of items the badge displays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/itemCount
-func (m_ MenuItemBadge) ItemCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
-	return rv
-}
-
-
-// The string representation of the badge when it displays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/stringValue-fc9f
-func (m_ MenuItemBadge) StringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// The type of items the badge displays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/type
-func (m_ MenuItemBadge) Type() MenuItemBadgeType {
-	rv := objc.Send[MenuItemBadgeType](m_.ID, objc.Sel("type"))
-	return rv
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
-func (m_ MenuItemBadge) Badge() NSMenuItemBadge {
-	rv := objc.Send[NSMenuItemBadge](m_.ID, objc.Sel("badge"))
+func (m_ MenuItemBadge) Badge() IMenuItemBadge {
+	rv := objc.Send[MenuItemBadge](m_.ID, objc.Sel("badge"))
 	return rv
 }
 
@@ -198,5 +106,63 @@ func (m_ MenuItemBadge) Badge() NSMenuItemBadge {
 func (m_ MenuItemBadge) SetBadge(value IMenuItemBadge) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
 }
+
+
+// The number of items the badge displays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
+func (m_ MenuItemBadge) ItemCount() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
+	return rv
+}
+
+
+// The number of items the badge displays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
+func (m_ MenuItemBadge) SetItemCount(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItemCount:"), value)
+}
+
+
+// The string representation of the badge as it would appear when
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
+func (m_ MenuItemBadge) StringValue() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+	return rv
+}
+
+
+// The string representation of the badge as it would appear when
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
+func (m_ MenuItemBadge) SetStringValue(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+}
+
+
+// The type of items the badge displays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/type
+func (m_ MenuItemBadge) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// The type of items the badge displays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/type
+func (m_ MenuItemBadge) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
+}
+
 
 

@@ -30,6 +30,8 @@ type _BluetoothObjectClass struct {
 // An interface definition for the [BluetoothObject] class.
 type IBluetoothObject interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

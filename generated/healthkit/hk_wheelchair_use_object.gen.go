@@ -30,8 +30,10 @@ type _HKWheelchairUseObjectClass struct {
 // An interface definition for the [HKWheelchairUseObject] class.
 type IHKWheelchairUseObject interface {
 	objectivec.IObject
+	// properties:
 	WheelchairUse() HKWheelchairUse
-	SetWheelchairUse(value IHKWheelchairUse)
+	SetWheelchairUse(value HKWheelchairUse)
+	// methods:
 }
 
 // This class acts as a wrapper for the wheelchair use enumeration.
@@ -99,7 +101,7 @@ func (h_ HKWheelchairUseObject) WheelchairUse() HKWheelchairUse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
-func (h_ HKWheelchairUseObject) SetWheelchairUse(value IHKWheelchairUse) {
+func (h_ HKWheelchairUseObject) SetWheelchairUse(value HKWheelchairUse) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWheelchairUse:"), value)
 }
 

@@ -30,26 +30,25 @@ type _TKSmartCardClass struct {
 // An interface definition for the [TKSmartCard] class.
 type ITKSmartCard interface {
 	objectivec.IObject
-	BeginSessionWithReply(reply unsafe.Pointer)
-	EndSession()
-	Context() objc.ID
-	SetContext(value objc.ID)
 	AllowedProtocols() unsafe.Pointer
 	SetAllowedProtocols(value unsafe.Pointer)
 	Cla() unsafe.Pointer
 	SetCla(value unsafe.Pointer)
+	Context() unsafe.Pointer
+	SetContext(value unsafe.Pointer)
 	CurrentProtocol() unsafe.Pointer
 	SetCurrentProtocol(value unsafe.Pointer)
 	IsSensitive() bool
 	SetIsSensitive(value bool)
 	IsValid() bool
 	SetIsValid(value bool)
-	Slot() TKSmartCardSlot
+	Slot() ITKSmartCardSlot
 	SetSlot(value ITKSmartCardSlot)
 	UseCommandChaining() bool
 	SetUseCommandChaining(value bool)
 	UseExtendedLength() bool
 	SetUseExtendedLength(value bool)
+	BeginSessionWithReply(reply unsafe.Pointer)
 }
 
 // A representation of a smart card.
@@ -114,34 +113,6 @@ func (t_ TKSmartCard) BeginSessionWithReply(reply unsafe.Pointer) {
 }
 
 
-// Completes any pending transmissions and ends the session to the Smart Card.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/endSession()
-func (t_ TKSmartCard) EndSession() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("endSession"))
-}
-
-
-// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-func (t_ TKSmartCard) Context() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("context"))
-	return rv
-}
-
-
-// User-specified information. This property is automatically set to if the Smart Card is removed or another object begins a session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCard/context
-func (t_ TKSmartCard) SetContext(value objc.ID) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setContext:"), value)
-}
-
-
 // The protocols allowed for communication with the Smart Card.
 //
 // [Full Topic]
@@ -177,6 +148,25 @@ func (t_ TKSmartCard) Cla() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/cla
 func (t_ TKSmartCard) SetCla(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCla:"), value)
+}
+
+
+// User-specified information. This property is automatically set to
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/context
+func (t_ TKSmartCard) Context() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// User-specified information. This property is automatically set to
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/context
+func (t_ TKSmartCard) SetContext(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContext:"), value)
 }
 
 
@@ -241,7 +231,7 @@ func (t_ TKSmartCard) SetIsValid(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-func (t_ TKSmartCard) Slot() TKSmartCardSlot {
+func (t_ TKSmartCard) Slot() ITKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slot"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKLiveWorkoutBuilder] class.
@@ -30,15 +29,20 @@ type _HKLiveWorkoutBuilderClass struct {
 // An interface definition for the [HKLiveWorkoutBuilder] class.
 type IHKLiveWorkoutBuilder interface {
 	IHKWorkoutBuilder
-	CurrentWorkoutActivity() HKWorkoutActivity
-	DataSource() HKLiveWorkoutDataSource
+	// properties:
+	CurrentWorkoutActivity() IHKWorkoutActivity
+	SetCurrentWorkoutActivity(value IHKWorkoutActivity)
+	DataSource() IHKLiveWorkoutDataSource
 	SetDataSource(value IHKLiveWorkoutDataSource)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	ElapsedTime() foundation.TimeInterval
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	ElapsedTime() unsafe.Pointer
+	SetElapsedTime(value unsafe.Pointer)
 	ShouldCollectWorkoutEvents() bool
 	SetShouldCollectWorkoutEvents(value bool)
-	WorkoutSession() HKWorkoutSession
+	WorkoutSession() IHKWorkoutSession
+	SetWorkoutSession(value IHKWorkoutSession)
+	// methods:
 }
 
 // A builder object that constructs a workout incrementally based on live data from an active workout session.
@@ -99,18 +103,27 @@ func NewHKLiveWorkoutBuilder() HKLiveWorkoutBuilder {
 // The current workout activity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/currentWorkoutActivity
-func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() HKWorkoutActivity {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/currentworkoutactivity
+func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() IHKWorkoutActivity {
 	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentWorkoutActivity"))
 	return rv
+}
+
+
+// The current workout activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/currentworkoutactivity
+func (h_ HKLiveWorkoutBuilder) SetCurrentWorkoutActivity(value IHKWorkoutActivity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCurrentWorkoutActivity:"), value)
 }
 
 
 // A data source that provides live data from a workout session automatically.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
-func (h_ HKLiveWorkoutBuilder) DataSource() HKLiveWorkoutDataSource {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/datasource
+func (h_ HKLiveWorkoutBuilder) DataSource() IHKLiveWorkoutDataSource {
 	rv := objc.Send[HKLiveWorkoutDataSource](h_.ID, objc.Sel("dataSource"))
 	return rv
 }
@@ -119,7 +132,7 @@ func (h_ HKLiveWorkoutBuilder) DataSource() HKLiveWorkoutDataSource {
 // A data source that provides live data from a workout session automatically.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/datasource
 func (h_ HKLiveWorkoutBuilder) SetDataSource(value IHKLiveWorkoutDataSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDataSource:"), value)
 }
@@ -128,9 +141,9 @@ func (h_ HKLiveWorkoutBuilder) SetDataSource(value IHKLiveWorkoutDataSource) {
 // The live builder’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/delegate
-func (h_ HKLiveWorkoutBuilder) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](h_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/delegate
+func (h_ HKLiveWorkoutBuilder) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -138,8 +151,8 @@ func (h_ HKLiveWorkoutBuilder) Delegate() objc.ID {
 // The live builder’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/delegate
-func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/delegate
+func (h_ HKLiveWorkoutBuilder) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -147,17 +160,26 @@ func (h_ HKLiveWorkoutBuilder) SetDelegate(value objc.ID) {
 // The elapsed time for the workout based on the builder’s current contents, including pauses.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/elapsedTime
-func (h_ HKLiveWorkoutBuilder) ElapsedTime() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](h_.ID, objc.Sel("elapsedTime"))
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/elapsedtime
+func (h_ HKLiveWorkoutBuilder) ElapsedTime() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("elapsedTime"))
 	return rv
+}
+
+
+// The elapsed time for the workout based on the builder’s current contents, including pauses.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/elapsedtime
+func (h_ HKLiveWorkoutBuilder) SetElapsedTime(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setElapsedTime:"), value)
 }
 
 
 // A Boolean value that determines whether the workout builder automatically adds events generated by the workout session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/shouldCollectWorkoutEvents
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/shouldcollectworkoutevents
 func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("shouldCollectWorkoutEvents"))
 	return rv
@@ -167,7 +189,7 @@ func (h_ HKLiveWorkoutBuilder) ShouldCollectWorkoutEvents() bool {
 // A Boolean value that determines whether the workout builder automatically adds events generated by the workout session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/shouldCollectWorkoutEvents
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/shouldcollectworkoutevents
 func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setShouldCollectWorkoutEvents:"), value)
 }
@@ -176,10 +198,19 @@ func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 // The workout session created by the data source and associated with this builder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/workoutSession
-func (h_ HKLiveWorkoutBuilder) WorkoutSession() HKWorkoutSession {
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/workoutsession
+func (h_ HKLiveWorkoutBuilder) WorkoutSession() IHKWorkoutSession {
 	rv := objc.Send[HKWorkoutSession](h_.ID, objc.Sel("workoutSession"))
 	return rv
+}
+
+
+// The workout session created by the data source and associated with this builder.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder/workoutsession
+func (h_ HKLiveWorkoutBuilder) SetWorkoutSession(value IHKWorkoutSession) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutSession:"), value)
 }
 
 

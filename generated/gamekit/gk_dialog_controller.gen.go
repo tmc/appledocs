@@ -31,9 +31,9 @@ type _DialogControllerClass struct {
 // An interface definition for the [DialogController] class.
 type IDialogController interface {
 	appkit.IResponder
-	Dismiss(sender objectivec.IObject)
 	ParentWindow() appkit.Window
-	SetParentWindow(value appkit.IWindow)
+	SetParentWindow(value appkit.Window)
+	Dismiss(sender objectivec.IObject)
 }
 
 // An object that provides the ability to present the dashboard in macOS games.
@@ -114,7 +114,7 @@ func (d_ DialogController) ParentWindow() appkit.Window {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-func (d_ DialogController) SetParentWindow(value appkit.IWindow) {
+func (d_ DialogController) SetParentWindow(value appkit.Window) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }
 

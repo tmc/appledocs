@@ -30,10 +30,10 @@ type _CXCallObserverClass struct {
 // An interface definition for the [CXCallObserver] class.
 type ICXCallObserver interface {
 	objectivec.IObject
-	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 	Calls() []CXCall
-	CallObserver() CXCallObserver
+	CallObserver() ICXCallObserver
 	SetCallObserver(value ICXCallObserver)
+	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 }
 
 // A programmatic interface for an object that manages a list of active calls and observes call changes.
@@ -112,7 +112,7 @@ func (c_ CXCallObserver) Calls() []CXCall {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver
-func (c_ CXCallObserver) CallObserver() CXCallObserver {
+func (c_ CXCallObserver) CallObserver() ICXCallObserver {
 	rv := objc.Send[CXCallObserver](c_.ID, objc.Sel("callObserver"))
 	return rv
 }

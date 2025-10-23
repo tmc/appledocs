@@ -30,9 +30,10 @@ type _MEEmailAddressClass struct {
 // An interface definition for the [MEEmailAddress] class.
 type IMEEmailAddress interface {
 	objectivec.IObject
+	// properties:
 	AddressString() string
 	RawString() string
-	SetRawString(value string)
+	// methods:
 }
 
 
@@ -101,17 +102,10 @@ func (m_ MEEmailAddress) AddressString() string {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/rawString
 func (m_ MEEmailAddress) RawString() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("rawString"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/meemailaddress/rawstring
-func (m_ MEEmailAddress) SetRawString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRawString:"), objc.String(value))
 }
 
 

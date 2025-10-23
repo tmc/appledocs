@@ -30,12 +30,14 @@ type _ConditionClass struct {
 // An interface definition for the [Condition] class.
 type ICondition interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	// methods:
 	Broadcast()
 	Signal()
 	Wait()
-	WaitUntilDate(limit IDate) bool
+	WaitUntilDate(limit IDate) bool /* primitive/slice/pointer */
 }
 
 // A condition variable whose semantics follow those used for POSIX-style conditions.
@@ -122,7 +124,7 @@ func (c_ Condition) Wait() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait(until:)
-func (c_ Condition) WaitUntilDate(limit IDate) bool {
+func (c_ Condition) WaitUntilDate(limit IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("waitUntilDate:"), limit)
 	return rv
 }
@@ -132,7 +134,7 @@ func (c_ Condition) WaitUntilDate(limit IDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
-func (c_ Condition) Name() string {
+func (c_ Condition) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (c_ Condition) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/name
-func (c_ Condition) SetName(value string) {
+func (c_ Condition) SetName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

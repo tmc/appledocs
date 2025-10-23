@@ -34,11 +34,11 @@ type IPersistentCloudKitContainerEvent interface {
 	Error() foundation.Error
 	Succeeded() bool
 	EndDate() foundation.Date
-	SetEndDate(value foundation.IDate)
+	SetEndDate(value foundation.Date)
 	Identifier() foundation.UUID
-	SetIdentifier(value foundation.IUUID)
+	SetIdentifier(value foundation.UUID)
 	StartDate() foundation.Date
-	SetStartDate(value foundation.IDate)
+	SetStartDate(value foundation.Date)
 	StoreIdentifier() string
 	SetStoreIdentifier(value string)
 	Type() unsafe.Pointer
@@ -130,7 +130,7 @@ func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
-func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.IDate) {
+func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.Date) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -149,7 +149,7 @@ func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.IUUID) {
+func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.UUID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -168,7 +168,7 @@ func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.IDate) {
+func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.Date) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
 

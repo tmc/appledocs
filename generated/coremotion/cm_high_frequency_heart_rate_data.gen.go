@@ -30,7 +30,7 @@ type _HighFrequencyHeartRateDataClass struct {
 // An interface definition for the [HighFrequencyHeartRateData] class.
 type IHighFrequencyHeartRateData interface {
 	ILogItem
-	Confidence() HighFrequencyHeartRateDataConfidence
+	Confidence() CMHighFrequencyHeartRateDataConfidence
 	Date() foundation.NSDate
 	HeartRate() float64
 }
@@ -94,8 +94,8 @@ func NewHighFrequencyHeartRateData() HighFrequencyHeartRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/confidence
-func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConfidence {
-	rv := objc.Send[HighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
+func (h_ HighFrequencyHeartRateData) Confidence() CMHighFrequencyHeartRateDataConfidence {
+	rv := objc.Send[CMHighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
 	return rv
 }
 

@@ -29,14 +29,18 @@ type _VZVirtioEntropyDeviceConfigurationClass struct {
 // An interface definition for the [VZVirtioEntropyDeviceConfiguration] class.
 type IVZVirtioEntropyDeviceConfiguration interface {
 	IVZEntropyDeviceConfiguration
-	EntropyDevices() VZEntropyDeviceConfiguration
+	EntropyDevices() IVZEntropyDeviceConfiguration
 	SetEntropyDevices(value IVZEntropyDeviceConfiguration)
 }
 
 // A source of entropy for the guest’s random number generator.
 //
 // Use a object to expose a source of entropy for the guest operating system’s random-number generator. When you create this object and add it to your virtual machine’s configuration, the virtual machine configures a Virtio-compliant entropy device. The guest operating system uses this device as a seed to generate random numbers. Create a object and add it to the property of your virtual machine’s configuration.
+
+
+// A source of entropy for the guest’s random number generator.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioEntropyDeviceConfiguration
 type VZVirtioEntropyDeviceConfiguration struct {
 	VZEntropyDeviceConfiguration
@@ -86,20 +90,21 @@ func NewVZVirtioEntropyDeviceConfiguration() VZVirtioEntropyDeviceConfiguration 
 
 // The array of randomization devices that you expose to the guest operating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/entropydevices
-func (v_ VZVirtioEntropyDeviceConfiguration) EntropyDevices() VZEntropyDeviceConfiguration {
+func (v_ VZVirtioEntropyDeviceConfiguration) EntropyDevices() IVZEntropyDeviceConfiguration {
 	rv := objc.Send[VZEntropyDeviceConfiguration](v_.ID, objc.Sel("entropyDevices"))
 	return rv
 }
 
 
-// SetEntropyDevices sets the value of the entropyDevices property.
 // The array of randomization devices that you expose to the guest operating system.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/entropydevices
 func (v_ VZVirtioEntropyDeviceConfiguration) SetEntropyDevices(value IVZEntropyDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), value)
 }
+
 
 

@@ -30,6 +30,8 @@ type _mLinkTypeClass struct {
 // An interface definition for the [mLinkType] class.
 type ImLinkType interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

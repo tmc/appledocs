@@ -30,6 +30,8 @@ type _mChannelPSMClass struct {
 // An interface definition for the [mChannelPSM] class.
 type ImChannelPSM interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

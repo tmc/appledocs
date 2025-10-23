@@ -29,10 +29,12 @@ type _INGetReservationDetailsIntentResponseClass struct {
 // An interface definition for the [INGetReservationDetailsIntentResponse] class.
 type IINGetReservationDetailsIntentResponse interface {
 	IINIntentResponse
+	// properties:
 	Code() unsafe.Pointer
 	SetCode(value unsafe.Pointer)
 	Reservations() INReservation
 	SetReservations(value INReservation)
+	// methods:
 }
 
 // Your app’s response to a request for reservation details.

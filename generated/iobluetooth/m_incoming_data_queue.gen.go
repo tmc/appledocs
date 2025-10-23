@@ -30,6 +30,8 @@ type _mIncomingDataQueueClass struct {
 // An interface definition for the [mIncomingDataQueue] class.
 type ImIncomingDataQueue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

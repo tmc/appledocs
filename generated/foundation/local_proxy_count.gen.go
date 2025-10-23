@@ -30,6 +30,8 @@ type _localProxyCountClass struct {
 // An interface definition for the [localProxyCount] class.
 type IlocalProxyCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

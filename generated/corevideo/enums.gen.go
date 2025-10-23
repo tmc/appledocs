@@ -3,7 +3,7 @@
 package corevideo
 
 // Enum types and constants
-// CVAttachmentMode - The propagation modes of a Core Video buffer attachment.
+// AttachmentMode - The propagation modes of a Core Video buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVAttachmentMode
 type AttachmentMode uint
@@ -19,7 +19,7 @@ const (
 	kCVAttachmentMode_ShouldPropagate AttachmentMode = 0
 )
 
-// CVPixelBufferLockFlags - The flags to pass to 
+// PixelBufferLockFlags - The flags to pass to 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferLockFlags
 type PixelBufferLockFlags uint
@@ -31,7 +31,7 @@ const (
 	kCVPixelBufferLock_ReadOnly PixelBufferLockFlags = 0
 )
 
-// CVPixelBufferPoolFlushFlags - The flags to pass to flush the pool.
+// PixelBufferPoolFlushFlags - The flags to pass to flush the pool.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVPixelBufferPoolFlushFlags
 type PixelBufferPoolFlushFlags uint
@@ -43,12 +43,12 @@ const (
 	kCVPixelBufferPoolFlushExcessBuffers PixelBufferPoolFlushFlags = 0
 )
 
-// CVSMPTETimeFlags enum type
+// SMPTETimeFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVSMPTETimeFlags
 type SMPTETimeFlags uint
 
-// CVSMPTETimeType enum type
+// SMPTETimeType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVSMPTETimeType
 type SMPTETimeType uint
@@ -60,12 +60,12 @@ const (
 	kCVSMPTETimeType24 SMPTETimeType = 0
 )
 
-// CVTimeFlags enum type
+// TimeFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTimeFlags
 type TimeFlags uint
 
-// CVTimeStampFlags enum type
+// TimeStampFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVTimeStampFlags
 type TimeStampFlags uint

@@ -31,9 +31,6 @@ type _CKNotificationClass struct {
 // An interface definition for the [CKNotification] class.
 type ICKNotification interface {
 	objectivec.IObject
-	ContainerIdentifier() string
-	NotificationID() unsafe.Pointer
-	NotificationType() CKNotificationType
 	SubscriptionOwnerUserRecordID() CKRecordID
 	AlertActionLocalizationKey() string
 	SetAlertActionLocalizationKey(value string)
@@ -46,11 +43,17 @@ type ICKNotification interface {
 	AlertLocalizationKey() string
 	SetAlertLocalizationKey(value string)
 	Badge() foundation.Number
-	SetBadge(value foundation.INumber)
+	SetBadge(value foundation.Number)
 	Category() string
 	SetCategory(value string)
+	ContainerIdentifier() string
+	SetContainerIdentifier(value string)
 	IsPruned() bool
 	SetIsPruned(value bool)
+	NotificationID() unsafe.Pointer
+	SetNotificationID(value unsafe.Pointer)
+	NotificationType() unsafe.Pointer
+	SetNotificationType(value unsafe.Pointer)
 	SoundName() string
 	SetSoundName(value string)
 	SubscriptionID() unsafe.Pointer
@@ -120,57 +123,6 @@ func NewCKNotification() CKNotification {
 	return getCKNotificationClass().New()
 }
 
-
-
-// Creates a new notification using the specified payload data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) CKNotification {
-	rv := objc.Send[CKNotification](objc.ID(getCKNotificationClass().class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
-	return rv
-}
-
-
-
-// Creates a new notification using the specified payload data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
-	return rv
-}
-
-
-// The ID of the container with the content that triggers the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/containerIdentifier
-func (c_ CKNotification) ContainerIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
-	return rv
-}
-
-
-// The notification’s ID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/notificationID
-func (c_ CKNotification) NotificationID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationID"))
-	return rv
-}
-
-
-// The type of event that generates the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/notificationType-swift.property
-func (c_ CKNotification) NotificationType() CKNotificationType {
-	rv := objc.Send[CKNotificationType](c_.ID, objc.Sel("notificationType"))
-	return rv
-}
 
 
 // The ID of the user record that creates the subscription that generates the push notification.
@@ -292,7 +244,7 @@ func (c_ CKNotification) Badge() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-func (c_ CKNotification) SetBadge(value foundation.INumber) {
+func (c_ CKNotification) SetBadge(value foundation.Number) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBadge:"), value)
 }
 
@@ -316,6 +268,25 @@ func (c_ CKNotification) SetCategory(value string) {
 }
 
 
+// The ID of the container with the content that triggers the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/containeridentifier
+func (c_ CKNotification) ContainerIdentifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+	return rv
+}
+
+
+// The ID of the container with the content that triggers the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/containeridentifier
+func (c_ CKNotification) SetContainerIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
+}
+
+
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
 //
 // [Full Topic]
@@ -332,6 +303,44 @@ func (c_ CKNotification) IsPruned() bool {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
 func (c_ CKNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
+}
+
+
+// The notification’s ID.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationid
+func (c_ CKNotification) NotificationID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationID"))
+	return rv
+}
+
+
+// The notification’s ID.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationid
+func (c_ CKNotification) SetNotificationID(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationID:"), value)
+}
+
+
+// The type of event that generates the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKNotification) NotificationType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+	return rv
+}
+
+
+// The type of event that generates the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
+func (c_ CKNotification) SetNotificationType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
 }
 
 
@@ -485,5 +494,6 @@ func (c_ CKNotification) TitleLocalizationKey() string {
 func (c_ CKNotification) SetTitleLocalizationKey(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitleLocalizationKey:"), objc.String(value))
 }
+
 
 

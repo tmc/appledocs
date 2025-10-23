@@ -29,11 +29,13 @@ type _HKGlassesPrescriptionClass struct {
 // An interface definition for the [HKGlassesPrescription] class.
 type IHKGlassesPrescription interface {
 	IHKVisionPrescription
-	LeftEye() HKGlassesLensSpecification
+	// properties:
+	LeftEye() IHKGlassesLensSpecification
 	SetLeftEye(value IHKGlassesLensSpecification)
-	RightEye() HKGlassesLensSpecification
+	RightEye() IHKGlassesLensSpecification
 	SetRightEye(value IHKGlassesLensSpecification)
 	HKMetadataKeyGlassesPrescriptionDescription() string
+	// methods:
 }
 
 // A sample that stores a prescription for glasses.
@@ -95,7 +97,7 @@ func NewHKGlassesPrescription() HKGlassesPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
-func (h_ HKGlassesPrescription) LeftEye() HKGlassesLensSpecification {
+func (h_ HKGlassesPrescription) LeftEye() IHKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (h_ HKGlassesPrescription) SetLeftEye(value IHKGlassesLensSpecification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-func (h_ HKGlassesPrescription) RightEye() HKGlassesLensSpecification {
+func (h_ HKGlassesPrescription) RightEye() IHKGlassesLensSpecification {
 	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }

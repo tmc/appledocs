@@ -29,12 +29,14 @@ type _DecimalNumberClass struct {
 // An interface definition for the [DecimalNumber] class.
 type IDecimalNumber interface {
 	INumber
+	// properties:
 	DecimalValue() unsafe.Pointer
 	SetDecimalValue(value unsafe.Pointer)
-	DoubleValue() float64
-	SetDoubleValue(value float64)
+	DoubleValue() float64 /* primitive/slice/pointer */
+	SetDoubleValue(value float64 /* primitive/slice/pointer */)
 	ObjCType() unsafe.Pointer
 	SetObjCType(value unsafe.Pointer)
+	// methods:
 }
 
 // An object for representing and performing arithmetic on base-10 numbers.
@@ -115,7 +117,7 @@ func (d_ DecimalNumber) SetDecimalValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
-func (d_ DecimalNumber) DoubleValue() float64 {
+func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (d_ DecimalNumber) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecimalnumber/doublevalue
-func (d_ DecimalNumber) SetDoubleValue(value float64) {
+func (d_ DecimalNumber) SetDoubleValue(value float64 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

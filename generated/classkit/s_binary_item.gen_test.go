@@ -15,7 +15,7 @@ func ExampleNewSBinaryItemWithIdentifierTitleType() {
 	_ = classkit.NewSBinaryItemWithIdentifierTitleType(
 		"identifier", // identifier string
 		"title", // title string
-		classkit.SBinaryValueType{}, // valueType SBinaryValueType
+		classkit.CLSBinaryValueType{}, // valueType CLSBinaryValueType
 	)
 	// Output:
 }

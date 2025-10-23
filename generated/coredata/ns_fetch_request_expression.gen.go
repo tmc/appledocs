@@ -33,7 +33,7 @@ type IFetchRequestExpression interface {
 	ContextExpression() Expression
 	CountOnlyRequest() bool
 	RequestExpression() Expression
-	AffectedStores() NSPersistentStore
+	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
 	FetchBatchSize() int
 	SetFetchBatchSize(value int)
@@ -42,7 +42,7 @@ type IFetchRequestExpression interface {
 	FetchOffset() int
 	SetFetchOffset(value int)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 	IsCountOnlyRequest() bool
 	SetIsCountOnlyRequest(value bool)
 	NSFetchRequestExpressionType() unsafe.Pointer
@@ -107,7 +107,7 @@ func NewFetchRequestExpression() FetchRequestExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
-func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch IExpression, context IExpression, countFlag bool) Expression {
+func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch Expression, context Expression, countFlag bool) Expression {
 	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
 }
@@ -147,8 +147,8 @@ func (f_ FetchRequestExpression) RequestExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchRequestExpression) AffectedStores() NSPersistentStore {
-	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
+func (f_ FetchRequestExpression) AffectedStores() IPersistentStore {
+	rv := objc.Send[PersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
@@ -233,7 +233,7 @@ func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) SetPredicate(value foundation.IPredicate) {
+func (f_ FetchRequestExpression) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 

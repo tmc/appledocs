@@ -30,6 +30,8 @@ type _mMaxPacketLengthClass struct {
 // An interface definition for the [mMaxPacketLength] class.
 type ImMaxPacketLength interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

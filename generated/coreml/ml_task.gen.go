@@ -31,11 +31,10 @@ type _TaskClass struct {
 // An interface definition for the [Task] class.
 type ITask interface {
 	objectivec.IObject
-	Cancel()
-	Resume()
 	Error() foundation.Error
-	State() TaskState
+	State() MLTaskState
 	TaskIdentifier() string
+	Cancel()
 }
 
 // An abstract base class for machine learning tasks.
@@ -100,15 +99,6 @@ func (t_ Task) Cancel() {
 }
 
 
-// Begins or resumes a machine learning task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/resume()
-func (t_ Task) Resume() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("resume"))
-}
-
-
 // The underlying error if the task is in a failed state.
 //
 // [Full Topic]
@@ -123,8 +113,8 @@ func (t_ Task) Error() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/state
-func (t_ Task) State() TaskState {
-	rv := objc.Send[TaskState](t_.ID, objc.Sel("state"))
+func (t_ Task) State() MLTaskState {
+	rv := objc.Send[MLTaskState](t_.ID, objc.Sel("state"))
 	return rv
 }
 

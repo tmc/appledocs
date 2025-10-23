@@ -30,6 +30,8 @@ type _KeyValueSharedObserversSnapshotClass struct {
 // An interface definition for the [KeyValueSharedObserversSnapshot] class.
 type IKeyValueSharedObserversSnapshot interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

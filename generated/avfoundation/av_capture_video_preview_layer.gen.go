@@ -30,18 +30,20 @@ type _CaptureVideoPreviewLayerClass struct {
 // An interface definition for the [CaptureVideoPreviewLayer] class.
 type ICaptureVideoPreviewLayer interface {
 	quartzcore.ILayer
+	// properties:
 	Connection() IAVCaptureConnection
 	SetConnection(value IAVCaptureConnection)
-	IsDeferredStartEnabled() bool
-	SetIsDeferredStartEnabled(value bool)
-	IsDeferredStartSupported() bool
-	SetIsDeferredStartSupported(value bool)
-	IsPreviewing() bool
-	SetIsPreviewing(value bool)
+	IsDeferredStartEnabled() bool /* primitive/slice/pointer */
+	SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer */)
+	IsDeferredStartSupported() bool /* primitive/slice/pointer */
+	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer */)
+	IsPreviewing() bool /* primitive/slice/pointer */
+	SetIsPreviewing(value bool /* primitive/slice/pointer */)
 	Session() IAVCaptureSession
 	SetSession(value IAVCaptureSession)
-	VideoGravity() unsafe.Pointer
-	SetVideoGravity(value unsafe.Pointer)
+	VideoGravity() AVLayerVideoGravity /* foo */
+	SetVideoGravity(value AVLayerVideoGravity /* foo */)
+	// methods:
 }
 
 // A Core Animation layer that displays video from a camera device.
@@ -122,7 +124,7 @@ func (c_ CaptureVideoPreviewLayer) SetConnection(value IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
 }
 
@@ -141,7 +143,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
 }
 
@@ -160,7 +162,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool {
+func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPreviewing"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool) {
+func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPreviewing:"), value)
 }
 
@@ -198,8 +200,8 @@ func (c_ CaptureVideoPreviewLayer) SetSession(value IAVCaptureSession) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) VideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoGravity"))
+func (c_ CaptureVideoPreviewLayer) VideoGravity() AVLayerVideoGravity /* foo */ {
+	rv := objc.Send[LayerVideoGravity](c_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
@@ -208,7 +210,7 @@ func (c_ CaptureVideoPreviewLayer) VideoGravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value unsafe.Pointer) {
+func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value AVLayerVideoGravity /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

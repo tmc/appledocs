@@ -116,7 +116,7 @@ func NewCKUserIdentityLookupInfoWithPhoneNumber(phoneNumber string) CKUserIdenti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class/init(userRecordID:)
-func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID ICKRecordID) CKUserIdentityLookupInfo {
+func NewCKUserIdentityLookupInfoWithUserRecordID(userRecordID CKRecordID) CKUserIdentityLookupInfo {
 	instance := getCKUserIdentityLookupInfoClass().Alloc()
 	rv := objc.Send[CKUserIdentityLookupInfo](instance.ID, objc.Sel("initWithUserRecordID:"), userRecordID)
 	rv.Autorelease()

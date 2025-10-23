@@ -30,11 +30,13 @@ type _HKSampleQueryClass struct {
 // An interface definition for the [HKSampleQuery] class.
 type IHKSampleQuery interface {
 	IHKQuery
+	// properties:
 	HKObjectQueryNoLimit() int
 	Limit() int
 	SetLimit(value int)
 	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.ISortDescriptor)
+	SetSortDescriptors(value foundation.SortDescriptor)
+	// methods:
 }
 
 // A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.
@@ -92,19 +94,6 @@ func NewHKSampleQuery() HKSampleQuery {
 
 
 
-// Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)
-func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors []HKQueryDescriptor, limit int, sortDescriptors []foundation.ISortDescriptor, resultsHandler unsafe.Pointer) HKSampleQuery {
-	instance := getHKSampleQueryClass().Alloc()
-	rv := objc.Send[HKSampleQuery](instance.ID, objc.Sel("initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"), queryDescriptors, limit, sortDescriptors, resultsHandler)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // A value indicating that the query returns all the matching samples in the HealthKit store.
 //
 // [Full Topic]
@@ -148,8 +137,9 @@ func (h_ HKSampleQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
+func (h_ HKSampleQuery) SetSortDescriptors(value foundation.SortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
+
 
 

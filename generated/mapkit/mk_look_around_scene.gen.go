@@ -30,6 +30,8 @@ type _MKLookAroundSceneClass struct {
 // An interface definition for the [MKLookAroundScene] class.
 type IMKLookAroundScene interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A utility class that encapsulates information the framework requires to retrieve and display a specific Look Around location’s imagery.

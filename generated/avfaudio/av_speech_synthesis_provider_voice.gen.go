@@ -30,7 +30,7 @@ type _SpeechSynthesisProviderVoiceClass struct {
 // An interface definition for the [SpeechSynthesisProviderVoice] class.
 type ISpeechSynthesisProviderVoice interface {
 	objectivec.IObject
-	SpeechVoices() AVSpeechSynthesisProviderVoice
+	SpeechVoices() IAVSpeechSynthesisProviderVoice
 	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
 	Age() int
 	SetAge(value int)
@@ -116,8 +116,8 @@ func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderVoice) SpeechVoices() AVSpeechSynthesisProviderVoice {
-	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
+func (s_ SpeechSynthesisProviderVoice) SpeechVoices() IAVSpeechSynthesisProviderVoice {
+	rv := objc.Send[SpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
 }
 

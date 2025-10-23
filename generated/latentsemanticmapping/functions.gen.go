@@ -17,7 +17,7 @@ import (
 var (
 	_LSMMapAddCategory func(unsafe.Pointer) unsafe.Pointer
 	_LSMMapAddText func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_LSMMapAddTextWithWeight func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMMapAddTextWithWeight func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float32) unsafe.Pointer
 	_LSMMapApplyClusters func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSMMapCompile func(unsafe.Pointer) unsafe.Pointer
 	_LSMMapCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -26,7 +26,7 @@ var (
 	_LSMMapGetCategoryCount func(unsafe.Pointer) unsafe.Pointer
 	_LSMMapGetProperties func(unsafe.Pointer) unsafe.Pointer
 	_LSMMapGetTypeID func() unsafe.Pointer
-	_LSMMapSetProperties func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMMapSetProperties func(unsafe.Pointer, unsafe.Pointer)
 	_LSMMapSetStopWords func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSMMapStartTraining func(unsafe.Pointer) unsafe.Pointer
 	_LSMMapWriteToStream func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -38,7 +38,7 @@ var (
 	_LSMResultCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSMResultGetCategory func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSMResultGetCount func(unsafe.Pointer) unsafe.Pointer
-	_LSMResultGetScore func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_LSMResultGetScore func(unsafe.Pointer, unsafe.Pointer) float32
 	_LSMResultGetTypeID func() unsafe.Pointer
 	_LSMTextAddToken func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_LSMTextAddWord func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -106,8 +106,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddCategory(_:)
 func LSMMapAddCategory(mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapAddCategory(mapref)
-	}
-
+}
 
 // Adds a training text to the specified category.
 
@@ -117,8 +116,7 @@ func LSMMapAddCategory(mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddText(_:_:_:)
 func LSMMapAddText(mapref unsafe.Pointer, textref unsafe.Pointer, category unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapAddText(mapref, textref, category)
-	}
-
+}
 
 // Adds a training text to the specified category with a weight other than 1.
 
@@ -126,10 +124,9 @@ func LSMMapAddText(mapref unsafe.Pointer, textref unsafe.Pointer, category unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapAddTextWithWeight(_:_:_:_:)
-func LSMMapAddTextWithWeight(mapref unsafe.Pointer, textref unsafe.Pointer, category unsafe.Pointer, weight unsafe.Pointer) unsafe.Pointer {
+func LSMMapAddTextWithWeight(mapref unsafe.Pointer, textref unsafe.Pointer, category unsafe.Pointer, weight float32) unsafe.Pointer {
 	return _LSMMapAddTextWithWeight(mapref, textref, category, weight)
-	}
-
+}
 
 // Groups categories or words (tokens) into the specified sets of clusters.
 
@@ -139,8 +136,7 @@ func LSMMapAddTextWithWeight(mapref unsafe.Pointer, textref unsafe.Pointer, cate
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapApplyClusters(_:_:)
 func LSMMapApplyClusters(mapref unsafe.Pointer, clusters unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapApplyClusters(mapref, clusters)
-	}
-
+}
 
 // Compiles the map into executable form and puts it into mapping mode, preparing it for the classification of texts.
 
@@ -150,8 +146,7 @@ func LSMMapApplyClusters(mapref unsafe.Pointer, clusters unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCompile(_:)
 func LSMMapCompile(mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapCompile(mapref)
-	}
-
+}
 
 // Creates a new Latent Semantic Mapping map.
 
@@ -161,8 +156,7 @@ func LSMMapCompile(mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreate(_:_:)
 func LSMMapCreate(alloc unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapCreate(alloc, flags)
-	}
-
+}
 
 // Computes a set of clusters that group similar categories or words.
 
@@ -172,8 +166,7 @@ func LSMMapCreate(alloc unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreateClusters(_:_:_:_:_:)
 func LSMMapCreateClusters(alloc unsafe.Pointer, mapref unsafe.Pointer, subset unsafe.Pointer, numClusters unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapCreateClusters(alloc, mapref, subset, numClusters, flags)
-	}
-
+}
 
 // Loads a map from the specified file.
 
@@ -183,8 +176,7 @@ func LSMMapCreateClusters(alloc unsafe.Pointer, mapref unsafe.Pointer, subset un
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapCreateFromURL(_:_:_:)
 func LSMMapCreateFromURL(alloc unsafe.Pointer, file unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapCreateFromURL(alloc, file, flags)
-	}
-
+}
 
 // Returns the number of categories in the map.
 
@@ -194,8 +186,7 @@ func LSMMapCreateFromURL(alloc unsafe.Pointer, file unsafe.Pointer, flags unsafe
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapGetCategoryCount(_:)
 func LSMMapGetCategoryCount(mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapGetCategoryCount(mapref)
-	}
-
+}
 
 // Gets a dictionary of properties for the map.
 
@@ -205,8 +196,7 @@ func LSMMapGetCategoryCount(mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapGetProperties(_:)
 func LSMMapGetProperties(mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapGetProperties(mapref)
-	}
-
+}
 
 // Returns the Core Foundation type identifier for Latent Semantic Mapping maps.
 
@@ -216,8 +206,7 @@ func LSMMapGetProperties(mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapGetTypeID()
 func LSMMapGetTypeID() unsafe.Pointer {
 	return _LSMMapGetTypeID()
-	}
-
+}
 
 // Sets a dictionary of properties for the map.
 
@@ -227,8 +216,7 @@ func LSMMapGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapSetProperties(_:_:)
 func LSMMapSetProperties(mapref unsafe.Pointer, properties unsafe.Pointer) {
 	_LSMMapSetProperties(mapref, properties)
-	}
-
+}
 
 // Specifies which words to omit from all classification efforts.
 
@@ -238,8 +226,7 @@ func LSMMapSetProperties(mapref unsafe.Pointer, properties unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapSetStopWords(_:_:)
 func LSMMapSetStopWords(mapref unsafe.Pointer, textref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapSetStopWords(mapref, textref)
-	}
-
+}
 
 // Puts the map into training mode, preparing it for the addition of more categories or texts.
 
@@ -249,8 +236,7 @@ func LSMMapSetStopWords(mapref unsafe.Pointer, textref unsafe.Pointer) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapStartTraining(_:)
 func LSMMapStartTraining(mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapStartTraining(mapref)
-	}
-
+}
 
 // Writes information about a map or text to a stream in text form.
 
@@ -260,8 +246,7 @@ func LSMMapStartTraining(mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapWriteToStream(_:_:_:_:)
 func LSMMapWriteToStream(mapref unsafe.Pointer, textref unsafe.Pointer, stream unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapWriteToStream(mapref, textref, stream, options)
-	}
-
+}
 
 // Compiles the map, if necessary, and stores it into the specified file.
 
@@ -271,8 +256,7 @@ func LSMMapWriteToStream(mapref unsafe.Pointer, textref unsafe.Pointer, stream u
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMMapWriteToURL(_:_:_:)
 func LSMMapWriteToURL(mapref unsafe.Pointer, file unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMMapWriteToURL(mapref, file, flags)
-	}
-
+}
 
 // Returns the token for the n-th best (zero-based) result.
 
@@ -282,8 +266,7 @@ func LSMMapWriteToURL(mapref unsafe.Pointer, file unsafe.Pointer, flags unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyToken(_:_:)
 func LSMResultCopyToken(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyToken(result, n)
-	}
-
+}
 
 // Returns the cluster of tokens for the n-th best (zero-based) result.
 
@@ -293,8 +276,7 @@ func LSMResultCopyToken(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyTokenCluster(_:_:)
 func LSMResultCopyTokenCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyTokenCluster(result, n)
-	}
-
+}
 
 // Returns the word for the n-th best (zero-based) result.
 
@@ -304,8 +286,7 @@ func LSMResultCopyTokenCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyWord(_:_:)
 func LSMResultCopyWord(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyWord(result, n)
-	}
-
+}
 
 // Returns the cluster of words for the n-th best (zero-based) result.
 
@@ -315,8 +296,7 @@ func LSMResultCopyWord(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCopyWordCluster(_:_:)
 func LSMResultCopyWordCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCopyWordCluster(result, n)
-	}
-
+}
 
 // Returns the categories or words that best match when a text is mapped into a map, in decreasing order of likelihood.
 
@@ -326,8 +306,7 @@ func LSMResultCopyWordCluster(result unsafe.Pointer, n unsafe.Pointer) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultCreate(_:_:_:_:_:)
 func LSMResultCreate(alloc unsafe.Pointer, mapref unsafe.Pointer, textref unsafe.Pointer, numResults unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultCreate(alloc, mapref, textref, numResults, flags)
-	}
-
+}
 
 // Returns the category of the specified result.
 
@@ -337,8 +316,7 @@ func LSMResultCreate(alloc unsafe.Pointer, mapref unsafe.Pointer, textref unsafe
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetCategory(_:_:)
 func LSMResultGetCategory(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultGetCategory(result, n)
-	}
-
+}
 
 // Returns the number of results.
 
@@ -348,8 +326,7 @@ func LSMResultGetCategory(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetCount(_:)
 func LSMResultGetCount(result unsafe.Pointer) unsafe.Pointer {
 	return _LSMResultGetCount(result)
-	}
-
+}
 
 // Returns the likelihood of the specified result.
 
@@ -357,10 +334,9 @@ func LSMResultGetCount(result unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetScore(_:_:)
-func LSMResultGetScore(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
+func LSMResultGetScore(result unsafe.Pointer, n unsafe.Pointer) float32 {
 	return _LSMResultGetScore(result, n)
-	}
-
+}
 
 // Returns the Core Foundation type identifier for Latent Semantic Mapping results.
 
@@ -370,8 +346,7 @@ func LSMResultGetScore(result unsafe.Pointer, n unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMResultGetTypeID()
 func LSMResultGetTypeID() unsafe.Pointer {
 	return _LSMResultGetTypeID()
-	}
-
+}
 
 // Adds an arbitrary binary token to the text.
 
@@ -381,8 +356,7 @@ func LSMResultGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddToken(_:_:)
 func LSMTextAddToken(textref unsafe.Pointer, token unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddToken(textref, token)
-	}
-
+}
 
 // Adds a word to the text.
 
@@ -392,8 +366,7 @@ func LSMTextAddToken(textref unsafe.Pointer, token unsafe.Pointer) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddWord(_:_:)
 func LSMTextAddWord(textref unsafe.Pointer, word unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddWord(textref, word)
-	}
-
+}
 
 // Breaks a string into words using the specified locale, and adds the words to the text.
 
@@ -403,8 +376,7 @@ func LSMTextAddWord(textref unsafe.Pointer, word unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextAddWords(_:_:_:_:)
 func LSMTextAddWords(textref unsafe.Pointer, words unsafe.Pointer, locale unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextAddWords(textref, words, locale, flags)
-	}
-
+}
 
 // Creates a new text.
 
@@ -414,8 +386,7 @@ func LSMTextAddWords(textref unsafe.Pointer, words unsafe.Pointer, locale unsafe
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextCreate(_:_:)
 func LSMTextCreate(alloc unsafe.Pointer, mapref unsafe.Pointer) unsafe.Pointer {
 	return _LSMTextCreate(alloc, mapref)
-	}
-
+}
 
 // Returns the Core Foundation type identifier for Latent Semantic Mapping texts.
 
@@ -425,8 +396,7 @@ func LSMTextCreate(alloc unsafe.Pointer, mapref unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/LatentSemanticMapping/LSMTextGetTypeID()
 func LSMTextGetTypeID() unsafe.Pointer {
 	return _LSMTextGetTypeID()
-	}
-
+}
 
 
 

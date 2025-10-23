@@ -30,12 +30,14 @@ type _INPersonHandleClass struct {
 // An interface definition for the [INPersonHandle] class.
 type IINPersonHandle interface {
 	objectivec.IObject
+	// properties:
 	Label() unsafe.Pointer
 	SetLabel(value unsafe.Pointer)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
 	Value() string
 	SetValue(value string)
+	// methods:
 }
 
 // The identifying information for a user of your app.

@@ -30,7 +30,9 @@ type _DistantObjectClass struct {
 // An interface definition for the [DistantObject] class.
 type IDistantObject interface {
 	IProxy
+	// properties:
 	ConnectionForProxy() IConnection
+	// methods:
 }
 
 // A proxy for objects in other applications or threads.

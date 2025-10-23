@@ -30,8 +30,10 @@ type _SpellServerClass struct {
 // An interface definition for the [SpellServer] class.
 type ISpellServer interface {
 	objectivec.IObject
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	Delegate() SpellServerDelegate /* foo */
+	SetDelegate(value SpellServerDelegate /* foo */)
+	// methods:
 }
 
 // A server that your app uses to provide a spell checker service to other apps running in the system.
@@ -91,8 +93,8 @@ func NewSpellServer() SpellServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-func (s_ SpellServer) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+func (s_ SpellServer) Delegate() SpellServerDelegate /* foo */ {
+	rv := objc.Send[SpellServerDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -101,7 +103,7 @@ func (s_ SpellServer) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsspellserver/delegate
-func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
+func (s_ SpellServer) SetDelegate(value SpellServerDelegate /* foo */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 

@@ -30,8 +30,8 @@ type _CNDecisionClass struct {
 // An interface definition for the [CNDecision] class.
 type ICNDecision interface {
 	objectivec.IObject
+	GroupDecision() bool
 	StrongDecision() bool
-	UserDecision() bool
 }
 
 // An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.
@@ -85,17 +85,14 @@ func NewCNDecision() CNDecision {
 
 
 
-// Makes a decision to focus on the detection with the given unique detection.
+// A flag representing whether this is a group decision.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/initWithTime:detectionGroupID:strong:
-func NewCNDecisionWithTimeDetectionGroupIDStrong(time unsafe.Pointer, detectionGroupID ICNDetectionGroupID, isStrong bool) CNDecision {
-	instance := getCNDecisionClass().Alloc()
-	rv := objc.Send[CNDecision](instance.ID, objc.Sel("initWithTime:detectionGroupID:strong:"), time, detectionGroupID, isStrong)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/groupDecision
+func (c_ CNDecision) GroupDecision() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("groupDecision"))
 	return rv
 }
-
 
 
 // A flag representing whether this is a strong decision.
@@ -107,14 +104,5 @@ func (c_ CNDecision) StrongDecision() bool {
 	return rv
 }
 
-
-// A flag representing whether this is a user-created decision or a base decision.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/userDecision
-func (c_ CNDecision) UserDecision() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("userDecision"))
-	return rv
-}
 
 

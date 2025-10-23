@@ -30,75 +30,77 @@ type _UserActivityClass struct {
 // An interface definition for the [UserActivity] class.
 type IUserActivity interface {
 	objectivec.IObject
-	ActivityType() string
+	// properties:
+	ActivityType() string /* primitive/slice/pointer */
 	AppClipActivationPayload() unsafe.Pointer
-	ContextIdentifierPath() []string
+	ContextIdentifierPath() []string /* primitive/slice/pointer */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	ExpirationDate() IDate
 	SetExpirationDate(value IDate)
-	ExternalMediaContentIdentifier() string
-	SetExternalMediaContentIdentifier(value string)
-	IsClassKitDeepLink() bool
-	EligibleForHandoff() bool
-	SetEligibleForHandoff(value bool)
-	EligibleForPrediction() bool
-	SetEligibleForPrediction(value bool)
-	EligibleForPublicIndexing() bool
-	SetEligibleForPublicIndexing(value bool)
-	EligibleForSearch() bool
-	SetEligibleForSearch(value bool)
+	ExternalMediaContentIdentifier() string /* primitive/slice/pointer */
+	SetExternalMediaContentIdentifier(value string /* primitive/slice/pointer */)
+	IsClassKitDeepLink() bool /* primitive/slice/pointer */
+	EligibleForHandoff() bool /* primitive/slice/pointer */
+	SetEligibleForHandoff(value bool /* primitive/slice/pointer */)
+	EligibleForPrediction() bool /* primitive/slice/pointer */
+	SetEligibleForPrediction(value bool /* primitive/slice/pointer */)
+	EligibleForPublicIndexing() bool /* primitive/slice/pointer */
+	SetEligibleForPublicIndexing(value bool /* primitive/slice/pointer */)
+	EligibleForSearch() bool /* primitive/slice/pointer */
+	SetEligibleForSearch(value bool /* primitive/slice/pointer */)
 	Keywords() unsafe.Pointer
 	SetKeywords(value unsafe.Pointer)
 	NdefMessagePayload() unsafe.Pointer
-	NeedsSave() bool
-	SetNeedsSave(value bool)
-	PersistentIdentifier() UserActivityPersistentIdentifier
-	SetPersistentIdentifier(value UserActivityPersistentIdentifier)
+	NeedsSave() bool /* primitive/slice/pointer */
+	SetNeedsSave(value bool /* primitive/slice/pointer */)
+	PersistentIdentifier() UserActivityPersistentIdentifier /* foo */
+	SetPersistentIdentifier(value UserActivityPersistentIdentifier /* foo */)
 	ReferrerURL() IURL
 	SetReferrerURL(value IURL)
 	RequiredUserInfoKeys() unsafe.Pointer
 	SetRequiredUserInfoKeys(value unsafe.Pointer)
 	ShortcutAvailability() unsafe.Pointer
 	SetShortcutAvailability(value unsafe.Pointer)
-	SuggestedInvocationPhrase() string
-	SetSuggestedInvocationPhrase(value string)
-	SupportsContinuationStreams() bool
-	SetSupportsContinuationStreams(value bool)
-	TargetContentIdentifier() string
-	SetTargetContentIdentifier(value string)
-	Title() string
-	SetTitle(value string)
+	SuggestedInvocationPhrase() string /* primitive/slice/pointer */
+	SetSuggestedInvocationPhrase(value string /* primitive/slice/pointer */)
+	SupportsContinuationStreams() bool /* primitive/slice/pointer */
+	SetSupportsContinuationStreams(value bool /* primitive/slice/pointer */)
+	TargetContentIdentifier() string /* primitive/slice/pointer */
+	SetTargetContentIdentifier(value string /* primitive/slice/pointer */)
+	Title() string /* primitive/slice/pointer */
+	SetTitle(value string /* primitive/slice/pointer */)
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
 	WebpageURL() IURL
 	SetWebpageURL(value IURL)
-	TVUserActivityTypeBrowsingChannelGuide() string
-	ActivityItemsConfiguration() unsafe.Pointer
-	SetActivityItemsConfiguration(value unsafe.Pointer)
+	TVUserActivityTypeBrowsingChannelGuide() string /* primitive/slice/pointer */
+	ActivityItemsConfiguration() ActivityItemsConfigurationReading /* foo */
+	SetActivityItemsConfiguration(value ActivityItemsConfigurationReading /* foo */)
 	AppEntityIdentifier() unsafe.Pointer
 	SetAppEntityIdentifier(value unsafe.Pointer)
-	IsEligibleForHandoff() bool
-	SetIsEligibleForHandoff(value bool)
-	IsEligibleForPrediction() bool
-	SetIsEligibleForPrediction(value bool)
-	IsEligibleForPublicIndexing() bool
-	SetIsEligibleForPublicIndexing(value bool)
-	IsEligibleForSearch() bool
-	SetIsEligibleForSearch(value bool)
-	NSUserActivityConnectionUnavailableError() int
-	SetNSUserActivityConnectionUnavailableError(value int)
-	NSUserActivityErrorMaximum() int
-	SetNSUserActivityErrorMaximum(value int)
-	NSUserActivityErrorMinimum() int
-	SetNSUserActivityErrorMinimum(value int)
-	NSUserActivityHandoffFailedError() int
-	SetNSUserActivityHandoffFailedError(value int)
-	NSUserActivityHandoffUserInfoTooLargeError() int
-	SetNSUserActivityHandoffUserInfoTooLargeError(value int)
-	NSUserActivityRemoteApplicationTimedOutError() int
-	SetNSUserActivityRemoteApplicationTimedOutError(value int)
-	NSUserActivityTypeBrowsingWeb() string
+	IsEligibleForHandoff() bool /* primitive/slice/pointer */
+	SetIsEligibleForHandoff(value bool /* primitive/slice/pointer */)
+	IsEligibleForPrediction() bool /* primitive/slice/pointer */
+	SetIsEligibleForPrediction(value bool /* primitive/slice/pointer */)
+	IsEligibleForPublicIndexing() bool /* primitive/slice/pointer */
+	SetIsEligibleForPublicIndexing(value bool /* primitive/slice/pointer */)
+	IsEligibleForSearch() bool /* primitive/slice/pointer */
+	SetIsEligibleForSearch(value bool /* primitive/slice/pointer */)
+	NSUserActivityConnectionUnavailableError() int /* primitive/slice/pointer */
+	SetNSUserActivityConnectionUnavailableError(value int /* primitive/slice/pointer */)
+	NSUserActivityErrorMaximum() int /* primitive/slice/pointer */
+	SetNSUserActivityErrorMaximum(value int /* primitive/slice/pointer */)
+	NSUserActivityErrorMinimum() int /* primitive/slice/pointer */
+	SetNSUserActivityErrorMinimum(value int /* primitive/slice/pointer */)
+	NSUserActivityHandoffFailedError() int /* primitive/slice/pointer */
+	SetNSUserActivityHandoffFailedError(value int /* primitive/slice/pointer */)
+	NSUserActivityHandoffUserInfoTooLargeError() int /* primitive/slice/pointer */
+	SetNSUserActivityHandoffUserInfoTooLargeError(value int /* primitive/slice/pointer */)
+	NSUserActivityRemoteApplicationTimedOutError() int /* primitive/slice/pointer */
+	SetNSUserActivityRemoteApplicationTimedOutError(value int /* primitive/slice/pointer */)
+	NSUserActivityTypeBrowsingWeb() string /* primitive/slice/pointer */
+	// methods:
 	AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject)
 	BecomeCurrent()
 	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -163,7 +165,7 @@ func NewUserActivity() UserActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
-func NewUserActivityWithActivityType(activityType string) UserActivity {
+func NewUserActivityWithActivityType(activityType string /* primitive/slice/pointer */) UserActivity {
 	instance := getUserActivityClass().Alloc()
 	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), objc.String(activityType))
 	rv.Autorelease()
@@ -185,7 +187,7 @@ func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(h
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
-func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers []string, handler unsafe.Pointer) {
+func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers []string /* primitive/slice/pointer */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
 
@@ -239,7 +241,7 @@ func (u_ UserActivity) ResignCurrent() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
-func (u_ UserActivity) ActivityType() string {
+func (u_ UserActivity) ActivityType() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("activityType"))
 	return rv
 }
@@ -259,7 +261,7 @@ func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-func (u_ UserActivity) ContextIdentifierPath() []string {
+func (u_ UserActivity) ContextIdentifierPath() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](u_.ID, objc.Sel("contextIdentifierPath"))
 	return rv
 }
@@ -307,7 +309,7 @@ func (u_ UserActivity) SetExpirationDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) ExternalMediaContentIdentifier() string {
+func (u_ UserActivity) ExternalMediaContentIdentifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("externalMediaContentIdentifier"))
 	return rv
 }
@@ -317,7 +319,7 @@ func (u_ UserActivity) ExternalMediaContentIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
+func (u_ UserActivity) SetExternalMediaContentIdentifier(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), objc.String(value))
 }
 
@@ -326,7 +328,7 @@ func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
-func (u_ UserActivity) IsClassKitDeepLink() bool {
+func (u_ UserActivity) IsClassKitDeepLink() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isClassKitDeepLink"))
 	return rv
 }
@@ -336,7 +338,7 @@ func (u_ UserActivity) IsClassKitDeepLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
-func (u_ UserActivity) EligibleForHandoff() bool {
+func (u_ UserActivity) EligibleForHandoff() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForHandoff"))
 	return rv
 }
@@ -346,7 +348,7 @@ func (u_ UserActivity) EligibleForHandoff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForHandoff
-func (u_ UserActivity) SetEligibleForHandoff(value bool) {
+func (u_ UserActivity) SetEligibleForHandoff(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForHandoff:"), value)
 }
 
@@ -355,7 +357,7 @@ func (u_ UserActivity) SetEligibleForHandoff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
-func (u_ UserActivity) EligibleForPrediction() bool {
+func (u_ UserActivity) EligibleForPrediction() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPrediction"))
 	return rv
 }
@@ -365,7 +367,7 @@ func (u_ UserActivity) EligibleForPrediction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPrediction
-func (u_ UserActivity) SetEligibleForPrediction(value bool) {
+func (u_ UserActivity) SetEligibleForPrediction(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPrediction:"), value)
 }
 
@@ -374,7 +376,7 @@ func (u_ UserActivity) SetEligibleForPrediction(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
-func (u_ UserActivity) EligibleForPublicIndexing() bool {
+func (u_ UserActivity) EligibleForPublicIndexing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForPublicIndexing"))
 	return rv
 }
@@ -384,7 +386,7 @@ func (u_ UserActivity) EligibleForPublicIndexing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForPublicIndexing
-func (u_ UserActivity) SetEligibleForPublicIndexing(value bool) {
+func (u_ UserActivity) SetEligibleForPublicIndexing(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForPublicIndexing:"), value)
 }
 
@@ -393,7 +395,7 @@ func (u_ UserActivity) SetEligibleForPublicIndexing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (u_ UserActivity) EligibleForSearch() bool {
+func (u_ UserActivity) EligibleForSearch() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("eligibleForSearch"))
 	return rv
 }
@@ -403,7 +405,7 @@ func (u_ UserActivity) EligibleForSearch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isEligibleForSearch
-func (u_ UserActivity) SetEligibleForSearch(value bool) {
+func (u_ UserActivity) SetEligibleForSearch(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEligibleForSearch:"), value)
 }
 
@@ -441,7 +443,7 @@ func (u_ UserActivity) NdefMessagePayload() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
-func (u_ UserActivity) NeedsSave() bool {
+func (u_ UserActivity) NeedsSave() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("needsSave"))
 	return rv
 }
@@ -451,7 +453,7 @@ func (u_ UserActivity) NeedsSave() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/needsSave
-func (u_ UserActivity) SetNeedsSave(value bool) {
+func (u_ UserActivity) SetNeedsSave(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNeedsSave:"), value)
 }
 
@@ -460,7 +462,7 @@ func (u_ UserActivity) SetNeedsSave(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
+func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier /* foo */ {
 	rv := objc.Send[UserActivityPersistentIdentifier](u_.ID, objc.Sel("persistentIdentifier"))
 	return rv
 }
@@ -470,7 +472,7 @@ func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-func (u_ UserActivity) SetPersistentIdentifier(value UserActivityPersistentIdentifier) {
+func (u_ UserActivity) SetPersistentIdentifier(value UserActivityPersistentIdentifier /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistentIdentifier:"), value)
 }
 
@@ -536,7 +538,7 @@ func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SuggestedInvocationPhrase() string {
+func (u_ UserActivity) SuggestedInvocationPhrase() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
 }
@@ -546,7 +548,7 @@ func (u_ UserActivity) SuggestedInvocationPhrase() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
+func (u_ UserActivity) SetSuggestedInvocationPhrase(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
 }
 
@@ -555,7 +557,7 @@ func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
-func (u_ UserActivity) SupportsContinuationStreams() bool {
+func (u_ UserActivity) SupportsContinuationStreams() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("supportsContinuationStreams"))
 	return rv
 }
@@ -565,7 +567,7 @@ func (u_ UserActivity) SupportsContinuationStreams() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/supportsContinuationStreams
-func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
+func (u_ UserActivity) SetSupportsContinuationStreams(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSupportsContinuationStreams:"), value)
 }
 
@@ -574,7 +576,7 @@ func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) TargetContentIdentifier() string {
+func (u_ UserActivity) TargetContentIdentifier() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
@@ -584,7 +586,7 @@ func (u_ UserActivity) TargetContentIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) SetTargetContentIdentifier(value string) {
+func (u_ UserActivity) SetTargetContentIdentifier(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
 }
 
@@ -593,7 +595,7 @@ func (u_ UserActivity) SetTargetContentIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) Title() string {
+func (u_ UserActivity) Title() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
@@ -603,7 +605,7 @@ func (u_ UserActivity) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) SetTitle(value string) {
+func (u_ UserActivity) SetTitle(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -650,7 +652,7 @@ func (u_ UserActivity) SetWebpageURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide
-func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
+func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("TVUserActivityTypeBrowsingChannelGuide"))
 	return rv
 }
@@ -660,8 +662,8 @@ func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
-func (u_ UserActivity) ActivityItemsConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activityItemsConfiguration"))
+func (u_ UserActivity) ActivityItemsConfiguration() ActivityItemsConfigurationReading /* foo */ {
+	rv := objc.Send[ActivityItemsConfigurationReading](u_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
 
@@ -670,7 +672,7 @@ func (u_ UserActivity) ActivityItemsConfiguration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/UIActivityItemsConfigurationProviding/activityItemsConfiguration
-func (u_ UserActivity) SetActivityItemsConfiguration(value unsafe.Pointer) {
+func (u_ UserActivity) SetActivityItemsConfiguration(value ActivityItemsConfigurationReading /* foo */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActivityItemsConfiguration:"), value)
 }
 
@@ -698,7 +700,7 @@ func (u_ UserActivity) SetAppEntityIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
-func (u_ UserActivity) IsEligibleForHandoff() bool {
+func (u_ UserActivity) IsEligibleForHandoff() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForHandoff"))
 	return rv
 }
@@ -708,7 +710,7 @@ func (u_ UserActivity) IsEligibleForHandoff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforhandoff
-func (u_ UserActivity) SetIsEligibleForHandoff(value bool) {
+func (u_ UserActivity) SetIsEligibleForHandoff(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForHandoff:"), value)
 }
 
@@ -717,7 +719,7 @@ func (u_ UserActivity) SetIsEligibleForHandoff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
-func (u_ UserActivity) IsEligibleForPrediction() bool {
+func (u_ UserActivity) IsEligibleForPrediction() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPrediction"))
 	return rv
 }
@@ -727,7 +729,7 @@ func (u_ UserActivity) IsEligibleForPrediction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforprediction
-func (u_ UserActivity) SetIsEligibleForPrediction(value bool) {
+func (u_ UserActivity) SetIsEligibleForPrediction(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPrediction:"), value)
 }
 
@@ -736,7 +738,7 @@ func (u_ UserActivity) SetIsEligibleForPrediction(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
-func (u_ UserActivity) IsEligibleForPublicIndexing() bool {
+func (u_ UserActivity) IsEligibleForPublicIndexing() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForPublicIndexing"))
 	return rv
 }
@@ -746,7 +748,7 @@ func (u_ UserActivity) IsEligibleForPublicIndexing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing
-func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool) {
+func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForPublicIndexing:"), value)
 }
 
@@ -755,7 +757,7 @@ func (u_ UserActivity) SetIsEligibleForPublicIndexing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
-func (u_ UserActivity) IsEligibleForSearch() bool {
+func (u_ UserActivity) IsEligibleForSearch() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isEligibleForSearch"))
 	return rv
 }
@@ -765,7 +767,7 @@ func (u_ UserActivity) IsEligibleForSearch() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch
-func (u_ UserActivity) SetIsEligibleForSearch(value bool) {
+func (u_ UserActivity) SetIsEligibleForSearch(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEligibleForSearch:"), value)
 }
 
@@ -774,7 +776,7 @@ func (u_ UserActivity) SetIsEligibleForSearch(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
-func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int {
+func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityConnectionUnavailableError"))
 	return rv
 }
@@ -784,7 +786,7 @@ func (u_ UserActivity) NSUserActivityConnectionUnavailableError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-swift.var
-func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int) {
+func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityConnectionUnavailableError:"), value)
 }
 
@@ -793,7 +795,7 @@ func (u_ UserActivity) SetNSUserActivityConnectionUnavailableError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
-func (u_ UserActivity) NSUserActivityErrorMaximum() int {
+func (u_ UserActivity) NSUserActivityErrorMaximum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMaximum"))
 	return rv
 }
@@ -803,7 +805,7 @@ func (u_ UserActivity) NSUserActivityErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-swift.var
-func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int) {
+func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMaximum:"), value)
 }
 
@@ -812,7 +814,7 @@ func (u_ UserActivity) SetNSUserActivityErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
-func (u_ UserActivity) NSUserActivityErrorMinimum() int {
+func (u_ UserActivity) NSUserActivityErrorMinimum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityErrorMinimum"))
 	return rv
 }
@@ -822,7 +824,7 @@ func (u_ UserActivity) NSUserActivityErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-swift.var
-func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int) {
+func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityErrorMinimum:"), value)
 }
 
@@ -831,7 +833,7 @@ func (u_ UserActivity) SetNSUserActivityErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
-func (u_ UserActivity) NSUserActivityHandoffFailedError() int {
+func (u_ UserActivity) NSUserActivityHandoffFailedError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffFailedError"))
 	return rv
 }
@@ -841,7 +843,7 @@ func (u_ UserActivity) NSUserActivityHandoffFailedError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-swift.var
-func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int) {
+func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffFailedError:"), value)
 }
 
@@ -850,7 +852,7 @@ func (u_ UserActivity) SetNSUserActivityHandoffFailedError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
-func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int {
+func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityHandoffUserInfoTooLargeError"))
 	return rv
 }
@@ -860,7 +862,7 @@ func (u_ UserActivity) NSUserActivityHandoffUserInfoTooLargeError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-swift.var
-func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int) {
+func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityHandoffUserInfoTooLargeError:"), value)
 }
 
@@ -869,7 +871,7 @@ func (u_ UserActivity) SetNSUserActivityHandoffUserInfoTooLargeError(value int) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
-func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int {
+func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUserActivityRemoteApplicationTimedOutError"))
 	return rv
 }
@@ -879,7 +881,7 @@ func (u_ UserActivity) NSUserActivityRemoteApplicationTimedOutError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-swift.var
-func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int) {
+func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUserActivityRemoteApplicationTimedOutError:"), value)
 }
 
@@ -888,7 +890,7 @@ func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb
-func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() string {
+func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUserActivityTypeBrowsingWeb"))
 	return rv
 }

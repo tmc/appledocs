@@ -30,14 +30,14 @@ type _ExceptionHandlerClass struct {
 // An interface definition for the [ExceptionHandler] class.
 type IExceptionHandler interface {
 	objectivec.IObject
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	Delegate() objc.ID
 	ExceptionHandlingMask() uint
 	ExceptionHangingMask() uint
 	SetDelegate(anObject objectivec.IObject)
 	SetExceptionHandlingMask(aMask uint)
 	SetExceptionHangingMask(aMask uint)
-	UserInfo() unsafe.Pointer
-	SetUserInfo(value unsafe.Pointer)
 }
 
 // The class provides facilities for monitoring and debugging exceptional conditions in Objective-C programs. It works by installing a special uncaught exception handler via the function. Consequently, to use the services of , you must not install your own custom uncaught exception handler.
@@ -95,7 +95,7 @@ func NewExceptionHandler() ExceptionHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/default()
-func (ec _ExceptionHandlerClass) DefaultExceptionHandler() ExceptionHandler {
+func (ec _ExceptionHandlerClass) DefaultExceptionHandler() IExceptionHandler {
 	rv := objc.Send[ExceptionHandler](objc.ID(ec.class), objc.Sel("defaultExceptionHandler"))
 	return rv
 }
@@ -175,6 +175,7 @@ func (e_ ExceptionHandler) UserInfo() unsafe.Pointer {
 func (e_ ExceptionHandler) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }
+
 
 
 

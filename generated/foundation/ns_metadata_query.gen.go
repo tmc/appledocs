@@ -30,46 +30,48 @@ type _MetadataQueryClass struct {
 // An interface definition for the [MetadataQuery] class.
 type IMetadataQuery interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	GroupedResults() []MetadataQueryResultGroup
-	GroupingAttributes() []string
-	SetGroupingAttributes(value []string)
-	Gathering() bool
-	Started() bool
-	Stopped() bool
-	NotificationBatchingInterval() TimeInterval
-	SetNotificationBatchingInterval(value TimeInterval)
+	GroupedResults() []MetadataQueryResultGroup /* primitive/slice/pointer */
+	GroupingAttributes() []string /* primitive/slice/pointer */
+	SetGroupingAttributes(value []string /* primitive/slice/pointer */)
+	Gathering() bool /* primitive/slice/pointer */
+	Started() bool /* primitive/slice/pointer */
+	Stopped() bool /* primitive/slice/pointer */
+	NotificationBatchingInterval() TimeInterval /* foo */
+	SetNotificationBatchingInterval(value TimeInterval /* foo */)
 	OperationQueue() IOperationQueue
 	SetOperationQueue(value IOperationQueue)
 	Predicate() IPredicate
 	SetPredicate(value IPredicate)
-	ResultCount() uint
+	ResultCount() uint /* primitive/slice/pointer */
 	Results() objc.ID
 	SearchItems() objc.ID
 	SetSearchItems(value objc.ID)
 	SearchScopes() objc.ID
 	SetSearchScopes(value objc.ID)
-	SortDescriptors() []SortDescriptor
-	SetSortDescriptors(value []SortDescriptor)
-	ValueListAttributes() []string
-	SetValueListAttributes(value []string)
-	ValueLists() IDictionary
-	IsGathering() bool
-	SetIsGathering(value bool)
-	IsStarted() bool
-	SetIsStarted(value bool)
-	IsStopped() bool
-	SetIsStopped(value bool)
+	SortDescriptors() []SortDescriptor /* primitive/slice/pointer */
+	SetSortDescriptors(value []SortDescriptor /* primitive/slice/pointer */)
+	ValueListAttributes() []string /* primitive/slice/pointer */
+	SetValueListAttributes(value []string /* primitive/slice/pointer */)
+	ValueLists() IDictionary /* already interface */
+	IsGathering() bool /* primitive/slice/pointer */
+	SetIsGathering(value bool /* primitive/slice/pointer */)
+	IsStarted() bool /* primitive/slice/pointer */
+	SetIsStarted(value bool /* primitive/slice/pointer */)
+	IsStopped() bool /* primitive/slice/pointer */
+	SetIsStopped(value bool /* primitive/slice/pointer */)
+	// methods:
 	DisableUpdates()
 	EnableUpdates()
 	EnumerateResultsUsingBlock(block unsafe.Pointer)
-	EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
-	IndexOfResult(result objectivec.IObject) uint
-	ResultAtIndex(idx uint) objc.ID
-	StartQuery() bool
+	EnumerateResultsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	IndexOfResult(result objectivec.IObject) uint /* primitive/slice/pointer */
+	ResultAtIndex(idx uint /* primitive/slice/pointer */) objc.ID
+	StartQuery() bool /* primitive/slice/pointer */
 	StopQuery()
-	ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID
+	ValueOfAttributeForResultAtIndex(attrName string /* primitive/slice/pointer */, idx uint /* primitive/slice/pointer */) objc.ID
 }
 
 // A query that you perform against Spotlight metadata.
@@ -156,7 +158,7 @@ func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enumerateResults(options:using:)
-func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
+func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("enumerateResultsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -165,7 +167,7 @@ func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts NSEnumeration
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/index(ofResult:)
-func (m_ MetadataQuery) IndexOfResult(result objectivec.IObject) uint {
+func (m_ MetadataQuery) IndexOfResult(result objectivec.IObject) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("indexOfResult:"), result)
 	return rv
 }
@@ -175,7 +177,7 @@ func (m_ MetadataQuery) IndexOfResult(result objectivec.IObject) uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/result(at:)
-func (m_ MetadataQuery) ResultAtIndex(idx uint) objc.ID {
+func (m_ MetadataQuery) ResultAtIndex(idx uint /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("resultAtIndex:"), idx)
 	return rv
 }
@@ -185,7 +187,7 @@ func (m_ MetadataQuery) ResultAtIndex(idx uint) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/start()
-func (m_ MetadataQuery) StartQuery() bool {
+func (m_ MetadataQuery) StartQuery() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startQuery"))
 	return rv
 }
@@ -204,7 +206,7 @@ func (m_ MetadataQuery) StopQuery() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/value(ofAttribute:forResultAt:)
-func (m_ MetadataQuery) ValueOfAttributeForResultAtIndex(attrName string, idx uint) objc.ID {
+func (m_ MetadataQuery) ValueOfAttributeForResultAtIndex(attrName string /* primitive/slice/pointer */, idx uint /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueOfAttribute:forResultAtIndex:"), objc.String(attrName), idx)
 	return rv
 }
@@ -233,7 +235,7 @@ func (m_ MetadataQuery) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupedResults
-func (m_ MetadataQuery) GroupedResults() []MetadataQueryResultGroup {
+func (m_ MetadataQuery) GroupedResults() []MetadataQueryResultGroup /* primitive/slice/pointer */ {
 	rv := objc.Send[[]MetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
 }
@@ -243,7 +245,7 @@ func (m_ MetadataQuery) GroupedResults() []MetadataQueryResultGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupingAttributes
-func (m_ MetadataQuery) GroupingAttributes() []string {
+func (m_ MetadataQuery) GroupingAttributes() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("groupingAttributes"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (m_ MetadataQuery) GroupingAttributes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/groupingAttributes
-func (m_ MetadataQuery) SetGroupingAttributes(value []string) {
+func (m_ MetadataQuery) SetGroupingAttributes(value []string /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -272,7 +274,7 @@ func (m_ MetadataQuery) SetGroupingAttributes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isGathering
-func (m_ MetadataQuery) Gathering() bool {
+func (m_ MetadataQuery) Gathering() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("gathering"))
 	return rv
 }
@@ -282,7 +284,7 @@ func (m_ MetadataQuery) Gathering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isStarted
-func (m_ MetadataQuery) Started() bool {
+func (m_ MetadataQuery) Started() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("started"))
 	return rv
 }
@@ -292,7 +294,7 @@ func (m_ MetadataQuery) Started() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/isStopped
-func (m_ MetadataQuery) Stopped() bool {
+func (m_ MetadataQuery) Stopped() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("stopped"))
 	return rv
 }
@@ -302,7 +304,7 @@ func (m_ MetadataQuery) Stopped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/notificationBatchingInterval
-func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
+func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval /* foo */ {
 	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("notificationBatchingInterval"))
 	return rv
 }
@@ -312,7 +314,7 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/notificationBatchingInterval
-func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
+func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotificationBatchingInterval:"), value)
 }
 
@@ -359,7 +361,7 @@ func (m_ MetadataQuery) SetPredicate(value IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/resultCount
-func (m_ MetadataQuery) ResultCount() uint {
+func (m_ MetadataQuery) ResultCount() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("resultCount"))
 	return rv
 }
@@ -417,7 +419,7 @@ func (m_ MetadataQuery) SetSearchScopes(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/sortDescriptors
-func (m_ MetadataQuery) SortDescriptors() []SortDescriptor {
+func (m_ MetadataQuery) SortDescriptors() []SortDescriptor /* primitive/slice/pointer */ {
 	rv := objc.Send[[]SortDescriptor](m_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
@@ -427,7 +429,7 @@ func (m_ MetadataQuery) SortDescriptors() []SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/sortDescriptors
-func (m_ MetadataQuery) SetSortDescriptors(value []SortDescriptor) {
+func (m_ MetadataQuery) SetSortDescriptors(value []SortDescriptor /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -446,7 +448,7 @@ func (m_ MetadataQuery) SetSortDescriptors(value []SortDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueListAttributes
-func (m_ MetadataQuery) ValueListAttributes() []string {
+func (m_ MetadataQuery) ValueListAttributes() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("valueListAttributes"))
 	return rv
 }
@@ -456,7 +458,7 @@ func (m_ MetadataQuery) ValueListAttributes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueListAttributes
-func (m_ MetadataQuery) SetValueListAttributes(value []string) {
+func (m_ MetadataQuery) SetValueListAttributes(value []string /* primitive/slice/pointer */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -475,7 +477,7 @@ func (m_ MetadataQuery) SetValueListAttributes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/valueLists
-func (m_ MetadataQuery) ValueLists() IDictionary {
+func (m_ MetadataQuery) ValueLists() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](m_.ID, objc.Sel("valueLists"))
 	return rv
 }
@@ -485,7 +487,7 @@ func (m_ MetadataQuery) ValueLists() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isgathering
-func (m_ MetadataQuery) IsGathering() bool {
+func (m_ MetadataQuery) IsGathering() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isGathering"))
 	return rv
 }
@@ -495,7 +497,7 @@ func (m_ MetadataQuery) IsGathering() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isgathering
-func (m_ MetadataQuery) SetIsGathering(value bool) {
+func (m_ MetadataQuery) SetIsGathering(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGathering:"), value)
 }
 
@@ -504,7 +506,7 @@ func (m_ MetadataQuery) SetIsGathering(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isstarted
-func (m_ MetadataQuery) IsStarted() bool {
+func (m_ MetadataQuery) IsStarted() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isStarted"))
 	return rv
 }
@@ -514,7 +516,7 @@ func (m_ MetadataQuery) IsStarted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isstarted
-func (m_ MetadataQuery) SetIsStarted(value bool) {
+func (m_ MetadataQuery) SetIsStarted(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsStarted:"), value)
 }
 
@@ -523,7 +525,7 @@ func (m_ MetadataQuery) SetIsStarted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isstopped
-func (m_ MetadataQuery) IsStopped() bool {
+func (m_ MetadataQuery) IsStopped() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isStopped"))
 	return rv
 }
@@ -533,7 +535,7 @@ func (m_ MetadataQuery) IsStopped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/isstopped
-func (m_ MetadataQuery) SetIsStopped(value bool) {
+func (m_ MetadataQuery) SetIsStopped(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsStopped:"), value)
 }
 

@@ -31,14 +31,16 @@ type _PlayerItemRenderedLegibleOutputClass struct {
 // An interface definition for the [PlayerItemRenderedLegibleOutput] class.
 type IPlayerItemRenderedLegibleOutput interface {
 	objectivec.IObject
+	// properties:
 	AdvanceIntervalForDelegateInvocation() unsafe.Pointer
 	SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Delegate() AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */
+	SetDelegate(value AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
 	VideoDisplaySize() coregraphics.CGSize
 	SetVideoDisplaySize(value coregraphics.CGSize)
+	// methods:
 }
 
 // A player item output that vends media with a legible characteristic as rendered pixel buffers.
@@ -115,8 +117,8 @@ func (p_ PlayerItemRenderedLegibleOutput) SetAdvanceIntervalForDelegateInvocatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-func (p_ PlayerItemRenderedLegibleOutput) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+func (p_ PlayerItemRenderedLegibleOutput) Delegate() AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */ {
+	rv := objc.Send[PlayerItemRenderedLegibleOutputPushDelegate](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -125,7 +127,7 @@ func (p_ PlayerItemRenderedLegibleOutput) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/delegate
-func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value unsafe.Pointer) {
+func (p_ PlayerItemRenderedLegibleOutput) SetDelegate(value AVPlayerItemRenderedLegibleOutputPushDelegate /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 

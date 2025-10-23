@@ -88,20 +88,20 @@ func NewAMAppleScriptAction() AMAppleScriptAction {
 
 
 
-// An object representing the receiver’s script containing the command handler.
+// An
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
+// [Full Topic]: https://developer.apple.com/documentation/automator/amapplescriptaction/script
 func (a_ AMAppleScriptAction) Script() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("script"))
 	return rv
 }
 
 
-// An object representing the receiver’s script containing the command handler.
+// An
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMAppleScriptAction/script
+// [Full Topic]: https://developer.apple.com/documentation/automator/amapplescriptaction/script
 func (a_ AMAppleScriptAction) SetScript(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setScript:"), value)
 }

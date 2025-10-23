@@ -31,13 +31,12 @@ type _CSSearchableItemClass struct {
 // An interface definition for the [CSSearchableItem] class.
 type ICSSearchableItem interface {
 	objectivec.IObject
-	CompareByRank(other ICSSearchableItem) unsafe.Pointer
-	AttributeSet() CSSearchableItemAttributeSet
+	AttributeSet() ICSSearchableItemAttributeSet
 	SetAttributeSet(value ICSSearchableItemAttributeSet)
 	DomainIdentifier() string
 	SetDomainIdentifier(value string)
 	ExpirationDate() foundation.NSDate
-	SetExpirationDate(value foundation.IDate)
+	SetExpirationDate(value foundation.NSDate)
 	IsUpdate() bool
 	SetIsUpdate(value bool)
 	UniqueIdentifier() string
@@ -51,11 +50,12 @@ type ICSSearchableItem interface {
 	ContentType() string
 	SetContentType(value string)
 	ContentURL() foundation.URL
-	SetContentURL(value foundation.IURL)
+	SetContentURL(value foundation.URL)
 	DisplayName() string
 	SetDisplayName(value string)
 	Title() string
 	SetTitle(value string)
+	CompareByRank(other ICSSearchableItem) unsafe.Pointer
 }
 
 // The details of your app-specific content that someone might search for on their devices.
@@ -138,7 +138,7 @@ func (c_ CSSearchableItem) CompareByRank(other ICSSearchableItem) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/attributeSet
-func (c_ CSSearchableItem) AttributeSet() CSSearchableItemAttributeSet {
+func (c_ CSSearchableItem) AttributeSet() ICSSearchableItemAttributeSet {
 	rv := objc.Send[CSSearchableItemAttributeSet](c_.ID, objc.Sel("attributeSet"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (c_ CSSearchableItem) ExpirationDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchableItem/expirationDate
-func (c_ CSSearchableItem) SetExpirationDate(value foundation.IDate) {
+func (c_ CSSearchableItem) SetExpirationDate(value foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
@@ -317,7 +317,7 @@ func (c_ CSSearchableItem) ContentURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl
-func (c_ CSSearchableItem) SetContentURL(value foundation.IURL) {
+func (c_ CSSearchableItem) SetContentURL(value foundation.URL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentURL:"), value)
 }
 

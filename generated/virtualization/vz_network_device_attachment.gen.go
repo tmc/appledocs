@@ -32,18 +32,17 @@ type IVZNetworkDeviceAttachment interface {
 	objectivec.IObject
 }
 
-// The common behaviors for the network attachment points of your virtual machine.
-//
-// Don’t create a object directly. Instead, instantiate one of its concrete subclasses and use that object to configure your network devices. Each concrete subclass represents a specific type of network interface on the host computer.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceAttachment
+// A parent class referenced by other Virtualization classes.
+
+
+// A parent class referenced by other Virtualization classes. [Full Topic]
 type VZNetworkDeviceAttachment struct {
 	objectivec.Object
 }
 
 // VZNetworkDeviceAttachmentFrom constructs a [VZNetworkDeviceAttachment] from an unsafe.Pointer.
 //
-// The common behaviors for the network attachment points of your virtual machine.
+// A parent class referenced by other Virtualization classes.
 func VZNetworkDeviceAttachmentFrom(ptr unsafe.Pointer) VZNetworkDeviceAttachment {
 	return VZNetworkDeviceAttachment{objectivec.Object{objc.ID(ptr)}}
 }

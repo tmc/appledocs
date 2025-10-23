@@ -29,7 +29,9 @@ type _BlockOperationClass struct {
 // An interface definition for the [BlockOperation] class.
 type IBlockOperation interface {
 	IOperation
-	ExecutionBlocks() []func()
+	// properties:
+	ExecutionBlocks() []func() /* primitive/slice/pointer */
+	// methods:
 	AddExecutionBlock(block unsafe.Pointer)
 }
 
@@ -122,7 +124,7 @@ func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
-func (b_ BlockOperation) ExecutionBlocks() []func() {
+func (b_ BlockOperation) ExecutionBlocks() []func() /* primitive/slice/pointer */ {
 	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
 	return rv
 }

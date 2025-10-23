@@ -30,7 +30,8 @@ type _INVocabularyClass struct {
 // An interface definition for the [INVocabulary] class.
 type IINVocabulary interface {
 	objectivec.IObject
-	SetVocabularyOfType(vocabulary unsafe.Pointer, type_ INVocabularyStringType)
+	// properties:
+	// methods:
 }
 
 // An object for registering user-specific vocabulary that Siri requests might include.
@@ -85,24 +86,6 @@ func NewINVocabulary() INVocabulary {
 }
 
 
-
-// Returns the shared vocabulary object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabulary/shared()
-func (ic _INVocabularyClass) SharedVocabulary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("sharedVocabulary"))
-	return rv
-}
-
-
-// Registers the specified vocabulary strings with the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabulary/setVocabulary(_:of:)
-func (i_ INVocabulary) SetVocabularyOfType(vocabulary unsafe.Pointer, type_ INVocabularyStringType) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setVocabulary:ofType:"), vocabulary, type_)
-}
 
 
 

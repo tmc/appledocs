@@ -30,6 +30,8 @@ type _KeyValueSharedObserversClass struct {
 // An interface definition for the [KeyValueSharedObservers] class.
 type IKeyValueSharedObservers interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

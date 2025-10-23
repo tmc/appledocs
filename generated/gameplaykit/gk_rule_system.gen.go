@@ -31,6 +31,13 @@ type _RuleSystemClass struct {
 // An interface definition for the [RuleSystem] class.
 type IRuleSystem interface {
 	objectivec.IObject
+	Agenda() []Rule
+	Executed() []Rule
+	Facts() objc.ID
+	Rules() []Rule
+	State() foundation.MutableDictionary
+	Salience() int
+	SetSalience(value int)
 	AddRule(rule IGKRule)
 	AddRulesFromArray(rules []Rule)
 	AssertFact(fact objectivec.IObject)
@@ -43,13 +50,6 @@ type IRuleSystem interface {
 	Reset()
 	RetractFact(fact objectivec.IObject)
 	RetractFactGrade(fact objectivec.IObject, grade float32)
-	Agenda() []Rule
-	Executed() []Rule
-	Facts() objc.ID
-	Rules() []Rule
-	State() foundation.MutableDictionary
-	Salience() int
-	SetSalience(value int)
 }
 
 // A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.

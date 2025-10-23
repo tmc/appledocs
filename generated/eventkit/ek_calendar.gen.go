@@ -31,16 +31,16 @@ type _EKCalendarClass struct {
 // An interface definition for the [EKCalendar] class.
 type IEKCalendar interface {
 	IEKObject
-	AllowedEntityTypes() EKEntityMask
+	AllowedEntityTypes() unsafe.Pointer
 	AllowsContentModifications() bool
 	CalendarIdentifier() string
-	CGColor() coregraphics.CGColorRef
-	SetCGColor(value coregraphics.CGColorRef)
+	CGColor() coregraphics.ColorRef
+	SetCGColor(value coregraphics.ColorRef)
 	Color() appkit.Color
-	SetColor(value appkit.IColor)
+	SetColor(value appkit.Color)
 	Immutable() bool
 	Subscribed() bool
-	Source() EKSource
+	Source() IEKSource
 	SetSource(value IEKSource)
 	SupportedEventAvailabilities() EKCalendarEventAvailabilityMask
 	Title() string
@@ -152,8 +152,8 @@ func (ec _EKCalendarClass) CalendarForEntityTypeEventStore(entityType EKEntityTy
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/allowedEntityTypes
-func (e_ EKCalendar) AllowedEntityTypes() EKEntityMask {
-	rv := objc.Send[EKEntityMask](e_.ID, objc.Sel("allowedEntityTypes"))
+func (e_ EKCalendar) AllowedEntityTypes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("allowedEntityTypes"))
 	return rv
 }
 
@@ -182,8 +182,8 @@ func (e_ EKCalendar) CalendarIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
-	rv := objc.Send[coregraphics.CGColorRef](e_.ID, objc.Sel("CGColor"))
+func (e_ EKCalendar) CGColor() coregraphics.ColorRef {
+	rv := objc.Send[coregraphics.ColorRef](e_.ID, objc.Sel("CGColor"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (e_ EKCalendar) CGColor() coregraphics.CGColorRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/cgColor
-func (e_ EKCalendar) SetCGColor(value coregraphics.CGColorRef) {
+func (e_ EKCalendar) SetCGColor(value coregraphics.ColorRef) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCGColor:"), value)
 }
 
@@ -211,7 +211,7 @@ func (e_ EKCalendar) Color() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/color
-func (e_ EKCalendar) SetColor(value appkit.IColor) {
+func (e_ EKCalendar) SetColor(value appkit.Color) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setColor:"), value)
 }
 
@@ -240,7 +240,7 @@ func (e_ EKCalendar) Subscribed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendar/source
-func (e_ EKCalendar) Source() EKSource {
+func (e_ EKCalendar) Source() IEKSource {
 	rv := objc.Send[EKSource](e_.ID, objc.Sel("source"))
 	return rv
 }

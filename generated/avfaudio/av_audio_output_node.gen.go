@@ -30,10 +30,10 @@ type _AudioOutputNodeClass struct {
 // An interface definition for the [AudioOutputNode] class.
 type IAudioOutputNode interface {
 	IAudioIONode
-	ManualRenderingFormat() AVAudioFormat
+	ManualRenderingFormat() IAVAudioFormat
 	SetManualRenderingFormat(value IAVAudioFormat)
 	IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience
-	SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience)
+	SetIntendedSpatialExperience(value audiotoolbox.SpatialAudioExperience)
 }
 
 // An object that connects to the system’s audio output.
@@ -95,8 +95,8 @@ func NewAudioOutputNode() AudioOutputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-func (a_ AudioOutputNode) ManualRenderingFormat() AVAudioFormat {
-	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
+func (a_ AudioOutputNode) ManualRenderingFormat() IAVAudioFormat {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (a_ AudioOutputNode) IntendedSpatialExperience() audiotoolbox.SpatialAudioE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-func (a_ AudioOutputNode) SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience) {
+func (a_ AudioOutputNode) SetIntendedSpatialExperience(value audiotoolbox.SpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
 

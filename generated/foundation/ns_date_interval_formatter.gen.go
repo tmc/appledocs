@@ -29,18 +29,20 @@ type _DateIntervalFormatterClass struct {
 // An interface definition for the [DateIntervalFormatter] class.
 type IDateIntervalFormatter interface {
 	IFormatter
+	// properties:
 	Calendar() ICalendar
 	SetCalendar(value ICalendar)
 	DateStyle() unsafe.Pointer
 	SetDateStyle(value unsafe.Pointer)
-	DateTemplate() string
-	SetDateTemplate(value string)
+	DateTemplate() string /* primitive/slice/pointer */
+	SetDateTemplate(value string /* primitive/slice/pointer */)
 	Locale() ILocale
 	SetLocale(value ILocale)
 	TimeStyle() unsafe.Pointer
 	SetTimeStyle(value unsafe.Pointer)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
+	// methods:
 }
 
 // A formatter that creates string representations of time intervals.
@@ -140,7 +142,7 @@ func (d_ DateIntervalFormatter) SetDateStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
-func (d_ DateIntervalFormatter) DateTemplate() string {
+func (d_ DateIntervalFormatter) DateTemplate() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("dateTemplate"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (d_ DateIntervalFormatter) DateTemplate() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateintervalformatter/datetemplate
-func (d_ DateIntervalFormatter) SetDateTemplate(value string) {
+func (d_ DateIntervalFormatter) SetDateTemplate(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), objc.String(value))
 }
 

@@ -31,10 +31,14 @@ type _FileProviderRequestClass struct {
 // An interface definition for the [FileProviderRequest] class.
 type IFileProviderRequest interface {
 	objectivec.IObject
-	DomainVersion() NSFileProviderDomainVersion
+	DomainVersion() IFileProviderDomainVersion
+	SetDomainVersion(value IFileProviderDomainVersion)
 	IsFileViewerRequest() bool
+	SetIsFileViewerRequest(value bool)
 	IsSystemRequest() bool
+	SetIsSystemRequest(value bool)
 	RequestingExecutable() foundation.URL
+	SetRequestingExecutable(value foundation.URL)
 }
 
 // An object that provides information about the application requesting data from the File Provider extension.
@@ -91,9 +95,28 @@ func NewFileProviderRequest() FileProviderRequest {
 // The version of the domain for the request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/domainVersion
-func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
-	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/domainversion
+func (f_ FileProviderRequest) DomainVersion() IFileProviderDomainVersion {
+	rv := objc.Send[FileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
+	return rv
+}
+
+
+// The version of the domain for the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/domainversion
+func (f_ FileProviderRequest) SetDomainVersion(value IFileProviderDomainVersion) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainVersion:"), value)
+}
+
+
+// A Boolean value that indicates whether the request came from Finder or related system file browsers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
+func (f_ FileProviderRequest) IsFileViewerRequest() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
 	return rv
 }
 
@@ -101,9 +124,18 @@ func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
 // A Boolean value that indicates whether the request came from Finder or related system file browsers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isFileViewerRequest
-func (f_ FileProviderRequest) IsFileViewerRequest() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
+func (f_ FileProviderRequest) SetIsFileViewerRequest(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsFileViewerRequest:"), value)
+}
+
+
+// A Boolean value that indicates whether the request came from a system process.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
+func (f_ FileProviderRequest) IsSystemRequest() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
 	return rv
 }
 
@@ -111,9 +143,18 @@ func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 // A Boolean value that indicates whether the request came from a system process.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isSystemRequest
-func (f_ FileProviderRequest) IsSystemRequest() bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
+func (f_ FileProviderRequest) SetIsSystemRequest(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSystemRequest:"), value)
+}
+
+
+// The URL of the requesting executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
+func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
+	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv
 }
 
@@ -121,10 +162,9 @@ func (f_ FileProviderRequest) IsSystemRequest() bool {
 // The URL of the requesting executable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/requestingExecutable
-func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
+func (f_ FileProviderRequest) SetRequestingExecutable(value foundation.URL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setRequestingExecutable:"), value)
 }
 
 

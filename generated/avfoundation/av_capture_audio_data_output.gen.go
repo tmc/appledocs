@@ -29,14 +29,16 @@ type _CaptureAudioDataOutputClass struct {
 // An interface definition for the [CaptureAudioDataOutput] class.
 type ICaptureAudioDataOutput interface {
 	ICaptureOutput
-	AudioSettings() string
-	SetAudioSettings(value string)
+	// properties:
+	AudioSettings() string /* primitive/slice/pointer */
+	SetAudioSettings(value string /* primitive/slice/pointer */)
 	SampleBufferCallbackQueue() unsafe.Pointer
 	SetSampleBufferCallbackQueue(value unsafe.Pointer)
-	SampleBufferDelegate() unsafe.Pointer
-	SetSampleBufferDelegate(value unsafe.Pointer)
+	SampleBufferDelegate() AVCaptureAudioDataOutputSampleBufferDelegate /* foo */
+	SetSampleBufferDelegate(value AVCaptureAudioDataOutputSampleBufferDelegate /* foo */)
 	SpatialAudioChannelLayoutTag() unsafe.Pointer
 	SetSpatialAudioChannelLayoutTag(value unsafe.Pointer)
+	// methods:
 }
 
 // A capture output that records audio and provides access to audio sample buffers as they are recorded.
@@ -96,7 +98,7 @@ func NewCaptureAudioDataOutput() CaptureAudioDataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) AudioSettings() string {
+func (c_ CaptureAudioDataOutput) AudioSettings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (c_ CaptureAudioDataOutput) AudioSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) SetAudioSettings(value string) {
+func (c_ CaptureAudioDataOutput) SetAudioSettings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
@@ -134,8 +136,8 @@ func (c_ CaptureAudioDataOutput) SetSampleBufferCallbackQueue(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
-func (c_ CaptureAudioDataOutput) SampleBufferDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferDelegate"))
+func (c_ CaptureAudioDataOutput) SampleBufferDelegate() AVCaptureAudioDataOutputSampleBufferDelegate /* foo */ {
+	rv := objc.Send[CaptureAudioDataOutputSampleBufferDelegate](c_.ID, objc.Sel("sampleBufferDelegate"))
 	return rv
 }
 
@@ -144,7 +146,7 @@ func (c_ CaptureAudioDataOutput) SampleBufferDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/samplebufferdelegate
-func (c_ CaptureAudioDataOutput) SetSampleBufferDelegate(value unsafe.Pointer) {
+func (c_ CaptureAudioDataOutput) SetSampleBufferDelegate(value AVCaptureAudioDataOutputSampleBufferDelegate /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferDelegate:"), value)
 }
 

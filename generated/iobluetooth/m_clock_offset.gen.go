@@ -30,6 +30,8 @@ type _mClockOffsetClass struct {
 // An interface definition for the [mClockOffset] class.
 type ImClockOffset interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

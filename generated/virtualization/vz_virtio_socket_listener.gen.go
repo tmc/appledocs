@@ -37,7 +37,11 @@ type IVZVirtioSocketListener interface {
 // An object that listens for port-based connection requests from the guest operating system.
 //
 // Use a object to route connection requests to your associated delegate object. The socket listener object handles incoming connection requests from the guest operating system and directs them to the methods of its associated object. You may use the same listener object to monitor connections on multiple ports. After creating a object, assign a custom object to its property. The delegate must implement the protocol. To connect the listener to a port, call the method of your virtual machine’s object.
+
+
+// An object that listens for port-based connection requests from the guest operating system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketListener
 type VZVirtioSocketListener struct {
 	objectivec.Object
@@ -82,8 +86,10 @@ func NewVZVirtioSocketListener() VZVirtioSocketListener {
 }
 
 
+
 // The custom object you use to respond to port-based connection attempts.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketListener/delegate
 func (v_ VZVirtioSocketListener) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("delegate"))
@@ -91,10 +97,9 @@ func (v_ VZVirtioSocketListener) Delegate() objc.ID {
 }
 
 
-// SetDelegate sets the value of the delegate property.
 // The custom object you use to respond to port-based connection attempts.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketListener/delegate
 func (v_ VZVirtioSocketListener) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDelegate:"), value)

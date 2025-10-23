@@ -30,27 +30,29 @@ type _ScriptCommandClass struct {
 // An interface definition for the [ScriptCommand] class.
 type IScriptCommand interface {
 	objectivec.IObject
+	// properties:
 	AppleEvent() IAppleEventDescriptor
-	Arguments() IDictionary
-	SetArguments(value IDictionary)
+	Arguments() IDictionary /* already interface */
+	SetArguments(value IDictionary /* already interface */)
 	CommandDescription() IScriptCommandDescription
 	DirectParameter() objc.ID
 	SetDirectParameter(value objc.ID)
-	EvaluatedArguments() IDictionary
+	EvaluatedArguments() IDictionary /* already interface */
 	EvaluatedReceivers() objc.ID
-	WellFormed() bool
+	WellFormed() bool /* primitive/slice/pointer */
 	ReceiversSpecifier() IScriptObjectSpecifier
 	SetReceiversSpecifier(value IScriptObjectSpecifier)
 	ScriptErrorExpectedTypeDescriptor() IAppleEventDescriptor
 	SetScriptErrorExpectedTypeDescriptor(value IAppleEventDescriptor)
-	ScriptErrorNumber() int
-	SetScriptErrorNumber(value int)
+	ScriptErrorNumber() int /* primitive/slice/pointer */
+	SetScriptErrorNumber(value int /* primitive/slice/pointer */)
 	ScriptErrorOffendingObjectDescriptor() IAppleEventDescriptor
 	SetScriptErrorOffendingObjectDescriptor(value IAppleEventDescriptor)
-	ScriptErrorString() string
-	SetScriptErrorString(value string)
-	IsWellFormed() bool
-	SetIsWellFormed(value bool)
+	ScriptErrorString() string /* primitive/slice/pointer */
+	SetScriptErrorString(value string /* primitive/slice/pointer */)
+	IsWellFormed() bool /* primitive/slice/pointer */
+	SetIsWellFormed(value bool /* primitive/slice/pointer */)
+	// methods:
 	ExecuteCommand() objc.ID
 	PerformDefaultImplementation() objc.ID
 	ResumeExecutionWithResult(result objectivec.IObject)
@@ -195,7 +197,7 @@ func (s_ ScriptCommand) AppleEvent() IAppleEventDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/arguments
-func (s_ ScriptCommand) Arguments() IDictionary {
+func (s_ ScriptCommand) Arguments() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](s_.ID, objc.Sel("arguments"))
 	return rv
 }
@@ -205,7 +207,7 @@ func (s_ ScriptCommand) Arguments() IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/arguments
-func (s_ ScriptCommand) SetArguments(value IDictionary) {
+func (s_ ScriptCommand) SetArguments(value IDictionary /* already interface */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArguments:"), value)
 }
 
@@ -243,7 +245,7 @@ func (s_ ScriptCommand) SetDirectParameter(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/evaluatedArguments
-func (s_ ScriptCommand) EvaluatedArguments() IDictionary {
+func (s_ ScriptCommand) EvaluatedArguments() IDictionary /* already interface */ {
 	rv := objc.Send[IDictionary](s_.ID, objc.Sel("evaluatedArguments"))
 	return rv
 }
@@ -263,7 +265,7 @@ func (s_ ScriptCommand) EvaluatedReceivers() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/isWellFormed
-func (s_ ScriptCommand) WellFormed() bool {
+func (s_ ScriptCommand) WellFormed() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("wellFormed"))
 	return rv
 }
@@ -311,7 +313,7 @@ func (s_ ScriptCommand) SetScriptErrorExpectedTypeDescriptor(value IAppleEventDe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorNumber
-func (s_ ScriptCommand) ScriptErrorNumber() int {
+func (s_ ScriptCommand) ScriptErrorNumber() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("scriptErrorNumber"))
 	return rv
 }
@@ -321,7 +323,7 @@ func (s_ ScriptCommand) ScriptErrorNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorNumber
-func (s_ ScriptCommand) SetScriptErrorNumber(value int) {
+func (s_ ScriptCommand) SetScriptErrorNumber(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorNumber:"), value)
 }
 
@@ -349,7 +351,7 @@ func (s_ ScriptCommand) SetScriptErrorOffendingObjectDescriptor(value IAppleEven
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorString
-func (s_ ScriptCommand) ScriptErrorString() string {
+func (s_ ScriptCommand) ScriptErrorString() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("scriptErrorString"))
 	return rv
 }
@@ -359,7 +361,7 @@ func (s_ ScriptCommand) ScriptErrorString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/scriptErrorString
-func (s_ ScriptCommand) SetScriptErrorString(value string) {
+func (s_ ScriptCommand) SetScriptErrorString(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScriptErrorString:"), objc.String(value))
 }
 
@@ -368,7 +370,7 @@ func (s_ ScriptCommand) SetScriptErrorString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/iswellformed
-func (s_ ScriptCommand) IsWellFormed() bool {
+func (s_ ScriptCommand) IsWellFormed() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWellFormed"))
 	return rv
 }
@@ -378,7 +380,7 @@ func (s_ ScriptCommand) IsWellFormed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/iswellformed
-func (s_ ScriptCommand) SetIsWellFormed(value bool) {
+func (s_ ScriptCommand) SetIsWellFormed(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsWellFormed:"), value)
 }
 

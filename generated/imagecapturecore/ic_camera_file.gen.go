@@ -30,32 +30,31 @@ type _ICCameraFileClass struct {
 // An interface definition for the [ICCameraFile] class.
 type IICCameraFile interface {
 	IICCameraItem
-	RequestSecurityScopedURLWithCompletion(completion unsafe.Pointer)
+	// properties:
 	BurstUUID() string
-	Duration() float64
-	Width() int
+	GpsString() string
 	BurstFavorite() bool
 	SetBurstFavorite(value bool)
 	BurstPicked() bool
 	SetBurstPicked(value bool)
 	CreatedFilename() string
 	SetCreatedFilename(value string)
+	Duration() float64
+	SetDuration(value float64)
 	ExifCreationDate() foundation.Date
-	SetExifCreationDate(value foundation.IDate)
+	SetExifCreationDate(value foundation.Date)
 	ExifModificationDate() foundation.Date
-	SetExifModificationDate(value foundation.IDate)
+	SetExifModificationDate(value foundation.Date)
 	FileCreationDate() foundation.Date
-	SetFileCreationDate(value foundation.IDate)
+	SetFileCreationDate(value foundation.Date)
 	FileModificationDate() foundation.Date
-	SetFileModificationDate(value foundation.IDate)
+	SetFileModificationDate(value foundation.Date)
 	FileSize() unsafe.Pointer
 	SetFileSize(value unsafe.Pointer)
 	Fingerprint() string
 	SetFingerprint(value string)
 	FirstPicked() bool
 	SetFirstPicked(value bool)
-	GpsString() string
-	SetGpsString(value string)
 	GroupUUID() string
 	SetGroupUUID(value string)
 	Height() int
@@ -76,6 +75,9 @@ type IICCameraFile interface {
 	SetSidecarFiles(value ICCameraItem)
 	TimeLapse() bool
 	SetTimeLapse(value bool)
+	Width() int
+	SetWidth(value int)
+	// methods:
 }
 
 // An object that represents a file on a camera.
@@ -131,13 +133,6 @@ func NewICCameraFile() ICCameraFile {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/requestSecurityScopedURL(completion:)
-func (i_ ICCameraFile) RequestSecurityScopedURLWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("requestSecurityScopedURLWithCompletion:"), completion)
-}
-
-
 // The burst UUID of the file if it is in a burst.
 //
 // [Full Topic]
@@ -148,22 +143,12 @@ func (i_ ICCameraFile) BurstUUID() string {
 }
 
 
-// The duration, in seconds, of an audio or video file.
+// The GPS String of the file in standard format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/duration
-func (i_ ICCameraFile) Duration() float64 {
-	rv := objc.Send[float64](i_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
-// The width of an image or movie frame.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/width
-func (i_ ICCameraFile) Width() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("width"))
+// [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/gpsString
+func (i_ ICCameraFile) GpsString() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("gpsString"))
 	return rv
 }
 
@@ -225,6 +210,25 @@ func (i_ ICCameraFile) SetCreatedFilename(value string) {
 }
 
 
+// The duration, in seconds, of an audio or video file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/duration
+func (i_ ICCameraFile) Duration() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// The duration, in seconds, of an audio or video file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/duration
+func (i_ ICCameraFile) SetDuration(value float64) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDuration:"), value)
+}
+
+
 // The
 //
 // [Full Topic]
@@ -239,7 +243,7 @@ func (i_ ICCameraFile) ExifCreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifcreationdate
-func (i_ ICCameraFile) SetExifCreationDate(value foundation.IDate) {
+func (i_ ICCameraFile) SetExifCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExifCreationDate:"), value)
 }
 
@@ -258,7 +262,7 @@ func (i_ ICCameraFile) ExifModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifmodificationdate
-func (i_ ICCameraFile) SetExifModificationDate(value foundation.IDate) {
+func (i_ ICCameraFile) SetExifModificationDate(value foundation.Date) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExifModificationDate:"), value)
 }
 
@@ -277,7 +281,7 @@ func (i_ ICCameraFile) FileCreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filecreationdate
-func (i_ ICCameraFile) SetFileCreationDate(value foundation.IDate) {
+func (i_ ICCameraFile) SetFileCreationDate(value foundation.Date) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileCreationDate:"), value)
 }
 
@@ -296,7 +300,7 @@ func (i_ ICCameraFile) FileModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filemodificationdate
-func (i_ ICCameraFile) SetFileModificationDate(value foundation.IDate) {
+func (i_ ICCameraFile) SetFileModificationDate(value foundation.Date) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileModificationDate:"), value)
 }
 
@@ -351,25 +355,6 @@ func (i_ ICCameraFile) FirstPicked() bool {
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/firstpicked
 func (i_ ICCameraFile) SetFirstPicked(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstPicked:"), value)
-}
-
-
-// The GPS String of the file in standard format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
-func (i_ ICCameraFile) GpsString() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("gpsString"))
-	return rv
-}
-
-
-// The GPS String of the file in standard format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/gpsstring
-func (i_ ICCameraFile) SetGpsString(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGpsString:"), objc.String(value))
 }
 
 
@@ -560,6 +545,25 @@ func (i_ ICCameraFile) TimeLapse() bool {
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/timelapse
 func (i_ ICCameraFile) SetTimeLapse(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeLapse:"), value)
+}
+
+
+// The width of an image or movie frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/width
+func (i_ ICCameraFile) Width() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// The width of an image or movie frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/width
+func (i_ ICCameraFile) SetWidth(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setWidth:"), value)
 }
 
 

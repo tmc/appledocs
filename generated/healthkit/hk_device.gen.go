@@ -30,6 +30,7 @@ type _HKDeviceClass struct {
 // An interface definition for the [HKDevice] class.
 type IHKDevice interface {
 	objectivec.IObject
+	// properties:
 	LocalIdentifier() string
 	FirmwareVersion() string
 	SetFirmwareVersion(value string)
@@ -45,6 +46,7 @@ type IHKDevice interface {
 	SetSoftwareVersion(value string)
 	UdiDeviceIdentifier() string
 	SetUdiDeviceIdentifier(value string)
+	// methods:
 }
 
 // A device that generates data for HealthKit.

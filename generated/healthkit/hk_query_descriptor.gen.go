@@ -31,10 +31,12 @@ type _HKQueryDescriptorClass struct {
 // An interface definition for the [HKQueryDescriptor] class.
 type IHKQueryDescriptor interface {
 	objectivec.IObject
+	// properties:
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
-	SampleType() HKSampleType
-	SetSampleType(value HKSampleType)
+	SetPredicate(value foundation.Predicate)
+	SampleType() IHKSampleType
+	SetSampleType(value IHKSampleType)
+	// methods:
 }
 
 // A descriptor that specifies a set of samples based on the data type and a predicate.
@@ -104,7 +106,7 @@ func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
+func (h_ HKQueryDescriptor) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -113,7 +115,7 @@ func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-func (h_ HKQueryDescriptor) SampleType() HKSampleType {
+func (h_ HKQueryDescriptor) SampleType() IHKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (h_ HKQueryDescriptor) SampleType() HKSampleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-func (h_ HKQueryDescriptor) SetSampleType(value HKSampleType) {
+func (h_ HKQueryDescriptor) SetSampleType(value IHKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 

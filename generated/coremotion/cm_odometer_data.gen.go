@@ -37,7 +37,7 @@ type IOdometerData interface {
 	EndDate() foundation.NSDate
 	GpsDate() foundation.NSDate
 	MaxAbsSlope() foundation.Number
-	OriginDevice() OdometerOriginDevice
+	OriginDevice() CMOdometerOriginDevice
 	Slope() foundation.Number
 	Speed() unsafe.Pointer
 	SpeedAccuracy() unsafe.Pointer
@@ -162,8 +162,8 @@ func (o_ OdometerData) MaxAbsSlope() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/originDevice
-func (o_ OdometerData) OriginDevice() OdometerOriginDevice {
-	rv := objc.Send[OdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
+func (o_ OdometerData) OriginDevice() CMOdometerOriginDevice {
+	rv := objc.Send[CMOdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
 	return rv
 }
 

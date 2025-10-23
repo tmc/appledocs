@@ -30,8 +30,8 @@ type _CBIdentityAuthorityClass struct {
 // An interface definition for the [CBIdentityAuthority] class.
 type ICBIdentityAuthority interface {
 	objectivec.IObject
-	CSIdentityAuthority() unsafe.Pointer
 	LocalizedName() string
+	SetLocalizedName(value string)
 }
 
 // An identity authority is a database that stores information about identities. The class defines one or more identity authorities. You can search this database for identities in conjunction with the class factory methods.
@@ -95,32 +95,12 @@ func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSI
 }
 
 
-// Returns the identity authority on the local system.
+// Returns the localized name of the identity authority.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/local()
-func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() CBIdentityAuthority {
-	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("localIdentityAuthority"))
-	return rv
-}
-
-
-// Returns the identity authority that contains all the identities in bound network directory servers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/managed()
-func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() CBIdentityAuthority {
-	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("managedIdentityAuthority"))
-	return rv
-}
-
-
-// Returns an identity authority for use with the Core Services Identity API.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/CSIdentityAuthority
-func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CSIdentityAuthority"))
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
+func (c_ CBIdentityAuthority) LocalizedName() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -128,10 +108,9 @@ func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 // Returns the localized name of the identity authority.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
-func (c_ CBIdentityAuthority) LocalizedName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
+func (c_ CBIdentityAuthority) SetLocalizedName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 
 

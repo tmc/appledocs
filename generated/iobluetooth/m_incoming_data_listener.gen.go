@@ -30,6 +30,8 @@ type _mIncomingDataListenerClass struct {
 // An interface definition for the [mIncomingDataListener] class.
 type ImIncomingDataListener interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

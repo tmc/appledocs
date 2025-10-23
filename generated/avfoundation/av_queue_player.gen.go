@@ -29,6 +29,8 @@ type _QueuePlayerClass struct {
 // An interface definition for the [QueuePlayer] class.
 type IQueuePlayer interface {
 	IPlayer
+	// properties:
+	// methods:
 }
 
 // An object that plays a sequence of player items.

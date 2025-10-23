@@ -33,7 +33,7 @@ type ICKAllowedSharingOptions interface {
 	AllowedParticipantAccessOptions() unsafe.Pointer
 	SetAllowedParticipantAccessOptions(value unsafe.Pointer)
 	AllowedParticipantPermissionOptions() CKSharingParticipantPermissionOption
-	SetAllowedParticipantPermissionOptions(value ICKSharingParticipantPermissionOption)
+	SetAllowedParticipantPermissionOptions(value CKSharingParticipantPermissionOption)
 	AllowsAccessRequests() bool
 	SetAllowsAccessRequests(value bool)
 	AllowsParticipantsToInviteOthers() bool
@@ -126,7 +126,7 @@ func (c_ CKAllowedSharingOptions) AllowedParticipantPermissionOptions() CKSharin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions/allowedparticipantpermissionoptions
-func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value ICKSharingParticipantPermissionOption) {
+func (c_ CKAllowedSharingOptions) SetAllowedParticipantPermissionOptions(value CKSharingParticipantPermissionOption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedParticipantPermissionOptions:"), value)
 }
 

@@ -30,20 +30,22 @@ type _OutputSettingsAssistantClass struct {
 // An interface definition for the [OutputSettingsAssistant] class.
 type IOutputSettingsAssistant interface {
 	objectivec.IObject
-	AudioSettings() string
-	SetAudioSettings(value string)
-	OutputFileType() unsafe.Pointer
-	SetOutputFileType(value unsafe.Pointer)
-	SourceAudioFormat() unsafe.Pointer
-	SetSourceAudioFormat(value unsafe.Pointer)
-	SourceVideoAverageFrameDuration() unsafe.Pointer
-	SetSourceVideoAverageFrameDuration(value unsafe.Pointer)
-	SourceVideoFormat() unsafe.Pointer
-	SetSourceVideoFormat(value unsafe.Pointer)
-	SourceVideoMinFrameDuration() unsafe.Pointer
-	SetSourceVideoMinFrameDuration(value unsafe.Pointer)
-	VideoSettings() string
-	SetVideoSettings(value string)
+	// properties:
+	AudioSettings() string /* primitive/slice/pointer */
+	SetAudioSettings(value string /* primitive/slice/pointer */)
+	OutputFileType() AVFileType /* typedef */
+	SetOutputFileType(value AVFileType /* typedef */)
+	SourceAudioFormat() CMAudioFormatDescription /* foo */
+	SetSourceAudioFormat(value CMAudioFormatDescription /* foo */)
+	SourceVideoAverageFrameDuration() CMTime /* foo */
+	SetSourceVideoAverageFrameDuration(value CMTime /* foo */)
+	SourceVideoFormat() CMVideoFormatDescription /* foo */
+	SetSourceVideoFormat(value CMVideoFormatDescription /* foo */)
+	SourceVideoMinFrameDuration() CMTime /* foo */
+	SetSourceVideoMinFrameDuration(value CMTime /* foo */)
+	VideoSettings() string /* primitive/slice/pointer */
+	SetVideoSettings(value string /* primitive/slice/pointer */)
+	// methods:
 }
 
 // An object that builds audio and video output settings dictionaries.
@@ -103,7 +105,7 @@ func NewOutputSettingsAssistant() OutputSettingsAssistant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
-func (o_ OutputSettingsAssistant) AudioSettings() string {
+func (o_ OutputSettingsAssistant) AudioSettings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("audioSettings"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (o_ OutputSettingsAssistant) AudioSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/audiosettings
-func (o_ OutputSettingsAssistant) SetAudioSettings(value string) {
+func (o_ OutputSettingsAssistant) SetAudioSettings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
 }
 
@@ -122,8 +124,8 @@ func (o_ OutputSettingsAssistant) SetAudioSettings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/outputfiletype
-func (o_ OutputSettingsAssistant) OutputFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("outputFileType"))
+func (o_ OutputSettingsAssistant) OutputFileType() AVFileType /* typedef */ {
+	rv := objc.Send[FileType](o_.ID, objc.Sel("outputFileType"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (o_ OutputSettingsAssistant) OutputFileType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/outputfiletype
-func (o_ OutputSettingsAssistant) SetOutputFileType(value unsafe.Pointer) {
+func (o_ OutputSettingsAssistant) SetOutputFileType(value AVFileType /* typedef */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutputFileType:"), value)
 }
 
@@ -141,8 +143,8 @@ func (o_ OutputSettingsAssistant) SetOutputFileType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourceaudioformat
-func (o_ OutputSettingsAssistant) SourceAudioFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceAudioFormat"))
+func (o_ OutputSettingsAssistant) SourceAudioFormat() CMAudioFormatDescription /* foo */ {
+	rv := objc.Send[AudioFormatDescription](o_.ID, objc.Sel("sourceAudioFormat"))
 	return rv
 }
 
@@ -151,7 +153,7 @@ func (o_ OutputSettingsAssistant) SourceAudioFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourceaudioformat
-func (o_ OutputSettingsAssistant) SetSourceAudioFormat(value unsafe.Pointer) {
+func (o_ OutputSettingsAssistant) SetSourceAudioFormat(value CMAudioFormatDescription /* foo */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceAudioFormat:"), value)
 }
 
@@ -160,8 +162,8 @@ func (o_ OutputSettingsAssistant) SetSourceAudioFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
-func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoAverageFrameDuration"))
+func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](o_.ID, objc.Sel("sourceVideoAverageFrameDuration"))
 	return rv
 }
 
@@ -170,7 +172,7 @@ func (o_ OutputSettingsAssistant) SourceVideoAverageFrameDuration() unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoaverageframeduration
-func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value unsafe.Pointer) {
+func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoAverageFrameDuration:"), value)
 }
 
@@ -179,8 +181,8 @@ func (o_ OutputSettingsAssistant) SetSourceVideoAverageFrameDuration(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat
-func (o_ OutputSettingsAssistant) SourceVideoFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoFormat"))
+func (o_ OutputSettingsAssistant) SourceVideoFormat() CMVideoFormatDescription /* foo */ {
+	rv := objc.Send[VideoFormatDescription](o_.ID, objc.Sel("sourceVideoFormat"))
 	return rv
 }
 
@@ -189,7 +191,7 @@ func (o_ OutputSettingsAssistant) SourceVideoFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat
-func (o_ OutputSettingsAssistant) SetSourceVideoFormat(value unsafe.Pointer) {
+func (o_ OutputSettingsAssistant) SetSourceVideoFormat(value CMVideoFormatDescription /* foo */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoFormat:"), value)
 }
 
@@ -198,8 +200,8 @@ func (o_ OutputSettingsAssistant) SetSourceVideoFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
-func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sourceVideoMinFrameDuration"))
+func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() CMTime /* foo */ {
+	rv := objc.Send[Time](o_.ID, objc.Sel("sourceVideoMinFrameDuration"))
 	return rv
 }
 
@@ -208,7 +210,7 @@ func (o_ OutputSettingsAssistant) SourceVideoMinFrameDuration() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideominframeduration
-func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value unsafe.Pointer) {
+func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value CMTime /* foo */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSourceVideoMinFrameDuration:"), value)
 }
 
@@ -217,7 +219,7 @@ func (o_ OutputSettingsAssistant) SetSourceVideoMinFrameDuration(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
-func (o_ OutputSettingsAssistant) VideoSettings() string {
+func (o_ OutputSettingsAssistant) VideoSettings() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("videoSettings"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (o_ OutputSettingsAssistant) VideoSettings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/videosettings
-func (o_ OutputSettingsAssistant) SetVideoSettings(value string) {
+func (o_ OutputSettingsAssistant) SetVideoSettings(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setVideoSettings:"), objc.String(value))
 }
 

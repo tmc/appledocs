@@ -31,16 +31,16 @@ type _WebAuthenticationSessionClass struct {
 // An interface definition for the [WebAuthenticationSession] class.
 type IWebAuthenticationSession interface {
 	objectivec.IObject
-	Cancel()
-	Start() bool
-	AdditionalHeaderFields() unsafe.Pointer
-	SetAdditionalHeaderFields(value unsafe.Pointer)
-	CanStart() bool
-	PrefersEphemeralWebBrowserSession() bool
-	SetPrefersEphemeralWebBrowserSession(value bool)
+	AdditionalHeaderFields() foundation.IDictionary
+	SetAdditionalHeaderFields(value foundation.IDictionary)
 	PresentationContextProvider() objc.ID
 	SetPresentationContextProvider(value objc.ID)
+	CanStart() bool
+	SetCanStart(value bool)
+	PrefersEphemeralWebBrowserSession() bool
+	SetPrefersEphemeralWebBrowserSession(value bool)
 	ASWebAuthenticationSessionErrorDomain() string
+	Start() bool
 }
 
 // A session that an app uses to authenticate a user through a web service.
@@ -98,7 +98,7 @@ func NewWebAuthenticationSession() WebAuthenticationSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callback:completionHandler:)
-func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.IURL, callback IASWebAuthenticationSessionCallback, completionHandler unsafe.Pointer) WebAuthenticationSession {
+func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.URL, callback WebAuthenticationSessionCallback, completionHandler unsafe.Pointer) WebAuthenticationSession {
 	instance := getWebAuthenticationSessionClass().Alloc()
 	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callback:completionHandler:"), URL, callback, completionHandler)
 	rv.Autorelease()
@@ -106,14 +106,17 @@ func NewWebAuthenticationSessionWithURLCallbackCompletionHandler(URL foundation.
 }
 
 
-
-// Cancels a web authentication session.
+// Creates a web authentication session instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()
-func (w_ WebAuthenticationSession) Cancel() {
-	objc.Send[objc.ID](w_.ID, objc.Sel("cancel"))
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/init(url:callbackURLScheme:completionHandler:)
+func NewWebAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL foundation.URL, callbackURLScheme string, completionHandler unsafe.Pointer) WebAuthenticationSession {
+	instance := getWebAuthenticationSessionClass().Alloc()
+	rv := objc.Send[WebAuthenticationSession](instance.ID, objc.Sel("initWithURL:callbackURLScheme:completionHandler:"), URL, objc.String(callbackURLScheme), completionHandler)
+	rv.Autorelease()
+	return rv
 }
+
 
 
 // Starts a web authentication session.
@@ -128,45 +131,16 @@ func (w_ WebAuthenticationSession) Start() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-func (w_ WebAuthenticationSession) AdditionalHeaderFields() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("additionalHeaderFields"))
+func (w_ WebAuthenticationSession) AdditionalHeaderFields() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("additionalHeaderFields"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/additionalHeaderFields
-func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value unsafe.Pointer) {
+func (w_ WebAuthenticationSession) SetAdditionalHeaderFields(value foundation.IDictionary) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAdditionalHeaderFields:"), value)
-}
-
-
-// A Boolean indicating whether the session can begin.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/canStart
-func (w_ WebAuthenticationSession) CanStart() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("canStart"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the session should ask the browser for a private authentication session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
-func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("prefersEphemeralWebBrowserSession"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the session should ask the browser for a private authentication session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession
-func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
 
 
@@ -186,6 +160,44 @@ func (w_ WebAuthenticationSession) PresentationContextProvider() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider
 func (w_ WebAuthenticationSession) SetPresentationContextProvider(value objc.ID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPresentationContextProvider:"), value)
+}
+
+
+// A Boolean indicating whether the session can begin.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/canstart
+func (w_ WebAuthenticationSession) CanStart() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("canStart"))
+	return rv
+}
+
+
+// A Boolean indicating whether the session can begin.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/canstart
+func (w_ WebAuthenticationSession) SetCanStart(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCanStart:"), value)
+}
+
+
+// A Boolean value that indicates whether the session should ask the browser for a private authentication session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/prefersephemeralwebbrowsersession
+func (w_ WebAuthenticationSession) PrefersEphemeralWebBrowserSession() bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("prefersEphemeralWebBrowserSession"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the session should ask the browser for a private authentication session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/prefersephemeralwebbrowsersession
+func (w_ WebAuthenticationSession) SetPrefersEphemeralWebBrowserSession(value bool) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPrefersEphemeralWebBrowserSession:"), value)
 }
 
 

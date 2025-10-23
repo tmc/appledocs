@@ -29,6 +29,8 @@ type _UnitAngleClass struct {
 // An interface definition for the [UnitAngle] class.
 type IUnitAngle interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for planar angle and rotation.

@@ -30,6 +30,8 @@ type _INIntentResolutionResultClass struct {
 // An interface definition for the [INIntentResolutionResult] class.
 type IINIntentResolutionResult interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A resolution result for a parameter of an intent object.

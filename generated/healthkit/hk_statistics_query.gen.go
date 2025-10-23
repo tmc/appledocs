@@ -29,6 +29,8 @@ type _HKStatisticsQueryClass struct {
 // An interface definition for the [HKStatisticsQuery] class.
 type IHKStatisticsQuery interface {
 	IHKQuery
+	// properties:
+	// methods:
 }
 
 // A query that performs statistical calculations over a set of matching quantity samples, and returns the results.

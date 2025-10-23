@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [AuthorizationOpenIDRequest] class.
@@ -28,35 +29,22 @@ type _AuthorizationOpenIDRequestClass struct {
 
 // An interface definition for the [AuthorizationOpenIDRequest] class.
 type IAuthorizationOpenIDRequest interface {
-	IAuthorizationRequest
-	Nonce() string
-	SetNonce(value string)
-	RequestedOperation() AuthorizationOpenIDOperation
-	SetRequestedOperation(value IAuthorizationOpenIDOperation)
-	RequestedScopes() []string
-	SetRequestedScopes(value []string)
-	State() string
-	SetState(value string)
+	objectivec.IObject
 }
 
-// An OpenID authorization request.
+// A parent class referenced by other AuthenticationServices classes.
 
 
-// An OpenID authorization request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest
+// A parent class referenced by other AuthenticationServices classes. [Full Topic]
 type AuthorizationOpenIDRequest struct {
-	AuthorizationRequest
+	objectivec.Object
 }
 
 // AuthorizationOpenIDRequestFrom constructs a [AuthorizationOpenIDRequest] from an unsafe.Pointer.
 //
-// An OpenID authorization request.
+// A parent class referenced by other AuthenticationServices classes.
 func AuthorizationOpenIDRequestFrom(ptr unsafe.Pointer) AuthorizationOpenIDRequest {
-	return AuthorizationOpenIDRequest{
-		AuthorizationRequest: AuthorizationRequestFrom(ptr),
-	}
+	return AuthorizationOpenIDRequest{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -90,92 +78,6 @@ func NewAuthorizationOpenIDRequest() AuthorizationOpenIDRequest {
 	return getAuthorizationOpenIDRequestClass().New()
 }
 
-
-
-// A string value to pass to the identity provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-func (a_ AuthorizationOpenIDRequest) Nonce() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("nonce"))
-	return rv
-}
-
-
-// A string value to pass to the identity provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-func (a_ AuthorizationOpenIDRequest) SetNonce(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), objc.String(value))
-}
-
-
-// The OpenID authentication operation you want this request to perform.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-func (a_ AuthorizationOpenIDRequest) RequestedOperation() AuthorizationOpenIDOperation {
-	rv := objc.Send[AuthorizationOpenIDOperation](a_.ID, objc.Sel("requestedOperation"))
-	return rv
-}
-
-
-// The OpenID authentication operation you want this request to perform.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value IAuthorizationOpenIDOperation) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedOperation:"), value)
-}
-
-
-// The contact information to be requested from the user during authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes
-func (a_ AuthorizationOpenIDRequest) RequestedScopes() []string {
-	rv := objc.Send[[]string](a_.ID, objc.Sel("requestedScopes"))
-	return rv
-}
-
-
-// The contact information to be requested from the user during authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedScopes
-func (a_ AuthorizationOpenIDRequest) SetRequestedScopes(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedScopes:"), nsArray)
-}
-
-
-// Data that’s returned to you unmodified in the corresponding credential after a successful authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-func (a_ AuthorizationOpenIDRequest) State() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// Data that’s returned to you unmodified in the corresponding credential after a successful authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-func (a_ AuthorizationOpenIDRequest) SetState(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
-}
 
 
 

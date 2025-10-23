@@ -30,9 +30,8 @@ type _FSItemGetAttributesRequestClass struct {
 // An interface definition for the [FSItemGetAttributesRequest] class.
 type IFSItemGetAttributesRequest interface {
 	objectivec.IObject
-	IsAttributeWanted(attribute FSItemAttribute) bool
-	WantedAttributes() FSItemAttribute
-	SetWantedAttributes(value FSItemAttribute)
+	WantedAttributes() unsafe.Pointer
+	SetWantedAttributes(value unsafe.Pointer)
 }
 
 // A request to get attributes from an item.
@@ -88,12 +87,12 @@ func NewFSItemGetAttributesRequest() FSItemGetAttributesRequest {
 
 
 
-// A method that indicates whether the request wants given attribute.
+// The attributes requested by the request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/isAttributeWanted(_:)
-func (f_ FSItemGetAttributesRequest) IsAttributeWanted(attribute FSItemAttribute) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("isAttributeWanted:"), attribute)
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+func (f_ FSItemGetAttributesRequest) WantedAttributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("wantedAttributes"))
 	return rv
 }
 
@@ -101,18 +100,8 @@ func (f_ FSItemGetAttributesRequest) IsAttributeWanted(attribute FSItemAttribute
 // The attributes requested by the request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/wantedAttributes
-func (f_ FSItemGetAttributesRequest) WantedAttributes() FSItemAttribute {
-	rv := objc.Send[FSItemAttribute](f_.ID, objc.Sel("wantedAttributes"))
-	return rv
-}
-
-
-// The attributes requested by the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/GetAttributesRequest/wantedAttributes
-func (f_ FSItemGetAttributesRequest) SetWantedAttributes(value FSItemAttribute) {
+// [Full Topic]: https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest/wantedattributes
+func (f_ FSItemGetAttributesRequest) SetWantedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWantedAttributes:"), value)
 }
 

@@ -31,13 +31,15 @@ type _PrivateKeyClass struct {
 // An interface definition for the [PrivateKey] class.
 type IPrivateKey interface {
 	objectivec.IObject
+	// properties:
+	PublicKey() ILAPublicKey
+	// methods:
 	CanDecryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
 	CanExchangeKeysUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
 	CanSignUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
-	DecryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
-	ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.IData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer)
-	SignDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
-	PublicKey() LAPublicKey
+	DecryptDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer)
+	ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.NSData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer)
+	SignDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer)
 }
 
 // The private portion of an asymmetric key pair.
@@ -125,7 +127,7 @@ func (p_ PrivateKey) CanSignUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/decrypt(_:algorithm:completion:)
-func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("decryptData:secKeyAlgorithm:completion:"), data, algorithm, handler)
 }
 
@@ -134,7 +136,7 @@ func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data foundation.IData,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/exchangeKeys(publicKey:algorithm:parameters:completion:)
-func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.IData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer) {
+func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey foundation.NSData, algorithm unsafe.Pointer, parameters objectivec.IObject, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:"), publicKey, algorithm, parameters, handler)
 }
 
@@ -143,7 +145,7 @@ func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCom
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/sign(_:algorithm:completion:)
-func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("signData:secKeyAlgorithm:completion:"), data, algorithm, handler)
 }
 
@@ -152,8 +154,8 @@ func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data foundation.IData, al
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/publicKey
-func (p_ PrivateKey) PublicKey() LAPublicKey {
-	rv := objc.Send[LAPublicKey](p_.ID, objc.Sel("publicKey"))
+func (p_ PrivateKey) PublicKey() ILAPublicKey {
+	rv := objc.Send[PublicKey](p_.ID, objc.Sel("publicKey"))
 	return rv
 }
 

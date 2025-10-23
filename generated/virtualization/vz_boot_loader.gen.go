@@ -35,7 +35,11 @@ type IVZBootLoader interface {
 // The base class that defines the management of the initial process of the guest system.
 //
 // The abstract class defines the common behaviors for booting a guest operating system into a VM. Don’t create instances of this class directly. Instead, instantiate the subclass that corresponds to the type of operating system you plan to load. For example, to create a boot loader object for a Linux kernel, create a object; to create a boot loader object for installation using an ISO image create a . For a macOS system create .
+
+
+// The base class that defines the management of the initial process of the guest system.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZBootLoader
 type VZBootLoader struct {
 	objectivec.Object

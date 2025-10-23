@@ -91,7 +91,7 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)
-func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, identifier IEKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
+func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, identifier EKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
 	instance := getEKVirtualConferenceRoomTypeDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), objc.String(title), identifier)
 	rv.Autorelease()

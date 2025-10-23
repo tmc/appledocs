@@ -30,7 +30,7 @@ type _CXEndCallActionClass struct {
 // An interface definition for the [CXEndCallAction] class.
 type ICXEndCallAction interface {
 	ICXCallAction
-	FulfillWithDateEnded(dateEnded foundation.IDate)
+	FulfillWithDateEnded(dateEnded foundation.NSDate)
 }
 
 // An encapsulation of the act of ending a call.
@@ -92,7 +92,7 @@ func NewCXEndCallAction() CXEndCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction/fulfill(withDateEnded:)
-func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.IDate) {
+func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.NSDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateEnded:"), dateEnded)
 }
 

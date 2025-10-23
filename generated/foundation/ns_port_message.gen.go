@@ -30,12 +30,14 @@ type _PortMessageClass struct {
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
+	// properties:
 	Components() objc.ID
-	Msgid() uint32
-	SetMsgid(value uint32)
+	Msgid() uint32 /* foo */
+	SetMsgid(value uint32 /* foo */)
 	ReceivePort() IPort
 	SendPort() IPort
-	SendBeforeDate(date IDate) bool
+	// methods:
+	SendBeforeDate(date IDate) bool /* primitive/slice/pointer */
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -108,7 +110,7 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/send(before:)
-func (p_ PortMessage) SendBeforeDate(date IDate) bool {
+func (p_ PortMessage) SendBeforeDate(date IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
 }
@@ -128,7 +130,7 @@ func (p_ PortMessage) Components() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-func (p_ PortMessage) Msgid() uint32 {
+func (p_ PortMessage) Msgid() uint32 /* foo */ {
 	rv := objc.Send[uint32](p_.ID, objc.Sel("msgid"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (p_ PortMessage) Msgid() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
-func (p_ PortMessage) SetMsgid(value uint32) {
+func (p_ PortMessage) SetMsgid(value uint32 /* foo */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
 

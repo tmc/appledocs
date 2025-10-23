@@ -29,6 +29,8 @@ type _RandomSpecifierClass struct {
 // An interface definition for the [RandomSpecifier] class.
 type IRandomSpecifier interface {
 	IScriptObjectSpecifier
+	// properties:
+	// methods:
 }
 
 // A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.

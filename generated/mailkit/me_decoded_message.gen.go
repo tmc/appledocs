@@ -31,14 +31,16 @@ type _MEDecodedMessageClass struct {
 // An interface definition for the [MEDecodedMessage] class.
 type IMEDecodedMessage interface {
 	objectivec.IObject
-	Banner() MEDecodedMessageBanner
+	// properties:
+	Banner() IMEDecodedMessageBanner
 	SetBanner(value IMEDecodedMessageBanner)
 	Context() foundation.Data
-	SetContext(value foundation.IData)
+	SetContext(value foundation.Data)
 	RawData() foundation.Data
-	SetRawData(value foundation.IData)
+	SetRawData(value foundation.Data)
 	SecurityInformation() unsafe.Pointer
 	SetSecurityInformation(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that contains the RFC 2822 data for a message, without encryption or digital signatures.
@@ -96,7 +98,7 @@ func NewMEDecodedMessage() MEDecodedMessage {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
-func (m_ MEDecodedMessage) Banner() MEDecodedMessageBanner {
+func (m_ MEDecodedMessage) Banner() IMEDecodedMessageBanner {
 	rv := objc.Send[MEDecodedMessageBanner](m_.ID, objc.Sel("banner"))
 	return rv
 }
@@ -119,7 +121,7 @@ func (m_ MEDecodedMessage) Context() foundation.Data {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
-func (m_ MEDecodedMessage) SetContext(value foundation.IData) {
+func (m_ MEDecodedMessage) SetContext(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -138,7 +140,7 @@ func (m_ MEDecodedMessage) RawData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
-func (m_ MEDecodedMessage) SetRawData(value foundation.IData) {
+func (m_ MEDecodedMessage) SetRawData(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 

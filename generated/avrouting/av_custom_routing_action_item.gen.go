@@ -32,8 +32,8 @@ type ICustomRoutingActionItem interface {
 	objectivec.IObject
 	OverrideTitle() string
 	SetOverrideTitle(value string)
-	Type() unsafe.Pointer
-	SetType(value unsafe.Pointer)
+	Type() objectivec.IObject
+	SetType(value objectivec.IObject)
 }
 
 // An object that represents a custom action item to display in a device route picker.
@@ -112,8 +112,8 @@ func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ CustomRoutingActionItem) Type() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -122,7 +122,7 @@ func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) SetType(value unsafe.Pointer) {
+func (c_ CustomRoutingActionItem) SetType(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 

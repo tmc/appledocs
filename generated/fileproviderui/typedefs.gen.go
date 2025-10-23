@@ -6,6 +6,6 @@ package fileproviderui
 // FPUIActionIdentifier type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionIdentifier
-// FPUIActionIdentifier has base type: NSString *
-type FPUIActionIdentifier uintptr
+// FPUIActionIdentifier is a string typedef
+type FPUIActionIdentifier = string
 

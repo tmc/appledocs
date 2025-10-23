@@ -13,7 +13,7 @@ var _ = classkit.NewSContext
 // Initializes a new context.
 func ExampleNewSContextWithTypeIdentifierTitle() {
 	_ = classkit.NewSContextWithTypeIdentifierTitle(
-		classkit.SContextType{}, // type SContextType
+		classkit.CLSContextType{}, // type CLSContextType
 		"identifier", // identifier string
 		"title", // title string
 	)

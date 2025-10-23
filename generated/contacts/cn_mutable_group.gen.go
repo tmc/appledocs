@@ -91,7 +91,7 @@ func NewCNMutableGroup() CNMutableGroup {
 // The name of the group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
 func (c_ CNMutableGroup) Name() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
@@ -101,7 +101,7 @@ func (c_ CNMutableGroup) Name() string {
 // The name of the group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNMutableGroup/name
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
 func (c_ CNMutableGroup) SetName(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }

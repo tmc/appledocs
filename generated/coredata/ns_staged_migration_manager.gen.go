@@ -30,7 +30,7 @@ type _StagedMigrationManagerClass struct {
 // An interface definition for the [StagedMigrationManager] class.
 type IStagedMigrationManager interface {
 	objectivec.IObject
-	Container() NSPersistentContainer
+	Container() IPersistentContainer
 	Stages() []MigrationStage
 	NSPersistentStoreStagedMigrationManagerOptionKey() string
 }
@@ -92,8 +92,8 @@ func NewStagedMigrationManager() StagedMigrationManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/container
-func (s_ StagedMigrationManager) Container() NSPersistentContainer {
-	rv := objc.Send[NSPersistentContainer](s_.ID, objc.Sel("container"))
+func (s_ StagedMigrationManager) Container() IPersistentContainer {
+	rv := objc.Send[PersistentContainer](s_.ID, objc.Sel("container"))
 	return rv
 }
 

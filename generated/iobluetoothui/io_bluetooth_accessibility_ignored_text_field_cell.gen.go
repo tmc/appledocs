@@ -30,6 +30,8 @@ type _BluetoothAccessibilityIgnoredTextFieldCellClass struct {
 // An interface definition for the [BluetoothAccessibilityIgnoredTextFieldCell] class.
 type IBluetoothAccessibilityIgnoredTextFieldCell interface {
 	appkit.ITextFieldCell
+	// properties:
+	// methods:
 }
 
 

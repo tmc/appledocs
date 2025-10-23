@@ -30,8 +30,10 @@ type _AuthorizationClass struct {
 // An interface definition for the [Authorization] class.
 type IAuthorization interface {
 	objectivec.IObject
-	Credential() objc.ID
-	Provider() objc.ID
+	Credential() unsafe.Pointer
+	SetCredential(value unsafe.Pointer)
+	Provider() unsafe.Pointer
+	SetProvider(value unsafe.Pointer)
 }
 
 // The encapsulation of a successful authorization by a controller.
@@ -88,9 +90,28 @@ func NewAuthorization() Authorization {
 // Information provided about a user after successful authentication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/credential
-func (a_ Authorization) Credential() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("credential"))
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
+func (a_ Authorization) Credential() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("credential"))
+	return rv
+}
+
+
+// Information provided about a user after successful authentication.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
+func (a_ Authorization) SetCredential(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
+}
+
+
+// The provider that created the request that resulted in the successful authorization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
+func (a_ Authorization) Provider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
 	return rv
 }
 
@@ -98,10 +119,9 @@ func (a_ Authorization) Credential() objc.ID {
 // The provider that created the request that resulted in the successful authorization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/provider
-func (a_ Authorization) Provider() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("provider"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
+func (a_ Authorization) SetProvider(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
 }
 
 

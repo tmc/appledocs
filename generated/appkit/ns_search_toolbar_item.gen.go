@@ -29,13 +29,13 @@ type _SearchToolbarItemClass struct {
 // An interface definition for the [SearchToolbarItem] class.
 type ISearchToolbarItem interface {
 	IToolbarItem
-	BeginSearchInteraction()
 	PreferredWidthForSearchField() float64
 	SetPreferredWidthForSearchField(value float64)
 	ResignsFirstResponderWithCancel() bool
 	SetResignsFirstResponderWithCancel(value bool)
-	SearchField() NSSearchField
-	SetSearchField(value ISearchField)
+	SearchField() SearchField
+	SetSearchField(value SearchField)
+	BeginSearchInteraction()
 }
 
 // A toolbar item that contains a search field optimized for performing text-based searches.
@@ -144,8 +144,8 @@ func (s_ SearchToolbarItem) SetResignsFirstResponderWithCancel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
-func (s_ SearchToolbarItem) SearchField() NSSearchField {
-	rv := objc.Send[NSSearchField](s_.ID, objc.Sel("searchField"))
+func (s_ SearchToolbarItem) SearchField() SearchField {
+	rv := objc.Send[SearchField](s_.ID, objc.Sel("searchField"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (s_ SearchToolbarItem) SearchField() NSSearchField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchtoolbaritem/searchfield
-func (s_ SearchToolbarItem) SetSearchField(value ISearchField) {
+func (s_ SearchToolbarItem) SetSearchField(value SearchField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchField:"), value)
 }
 

@@ -30,14 +30,16 @@ type _BluetoothDevicePairClass struct {
 // An interface definition for the [BluetoothDevicePair] class.
 type IBluetoothDevicePair interface {
 	objectivec.IObject
-	Device() BluetoothDevice
+	// properties:
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	// methods:
+	Device() IBluetoothDevice
 	ReplyPINCodePINCode(PINCodeSize unsafe.Pointer, PINCode unsafe.Pointer)
 	ReplyUserConfirmation(reply bool)
 	SetDevice(inDevice IOBluetoothDevice)
 	Start() unsafe.Pointer
 	Stop()
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 }
 
 // An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.
@@ -118,7 +120,7 @@ func (bc _BluetoothDevicePairClass) PairWithDevice(device IOBluetoothDevice) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/device()
-func (b_ BluetoothDevicePair) Device() BluetoothDevice {
+func (b_ BluetoothDevicePair) Device() IBluetoothDevice {
 	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }

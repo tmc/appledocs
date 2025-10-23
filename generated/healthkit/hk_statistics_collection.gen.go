@@ -30,6 +30,8 @@ type _HKStatisticsCollectionClass struct {
 // An interface definition for the [HKStatisticsCollection] class.
 type IHKStatisticsCollection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that manages a collection of statistics, representing the results calculated over separate time intervals.

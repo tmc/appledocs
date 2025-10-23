@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // virtualMachineProtocol is the virtualMachine: protocol.
 //
 // Availability:
-//   - macOS 12.0+
+//   - macOS 11.0+
 //
 // Use this protocol when registering custom classes that conform to virtualMachine:.
 var virtualMachineProtocol *objc.Protocol

@@ -30,7 +30,9 @@ type _EnumeratorClass struct {
 // An interface definition for the [Enumerator] class.
 type IEnumerator interface {
 	objectivec.IObject
-	AllObjects() []objc.ID
+	// properties:
+	AllObjects() []objc.ID /* already interface */
+	// methods:
 	NextObject() unsafe.Pointer
 }
 
@@ -101,7 +103,7 @@ func (e_ Enumerator) NextObject() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator/allObjects
-func (e_ Enumerator) AllObjects() []objc.ID {
+func (e_ Enumerator) AllObjects() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](e_.ID, objc.Sel("allObjects"))
 	return rv
 }

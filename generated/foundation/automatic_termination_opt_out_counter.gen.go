@@ -30,6 +30,8 @@ type _automaticTerminationOptOutCounterClass struct {
 // An interface definition for the [automaticTerminationOptOutCounter] class.
 type IautomaticTerminationOptOutCounter interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

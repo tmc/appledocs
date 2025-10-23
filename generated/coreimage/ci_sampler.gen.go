@@ -31,7 +31,7 @@ type _SamplerClass struct {
 // An interface definition for the [Sampler] class.
 type ISampler interface {
 	objectivec.IObject
-	Definition() CIFilterShape
+	Definition() ICIFilterShape
 	Extent() coregraphics.CGRect
 }
 
@@ -159,8 +159,8 @@ func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objectivec.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/definition
-func (s_ Sampler) Definition() CIFilterShape {
-	rv := objc.Send[CIFilterShape](s_.ID, objc.Sel("definition"))
+func (s_ Sampler) Definition() ICIFilterShape {
+	rv := objc.Send[FilterShape](s_.ID, objc.Sel("definition"))
 	return rv
 }
 

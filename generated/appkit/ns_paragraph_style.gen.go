@@ -30,16 +30,12 @@ type _ParagraphStyleClass struct {
 // An interface definition for the [ParagraphStyle] class.
 type IParagraphStyle interface {
 	objectivec.IObject
+	Alignment() unsafe.Pointer
+	SetAlignment(value unsafe.Pointer)
 	AllowsDefaultTighteningForTruncation() bool
-	HyphenationFactor() float32
-	LineBreakMode() LineBreakMode
-	LineBreakStrategy() LineBreakStrategy
-	TighteningFactorForTruncation() float32
-	UsesDefaultHyphenation() bool
-	Alignment() TextAlignment
-	SetAlignment(value ITextAlignment)
-	BaseWritingDirection() WritingDirection
-	SetBaseWritingDirection(value IWritingDirection)
+	SetAllowsDefaultTighteningForTruncation(value bool)
+	BaseWritingDirection() unsafe.Pointer
+	SetBaseWritingDirection(value unsafe.Pointer)
 	DefaultTabInterval() float64
 	SetDefaultTabInterval(value float64)
 	FirstLineHeadIndent() float64
@@ -48,6 +44,12 @@ type IParagraphStyle interface {
 	SetHeadIndent(value float64)
 	HeaderLevel() int
 	SetHeaderLevel(value int)
+	HyphenationFactor() float32
+	SetHyphenationFactor(value float32)
+	LineBreakMode() unsafe.Pointer
+	SetLineBreakMode(value unsafe.Pointer)
+	LineBreakStrategy() unsafe.Pointer
+	SetLineBreakStrategy(value unsafe.Pointer)
 	LineHeightMultiple() float64
 	SetLineHeightMultiple(value float64)
 	LineSpacing() float64
@@ -60,14 +62,18 @@ type IParagraphStyle interface {
 	SetParagraphSpacing(value float64)
 	ParagraphSpacingBefore() float64
 	SetParagraphSpacingBefore(value float64)
-	TabStops() NSTextTab
-	SetTabStops(value ITextTab)
+	TabStops() TextTab
+	SetTabStops(value TextTab)
 	TailIndent() float64
 	SetTailIndent(value float64)
-	TextBlocks() NSTextBlock
-	SetTextBlocks(value ITextBlock)
-	TextLists() NSTextList
-	SetTextLists(value ITextList)
+	TextBlocks() TextBlock
+	SetTextBlocks(value TextBlock)
+	TextLists() TextList
+	SetTextLists(value TextList)
+	TighteningFactorForTruncation() float32
+	SetTighteningFactorForTruncation(value float32)
+	UsesDefaultHyphenation() bool
+	SetUsesDefaultHyphenation(value bool)
 }
 
 // The paragraph or ruler attributes for an attributed string.
@@ -128,96 +134,55 @@ func NewParagraphStyle() ParagraphStyle {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/default
 func (pc _ParagraphStyleClass) DefaultParagraphStyle() ParagraphStyle {
-	rv := objc.Send[NSParagraphStyle](objc.ID(pc.class), objc.Sel("defaultParagraphStyle"))
+	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("defaultParagraphStyle"))
 	return rv
 }
+
+// The default paragraph style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/default
+func (p_ ParagraphStyle) DefaultParagraphStyle() IParagraphStyle {
+	rv := objc.Send[ParagraphStyle](p_.ID, objc.Sel("defaultParagraphStyle"))
+	return rv
+}
+
+
+// The text alignment of the paragraph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
+func (p_ ParagraphStyle) Alignment() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("alignment"))
+	return rv
+}
+
+
+// The text alignment of the paragraph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
+func (p_ ParagraphStyle) SetAlignment(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignment:"), value)
+}
+
 
 // A Boolean value that indicates whether the system tightens character spacing before truncating text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/allowsDefaultTighteningForTruncation
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/allowsdefaulttighteningfortruncation
 func (p_ ParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsDefaultTighteningForTruncation"))
 	return rv
 }
 
 
-// The default paragraph style.
+// A Boolean value that indicates whether the system tightens character spacing before truncating text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/default
-func (p_ ParagraphStyle) DefaultParagraphStyle() NSParagraphStyle {
-	rv := objc.Send[NSParagraphStyle](p_.ID, objc.Sel("defaultParagraphStyle"))
-	return rv
-}
-
-
-// The paragraph’s threshold for hyphenation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/hyphenationFactor
-func (p_ ParagraphStyle) HyphenationFactor() float32 {
-	rv := objc.Send[float32](p_.ID, objc.Sel("hyphenationFactor"))
-	return rv
-}
-
-
-// The mode for breaking lines in the paragraph that don’t fit within a container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/lineBreakMode
-func (p_ ParagraphStyle) LineBreakMode() LineBreakMode {
-	rv := objc.Send[LineBreakMode](p_.ID, objc.Sel("lineBreakMode"))
-	return rv
-}
-
-
-// The strategy for breaking lines while laying out paragraphs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/lineBreakStrategy-swift.property
-func (p_ ParagraphStyle) LineBreakStrategy() LineBreakStrategy {
-	rv := objc.Send[LineBreakStrategy](p_.ID, objc.Sel("lineBreakStrategy"))
-	return rv
-}
-
-
-// The threshold for using tightening as an alternative to truncation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/tighteningFactorForTruncation
-func (p_ ParagraphStyle) TighteningFactorForTruncation() float32 {
-	rv := objc.Send[float32](p_.ID, objc.Sel("tighteningFactorForTruncation"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the paragraph style uses the system hyphenation settings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/usesDefaultHyphenation
-func (p_ ParagraphStyle) UsesDefaultHyphenation() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("usesDefaultHyphenation"))
-	return rv
-}
-
-
-// The text alignment of the paragraph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
-func (p_ ParagraphStyle) Alignment() TextAlignment {
-	rv := objc.Send[TextAlignment](p_.ID, objc.Sel("alignment"))
-	return rv
-}
-
-
-// The text alignment of the paragraph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/alignment
-func (p_ ParagraphStyle) SetAlignment(value ITextAlignment) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignment:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/allowsdefaulttighteningfortruncation
+func (p_ ParagraphStyle) SetAllowsDefaultTighteningForTruncation(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsDefaultTighteningForTruncation:"), value)
 }
 
 
@@ -225,8 +190,8 @@ func (p_ ParagraphStyle) SetAlignment(value ITextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/basewritingdirection
-func (p_ ParagraphStyle) BaseWritingDirection() WritingDirection {
-	rv := objc.Send[WritingDirection](p_.ID, objc.Sel("baseWritingDirection"))
+func (p_ ParagraphStyle) BaseWritingDirection() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -235,7 +200,7 @@ func (p_ ParagraphStyle) BaseWritingDirection() WritingDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/basewritingdirection
-func (p_ ParagraphStyle) SetBaseWritingDirection(value IWritingDirection) {
+func (p_ ParagraphStyle) SetBaseWritingDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -313,6 +278,63 @@ func (p_ ParagraphStyle) HeaderLevel() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/headerlevel
 func (p_ ParagraphStyle) SetHeaderLevel(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHeaderLevel:"), value)
+}
+
+
+// The paragraph’s threshold for hyphenation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/hyphenationfactor
+func (p_ ParagraphStyle) HyphenationFactor() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("hyphenationFactor"))
+	return rv
+}
+
+
+// The paragraph’s threshold for hyphenation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/hyphenationfactor
+func (p_ ParagraphStyle) SetHyphenationFactor(value float32) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHyphenationFactor:"), value)
+}
+
+
+// The mode for breaking lines in the paragraph that don’t fit within a container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakmode
+func (p_ ParagraphStyle) LineBreakMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lineBreakMode"))
+	return rv
+}
+
+
+// The mode for breaking lines in the paragraph that don’t fit within a container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakmode
+func (p_ ParagraphStyle) SetLineBreakMode(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLineBreakMode:"), value)
+}
+
+
+// The strategy for breaking lines while laying out paragraphs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.property
+func (p_ ParagraphStyle) LineBreakStrategy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lineBreakStrategy"))
+	return rv
+}
+
+
+// The strategy for breaking lines while laying out paragraphs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.property
+func (p_ ParagraphStyle) SetLineBreakStrategy(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLineBreakStrategy:"), value)
 }
 
 
@@ -434,8 +456,8 @@ func (p_ ParagraphStyle) SetParagraphSpacingBefore(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tabstops
-func (p_ ParagraphStyle) TabStops() NSTextTab {
-	rv := objc.Send[NSTextTab](p_.ID, objc.Sel("tabStops"))
+func (p_ ParagraphStyle) TabStops() TextTab {
+	rv := objc.Send[TextTab](p_.ID, objc.Sel("tabStops"))
 	return rv
 }
 
@@ -444,7 +466,7 @@ func (p_ ParagraphStyle) TabStops() NSTextTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tabstops
-func (p_ ParagraphStyle) SetTabStops(value ITextTab) {
+func (p_ ParagraphStyle) SetTabStops(value TextTab) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTabStops:"), value)
 }
 
@@ -472,8 +494,8 @@ func (p_ ParagraphStyle) SetTailIndent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textblocks
-func (p_ ParagraphStyle) TextBlocks() NSTextBlock {
-	rv := objc.Send[NSTextBlock](p_.ID, objc.Sel("textBlocks"))
+func (p_ ParagraphStyle) TextBlocks() TextBlock {
+	rv := objc.Send[TextBlock](p_.ID, objc.Sel("textBlocks"))
 	return rv
 }
 
@@ -482,7 +504,7 @@ func (p_ ParagraphStyle) TextBlocks() NSTextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textblocks
-func (p_ ParagraphStyle) SetTextBlocks(value ITextBlock) {
+func (p_ ParagraphStyle) SetTextBlocks(value TextBlock) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextBlocks:"), value)
 }
 
@@ -491,8 +513,8 @@ func (p_ ParagraphStyle) SetTextBlocks(value ITextBlock) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textlists
-func (p_ ParagraphStyle) TextLists() NSTextList {
-	rv := objc.Send[NSTextList](p_.ID, objc.Sel("textLists"))
+func (p_ ParagraphStyle) TextLists() TextList {
+	rv := objc.Send[TextList](p_.ID, objc.Sel("textLists"))
 	return rv
 }
 
@@ -501,8 +523,46 @@ func (p_ ParagraphStyle) TextLists() NSTextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/textlists
-func (p_ ParagraphStyle) SetTextLists(value ITextList) {
+func (p_ ParagraphStyle) SetTextLists(value TextList) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTextLists:"), value)
+}
+
+
+// The threshold for using tightening as an alternative to truncation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tighteningfactorfortruncation
+func (p_ ParagraphStyle) TighteningFactorForTruncation() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("tighteningFactorForTruncation"))
+	return rv
+}
+
+
+// The threshold for using tightening as an alternative to truncation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/tighteningfactorfortruncation
+func (p_ ParagraphStyle) SetTighteningFactorForTruncation(value float32) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTighteningFactorForTruncation:"), value)
+}
+
+
+// A Boolean value that indicates whether the paragraph style uses the system hyphenation settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/usesdefaulthyphenation
+func (p_ ParagraphStyle) UsesDefaultHyphenation() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("usesDefaultHyphenation"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the paragraph style uses the system hyphenation settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsparagraphstyle/usesdefaulthyphenation
+func (p_ ParagraphStyle) SetUsesDefaultHyphenation(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesDefaultHyphenation:"), value)
 }
 
 

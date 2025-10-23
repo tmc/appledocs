@@ -30,6 +30,8 @@ type _mResponsePacketDataLengthExpectedClass struct {
 // An interface definition for the [mResponsePacketDataLengthExpected] class.
 type ImResponsePacketDataLengthExpected interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

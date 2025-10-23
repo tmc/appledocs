@@ -30,6 +30,8 @@ type _mAbortedByOwnerClass struct {
 // An interface definition for the [mAbortedByOwner] class.
 type ImAbortedByOwner interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

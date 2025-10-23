@@ -30,7 +30,7 @@ type _CBAttributeClass struct {
 // An interface definition for the [CBAttribute] class.
 type ICBAttribute interface {
 	objectivec.IObject
-	UUID() CBUUID
+	UUID() ICBUUID
 }
 
 // A representation of common aspects of services offered by a peripheral.
@@ -90,7 +90,7 @@ func NewCBAttribute() CBAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute/uuid
-func (c_ CBAttribute) UUID() CBUUID {
+func (c_ CBAttribute) UUID() ICBUUID {
 	rv := objc.Send[CBUUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }

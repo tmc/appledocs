@@ -50,10 +50,6 @@ type ILMessageFilterError uint
 type ILMessageFilterSubAction uint
 
 const (
-	// ILMessageFilterSubActionNone - Allows the system to show the message unfiltered due to insufficient information to determine an action.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/none
-	ILMessageFilterSubActionNone ILMessageFilterSubAction = 0
 	// ILMessageFilterSubActionPromotionalCoupons - Prevents the system from showing the message normally, filtered as an Coupons message.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/promotionalCoupons
@@ -94,10 +90,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/transactionalReminders
 	ILMessageFilterSubActionTransactionalReminders ILMessageFilterSubAction = 0
-	// ILMessageFilterSubActionTransactionalWeather - Prevents the system from showing the message normally, filtered as a Weather message.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/transactionalWeather
-	ILMessageFilterSubActionTransactionalWeather ILMessageFilterSubAction = 0
 )
 
 

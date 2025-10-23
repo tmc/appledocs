@@ -31,22 +31,23 @@ type _ChallengeDefinitionClass struct {
 // An interface definition for the [ChallengeDefinition] class.
 type IChallengeDefinition interface {
 	objectivec.IObject
-	HasActiveChallengesWithCompletionHandler(completionHandler unsafe.Pointer)
-	ReleaseState() unsafe.Pointer
 	Details() string
 	SetDetails(value string)
 	DurationOptions() foundation.DateComponents
-	SetDurationOptions(value foundation.IDateComponents)
+	SetDurationOptions(value foundation.DateComponents)
 	GroupIdentifier() string
 	SetGroupIdentifier(value string)
 	Identifier() string
 	SetIdentifier(value string)
 	IsRepeatable() bool
 	SetIsRepeatable(value bool)
-	Leaderboard() GKLeaderboard
+	Leaderboard() IGKLeaderboard
 	SetLeaderboard(value IGKLeaderboard)
+	ReleaseState() unsafe.Pointer
+	SetReleaseState(value unsafe.Pointer)
 	Title() string
 	SetTitle(value string)
+	HasActiveChallengesWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 // An object that represents the static metadata you define for the challenge.
@@ -109,16 +110,6 @@ func (c_ ChallengeDefinition) HasActiveChallengesWithCompletionHandler(completio
 }
 
 
-// The release state of the challenge definition in App Store Connect.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeDefinition/releaseState
-func (c_ ChallengeDefinition) ReleaseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("releaseState"))
-	return rv
-}
-
-
 // A more detailed description of the challenge definition.
 //
 // [Full Topic]
@@ -152,7 +143,7 @@ func (c_ ChallengeDefinition) DurationOptions() foundation.DateComponents {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/durationoptions
-func (c_ ChallengeDefinition) SetDurationOptions(value foundation.IDateComponents) {
+func (c_ ChallengeDefinition) SetDurationOptions(value foundation.DateComponents) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDurationOptions:"), value)
 }
 
@@ -218,8 +209,8 @@ func (c_ ChallengeDefinition) SetIsRepeatable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
-func (c_ ChallengeDefinition) Leaderboard() GKLeaderboard {
-	rv := objc.Send[GKLeaderboard](c_.ID, objc.Sel("leaderboard"))
+func (c_ ChallengeDefinition) Leaderboard() IGKLeaderboard {
+	rv := objc.Send[Leaderboard](c_.ID, objc.Sel("leaderboard"))
 	return rv
 }
 
@@ -230,6 +221,25 @@ func (c_ ChallengeDefinition) Leaderboard() GKLeaderboard {
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/leaderboard
 func (c_ ChallengeDefinition) SetLeaderboard(value IGKLeaderboard) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLeaderboard:"), value)
+}
+
+
+// The release state of the challenge definition in App Store Connect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/releasestate
+func (c_ ChallengeDefinition) ReleaseState() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("releaseState"))
+	return rv
+}
+
+
+// The release state of the challenge definition in App Store Connect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkchallengedefinition/releasestate
+func (c_ ChallengeDefinition) SetReleaseState(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setReleaseState:"), value)
 }
 
 

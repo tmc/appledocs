@@ -30,7 +30,7 @@ type _MIDIUMPEndpointClass struct {
 // An interface definition for the [MIDIUMPEndpoint] class.
 type IMIDIUMPEndpoint interface {
 	objectivec.IObject
-	DeviceInfo() MIDI2DeviceInfo
+	DeviceInfo() IMIDI2DeviceInfo
 	EndpointType() MIDIUMPCIObjectBackingType
 	FunctionBlocks() []MIDIUMPFunctionBlock
 	SetFunctionBlocks(value []MIDIUMPFunctionBlock)
@@ -93,7 +93,7 @@ func NewMIDIUMPEndpoint() MIDIUMPEndpoint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/deviceInfo
-func (m_ MIDIUMPEndpoint) DeviceInfo() MIDI2DeviceInfo {
+func (m_ MIDIUMPEndpoint) DeviceInfo() IMIDI2DeviceInfo {
 	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }

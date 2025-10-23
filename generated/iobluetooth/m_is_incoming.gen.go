@@ -30,6 +30,8 @@ type _mIsIncomingClass struct {
 // An interface definition for the [mIsIncoming] class.
 type ImIsIncoming interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,17 +31,9 @@ type _PrintOperationClass struct {
 // An interface definition for the [PrintOperation] class.
 type IPrintOperation interface {
 	objectivec.IObject
-	CleanUpOperation()
-	RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow IWindow, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer)
-	CopyingOperation() bool
-	PDFPanel() NSPDFPanel
-	SetPDFPanel(value IPDFPanel)
-	PrintInfo() NSPrintInfo
-	SetPrintInfo(value IPrintInfo)
-	View() NSView
 	CanSpawnSeparateThread() bool
 	SetCanSpawnSeparateThread(value bool)
-	Context() NSGraphicsContext
+	Context() IGraphicsContext
 	SetContext(value IGraphicsContext)
 	CurrentPage() int
 	SetCurrentPage(value int)
@@ -54,14 +45,20 @@ type IPrintOperation interface {
 	SetPageOrder(value unsafe.Pointer)
 	PageRange() foundation.Range
 	SetPageRange(value foundation.Range)
+	PdfPanel() PDFPanel
+	SetPdfPanel(value PDFPanel)
 	PreferredRenderingQuality() unsafe.Pointer
 	SetPreferredRenderingQuality(value unsafe.Pointer)
-	PrintPanel() NSPrintPanel
+	PrintInfo() IPrintInfo
+	SetPrintInfo(value IPrintInfo)
+	PrintPanel() IPrintPanel
 	SetPrintPanel(value IPrintPanel)
 	ShowsPrintPanel() bool
 	SetShowsPrintPanel(value bool)
 	ShowsProgressPanel() bool
 	SetShowsProgressPanel(value bool)
+	View() IView
+	SetView(value IView)
 }
 
 // An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
@@ -117,92 +114,6 @@ func NewPrintOperation() PrintOperation {
 
 
 
-// Creates and returns a new print operation object ready to control the copying of EPS graphics from the specified view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/epsOperation(with:inside:to:)
-func (pc _PrintOperationClass) EPSOperationWithViewInsideRectToData(view IView, rect coregraphics.CGRect, data foundation.IMutableData) PrintOperation {
-	rv := objc.Send[PrintOperation](objc.ID(pc.class), objc.Sel("EPSOperationWithView:insideRect:toData:"), view, rect, data)
-	return rv
-}
-
-
-// Called at the end of a print operation to remove the print operation as the current operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/cleanUp()
-func (p_ PrintOperation) CleanUpOperation() {
-	objc.Send[objc.ID](p_.ID, objc.Sel("cleanUpOperation"))
-}
-
-
-// Runs the print operation, calling your custom delegate method upon completion.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/runModal(for:delegate:didRun:contextInfo:)
-func (p_ PrintOperation) RunOperationModalForWindowDelegateDidRunSelectorContextInfo(docWindow IWindow, delegate objectivec.IObject, didRunSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("runOperationModalForWindow:delegate:didRunSelector:contextInfo:"), docWindow, delegate, didRunSelector, contextInfo)
-}
-
-
-// A Boolean value that indicates whether the print operation is an EPS or PDF copy operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/isCopyingOperation
-func (p_ PrintOperation) CopyingOperation() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("copyingOperation"))
-	return rv
-}
-
-
-// The PDF panel object to use during the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/pdfPanel
-func (p_ PrintOperation) PDFPanel() NSPDFPanel {
-	rv := objc.Send[NSPDFPanel](p_.ID, objc.Sel("PDFPanel"))
-	return rv
-}
-
-
-// The PDF panel object to use during the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/pdfPanel
-func (p_ PrintOperation) SetPDFPanel(value IPDFPanel) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFPanel:"), value)
-}
-
-
-// The printing information associated with the print operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
-func (p_ PrintOperation) PrintInfo() NSPrintInfo {
-	rv := objc.Send[NSPrintInfo](p_.ID, objc.Sel("printInfo"))
-	return rv
-}
-
-
-// The printing information associated with the print operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
-func (p_ PrintOperation) SetPrintInfo(value IPrintInfo) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
-}
-
-
-// The view object that generates the actual data for the print operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/view
-func (p_ PrintOperation) View() NSView {
-	rv := objc.Send[NSView](p_.ID, objc.Sel("view"))
-	return rv
-}
-
-
 // A Boolean value that determines whether the print operation is allowed to spawn a separate printing thread.
 //
 // [Full Topic]
@@ -226,8 +137,8 @@ func (p_ PrintOperation) SetCanSpawnSeparateThread(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/context
-func (p_ PrintOperation) Context() NSGraphicsContext {
-	rv := objc.Send[NSGraphicsContext](p_.ID, objc.Sel("context"))
+func (p_ PrintOperation) Context() IGraphicsContext {
+	rv := objc.Send[GraphicsContext](p_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -336,6 +247,25 @@ func (p_ PrintOperation) SetPageRange(value foundation.Range) {
 }
 
 
+// The PDF panel object to use during the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pdfpanel
+func (p_ PrintOperation) PdfPanel() PDFPanel {
+	rv := objc.Send[PDFPanel](p_.ID, objc.Sel("pdfPanel"))
+	return rv
+}
+
+
+// The PDF panel object to use during the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pdfpanel
+func (p_ PrintOperation) SetPdfPanel(value PDFPanel) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPdfPanel:"), value)
+}
+
+
 // The printing quality.
 //
 // [Full Topic]
@@ -355,12 +285,31 @@ func (p_ PrintOperation) SetPreferredRenderingQuality(value unsafe.Pointer) {
 }
 
 
+// The printing information associated with the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printinfo
+func (p_ PrintOperation) PrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
+	return rv
+}
+
+
+// The printing information associated with the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printinfo
+func (p_ PrintOperation) SetPrintInfo(value IPrintInfo) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
+}
+
+
 // The print panel object to use during the operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printpanel
-func (p_ PrintOperation) PrintPanel() NSPrintPanel {
-	rv := objc.Send[NSPrintPanel](p_.ID, objc.Sel("printPanel"))
+func (p_ PrintOperation) PrintPanel() IPrintPanel {
+	rv := objc.Send[PrintPanel](p_.ID, objc.Sel("printPanel"))
 	return rv
 }
 
@@ -409,6 +358,25 @@ func (p_ PrintOperation) ShowsProgressPanel() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprogresspanel
 func (p_ PrintOperation) SetShowsProgressPanel(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsProgressPanel:"), value)
+}
+
+
+// The view object that generates the actual data for the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/view
+func (p_ PrintOperation) View() IView {
+	rv := objc.Send[View](p_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// The view object that generates the actual data for the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/view
+func (p_ PrintOperation) SetView(value IView) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setView:"), value)
 }
 
 

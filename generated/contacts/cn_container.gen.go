@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,11 @@ type _CNContainerClass struct {
 type ICNContainer interface {
 	objectivec.IObject
 	Identifier() string
+	SetIdentifier(value string)
 	Name() string
-	Type() CNContainerType
+	SetName(value string)
+	Type() unsafe.Pointer
+	SetType(value unsafe.Pointer)
 	CNContainerIdentifierKey() string
 	CNContainerNameKey() string
 	CNContainerTypeKey() string
@@ -92,32 +94,12 @@ func NewCNContainer() CNContainer {
 
 
 
-// Returns a predicate to find the container of the specified contact.
+// The unique identifier for a contacts container on the device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainerOfContact(withIdentifier:)
-func (cc _CNContainerClass) PredicateForContainerOfContactWithIdentifier(contactIdentifier string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainerOfContactWithIdentifier:"), objc.String(contactIdentifier))
-	return rv
-}
-
-
-// Returns a predicate to find the container of the specified group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainerOfGroup(withIdentifier:)
-func (cc _CNContainerClass) PredicateForContainerOfGroupWithIdentifier(groupIdentifier string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainerOfGroupWithIdentifier:"), objc.String(groupIdentifier))
-	return rv
-}
-
-
-// Returns a predicate to find the containers with the specified identifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/predicateForContainers(withIdentifiers:)
-func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers []string) foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContainersWithIdentifiers:"), identifiers)
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
+func (c_ CNContainer) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -125,9 +107,18 @@ func (cc _CNContainerClass) PredicateForContainersWithIdentifiers(identifiers []
 // The unique identifier for a contacts container on the device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/identifier
-func (c_ CNContainer) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
+func (c_ CNContainer) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
+// The name of the container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
+func (c_ CNContainer) Name() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -135,9 +126,18 @@ func (c_ CNContainer) Identifier() string {
 // The name of the container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/name
-func (c_ CNContainer) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
+func (c_ CNContainer) SetName(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The type of the container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/type
+func (c_ CNContainer) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -145,10 +145,9 @@ func (c_ CNContainer) Name() string {
 // The type of the container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContainer/type
-func (c_ CNContainer) Type() CNContainerType {
-	rv := objc.Send[CNContainerType](c_.ID, objc.Sel("type"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/type
+func (c_ CNContainer) SetType(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 
 

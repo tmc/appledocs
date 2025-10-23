@@ -31,47 +31,50 @@ type _AssetWriterClass struct {
 // An interface definition for the [AssetWriter] class.
 type IAssetWriter interface {
 	objectivec.IObject
-	AvailableMediaTypes() unsafe.Pointer
-	SetAvailableMediaTypes(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	DirectoryForTemporaryFiles() foundation.URL
-	SetDirectoryForTemporaryFiles(value foundation.URL)
-	Error() AVError
-	SetError(value AVError)
-	InitialMovieFragmentInterval() unsafe.Pointer
-	SetInitialMovieFragmentInterval(value unsafe.Pointer)
-	InitialMovieFragmentSequenceNumber() int
-	SetInitialMovieFragmentSequenceNumber(value int)
-	InitialSegmentStartTime() unsafe.Pointer
-	SetInitialSegmentStartTime(value unsafe.Pointer)
-	InputGroups() unsafe.Pointer
-	SetInputGroups(value unsafe.Pointer)
-	Inputs() IAVAssetWriterInput
-	SetInputs(value IAVAssetWriterInput)
-	Metadata() IAVMetadataItem
-	SetMetadata(value IAVMetadataItem)
-	MovieFragmentInterval() unsafe.Pointer
-	SetMovieFragmentInterval(value unsafe.Pointer)
-	MovieTimeScale() unsafe.Pointer
-	SetMovieTimeScale(value unsafe.Pointer)
-	OutputFileType() unsafe.Pointer
-	SetOutputFileType(value unsafe.Pointer)
-	OutputFileTypeProfile() unsafe.Pointer
-	SetOutputFileTypeProfile(value unsafe.Pointer)
-	OutputURL() foundation.URL
-	SetOutputURL(value foundation.URL)
-	OverallDurationHint() unsafe.Pointer
-	SetOverallDurationHint(value unsafe.Pointer)
-	PreferredOutputSegmentInterval() unsafe.Pointer
-	SetPreferredOutputSegmentInterval(value unsafe.Pointer)
-	ProducesCombinableFragments() bool
-	SetProducesCombinableFragments(value bool)
-	ShouldOptimizeForNetworkUse() bool
-	SetShouldOptimizeForNetworkUse(value bool)
-	Status() unsafe.Pointer
-	SetStatus(value unsafe.Pointer)
-	StartSessionAtSourceTime(startTime unsafe.Pointer)
+	// properties:
+	AvailableMediaTypes() []string /* primitive/slice/pointer */
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DirectoryForTemporaryFiles() foundation.URL /* foo */
+	SetDirectoryForTemporaryFiles(value foundation.URL /* foo */)
+	Error() NSError /* foo */
+	InitialMovieFragmentInterval() CMTime /* foo */
+	SetInitialMovieFragmentInterval(value CMTime /* foo */)
+	InitialMovieFragmentSequenceNumber() int /* primitive/slice/pointer */
+	SetInitialMovieFragmentSequenceNumber(value int /* primitive/slice/pointer */)
+	InitialSegmentStartTime() CMTime /* foo */
+	SetInitialSegmentStartTime(value CMTime /* foo */)
+	InputGroups() []AssetWriterInputGroup /* primitive/slice/pointer */
+	Inputs() []AssetWriterInput /* primitive/slice/pointer */
+	Metadata() []MetadataItem /* primitive/slice/pointer */
+	SetMetadata(value []MetadataItem /* primitive/slice/pointer */)
+	MovieFragmentInterval() CMTime /* foo */
+	SetMovieFragmentInterval(value CMTime /* foo */)
+	MovieTimeScale() CMTimeScale /* foo */
+	SetMovieTimeScale(value CMTimeScale /* foo */)
+	OutputFileType() AVFileType /* typedef */
+	OutputFileTypeProfile() AVFileTypeProfile /* foo */
+	SetOutputFileTypeProfile(value AVFileTypeProfile /* foo */)
+	OverallDurationHint() CMTime /* foo */
+	SetOverallDurationHint(value CMTime /* foo */)
+	PreferredOutputSegmentInterval() CMTime /* foo */
+	SetPreferredOutputSegmentInterval(value CMTime /* foo */)
+	ProducesCombinableFragments() bool /* primitive/slice/pointer */
+	SetProducesCombinableFragments(value bool /* primitive/slice/pointer */)
+	ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer */
+	SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer */)
+	Status() AVAssetWriterStatus /* enum */
+	OutputURL() foundation.URL /* foo */
+	SetOutputURL(value foundation.URL /* foo */)
+	// methods:
+	AddInputGroup(inputGroup IAVAssetWriterInputGroup)
+	CanAddInput(input IAVAssetWriterInput) bool /* primitive/slice/pointer */
+	CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool /* primitive/slice/pointer */
+	CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary /* already interface */, mediaType AVMediaType /* foo */) bool /* primitive/slice/pointer */
+	CancelWriting()
+	EndSessionAtSourceTime(endTime CMTime /* foo */)
+	FlushSegment()
+	StartSessionAtSourceTime(startTime CMTime /* foo */)
 }
 
 // An object that writes media data to a container file.
@@ -127,11 +130,112 @@ func NewAssetWriter() AssetWriter {
 
 
 
+// Creates an object that outputs segment data in a specified container format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(contentType:)
+func NewAssetWriterWithContentType(outputContentType objectivec.IObject) AssetWriter {
+	instance := getAssetWriterClass().Alloc()
+	rv := objc.Send[AssetWriter](instance.ID, objc.Sel("initWithContentType:"), outputContentType)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an object that writes media data to a container file at the output URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(outputURL:fileType:)
+func NewAssetWriterWithURLFileTypeError(outputURL foundation.URL /* foo */, outputFileType AVFileType /* typedef */, outError unsafe.Pointer) AssetWriter {
+	instance := getAssetWriterClass().Alloc()
+	rv := objc.Send[AssetWriter](instance.ID, objc.Sel("initWithURL:fileType:error:"), outputURL, outputFileType, outError)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a new object that writes media data to a container file at the output URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/init(url:fileType:)
+func (ac _AssetWriterClass) AssetWriterWithURLFileTypeError(outputURL foundation.URL /* foo */, outputFileType AVFileType /* typedef */, outError unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("assetWriterWithURL:fileType:error:"), outputURL, outputFileType, outError)
+	return rv
+}
+
+
+// Adds an input group to an asset writer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/add(_:)-3san4
+func (a_ AssetWriter) AddInputGroup(inputGroup IAVAssetWriterInputGroup) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addInputGroup:"), inputGroup)
+}
+
+
+// Determines whether the asset writer supports adding the input.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j
+func (a_ AssetWriter) CanAddInput(input IAVAssetWriterInput) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canAddInput:"), input)
+	return rv
+}
+
+
+// Determines whether the asset writer supports adding the input group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-8s1oh
+func (a_ AssetWriter) CanAddInputGroup(inputGroup IAVAssetWriterInputGroup) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canAddInputGroup:"), inputGroup)
+	return rv
+}
+
+
+// Determines whether the output file format supports the output settings for a specific media type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canApply(outputSettings:forMediaType:)
+func (a_ AssetWriter) CanApplyOutputSettingsForMediaType(outputSettings foundation.IDictionary /* already interface */, mediaType AVMediaType /* foo */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canApplyOutputSettings:forMediaType:"), outputSettings, mediaType)
+	return rv
+}
+
+
+// Cancels the creation of the output file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/cancelWriting()
+func (a_ AssetWriter) CancelWriting() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("cancelWriting"))
+}
+
+
+// Finishes an asset-writing session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/endSession(atSourceTime:)
+func (a_ AssetWriter) EndSessionAtSourceTime(endTime CMTime /* foo */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("endSessionAtSourceTime:"), endTime)
+}
+
+
+// Closes the current segment and outputs it to a delegate method.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/flushSegment()
+func (a_ AssetWriter) FlushSegment() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("flushSegment"))
+}
+
+
 // Starts an asset-writing session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/startSession(atSourceTime:)
-func (a_ AssetWriter) StartSessionAtSourceTime(startTime unsafe.Pointer) {
+func (a_ AssetWriter) StartSessionAtSourceTime(startTime CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startSessionAtSourceTime:"), startTime)
 }
 
@@ -139,28 +243,9 @@ func (a_ AssetWriter) StartSessionAtSourceTime(startTime unsafe.Pointer) {
 // The media types the asset writer supports adding as inputs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/availablemediatypes
-func (a_ AssetWriter) AvailableMediaTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableMediaTypes"))
-	return rv
-}
-
-
-// The media types the asset writer supports adding as inputs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/availablemediatypes
-func (a_ AssetWriter) SetAvailableMediaTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMediaTypes:"), value)
-}
-
-
-// A delegate object that responds to asset-writing events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/delegate
-func (a_ AssetWriter) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/availableMediaTypes
+func (a_ AssetWriter) AvailableMediaTypes() []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("availableMediaTypes"))
 	return rv
 }
 
@@ -168,8 +253,18 @@ func (a_ AssetWriter) Delegate() unsafe.Pointer {
 // A delegate object that responds to asset-writing events.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/delegate
-func (a_ AssetWriter) SetDelegate(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/delegate
+func (a_ AssetWriter) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// A delegate object that responds to asset-writing events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/delegate
+func (a_ AssetWriter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -177,8 +272,8 @@ func (a_ AssetWriter) SetDelegate(value unsafe.Pointer) {
 // A directory to contain temporary files that the export process generates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/directoryfortemporaryfiles
-func (a_ AssetWriter) DirectoryForTemporaryFiles() foundation.URL {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
+func (a_ AssetWriter) DirectoryForTemporaryFiles() foundation.URL /* foo */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("directoryForTemporaryFiles"))
 	return rv
 }
@@ -187,8 +282,8 @@ func (a_ AssetWriter) DirectoryForTemporaryFiles() foundation.URL {
 // A directory to contain temporary files that the export process generates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/directoryfortemporaryfiles
-func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.URL) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
+func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.URL /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
@@ -196,28 +291,9 @@ func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.URL) {
 // An error object that describes an asset-writing failure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/error
-func (a_ AssetWriter) Error() AVError {
-	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
-	return rv
-}
-
-
-// An error object that describes an asset-writing failure.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/error
-func (a_ AssetWriter) SetError(value AVError) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
-}
-
-
-// The interval at which to write the initial movie fragment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentinterval
-func (a_ AssetWriter) InitialMovieFragmentInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("initialMovieFragmentInterval"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/error
+func (a_ AssetWriter) Error() NSError /* foo */ {
+	rv := objc.Send[NSError](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -225,8 +301,18 @@ func (a_ AssetWriter) InitialMovieFragmentInterval() unsafe.Pointer {
 // The interval at which to write the initial movie fragment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentinterval
-func (a_ AssetWriter) SetInitialMovieFragmentInterval(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentInterval
+func (a_ AssetWriter) InitialMovieFragmentInterval() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("initialMovieFragmentInterval"))
+	return rv
+}
+
+
+// The interval at which to write the initial movie fragment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentInterval
+func (a_ AssetWriter) SetInitialMovieFragmentInterval(value CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentInterval:"), value)
 }
 
@@ -234,8 +320,8 @@ func (a_ AssetWriter) SetInitialMovieFragmentInterval(value unsafe.Pointer) {
 // The sequence number of the initial movie fragment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentsequencenumber
-func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentSequenceNumber
+func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("initialMovieFragmentSequenceNumber"))
 	return rv
 }
@@ -244,8 +330,8 @@ func (a_ AssetWriter) InitialMovieFragmentSequenceNumber() int {
 // The sequence number of the initial movie fragment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialmoviefragmentsequencenumber
-func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialMovieFragmentSequenceNumber
+func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialMovieFragmentSequenceNumber:"), value)
 }
 
@@ -253,9 +339,9 @@ func (a_ AssetWriter) SetInitialMovieFragmentSequenceNumber(value int) {
 // The start time of the initial segment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialsegmentstarttime
-func (a_ AssetWriter) InitialSegmentStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("initialSegmentStartTime"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialSegmentStartTime
+func (a_ AssetWriter) InitialSegmentStartTime() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("initialSegmentStartTime"))
 	return rv
 }
 
@@ -263,8 +349,8 @@ func (a_ AssetWriter) InitialSegmentStartTime() unsafe.Pointer {
 // The start time of the initial segment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/initialsegmentstarttime
-func (a_ AssetWriter) SetInitialSegmentStartTime(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/initialSegmentStartTime
+func (a_ AssetWriter) SetInitialSegmentStartTime(value CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInitialSegmentStartTime:"), value)
 }
 
@@ -272,28 +358,9 @@ func (a_ AssetWriter) SetInitialSegmentStartTime(value unsafe.Pointer) {
 // The input groups an asset writer contains.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputgroups
-func (a_ AssetWriter) InputGroups() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputGroups"))
-	return rv
-}
-
-
-// The input groups an asset writer contains.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputgroups
-func (a_ AssetWriter) SetInputGroups(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setInputGroups:"), value)
-}
-
-
-// The inputs an asset writer contains.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
-func (a_ AssetWriter) Inputs() IAVAssetWriterInput {
-	rv := objc.Send[AssetWriterInput](a_.ID, objc.Sel("inputs"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/inputGroups
+func (a_ AssetWriter) InputGroups() []AssetWriterInputGroup /* primitive/slice/pointer */ {
+	rv := objc.Send[[]AssetWriterInputGroup](a_.ID, objc.Sel("inputGroups"))
 	return rv
 }
 
@@ -301,18 +368,9 @@ func (a_ AssetWriter) Inputs() IAVAssetWriterInput {
 // The inputs an asset writer contains.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
-func (a_ AssetWriter) SetInputs(value IAVAssetWriterInput) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setInputs:"), value)
-}
-
-
-// An array of metadata items to write to the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/metadata
-func (a_ AssetWriter) Metadata() IAVMetadataItem {
-	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/inputs
+func (a_ AssetWriter) Inputs() []AssetWriterInput /* primitive/slice/pointer */ {
+	rv := objc.Send[[]AssetWriterInput](a_.ID, objc.Sel("inputs"))
 	return rv
 }
 
@@ -320,18 +378,38 @@ func (a_ AssetWriter) Metadata() IAVMetadataItem {
 // An array of metadata items to write to the output file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/metadata
-func (a_ AssetWriter) SetMetadata(value IAVMetadataItem) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/metadata
+func (a_ AssetWriter) Metadata() []MetadataItem /* primitive/slice/pointer */ {
+	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("metadata"))
+	return rv
+}
+
+
+// An array of metadata items to write to the output file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/metadata
+func (a_ AssetWriter) SetMetadata(value []MetadataItem /* primitive/slice/pointer */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), nsArray)
 }
 
 
 // The interval at which to write movie fragments.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/moviefragmentinterval
-func (a_ AssetWriter) MovieFragmentInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("movieFragmentInterval"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieFragmentInterval
+func (a_ AssetWriter) MovieFragmentInterval() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("movieFragmentInterval"))
 	return rv
 }
 
@@ -339,8 +417,8 @@ func (a_ AssetWriter) MovieFragmentInterval() unsafe.Pointer {
 // The interval at which to write movie fragments.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/moviefragmentinterval
-func (a_ AssetWriter) SetMovieFragmentInterval(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieFragmentInterval
+func (a_ AssetWriter) SetMovieFragmentInterval(value CMTime /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMovieFragmentInterval:"), value)
 }
 
@@ -348,9 +426,9 @@ func (a_ AssetWriter) SetMovieFragmentInterval(value unsafe.Pointer) {
 // The time scale of the movie.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/movietimescale
-func (a_ AssetWriter) MovieTimeScale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("movieTimeScale"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieTimeScale
+func (a_ AssetWriter) MovieTimeScale() CMTimeScale /* foo */ {
+	rv := objc.Send[TimeScale](a_.ID, objc.Sel("movieTimeScale"))
 	return rv
 }
 
@@ -358,8 +436,8 @@ func (a_ AssetWriter) MovieTimeScale() unsafe.Pointer {
 // The time scale of the movie.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/movietimescale
-func (a_ AssetWriter) SetMovieTimeScale(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/movieTimeScale
+func (a_ AssetWriter) SetMovieTimeScale(value CMTimeScale /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMovieTimeScale:"), value)
 }
 
@@ -367,28 +445,9 @@ func (a_ AssetWriter) SetMovieTimeScale(value unsafe.Pointer) {
 // The type of container file that the writer outputs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletype
-func (a_ AssetWriter) OutputFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileType"))
-	return rv
-}
-
-
-// The type of container file that the writer outputs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletype
-func (a_ AssetWriter) SetOutputFileType(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileType:"), value)
-}
-
-
-// A profile for the output file type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
-func (a_ AssetWriter) OutputFileTypeProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileTypeProfile"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputFileType
+func (a_ AssetWriter) OutputFileType() AVFileType /* typedef */ {
+	rv := objc.Send[FileType](a_.ID, objc.Sel("outputFileType"))
 	return rv
 }
 
@@ -396,9 +455,105 @@ func (a_ AssetWriter) OutputFileTypeProfile() unsafe.Pointer {
 // A profile for the output file type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
-func (a_ AssetWriter) SetOutputFileTypeProfile(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputFileTypeProfile
+func (a_ AssetWriter) OutputFileTypeProfile() AVFileTypeProfile /* foo */ {
+	rv := objc.Send[FileTypeProfile](a_.ID, objc.Sel("outputFileTypeProfile"))
+	return rv
+}
+
+
+// A profile for the output file type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputFileTypeProfile
+func (a_ AssetWriter) SetOutputFileTypeProfile(value AVFileTypeProfile /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileTypeProfile:"), value)
+}
+
+
+// A hint of the final duration of the output file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/overallDurationHint
+func (a_ AssetWriter) OverallDurationHint() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("overallDurationHint"))
+	return rv
+}
+
+
+// A hint of the final duration of the output file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/overallDurationHint
+func (a_ AssetWriter) SetOverallDurationHint(value CMTime /* foo */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallDurationHint:"), value)
+}
+
+
+// The interval of output segments that you prefer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/preferredOutputSegmentInterval
+func (a_ AssetWriter) PreferredOutputSegmentInterval() CMTime /* foo */ {
+	rv := objc.Send[Time](a_.ID, objc.Sel("preferredOutputSegmentInterval"))
+	return rv
+}
+
+
+// The interval of output segments that you prefer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/preferredOutputSegmentInterval
+func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value CMTime /* foo */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredOutputSegmentInterval:"), value)
+}
+
+
+// A Boolean value that indicates whether the asset writer outputs movie fragments suitable for combining with others.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/producesCombinableFragments
+func (a_ AssetWriter) ProducesCombinableFragments() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("producesCombinableFragments"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the asset writer outputs movie fragments suitable for combining with others.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/producesCombinableFragments
+func (a_ AssetWriter) SetProducesCombinableFragments(value bool /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setProducesCombinableFragments:"), value)
+}
+
+
+// A Boolean value that indicates whether to write the output file to make it more suitable for playback over a network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/shouldOptimizeForNetworkUse
+func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("shouldOptimizeForNetworkUse"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether to write the output file to make it more suitable for playback over a network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/shouldOptimizeForNetworkUse
+func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
+}
+
+
+// The status of writing samples to the output file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/status-swift.property
+func (a_ AssetWriter) Status() AVAssetWriterStatus /* enum */ {
+	rv := objc.Send[AVAssetWriterStatus](a_.ID, objc.Sel("status"))
+	return rv
 }
 
 
@@ -406,7 +561,7 @@ func (a_ AssetWriter) SetOutputFileTypeProfile(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputurl
-func (a_ AssetWriter) OutputURL() foundation.URL {
+func (a_ AssetWriter) OutputURL() foundation.URL /* foo */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("outputURL"))
 	return rv
 }
@@ -416,104 +571,8 @@ func (a_ AssetWriter) OutputURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputurl
-func (a_ AssetWriter) SetOutputURL(value foundation.URL) {
+func (a_ AssetWriter) SetOutputURL(value foundation.URL /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputURL:"), value)
 }
-
-
-// A hint of the final duration of the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/overalldurationhint
-func (a_ AssetWriter) OverallDurationHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("overallDurationHint"))
-	return rv
-}
-
-
-// A hint of the final duration of the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/overalldurationhint
-func (a_ AssetWriter) SetOverallDurationHint(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallDurationHint:"), value)
-}
-
-
-// The interval of output segments that you prefer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/preferredoutputsegmentinterval
-func (a_ AssetWriter) PreferredOutputSegmentInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredOutputSegmentInterval"))
-	return rv
-}
-
-
-// The interval of output segments that you prefer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/preferredoutputsegmentinterval
-func (a_ AssetWriter) SetPreferredOutputSegmentInterval(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredOutputSegmentInterval:"), value)
-}
-
-
-// A Boolean value that indicates whether the asset writer outputs movie fragments suitable for combining with others.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/producescombinablefragments
-func (a_ AssetWriter) ProducesCombinableFragments() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("producesCombinableFragments"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the asset writer outputs movie fragments suitable for combining with others.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/producescombinablefragments
-func (a_ AssetWriter) SetProducesCombinableFragments(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setProducesCombinableFragments:"), value)
-}
-
-
-// A Boolean value that indicates whether to write the output file to make it more suitable for playback over a network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/shouldoptimizefornetworkuse
-func (a_ AssetWriter) ShouldOptimizeForNetworkUse() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("shouldOptimizeForNetworkUse"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to write the output file to make it more suitable for playback over a network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/shouldoptimizefornetworkuse
-func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
-}
-
-
-// The status of writing samples to the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.property
-func (a_ AssetWriter) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
-	return rv
-}
-
-
-// The status of writing samples to the output file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.property
-func (a_ AssetWriter) SetStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setStatus:"), value)
-}
-
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,20 +30,20 @@ type _AudioNodeClass struct {
 // An interface definition for the [AudioNode] class.
 type IAudioNode interface {
 	objectivec.IObject
-	InputFormatForBus(bus IAudioNodeBus) AudioFormat
-	InstallTapOnBusBufferSizeFormatBlock(bus IAudioNodeBus, bufferSize IAudioFrameCount, format IAVAudioFormat, tapBlock unsafe.Pointer)
-	NameForInputBus(bus IAudioNodeBus) foundation.String
-	NameForOutputBus(bus IAudioNodeBus) foundation.String
-	OutputFormatForBus(bus IAudioNodeBus) AudioFormat
-	RemoveTapOnBus(bus IAudioNodeBus)
-	Reset()
-	AUAudioUnit() AudioUnit
-	Engine() AVAudioEngine
-	LastRenderTime() AVAudioTime
-	Latency() foundation.TimeInterval
-	NumberOfInputs() uint
-	NumberOfOutputs() uint
-	OutputPresentationLatency() foundation.TimeInterval
+	AuAudioUnit() IAudioUnit
+	SetAuAudioUnit(value IAudioUnit)
+	Engine() IAVAudioEngine
+	SetEngine(value IAVAudioEngine)
+	LastRenderTime() IAVAudioTime
+	SetLastRenderTime(value IAVAudioTime)
+	Latency() unsafe.Pointer
+	SetLatency(value unsafe.Pointer)
+	NumberOfInputs() int
+	SetNumberOfInputs(value int)
+	NumberOfOutputs() int
+	SetNumberOfOutputs(value int)
+	OutputPresentationLatency() unsafe.Pointer
+	SetOutputPresentationLatency(value unsafe.Pointer)
 }
 
 // An object you use for audio generation, processing, or an I/O block.
@@ -100,79 +99,31 @@ func NewAudioNode() AudioNode {
 
 
 
-// Gets the input format for the bus you specify.
+// An audio unit object that wraps or underlies the implementation’s audio unit.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)
-func (a_ AudioNode) InputFormatForBus(bus IAudioNodeBus) AudioFormat {
-	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("inputFormatForBus:"), bus)
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/auaudiounit
+func (a_ AudioNode) AuAudioUnit() IAudioUnit {
+	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("auAudioUnit"))
 	return rv
-}
-
-
-// Installs an audio tap on a bus you specify to record, monitor, and observe the output of the node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)
-func (a_ AudioNode) InstallTapOnBusBufferSizeFormatBlock(bus IAudioNodeBus, bufferSize IAudioFrameCount, format IAVAudioFormat, tapBlock unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("installTapOnBus:bufferSize:format:block:"), bus, bufferSize, format, tapBlock)
-}
-
-
-// Gets the name of the input bus you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forInputBus:)
-func (a_ AudioNode) NameForInputBus(bus IAudioNodeBus) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("nameForInputBus:"), bus)
-	return rv
-}
-
-
-// Retrieves the name of the output bus you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)
-func (a_ AudioNode) NameForOutputBus(bus IAudioNodeBus) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("nameForOutputBus:"), bus)
-	return rv
-}
-
-
-// Retrieves the output format for the bus you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)
-func (a_ AudioNode) OutputFormatForBus(bus IAudioNodeBus) AudioFormat {
-	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("outputFormatForBus:"), bus)
-	return rv
-}
-
-
-// Removes an audio tap on a bus you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)
-func (a_ AudioNode) RemoveTapOnBus(bus IAudioNodeBus) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeTapOnBus:"), bus)
-}
-
-
-// Clears a unit’s previous processing state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/reset()
-func (a_ AudioNode) Reset() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("reset"))
 }
 
 
 // An audio unit object that wraps or underlies the implementation’s audio unit.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/auAudioUnit
-func (a_ AudioNode) AUAudioUnit() AudioUnit {
-	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("AUAudioUnit"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/auaudiounit
+func (a_ AudioNode) SetAuAudioUnit(value IAudioUnit) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAuAudioUnit:"), value)
+}
+
+
+// The audio engine that manages the node, if any.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/engine
+func (a_ AudioNode) Engine() IAVAudioEngine {
+	rv := objc.Send[AudioEngine](a_.ID, objc.Sel("engine"))
 	return rv
 }
 
@@ -180,9 +131,18 @@ func (a_ AudioNode) AUAudioUnit() AudioUnit {
 // The audio engine that manages the node, if any.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/engine
-func (a_ AudioNode) Engine() AVAudioEngine {
-	rv := objc.Send[AVAudioEngine](a_.ID, objc.Sel("engine"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/engine
+func (a_ AudioNode) SetEngine(value IAVAudioEngine) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setEngine:"), value)
+}
+
+
+// The most recent render time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
+func (a_ AudioNode) LastRenderTime() IAVAudioTime {
+	rv := objc.Send[AudioTime](a_.ID, objc.Sel("lastRenderTime"))
 	return rv
 }
 
@@ -190,9 +150,18 @@ func (a_ AudioNode) Engine() AVAudioEngine {
 // The most recent render time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/lastRenderTime
-func (a_ AudioNode) LastRenderTime() AVAudioTime {
-	rv := objc.Send[AVAudioTime](a_.ID, objc.Sel("lastRenderTime"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
+func (a_ AudioNode) SetLastRenderTime(value IAVAudioTime) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLastRenderTime:"), value)
+}
+
+
+// The processing latency of the node, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
+func (a_ AudioNode) Latency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("latency"))
 	return rv
 }
 
@@ -200,9 +169,18 @@ func (a_ AudioNode) LastRenderTime() AVAudioTime {
 // The processing latency of the node, in seconds.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/latency
-func (a_ AudioNode) Latency() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("latency"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/latency
+func (a_ AudioNode) SetLatency(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLatency:"), value)
+}
+
+
+// The number of input busses for the node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
+func (a_ AudioNode) NumberOfInputs() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("numberOfInputs"))
 	return rv
 }
 
@@ -210,9 +188,18 @@ func (a_ AudioNode) Latency() foundation.TimeInterval {
 // The number of input busses for the node.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/numberOfInputs
-func (a_ AudioNode) NumberOfInputs() uint {
-	rv := objc.Send[uint](a_.ID, objc.Sel("numberOfInputs"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
+func (a_ AudioNode) SetNumberOfInputs(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfInputs:"), value)
+}
+
+
+// The number of output busses for the node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
+func (a_ AudioNode) NumberOfOutputs() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("numberOfOutputs"))
 	return rv
 }
 
@@ -220,9 +207,18 @@ func (a_ AudioNode) NumberOfInputs() uint {
 // The number of output busses for the node.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/numberOfOutputs
-func (a_ AudioNode) NumberOfOutputs() uint {
-	rv := objc.Send[uint](a_.ID, objc.Sel("numberOfOutputs"))
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
+func (a_ AudioNode) SetNumberOfOutputs(value int) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfOutputs:"), value)
+}
+
+
+// The maximum render pipeline latency downstream of the node, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
+func (a_ AudioNode) OutputPresentationLatency() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputPresentationLatency"))
 	return rv
 }
 
@@ -230,10 +226,9 @@ func (a_ AudioNode) NumberOfOutputs() uint {
 // The maximum render pipeline latency downstream of the node, in seconds.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/outputPresentationLatency
-func (a_ AudioNode) OutputPresentationLatency() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](a_.ID, objc.Sel("outputPresentationLatency"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency
+func (a_ AudioNode) SetOutputPresentationLatency(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputPresentationLatency:"), value)
 }
 
 

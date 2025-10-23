@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,17 +31,10 @@ type _CursorClass struct {
 // An interface definition for the [Cursor] class.
 type ICursor interface {
 	objectivec.IObject
-	MouseEntered(event IEvent)
-	MouseExited(event IEvent)
-	Pop()
-	Push()
-	Set()
-	SetOnMouseEntered(flag bool)
-	SetOnMouseExited(flag bool)
 	HotSpot() coregraphics.CGPoint
-	Image() Image
-	SetOnMouseEntered() bool
-	SetOnMouseExited() bool
+	SetHotSpot(value coregraphics.CGPoint)
+	Image() IImage
+	SetImage(value IImage)
 	IsSetOnMouseEntered() bool
 	SetIsSetOnMouseEntered(value bool)
 	IsSetOnMouseExited() bool
@@ -102,61 +94,6 @@ func NewCursor() Cursor {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(coder:)
-func NewCursorWithCoder(coder foundation.ICoder) Cursor {
-	instance := getCursorClass().Alloc()
-	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes the cursor with the specified image and hot spot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:foregroundColorHint:backgroundColorHint:hotSpot:)
-func NewCursorWithImageForegroundColorHintBackgroundColorHintHotSpot(newImage IImage, fg IColor, bg IColor, hotSpot coregraphics.CGPoint) Cursor {
-	instance := getCursorClass().Alloc()
-	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:"), newImage, fg, bg, hotSpot)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a cursor with the given image and hot spot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(image:hotSpot:)
-func NewCursorWithImageHotSpot(newImage IImage, point coregraphics.CGPoint) Cursor {
-	instance := getCursorClass().Alloc()
-	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithImage:hotSpot:"), newImage, point)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns the cursor for resizing a column (vertical divider) in the specified directions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResizeCursorInDirections:
-func (cc _CursorClass) ColumnResizeCursorInDirections(directions IHorizontalDirections) Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("columnResizeCursorInDirections:"), directions)
-	return rv
-}
-
-
-// Returns the cursor for resizing a rectangular frame from the specified edge or corner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/frameResizeCursorFromPosition:inDirections:
-func (cc _CursorClass) FrameResizeCursorFromPositionInDirections(position ICursorFrameResizePosition, directions ICursorFrameResizeDirections) Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("frameResizeCursorFromPosition:inDirections:"), position, directions)
-	return rv
-}
-
-
 // Makes the current cursor invisible.
 //
 // [Full Topic]
@@ -166,49 +103,12 @@ func (cc _CursorClass) Hide() {
 }
 
 
-// Pops the current cursor off the top of the stack.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pop()-swift.type.method
-func (cc _CursorClass) Pop() {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("pop"))
-}
-
-
-// Returns the cursor for resizing a row (horizontal divider) in the specified directions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResizeCursorInDirections:
-func (cc _CursorClass) RowResizeCursorInDirections(directions IVerticalDirections) Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("rowResizeCursorInDirections:"), directions)
-	return rv
-}
-
-
-// Sets whether the cursor is hidden until the mouse moves.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/setHiddenUntilMouseMoves(_:)
-func (cc _CursorClass) SetHiddenUntilMouseMoves(flag bool) {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setHiddenUntilMouseMoves:"), flag)
-}
-
-
-// Negates an earlier call to by showing the current cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/unhide()
-func (cc _CursorClass) Unhide() {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("unhide"))
-}
-
-
 // Returns the default cursor, the arrow cursor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/arrow
 func (cc _CursorClass) ArrowCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("arrowCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("arrowCursor"))
 	return rv
 }
 
@@ -217,16 +117,7 @@ func (cc _CursorClass) ArrowCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/closedHand
 func (cc _CursorClass) ClosedHandCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("closedHandCursor"))
-	return rv
-}
-
-// Returns the cursor for resizing a column (vertical divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResize
-func (cc _CursorClass) ColumnResizeCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("columnResizeCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("closedHandCursor"))
 	return rv
 }
 
@@ -235,7 +126,7 @@ func (cc _CursorClass) ColumnResizeCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/contextualMenu
 func (cc _CursorClass) ContextualMenuCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("contextualMenuCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("contextualMenuCursor"))
 	return rv
 }
 
@@ -244,25 +135,7 @@ func (cc _CursorClass) ContextualMenuCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/crosshair
 func (cc _CursorClass) CrosshairCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("crosshairCursor"))
-	return rv
-}
-
-// Returns the application’s current cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/current
-func (cc _CursorClass) CurrentCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("currentCursor"))
-	return rv
-}
-
-// Returns the current system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/currentSystem
-func (cc _CursorClass) CurrentSystemCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("currentSystemCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("crosshairCursor"))
 	return rv
 }
 
@@ -271,7 +144,7 @@ func (cc _CursorClass) CurrentSystemCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/disappearingItem
 func (cc _CursorClass) DisappearingItemCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("disappearingItemCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("disappearingItemCursor"))
 	return rv
 }
 
@@ -280,7 +153,7 @@ func (cc _CursorClass) DisappearingItemCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/dragCopy
 func (cc _CursorClass) DragCopyCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("dragCopyCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("dragCopyCursor"))
 	return rv
 }
 
@@ -289,7 +162,7 @@ func (cc _CursorClass) DragCopyCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/dragLink
 func (cc _CursorClass) DragLinkCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("dragLinkCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("dragLinkCursor"))
 	return rv
 }
 
@@ -298,7 +171,7 @@ func (cc _CursorClass) DragLinkCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/iBeam
 func (cc _CursorClass) IBeamCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("IBeamCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("IBeamCursor"))
 	return rv
 }
 
@@ -307,7 +180,7 @@ func (cc _CursorClass) IBeamCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/iBeamCursorForVerticalLayout
 func (cc _CursorClass) IBeamCursorForVerticalLayout() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("IBeamCursorForVerticalLayout"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("IBeamCursorForVerticalLayout"))
 	return rv
 }
 
@@ -316,7 +189,7 @@ func (cc _CursorClass) IBeamCursorForVerticalLayout() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/openHand
 func (cc _CursorClass) OpenHandCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("openHandCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("openHandCursor"))
 	return rv
 }
 
@@ -325,7 +198,7 @@ func (cc _CursorClass) OpenHandCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/operationNotAllowed
 func (cc _CursorClass) OperationNotAllowedCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("operationNotAllowedCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("operationNotAllowedCursor"))
 	return rv
 }
 
@@ -334,7 +207,7 @@ func (cc _CursorClass) OperationNotAllowedCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pointingHand
 func (cc _CursorClass) PointingHandCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("pointingHandCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("pointingHandCursor"))
 	return rv
 }
 
@@ -343,7 +216,7 @@ func (cc _CursorClass) PointingHandCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeDown
 func (cc _CursorClass) ResizeDownCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeDownCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeDownCursor"))
 	return rv
 }
 
@@ -352,7 +225,7 @@ func (cc _CursorClass) ResizeDownCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeft
 func (cc _CursorClass) ResizeLeftCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeLeftCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeLeftCursor"))
 	return rv
 }
 
@@ -361,7 +234,7 @@ func (cc _CursorClass) ResizeLeftCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeftRight
 func (cc _CursorClass) ResizeLeftRightCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeLeftRightCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeLeftRightCursor"))
 	return rv
 }
 
@@ -370,7 +243,7 @@ func (cc _CursorClass) ResizeLeftRightCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeRight
 func (cc _CursorClass) ResizeRightCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeRightCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeRightCursor"))
 	return rv
 }
 
@@ -379,7 +252,7 @@ func (cc _CursorClass) ResizeRightCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUp
 func (cc _CursorClass) ResizeUpCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeUpCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeUpCursor"))
 	return rv
 }
 
@@ -388,106 +261,16 @@ func (cc _CursorClass) ResizeUpCursor() Cursor {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUpDown
 func (cc _CursorClass) ResizeUpDownCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("resizeUpDownCursor"))
+	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeUpDownCursor"))
 	return rv
 }
-
-// Returns the cursor for resizing a row (horizontal divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResize
-func (cc _CursorClass) RowResizeCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("rowResizeCursor"))
-	return rv
-}
-
-// Returns the zoom-in cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/zoomIn
-func (cc _CursorClass) ZoomInCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("zoomInCursor"))
-	return rv
-}
-
-// Returns the zoom-out cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/zoomOut
-func (cc _CursorClass) ZoomOutCursor() Cursor {
-	rv := objc.Send[NSCursor](objc.ID(cc.class), objc.Sel("zoomOutCursor"))
-	return rv
-}
-
-// Automatically sent to the receiver when the cursor enters a cursor rectangle owned by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/mouseEntered(with:)
-func (c_ Cursor) MouseEntered(event IEvent) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("mouseEntered:"), event)
-}
-
-
-// Automatically sent to the receiver when the cursor exits a cursor rectangle owned by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/mouseExited(with:)
-func (c_ Cursor) MouseExited(event IEvent) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("mouseExited:"), event)
-}
-
-
-// Sends a message to the receiver’s class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pop()-swift.method
-func (c_ Cursor) Pop() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("pop"))
-}
-
-
-// Puts the receiver on top of the cursor stack and makes it the current cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/push()
-func (c_ Cursor) Push() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("push"))
-}
-
-
-// Makes the receiver the current cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/set()
-func (c_ Cursor) Set() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("set"))
-}
-
-
-// Specifies whether the receiver accepts events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/setOnMouseEntered(_:)
-func (c_ Cursor) SetOnMouseEntered(flag bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOnMouseEntered:"), flag)
-}
-
-
-// Sets whether the receiver accepts events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/setOnMouseExited(_:)
-func (c_ Cursor) SetOnMouseExited(flag bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOnMouseExited:"), flag)
-}
-
 
 // Returns the default cursor, the arrow cursor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/arrow
-func (c_ Cursor) ArrowCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("arrowCursor"))
+func (c_ Cursor) ArrowCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("arrowCursor"))
 	return rv
 }
 
@@ -496,18 +279,8 @@ func (c_ Cursor) ArrowCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/closedHand
-func (c_ Cursor) ClosedHandCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("closedHandCursor"))
-	return rv
-}
-
-
-// Returns the cursor for resizing a column (vertical divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResize
-func (c_ Cursor) ColumnResizeCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("columnResizeCursor"))
+func (c_ Cursor) ClosedHandCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("closedHandCursor"))
 	return rv
 }
 
@@ -516,8 +289,8 @@ func (c_ Cursor) ColumnResizeCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/contextualMenu
-func (c_ Cursor) ContextualMenuCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("contextualMenuCursor"))
+func (c_ Cursor) ContextualMenuCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("contextualMenuCursor"))
 	return rv
 }
 
@@ -526,28 +299,8 @@ func (c_ Cursor) ContextualMenuCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/crosshair
-func (c_ Cursor) CrosshairCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("crosshairCursor"))
-	return rv
-}
-
-
-// Returns the application’s current cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/current
-func (c_ Cursor) CurrentCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("currentCursor"))
-	return rv
-}
-
-
-// Returns the current system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/currentSystem
-func (c_ Cursor) CurrentSystemCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("currentSystemCursor"))
+func (c_ Cursor) CrosshairCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("crosshairCursor"))
 	return rv
 }
 
@@ -556,8 +309,8 @@ func (c_ Cursor) CurrentSystemCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/disappearingItem
-func (c_ Cursor) DisappearingItemCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("disappearingItemCursor"))
+func (c_ Cursor) DisappearingItemCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("disappearingItemCursor"))
 	return rv
 }
 
@@ -566,8 +319,8 @@ func (c_ Cursor) DisappearingItemCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/dragCopy
-func (c_ Cursor) DragCopyCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("dragCopyCursor"))
+func (c_ Cursor) DragCopyCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("dragCopyCursor"))
 	return rv
 }
 
@@ -576,18 +329,8 @@ func (c_ Cursor) DragCopyCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/dragLink
-func (c_ Cursor) DragLinkCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("dragLinkCursor"))
-	return rv
-}
-
-
-// The position of the click location within the cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/hotSpot
-func (c_ Cursor) HotSpot() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("hotSpot"))
+func (c_ Cursor) DragLinkCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("dragLinkCursor"))
 	return rv
 }
 
@@ -596,8 +339,8 @@ func (c_ Cursor) HotSpot() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/iBeam
-func (c_ Cursor) IBeamCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("IBeamCursor"))
+func (c_ Cursor) IBeamCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("IBeamCursor"))
 	return rv
 }
 
@@ -606,38 +349,8 @@ func (c_ Cursor) IBeamCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/iBeamCursorForVerticalLayout
-func (c_ Cursor) IBeamCursorForVerticalLayout() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("IBeamCursorForVerticalLayout"))
-	return rv
-}
-
-
-// The cursor’s image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/image
-func (c_ Cursor) Image() Image {
-	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the receiver becomes current on receiving a message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/isSetOnMouseEntered
-func (c_ Cursor) SetOnMouseEntered() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("setOnMouseEntered"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the receiver becomes current when it receives a message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/isSetOnMouseExited
-func (c_ Cursor) SetOnMouseExited() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("setOnMouseExited"))
+func (c_ Cursor) IBeamCursorForVerticalLayout() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("IBeamCursorForVerticalLayout"))
 	return rv
 }
 
@@ -646,8 +359,8 @@ func (c_ Cursor) SetOnMouseExited() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/openHand
-func (c_ Cursor) OpenHandCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("openHandCursor"))
+func (c_ Cursor) OpenHandCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("openHandCursor"))
 	return rv
 }
 
@@ -656,8 +369,8 @@ func (c_ Cursor) OpenHandCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/operationNotAllowed
-func (c_ Cursor) OperationNotAllowedCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("operationNotAllowedCursor"))
+func (c_ Cursor) OperationNotAllowedCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("operationNotAllowedCursor"))
 	return rv
 }
 
@@ -666,8 +379,8 @@ func (c_ Cursor) OperationNotAllowedCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pointingHand
-func (c_ Cursor) PointingHandCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("pointingHandCursor"))
+func (c_ Cursor) PointingHandCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("pointingHandCursor"))
 	return rv
 }
 
@@ -676,8 +389,8 @@ func (c_ Cursor) PointingHandCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeDown
-func (c_ Cursor) ResizeDownCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeDownCursor"))
+func (c_ Cursor) ResizeDownCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeDownCursor"))
 	return rv
 }
 
@@ -686,8 +399,8 @@ func (c_ Cursor) ResizeDownCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeft
-func (c_ Cursor) ResizeLeftCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeLeftCursor"))
+func (c_ Cursor) ResizeLeftCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeLeftCursor"))
 	return rv
 }
 
@@ -696,8 +409,8 @@ func (c_ Cursor) ResizeLeftCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeftRight
-func (c_ Cursor) ResizeLeftRightCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeLeftRightCursor"))
+func (c_ Cursor) ResizeLeftRightCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeLeftRightCursor"))
 	return rv
 }
 
@@ -706,8 +419,8 @@ func (c_ Cursor) ResizeLeftRightCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeRight
-func (c_ Cursor) ResizeRightCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeRightCursor"))
+func (c_ Cursor) ResizeRightCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeRightCursor"))
 	return rv
 }
 
@@ -716,8 +429,8 @@ func (c_ Cursor) ResizeRightCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUp
-func (c_ Cursor) ResizeUpCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeUpCursor"))
+func (c_ Cursor) ResizeUpCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeUpCursor"))
 	return rv
 }
 
@@ -726,39 +439,47 @@ func (c_ Cursor) ResizeUpCursor() NSCursor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUpDown
-func (c_ Cursor) ResizeUpDownCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("resizeUpDownCursor"))
+func (c_ Cursor) ResizeUpDownCursor() ICursor {
+	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeUpDownCursor"))
 	return rv
 }
 
 
-// Returns the cursor for resizing a row (horizontal divider) in either direction.
+// The position of the click location within the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResize
-func (c_ Cursor) RowResizeCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("rowResizeCursor"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/hotspot
+func (c_ Cursor) HotSpot() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("hotSpot"))
 	return rv
 }
 
 
-// Returns the zoom-in cursor.
+// The position of the click location within the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/zoomIn
-func (c_ Cursor) ZoomInCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("zoomInCursor"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/hotspot
+func (c_ Cursor) SetHotSpot(value coregraphics.CGPoint) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHotSpot:"), value)
+}
+
+
+// The cursor’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/image
+func (c_ Cursor) Image() IImage {
+	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
 }
 
 
-// Returns the zoom-out cursor.
+// The cursor’s image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/zoomOut
-func (c_ Cursor) ZoomOutCursor() NSCursor {
-	rv := objc.Send[NSCursor](c_.ID, objc.Sel("zoomOutCursor"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscursor/image
+func (c_ Cursor) SetImage(value IImage) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setImage:"), value)
 }
 
 
@@ -798,5 +519,6 @@ func (c_ Cursor) IsSetOnMouseExited() bool {
 func (c_ Cursor) SetIsSetOnMouseExited(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSetOnMouseExited:"), value)
 }
+
 
 

@@ -30,10 +30,11 @@ type _MetadataQueryResultGroupClass struct {
 // An interface definition for the [MetadataQueryResultGroup] class.
 type IMetadataQueryResultGroup interface {
 	objectivec.IObject
-	Attribute() string
-	ResultCount() uint
+	// properties:
+	Attribute() string /* primitive/slice/pointer */
+	ResultCount() uint /* primitive/slice/pointer */
 	Results() objc.ID
-	Subgroups() []MetadataQueryResultGroup
+	Subgroups() []MetadataQueryResultGroup /* primitive/slice/pointer */
 	Value() objc.ID
 	GroupedResults() IMetadataQueryResultGroup
 	SetGroupedResults(value IMetadataQueryResultGroup)
@@ -41,7 +42,8 @@ type IMetadataQueryResultGroup interface {
 	SetOperationQueue(value IOperationQueue)
 	ValueLists() IMetadataQueryAttributeValueTuple
 	SetValueLists(value IMetadataQueryAttributeValueTuple)
-	ResultAtIndex(idx uint) objc.ID
+	// methods:
+	ResultAtIndex(idx uint /* primitive/slice/pointer */) objc.ID
 }
 
 // The class represents a collection of grouped attribute results returned by an object.
@@ -99,7 +101,7 @@ func NewMetadataQueryResultGroup() MetadataQueryResultGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/result(at:)
-func (m_ MetadataQueryResultGroup) ResultAtIndex(idx uint) objc.ID {
+func (m_ MetadataQueryResultGroup) ResultAtIndex(idx uint /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("resultAtIndex:"), idx)
 	return rv
 }
@@ -109,7 +111,7 @@ func (m_ MetadataQueryResultGroup) ResultAtIndex(idx uint) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/attribute
-func (m_ MetadataQueryResultGroup) Attribute() string {
+func (m_ MetadataQueryResultGroup) Attribute() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("attribute"))
 	return rv
 }
@@ -119,7 +121,7 @@ func (m_ MetadataQueryResultGroup) Attribute() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/resultCount
-func (m_ MetadataQueryResultGroup) ResultCount() uint {
+func (m_ MetadataQueryResultGroup) ResultCount() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("resultCount"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (m_ MetadataQueryResultGroup) Results() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryResultGroup/subgroups
-func (m_ MetadataQueryResultGroup) Subgroups() []MetadataQueryResultGroup {
+func (m_ MetadataQueryResultGroup) Subgroups() []MetadataQueryResultGroup /* primitive/slice/pointer */ {
 	rv := objc.Send[[]MetadataQueryResultGroup](m_.ID, objc.Sel("subgroups"))
 	return rv
 }

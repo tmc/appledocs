@@ -30,8 +30,10 @@ type _UnitConverterClass struct {
 // An interface definition for the [UnitConverter] class.
 type IUnitConverter interface {
 	objectivec.IObject
-	BaseUnitValueFromValue(value float64) float64
-	ValueFromBaseUnitValue(baseUnitValue float64) float64
+	// properties:
+	// methods:
+	BaseUnitValueFromValue(value float64 /* primitive/slice/pointer */) float64 /* primitive/slice/pointer */
+	ValueFromBaseUnitValue(baseUnitValue float64 /* primitive/slice/pointer */) float64 /* primitive/slice/pointer */
 }
 
 // An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.
@@ -91,7 +93,7 @@ func NewUnitConverter() UnitConverter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/baseUnitValue(fromValue:)
-func (u_ UnitConverter) BaseUnitValueFromValue(value float64) float64 {
+func (u_ UnitConverter) BaseUnitValueFromValue(value float64 /* primitive/slice/pointer */) float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
 	return rv
 }
@@ -101,7 +103,7 @@ func (u_ UnitConverter) BaseUnitValueFromValue(value float64) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/value(fromBaseUnitValue:)
-func (u_ UnitConverter) ValueFromBaseUnitValue(baseUnitValue float64) float64 {
+func (u_ UnitConverter) ValueFromBaseUnitValue(baseUnitValue float64 /* primitive/slice/pointer */) float64 /* primitive/slice/pointer */ {
 	rv := objc.Send[float64](u_.ID, objc.Sel("valueFromBaseUnitValue:"), baseUnitValue)
 	return rv
 }

@@ -30,11 +30,14 @@ type _CarrierClass struct {
 // An interface definition for the [Carrier] class.
 type ICarrier interface {
 	objectivec.IObject
-	AllowsVOIP() bool
 	CarrierName() string
-	IsoCountryCode() string
-	MobileCountryCode() string
 	MobileNetworkCode() string
+	AllowsVOIP() bool
+	SetAllowsVOIP(value bool)
+	IsoCountryCode() string
+	SetIsoCountryCode(value string)
+	MobileCountryCode() string
+	SetMobileCountryCode(value string)
 }
 
 // Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
@@ -88,42 +91,12 @@ func NewCarrier() Carrier {
 
 
 
-// Indicates if the carrier allows making VoIP calls on its network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/allowsVOIP
-func (c_ Carrier) AllowsVOIP() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
-	return rv
-}
-
-
 // The name of the user’s home cellular service provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/carrierName
 func (c_ Carrier) CarrierName() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("carrierName"))
-	return rv
-}
-
-
-// The ISO country code for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/isoCountryCode
-func (c_ Carrier) IsoCountryCode() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
-	return rv
-}
-
-
-// The mobile country code (MCC) for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier/mobileCountryCode
-func (c_ Carrier) MobileCountryCode() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
 	return rv
 }
 
@@ -135,6 +108,63 @@ func (c_ Carrier) MobileCountryCode() string {
 func (c_ Carrier) MobileNetworkCode() string {
 	rv := objc.Send[string](c_.ID, objc.Sel("mobileNetworkCode"))
 	return rv
+}
+
+
+// Indicates if the carrier allows making VoIP calls on its network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
+func (c_ Carrier) AllowsVOIP() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
+	return rv
+}
+
+
+// Indicates if the carrier allows making VoIP calls on its network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
+func (c_ Carrier) SetAllowsVOIP(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsVOIP:"), value)
+}
+
+
+// The ISO country code for the user’s cellular service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
+func (c_ Carrier) IsoCountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("isoCountryCode"))
+	return rv
+}
+
+
+// The ISO country code for the user’s cellular service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
+func (c_ Carrier) SetIsoCountryCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsoCountryCode:"), objc.String(value))
+}
+
+
+// The mobile country code (MCC) for the user’s cellular service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/mobilecountrycode
+func (c_ Carrier) MobileCountryCode() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("mobileCountryCode"))
+	return rv
+}
+
+
+// The mobile country code (MCC) for the user’s cellular service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/mobilecountrycode
+func (c_ Carrier) SetMobileCountryCode(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMobileCountryCode:"), objc.String(value))
 }
 
 

@@ -29,7 +29,7 @@ type _CNChangeHistoryUpdateGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryUpdateGroupEvent] class.
 type ICNChangeHistoryUpdateGroupEvent interface {
 	ICNChangeHistoryEvent
-	Group() CNGroup
+	Group() ICNGroup
 }
 
 // An object that represents an updated group event.
@@ -89,7 +89,7 @@ func NewCNChangeHistoryUpdateGroupEvent() CNChangeHistoryUpdateGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent/group
-func (c_ CNChangeHistoryUpdateGroupEvent) Group() CNGroup {
+func (c_ CNChangeHistoryUpdateGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }

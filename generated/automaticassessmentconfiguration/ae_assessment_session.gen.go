@@ -30,15 +30,14 @@ type _AEAssessmentSessionClass struct {
 // An interface definition for the [AEAssessmentSession] class.
 type IAEAssessmentSession interface {
 	objectivec.IObject
-	Begin()
-	End()
-	UpdateToConfiguration(configuration IAEAssessmentConfiguration)
-	Configuration() AEAssessmentConfiguration
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Active() bool
+	Configuration() IAEAssessmentConfiguration
+	SetConfiguration(value IAEAssessmentConfiguration)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	IsActive() bool
 	SetIsActive(value bool)
+	Begin()
+	UpdateToConfiguration(configuration IAEAssessmentConfiguration)
 }
 
 // A session that your app uses to protect an assessment.
@@ -94,52 +93,12 @@ func NewAEAssessmentSession() AEAssessmentSession {
 
 
 
-// Creates a new assessment session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)
-func NewAEAssessmentSessionWithConfiguration(configuration IAEAssessmentConfiguration) AEAssessmentSession {
-	instance := getAEAssessmentSessionClass().Alloc()
-	rv := objc.Send[AEAssessmentSession](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// A Boolean that indicates whether the current device or platform supports updating a session’s configuration after the session has begun.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsConfigurationUpdates
-func (ac _AEAssessmentSessionClass) SupportsConfigurationUpdates() bool {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("supportsConfigurationUpdates"))
-	return rv
-}
-
-// A Boolean that indicates whether the current device or platform supports a configuration with one or more participant applications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsMultipleParticipants
-func (ac _AEAssessmentSessionClass) SupportsMultipleParticipants() bool {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("supportsMultipleParticipants"))
-	return rv
-}
-
 // Starts an assessment session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/begin()
 func (a_ AEAssessmentSession) Begin() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("begin"))
-}
-
-
-// Ends an assessment session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()
-func (a_ AEAssessmentSession) End() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("end"))
 }
 
 
@@ -155,19 +114,28 @@ func (a_ AEAssessmentSession) UpdateToConfiguration(configuration IAEAssessmentC
 // The current configuration of the session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/configuration
-func (a_ AEAssessmentSession) Configuration() AEAssessmentConfiguration {
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/configuration
+func (a_ AEAssessmentSession) Configuration() IAEAssessmentConfiguration {
 	rv := objc.Send[AEAssessmentConfiguration](a_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 
+// The current configuration of the session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/configuration
+func (a_ AEAssessmentSession) SetConfiguration(value IAEAssessmentConfiguration) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setConfiguration:"), value)
+}
+
+
 // A delegate to which the session provides state change updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate
-func (a_ AEAssessmentSession) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate
+func (a_ AEAssessmentSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -175,39 +143,9 @@ func (a_ AEAssessmentSession) Delegate() objc.ID {
 // A delegate to which the session provides state change updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/delegate
-func (a_ AEAssessmentSession) SetDelegate(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate
+func (a_ AEAssessmentSession) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean that indicates whether an assessment session is running.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/isActive
-func (a_ AEAssessmentSession) Active() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("active"))
-	return rv
-}
-
-
-// A Boolean that indicates whether the current device or platform supports updating a session’s configuration after the session has begun.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsConfigurationUpdates
-func (a_ AEAssessmentSession) SupportsConfigurationUpdates() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("supportsConfigurationUpdates"))
-	return rv
-}
-
-
-// A Boolean that indicates whether the current device or platform supports a configuration with one or more participant applications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/supportsMultipleParticipants
-func (a_ AEAssessmentSession) SupportsMultipleParticipants() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("supportsMultipleParticipants"))
-	return rv
 }
 
 
@@ -228,5 +166,7 @@ func (a_ AEAssessmentSession) IsActive() bool {
 func (a_ AEAssessmentSession) SetIsActive(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
+
+
 
 

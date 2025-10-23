@@ -30,8 +30,10 @@ type _ArchiverClass struct {
 // An interface definition for the [Archiver] class.
 type IArchiver interface {
 	ICoder
+	// properties:
 	ArchiverData() IMutableData
 	SetArchiverData(value IMutableData)
+	// methods:
 }
 
 // A coder that stores an object’s data to an archive.

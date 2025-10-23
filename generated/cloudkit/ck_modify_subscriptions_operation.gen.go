@@ -29,17 +29,17 @@ type _CKModifySubscriptionsOperationClass struct {
 // An interface definition for the [CKModifySubscriptionsOperation] class.
 type ICKModifySubscriptionsOperation interface {
 	ICKDatabaseOperation
-	PerSubscriptionSaveBlock() unsafe.Pointer
-	SetPerSubscriptionSaveBlock(value unsafe.Pointer)
 	ModifySubscriptionsCompletionBlock() unsafe.Pointer
 	SetModifySubscriptionsCompletionBlock(value unsafe.Pointer)
 	ModifySubscriptionsResultBlock() unsafe.Pointer
 	SetModifySubscriptionsResultBlock(value unsafe.Pointer)
 	PerSubscriptionDeleteBlock() unsafe.Pointer
 	SetPerSubscriptionDeleteBlock(value unsafe.Pointer)
+	PerSubscriptionSaveBlock() unsafe.Pointer
+	SetPerSubscriptionSaveBlock(value unsafe.Pointer)
 	SubscriptionIDsToDelete() unsafe.Pointer
 	SetSubscriptionIDsToDelete(value unsafe.Pointer)
-	SubscriptionsToSave() CKSubscription
+	SubscriptionsToSave() ICKSubscription
 	SetSubscriptionsToSave(value ICKSubscription)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
@@ -100,21 +100,6 @@ func NewCKModifySubscriptionsOperation() CKModifySubscriptionsOperation {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
-func (c_ CKModifySubscriptionsOperation) PerSubscriptionSaveBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionSaveBlock"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifySubscriptionsOperation/perSubscriptionSaveBlock-1yn86
-func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionSaveBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionSaveBlock:"), value)
-}
-
-
 // The closure to execute after the operation modifies the subscriptions.
 //
 // [Full Topic]
@@ -164,6 +149,21 @@ func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionDeleteBlock(value uns
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptionsaveblock-8y9zn
+func (c_ CKModifySubscriptionsOperation) PerSubscriptionSaveBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perSubscriptionSaveBlock"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/persubscriptionsaveblock-8y9zn
+func (c_ CKModifySubscriptionsOperation) SetPerSubscriptionSaveBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerSubscriptionSaveBlock:"), value)
+}
+
+
 // The IDs of the subscriptions that you want to delete.
 //
 // [Full Topic]
@@ -187,7 +187,7 @@ func (c_ CKModifySubscriptionsOperation) SetSubscriptionIDsToDelete(value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
-func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() CKSubscription {
+func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() ICKSubscription {
 	rv := objc.Send[CKSubscription](c_.ID, objc.Sel("subscriptionsToSave"))
 	return rv
 }

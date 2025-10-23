@@ -30,26 +30,28 @@ type _ScriptClassDescriptionClass struct {
 // An interface definition for the [ScriptClassDescription] class.
 type IScriptClassDescription interface {
 	IClassDescription
+	// properties:
 	AppleEventCode() unsafe.Pointer
-	ClassName() string
-	DefaultSubcontainerAttributeKey() string
-	ImplementationClassName() string
-	SuiteName() string
+	ClassName() string /* primitive/slice/pointer */
+	DefaultSubcontainerAttributeKey() string /* primitive/slice/pointer */
+	ImplementationClassName() string /* primitive/slice/pointer */
+	SuiteName() string /* primitive/slice/pointer */
 	SuperclassDescription() IScriptClassDescription
 	Superclass() IScriptClassDescription
 	SetSuperclass(value IScriptClassDescription)
-	AppleEventCodeForKey(key string) unsafe.Pointer
-	ClassDescriptionForKey(key string) IScriptClassDescription
-	HasOrderedToManyRelationshipForKey(key string) bool
-	HasPropertyForKey(key string) bool
-	HasReadablePropertyForKey(key string) bool
-	HasWritablePropertyForKey(key string) bool
-	IsLocationRequiredToCreateForKey(toManyRelationshipKey string) bool
+	// methods:
+	AppleEventCodeForKey(key string /* primitive/slice/pointer */) unsafe.Pointer
+	ClassDescriptionForKey(key string /* primitive/slice/pointer */) IScriptClassDescription
+	HasOrderedToManyRelationshipForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	HasPropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	HasReadablePropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	HasWritablePropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	IsLocationRequiredToCreateForKey(toManyRelationshipKey string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString
-	MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool
+	MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool /* primitive/slice/pointer */
 	SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL
-	SupportsCommand(commandDescription IScriptCommandDescription) bool
-	TypeForKey(key string) IString
+	SupportsCommand(commandDescription IScriptCommandDescription) bool /* primitive/slice/pointer */
+	TypeForKey(key string /* primitive/slice/pointer */) IString
 }
 
 // A scriptable class that a macOS app supports.
@@ -121,7 +123,7 @@ func NewScriptClassDescriptionForClass(aClass objc.Class) ScriptClassDescription
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(suiteName:className:dictionary:)
-func NewScriptClassDescriptionWithSuiteNameClassNameDictionary(suiteName string, className string, classDeclaration objectivec.IObject) ScriptClassDescription {
+func NewScriptClassDescriptionWithSuiteNameClassNameDictionary(suiteName string /* primitive/slice/pointer */, className string /* primitive/slice/pointer */, classDeclaration objectivec.IObject) ScriptClassDescription {
 	instance := getScriptClassDescriptionClass().Alloc()
 	rv := objc.Send[ScriptClassDescription](instance.ID, objc.Sel("initWithSuiteName:className:dictionary:"), objc.String(suiteName), objc.String(className), classDeclaration)
 	rv.Autorelease()
@@ -144,7 +146,7 @@ func (sc _ScriptClassDescriptionClass) ClassDescriptionForClass(aClass objc.Clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/appleEventCode(forKey:)
-func (s_ ScriptClassDescription) AppleEventCodeForKey(key string) unsafe.Pointer {
+func (s_ ScriptClassDescription) AppleEventCodeForKey(key string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForKey:"), objc.String(key))
 	return rv
 }
@@ -154,7 +156,7 @@ func (s_ ScriptClassDescription) AppleEventCodeForKey(key string) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/forKey(_:)
-func (s_ ScriptClassDescription) ClassDescriptionForKey(key string) IScriptClassDescription {
+func (s_ ScriptClassDescription) ClassDescriptionForKey(key string /* primitive/slice/pointer */) IScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("classDescriptionForKey:"), objc.String(key))
 	return rv
 }
@@ -164,7 +166,7 @@ func (s_ ScriptClassDescription) ClassDescriptionForKey(key string) IScriptClass
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasOrderedToManyRelationship(forKey:)
-func (s_ ScriptClassDescription) HasOrderedToManyRelationshipForKey(key string) bool {
+func (s_ ScriptClassDescription) HasOrderedToManyRelationshipForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasOrderedToManyRelationshipForKey:"), objc.String(key))
 	return rv
 }
@@ -174,7 +176,7 @@ func (s_ ScriptClassDescription) HasOrderedToManyRelationshipForKey(key string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasProperty(forKey:)
-func (s_ ScriptClassDescription) HasPropertyForKey(key string) bool {
+func (s_ ScriptClassDescription) HasPropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasPropertyForKey:"), objc.String(key))
 	return rv
 }
@@ -184,7 +186,7 @@ func (s_ ScriptClassDescription) HasPropertyForKey(key string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasReadableProperty(forKey:)
-func (s_ ScriptClassDescription) HasReadablePropertyForKey(key string) bool {
+func (s_ ScriptClassDescription) HasReadablePropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasReadablePropertyForKey:"), objc.String(key))
 	return rv
 }
@@ -194,7 +196,7 @@ func (s_ ScriptClassDescription) HasReadablePropertyForKey(key string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/hasWritableProperty(forKey:)
-func (s_ ScriptClassDescription) HasWritablePropertyForKey(key string) bool {
+func (s_ ScriptClassDescription) HasWritablePropertyForKey(key string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasWritablePropertyForKey:"), objc.String(key))
 	return rv
 }
@@ -204,7 +206,7 @@ func (s_ ScriptClassDescription) HasWritablePropertyForKey(key string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/isLocationRequiredToCreate(forKey:)
-func (s_ ScriptClassDescription) IsLocationRequiredToCreateForKey(toManyRelationshipKey string) bool {
+func (s_ ScriptClassDescription) IsLocationRequiredToCreateForKey(toManyRelationshipKey string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isLocationRequiredToCreateForKey:"), objc.String(toManyRelationshipKey))
 	return rv
 }
@@ -224,7 +226,7 @@ func (s_ ScriptClassDescription) KeyWithAppleEventCode(appleEventCode unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/matchesAppleEventCode(_:)
-func (s_ ScriptClassDescription) MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool {
+func (s_ ScriptClassDescription) MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("matchesAppleEventCode:"), appleEventCode)
 	return rv
 }
@@ -244,7 +246,7 @@ func (s_ ScriptClassDescription) SelectorForCommand(commandDescription IScriptCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/supportsCommand(_:)
-func (s_ ScriptClassDescription) SupportsCommand(commandDescription IScriptCommandDescription) bool {
+func (s_ ScriptClassDescription) SupportsCommand(commandDescription IScriptCommandDescription) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("supportsCommand:"), commandDescription)
 	return rv
 }
@@ -254,7 +256,7 @@ func (s_ ScriptClassDescription) SupportsCommand(commandDescription IScriptComma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-func (s_ ScriptClassDescription) TypeForKey(key string) IString {
+func (s_ ScriptClassDescription) TypeForKey(key string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
 	return rv
 }
@@ -274,7 +276,7 @@ func (s_ ScriptClassDescription) AppleEventCode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/className
-func (s_ ScriptClassDescription) ClassName() string {
+func (s_ ScriptClassDescription) ClassName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("className"))
 	return rv
 }
@@ -284,7 +286,7 @@ func (s_ ScriptClassDescription) ClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/defaultSubcontainerAttributeKey
-func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
+func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
 }
@@ -294,7 +296,7 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/implementationClassName
-func (s_ ScriptClassDescription) ImplementationClassName() string {
+func (s_ ScriptClassDescription) ImplementationClassName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("implementationClassName"))
 	return rv
 }
@@ -304,7 +306,7 @@ func (s_ ScriptClassDescription) ImplementationClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/suiteName
-func (s_ ScriptClassDescription) SuiteName() string {
+func (s_ ScriptClassDescription) SuiteName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
 	return rv
 }

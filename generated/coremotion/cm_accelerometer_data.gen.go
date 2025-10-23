@@ -32,7 +32,7 @@ type IAccelerometerData interface {
 	Acceleration() unsafe.Pointer
 	Timestamp() unsafe.Pointer
 	SetTimestamp(value unsafe.Pointer)
-	AccelerometerData() CMAccelerometerData
+	AccelerometerData() ICMAccelerometerData
 	SetAccelerometerData(value ICMAccelerometerData)
 }
 
@@ -124,8 +124,8 @@ func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
-func (a_ AccelerometerData) AccelerometerData() CMAccelerometerData {
-	rv := objc.Send[CMAccelerometerData](a_.ID, objc.Sel("accelerometerData"))
+func (a_ AccelerometerData) AccelerometerData() ICMAccelerometerData {
+	rv := objc.Send[AccelerometerData](a_.ID, objc.Sel("accelerometerData"))
 	return rv
 }
 

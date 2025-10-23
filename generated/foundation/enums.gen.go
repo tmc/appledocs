@@ -8,6 +8,28 @@ package foundation
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions
 type AlignmentOptions uint
 
+const (
+	AlignMinXInward AlignmentOptions = 1
+	AlignMinYInward AlignmentOptions = 2
+	AlignMaxXInward AlignmentOptions = 4
+	AlignMaxYInward AlignmentOptions = 8
+	AlignWidthInward AlignmentOptions = 16
+	AlignHeightInward AlignmentOptions = 32
+	AlignMinXOutward AlignmentOptions = 256
+	AlignMinYOutward AlignmentOptions = 512
+	AlignMaxXOutward AlignmentOptions = 1024
+	AlignMaxYOutward AlignmentOptions = 2048
+	AlignWidthOutward AlignmentOptions = 4096
+	AlignHeightOutward AlignmentOptions = 8192
+	AlignMinXNearest AlignmentOptions = 65536
+	AlignMinYNearest AlignmentOptions = 131072
+	AlignMaxXNearest AlignmentOptions = 262144
+	AlignMaxYNearest AlignmentOptions = 524288
+	AlignWidthNearest AlignmentOptions = 1048576
+	AlignHeightNearest AlignmentOptions = 2097152
+	AlignRectFlipped AlignmentOptions = -9223372036854775808
+)
+
 // ByteCountFormatterCountStyle - Specifies display of file or storage byte counts. The display style is platform specific.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/CountStyle-swift.enum
@@ -28,13 +50,13 @@ type ByteCountFormatterUnits uint
 const (
 	ByteCountFormatterUseDefault ByteCountFormatterUnits = 0
 	ByteCountFormatterUseBytes ByteCountFormatterUnits = 1
-	ByteCountFormatterUseKB ByteCountFormatterUnits = 1
-	ByteCountFormatterUseMB ByteCountFormatterUnits = 1
-	ByteCountFormatterUseGB ByteCountFormatterUnits = 1
-	ByteCountFormatterUseTB ByteCountFormatterUnits = 1
-	ByteCountFormatterUsePB ByteCountFormatterUnits = 1
-	ByteCountFormatterUseEB ByteCountFormatterUnits = 1
-	ByteCountFormatterUseZB ByteCountFormatterUnits = 1
+	ByteCountFormatterUseKB ByteCountFormatterUnits = 2
+	ByteCountFormatterUseMB ByteCountFormatterUnits = 4
+	ByteCountFormatterUseGB ByteCountFormatterUnits = 8
+	ByteCountFormatterUseTB ByteCountFormatterUnits = 16
+	ByteCountFormatterUsePB ByteCountFormatterUnits = 32
+	ByteCountFormatterUseEB ByteCountFormatterUnits = 64
+	ByteCountFormatterUseZB ByteCountFormatterUnits = 128
 	ByteCountFormatterUseYBOrHigher ByteCountFormatterUnits = 255
 	ByteCountFormatterUseAll ByteCountFormatterUnits = 65535
 )
@@ -78,6 +100,14 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/ZeroFormattingBehavior-swift.struct
 type DateComponentsFormatterZeroFormattingBehavior uint
 
+const (
+	DateComponentsFormatterZeroFormattingBehaviorDefault DateComponentsFormatterZeroFormattingBehavior = 1
+	DateComponentsFormatterZeroFormattingBehaviorDropLeading DateComponentsFormatterZeroFormattingBehavior = 2
+	DateComponentsFormatterZeroFormattingBehaviorDropMiddle DateComponentsFormatterZeroFormattingBehavior = 4
+	DateComponentsFormatterZeroFormattingBehaviorDropTrailing DateComponentsFormatterZeroFormattingBehavior = 8
+	DateComponentsFormatterZeroFormattingBehaviorPad DateComponentsFormatterZeroFormattingBehavior = 65536
+)
+
 // DateFormatterBehavior - Constants that specify the behavior 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Behavior
@@ -95,12 +125,15 @@ const (
 type DateFormatterStyle uint
 
 const (
+	// DateFormatterLongStyle - Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32 PM PST”. Equal to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/long
 	DateFormatterLongStyle DateFormatterStyle = 0
+	// DateFormatterNoStyle - Specifies no style. Equal to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/none
 	DateFormatterNoStyle DateFormatterStyle = 0
+	// DateFormatterShortStyle - Specifies a short style, typically numeric only, such as “11/23/37” or “3:30 PM”. Equal to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/short
 	DateFormatterShortStyle DateFormatterStyle = 0
@@ -110,6 +143,11 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/Options
 type DistributedNotificationOptions uint
+
+const (
+	DistributedNotificationDeliverImmediately DistributedNotificationOptions = 1
+	DistributedNotificationPostToAllSessions DistributedNotificationOptions = 2
+)
 
 // NotificationSuspensionBehavior - These constants specify the types of notification delivery suspension behaviors.
 //
@@ -131,6 +169,8 @@ type EnergyFormatterUnit uint
 const (
 	EnergyFormatterUnitJoule EnergyFormatterUnit = 11
 	EnergyFormatterUnitKilojoule EnergyFormatterUnit = 14
+	EnergyFormatterUnitCalorie EnergyFormatterUnit = 1792
+	EnergyFormatterUnitKilocalorie EnergyFormatterUnit = 1792
 )
 
 // DirectoryEnumerationOptions - Options for enumerating the contents of directories.
@@ -141,18 +181,18 @@ type DirectoryEnumerationOptions uint
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/includesDirectoriesPostOrder
-	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 2
+	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 5
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/producesRelativePathURLs
-	DirectoryEnumerationProducesRelativePathURLs DirectoryEnumerationOptions = 3
+	DirectoryEnumerationProducesRelativePathURLs DirectoryEnumerationOptions = 6
 	// DirectoryEnumerationSkipsHiddenFiles - An option to skip hidden files.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsHiddenFiles
-	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 1
+	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 4
 	// DirectoryEnumerationSkipsPackageDescendants - An option to treat packages like files and not descend into their contents.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsPackageDescendants
-	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 1
+	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 2
 	// DirectoryEnumerationSkipsSubdirectoryDescendants - An option to perform a shallow enumeration that doesn’t descend into directories.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsSubdirectoryDescendants
@@ -172,7 +212,7 @@ const (
 	// FileManagerItemReplacementWithoutDeletingBackupItem - The backup item remains in place after a successful replacement.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/withoutDeletingBackupItem
-	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 1
+	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 2
 )
 
 // SearchPathDirectory - The location of significant directories.
@@ -352,7 +392,7 @@ const (
 	// FileManagerUnmountWithoutUI - Specifies that no UI should accompany the unmount operation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/UnmountOptions/withoutUI
-	FileManagerUnmountWithoutUI FileManagerUnmountOptions = 1
+	FileManagerUnmountWithoutUI FileManagerUnmountOptions = 2
 )
 
 // VolumeEnumerationOptions - Options for enumerating mounted volumes with the 
@@ -364,11 +404,11 @@ const (
 	// VolumeEnumerationProduceFileReferenceURLs - The enumeration produces file reference URLs rather than path-based URLs.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions/produceFileReferenceURLs
-	VolumeEnumerationProduceFileReferenceURLs VolumeEnumerationOptions = 1
+	VolumeEnumerationProduceFileReferenceURLs VolumeEnumerationOptions = 4
 	// VolumeEnumerationSkipHiddenVolumes - The enumeration skips hidden volumes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions/skipHiddenVolumes
-	VolumeEnumerationSkipHiddenVolumes VolumeEnumerationOptions = 1
+	VolumeEnumerationSkipHiddenVolumes VolumeEnumerationOptions = 2
 )
 
 // FileWrapperReadingOptions - Reading options that can be set by the 
@@ -378,7 +418,7 @@ type FileWrapperReadingOptions uint
 
 const (
 	FileWrapperReadingImmediate FileWrapperReadingOptions = 1
-	FileWrapperReadingWithoutMapping FileWrapperReadingOptions = 1
+	FileWrapperReadingWithoutMapping FileWrapperReadingOptions = 2
 )
 
 // FileWrapperWritingOptions - Writing options that can be set by the 
@@ -388,7 +428,7 @@ type FileWrapperWritingOptions uint
 
 const (
 	FileWrapperWritingAtomic FileWrapperWritingOptions = 1
-	FileWrapperWritingWithNameUpdating FileWrapperWritingOptions = 1
+	FileWrapperWritingWithNameUpdating FileWrapperWritingOptions = 2
 )
 
 // FormattingContext - The formatting context for a formatter.
@@ -451,11 +491,11 @@ const (
 	// InlinePresentationIntentInlineHTML - An intent that represents an inline HTML presentation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/inlineHTML
-	InlinePresentationIntentInlineHTML InlinePresentationIntent = 1
+	InlinePresentationIntentInlineHTML InlinePresentationIntent = 256
 	// InlinePresentationIntentStronglyEmphasized - An intent that represents a strongly emphasized presentation.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/stronglyEmphasized
-	InlinePresentationIntentStronglyEmphasized InlinePresentationIntent = 1
+	InlinePresentationIntentStronglyEmphasized InlinePresentationIntent = 2
 )
 
 // LengthFormatterUnit - The units supported by the 
@@ -468,12 +508,22 @@ const (
 	LengthFormatterUnitCentimeter LengthFormatterUnit = 9
 	LengthFormatterUnitMeter LengthFormatterUnit = 11
 	LengthFormatterUnitKilometer LengthFormatterUnit = 14
+	LengthFormatterUnitInch LengthFormatterUnit = 1280
+	LengthFormatterUnitFoot LengthFormatterUnit = 1280
+	LengthFormatterUnitYard LengthFormatterUnit = 1280
+	LengthFormatterUnitMile LengthFormatterUnit = 1280
 )
 
 // MeasurementFormatterUnitOptions - Measurement formatter options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/UnitOptions-swift.struct
 type MeasurementFormatterUnitOptions uint
+
+const (
+	MeasurementFormatterUnitOptionsProvidedUnit MeasurementFormatterUnitOptions = 1
+	MeasurementFormatterUnitOptionsNaturalScale MeasurementFormatterUnitOptions = 2
+	MeasurementFormatterUnitOptionsTemperatureWithoutUnit MeasurementFormatterUnitOptions = 4
+)
 
 // AppleEventSendOptions enum type
 //
@@ -484,6 +534,11 @@ type AppleEventSendOptions uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/EnumerationOptions
 type AttributedStringEnumerationOptions uint
+
+const (
+	AttributedStringEnumerationReverse AttributedStringEnumerationOptions = 2
+	AttributedStringEnumerationLongestEffectiveRangeNotRequired AttributedStringEnumerationOptions = 1048576
+)
 
 // SpellingState - Constants for the spelling state attribute key.
 //
@@ -543,6 +598,12 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
 type BinarySearchingOptions uint
 
+const (
+	BinarySearchingFirstEqual BinarySearchingOptions = 256
+	BinarySearchingLastEqual BinarySearchingOptions = 512
+	BinarySearchingInsertionIndex BinarySearchingOptions = 1024
+)
+
 // CalendarOptions - The options for arithmetic operations involving calendars.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options
@@ -552,35 +613,35 @@ const (
 	// CalendarMatchFirst - Specifies that, if there are two or more matching times, the operation should return the first occurrence.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchFirst
-	CalendarMatchFirst CalendarOptions = 5
+	CalendarMatchFirst CalendarOptions = 7
 	// CalendarMatchLast - Specifies that, if there are two or more matching times, the operation should return the last occurrence.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchLast
-	CalendarMatchLast CalendarOptions = 6
+	CalendarMatchLast CalendarOptions = 8
 	// CalendarMatchNextTime - Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given   object, this method uses the   existing value of the missing unit and   preserve the lower units’ values.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchNextTime
-	CalendarMatchNextTime CalendarOptions = 4
+	CalendarMatchNextTime CalendarOptions = 6
 	// CalendarMatchNextTimePreservingSmallerUnits - Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given   object, this method uses the   existing value of the missing unit and preserves the lower units’ values.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchNextTimePreservingSmallerUnits
-	CalendarMatchNextTimePreservingSmallerUnits CalendarOptions = 3
+	CalendarMatchNextTimePreservingSmallerUnits CalendarOptions = 5
 	// CalendarMatchPreviousTimePreservingSmallerUnits - Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given   object, this method uses the   existing value of the missing unit and preserves the lower units’ values.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchPreviousTimePreservingSmallerUnits
-	CalendarMatchPreviousTimePreservingSmallerUnits CalendarOptions = 2
+	CalendarMatchPreviousTimePreservingSmallerUnits CalendarOptions = 4
 	// CalendarMatchStrictly - Specifies that the operation should travel as far forward or backward as necessary looking for a match.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/matchStrictly
-	CalendarMatchStrictly CalendarOptions = 0
+	CalendarMatchStrictly CalendarOptions = 2
 	// CalendarSearchBackwards - Specifies that the operation should travel backwards to find the previous match before the given date.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/searchBackwards
-	CalendarSearchBackwards CalendarOptions = 1
+	CalendarSearchBackwards CalendarOptions = 3
 	// CalendarWrapComponents - Specifies that the components specified for an   object should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Options/wrapComponents
-	CalendarWrapComponents CalendarOptions = 0
+	CalendarWrapComponents CalendarOptions = 1
 )
 
 // CalendarUnit - Calendrical units such as year, month, day and hour.
@@ -799,9 +860,9 @@ type DataBase64EncodingOptions uint
 
 const (
 	DataBase64Encoding64CharacterLineLength DataBase64EncodingOptions = 1
-	DataBase64Encoding76CharacterLineLength DataBase64EncodingOptions = 1
-	DataBase64EncodingEndLineWithCarriageReturn DataBase64EncodingOptions = 1
-	DataBase64EncodingEndLineWithLineFeed DataBase64EncodingOptions = 1
+	DataBase64Encoding76CharacterLineLength DataBase64EncodingOptions = 2
+	DataBase64EncodingEndLineWithCarriageReturn DataBase64EncodingOptions = 16
+	DataBase64EncodingEndLineWithLineFeed DataBase64EncodingOptions = 32
 )
 
 // DataCompressionAlgorithm - An algorithm that indicates how to compress or decompress data.
@@ -823,11 +884,11 @@ type DataReadingOptions uint
 
 const (
 	DataReadingMappedIfSafe DataReadingOptions = 1
-	DataReadingUncached DataReadingOptions = 1
-	DataReadingMappedAlways DataReadingOptions = 2
-	DataReadingMapped DataReadingOptions = 3
-	MappedRead DataReadingOptions = 4
-	UncachedRead DataReadingOptions = 5
+	DataReadingUncached DataReadingOptions = 2
+	DataReadingMappedAlways DataReadingOptions = 3
+	DataReadingMapped DataReadingOptions = 4
+	MappedRead DataReadingOptions = 5
+	UncachedRead DataReadingOptions = 6
 )
 
 // DataSearchOptions - Options for method used to search data objects.
@@ -837,7 +898,7 @@ type DataSearchOptions uint
 
 const (
 	DataSearchBackwards DataSearchOptions = 1
-	DataSearchAnchored DataSearchOptions = 1
+	DataSearchAnchored DataSearchOptions = 2
 )
 
 // DataWritingOptions - Options for methods used to write data objects.
@@ -894,14 +955,16 @@ const (
 	// FileCoordinatorReadingForUploading - Specify this content when reading an item for the purpose of uploading its contents.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/forUploading
-	FileCoordinatorReadingForUploading FileCoordinatorReadingOptions = 3
+	FileCoordinatorReadingForUploading FileCoordinatorReadingOptions = 4
 	// FileCoordinatorReadingImmediatelyAvailableMetadataOnly - Specify this constant if you want to read an item’s metadata without triggering a download.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/immediatelyAvailableMetadataOnly
-	FileCoordinatorReadingImmediatelyAvailableMetadataOnly FileCoordinatorReadingOptions = 2
+	FileCoordinatorReadingImmediatelyAvailableMetadataOnly FileCoordinatorReadingOptions = 3
+	// FileCoordinatorReadingResolvesSymbolicLink - Specify this constant if you want an item that might be a symbolic link to resolve to the file pointed to by that link (instead of to the link itself). When you use this option, the system provides the resolved URL to the accessor block in place of the original URL.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/resolvesSymbolicLink
-	FileCoordinatorReadingResolvesSymbolicLink FileCoordinatorReadingOptions = 1
+	FileCoordinatorReadingResolvesSymbolicLink FileCoordinatorReadingOptions = 2
+	// FileCoordinatorReadingWithoutChanges - Specify this constant if your code does not need other objects to save changes first. If you do   specify this constant, the   method of relevant file presenters is called before your code reads the item.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/withoutChanges
 	FileCoordinatorReadingWithoutChanges FileCoordinatorReadingOptions = 1
@@ -916,13 +979,15 @@ const (
 	// FileCoordinatorWritingContentIndependentMetadataOnly - Select this option when writing to change the file’s metadata only and not its contents.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/contentIndependentMetadataOnly
-	FileCoordinatorWritingContentIndependentMetadataOnly FileCoordinatorWritingOptions = 2
+	FileCoordinatorWritingContentIndependentMetadataOnly FileCoordinatorWritingOptions = 9
+	// FileCoordinatorWritingForDeleting - When this constant is specified, the file coordinator calls the   or   method of relevant file presenters to give them a chance to make adjustments before the item is deleted.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forDeleting
 	FileCoordinatorWritingForDeleting FileCoordinatorWritingOptions = 1
+	// FileCoordinatorWritingForMoving - When specified for a directory item, the file coordinator waits for already running read and write operations of the directory’s contents, which were themselves initiated through a file coordinator, to finish before moving the directory. Queued, but not executing, read and write operations on the directory’s contents wait until the move operation finishes. This option has no effect on files. You can safely use it when moving file-system items without checking to see whether those items are files or directories.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMoving
-	FileCoordinatorWritingForMoving FileCoordinatorWritingOptions = 1
+	FileCoordinatorWritingForMoving FileCoordinatorWritingOptions = 2
 )
 
 // FileManagerResumeSyncBehavior - The behaviors the file manager can apply to resolve conflicts when resuming a sync.
@@ -954,7 +1019,7 @@ const (
 	// FileManagerSupportedSyncControlsFailUploadOnConflict - The file provider supports failing an upload if the local and server versions conflict.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls/failUploadOnConflict
-	FileManagerSupportedSyncControlsFailUploadOnConflict FileManagerSupportedSyncControls = 1
+	FileManagerSupportedSyncControlsFailUploadOnConflict FileManagerSupportedSyncControls = 2
 	// FileManagerSupportedSyncControlsPauseSync - The file provider supports pausing the sync on the item.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls/pauseSync
@@ -1234,10 +1299,18 @@ const (
 type KeyValueChange uint
 
 const (
-	KeyValueChangeSetting KeyValueChange = 1
+	// KeyValueChangeInsertion - Indicates that an object has been inserted into the to-many relationship that is being observed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange/insertion
 	KeyValueChangeInsertion KeyValueChange = 2
-	KeyValueChangeRemoval KeyValueChange = 3
+	// KeyValueChangeReplacement - Indicates that an object has been replaced in the to-many relationship that is being observed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange/replacement
 	KeyValueChangeReplacement KeyValueChange = 4
+	// KeyValueChangeSetting - Indicates that the value of the observed key path was set to a new value. This change can occur when observing an attribute of an object, as well as properties that specify to-one and to-many relationships.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange/setting
+	KeyValueChangeSetting KeyValueChange = 1
 )
 
 // KeyValueObservingOptions - The values that can be returned in a change dictionary.
@@ -1246,9 +1319,21 @@ const (
 type KeyValueObservingOptions uint
 
 const (
-	KeyValueObservingOptionNew KeyValueObservingOptions = 1
-	KeyValueObservingOptionOld KeyValueObservingOptions = 2
+	// KeyValueObservingOptionInitial - If specified, a notification should be sent to the observer immediately, before the observer registration method even returns.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/initial
 	KeyValueObservingOptionInitial KeyValueObservingOptions = 3
+	// KeyValueObservingOptionNew - Indicates that the change dictionary should provide the new attribute value, if applicable.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/new
+	KeyValueObservingOptionNew KeyValueObservingOptions = 1
+	// KeyValueObservingOptionOld - Indicates that the change dictionary should contain the old attribute value, if applicable.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/old
+	KeyValueObservingOptionOld KeyValueObservingOptions = 2
+	// KeyValueObservingOptionPrior - Whether separate notifications should be sent to the observer before and after each change, instead of a single notification after the change.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions/prior
 	KeyValueObservingOptionPrior KeyValueObservingOptions = 4
 )
 
@@ -1271,10 +1356,10 @@ type LinguisticTaggerOptions uint
 
 const (
 	LinguisticTaggerOmitWords LinguisticTaggerOptions = 1
-	LinguisticTaggerOmitPunctuation LinguisticTaggerOptions = 1
-	LinguisticTaggerOmitWhitespace LinguisticTaggerOptions = 1
-	LinguisticTaggerOmitOther LinguisticTaggerOptions = 1
-	LinguisticTaggerJoinNames LinguisticTaggerOptions = 1
+	LinguisticTaggerOmitPunctuation LinguisticTaggerOptions = 2
+	LinguisticTaggerOmitWhitespace LinguisticTaggerOptions = 4
+	LinguisticTaggerOmitOther LinguisticTaggerOptions = 8
+	LinguisticTaggerJoinNames LinguisticTaggerOptions = 16
 )
 
 // LocaleLanguageDirection - The directions that a language may take across a page of text.
@@ -1291,11 +1376,11 @@ const (
 	// MachPortDeallocateReceiveRight - Remove a receive right when the   object is invalidated or destroyed.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateReceiveRight
-	MachPortDeallocateReceiveRight MachPortOptions = 0
+	MachPortDeallocateReceiveRight MachPortOptions = 2
 	// MachPortDeallocateSendRight - Deallocate a send right when the   object is invalidated or destroyed.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options/deallocateSendRight
-	MachPortDeallocateSendRight MachPortOptions = 0
+	MachPortDeallocateSendRight MachPortOptions = 1
 	// MachPortDeallocateNone - Do not remove any send or receive rights.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPortOptions/NSMachPortDeallocateNone
@@ -1306,6 +1391,12 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions
 type OrderedCollectionDifferenceCalculationOptions uint
+
+const (
+	OrderedCollectionDifferenceCalculationOmitInsertedObjects OrderedCollectionDifferenceCalculationOptions = 1
+	OrderedCollectionDifferenceCalculationOmitRemovedObjects OrderedCollectionDifferenceCalculationOptions = 2
+	OrderedCollectionDifferenceCalculationInferMoves OrderedCollectionDifferenceCalculationOptions = 4
+)
 
 // PointerFunctionsOptions - Defines the memory and personality options for an 
 //
@@ -1439,11 +1530,11 @@ const (
 	// SortConcurrent - Specifies that the Block sort operation should be concurrent.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/concurrent
-	SortConcurrent SortOptions = 0
+	SortConcurrent SortOptions = 1
 	// SortStable - Specifies that the sorted results should return compared items having equal value in the order they occurred originally.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions/stable
-	SortStable SortOptions = 0
+	SortStable SortOptions = 16
 )
 
 // TestComparisonOperation - These are passed to  
@@ -1560,33 +1651,41 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byCaretPositions
 	StringEnumerationByCaretPositions StringEnumerationOptions = 5
+	// StringEnumerationByComposedCharacterSequences - Enumerates by composed character sequences. Equivalent to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byComposedCharacterSequences
 	StringEnumerationByComposedCharacterSequences StringEnumerationOptions = 2
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byDeletionClusters
 	StringEnumerationByDeletionClusters StringEnumerationOptions = 6
+	// StringEnumerationByLines - Enumerates by lines. Equivalent to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byLines
 	StringEnumerationByLines StringEnumerationOptions = 0
+	// StringEnumerationByParagraphs - Enumerates by paragraphs. Equivalent to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byParagraphs
 	StringEnumerationByParagraphs StringEnumerationOptions = 1
+	// StringEnumerationBySentences - Enumerates by sentences.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/bySentences
 	StringEnumerationBySentences StringEnumerationOptions = 4
+	// StringEnumerationByWords - Enumerates by words.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byWords
 	StringEnumerationByWords StringEnumerationOptions = 3
+	// StringEnumerationLocalized - Causes the enumeration to occur using the current locale. This does not make a difference in line, paragraph, or composed character sequence enumeration, but it may for words or sentences.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/localized
-	StringEnumerationLocalized StringEnumerationOptions = 1
+	StringEnumerationLocalized StringEnumerationOptions = 1024
+	// StringEnumerationReverse - Causes enumeration to occur from the end of the specified range to the start.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/reverse
-	StringEnumerationReverse StringEnumerationOptions = 1
+	StringEnumerationReverse StringEnumerationOptions = 256
+	// StringEnumerationSubstringNotRequired - A way to indicate that the block does not need substring, in which case   will be passed. This is simply a performance shortcut.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/substringNotRequired
-	StringEnumerationSubstringNotRequired StringEnumerationOptions = 1
+	StringEnumerationSubstringNotRequired StringEnumerationOptions = 512
 )
 
 // TimeZoneNameStyle - Constants you use to specify a style when presenting time zone names.
@@ -1630,7 +1729,7 @@ const (
 	// URLBookmarkCreationMinimalBookmark - Specifies that when creating a bookmark, it includes minimal information.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/minimalBookmark
-	URLBookmarkCreationMinimalBookmark URLBookmarkCreationOptions = 0
+	URLBookmarkCreationMinimalBookmark URLBookmarkCreationOptions = 512
 	// URLBookmarkCreationPreferFileIDResolution - Specifies that when creating a bookmark, upon resolution, its embedded file ID takes precedence over other sources of information (file system path, for example) when there’s a conflict.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/preferFileIDResolution
@@ -1638,19 +1737,19 @@ const (
 	// URLBookmarkCreationSecurityScopeAllowOnlyReadAccess - Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read-only access to a file-system resource.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/securityScopeAllowOnlyReadAccess
-	URLBookmarkCreationSecurityScopeAllowOnlyReadAccess URLBookmarkCreationOptions = 2
+	URLBookmarkCreationSecurityScopeAllowOnlyReadAccess URLBookmarkCreationOptions = 1026
 	// URLBookmarkCreationSuitableForBookmarkFile - Specifies that the bookmark data includes the required properties for creating Finder alias files.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/suitableForBookmarkFile
-	URLBookmarkCreationSuitableForBookmarkFile URLBookmarkCreationOptions = 0
+	URLBookmarkCreationSuitableForBookmarkFile URLBookmarkCreationOptions = 1024
 	// URLBookmarkCreationWithSecurityScope - Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read/write access to a file-system resource.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/withSecurityScope
-	URLBookmarkCreationWithSecurityScope URLBookmarkCreationOptions = 1
+	URLBookmarkCreationWithSecurityScope URLBookmarkCreationOptions = 1025
 	// URLBookmarkCreationWithoutImplicitSecurityScope - Prevents inclusion of a bookmark’s implicit ephemeral security scope, when creating one without security scope.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions/withoutImplicitSecurityScope
-	URLBookmarkCreationWithoutImplicitSecurityScope URLBookmarkCreationOptions = 3
+	URLBookmarkCreationWithoutImplicitSecurityScope URLBookmarkCreationOptions = 1027
 )
 
 // URLBookmarkResolutionOptions - Options used when resolving bookmark data.
@@ -1662,19 +1761,19 @@ const (
 	// URLBookmarkResolutionWithSecurityScope - Specifies that the security scope, applied to the bookmark when it was created, should be used during resolution of the bookmark data.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withSecurityScope
-	URLBookmarkResolutionWithSecurityScope URLBookmarkResolutionOptions = 0
+	URLBookmarkResolutionWithSecurityScope URLBookmarkResolutionOptions = 513
 	// URLBookmarkResolutionWithoutImplicitStartAccessing - A property that specifies that resolution doesn’t implicitly start accessing the ephemeral security-scoped resource.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withoutImplicitStartAccessing
-	URLBookmarkResolutionWithoutImplicitStartAccessing URLBookmarkResolutionOptions = 1
+	URLBookmarkResolutionWithoutImplicitStartAccessing URLBookmarkResolutionOptions = 514
 	// URLBookmarkResolutionWithoutMounting - Specifies that no volume should be mounted during resolution of the bookmark data.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withoutMounting
-	URLBookmarkResolutionWithoutMounting URLBookmarkResolutionOptions = 0
+	URLBookmarkResolutionWithoutMounting URLBookmarkResolutionOptions = 512
 	// URLBookmarkResolutionWithoutUI - Specifies that no UI feedback should accompany resolution of the bookmark data.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions/withoutUI
-	URLBookmarkResolutionWithoutUI URLBookmarkResolutionOptions = 0
+	URLBookmarkResolutionWithoutUI URLBookmarkResolutionOptions = 256
 )
 
 // URLErrorNetworkUnavailableReason - An enumeration of reasons why a task couldn’t satisfy networking constraints.
@@ -1694,10 +1793,34 @@ const (
 type URLRequestCachePolicy uint
 
 const (
+	// URLRequestReloadIgnoringCacheData - Replaced by  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringCacheData
+	URLRequestReloadIgnoringCacheData URLRequestCachePolicy = 0
 	// URLRequestReloadIgnoringLocalAndRemoteCacheData - Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringLocalAndRemoteCacheData
 	URLRequestReloadIgnoringLocalAndRemoteCacheData URLRequestCachePolicy = 4
+	// URLRequestReloadIgnoringLocalCacheData - The URL load should be loaded only from the originating source.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadIgnoringLocalCacheData
+	URLRequestReloadIgnoringLocalCacheData URLRequestCachePolicy = 1
+	// URLRequestReloadRevalidatingCacheData - Use cache data if the origin source can validate it; otherwise, load from the origin.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/reloadRevalidatingCacheData
+	URLRequestReloadRevalidatingCacheData URLRequestCachePolicy = 5
+	// URLRequestReturnCacheDataDontLoad - Use existing cache data, regardless or age or expiration date, and fail if no cached data is available.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/returnCacheDataDontLoad
+	URLRequestReturnCacheDataDontLoad URLRequestCachePolicy = 3
+	// URLRequestReturnCacheDataElseLoad - Use existing cache data, regardless or age or expiration date, loading from originating source only if there is no cached data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/returnCacheDataElseLoad
+	URLRequestReturnCacheDataElseLoad URLRequestCachePolicy = 2
+	// URLRequestUseProtocolCachePolicy - Use the caching logic defined in the protocol implementation, if any, for a particular URL load request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/CachePolicy-swift.enum/useProtocolCachePolicy
+	URLRequestUseProtocolCachePolicy URLRequestCachePolicy = 0
 )
 
 // URLRequestNetworkServiceType - Constants that specify how a request uses network resources.
@@ -1762,6 +1885,10 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/Options
 type XPCConnectionOptions uint
 
+const (
+	XPCConnectionPrivileged XPCConnectionOptions = 4096
+)
+
 // NetServicesError - These constants identify errors that can occur when accessing net services.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/ErrorCode-swift.enum
@@ -1811,6 +1938,7 @@ const (
 type NetServiceOptions uint
 
 const (
+	// NetServiceListenForConnections - Specifies that a TCP listener should be started for both IPv4 and IPv6 on the port specified by this service. If the listening port can’t be opened, the service calls its delegate’s   method to report the error. The listener supports only TCP connections. If the service’s type does not end with  , publication fails with  . Whenever a client connects to the listening socket, the service calls its delegate’s   method with a pair of   objects.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options/listenForConnections
 	NetServiceListenForConnections NetServiceOptions = 2
@@ -1918,24 +2046,33 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Options
 type PersonNameComponentsFormatterOptions uint
 
+const (
+	PersonNameComponentsFormatterPhonetic PersonNameComponentsFormatterOptions = 2
+)
+
 // PersonNameComponentsFormatterStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum
 type PersonNameComponentsFormatterStyle uint
 
 const (
+	// PersonNameComponentsFormatterStyleAbbreviated - The maximally abbreviated form of a name. See “ ” for details about its specific behavior.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/abbreviated
 	PersonNameComponentsFormatterStyleAbbreviated PersonNameComponentsFormatterStyle = 4
+	// PersonNameComponentsFormatterStyleDefault - The form with minimally necessary features for differentiation in a casual setting. See “ ” for details about its specific behavior. Equivalent to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/default
 	PersonNameComponentsFormatterStyleDefault PersonNameComponentsFormatterStyle = 0
+	// PersonNameComponentsFormatterStyleLong - The fully qualified form complete with all known components. See “ ” for details about its specific behavior.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/long
 	PersonNameComponentsFormatterStyleLong PersonNameComponentsFormatterStyle = 3
+	// PersonNameComponentsFormatterStyleMedium - Equivalent to  .
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/medium
 	PersonNameComponentsFormatterStyleMedium PersonNameComponentsFormatterStyle = 2
+	// PersonNameComponentsFormatterStyleShort - The shortened form appropriate for display in space-constrained settings, contingent on user preferences and language defaults. See “ ” for details about its specific behavior.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/short
 	PersonNameComponentsFormatterStyleShort PersonNameComponentsFormatterStyle = 1
@@ -1960,7 +2097,7 @@ const (
 	// ActivityAnimationTrackingEnabled - A flag to track the activity with an animation signpost interval.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/animationTrackingEnabled
-	ActivityAnimationTrackingEnabled ActivityOptions = 0
+	ActivityAnimationTrackingEnabled ActivityOptions = 32769
 	// ActivityBackground - A flag to indicate the app has initiated some kind of work, but not as the direct result of user request.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/background
@@ -1972,7 +2109,7 @@ const (
 	// ActivitySuddenTerminationDisabled - A flag to prevent sudden termination.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/suddenTerminationDisabled
-	ActivitySuddenTerminationDisabled ActivityOptions = 0
+	ActivitySuddenTerminationDisabled ActivityOptions = 16384
 	// ActivityUserInitiated - A flag to indicate the app is performing a user-requested action.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/userInitiated
@@ -1984,7 +2121,7 @@ const (
 	// ActivityUserInteractive - A flag to indicate the app is responding to user interaction.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions/userInteractive
-	ActivityUserInteractive ActivityOptions = 2
+	ActivityUserInteractive ActivityOptions = 32771
 )
 
 // ProcessInfoThermalState - Values used to indicate the system’s thermal state.
@@ -2005,18 +2142,23 @@ const (
 type QualityOfService int
 
 const (
+	// QualityOfServiceBackground - Used for work that is not user initiated or visible. In general, a user is unaware that this work is even happening. For example, pre-fetching content, search indexing, backups, or syncing of data with external systems.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/background
 	QualityOfServiceBackground QualityOfService = 9
+	// QualityOfServiceDefault - Indicates no explicit quality of service information. Whenever possible, an appropriate quality of service is determined from available sources. Otherwise, some quality of service level between   and   is used.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/default
 	QualityOfServiceDefault QualityOfService = -1
+	// QualityOfServiceUserInitiated - Used for performing work that has been explicitly requested by the user, and for which results must be immediately presented in order to allow for further user interaction. For example, loading an email after a user has selected it in a message list.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInitiated
 	QualityOfServiceUserInitiated QualityOfService = 25
+	// QualityOfServiceUserInteractive - Used for work directly involved in providing an interactive UI. For example, processing control events or drawing to the screen.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/userInteractive
 	QualityOfServiceUserInteractive QualityOfService = 33
+	// QualityOfServiceUtility - Used for performing work which the user is unlikely to be immediately waiting for the results. This work may have been requested by the user or initiated automatically, and often operates at user-visible timescales using a non-modal progress indicator. For example, periodic content updates or bulk file operations, such as media import.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/utility
 	QualityOfServiceUtility QualityOfService = 17
@@ -2317,7 +2459,7 @@ const (
 	// XMLNodePreserveDTD - Specifies that declarations in a DTD should be preserved until it the DTD is modified. For example, parameter entities are by default expanded; with this option, they are written out as they originally occur in the DTD.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveDTD
-	XMLNodePreserveDTD XMLNodeOptions = 1
+	XMLNodePreserveDTD XMLNodeOptions = 67108864
 	// XMLNodePreserveQuotes - Specifies that the quoting style used in the input XML (single or double quotes) be preserved.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodePreserveQuotes
@@ -2325,7 +2467,7 @@ const (
 	// XMLNodeUseSingleQuotes - Requests that NSXML use single quotes for the value of an attribute or namespace node.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options/nodeUseSingleQuotes
-	XMLNodeUseSingleQuotes XMLNodeOptions = 1
+	XMLNodeUseSingleQuotes XMLNodeOptions = 8
 )
 
 // EnumerationOptions - Options for block enumeration operations.
@@ -2337,11 +2479,11 @@ const (
 	// EnumerationConcurrent - Specifies that the Block enumeration should be concurrent.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/concurrent
-	EnumerationConcurrent EnumerationOptions = 0
+	EnumerationConcurrent EnumerationOptions = 1
 	// EnumerationReverse - Specifies that the enumeration should be performed in reverse.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/reverse
-	EnumerationReverse EnumerationOptions = 0
+	EnumerationReverse EnumerationOptions = 2
 )
 
 

@@ -30,17 +30,22 @@ type _CNContactPropertyClass struct {
 // An interface definition for the [CNContactProperty] class.
 type ICNContactProperty interface {
 	objectivec.IObject
-	Contact() CNContact
-	Identifier() string
-	Key() string
-	Label() string
-	Value() objc.ID
 	GivenName() string
 	SetGivenName(value string)
 	JobTitle() string
 	SetJobTitle(value string)
-	PhoneNumbers() CNPhoneNumber
+	PhoneNumbers() ICNPhoneNumber
 	SetPhoneNumbers(value ICNPhoneNumber)
+	Contact() ICNContact
+	SetContact(value ICNContact)
+	Identifier() string
+	SetIdentifier(value string)
+	Key() string
+	SetKey(value string)
+	Label() string
+	SetLabel(value string)
+	Value() unsafe.Pointer
+	SetValue(value unsafe.Pointer)
 	CNContactPropertyNotFetchedExceptionName() string
 }
 
@@ -97,56 +102,6 @@ func NewCNContactProperty() CNContactProperty {
 
 
 
-// The associated contact.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/contact
-func (c_ CNContactProperty) Contact() CNContact {
-	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
-	return rv
-}
-
-
-// The identifier of the labeled value in the array of labeled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/identifier
-func (c_ CNContactProperty) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The key of the contact property.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/key
-func (c_ CNContactProperty) Key() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("key"))
-	return rv
-}
-
-
-// The label of the labeled value of the property array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/label
-func (c_ CNContactProperty) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// The value of the property.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/value
-func (c_ CNContactProperty) Value() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("value"))
-	return rv
-}
-
-
 // The given name of the contact.
 //
 // [Full Topic]
@@ -189,7 +144,7 @@ func (c_ CNContactProperty) SetJobTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
-func (c_ CNContactProperty) PhoneNumbers() CNPhoneNumber {
+func (c_ CNContactProperty) PhoneNumbers() ICNPhoneNumber {
 	rv := objc.Send[CNPhoneNumber](c_.ID, objc.Sel("phoneNumbers"))
 	return rv
 }
@@ -201,6 +156,101 @@ func (c_ CNContactProperty) PhoneNumbers() CNPhoneNumber {
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
 func (c_ CNContactProperty) SetPhoneNumbers(value ICNPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPhoneNumbers:"), value)
+}
+
+
+// The associated contact.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/contact
+func (c_ CNContactProperty) Contact() ICNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
+	return rv
+}
+
+
+// The associated contact.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/contact
+func (c_ CNContactProperty) SetContact(value ICNContact) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContact:"), value)
+}
+
+
+// The identifier of the labeled value in the array of labeled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/identifier
+func (c_ CNContactProperty) Identifier() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// The identifier of the labeled value in the array of labeled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/identifier
+func (c_ CNContactProperty) SetIdentifier(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
+// The key of the contact property.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/key
+func (c_ CNContactProperty) Key() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("key"))
+	return rv
+}
+
+
+// The key of the contact property.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/key
+func (c_ CNContactProperty) SetKey(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKey:"), objc.String(value))
+}
+
+
+// The label of the labeled value of the property array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/label
+func (c_ CNContactProperty) Label() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// The label of the labeled value of the property array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/label
+func (c_ CNContactProperty) SetLabel(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+}
+
+
+// The value of the property.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/value
+func (c_ CNContactProperty) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// The value of the property.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactproperty/value
+func (c_ CNContactProperty) SetValue(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 
 

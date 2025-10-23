@@ -35,314 +35,320 @@ type AU3DMixerRenderingFlags uint
 // AUAudioMixRenderingStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle
-type AudioMixRenderingStyle uint
+type AUAudioMixRenderingStyle uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_Cinematic
-	kAudioMixRenderingStyle_Cinematic AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_Cinematic AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_CinematicBackgroundStem
-	kAudioMixRenderingStyle_CinematicBackgroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_CinematicBackgroundStem AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_CinematicForegroundStem
-	kAudioMixRenderingStyle_CinematicForegroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_CinematicForegroundStem AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_InFrame
-	kAudioMixRenderingStyle_InFrame AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_InFrame AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_InFrameBackgroundStem
-	kAudioMixRenderingStyle_InFrameBackgroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_InFrameBackgroundStem AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_InFrameForegroundStem
-	kAudioMixRenderingStyle_InFrameForegroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_InFrameForegroundStem AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_Standard
-	kAudioMixRenderingStyle_Standard AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_Standard AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_Studio
-	kAudioMixRenderingStyle_Studio AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_Studio AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_StudioBackgroundStem
-	kAudioMixRenderingStyle_StudioBackgroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_StudioBackgroundStem AUAudioMixRenderingStyle = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioMixRenderingStyle/audioMixRenderingStyle_StudioForegroundStem
-	kAudioMixRenderingStyle_StudioForegroundStem AudioMixRenderingStyle = 0
+	kAudioMixRenderingStyle_StudioForegroundStem AUAudioMixRenderingStyle = 0
 )
 
 // AUAudioUnitBusType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusType
-type AudioUnitBusType uint
+type AUAudioUnitBusType uint
 
 const (
-	// AudioUnitBusTypeInput - An input bus.
+	// AUAudioUnitBusTypeInput - An input bus.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusType/input
-	AudioUnitBusTypeInput AudioUnitBusType = 0
-	// AudioUnitBusTypeOutput - An output bus.
+	AUAudioUnitBusTypeInput AUAudioUnitBusType = 0
+	// AUAudioUnitBusTypeOutput - An output bus.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusType/output
-	AudioUnitBusTypeOutput AudioUnitBusType = 0
+	AUAudioUnitBusTypeOutput AUAudioUnitBusType = 0
 )
 
 // AUHostTransportStateFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUHostTransportStateFlags
-type HostTransportStateFlags uint
+type AUHostTransportStateFlags uint
 
 // AUParameterAutomationEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAutomationEventType
-type ParameterAutomationEventType uint
+type AUParameterAutomationEventType uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAutomationEventType/release
-	ParameterAutomationEventTypeRelease ParameterAutomationEventType = 0
+	AUParameterAutomationEventTypeRelease AUParameterAutomationEventType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAutomationEventType/touch
-	ParameterAutomationEventTypeTouch ParameterAutomationEventType = 0
+	AUParameterAutomationEventTypeTouch AUParameterAutomationEventType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAutomationEventType/value
-	ParameterAutomationEventTypeValue ParameterAutomationEventType = 0
+	AUParameterAutomationEventTypeValue AUParameterAutomationEventType = 0
 )
 
 // AUParameterEventType - Audio unit parameter event types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterEventType
-type ParameterEventType uint
+type AUParameterEventType uint
 
 const (
 	// kParameterEvent_Immediate - An immediate change from the parameter’s previous value to a new value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterEventType/parameterEvent_Immediate
-	kParameterEvent_Immediate ParameterEventType = 0
+	kParameterEvent_Immediate AUParameterEventType = 0
 	// kParameterEvent_Ramped - A gradual change from the parameter’s previous value to a new value, applied linearly over a specified period of time
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterEventType/parameterEvent_Ramped
-	kParameterEvent_Ramped ParameterEventType = 0
+	kParameterEvent_Ramped AUParameterEventType = 0
 )
 
 // AUParameterMIDIMappingFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterMIDIMappingFlags
-type ParameterMIDIMappingFlags uint
+type AUParameterMIDIMappingFlags uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterMIDIMappingFlags/bipolar_On
-	kAUParameterMIDIMapping_Bipolar_On ParameterMIDIMappingFlags = 0
+	kAUParameterMIDIMapping_Bipolar_On AUParameterMIDIMappingFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterMIDIMappingFlags/subRange
-	kAUParameterMIDIMapping_SubRange ParameterMIDIMappingFlags = 0
+	kAUParameterMIDIMapping_SubRange AUParameterMIDIMappingFlags = 0
 )
 
 // AURenderEventType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderEventType
-type RenderEventType uint
+type AURenderEventType uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderEventType/midiEventList
-	RenderEventMIDIEventList RenderEventType = 0
+	AURenderEventMIDIEventList AURenderEventType = 0
 )
 
 // AUReverbRoomType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType
-type ReverbRoomType uint
+type AUReverbRoomType uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_Cathedral
-	kReverbRoomType_Cathedral ReverbRoomType = 0
+	kReverbRoomType_Cathedral AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_LargeChamber
-	kReverbRoomType_LargeChamber ReverbRoomType = 0
+	kReverbRoomType_LargeChamber AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_LargeHall
-	kReverbRoomType_LargeHall ReverbRoomType = 0
+	kReverbRoomType_LargeHall AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_LargeHall2
-	kReverbRoomType_LargeHall2 ReverbRoomType = 0
+	kReverbRoomType_LargeHall2 AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_LargeRoom
-	kReverbRoomType_LargeRoom ReverbRoomType = 0
+	kReverbRoomType_LargeRoom AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_LargeRoom2
-	kReverbRoomType_LargeRoom2 ReverbRoomType = 0
+	kReverbRoomType_LargeRoom2 AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_MediumChamber
-	kReverbRoomType_MediumChamber ReverbRoomType = 0
+	kReverbRoomType_MediumChamber AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_MediumHall
-	kReverbRoomType_MediumHall ReverbRoomType = 0
+	kReverbRoomType_MediumHall AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_MediumHall2
-	kReverbRoomType_MediumHall2 ReverbRoomType = 0
+	kReverbRoomType_MediumHall2 AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_MediumHall3
-	kReverbRoomType_MediumHall3 ReverbRoomType = 0
+	kReverbRoomType_MediumHall3 AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_MediumRoom
-	kReverbRoomType_MediumRoom ReverbRoomType = 0
+	kReverbRoomType_MediumRoom AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_Plate
-	kReverbRoomType_Plate ReverbRoomType = 0
+	kReverbRoomType_Plate AUReverbRoomType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUReverbRoomType/reverbRoomType_SmallRoom
-	kReverbRoomType_SmallRoom ReverbRoomType = 0
+	kReverbRoomType_SmallRoom AUReverbRoomType = 0
 )
 
 // AUScheduledAudioSliceFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUScheduledAudioSliceFlags
-type ScheduledAudioSliceFlags uint
+type AUScheduledAudioSliceFlags uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUScheduledAudioSliceFlags/scheduledAudioSliceFlag_Loop
+	kScheduledAudioSliceFlag_Loop AUScheduledAudioSliceFlags = 0
+)
 
 // AUSpatialMixerAttenuationCurve enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve
-type SpatialMixerAttenuationCurve uint
+type AUSpatialMixerAttenuationCurve uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve/spatialMixerAttenuationCurve_Exponential
-	kSpatialMixerAttenuationCurve_Exponential SpatialMixerAttenuationCurve = 0
+	kSpatialMixerAttenuationCurve_Exponential AUSpatialMixerAttenuationCurve = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve/spatialMixerAttenuationCurve_Inverse
-	kSpatialMixerAttenuationCurve_Inverse SpatialMixerAttenuationCurve = 0
+	kSpatialMixerAttenuationCurve_Inverse AUSpatialMixerAttenuationCurve = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve/spatialMixerAttenuationCurve_Linear
-	kSpatialMixerAttenuationCurve_Linear SpatialMixerAttenuationCurve = 0
+	kSpatialMixerAttenuationCurve_Linear AUSpatialMixerAttenuationCurve = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerAttenuationCurve/spatialMixerAttenuationCurve_Power
-	kSpatialMixerAttenuationCurve_Power SpatialMixerAttenuationCurve = 0
+	kSpatialMixerAttenuationCurve_Power AUSpatialMixerAttenuationCurve = 0
 )
 
 // AUSpatialMixerOutputType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerOutputType
-type SpatialMixerOutputType uint
+type AUSpatialMixerOutputType uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerOutputType/spatialMixerOutputType_BuiltInSpeakers
-	kSpatialMixerOutputType_BuiltInSpeakers SpatialMixerOutputType = 0
+	kSpatialMixerOutputType_BuiltInSpeakers AUSpatialMixerOutputType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerOutputType/spatialMixerOutputType_ExternalSpeakers
-	kSpatialMixerOutputType_ExternalSpeakers SpatialMixerOutputType = 0
+	kSpatialMixerOutputType_ExternalSpeakers AUSpatialMixerOutputType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerOutputType/spatialMixerOutputType_Headphones
-	kSpatialMixerOutputType_Headphones SpatialMixerOutputType = 0
+	kSpatialMixerOutputType_Headphones AUSpatialMixerOutputType = 0
 )
 
 // AUSpatialMixerPersonalizedHRTFMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPersonalizedHRTFMode
-type SpatialMixerPersonalizedHRTFMode uint
+type AUSpatialMixerPersonalizedHRTFMode uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPersonalizedHRTFMode/auto
-	kSpatialMixerPersonalizedHRTFMode_Auto SpatialMixerPersonalizedHRTFMode = 0
+	kSpatialMixerPersonalizedHRTFMode_Auto AUSpatialMixerPersonalizedHRTFMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPersonalizedHRTFMode/off
-	kSpatialMixerPersonalizedHRTFMode_Off SpatialMixerPersonalizedHRTFMode = 0
+	kSpatialMixerPersonalizedHRTFMode_Off AUSpatialMixerPersonalizedHRTFMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPersonalizedHRTFMode/on
-	kSpatialMixerPersonalizedHRTFMode_On SpatialMixerPersonalizedHRTFMode = 0
+	kSpatialMixerPersonalizedHRTFMode_On AUSpatialMixerPersonalizedHRTFMode = 0
 )
 
 // AUSpatialMixerPointSourceInHeadMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode
-type SpatialMixerPointSourceInHeadMode uint
+type AUSpatialMixerPointSourceInHeadMode uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode/spatialMixerPointSourceInHeadMode_Bypass
-	kSpatialMixerPointSourceInHeadMode_Bypass SpatialMixerPointSourceInHeadMode = 0
+	kSpatialMixerPointSourceInHeadMode_Bypass AUSpatialMixerPointSourceInHeadMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerPointSourceInHeadMode/spatialMixerPointSourceInHeadMode_Mono
-	kSpatialMixerPointSourceInHeadMode_Mono SpatialMixerPointSourceInHeadMode = 0
+	kSpatialMixerPointSourceInHeadMode_Mono AUSpatialMixerPointSourceInHeadMode = 0
 )
 
 // AUSpatialMixerRenderingFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerRenderingFlags
-type SpatialMixerRenderingFlags uint
+type AUSpatialMixerRenderingFlags uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerRenderingFlags/spatialMixerRenderingFlags_DistanceAttenuation
-	kSpatialMixerRenderingFlags_DistanceAttenuation SpatialMixerRenderingFlags = 0
+	kSpatialMixerRenderingFlags_DistanceAttenuation AUSpatialMixerRenderingFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerRenderingFlags/spatialMixerRenderingFlags_InterAuralDelay
-	kSpatialMixerRenderingFlags_InterAuralDelay SpatialMixerRenderingFlags = 0
+	kSpatialMixerRenderingFlags_InterAuralDelay AUSpatialMixerRenderingFlags = 0
 )
 
 // AUSpatialMixerSourceMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode
-type SpatialMixerSourceMode uint
+type AUSpatialMixerSourceMode uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_AmbienceBed
-	kSpatialMixerSourceMode_AmbienceBed SpatialMixerSourceMode = 0
+	kSpatialMixerSourceMode_AmbienceBed AUSpatialMixerSourceMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_Bypass
-	kSpatialMixerSourceMode_Bypass SpatialMixerSourceMode = 0
+	kSpatialMixerSourceMode_Bypass AUSpatialMixerSourceMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_PointSource
-	kSpatialMixerSourceMode_PointSource SpatialMixerSourceMode = 0
+	kSpatialMixerSourceMode_PointSource AUSpatialMixerSourceMode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatialMixerSourceMode/spatialMixerSourceMode_SpatializeIfMono
-	kSpatialMixerSourceMode_SpatializeIfMono SpatialMixerSourceMode = 0
+	kSpatialMixerSourceMode_SpatializeIfMono AUSpatialMixerSourceMode = 0
 )
 
 // AUSpatializationAlgorithm enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatializationAlgorithm
-type SpatializationAlgorithm uint
+type AUSpatializationAlgorithm uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatializationAlgorithm/spatializationAlgorithm_SphericalHead
-	kSpatializationAlgorithm_SphericalHead SpatializationAlgorithm = 0
+	kSpatializationAlgorithm_SphericalHead AUSpatializationAlgorithm = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUSpatializationAlgorithm/spatializationAlgorithm_UseOutputType
-	kSpatializationAlgorithm_UseOutputType SpatializationAlgorithm = 0
+	kSpatializationAlgorithm_UseOutputType AUSpatializationAlgorithm = 0
 )
 
 // AUVoiceIOOtherAudioDuckingLevel - The ducking level to apply to other non-voice audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOOtherAudioDuckingLevel
-type VoiceIOOtherAudioDuckingLevel uint
+type AUVoiceIOOtherAudioDuckingLevel uint
 
 const (
 	// kAUVoiceIOOtherAudioDuckingLevelDefault - The default ducking level of other non-voice audio in a typical voice chat.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOOtherAudioDuckingLevel/default
-	kAUVoiceIOOtherAudioDuckingLevelDefault VoiceIOOtherAudioDuckingLevel = 0
+	kAUVoiceIOOtherAudioDuckingLevelDefault AUVoiceIOOtherAudioDuckingLevel = 0
 )
 
 // AUVoiceIOSpeechActivityEvent - Constants that indicate the state of muted speech.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOSpeechActivityEvent
-type VoiceIOSpeechActivityEvent uint
+type AUVoiceIOSpeechActivityEvent uint
 
 const (
 	// kAUVoiceIOSpeechActivityHasEnded - A state that indicates speech ended.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOSpeechActivityEvent/hasEnded
-	kAUVoiceIOSpeechActivityHasEnded VoiceIOSpeechActivityEvent = 0
+	kAUVoiceIOSpeechActivityHasEnded AUVoiceIOSpeechActivityEvent = 0
 	// kAUVoiceIOSpeechActivityHasStarted - A state that indicates speech started.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUVoiceIOSpeechActivityEvent/hasStarted
-	kAUVoiceIOSpeechActivityHasStarted VoiceIOSpeechActivityEvent = 0
+	kAUVoiceIOSpeechActivityHasStarted AUVoiceIOSpeechActivityEvent = 0
 )
 
 // AudioBalanceFadeType - Identifiers for audio balance fade types.
@@ -403,6 +409,9 @@ type AudioComponentInstantiationOptions uint
 
 const (
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadInProcess
+	kAudioComponentInstantiation_LoadInProcess AudioComponentInstantiationOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentInstantiationOptions/loadOutOfProcess
 	kAudioComponentInstantiation_LoadOutOfProcess AudioComponentInstantiationOptions = 0
 	//
@@ -457,6 +466,7 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileFlags/dontPageAlignAudioData
 	kAudioFileFlags_DontPageAlignAudioData AudioFileFlags = 0
+	// kAudioFileFlags_EraseFile - If set, the   function erases the contents of an existing file. If not set, then the function fails if the file already exists.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileFlags/eraseFile
 	kAudioFileFlags_EraseFile AudioFileFlags = 0
@@ -767,153 +777,153 @@ const (
 // CAClockMessage enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage
-type ClockMessage uint
+type CAClockMessage uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/armed
-	kCAClockMessage_Armed ClockMessage = 0
+	kCAClockMessage_Armed CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/disarmed
-	kCAClockMessage_Disarmed ClockMessage = 0
+	kCAClockMessage_Disarmed CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/propertyChanged
-	kCAClockMessage_PropertyChanged ClockMessage = 0
+	kCAClockMessage_PropertyChanged CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/startTimeSet
-	kCAClockMessage_StartTimeSet ClockMessage = 0
+	kCAClockMessage_StartTimeSet CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/started
-	kCAClockMessage_Started ClockMessage = 0
+	kCAClockMessage_Started CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/stopped
-	kCAClockMessage_Stopped ClockMessage = 0
+	kCAClockMessage_Stopped CAClockMessage = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockMessage/wrongSMPTEFormat
-	kCAClockMessage_WrongSMPTEFormat ClockMessage = 0
+	kCAClockMessage_WrongSMPTEFormat CAClockMessage = 0
 )
 
 // CAClockPropertyID enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID
-type ClockPropertyID uint
+type CAClockPropertyID uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/internalTimebase
-	kCAClockProperty_InternalTimebase ClockPropertyID = 0
+	kCAClockProperty_InternalTimebase CAClockPropertyID = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/meterTrack
-	kCAClockProperty_MeterTrack ClockPropertyID = 0
+	kCAClockProperty_MeterTrack CAClockPropertyID = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/name
-	kCAClockProperty_Name ClockPropertyID = 0
+	kCAClockProperty_Name CAClockPropertyID = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/sendMIDISPP
-	kCAClockProperty_SendMIDISPP ClockPropertyID = 0
+	kCAClockProperty_SendMIDISPP CAClockPropertyID = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/syncMode
-	kCAClockProperty_SyncMode ClockPropertyID = 0
+	kCAClockProperty_SyncMode CAClockPropertyID = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockPropertyID/timebaseSource
-	kCAClockProperty_TimebaseSource ClockPropertyID = 0
+	kCAClockProperty_TimebaseSource CAClockPropertyID = 0
 )
 
 // CAClockSyncMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSyncMode
-type ClockSyncMode uint
+type CAClockSyncMode uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSyncMode/midiClockTransport
-	kCAClockSyncMode_MIDIClockTransport ClockSyncMode = 0
+	kCAClockSyncMode_MIDIClockTransport CAClockSyncMode = 0
 )
 
 // CAClockTimeFormat enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat
-type ClockTimeFormat uint
+type CAClockTimeFormat uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat/absoluteSeconds
-	kCAClockTimeFormat_AbsoluteSeconds ClockTimeFormat = 0
+	kCAClockTimeFormat_AbsoluteSeconds CAClockTimeFormat = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat/samples
-	kCAClockTimeFormat_Samples ClockTimeFormat = 0
+	kCAClockTimeFormat_Samples CAClockTimeFormat = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat/seconds
-	kCAClockTimeFormat_Seconds ClockTimeFormat = 0
+	kCAClockTimeFormat_Seconds CAClockTimeFormat = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimeFormat/smpteTime
-	kCAClockTimeFormat_SMPTETime ClockTimeFormat = 0
+	kCAClockTimeFormat_SMPTETime CAClockTimeFormat = 0
 )
 
 // CAClockTimebase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimebase
-type ClockTimebase uint
+type CAClockTimebase uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTimebase/hostTime
-	kCAClockTimebase_HostTime ClockTimebase = 0
+	kCAClockTimebase_HostTime CAClockTimebase = 0
 )
 
 // CAFFormatFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFFormatFlags
-type FFormatFlags uint
+type CAFFormatFlags uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFFormatFlags/linearPCMFormatFlagIsFloat
-	kCAFLinearPCMFormatFlagIsFloat FFormatFlags = 0
+	kCAFLinearPCMFormatFlagIsFloat CAFFormatFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFFormatFlags/linearPCMFormatFlagIsLittleEndian
-	kCAFLinearPCMFormatFlagIsLittleEndian FFormatFlags = 0
+	kCAFLinearPCMFormatFlagIsLittleEndian CAFFormatFlags = 0
 )
 
 // CAFRegionFlags enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFRegionFlags
-type FRegionFlags uint
+type CAFRegionFlags uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFRegionFlags/loopEnable
-	kCAFRegionFlag_LoopEnable FRegionFlags = 0
+	kCAFRegionFlag_LoopEnable CAFRegionFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFRegionFlags/playBackward
-	kCAFRegionFlag_PlayBackward FRegionFlags = 0
+	kCAFRegionFlag_PlayBackward CAFRegionFlags = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFRegionFlags/playForward
-	kCAFRegionFlag_PlayForward FRegionFlags = 0
+	kCAFRegionFlag_PlayForward CAFRegionFlags = 0
 )
 
 // CASoundStageSize - Configure the distribution of audio channels in 3D space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize
-type SoundStageSize uint
+type CASoundStageSize int
 
 const (
-	// SoundStageSizeAutomatic - A system-defined sound stage size.
+	// CASoundStageSizeAutomatic - A system-defined sound stage size.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize/CASoundStageSizeAutomatic
-	SoundStageSizeAutomatic SoundStageSize = 0
-	// SoundStageSizeLarge - Spreads an audio stream’s channels around the user according to the   coordinates described in its channel layout.
+	CASoundStageSizeAutomatic CASoundStageSize = 0
+	// CASoundStageSizeLarge - Spreads an audio stream’s channels around the user according to the   coordinates described in its channel layout.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize/CASoundStageSizeLarge
-	SoundStageSizeLarge SoundStageSize = 0
-	// SoundStageSizeMedium - Pulls an audio stream’s channels closer to the channel layout’s front.
+	CASoundStageSizeLarge CASoundStageSize = 0
+	// CASoundStageSizeMedium - Pulls an audio stream’s channels closer to the channel layout’s front.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize/CASoundStageSizeMedium
-	SoundStageSizeMedium SoundStageSize = 0
-	// SoundStageSizeSmall - Places all of an audio stream’s channels near the layout’s front.
+	CASoundStageSizeMedium CASoundStageSize = 0
+	// CASoundStageSizeSmall - Places all of an audio stream’s channels near the layout’s front.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASoundStageSize/CASoundStageSizeSmall
-	SoundStageSizeSmall SoundStageSize = 0
+	CASoundStageSizeSmall CASoundStageSize = 0
 )
 
 // MusicSequenceFileFlags - Flags that configure the behavior of the 

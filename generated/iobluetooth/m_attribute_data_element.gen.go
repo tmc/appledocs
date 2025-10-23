@@ -30,6 +30,8 @@ type _mAttributeDataElementClass struct {
 // An interface definition for the [mAttributeDataElement] class.
 type ImAttributeDataElement interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

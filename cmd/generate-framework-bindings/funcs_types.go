@@ -206,6 +206,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "string"
 	}
 
+
 	// Check the type mapping registry first (includes both with and without pointers)
 	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
 	// are handled correctly
@@ -259,17 +260,17 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: entering NON-POINTER block for %q (isPointer=%v)\n", objcType, isPointer)
 		}
 		strippedType := stripObjCPrefix(objcType)
-		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && (strings.Contains(objcType, "NSCharacter") || strings.Contains(objcType, "Comparison")) {
 			fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo NON-POINTER: objcType=%s strippedType=%s\n", objcType, strippedType)
 		}
 		if strippedType != objcType {
-			// Check if this is an enum type - enums must keep their NS prefix
+			// Check if this is an enum type - enums use stripped names to match the generated type definitions
 			if currentFrameworkEnums[strippedType] {
-				// This is an enum - return the original type with NS prefix intact
-				if strings.Contains(objcType, "Quality") {
-					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q is an enum, returning original %q\n", strippedType, objcType)
+				// This is an enum - return the stripped type to match generated enum type names
+				if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "Quality") || strings.Contains(objcType, "Comparison")) {
+					fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q is an enum, returning stripped %q\n", objcType, strippedType)
 				}
-				return objcType
+				return strippedType
 			}
 			if strings.Contains(objcType, "Quality") {
 				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: %q NOT in currentFrameworkEnums (size=%d)\n", strippedType, len(currentFrameworkEnums))
@@ -287,6 +288,11 @@ func mapObjCTypeToGo(objcType, framework string) string {
 			resolvedType := resolveType(framework, strippedType)
 			if os.Getenv("DEBUG_TYPEMAP") == "1" && framework == "Foundation" && strings.Contains(objcType, "NSCharacter") {
 				fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: resolveType(%s, %s) -> %s\n", framework, strippedType, resolvedType)
+			}
+			// If resolveType returned unsafe.Pointer, return the ORIGINAL objcType
+			// so it can be collected as an undefined type with its full name
+			if resolvedType == "unsafe.Pointer" {
+				return objcType
 			}
 			return resolvedType
 		}
@@ -727,8 +733,28 @@ func resolveType(framework, typeName string) string {
 		}
 	}
 
-	// Last resort: fall back to unsafe.Pointer for truly unknown types
-	// This should be rare with a well-populated registry
+	// Last resort fallbacks for common type patterns before unsafe.Pointer
+	// These handle types that exist in docs but aren't extracted yet
+	if strings.HasPrefix(typeName, "NS") || strings.HasPrefix(typeName, "CG") {
+		// NS_OPTIONS types end with "Options" - map to uint
+		if strings.HasSuffix(typeName, "Options") {
+			return "uint"
+		}
+		// String constant types end with "Key", "Domain", or "Kind" - map to string
+		if strings.HasSuffix(typeName, "Key") || strings.HasSuffix(typeName, "Domain") || strings.HasSuffix(typeName, "Kind") {
+			return "string"
+		}
+		// ID suffix types - map to uint
+		if strings.HasSuffix(typeName, "ID") {
+			return "uint"
+		}
+		// Result suffix types - map to int (for enums like NSComparisonResult)
+		if strings.HasSuffix(typeName, "Result") {
+			return "int"
+		}
+	}
+
+	// Truly unknown types fall back to unsafe.Pointer
 	return "unsafe.Pointer"
 }
 
@@ -763,16 +789,17 @@ func wrapObjCReturn(goType string) string {
 // typeToStructName extracts the unqualified struct name from a Go type.
 // This is used for objc.Send[T] calls which need the local struct name.
 // Examples:
-//   foundation.Data -> Data
-//   NSData -> Data
-//   Data -> Data
-//   string -> string
-//   objc.ID -> objc.ID
+//
+//	foundation.Data -> Data
+//	NSData -> Data
+//	Data -> Data
+//	string -> string
+//	objc.ID -> objc.ID
 func typeToStructName(goType string) string {
 	// Handle empty or basic types
 	if goType == "" || goType == "string" || goType == "bool" || goType == "int" ||
-	   goType == "uint" || goType == "float32" || goType == "float64" ||
-	   strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
+		goType == "uint" || goType == "float32" || goType == "float64" ||
+		strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
 		return goType
 	}
 

@@ -30,14 +30,18 @@ type _BeaconRegionClass struct {
 // An interface definition for the [BeaconRegion] class.
 type IBeaconRegion interface {
 	IRegion
-	PeripheralDataWithMeasuredPower(measuredPower foundation.INumber) unsafe.Pointer
-	BeaconIdentityConstraint() CLBeaconIdentityConstraint
+	BeaconIdentityConstraint() ICLBeaconIdentityConstraint
+	SetBeaconIdentityConstraint(value ICLBeaconIdentityConstraint)
 	Major() foundation.Number
+	SetMajor(value foundation.Number)
 	Minor() foundation.Number
+	SetMinor(value foundation.Number)
 	NotifyEntryStateOnDisplay() bool
 	SetNotifyEntryStateOnDisplay(value bool)
 	ProximityUUID() foundation.UUID
-	UUID() foundation.UUID
+	SetProximityUUID(value foundation.UUID)
+	Uuid() foundation.UUID
+	SetUuid(value foundation.UUID)
 }
 
 // A region for detecting the presence of iBeacon devices.
@@ -95,97 +99,12 @@ func NewBeaconRegion() BeaconRegion {
 
 
 
-// Creates and returns a region object that targets beacons that satisfy the specified beacon identity constraints.
+// The beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(beaconIdentityConstraint:identifier:)
-func NewBeaconRegionWithBeaconIdentityConstraintIdentifier(beaconIdentityConstraint ICLBeaconIdentityConstraint, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithBeaconIdentityConstraint:identifier:"), beaconIdentityConstraint, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets a beacon with the specified UUID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(proximityUUID:identifier:)
-func NewBeaconRegionWithProximityUUIDIdentifier(proximityUUID foundation.IUUID, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithProximityUUID:identifier:"), proximityUUID, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets a beacon with the specified proximity ID and major value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(proximityUUID:major:identifier:)
-func NewBeaconRegionWithProximityUUIDMajorIdentifier(proximityUUID foundation.IUUID, major IBeaconMajorValue, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithProximityUUID:major:identifier:"), proximityUUID, major, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets a beacon with the specified proximity ID, major value, and minor value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(proximityUUID:major:minor:identifier:)
-func NewBeaconRegionWithProximityUUIDMajorMinorIdentifier(proximityUUID foundation.IUUID, major IBeaconMajorValue, minor IBeaconMinorValue, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithProximityUUID:major:minor:identifier:"), proximityUUID, major, minor, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets beacons with the specified UUID.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:identifier:)
-func NewBeaconRegionWithUUIDIdentifier(uuid foundation.IUUID, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:identifier:"), uuid, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets beacons with the specified UUID and major value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:major:identifier:)
-func NewBeaconRegionWithUUIDMajorIdentifier(uuid foundation.IUUID, major IBeaconMajorValue, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:major:identifier:"), uuid, major, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates and returns a region object that targets beacons with the specified UUID, and major and minor values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/init(uuid:major:minor:identifier:)
-func NewBeaconRegionWithUUIDMajorMinorIdentifier(uuid foundation.IUUID, major IBeaconMajorValue, minor IBeaconMinorValue, identifier string) BeaconRegion {
-	instance := getBeaconRegionClass().Alloc()
-	rv := objc.Send[BeaconRegion](instance.ID, objc.Sel("initWithUUID:major:minor:identifier:"), uuid, major, minor, objc.String(identifier))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Retrieves data that you can use to advertise the current device as a beacon.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/peripheralData(withMeasuredPower:)
-func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower foundation.INumber) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("peripheralDataWithMeasuredPower:"), measuredPower)
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/beaconidentityconstraint
+func (b_ BeaconRegion) BeaconIdentityConstraint() ICLBeaconIdentityConstraint {
+	rv := objc.Send[BeaconIdentityConstraint](b_.ID, objc.Sel("beaconIdentityConstraint"))
 	return rv
 }
 
@@ -193,9 +112,18 @@ func (b_ BeaconRegion) PeripheralDataWithMeasuredPower(measuredPower foundation.
 // The beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/beaconIdentityConstraint
-func (b_ BeaconRegion) BeaconIdentityConstraint() CLBeaconIdentityConstraint {
-	rv := objc.Send[CLBeaconIdentityConstraint](b_.ID, objc.Sel("beaconIdentityConstraint"))
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/beaconidentityconstraint
+func (b_ BeaconRegion) SetBeaconIdentityConstraint(value ICLBeaconIdentityConstraint) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setBeaconIdentityConstraint:"), value)
+}
+
+
+// The major value from the beacon identity constraint that defines the beacon region.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
+func (b_ BeaconRegion) Major() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
 
@@ -203,9 +131,18 @@ func (b_ BeaconRegion) BeaconIdentityConstraint() CLBeaconIdentityConstraint {
 // The major value from the beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/major
-func (b_ BeaconRegion) Major() foundation.Number {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
+func (b_ BeaconRegion) SetMajor(value foundation.Number) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
+}
+
+
+// The minor value from the beacon identity constraint that defines the beacon region.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
+func (b_ BeaconRegion) Minor() foundation.Number {
+	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
 
@@ -213,17 +150,16 @@ func (b_ BeaconRegion) Major() foundation.Number {
 // The minor value from the beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/minor
-func (b_ BeaconRegion) Minor() foundation.Number {
-	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
+func (b_ BeaconRegion) SetMinor(value foundation.Number) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
 
 // A Boolean value that indicates whether Core Location sends beacon notifications when the device’s display is on.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/notifyEntryStateOnDisplay
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
 func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("notifyEntryStateOnDisplay"))
 	return rv
@@ -233,7 +169,7 @@ func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool {
 // A Boolean value that indicates whether Core Location sends beacon notifications when the device’s display is on.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/notifyEntryStateOnDisplay
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
 func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNotifyEntryStateOnDisplay:"), value)
 }
@@ -242,9 +178,28 @@ func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool) {
 // The unique ID of the beacons you’re targeting.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/proximityUUID
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
 func (b_ BeaconRegion) ProximityUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
+	return rv
+}
+
+
+// The unique ID of the beacons you’re targeting.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
+func (b_ BeaconRegion) SetProximityUUID(value foundation.UUID) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setProximityUUID:"), value)
+}
+
+
+// The UUID value from the beacon identity constraint that defines the beacon region.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
+func (b_ BeaconRegion) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
 
@@ -252,10 +207,10 @@ func (b_ BeaconRegion) ProximityUUID() foundation.UUID {
 // The UUID value from the beacon identity constraint that defines the beacon region.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconRegion/uuid
-func (b_ BeaconRegion) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
+func (b_ BeaconRegion) SetUuid(value foundation.UUID) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
+
 
 

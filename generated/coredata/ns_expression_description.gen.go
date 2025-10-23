@@ -31,14 +31,14 @@ type _ExpressionDescriptionClass struct {
 type IExpressionDescription interface {
 	IPropertyDescription
 	Expression() Expression
-	SetExpression(value IExpression)
-	ExpressionResultType() AttributeType
-	SetExpressionResultType(value AttributeType)
-	Properties() NSPropertyDescription
+	SetExpression(value Expression)
+	ExpressionResultType() NSAttributeType
+	SetExpressionResultType(value NSAttributeType)
+	Properties() IPropertyDescription
 	SetProperties(value IPropertyDescription)
-	ResultType() AttributeType
-	SetResultType(value AttributeType)
-	AffectedStores() NSPersistentStore
+	ResultType() NSAttributeType
+	SetResultType(value NSAttributeType)
+	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
 	FetchBatchSize() int
 	SetFetchBatchSize(value int)
@@ -47,7 +47,7 @@ type IExpressionDescription interface {
 	FetchOffset() int
 	SetFetchOffset(value int)
 	Predicate() foundation.Predicate
-	SetPredicate(value foundation.IPredicate)
+	SetPredicate(value foundation.Predicate)
 	PropertiesToFetch() unsafe.Pointer
 	SetPropertiesToFetch(value unsafe.Pointer)
 }
@@ -121,7 +121,7 @@ func (e_ ExpressionDescription) Expression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) SetExpression(value IExpression) {
+func (e_ ExpressionDescription) SetExpression(value Expression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
 
@@ -130,8 +130,8 @@ func (e_ ExpressionDescription) SetExpression(value IExpression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) ExpressionResultType() AttributeType {
-	rv := objc.Send[AttributeType](e_.ID, objc.Sel("expressionResultType"))
+func (e_ ExpressionDescription) ExpressionResultType() NSAttributeType {
+	rv := objc.Send[NSAttributeType](e_.ID, objc.Sel("expressionResultType"))
 	return rv
 }
 
@@ -140,7 +140,7 @@ func (e_ ExpressionDescription) ExpressionResultType() AttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) SetExpressionResultType(value AttributeType) {
+func (e_ ExpressionDescription) SetExpressionResultType(value NSAttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
 }
 
@@ -149,8 +149,8 @@ func (e_ ExpressionDescription) SetExpressionResultType(value AttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/properties
-func (e_ ExpressionDescription) Properties() NSPropertyDescription {
-	rv := objc.Send[NSPropertyDescription](e_.ID, objc.Sel("properties"))
+func (e_ ExpressionDescription) Properties() IPropertyDescription {
+	rv := objc.Send[PropertyDescription](e_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (e_ ExpressionDescription) SetProperties(value IPropertyDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) ResultType() AttributeType {
+func (e_ ExpressionDescription) ResultType() NSAttributeType {
 	rv := objc.Send[AttributeType](e_.ID, objc.Sel("resultType"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (e_ ExpressionDescription) ResultType() AttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) SetResultType(value AttributeType) {
+func (e_ ExpressionDescription) SetResultType(value NSAttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -187,8 +187,8 @@ func (e_ ExpressionDescription) SetResultType(value AttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (e_ ExpressionDescription) AffectedStores() NSPersistentStore {
-	rv := objc.Send[NSPersistentStore](e_.ID, objc.Sel("affectedStores"))
+func (e_ ExpressionDescription) AffectedStores() IPersistentStore {
+	rv := objc.Send[PersistentStore](e_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
@@ -273,7 +273,7 @@ func (e_ ExpressionDescription) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (e_ ExpressionDescription) SetPredicate(value foundation.IPredicate) {
+func (e_ ExpressionDescription) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
 }
 

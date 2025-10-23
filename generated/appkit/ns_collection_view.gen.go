@@ -32,58 +32,18 @@ type _CollectionViewClass struct {
 // An interface definition for the [CollectionView] class.
 type ICollectionView interface {
 	IView
-	DeleteItemsAtIndexPaths(indexPaths unsafe.Pointer)
-	DeleteSections(sections foundation.IIndexSet)
-	DeselectAll(sender objectivec.IObject)
-	DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer)
-	DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event IEvent, dragImageOffset unsafe.Pointer) Image
-	DraggingImageForItemsAtIndexesWithEventOffset(indexes foundation.IIndexSet, event IEvent, dragImageOffset unsafe.Pointer) Image
-	FrameForItemAtIndex(index uint) coregraphics.CGRect
-	FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) coregraphics.CGRect
-	IndexPathForItem(item ICollectionViewItem) foundation.IndexPath
-	IndexPathForItemAtPoint(point coregraphics.CGPoint) foundation.IndexPath
-	IndexPathsForVisibleItems() unsafe.Pointer
-	IndexPathsForVisibleSupplementaryElementsOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer
-	InsertItemsAtIndexPaths(indexPaths unsafe.Pointer)
-	InsertSections(sections foundation.IIndexSet)
-	ItemAtIndexPath(indexPath foundation.IIndexPath) CollectionViewItem
-	ItemAtIndex(index uint) CollectionViewItem
-	LayoutAttributesForItemAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer
-	LayoutAttributesForSupplementaryElementOfKindAtIndexPath(kind CollectionViewSupplementaryElementKind, indexPath foundation.IIndexPath) unsafe.Pointer
-	MakeItemWithIdentifierForIndexPath(identifier IUserInterfaceItemIdentifier, indexPath foundation.IIndexPath) CollectionViewItem
-	MakeSupplementaryViewOfKindWithIdentifierForIndexPath(elementKind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier, indexPath foundation.IIndexPath) View
-	MoveItemAtIndexPathToIndexPath(indexPath foundation.IIndexPath, newIndexPath foundation.IIndexPath)
-	MoveSectionToSection(section int, newSection int)
-	NewItemForRepresentedObject(object objectivec.IObject) CollectionViewItem
-	NumberOfItemsInSection(section int) int
-	PerformBatchUpdatesCompletionHandler(updates unsafe.Pointer, completionHandler unsafe.Pointer)
-	RegisterClassForItemWithIdentifier(itemClass objc.Class, identifier IUserInterfaceItemIdentifier)
-	RegisterNibForItemWithIdentifier(nib INib, identifier IUserInterfaceItemIdentifier)
-	RegisterClassForSupplementaryViewOfKindWithIdentifier(viewClass objc.Class, kind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier)
-	RegisterNibForSupplementaryViewOfKindWithIdentifier(nib INib, kind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier)
-	ReloadData()
-	ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer)
-	ReloadSections(sections foundation.IIndexSet)
-	ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition ICollectionViewScrollPosition)
-	SelectAll(sender objectivec.IObject)
-	SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition ICollectionViewScrollPosition)
-	SetDraggingSourceOperationMaskForLocal(dragOperationMask IDragOperation, localDestination bool)
-	SupplementaryViewForElementKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.IIndexPath) unsafe.Pointer
-	ToggleSectionCollapse(sender objectivec.IObject)
-	VisibleItems() []CollectionViewItem
-	VisibleSupplementaryViewsOfKind(elementKind CollectionViewSupplementaryElementKind) []View
 	AllowsEmptySelection() bool
 	SetAllowsEmptySelection(value bool)
 	AllowsMultipleSelection() bool
 	SetAllowsMultipleSelection(value bool)
 	BackgroundColors() []Color
 	SetBackgroundColors(value []Color)
-	BackgroundView() NSView
+	BackgroundView() IView
 	SetBackgroundView(value IView)
 	BackgroundViewScrollsWithContent() bool
 	SetBackgroundViewScrollsWithContent(value bool)
-	CollectionViewLayout() NSCollectionViewLayout
-	SetCollectionViewLayout(value ICollectionViewLayout)
+	CollectionViewLayout() CollectionViewLayout
+	SetCollectionViewLayout(value CollectionViewLayout)
 	Content() []objc.ID
 	SetContent(value []objc.ID)
 	DataSource() objc.ID
@@ -93,7 +53,7 @@ type ICollectionView interface {
 	FirstResponder() bool
 	Selectable() bool
 	SetSelectable(value bool)
-	ItemPrototype() NSCollectionViewItem
+	ItemPrototype() ICollectionViewItem
 	SetItemPrototype(value ICollectionViewItem)
 	MaxItemSize() coregraphics.CGSize
 	SetMaxItemSize(value coregraphics.CGSize)
@@ -109,11 +69,50 @@ type ICollectionView interface {
 	SelectionIndexPaths() unsafe.Pointer
 	SetSelectionIndexPaths(value unsafe.Pointer)
 	SelectionIndexes() foundation.IndexSet
-	SetSelectionIndexes(value foundation.IIndexSet)
+	SetSelectionIndexes(value foundation.IndexSet)
 	IsFirstResponder() bool
 	SetIsFirstResponder(value bool)
 	IsSelectable() bool
 	SetIsSelectable(value bool)
+	DeleteItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	DeleteSections(sections foundation.IndexSet)
+	DeselectAll(sender objectivec.IObject)
+	DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event IEvent, dragImageOffset unsafe.Pointer) IImage
+	DraggingImageForItemsAtIndexesWithEventOffset(indexes foundation.IndexSet, event IEvent, dragImageOffset unsafe.Pointer) IImage
+	FrameForItemAtIndex(index uint) coregraphics.CGRect
+	FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) coregraphics.CGRect
+	IndexPathForItem(item ICollectionViewItem) foundation.IndexPath
+	IndexPathForItemAtPoint(point coregraphics.CGPoint) foundation.IndexPath
+	IndexPathsForVisibleItems() unsafe.Pointer
+	IndexPathsForVisibleSupplementaryElementsOfKind(elementKind CollectionViewSupplementaryElementKind) unsafe.Pointer
+	InsertItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	InsertSections(sections foundation.IndexSet)
+	ItemAtIndexPath(indexPath foundation.IndexPath) ICollectionViewItem
+	ItemAtIndex(index uint) ICollectionViewItem
+	LayoutAttributesForItemAtIndexPath(indexPath foundation.IndexPath) unsafe.Pointer
+	LayoutAttributesForSupplementaryElementOfKindAtIndexPath(kind CollectionViewSupplementaryElementKind, indexPath foundation.IndexPath) unsafe.Pointer
+	MakeItemWithIdentifierForIndexPath(identifier UserInterfaceItemIdentifier, indexPath foundation.IndexPath) ICollectionViewItem
+	MakeSupplementaryViewOfKindWithIdentifierForIndexPath(elementKind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier, indexPath foundation.IndexPath) IView
+	MoveItemAtIndexPathToIndexPath(indexPath foundation.IndexPath, newIndexPath foundation.IndexPath)
+	MoveSectionToSection(section int, newSection int)
+	NumberOfItemsInSection(section int) int
+	PerformBatchUpdatesCompletionHandler(updates unsafe.Pointer, completionHandler unsafe.Pointer)
+	RegisterClassForItemWithIdentifier(itemClass objc.Class, identifier UserInterfaceItemIdentifier)
+	RegisterNibForItemWithIdentifier(nib INib, identifier UserInterfaceItemIdentifier)
+	RegisterClassForSupplementaryViewOfKindWithIdentifier(viewClass objc.Class, kind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier)
+	RegisterNibForSupplementaryViewOfKindWithIdentifier(nib INib, kind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier)
+	ReloadData()
+	ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	ReloadSections(sections foundation.IndexSet)
+	ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition NSCollectionViewScrollPosition)
+	SelectAll(sender objectivec.IObject)
+	SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition NSCollectionViewScrollPosition)
+	SetDraggingSourceOperationMaskForLocal(dragOperationMask unsafe.Pointer, localDestination bool)
+	SupplementaryViewForElementKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.IndexPath) unsafe.Pointer
+	ToggleSectionCollapse(sender objectivec.IObject)
+	VisibleItems() []CollectionViewItem
+	VisibleSupplementaryViewsOfKind(elementKind CollectionViewSupplementaryElementKind) []View
 }
 
 // An ordered collection of data items displayed in a customizable layout.
@@ -184,7 +183,7 @@ func (c_ CollectionView) DeleteItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/deleteSections(_:)
-func (c_ CollectionView) DeleteSections(sections foundation.IIndexSet) {
+func (c_ CollectionView) DeleteSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSections:"), sections)
 }
 
@@ -211,7 +210,7 @@ func (c_ CollectionView) DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-7rc4k
-func (c_ CollectionView) DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event IEvent, dragImageOffset unsafe.Pointer) Image {
+func (c_ CollectionView) DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event IEvent, dragImageOffset unsafe.Pointer) IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("draggingImageForItemsAtIndexPaths:withEvent:offset:"), indexPaths, event, dragImageOffset)
 	return rv
 }
@@ -221,7 +220,7 @@ func (c_ CollectionView) DraggingImageForItemsAtIndexPathsWithEventOffset(indexP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-951w7
-func (c_ CollectionView) DraggingImageForItemsAtIndexesWithEventOffset(indexes foundation.IIndexSet, event IEvent, dragImageOffset unsafe.Pointer) Image {
+func (c_ CollectionView) DraggingImageForItemsAtIndexesWithEventOffset(indexes foundation.IndexSet, event IEvent, dragImageOffset unsafe.Pointer) IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("draggingImageForItemsAtIndexes:withEvent:offset:"), indexes, event, dragImageOffset)
 	return rv
 }
@@ -300,7 +299,7 @@ func (c_ CollectionView) InsertItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/insertSections(_:)
-func (c_ CollectionView) InsertSections(sections foundation.IIndexSet) {
+func (c_ CollectionView) InsertSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("insertSections:"), sections)
 }
 
@@ -309,7 +308,7 @@ func (c_ CollectionView) InsertSections(sections foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/item(at:)-2vx2h
-func (c_ CollectionView) ItemAtIndexPath(indexPath foundation.IIndexPath) CollectionViewItem {
+func (c_ CollectionView) ItemAtIndexPath(indexPath foundation.IndexPath) ICollectionViewItem {
 	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("itemAtIndexPath:"), indexPath)
 	return rv
 }
@@ -319,7 +318,7 @@ func (c_ CollectionView) ItemAtIndexPath(indexPath foundation.IIndexPath) Collec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/item(at:)-80xze
-func (c_ CollectionView) ItemAtIndex(index uint) CollectionViewItem {
+func (c_ CollectionView) ItemAtIndex(index uint) ICollectionViewItem {
 	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
 }
@@ -329,7 +328,7 @@ func (c_ CollectionView) ItemAtIndex(index uint) CollectionViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/layoutAttributesForItem(at:)
-func (c_ CollectionView) LayoutAttributesForItemAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer {
+func (c_ CollectionView) LayoutAttributesForItemAtIndexPath(indexPath foundation.IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("layoutAttributesForItemAtIndexPath:"), indexPath)
 	return rv
 }
@@ -339,7 +338,7 @@ func (c_ CollectionView) LayoutAttributesForItemAtIndexPath(indexPath foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/layoutAttributesForSupplementaryElement(ofKind:at:)
-func (c_ CollectionView) LayoutAttributesForSupplementaryElementOfKindAtIndexPath(kind CollectionViewSupplementaryElementKind, indexPath foundation.IIndexPath) unsafe.Pointer {
+func (c_ CollectionView) LayoutAttributesForSupplementaryElementOfKindAtIndexPath(kind CollectionViewSupplementaryElementKind, indexPath foundation.IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("layoutAttributesForSupplementaryElementOfKind:atIndexPath:"), kind, indexPath)
 	return rv
 }
@@ -349,7 +348,7 @@ func (c_ CollectionView) LayoutAttributesForSupplementaryElementOfKindAtIndexPat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/makeItem(withIdentifier:for:)
-func (c_ CollectionView) MakeItemWithIdentifierForIndexPath(identifier IUserInterfaceItemIdentifier, indexPath foundation.IIndexPath) CollectionViewItem {
+func (c_ CollectionView) MakeItemWithIdentifierForIndexPath(identifier UserInterfaceItemIdentifier, indexPath foundation.IndexPath) ICollectionViewItem {
 	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("makeItemWithIdentifier:forIndexPath:"), identifier, indexPath)
 	return rv
 }
@@ -359,7 +358,7 @@ func (c_ CollectionView) MakeItemWithIdentifierForIndexPath(identifier IUserInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/makeSupplementaryView(ofKind:withIdentifier:for:)
-func (c_ CollectionView) MakeSupplementaryViewOfKindWithIdentifierForIndexPath(elementKind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier, indexPath foundation.IIndexPath) View {
+func (c_ CollectionView) MakeSupplementaryViewOfKindWithIdentifierForIndexPath(elementKind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier, indexPath foundation.IndexPath) IView {
 	rv := objc.Send[View](c_.ID, objc.Sel("makeSupplementaryViewOfKind:withIdentifier:forIndexPath:"), elementKind, identifier, indexPath)
 	return rv
 }
@@ -369,7 +368,7 @@ func (c_ CollectionView) MakeSupplementaryViewOfKindWithIdentifierForIndexPath(e
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/moveItem(at:to:)
-func (c_ CollectionView) MoveItemAtIndexPathToIndexPath(indexPath foundation.IIndexPath, newIndexPath foundation.IIndexPath) {
+func (c_ CollectionView) MoveItemAtIndexPathToIndexPath(indexPath foundation.IndexPath, newIndexPath foundation.IndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("moveItemAtIndexPath:toIndexPath:"), indexPath, newIndexPath)
 }
 
@@ -380,16 +379,6 @@ func (c_ CollectionView) MoveItemAtIndexPathToIndexPath(indexPath foundation.IIn
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/moveSection(_:toSection:)
 func (c_ CollectionView) MoveSectionToSection(section int, newSection int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("moveSection:toSection:"), section, newSection)
-}
-
-
-// Returns the collection view item that is used for the specified object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/newItem(forRepresentedObject:)
-func (c_ CollectionView) NewItemForRepresentedObject(object objectivec.IObject) CollectionViewItem {
-	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("newItemForRepresentedObject:"), object)
-	return rv
 }
 
 
@@ -416,7 +405,7 @@ func (c_ CollectionView) PerformBatchUpdatesCompletionHandler(updates unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/register(_:forItemWithIdentifier:)-6s4i
-func (c_ CollectionView) RegisterClassForItemWithIdentifier(itemClass objc.Class, identifier IUserInterfaceItemIdentifier) {
+func (c_ CollectionView) RegisterClassForItemWithIdentifier(itemClass objc.Class, identifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerClass:forItemWithIdentifier:"), itemClass, identifier)
 }
 
@@ -425,7 +414,7 @@ func (c_ CollectionView) RegisterClassForItemWithIdentifier(itemClass objc.Class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/register(_:forItemWithIdentifier:)-90h1i
-func (c_ CollectionView) RegisterNibForItemWithIdentifier(nib INib, identifier IUserInterfaceItemIdentifier) {
+func (c_ CollectionView) RegisterNibForItemWithIdentifier(nib INib, identifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerNib:forItemWithIdentifier:"), nib, identifier)
 }
 
@@ -434,7 +423,7 @@ func (c_ CollectionView) RegisterNibForItemWithIdentifier(nib INib, identifier I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/register(_:forSupplementaryViewOfKind:withIdentifier:)-3dqa
-func (c_ CollectionView) RegisterClassForSupplementaryViewOfKindWithIdentifier(viewClass objc.Class, kind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier) {
+func (c_ CollectionView) RegisterClassForSupplementaryViewOfKindWithIdentifier(viewClass objc.Class, kind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerClass:forSupplementaryViewOfKind:withIdentifier:"), viewClass, kind, identifier)
 }
 
@@ -443,7 +432,7 @@ func (c_ CollectionView) RegisterClassForSupplementaryViewOfKindWithIdentifier(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/register(_:forSupplementaryViewOfKind:withIdentifier:)-7gvf2
-func (c_ CollectionView) RegisterNibForSupplementaryViewOfKindWithIdentifier(nib INib, kind CollectionViewSupplementaryElementKind, identifier IUserInterfaceItemIdentifier) {
+func (c_ CollectionView) RegisterNibForSupplementaryViewOfKindWithIdentifier(nib INib, kind CollectionViewSupplementaryElementKind, identifier UserInterfaceItemIdentifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerNib:forSupplementaryViewOfKind:withIdentifier:"), nib, kind, identifier)
 }
 
@@ -470,7 +459,7 @@ func (c_ CollectionView) ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/reloadSections(_:)
-func (c_ CollectionView) ReloadSections(sections foundation.IIndexSet) {
+func (c_ CollectionView) ReloadSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadSections:"), sections)
 }
 
@@ -479,7 +468,7 @@ func (c_ CollectionView) ReloadSections(sections foundation.IIndexSet) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/scrollToItems(at:scrollPosition:)
-func (c_ CollectionView) ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition ICollectionViewScrollPosition) {
+func (c_ CollectionView) ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition NSCollectionViewScrollPosition) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("scrollToItemsAtIndexPaths:scrollPosition:"), indexPaths, scrollPosition)
 }
 
@@ -497,7 +486,7 @@ func (c_ CollectionView) SelectAll(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/selectItems(at:scrollPosition:)
-func (c_ CollectionView) SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition ICollectionViewScrollPosition) {
+func (c_ CollectionView) SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition NSCollectionViewScrollPosition) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectItemsAtIndexPaths:scrollPosition:"), indexPaths, scrollPosition)
 }
 
@@ -506,7 +495,7 @@ func (c_ CollectionView) SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/setDraggingSourceOperationMask(_:forLocal:)
-func (c_ CollectionView) SetDraggingSourceOperationMaskForLocal(dragOperationMask IDragOperation, localDestination bool) {
+func (c_ CollectionView) SetDraggingSourceOperationMaskForLocal(dragOperationMask unsafe.Pointer, localDestination bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingSourceOperationMask:forLocal:"), dragOperationMask, localDestination)
 }
 
@@ -515,7 +504,7 @@ func (c_ CollectionView) SetDraggingSourceOperationMaskForLocal(dragOperationMas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/supplementaryView(forElementKind:at:)
-func (c_ CollectionView) SupplementaryViewForElementKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.IIndexPath) unsafe.Pointer {
+func (c_ CollectionView) SupplementaryViewForElementKindAtIndexPath(elementKind CollectionViewSupplementaryElementKind, indexPath foundation.IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supplementaryViewForElementKind:atIndexPath:"), elementKind, indexPath)
 	return rv
 }
@@ -621,8 +610,8 @@ func (c_ CollectionView) SetBackgroundColors(value []Color) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/backgroundView
-func (c_ CollectionView) BackgroundView() NSView {
-	rv := objc.Send[NSView](c_.ID, objc.Sel("backgroundView"))
+func (c_ CollectionView) BackgroundView() IView {
+	rv := objc.Send[View](c_.ID, objc.Sel("backgroundView"))
 	return rv
 }
 
@@ -659,8 +648,8 @@ func (c_ CollectionView) SetBackgroundViewScrollsWithContent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/collectionViewLayout
-func (c_ CollectionView) CollectionViewLayout() NSCollectionViewLayout {
-	rv := objc.Send[NSCollectionViewLayout](c_.ID, objc.Sel("collectionViewLayout"))
+func (c_ CollectionView) CollectionViewLayout() CollectionViewLayout {
+	rv := objc.Send[CollectionViewLayout](c_.ID, objc.Sel("collectionViewLayout"))
 	return rv
 }
 
@@ -669,7 +658,7 @@ func (c_ CollectionView) CollectionViewLayout() NSCollectionViewLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/collectionViewLayout
-func (c_ CollectionView) SetCollectionViewLayout(value ICollectionViewLayout) {
+func (c_ CollectionView) SetCollectionViewLayout(value CollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
 }
 
@@ -774,8 +763,8 @@ func (c_ CollectionView) SetSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/itemPrototype
-func (c_ CollectionView) ItemPrototype() NSCollectionViewItem {
-	rv := objc.Send[NSCollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
+func (c_ CollectionView) ItemPrototype() ICollectionViewItem {
+	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("itemPrototype"))
 	return rv
 }
 
@@ -923,7 +912,7 @@ func (c_ CollectionView) SelectionIndexes() foundation.IndexSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/selectionIndexes
-func (c_ CollectionView) SetSelectionIndexes(value foundation.IIndexSet) {
+func (c_ CollectionView) SetSelectionIndexes(value foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
 

@@ -29,7 +29,7 @@ type _CNChangeHistoryUpdateContactEventClass struct {
 // An interface definition for the [CNChangeHistoryUpdateContactEvent] class.
 type ICNChangeHistoryUpdateContactEvent interface {
 	ICNChangeHistoryEvent
-	Contact() CNContact
+	Contact() ICNContact
 }
 
 // An object that represents a user updating a contact.
@@ -89,7 +89,7 @@ func NewCNChangeHistoryUpdateContactEvent() CNChangeHistoryUpdateContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateContactEvent/contact
-func (c_ CNChangeHistoryUpdateContactEvent) Contact() CNContact {
+func (c_ CNChangeHistoryUpdateContactEvent) Contact() ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }

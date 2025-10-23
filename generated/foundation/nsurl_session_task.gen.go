@@ -30,6 +30,7 @@ type _URLSessionTaskClass struct {
 // An interface definition for the [URLSessionTask] class.
 type IURLSessionTask interface {
 	objectivec.IObject
+	// properties:
 	CountOfBytesExpectedToSend() unsafe.Pointer
 	CountOfBytesSent() unsafe.Pointer
 	CurrentRequest() IURLRequest
@@ -39,14 +40,14 @@ type IURLSessionTask interface {
 	SetEarliestBeginDate(value IDate)
 	Error() IError
 	OriginalRequest() IURLRequest
-	Priority() float32
-	SetPriority(value float32)
+	Priority() float32 /* primitive/slice/pointer */
+	SetPriority(value float32 /* primitive/slice/pointer */)
 	Progress() IProgress
 	Response() IURLResponse
-	State() NSURLSessionTaskState
-	TaskDescription() string
-	SetTaskDescription(value string)
-	TaskIdentifier() uint
+	State() URLSessionTaskState
+	TaskDescription() string /* primitive/slice/pointer */
+	SetTaskDescription(value string /* primitive/slice/pointer */)
+	TaskIdentifier() uint /* primitive/slice/pointer */
 	NSURLSessionTransferSizeUnknown() unsafe.Pointer
 	CountOfBytesClientExpectsToReceive() unsafe.Pointer
 	SetCountOfBytesClientExpectsToReceive(value unsafe.Pointer)
@@ -56,8 +57,9 @@ type IURLSessionTask interface {
 	SetCountOfBytesExpectedToReceive(value unsafe.Pointer)
 	CountOfBytesReceived() unsafe.Pointer
 	SetCountOfBytesReceived(value unsafe.Pointer)
-	PrefersIncrementalDelivery() bool
-	SetPrefersIncrementalDelivery(value bool)
+	PrefersIncrementalDelivery() bool /* primitive/slice/pointer */
+	SetPrefersIncrementalDelivery(value bool /* primitive/slice/pointer */)
+	// methods:
 	Cancel()
 	Resume()
 	Suspend()
@@ -235,7 +237,7 @@ func (u_ URLSessionTask) OriginalRequest() IURLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) Priority() float32 {
+func (u_ URLSessionTask) Priority() float32 /* primitive/slice/pointer */ {
 	rv := objc.Send[float32](u_.ID, objc.Sel("priority"))
 	return rv
 }
@@ -245,7 +247,7 @@ func (u_ URLSessionTask) Priority() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/priority
-func (u_ URLSessionTask) SetPriority(value float32) {
+func (u_ URLSessionTask) SetPriority(value float32 /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -274,7 +276,7 @@ func (u_ URLSessionTask) Response() IURLResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/state-swift.property
-func (u_ URLSessionTask) State() NSURLSessionTaskState {
+func (u_ URLSessionTask) State() URLSessionTaskState {
 	rv := objc.Send[URLSessionTaskState](u_.ID, objc.Sel("state"))
 	return rv
 }
@@ -284,7 +286,7 @@ func (u_ URLSessionTask) State() NSURLSessionTaskState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) TaskDescription() string {
+func (u_ URLSessionTask) TaskDescription() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("taskDescription"))
 	return rv
 }
@@ -294,7 +296,7 @@ func (u_ URLSessionTask) TaskDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) SetTaskDescription(value string) {
+func (u_ URLSessionTask) SetTaskDescription(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), objc.String(value))
 }
 
@@ -303,7 +305,7 @@ func (u_ URLSessionTask) SetTaskDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskIdentifier
-func (u_ URLSessionTask) TaskIdentifier() uint {
+func (u_ URLSessionTask) TaskIdentifier() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
@@ -399,7 +401,7 @@ func (u_ URLSessionTask) SetCountOfBytesReceived(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/prefersincrementaldelivery
-func (u_ URLSessionTask) PrefersIncrementalDelivery() bool {
+func (u_ URLSessionTask) PrefersIncrementalDelivery() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("prefersIncrementalDelivery"))
 	return rv
 }
@@ -409,7 +411,7 @@ func (u_ URLSessionTask) PrefersIncrementalDelivery() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/prefersincrementaldelivery
-func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool) {
+func (u_ URLSessionTask) SetPrefersIncrementalDelivery(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPrefersIncrementalDelivery:"), value)
 }
 

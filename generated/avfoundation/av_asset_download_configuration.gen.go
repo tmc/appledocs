@@ -31,14 +31,16 @@ type _AssetDownloadConfigurationClass struct {
 // An interface definition for the [AssetDownloadConfiguration] class.
 type IAssetDownloadConfiguration interface {
 	objectivec.IObject
-	ArtworkData() foundation.Data
-	SetArtworkData(value foundation.Data)
-	AuxiliaryContentConfigurations() unsafe.Pointer
-	SetAuxiliaryContentConfigurations(value unsafe.Pointer)
-	OptimizesAuxiliaryContentConfigurations() bool
-	SetOptimizesAuxiliaryContentConfigurations(value bool)
-	PrimaryContentConfiguration() unsafe.Pointer
-	SetPrimaryContentConfiguration(value unsafe.Pointer)
+	// properties:
+	ArtworkData() foundation.Data /* foo */
+	SetArtworkData(value foundation.Data /* foo */)
+	AuxiliaryContentConfigurations() AVAssetDownloadContentConfiguration /* foo */
+	SetAuxiliaryContentConfigurations(value AVAssetDownloadContentConfiguration /* foo */)
+	OptimizesAuxiliaryContentConfigurations() bool /* primitive/slice/pointer */
+	SetOptimizesAuxiliaryContentConfigurations(value bool /* primitive/slice/pointer */)
+	PrimaryContentConfiguration() AVAssetDownloadContentConfiguration /* foo */
+	SetPrimaryContentConfiguration(value AVAssetDownloadContentConfiguration /* foo */)
+	// methods:
 }
 
 // An object that provides the configuration for a download task.
@@ -96,7 +98,7 @@ func NewAssetDownloadConfiguration() AssetDownloadConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data {
+func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data /* foo */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("artworkData"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.Data) {
+func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.Data /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArtworkData:"), value)
 }
 
@@ -115,8 +117,8 @@ func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("auxiliaryContentConfigurations"))
+func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() AVAssetDownloadContentConfiguration /* foo */ {
+	rv := objc.Send[AssetDownloadContentConfiguration](a_.ID, objc.Sel("auxiliaryContentConfigurations"))
 	return rv
 }
 
@@ -125,7 +127,7 @@ func (a_ AssetDownloadConfiguration) AuxiliaryContentConfigurations() unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/auxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value unsafe.Pointer) {
+func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value AVAssetDownloadContentConfiguration /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuxiliaryContentConfigurations:"), value)
 }
 
@@ -134,7 +136,7 @@ func (a_ AssetDownloadConfiguration) SetAuxiliaryContentConfigurations(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool {
+func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("optimizesAuxiliaryContentConfigurations"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (a_ AssetDownloadConfiguration) OptimizesAuxiliaryContentConfigurations() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/optimizesauxiliarycontentconfigurations
-func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool) {
+func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOptimizesAuxiliaryContentConfigurations:"), value)
 }
 
@@ -153,8 +155,8 @@ func (a_ AssetDownloadConfiguration) SetOptimizesAuxiliaryContentConfigurations(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
-func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("primaryContentConfiguration"))
+func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() AVAssetDownloadContentConfiguration /* foo */ {
+	rv := objc.Send[AssetDownloadContentConfiguration](a_.ID, objc.Sel("primaryContentConfiguration"))
 	return rv
 }
 
@@ -163,7 +165,7 @@ func (a_ AssetDownloadConfiguration) PrimaryContentConfiguration() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/primarycontentconfiguration
-func (a_ AssetDownloadConfiguration) SetPrimaryContentConfiguration(value unsafe.Pointer) {
+func (a_ AssetDownloadConfiguration) SetPrimaryContentConfiguration(value AVAssetDownloadContentConfiguration /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPrimaryContentConfiguration:"), value)
 }
 

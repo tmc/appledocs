@@ -29,6 +29,8 @@ type _URLSessionUploadTaskClass struct {
 // An interface definition for the [URLSessionUploadTask] class.
 type IURLSessionUploadTask interface {
 	IURLSessionDataTask
+	// properties:
+	// methods:
 	CancelByProducingResumeData(completionHandler unsafe.Pointer)
 }
 

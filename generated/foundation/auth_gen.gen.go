@@ -30,6 +30,8 @@ type _authGenClass struct {
 // An interface definition for the [authGen] class.
 type IauthGen interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

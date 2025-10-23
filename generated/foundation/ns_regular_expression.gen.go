@@ -30,15 +30,17 @@ type _RegularExpressionClass struct {
 // An interface definition for the [RegularExpression] class.
 type IRegularExpression interface {
 	objectivec.IObject
-	NSNotFound() int
-	NumberOfCaptureGroups() int
-	SetNumberOfCaptureGroups(value int)
+	// properties:
+	NSNotFound() int /* primitive/slice/pointer */
+	NumberOfCaptureGroups() int /* primitive/slice/pointer */
+	SetNumberOfCaptureGroups(value int /* primitive/slice/pointer */)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
-	Pattern() string
-	SetPattern(value string)
-	Range() Range
-	SetRange(value Range)
+	Pattern() string /* primitive/slice/pointer */
+	SetPattern(value string /* primitive/slice/pointer */)
+	Range() Range /* foo */
+	SetRange(value Range /* foo */)
+	// methods:
 }
 
 // An immutable representation of a compiled regular expression that you apply to Unicode strings.
@@ -98,7 +100,7 @@ func NewRegularExpression() RegularExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (r_ RegularExpression) NSNotFound() int {
+func (r_ RegularExpression) NSNotFound() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (r_ RegularExpression) NSNotFound() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-func (r_ RegularExpression) NumberOfCaptureGroups() int {
+func (r_ RegularExpression) NumberOfCaptureGroups() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("numberOfCaptureGroups"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (r_ RegularExpression) NumberOfCaptureGroups() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/numberofcapturegroups
-func (r_ RegularExpression) SetNumberOfCaptureGroups(value int) {
+func (r_ RegularExpression) SetNumberOfCaptureGroups(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNumberOfCaptureGroups:"), value)
 }
 
@@ -146,7 +148,7 @@ func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) Pattern() string {
+func (r_ RegularExpression) Pattern() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (r_ RegularExpression) Pattern() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) SetPattern(value string) {
+func (r_ RegularExpression) SetPattern(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
 }
 
@@ -165,7 +167,7 @@ func (r_ RegularExpression) SetPattern(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) Range() Range {
+func (r_ RegularExpression) Range() Range /* foo */ {
 	rv := objc.Send[Range](r_.ID, objc.Sel("range"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (r_ RegularExpression) Range() Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) SetRange(value Range) {
+func (r_ RegularExpression) SetRange(value Range /* foo */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
 

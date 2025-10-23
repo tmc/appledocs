@@ -29,6 +29,8 @@ type _UnitElectricCurrentClass struct {
 // An interface definition for the [UnitElectricCurrent] class.
 type IUnitElectricCurrent interface {
 	IDimension
+	// properties:
+	// methods:
 }
 
 // A unit of measure for electric current.

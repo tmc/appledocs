@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,18 +31,20 @@ type _IMKInputControllerClass struct {
 // An interface definition for the [IMKInputController] class.
 type IIMKInputController interface {
 	objectivec.IObject
-	AnnotationSelectedForCandidate(annotationString foundation.IAttributedString, candidateString foundation.IAttributedString)
+	// properties:
+	// methods:
+	AnnotationSelectedForCandidate(annotationString NSAttributedString, candidateString NSAttributedString)
 	CancelComposition()
-	CandidateSelected(candidateString foundation.IAttributedString)
-	CandidateSelectionChanged(candidateString foundation.IAttributedString)
+	CandidateSelected(candidateString NSAttributedString)
+	CandidateSelectionChanged(candidateString NSAttributedString)
 	Client() objc.ID
-	CompositionAttributesAtRange(range_ foundation.Range) foundation.MutableDictionary
+	CompositionAttributesAtRange(range_ foundation.Range) NSMutableDictionary
 	Delegate() objc.ID
 	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objectivec.IObject)
 	HidePalettes()
 	InputControllerWillClose()
-	MarkForStyleAtRange(style int, range_ foundation.Range) foundation.Dictionary
-	Menu() appkit.Menu
+	MarkForStyleAtRange(style int, range_ foundation.Range) NSDictionary
+	Menu() NSMenu
 	ReplacementRange() foundation.Range
 	SelectionRange() foundation.Range
 	Server() IMKServer
@@ -121,7 +122,7 @@ func NewIMKInputControllerWithServerDelegateClient(server IMKServer, delegate ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/annotationSelected(_:forCandidate:)
-func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString foundation.IAttributedString, candidateString foundation.IAttributedString) {
+func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString NSAttributedString, candidateString NSAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("annotationSelected:forCandidate:"), annotationString, candidateString)
 }
 
@@ -139,7 +140,7 @@ func (i_ IMKInputController) CancelComposition() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelected(_:)
-func (i_ IMKInputController) CandidateSelected(candidateString foundation.IAttributedString) {
+func (i_ IMKInputController) CandidateSelected(candidateString NSAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelected:"), candidateString)
 }
 
@@ -148,7 +149,7 @@ func (i_ IMKInputController) CandidateSelected(candidateString foundation.IAttri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelectionChanged(_:)
-func (i_ IMKInputController) CandidateSelectionChanged(candidateString foundation.IAttributedString) {
+func (i_ IMKInputController) CandidateSelectionChanged(candidateString NSAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelectionChanged:"), candidateString)
 }
 
@@ -167,8 +168,8 @@ func (i_ IMKInputController) Client() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/compositionAttributes(at:)
-func (i_ IMKInputController) CompositionAttributesAtRange(range_ foundation.Range) foundation.MutableDictionary {
-	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
+func (i_ IMKInputController) CompositionAttributesAtRange(range_ foundation.Range) NSMutableDictionary {
+	rv := objc.Send[MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
 	return rv
 }
 
@@ -212,8 +213,8 @@ func (i_ IMKInputController) InputControllerWillClose() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/mark(forStyle:at:)
-func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ foundation.Range) foundation.Dictionary {
-	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
+func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ foundation.Range) NSDictionary {
+	rv := objc.Send[Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
 	return rv
 }
 
@@ -222,8 +223,8 @@ func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ foundation.Ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/menu()
-func (i_ IMKInputController) Menu() appkit.Menu {
-	rv := objc.Send[appkit.Menu](i_.ID, objc.Sel("menu"))
+func (i_ IMKInputController) Menu() NSMenu {
+	rv := objc.Send[Menu](i_.ID, objc.Sel("menu"))
 	return rv
 }
 

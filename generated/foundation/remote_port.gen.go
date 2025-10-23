@@ -30,6 +30,8 @@ type _remotePortClass struct {
 // An interface definition for the [remotePort] class.
 type IremotePort interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

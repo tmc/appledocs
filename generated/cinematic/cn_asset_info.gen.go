@@ -86,15 +86,6 @@ func NewCNAssetInfo() CNAssetInfo {
 
 
 
-// Determines if the asset is Cinematic.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/checkIfCinematic:completionHandler:
-func (cc _CNAssetInfoClass) CheckIfCinematicCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("checkIfCinematic:completionHandler:"), asset, completionHandler)
-}
-
-
 // The track used for Cinematic frame timing.
 //
 // [Full Topic]

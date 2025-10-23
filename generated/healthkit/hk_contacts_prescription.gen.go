@@ -29,12 +29,14 @@ type _HKContactsPrescriptionClass struct {
 // An interface definition for the [HKContactsPrescription] class.
 type IHKContactsPrescription interface {
 	IHKVisionPrescription
+	// properties:
 	Brand() string
 	SetBrand(value string)
-	LeftEye() HKContactsLensSpecification
+	LeftEye() IHKContactsLensSpecification
 	SetLeftEye(value IHKContactsLensSpecification)
-	RightEye() HKContactsLensSpecification
+	RightEye() IHKContactsLensSpecification
 	SetRightEye(value IHKContactsLensSpecification)
+	// methods:
 }
 
 // A sample that store a prescription for contacts.
@@ -115,7 +117,7 @@ func (h_ HKContactsPrescription) SetBrand(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
-func (h_ HKContactsPrescription) LeftEye() HKContactsLensSpecification {
+func (h_ HKContactsPrescription) LeftEye() IHKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
@@ -134,7 +136,7 @@ func (h_ HKContactsPrescription) SetLeftEye(value IHKContactsLensSpecification) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
-func (h_ HKContactsPrescription) RightEye() HKContactsLensSpecification {
+func (h_ HKContactsPrescription) RightEye() IHKContactsLensSpecification {
 	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }

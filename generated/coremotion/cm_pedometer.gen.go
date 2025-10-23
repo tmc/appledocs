@@ -31,9 +31,9 @@ type _PedometerClass struct {
 // An interface definition for the [Pedometer] class.
 type IPedometer interface {
 	objectivec.IObject
-	QueryPedometerDataFromDateToDateWithHandler(start foundation.IDate, end foundation.IDate, handler unsafe.Pointer)
+	QueryPedometerDataFromDateToDateWithHandler(start foundation.NSDate, end foundation.NSDate, handler unsafe.Pointer)
 	StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer)
-	StartPedometerUpdatesFromDateWithHandler(start foundation.IDate, handler unsafe.Pointer)
+	StartPedometerUpdatesFromDateWithHandler(start foundation.NSDate, handler unsafe.Pointer)
 	StopPedometerEventUpdates()
 	StopPedometerUpdates()
 }
@@ -95,8 +95,8 @@ func NewPedometer() Pedometer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/authorizationStatus()
-func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
+func (pc _PedometerClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (pc _PedometerClass) IsStepCountingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)
-func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.IDate, end foundation.IDate, handler unsafe.Pointer) {
+func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.NSDate, end foundation.NSDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("queryPedometerDataFromDate:toDate:withHandler:"), start, end, handler)
 }
 
@@ -183,7 +183,7 @@ func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)
-func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.IDate, handler unsafe.Pointer) {
+func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.NSDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerUpdatesFromDate:withHandler:"), start, handler)
 }
 

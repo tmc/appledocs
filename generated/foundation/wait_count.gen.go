@@ -30,6 +30,8 @@ type _waitCountClass struct {
 // An interface definition for the [waitCount] class.
 type IwaitCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

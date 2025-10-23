@@ -30,6 +30,8 @@ type _requestModesClass struct {
 // An interface definition for the [requestModes] class.
 type IrequestModes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

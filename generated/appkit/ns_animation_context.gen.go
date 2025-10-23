@@ -38,7 +38,7 @@ type IAnimationContext interface {
 	Duration() unsafe.Pointer
 	SetDuration(value unsafe.Pointer)
 	TimingFunction() quartzcore.MediaTimingFunction
-	SetTimingFunction(value quartzcore.IMediaTimingFunction)
+	SetTimingFunction(value quartzcore.MediaTimingFunction)
 }
 
 // An animation context, which contains information about environment and state.
@@ -92,43 +92,6 @@ func NewAnimationContext() AnimationContext {
 	return getAnimationContextClass().New()
 }
 
-
-
-// Ends the current animation grouping.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/endGrouping()
-func (ac _AnimationContextClass) EndGrouping() {
-	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("endGrouping"))
-}
-
-
-// Allows you to specify a completion block body after the set of animation actions whose completion will trigger the completion block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/runAnimationGroup(_:completionHandler:)
-func (ac _AnimationContextClass) RunAnimationGroupCompletionHandler(changes unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runAnimationGroup:completionHandler:"), changes, completionHandler)
-}
-
-
-// Returns the current animation context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
-func (ac _AnimationContextClass) CurrentContext() AnimationContext {
-	rv := objc.Send[NSAnimationContext](objc.ID(ac.class), objc.Sel("currentContext"))
-	return rv
-}
-
-// Returns the current animation context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationContext/current
-func (a_ AnimationContext) CurrentContext() NSAnimationContext {
-	rv := objc.Send[NSAnimationContext](a_.ID, objc.Sel("currentContext"))
-	return rv
-}
 
 
 // Determine if animations are enabled or not for animations that occur as a result of another property change.
@@ -202,7 +165,7 @@ func (a_ AnimationContext) TimingFunction() quartzcore.MediaTimingFunction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimationcontext/timingfunction
-func (a_ AnimationContext) SetTimingFunction(value quartzcore.IMediaTimingFunction) {
+func (a_ AnimationContext) SetTimingFunction(value quartzcore.MediaTimingFunction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
 }
 

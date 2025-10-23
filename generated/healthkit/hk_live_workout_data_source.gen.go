@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,10 @@ type _HKLiveWorkoutDataSourceClass struct {
 // An interface definition for the [HKLiveWorkoutDataSource] class.
 type IHKLiveWorkoutDataSource interface {
 	objectivec.IObject
-	DisableCollectionForType(quantityType HKQuantityType)
-	EnableCollectionForTypePredicate(quantityType HKQuantityType, predicate foundation.IPredicate)
-	TypesToCollect() unsafe.Pointer
+	// properties:
+	TypesToCollect() IHKQuantityType
+	SetTypesToCollect(value IHKQuantityType)
+	// methods:
 }
 
 // A data source that automatically provides live data from an active workout session.
@@ -87,44 +87,23 @@ func NewHKLiveWorkoutDataSource() HKLiveWorkoutDataSource {
 
 
 
-// Creates a new data source based on the provided workout configuration.
+// The quantity type samples that the data source automatically sends to the workout builder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutDataSource/init(healthStore:workoutConfiguration:)
-func NewHKLiveWorkoutDataSourceWithHealthStoreWorkoutConfiguration(healthStore IHKHealthStore, configuration IHKWorkoutConfiguration) HKLiveWorkoutDataSource {
-	instance := getHKLiveWorkoutDataSourceClass().Alloc()
-	rv := objc.Send[HKLiveWorkoutDataSource](instance.ID, objc.Sel("initWithHealthStore:workoutConfiguration:"), healthStore, configuration)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutdatasource/typestocollect
+func (h_ HKLiveWorkoutDataSource) TypesToCollect() IHKQuantityType {
+	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("typesToCollect"))
 	return rv
-}
-
-
-
-// Stops automatically calculating statistics for the quantity type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutDataSource/disableCollection(for:)
-func (h_ HKLiveWorkoutDataSource) DisableCollectionForType(quantityType HKQuantityType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("disableCollectionForType:"), quantityType)
-}
-
-
-// Begins automatically calculating statistics for samples that match the quantity type and predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutDataSource/enableCollection(for:predicate:)
-func (h_ HKLiveWorkoutDataSource) EnableCollectionForTypePredicate(quantityType HKQuantityType, predicate foundation.IPredicate) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("enableCollectionForType:predicate:"), quantityType, predicate)
 }
 
 
 // The quantity type samples that the data source automatically sends to the workout builder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutDataSource/typesToCollect
-func (h_ HKLiveWorkoutDataSource) TypesToCollect() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("typesToCollect"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkliveworkoutdatasource/typestocollect
+func (h_ HKLiveWorkoutDataSource) SetTypesToCollect(value IHKQuantityType) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setTypesToCollect:"), value)
 }
+
 
 

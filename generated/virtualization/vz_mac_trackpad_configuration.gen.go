@@ -29,14 +29,18 @@ type _VZMacTrackpadConfigurationClass struct {
 // An interface definition for the [VZMacTrackpadConfiguration] class.
 type IVZMacTrackpadConfiguration interface {
 	IVZPointingDeviceConfiguration
-	PointingDevices() VZPointingDeviceConfiguration
+	PointingDevices() IVZPointingDeviceConfiguration
 	SetPointingDevices(value IVZPointingDeviceConfiguration)
 }
 
 // The class that represents the configuration for a Mac trackpad.
 //
 // The uses this device to send pointer events and multi-touch trackpad gestures to the virtual machine. In macOS 13 and later, guests use the multi-touch trackpad device, while earlier versions of macOS uses the USB pointing device.
+
+
+// The class that represents the configuration for a Mac trackpad.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacTrackpadConfiguration
 type VZMacTrackpadConfiguration struct {
 	VZPointingDeviceConfiguration
@@ -84,19 +88,20 @@ func NewVZMacTrackpadConfiguration() VZMacTrackpadConfiguration {
 
 
 
+
 // The list of pointing devices.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/pointingdevices
-func (v_ VZMacTrackpadConfiguration) PointingDevices() VZPointingDeviceConfiguration {
+func (v_ VZMacTrackpadConfiguration) PointingDevices() IVZPointingDeviceConfiguration {
 	rv := objc.Send[VZPointingDeviceConfiguration](v_.ID, objc.Sel("pointingDevices"))
 	return rv
 }
 
 
-// SetPointingDevices sets the value of the pointingDevices property.
 // The list of pointing devices.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/pointingdevices
 func (v_ VZMacTrackpadConfiguration) SetPointingDevices(value IVZPointingDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), value)

@@ -33,12 +33,8 @@ type _PlayerViewClass struct {
 // An interface definition for the [PlayerView] class.
 type IPlayerView interface {
 	appkit.IView
-	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
-	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string)
-	SelectSpeed(speed IAVPlaybackSpeed)
-	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
 	ActionPopUpButtonMenu() appkit.Menu
-	SetActionPopUpButtonMenu(value appkit.IMenu)
+	SetActionPopUpButtonMenu(value appkit.Menu)
 	AllowsMagnification() bool
 	SetAllowsMagnification(value bool)
 	AllowsPictureInPicturePlayback() bool
@@ -47,8 +43,8 @@ type IPlayerView interface {
 	SetAllowsVideoFrameAnalysis(value bool)
 	CanBeginTrimming() bool
 	ContentOverlayView() appkit.View
-	ControlsStyle() PlayerViewControlsStyle
-	SetControlsStyle(value PlayerViewControlsStyle)
+	ControlsStyle() AVPlayerViewControlsStyle
+	SetControlsStyle(value AVPlayerViewControlsStyle)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	ReadyForDisplay() bool
@@ -57,10 +53,10 @@ type IPlayerView interface {
 	PictureInPictureDelegate() objc.ID
 	SetPictureInPictureDelegate(value objc.ID)
 	Player() avfoundation.Player
-	SetPlayer(value avfoundation.IPlayer)
-	PreferredDisplayDynamicRange() DisplayDynamicRange
-	SetPreferredDisplayDynamicRange(value IDisplayDynamicRange)
-	SelectedSpeed() AVPlaybackSpeed
+	SetPlayer(value avfoundation.Player)
+	PreferredDisplayDynamicRange() AVDisplayDynamicRange
+	SetPreferredDisplayDynamicRange(value AVDisplayDynamicRange)
+	SelectedSpeed() IAVPlaybackSpeed
 	ShowsFrameSteppingButtons() bool
 	SetShowsFrameSteppingButtons(value bool)
 	ShowsFullScreenToggleButton() bool
@@ -74,12 +70,16 @@ type IPlayerView interface {
 	UpdatesNowPlayingInfoCenter() bool
 	SetUpdatesNowPlayingInfoCenter(value bool)
 	VideoBounds() foundation.Rect
-	VideoFrameAnalysisTypes() VideoFrameAnalysisType
-	SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType)
+	VideoFrameAnalysisTypes() AVVideoFrameAnalysisType
+	SetVideoFrameAnalysisTypes(value AVVideoFrameAnalysisType)
 	VideoGravity() unsafe.Pointer
 	SetVideoGravity(value unsafe.Pointer)
 	IsReadyForDisplay() bool
 	SetIsReadyForDisplay(value bool)
+	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
+	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string)
+	SelectSpeed(speed IAVPlaybackSpeed)
+	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
 }
 
 // A view that displays content from a player and presents a native user interface to control playback.
@@ -187,7 +187,7 @@ func (p_ PlayerView) ActionPopUpButtonMenu() appkit.Menu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
-func (p_ PlayerView) SetActionPopUpButtonMenu(value appkit.IMenu) {
+func (p_ PlayerView) SetActionPopUpButtonMenu(value appkit.Menu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionPopUpButtonMenu:"), value)
 }
 
@@ -273,8 +273,8 @@ func (p_ PlayerView) ContentOverlayView() appkit.View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-func (p_ PlayerView) ControlsStyle() PlayerViewControlsStyle {
-	rv := objc.Send[PlayerViewControlsStyle](p_.ID, objc.Sel("controlsStyle"))
+func (p_ PlayerView) ControlsStyle() AVPlayerViewControlsStyle {
+	rv := objc.Send[AVPlayerViewControlsStyle](p_.ID, objc.Sel("controlsStyle"))
 	return rv
 }
 
@@ -283,7 +283,7 @@ func (p_ PlayerView) ControlsStyle() PlayerViewControlsStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-func (p_ PlayerView) SetControlsStyle(value PlayerViewControlsStyle) {
+func (p_ PlayerView) SetControlsStyle(value AVPlayerViewControlsStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlsStyle:"), value)
 }
 
@@ -369,7 +369,7 @@ func (p_ PlayerView) Player() avfoundation.Player {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
-func (p_ PlayerView) SetPlayer(value avfoundation.IPlayer) {
+func (p_ PlayerView) SetPlayer(value avfoundation.Player) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
 
@@ -378,8 +378,8 @@ func (p_ PlayerView) SetPlayer(value avfoundation.IPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-func (p_ PlayerView) PreferredDisplayDynamicRange() DisplayDynamicRange {
-	rv := objc.Send[DisplayDynamicRange](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
+func (p_ PlayerView) PreferredDisplayDynamicRange() AVDisplayDynamicRange {
+	rv := objc.Send[AVDisplayDynamicRange](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
 	return rv
 }
 
@@ -388,7 +388,7 @@ func (p_ PlayerView) PreferredDisplayDynamicRange() DisplayDynamicRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-func (p_ PlayerView) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange) {
+func (p_ PlayerView) SetPreferredDisplayDynamicRange(value AVDisplayDynamicRange) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
 
@@ -397,8 +397,8 @@ func (p_ PlayerView) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectedSpeed
-func (p_ PlayerView) SelectedSpeed() AVPlaybackSpeed {
-	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
+func (p_ PlayerView) SelectedSpeed() IAVPlaybackSpeed {
+	rv := objc.Send[PlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
 }
 
@@ -539,15 +539,15 @@ func (p_ PlayerView) VideoBounds() foundation.Rect {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-func (p_ PlayerView) VideoFrameAnalysisTypes() VideoFrameAnalysisType {
-	rv := objc.Send[VideoFrameAnalysisType](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
+func (p_ PlayerView) VideoFrameAnalysisTypes() AVVideoFrameAnalysisType {
+	rv := objc.Send[AVVideoFrameAnalysisType](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-func (p_ PlayerView) SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType) {
+func (p_ PlayerView) SetVideoFrameAnalysisTypes(value AVVideoFrameAnalysisType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
 

@@ -30,7 +30,7 @@ type _IncrementalStoreNodeClass struct {
 // An interface definition for the [IncrementalStoreNode] class.
 type IIncrementalStoreNode interface {
 	objectivec.IObject
-	ObjectID() NSManagedObjectID
+	ObjectID() IManagedObjectID
 	Version() uint64
 	SetVersion(value uint64)
 }
@@ -92,8 +92,8 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
-func (i_ IncrementalStoreNode) ObjectID() NSManagedObjectID {
-	rv := objc.Send[NSManagedObjectID](i_.ID, objc.Sel("objectID"))
+func (i_ IncrementalStoreNode) ObjectID() IManagedObjectID {
+	rv := objc.Send[ManagedObjectID](i_.ID, objc.Sel("objectID"))
 	return rv
 }
 

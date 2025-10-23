@@ -30,29 +30,31 @@ type _CoderClass struct {
 // An interface definition for the [Coder] class.
 type ICoder interface {
 	objectivec.IObject
-	DecodingFailurePolicy() unsafe.Pointer
+	// properties:
+	DecodingFailurePolicy() DecodingFailurePolicy /* foo */
 	AllowedClasses() unsafe.Pointer
 	SetAllowedClasses(value unsafe.Pointer)
-	AllowsKeyedCoding() bool
-	SetAllowsKeyedCoding(value bool)
+	AllowsKeyedCoding() bool /* primitive/slice/pointer */
+	SetAllowsKeyedCoding(value bool /* primitive/slice/pointer */)
 	Error() IError
 	SetError(value IError)
-	RequiresSecureCoding() bool
-	SetRequiresSecureCoding(value bool)
+	RequiresSecureCoding() bool /* primitive/slice/pointer */
+	SetRequiresSecureCoding(value bool /* primitive/slice/pointer */)
 	SystemVersion() unsafe.Pointer
 	SetSystemVersion(value unsafe.Pointer)
-	NSCoderErrorMaximum() int
-	SetNSCoderErrorMaximum(value int)
-	NSCoderErrorMinimum() int
-	SetNSCoderErrorMinimum(value int)
-	NSCoderInvalidValueError() int
-	SetNSCoderInvalidValueError(value int)
-	NSCoderReadCorruptError() int
-	SetNSCoderReadCorruptError(value int)
-	NSCoderValueNotFoundError() int
-	SetNSCoderValueNotFoundError(value int)
+	NSCoderErrorMaximum() int /* primitive/slice/pointer */
+	SetNSCoderErrorMaximum(value int /* primitive/slice/pointer */)
+	NSCoderErrorMinimum() int /* primitive/slice/pointer */
+	SetNSCoderErrorMinimum(value int /* primitive/slice/pointer */)
+	NSCoderInvalidValueError() int /* primitive/slice/pointer */
+	SetNSCoderInvalidValueError(value int /* primitive/slice/pointer */)
+	NSCoderReadCorruptError() int /* primitive/slice/pointer */
+	SetNSCoderReadCorruptError(value int /* primitive/slice/pointer */)
+	NSCoderValueNotFoundError() int /* primitive/slice/pointer */
+	SetNSCoderValueNotFoundError(value int /* primitive/slice/pointer */)
+	// methods:
 	DecodeObject() objc.ID
-	DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
+	DecodeObjectOfClassForKey(aClass objc.Class, key string /* primitive/slice/pointer */) objc.ID
 }
 
 // An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
@@ -122,7 +124,7 @@ func (c_ Coder) DecodeObject() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeObjectOfClass:forKey:
-func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID {
+func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string /* primitive/slice/pointer */) objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeObjectOfClass:forKey:"), aClass, objc.String(key))
 	return rv
 }
@@ -132,8 +134,8 @@ func (c_ Coder) DecodeObjectOfClassForKey(aClass objc.Class, key string) objc.ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodingFailurePolicy-swift.property
-func (c_ Coder) DecodingFailurePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("decodingFailurePolicy"))
+func (c_ Coder) DecodingFailurePolicy() DecodingFailurePolicy /* foo */ {
+	rv := objc.Send[DecodingFailurePolicy](c_.ID, objc.Sel("decodingFailurePolicy"))
 	return rv
 }
 
@@ -161,7 +163,7 @@ func (c_ Coder) SetAllowedClasses(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowskeyedcoding
-func (c_ Coder) AllowsKeyedCoding() bool {
+func (c_ Coder) AllowsKeyedCoding() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsKeyedCoding"))
 	return rv
 }
@@ -171,7 +173,7 @@ func (c_ Coder) AllowsKeyedCoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/allowskeyedcoding
-func (c_ Coder) SetAllowsKeyedCoding(value bool) {
+func (c_ Coder) SetAllowsKeyedCoding(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsKeyedCoding:"), value)
 }
 
@@ -199,7 +201,7 @@ func (c_ Coder) SetError(value IError) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/requiressecurecoding
-func (c_ Coder) RequiresSecureCoding() bool {
+func (c_ Coder) RequiresSecureCoding() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requiresSecureCoding"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (c_ Coder) RequiresSecureCoding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoder/requiressecurecoding
-func (c_ Coder) SetRequiresSecureCoding(value bool) {
+func (c_ Coder) SetRequiresSecureCoding(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiresSecureCoding:"), value)
 }
 
@@ -237,7 +239,7 @@ func (c_ Coder) SetSystemVersion(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrormaximum-swift.var
-func (c_ Coder) NSCoderErrorMaximum() int {
+func (c_ Coder) NSCoderErrorMaximum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderErrorMaximum"))
 	return rv
 }
@@ -247,7 +249,7 @@ func (c_ Coder) NSCoderErrorMaximum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrormaximum-swift.var
-func (c_ Coder) SetNSCoderErrorMaximum(value int) {
+func (c_ Coder) SetNSCoderErrorMaximum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderErrorMaximum:"), value)
 }
 
@@ -256,7 +258,7 @@ func (c_ Coder) SetNSCoderErrorMaximum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrorminimum-swift.var
-func (c_ Coder) NSCoderErrorMinimum() int {
+func (c_ Coder) NSCoderErrorMinimum() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderErrorMinimum"))
 	return rv
 }
@@ -266,7 +268,7 @@ func (c_ Coder) NSCoderErrorMinimum() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodererrorminimum-swift.var
-func (c_ Coder) SetNSCoderErrorMinimum(value int) {
+func (c_ Coder) SetNSCoderErrorMinimum(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderErrorMinimum:"), value)
 }
 
@@ -275,7 +277,7 @@ func (c_ Coder) SetNSCoderErrorMinimum(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror-swift.var
-func (c_ Coder) NSCoderInvalidValueError() int {
+func (c_ Coder) NSCoderInvalidValueError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderInvalidValueError"))
 	return rv
 }
@@ -285,7 +287,7 @@ func (c_ Coder) NSCoderInvalidValueError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror-swift.var
-func (c_ Coder) SetNSCoderInvalidValueError(value int) {
+func (c_ Coder) SetNSCoderInvalidValueError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderInvalidValueError:"), value)
 }
 
@@ -294,7 +296,7 @@ func (c_ Coder) SetNSCoderInvalidValueError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
-func (c_ Coder) NSCoderReadCorruptError() int {
+func (c_ Coder) NSCoderReadCorruptError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderReadCorruptError"))
 	return rv
 }
@@ -304,7 +306,7 @@ func (c_ Coder) NSCoderReadCorruptError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-swift.var
-func (c_ Coder) SetNSCoderReadCorruptError(value int) {
+func (c_ Coder) SetNSCoderReadCorruptError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderReadCorruptError:"), value)
 }
 
@@ -313,7 +315,7 @@ func (c_ Coder) SetNSCoderReadCorruptError(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
-func (c_ Coder) NSCoderValueNotFoundError() int {
+func (c_ Coder) NSCoderValueNotFoundError() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("NSCoderValueNotFoundError"))
 	return rv
 }
@@ -323,7 +325,7 @@ func (c_ Coder) NSCoderValueNotFoundError() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-swift.var
-func (c_ Coder) SetNSCoderValueNotFoundError(value int) {
+func (c_ Coder) SetNSCoderValueNotFoundError(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNSCoderValueNotFoundError:"), value)
 }
 

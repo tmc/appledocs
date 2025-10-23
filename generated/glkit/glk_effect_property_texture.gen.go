@@ -29,6 +29,7 @@ type _GLKEffectPropertyTextureClass struct {
 // An interface definition for the [GLKEffectPropertyTexture] class.
 type IGLKEffectPropertyTexture interface {
 	IGLKEffectProperty
+	// properties:
 	Enabled() unsafe.Pointer
 	SetEnabled(value unsafe.Pointer)
 	EnvMode() GLKTextureEnvMode
@@ -36,7 +37,8 @@ type IGLKEffectPropertyTexture interface {
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	Target() GLKTextureTarget
-	SetTarget(value IGLKTextureTarget)
+	SetTarget(value GLKTextureTarget)
+	// methods:
 }
 
 // Texture drawing parameters for use in GLKit rendering effects.
@@ -165,7 +167,7 @@ func (g_ GLKEffectPropertyTexture) Target() GLKTextureTarget {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/target
-func (g_ GLKEffectPropertyTexture) SetTarget(value IGLKTextureTarget) {
+func (g_ GLKEffectPropertyTexture) SetTarget(value GLKTextureTarget) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTarget:"), value)
 }
 

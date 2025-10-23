@@ -15,7 +15,7 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_NSExceptionHandlerResume func() unsafe.Pointer
+	_NSExceptionHandlerResume func()
 )
 
 func init() {
@@ -43,13 +43,11 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // NSExceptionHandlerResume is a ExceptionHandling function.
 //
 // Added in macOS 10.0.
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandlerResume()
 func NSExceptionHandlerResume() {
 	_NSExceptionHandlerResume()
-	}
-
+}
 
 
 

@@ -29,11 +29,11 @@ type _ComboButtonClass struct {
 // An interface definition for the [ComboButton] class.
 type IComboButton interface {
 	IControl
-	Image() Image
+	Image() IImage
 	SetImage(value IImage)
 	ImageScaling() ImageScaling
-	SetImageScaling(value IImageScaling)
-	Menu() NSMenu
+	SetImageScaling(value ImageScaling)
+	Menu() IMenu
 	SetMenu(value IMenu)
 	Style() unsafe.Pointer
 	SetStyle(value unsafe.Pointer)
@@ -104,7 +104,7 @@ func NewComboButton() ComboButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/image
-func (c_ ComboButton) Image() Image {
+func (c_ ComboButton) Image() IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("image"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (c_ ComboButton) ImageScaling() ImageScaling {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/imagescaling
-func (c_ ComboButton) SetImageScaling(value IImageScaling) {
+func (c_ ComboButton) SetImageScaling(value ImageScaling) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageScaling:"), value)
 }
 
@@ -142,8 +142,8 @@ func (c_ ComboButton) SetImageScaling(value IImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobutton/menu
-func (c_ ComboButton) Menu() NSMenu {
-	rv := objc.Send[NSMenu](c_.ID, objc.Sel("menu"))
+func (c_ ComboButton) Menu() IMenu {
+	rv := objc.Send[Menu](c_.ID, objc.Sel("menu"))
 	return rv
 }
 

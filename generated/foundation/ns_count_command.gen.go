@@ -29,6 +29,8 @@ type _CountCommandClass struct {
 // An interface definition for the [CountCommand] class.
 type ICountCommand interface {
 	IScriptCommand
+	// properties:
+	// methods:
 }
 
 // A command that counts the number of objects of a specified class in the specified object container.

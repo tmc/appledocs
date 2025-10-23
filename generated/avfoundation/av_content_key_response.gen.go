@@ -30,6 +30,8 @@ type _ContentKeyResponseClass struct {
 // An interface definition for the [ContentKeyResponse] class.
 type IContentKeyResponse interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that encapsulates information about a response to a content decryption key request.

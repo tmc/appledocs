@@ -31,11 +31,11 @@ type _BeaconIdentityConstraintClass struct {
 type IBeaconIdentityConstraint interface {
 	IBeaconIdentityCondition
 	Major() foundation.Number
-	SetMajor(value foundation.INumber)
+	SetMajor(value foundation.Number)
 	Minor() foundation.Number
-	SetMinor(value foundation.INumber)
+	SetMinor(value foundation.Number)
 	Uuid() foundation.UUID
-	SetUuid(value foundation.IUUID)
+	SetUuid(value foundation.UUID)
 }
 
 // Identity characteristics that can match one or more beacons.
@@ -107,7 +107,7 @@ func (b_ BeaconIdentityConstraint) Major() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) SetMajor(value foundation.INumber) {
+func (b_ BeaconIdentityConstraint) SetMajor(value foundation.Number) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
@@ -126,7 +126,7 @@ func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) SetMinor(value foundation.INumber) {
+func (b_ BeaconIdentityConstraint) SetMinor(value foundation.Number) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
@@ -145,7 +145,7 @@ func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) SetUuid(value foundation.IUUID) {
+func (b_ BeaconIdentityConstraint) SetUuid(value foundation.UUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
 

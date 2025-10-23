@@ -34,7 +34,7 @@ type IQRCodeFeature interface {
 	BottomRight() coregraphics.CGPoint
 	Bounds() coregraphics.CGRect
 	MessageString() string
-	SymbolDescriptor() CIQRCodeDescriptor
+	SymbolDescriptor() ICIQRCodeDescriptor
 	TopLeft() coregraphics.CGPoint
 	TopRight() coregraphics.CGPoint
 	CIDetectorTypeQRCode() string
@@ -139,8 +139,8 @@ func (q_ QRCodeFeature) MessageString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-swift.property
-func (q_ QRCodeFeature) SymbolDescriptor() CIQRCodeDescriptor {
-	rv := objc.Send[CIQRCodeDescriptor](q_.ID, objc.Sel("symbolDescriptor"))
+func (q_ QRCodeFeature) SymbolDescriptor() ICIQRCodeDescriptor {
+	rv := objc.Send[QRCodeDescriptor](q_.ID, objc.Sel("symbolDescriptor"))
 	return rv
 }
 

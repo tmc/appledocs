@@ -30,6 +30,8 @@ type _mL2ChannelClass struct {
 // An interface definition for the [mL2Channel] class.
 type ImL2Channel interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

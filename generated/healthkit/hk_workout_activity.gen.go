@@ -31,7 +31,7 @@ type _HKWorkoutActivityClass struct {
 // An interface definition for the [HKWorkoutActivity] class.
 type IHKWorkoutActivity interface {
 	objectivec.IObject
-	Duration() foundation.TimeInterval
+	// properties:
 	HKPredicateKeyPathWorkoutActivity() string
 	HKPredicateKeyPathWorkoutActivityAverageQuantity() string
 	HKPredicateKeyPathWorkoutActivityDuration() string
@@ -41,21 +41,24 @@ type IHKWorkoutActivity interface {
 	HKPredicateKeyPathWorkoutActivityStartDate() string
 	HKPredicateKeyPathWorkoutActivitySumQuantity() string
 	HKPredicateKeyPathWorkoutActivityType() string
-	AllStatistics() HKStatistics
+	AllStatistics() IHKStatistics
 	SetAllStatistics(value IHKStatistics)
+	Duration() unsafe.Pointer
+	SetDuration(value unsafe.Pointer)
 	EndDate() foundation.Date
-	SetEndDate(value foundation.IDate)
+	SetEndDate(value foundation.Date)
 	Metadata() string
 	SetMetadata(value string)
 	StartDate() foundation.Date
-	SetStartDate(value foundation.IDate)
+	SetStartDate(value foundation.Date)
 	Uuid() foundation.UUID
-	SetUuid(value foundation.IUUID)
-	WorkoutConfiguration() HKWorkoutConfiguration
+	SetUuid(value foundation.UUID)
+	WorkoutConfiguration() IHKWorkoutConfiguration
 	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
-	WorkoutEvents() HKWorkoutEvent
+	WorkoutEvents() IHKWorkoutEvent
 	SetWorkoutEvents(value IHKWorkoutEvent)
 	HKWorkoutTypeIdentifier() string
+	// methods:
 }
 
 // An object that describes an activity within a longer workout.
@@ -109,16 +112,6 @@ func NewHKWorkoutActivity() HKWorkoutActivity {
 	return getHKWorkoutActivityClass().New()
 }
 
-
-
-// The activity’s duration, measured in seconds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutActivity/duration
-func (h_ HKWorkoutActivity) Duration() foundation.TimeInterval {
-	rv := objc.Send[foundation.TimeInterval](h_.ID, objc.Sel("duration"))
-	return rv
-}
 
 
 // The key path for accessing a specific workout activity.
@@ -215,7 +208,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/allstatistics
-func (h_ HKWorkoutActivity) AllStatistics() HKStatistics {
+func (h_ HKWorkoutActivity) AllStatistics() IHKStatistics {
 	rv := objc.Send[HKStatistics](h_.ID, objc.Sel("allStatistics"))
 	return rv
 }
@@ -227,6 +220,25 @@ func (h_ HKWorkoutActivity) AllStatistics() HKStatistics {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/allstatistics
 func (h_ HKWorkoutActivity) SetAllStatistics(value IHKStatistics) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAllStatistics:"), value)
+}
+
+
+// The activity’s duration, measured in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/duration
+func (h_ HKWorkoutActivity) Duration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// The activity’s duration, measured in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/duration
+func (h_ HKWorkoutActivity) SetDuration(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setDuration:"), value)
 }
 
 
@@ -244,7 +256,7 @@ func (h_ HKWorkoutActivity) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/enddate
-func (h_ HKWorkoutActivity) SetEndDate(value foundation.IDate) {
+func (h_ HKWorkoutActivity) SetEndDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -282,7 +294,7 @@ func (h_ HKWorkoutActivity) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/startdate
-func (h_ HKWorkoutActivity) SetStartDate(value foundation.IDate) {
+func (h_ HKWorkoutActivity) SetStartDate(value foundation.Date) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -301,7 +313,7 @@ func (h_ HKWorkoutActivity) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/uuid
-func (h_ HKWorkoutActivity) SetUuid(value foundation.IUUID) {
+func (h_ HKWorkoutActivity) SetUuid(value foundation.UUID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 
@@ -310,7 +322,7 @@ func (h_ HKWorkoutActivity) SetUuid(value foundation.IUUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/workoutconfiguration
-func (h_ HKWorkoutActivity) WorkoutConfiguration() HKWorkoutConfiguration {
+func (h_ HKWorkoutActivity) WorkoutConfiguration() IHKWorkoutConfiguration {
 	rv := objc.Send[HKWorkoutConfiguration](h_.ID, objc.Sel("workoutConfiguration"))
 	return rv
 }
@@ -329,7 +341,7 @@ func (h_ HKWorkoutActivity) SetWorkoutConfiguration(value IHKWorkoutConfiguratio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/workoutevents
-func (h_ HKWorkoutActivity) WorkoutEvents() HKWorkoutEvent {
+func (h_ HKWorkoutActivity) WorkoutEvents() IHKWorkoutEvent {
 	rv := objc.Send[HKWorkoutEvent](h_.ID, objc.Sel("workoutEvents"))
 	return rv
 }

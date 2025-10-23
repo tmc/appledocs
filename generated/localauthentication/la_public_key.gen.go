@@ -31,11 +31,13 @@ type _PublicKeyClass struct {
 // An interface definition for the [PublicKey] class.
 type IPublicKey interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	CanEncryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
 	CanVerifyUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
-	EncryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
+	EncryptDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer)
 	ExportBytesWithCompletion(handler unsafe.Pointer)
-	VerifyDataSignatureSecKeyAlgorithmCompletion(signedData foundation.IData, signature foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer)
+	VerifyDataSignatureSecKeyAlgorithmCompletion(signedData foundation.NSData, signature foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer)
 }
 
 // The public portion of an asymmetric key pair.
@@ -113,7 +115,7 @@ func (p_ PublicKey) CanVerifyUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPublicKey/encrypt(_:algorithm:completion:)
-func (p_ PublicKey) EncryptDataSecKeyAlgorithmCompletion(data foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PublicKey) EncryptDataSecKeyAlgorithmCompletion(data foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("encryptData:secKeyAlgorithm:completion:"), data, algorithm, handler)
 }
 
@@ -131,7 +133,7 @@ func (p_ PublicKey) ExportBytesWithCompletion(handler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPublicKey/verify(_:signature:algorithm:completion:)
-func (p_ PublicKey) VerifyDataSignatureSecKeyAlgorithmCompletion(signedData foundation.IData, signature foundation.IData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PublicKey) VerifyDataSignatureSecKeyAlgorithmCompletion(signedData foundation.NSData, signature foundation.NSData, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("verifyData:signature:secKeyAlgorithm:completion:"), signedData, signature, algorithm, handler)
 }
 

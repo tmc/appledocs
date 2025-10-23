@@ -30,14 +30,18 @@ type _VZConsoleDeviceClass struct {
 // An interface definition for the [VZConsoleDevice] class.
 type IVZConsoleDevice interface {
 	objectivec.IObject
-	ConsoleDevices() VZConsoleDevice
+	ConsoleDevices() IVZConsoleDevice
 	SetConsoleDevices(value IVZConsoleDevice)
 }
 
 // A class that represents a console device in a VM.
 //
 // Don’t instantiate a directly: You first configure console devices on the through a subclass of . After you create from the configuration, the console devices are available through the property. The actual type of corresponds to the type that the configuration uses. For example, a is a device of type .
+
+
+// A class that represents a console device in a VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsoleDevice
 type VZConsoleDevice struct {
 	objectivec.Object
@@ -82,19 +86,20 @@ func NewVZConsoleDevice() VZConsoleDevice {
 }
 
 
+
 // The list of configured console devices on the VM.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
-func (v_ VZConsoleDevice) ConsoleDevices() VZConsoleDevice {
+func (v_ VZConsoleDevice) ConsoleDevices() IVZConsoleDevice {
 	rv := objc.Send[VZConsoleDevice](v_.ID, objc.Sel("consoleDevices"))
 	return rv
 }
 
 
-// SetConsoleDevices sets the value of the consoleDevices property.
 // The list of configured console devices on the VM.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
 func (v_ VZConsoleDevice) SetConsoleDevices(value IVZConsoleDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)

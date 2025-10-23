@@ -30,10 +30,12 @@ type _RecursiveLockClass struct {
 // An interface definition for the [RecursiveLock] class.
 type IRecursiveLock interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	LockBeforeDate(limit IDate) bool
-	TryLock() bool
+	// properties:
+	Name() string /* primitive/slice/pointer */
+	SetName(value string /* primitive/slice/pointer */)
+	// methods:
+	LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */
+	TryLock() bool /* primitive/slice/pointer */
 }
 
 // A lock that may be acquired multiple times by the same thread without causing a deadlock.
@@ -93,7 +95,7 @@ func NewRecursiveLock() RecursiveLock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/lock(before:)
-func (r_ RecursiveLock) LockBeforeDate(limit IDate) bool {
+func (r_ RecursiveLock) LockBeforeDate(limit IDate) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
@@ -103,7 +105,7 @@ func (r_ RecursiveLock) LockBeforeDate(limit IDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/try()
-func (r_ RecursiveLock) TryLock() bool {
+func (r_ RecursiveLock) TryLock() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("tryLock"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (r_ RecursiveLock) TryLock() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) Name() string {
+func (r_ RecursiveLock) Name() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](r_.ID, objc.Sel("name"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (r_ RecursiveLock) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) SetName(value string) {
+func (r_ RecursiveLock) SetName(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

@@ -29,14 +29,16 @@ type _MeasurementFormatterClass struct {
 // An interface definition for the [MeasurementFormatter] class.
 type IMeasurementFormatter interface {
 	IFormatter
+	// properties:
 	Locale() ILocale
 	SetLocale(value ILocale)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
-	UnitOptions() NSMeasurementFormatterUnitOptions
-	SetUnitOptions(value NSMeasurementFormatterUnitOptions)
-	UnitStyle() NSFormattingUnitStyle
-	SetUnitStyle(value NSFormattingUnitStyle)
+	UnitOptions() MeasurementFormatterUnitOptions
+	SetUnitOptions(value MeasurementFormatterUnitOptions)
+	UnitStyle() FormattingUnitStyle
+	SetUnitStyle(value FormattingUnitStyle)
+	// methods:
 	StringFromUnit(unit IUnit) IString
 	StringFromMeasurement(measurement IMeasurement) IString
 }
@@ -158,7 +160,7 @@ func (m_ MeasurementFormatter) SetNumberFormatter(value INumberFormatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/unitOptions-swift.property
-func (m_ MeasurementFormatter) UnitOptions() NSMeasurementFormatterUnitOptions {
+func (m_ MeasurementFormatter) UnitOptions() MeasurementFormatterUnitOptions {
 	rv := objc.Send[MeasurementFormatterUnitOptions](m_.ID, objc.Sel("unitOptions"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (m_ MeasurementFormatter) UnitOptions() NSMeasurementFormatterUnitOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/unitOptions-swift.property
-func (m_ MeasurementFormatter) SetUnitOptions(value NSMeasurementFormatterUnitOptions) {
+func (m_ MeasurementFormatter) SetUnitOptions(value MeasurementFormatterUnitOptions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitOptions:"), value)
 }
 
@@ -177,7 +179,7 @@ func (m_ MeasurementFormatter) SetUnitOptions(value NSMeasurementFormatterUnitOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/unitStyle
-func (m_ MeasurementFormatter) UnitStyle() NSFormattingUnitStyle {
+func (m_ MeasurementFormatter) UnitStyle() FormattingUnitStyle {
 	rv := objc.Send[FormattingUnitStyle](m_.ID, objc.Sel("unitStyle"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (m_ MeasurementFormatter) UnitStyle() NSFormattingUnitStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/unitStyle
-func (m_ MeasurementFormatter) SetUnitStyle(value NSFormattingUnitStyle) {
+func (m_ MeasurementFormatter) SetUnitStyle(value FormattingUnitStyle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }
 

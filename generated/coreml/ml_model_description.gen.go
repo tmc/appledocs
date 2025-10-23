@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,23 +31,24 @@ type _ModelDescriptionClass struct {
 // An interface definition for the [ModelDescription] class.
 type IModelDescription interface {
 	objectivec.IObject
-	InputDescriptionsByName() unsafe.Pointer
-	Metadata() unsafe.Pointer
-	OutputDescriptionsByName() unsafe.Pointer
+	ClassLabels() []objc.ID
+	InputDescriptionsByName() foundation.IDictionary
+	Metadata() foundation.IDictionary
+	OutputDescriptionsByName() foundation.IDictionary
 	PredictedFeatureName() string
-	PredictedProbabilitiesName() string
-	StateDescriptionsByName() unsafe.Pointer
-	Configuration() MLModelConfiguration
+	Configuration() IMLModelConfiguration
 	SetConfiguration(value IMLModelConfiguration)
-	ModelDescription() MLModelDescription
+	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
-	ClassLabels() unsafe.Pointer
-	SetClassLabels(value unsafe.Pointer)
 	IsUpdatable() bool
 	SetIsUpdatable(value bool)
 	ParameterDescriptionsByKey() unsafe.Pointer
 	SetParameterDescriptionsByKey(value unsafe.Pointer)
-	TrainingInputDescriptionsByName() MLFeatureDescription
+	PredictedProbabilitiesName() string
+	SetPredictedProbabilitiesName(value string)
+	StateDescriptionsByName() IMLFeatureDescription
+	SetStateDescriptionsByName(value IMLFeatureDescription)
+	TrainingInputDescriptionsByName() IMLFeatureDescription
 	SetTrainingInputDescriptionsByName(value IMLFeatureDescription)
 }
 
@@ -101,12 +103,22 @@ func NewModelDescription() ModelDescription {
 
 
 
+// An array of labels, which can be either strings or a numbers, for classifier models.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/classLabels
+func (m_ ModelDescription) ClassLabels() []objc.ID {
+	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("classLabels"))
+	return rv
+}
+
+
 // A dictionary of input feature descriptions, which the model keys by the input’s name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/inputDescriptionsByName
-func (m_ ModelDescription) InputDescriptionsByName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inputDescriptionsByName"))
+func (m_ ModelDescription) InputDescriptionsByName() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("inputDescriptionsByName"))
 	return rv
 }
 
@@ -115,8 +127,8 @@ func (m_ ModelDescription) InputDescriptionsByName() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/metadata
-func (m_ ModelDescription) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
+func (m_ ModelDescription) Metadata() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -125,8 +137,8 @@ func (m_ ModelDescription) Metadata() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (m_ ModelDescription) OutputDescriptionsByName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("outputDescriptionsByName"))
+func (m_ ModelDescription) OutputDescriptionsByName() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
 
@@ -141,32 +153,12 @@ func (m_ ModelDescription) PredictedFeatureName() string {
 }
 
 
-// The name of the feature output description for all probabilities of a prediction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedProbabilitiesName
-func (m_ ModelDescription) PredictedProbabilitiesName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("predictedProbabilitiesName"))
-	return rv
-}
-
-
-// Description of the state features.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/stateDescriptionsByName
-func (m_ ModelDescription) StateDescriptionsByName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("stateDescriptionsByName"))
-	return rv
-}
-
-
 // The configuration of the model set during initialization.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (m_ ModelDescription) Configuration() MLModelConfiguration {
-	rv := objc.Send[MLModelConfiguration](m_.ID, objc.Sel("configuration"))
+func (m_ ModelDescription) Configuration() IMLModelConfiguration {
+	rv := objc.Send[ModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -184,8 +176,8 @@ func (m_ ModelDescription) SetConfiguration(value IMLModelConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (m_ ModelDescription) ModelDescription() MLModelDescription {
-	rv := objc.Send[MLModelDescription](m_.ID, objc.Sel("modelDescription"))
+func (m_ ModelDescription) ModelDescription() IMLModelDescription {
+	rv := objc.Send[ModelDescription](m_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -196,25 +188,6 @@ func (m_ ModelDescription) ModelDescription() MLModelDescription {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
 func (m_ ModelDescription) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
-}
-
-
-// An array of labels, which can be either strings or a numbers, for classifier models.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/classlabels
-func (m_ ModelDescription) ClassLabels() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("classLabels"))
-	return rv
-}
-
-
-// An array of labels, which can be either strings or a numbers, for classifier models.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/classlabels
-func (m_ ModelDescription) SetClassLabels(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setClassLabels:"), value)
 }
 
 
@@ -256,12 +229,50 @@ func (m_ ModelDescription) SetParameterDescriptionsByKey(value unsafe.Pointer) {
 }
 
 
+// The name of the feature output description for all probabilities of a prediction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedprobabilitiesname
+func (m_ ModelDescription) PredictedProbabilitiesName() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("predictedProbabilitiesName"))
+	return rv
+}
+
+
+// The name of the feature output description for all probabilities of a prediction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedprobabilitiesname
+func (m_ ModelDescription) SetPredictedProbabilitiesName(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPredictedProbabilitiesName:"), objc.String(value))
+}
+
+
+// Description of the state features.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
+func (m_ ModelDescription) StateDescriptionsByName() IMLFeatureDescription {
+	rv := objc.Send[FeatureDescription](m_.ID, objc.Sel("stateDescriptionsByName"))
+	return rv
+}
+
+
+// Description of the state features.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
+func (m_ ModelDescription) SetStateDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStateDescriptionsByName:"), value)
+}
+
+
 // A dictionary of the training input feature descriptions, which the model keys by the input’s name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/traininginputdescriptionsbyname
-func (m_ ModelDescription) TrainingInputDescriptionsByName() MLFeatureDescription {
-	rv := objc.Send[MLFeatureDescription](m_.ID, objc.Sel("trainingInputDescriptionsByName"))
+func (m_ ModelDescription) TrainingInputDescriptionsByName() IMLFeatureDescription {
+	rv := objc.Send[FeatureDescription](m_.ID, objc.Sel("trainingInputDescriptionsByName"))
 	return rv
 }
 

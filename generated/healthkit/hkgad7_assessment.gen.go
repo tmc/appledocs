@@ -29,10 +29,12 @@ type _HKGAD7AssessmentClass struct {
 // An interface definition for the [HKGAD7Assessment] class.
 type IHKGAD7Assessment interface {
 	IHKScoredAssessment
+	// properties:
 	Answers() unsafe.Pointer
 	SetAnswers(value unsafe.Pointer)
 	Risk() unsafe.Pointer
 	SetRisk(value unsafe.Pointer)
+	// methods:
 }
 
 

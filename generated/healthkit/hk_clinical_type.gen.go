@@ -29,6 +29,8 @@ type _HKClinicalTypeClass struct {
 // An interface definition for the [HKClinicalType] class.
 type IHKClinicalType interface {
 	IHKSampleType
+	// properties:
+	// methods:
 }
 
 // A type that identifies samples that contain clinical record data.

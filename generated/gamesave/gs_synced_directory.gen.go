@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,10 @@ type _GSSyncedDirectoryClass struct {
 // An interface definition for the [GSSyncedDirectory] class.
 type IGSSyncedDirectory interface {
 	objectivec.IObject
-	FinishSyncingCompletionHandler(statusDisplay appkit.IWindow, completion unsafe.Pointer)
+	// properties:
+	DirectoryState() IGSSyncedDirectoryState
+	Close()
 	FinishSyncingWithCompletionHandler(completion unsafe.Pointer)
-	DirectoryState() unsafe.Pointer
 }
 
 // A cloud-synced directory for game-save data.
@@ -89,22 +89,12 @@ func NewGSSyncedDirectory() GSSyncedDirectory {
 
 
 
-// Requests an instance of the game-save directory.
+// Closes the directory, and resumes syncing the directory to the cloud.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/open(forContainerIdentifier:)
-func (gc _GSSyncedDirectoryClass) OpenDirectoryForContainerIdentifier(containerIdentifier string) GSSyncedDirectory {
-	rv := objc.Send[GSSyncedDirectory](objc.ID(gc.class), objc.Sel("openDirectoryForContainerIdentifier:"), objc.String(containerIdentifier))
-	return rv
-}
-
-
-// Waits for the directory sync to complete, showing the sync’s progress in a modal alert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/finishSyncing(_:completionHandler:)
-func (g_ GSSyncedDirectory) FinishSyncingCompletionHandler(statusDisplay appkit.IWindow, completion unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("finishSyncing:completionHandler:"), statusDisplay, completion)
+// [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/close()
+func (g_ GSSyncedDirectory) Close() {
+	objc.Send[objc.ID](g_.ID, objc.Sel("close"))
 }
 
 
@@ -121,11 +111,10 @@ func (g_ GSSyncedDirectory) FinishSyncingWithCompletionHandler(completion unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/directoryState
-func (g_ GSSyncedDirectory) DirectoryState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("directoryState"))
+func (g_ GSSyncedDirectory) DirectoryState() IGSSyncedDirectoryState {
+	rv := objc.Send[GSSyncedDirectoryState](g_.ID, objc.Sel("directoryState"))
 	return rv
 }
-
 
 
 

@@ -30,10 +30,12 @@ type _NetServiceBrowserClass struct {
 // An interface definition for the [NetServiceBrowser] class.
 type INetServiceBrowser interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	IncludesPeerToPeer() bool
-	SetIncludesPeerToPeer(value bool)
+	IncludesPeerToPeer() bool /* primitive/slice/pointer */
+	SetIncludesPeerToPeer(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A network service browser that finds published services on a network using multicast DNS.
@@ -113,7 +115,7 @@ func (n_ NetServiceBrowser) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
+func (n_ NetServiceBrowser) IncludesPeerToPeer() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](n_.ID, objc.Sel("includesPeerToPeer"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (n_ NetServiceBrowser) IncludesPeerToPeer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/includesPeerToPeer
-func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool) {
+func (n_ NetServiceBrowser) SetIncludesPeerToPeer(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
 

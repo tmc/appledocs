@@ -30,6 +30,8 @@ type _mActionCommandClass struct {
 // An interface definition for the [mActionCommand] class.
 type ImActionCommand interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

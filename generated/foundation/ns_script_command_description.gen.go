@@ -30,19 +30,21 @@ type _ScriptCommandDescriptionClass struct {
 // An interface definition for the [ScriptCommandDescription] class.
 type IScriptCommandDescription interface {
 	objectivec.IObject
+	// properties:
 	AppleEventClassCode() unsafe.Pointer
 	AppleEventCode() unsafe.Pointer
 	AppleEventCodeForReturnType() unsafe.Pointer
-	ArgumentNames() []string
-	CommandClassName() string
-	CommandName() string
-	ReturnType() string
-	SuiteName() string
-	AppleEventCodeForArgumentWithName(argumentName string) unsafe.Pointer
+	ArgumentNames() []string /* primitive/slice/pointer */
+	CommandClassName() string /* primitive/slice/pointer */
+	CommandName() string /* primitive/slice/pointer */
+	ReturnType() string /* primitive/slice/pointer */
+	SuiteName() string /* primitive/slice/pointer */
+	// methods:
+	AppleEventCodeForArgumentWithName(argumentName string /* primitive/slice/pointer */) unsafe.Pointer
 	CreateCommandInstance() IScriptCommand
-	CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand
-	IsOptionalArgumentWithName(argumentName string) bool
-	TypeForArgumentWithName(argumentName string) IString
+	CreateCommandInstanceWithZone(zone Zone /* foo */) IScriptCommand
+	IsOptionalArgumentWithName(argumentName string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	TypeForArgumentWithName(argumentName string /* primitive/slice/pointer */) IString
 }
 
 // A script command that a macOS app supports.
@@ -112,7 +114,7 @@ func NewScriptCommandDescriptionWithCoder(inCoder ICoder) ScriptCommandDescripti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/init(suiteName:commandName:dictionary:)
-func NewScriptCommandDescriptionWithSuiteNameCommandNameDictionary(suiteName string, commandName string, commandDeclaration objectivec.IObject) ScriptCommandDescription {
+func NewScriptCommandDescriptionWithSuiteNameCommandNameDictionary(suiteName string /* primitive/slice/pointer */, commandName string /* primitive/slice/pointer */, commandDeclaration objectivec.IObject) ScriptCommandDescription {
 	instance := getScriptCommandDescriptionClass().Alloc()
 	rv := objc.Send[ScriptCommandDescription](instance.ID, objc.Sel("initWithSuiteName:commandName:dictionary:"), objc.String(suiteName), objc.String(commandName), commandDeclaration)
 	rv.Autorelease()
@@ -125,7 +127,7 @@ func NewScriptCommandDescriptionWithSuiteNameCommandNameDictionary(suiteName str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/appleEventCodeForArgument(withName:)
-func (s_ ScriptCommandDescription) AppleEventCodeForArgumentWithName(argumentName string) unsafe.Pointer {
+func (s_ ScriptCommandDescription) AppleEventCodeForArgumentWithName(argumentName string /* primitive/slice/pointer */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("appleEventCodeForArgumentWithName:"), objc.String(argumentName))
 	return rv
 }
@@ -145,7 +147,7 @@ func (s_ ScriptCommandDescription) CreateCommandInstance() IScriptCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/createCommandInstance(with:)
-func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone unsafe.Pointer) IScriptCommand {
+func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone Zone /* foo */) IScriptCommand {
 	rv := objc.Send[ScriptCommand](s_.ID, objc.Sel("createCommandInstanceWithZone:"), zone)
 	return rv
 }
@@ -155,7 +157,7 @@ func (s_ ScriptCommandDescription) CreateCommandInstanceWithZone(zone unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/isOptionalArgument(withName:)
-func (s_ ScriptCommandDescription) IsOptionalArgumentWithName(argumentName string) bool {
+func (s_ ScriptCommandDescription) IsOptionalArgumentWithName(argumentName string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isOptionalArgumentWithName:"), objc.String(argumentName))
 	return rv
 }
@@ -165,7 +167,7 @@ func (s_ ScriptCommandDescription) IsOptionalArgumentWithName(argumentName strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/typeForArgument(withName:)
-func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName string) IString {
+func (s_ ScriptCommandDescription) TypeForArgumentWithName(argumentName string /* primitive/slice/pointer */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("typeForArgumentWithName:"), objc.String(argumentName))
 	return rv
 }
@@ -205,7 +207,7 @@ func (s_ ScriptCommandDescription) AppleEventCodeForReturnType() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/argumentNames
-func (s_ ScriptCommandDescription) ArgumentNames() []string {
+func (s_ ScriptCommandDescription) ArgumentNames() []string /* primitive/slice/pointer */ {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("argumentNames"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (s_ ScriptCommandDescription) ArgumentNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/commandClassName
-func (s_ ScriptCommandDescription) CommandClassName() string {
+func (s_ ScriptCommandDescription) CommandClassName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("commandClassName"))
 	return rv
 }
@@ -225,7 +227,7 @@ func (s_ ScriptCommandDescription) CommandClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/commandName
-func (s_ ScriptCommandDescription) CommandName() string {
+func (s_ ScriptCommandDescription) CommandName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("commandName"))
 	return rv
 }
@@ -235,7 +237,7 @@ func (s_ ScriptCommandDescription) CommandName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/returnType
-func (s_ ScriptCommandDescription) ReturnType() string {
+func (s_ ScriptCommandDescription) ReturnType() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("returnType"))
 	return rv
 }
@@ -245,7 +247,7 @@ func (s_ ScriptCommandDescription) ReturnType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommandDescription/suiteName
-func (s_ ScriptCommandDescription) SuiteName() string {
+func (s_ ScriptCommandDescription) SuiteName() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
 	return rv
 }

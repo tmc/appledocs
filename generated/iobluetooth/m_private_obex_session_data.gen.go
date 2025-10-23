@@ -30,6 +30,8 @@ type _mPrivateOBEXSessionDataClass struct {
 // An interface definition for the [mPrivateOBEXSessionData] class.
 type ImPrivateOBEXSessionData interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

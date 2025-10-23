@@ -33,6 +33,7 @@ type ITKTokenWatcherTokenInfo interface {
 	DriverName() string
 	SlotName() string
 	TokenID() string
+	SetTokenID(value string)
 }
 
 
@@ -98,10 +99,17 @@ func (t_ TKTokenWatcherTokenInfo) SlotName() string {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/tokenID
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokeninfo/tokenid
 func (t_ TKTokenWatcherTokenInfo) TokenID() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("tokenID"))
 	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokeninfo/tokenid
+func (t_ TKTokenWatcherTokenInfo) SetTokenID(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenID:"), objc.String(value))
 }
 
 

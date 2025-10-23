@@ -29,7 +29,7 @@ type _AudioMixerNodeClass struct {
 // An interface definition for the [AudioMixerNode] class.
 type IAudioMixerNode interface {
 	IAudioNode
-	NextAvailableInputBus() AudioNodeBus
+	NextAvailableInputBus() unsafe.Pointer
 	OutputVolume() float32
 	SetOutputVolume(value float32)
 }
@@ -94,8 +94,8 @@ func NewAudioMixerNode() AudioMixerNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/nextAvailableInputBus
-func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus {
-	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
+func (a_ AudioMixerNode) NextAvailableInputBus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 

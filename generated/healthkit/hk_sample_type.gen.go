@@ -29,7 +29,9 @@ type _HKSampleTypeClass struct {
 // An interface definition for the [HKSampleType] class.
 type IHKSampleType interface {
 	IHKObjectType
+	// properties:
 	AllowsRecalibrationForEstimates() bool
+	SetAllowsRecalibrationForEstimates(value bool)
 	IsMaximumDurationRestricted() bool
 	SetIsMaximumDurationRestricted(value bool)
 	IsMinimumDurationRestricted() bool
@@ -38,6 +40,7 @@ type IHKSampleType interface {
 	SetMaximumAllowedDuration(value unsafe.Pointer)
 	MinimumAllowedDuration() unsafe.Pointer
 	SetMinimumAllowedDuration(value unsafe.Pointer)
+	// methods:
 }
 
 // An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
@@ -98,10 +101,19 @@ func NewHKSampleType() HKSampleType {
 // A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/allowsRecalibrationForEstimates
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/allowsrecalibrationforestimates
 func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("allowsRecalibrationForEstimates"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/allowsrecalibrationforestimates
+func (h_ HKSampleType) SetAllowsRecalibrationForEstimates(value bool) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAllowsRecalibrationForEstimates:"), value)
 }
 
 

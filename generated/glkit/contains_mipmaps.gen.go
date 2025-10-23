@@ -30,6 +30,8 @@ type _containsMipmapsClass struct {
 // An interface definition for the [containsMipmaps] class.
 type IcontainsMipmaps interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,7 +29,7 @@ type _CBDescriptorClass struct {
 // An interface definition for the [CBDescriptor] class.
 type ICBDescriptor interface {
 	ICBAttribute
-	Characteristic() CBCharacteristic
+	Characteristic() ICBCharacteristic
 	Value() objc.ID
 	CBUUIDCharacteristicAggregateFormatString() string
 	CBUUIDCharacteristicExtendedPropertiesString() string
@@ -98,7 +98,7 @@ func NewCBDescriptor() CBDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBDescriptor/characteristic
-func (c_ CBDescriptor) Characteristic() CBCharacteristic {
+func (c_ CBDescriptor) Characteristic() ICBCharacteristic {
 	rv := objc.Send[CBCharacteristic](c_.ID, objc.Sel("characteristic"))
 	return rv
 }

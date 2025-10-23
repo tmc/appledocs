@@ -92,8 +92,8 @@ func NewWaterSubmersionManager() WaterSubmersionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
+func (wc _WaterSubmersionManagerClass) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
-	rv := objc.Send[AuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
+func (w_ WaterSubmersionManager) AuthorizationStatus() CMAuthorizationStatus {
+	rv := objc.Send[CMAuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

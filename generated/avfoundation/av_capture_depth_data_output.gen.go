@@ -29,22 +29,24 @@ type _CaptureDepthDataOutputClass struct {
 // An interface definition for the [CaptureDepthDataOutput] class.
 type ICaptureDepthDataOutput interface {
 	ICaptureOutput
-	AlwaysDiscardsLateDepthData() bool
-	SetAlwaysDiscardsLateDepthData(value bool)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	AlwaysDiscardsLateDepthData() bool /* primitive/slice/pointer */
+	SetAlwaysDiscardsLateDepthData(value bool /* primitive/slice/pointer */)
+	Delegate() AVCaptureDepthDataOutputDelegate /* foo */
+	SetDelegate(value AVCaptureDepthDataOutputDelegate /* foo */)
 	DelegateCallbackQueue() unsafe.Pointer
 	SetDelegateCallbackQueue(value unsafe.Pointer)
-	IsFilteringEnabled() bool
-	SetIsFilteringEnabled(value bool)
-	SupportedDepthDataFormats() unsafe.Pointer
-	SetSupportedDepthDataFormats(value unsafe.Pointer)
-	ActiveDepthDataFormat() unsafe.Pointer
-	SetActiveDepthDataFormat(value unsafe.Pointer)
-	ActiveFormat() unsafe.Pointer
-	SetActiveFormat(value unsafe.Pointer)
-	IsDepthDataDeliveryEnabled() bool
-	SetIsDepthDataDeliveryEnabled(value bool)
+	IsFilteringEnabled() bool /* primitive/slice/pointer */
+	SetIsFilteringEnabled(value bool /* primitive/slice/pointer */)
+	SupportedDepthDataFormats() IAVCaptureDeviceFormat
+	SetSupportedDepthDataFormats(value IAVCaptureDeviceFormat)
+	ActiveDepthDataFormat() IAVCaptureDeviceFormat
+	SetActiveDepthDataFormat(value IAVCaptureDeviceFormat)
+	ActiveFormat() IAVCaptureDeviceFormat
+	SetActiveFormat(value IAVCaptureDeviceFormat)
+	IsDepthDataDeliveryEnabled() bool /* primitive/slice/pointer */
+	SetIsDepthDataDeliveryEnabled(value bool /* primitive/slice/pointer */)
+	// methods:
 }
 
 // A capture output that records scene depth information on compatible camera devices.
@@ -106,7 +108,7 @@ func NewCaptureDepthDataOutput() CaptureDepthDataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/alwaysdiscardslatedepthdata
-func (c_ CaptureDepthDataOutput) AlwaysDiscardsLateDepthData() bool {
+func (c_ CaptureDepthDataOutput) AlwaysDiscardsLateDepthData() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("alwaysDiscardsLateDepthData"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (c_ CaptureDepthDataOutput) AlwaysDiscardsLateDepthData() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/alwaysdiscardslatedepthdata
-func (c_ CaptureDepthDataOutput) SetAlwaysDiscardsLateDepthData(value bool) {
+func (c_ CaptureDepthDataOutput) SetAlwaysDiscardsLateDepthData(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateDepthData:"), value)
 }
 
@@ -125,8 +127,8 @@ func (c_ CaptureDepthDataOutput) SetAlwaysDiscardsLateDepthData(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
-func (c_ CaptureDepthDataOutput) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
+func (c_ CaptureDepthDataOutput) Delegate() AVCaptureDepthDataOutputDelegate /* foo */ {
+	rv := objc.Send[CaptureDepthDataOutputDelegate](c_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -135,7 +137,7 @@ func (c_ CaptureDepthDataOutput) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/delegate
-func (c_ CaptureDepthDataOutput) SetDelegate(value unsafe.Pointer) {
+func (c_ CaptureDepthDataOutput) SetDelegate(value AVCaptureDepthDataOutputDelegate /* foo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -163,7 +165,7 @@ func (c_ CaptureDepthDataOutput) SetDelegateCallbackQueue(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/isfilteringenabled
-func (c_ CaptureDepthDataOutput) IsFilteringEnabled() bool {
+func (c_ CaptureDepthDataOutput) IsFilteringEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFilteringEnabled"))
 	return rv
 }
@@ -173,7 +175,7 @@ func (c_ CaptureDepthDataOutput) IsFilteringEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/isfilteringenabled
-func (c_ CaptureDepthDataOutput) SetIsFilteringEnabled(value bool) {
+func (c_ CaptureDepthDataOutput) SetIsFilteringEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFilteringEnabled:"), value)
 }
 
@@ -182,8 +184,8 @@ func (c_ CaptureDepthDataOutput) SetIsFilteringEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supporteddepthdataformats
-func (c_ CaptureDepthDataOutput) SupportedDepthDataFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedDepthDataFormats"))
+func (c_ CaptureDepthDataOutput) SupportedDepthDataFormats() IAVCaptureDeviceFormat {
+	rv := objc.Send[CaptureDeviceFormat](c_.ID, objc.Sel("supportedDepthDataFormats"))
 	return rv
 }
 
@@ -192,7 +194,7 @@ func (c_ CaptureDepthDataOutput) SupportedDepthDataFormats() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supporteddepthdataformats
-func (c_ CaptureDepthDataOutput) SetSupportedDepthDataFormats(value unsafe.Pointer) {
+func (c_ CaptureDepthDataOutput) SetSupportedDepthDataFormats(value IAVCaptureDeviceFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedDepthDataFormats:"), value)
 }
 
@@ -201,8 +203,8 @@ func (c_ CaptureDepthDataOutput) SetSupportedDepthDataFormats(value unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activedepthdataformat
-func (c_ CaptureDepthDataOutput) ActiveDepthDataFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeDepthDataFormat"))
+func (c_ CaptureDepthDataOutput) ActiveDepthDataFormat() IAVCaptureDeviceFormat {
+	rv := objc.Send[CaptureDeviceFormat](c_.ID, objc.Sel("activeDepthDataFormat"))
 	return rv
 }
 
@@ -211,7 +213,7 @@ func (c_ CaptureDepthDataOutput) ActiveDepthDataFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activedepthdataformat
-func (c_ CaptureDepthDataOutput) SetActiveDepthDataFormat(value unsafe.Pointer) {
+func (c_ CaptureDepthDataOutput) SetActiveDepthDataFormat(value IAVCaptureDeviceFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveDepthDataFormat:"), value)
 }
 
@@ -220,8 +222,8 @@ func (c_ CaptureDepthDataOutput) SetActiveDepthDataFormat(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-func (c_ CaptureDepthDataOutput) ActiveFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeFormat"))
+func (c_ CaptureDepthDataOutput) ActiveFormat() IAVCaptureDeviceFormat {
+	rv := objc.Send[CaptureDeviceFormat](c_.ID, objc.Sel("activeFormat"))
 	return rv
 }
 
@@ -230,7 +232,7 @@ func (c_ CaptureDepthDataOutput) ActiveFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
-func (c_ CaptureDepthDataOutput) SetActiveFormat(value unsafe.Pointer) {
+func (c_ CaptureDepthDataOutput) SetActiveFormat(value IAVCaptureDeviceFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
 }
 
@@ -239,7 +241,7 @@ func (c_ CaptureDepthDataOutput) SetActiveFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/isdepthdatadeliveryenabled
-func (c_ CaptureDepthDataOutput) IsDepthDataDeliveryEnabled() bool {
+func (c_ CaptureDepthDataOutput) IsDepthDataDeliveryEnabled() bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliveryEnabled"))
 	return rv
 }
@@ -249,7 +251,7 @@ func (c_ CaptureDepthDataOutput) IsDepthDataDeliveryEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/isdepthdatadeliveryenabled
-func (c_ CaptureDepthDataOutput) SetIsDepthDataDeliveryEnabled(value bool) {
+func (c_ CaptureDepthDataOutput) SetIsDepthDataDeliveryEnabled(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliveryEnabled:"), value)
 }
 

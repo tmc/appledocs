@@ -30,6 +30,8 @@ type _mLastServicesUpdateClass struct {
 // An interface definition for the [mLastServicesUpdate] class.
 type ImLastServicesUpdate interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

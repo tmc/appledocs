@@ -3,11 +3,26 @@
 package avfoundation
 
 // Type aliases and typedefs
+// CaptureDeviceType - A structure that defines the device types the framework supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct
+// AVCaptureDeviceType is a string typedef
+type CaptureDeviceType = string
+// CaptureSceneMonitoringStatus - An informative status about the scene observed by the device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSceneMonitoringStatus
+// AVCaptureSceneMonitoringStatus is a string typedef
+type CaptureSceneMonitoringStatus = string
 // CaptureSessionPreset - Presets that define standard configurations for a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/Preset
 // AVCaptureSessionPreset is a string typedef
 type CaptureSessionPreset = string
+// FileType - The uniform type identifiers for various file formats.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFileType
+// AVFileType is a string typedef
+type FileType = string
 // PlayerWaitingReason - The reasons a player is waiting to begin or resume playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/WaitingReason

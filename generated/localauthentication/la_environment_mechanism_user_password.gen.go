@@ -29,7 +29,9 @@ type _EnvironmentMechanismUserPasswordClass struct {
 // An interface definition for the [EnvironmentMechanismUserPassword] class.
 type IEnvironmentMechanismUserPassword interface {
 	IEnvironmentMechanism
+	// properties:
 	IsSet() bool
+	// methods:
 }
 
 

@@ -34,26 +34,6 @@ type _AudioUnitClass struct {
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	objectivec.IObject
-	AllocateRenderResourcesAndReturnError(outError unsafe.Pointer) bool
-	DeallocateRenderResources()
-	DeleteUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
-	DisableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool
-	EnableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool
-	MessageChannelFor(channelName string) objc.ID
-	ParametersForOverviewWithCount(count int) []foundation.Number
-	PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) unsafe.Pointer
-	ProfileStateForCableChannel(cable unsafe.Pointer, channel IMIDIChannelNumber) coremidi.MIDICIProfileState
-	RemoveRenderObserver(token int)
-	RequestViewControllerWithCompletionHandler(completionHandler unsafe.Pointer)
-	Reset()
-	SaveUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
-	SelectViewConfiguration(viewConfiguration coreaudiokit.IAudioUnitViewConfiguration)
-	SetDeviceIDError(deviceID IAudioObjectID, outError unsafe.Pointer) bool
-	ShouldChangeToFormatForBus(format avfaudio.IAudioFormat, bus IAUAudioUnitBus) bool
-	StartHardwareAndReturnError(outError unsafe.Pointer) bool
-	StopHardware()
-	SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.IAudioUnitViewConfiguration) foundation.IndexSet
-	TokenByAddingRenderObserver(observer unsafe.Pointer) int
 	AllParameterValues() bool
 	AudioUnitMIDIProtocol() unsafe.Pointer
 	AudioUnitName() string
@@ -63,29 +43,29 @@ type IAudioUnit interface {
 	CanProcessInPlace() bool
 	ChannelCapabilities() []foundation.Number
 	ChannelMap() []foundation.Number
-	SetChannelMap(value []foundation.INumber)
+	SetChannelMap(value []foundation.Number)
 	Component() AudioComponent
 	ComponentDescription() unsafe.Pointer
 	ComponentName() string
 	ComponentVersion() uint32
 	ContextName() string
 	SetContextName(value string)
-	CurrentPreset() AUAudioUnitPreset
+	CurrentPreset() IAUAudioUnitPreset
 	SetCurrentPreset(value IAUAudioUnitPreset)
 	DeviceID() AudioObjectID
 	DeviceInputLatency() foundation.TimeInterval
 	DeviceOutputLatency() foundation.TimeInterval
 	FactoryPresets() []AudioUnitPreset
-	FullState() unsafe.Pointer
-	SetFullState(value unsafe.Pointer)
-	FullStateForDocument() unsafe.Pointer
-	SetFullStateForDocument(value unsafe.Pointer)
+	FullState() foundation.IDictionary
+	SetFullState(value foundation.IDictionary)
+	FullStateForDocument() foundation.IDictionary
+	SetFullStateForDocument(value foundation.IDictionary)
 	HostMIDIProtocol() unsafe.Pointer
 	SetHostMIDIProtocol(value unsafe.Pointer)
-	InputBusses() AUAudioUnitBusArray
+	InputBusses() IAUAudioUnitBusArray
 	InputHandler() unsafe.Pointer
 	SetInputHandler(value unsafe.Pointer)
-	IntendedSpatialExperience() CASpatialAudioExperience
+	IntendedSpatialExperience() ISpatialAudioExperience
 	SetIntendedSpatialExperience(value ISpatialAudioExperience)
 	InternalRenderBlock() unsafe.Pointer
 	InputEnabled() bool
@@ -100,7 +80,7 @@ type IAudioUnit interface {
 	Latency() foundation.TimeInterval
 	ManufacturerName() string
 	MaximumFramesToRender() AudioFrameCount
-	SetMaximumFramesToRender(value IAudioFrameCount)
+	SetMaximumFramesToRender(value AudioFrameCount)
 	MIDIOutputBufferSizeHint() int
 	SetMIDIOutputBufferSizeHint(value int)
 	MIDIOutputEventBlock() unsafe.Pointer
@@ -112,10 +92,10 @@ type IAudioUnit interface {
 	MusicalContextBlock() unsafe.Pointer
 	SetMusicalContextBlock(value unsafe.Pointer)
 	OsWorkgroup() unsafe.Pointer
-	OutputBusses() AUAudioUnitBusArray
+	OutputBusses() IAUAudioUnitBusArray
 	OutputProvider() unsafe.Pointer
 	SetOutputProvider(value unsafe.Pointer)
-	ParameterTree() AUParameterTree
+	ParameterTree() IAUParameterTree
 	SetParameterTree(value IAUParameterTree)
 	ProfileChangedBlock() unsafe.Pointer
 	SetProfileChangedBlock(value unsafe.Pointer)
@@ -177,6 +157,26 @@ type IAudioUnit interface {
 	SetKAUPresetVSTPresetKey(value string)
 	KAUPresetVersionKey() string
 	SetKAUPresetVersionKey(value string)
+	AllocateRenderResourcesAndReturnError(outError unsafe.Pointer) bool
+	DeallocateRenderResources()
+	DeleteUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
+	DisableProfileCableOnChannelError(profile coremidi.MIDICIProfile, cable unsafe.Pointer, channel MIDIChannelNumber, outError unsafe.Pointer) bool
+	EnableProfileCableOnChannelError(profile coremidi.MIDICIProfile, cable unsafe.Pointer, channel MIDIChannelNumber, outError unsafe.Pointer) bool
+	MessageChannelFor(channelName string) objc.ID
+	ParametersForOverviewWithCount(count int) []foundation.Number
+	PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) foundation.IDictionary
+	ProfileStateForCableChannel(cable unsafe.Pointer, channel MIDIChannelNumber) coremidi.MIDICIProfileState
+	RemoveRenderObserver(token int)
+	RequestViewControllerWithCompletionHandler(completionHandler unsafe.Pointer)
+	Reset()
+	SaveUserPresetError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) bool
+	SelectViewConfiguration(viewConfiguration coreaudiokit.AudioUnitViewConfiguration)
+	SetDeviceIDError(deviceID AudioObjectID, outError unsafe.Pointer) bool
+	ShouldChangeToFormatForBus(format avfaudio.AudioFormat, bus IAUAudioUnitBus) bool
+	StartHardwareAndReturnError(outError unsafe.Pointer) bool
+	StopHardware()
+	SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.AudioUnitViewConfiguration) foundation.IndexSet
+	TokenByAddingRenderObserver(observer unsafe.Pointer) int
 }
 
 // A class that defines a host’s interface to an audio unit.
@@ -304,7 +304,7 @@ func (a_ AudioUnit) DeleteUserPresetError(userPreset IAUAudioUnitPreset, outErro
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/disableProfile(_:cable:onChannel:)
-func (a_ AudioUnit) DisableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool {
+func (a_ AudioUnit) DisableProfileCableOnChannelError(profile coremidi.MIDICIProfile, cable unsafe.Pointer, channel MIDIChannelNumber, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("disableProfile:cable:onChannel:error:"), profile, cable, channel, outError)
 	return rv
 }
@@ -312,7 +312,7 @@ func (a_ AudioUnit) DisableProfileCableOnChannelError(profile coremidi.IMIDICIPr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/enable(_:cable:onChannel:)
-func (a_ AudioUnit) EnableProfileCableOnChannelError(profile coremidi.IMIDICIProfile, cable unsafe.Pointer, channel IMIDIChannelNumber, outError unsafe.Pointer) bool {
+func (a_ AudioUnit) EnableProfileCableOnChannelError(profile coremidi.MIDICIProfile, cable unsafe.Pointer, channel MIDIChannelNumber, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enableProfile:cable:onChannel:error:"), profile, cable, channel, outError)
 	return rv
 }
@@ -340,15 +340,15 @@ func (a_ AudioUnit) ParametersForOverviewWithCount(count int) []foundation.Numbe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/presetState(for:)
-func (a_ AudioUnit) PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presetStateFor:error:"), userPreset, outError)
+func (a_ AudioUnit) PresetStateForError(userPreset IAUAudioUnitPreset, outError unsafe.Pointer) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("presetStateFor:error:"), userPreset, outError)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/profileState(forCable:channel:)
-func (a_ AudioUnit) ProfileStateForCableChannel(cable unsafe.Pointer, channel IMIDIChannelNumber) coremidi.MIDICIProfileState {
+func (a_ AudioUnit) ProfileStateForCableChannel(cable unsafe.Pointer, channel MIDIChannelNumber) coremidi.MIDICIProfileState {
 	rv := objc.Send[coremidi.MIDICIProfileState](a_.ID, objc.Sel("profileStateForCable:channel:"), cable, channel)
 	return rv
 }
@@ -391,7 +391,7 @@ func (a_ AudioUnit) SaveUserPresetError(userPreset IAUAudioUnitPreset, outError 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/select(_:)
-func (a_ AudioUnit) SelectViewConfiguration(viewConfiguration coreaudiokit.IAudioUnitViewConfiguration) {
+func (a_ AudioUnit) SelectViewConfiguration(viewConfiguration coreaudiokit.AudioUnitViewConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectViewConfiguration:"), viewConfiguration)
 }
 
@@ -400,7 +400,7 @@ func (a_ AudioUnit) SelectViewConfiguration(viewConfiguration coreaudiokit.IAudi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/setDeviceID(_:)
-func (a_ AudioUnit) SetDeviceIDError(deviceID IAudioObjectID, outError unsafe.Pointer) bool {
+func (a_ AudioUnit) SetDeviceIDError(deviceID AudioObjectID, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setDeviceID:error:"), deviceID, outError)
 	return rv
 }
@@ -410,7 +410,7 @@ func (a_ AudioUnit) SetDeviceIDError(deviceID IAudioObjectID, outError unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/shouldChange(to:for:)
-func (a_ AudioUnit) ShouldChangeToFormatForBus(format avfaudio.IAudioFormat, bus IAUAudioUnitBus) bool {
+func (a_ AudioUnit) ShouldChangeToFormatForBus(format avfaudio.AudioFormat, bus IAUAudioUnitBus) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldChangeToFormat:forBus:"), format, bus)
 	return rv
 }
@@ -437,7 +437,7 @@ func (a_ AudioUnit) StopHardware() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/supportedViewConfigurations(_:)
-func (a_ AudioUnit) SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.IAudioUnitViewConfiguration) foundation.IndexSet {
+func (a_ AudioUnit) SupportedViewConfigurations(availableViewConfigurations []coreaudiokit.AudioUnitViewConfiguration) foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("supportedViewConfigurations:"), availableViewConfigurations)
 	return rv
 }
@@ -539,7 +539,7 @@ func (a_ AudioUnit) ChannelMap() []foundation.Number {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/channelMap
-func (a_ AudioUnit) SetChannelMap(value []foundation.INumber) {
+func (a_ AudioUnit) SetChannelMap(value []foundation.Number) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -617,8 +617,8 @@ func (a_ AudioUnit) SetContextName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/currentPreset
-func (a_ AudioUnit) CurrentPreset() AUAudioUnitPreset {
-	rv := objc.Send[AUAudioUnitPreset](a_.ID, objc.Sel("currentPreset"))
+func (a_ AudioUnit) CurrentPreset() IAUAudioUnitPreset {
+	rv := objc.Send[AudioUnitPreset](a_.ID, objc.Sel("currentPreset"))
 	return rv
 }
 
@@ -676,8 +676,8 @@ func (a_ AudioUnit) FactoryPresets() []AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullState
-func (a_ AudioUnit) FullState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fullState"))
+func (a_ AudioUnit) FullState() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("fullState"))
 	return rv
 }
 
@@ -686,7 +686,7 @@ func (a_ AudioUnit) FullState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullState
-func (a_ AudioUnit) SetFullState(value unsafe.Pointer) {
+func (a_ AudioUnit) SetFullState(value foundation.IDictionary) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), value)
 }
 
@@ -695,8 +695,8 @@ func (a_ AudioUnit) SetFullState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument
-func (a_ AudioUnit) FullStateForDocument() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fullStateForDocument"))
+func (a_ AudioUnit) FullStateForDocument() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
 }
 
@@ -705,7 +705,7 @@ func (a_ AudioUnit) FullStateForDocument() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/fullStateForDocument
-func (a_ AudioUnit) SetFullStateForDocument(value unsafe.Pointer) {
+func (a_ AudioUnit) SetFullStateForDocument(value foundation.IDictionary) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), value)
 }
 
@@ -729,8 +729,8 @@ func (a_ AudioUnit) SetHostMIDIProtocol(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/inputBusses
-func (a_ AudioUnit) InputBusses() AUAudioUnitBusArray {
-	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
+func (a_ AudioUnit) InputBusses() IAUAudioUnitBusArray {
+	rv := objc.Send[AudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
 	return rv
 }
 
@@ -758,8 +758,8 @@ func (a_ AudioUnit) SetInputHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/intendedSpatialExperience-1dvhd
-func (a_ AudioUnit) IntendedSpatialExperience() CASpatialAudioExperience {
-	rv := objc.Send[CASpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
+func (a_ AudioUnit) IntendedSpatialExperience() ISpatialAudioExperience {
+	rv := objc.Send[SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
 }
 
@@ -900,7 +900,7 @@ func (a_ AudioUnit) MaximumFramesToRender() AudioFrameCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/maximumFramesToRender
-func (a_ AudioUnit) SetMaximumFramesToRender(value IAudioFrameCount) {
+func (a_ AudioUnit) SetMaximumFramesToRender(value AudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumFramesToRender:"), value)
 }
 
@@ -1001,8 +1001,8 @@ func (a_ AudioUnit) OsWorkgroup() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/outputBusses
-func (a_ AudioUnit) OutputBusses() AUAudioUnitBusArray {
-	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
+func (a_ AudioUnit) OutputBusses() IAUAudioUnitBusArray {
+	rv := objc.Send[AudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
 	return rv
 }
 
@@ -1030,8 +1030,8 @@ func (a_ AudioUnit) SetOutputProvider(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnit/parameterTree
-func (a_ AudioUnit) ParameterTree() AUParameterTree {
-	rv := objc.Send[AUParameterTree](a_.ID, objc.Sel("parameterTree"))
+func (a_ AudioUnit) ParameterTree() IAUParameterTree {
+	rv := objc.Send[ParameterTree](a_.ID, objc.Sel("parameterTree"))
 	return rv
 }
 

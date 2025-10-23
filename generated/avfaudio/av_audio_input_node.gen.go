@@ -29,7 +29,6 @@ type _AudioInputNodeClass struct {
 // An interface definition for the [AudioInputNode] class.
 type IAudioInputNode interface {
 	IAudioIONode
-	SetManualRenderingInputPCMFormatInputBlock(format IAVAudioFormat, block unsafe.Pointer) bool
 	VoiceProcessingBypassed() bool
 	SetVoiceProcessingBypassed(value bool)
 	IsVoiceProcessingAGCEnabled() bool
@@ -95,16 +94,6 @@ func NewAudioInputNode() AudioInputNode {
 	return getAudioInputNodeClass().New()
 }
 
-
-
-// Supplies the data through the input node to the engine while operating in the manual rendering mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)
-func (a_ AudioInputNode) SetManualRenderingInputPCMFormatInputBlock(format IAVAudioFormat, block unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("setManualRenderingInputPCMFormat:inputBlock:"), format, block)
-	return rv
-}
 
 
 // A Boolean that indicates whether the node bypasses all microphone uplink processing of the voice-processing unit.

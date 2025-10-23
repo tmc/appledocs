@@ -6,170 +6,159 @@ package avkit
 // AVAudioSessionRouteSelection - Constants that indicate the audio route selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVAudioSessionRouteSelection
-type AudioSessionRouteSelection uint
+type AVAudioSessionRouteSelection int
 
 const (
-	// AudioSessionRouteSelectionExternal - An external device selection.
+	// AVAudioSessionRouteSelectionExternal - An external device selection.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVAudioSessionRouteSelection/AVAudioSessionRouteSelectionExternal
-	AudioSessionRouteSelectionExternal AudioSessionRouteSelection = 0
-	// AudioSessionRouteSelectionLocal - A local device selection.
+	AVAudioSessionRouteSelectionExternal AVAudioSessionRouteSelection = 0
+	// AVAudioSessionRouteSelectionLocal - A local device selection.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVAudioSessionRouteSelection/AVAudioSessionRouteSelectionLocal
-	AudioSessionRouteSelectionLocal AudioSessionRouteSelection = 0
-	// AudioSessionRouteSelectionNone - No route selection.
+	AVAudioSessionRouteSelectionLocal AVAudioSessionRouteSelection = 0
+	// AVAudioSessionRouteSelectionNone - No route selection.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVAudioSessionRouteSelection/AVAudioSessionRouteSelectionNone
-	AudioSessionRouteSelectionNone AudioSessionRouteSelection = 0
+	AVAudioSessionRouteSelectionNone AVAudioSessionRouteSelection = 0
 )
 
 // AVCaptureEventPhase - Constants that indicate the phase of a system capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventPhase
-type CaptureEventPhase uint
+type AVCaptureEventPhase uint
 
 // AVCaptureViewControlsStyle - Constants that describe the capture view’s supported controls styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle
-type CaptureViewControlsStyle uint
-
-const (
-	// CaptureViewControlsStyleDefault - The view’s default controls style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle/default
-	CaptureViewControlsStyleDefault CaptureViewControlsStyle = 0
-	// CaptureViewControlsStyleFloating - The view’s floating controls style, which matches the user interface of QuickTime Player.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle/floating
-	CaptureViewControlsStyleFloating CaptureViewControlsStyle = 0
-	// CaptureViewControlsStyleInline - The view’s inline controls style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle/inline
-	CaptureViewControlsStyleInline CaptureViewControlsStyle = 0
-	// CaptureViewControlsStyleInlineDeviceSelection - The view’s inline device selection style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureViewControlsStyle/inlineDeviceSelection
-	CaptureViewControlsStyleInlineDeviceSelection CaptureViewControlsStyle = 0
-)
+type AVCaptureViewControlsStyle uint
 
 // AVContentProposalAction - Constant that indicate the action a user takes when dismissing a content proposal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalAction
-type ContentProposalAction uint
-
-const (
-	// ContentProposalActionAccept - The user accepted the content proposal.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalAction/accept
-	ContentProposalActionAccept ContentProposalAction = 0
-	// ContentProposalActionDefer - The user deferred the content proposal.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalAction/defer
-	ContentProposalActionDefer ContentProposalAction = 0
-	// ContentProposalActionReject - The user rejected the content proposal.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalAction/reject
-	ContentProposalActionReject ContentProposalAction = 0
-)
+type AVContentProposalAction uint
 
 // AVDisplayDynamicRange - Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange
-type DisplayDynamicRange uint
+type AVDisplayDynamicRange uint
+
+const (
+	// AVDisplayDynamicRangeAutomatic - Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange/automatic
+	AVDisplayDynamicRangeAutomatic AVDisplayDynamicRange = 0
+	// AVDisplayDynamicRangeConstrainedHigh - Defines a constrained high dynamic range. Allows for constrained High Dynamic Range (HDR) video content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange/constrainedHigh
+	AVDisplayDynamicRangeConstrainedHigh AVDisplayDynamicRange = 0
+	// AVDisplayDynamicRangeHigh - Defines a high dynamic range. Allows video content to use extended dynamic range if it has dynamic range content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange/high
+	AVDisplayDynamicRangeHigh AVDisplayDynamicRange = 0
+	// AVDisplayDynamicRangeStandard - Defines a standard dynamic range. Restricts the video content dynamic range to the standard range regardless of the actual range of the video content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayDynamicRange/standard
+	AVDisplayDynamicRangeStandard AVDisplayDynamicRange = 0
+)
 
 // AVKitError - Constants that identify framework error codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code
-type KitError uint
+type AVKitError uint
 
 const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-c.enum/AVKitErrorRecordingFailed
-	KitErrorRecordingFailed KitError = 0
-	// KitErrorContentDisallowedByPasscode - A restriction disallows access to this content, but the user can override the restriction by entering the device passcode.
+	AVKitErrorRecordingFailed AVKitError = 0
+	// AVKitErrorContentDisallowedByPasscode - A restriction disallows access to this content, but the user can override the restriction by entering the device passcode.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code/contentDisallowedByPasscode
-	KitErrorContentDisallowedByPasscode KitError = 0
-	// KitErrorContentDisallowedByProfile - An installed profile restricts access to this content.
+	AVKitErrorContentDisallowedByPasscode AVKitError = 0
+	// AVKitErrorContentDisallowedByProfile - An installed profile restricts access to this content.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code/contentDisallowedByProfile
-	KitErrorContentDisallowedByProfile KitError = 0
-	// KitErrorContentRatingUnknown - The media content rating is missing or unrecognized.
+	AVKitErrorContentDisallowedByProfile AVKitError = 0
+	// AVKitErrorContentRatingUnknown - The media content rating is missing or unrecognized.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code/contentRatingUnknown
-	KitErrorContentRatingUnknown KitError = 0
-	// KitErrorPictureInPictureStartFailed - The system failed to start Picture in Picture.
+	AVKitErrorContentRatingUnknown AVKitError = 0
+	// AVKitErrorPictureInPictureStartFailed - The system failed to start Picture in Picture.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code/pictureInPictureStartFailed
-	KitErrorPictureInPictureStartFailed KitError = 0
-	// KitErrorUnknown - An unknown error.
+	AVKitErrorPictureInPictureStartFailed AVKitError = 0
+	// AVKitErrorUnknown - An unknown error.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVKitError-swift.struct/Code/unknown
-	KitErrorUnknown KitError = 0
+	AVKitErrorUnknown AVKitError = 0
 )
 
 // AVPlayerViewControllerSkippingBehavior - Constants that represent the player view controller’s skipping behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControllerSkippingBehavior
-type PlayerViewControllerSkippingBehavior uint
+type AVPlayerViewControllerSkippingBehavior uint
+
+const (
+	// AVPlayerViewControllerSkippingBehaviorDefault - The default skipping behavior, which is to skip forward or backward in 10-second intervals.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControllerSkippingBehavior/default
+	AVPlayerViewControllerSkippingBehaviorDefault AVPlayerViewControllerSkippingBehavior = 0
+	// AVPlayerViewControllerSkippingBehaviorSkipItem - Skipping behavior that specifies skipping to the next or previous item in the player’s playlist.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControllerSkippingBehavior/skipItem
+	AVPlayerViewControllerSkippingBehaviorSkipItem AVPlayerViewControllerSkippingBehavior = 0
+)
 
 // AVPlayerViewControlsStyle - Constants that indicate which user interface controls the view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewControlsStyle
-type PlayerViewControlsStyle uint
+type AVPlayerViewControlsStyle uint
 
 // AVPlayerViewTrimResult - Constants that specify an action a user takes when trimming media in a player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewTrimResult
-type PlayerViewTrimResult uint
+type AVPlayerViewTrimResult uint
 
 // AVRoutePickerViewButtonState - Constants that describe the available button states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState
-type RoutePickerViewButtonState uint
-
-const (
-	// RoutePickerViewButtonStateActive - The button state when AirPlay is active.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState/active
-	RoutePickerViewButtonStateActive RoutePickerViewButtonState = 0
-	// RoutePickerViewButtonStateActiveHighlighted - The highlighted button state when AirPlay is active.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState/activeHighlighted
-	RoutePickerViewButtonStateActiveHighlighted RoutePickerViewButtonState = 0
-	// RoutePickerViewButtonStateNormal - The normal, or default, button state.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState/normal
-	RoutePickerViewButtonStateNormal RoutePickerViewButtonState = 0
-	// RoutePickerViewButtonStateNormalHighlighted - The highlighted button state when a mouse-down event occurs inside the button.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/ButtonState/normalHighlighted
-	RoutePickerViewButtonStateNormalHighlighted RoutePickerViewButtonState = 0
-)
+type AVRoutePickerViewButtonState uint
 
 // AVRoutePickerViewButtonStyle - Constants that define the button styles a route picker view supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerViewButtonStyle
-type RoutePickerViewButtonStyle uint
-
-const (
-	// RoutePickerViewButtonStyleCustom - A custom button style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerViewButtonStyle/custom
-	RoutePickerViewButtonStyleCustom RoutePickerViewButtonStyle = 0
-	// RoutePickerViewButtonStylePlain - A plain button style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerViewButtonStyle/plain
-	RoutePickerViewButtonStylePlain RoutePickerViewButtonStyle = 0
-	// RoutePickerViewButtonStyleSystem - A system-defined button style.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerViewButtonStyle/system
-	RoutePickerViewButtonStyleSystem RoutePickerViewButtonStyle = 0
-)
+type AVRoutePickerViewButtonStyle uint
 
 // AVVideoFrameAnalysisType - Constants that define the types of analysis a player view controller may perform on a paused video frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType
-type VideoFrameAnalysisType uint
+type AVVideoFrameAnalysisType uint
+
+const (
+	// AVVideoFrameAnalysisTypeNone - A type that performs no analysis.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/AVVideoFrameAnalysisTypeNone
+	AVVideoFrameAnalysisTypeNone AVVideoFrameAnalysisType = 0
+	// AVVideoFrameAnalysisTypeDefault - The default types of analysis to perform.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/default
+	AVVideoFrameAnalysisTypeDefault AVVideoFrameAnalysisType = 0
+	// AVVideoFrameAnalysisTypeMachineReadableCode - A type that recognizes machine-readable codes, such as QR codes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/machineReadableCode
+	AVVideoFrameAnalysisTypeMachineReadableCode AVVideoFrameAnalysisType = 0
+	// AVVideoFrameAnalysisTypeSubject - A type that finds a subject that a user can copy out of frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/subject
+	AVVideoFrameAnalysisTypeSubject AVVideoFrameAnalysisType = 0
+	// AVVideoFrameAnalysisTypeText - A type that finds text in a paused video frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/text
+	AVVideoFrameAnalysisTypeText AVVideoFrameAnalysisType = 0
+	// AVVideoFrameAnalysisTypeVisualSearch - A type that identifies objects, landmarks, art, and so on.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVVideoFrameAnalysisType/visualSearch
+	AVVideoFrameAnalysisTypeVisualSearch AVVideoFrameAnalysisType = 0
+)
 
 

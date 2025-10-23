@@ -29,7 +29,7 @@ type _CNChangeHistoryAddContactEventClass struct {
 // An interface definition for the [CNChangeHistoryAddContactEvent] class.
 type ICNChangeHistoryAddContactEvent interface {
 	ICNChangeHistoryEvent
-	Contact() CNContact
+	Contact() ICNContact
 	ContainerIdentifier() string
 }
 
@@ -90,7 +90,7 @@ func NewCNChangeHistoryAddContactEvent() CNChangeHistoryAddContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/contact
-func (c_ CNChangeHistoryAddContactEvent) Contact() CNContact {
+func (c_ CNChangeHistoryAddContactEvent) Contact() ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }

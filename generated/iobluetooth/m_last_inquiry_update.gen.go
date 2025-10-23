@@ -30,6 +30,8 @@ type _mLastInquiryUpdateClass struct {
 // An interface definition for the [mLastInquiryUpdate] class.
 type ImLastInquiryUpdate interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

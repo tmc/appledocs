@@ -30,7 +30,7 @@ type _AuthorizationPasswordProviderClass struct {
 // An interface definition for the [AuthorizationPasswordProvider] class.
 type IAuthorizationPasswordProvider interface {
 	objectivec.IObject
-	CreateRequest() AuthorizationPasswordRequest
+	CreateRequest() IAuthorizationPasswordRequest
 }
 
 // A mechanism for generating requests to perform keychain credential sharing.
@@ -88,7 +88,7 @@ func NewAuthorizationPasswordProvider() AuthorizationPasswordProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPasswordProvider/createRequest()
-func (a_ AuthorizationPasswordProvider) CreateRequest() AuthorizationPasswordRequest {
+func (a_ AuthorizationPasswordProvider) CreateRequest() IAuthorizationPasswordRequest {
 	rv := objc.Send[AuthorizationPasswordRequest](a_.ID, objc.Sel("createRequest"))
 	return rv
 }

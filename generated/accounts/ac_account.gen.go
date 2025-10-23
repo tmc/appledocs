@@ -32,9 +32,9 @@ type IACAccount interface {
 	objectivec.IObject
 	AccountDescription() string
 	SetAccountDescription(value string)
-	AccountType() ACAccountType
-	SetAccountType(value ACAccountType)
-	Credential() ACAccountCredential
+	AccountType() IACAccountType
+	SetAccountType(value IACAccountType)
+	Credential() IACAccountCredential
 	SetCredential(value IACAccountCredential)
 	Identifier() string
 	UserFullName() string
@@ -99,7 +99,7 @@ func NewACAccount() ACAccount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/init(accountType:)
-func NewACAccountWithAccountType(type_ ACAccountType) ACAccount {
+func NewACAccountWithAccountType(type_ IACAccountType) ACAccount {
 	instance := getACAccountClass().Alloc()
 	rv := objc.Send[ACAccount](instance.ID, objc.Sel("initWithAccountType:"), type_)
 	rv.Autorelease()
@@ -131,7 +131,7 @@ func (a_ ACAccount) SetAccountDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
-func (a_ ACAccount) AccountType() ACAccountType {
+func (a_ ACAccount) AccountType() IACAccountType {
 	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (a_ ACAccount) AccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountType
-func (a_ ACAccount) SetAccountType(value ACAccountType) {
+func (a_ ACAccount) SetAccountType(value IACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
 
@@ -150,7 +150,7 @@ func (a_ ACAccount) SetAccountType(value ACAccountType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/credential
-func (a_ ACAccount) Credential() ACAccountCredential {
+func (a_ ACAccount) Credential() IACAccountCredential {
 	rv := objc.Send[ACAccountCredential](a_.ID, objc.Sel("credential"))
 	return rv
 }

@@ -30,15 +30,15 @@ type _CWWiFiClientClass struct {
 // An interface definition for the [CWWiFiClient] class.
 type ICWWiFiClient interface {
 	objectivec.IObject
-	Interface() CWInterface
-	InterfaceWithName(interfaceName string) CWInterface
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	Interface() ICWInterface
+	InterfaceWithName(interfaceName string) ICWInterface
 	InterfaceNames() []string
 	Interfaces() []CWInterface
 	StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
 	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool
 	StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 }
 
 // A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
@@ -119,7 +119,7 @@ func (cc _CWWiFiClientClass) SharedWiFiClient() CWWiFiClient {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface()
-func (c_ CWWiFiClient) Interface() CWInterface {
+func (c_ CWWiFiClient) Interface() ICWInterface {
 	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interface"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (c_ CWWiFiClient) Interface() CWInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface(withName:)
-func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) CWInterface {
+func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) ICWInterface {
 	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interfaceWithName:"), objc.String(interfaceName))
 	return rv
 }

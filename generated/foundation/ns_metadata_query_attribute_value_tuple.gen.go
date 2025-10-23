@@ -30,19 +30,21 @@ type _MetadataQueryAttributeValueTupleClass struct {
 // An interface definition for the [MetadataQueryAttributeValueTuple] class.
 type IMetadataQueryAttributeValueTuple interface {
 	objectivec.IObject
-	Attribute() string
-	Count() uint
+	// properties:
+	Attribute() string /* primitive/slice/pointer */
+	Count() uint /* primitive/slice/pointer */
 	Value() objc.ID
 	GroupedResults() IMetadataQueryResultGroup
 	SetGroupedResults(value IMetadataQueryResultGroup)
 	OperationQueue() IOperationQueue
 	SetOperationQueue(value IOperationQueue)
-	ResultCount() int
-	SetResultCount(value int)
+	ResultCount() int /* primitive/slice/pointer */
+	SetResultCount(value int /* primitive/slice/pointer */)
 	Results() unsafe.Pointer
 	SetResults(value unsafe.Pointer)
 	ValueLists() IMetadataQueryAttributeValueTuple
 	SetValueLists(value IMetadataQueryAttributeValueTuple)
+	// methods:
 }
 
 // The class represents attribute-value tuples, which are objects that contain the attribute name and value of a metadata attribute.
@@ -102,7 +104,7 @@ func NewMetadataQueryAttributeValueTuple() MetadataQueryAttributeValueTuple {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryAttributeValueTuple/attribute
-func (m_ MetadataQueryAttributeValueTuple) Attribute() string {
+func (m_ MetadataQueryAttributeValueTuple) Attribute() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("attribute"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (m_ MetadataQueryAttributeValueTuple) Attribute() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQueryAttributeValueTuple/count
-func (m_ MetadataQueryAttributeValueTuple) Count() uint {
+func (m_ MetadataQueryAttributeValueTuple) Count() uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (m_ MetadataQueryAttributeValueTuple) SetOperationQueue(value IOperationQue
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-func (m_ MetadataQueryAttributeValueTuple) ResultCount() int {
+func (m_ MetadataQueryAttributeValueTuple) ResultCount() int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("resultCount"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (m_ MetadataQueryAttributeValueTuple) ResultCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/resultcount
-func (m_ MetadataQueryAttributeValueTuple) SetResultCount(value int) {
+func (m_ MetadataQueryAttributeValueTuple) SetResultCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResultCount:"), value)
 }
 

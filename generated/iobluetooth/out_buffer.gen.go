@@ -30,6 +30,8 @@ type _outBufferClass struct {
 // An interface definition for the [outBuffer] class.
 type IoutBuffer interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,6 +30,8 @@ type _mBackgroundImageClass struct {
 // An interface definition for the [mBackgroundImage] class.
 type ImBackgroundImage interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

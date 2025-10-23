@@ -30,6 +30,8 @@ type _XPCListenerEndpointClass struct {
 // An interface definition for the [XPCListenerEndpoint] class.
 type IXPCListenerEndpoint interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that names a specific XPC listener.

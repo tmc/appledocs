@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INPlayMediaIntent] class.
@@ -30,18 +29,24 @@ type _INPlayMediaIntentClass struct {
 // An interface definition for the [INPlayMediaIntent] class.
 type IINPlayMediaIntent interface {
 	IINIntent
-	MediaItems() []INMediaItem
-	MediaSearch() INMediaSearch
-	PlaybackSpeed() foundation.Number
-	ResumePlayback() foundation.Number
+	// properties:
 	MediaContainer() INMediaItem
 	SetMediaContainer(value INMediaItem)
+	MediaItems() INMediaItem
+	SetMediaItems(value INMediaItem)
+	MediaSearch() INMediaSearch
+	SetMediaSearch(value INMediaSearch)
 	PlayShuffled() bool
 	SetPlayShuffled(value bool)
 	PlaybackQueueLocation() unsafe.Pointer
 	SetPlaybackQueueLocation(value unsafe.Pointer)
-	PlaybackRepeatMode() INPlaybackRepeatMode
-	SetPlaybackRepeatMode(value INPlaybackRepeatMode)
+	PlaybackRepeatMode() unsafe.Pointer
+	SetPlaybackRepeatMode(value unsafe.Pointer)
+	PlaybackSpeed() float64
+	SetPlaybackSpeed(value float64)
+	ResumePlayback() bool
+	SetResumePlayback(value bool)
+	// methods:
 }
 
 // An intent that contains information about media playable from your app.
@@ -99,59 +104,6 @@ func NewINPlayMediaIntent() INPlayMediaIntent {
 
 
 
-// Initialize an intent that describes media content such as a song, podcast episode, or movie.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:
-func NewINPlayMediaIntentWithMediaItemsMediaContainerPlayShuffledPlaybackRepeatModeResumePlaybackPlaybackQueueLocationPlaybackSpeedMediaSearch(mediaItems []INMediaItem, mediaContainer INMediaItem, playShuffled foundation.INumber, playbackRepeatMode INPlaybackRepeatMode, resumePlayback foundation.INumber, playbackQueueLocation unsafe.Pointer, playbackSpeed foundation.INumber, mediaSearch INMediaSearch) INPlayMediaIntent {
-	instance := getINPlayMediaIntentClass().Alloc()
-	rv := objc.Send[INPlayMediaIntent](instance.ID, objc.Sel("initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:"), mediaItems, mediaContainer, playShuffled, playbackRepeatMode, resumePlayback, playbackQueueLocation, playbackSpeed, mediaSearch)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The media content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/mediaItems
-func (i_ INPlayMediaIntent) MediaItems() []INMediaItem {
-	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
-	return rv
-}
-
-
-// An object that contains the search parameters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/mediaSearch
-func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
-	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
-	return rv
-}
-
-
-// The playback speed for a media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq
-func (i_ INPlayMediaIntent) PlaybackSpeed() foundation.Number {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("playbackSpeed"))
-	return rv
-}
-
-
-// The resume playback setting at the time the user plays the media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp
-func (i_ INPlayMediaIntent) ResumePlayback() foundation.Number {
-	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("resumePlayback"))
-	return rv
-}
-
-
 // The media item container.
 //
 // [Full Topic]
@@ -168,6 +120,44 @@ func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
 func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaContainer:"), value)
+}
+
+
+// The media content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediaitems
+func (i_ INPlayMediaIntent) MediaItems() INMediaItem {
+	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
+	return rv
+}
+
+
+// The media content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediaitems
+func (i_ INPlayMediaIntent) SetMediaItems(value INMediaItem) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
+}
+
+
+// An object that contains the search parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediasearch
+func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
+	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
+	return rv
+}
+
+
+// An object that contains the search parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediasearch
+func (i_ INPlayMediaIntent) SetMediaSearch(value INMediaSearch) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 
 
@@ -213,8 +203,8 @@ func (i_ INPlayMediaIntent) SetPlaybackQueueLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
-	rv := objc.Send[INPlaybackRepeatMode](i_.ID, objc.Sel("playbackRepeatMode"))
+func (i_ INPlayMediaIntent) PlaybackRepeatMode() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playbackRepeatMode"))
 	return rv
 }
 
@@ -223,8 +213,47 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value INPlaybackRepeatMode) {
+func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackRepeatMode:"), value)
 }
+
+
+// The playback speed for a media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackspeed-17r2t
+func (i_ INPlayMediaIntent) PlaybackSpeed() float64 {
+	rv := objc.Send[float64](i_.ID, objc.Sel("playbackSpeed"))
+	return rv
+}
+
+
+// The playback speed for a media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackspeed-17r2t
+func (i_ INPlayMediaIntent) SetPlaybackSpeed(value float64) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackSpeed:"), value)
+}
+
+
+// The resume playback setting at the time the user plays the media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/resumeplayback-1xw6r
+func (i_ INPlayMediaIntent) ResumePlayback() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("resumePlayback"))
+	return rv
+}
+
+
+// The resume playback setting at the time the user plays the media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/resumeplayback-1xw6r
+func (i_ INPlayMediaIntent) SetResumePlayback(value bool) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setResumePlayback:"), value)
+}
+
 
 

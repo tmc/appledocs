@@ -35,7 +35,11 @@ type IVZAudioInputStreamSource interface {
 // The base class for an audio input stream source.
 //
 // An audio input stream source defines how th guest produces audio input data on the host system. Don’t instantiate directly, use one of its subclasses such as instead.
+
+
+// The base class for an audio input stream source.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZAudioInputStreamSource
 type VZAudioInputStreamSource struct {
 	objectivec.Object

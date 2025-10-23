@@ -30,10 +30,12 @@ type _FragmentedMovieMinderClass struct {
 // An interface definition for the [FragmentedMovieMinder] class.
 type IFragmentedMovieMinder interface {
 	objectivec.IObject
+	// properties:
 	MindingInterval() unsafe.Pointer
 	SetMindingInterval(value unsafe.Pointer)
-	Movies() FragmentedMovie
-	SetMovies(value FragmentedMovie)
+	Movies() AVFragmentedMovie /* foo */
+	SetMovies(value AVFragmentedMovie /* foo */)
+	// methods:
 }
 
 // An object that checks whether a fragmented movie appends additional movie fragments.
@@ -112,7 +114,7 @@ func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) Movies() FragmentedMovie {
+func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie /* foo */ {
 	rv := objc.Send[FragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (f_ FragmentedMovieMinder) Movies() FragmentedMovie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) SetMovies(value FragmentedMovie) {
+func (f_ FragmentedMovieMinder) SetMovies(value AVFragmentedMovie /* foo */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }
 
