@@ -17,6 +17,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime/pprof"
 	"sort"
 	"strings"
 	"time"
@@ -49,7 +50,26 @@ func main() {
 	debugHelp := flag.Bool("debug-help", false, "Show available debug categories and usage examples")
 	traceOrigin := flag.Bool("trace-origin", false, "Include source traceability comments in generated code")
 
+	// Performance profiling flags
+	cpuProfile := flag.String("cpuprofile", "", "Write CPU profile to file")
+	memProfile := flag.String("memprofile", "", "Write memory profile to file")
+
 	flag.Parse()
+
+	// Start CPU profiling if requested
+	if *cpuProfile != "" {
+		f, err := os.Create(*cpuProfile)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to create CPU profile: %v\n", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+		if err := pprof.StartCPUProfile(f); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to start CPU profile: %v\n", err)
+			os.Exit(1)
+		}
+		defer pprof.StopCPUProfile()
+	}
 
 	// Handle --debug-help
 	if *debugHelp {
@@ -124,6 +144,20 @@ func main() {
 	for _, fw := range frameworks {
 		if err := generateFramework(fw, *inputDir, *outputDir, *filterRegexp, *txtarOutput, *variant, *withRefMethods, *generateTests, *generateExamples); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating %s: %v\n", fw, err)
+			os.Exit(1)
+		}
+	}
+
+	// Write memory profile if requested
+	if *memProfile != "" {
+		f, err := os.Create(*memProfile)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to create memory profile: %v\n", err)
+			os.Exit(1)
+		}
+		defer f.Close()
+		if err := pprof.WriteHeapProfile(f); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: failed to write memory profile: %v\n", err)
 			os.Exit(1)
 		}
 	}

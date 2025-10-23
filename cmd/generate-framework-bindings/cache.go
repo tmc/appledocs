@@ -4,10 +4,8 @@ import (
 	"crypto/sha256"
 	"encoding/gob"
 	"fmt"
-	"io/fs"
 	"os"
 	"path/filepath"
-	"sort"
 	"time"
 
 	"github.com/tmc/appledocs/occ2go"
@@ -46,60 +44,45 @@ func getCachePath(framework string) (string, error) {
 }
 
 func getInputHash(inputDir, framework string) (string, error) {
-	// Hash all JSON files in the framework directory for proper cache invalidation
-	// This ensures cache is invalidated when any documentation file changes
+	// Fast cache validation using directory stats
+	// This is much faster than walking all files while still catching most changes
 	frameworkPath := filepath.Join(inputDir, framework)
 
-	// Check if framework directory exists
-	if _, err := os.Stat(frameworkPath); err != nil {
-		return "", err
-	}
-
-	// Collect all JSON files with their mtimes
-	type fileInfo struct {
-		path  string
-		mtime time.Time
-		size  int64
-	}
-	var files []fileInfo
-
-	err := filepath.WalkDir(frameworkPath, func(path string, d fs.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
-		if !d.IsDir() && filepath.Ext(path) == ".json" {
-			info, err := d.Info()
-			if err != nil {
-				return err
-			}
-			files = append(files, fileInfo{
-				path:  path,
-				mtime: info.ModTime(),
-				size:  info.Size(),
-			})
-		}
-		return nil
-	})
+	// Get directory info
+	dirInfo, err := os.Stat(frameworkPath)
 	if err != nil {
 		return "", err
 	}
 
-	// Sort files by path for consistent hashing
-	sort.Slice(files, func(i, j int) bool {
-		return files[i].path < files[j].path
-	})
+	// Quick count of JSON files (not full walk)
+	entries, err := os.ReadDir(frameworkPath)
+	if err != nil {
+		return "", err
+	}
 
-	// Hash the sorted file information
+	fileCount := 0
+	var totalSize int64
+	for _, entry := range entries {
+		if !entry.IsDir() && filepath.Ext(entry.Name()) == ".json" {
+			info, err := entry.Info()
+			if err == nil {
+				fileCount++
+				totalSize += info.Size()
+			}
+		}
+	}
+
+	// Hash: directory mtime + file count + total size + cache version
+	// This catches:
+	// - Files added/removed (count changes)
+	// - Files modified (size usually changes, or dir mtime updates)
+	// - Directory structure changes (dir mtime updates)
 	h := sha256.New()
 	h.Write([]byte(framework))
 	h.Write([]byte(cacheVersion))
-	for _, f := range files {
-		// Include relative path, mtime, and size in hash
-		relPath, _ := filepath.Rel(frameworkPath, f.path)
-		h.Write([]byte(relPath))
-		h.Write([]byte(f.mtime.Format(time.RFC3339Nano)))
-		h.Write([]byte(fmt.Sprintf("%d", f.size)))
-	}
+	h.Write([]byte(dirInfo.ModTime().Format(time.RFC3339Nano)))
+	h.Write([]byte(fmt.Sprintf("%d", fileCount)))
+	h.Write([]byte(fmt.Sprintf("%d", totalSize)))
 
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
