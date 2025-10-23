@@ -30,11 +30,12 @@ type _URLQueryItemClass struct {
 // An interface definition for the [URLQueryItem] class.
 type IURLQueryItem interface {
 	objectivec.IObject
-	Value() string
 	QueryItems() URLQueryItem
 	SetQueryItems(value IURLQueryItem)
 	Name() string
 	SetName(value string)
+	Value() string
+	SetValue(value string)
 }
 
 // An object representing a single name/value pair for an item in the query portion of a URL.
@@ -90,16 +91,6 @@ func NewURLQueryItem() URLQueryItem {
 
 
 
-// The value for the query item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-func (u_ URLQueryItem) Value() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("value"))
-	return rv
-}
-
-
 // The query URL component as an array of name/value pairs.
 //
 // [Full Topic]
@@ -135,6 +126,25 @@ func (u_ URLQueryItem) Name() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
 func (u_ URLQueryItem) SetName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
+}
+
+
+// The value for the query item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/value
+func (u_ URLQueryItem) Value() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("value"))
+	return rv
+}
+
+
+// The value for the query item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/value
+func (u_ URLQueryItem) SetValue(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 
 

@@ -33,8 +33,7 @@ type IFileVersion interface {
 	RemoveAndReturnError(outError IError) bool
 	ReplaceItemAtURLOptionsError(url IURL, options NSFileVersionReplacingOptions, error_ IError) URL
 	HasLocalContents() bool
-	PersistentIdentifier() objc.ID
-	URL() URL
+	SetHasLocalContents(value bool)
 	HasThumbnail() bool
 	SetHasThumbnail(value bool)
 	IsConflict() bool
@@ -51,6 +50,10 @@ type IFileVersion interface {
 	SetModificationDate(value IDate)
 	OriginatorNameComponents() PersonNameComponents
 	SetOriginatorNameComponents(value IPersonNameComponents)
+	PersistentIdentifier() unsafe.Pointer
+	SetPersistentIdentifier(value unsafe.Pointer)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // A snapshot of a file at a specific point in time.
@@ -147,30 +150,17 @@ func (f_ FileVersion) ReplaceItemAtURLOptionsError(url IURL, options NSFileVersi
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/hasLocalContents
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/haslocalcontents
 func (f_ FileVersion) HasLocalContents() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLocalContents"))
 	return rv
 }
 
 
-// The identifier for this version of the file.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/persistentIdentifier
-func (f_ FileVersion) PersistentIdentifier() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("persistentIdentifier"))
-	return rv
-}
-
-
-// The URL identifying the location of the file associated with the file version object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileVersion/url
-func (f_ FileVersion) URL() URL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/haslocalcontents
+func (f_ FileVersion) SetHasLocalContents(value bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setHasLocalContents:"), value)
 }
 
 
@@ -315,6 +305,44 @@ func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
 func (f_ FileVersion) SetOriginatorNameComponents(value IPersonNameComponents) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
+}
+
+
+// The identifier for this version of the file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/persistentidentifier
+func (f_ FileVersion) PersistentIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("persistentIdentifier"))
+	return rv
+}
+
+
+// The identifier for this version of the file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/persistentidentifier
+func (f_ FileVersion) SetPersistentIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPersistentIdentifier:"), value)
+}
+
+
+// The URL identifying the location of the file associated with the file version object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/url
+func (f_ FileVersion) Url() URL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL identifying the location of the file associated with the file version object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/url
+func (f_ FileVersion) SetUrl(value IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 
 

@@ -3,6 +3,131 @@
 package foundation
 
 // Enum types and constants
+// NSByteCountFormatterCountStyle - Specifies display of file or storage byte counts. The display style is platform specific.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/CountStyle-swift.enum
+type NSByteCountFormatterCountStyle uint
+
+const (
+	NSByteCountFormatterCountStyleFile NSByteCountFormatterCountStyle = 0
+	NSByteCountFormatterCountStyleMemory NSByteCountFormatterCountStyle = 1
+	NSByteCountFormatterCountStyleDecimal NSByteCountFormatterCountStyle = 2
+	NSByteCountFormatterCountStyleBinary NSByteCountFormatterCountStyle = 3
+)
+
+// NSByteCountFormatterUnits - Specifies the units appropriate for the formatter to display. Specifying any units explicitly causes just those units to be used in showing the number.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/Units
+type NSByteCountFormatterUnits uint
+
+const (
+	NSByteCountFormatterUseDefault NSByteCountFormatterUnits = 0
+	NSByteCountFormatterUseBytes NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseKB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseMB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseGB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseTB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUsePB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseEB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseZB NSByteCountFormatterUnits = 1
+	NSByteCountFormatterUseYBOrHigher NSByteCountFormatterUnits = 0
+	NSByteCountFormatterUseAll NSByteCountFormatterUnits = 0
+)
+
+// NSComparisonResult - Constants that indicate sort order.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult
+type NSComparisonResult uint
+
+const (
+	// NSOrderedAscending - The left operand is smaller than the right operand.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedAscending
+	NSOrderedAscending NSComparisonResult = -1
+	// NSOrderedDescending - The left operand is greater than the right operand.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedDescending
+	NSOrderedDescending NSComparisonResult = 1
+	// NSOrderedSame - The two operands are equal.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/ComparisonResult/orderedSame
+	NSOrderedSame NSComparisonResult = 0
+)
+
+// NSDateComponentsFormatterUnitsStyle - Constants for specifying how to represent quantities of time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum
+type NSDateComponentsFormatterUnitsStyle uint
+
+const (
+	NSDateComponentsFormatterUnitsStylePositional NSDateComponentsFormatterUnitsStyle = 0
+	NSDateComponentsFormatterUnitsStyleAbbreviated NSDateComponentsFormatterUnitsStyle = 1
+	NSDateComponentsFormatterUnitsStyleShort NSDateComponentsFormatterUnitsStyle = 2
+	NSDateComponentsFormatterUnitsStyleFull NSDateComponentsFormatterUnitsStyle = 3
+	NSDateComponentsFormatterUnitsStyleSpellOut NSDateComponentsFormatterUnitsStyle = 4
+	NSDateComponentsFormatterUnitsStyleBrief NSDateComponentsFormatterUnitsStyle = 5
+)
+
+// NSDateComponentsFormatterZeroFormattingBehavior - Formatting constants for when values contain zeroes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/ZeroFormattingBehavior-swift.struct
+type NSDateComponentsFormatterZeroFormattingBehavior uint
+
+// NSDateFormatterBehavior - Constants that specify the behavior 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Behavior
+type NSDateFormatterBehavior uint
+
+const (
+	NSDateFormatterBehaviorDefault NSDateFormatterBehavior = 0
+	NSDateFormatterBehavior10_0 NSDateFormatterBehavior = 1000
+	NSDateFormatterBehavior10_4 NSDateFormatterBehavior = 1040
+)
+
+// NSDateFormatterStyle - The following constants specify predefined format styles for dates and times.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style
+type NSDateFormatterStyle uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/long
+	NSDateFormatterLongStyle NSDateFormatterStyle = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/none
+	NSDateFormatterNoStyle NSDateFormatterStyle = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/Style/short
+	NSDateFormatterShortStyle NSDateFormatterStyle = 0
+)
+
+// NSDistributedNotificationOptions - These constants specify the behavior of notifications posted using the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/Options
+type NSDistributedNotificationOptions uint
+
+// NSNotificationSuspensionBehavior - These constants specify the types of notification delivery suspension behaviors.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/SuspensionBehavior
+type NSNotificationSuspensionBehavior uint
+
+const (
+	NSNotificationSuspensionBehaviorDrop NSNotificationSuspensionBehavior = 1
+	NSNotificationSuspensionBehaviorCoalesce NSNotificationSuspensionBehavior = 2
+	NSNotificationSuspensionBehaviorHold NSNotificationSuspensionBehavior = 3
+	NSNotificationSuspensionBehaviorDeliverImmediately NSNotificationSuspensionBehavior = 4
+)
+
+// NSEnergyFormatterUnit - The units supported by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/Unit
+type NSEnergyFormatterUnit uint
+
+const (
+	NSEnergyFormatterUnitJoule NSEnergyFormatterUnit = 11
+	NSEnergyFormatterUnitKilojoule NSEnergyFormatterUnit = 14
+)
+
 // NSDirectoryEnumerationOptions - Options for enumerating the contents of directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions
@@ -241,6 +366,53 @@ const (
 	NSVolumeEnumerationSkipHiddenVolumes NSVolumeEnumerationOptions = 1
 )
 
+// NSFormattingContext - The formatting context for a formatter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context
+type NSFormattingContext uint
+
+const (
+	NSFormattingContextUnknown NSFormattingContext = 0
+	NSFormattingContextDynamic NSFormattingContext = 1
+	NSFormattingContextStandalone NSFormattingContext = 2
+	NSFormattingContextListItem NSFormattingContext = 3
+	NSFormattingContextBeginningOfSentence NSFormattingContext = 4
+	NSFormattingContextMiddleOfSentence NSFormattingContext = 5
+)
+
+// NSFormattingUnitStyle - Specifies the width of the unit, determining the textual representation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/UnitStyle
+type NSFormattingUnitStyle uint
+
+const (
+	NSFormattingUnitStyleShort NSFormattingUnitStyle = 1
+	NSFormattingUnitStyleMedium NSFormattingUnitStyle = 2
+	NSFormattingUnitStyleLong NSFormattingUnitStyle = 3
+)
+
+// NSISO8601DateFormatOptions - Options used to generate and parse ISO 8601 date representations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/Options
+type NSISO8601DateFormatOptions uint
+
+const (
+	NSISO8601DateFormatWithYear NSISO8601DateFormatOptions = 0
+	NSISO8601DateFormatWithMonth NSISO8601DateFormatOptions = 1
+	NSISO8601DateFormatWithWeekOfYear NSISO8601DateFormatOptions = 2
+	NSISO8601DateFormatWithDay NSISO8601DateFormatOptions = 3
+	NSISO8601DateFormatWithTime NSISO8601DateFormatOptions = 4
+	NSISO8601DateFormatWithTimeZone NSISO8601DateFormatOptions = 5
+	NSISO8601DateFormatWithSpaceBetweenDateAndTime NSISO8601DateFormatOptions = 6
+	NSISO8601DateFormatWithDashSeparatorInDate NSISO8601DateFormatOptions = 7
+	NSISO8601DateFormatWithColonSeparatorInTime NSISO8601DateFormatOptions = 8
+	NSISO8601DateFormatWithColonSeparatorInTimeZone NSISO8601DateFormatOptions = 9
+	NSISO8601DateFormatWithFractionalSeconds NSISO8601DateFormatOptions = 10
+	NSISO8601DateFormatWithFullDate NSISO8601DateFormatOptions = 11
+	NSISO8601DateFormatWithFullTime NSISO8601DateFormatOptions = 12
+	NSISO8601DateFormatWithInternetDateTime NSISO8601DateFormatOptions = 13
+)
+
 // NSInlinePresentationIntent - A type that defines presentation intent for runs of characters for traits like emphasis, strikethrough, and code voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent
@@ -260,6 +432,28 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent/stronglyEmphasized
 	NSInlinePresentationIntentStronglyEmphasized NSInlinePresentationIntent = 1
 )
+
+// NSLengthFormatterUnit - The units supported by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/Unit
+type NSLengthFormatterUnit uint
+
+const (
+	NSLengthFormatterUnitMillimeter NSLengthFormatterUnit = 8
+	NSLengthFormatterUnitCentimeter NSLengthFormatterUnit = 9
+	NSLengthFormatterUnitMeter NSLengthFormatterUnit = 11
+	NSLengthFormatterUnitKilometer NSLengthFormatterUnit = 14
+)
+
+// NSMeasurementFormatterUnitOptions - Measurement formatter options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/MeasurementFormatter/UnitOptions-swift.struct
+type NSMeasurementFormatterUnitOptions uint
+
+// NSAppleEventSendOptions enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/SendOptions
+type NSAppleEventSendOptions uint
 
 // NSAttributedStringEnumerationOptions - Options for enumerating attributes.
 //
@@ -744,6 +938,78 @@ const (
 	NSGrammaticalCaseTranslative NSGrammaticalCase = 14
 )
 
+// NSGrammaticalDefiniteness enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness
+type NSGrammaticalDefiniteness uint
+
+const (
+	NSGrammaticalDefinitenessNotSet NSGrammaticalDefiniteness = 0
+	NSGrammaticalDefinitenessIndefinite NSGrammaticalDefiniteness = 1
+	NSGrammaticalDefinitenessDefinite NSGrammaticalDefiniteness = 2
+)
+
+// NSGrammaticalDetermination enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDetermination
+type NSGrammaticalDetermination uint
+
+const (
+	NSGrammaticalDeterminationNotSet NSGrammaticalDetermination = 0
+	NSGrammaticalDeterminationIndependent NSGrammaticalDetermination = 1
+	NSGrammaticalDeterminationDependent NSGrammaticalDetermination = 2
+)
+
+// NSGrammaticalGender - A representation of grammatical gender, used for inflecting strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalGender
+type NSGrammaticalGender uint
+
+const (
+	NSGrammaticalGenderNotSet NSGrammaticalGender = 0
+	NSGrammaticalGenderFeminine NSGrammaticalGender = 1
+	NSGrammaticalGenderMasculine NSGrammaticalGender = 2
+	NSGrammaticalGenderNeuter NSGrammaticalGender = 3
+)
+
+// NSGrammaticalNumber - A representation of grammatical number, used for inflecting strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalNumber
+type NSGrammaticalNumber uint
+
+const (
+	NSGrammaticalNumberNotSet NSGrammaticalNumber = 0
+	NSGrammaticalNumberSingular NSGrammaticalNumber = 1
+	NSGrammaticalNumberZero NSGrammaticalNumber = 2
+	NSGrammaticalNumberPlural NSGrammaticalNumber = 3
+	NSGrammaticalNumberPluralTwo NSGrammaticalNumber = 4
+	NSGrammaticalNumberPluralFew NSGrammaticalNumber = 5
+	NSGrammaticalNumberPluralMany NSGrammaticalNumber = 6
+)
+
+// NSGrammaticalPartOfSpeech - A representation of grammatical parts of speech, used for inflecting strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPartOfSpeech
+type NSGrammaticalPartOfSpeech uint
+
+const (
+	NSGrammaticalPartOfSpeechNotSet NSGrammaticalPartOfSpeech = 0
+	NSGrammaticalPartOfSpeechDeterminer NSGrammaticalPartOfSpeech = 1
+	NSGrammaticalPartOfSpeechPronoun NSGrammaticalPartOfSpeech = 2
+	NSGrammaticalPartOfSpeechLetter NSGrammaticalPartOfSpeech = 3
+	NSGrammaticalPartOfSpeechAdverb NSGrammaticalPartOfSpeech = 4
+	NSGrammaticalPartOfSpeechParticle NSGrammaticalPartOfSpeech = 5
+	NSGrammaticalPartOfSpeechAdjective NSGrammaticalPartOfSpeech = 6
+	NSGrammaticalPartOfSpeechAdposition NSGrammaticalPartOfSpeech = 7
+	NSGrammaticalPartOfSpeechVerb NSGrammaticalPartOfSpeech = 8
+	NSGrammaticalPartOfSpeechNoun NSGrammaticalPartOfSpeech = 9
+	NSGrammaticalPartOfSpeechConjunction NSGrammaticalPartOfSpeech = 10
+	NSGrammaticalPartOfSpeechNumeral NSGrammaticalPartOfSpeech = 11
+	NSGrammaticalPartOfSpeechInterjection NSGrammaticalPartOfSpeech = 12
+	NSGrammaticalPartOfSpeechPreposition NSGrammaticalPartOfSpeech = 13
+	NSGrammaticalPartOfSpeechAbbreviation NSGrammaticalPartOfSpeech = 14
+)
+
 // NSGrammaticalPerson enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalPerson
@@ -849,6 +1115,42 @@ const (
 	NSItemProviderRepresentationVisibilityTeam NSItemProviderRepresentationVisibility = 1
 )
 
+// NSKeyValueChange - The kinds of changes that can be observed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueChange
+type NSKeyValueChange uint
+
+const (
+	NSKeyValueChangeSetting NSKeyValueChange = 1
+	NSKeyValueChangeInsertion NSKeyValueChange = 2
+	NSKeyValueChangeRemoval NSKeyValueChange = 3
+	NSKeyValueChangeReplacement NSKeyValueChange = 4
+)
+
+// NSKeyValueObservingOptions - The values that can be returned in a change dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions
+type NSKeyValueObservingOptions uint
+
+const (
+	NSKeyValueObservingOptionNew NSKeyValueObservingOptions = 0
+	NSKeyValueObservingOptionOld NSKeyValueObservingOptions = 0
+	NSKeyValueObservingOptionInitial NSKeyValueObservingOptions = 1
+	NSKeyValueObservingOptionPrior NSKeyValueObservingOptions = 2
+)
+
+// NSKeyValueSetMutationKind enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSetMutationKind
+type NSKeyValueSetMutationKind uint
+
+const (
+	NSKeyValueUnionSetMutation NSKeyValueSetMutationKind = 1
+	NSKeyValueMinusSetMutation NSKeyValueSetMutationKind = 2
+	NSKeyValueIntersectSetMutation NSKeyValueSetMutationKind = 3
+	NSKeyValueSetSetMutation NSKeyValueSetMutationKind = 4
+)
+
 // NSLinguisticTaggerOptions - Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/Options
@@ -861,6 +1163,11 @@ const (
 	NSLinguisticTaggerOmitOther NSLinguisticTaggerOptions = 1
 	NSLinguisticTaggerJoinNames NSLinguisticTaggerOptions = 1
 )
+
+// NSLocaleLanguageDirection - The directions that a language may take across a page of text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection
+type NSLocaleLanguageDirection uint
 
 // NSMachPortOptions - Used to remove access rights to a mach port when the 
 //
@@ -942,6 +1249,49 @@ const (
 	NSPointerFunctionsZeroingWeakMemory NSPointerFunctionsOptions = 1
 )
 
+// NSInsertionPosition - The following constants are defined by 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/InsertionPosition
+type NSInsertionPosition uint
+
+const (
+	NSPositionAfter NSInsertionPosition = 0
+	NSPositionBefore NSInsertionPosition = 1
+	NSPositionBeginning NSInsertionPosition = 2
+	NSPositionEnd NSInsertionPosition = 3
+	NSPositionReplace NSInsertionPosition = 4
+)
+
+// NSPresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind
+type NSPresentationIntentKind uint
+
+const (
+	NSPresentationIntentKindParagraph NSPresentationIntentKind = 0
+	NSPresentationIntentKindHeader NSPresentationIntentKind = 1
+	NSPresentationIntentKindOrderedList NSPresentationIntentKind = 2
+	NSPresentationIntentKindUnorderedList NSPresentationIntentKind = 3
+	NSPresentationIntentKindListItem NSPresentationIntentKind = 4
+	NSPresentationIntentKindCodeBlock NSPresentationIntentKind = 5
+	NSPresentationIntentKindBlockQuote NSPresentationIntentKind = 6
+	NSPresentationIntentKindThematicBreak NSPresentationIntentKind = 7
+	NSPresentationIntentKindTable NSPresentationIntentKind = 8
+	NSPresentationIntentKindTableHeaderRow NSPresentationIntentKind = 9
+	NSPresentationIntentKindTableRow NSPresentationIntentKind = 10
+	NSPresentationIntentKindTableCell NSPresentationIntentKind = 11
+)
+
+// NSRelativePosition - These constants are used by 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/RelativePosition-swift.enum
+type NSRelativePosition uint
+
+const (
+	NSRelativeAfter NSRelativePosition = 0
+	NSRelativeBefore NSRelativePosition = 1
+)
+
 // NSSaveOptions - The 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSaveOptions
@@ -960,6 +1310,27 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSaveOptions/yes
 	NSSaveOptionsYes NSSaveOptions = 0
+)
+
+// NSSortOptions - Options for block sorting operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions
+type NSSortOptions uint
+
+// NSTestComparisonOperation - These are passed to  
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/TestComparisonOperation
+type NSTestComparisonOperation uint
+
+const (
+	NSEqualToComparison NSTestComparisonOperation = 0
+	NSLessThanOrEqualToComparison NSTestComparisonOperation = 1
+	NSLessThanComparison NSTestComparisonOperation = 2
+	NSGreaterThanOrEqualToComparison NSTestComparisonOperation = 3
+	NSGreaterThanComparison NSTestComparisonOperation = 4
+	NSBeginsWithComparison NSTestComparisonOperation = 5
+	NSEndsWithComparison NSTestComparisonOperation = 6
+	NSContainsComparison NSTestComparisonOperation = 7
 )
 
 // NSStringCompareOptions - These values represent the options available to many of the string classes’ search and comparison methods.
@@ -1213,6 +1584,32 @@ const (
 	NSURLSessionWebSocketMessageTypeString NSURLSessionWebSocketMessageType = 1
 )
 
+// NSUserNotificationActivationType - These constants describe how the user notification was activated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/ActivationType-swift.enum
+type NSUserNotificationActivationType uint
+
+const (
+	NSUserNotificationActivationTypeNone NSUserNotificationActivationType = 0
+	NSUserNotificationActivationTypeContentsClicked NSUserNotificationActivationType = 1
+	NSUserNotificationActivationTypeActionButtonClicked NSUserNotificationActivationType = 2
+	NSUserNotificationActivationTypeReplied NSUserNotificationActivationType = 3
+	NSUserNotificationActivationTypeAdditionalActionClicked NSUserNotificationActivationType = 4
+)
+
+// NSWhoseSubelementIdentifier enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSWhoseSpecifier/SubelementIdentifier
+type NSWhoseSubelementIdentifier uint
+
+const (
+	NSIndexSubelement NSWhoseSubelementIdentifier = 0
+	NSEverySubelement NSWhoseSubelementIdentifier = 1
+	NSMiddleSubelement NSWhoseSubelementIdentifier = 2
+	NSRandomSubelement NSWhoseSubelementIdentifier = 3
+	NSNoSubelement NSWhoseSubelementIdentifier = 4
+)
+
 // NSXPCConnectionOptions - Options that you can pass to a connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/Options
@@ -1308,6 +1705,39 @@ const (
 	NSPostWhenIdle NSPostingStyle = 1
 )
 
+// NSNumberFormatterBehavior - These constants specify the behavior of a number formatter. These constants are returned by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Behavior
+type NSNumberFormatterBehavior uint
+
+const (
+	NSNumberFormatterBehaviorDefault NSNumberFormatterBehavior = 0
+	NSNumberFormatterBehavior10_0 NSNumberFormatterBehavior = 1000
+	NSNumberFormatterBehavior10_4 NSNumberFormatterBehavior = 1040
+)
+
+// NSNumberFormatterPadPosition - These constants are used to specify how numbers should be padded. These constants are used by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/PadPosition
+type NSNumberFormatterPadPosition uint
+
+// NSNumberFormatterRoundingMode - These constants are used to specify how numbers should be rounded. These constants are used by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/RoundingMode-swift.enum
+type NSNumberFormatterRoundingMode uint
+
+// NSNumberFormatterStyle - The predefined number format styles used by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/Style
+type NSNumberFormatterStyle uint
+
+const (
+	NSNumberFormatterOrdinalStyle NSNumberFormatterStyle = 0
+	NSNumberFormatterCurrencyISOCodeStyle NSNumberFormatterStyle = 1
+	NSNumberFormatterCurrencyPluralStyle NSNumberFormatterStyle = 2
+	NSNumberFormatterCurrencyAccountingStyle NSNumberFormatterStyle = 3
+)
+
 // NSOperationQueuePriority - These constants let you prioritize the order in which operations execute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum
@@ -1334,6 +1764,44 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/QueuePriority-swift.enum/veryLow
 	NSOperationQueuePriorityVeryLow NSOperationQueuePriority = -8
+)
+
+// NSPersonNameComponentsFormatterOptions enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Options
+type NSPersonNameComponentsFormatterOptions uint
+
+// NSPersonNameComponentsFormatterStyle enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum
+type NSPersonNameComponentsFormatterStyle uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/abbreviated
+	NSPersonNameComponentsFormatterStyleAbbreviated NSPersonNameComponentsFormatterStyle = 4
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/default
+	NSPersonNameComponentsFormatterStyleDefault NSPersonNameComponentsFormatterStyle = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/long
+	NSPersonNameComponentsFormatterStyleLong NSPersonNameComponentsFormatterStyle = 3
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/medium
+	NSPersonNameComponentsFormatterStyleMedium NSPersonNameComponentsFormatterStyle = 2
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/Style-swift.enum/short
+	NSPersonNameComponentsFormatterStyleShort NSPersonNameComponentsFormatterStyle = 1
+)
+
+// NSTaskTerminationReason - Constants that specify the termination reason values that the system returns.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/TerminationReason-swift.enum
+type NSTaskTerminationReason uint
+
+const (
+	NSTaskTerminationReasonExit NSTaskTerminationReason = 1
+	NSTaskTerminationReasonUncaughtSignal NSTaskTerminationReason = 2
 )
 
 // NSActivityOptions - Option flags used with 
@@ -1405,6 +1873,28 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/QualityOfService/utility
 	NSQualityOfServiceUtility NSQualityOfService = 0
+)
+
+// NSRelativeDateTimeFormatterStyle - A type that represents the style to use when formatting relative dates, such as “1 week ago” or “last week”.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/DateTimeStyle-swift.enum
+type NSRelativeDateTimeFormatterStyle uint
+
+const (
+	NSRelativeDateTimeFormatterStyleNumeric NSRelativeDateTimeFormatterStyle = 0
+	NSRelativeDateTimeFormatterStyleNamed NSRelativeDateTimeFormatterStyle = 1
+)
+
+// NSRelativeDateTimeFormatterUnitsStyle - A type that represents the style to use when formatting the units of relative dates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/UnitsStyle-swift.enum
+type NSRelativeDateTimeFormatterUnitsStyle uint
+
+const (
+	NSRelativeDateTimeFormatterUnitsStyleFull NSRelativeDateTimeFormatterUnitsStyle = 0
+	NSRelativeDateTimeFormatterUnitsStyleSpellOut NSRelativeDateTimeFormatterUnitsStyle = 1
+	NSRelativeDateTimeFormatterUnitsStyleShort NSRelativeDateTimeFormatterUnitsStyle = 2
+	NSRelativeDateTimeFormatterUnitsStyleAbbreviated NSRelativeDateTimeFormatterUnitsStyle = 3
 )
 
 // NSURLSessionAuthChallengeDisposition - Constants passed by session or task delegates to the provided continuation block in response to an authentication challenge.
@@ -1667,53 +2157,20 @@ const (
 	NSXMLNodeUseSingleQuotes NSXMLNodeOptions = 1
 )
 
-
-
-// NSEnumerationOptions - Options for enumerating collections.
-// Defined in Foundation SDK headers (NSObjCRuntime.h)
+// NSEnumerationOptions - Options for block enumeration operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions
 type NSEnumerationOptions uint
 
 const (
-	NSEnumerationConcurrent NSEnumerationOptions = 1  // 1 << 0
-	NSEnumerationReverse    NSEnumerationOptions = 2  // 1 << 1
+	// NSEnumerationConcurrent - Specifies that the Block enumeration should be concurrent.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/concurrent
+	NSEnumerationConcurrent NSEnumerationOptions = 0
+	// NSEnumerationReverse - Specifies that the enumeration should be performed in reverse.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions/reverse
+	NSEnumerationReverse NSEnumerationOptions = 0
 )
 
-// NSSortOptions - Options for sorting operations.
-// Defined in Foundation SDK headers (NSObjCRuntime.h)
-type NSSortOptions uint
 
-const (
-	NSSortConcurrent NSSortOptions = 1   // 1 << 0
-	NSSortStable     NSSortOptions = 16  // 1 << 4
-)
-
-// NSKeyValueObservingOptions - Options for key-value observing.
-// Defined in Foundation SDK headers (NSKeyValueObserving.h)
-type NSKeyValueObservingOptions uint
-
-const (
-	NSKeyValueObservingOptionNew     NSKeyValueObservingOptions = 0x01
-	NSKeyValueObservingOptionOld     NSKeyValueObservingOptions = 0x02
-	NSKeyValueObservingOptionInitial NSKeyValueObservingOptions = 0x04
-	NSKeyValueObservingOptionPrior   NSKeyValueObservingOptions = 0x08
-)
-
-// NSBinarySearchingOptions - Options for binary search operations.
-// Defined in Foundation SDK headers (NSArray.h)
-type NSBinarySearchingOptions uint
-
-const (
-	NSBinarySearchingFirstEqual     NSBinarySearchingOptions = 256  // 1 << 8
-	NSBinarySearchingLastEqual      NSBinarySearchingOptions = 512  // 1 << 9
-	NSBinarySearchingInsertionIndex NSBinarySearchingOptions = 1024 // 1 << 10
-)
-
-// NSOrderedCollectionDifferenceCalculationOptions - Options for difference calculation.
-// Defined in Foundation SDK headers (NSOrderedCollectionDifference.h)
-type NSOrderedCollectionDifferenceCalculationOptions uint
-
-const (
-	NSOrderedCollectionDifferenceCalculationOmitInsertedObjects NSOrderedCollectionDifferenceCalculationOptions = 1 // 1 << 0
-	NSOrderedCollectionDifferenceCalculationOmitRemovedObjects  NSOrderedCollectionDifferenceCalculationOptions = 2 // 1 << 1
-	NSOrderedCollectionDifferenceCalculationInferMoves          NSOrderedCollectionDifferenceCalculationOptions = 4 // 1 << 2
-)

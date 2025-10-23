@@ -39,8 +39,8 @@ type IArray interface {
 	DescriptionWithLocale(locale objectivec.IObject) String
 	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
 	DifferenceFromArray(other []objc.ID) unsafe.Pointer
-	DifferenceFromArrayWithOptions(other []objc.ID, options NSOrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
-	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options NSOrderedCollectionDifferenceCalculationOptions, block unsafe.Pointer) unsafe.Pointer
+	DifferenceFromArrayWithOptions(other []objc.ID, options unsafe.Pointer) unsafe.Pointer
+	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateObjectsAtIndexesOptionsUsingBlock(s IIndexSet, opts NSEnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
@@ -50,7 +50,7 @@ type IArray interface {
 	GetObjectsRange(objects unsafe.Pointer, range_ Range)
 	IndexOfObject(anObject unsafe.Pointer) uint
 	IndexOfObjectInRange(anObject unsafe.Pointer, range_ Range) uint
-	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range, opts NSBinarySearchingOptions, cmp unsafe.Pointer) uint
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range, opts unsafe.Pointer, cmp unsafe.Pointer) uint
 	IndexOfObjectAtIndexesOptionsPassingTest(s IIndexSet, opts NSEnumerationOptions, predicate unsafe.Pointer) uint
 	IndexOfObjectWithOptionsPassingTest(opts NSEnumerationOptions, predicate unsafe.Pointer) uint
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
@@ -86,7 +86,7 @@ type IArray interface {
 	Description() string
 	FirstObject() unsafe.Pointer
 	LastObject() unsafe.Pointer
-	SortedArrayHint() Data
+	SortedArrayHint() NSData
 }
 
 // A static ordered collection of objects.
@@ -425,7 +425,7 @@ func (a_ Array) DifferenceFromArray(other []objc.ID) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:
-func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options NSOrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
+func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:"), other, options)
 	return rv
 }
@@ -435,7 +435,7 @@ func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID, options NSOrdere
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:usingEquivalenceTest:
-func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options NSOrderedCollectionDifferenceCalculationOptions, block unsafe.Pointer) unsafe.Pointer {
+func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:usingEquivalenceTest:"), other, options, block)
 	return rv
 }
@@ -530,7 +530,7 @@ func (a_ Array) IndexOfObjectInRange(anObject unsafe.Pointer, range_ Range) uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:inSortedRange:options:usingComparator:)
-func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range, opts NSBinarySearchingOptions, cmp unsafe.Pointer) uint {
+func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range, opts unsafe.Pointer, cmp unsafe.Pointer) uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
 	return rv
 }
@@ -917,12 +917,12 @@ func (a_ Array) LastObject() unsafe.Pointer {
 }
 
 
-// Analyzes the array and returns a "hint" that speeds the sorting of the array when the hint is supplied to .
+// Analyzes the array and returns a “hint” that speeds the sorting of the array when the hint is supplied to .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArrayHint
-func (a_ Array) SortedArrayHint() Data {
-	rv := objc.Send[Data](a_.ID, objc.Sel("sortedArrayHint"))
+func (a_ Array) SortedArrayHint() NSData {
+	rv := objc.Send[NSData](a_.ID, objc.Sel("sortedArrayHint"))
 	return rv
 }
 

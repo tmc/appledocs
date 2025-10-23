@@ -30,13 +30,14 @@ type _AppleScriptClass struct {
 // An interface definition for the [AppleScript] class.
 type IAppleScript interface {
 	objectivec.IObject
+	CompileAndReturnError(errorInfo IDictionary) bool
+	ExecuteAndReturnError(errorInfo IDictionary) AppleEventDescriptor
 	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor
+	Compiled() bool
+	RichTextSource() NSAttributedString
+	Source() string
 	IsCompiled() bool
 	SetIsCompiled(value bool)
-	RichTextSource() AttributedString
-	SetRichTextSource(value IAttributedString)
-	Source() string
-	SetSource(value string)
 }
 
 // An object that provides the ability to load, compile, and execute scripts.
@@ -92,12 +93,87 @@ func NewAppleScript() AppleScript {
 
 
 
+// Initializes a newly allocated script instance from the source identified by the passed URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/init(contentsOf:error:)
+func NewAppleScriptWithContentsOfURLError(url IURL, errorInfo IDictionary) AppleScript {
+	instance := getAppleScriptClass().Alloc()
+	rv := objc.Send[AppleScript](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, errorInfo)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a newly allocated script instance from the passed source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/init(source:)
+func NewAppleScriptWithSource(source string) AppleScript {
+	instance := getAppleScriptClass().Alloc()
+	rv := objc.Send[AppleScript](instance.ID, objc.Sel("initWithSource:"), objc.String(source))
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Compiles the receiver, if it is not already compiled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/compileAndReturnError(_:)
+func (a_ AppleScript) CompileAndReturnError(errorInfo IDictionary) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("compileAndReturnError:"), errorInfo)
+	return rv
+}
+
+
+// Executes the receiver, compiling it first if it is not already compiled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAndReturnError(_:)
+func (a_ AppleScript) ExecuteAndReturnError(errorInfo IDictionary) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAndReturnError:"), errorInfo)
+	return rv
+}
+
+
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
 func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo IDictionary) AppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver’s script has been compiled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/isCompiled
+func (a_ AppleScript) Compiled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("compiled"))
+	return rv
+}
+
+
+// Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/richTextSource
+func (a_ AppleScript) RichTextSource() NSAttributedString {
+	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
+	return rv
+}
+
+
+// The script source for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/source
+func (a_ AppleScript) Source() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -119,44 +195,5 @@ func (a_ AppleScript) IsCompiled() bool {
 func (a_ AppleScript) SetIsCompiled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompiled:"), value)
 }
-
-
-// Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-func (a_ AppleScript) RichTextSource() AttributedString {
-	rv := objc.Send[AttributedString](a_.ID, objc.Sel("richTextSource"))
-	return rv
-}
-
-
-// Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRichTextSource:"), value)
-}
-
-
-// The script source for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) Source() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("source"))
-	return rv
-}
-
-
-// The script source for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) SetSource(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
-}
-
 
 

@@ -30,9 +30,7 @@ type _UnitConverterLinearClass struct {
 type IUnitConverterLinear interface {
 	IUnitConverter
 	Coefficient() float64
-	SetCoefficient(value float64)
 	Constant() float64
-	SetConstant(value float64)
 }
 
 // A description of how to convert between units using a linear equation.
@@ -118,38 +116,20 @@ func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant
 // The coefficient to use in the linear unit conversion calculation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/coefficient
 func (u_ UnitConverterLinear) Coefficient() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
 }
 
 
-// The coefficient to use in the linear unit conversion calculation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/coefficient
-func (u_ UnitConverterLinear) SetCoefficient(value float64) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCoefficient:"), value)
-}
-
-
 // The constant to use in the linear unit conversion calculation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverterLinear/constant
 func (u_ UnitConverterLinear) Constant() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
 	return rv
-}
-
-
-// The constant to use in the linear unit conversion calculation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/unitconverterlinear/constant
-func (u_ UnitConverterLinear) SetConstant(value float64) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setConstant:"), value)
 }
 
 

@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewUniqueIDSpecifier
 
+// ExampleNewUniqueIDSpecifierWithCoder demonstrates how to create a UniqueIDSpecifier instance using NewUniqueIDSpecifierWithCoder.
+func ExampleNewUniqueIDSpecifierWithCoder() {
+	_ = foundation.NewUniqueIDSpecifierWithCoder(
+		foundation.NSCoder{}, // inCoder NSCoder
+	)
+	// Output:
+}

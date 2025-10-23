@@ -31,8 +31,8 @@ type IRelativeSpecifier interface {
 	IScriptObjectSpecifier
 	BaseSpecifier() NSScriptObjectSpecifier
 	SetBaseSpecifier(value IScriptObjectSpecifier)
-	RelativePosition() unsafe.Pointer
-	SetRelativePosition(value unsafe.Pointer)
+	RelativePosition() RelativePosition
+	SetRelativePosition(value IRelativePosition)
 }
 
 // A specifier that indicates an object in a collection by its position relative to another object.
@@ -90,10 +90,33 @@ func NewRelativeSpecifier() RelativeSpecifier {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/init(coder:)
+func NewRelativeSpecifierWithCoder(inCoder ICoder) RelativeSpecifier {
+	instance := getRelativeSpecifierClass().Alloc()
+	rv := objc.Send[RelativeSpecifier](instance.ID, objc.Sel("initWithCoder:"), inCoder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Invokes the super class’s method and initializes the relative position and base specifier to and .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/init(containerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:)
+func NewRelativeSpecifierWithContainerClassDescriptionContainerSpecifierKeyRelativePositionBaseSpecifier(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property string, relPos NSRelativePosition, baseSpecifier IScriptObjectSpecifier) RelativeSpecifier {
+	instance := getRelativeSpecifierClass().Alloc()
+	rv := objc.Send[RelativeSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:"), classDesc, container, objc.String(property), relPos, baseSpecifier)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Sets the specifier for the base object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/baseSpecifier
 func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
 	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
 	return rv
@@ -103,7 +126,7 @@ func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
 // Sets the specifier for the base object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/baseSpecifier
 func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaseSpecifier:"), value)
 }
@@ -112,9 +135,9 @@ func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 // Sets the relative position encapsulated by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("relativePosition"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/relativePosition-swift.property
+func (r_ RelativeSpecifier) RelativePosition() RelativePosition {
+	rv := objc.Send[RelativePosition](r_.ID, objc.Sel("relativePosition"))
 	return rv
 }
 
@@ -122,10 +145,9 @@ func (r_ RelativeSpecifier) RelativePosition() unsafe.Pointer {
 // Sets the relative position encapsulated by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property
-func (r_ RelativeSpecifier) SetRelativePosition(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRelativeSpecifier/relativePosition-swift.property
+func (r_ RelativeSpecifier) SetRelativePosition(value IRelativePosition) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRelativePosition:"), value)
 }
-
 
 

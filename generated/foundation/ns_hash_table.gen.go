@@ -30,13 +30,13 @@ type _HashTableClass struct {
 // An interface definition for the [HashTable] class.
 type IHashTable interface {
 	objectivec.IObject
-	AddObject(object unsafe.Pointer)
-	Count() uint
 	PointerFunctions() NSPointerFunctions
 	AllObjects() unsafe.Pointer
 	SetAllObjects(value unsafe.Pointer)
 	AnyObject() unsafe.Pointer
 	SetAnyObject(value unsafe.Pointer)
+	Count() int
+	SetCount(value int)
 	SetRepresentation() unsafe.Pointer
 	SetSetRepresentation(value unsafe.Pointer)
 }
@@ -94,56 +94,6 @@ func NewHashTable() HashTable {
 
 
 
-// Returns a hash table with given pointer functions options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-func NewHashTableWithOptions(options NSPointerFunctionsOptions) HashTable {
-	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
-	return rv
-}
-
-
-
-// Returns a new hash table for storing weak references to its contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/hashTableWithWeakObjects
-func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("hashTableWithWeakObjects"))
-	return rv
-}
-
-
-// Returns a hash table with given pointer functions options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-func (hc _HashTableClass) HashTableWithOptions(options NSPointerFunctionsOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
-	return rv
-}
-
-
-// Adds a given object to the hash table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/add(_:)
-func (h_ HashTable) AddObject(object unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
-}
-
-
-// The number of elements in the hash table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/count
-func (h_ HashTable) Count() uint {
-	rv := objc.Send[uint](h_.ID, objc.Sel("count"))
-	return rv
-}
-
-
 // The pointer functions for the hash table.
 //
 // [Full Topic]
@@ -192,6 +142,25 @@ func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 }
 
 
+// The number of elements in the hash table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/count
+func (h_ HashTable) Count() int {
+	rv := objc.Send[int](h_.ID, objc.Sel("count"))
+	return rv
+}
+
+
+// The number of elements in the hash table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/count
+func (h_ HashTable) SetCount(value int) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
+}
+
+
 // A set that contains the hash table’s members.
 //
 // [Full Topic]
@@ -209,5 +178,6 @@ func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 func (h_ HashTable) SetSetRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSetRepresentation:"), value)
 }
+
 
 

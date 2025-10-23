@@ -30,11 +30,11 @@ type _XPCListenerClass struct {
 // An interface definition for the [XPCListener] class.
 type IXPCListener interface {
 	objectivec.IObject
-	SetConnectionCodeSigningRequirement(requirement string)
 	Suspend()
-	Endpoint() NSXPCListenerEndpoint
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	Endpoint() NSXPCListenerEndpoint
+	SetEndpoint(value IXPCListenerEndpoint)
 }
 
 // A listener that waits for new incoming connections, configures them, and accepts or rejects them.
@@ -90,19 +90,6 @@ func NewXPCListener() XPCListener {
 
 
 
-// Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
-func NewXPCListenerWithMachServiceName(name string) XPCListener {
-	instance := getXPCListenerClass().Alloc()
-	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), objc.String(name))
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // Returns a new anonymous listener connection.
 //
 // [Full Topic]
@@ -113,31 +100,12 @@ func (xc _XPCListenerClass) AnonymousListener() XPCListener {
 }
 
 
-// Sets the code signing requirement for connections to this listener.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/setConnectionCodeSigningRequirement(_:)
-func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), objc.String(requirement))
-}
-
-
 // Suspends the listener.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/suspend()
 func (x_ XPCListener) Suspend() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("suspend"))
-}
-
-
-// Returns an endpoint object that may be sent over an existing connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/endpoint
-func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
-	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
-	return rv
 }
 
 
@@ -158,5 +126,25 @@ func (x_ XPCListener) Delegate() unsafe.Pointer {
 func (x_ XPCListener) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDelegate:"), value)
 }
+
+
+// Returns an endpoint object that may be sent over an existing connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/endpoint
+func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
+	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
+	return rv
+}
+
+
+// Returns an endpoint object that may be sent over an existing connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpclistener/endpoint
+func (x_ XPCListener) SetEndpoint(value IXPCListenerEndpoint) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setEndpoint:"), value)
+}
+
 
 

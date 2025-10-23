@@ -17,6 +17,14 @@ func ExampleNewLogicalTestAndTestWithTests() {
 	)
 	// Output:
 }
+// ExampleNewLogicalTestNotTestWithTest demonstrates how to create a LogicalTest instance using NewLogicalTestNotTestWithTest.
+// Returns an   object initialized to perform a   operation on the given   object.
+func ExampleNewLogicalTestNotTestWithTest() {
+	_ = foundation.NewLogicalTestNotTestWithTest(
+		foundation.NSScriptWhoseTest{}, // subTest NSScriptWhoseTest
+	)
+	// Output:
+}
 // ExampleNewLogicalTestOrTestWithTests demonstrates how to create a LogicalTest instance using NewLogicalTestOrTestWithTests.
 // Returns an   object initialized to perform an   operation with the   objects in a given array.
 func ExampleNewLogicalTestOrTestWithTests() {

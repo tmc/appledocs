@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewNameSpecifier
 
+// ExampleNewNameSpecifierWithCoder demonstrates how to create a NameSpecifier instance using NewNameSpecifierWithCoder.
+func ExampleNewNameSpecifierWithCoder() {
+	_ = foundation.NewNameSpecifierWithCoder(
+		foundation.NSCoder{}, // inCoder NSCoder
+	)
+	// Output:
+}
 // ExampleNewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName demonstrates how to create a NameSpecifier instance using NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName.
 // Invokes the super class’s   method and then sets the name instance variable to  .
 func ExampleNewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName() {

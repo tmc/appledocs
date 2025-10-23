@@ -32,16 +32,8 @@ type IURLSessionConfiguration interface {
 	objectivec.IObject
 	ProxyConfigurations() []Object
 	SetProxyConfigurations(value []Object)
-	AllowsCellularAccess() bool
-	SetAllowsCellularAccess(value bool)
-	AllowsConstrainedNetworkAccess() bool
-	SetAllowsConstrainedNetworkAccess(value bool)
-	AllowsExpensiveNetworkAccess() bool
-	SetAllowsExpensiveNetworkAccess(value bool)
 	ConnectionProxyDictionary() objc.ID
 	SetConnectionProxyDictionary(value objc.ID)
-	HTTPAdditionalHeaders() objc.ID
-	SetHTTPAdditionalHeaders(value objc.ID)
 	HTTPCookieAcceptPolicy() unsafe.Pointer
 	SetHTTPCookieAcceptPolicy(value unsafe.Pointer)
 	HTTPCookieStorage() NSHTTPCookieStorage
@@ -52,43 +44,50 @@ type IURLSessionConfiguration interface {
 	SetHTTPShouldSetCookies(value bool)
 	HTTPShouldUsePipelining() bool
 	SetHTTPShouldUsePipelining(value bool)
-	Identifier() string
-	Discretionary() bool
-	SetDiscretionary(value bool)
 	MultipathServiceType() URLSessionMultipathServiceType
 	SetMultipathServiceType(value URLSessionMultipathServiceType)
-	NetworkServiceType() URLRequestNetworkServiceType
-	SetNetworkServiceType(value URLRequestNetworkServiceType)
-	SessionSendsLaunchEvents() bool
-	SetSessionSendsLaunchEvents(value bool)
 	SharedContainerIdentifier() string
 	SetSharedContainerIdentifier(value string)
-	ShouldUseExtendedBackgroundIdleMode() bool
-	SetShouldUseExtendedBackgroundIdleMode(value bool)
-	TimeoutIntervalForRequest() TimeInterval
-	SetTimeoutIntervalForRequest(value ITimeInterval)
-	TimeoutIntervalForResource() TimeInterval
-	SetTimeoutIntervalForResource(value ITimeInterval)
-	TLSMaximumSupportedProtocol() unsafe.Pointer
-	SetTLSMaximumSupportedProtocol(value unsafe.Pointer)
 	UsesClassicLoadingMode() bool
 	SetUsesClassicLoadingMode(value bool)
 	WaitsForConnectivity() bool
 	SetWaitsForConnectivity(value bool)
 	Configuration() NSURLSessionConfiguration
 	SetConfiguration(value IURLSessionConfiguration)
+	AllowsCellularAccess() bool
+	SetAllowsCellularAccess(value bool)
+	AllowsConstrainedNetworkAccess() bool
+	SetAllowsConstrainedNetworkAccess(value bool)
+	AllowsExpensiveNetworkAccess() bool
+	SetAllowsExpensiveNetworkAccess(value bool)
 	AllowsUltraConstrainedNetworkAccess() bool
 	SetAllowsUltraConstrainedNetworkAccess(value bool)
 	EnablesEarlyData() bool
 	SetEnablesEarlyData(value bool)
+	HttpAdditionalHeaders() unsafe.Pointer
+	SetHttpAdditionalHeaders(value unsafe.Pointer)
+	Identifier() string
+	SetIdentifier(value string)
 	IsDiscretionary() bool
 	SetIsDiscretionary(value bool)
+	NetworkServiceType() unsafe.Pointer
+	SetNetworkServiceType(value unsafe.Pointer)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
 	RequestCachePolicy() unsafe.Pointer
 	SetRequestCachePolicy(value unsafe.Pointer)
 	RequiresDNSSECValidation() bool
 	SetRequiresDNSSECValidation(value bool)
+	SessionSendsLaunchEvents() bool
+	SetSessionSendsLaunchEvents(value bool)
+	ShouldUseExtendedBackgroundIdleMode() bool
+	SetShouldUseExtendedBackgroundIdleMode(value bool)
+	TimeoutIntervalForRequest() TimeInterval
+	SetTimeoutIntervalForRequest(value ITimeInterval)
+	TimeoutIntervalForResource() TimeInterval
+	SetTimeoutIntervalForResource(value ITimeInterval)
+	TlsMaximumSupportedProtocol() unsafe.Pointer
+	SetTlsMaximumSupportedProtocol(value unsafe.Pointer)
 	TlsMaximumSupportedProtocolVersion() unsafe.Pointer
 	SetTlsMaximumSupportedProtocolVersion(value unsafe.Pointer)
 	TlsMinimumSupportedProtocol() unsafe.Pointer
@@ -154,17 +153,6 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 
 
 
-
-// Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/background(withIdentifier:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier string) URLSessionConfiguration {
-	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), objc.String(identifier))
-	return rv
-}
-
-
 // Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]
@@ -222,63 +210,6 @@ func (u_ URLSessionConfiguration) SetProxyConfigurations(value []Object) {
 }
 
 
-// A Boolean value that determines whether connections should be made over a cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsCellularAccess
-func (u_ URLSessionConfiguration) AllowsCellularAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
-	return rv
-}
-
-
-// A Boolean value that determines whether connections should be made over a cellular network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsCellularAccess
-func (u_ URLSessionConfiguration) SetAllowsCellularAccess(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
-}
-
-
-// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsConstrainedNetworkAccess
-func (u_ URLSessionConfiguration) AllowsConstrainedNetworkAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsConstrainedNetworkAccess
-func (u_ URLSessionConfiguration) SetAllowsConstrainedNetworkAccess(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
-}
-
-
-// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsExpensiveNetworkAccess
-func (u_ URLSessionConfiguration) AllowsExpensiveNetworkAccess() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/allowsExpensiveNetworkAccess
-func (u_ URLSessionConfiguration) SetAllowsExpensiveNetworkAccess(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
-}
-
-
 // A dictionary containing information about the proxy to use within this session.
 //
 // [Full Topic]
@@ -315,25 +246,6 @@ func (u_ URLSessionConfiguration) DefaultSessionConfiguration() NSURLSessionConf
 func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() NSURLSessionConfiguration {
 	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
 	return rv
-}
-
-
-// A dictionary of additional headers to send with requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpAdditionalHeaders
-func (u_ URLSessionConfiguration) HTTPAdditionalHeaders() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("HTTPAdditionalHeaders"))
-	return rv
-}
-
-
-// A dictionary of additional headers to send with requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpAdditionalHeaders
-func (u_ URLSessionConfiguration) SetHTTPAdditionalHeaders(value objc.ID) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPAdditionalHeaders:"), value)
 }
 
 
@@ -432,35 +344,6 @@ func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
 }
 
 
-// The background session identifier of the configuration object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/identifier
-func (u_ URLSessionConfiguration) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/isDiscretionary
-func (u_ URLSessionConfiguration) Discretionary() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("discretionary"))
-	return rv
-}
-
-
-// A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/isDiscretionary
-func (u_ URLSessionConfiguration) SetDiscretionary(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDiscretionary:"), value)
-}
-
-
 // A service type that specifies the Multipath TCP connection policy for transmitting data over Wi-Fi and cellular interfaces.
 //
 // [Full Topic]
@@ -480,44 +363,6 @@ func (u_ URLSessionConfiguration) SetMultipathServiceType(value URLSessionMultip
 }
 
 
-// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) NetworkServiceType() URLRequestNetworkServiceType {
-	rv := objc.Send[URLRequestNetworkServiceType](u_.ID, objc.Sel("networkServiceType"))
-	return rv
-}
-
-
-// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) SetNetworkServiceType(value URLRequestNetworkServiceType) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
-}
-
-
-// A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sessionSendsLaunchEvents
-func (u_ URLSessionConfiguration) SessionSendsLaunchEvents() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("sessionSendsLaunchEvents"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sessionSendsLaunchEvents
-func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionSendsLaunchEvents:"), value)
-}
-
-
 // The identifier for the shared container into which files in background URL sessions should be downloaded.
 //
 // [Full Topic]
@@ -534,82 +379,6 @@ func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
 func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), objc.String(value))
-}
-
-
-// A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/shouldUseExtendedBackgroundIdleMode
-func (u_ URLSessionConfiguration) ShouldUseExtendedBackgroundIdleMode() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("shouldUseExtendedBackgroundIdleMode"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/shouldUseExtendedBackgroundIdleMode
-func (u_ URLSessionConfiguration) SetShouldUseExtendedBackgroundIdleMode(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setShouldUseExtendedBackgroundIdleMode:"), value)
-}
-
-
-// The timeout interval to use when waiting for additional data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForRequest
-func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
-	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForRequest"))
-	return rv
-}
-
-
-// The timeout interval to use when waiting for additional data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForRequest
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value ITimeInterval) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
-}
-
-
-// The maximum amount of time that a resource request should be allowed to take.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForResource
-func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
-	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForResource"))
-	return rv
-}
-
-
-// The maximum amount of time that a resource request should be allowed to take.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForResource
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value ITimeInterval) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
-}
-
-
-// The maximum TLS protocol version that the client should request when making connections in this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/tlsMaximumSupportedProtocol
-func (u_ URLSessionConfiguration) TLSMaximumSupportedProtocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("TLSMaximumSupportedProtocol"))
-	return rv
-}
-
-
-// The maximum TLS protocol version that the client should request when making connections in this session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/tlsMaximumSupportedProtocol
-func (u_ URLSessionConfiguration) SetTLSMaximumSupportedProtocol(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTLSMaximumSupportedProtocol:"), value)
 }
 
 
@@ -666,6 +435,63 @@ func (u_ URLSessionConfiguration) SetConfiguration(value IURLSessionConfiguratio
 }
 
 
+// A Boolean value that determines whether connections should be made over a cellular network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowscellularaccess
+func (u_ URLSessionConfiguration) AllowsCellularAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
+	return rv
+}
+
+
+// A Boolean value that determines whether connections should be made over a cellular network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowscellularaccess
+func (u_ URLSessionConfiguration) SetAllowsCellularAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
+}
+
+
+// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess
+func (u_ URLSessionConfiguration) AllowsConstrainedNetworkAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess
+func (u_ URLSessionConfiguration) SetAllowsConstrainedNetworkAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
+}
+
+
+// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess
+func (u_ URLSessionConfiguration) AllowsExpensiveNetworkAccess() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess
+func (u_ URLSessionConfiguration) SetAllowsExpensiveNetworkAccess(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsultraconstrainednetworkaccess
 func (u_ URLSessionConfiguration) AllowsUltraConstrainedNetworkAccess() bool {
@@ -696,6 +522,44 @@ func (u_ URLSessionConfiguration) SetEnablesEarlyData(value bool) {
 }
 
 
+// A dictionary of additional headers to send with requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpadditionalheaders
+func (u_ URLSessionConfiguration) HttpAdditionalHeaders() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpAdditionalHeaders"))
+	return rv
+}
+
+
+// A dictionary of additional headers to send with requests.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpadditionalheaders
+func (u_ URLSessionConfiguration) SetHttpAdditionalHeaders(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpAdditionalHeaders:"), value)
+}
+
+
+// The background session identifier of the configuration object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/identifier
+func (u_ URLSessionConfiguration) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// The background session identifier of the configuration object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/identifier
+func (u_ URLSessionConfiguration) SetIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
 // A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.
 //
 // [Full Topic]
@@ -712,6 +576,25 @@ func (u_ URLSessionConfiguration) IsDiscretionary() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/isdiscretionary
 func (u_ URLSessionConfiguration) SetIsDiscretionary(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsDiscretionary:"), value)
+}
+
+
+// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/networkservicetype
+func (u_ URLSessionConfiguration) NetworkServiceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
+	return rv
+}
+
+
+// The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/networkservicetype
+func (u_ URLSessionConfiguration) SetNetworkServiceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
 
@@ -765,6 +648,101 @@ func (u_ URLSessionConfiguration) RequiresDNSSECValidation() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/requiresdnssecvalidation
 func (u_ URLSessionConfiguration) SetRequiresDNSSECValidation(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
+}
+
+
+// A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/sessionsendslaunchevents
+func (u_ URLSessionConfiguration) SessionSendsLaunchEvents() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("sessionSendsLaunchEvents"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/sessionsendslaunchevents
+func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionSendsLaunchEvents:"), value)
+}
+
+
+// A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/shoulduseextendedbackgroundidlemode
+func (u_ URLSessionConfiguration) ShouldUseExtendedBackgroundIdleMode() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("shouldUseExtendedBackgroundIdleMode"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/shoulduseextendedbackgroundidlemode
+func (u_ URLSessionConfiguration) SetShouldUseExtendedBackgroundIdleMode(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setShouldUseExtendedBackgroundIdleMode:"), value)
+}
+
+
+// The timeout interval to use when waiting for additional data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforrequest
+func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
+	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForRequest"))
+	return rv
+}
+
+
+// The timeout interval to use when waiting for additional data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforrequest
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value ITimeInterval) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
+}
+
+
+// The maximum amount of time that a resource request should be allowed to take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforresource
+func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
+	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutIntervalForResource"))
+	return rv
+}
+
+
+// The maximum amount of time that a resource request should be allowed to take.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/timeoutintervalforresource
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value ITimeInterval) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
+}
+
+
+// The maximum TLS protocol version that the client should request when making connections in this session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsmaximumsupportedprotocol
+func (u_ URLSessionConfiguration) TlsMaximumSupportedProtocol() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("tlsMaximumSupportedProtocol"))
+	return rv
+}
+
+
+// The maximum TLS protocol version that the client should request when making connections in this session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/tlsmaximumsupportedprotocol
+func (u_ URLSessionConfiguration) SetTlsMaximumSupportedProtocol(value unsafe.Pointer) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTlsMaximumSupportedProtocol:"), value)
 }
 
 
@@ -861,5 +839,6 @@ func (u_ URLSessionConfiguration) UrlCredentialStorage() NSURLCredentialStorage 
 func (u_ URLSessionConfiguration) SetUrlCredentialStorage(value IURLCredentialStorage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrlCredentialStorage:"), value)
 }
+
 
 

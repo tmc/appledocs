@@ -89,11 +89,21 @@ func NewSpecifierTest() SpecifierTest {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(coder:)
+func NewSpecifierTestWithCoder(inCoder ICoder) SpecifierTest {
+	instance := getSpecifierTestClass().Alloc()
+	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithCoder:"), inCoder)
+	rv.Autorelease()
+	return rv
+}
+
+
 // Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
-func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp unsafe.Pointer, obj2 objectivec.IObject) SpecifierTest {
+func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp NSTestComparisonOperation, obj2 objectivec.IObject) SpecifierTest {
 	instance := getSpecifierTestClass().Alloc()
 	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithObjectSpecifier:comparisonOperator:testObject:"), obj1, compOp, obj2)
 	rv.Autorelease()

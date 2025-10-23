@@ -20,7 +20,7 @@ func ExampleNewNumberWithBool() {
 // ExampleNewNumberWithCoder demonstrates how to create a Number instance using NewNumberWithCoder.
 func ExampleNewNumberWithCoder() {
 	_ = foundation.NewNumberWithCoder(
-		foundation.Coder{}, // coder Coder
+		foundation.NSCoder{}, // coder NSCoder
 	)
 	// Output:
 }

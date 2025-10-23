@@ -88,6 +88,16 @@ func NewNameSpecifier() NameSpecifier {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/init(coder:)
+func NewNameSpecifierWithCoder(inCoder ICoder) NameSpecifier {
+	instance := getNameSpecifierClass().Alloc()
+	rv := objc.Send[NameSpecifier](instance.ID, objc.Sel("initWithCoder:"), inCoder)
+	rv.Autorelease()
+	return rv
+}
+
+
 // Invokes the super class’s method and then sets the name instance variable to .
 //
 // [Full Topic]
@@ -104,7 +114,7 @@ func NewNameSpecifierWithContainerClassDescriptionContainerSpecifierKeyName(clas
 // Sets the name encapsulated with the receiver for the specified object in the container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/name
 func (n_ NameSpecifier) Name() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
@@ -114,7 +124,7 @@ func (n_ NameSpecifier) Name() string {
 // Sets the name encapsulated with the receiver for the specified object in the container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsnamespecifier/name
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNameSpecifier/name
 func (n_ NameSpecifier) SetName(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setName:"), objc.String(value))
 }

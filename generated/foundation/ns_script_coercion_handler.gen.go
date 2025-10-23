@@ -30,6 +30,7 @@ type _ScriptCoercionHandlerClass struct {
 // An interface definition for the [ScriptCoercionHandler] class.
 type IScriptCoercionHandler interface {
 	objectivec.IObject
+	CoerceValueToClass(value objectivec.IObject, toClass objc.Class) objc.ID
 	RegisterCoercerSelectorToConvertFromClassToClass(coercer objectivec.IObject, selector objc.SEL, fromClass objc.Class, toClass objc.Class)
 }
 
@@ -84,6 +85,26 @@ func NewScriptCoercionHandler() ScriptCoercionHandler {
 	return getScriptCoercionHandlerClass().New()
 }
 
+
+
+// Returns the shared for the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler/shared()
+func (sc _ScriptCoercionHandlerClass) SharedCoercionHandler() ScriptCoercionHandler {
+	rv := objc.Send[ScriptCoercionHandler](objc.ID(sc.class), objc.Sel("sharedCoercionHandler"))
+	return rv
+}
+
+
+// Returns an object of a given class representing a given value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler/coerceValue(_:to:)
+func (s_ ScriptCoercionHandler) CoerceValueToClass(value objectivec.IObject, toClass objc.Class) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("coerceValue:toClass:"), value, toClass)
+	return rv
+}
 
 
 // Registers a given object (typically a class) to handle coercions (conversions) from one given class to another.

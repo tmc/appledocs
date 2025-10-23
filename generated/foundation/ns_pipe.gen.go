@@ -31,7 +31,9 @@ type _PipeClass struct {
 type IPipe interface {
 	objectivec.IObject
 	FileHandleForReading() NSFileHandle
+	SetFileHandleForReading(value IFileHandle)
 	FileHandleForWriting() NSFileHandle
+	SetFileHandleForWriting(value IFileHandle)
 }
 
 // A one-way communications channel between related processes.
@@ -87,12 +89,12 @@ func NewPipe() Pipe {
 
 
 
-// Returns an object.
+// The receiver’s read file handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPipe/pipe
-func (pc _PipeClass) Pipe() Pipe {
-	rv := objc.Send[Pipe](objc.ID(pc.class), objc.Sel("pipe"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforreading
+func (p_ Pipe) FileHandleForReading() NSFileHandle {
+	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForReading"))
 	return rv
 }
 
@@ -100,9 +102,18 @@ func (pc _PipeClass) Pipe() Pipe {
 // The receiver’s read file handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForReading
-func (p_ Pipe) FileHandleForReading() NSFileHandle {
-	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForReading"))
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforreading
+func (p_ Pipe) SetFileHandleForReading(value IFileHandle) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileHandleForReading:"), value)
+}
+
+
+// The receiver’s write file handle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforwriting
+func (p_ Pipe) FileHandleForWriting() NSFileHandle {
+	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }
 
@@ -110,10 +121,9 @@ func (p_ Pipe) FileHandleForReading() NSFileHandle {
 // The receiver’s write file handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForWriting
-func (p_ Pipe) FileHandleForWriting() NSFileHandle {
-	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/pipe/filehandleforwriting
+func (p_ Pipe) SetFileHandleForWriting(value IFileHandle) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileHandleForWriting:"), value)
 }
 
 

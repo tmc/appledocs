@@ -30,14 +30,14 @@ type _NetServiceClass struct {
 // An interface definition for the [NetService] class.
 type INetService interface {
 	objectivec.IObject
-	GetInputStreamOutputStream(inputStream IInputStream, outputStream unsafe.Pointer) bool
+	GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool
 	Publish()
 	PublishWithOptions(options NSNetServiceOptions)
-	RemoveFromRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode)
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	Resolve()
 	ResolveWithTimeout(timeout TimeInterval)
-	ScheduleInRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode)
-	SetTXTRecordData(recordData NSData) bool
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	SetTXTRecordData(recordData IData) bool
 	StartMonitoring()
 	Stop()
 	StopMonitoring()
@@ -146,7 +146,7 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData NSData) IDictionary {
+func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary {
 	rv := objc.Send[IDictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
@@ -156,7 +156,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData NSData) IDictiona
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
-func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream unsafe.Pointer) bool {
+func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
 	return rv
 }
@@ -184,7 +184,7 @@ func (n_ NetService) PublishWithOptions(options NSNetServiceOptions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
-func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode) {
+func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -211,7 +211,7 @@ func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
-func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode) {
+func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -220,7 +220,7 @@ func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop RunLoop, mode RunLoopMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
-func (n_ NetService) SetTXTRecordData(recordData NSData) bool {
+func (n_ NetService) SetTXTRecordData(recordData IData) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
 	return rv
 }

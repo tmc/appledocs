@@ -95,7 +95,7 @@ func NewSocketPort() SocketPort {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(remoteWithProtocolFamily:socketType:protocol:address:)
-func NewSocketPortRemoteWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address NSData) SocketPort {
+func NewSocketPortRemoteWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initRemoteWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()
@@ -119,7 +119,7 @@ func NewSocketPortRemoteWithTCPPortHost(port unsafe.Pointer, hostName string) So
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
-func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address NSData) SocketPort {
+func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family int, type_ int, protocol_ int, address IData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()

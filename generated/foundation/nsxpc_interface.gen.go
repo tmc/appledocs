@@ -31,10 +31,7 @@ type _XPCInterfaceClass struct {
 type IXPCInterface interface {
 	objectivec.IObject
 	ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer
-	InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) XPCInterface
 	SetClassesForSelectorArgumentIndexOfReply(classes unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
-	SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool)
-	SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool)
 	Protocol() objectivec.Protocol
 	SetProtocol(value objectivec.Protocol)
 }
@@ -92,43 +89,12 @@ func NewXPCInterface() XPCInterface {
 
 
 
-// Returns an NSXPCInterface instance for a given protocol.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
-func NewXPCInterfaceWithProtocol(protocol_ objectivec.Protocol) XPCInterface {
-	rv := objc.Send[XPCInterface](objc.ID(getXPCInterfaceClass().class), objc.Sel("interfaceWithProtocol:"), protocol_)
-	return rv
-}
-
-
-
-// Returns an NSXPCInterface instance for a given protocol.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/init(with:)
-func (xc _XPCInterfaceClass) InterfaceWithProtocol(protocol_ objectivec.Protocol) XPCInterface {
-	rv := objc.Send[XPCInterface](objc.ID(xc.class), objc.Sel("interfaceWithProtocol:"), protocol_)
-	return rv
-}
-
-
 // Returns the current list of allowed classes that can appear within the specified collection object argument to the specified method.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/classes(for:argumentIndex:ofReply:)
 func (x_ XPCInterface) ClassesForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("classesForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
-	return rv
-}
-
-
-// Returns the interface previously set for the specified selector and parameter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/forSelector(_:argumentIndex:ofReply:)
-func (x_ XPCInterface) InterfaceForSelectorArgumentIndexOfReply(sel objc.SEL, arg uint, ofReply bool) XPCInterface {
-	rv := objc.Send[XPCInterface](x_.ID, objc.Sel("interfaceForSelector:argumentIndex:ofReply:"), sel, arg, ofReply)
 	return rv
 }
 
@@ -142,26 +108,10 @@ func (x_ XPCInterface) SetClassesForSelectorArgumentIndexOfReply(classes unsafe.
 }
 
 
-// Configures a specific parameter of a method to be sent as a proxy object instead of copied.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setInterface(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetInterfaceForSelectorArgumentIndexOfReply(ifc IXPCInterface, sel objc.SEL, arg uint, ofReply bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setInterface:forSelector:argumentIndex:ofReply:"), ifc, sel, arg, ofReply)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/setXPCType(_:for:argumentIndex:ofReply:)
-func (x_ XPCInterface) SetXPCTypeForSelectorArgumentIndexOfReply(type_ unsafe.Pointer, sel objc.SEL, arg uint, ofReply bool) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setXPCType:forSelector:argumentIndex:ofReply:"), type_, sel, arg, ofReply)
-}
-
-
 // The Objective-C protocol that this interface is based on.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/protocol
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcinterface/protocol
 func (x_ XPCInterface) Protocol() objectivec.Protocol {
 	rv := objc.Send[objectivec.Protocol](x_.ID, objc.Sel("protocol"))
 	return rv
@@ -171,9 +121,10 @@ func (x_ XPCInterface) Protocol() objectivec.Protocol {
 // The Objective-C protocol that this interface is based on.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCInterface/protocol
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsxpcinterface/protocol
 func (x_ XPCInterface) SetProtocol(value objectivec.Protocol) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setProtocol:"), value)
 }
+
 
 

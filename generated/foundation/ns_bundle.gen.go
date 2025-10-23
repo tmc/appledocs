@@ -32,7 +32,7 @@ type IBundle interface {
 	objectivec.IObject
 	ClassNamed(className string) objc.Class
 	ContextHelpForKey(key unsafe.Pointer) AttributedString
-	LoadAndReturnError(error_ unsafe.Pointer) bool
+	LoadAndReturnError(error_ IError) bool
 	LoadAppleScriptObjectiveCScripts()
 	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) Array
 	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
@@ -46,7 +46,7 @@ type IBundle interface {
 	PathForImageResource(name unsafe.Pointer) String
 	PathsForResourcesOfTypeInDirectory(ext string, subpath string) []string
 	PathsForResourcesOfTypeInDirectoryForLocalization(ext string, subpath string, localizationName string) []string
-	PreflightAndReturnError(error_ unsafe.Pointer) bool
+	PreflightAndReturnError(error_ IError) bool
 	PreservationPriorityForTag(tag string) float64
 	SetPreservationPriorityForTags(priority float64, tags unsafe.Pointer)
 	Unload() bool
@@ -192,7 +192,7 @@ func NewBundleWithPath(path string) Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(url:)
-func NewBundleWithURL(url URL) Bundle {
+func NewBundleWithURL(url IURL) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -265,7 +265,7 @@ func (bc _BundleClass) PreferredLocalizationsFromArrayForPreferences(localizatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/url(forResource:withExtension:subdirectory:in:)
-func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL URL) URL {
+func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(name string, ext string, subpath string, bundleURL IURL) URL {
 	rv := objc.Send[URL](objc.ID(bc.class), objc.Sel("URLForResource:withExtension:subdirectory:inBundleWithURL:"), objc.String(name), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
@@ -275,7 +275,7 @@ func (bc _BundleClass) URLForResourceWithExtensionSubdirectoryInBundleWithURL(na
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:in:)
-func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL URL) []URL {
+func (bc _BundleClass) URLsForResourcesWithExtensionSubdirectoryInBundleWithURL(ext string, subpath string, bundleURL IURL) []URL {
 	rv := objc.Send[[]URL](objc.ID(bc.class), objc.Sel("URLsForResourcesWithExtension:subdirectory:inBundleWithURL:"), objc.String(ext), objc.String(subpath), bundleURL)
 	return rv
 }
@@ -295,7 +295,7 @@ func (bc _BundleClass) BundleWithPath(path string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/bundleWithURL:
-func (bc _BundleClass) BundleWithURL(url URL) unsafe.Pointer {
+func (bc _BundleClass) BundleWithURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("bundleWithURL:"), url)
 	return rv
 }
@@ -382,7 +382,7 @@ func (b_ Bundle) Load() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAndReturnError()
-func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool {
+func (b_ Bundle) LoadAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("loadAndReturnError:"), error_)
 	return rv
 }
@@ -519,7 +519,7 @@ func (b_ Bundle) PathsForResourcesOfTypeInDirectoryForLocalization(ext string, s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/preflight()
-func (b_ Bundle) PreflightAndReturnError(error_ unsafe.Pointer) bool {
+func (b_ Bundle) PreflightAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("preflightAndReturnError:"), error_)
 	return rv
 }

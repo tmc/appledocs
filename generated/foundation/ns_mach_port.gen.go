@@ -31,8 +31,8 @@ type _MachPortClass struct {
 type IMachPort interface {
 	IPort
 	Delegate() objc.ID
-	RemoveFromRunLoopForMode(runLoop RunLoop, mode RunLoopMode)
-	ScheduleInRunLoopForMode(runLoop RunLoop, mode RunLoopMode)
+	RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode)
 	SetDelegate(anObject objectivec.IObject)
 	MachPort() uint32
 }
@@ -151,7 +151,7 @@ func (m_ MachPort) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/remove(from:forMode:)
-func (m_ MachPort) RemoveFromRunLoopForMode(runLoop RunLoop, mode RunLoopMode) {
+func (m_ MachPort) RemoveFromRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFromRunLoop:forMode:"), runLoop, mode)
 }
 
@@ -160,7 +160,7 @@ func (m_ MachPort) RemoveFromRunLoopForMode(runLoop RunLoop, mode RunLoopMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/schedule(in:forMode:)
-func (m_ MachPort) ScheduleInRunLoopForMode(runLoop RunLoop, mode RunLoopMode) {
+func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("scheduleInRunLoop:forMode:"), runLoop, mode)
 }
 

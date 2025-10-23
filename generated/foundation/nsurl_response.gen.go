@@ -30,7 +30,6 @@ type _URLResponseClass struct {
 // An interface definition for the [URLResponse] class.
 type IURLResponse interface {
 	objectivec.IObject
-	URL() URL
 	ExpectedContentLength() unsafe.Pointer
 	SetExpectedContentLength(value unsafe.Pointer)
 	MimeType() string
@@ -39,6 +38,8 @@ type IURLResponse interface {
 	SetSuggestedFilename(value string)
 	TextEncodingName() string
 	SetTextEncodingName(value string)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
@@ -92,16 +93,6 @@ func NewURLResponse() URLResponse {
 	return getURLResponseClass().New()
 }
 
-
-
-// The URL for the response.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
-func (u_ URLResponse) URL() URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URL"))
-	return rv
-}
 
 
 // The expected length of the response’s content.
@@ -177,6 +168,25 @@ func (u_ URLResponse) TextEncodingName() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
 func (u_ URLResponse) SetTextEncodingName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
+}
+
+
+// The URL for the response.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
+func (u_ URLResponse) Url() URL {
+	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL for the response.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
+func (u_ URLResponse) SetUrl(value IURL) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }
 
 

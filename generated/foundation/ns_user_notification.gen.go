@@ -43,6 +43,12 @@ type IUserNotification interface {
 	SetDeliveryRepeatInterval(value IDateComponents)
 	DeliveryTimeZone() NSTimeZone
 	SetDeliveryTimeZone(value ITimeZone)
+	HasActionButton() bool
+	SetHasActionButton(value bool)
+	HasReplyButton() bool
+	SetHasReplyButton(value bool)
+	Identifier() string
+	SetIdentifier(value string)
 	InformativeText() string
 	SetInformativeText(value string)
 	Presented() bool
@@ -50,26 +56,20 @@ type IUserNotification interface {
 	OtherButtonTitle() string
 	SetOtherButtonTitle(value string)
 	Response() NSAttributedString
+	ResponsePlaceholder() string
+	SetResponsePlaceholder(value string)
 	SoundName() string
 	SetSoundName(value string)
+	Subtitle() string
+	SetSubtitle(value string)
 	Title() string
 	SetTitle(value string)
-	HasActionButton() bool
-	SetHasActionButton(value bool)
-	HasReplyButton() bool
-	SetHasReplyButton(value bool)
-	Identifier() string
-	SetIdentifier(value string)
+	UserInfo() IDictionary
+	SetUserInfo(value IDictionary)
 	IsPresented() bool
 	SetIsPresented(value bool)
 	IsRemote() bool
 	SetIsRemote(value bool)
-	ResponsePlaceholder() string
-	SetResponsePlaceholder(value string)
-	Subtitle() string
-	SetSubtitle(value string)
-	UserInfo() string
-	SetUserInfo(value string)
 	NSUserNotificationDefaultSoundName() string
 }
 
@@ -123,6 +123,7 @@ func (u_ UserNotification) Autorelease() UserNotification {
 func NewUserNotification() UserNotification {
 	return getUserNotificationClass().New()
 }
+
 
 
 
@@ -261,6 +262,63 @@ func (u_ UserNotification) SetDeliveryTimeZone(value ITimeZone) {
 }
 
 
+// A Boolean value that specifies whether the notification displays an action button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasActionButton
+func (u_ UserNotification) HasActionButton() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("hasActionButton"))
+	return rv
+}
+
+
+// A Boolean value that specifies whether the notification displays an action button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasActionButton
+func (u_ UserNotification) SetHasActionButton(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHasActionButton:"), value)
+}
+
+
+// A Boolean value that specifies whether the notification displays a reply button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasReplyButton
+func (u_ UserNotification) HasReplyButton() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("hasReplyButton"))
+	return rv
+}
+
+
+// A Boolean value that specifies whether the notification displays a reply button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/hasReplyButton
+func (u_ UserNotification) SetHasReplyButton(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHasReplyButton:"), value)
+}
+
+
+// A string that uniquely identifies a notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/identifier
+func (u_ UserNotification) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// A string that uniquely identifies a notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/identifier
+func (u_ UserNotification) SetIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+}
+
+
 // The body text of the notification.
 //
 // [Full Topic]
@@ -329,6 +387,25 @@ func (u_ UserNotification) Response() NSAttributedString {
 }
 
 
+// Optional placeholder string for inline reply field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/responsePlaceholder
+func (u_ UserNotification) ResponsePlaceholder() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("responsePlaceholder"))
+	return rv
+}
+
+
+// Optional placeholder string for inline reply field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/responsePlaceholder
+func (u_ UserNotification) SetResponsePlaceholder(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), objc.String(value))
+}
+
+
 // Specifies the name of the sound to play when the notification is delivered.
 //
 // [Full Topic]
@@ -345,6 +422,25 @@ func (u_ UserNotification) SoundName() string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/soundName
 func (u_ UserNotification) SetSoundName(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), objc.String(value))
+}
+
+
+// Specifies the subtitle of the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/subtitle
+func (u_ UserNotification) Subtitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
+	return rv
+}
+
+
+// Specifies the subtitle of the notification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/subtitle
+func (u_ UserNotification) SetSubtitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
 
@@ -367,60 +463,22 @@ func (u_ UserNotification) SetTitle(value string) {
 }
 
 
-// A Boolean value that specifies whether the notification displays an action button.
+// Application-specific user info that can be attached to the notification.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/hasactionbutton
-func (u_ UserNotification) HasActionButton() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("hasActionButton"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/userInfo
+func (u_ UserNotification) UserInfo() IDictionary {
+	rv := objc.Send[IDictionary](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
 
-// A Boolean value that specifies whether the notification displays an action button.
+// Application-specific user info that can be attached to the notification.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/hasactionbutton
-func (u_ UserNotification) SetHasActionButton(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHasActionButton:"), value)
-}
-
-
-// A Boolean value that specifies whether the notification displays a reply button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/hasreplybutton
-func (u_ UserNotification) HasReplyButton() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("hasReplyButton"))
-	return rv
-}
-
-
-// A Boolean value that specifies whether the notification displays a reply button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/hasreplybutton
-func (u_ UserNotification) SetHasReplyButton(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHasReplyButton:"), value)
-}
-
-
-// A string that uniquely identifies a notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/identifier
-func (u_ UserNotification) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// A string that uniquely identifies a notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/identifier
-func (u_ UserNotification) SetIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/userInfo
+func (u_ UserNotification) SetUserInfo(value IDictionary) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 
@@ -462,63 +520,6 @@ func (u_ UserNotification) SetIsRemote(value bool) {
 }
 
 
-// Optional placeholder string for inline reply field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/responseplaceholder
-func (u_ UserNotification) ResponsePlaceholder() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("responsePlaceholder"))
-	return rv
-}
-
-
-// Optional placeholder string for inline reply field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/responseplaceholder
-func (u_ UserNotification) SetResponsePlaceholder(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), objc.String(value))
-}
-
-
-// Specifies the subtitle of the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/subtitle
-func (u_ UserNotification) Subtitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
-	return rv
-}
-
-
-// Specifies the subtitle of the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/subtitle
-func (u_ UserNotification) SetSubtitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
-}
-
-
-// Application-specific user info that can be attached to the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/userinfo
-func (u_ UserNotification) UserInfo() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("userInfo"))
-	return rv
-}
-
-
-// Application-specific user info that can be attached to the notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/userinfo
-func (u_ UserNotification) SetUserInfo(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), objc.String(value))
-}
-
-
 // The default notification sound.
 //
 // [Full Topic]
@@ -527,6 +528,5 @@ func (u_ UserNotification) NSUserNotificationDefaultSoundName() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("NSUserNotificationDefaultSoundName"))
 	return rv
 }
-
 
 

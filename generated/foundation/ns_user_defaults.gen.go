@@ -50,7 +50,7 @@ type IUserDefaults interface {
 	RemoveSuiteNamed(suiteName string)
 	RemoveVolatileDomainForName(domainName string)
 	SetFloatForKey(value float32, defaultName string)
-	SetURLForKey(url URL, defaultName string)
+	SetURLForKey(url IURL, defaultName string)
 	SetDoubleForKey(value float64, defaultName string)
 	SetBoolForKey(value bool, defaultName string)
 	SetIntegerForKey(value int, defaultName string)
@@ -358,7 +358,7 @@ func (u_ UserDefaults) SetFloatForKey(value float32, defaultName string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
-func (u_ UserDefaults) SetURLForKey(url URL, defaultName string) {
+func (u_ UserDefaults) SetURLForKey(url IURL, defaultName string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setURL:forKey:"), url, objc.String(defaultName))
 }
 

@@ -161,7 +161,7 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(xmlString:)
-func NewXMLElementWithXMLStringError(string_ string, error_ unsafe.Pointer) XMLElement {
+func NewXMLElementWithXMLStringError(string_ string, error_ IError) XMLElement {
 	instance := getXMLElementClass().Alloc()
 	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithXMLString:error:"), objc.String(string_), error_)
 	rv.Autorelease()

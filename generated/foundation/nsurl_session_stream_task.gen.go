@@ -35,7 +35,7 @@ type IURLSessionStreamTask interface {
 	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout TimeInterval, completionHandler unsafe.Pointer)
 	StartSecureConnection()
 	StopSecureConnection()
-	WriteDataTimeoutCompletionHandler(data NSData, timeout TimeInterval, completionHandler unsafe.Pointer)
+	WriteDataTimeoutCompletionHandler(data IData, timeout TimeInterval, completionHandler unsafe.Pointer)
 	HttpShouldUsePipelining() bool
 	SetHttpShouldUsePipelining(value bool)
 }
@@ -154,7 +154,7 @@ func (u_ URLSessionStreamTask) StopSecureConnection() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
-func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data NSData, timeout TimeInterval, completionHandler unsafe.Pointer) {
+func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data IData, timeout TimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
 }
 

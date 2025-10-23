@@ -83,7 +83,7 @@ func NewURLSessionWebSocketMessage() URLSessionWebSocketMessage {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketMessage/initWithData:
-func NewURLSessionWebSocketMessageWithData(data NSData) URLSessionWebSocketMessage {
+func NewURLSessionWebSocketMessageWithData(data IData) URLSessionWebSocketMessage {
 	instance := getURLSessionWebSocketMessageClass().Alloc()
 	rv := objc.Send[URLSessionWebSocketMessage](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()

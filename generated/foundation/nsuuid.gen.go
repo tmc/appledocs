@@ -30,7 +30,6 @@ type _UUIDClass struct {
 // An interface definition for the [UUID] class.
 type IUUID interface {
 	objectivec.IObject
-	Compare(otherUUID IUUID) ComparisonResult
 	UuidString() string
 	SetUuidString(value string)
 }
@@ -88,15 +87,6 @@ func NewUUID() UUID {
 
 
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
-func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
-	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
-	return rv
-}
-
-
 // The UUID as a string.
 //
 // [Full Topic]
@@ -114,5 +104,6 @@ func (u_ UUID) UuidString() string {
 func (u_ UUID) SetUuidString(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
 }
+
 
 

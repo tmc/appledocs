@@ -94,7 +94,7 @@ type IURLSessionTaskTransactionMetrics interface {
 	SetRequestStartDate(value IDate)
 	ResourceFetchType() unsafe.Pointer
 	SetResourceFetchType(value unsafe.Pointer)
-	Response() URLResponse
+	Response() NSURLResponse
 	SetResponse(value IURLResponse)
 	ResponseEndDate() Date
 	SetResponseEndDate(value IDate)
@@ -767,8 +767,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-func (u_ URLSessionTaskTransactionMetrics) Response() URLResponse {
-	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
+func (u_ URLSessionTaskTransactionMetrics) Response() NSURLResponse {
+	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 

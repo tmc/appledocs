@@ -30,7 +30,7 @@ type _NumberClass struct {
 // An interface definition for the [Number] class.
 type INumber interface {
 	IValue
-	Compare(otherNumber INumber) unsafe.Pointer
+	Compare(otherNumber INumber) ComparisonResult
 	DescriptionWithLocale(locale objectivec.IObject) String
 	IsEqualToNumber(number INumber) bool
 	BoolValue() bool
@@ -153,7 +153,7 @@ func NewNumberWithChar(value unsafe.Pointer) Number {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
-func NewNumberWithCoder(coder Coder) Number {
+func NewNumberWithCoder(coder ICoder) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -472,8 +472,8 @@ func (nc _NumberClass) NumberWithUnsignedShort(value unsafe.Pointer) Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/compare(_:)
-func (n_ Number) Compare(otherNumber INumber) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("compare:"), otherNumber)
+func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
+	rv := objc.Send[ComparisonResult](n_.ID, objc.Sel("compare:"), otherNumber)
 	return rv
 }
 

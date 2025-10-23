@@ -31,14 +31,14 @@ type _ConnectionClass struct {
 type IConnection interface {
 	objectivec.IObject
 	AddRequestMode(rmode string)
-	AddRunLoop(runloop RunLoop)
+	AddRunLoop(runloop IRunLoop)
 	DispatchWithComponents(components objectivec.IObject)
 	EnableMultipleThreads()
 	Invalidate()
 	RegisterName(name string) bool
 	RegisterNameWithNameServer(name string, server IPortNameServer) bool
 	RemoveRequestMode(rmode string)
-	RemoveRunLoop(runloop RunLoop)
+	RemoveRunLoop(runloop IRunLoop)
 	RunInNewThread()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -46,7 +46,7 @@ type IConnection interface {
 	SetIndependentConversationQueueing(value bool)
 	LocalObjects() objc.ID
 	MultipleThreadsEnabled() bool
-	ReceivePort() Port
+	ReceivePort() NSPort
 	RemoteObjects() objc.ID
 	ReplyTimeout() TimeInterval
 	SetReplyTimeout(value ITimeInterval)
@@ -56,7 +56,7 @@ type IConnection interface {
 	RootObject() objc.ID
 	SetRootObject(value objc.ID)
 	RootProxy() NSDistantObject
-	SendPort() Port
+	SendPort() NSPort
 	Statistics() IDictionary
 	Valid() bool
 }
@@ -118,7 +118,7 @@ func NewConnection() Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/initWithReceivePort:sendPort:
-func NewConnectionWithReceivePortSendPort(receivePort Port, sendPort Port) Connection {
+func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Connection {
 	instance := getConnectionClass().Alloc()
 	rv := objc.Send[Connection](instance.ID, objc.Sel("initWithReceivePort:sendPort:"), receivePort, sendPort)
 	rv.Autorelease()
@@ -141,7 +141,7 @@ func (cc _ConnectionClass) AllConnections() []Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/connectionWithReceivePort:sendPort:
-func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort Port, sendPort Port) unsafe.Pointer {
+func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("connectionWithReceivePort:sendPort:"), receivePort, sendPort)
 	return rv
 }
@@ -240,7 +240,7 @@ func (c_ Connection) AddRequestMode(rmode string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRunLoop:
-func (c_ Connection) AddRunLoop(runloop RunLoop) {
+func (c_ Connection) AddRunLoop(runloop IRunLoop) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addRunLoop:"), runloop)
 }
 
@@ -305,7 +305,7 @@ func (c_ Connection) RemoveRequestMode(rmode string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRunLoop:
-func (c_ Connection) RemoveRunLoop(runloop RunLoop) {
+func (c_ Connection) RemoveRunLoop(runloop IRunLoop) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeRunLoop:"), runloop)
 }
 
@@ -381,8 +381,8 @@ func (c_ Connection) MultipleThreadsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/receivePort-c.property
-func (c_ Connection) ReceivePort() Port {
-	rv := objc.Send[Port](c_.ID, objc.Sel("receivePort"))
+func (c_ Connection) ReceivePort() NSPort {
+	rv := objc.Send[NSPort](c_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -478,8 +478,8 @@ func (c_ Connection) RootProxy() NSDistantObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/sendPort-c.property
-func (c_ Connection) SendPort() Port {
-	rv := objc.Send[Port](c_.ID, objc.Sel("sendPort"))
+func (c_ Connection) SendPort() NSPort {
+	rv := objc.Send[NSPort](c_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

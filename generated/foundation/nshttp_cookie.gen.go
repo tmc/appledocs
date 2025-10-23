@@ -30,7 +30,6 @@ type _HTTPCookieClass struct {
 // An interface definition for the [HTTPCookie] class.
 type IHTTPCookie interface {
 	objectivec.IObject
-	Properties() IDictionary
 	Comment() string
 	SetComment(value string)
 	CommentURL() URL
@@ -51,6 +50,8 @@ type IHTTPCookie interface {
 	SetPath(value string)
 	PortList() Number
 	SetPortList(value INumber)
+	Properties() unsafe.Pointer
+	SetProperties(value unsafe.Pointer)
 	SameSitePolicy() unsafe.Pointer
 	SetSameSitePolicy(value unsafe.Pointer)
 	Value() string
@@ -110,16 +111,6 @@ func NewHTTPCookie() HTTPCookie {
 	return getHTTPCookieClass().New()
 }
 
-
-
-// The cookie’s properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
-func (h_ HTTPCookie) Properties() IDictionary {
-	rv := objc.Send[IDictionary](h_.ID, objc.Sel("properties"))
-	return rv
-}
 
 
 // The cookie’s comment string.
@@ -309,6 +300,25 @@ func (h_ HTTPCookie) PortList() Number {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
 func (h_ HTTPCookie) SetPortList(value INumber) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPortList:"), value)
+}
+
+
+// The cookie’s properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
+func (h_ HTTPCookie) Properties() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
+	return rv
+}
+
+
+// The cookie’s properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
+func (h_ HTTPCookie) SetProperties(value unsafe.Pointer) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setProperties:"), value)
 }
 
 

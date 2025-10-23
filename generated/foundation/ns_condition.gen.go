@@ -33,7 +33,7 @@ type ICondition interface {
 	Broadcast()
 	Signal()
 	Wait()
-	WaitUntilDate(limit NSDate) bool
+	WaitUntilDate(limit IDate) bool
 	Name() string
 	SetName(value string)
 }
@@ -122,7 +122,7 @@ func (c_ Condition) Wait() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/wait(until:)
-func (c_ Condition) WaitUntilDate(limit NSDate) bool {
+func (c_ Condition) WaitUntilDate(limit IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("waitUntilDate:"), limit)
 	return rv
 }

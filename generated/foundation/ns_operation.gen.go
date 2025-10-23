@@ -47,10 +47,10 @@ type IOperation interface {
 	Ready() bool
 	Name() string
 	SetName(value string)
-	QualityOfService() NSQualityOfService
-	SetQualityOfService(value NSQualityOfService)
-	QueuePriority() NSOperationQueuePriority
-	SetQueuePriority(value NSOperationQueuePriority)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
+	QueuePriority() OperationQueuePriority
+	SetQueuePriority(value OperationQueuePriority)
 	ThreadPriority() float64
 	SetThreadPriority(value float64)
 	IsAsynchronous() bool
@@ -286,8 +286,8 @@ func (o_ Operation) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) QualityOfService() NSQualityOfService {
-	rv := objc.Send[NSQualityOfService](o_.ID, objc.Sel("qualityOfService"))
+func (o_ Operation) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -296,7 +296,7 @@ func (o_ Operation) QualityOfService() NSQualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) SetQualityOfService(value NSQualityOfService) {
+func (o_ Operation) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -305,8 +305,8 @@ func (o_ Operation) SetQualityOfService(value NSQualityOfService) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) QueuePriority() NSOperationQueuePriority {
-	rv := objc.Send[NSOperationQueuePriority](o_.ID, objc.Sel("queuePriority"))
+func (o_ Operation) QueuePriority() OperationQueuePriority {
+	rv := objc.Send[OperationQueuePriority](o_.ID, objc.Sel("queuePriority"))
 	return rv
 }
 
@@ -315,7 +315,7 @@ func (o_ Operation) QueuePriority() NSOperationQueuePriority {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) SetQueuePriority(value NSOperationQueuePriority) {
+func (o_ Operation) SetQueuePriority(value OperationQueuePriority) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
 

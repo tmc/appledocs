@@ -30,9 +30,6 @@ type _InvocationClass struct {
 // An interface definition for the [Invocation] class.
 type IInvocation interface {
 	objectivec.IObject
-	RetainArguments()
-	Target() objc.ID
-	SetTarget(value objc.ID)
 }
 
 // An Objective-C message rendered as an object.
@@ -86,44 +83,6 @@ func NewInvocation() Invocation {
 	return getInvocationClass().New()
 }
 
-
-
-// Returns an object able to construct messages using a given method signature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invocationWithMethodSignature:
-func (ic _InvocationClass) InvocationWithMethodSignature(sig IMethodSignature) Invocation {
-	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("invocationWithMethodSignature:"), sig)
-	return rv
-}
-
-
-// If the receiver hasn’t already done so, retains the target and all object arguments of the receiver and copies all of its C-string arguments and blocks. If a returnvalue has been set, this is also retained or copied.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/retainArguments
-func (i_ Invocation) RetainArguments() {
-	objc.Send[objc.ID](i_.ID, objc.Sel("retainArguments"))
-}
-
-
-// The receiver’s target, or if the receiver has no target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
-func (i_ Invocation) Target() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// The receiver’s target, or if the receiver has no target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/target
-func (i_ Invocation) SetTarget(value objc.ID) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTarget:"), value)
-}
 
 
 

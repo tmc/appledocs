@@ -32,7 +32,7 @@ type IPortNameServer interface {
 	objectivec.IObject
 	PortForName(name string) Port
 	PortForNameHost(name string, host string) Port
-	RegisterPortName(port Port, name string) bool
+	RegisterPortName(port IPort, name string) bool
 	RemovePortForName(name string) bool
 }
 
@@ -123,7 +123,7 @@ func (p_ PortNameServer) PortForNameHost(name string, host string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/registerPort:name:
-func (p_ PortNameServer) RegisterPortName(port Port, name string) bool {
+func (p_ PortNameServer) RegisterPortName(port IPort, name string) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }

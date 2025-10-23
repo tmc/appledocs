@@ -30,13 +30,13 @@ type _LinguisticTaggerClass struct {
 // An interface definition for the [LinguisticTagger] class.
 type ILinguisticTagger interface {
 	objectivec.IObject
-	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme LinguisticTagScheme, opts NSLinguisticTaggerOptions, block unsafe.Pointer)
+	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts NSLinguisticTaggerOptions, block unsafe.Pointer)
 	DominantLanguage() string
 	SetDominantLanguage(value string)
 	String() string
 	SetString(value string)
-	TagSchemes() LinguisticTagScheme
-	SetTagSchemes(value ILinguisticTagScheme)
+	TagSchemes() unsafe.Pointer
+	SetTagSchemes(value unsafe.Pointer)
 }
 
 // Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.
@@ -96,7 +96,7 @@ func NewLinguisticTagger() LinguisticTagger {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
-func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme LinguisticTagScheme, opts NSLinguisticTaggerOptions, block unsafe.Pointer) {
+func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts NSLinguisticTaggerOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
 }
 
@@ -143,8 +143,8 @@ func (l_ LinguisticTagger) SetString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
-func (l_ LinguisticTagger) TagSchemes() LinguisticTagScheme {
-	rv := objc.Send[LinguisticTagScheme](l_.ID, objc.Sel("tagSchemes"))
+func (l_ LinguisticTagger) TagSchemes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("tagSchemes"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (l_ LinguisticTagger) TagSchemes() LinguisticTagScheme {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nslinguistictagger/tagschemes
-func (l_ LinguisticTagger) SetTagSchemes(value ILinguisticTagScheme) {
+func (l_ LinguisticTagger) SetTagSchemes(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTagSchemes:"), value)
 }
 

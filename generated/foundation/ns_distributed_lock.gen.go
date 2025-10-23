@@ -89,6 +89,29 @@ func NewDistributedLock() DistributedLock {
 
 
 
+// Initializes an object to use as the lock the file-system entry specified by a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/init(path:)
+func NewDistributedLockWithPath(path string) DistributedLock {
+	instance := getDistributedLockClass().Alloc()
+	rv := objc.Send[DistributedLock](instance.ID, objc.Sel("initWithPath:"), objc.String(path))
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns an object initialized to use as the locking object the file-system entry specified by a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockWithPath:
+func (dc _DistributedLockClass) LockWithPath(path string) DistributedLock {
+	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("lockWithPath:"), objc.String(path))
+	return rv
+}
+
+
 // Forces the lock to be relinquished.
 //
 // [Full Topic]
@@ -125,6 +148,5 @@ func (d_ DistributedLock) LockDate() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
 	return rv
 }
-
 
 

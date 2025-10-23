@@ -31,7 +31,7 @@ type IMachBootstrapServer interface {
 	IPortNameServer
 	PortForName(name string) Port
 	PortForNameHost(name string, host string) Port
-	RegisterPortName(port Port, name string) bool
+	RegisterPortName(port IPort, name string) bool
 	ServicePortWithName(name string) Port
 }
 
@@ -124,7 +124,7 @@ func (m_ MachBootstrapServer) PortForNameHost(name string, host string) Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/registerPort:name:
-func (m_ MachBootstrapServer) RegisterPortName(port Port, name string) bool {
+func (m_ MachBootstrapServer) RegisterPortName(port IPort, name string) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }

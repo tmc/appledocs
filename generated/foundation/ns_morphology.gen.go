@@ -30,6 +30,25 @@ type _MorphologyClass struct {
 // An interface definition for the [Morphology] class.
 type IMorphology interface {
 	objectivec.IObject
+	CustomPronounForLanguage(language string) MorphologyCustomPronoun
+	SetCustomPronounForLanguageError(features IMorphologyCustomPronoun, language string, error_ IError) bool
+	Definiteness() GrammaticalDefiniteness
+	SetDefiniteness(value IGrammaticalDefiniteness)
+	Determination() GrammaticalDetermination
+	SetDetermination(value IGrammaticalDetermination)
+	GrammaticalCase() GrammaticalCase
+	SetGrammaticalCase(value IGrammaticalCase)
+	GrammaticalGender() GrammaticalGender
+	SetGrammaticalGender(value IGrammaticalGender)
+	GrammaticalPerson() GrammaticalPerson
+	SetGrammaticalPerson(value IGrammaticalPerson)
+	Number() GrammaticalNumber
+	SetNumber(value IGrammaticalNumber)
+	PartOfSpeech() GrammaticalPartOfSpeech
+	SetPartOfSpeech(value IGrammaticalPartOfSpeech)
+	PronounType() GrammaticalPronounType
+	SetPronounType(value GrammaticalPronounType)
+	Unspecified() bool
 }
 
 // A description of the grammatical properties of a string.
@@ -83,6 +102,187 @@ func NewMorphology() Morphology {
 	return getMorphologyClass().New()
 }
 
+
+
+// The addressing preferences of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/userMorphology
+func (mc _MorphologyClass) UserMorphology() Morphology {
+	rv := objc.Send[NSMorphology](objc.ID(mc.class), objc.Sel("userMorphology"))
+	return rv
+}
+
+// Returns any custom pronoun behavior this morphology applies to the given language.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/customPronounForLanguage:
+func (m_ Morphology) CustomPronounForLanguage(language string) MorphologyCustomPronoun {
+	rv := objc.Send[MorphologyCustomPronoun](m_.ID, objc.Sel("customPronounForLanguage:"), objc.String(language))
+	return rv
+}
+
+
+// Sets a custom pronoun behavior for this morphology to apply to the given language.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/setCustomPronoun:forLanguage:error:
+func (m_ Morphology) SetCustomPronounForLanguageError(features IMorphologyCustomPronoun, language string, error_ IError) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setCustomPronoun:forLanguage:error:"), features, objc.String(language), error_)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/definiteness
+func (m_ Morphology) Definiteness() GrammaticalDefiniteness {
+	rv := objc.Send[GrammaticalDefiniteness](m_.ID, objc.Sel("definiteness"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/definiteness
+func (m_ Morphology) SetDefiniteness(value IGrammaticalDefiniteness) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefiniteness:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/determination
+func (m_ Morphology) Determination() GrammaticalDetermination {
+	rv := objc.Send[GrammaticalDetermination](m_.ID, objc.Sel("determination"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/determination
+func (m_ Morphology) SetDetermination(value IGrammaticalDetermination) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDetermination:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalCase
+func (m_ Morphology) GrammaticalCase() GrammaticalCase {
+	rv := objc.Send[GrammaticalCase](m_.ID, objc.Sel("grammaticalCase"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalCase
+func (m_ Morphology) SetGrammaticalCase(value IGrammaticalCase) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalCase:"), value)
+}
+
+
+// The grammatical gender used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalGender
+func (m_ Morphology) GrammaticalGender() GrammaticalGender {
+	rv := objc.Send[GrammaticalGender](m_.ID, objc.Sel("grammaticalGender"))
+	return rv
+}
+
+
+// The grammatical gender used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalGender
+func (m_ Morphology) SetGrammaticalGender(value IGrammaticalGender) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalGender:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalPerson
+func (m_ Morphology) GrammaticalPerson() GrammaticalPerson {
+	rv := objc.Send[GrammaticalPerson](m_.ID, objc.Sel("grammaticalPerson"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/grammaticalPerson
+func (m_ Morphology) SetGrammaticalPerson(value IGrammaticalPerson) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGrammaticalPerson:"), value)
+}
+
+
+// The grammatical number used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/number
+func (m_ Morphology) Number() GrammaticalNumber {
+	rv := objc.Send[GrammaticalNumber](m_.ID, objc.Sel("number"))
+	return rv
+}
+
+
+// The grammatical number used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/number
+func (m_ Morphology) SetNumber(value IGrammaticalNumber) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNumber:"), value)
+}
+
+
+// The grammatical part of speech used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/partOfSpeech
+func (m_ Morphology) PartOfSpeech() GrammaticalPartOfSpeech {
+	rv := objc.Send[GrammaticalPartOfSpeech](m_.ID, objc.Sel("partOfSpeech"))
+	return rv
+}
+
+
+// The grammatical part of speech used for inflecting strings with this morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/partOfSpeech
+func (m_ Morphology) SetPartOfSpeech(value IGrammaticalPartOfSpeech) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPartOfSpeech:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/pronounType
+func (m_ Morphology) PronounType() GrammaticalPronounType {
+	rv := objc.Send[GrammaticalPronounType](m_.ID, objc.Sel("pronounType"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/pronounType
+func (m_ Morphology) SetPronounType(value GrammaticalPronounType) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPronounType:"), value)
+}
+
+
+// A Boolean value that indicates whether this instance specifies no particular grammar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/unspecified
+func (m_ Morphology) Unspecified() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("unspecified"))
+	return rv
+}
+
+
+// The addressing preferences of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/userMorphology
+func (m_ Morphology) UserMorphology() NSMorphology {
+	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("userMorphology"))
+	return rv
+}
 
 
 

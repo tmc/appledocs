@@ -30,9 +30,9 @@ type _NotificationQueueClass struct {
 // An interface definition for the [NotificationQueue] class.
 type INotificationQueue interface {
 	objectivec.IObject
-	DequeueNotificationsMatchingCoalesceMask(notification Notification, coalesceMask uint)
-	EnqueueNotificationPostingStyle(notification Notification, postingStyle NSPostingStyle)
-	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification Notification, postingStyle NSPostingStyle, coalesceMask NSNotificationCoalescing, modes []string)
+	DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint)
+	EnqueueNotificationPostingStyle(notification INotification, postingStyle NSPostingStyle)
+	EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle NSPostingStyle, coalesceMask NSNotificationCoalescing, modes []string)
 }
 
 // A notification center buffer.
@@ -92,7 +92,7 @@ func NewNotificationQueue() NotificationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/init(notificationCenter:)
-func NewNotificationQueueWithNotificationCenter(notificationCenter NotificationCenter) NotificationQueue {
+func NewNotificationQueueWithNotificationCenter(notificationCenter INotificationCenter) NotificationQueue {
 	instance := getNotificationQueueClass().Alloc()
 	rv := objc.Send[NotificationQueue](instance.ID, objc.Sel("initWithNotificationCenter:"), notificationCenter)
 	rv.Autorelease()
@@ -114,7 +114,7 @@ func (nc _NotificationQueueClass) DefaultQueue() NotificationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/dequeueNotifications(matching:coalesceMask:)
-func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notification Notification, coalesceMask uint) {
+func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notification INotification, coalesceMask uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("dequeueNotificationsMatching:coalesceMask:"), notification, coalesceMask)
 }
 
@@ -123,7 +123,7 @@ func (n_ NotificationQueue) DequeueNotificationsMatchingCoalesceMask(notificatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:)
-func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification Notification, postingStyle NSPostingStyle) {
+func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification INotification, postingStyle NSPostingStyle) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:"), notification, postingStyle)
 }
 
@@ -132,7 +132,7 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification Notific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)
-func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification Notification, postingStyle NSPostingStyle, coalesceMask NSNotificationCoalescing, modes []string) {
+func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification INotification, postingStyle NSPostingStyle, coalesceMask NSNotificationCoalescing, modes []string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:coalesceMask:forModes:"), notification, postingStyle, coalesceMask, modes)
 }
 

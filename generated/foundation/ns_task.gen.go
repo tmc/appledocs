@@ -30,41 +30,45 @@ type _TaskClass struct {
 // An interface definition for the [Task] class.
 type ITask interface {
 	objectivec.IObject
+	Interrupt()
+	Launch()
+	Resume() bool
 	LaunchAndReturnError(error_ IError) bool
+	Suspend() bool
 	Terminate()
-	Environment() IDictionary
-	SetEnvironment(value IDictionary)
-	ExecutableURL() URL
-	SetExecutableURL(value IURL)
-	LaunchRequirementData() NSData
-	SetLaunchRequirementData(value IData)
-	ProcessIdentifier() int
-	Arguments() string
-	SetArguments(value string)
+	WaitUntilExit()
+	Arguments() []string
+	SetArguments(value []string)
 	CurrentDirectoryPath() string
 	SetCurrentDirectoryPath(value string)
 	CurrentDirectoryURL() URL
 	SetCurrentDirectoryURL(value IURL)
-	IsRunning() bool
-	SetIsRunning(value bool)
+	Environment() IDictionary
+	SetEnvironment(value IDictionary)
+	ExecutableURL() URL
+	SetExecutableURL(value IURL)
+	Running() bool
 	LaunchPath() string
 	SetLaunchPath(value string)
-	LaunchRequirement() unsafe.Pointer
-	SetLaunchRequirement(value unsafe.Pointer)
+	LaunchRequirementData() NSData
+	SetLaunchRequirementData(value IData)
+	ProcessIdentifier() int
 	QualityOfService() QualityOfService
 	SetQualityOfService(value IQualityOfService)
-	StandardError() unsafe.Pointer
-	SetStandardError(value unsafe.Pointer)
-	StandardInput() unsafe.Pointer
-	SetStandardInput(value unsafe.Pointer)
-	StandardOutput() unsafe.Pointer
-	SetStandardOutput(value unsafe.Pointer)
+	StandardError() objc.ID
+	SetStandardError(value objc.ID)
+	StandardInput() objc.ID
+	SetStandardInput(value objc.ID)
+	StandardOutput() objc.ID
+	SetStandardOutput(value objc.ID)
 	TerminationHandler() unsafe.Pointer
 	SetTerminationHandler(value unsafe.Pointer)
-	TerminationReason() unsafe.Pointer
-	SetTerminationReason(value unsafe.Pointer)
-	TerminationStatus() unsafe.Pointer
-	SetTerminationStatus(value unsafe.Pointer)
+	TerminationReason() TaskTerminationReason
+	TerminationStatus() int
+	IsRunning() bool
+	SetIsRunning(value bool)
+	LaunchRequirement() unsafe.Pointer
+	SetLaunchRequirement(value unsafe.Pointer)
 }
 
 // An object that represents a subprocess of the current process.
@@ -121,6 +125,54 @@ func NewTask() Task {
 
 
 
+// Creates and launches a task with a specified executable and arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchedProcess(launchPath:arguments:)
+func (tc _TaskClass) LaunchedTaskWithLaunchPathArguments(path string, arguments []string) Task {
+	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithLaunchPath:arguments:"), objc.String(path), arguments)
+	return rv
+}
+
+
+// Creates and runs a task with a specified executable and arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run(_:arguments:terminationHandler:)
+func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandler(url IURL, arguments []string, error_ IError, terminationHandler unsafe.Pointer) Task {
+	rv := objc.Send[Task](objc.ID(tc.class), objc.Sel("launchedTaskWithExecutableURL:arguments:error:terminationHandler:"), url, arguments, error_, terminationHandler)
+	return rv
+}
+
+
+// Sends an interrupt signal to the receiver and all of its subtasks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/interrupt()
+func (t_ Task) Interrupt() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("interrupt"))
+}
+
+
+// Launches the task represented by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launch()
+func (t_ Task) Launch() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("launch"))
+}
+
+
+// Resumes execution of a suspended task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/resume()
+func (t_ Task) Resume() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("resume"))
+	return rv
+}
+
+
 // Runs the process with the current environment.
 //
 // [Full Topic]
@@ -131,12 +183,98 @@ func (t_ Task) LaunchAndReturnError(error_ IError) bool {
 }
 
 
+// Suspends execution of the receiver task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/suspend()
+func (t_ Task) Suspend() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("suspend"))
+	return rv
+}
+
+
 // Sends a terminate signal to the receiver and all of its subtasks.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminate()
 func (t_ Task) Terminate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("terminate"))
+}
+
+
+// Blocks the process until the receiver is finished.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/waitUntilExit()
+func (t_ Task) WaitUntilExit() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("waitUntilExit"))
+}
+
+
+// The command arguments that the system uses to launch the executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/arguments
+func (t_ Task) Arguments() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("arguments"))
+	return rv
+}
+
+
+// The command arguments that the system uses to launch the executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/arguments
+func (t_ Task) SetArguments(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), nsArray)
+}
+
+
+// Sets the current directory for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/currentDirectoryPath
+func (t_ Task) CurrentDirectoryPath() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("currentDirectoryPath"))
+	return rv
+}
+
+
+// Sets the current directory for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/currentDirectoryPath
+func (t_ Task) SetCurrentDirectoryPath(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), objc.String(value))
+}
+
+
+// The current directory for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/currentDirectoryURL
+func (t_ Task) CurrentDirectoryURL() URL {
+	rv := objc.Send[URL](t_.ID, objc.Sel("currentDirectoryURL"))
+	return rv
+}
+
+
+// The current directory for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/currentDirectoryURL
+func (t_ Task) SetCurrentDirectoryURL(value IURL) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryURL:"), value)
 }
 
 
@@ -178,6 +316,35 @@ func (t_ Task) SetExecutableURL(value IURL) {
 }
 
 
+// A status that indicates whether the receiver is still running.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/isRunning
+func (t_ Task) Running() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("running"))
+	return rv
+}
+
+
+// Sets the receiver’s executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchPath
+func (t_ Task) LaunchPath() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("launchPath"))
+	return rv
+}
+
+
+// Sets the receiver’s executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchPath
+func (t_ Task) SetLaunchPath(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), objc.String(value))
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 func (t_ Task) LaunchRequirementData() NSData {
@@ -203,60 +370,118 @@ func (t_ Task) ProcessIdentifier() int {
 }
 
 
-// The command arguments that the system uses to launch the executable.
+// The default quality of service level the system applies to operations the task executes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) Arguments() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("arguments"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/qualityOfService
+func (t_ Task) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
 
-// The command arguments that the system uses to launch the executable.
+// The default quality of service level the system applies to operations the task executes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) SetArguments(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/qualityOfService
+func (t_ Task) SetQualityOfService(value IQualityOfService) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
 
-// Sets the current directory for the receiver.
+// The standard error for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) CurrentDirectoryPath() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("currentDirectoryPath"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardError
+func (t_ Task) StandardError() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("standardError"))
 	return rv
 }
 
 
-// Sets the current directory for the receiver.
+// The standard error for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) SetCurrentDirectoryPath(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardError
+func (t_ Task) SetStandardError(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardError:"), value)
 }
 
 
-// The current directory for the receiver.
+// The standard input for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectoryurl
-func (t_ Task) CurrentDirectoryURL() URL {
-	rv := objc.Send[URL](t_.ID, objc.Sel("currentDirectoryURL"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardInput
+func (t_ Task) StandardInput() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("standardInput"))
 	return rv
 }
 
 
-// The current directory for the receiver.
+// The standard input for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectoryurl
-func (t_ Task) SetCurrentDirectoryURL(value IURL) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryURL:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardInput
+func (t_ Task) SetStandardInput(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardInput:"), value)
+}
+
+
+// The standard output for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardOutput
+func (t_ Task) StandardOutput() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("standardOutput"))
+	return rv
+}
+
+
+// The standard output for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/standardOutput
+func (t_ Task) SetStandardOutput(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardOutput:"), value)
+}
+
+
+// A completion block the system invokes when the task completes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
+func (t_ Task) TerminationHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationHandler"))
+	return rv
+}
+
+
+// A completion block the system invokes when the task completes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationHandler
+func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationHandler:"), value)
+}
+
+
+// The reason the system terminated the task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationReason-swift.property
+func (t_ Task) TerminationReason() TaskTerminationReason {
+	rv := objc.Send[TaskTerminationReason](t_.ID, objc.Sel("terminationReason"))
+	return rv
+}
+
+
+// The exit status the receiver’s executable returns.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/terminationStatus
+func (t_ Task) TerminationStatus() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("terminationStatus"))
+	return rv
 }
 
 
@@ -279,25 +504,6 @@ func (t_ Task) SetIsRunning(value bool) {
 }
 
 
-// Sets the receiver’s executable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) LaunchPath() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("launchPath"))
-	return rv
-}
-
-
-// Sets the receiver’s executable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) SetLaunchPath(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), objc.String(value))
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
 func (t_ Task) LaunchRequirement() unsafe.Pointer {
@@ -310,139 +516,6 @@ func (t_ Task) LaunchRequirement() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchrequirement
 func (t_ Task) SetLaunchRequirement(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirement:"), value)
-}
-
-
-// The default quality of service level the system applies to operations the task executes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-func (t_ Task) QualityOfService() QualityOfService {
-	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// The default quality of service level the system applies to operations the task executes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-func (t_ Task) SetQualityOfService(value IQualityOfService) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
-}
-
-
-// The standard error for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standarderror
-func (t_ Task) StandardError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardError"))
-	return rv
-}
-
-
-// The standard error for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standarderror
-func (t_ Task) SetStandardError(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardError:"), value)
-}
-
-
-// The standard input for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardinput
-func (t_ Task) StandardInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardInput"))
-	return rv
-}
-
-
-// The standard input for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardinput
-func (t_ Task) SetStandardInput(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardInput:"), value)
-}
-
-
-// The standard output for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardoutput
-func (t_ Task) StandardOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("standardOutput"))
-	return rv
-}
-
-
-// The standard output for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/standardoutput
-func (t_ Task) SetStandardOutput(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStandardOutput:"), value)
-}
-
-
-// A completion block the system invokes when the task completes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationhandler
-func (t_ Task) TerminationHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationHandler"))
-	return rv
-}
-
-
-// A completion block the system invokes when the task completes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationhandler
-func (t_ Task) SetTerminationHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationHandler:"), value)
-}
-
-
-// The reason the system terminated the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationreason-swift.property
-func (t_ Task) TerminationReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationReason"))
-	return rv
-}
-
-
-// The reason the system terminated the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationreason-swift.property
-func (t_ Task) SetTerminationReason(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationReason:"), value)
-}
-
-
-// The exit status the receiver’s executable returns.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationstatus
-func (t_ Task) TerminationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("terminationStatus"))
-	return rv
-}
-
-
-// The exit status the receiver’s executable returns.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/process/terminationstatus
-func (t_ Task) SetTerminationStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTerminationStatus:"), value)
 }
 
 

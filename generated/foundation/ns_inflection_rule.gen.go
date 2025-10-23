@@ -95,6 +95,15 @@ func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
 }
 
 
+// An inflection rule that performs automatic grammar agreement with default transformations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/automaticRule
+func (ic _InflectionRuleClass) AutomaticRule() InflectionRule {
+	rv := objc.Send[NSInflectionRule](objc.ID(ic.class), objc.Sel("automaticRule"))
+	return rv
+}
+
 // A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
 //
 // [Full Topic]
@@ -103,6 +112,16 @@ func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectPreferredLocalization"))
 	return rv
 }
+
+// An inflection rule that performs automatic grammar agreement with default transformations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/automaticRule
+func (i_ InflectionRule) AutomaticRule() NSInflectionRule {
+	rv := objc.Send[NSInflectionRule](i_.ID, objc.Sel("automaticRule"))
+	return rv
+}
+
 
 // A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
 //

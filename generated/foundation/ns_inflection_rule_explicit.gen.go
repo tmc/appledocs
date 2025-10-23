@@ -29,6 +29,7 @@ type _InflectionRuleExplicitClass struct {
 // An interface definition for the [InflectionRuleExplicit] class.
 type IInflectionRuleExplicit interface {
 	IInflectionRule
+	Morphology() NSMorphology
 }
 
 // An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
@@ -83,5 +84,27 @@ func NewInflectionRuleExplicit() InflectionRuleExplicit {
 }
 
 
+
+// Creates an inflection rule with the given morphology.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit/initWithMorphology:
+func NewInflectionRuleExplicitWithMorphology(morphology IMorphology) InflectionRuleExplicit {
+	instance := getInflectionRuleExplicitClass().Alloc()
+	rv := objc.Send[InflectionRuleExplicit](instance.ID, objc.Sel("initWithMorphology:"), morphology)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The morphology used by this inflection rule.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit/morphology
+func (i_ InflectionRuleExplicit) Morphology() NSMorphology {
+	rv := objc.Send[NSMorphology](i_.ID, objc.Sel("morphology"))
+	return rv
+}
 
 

@@ -31,7 +31,7 @@ type _ArchiverClass struct {
 type IArchiver interface {
 	ICoder
 	EncodeRootObject(rootObject objectivec.IObject)
-	ArchiverData() MutableData
+	ArchiverData() NSMutableData
 	SetArchiverData(value IMutableData)
 }
 
@@ -90,16 +90,6 @@ func NewArchiver() Archiver {
 
 
 
-// Creates a temporary instance of and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
-func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path string) bool {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, objc.String(path))
-	return rv
-}
-
-
 // Archives a given object along with all the objects to which it is connected.
 //
 // [Full Topic]
@@ -109,12 +99,12 @@ func (a_ Archiver) EncodeRootObject(rootObject objectivec.IObject) {
 }
 
 
-// The receiver's archive data.
+// The receiver’s archive data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
-func (a_ Archiver) ArchiverData() MutableData {
-	rv := objc.Send[MutableData](a_.ID, objc.Sel("archiverData"))
+func (a_ Archiver) ArchiverData() NSMutableData {
+	rv := objc.Send[NSMutableData](a_.ID, objc.Sel("archiverData"))
 	return rv
 }
 

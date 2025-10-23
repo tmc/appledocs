@@ -37,9 +37,11 @@ type IDate interface {
 	SrAbsoluteTime() unsafe.Pointer
 	SetSrAbsoluteTime(value unsafe.Pointer)
 	TimeIntervalSince1970() TimeInterval
-	SetTimeIntervalSince1970(value TimeInterval)
+	SetTimeIntervalSince1970(value ITimeInterval)
 	TimeIntervalSinceNow() TimeInterval
-	SetTimeIntervalSinceNow(value TimeInterval)
+	SetTimeIntervalSinceNow(value ITimeInterval)
+	TimeIntervalSinceReferenceDate() TimeInterval
+	SetTimeIntervalSinceReferenceDate(value ITimeInterval)
 	NSTimeIntervalSince1970() float64
 	SetNSTimeIntervalSince1970(value float64)
 }
@@ -106,50 +108,12 @@ func (dc _DateClass) DistantFuture() Date {
 	return rv
 }
 
-// A date object representing a date in the distant past.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-func (dc _DateClass) DistantPast() Date {
-	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantPast"))
-	return rv
-}
-
-// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
-func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
-	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
-	return rv
-}
-
 // A date object representing a date in the distant future.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
 func (d_ Date) DistantFuture() NSDate {
 	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantFuture"))
-	return rv
-}
-
-
-// A date object representing a date in the distant past.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-func (d_ Date) DistantPast() NSDate {
-	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantPast"))
-	return rv
-}
-
-
-// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
-func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
-	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
 
@@ -221,7 +185,7 @@ func (d_ Date) TimeIntervalSince1970() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-func (d_ Date) SetTimeIntervalSince1970(value TimeInterval) {
+func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSince1970:"), value)
 }
 
@@ -240,8 +204,27 @@ func (d_ Date) TimeIntervalSinceNow() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-func (d_ Date) SetTimeIntervalSinceNow(value TimeInterval) {
+func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
+}
+
+
+// The interval between the date object and 00:00:00 UTC on 1 January 2001.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincereferencedate-swift.property
+func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
+	return rv
+}
+
+
+// The interval between the date object and 00:00:00 UTC on 1 January 2001.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincereferencedate-swift.property
+func (d_ Date) SetTimeIntervalSinceReferenceDate(value ITimeInterval) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceReferenceDate:"), value)
 }
 
 

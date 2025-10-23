@@ -34,14 +34,14 @@ type IBackgroundActivityScheduler interface {
 	ScheduleWithBlock(block unsafe.Pointer)
 	Identifier() string
 	Interval() TimeInterval
-	SetInterval(value TimeInterval)
-	QualityOfService() NSQualityOfService
-	SetQualityOfService(value NSQualityOfService)
+	SetInterval(value ITimeInterval)
+	QualityOfService() QualityOfService
+	SetQualityOfService(value IQualityOfService)
 	Repeats() bool
 	SetRepeats(value bool)
 	ShouldDefer() bool
 	Tolerance() TimeInterval
-	SetTolerance(value TimeInterval)
+	SetTolerance(value ITimeInterval)
 }
 
 // A task scheduler suitable for low priority operations that can run in the background.
@@ -152,7 +152,7 @@ func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/interval
-func (b_ BackgroundActivityScheduler) SetInterval(value TimeInterval) {
+func (b_ BackgroundActivityScheduler) SetInterval(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
 }
 
@@ -161,8 +161,8 @@ func (b_ BackgroundActivityScheduler) SetInterval(value TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
-func (b_ BackgroundActivityScheduler) QualityOfService() NSQualityOfService {
-	rv := objc.Send[NSQualityOfService](b_.ID, objc.Sel("qualityOfService"))
+func (b_ BackgroundActivityScheduler) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](b_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -171,7 +171,7 @@ func (b_ BackgroundActivityScheduler) QualityOfService() NSQualityOfService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/qualityOfService
-func (b_ BackgroundActivityScheduler) SetQualityOfService(value NSQualityOfService) {
+func (b_ BackgroundActivityScheduler) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -219,7 +219,7 @@ func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/tolerance
-func (b_ BackgroundActivityScheduler) SetTolerance(value TimeInterval) {
+func (b_ BackgroundActivityScheduler) SetTolerance(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
 }
 

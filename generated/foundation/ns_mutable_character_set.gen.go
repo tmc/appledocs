@@ -31,8 +31,8 @@ type IMutableCharacterSet interface {
 	ICharacterSet
 	AddCharactersInRange(aRange Range)
 	AddCharactersInString(aString string)
-	FormIntersectionWithCharacterSet(otherSet CharacterSet)
-	FormUnionWithCharacterSet(otherSet CharacterSet)
+	FormIntersectionWithCharacterSet(otherSet ICharacterSet)
+	FormUnionWithCharacterSet(otherSet ICharacterSet)
 	Invert()
 	RemoveCharactersInRange(aRange Range)
 	RemoveCharactersInString(aString string)
@@ -97,7 +97,7 @@ func NewMutableCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
-func NewMutableCharacterSetWithBitmapRepresentation(data NSData) MutableCharacterSet {
+func NewMutableCharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
 	return rv
 }
@@ -198,7 +198,7 @@ func (mc _MutableCharacterSetClass) IllegalCharacterSet() MutableCharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(bitmapRepresentation:)
-func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data NSData) MutableCharacterSet {
+func (mc _MutableCharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(mc.class), objc.Sel("characterSetWithBitmapRepresentation:"), data)
 	return rv
 }
@@ -346,7 +346,7 @@ func (m_ MutableCharacterSet) AddCharactersInString(aString string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formIntersection(with:)
-func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet CharacterSet) {
+func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet ICharacterSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("formIntersectionWithCharacterSet:"), otherSet)
 }
 
@@ -355,7 +355,7 @@ func (m_ MutableCharacterSet) FormIntersectionWithCharacterSet(otherSet Characte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/formUnion(with:)
-func (m_ MutableCharacterSet) FormUnionWithCharacterSet(otherSet CharacterSet) {
+func (m_ MutableCharacterSet) FormUnionWithCharacterSet(otherSet ICharacterSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("formUnionWithCharacterSet:"), otherSet)
 }
 

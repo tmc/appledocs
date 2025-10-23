@@ -32,7 +32,7 @@ type IURLSessionWebSocketTask interface {
 	CloseReason() NSData
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	HttpCookieStorage() HTTPCookieStorage
+	HttpCookieStorage() NSHTTPCookieStorage
 	SetHttpCookieStorage(value IHTTPCookieStorage)
 	CloseCode() unsafe.Pointer
 	SetCloseCode(value unsafe.Pointer)
@@ -128,8 +128,8 @@ func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) HttpCookieStorage() HTTPCookieStorage {
-	rv := objc.Send[HTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
+func (u_ URLSessionWebSocketTask) HttpCookieStorage() NSHTTPCookieStorage {
+	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
 	return rv
 }
 

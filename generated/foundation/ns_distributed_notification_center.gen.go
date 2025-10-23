@@ -30,8 +30,13 @@ type _DistributedNotificationCenterClass struct {
 // An interface definition for the [DistributedNotificationCenter] class.
 type IDistributedNotificationCenter interface {
 	INotificationCenter
+	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName, anObject string)
+	AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName, object string, suspensionBehavior NSNotificationSuspensionBehavior)
+	PostNotificationNameObject(aName NotificationName, anObject string)
 	PostNotificationNameObjectUserInfo(aName NotificationName, anObject string, aUserInfo objectivec.IObject)
 	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName, object string, userInfo objectivec.IObject, deliverImmediately bool)
+	PostNotificationNameObjectUserInfoOptions(name NotificationName, object string, userInfo objectivec.IObject, options NSDistributedNotificationOptions)
+	RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName, anObject string)
 	Suspended() bool
 	SetSuspended(value bool)
 }
@@ -91,6 +96,53 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 
 
 
+// Returns the default distributed notification center, representing the local notification center for the computer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/default()
+func (dc _DistributedNotificationCenterClass) DefaultCenter() DistributedNotificationCenter {
+	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("defaultCenter"))
+	return rv
+}
+
+
+// Returns the distributed notification center for a particular notification center type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/forType(_:)
+func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType) DistributedNotificationCenter {
+	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("notificationCenterForType:"), notificationCenterType)
+	return rv
+}
+
+
+// Adds an entry to the notification center’s dispatch table with an observer, a selector, and an optional notification name and sender.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:)
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName NotificationName, anObject string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, objc.String(anObject))
+}
+
+
+// Adds an entry to the receiver’s dispatch table with a specific observer and suspended-notifications behavior, and optional notification name and sender.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:suspensionBehavior:)
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name NotificationName, object string, suspensionBehavior NSNotificationSuspensionBehavior) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:suspensionBehavior:"), observer, selector, name, objc.String(object), suspensionBehavior)
+}
+
+
+// Creates a notification, and posts it to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:)
+func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName NotificationName, anObject string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:"), aName, objc.String(anObject))
+}
+
+
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]
@@ -109,10 +161,28 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDelive
 }
 
 
+// Creates a notification with information, and posts it to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:options:)
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name NotificationName, object string, userInfo objectivec.IObject, options NSDistributedNotificationOptions) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:options:"), name, objc.String(object), userInfo, options)
+}
+
+
+// Removes matching entries from the receiver’s dispatch table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/removeObserver(_:name:object:)
+func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName NotificationName, anObject string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, objc.String(anObject))
+}
+
+
 // Suspends or resumes notification delivery.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/suspended
 func (d_ DistributedNotificationCenter) Suspended() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("suspended"))
 	return rv
@@ -122,7 +192,7 @@ func (d_ DistributedNotificationCenter) Suspended() bool {
 // Suspends or resumes notification delivery.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/suspended
 func (d_ DistributedNotificationCenter) SetSuspended(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSuspended:"), value)
 }

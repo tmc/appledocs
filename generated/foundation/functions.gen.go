@@ -9,7 +9,7 @@ import (
 )
 
 
-// Foundation Functions (27 total)
+// Foundation Functions (32 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -18,6 +18,7 @@ var (
 	_NSAllocateObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSClassFromString func(unsafe.Pointer) unsafe.Pointer
 	_NSCopyObject func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSCountFrames func() unsafe.Pointer
 	_NSDeallocateObject func(unsafe.Pointer) unsafe.Pointer
 	_NSDecrementExtraRefCountWasZero func(unsafe.Pointer) bool
 	_NSExtraRefCount func(unsafe.Pointer) unsafe.Pointer
@@ -31,8 +32,11 @@ var (
 	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
 	_NSIncrementExtraRefCount func(unsafe.Pointer) unsafe.Pointer
 	_NSIsFreedObject func(unsafe.Pointer) bool
+	_NSLog func(unsafe.Pointer) unsafe.Pointer
+	_NSLogv func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSOpenStepRootDirectory func() unsafe.Pointer
 	_NSProtocolFromString func(unsafe.Pointer) unsafe.Pointer
+	_NSRecordAllocationEvent func(int, unsafe.Pointer) unsafe.Pointer
 	_NSReturnAddress func(unsafe.Pointer) unsafe.Pointer
 	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
 	_NSSelectorFromString func(unsafe.Pointer) unsafe.Pointer
@@ -42,6 +46,7 @@ var (
 	_NSStringFromSelector func(unsafe.Pointer) unsafe.Pointer
 	_NSTemporaryDirectory func() unsafe.Pointer
 	_NSUserName func() unsafe.Pointer
+	_NXReadNSObjectFromCoder func(unsafe.Pointer) unsafe.Pointer
 )
 
 func init() {
@@ -52,6 +57,7 @@ func init() {
 	tryRegister(&_NSAllocateObject, lib, "NSAllocateObject")
 	tryRegister(&_NSClassFromString, lib, "NSClassFromString")
 	tryRegister(&_NSCopyObject, lib, "NSCopyObject")
+	tryRegister(&_NSCountFrames, lib, "NSCountFrames")
 	tryRegister(&_NSDeallocateObject, lib, "NSDeallocateObject")
 	tryRegister(&_NSDecrementExtraRefCountWasZero, lib, "NSDecrementExtraRefCountWasZero")
 	tryRegister(&_NSExtraRefCount, lib, "NSExtraRefCount")
@@ -65,8 +71,11 @@ func init() {
 	tryRegister(&_NSHomeDirectoryForUser, lib, "NSHomeDirectoryForUser")
 	tryRegister(&_NSIncrementExtraRefCount, lib, "NSIncrementExtraRefCount")
 	tryRegister(&_NSIsFreedObject, lib, "NSIsFreedObject")
+	tryRegister(&_NSLog, lib, "NSLog")
+	tryRegister(&_NSLogv, lib, "NSLogv")
 	tryRegister(&_NSOpenStepRootDirectory, lib, "NSOpenStepRootDirectory")
 	tryRegister(&_NSProtocolFromString, lib, "NSProtocolFromString")
+	tryRegister(&_NSRecordAllocationEvent, lib, "NSRecordAllocationEvent")
 	tryRegister(&_NSReturnAddress, lib, "NSReturnAddress")
 	tryRegister(&_NSSearchPathForDirectoriesInDomains, lib, "NSSearchPathForDirectoriesInDomains")
 	tryRegister(&_NSSelectorFromString, lib, "NSSelectorFromString")
@@ -76,6 +85,7 @@ func init() {
 	tryRegister(&_NSStringFromSelector, lib, "NSStringFromSelector")
 	tryRegister(&_NSTemporaryDirectory, lib, "NSTemporaryDirectory")
 	tryRegister(&_NSUserName, lib, "NSUserName")
+	tryRegister(&_NXReadNSObjectFromCoder, lib, "NXReadNSObjectFromCoder")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -130,6 +140,19 @@ func NSClassFromString(aClassName unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
 func NSCopyObject(object unsafe.Pointer, extraBytes unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCopyObject(object, extraBytes, zone)
+	}
+
+
+// Returns the number of call frames on the stack.
+//
+// Added in macOS 10.0.
+
+// Returns the number of call frames on the stack.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
+func NSCountFrames() unsafe.Pointer {
+	return _NSCountFrames()
 	}
 
 
@@ -302,6 +325,32 @@ func NSIsFreedObject(anObject unsafe.Pointer) bool {
 	}
 
 
+// Logs an error message to the Apple System Log facility.
+//
+// Added in macOS 10.0.
+
+// Logs an error message to the Apple System Log facility.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLog
+func NSLog(format unsafe.Pointer) {
+	_NSLog(format)
+	}
+
+
+// Logs an error message to the Apple System Log facility.
+//
+// Added in macOS 10.0.
+
+// Logs an error message to the Apple System Log facility.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogv(_:_:)
+func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
+	_NSLogv(format, args)
+	}
+
+
 // Returns the root directory of the user’s system.
 //
 // Added in macOS 10.0.
@@ -325,6 +374,19 @@ func NSOpenStepRootDirectory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolFromString(_:)
 func NSProtocolFromString(namestr unsafe.Pointer) unsafe.Pointer {
 	return _NSProtocolFromString(namestr)
+	}
+
+
+// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
+//
+// Added in macOS 10.0.
+
+// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
+func NSRecordAllocationEvent(eventType int, object unsafe.Pointer) {
+	_NSRecordAllocationEvent(eventType, object)
 	}
 
 
@@ -442,6 +504,21 @@ func NSTemporaryDirectory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
 func NSUserName() unsafe.Pointer {
 	return _NSUserName()
+	}
+
+
+// Returns the next object from the coder.
+//
+// Deprecated: This function was deprecated in macOS 10.5.
+//
+// Added in macOS 10.0.
+
+// Returns the next object from the coder.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NXReadNSObjectFromCoder
+func NXReadNSObjectFromCoder(decoder unsafe.Pointer) unsafe.Pointer {
+	return _NXReadNSObjectFromCoder(decoder)
 	}
 
 

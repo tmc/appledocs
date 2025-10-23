@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewSpecifierTest
 
+// ExampleNewSpecifierTestWithCoder demonstrates how to create a SpecifierTest instance using NewSpecifierTestWithCoder.
+func ExampleNewSpecifierTestWithCoder() {
+	_ = foundation.NewSpecifierTestWithCoder(
+		foundation.NSCoder{}, // inCoder NSCoder
+	)
+	// Output:
+}

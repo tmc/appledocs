@@ -29,7 +29,7 @@ type _URLSessionDownloadTaskClass struct {
 // An interface definition for the [URLSessionDownloadTask] class.
 type IURLSessionDownloadTask interface {
 	IURLSessionTask
-	Response() URLResponse
+	Response() NSURLResponse
 	SetResponse(value IURLResponse)
 }
 
@@ -92,8 +92,8 @@ func NewURLSessionDownloadTask() URLSessionDownloadTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
-func (u_ URLSessionDownloadTask) Response() URLResponse {
-	rv := objc.Send[URLResponse](u_.ID, objc.Sel("response"))
+func (u_ URLSessionDownloadTask) Response() NSURLResponse {
+	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 

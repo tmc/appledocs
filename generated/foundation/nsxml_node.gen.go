@@ -60,7 +60,7 @@ type IXMLNode interface {
 	SetPrevious(value IXMLNode)
 	PreviousSibling() NSXMLNode
 	SetPreviousSibling(value IXMLNode)
-	RootDocument() XMLDocument
+	RootDocument() NSXMLDocument
 	SetRootDocument(value IXMLDocument)
 	StringValue() string
 	SetStringValue(value string)
@@ -434,8 +434,8 @@ func (x_ XMLNode) SetPreviousSibling(value IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/rootdocument
-func (x_ XMLNode) RootDocument() XMLDocument {
-	rv := objc.Send[XMLDocument](x_.ID, objc.Sel("rootDocument"))
+func (x_ XMLNode) RootDocument() NSXMLDocument {
+	rv := objc.Send[NSXMLDocument](x_.ID, objc.Sel("rootDocument"))
 	return rv
 }
 

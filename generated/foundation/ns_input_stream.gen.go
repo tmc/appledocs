@@ -93,7 +93,7 @@ func NewInputStream() InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
-func NewInputStreamWithData(data NSData) InputStream {
+func NewInputStreamWithData(data IData) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -117,7 +117,7 @@ func NewInputStreamWithFileAtPath(path string) InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
-func NewInputStreamWithURL(url URL) InputStream {
+func NewInputStreamWithURL(url IURL) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -130,7 +130,7 @@ func NewInputStreamWithURL(url URL) InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(URL:)-y5k
-func (ic _InputStreamClass) InputStreamWithURL(url URL) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithURL:"), url)
 	return rv
 }
@@ -140,7 +140,7 @@ func (ic _InputStreamClass) InputStreamWithURL(url URL) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInputStream/inputStreamWithData:
-func (ic _InputStreamClass) InputStreamWithData(data NSData) unsafe.Pointer {
+func (ic _InputStreamClass) InputStreamWithData(data IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("inputStreamWithData:"), data)
 	return rv
 }

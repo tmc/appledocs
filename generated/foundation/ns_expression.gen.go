@@ -30,11 +30,7 @@ type _ExpressionClass struct {
 // An interface definition for the [Expression] class.
 type IExpression interface {
 	objectivec.IObject
-	AllowEvaluation()
 	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
-	FalseExpression() NSExpression
-	Predicate() NSPredicate
-	TrueExpression() NSExpression
 	Arguments() NSExpression
 	SetArguments(value IExpression)
 	Collection() unsafe.Pointer
@@ -55,6 +51,8 @@ type IExpression interface {
 	SetLeft(value IExpression)
 	Operand() NSExpression
 	SetOperand(value IExpression)
+	Predicate() NSPredicate
+	SetPredicate(value IPredicate)
 	Right() NSExpression
 	SetRight(value IExpression)
 	True() NSExpression
@@ -116,51 +114,12 @@ func NewExpression() Expression {
 
 
 
-// Forces a securely decoded expression to allow evaluation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/allowEvaluation()
-func (e_ Expression) AllowEvaluation() {
-	objc.Send[objc.ID](e_.ID, objc.Sel("allowEvaluation"))
-}
-
-
 // Evaluates an expression using a specified object and context.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
 func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("expressionValueWithObject:context:"), object, context)
-	return rv
-}
-
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to false.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
-func (e_ Expression) FalseExpression() NSExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("falseExpression"))
-	return rv
-}
-
-
-// The predicate of a subquery expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
-func (e_ Expression) Predicate() NSPredicate {
-	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
-	return rv
-}
-
-
-// An expression to evalutate if a conditional expression’s predicate evaluates to true.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
-func (e_ Expression) TrueExpression() NSExpression {
-	rv := objc.Send[NSExpression](e_.ID, objc.Sel("trueExpression"))
 	return rv
 }
 
@@ -352,6 +311,25 @@ func (e_ Expression) Operand() NSExpression {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
 func (e_ Expression) SetOperand(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
+}
+
+
+// The predicate of a subquery expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/predicate
+func (e_ Expression) Predicate() NSPredicate {
+	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
+	return rv
+}
+
+
+// The predicate of a subquery expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/predicate
+func (e_ Expression) SetPredicate(value IPredicate) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
 }
 
 

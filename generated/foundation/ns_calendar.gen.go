@@ -30,47 +30,47 @@ type _CalendarClass struct {
 // An interface definition for the [Calendar] class.
 type ICalendar interface {
 	objectivec.IObject
-	CompareDateToDateToUnitGranularity(date1 NSDate, date2 NSDate, unit NSCalendarUnit) unsafe.Pointer
-	ComponentFromDate(unit NSCalendarUnit, date NSDate) int
-	ComponentsFromDate(unitFlags NSCalendarUnit, date NSDate) DateComponents
-	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags NSCalendarUnit, startingDateComp DateComponents, resultDateComp DateComponents, options NSCalendarOptions) DateComponents
-	ComponentsFromDateToDateOptions(unitFlags NSCalendarUnit, startingDate NSDate, resultDate NSDate, opts NSCalendarOptions) DateComponents
-	ComponentsInTimeZoneFromDate(timezone TimeZone, date NSDate) DateComponents
-	DateMatchesComponents(date NSDate, components DateComponents) bool
-	DateByAddingComponentsToDateOptions(comps DateComponents, date NSDate, opts NSCalendarOptions) Date
-	DateByAddingUnitValueToDateOptions(unit NSCalendarUnit, value int, date NSDate, options NSCalendarOptions) Date
-	DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date NSDate, opts NSCalendarOptions) Date
-	DateBySettingUnitValueOfDateOptions(unit NSCalendarUnit, v int, date NSDate, opts NSCalendarOptions) Date
+	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit NSCalendarUnit) ComparisonResult
+	ComponentFromDate(unit NSCalendarUnit, date IDate) int
+	ComponentsFromDate(unitFlags NSCalendarUnit, date IDate) DateComponents
+	ComponentsFromDateComponentsToDateComponentsOptions(unitFlags NSCalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options NSCalendarOptions) DateComponents
+	ComponentsFromDateToDateOptions(unitFlags NSCalendarUnit, startingDate IDate, resultDate IDate, opts NSCalendarOptions) DateComponents
+	ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) DateComponents
+	DateMatchesComponents(date IDate, components IDateComponents) bool
+	DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts NSCalendarOptions) Date
+	DateByAddingUnitValueToDateOptions(unit NSCalendarUnit, value int, date IDate, options NSCalendarOptions) Date
+	DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts NSCalendarOptions) Date
+	DateBySettingUnitValueOfDateOptions(unit NSCalendarUnit, v int, date IDate, opts NSCalendarOptions) Date
 	DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue int, yearValue int, monthValue int, dayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
 	DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) Date
-	DateFromComponents(comps DateComponents) Date
-	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start NSDate, comps DateComponents, opts NSCalendarOptions, block unsafe.Pointer)
-	GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date NSDate)
-	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date NSDate)
-	GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date NSDate)
-	IsDateEqualToDateToUnitGranularity(date1 NSDate, date2 NSDate, unit NSCalendarUnit) bool
-	IsDateInSameDayAsDate(date1 NSDate, date2 NSDate) bool
-	IsDateInToday(date NSDate) bool
-	IsDateInTomorrow(date NSDate) bool
-	IsDateInWeekend(date NSDate) bool
-	IsDateInYesterday(date NSDate) bool
+	DateFromComponents(comps IDateComponents) Date
+	EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts NSCalendarOptions, block unsafe.Pointer)
+	GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date IDate)
+	GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date IDate)
+	GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date IDate)
+	IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit NSCalendarUnit) bool
+	IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool
+	IsDateInToday(date IDate) bool
+	IsDateInTomorrow(date IDate) bool
+	IsDateInWeekend(date IDate) bool
+	IsDateInYesterday(date IDate) bool
 	MaximumRangeOfUnit(unit NSCalendarUnit) Range
 	MinimumRangeOfUnit(unit NSCalendarUnit) Range
-	NextDateAfterDateMatchingComponentsOptions(date NSDate, comps DateComponents, options NSCalendarOptions) Date
-	NextDateAfterDateMatchingUnitValueOptions(date NSDate, unit NSCalendarUnit, value int, options NSCalendarOptions) Date
-	NextDateAfterDateMatchingHourMinuteSecondOptions(date NSDate, hourValue int, minuteValue int, secondValue int, options NSCalendarOptions) Date
-	NextWeekendStartDateIntervalOptionsAfterDate(datep NSDate, tip TimeInterval, options NSCalendarOptions, date NSDate) bool
-	OrdinalityOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date NSDate) uint
-	RangeOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date NSDate) Range
-	RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, datep NSDate, tip TimeInterval, date NSDate) bool
-	RangeOfWeekendStartDateIntervalContainingDate(datep NSDate, tip TimeInterval, date NSDate) bool
-	StartOfDayForDate(date NSDate) Date
+	NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options NSCalendarOptions) Date
+	NextDateAfterDateMatchingUnitValueOptions(date IDate, unit NSCalendarUnit, value int, options NSCalendarOptions) Date
+	NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options NSCalendarOptions) Date
+	NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval, options NSCalendarOptions, date IDate) bool
+	OrdinalityOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date IDate) uint
+	RangeOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date IDate) Range
+	RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, datep IDate, tip TimeInterval, date IDate) bool
+	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval, date IDate) bool
+	StartOfDayForDate(date IDate) Date
 	AMSymbol() string
-	CalendarIdentifier() unsafe.Pointer
+	CalendarIdentifier() CalendarIdentifier
 	EraSymbols() []string
 	FirstWeekday() uint
 	SetFirstWeekday(value uint)
-	Locale() Locale
+	Locale() NSLocale
 	SetLocale(value ILocale)
 	LongEraSymbols() []string
 	MinimumDaysInFirstWeek() uint
@@ -87,7 +87,7 @@ type ICalendar interface {
 	StandaloneMonthSymbols() []string
 	StandaloneQuarterSymbols() []string
 	StandaloneWeekdaySymbols() []string
-	TimeZone() TimeZone
+	TimeZone() NSTimeZone
 	SetTimeZone(value ITimeZone)
 	VeryShortMonthSymbols() []string
 	VeryShortStandaloneMonthSymbols() []string
@@ -153,7 +153,7 @@ func NewCalendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(calendarIdentifier:)
-func NewCalendarWithCalendarIdentifier(ident unsafe.Pointer) Calendar {
+func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier) Calendar {
 	instance := getCalendarClass().Alloc()
 	rv := objc.Send[Calendar](instance.ID, objc.Sel("initWithCalendarIdentifier:"), ident)
 	rv.Autorelease()
@@ -165,7 +165,7 @@ func NewCalendarWithCalendarIdentifier(ident unsafe.Pointer) Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
-func NewCalendarWithIdentifier(calendarIdentifierConstant unsafe.Pointer) Calendar {
+func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier) Calendar {
 	rv := objc.Send[Calendar](objc.ID(getCalendarClass().class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
 }
@@ -176,7 +176,7 @@ func NewCalendarWithIdentifier(calendarIdentifierConstant unsafe.Pointer) Calend
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/init(identifier:)
-func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant unsafe.Pointer) Calendar {
+func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier) Calendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
 }
@@ -204,8 +204,8 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/compare(_:to:toUnitGranularity:)
-func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 NSDate, date2 NSDate, unit NSCalendarUnit) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
+func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit NSCalendarUnit) ComparisonResult {
+	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
 }
 
@@ -214,7 +214,7 @@ func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 NSDate, date2 NSDate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/component(_:from:)
-func (c_ Calendar) ComponentFromDate(unit NSCalendarUnit, date NSDate) int {
+func (c_ Calendar) ComponentFromDate(unit NSCalendarUnit, date IDate) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("component:fromDate:"), unit, date)
 	return rv
 }
@@ -224,7 +224,7 @@ func (c_ Calendar) ComponentFromDate(unit NSCalendarUnit, date NSDate) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:)
-func (c_ Calendar) ComponentsFromDate(unitFlags NSCalendarUnit, date NSDate) DateComponents {
+func (c_ Calendar) ComponentsFromDate(unitFlags NSCalendarUnit, date IDate) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:"), unitFlags, date)
 	return rv
 }
@@ -234,7 +234,7 @@ func (c_ Calendar) ComponentsFromDate(unitFlags NSCalendarUnit, date NSDate) Dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-49lo8
-func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags NSCalendarUnit, startingDateComp DateComponents, resultDateComp DateComponents, options NSCalendarOptions) DateComponents {
+func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags NSCalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options NSCalendarOptions) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDateComponents:toDateComponents:options:"), unitFlags, startingDateComp, resultDateComp, options)
 	return rv
 }
@@ -244,7 +244,7 @@ func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:to:options:)-84y5w
-func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags NSCalendarUnit, startingDate NSDate, resultDate NSDate, opts NSCalendarOptions) DateComponents {
+func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags NSCalendarUnit, startingDate IDate, resultDate IDate, opts NSCalendarOptions) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:toDate:options:"), unitFlags, startingDate, resultDate, opts)
 	return rv
 }
@@ -254,7 +254,7 @@ func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags NSCalendarUnit, sta
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(in:from:)
-func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone TimeZone, date NSDate) DateComponents {
+func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) DateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("componentsInTimeZone:fromDate:"), timezone, date)
 	return rv
 }
@@ -264,7 +264,7 @@ func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone TimeZone, date NSDate) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(_:matchesComponents:)
-func (c_ Calendar) DateMatchesComponents(date NSDate, components DateComponents) bool {
+func (c_ Calendar) DateMatchesComponents(date IDate, components IDateComponents) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("date:matchesComponents:"), date, components)
 	return rv
 }
@@ -274,7 +274,7 @@ func (c_ Calendar) DateMatchesComponents(date NSDate, components DateComponents)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:to:options:)
-func (c_ Calendar) DateByAddingComponentsToDateOptions(comps DateComponents, date NSDate, opts NSCalendarOptions) Date {
+func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingComponents:toDate:options:"), comps, date, opts)
 	return rv
 }
@@ -284,7 +284,7 @@ func (c_ Calendar) DateByAddingComponentsToDateOptions(comps DateComponents, dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(byAdding:value:to:options:)
-func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit NSCalendarUnit, value int, date NSDate, options NSCalendarOptions) Date {
+func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit NSCalendarUnit, value int, date IDate, options NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingUnit:value:toDate:options:"), unit, value, date, options)
 	return rv
 }
@@ -294,7 +294,7 @@ func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit NSCalendarUnit, value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingHour:minute:second:of:options:)
-func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date NSDate, opts NSCalendarOptions) Date {
+func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingHour:minute:second:ofDate:options:"), h, m, s, date, opts)
 	return rv
 }
@@ -304,7 +304,7 @@ func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(bySettingUnit:value:of:options:)
-func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit NSCalendarUnit, v int, date NSDate, opts NSCalendarOptions) Date {
+func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit NSCalendarUnit, v int, date IDate, opts NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingUnit:value:ofDate:options:"), unit, v, date, opts)
 	return rv
 }
@@ -334,7 +334,7 @@ func (c_ Calendar) DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecond
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/date(from:)
-func (c_ Calendar) DateFromComponents(comps DateComponents) Date {
+func (c_ Calendar) DateFromComponents(comps IDateComponents) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateFromComponents:"), comps)
 	return rv
 }
@@ -344,7 +344,7 @@ func (c_ Calendar) DateFromComponents(comps DateComponents) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/enumerateDates(startingAfter:matching:options:using:)
-func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start NSDate, comps DateComponents, opts NSCalendarOptions, block unsafe.Pointer) {
+func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts NSCalendarOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:"), start, comps, opts, block)
 }
 
@@ -353,7 +353,7 @@ func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:year:month:day:from:)
-func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date NSDate) {
+func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, monthValuePointer unsafe.Pointer, dayValuePointer unsafe.Pointer, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:year:month:day:fromDate:"), eraValuePointer, yearValuePointer, monthValuePointer, dayValuePointer, date)
 }
 
@@ -362,7 +362,7 @@ func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer unsafe.Pointer, ye
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:yearForWeekOfYear:weekOfYear:weekday:from:)
-func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date NSDate) {
+func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer unsafe.Pointer, yearValuePointer unsafe.Pointer, weekValuePointer unsafe.Pointer, weekdayValuePointer unsafe.Pointer, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:"), eraValuePointer, yearValuePointer, weekValuePointer, weekdayValuePointer, date)
 }
 
@@ -371,7 +371,7 @@ func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getHour(_:minute:second:nanosecond:from:)
-func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date NSDate) {
+func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe.Pointer, minuteValuePointer unsafe.Pointer, secondValuePointer unsafe.Pointer, nanosecondValuePointer unsafe.Pointer, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHour:minute:second:nanosecond:fromDate:"), hourValuePointer, minuteValuePointer, secondValuePointer, nanosecondValuePointer, date)
 }
 
@@ -380,7 +380,7 @@ func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDate(_:equalTo:toUnitGranularity:)
-func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 NSDate, date2 NSDate, unit NSCalendarUnit) bool {
+func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit NSCalendarUnit) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:equalToDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
 }
@@ -390,7 +390,7 @@ func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 NSDate, date2 NSDate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDate(_:inSameDayAs:)
-func (c_ Calendar) IsDateInSameDayAsDate(date1 NSDate, date2 NSDate) bool {
+func (c_ Calendar) IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:inSameDayAsDate:"), date1, date2)
 	return rv
 }
@@ -400,7 +400,7 @@ func (c_ Calendar) IsDateInSameDayAsDate(date1 NSDate, date2 NSDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInToday(_:)
-func (c_ Calendar) IsDateInToday(date NSDate) bool {
+func (c_ Calendar) IsDateInToday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInToday:"), date)
 	return rv
 }
@@ -410,7 +410,7 @@ func (c_ Calendar) IsDateInToday(date NSDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInTomorrow(_:)
-func (c_ Calendar) IsDateInTomorrow(date NSDate) bool {
+func (c_ Calendar) IsDateInTomorrow(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInTomorrow:"), date)
 	return rv
 }
@@ -420,7 +420,7 @@ func (c_ Calendar) IsDateInTomorrow(date NSDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInWeekend(_:)
-func (c_ Calendar) IsDateInWeekend(date NSDate) bool {
+func (c_ Calendar) IsDateInWeekend(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInWeekend:"), date)
 	return rv
 }
@@ -430,7 +430,7 @@ func (c_ Calendar) IsDateInWeekend(date NSDate) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/isDateInYesterday(_:)
-func (c_ Calendar) IsDateInYesterday(date NSDate) bool {
+func (c_ Calendar) IsDateInYesterday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInYesterday:"), date)
 	return rv
 }
@@ -460,7 +460,7 @@ func (c_ Calendar) MinimumRangeOfUnit(unit NSCalendarUnit) Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:options:)
-func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date NSDate, comps DateComponents, options NSCalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingComponents:options:"), date, comps, options)
 	return rv
 }
@@ -470,7 +470,7 @@ func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date NSDate, comps
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matching:value:options:)
-func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date NSDate, unit NSCalendarUnit, value int, options NSCalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit NSCalendarUnit, value int, options NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingUnit:value:options:"), date, unit, value, options)
 	return rv
 }
@@ -480,7 +480,7 @@ func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date NSDate, unit N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextDate(after:matchingHour:minute:second:options:)
-func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date NSDate, hourValue int, minuteValue int, secondValue int, options NSCalendarOptions) Date {
+func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options NSCalendarOptions) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingHour:minute:second:options:"), date, hourValue, minuteValue, secondValue, options)
 	return rv
 }
@@ -490,7 +490,7 @@ func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date NSDate,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/nextWeekendStart(_:interval:options:after:)
-func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep NSDate, tip TimeInterval, options NSCalendarOptions, date NSDate) bool {
+func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip TimeInterval, options NSCalendarOptions, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("nextWeekendStartDate:interval:options:afterDate:"), datep, tip, options, date)
 	return rv
 }
@@ -500,7 +500,7 @@ func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep NSDate, ti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/ordinality(of:in:for:)
-func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date NSDate) uint {
+func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date IDate) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("ordinalityOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
 }
@@ -510,7 +510,7 @@ func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller NSCalendarUnit, larger 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(of:in:for:)
-func (c_ Calendar) RangeOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date NSDate) Range {
+func (c_ Calendar) RangeOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCalendarUnit, date IDate) Range {
 	rv := objc.Send[Range](c_.ID, objc.Sel("rangeOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
 }
@@ -520,7 +520,7 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller NSCalendarUnit, larger NSCal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(of:start:interval:for:)
-func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, datep NSDate, tip TimeInterval, date NSDate) bool {
+func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, datep IDate, tip TimeInterval, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfUnit:startDate:interval:forDate:"), unit, datep, tip, date)
 	return rv
 }
@@ -530,7 +530,7 @@ func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit NSCalendarUnit, date
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/range(ofWeekendStart:interval:containing:)
-func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep NSDate, tip TimeInterval, date NSDate) bool {
+func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip TimeInterval, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfWeekendStartDate:interval:containingDate:"), datep, tip, date)
 	return rv
 }
@@ -540,7 +540,7 @@ func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep NSDate, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/startOfDay(for:)
-func (c_ Calendar) StartOfDayForDate(date NSDate) Date {
+func (c_ Calendar) StartOfDayForDate(date IDate) Date {
 	rv := objc.Send[Date](c_.ID, objc.Sel("startOfDayForDate:"), date)
 	return rv
 }
@@ -570,8 +570,8 @@ func (c_ Calendar) AutoupdatingCurrentCalendar() NSCalendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
-func (c_ Calendar) CalendarIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calendarIdentifier"))
+func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
+	rv := objc.Send[CalendarIdentifier](c_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -619,8 +619,8 @@ func (c_ Calendar) SetFirstWeekday(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
-func (c_ Calendar) Locale() Locale {
-	rv := objc.Send[Locale](c_.ID, objc.Sel("locale"))
+func (c_ Calendar) Locale() NSLocale {
+	rv := objc.Send[NSLocale](c_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -787,8 +787,8 @@ func (c_ Calendar) StandaloneWeekdaySymbols() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
-func (c_ Calendar) TimeZone() TimeZone {
-	rv := objc.Send[TimeZone](c_.ID, objc.Sel("timeZone"))
+func (c_ Calendar) TimeZone() NSTimeZone {
+	rv := objc.Send[NSTimeZone](c_.ID, objc.Sel("timeZone"))
 	return rv
 }
 

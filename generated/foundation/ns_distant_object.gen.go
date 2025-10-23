@@ -91,7 +91,7 @@ func NewDistantObject() DistantObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
-func NewDistantObjectWithCoder(inCoder Coder) DistantObject {
+func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithCoder:"), inCoder)
 	rv.Autorelease()

@@ -30,7 +30,9 @@ type _MorphologyPronounClass struct {
 // An interface definition for the [MorphologyPronoun] class.
 type IMorphologyPronoun interface {
 	objectivec.IObject
+	DependentMorphology() NSMorphology
 	Morphology() NSMorphology
+	Pronoun() string
 }
 
 // A custom pronoun for referring to a third person.
@@ -98,9 +100,25 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/dependentMorphology
+func (m_ MorphologyPronoun) DependentMorphology() NSMorphology {
+	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("dependentMorphology"))
+	return rv
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
 func (m_ MorphologyPronoun) Morphology() NSMorphology {
 	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("morphology"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/pronoun
+func (m_ MorphologyPronoun) Pronoun() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("pronoun"))
 	return rv
 }
 

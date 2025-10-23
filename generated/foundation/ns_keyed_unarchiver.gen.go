@@ -29,9 +29,6 @@ type _KeyedUnarchiverClass struct {
 // An interface definition for the [KeyedUnarchiver] class.
 type IKeyedUnarchiver interface {
 	ICoder
-	DecodeBoolForKey(key string) bool
-	DecodeIntForKey(key string) int
-	DecodeObjectForKey(key string) objc.ID
 	DecodingFailurePolicy() unsafe.Pointer
 	SetDecodingFailurePolicy(value unsafe.Pointer)
 	Delegate() unsafe.Pointer
@@ -95,40 +92,10 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 
 
 
-// Decodes a Boolean value associated with a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBool(forKey:)
-func (k_ KeyedUnarchiver) DecodeBoolForKey(key string) bool {
-	rv := objc.Send[bool](k_.ID, objc.Sel("decodeBoolForKey:"), objc.String(key))
-	return rv
-}
-
-
-// Decodes an integer value associated with a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeIntForKey:
-func (k_ KeyedUnarchiver) DecodeIntForKey(key string) int {
-	rv := objc.Send[int](k_.ID, objc.Sel("decodeIntForKey:"), objc.String(key))
-	return rv
-}
-
-
-// Decodes and returns an object associated with a given key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeObject(forKey:)
-func (k_ KeyedUnarchiver) DecodeObjectForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](k_.ID, objc.Sel("decodeObjectForKey:"), objc.String(key))
-	return rv
-}
-
-
 // The action to take when this unarchiver fails to decode an entry.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/decodingfailurepolicy
 func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("decodingFailurePolicy"))
 	return rv
@@ -138,7 +105,7 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 // The action to take when this unarchiver fails to decode an entry.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodingFailurePolicy
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedunarchiver/decodingfailurepolicy
 func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
 }

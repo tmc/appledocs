@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MutableURLRequest] class.
@@ -30,13 +29,6 @@ type _MutableURLRequestClass struct {
 // An interface definition for the [MutableURLRequest] class.
 type IMutableURLRequest interface {
 	IURLRequest
-	BindToHotspotHelperCommand(command objectivec.IObject)
-	CachePolicy() URLRequestCachePolicy
-	SetCachePolicy(value URLRequestCachePolicy)
-	HTTPMethod() string
-	SetHTTPMethod(value string)
-	URL() URL
-	SetURL(value IURL)
 	AllHTTPHeaderFields() string
 	SetAllHTTPHeaderFields(value string)
 	AllowsCellularAccess() bool
@@ -53,12 +45,16 @@ type IMutableURLRequest interface {
 	SetAssumesHTTP3Capable(value bool)
 	Attribution() unsafe.Pointer
 	SetAttribution(value unsafe.Pointer)
+	CachePolicy() unsafe.Pointer
+	SetCachePolicy(value unsafe.Pointer)
 	CookiePartitionIdentifier() string
 	SetCookiePartitionIdentifier(value string)
 	HttpBody() Data
 	SetHttpBody(value IData)
 	HttpBodyStream() NSInputStream
 	SetHttpBodyStream(value IInputStream)
+	HttpMethod() string
+	SetHttpMethod(value string)
 	HttpShouldHandleCookies() bool
 	SetHttpShouldHandleCookies(value bool)
 	HttpShouldUsePipelining() bool
@@ -71,6 +67,8 @@ type IMutableURLRequest interface {
 	SetRequiresDNSSECValidation(value bool)
 	TimeoutInterval() TimeInterval
 	SetTimeoutInterval(value ITimeInterval)
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // A mutable URL load request that is independent of protocol or URL scheme.
@@ -126,72 +124,6 @@ func NewMutableURLRequest() MutableURLRequest {
 	return getMutableURLRequestClass().New()
 }
 
-
-
-// Binds a URL request to the network interface associated with the hotspot helper command instance.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/bind(to:)
-func (m_ MutableURLRequest) BindToHotspotHelperCommand(command objectivec.IObject) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("bindToHotspotHelperCommand:"), command)
-}
-
-
-// The request’s cache policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/cachePolicy
-func (m_ MutableURLRequest) CachePolicy() URLRequestCachePolicy {
-	rv := objc.Send[URLRequestCachePolicy](m_.ID, objc.Sel("cachePolicy"))
-	return rv
-}
-
-
-// The request’s cache policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/cachePolicy
-func (m_ MutableURLRequest) SetCachePolicy(value URLRequestCachePolicy) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCachePolicy:"), value)
-}
-
-
-// The HTTP request method.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) HTTPMethod() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("HTTPMethod"))
-	return rv
-}
-
-
-// The HTTP request method.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) SetHTTPMethod(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), objc.String(value))
-}
-
-
-// The URL being requested.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/url
-func (m_ MutableURLRequest) URL() URL {
-	rv := objc.Send[URL](m_.ID, objc.Sel("URL"))
-	return rv
-}
-
-
-// The URL being requested.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/url
-func (m_ MutableURLRequest) SetURL(value IURL) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setURL:"), value)
-}
 
 
 // A dictionary containing all of the HTTP header fields for a request.
@@ -334,6 +266,25 @@ func (m_ MutableURLRequest) SetAttribution(value unsafe.Pointer) {
 }
 
 
+// The request’s cache policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cachepolicy
+func (m_ MutableURLRequest) CachePolicy() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cachePolicy"))
+	return rv
+}
+
+
+// The request’s cache policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cachepolicy
+func (m_ MutableURLRequest) SetCachePolicy(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCachePolicy:"), value)
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/cookiepartitionidentifier
 func (m_ MutableURLRequest) CookiePartitionIdentifier() string {
@@ -384,6 +335,25 @@ func (m_ MutableURLRequest) HttpBodyStream() NSInputStream {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpbodystream
 func (m_ MutableURLRequest) SetHttpBodyStream(value IInputStream) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpBodyStream:"), value)
+}
+
+
+// The HTTP request method.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpmethod
+func (m_ MutableURLRequest) HttpMethod() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("httpMethod"))
+	return rv
+}
+
+
+// The HTTP request method.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/httpmethod
+func (m_ MutableURLRequest) SetHttpMethod(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
 }
 
 
@@ -494,6 +464,25 @@ func (m_ MutableURLRequest) TimeoutInterval() TimeInterval {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/timeoutinterval
 func (m_ MutableURLRequest) SetTimeoutInterval(value ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeoutInterval:"), value)
+}
+
+
+// The URL being requested.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/url
+func (m_ MutableURLRequest) Url() URL {
+	rv := objc.Send[URL](m_.ID, objc.Sel("url"))
+	return rv
+}
+
+
+// The URL being requested.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableurlrequest/url
+func (m_ MutableURLRequest) SetUrl(value IURL) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
 

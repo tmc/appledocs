@@ -29,7 +29,6 @@ type _DateIntervalFormatterClass struct {
 // An interface definition for the [DateIntervalFormatter] class.
 type IDateIntervalFormatter interface {
 	IFormatter
-	StringFromDateToDate(fromDate IDate, toDate IDate) String
 	Calendar() Calendar
 	SetCalendar(value ICalendar)
 	DateStyle() unsafe.Pointer
@@ -97,16 +96,6 @@ func NewDateIntervalFormatter() DateIntervalFormatter {
 	return getDateIntervalFormatterClass().New()
 }
 
-
-
-// Returns a formatted string based on the specified start and end dates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:to:)
-func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) String {
-	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:toDate:"), fromDate, toDate)
-	return rv
-}
 
 
 // The calendar to use for date values.

@@ -29,7 +29,7 @@ type _UserAppleScriptTaskClass struct {
 // An interface definition for the [UserAppleScriptTask] class.
 type IUserAppleScriptTask interface {
 	IUserScriptTask
-	ExecuteWithAppleEventCompletionHandler(event AppleEventDescriptor, handler unsafe.Pointer)
+	ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler unsafe.Pointer)
 }
 
 // An object that executes AppleScript scripts.
@@ -91,7 +91,7 @@ func NewUserAppleScriptTask() UserAppleScriptTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask/execute(withAppleEvent:completionHandler:)
-func (u_ UserAppleScriptTask) ExecuteWithAppleEventCompletionHandler(event AppleEventDescriptor, handler unsafe.Pointer) {
+func (u_ UserAppleScriptTask) ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithAppleEvent:completionHandler:"), event, handler)
 }
 

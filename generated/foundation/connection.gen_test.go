@@ -13,8 +13,8 @@ var _ = foundation.NewConnection
 // Returns an   object initialized with given send and receive ports.
 func ExampleNewConnectionWithReceivePortSendPort() {
 	_ = foundation.NewConnectionWithReceivePortSendPort(
-		foundation.Port{}, // receivePort Port
-		foundation.Port{}, // sendPort Port
+		foundation.NSPort{}, // receivePort NSPort
+		foundation.NSPort{}, // sendPort NSPort
 	)
 	// Output:
 }

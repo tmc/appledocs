@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewScriptObjectSpecifier
 
+// ExampleNewScriptObjectSpecifierWithCoder demonstrates how to create a ScriptObjectSpecifier instance using NewScriptObjectSpecifierWithCoder.
+func ExampleNewScriptObjectSpecifierWithCoder() {
+	_ = foundation.NewScriptObjectSpecifierWithCoder(
+		foundation.NSCoder{}, // inCoder NSCoder
+	)
+	// Output:
+}
 // ExampleNewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey demonstrates how to create a ScriptObjectSpecifier instance using NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey.
 // Returns an   object initialized with the given attributes.
 func ExampleNewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey() {
@@ -25,6 +32,14 @@ func ExampleNewScriptObjectSpecifierWithContainerSpecifierKey() {
 	_ = foundation.NewScriptObjectSpecifierWithContainerSpecifierKey(
 		foundation.NSScriptObjectSpecifier{}, // container NSScriptObjectSpecifier
 		"property", // property string
+	)
+	// Output:
+}
+// ExampleNewScriptObjectSpecifierWithDescriptor demonstrates how to create a ScriptObjectSpecifier instance using NewScriptObjectSpecifierWithDescriptor.
+// Returns a new object specifier for an Apple event descriptor.
+func ExampleNewScriptObjectSpecifierWithDescriptor() {
+	_ = foundation.NewScriptObjectSpecifierWithDescriptor(
+		foundation.NSAppleEventDescriptor{}, // descriptor NSAppleEventDescriptor
 	)
 	// Output:
 }

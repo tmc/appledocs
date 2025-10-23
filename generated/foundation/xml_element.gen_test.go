@@ -43,3 +43,12 @@ func ExampleNewXMLElementWithNameURI() {
 	)
 	// Output:
 }
+// ExampleNewXMLElementWithXMLStringError demonstrates how to create a XMLElement instance using NewXMLElementWithXMLStringError.
+// Returns an   object created from a specified string containing XML markup.
+func ExampleNewXMLElementWithXMLStringError() {
+	_ = foundation.NewXMLElementWithXMLStringError(
+		"string", // string string
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}

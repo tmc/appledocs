@@ -31,15 +31,15 @@ type _FileCoordinatorClass struct {
 type IFileCoordinator interface {
 	objectivec.IObject
 	Cancel()
-	CoordinateReadingItemAtURLOptionsErrorByAccessor(url URL, options NSFileCoordinatorReadingOptions, outError unsafe.Pointer, reader unsafe.Pointer)
-	CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL URL, readingOptions NSFileCoordinatorReadingOptions, writingURL URL, writingOptions NSFileCoordinatorWritingOptions, outError unsafe.Pointer, readerWriter unsafe.Pointer)
-	CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue OperationQueue, accessor unsafe.Pointer)
-	CoordinateWritingItemAtURLOptionsErrorByAccessor(url URL, options NSFileCoordinatorWritingOptions, outError unsafe.Pointer, writer unsafe.Pointer)
-	CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 URL, options1 NSFileCoordinatorWritingOptions, url2 URL, options2 NSFileCoordinatorWritingOptions, outError unsafe.Pointer, writer unsafe.Pointer)
-	ItemAtURLDidChangeUbiquityAttributes(url URL, attributes unsafe.Pointer)
-	ItemAtURLDidMoveToURL(oldURL URL, newURL URL)
-	ItemAtURLWillMoveToURL(oldURL URL, newURL URL)
-	PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions NSFileCoordinatorReadingOptions, writingURLs []URL, writingOptions NSFileCoordinatorWritingOptions, outError unsafe.Pointer, batchAccessor unsafe.Pointer)
+	CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options NSFileCoordinatorReadingOptions, outError IError, reader unsafe.Pointer)
+	CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL IURL, readingOptions NSFileCoordinatorReadingOptions, writingURL IURL, writingOptions NSFileCoordinatorWritingOptions, outError IError, readerWriter unsafe.Pointer)
+	CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer)
+	CoordinateWritingItemAtURLOptionsErrorByAccessor(url IURL, options NSFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer)
+	CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 IURL, options1 NSFileCoordinatorWritingOptions, url2 IURL, options2 NSFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer)
+	ItemAtURLDidChangeUbiquityAttributes(url IURL, attributes unsafe.Pointer)
+	ItemAtURLDidMoveToURL(oldURL IURL, newURL IURL)
+	ItemAtURLWillMoveToURL(oldURL IURL, newURL IURL)
+	PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions NSFileCoordinatorReadingOptions, writingURLs []URL, writingOptions NSFileCoordinatorWritingOptions, outError IError, batchAccessor unsafe.Pointer)
 	PurposeIdentifier() string
 	SetPurposeIdentifier(value string)
 	NSUserCancelledError() int
@@ -152,7 +152,7 @@ func (f_ FileCoordinator) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(readingItemAt:options:error:byAccessor:)
-func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsErrorByAccessor(url URL, options NSFileCoordinatorReadingOptions, outError unsafe.Pointer, reader unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options NSFileCoordinatorReadingOptions, outError IError, reader unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateReadingItemAtURL:options:error:byAccessor:"), url, options, outError, reader)
 }
 
@@ -161,7 +161,7 @@ func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsErrorByAccessor(url U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(readingItemAt:options:writingItemAt:options:error:byAccessor:)
-func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL URL, readingOptions NSFileCoordinatorReadingOptions, writingURL URL, writingOptions NSFileCoordinatorWritingOptions, outError unsafe.Pointer, readerWriter unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(readingURL IURL, readingOptions NSFileCoordinatorReadingOptions, writingURL IURL, writingOptions NSFileCoordinatorWritingOptions, outError IError, readerWriter unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), readingURL, readingOptions, writingURL, writingOptions, outError, readerWriter)
 }
 
@@ -170,7 +170,7 @@ func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsWritingItemAtURLOptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(with:queue:byAccessor:)
-func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue OperationQueue, accessor unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateAccessWithIntents:queue:byAccessor:"), intents, queue, accessor)
 }
 
@@ -179,7 +179,7 @@ func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents []F
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(writingItemAt:options:error:byAccessor:)
-func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsErrorByAccessor(url URL, options NSFileCoordinatorWritingOptions, outError unsafe.Pointer, writer unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsErrorByAccessor(url IURL, options NSFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateWritingItemAtURL:options:error:byAccessor:"), url, options, outError, writer)
 }
 
@@ -188,7 +188,7 @@ func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsErrorByAccessor(url U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(writingItemAt:options:writingItemAt:options:error:byAccessor:)
-func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 URL, options1 NSFileCoordinatorWritingOptions, url2 URL, options2 NSFileCoordinatorWritingOptions, outError unsafe.Pointer, writer unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsWritingItemAtURLOptionsErrorByAccessor(url1 IURL, options1 NSFileCoordinatorWritingOptions, url2 IURL, options2 NSFileCoordinatorWritingOptions, outError IError, writer unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), url1, options1, url2, options2, outError, writer)
 }
 
@@ -197,7 +197,7 @@ func (f_ FileCoordinator) CoordinateWritingItemAtURLOptionsWritingItemAtURLOptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:didChangeUbiquityAttributes:)
-func (f_ FileCoordinator) ItemAtURLDidChangeUbiquityAttributes(url URL, attributes unsafe.Pointer) {
+func (f_ FileCoordinator) ItemAtURLDidChangeUbiquityAttributes(url IURL, attributes unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:didChangeUbiquityAttributes:"), url, attributes)
 }
 
@@ -206,7 +206,7 @@ func (f_ FileCoordinator) ItemAtURLDidChangeUbiquityAttributes(url URL, attribut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:didMoveTo:)
-func (f_ FileCoordinator) ItemAtURLDidMoveToURL(oldURL URL, newURL URL) {
+func (f_ FileCoordinator) ItemAtURLDidMoveToURL(oldURL IURL, newURL IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:didMoveToURL:"), oldURL, newURL)
 }
 
@@ -215,7 +215,7 @@ func (f_ FileCoordinator) ItemAtURLDidMoveToURL(oldURL URL, newURL URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/item(at:willMoveTo:)
-func (f_ FileCoordinator) ItemAtURLWillMoveToURL(oldURL URL, newURL URL) {
+func (f_ FileCoordinator) ItemAtURLWillMoveToURL(oldURL IURL, newURL IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("itemAtURL:willMoveToURL:"), oldURL, newURL)
 }
 
@@ -224,7 +224,7 @@ func (f_ FileCoordinator) ItemAtURLWillMoveToURL(oldURL URL, newURL URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/prepare(forReadingItemsAt:options:writingItemsAt:options:error:byAccessor:)
-func (f_ FileCoordinator) PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions NSFileCoordinatorReadingOptions, writingURLs []URL, writingOptions NSFileCoordinatorWritingOptions, outError unsafe.Pointer, batchAccessor unsafe.Pointer) {
+func (f_ FileCoordinator) PrepareForReadingItemsAtURLsOptionsWritingItemsAtURLsOptionsErrorByAccessor(readingURLs []URL, readingOptions NSFileCoordinatorReadingOptions, writingURLs []URL, writingOptions NSFileCoordinatorWritingOptions, outError IError, batchAccessor unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:"), readingURLs, readingOptions, writingURLs, writingOptions, outError, batchAccessor)
 }
 

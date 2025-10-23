@@ -273,7 +273,7 @@ func NewMetadataItem() MetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataItem/init(url:)
-func NewMetadataItemWithURL(url URL) MetadataItem {
+func NewMetadataItemWithURL(url IURL) MetadataItem {
 	instance := getMetadataItemClass().Alloc()
 	rv := objc.Send[MetadataItem](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()

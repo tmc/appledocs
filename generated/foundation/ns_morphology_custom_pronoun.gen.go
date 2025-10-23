@@ -30,8 +30,6 @@ type _MorphologyCustomPronounClass struct {
 // An interface definition for the [MorphologyCustomPronoun] class.
 type IMorphologyCustomPronoun interface {
 	objectivec.IObject
-	ReflexiveForm() string
-	SetReflexiveForm(value string)
 }
 
 // A custom pronoun behavior for use in a specific langauge.
@@ -85,25 +83,6 @@ func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
 	return getMorphologyCustomPronounClass().New()
 }
 
-
-
-// The reflexive pronoun form to apply when using this custom pronoun behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("reflexiveForm"))
-	return rv
-}
-
-
-// The reflexive pronoun form to apply when using this custom pronoun behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) SetReflexiveForm(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), objc.String(value))
-}
 
 
 

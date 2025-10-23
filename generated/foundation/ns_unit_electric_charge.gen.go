@@ -86,6 +86,15 @@ func NewUnitElectricCharge() UnitElectricCharge {
 
 
 
+// The ampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
+func (uc _UnitElectricChargeClass) AmpereHours() UnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("ampereHours"))
+	return rv
+}
+
 // The coulombs unit of electric charge.
 //
 // [Full Topic]
@@ -95,12 +104,98 @@ func (uc _UnitElectricChargeClass) Coulombs() UnitElectricCharge {
 	return rv
 }
 
+// The kiloampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
+func (uc _UnitElectricChargeClass) KiloampereHours() UnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("kiloampereHours"))
+	return rv
+}
+
+// The megaampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/megaampereHours
+func (uc _UnitElectricChargeClass) MegaampereHours() UnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("megaampereHours"))
+	return rv
+}
+
+// The microampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/microampereHours
+func (uc _UnitElectricChargeClass) MicroampereHours() UnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("microampereHours"))
+	return rv
+}
+
+// The milliampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/milliampereHours
+func (uc _UnitElectricChargeClass) MilliampereHours() UnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](objc.ID(uc.class), objc.Sel("milliampereHours"))
+	return rv
+}
+
+// The ampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/ampereHours
+func (u_ UnitElectricCharge) AmpereHours() NSUnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("ampereHours"))
+	return rv
+}
+
+
 // The coulombs unit of electric charge.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/coulombs
 func (u_ UnitElectricCharge) Coulombs() NSUnitElectricCharge {
 	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("coulombs"))
+	return rv
+}
+
+
+// The kiloampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/kiloampereHours
+func (u_ UnitElectricCharge) KiloampereHours() NSUnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("kiloampereHours"))
+	return rv
+}
+
+
+// The megaampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/megaampereHours
+func (u_ UnitElectricCharge) MegaampereHours() NSUnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("megaampereHours"))
+	return rv
+}
+
+
+// The microampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/microampereHours
+func (u_ UnitElectricCharge) MicroampereHours() NSUnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("microampereHours"))
+	return rv
+}
+
+
+// The milliampere hours unit of electric charge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCharge/milliampereHours
+func (u_ UnitElectricCharge) MilliampereHours() NSUnitElectricCharge {
+	rv := objc.Send[NSUnitElectricCharge](u_.ID, objc.Sel("milliampereHours"))
 	return rv
 }
 

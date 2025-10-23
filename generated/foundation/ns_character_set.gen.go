@@ -30,19 +30,29 @@ type _CharacterSetClass struct {
 // An interface definition for the [CharacterSet] class.
 type ICharacterSet interface {
 	objectivec.IObject
+	InvertedSet() NSCharacterSet
+	BitmapRepresentation() Data
+	SetBitmapRepresentation(value IData)
+	Inverted() CharacterSet
+	SetInverted(value ICharacterSet)
 }
 
-// A parent class referenced by other Foundation classes.
+// An object representing a fixed set of Unicode character values for use in search operations.
+//
+// In Swift, this bridges to a ; use when you need reference semantics or other Foundation-specific behavior. An object represents a set of Unicode-compliant characters. and objects use objects to group characters together for searching operations, so that they can find any of a particular set of characters during a search. The cluster’s two public classes, and , declare the programmatic interface for static and dynamic character sets, respectively. The objects you create using these classes are referred to as character set objects (and when no confusion will result, merely as character sets). Because of the nature of class clusters, character set objects aren’t actual instances of the or classes but of one of their private subclasses. Although a character set object’s class is private, its interface is public, as declared by these abstract superclasses, and . The character set classes adopt the and protocols, making it convenient to convert a character set of one type to the other. The class declares the programmatic interface for an object that manages a set of Unicode characters (see the class cluster specification for information on Unicode). ’s principal primitive method, , provides the basis for all other instance methods in its interface. A subclass of needs only to implement this method, plus , for proper behavior. For optimal performance, a subclass should also override , which otherwise works by invoking for every possible Unicode value. is “toll-free bridged” with its Core Foundation counterpart, . See for more information on toll-free bridging.
 
 
-// A parent class referenced by other Foundation classes. [Full Topic]
+// An object representing a fixed set of Unicode character values for use in search operations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet
 type CharacterSet struct {
 	objectivec.Object
 }
 
 // CharacterSetFrom constructs a [CharacterSet] from an unsafe.Pointer.
 //
-// A parent class referenced by other Foundation classes.
+// An object representing a fixed set of Unicode character values for use in search operations.
 func CharacterSetFrom(ptr unsafe.Pointer) CharacterSet {
 	return CharacterSet{objectivec.Object{objc.ID(ptr)}}
 }
@@ -78,6 +88,206 @@ func NewCharacterSet() CharacterSet {
 	return getCharacterSetClass().New()
 }
 
+
+
+// A character set containing the characters in Unicode General Category Cc and Cf.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
+func (cc _CharacterSetClass) ControlCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("controlCharacterSet"))
+	return rv
+}
+
+// A character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/illegalCharacters
+func (cc _CharacterSetClass) IllegalCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("illegalCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/nonBaseCharacters
+func (cc _CharacterSetClass) NonBaseCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("nonBaseCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category S*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
+func (cc _CharacterSetClass) SymbolCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("symbolCharacterSet"))
+	return rv
+}
+
+// Returns the character set for characters allowed in a path URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPathAllowed
+func (cc _CharacterSetClass) URLPathAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("URLPathAllowedCharacterSet"))
+	return rv
+}
+
+// Returns the character set for characters allowed in a query URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
+func (cc _CharacterSetClass) URLQueryAllowedCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("URLQueryAllowedCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category Zs and ( ).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespaces
+func (cc _CharacterSetClass) WhitespaceCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("whitespaceCharacterSet"))
+	return rv
+}
+
+// A character set containing characters in Unicode General Category Z*, ~ , and .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespacesAndNewlines
+func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() CharacterSet {
+	rv := objc.Send[NSCharacterSet](objc.ID(cc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
+	return rv
+}
+
+// A character set containing the characters in Unicode General Category Cc and Cf.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
+func (c_ CharacterSet) ControlCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("controlCharacterSet"))
+	return rv
+}
+
+
+// A character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/illegalCharacters
+func (c_ CharacterSet) IllegalCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("illegalCharacterSet"))
+	return rv
+}
+
+
+// A character set containing only characters that don’t exist in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/inverted
+func (c_ CharacterSet) InvertedSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("invertedSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category M*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/nonBaseCharacters
+func (c_ CharacterSet) NonBaseCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("nonBaseCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category S*.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
+func (c_ CharacterSet) SymbolCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("symbolCharacterSet"))
+	return rv
+}
+
+
+// Returns the character set for characters allowed in a path URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPathAllowed
+func (c_ CharacterSet) URLPathAllowedCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("URLPathAllowedCharacterSet"))
+	return rv
+}
+
+
+// Returns the character set for characters allowed in a query URL component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
+func (c_ CharacterSet) URLQueryAllowedCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("URLQueryAllowedCharacterSet"))
+	return rv
+}
+
+
+// A character set containing the characters in Unicode General Category Zs and ( ).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespaces
+func (c_ CharacterSet) WhitespaceCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("whitespaceCharacterSet"))
+	return rv
+}
+
+
+// A character set containing characters in Unicode General Category Z*, ~ , and .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespacesAndNewlines
+func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() NSCharacterSet {
+	rv := objc.Send[NSCharacterSet](c_.ID, objc.Sel("whitespaceAndNewlineCharacterSet"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
+func (c_ CharacterSet) BitmapRepresentation() Data {
+	rv := objc.Send[Data](c_.ID, objc.Sel("bitmapRepresentation"))
+	return rv
+}
+
+
+// An
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation
+func (c_ CharacterSet) SetBitmapRepresentation(value IData) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBitmapRepresentation:"), value)
+}
+
+
+// A character set containing only characters that don’t exist in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/inverted
+func (c_ CharacterSet) Inverted() CharacterSet {
+	rv := objc.Send[CharacterSet](c_.ID, objc.Sel("inverted"))
+	return rv
+}
+
+
+// A character set containing only characters that don’t exist in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscharacterset/inverted
+func (c_ CharacterSet) SetInverted(value ICharacterSet) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInverted:"), value)
+}
 
 
 

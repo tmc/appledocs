@@ -30,6 +30,7 @@ type _RecursiveLockClass struct {
 // An interface definition for the [RecursiveLock] class.
 type IRecursiveLock interface {
 	objectivec.IObject
+	LockBeforeDate(limit IDate) bool
 	TryLock() bool
 	Name() string
 	SetName(value string)
@@ -86,6 +87,16 @@ func NewRecursiveLock() RecursiveLock {
 	return getRecursiveLockClass().New()
 }
 
+
+
+// Attempts to acquire a lock before a given date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/lock(before:)
+func (r_ RecursiveLock) LockBeforeDate(limit IDate) bool {
+	rv := objc.Send[bool](r_.ID, objc.Sel("lockBeforeDate:"), limit)
+	return rv
+}
 
 
 // Attempts to acquire a lock, and immediately returns a Boolean value that indicates whether the attempt was successful.

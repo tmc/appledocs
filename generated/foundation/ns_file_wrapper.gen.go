@@ -30,17 +30,12 @@ type _FileWrapperClass struct {
 // An interface definition for the [FileWrapper] class.
 type IFileWrapper interface {
 	objectivec.IObject
-	MatchesContentsOfURL(url IURL) bool
-	NeedsToBeUpdatedFromPath(path string) bool
-	SymbolicLinkDestination() String
-	WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool
-	Filename() string
-	SetFilename(value string)
-	SerializedRepresentation() NSData
 	FileAttributes() string
 	SetFileAttributes(value string)
 	FileWrappers() NSFileWrapper
 	SetFileWrappers(value IFileWrapper)
+	Filename() string
+	SetFilename(value string)
 	IsDirectory() bool
 	SetIsDirectory(value bool)
 	IsRegularFile() bool
@@ -51,6 +46,8 @@ type IFileWrapper interface {
 	SetPreferredFilename(value string)
 	RegularFileContents() Data
 	SetRegularFileContents(value IData)
+	SerializedRepresentation() Data
+	SetSerializedRepresentation(value IData)
 	SymbolicLinkDestinationURL() URL
 	SetSymbolicLinkDestinationURL(value IURL)
 }
@@ -108,75 +105,6 @@ func NewFileWrapper() FileWrapper {
 
 
 
-// Indicates whether the contents of a file wrapper matches a directory, regular file, or symbolic link on disk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/matchesContents(of:)
-func (f_ FileWrapper) MatchesContentsOfURL(url IURL) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("matchesContentsOfURL:"), url)
-	return rv
-}
-
-
-// Indicates whether the file wrapper needs to be updated to match a given file-system node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/needsToBeUpdated(fromPath:)
-func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("needsToBeUpdatedFromPath:"), objc.String(path))
-	return rv
-}
-
-
-// Provides the pathname referenced by the file wrapper object, which must be a symbolic-link file wrapper.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/symbolicLinkDestination()
-func (f_ FileWrapper) SymbolicLinkDestination() String {
-	rv := objc.Send[String](f_.ID, objc.Sel("symbolicLinkDestination"))
-	return rv
-}
-
-
-// Writes a file wrapper’s contents to a given file-system node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/write(toFile:atomically:updateFilenames:)
-func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("writeToFile:atomically:updateFilenames:"), objc.String(path), atomicFlag, updateFilenamesFlag)
-	return rv
-}
-
-
-// The filename of the file wrapper object
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) Filename() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
-	return rv
-}
-
-
-// The filename of the file wrapper object
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) SetFilename(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
-}
-
-
-// The contents of the file wrapper as an opaque data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
-func (f_ FileWrapper) SerializedRepresentation() NSData {
-	rv := objc.Send[NSData](f_.ID, objc.Sel("serializedRepresentation"))
-	return rv
-}
-
-
 // A dictionary of file attributes.
 //
 // [Full Topic]
@@ -212,6 +140,25 @@ func (f_ FileWrapper) FileWrappers() NSFileWrapper {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filewrappers
 func (f_ FileWrapper) SetFileWrappers(value IFileWrapper) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileWrappers:"), value)
+}
+
+
+// The filename of the file wrapper object
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filename
+func (f_ FileWrapper) Filename() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
+	return rv
+}
+
+
+// The filename of the file wrapper object
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/filename
+func (f_ FileWrapper) SetFilename(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
 
 
@@ -307,6 +254,25 @@ func (f_ FileWrapper) RegularFileContents() Data {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents
 func (f_ FileWrapper) SetRegularFileContents(value IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRegularFileContents:"), value)
+}
+
+
+// The contents of the file wrapper as an opaque data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation
+func (f_ FileWrapper) SerializedRepresentation() Data {
+	rv := objc.Send[Data](f_.ID, objc.Sel("serializedRepresentation"))
+	return rv
+}
+
+
+// The contents of the file wrapper as an opaque data object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation
+func (f_ FileWrapper) SetSerializedRepresentation(value IData) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSerializedRepresentation:"), value)
 }
 
 

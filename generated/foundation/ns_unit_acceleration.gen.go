@@ -86,6 +86,15 @@ func NewUnitAcceleration() UnitAcceleration {
 
 
 
+// Returns the gravity unit of acceleration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
+func (uc _UnitAccelerationClass) Gravity() UnitAcceleration {
+	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("gravity"))
+	return rv
+}
+
 // Returns the meter per second squared unit of acceleration.
 //
 // [Full Topic]
@@ -94,6 +103,16 @@ func (uc _UnitAccelerationClass) MetersPerSecondSquared() UnitAcceleration {
 	rv := objc.Send[NSUnitAcceleration](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
 	return rv
 }
+
+// Returns the gravity unit of acceleration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/gravity
+func (u_ UnitAcceleration) Gravity() NSUnitAcceleration {
+	rv := objc.Send[NSUnitAcceleration](u_.ID, objc.Sel("gravity"))
+	return rv
+}
+
 
 // Returns the meter per second squared unit of acceleration.
 //

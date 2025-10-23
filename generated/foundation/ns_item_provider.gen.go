@@ -131,7 +131,7 @@ func NewItemProvider() ItemProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/init(contentsOf:)
-func NewItemProviderWithContentsOfURL(fileURL URL) ItemProvider {
+func NewItemProviderWithContentsOfURL(fileURL IURL) ItemProvider {
 	instance := getItemProviderClass().Alloc()
 	rv := objc.Send[ItemProvider](instance.ID, objc.Sel("initWithContentsOfURL:"), fileURL)
 	rv.Autorelease()
@@ -143,7 +143,7 @@ func NewItemProviderWithContentsOfURL(fileURL URL) ItemProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:
-func NewItemProviderWithContentsOfURLContentTypeOpenInPlaceCoordinatedVisibility(fileURL URL, contentType unsafe.Pointer, openInPlace bool, coordinated bool, visibility NSItemProviderRepresentationVisibility) ItemProvider {
+func NewItemProviderWithContentsOfURLContentTypeOpenInPlaceCoordinatedVisibility(fileURL IURL, contentType unsafe.Pointer, openInPlace bool, coordinated bool, visibility NSItemProviderRepresentationVisibility) ItemProvider {
 	instance := getItemProviderClass().Alloc()
 	rv := objc.Send[ItemProvider](instance.ID, objc.Sel("initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:"), fileURL, contentType, openInPlace, coordinated, visibility)
 	rv.Autorelease()

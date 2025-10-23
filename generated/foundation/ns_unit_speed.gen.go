@@ -86,6 +86,24 @@ func NewUnitSpeed() UnitSpeed {
 
 
 
+// The kilometers per hour unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/kilometersPerHour
+func (uc _UnitSpeedClass) KilometersPerHour() UnitSpeed {
+	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("kilometersPerHour"))
+	return rv
+}
+
+// The knots unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/knots
+func (uc _UnitSpeedClass) Knots() UnitSpeed {
+	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("knots"))
+	return rv
+}
+
 // The meter per second unit of speed.
 //
 // [Full Topic]
@@ -95,12 +113,51 @@ func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 	return rv
 }
 
+// The miles per hour unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/milesPerHour
+func (uc _UnitSpeedClass) MilesPerHour() UnitSpeed {
+	rv := objc.Send[NSUnitSpeed](objc.ID(uc.class), objc.Sel("milesPerHour"))
+	return rv
+}
+
+// The kilometers per hour unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/kilometersPerHour
+func (u_ UnitSpeed) KilometersPerHour() NSUnitSpeed {
+	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("kilometersPerHour"))
+	return rv
+}
+
+
+// The knots unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/knots
+func (u_ UnitSpeed) Knots() NSUnitSpeed {
+	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("knots"))
+	return rv
+}
+
+
 // The meter per second unit of speed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
 func (u_ UnitSpeed) MetersPerSecond() NSUnitSpeed {
 	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
+	return rv
+}
+
+
+// The miles per hour unit of speed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/milesPerHour
+func (u_ UnitSpeed) MilesPerHour() NSUnitSpeed {
+	rv := objc.Send[NSUnitSpeed](u_.ID, objc.Sel("milesPerHour"))
 	return rv
 }
 

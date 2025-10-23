@@ -30,12 +30,14 @@ type _IndexPathClass struct {
 // An interface definition for the [IndexPath] class.
 type IIndexPath interface {
 	objectivec.IObject
-	Row() int
-	Section() int
 	Item() int
 	SetItem(value int)
 	Length() int
 	SetLength(value int)
+	Row() int
+	SetRow(value int)
+	Section() int
+	SetSection(value int)
 }
 
 // A list of indexes that together represent the path to a specific location in a tree of nested arrays.
@@ -91,26 +93,6 @@ func NewIndexPath() IndexPath {
 
 
 
-// An index number identifying a row in a section of a table view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/row
-func (i_ IndexPath) Row() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("row"))
-	return rv
-}
-
-
-// An index number identifying a section in a table view or collection view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/section
-func (i_ IndexPath) Section() int {
-	rv := objc.Send[int](i_.ID, objc.Sel("section"))
-	return rv
-}
-
-
 // An index number identifying an item in a section of a collection view.
 //
 // [Full Topic]
@@ -146,6 +128,44 @@ func (i_ IndexPath) Length() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/length
 func (i_ IndexPath) SetLength(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLength:"), value)
+}
+
+
+// An index number identifying a row in a section of a table view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
+func (i_ IndexPath) Row() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("row"))
+	return rv
+}
+
+
+// An index number identifying a row in a section of a table view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/row
+func (i_ IndexPath) SetRow(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRow:"), value)
+}
+
+
+// An index number identifying a section in a table view or collection view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
+func (i_ IndexPath) Section() int {
+	rv := objc.Send[int](i_.ID, objc.Sel("section"))
+	return rv
+}
+
+
+// An index number identifying a section in a table view or collection view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsindexpath/section
+func (i_ IndexPath) SetSection(value int) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSection:"), value)
 }
 
 

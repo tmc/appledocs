@@ -30,11 +30,6 @@ type _OrderedSetClass struct {
 // An interface definition for the [OrderedSet] class.
 type IOrderedSet interface {
 	objectivec.IObject
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
-	EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
-	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
-	ObjectAtIndex(idx uint) unsafe.Pointer
-	LastObject() unsafe.Pointer
 	Array() unsafe.Pointer
 	SetArray(value unsafe.Pointer)
 	Count() int
@@ -43,6 +38,8 @@ type IOrderedSet interface {
 	SetDescription(value string)
 	FirstObject() unsafe.Pointer
 	SetFirstObject(value unsafe.Pointer)
+	LastObject() unsafe.Pointer
+	SetLastObject(value unsafe.Pointer)
 	Reversed() NSOrderedSet
 	SetReversed(value IOrderedSet)
 	Set() unsafe.Pointer
@@ -100,55 +97,6 @@ func NewOrderedSet() OrderedSet {
 	return getOrderedSetClass().New()
 }
 
-
-
-// Returns a string that represents the contents of the ordered set, formatted as a property list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String {
-	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
-	return rv
-}
-
-
-// Executes a given block using each object in the set, using the specified enumeration options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(options:using:)
-func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
-}
-
-
-// Returns the index of the object in the ordered set that passes a test in a given block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/index(ofObjectPassingTest:)
-func (o_ OrderedSet) IndexOfObjectPassingTest(predicate unsafe.Pointer) uint {
-	rv := objc.Send[uint](o_.ID, objc.Sel("indexOfObjectPassingTest:"), predicate)
-	return rv
-}
-
-
-// Returns the object at the specified index of the set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/object(at:)
-func (o_ OrderedSet) ObjectAtIndex(idx uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("objectAtIndex:"), idx)
-	return rv
-}
-
-
-// The last object in the ordered set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/lastObject
-func (o_ OrderedSet) LastObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("lastObject"))
-	return rv
-}
 
 
 // A representation of the ordered set as an array.
@@ -224,6 +172,25 @@ func (o_ OrderedSet) FirstObject() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/firstobject
 func (o_ OrderedSet) SetFirstObject(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFirstObject:"), value)
+}
+
+
+// The last object in the ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/lastobject
+func (o_ OrderedSet) LastObject() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("lastObject"))
+	return rv
+}
+
+
+// The last object in the ordered set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/lastobject
+func (o_ OrderedSet) SetLastObject(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setLastObject:"), value)
 }
 
 

@@ -30,7 +30,6 @@ type _MapTableClass struct {
 // An interface definition for the [MapTable] class.
 type IMapTable interface {
 	objectivec.IObject
-	SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 	Count() int
 	SetCount(value int)
 	KeyPointerFunctions() NSPointerFunctions
@@ -90,15 +89,6 @@ func NewMapTable() MapTable {
 	return getMapTableClass().New()
 }
 
-
-
-// Adds a given key-value pair to the map table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/setObject(_:forKey:)
-func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
-}
 
 
 // The number of key-value pairs in the map table.

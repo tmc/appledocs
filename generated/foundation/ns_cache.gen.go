@@ -30,13 +30,12 @@ type _CacheClass struct {
 // An interface definition for the [Cache] class.
 type ICache interface {
 	objectivec.IObject
-	SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint)
-	EvictsObjectsWithDiscardedContent() bool
-	SetEvictsObjectsWithDiscardedContent(value bool)
 	CountLimit() int
 	SetCountLimit(value int)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	EvictsObjectsWithDiscardedContent() bool
+	SetEvictsObjectsWithDiscardedContent(value bool)
 	Name() string
 	SetName(value string)
 	TotalCostLimit() int
@@ -96,34 +95,6 @@ func NewCache() Cache {
 
 
 
-// Sets the value of the specified key in the cache, and associates the key-value pair with the specified cost.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/setObject(_:forKey:cost:)
-func (c_ Cache) SetObjectForKeyCost(obj unsafe.Pointer, key unsafe.Pointer, g uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKey:cost:"), obj, key, g)
-}
-
-
-// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
-	return rv
-}
-
-
-// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/evictsObjectsWithDiscardedContent
-func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
-}
-
-
 // The maximum number of objects the cache should hold.
 //
 // [Full Topic]
@@ -159,6 +130,25 @@ func (c_ Cache) Delegate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/delegate
 func (c_ Cache) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/evictsobjectswithdiscardedcontent
+func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("evictsObjectsWithDiscardedContent"))
+	return rv
+}
+
+
+// Whether the cache will automatically evict discardable-content objects whose content has been discarded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscache/evictsobjectswithdiscardedcontent
+func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RelativeDateTimeFormatter] class.
@@ -29,16 +30,20 @@ type _RelativeDateTimeFormatterClass struct {
 // An interface definition for the [RelativeDateTimeFormatter] class.
 type IRelativeDateTimeFormatter interface {
 	IFormatter
-	Calendar() Calendar
+	LocalizedStringForDateRelativeToDate(date IDate, referenceDate IDate) String
+	LocalizedStringFromDateComponents(dateComponents IDateComponents) String
+	LocalizedStringFromTimeInterval(timeInterval TimeInterval) String
+	StringForObjectValue(obj objectivec.IObject) String
+	Calendar() NSCalendar
 	SetCalendar(value ICalendar)
-	DateTimeStyle() unsafe.Pointer
-	SetDateTimeStyle(value unsafe.Pointer)
+	DateTimeStyle() RelativeDateTimeFormatterStyle
+	SetDateTimeStyle(value RelativeDateTimeFormatterStyle)
 	FormattingContext() int
 	SetFormattingContext(value int)
-	Locale() Locale
+	Locale() NSLocale
 	SetLocale(value ILocale)
-	UnitsStyle() unsafe.Pointer
-	SetUnitsStyle(value unsafe.Pointer)
+	UnitsStyle() RelativeDateTimeFormatterUnitsStyle
+	SetUnitsStyle(value RelativeDateTimeFormatterUnitsStyle)
 }
 
 // A formatter that creates locale-aware string representations of a relative date or time.
@@ -96,12 +101,42 @@ func NewRelativeDateTimeFormatter() RelativeDateTimeFormatter {
 
 
 
-// The calendar to use for formatting values that don’t have an inherent calendar of their own.
+// Formats the date interval from the reference date to the specified date using the formatter’s calendar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
-func (r_ RelativeDateTimeFormatter) Calendar() Calendar {
-	rv := objc.Send[Calendar](r_.ID, objc.Sel("calendar"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/localizedString(for:relativeTo:)
+func (r_ RelativeDateTimeFormatter) LocalizedStringForDateRelativeToDate(date IDate, referenceDate IDate) String {
+	rv := objc.Send[String](r_.ID, objc.Sel("localizedStringForDate:relativeToDate:"), date, referenceDate)
+	return rv
+}
+
+
+// Formats a relative time represented by the specified date components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/localizedString(from:)
+func (r_ RelativeDateTimeFormatter) LocalizedStringFromDateComponents(dateComponents IDateComponents) String {
+	rv := objc.Send[String](r_.ID, objc.Sel("localizedStringFromDateComponents:"), dateComponents)
+	return rv
+}
+
+
+// Formats the specified time interval using the formatter’s calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/localizedString(fromTimeInterval:)
+func (r_ RelativeDateTimeFormatter) LocalizedStringFromTimeInterval(timeInterval TimeInterval) String {
+	rv := objc.Send[String](r_.ID, objc.Sel("localizedStringFromTimeInterval:"), timeInterval)
+	return rv
+}
+
+
+// Creates a formatted string for a date relative to the current date and time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/string(for:)
+func (r_ RelativeDateTimeFormatter) StringForObjectValue(obj objectivec.IObject) String {
+	rv := objc.Send[String](r_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
 
@@ -109,7 +144,17 @@ func (r_ RelativeDateTimeFormatter) Calendar() Calendar {
 // The calendar to use for formatting values that don’t have an inherent calendar of their own.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/calendar
+func (r_ RelativeDateTimeFormatter) Calendar() NSCalendar {
+	rv := objc.Send[NSCalendar](r_.ID, objc.Sel("calendar"))
+	return rv
+}
+
+
+// The calendar to use for formatting values that don’t have an inherent calendar of their own.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/calendar
 func (r_ RelativeDateTimeFormatter) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCalendar:"), value)
 }
@@ -118,9 +163,9 @@ func (r_ RelativeDateTimeFormatter) SetCalendar(value ICalendar) {
 // The style to use when describing a relative date, for example “yesterday” or “1 day ago”.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
-func (r_ RelativeDateTimeFormatter) DateTimeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("dateTimeStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/dateTimeStyle-swift.property
+func (r_ RelativeDateTimeFormatter) DateTimeStyle() RelativeDateTimeFormatterStyle {
+	rv := objc.Send[RelativeDateTimeFormatterStyle](r_.ID, objc.Sel("dateTimeStyle"))
 	return rv
 }
 
@@ -128,8 +173,8 @@ func (r_ RelativeDateTimeFormatter) DateTimeStyle() unsafe.Pointer {
 // The style to use when describing a relative date, for example “yesterday” or “1 day ago”.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.property
-func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/dateTimeStyle-swift.property
+func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value RelativeDateTimeFormatterStyle) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDateTimeStyle:"), value)
 }
 
@@ -137,7 +182,7 @@ func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
 // A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/formattingContext
 func (r_ RelativeDateTimeFormatter) FormattingContext() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("formattingContext"))
 	return rv
@@ -147,7 +192,7 @@ func (r_ RelativeDateTimeFormatter) FormattingContext() int {
 // A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/formattingContext
 func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingContext:"), value)
 }
@@ -156,9 +201,9 @@ func (r_ RelativeDateTimeFormatter) SetFormattingContext(value int) {
 // The locale to use when formatting the date.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
-func (r_ RelativeDateTimeFormatter) Locale() Locale {
-	rv := objc.Send[Locale](r_.ID, objc.Sel("locale"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/locale
+func (r_ RelativeDateTimeFormatter) Locale() NSLocale {
+	rv := objc.Send[NSLocale](r_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -166,7 +211,7 @@ func (r_ RelativeDateTimeFormatter) Locale() Locale {
 // The locale to use when formatting the date.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/locale
 func (r_ RelativeDateTimeFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocale:"), value)
 }
@@ -175,9 +220,9 @@ func (r_ RelativeDateTimeFormatter) SetLocale(value ILocale) {
 // The style to use when formatting the quantity or the name of the unit, such as “1 day ago” or “one day ago”.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
-func (r_ RelativeDateTimeFormatter) UnitsStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("unitsStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/unitsStyle-swift.property
+func (r_ RelativeDateTimeFormatter) UnitsStyle() RelativeDateTimeFormatterUnitsStyle {
+	rv := objc.Send[RelativeDateTimeFormatterUnitsStyle](r_.ID, objc.Sel("unitsStyle"))
 	return rv
 }
 
@@ -185,8 +230,8 @@ func (r_ RelativeDateTimeFormatter) UnitsStyle() unsafe.Pointer {
 // The style to use when formatting the quantity or the name of the unit, such as “1 day ago” or “one day ago”.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.property
-func (r_ RelativeDateTimeFormatter) SetUnitsStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/unitsStyle-swift.property
+func (r_ RelativeDateTimeFormatter) SetUnitsStyle(value RelativeDateTimeFormatterUnitsStyle) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUnitsStyle:"), value)
 }
 

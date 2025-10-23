@@ -29,7 +29,6 @@ type _ComparisonPredicateClass struct {
 // An interface definition for the [ComparisonPredicate] class.
 type IComparisonPredicate interface {
 	IPredicate
-	RightExpression() NSExpression
 	ComparisonPredicateModifier() unsafe.Pointer
 	SetComparisonPredicateModifier(value unsafe.Pointer)
 	CustomSelector() unsafe.Pointer
@@ -40,6 +39,8 @@ type IComparisonPredicate interface {
 	SetOptions(value unsafe.Pointer)
 	PredicateOperatorType() unsafe.Pointer
 	SetPredicateOperatorType(value unsafe.Pointer)
+	RightExpression() NSExpression
+	SetRightExpression(value IExpression)
 }
 
 // A specialized predicate for comparing expressions.
@@ -95,16 +96,6 @@ func NewComparisonPredicate() ComparisonPredicate {
 	return getComparisonPredicateClass().New()
 }
 
-
-
-// The right expression for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
-func (c_ ComparisonPredicate) RightExpression() NSExpression {
-	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
-	return rv
-}
 
 
 // The comparison predicate modifier for the receiver.
@@ -199,6 +190,25 @@ func (c_ ComparisonPredicate) PredicateOperatorType() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/predicateoperatortype
 func (c_ ComparisonPredicate) SetPredicateOperatorType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateOperatorType:"), value)
+}
+
+
+// The right expression for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/rightexpression
+func (c_ ComparisonPredicate) RightExpression() NSExpression {
+	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
+	return rv
+}
+
+
+// The right expression for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/rightexpression
+func (c_ ComparisonPredicate) SetRightExpression(value IExpression) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRightExpression:"), value)
 }
 
 

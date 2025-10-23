@@ -33,7 +33,7 @@ type IPortCoder interface {
 	Connection() Connection
 	DecodePortObject() Port
 	Dispatch()
-	EncodePortObject(aport Port)
+	EncodePortObject(aport IPort)
 	IsBycopy() bool
 	IsByref() bool
 }
@@ -97,7 +97,7 @@ func NewPortCoder() PortCoder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/initWithReceivePort:sendPort:components:
-func NewPortCoderWithReceivePortSendPortComponents(rcvPort Port, sndPort Port, comps objectivec.IObject) PortCoder {
+func NewPortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps objectivec.IObject) PortCoder {
 	instance := getPortCoderClass().Alloc()
 	rv := objc.Send[PortCoder](instance.ID, objc.Sel("initWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewPortCoderWithReceivePortSendPortComponents(rcvPort Port, sndPort Port, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/portCoderWithReceivePort:sendPort:components:
-func (pc _PortCoderClass) PortCoderWithReceivePortSendPortComponents(rcvPort Port, sndPort Port, comps objectivec.IObject) objc.ID {
+func (pc _PortCoderClass) PortCoderWithReceivePortSendPortComponents(rcvPort IPort, sndPort IPort, comps objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("portCoderWithReceivePort:sendPort:components:"), rcvPort, sndPort, comps)
 	return rv
 }
@@ -149,7 +149,7 @@ func (p_ PortCoder) Dispatch() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortCoder/encodePortObject:
-func (p_ PortCoder) EncodePortObject(aport Port) {
+func (p_ PortCoder) EncodePortObject(aport IPort) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("encodePortObject:"), aport)
 }
 

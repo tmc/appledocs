@@ -30,8 +30,6 @@ type _ValueTransformerClass struct {
 // An interface definition for the [ValueTransformer] class.
 type IValueTransformer interface {
 	objectivec.IObject
-	ReverseTransformedValue(value objectivec.IObject) objc.ID
-	TransformedValue(value objectivec.IObject) objc.ID
 }
 
 // An abstract class used to transform values from one representation to another.
@@ -86,84 +84,5 @@ func NewValueTransformer() ValueTransformer {
 }
 
 
-
-// Returns the value transformer identified by a given identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/init(forName:)
-func NewValueTransformerForName(name ValueTransformerName) ValueTransformer {
-	rv := objc.Send[ValueTransformer](objc.ID(getValueTransformerClass().class), objc.Sel("valueTransformerForName:"), name)
-	return rv
-}
-
-
-
-// Returns a Boolean value that indicates whether the receiver can reverse a transformation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/allowsReverseTransformation()
-func (vc _ValueTransformerClass) AllowsReverseTransformation() bool {
-	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("allowsReverseTransformation"))
-	return rv
-}
-
-
-// Returns the value transformer identified by a given identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/init(forName:)
-func (vc _ValueTransformerClass) ValueTransformerForName(name ValueTransformerName) ValueTransformer {
-	rv := objc.Send[ValueTransformer](objc.ID(vc.class), objc.Sel("valueTransformerForName:"), name)
-	return rv
-}
-
-
-// Registers the provided value transformer with a given identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/setValueTransformer(_:forName:)
-func (vc _ValueTransformerClass) SetValueTransformerForName(transformer IValueTransformer, name ValueTransformerName) {
-	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("setValueTransformer:forName:"), transformer, name)
-}
-
-
-// Returns the class of the value returned by the receiver for a forward transformation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/transformedValueClass()
-func (vc _ValueTransformerClass) TransformedValueClass() objc.Class {
-	rv := objc.Send[objc.Class](objc.ID(vc.class), objc.Sel("transformedValueClass"))
-	return rv
-}
-
-
-// Returns an array of all the registered value transformers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/valueTransformerNames()
-func (vc _ValueTransformerClass) ValueTransformerNames() []string {
-	rv := objc.Send[[]string](objc.ID(vc.class), objc.Sel("valueTransformerNames"))
-	return rv
-}
-
-
-// Returns the result of the reverse transformation of a given value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/reverseTransformedValue(_:)
-func (v_ ValueTransformer) ReverseTransformedValue(value objectivec.IObject) objc.ID {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("reverseTransformedValue:"), value)
-	return rv
-}
-
-
-// Returns the result of transforming a given value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/transformedValue(_:)
-func (v_ ValueTransformer) TransformedValue(value objectivec.IObject) objc.ID {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("transformedValue:"), value)
-	return rv
-}
 
 

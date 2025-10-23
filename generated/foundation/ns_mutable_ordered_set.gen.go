@@ -29,8 +29,6 @@ type _MutableOrderedSetClass struct {
 // An interface definition for the [MutableOrderedSet] class.
 type IMutableOrderedSet interface {
 	IOrderedSet
-	RemoveObjectsInRange(range_ Range)
-	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
 }
 
 // A dynamic, ordered collection of unique objects.
@@ -86,24 +84,6 @@ func NewMutableOrderedSet() MutableOrderedSet {
 	return getMutableOrderedSetClass().New()
 }
 
-
-
-// Removes from the mutable ordered set each of the objects within a given range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/removeObjects(in:)-9jkis
-func (m_ MutableOrderedSet) RemoveObjectsInRange(range_ Range) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsInRange:"), range_)
-}
-
-
-// Replaces the objects at the specified indexes with the new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/replaceObjects(at:with:)
-func (m_ MutableOrderedSet) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
-}
 
 
 

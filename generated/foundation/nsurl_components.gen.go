@@ -30,10 +30,6 @@ type _URLComponentsClass struct {
 // An interface definition for the [URLComponents] class.
 type IURLComponents interface {
 	objectivec.IObject
-	URLRelativeToURL(baseURL IURL) URL
-	PercentEncodedHost() string
-	SetPercentEncodedHost(value string)
-	String() string
 	URL() URL
 	EncodedHost() string
 	SetEncodedHost(value string)
@@ -47,6 +43,8 @@ type IURLComponents interface {
 	SetPath(value string)
 	PercentEncodedFragment() string
 	SetPercentEncodedFragment(value string)
+	PercentEncodedHost() string
+	SetPercentEncodedHost(value string)
 	PercentEncodedPassword() string
 	SetPercentEncodedPassword(value string)
 	PercentEncodedPath() string
@@ -81,6 +79,8 @@ type IURLComponents interface {
 	SetRangeOfUser(value Range)
 	Scheme() string
 	SetScheme(value string)
+	String() string
+	SetString(value string)
 	User() string
 	SetUser(value string)
 }
@@ -137,111 +137,6 @@ func NewURLComponents() URLComponents {
 }
 
 
-
-// Creates a URL components object by parsing a URL in string form.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:)
-func NewURLComponentsWithString(URLString string) URLComponents {
-	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:"), objc.String(URLString))
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(string:encodingInvalidCharacters:)
-func NewURLComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URLComponents {
-	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a URL components object by parsing the URL from an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/init(url:resolvingAgainstBaseURL:)
-func NewURLComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) URLComponents {
-	instance := getURLComponentsClass().Alloc()
-	rv := objc.Send[URLComponents](instance.ID, objc.Sel("initWithURL:resolvingAgainstBaseURL:"), url, resolve)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a URL components object by parsing a URL in string form.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:
-func (uc _URLComponentsClass) ComponentsWithString(URLString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:"), objc.String(URLString))
-	return rv
-}
-
-
-// Returns a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithString:encodingInvalidCharacters:
-func (uc _URLComponentsClass) ComponentsWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
-	return rv
-}
-
-
-// Returns a URL components object by parsing the URL from an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/componentsWithURL:resolvingAgainstBaseURL:
-func (uc _URLComponentsClass) ComponentsWithURLResolvingAgainstBaseURL(url IURL, resolve bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("componentsWithURL:resolvingAgainstBaseURL:"), url, resolve)
-	return rv
-}
-
-
-// Returns a URL object derived from the components object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/url(relativeTo:)
-func (u_ URLComponents) URLRelativeToURL(baseURL IURL) URL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("URLRelativeToURL:"), baseURL)
-	return rv
-}
-
-
-// The host URL subcomponent expressed as a URL-encoded string, or if not present.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) PercentEncodedHost() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
-	return rv
-}
-
-
-// The host URL subcomponent expressed as a URL-encoded string, or if not present.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) SetPercentEncodedHost(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
-}
-
-
-// A URL derived from the components object, in string form.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
-func (u_ URLComponents) String() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("string"))
-	return rv
-}
 
 
 // A URL object derived from the components object.
@@ -365,6 +260,25 @@ func (u_ URLComponents) PercentEncodedFragment() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedfragment
 func (u_ URLComponents) SetPercentEncodedFragment(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedFragment:"), objc.String(value))
+}
+
+
+// The host URL subcomponent expressed as a URL-encoded string, or
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedhost
+func (u_ URLComponents) PercentEncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
+	return rv
+}
+
+
+// The host URL subcomponent expressed as a URL-encoded string, or
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/percentencodedhost
+func (u_ URLComponents) SetPercentEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
 
 
@@ -684,6 +598,25 @@ func (u_ URLComponents) Scheme() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/scheme
 func (u_ URLComponents) SetScheme(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setScheme:"), objc.String(value))
+}
+
+
+// A URL derived from the components object, in string form.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/string
+func (u_ URLComponents) String() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("string"))
+	return rv
+}
+
+
+// A URL derived from the components object, in string form.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/string
+func (u_ URLComponents) SetString(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
 

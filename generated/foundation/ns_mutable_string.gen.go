@@ -31,7 +31,7 @@ type IMutableString interface {
 	IString
 	AppendString(aString string)
 	AppendFormat(format string)
-	ApplyTransformReverseRangeUpdatedRange(transform StringTransform, reverse bool, range_ Range, resultingRange RangePointer) bool
+	ApplyTransformReverseRangeUpdatedRange(transform unsafe.Pointer, reverse bool, range_ Range, resultingRange unsafe.Pointer) bool
 	DeleteCharactersInRange(range_ Range)
 	InsertStringAtIndex(aString string, loc uint)
 	ReplaceCharactersInRangeWithString(range_ Range, aString string)
@@ -139,7 +139,7 @@ func (m_ MutableString) AppendFormat(format string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/applyTransform(_:reverse:range:updatedRange:)
-func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform StringTransform, reverse bool, range_ Range, resultingRange RangePointer) bool {
+func (m_ MutableString) ApplyTransformReverseRangeUpdatedRange(transform unsafe.Pointer, reverse bool, range_ Range, resultingRange unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("applyTransform:reverse:range:updatedRange:"), transform, reverse, range_, resultingRange)
 	return rv
 }

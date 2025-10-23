@@ -31,14 +31,17 @@ type _URLProtectionSpaceClass struct {
 type IURLProtectionSpace interface {
 	objectivec.IObject
 	AuthenticationMethod() string
-	DistinguishedNames() []Data
-	ProxyType() string
+	SetAuthenticationMethod(value string)
+	DistinguishedNames() Data
+	SetDistinguishedNames(value IData)
 	Host() string
 	SetHost(value string)
 	Port() int
 	SetPort(value int)
 	Protocol() string
 	SetProtocol(value string)
+	ProxyType() string
+	SetProxyType(value string)
 	Realm() string
 	SetRealm(value string)
 	ReceivesCredentialSecurely() bool
@@ -103,9 +106,28 @@ func NewURLProtectionSpace() URLProtectionSpace {
 // The authentication method used by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/authenticationmethod
 func (u_ URLProtectionSpace) AuthenticationMethod() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
+	return rv
+}
+
+
+// The authentication method used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/authenticationmethod
+func (u_ URLProtectionSpace) SetAuthenticationMethod(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAuthenticationMethod:"), objc.String(value))
+}
+
+
+// The acceptable certificate-issuing authorities for client certificate authentication.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/distinguishednames
+func (u_ URLProtectionSpace) DistinguishedNames() Data {
+	rv := objc.Send[Data](u_.ID, objc.Sel("distinguishedNames"))
 	return rv
 }
 
@@ -113,20 +135,9 @@ func (u_ URLProtectionSpace) AuthenticationMethod() string {
 // The acceptable certificate-issuing authorities for client certificate authentication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/distinguishedNames
-func (u_ URLProtectionSpace) DistinguishedNames() []Data {
-	rv := objc.Send[[]Data](u_.ID, objc.Sel("distinguishedNames"))
-	return rv
-}
-
-
-// The receiver’s proxy type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
-func (u_ URLProtectionSpace) ProxyType() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/distinguishednames
+func (u_ URLProtectionSpace) SetDistinguishedNames(value IData) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDistinguishedNames:"), value)
 }
 
 
@@ -184,6 +195,25 @@ func (u_ URLProtectionSpace) Protocol() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
 func (u_ URLProtectionSpace) SetProtocol(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
+}
+
+
+// The receiver’s proxy type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/proxytype
+func (u_ URLProtectionSpace) ProxyType() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
+	return rv
+}
+
+
+// The receiver’s proxy type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/proxytype
+func (u_ URLProtectionSpace) SetProxyType(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProxyType:"), objc.String(value))
 }
 
 

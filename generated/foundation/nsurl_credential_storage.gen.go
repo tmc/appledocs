@@ -30,8 +30,6 @@ type _URLCredentialStorageClass struct {
 // An interface definition for the [URLCredentialStorage] class.
 type IURLCredentialStorage interface {
 	objectivec.IObject
-	CredentialsForProtectionSpace(space IURLProtectionSpace) IDictionary
-	SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace)
 	AllCredentials() NSURLCredential
 	SetAllCredentials(value IURLCredential)
 }
@@ -87,25 +85,6 @@ func NewURLCredentialStorage() URLCredentialStorage {
 	return getURLCredentialStorageClass().New()
 }
 
-
-
-// Returns a dictionary containing the credentials for the specified protection space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/credentials(for:)
-func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space IURLProtectionSpace) IDictionary {
-	rv := objc.Send[IDictionary](u_.ID, objc.Sel("credentialsForProtectionSpace:"), space)
-	return rv
-}
-
-
-// Sets the default credential for a specified protection space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/setDefaultCredential(_:for:)
-func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaultCredential:forProtectionSpace:"), credential, space)
-}
 
 
 // The credentials for all available protection spaces.

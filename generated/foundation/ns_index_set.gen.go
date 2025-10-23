@@ -30,9 +30,6 @@ type _IndexSetClass struct {
 // An interface definition for the [IndexSet] class.
 type IIndexSet interface {
 	objectivec.IObject
-	EnumerateIndexesUsingBlock(block unsafe.Pointer)
-	EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts NSEnumerationOptions, block unsafe.Pointer)
-	EnumerateIndexesWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
 	Count() int
 	SetCount(value int)
 	FirstIndex() int
@@ -94,46 +91,6 @@ func NewIndexSet() IndexSet {
 
 
 
-// Initializes an allocated object with an index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/init(index:)
-func NewIndexSetWithIndex(value uint) IndexSet {
-	instance := getIndexSetClass().Alloc()
-	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndex:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Executes a given Block using each object in the index set.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(_:)
-func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesUsingBlock:"), block)
-}
-
-
-// Executes a given Block using the indexes in the specified range, using the specified enumeration options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
-func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ Range, opts NSEnumerationOptions, block unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
-}
-
-
-// Executes a given Block over the index set’s indexes, using the specified enumeration options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(options:using:)
-func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
-}
-
-
 // The number of indexes in the index set.
 //
 // [Full Topic]
@@ -189,5 +146,6 @@ func (i_ IndexSet) LastIndex() int {
 func (i_ IndexSet) SetLastIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLastIndex:"), value)
 }
+
 
 

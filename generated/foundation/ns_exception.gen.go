@@ -30,12 +30,15 @@ type _ExceptionClass struct {
 // An interface definition for the [Exception] class.
 type IException interface {
 	objectivec.IObject
-	Raise()
-	CallStackReturnAddresses() []Number
-	CallStackSymbols() []string
-	Name() ExceptionName
-	Reason() string
 	UserInfo() objc.ID
+	CallStackReturnAddresses() Number
+	SetCallStackReturnAddresses(value INumber)
+	CallStackSymbols() string
+	SetCallStackSymbols(value string)
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
+	Reason() string
+	SetReason(value string)
 }
 
 // An object that represents a special condition that interrupts the normal flow of program execution.
@@ -91,96 +94,6 @@ func NewException() Exception {
 
 
 
-// Initializes and returns a newly allocated exception object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
-func NewExceptionWithNameReasonUserInfo(aName ExceptionName, aReason string, aUserInfo objectivec.IObject) Exception {
-	instance := getExceptionClass().Alloc()
-	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, objc.String(aReason), aUserInfo)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and returns an exception object .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/exceptionWithName:reason:userInfo:
-func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name ExceptionName, reason string, userInfo objectivec.IObject) Exception {
-	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, objc.String(reason), userInfo)
-	return rv
-}
-
-
-// Creates and raises an exception with the specified name, reason, and arguments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise(_:format:arguments:)
-func (ec _ExceptionClass) RaiseFormatArguments(name ExceptionName, format string, argList unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, objc.String(format), argList)
-}
-
-
-// A convenience method that creates and raises an exception.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise:format:
-func (ec _ExceptionClass) RaiseFormat(name ExceptionName, format string) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
-}
-
-
-// Raises the receiver, causing program flow to jump to the local exception handler.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise()
-func (e_ Exception) Raise() {
-	objc.Send[objc.ID](e_.ID, objc.Sel("raise"))
-}
-
-
-// The call return addresses related to a raised exception.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackReturnAddresses
-func (e_ Exception) CallStackReturnAddresses() []Number {
-	rv := objc.Send[[]Number](e_.ID, objc.Sel("callStackReturnAddresses"))
-	return rv
-}
-
-
-// An array containing the current call stack symbols.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/callStackSymbols
-func (e_ Exception) CallStackSymbols() []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("callStackSymbols"))
-	return rv
-}
-
-
-// A string used to uniquely identify the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/name-swift.property
-func (e_ Exception) Name() ExceptionName {
-	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// A string containing a “human-readable” reason for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
-func (e_ Exception) Reason() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
-	return rv
-}
-
-
 // A dictionary containing application-specific data pertaining to the receiver.
 //
 // [Full Topic]
@@ -189,5 +102,82 @@ func (e_ Exception) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
+
+
+// The call return addresses related to a raised exception.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstackreturnaddresses
+func (e_ Exception) CallStackReturnAddresses() Number {
+	rv := objc.Send[Number](e_.ID, objc.Sel("callStackReturnAddresses"))
+	return rv
+}
+
+
+// The call return addresses related to a raised exception.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstackreturnaddresses
+func (e_ Exception) SetCallStackReturnAddresses(value INumber) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setCallStackReturnAddresses:"), value)
+}
+
+
+// An array containing the current call stack symbols.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstacksymbols
+func (e_ Exception) CallStackSymbols() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("callStackSymbols"))
+	return rv
+}
+
+
+// An array containing the current call stack symbols.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/callstacksymbols
+func (e_ Exception) SetCallStackSymbols(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setCallStackSymbols:"), objc.String(value))
+}
+
+
+// A string used to uniquely identify the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
+func (e_ Exception) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+	return rv
+}
+
+
+// A string used to uniquely identify the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
+func (e_ Exception) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
+}
+
+
+// A string containing a “human-readable” reason for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/reason-swift.property
+func (e_ Exception) Reason() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
+	return rv
+}
+
+
+// A string containing a “human-readable” reason for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/reason-swift.property
+func (e_ Exception) SetReason(value string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setReason:"), objc.String(value))
+}
+
 
 

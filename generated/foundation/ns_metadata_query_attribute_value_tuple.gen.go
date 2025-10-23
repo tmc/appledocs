@@ -35,7 +35,7 @@ type IMetadataQueryAttributeValueTuple interface {
 	Value() objc.ID
 	GroupedResults() NSMetadataQueryResultGroup
 	SetGroupedResults(value IMetadataQueryResultGroup)
-	OperationQueue() OperationQueue
+	OperationQueue() NSOperationQueue
 	SetOperationQueue(value IOperationQueue)
 	ResultCount() int
 	SetResultCount(value int)
@@ -151,8 +151,8 @@ func (m_ MetadataQueryAttributeValueTuple) SetGroupedResults(value IMetadataQuer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/operationqueue
-func (m_ MetadataQueryAttributeValueTuple) OperationQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
+func (m_ MetadataQueryAttributeValueTuple) OperationQueue() NSOperationQueue {
+	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 

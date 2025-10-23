@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [EnergyFormatter] class.
@@ -29,12 +30,19 @@ type _EnergyFormatterClass struct {
 // An interface definition for the [EnergyFormatter] class.
 type IEnergyFormatter interface {
 	IFormatter
-	IsForFoodEnergyUse() bool
-	SetIsForFoodEnergyUse(value bool)
+	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
+	StringFromJoules(numberInJoules float64) String
+	StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String
+	UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) String
+	UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String
+	ForFoodEnergyUse() bool
+	SetForFoodEnergyUse(value bool)
 	NumberFormatter() NSNumberFormatter
 	SetNumberFormatter(value INumberFormatter)
-	UnitStyle() unsafe.Pointer
-	SetUnitStyle(value unsafe.Pointer)
+	UnitStyle() FormattingUnitStyle
+	SetUnitStyle(value FormattingUnitStyle)
+	IsForFoodEnergyUse() bool
+	SetIsForFoodEnergyUse(value bool)
 }
 
 // A formatter that provides localized descriptions of energy values.
@@ -90,6 +98,113 @@ func NewEnergyFormatter() EnergyFormatter {
 
 
 
+// This method is not supported for the class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/getObjectValue(_:for:errorDescription:)
+func (e_ EnergyFormatter) GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("getObjectValue:forString:errorDescription:"), obj, objc.String(string_), objc.String(error_))
+	return rv
+}
+
+
+// Returns an energy string for the provided value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromJoules:)
+func (e_ EnergyFormatter) StringFromJoules(numberInJoules float64) String {
+	rv := objc.Send[String](e_.ID, objc.Sel("stringFromJoules:"), numberInJoules)
+	return rv
+}
+
+
+// Returns a properly formatted energy string for the given value and unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/string(fromValue:unit:)
+func (e_ EnergyFormatter) StringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String {
+	rv := objc.Send[String](e_.ID, objc.Sel("stringFromValue:unit:"), value, unit)
+	return rv
+}
+
+
+// Returns the unit string for the provided value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromJoules:usedUnit:)
+func (e_ EnergyFormatter) UnitStringFromJoulesUsedUnit(numberInJoules float64, unitp NSEnergyFormatterUnit) String {
+	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromJoules:usedUnit:"), numberInJoules, unitp)
+	return rv
+}
+
+
+// Returns the unit string based on the provided value and unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitString(fromValue:unit:)
+func (e_ EnergyFormatter) UnitStringFromValueUnit(value float64, unit NSEnergyFormatterUnit) String {
+	rv := objc.Send[String](e_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
+	return rv
+}
+
+
+// A Boolean value that indicates whether the energy value is used to measure food energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/isForFoodEnergyUse
+func (e_ EnergyFormatter) ForFoodEnergyUse() bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("forFoodEnergyUse"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the energy value is used to measure food energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/isForFoodEnergyUse
+func (e_ EnergyFormatter) SetForFoodEnergyUse(value bool) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setForFoodEnergyUse:"), value)
+}
+
+
+// The number formatter used to format the numbers in energy strings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/numberFormatter
+func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
+	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
+	return rv
+}
+
+
+// The number formatter used to format the numbers in energy strings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/numberFormatter
+func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNumberFormatter:"), value)
+}
+
+
+// The unit style used by this formatter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitStyle
+func (e_ EnergyFormatter) UnitStyle() FormattingUnitStyle {
+	rv := objc.Send[FormattingUnitStyle](e_.ID, objc.Sel("unitStyle"))
+	return rv
+}
+
+
+// The unit style used by this formatter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/EnergyFormatter/unitStyle
+func (e_ EnergyFormatter) SetUnitStyle(value FormattingUnitStyle) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUnitStyle:"), value)
+}
+
+
 // A Boolean value that indicates whether the energy value is used to measure food energy.
 //
 // [Full Topic]
@@ -106,44 +221,6 @@ func (e_ EnergyFormatter) IsForFoodEnergyUse() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/isforfoodenergyuse
 func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsForFoodEnergyUse:"), value)
-}
-
-
-// The number formatter used to format the numbers in energy strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
-	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
-	return rv
-}
-
-
-// The number formatter used to format the numbers in energy strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNumberFormatter:"), value)
-}
-
-
-// The unit style used by this formatter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
-func (e_ EnergyFormatter) UnitStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("unitStyle"))
-	return rv
-}
-
-
-// The unit style used by this formatter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/unitstyle
-func (e_ EnergyFormatter) SetUnitStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setUnitStyle:"), value)
 }
 
 

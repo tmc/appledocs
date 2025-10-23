@@ -86,6 +86,16 @@ func NewUnitConcentrationMass() UnitConcentrationMass {
 
 
 
+// Returns the millimoles per liter unit with the specified number of grams per mole.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/millimolesPerLiter(withGramsPerMole:)
+func (uc _UnitConcentrationMassClass) MillimolesPerLiterWithGramsPerMole(gramsPerMole float64) UnitConcentrationMass {
+	rv := objc.Send[UnitConcentrationMass](objc.ID(uc.class), objc.Sel("millimolesPerLiterWithGramsPerMole:"), gramsPerMole)
+	return rv
+}
+
+
 // The grams per liter unit of concentration.
 //
 // [Full Topic]
@@ -95,12 +105,31 @@ func (uc _UnitConcentrationMassClass) GramsPerLiter() UnitConcentrationMass {
 	return rv
 }
 
+// The milligrams per deciliter unit of concentration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/milligramsPerDeciliter
+func (uc _UnitConcentrationMassClass) MilligramsPerDeciliter() UnitConcentrationMass {
+	rv := objc.Send[NSUnitConcentrationMass](objc.ID(uc.class), objc.Sel("milligramsPerDeciliter"))
+	return rv
+}
+
 // The grams per liter unit of concentration.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/gramsPerLiter
 func (u_ UnitConcentrationMass) GramsPerLiter() NSUnitConcentrationMass {
 	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("gramsPerLiter"))
+	return rv
+}
+
+
+// The milligrams per deciliter unit of concentration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConcentrationMass/milligramsPerDeciliter
+func (u_ UnitConcentrationMass) MilligramsPerDeciliter() NSUnitConcentrationMass {
+	rv := objc.Send[NSUnitConcentrationMass](u_.ID, objc.Sel("milligramsPerDeciliter"))
 	return rv
 }
 

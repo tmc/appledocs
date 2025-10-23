@@ -31,8 +31,10 @@ type _FormatterClass struct {
 type IFormatter interface {
 	objectivec.IObject
 	AttributedStringForObjectValueWithDefaultAttributes(obj objectivec.IObject, attrs IDictionary) AttributedString
+	EditingStringForObjectValue(obj objectivec.IObject) String
 	GetObjectValueForStringErrorDescription(obj objectivec.IObject, string_ string, error_ string) bool
-	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr RangePointer, origString string, origSelRange Range, error_ string) bool
+	IsPartialStringValidNewEditingStringErrorDescription(partialString string, newString string, error_ string) bool
+	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error_ string) bool
 	StringForObjectValue(obj objectivec.IObject) String
 }
 
@@ -99,6 +101,16 @@ func (f_ Formatter) AttributedStringForObjectValueWithDefaultAttributes(obj obje
 }
 
 
+// The default implementation of this method invokes .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/editingString(for:)
+func (f_ Formatter) EditingStringForObjectValue(obj objectivec.IObject) String {
+	rv := objc.Send[String](f_.ID, objc.Sel("editingStringForObjectValue:"), obj)
+	return rv
+}
+
+
 // The default implementation of this method raises an exception.
 //
 // [Full Topic]
@@ -109,11 +121,21 @@ func (f_ Formatter) GetObjectValueForStringErrorDescription(obj objectivec.IObje
 }
 
 
+// Returns a Boolean value that indicates whether a partial string is valid.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:newEditingString:errorDescription:)
+func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString string, newString string, error_ string) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:newEditingString:errorDescription:"), objc.String(partialString), objc.String(newString), objc.String(error_))
+	return rv
+}
+
+
 // This method should be implemented in subclasses that want to validate user changes to a string in a field, where the user changes are not necessarily at the end of the string, and preserve the selection (or set a different one, such as selecting the erroneous part of the string the user has typed).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:)
-func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr RangePointer, origString string, origSelRange Range, error_ string) bool {
+func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error_ string) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:"), objc.String(partialStringPtr), proposedSelRangePtr, objc.String(origString), origSelRange, objc.String(error_))
 	return rv
 }

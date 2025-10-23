@@ -33,7 +33,7 @@ type IMetadataQuery interface {
 	DisableUpdates()
 	EnableUpdates()
 	EnumerateResultsUsingBlock(block unsafe.Pointer)
-	EnumerateResultsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
+	EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
 	IndexOfResult(result objectivec.IObject) uint
 	ResultAtIndex(idx uint) objc.ID
 	StartQuery() bool
@@ -49,9 +49,9 @@ type IMetadataQuery interface {
 	Stopped() bool
 	NotificationBatchingInterval() TimeInterval
 	SetNotificationBatchingInterval(value ITimeInterval)
-	OperationQueue() OperationQueue
+	OperationQueue() NSOperationQueue
 	SetOperationQueue(value IOperationQueue)
-	Predicate() Predicate
+	Predicate() NSPredicate
 	SetPredicate(value IPredicate)
 	ResultCount() uint
 	Results() objc.ID
@@ -156,7 +156,7 @@ func (m_ MetadataQuery) EnumerateResultsUsingBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enumerateResults(options:using:)
-func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer) {
+func (m_ MetadataQuery) EnumerateResultsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("enumerateResultsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -321,8 +321,8 @@ func (m_ MetadataQuery) SetNotificationBatchingInterval(value ITimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
-func (m_ MetadataQuery) OperationQueue() OperationQueue {
-	rv := objc.Send[OperationQueue](m_.ID, objc.Sel("operationQueue"))
+func (m_ MetadataQuery) OperationQueue() NSOperationQueue {
+	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -340,8 +340,8 @@ func (m_ MetadataQuery) SetOperationQueue(value IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
-func (m_ MetadataQuery) Predicate() Predicate {
-	rv := objc.Send[Predicate](m_.ID, objc.Sel("predicate"))
+func (m_ MetadataQuery) Predicate() NSPredicate {
+	rv := objc.Send[NSPredicate](m_.ID, objc.Sel("predicate"))
 	return rv
 }
 

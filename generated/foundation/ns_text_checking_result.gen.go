@@ -31,11 +31,7 @@ type _TextCheckingResultClass struct {
 type ITextCheckingResult interface {
 	objectivec.IObject
 	Date() NSDate
-	Duration() TimeInterval
 	PhoneNumber() string
-	Range() Range
-	RegularExpression() NSRegularExpression
-	ResultType() TextCheckingType
 	NSNotFound() int
 	AddressComponents() string
 	SetAddressComponents(value string)
@@ -43,14 +39,22 @@ type ITextCheckingResult interface {
 	SetAlternativeStrings(value string)
 	Components() string
 	SetComponents(value string)
+	Duration() TimeInterval
+	SetDuration(value ITimeInterval)
 	GrammarDetails() string
 	SetGrammarDetails(value string)
 	NumberOfRanges() int
 	SetNumberOfRanges(value int)
 	Orthography() NSOrthography
 	SetOrthography(value IOrthography)
+	Range() Range
+	SetRange(value Range)
+	RegularExpression() NSRegularExpression
+	SetRegularExpression(value IRegularExpression)
 	ReplacementString() string
 	SetReplacementString(value string)
+	ResultType() unsafe.Pointer
+	SetResultType(value unsafe.Pointer)
 	TimeZone() TimeZone
 	SetTimeZone(value ITimeZone)
 	Url() URL
@@ -120,36 +124,6 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 }
 
 
-// Creates and returns a text checking result with the specified phone number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumberCheckingResult(range:phoneNumber:)
-func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ Range, phoneNumber string) TextCheckingResult {
-	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, objc.String(phoneNumber))
-	return rv
-}
-
-
-// Creates and returns a type checking result with the specified regular expression data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpressionCheckingResult(ranges:count:regularExpression:)
-func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges RangePointer, count uint, regularExpression IRegularExpression) TextCheckingResult {
-	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("regularExpressionCheckingResultWithRanges:count:regularExpression:"), ranges, count, regularExpression)
-	return rv
-}
-
-
-// Creates and returns a text checking result with the range of a misspelled word.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/spellCheckingResult(range:)
-func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ Range) TextCheckingResult {
-	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
-	return rv
-}
-
-
 // The date component of a type checking result.
 //
 // [Full Topic]
@@ -160,52 +134,12 @@ func (t_ TextCheckingResult) Date() NSDate {
 }
 
 
-// The duration component of a type checking result.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
-func (t_ TextCheckingResult) Duration() TimeInterval {
-	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
 // The phone number of a type checking result.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
 func (t_ TextCheckingResult) PhoneNumber() string {
 	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
-	return rv
-}
-
-
-// Returns the range of the result that the receiver represents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/range
-func (t_ TextCheckingResult) Range() Range {
-	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
-	return rv
-}
-
-
-// The regular expression of a type checking result.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpression
-func (t_ TextCheckingResult) RegularExpression() NSRegularExpression {
-	rv := objc.Send[NSRegularExpression](t_.ID, objc.Sel("regularExpression"))
-	return rv
-}
-
-
-// Returns the text checking result type that the receiver represents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/resultType
-func (t_ TextCheckingResult) ResultType() TextCheckingType {
-	rv := objc.Send[TextCheckingType](t_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -273,6 +207,25 @@ func (t_ TextCheckingResult) SetComponents(value string) {
 }
 
 
+// The duration component of a type checking result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+func (t_ TextCheckingResult) Duration() TimeInterval {
+	rv := objc.Send[TimeInterval](t_.ID, objc.Sel("duration"))
+	return rv
+}
+
+
+// The duration component of a type checking result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
+func (t_ TextCheckingResult) SetDuration(value ITimeInterval) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDuration:"), value)
+}
+
+
 // The details of a located grammatical type checking result.
 //
 // [Full Topic]
@@ -330,6 +283,44 @@ func (t_ TextCheckingResult) SetOrthography(value IOrthography) {
 }
 
 
+// Returns the range of the result that the receiver represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+func (t_ TextCheckingResult) Range() Range {
+	rv := objc.Send[Range](t_.ID, objc.Sel("range"))
+	return rv
+}
+
+
+// Returns the range of the result that the receiver represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
+func (t_ TextCheckingResult) SetRange(value Range) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRange:"), value)
+}
+
+
+// The regular expression of a type checking result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/regularexpression
+func (t_ TextCheckingResult) RegularExpression() NSRegularExpression {
+	rv := objc.Send[NSRegularExpression](t_.ID, objc.Sel("regularExpression"))
+	return rv
+}
+
+
+// The regular expression of a type checking result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/regularexpression
+func (t_ TextCheckingResult) SetRegularExpression(value IRegularExpression) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRegularExpression:"), value)
+}
+
+
 // A replacement string from one of a number of replacement checking results.
 //
 // [Full Topic]
@@ -346,6 +337,25 @@ func (t_ TextCheckingResult) ReplacementString() string {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/replacementstring
 func (t_ TextCheckingResult) SetReplacementString(value string) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplacementString:"), objc.String(value))
+}
+
+
+// Returns the text checking result type that the receiver represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/resulttype
+func (t_ TextCheckingResult) ResultType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resultType"))
+	return rv
+}
+
+
+// Returns the text checking result type that the receiver represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/resulttype
+func (t_ TextCheckingResult) SetResultType(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setResultType:"), value)
 }
 
 

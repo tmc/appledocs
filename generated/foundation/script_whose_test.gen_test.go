@@ -9,6 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewScriptWhoseTest
 
+// ExampleNewScriptWhoseTest demonstrates how to create a ScriptWhoseTest instance.
+func ExampleNewScriptWhoseTest() {
+	_ = foundation.NewScriptWhoseTest()
+	// Output:
+}
 // ExampleNewScriptWhoseTestWithCoder demonstrates how to create a ScriptWhoseTest instance using NewScriptWhoseTestWithCoder.
 func ExampleNewScriptWhoseTestWithCoder() {
 	_ = foundation.NewScriptWhoseTestWithCoder(

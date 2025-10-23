@@ -30,7 +30,8 @@ type _FileAccessIntentClass struct {
 // An interface definition for the [FileAccessIntent] class.
 type IFileAccessIntent interface {
 	objectivec.IObject
-	URL() URL
+	Url() URL
+	SetUrl(value IURL)
 }
 
 // The details of a coordinated-read or coordinated-write operation.
@@ -86,12 +87,12 @@ func NewFileAccessIntent() FileAccessIntent {
 
 
 
-// Returns a file access intent object for reading the given URL with the provided options.
+// The current URL for the item managed by the file access intent instance. (read-only)
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
-func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options NSFileCoordinatorReadingOptions) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("readingIntentWithURL:options:"), url, options)
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileaccessintent/url
+func (f_ FileAccessIntent) Url() URL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("url"))
 	return rv
 }
 
@@ -99,10 +100,9 @@ func (fc _FileAccessIntentClass) ReadingIntentWithURLOptions(url IURL, options N
 // The current URL for the item managed by the file access intent instance. (read-only)
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/url
-func (f_ FileAccessIntent) URL() URL {
-	rv := objc.Send[URL](f_.ID, objc.Sel("URL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileaccessintent/url
+func (f_ FileAccessIntent) SetUrl(value IURL) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 
 

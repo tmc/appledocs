@@ -63,6 +63,8 @@ type INumberFormatter interface {
 	SetFormatterBehavior(value NumberFormatterBehavior)
 	FormattingContext() int
 	SetFormattingContext(value int)
+	GeneratesDecimalNumbers() bool
+	SetGeneratesDecimalNumbers(value bool)
 	GroupingSeparator() string
 	SetGroupingSeparator(value string)
 	GroupingSize() uint
@@ -129,6 +131,8 @@ type INumberFormatter interface {
 	SetPositiveFormat(value string)
 	PositiveInfinitySymbol() string
 	SetPositiveInfinitySymbol(value string)
+	PositivePrefix() string
+	SetPositivePrefix(value string)
 	PositiveSuffix() string
 	SetPositiveSuffix(value string)
 	RoundingBehavior() NSDecimalNumberHandler
@@ -161,14 +165,10 @@ type INumberFormatter interface {
 	SetUsesSignificantDigits(value bool)
 	ZeroSymbol() string
 	SetZeroSymbol(value string)
-	GeneratesDecimalNumbers() bool
-	SetGeneratesDecimalNumbers(value bool)
 	IsLenient() bool
 	SetIsLenient(value bool)
 	IsPartialStringValidationEnabled() bool
 	SetIsPartialStringValidationEnabled(value bool)
-	PositivePrefix() string
-	SetPositivePrefix(value string)
 }
 
 // A formatter that converts between numeric values and their textual representations.
@@ -567,6 +567,25 @@ func (n_ NumberFormatter) FormattingContext() int {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formattingContext
 func (n_ NumberFormatter) SetFormattingContext(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormattingContext:"), value)
+}
+
+
+// Determines whether the receiver creates instances of when it converts strings to number objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/generatesDecimalNumbers
+func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
+	return rv
+}
+
+
+// Determines whether the receiver creates instances of when it converts strings to number objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/generatesDecimalNumbers
+func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
 }
 
 
@@ -1193,6 +1212,25 @@ func (n_ NumberFormatter) SetPositiveInfinitySymbol(value string) {
 }
 
 
+// The string the receiver uses as the prefix for positive values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/positivePrefix
+func (n_ NumberFormatter) PositivePrefix() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
+	return rv
+}
+
+
+// The string the receiver uses as the prefix for positive values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/positivePrefix
+func (n_ NumberFormatter) SetPositivePrefix(value string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
+}
+
+
 // The string the receiver uses as the suffix for positive values.
 //
 // [Full Topic]
@@ -1497,25 +1535,6 @@ func (n_ NumberFormatter) SetZeroSymbol(value string) {
 }
 
 
-// Determines whether the receiver creates instances of
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) GeneratesDecimalNumbers() bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("generatesDecimalNumbers"))
-	return rv
-}
-
-
-// Determines whether the receiver creates instances of
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/generatesdecimalnumbers
-func (n_ NumberFormatter) SetGeneratesDecimalNumbers(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGeneratesDecimalNumbers:"), value)
-}
-
-
 // Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
 //
 // [Full Topic]
@@ -1551,25 +1570,6 @@ func (n_ NumberFormatter) IsPartialStringValidationEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/ispartialstringvalidationenabled
 func (n_ NumberFormatter) SetIsPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsPartialStringValidationEnabled:"), value)
-}
-
-
-// The string the receiver uses as the prefix for positive values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) PositivePrefix() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("positivePrefix"))
-	return rv
-}
-
-
-// The string the receiver uses as the prefix for positive values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/positiveprefix
-func (n_ NumberFormatter) SetPositivePrefix(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPositivePrefix:"), objc.String(value))
 }
 
 

@@ -40,7 +40,7 @@ type IUbiquitousKeyValueStore interface {
 	RemoveObjectForKey(aKey string)
 	SetDoubleForKey(value float64, aKey string)
 	SetStringForKey(aString string, aKey string)
-	SetDataForKey(aData NSData, aKey string)
+	SetDataForKey(aData IData, aKey string)
 	SetArrayForKey(anArray objectivec.IObject, aKey string)
 	SetLongLongForKey(value unsafe.Pointer, aKey string)
 	SetBoolForKey(value bool, aKey string)
@@ -217,7 +217,7 @@ func (u_ UbiquitousKeyValueStore) SetStringForKey(aString string, aKey string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/set(_:forKey:)-3ga7z
-func (u_ UbiquitousKeyValueStore) SetDataForKey(aData NSData, aKey string) {
+func (u_ UbiquitousKeyValueStore) SetDataForKey(aData IData, aKey string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setData:forKey:"), aData, objc.String(aKey))
 }
 

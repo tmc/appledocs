@@ -103,7 +103,7 @@ func NewXMLDTD() XMLDTD {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
-func NewXMLDTDWithDataOptionsError(data NSData, mask NSXMLNodeOptions, error_ unsafe.Pointer) XMLDTD {
+func NewXMLDTDWithDataOptionsError(data IData, mask NSXMLNodeOptions, error_ IError) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()

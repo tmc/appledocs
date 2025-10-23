@@ -30,10 +30,10 @@ type _DistantObjectRequestClass struct {
 // An interface definition for the [DistantObjectRequest] class.
 type IDistantObjectRequest interface {
 	objectivec.IObject
-	ReplyWithException(exception Exception)
+	ReplyWithException(exception IException)
 	Connection() NSConnection
 	Conversation() objc.ID
-	Invocation() Invocation
+	Invocation() NSInvocation
 }
 
 // An object used by the distributed objects system to help handle invocations between different processes.
@@ -93,7 +93,7 @@ func NewDistantObjectRequest() DistantObjectRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/replyWithException:
-func (d_ DistantObjectRequest) ReplyWithException(exception Exception) {
+func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("replyWithException:"), exception)
 }
 
@@ -122,8 +122,8 @@ func (d_ DistantObjectRequest) Conversation() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/invocation
-func (d_ DistantObjectRequest) Invocation() Invocation {
-	rv := objc.Send[Invocation](d_.ID, objc.Sel("invocation"))
+func (d_ DistantObjectRequest) Invocation() NSInvocation {
+	rv := objc.Send[NSInvocation](d_.ID, objc.Sel("invocation"))
 	return rv
 }
 

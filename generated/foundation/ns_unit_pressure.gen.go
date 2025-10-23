@@ -86,6 +86,78 @@ func NewUnitPressure() UnitPressure {
 
 
 
+// The bars unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/bars
+func (uc _UnitPressureClass) Bars() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("bars"))
+	return rv
+}
+
+// The gigapascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/gigapascals
+func (uc _UnitPressureClass) Gigapascals() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("gigapascals"))
+	return rv
+}
+
+// The hectopascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/hectopascals
+func (uc _UnitPressureClass) Hectopascals() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("hectopascals"))
+	return rv
+}
+
+// The inches of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/inchesOfMercury
+func (uc _UnitPressureClass) InchesOfMercury() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("inchesOfMercury"))
+	return rv
+}
+
+// The kilopascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/kilopascals
+func (uc _UnitPressureClass) Kilopascals() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("kilopascals"))
+	return rv
+}
+
+// The megapascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/megapascals
+func (uc _UnitPressureClass) Megapascals() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("megapascals"))
+	return rv
+}
+
+// The millibars unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millibars
+func (uc _UnitPressureClass) Millibars() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("millibars"))
+	return rv
+}
+
+// The millimeters of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
+func (uc _UnitPressureClass) MillimetersOfMercury() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("millimetersOfMercury"))
+	return rv
+}
+
 // The newtons per square meter unit of pressure.
 //
 // [Full Topic]
@@ -95,12 +167,111 @@ func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
 	return rv
 }
 
+// The pounds per square inch unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/poundsForcePerSquareInch
+func (uc _UnitPressureClass) PoundsForcePerSquareInch() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("poundsForcePerSquareInch"))
+	return rv
+}
+
+// The bars unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/bars
+func (u_ UnitPressure) Bars() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("bars"))
+	return rv
+}
+
+
+// The gigapascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/gigapascals
+func (u_ UnitPressure) Gigapascals() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("gigapascals"))
+	return rv
+}
+
+
+// The hectopascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/hectopascals
+func (u_ UnitPressure) Hectopascals() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("hectopascals"))
+	return rv
+}
+
+
+// The inches of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/inchesOfMercury
+func (u_ UnitPressure) InchesOfMercury() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("inchesOfMercury"))
+	return rv
+}
+
+
+// The kilopascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/kilopascals
+func (u_ UnitPressure) Kilopascals() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("kilopascals"))
+	return rv
+}
+
+
+// The megapascals unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/megapascals
+func (u_ UnitPressure) Megapascals() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("megapascals"))
+	return rv
+}
+
+
+// The millibars unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millibars
+func (u_ UnitPressure) Millibars() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millibars"))
+	return rv
+}
+
+
+// The millimeters of mercury unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/millimetersOfMercury
+func (u_ UnitPressure) MillimetersOfMercury() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("millimetersOfMercury"))
+	return rv
+}
+
+
 // The newtons per square meter unit of pressure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
 func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
 	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
+	return rv
+}
+
+
+// The pounds per square inch unit of pressure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/poundsForcePerSquareInch
+func (u_ UnitPressure) PoundsForcePerSquareInch() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("poundsForcePerSquareInch"))
 	return rv
 }
 

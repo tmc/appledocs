@@ -30,13 +30,13 @@ type _URLProtocolClass struct {
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
-	CachedResponse() CachedURLResponse
+	CachedResponse() NSCachedURLResponse
 	SetCachedResponse(value ICachedURLResponse)
 	Client() unsafe.Pointer
 	SetClient(value unsafe.Pointer)
 	Request() URLRequest
 	SetRequest(value IURLRequest)
-	Task() URLSessionTask
+	Task() NSURLSessionTask
 	SetTask(value IURLSessionTask)
 	ProtocolClasses() unsafe.Pointer
 	SetProtocolClasses(value unsafe.Pointer)
@@ -99,7 +99,7 @@ func NewURLProtocol() URLProtocol {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/property(forKey:in:)
-func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request URLRequest) objc.ID {
+func (uc _URLProtocolClass) PropertyForKeyInRequest(key string, request IURLRequest) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("propertyForKey:inRequest:"), objc.String(key), request)
 	return rv
 }
@@ -128,8 +128,8 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/cachedresponse
-func (u_ URLProtocol) CachedResponse() CachedURLResponse {
-	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
+func (u_ URLProtocol) CachedResponse() NSCachedURLResponse {
+	rv := objc.Send[NSCachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
 }
 
@@ -185,8 +185,8 @@ func (u_ URLProtocol) SetRequest(value IURLRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotocol/task
-func (u_ URLProtocol) Task() URLSessionTask {
-	rv := objc.Send[URLSessionTask](u_.ID, objc.Sel("task"))
+func (u_ URLProtocol) Task() NSURLSessionTask {
+	rv := objc.Send[NSURLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 

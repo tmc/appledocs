@@ -43,6 +43,7 @@ type IThread interface {
 	SetQualityOfService(value IQualityOfService)
 	StackSize() uint
 	SetStackSize(value uint)
+	ThreadDictionary() NSMutableDictionary
 	ThreadPriority() float64
 	SetThreadPriority(value float64)
 	NSAssertionHandlerKey() string
@@ -52,8 +53,6 @@ type IThread interface {
 	SetIsExecuting(value bool)
 	IsFinished() bool
 	SetIsFinished(value bool)
-	ThreadDictionary() NSMutableDictionary
-	SetThreadDictionary(value IMutableDictionary)
 }
 
 // A thread of execution.
@@ -107,6 +106,16 @@ func NewThread() Thread {
 	return getThreadClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/init(block:)
+func NewThreadWithBlock(block unsafe.Pointer) Thread {
+	instance := getThreadClass().Alloc()
+	rv := objc.Send[Thread](instance.ID, objc.Sel("initWithBlock:"), block)
+	rv.Autorelease()
+	return rv
+}
 
 
 // Returns an object initialized with the given arguments.
@@ -391,6 +400,16 @@ func (t_ Thread) SetStackSize(value uint) {
 }
 
 
+// The thread object’s dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/threadDictionary
+func (t_ Thread) ThreadDictionary() NSMutableDictionary {
+	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
+	return rv
+}
+
+
 // The receiver’s priority
 //
 // [Full Topic]
@@ -474,25 +493,6 @@ func (t_ Thread) IsFinished() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
 func (t_ Thread) SetIsFinished(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
-}
-
-
-// The thread object’s dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() NSMutableDictionary {
-	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
-	return rv
-}
-
-
-// The thread object’s dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value IMutableDictionary) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 
 

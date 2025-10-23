@@ -30,8 +30,6 @@ type _SpellServerClass struct {
 // An interface definition for the [SpellServer] class.
 type ISpellServer interface {
 	objectivec.IObject
-	IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool
-	Run()
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 }
@@ -87,25 +85,6 @@ func NewSpellServer() SpellServer {
 	return getSpellServerClass().New()
 }
 
-
-
-// Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
-func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bool) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
-	return rv
-}
-
-
-// Causes the receiver to start listening for spell-checking requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/run()
-func (s_ SpellServer) Run() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
-}
 
 
 // Returns the receiver’s delegate.

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +39,8 @@ type IScanner interface {
 	SetCaseSensitive(value bool)
 	CharactersToBeSkipped() CharacterSet
 	SetCharactersToBeSkipped(value ICharacterSet)
-	CurrentIndex() unsafe.Pointer
-	SetCurrentIndex(value unsafe.Pointer)
+	CurrentIndex() corefoundation.Index
+	SetCurrentIndex(value corefoundation.IIndex)
 	IsAtEnd() bool
 	SetIsAtEnd(value bool)
 	Locale() unsafe.Pointer
@@ -101,16 +102,6 @@ func NewScanner() Scanner {
 	return getScannerClass().New()
 }
 
-
-
-// Returns an object that scans a given string according to the user’s default locale.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
-func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
-	return rv
-}
 
 
 // Scans for a double value, returning a found value by reference.
@@ -193,15 +184,15 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
+func (s_ Scanner) CurrentIndex() corefoundation.Index {
+	rv := objc.Send[corefoundation.Index](s_.ID, objc.Sel("currentIndex"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
+func (s_ Scanner) SetCurrentIndex(value corefoundation.IIndex) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
 

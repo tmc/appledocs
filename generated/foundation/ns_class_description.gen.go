@@ -30,12 +30,10 @@ type _ClassDescriptionClass struct {
 // An interface definition for the [ClassDescription] class.
 type IClassDescription interface {
 	objectivec.IObject
-	AttributeKeys() string
-	SetAttributeKeys(value string)
-	ToManyRelationshipKeys() string
-	SetToManyRelationshipKeys(value string)
-	ToOneRelationshipKeys() string
-	SetToOneRelationshipKeys(value string)
+	InverseForRelationshipKey(relationshipKey string) String
+	AttributeKeys() []string
+	ToManyRelationshipKeys() []string
+	ToOneRelationshipKeys() []string
 }
 
 // An abstract class that provides the interface for querying the relationships and properties of a class.
@@ -112,12 +110,30 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) Cla
 }
 
 
-// Overridden by subclasses to return the names of attributes of instances of the described class.
+// Removes all objects from the cache.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
-func (c_ ClassDescription) AttributeKeys() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("attributeKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/invalidateClassDescriptionCache()
+func (cc _ClassDescriptionClass) InvalidateClassDescriptionCache() {
+	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("invalidateClassDescriptionCache"))
+}
+
+
+// Registers an object for a given class in the cache.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/register(_:for:)
+func (cc _ClassDescriptionClass) RegisterClassDescriptionForClass(description IClassDescription, aClass objc.Class) {
+	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("registerClassDescription:forClass:"), description, aClass)
+}
+
+
+// Overridden by subclasses to return the name of the inverse relationship from a relationship specified by a given key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/inverse(forRelationshipKey:)
+func (c_ ClassDescription) InverseForRelationshipKey(relationshipKey string) String {
+	rv := objc.Send[String](c_.ID, objc.Sel("inverseForRelationshipKey:"), objc.String(relationshipKey))
 	return rv
 }
 
@@ -125,18 +141,9 @@ func (c_ ClassDescription) AttributeKeys() string {
 // Overridden by subclasses to return the names of attributes of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys
-func (c_ ClassDescription) SetAttributeKeys(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributeKeys:"), objc.String(value))
-}
-
-
-// Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
-func (c_ ClassDescription) ToManyRelationshipKeys() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("toManyRelationshipKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/attributeKeys
+func (c_ ClassDescription) AttributeKeys() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("attributeKeys"))
 	return rv
 }
 
@@ -144,18 +151,9 @@ func (c_ ClassDescription) ToManyRelationshipKeys() string {
 // Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys
-func (c_ ClassDescription) SetToManyRelationshipKeys(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setToManyRelationshipKeys:"), objc.String(value))
-}
-
-
-// Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
-func (c_ ClassDescription) ToOneRelationshipKeys() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("toOneRelationshipKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toManyRelationshipKeys
+func (c_ ClassDescription) ToManyRelationshipKeys() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("toManyRelationshipKeys"))
 	return rv
 }
 
@@ -163,9 +161,10 @@ func (c_ ClassDescription) ToOneRelationshipKeys() string {
 // Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsclassdescription/toonerelationshipkeys
-func (c_ ClassDescription) SetToOneRelationshipKeys(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setToOneRelationshipKeys:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/toOneRelationshipKeys
+func (c_ ClassDescription) ToOneRelationshipKeys() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("toOneRelationshipKeys"))
+	return rv
 }
 
 

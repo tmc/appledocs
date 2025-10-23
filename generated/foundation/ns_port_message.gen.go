@@ -30,12 +30,12 @@ type _PortMessageClass struct {
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
-	SendBeforeDate(date NSDate) bool
+	SendBeforeDate(date IDate) bool
 	Components() objc.ID
 	Msgid() uint32
 	SetMsgid(value Iuint32)
-	ReceivePort() Port
-	SendPort() Port
+	ReceivePort() NSPort
+	SendPort() NSPort
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -95,7 +95,7 @@ func NewPortMessage() PortMessage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/init(send:receive:components:)
-func NewPortMessageWithSendPortReceivePortComponents(sendPort Port, replyPort Port, components objectivec.IObject) PortMessage {
+func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort IPort, components objectivec.IObject) PortMessage {
 	instance := getPortMessageClass().Alloc()
 	rv := objc.Send[PortMessage](instance.ID, objc.Sel("initWithSendPort:receivePort:components:"), sendPort, replyPort, components)
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort Port, replyPort Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/send(before:)
-func (p_ PortMessage) SendBeforeDate(date NSDate) bool {
+func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
 }
@@ -147,8 +147,8 @@ func (p_ PortMessage) SetMsgid(value Iuint32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
-func (p_ PortMessage) ReceivePort() Port {
-	rv := objc.Send[Port](p_.ID, objc.Sel("receivePort"))
+func (p_ PortMessage) ReceivePort() NSPort {
+	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
@@ -157,8 +157,8 @@ func (p_ PortMessage) ReceivePort() Port {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
-func (p_ PortMessage) SendPort() Port {
-	rv := objc.Send[Port](p_.ID, objc.Sel("sendPort"))
+func (p_ PortMessage) SendPort() NSPort {
+	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

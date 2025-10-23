@@ -32,8 +32,8 @@ type ISocketPortNameServer interface {
 	PortForName(name string) Port
 	PortForNameHost(name string, host string) Port
 	PortForNameHostNameServerPortNumber(name string, host string, portNumber unsafe.Pointer) Port
-	RegisterPortName(port Port, name string) bool
-	RegisterPortNameNameServerPortNumber(port Port, name string, portNumber unsafe.Pointer) bool
+	RegisterPortName(port IPort, name string) bool
+	RegisterPortNameNameServerPortNumber(port IPort, name string, portNumber unsafe.Pointer) bool
 	RemovePortForName(name string) bool
 	DefaultNameServerPortNumber() unsafe.Pointer
 	SetDefaultNameServerPortNumber(value unsafe.Pointer)
@@ -138,7 +138,7 @@ func (s_ SocketPortNameServer) PortForNameHostNameServerPortNumber(name string, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/registerPort:name:
-func (s_ SocketPortNameServer) RegisterPortName(port Port, name string) bool {
+func (s_ SocketPortNameServer) RegisterPortName(port IPort, name string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }
@@ -148,7 +148,7 @@ func (s_ SocketPortNameServer) RegisterPortName(port Port, name string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSocketPortNameServer/registerPort:name:nameServerPortNumber:
-func (s_ SocketPortNameServer) RegisterPortNameNameServerPortNumber(port Port, name string, portNumber unsafe.Pointer) bool {
+func (s_ SocketPortNameServer) RegisterPortNameNameServerPortNumber(port IPort, name string, portNumber unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerPort:name:nameServerPortNumber:"), port, objc.String(name), portNumber)
 	return rv
 }

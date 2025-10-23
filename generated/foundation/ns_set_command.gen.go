@@ -29,8 +29,8 @@ type _SetCommandClass struct {
 // An interface definition for the [SetCommand] class.
 type ISetCommand interface {
 	IScriptCommand
+	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 	KeySpecifier() NSScriptObjectSpecifier
-	SetKeySpecifier(value IScriptObjectSpecifier)
 }
 
 // A command that sets one or more attributes or relationships to one or more values.
@@ -88,22 +88,22 @@ func NewSetCommand() SetCommand {
 
 
 
-// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
+// Sets the receiver’s object specifier.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
-func (s_ SetCommand) KeySpecifier() NSScriptObjectSpecifier {
-	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand/setReceiversSpecifier(_:)
+func (s_ SetCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
 
 
-// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
+// Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the AppleScript command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
-func (s_ SetCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand/keySpecifier
+func (s_ SetCommand) KeySpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
+	return rv
 }
 
 

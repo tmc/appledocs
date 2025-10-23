@@ -86,12 +86,39 @@ func NewUnitEnergy() UnitEnergy {
 
 
 
+// The calories unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/calories
+func (uc _UnitEnergyClass) Calories() UnitEnergy {
+	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("calories"))
+	return rv
+}
+
+// The joules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/joules
+func (uc _UnitEnergyClass) Joules() UnitEnergy {
+	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("joules"))
+	return rv
+}
+
 // The kilocalories unit of energy.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
 func (uc _UnitEnergyClass) Kilocalories() UnitEnergy {
 	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("kilocalories"))
+	return rv
+}
+
+// The kilojoules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilojoules
+func (uc _UnitEnergyClass) Kilojoules() UnitEnergy {
+	rv := objc.Send[NSUnitEnergy](objc.ID(uc.class), objc.Sel("kilojoules"))
 	return rv
 }
 
@@ -104,12 +131,42 @@ func (uc _UnitEnergyClass) KilowattHours() UnitEnergy {
 	return rv
 }
 
+// The calories unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/calories
+func (u_ UnitEnergy) Calories() NSUnitEnergy {
+	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("calories"))
+	return rv
+}
+
+
+// The joules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/joules
+func (u_ UnitEnergy) Joules() NSUnitEnergy {
+	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("joules"))
+	return rv
+}
+
+
 // The kilocalories unit of energy.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
 func (u_ UnitEnergy) Kilocalories() NSUnitEnergy {
 	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilocalories"))
+	return rv
+}
+
+
+// The kilojoules unit of energy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilojoules
+func (u_ UnitEnergy) Kilojoules() NSUnitEnergy {
+	rv := objc.Send[NSUnitEnergy](u_.ID, objc.Sel("kilojoules"))
 	return rv
 }
 
