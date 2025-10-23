@@ -117,7 +117,9 @@ var templateFuncs = template.FuncMap{
 	"mergeImports": mergeImports,
 
 	// Type resolution
-	"resolveType": resolveType,
+	"resolveType":            resolveType,
+	"parseCFunctionPointer":  parseCFunctionPointer,
+	"typedefsNeedUnsafe":     typedefsNeedUnsafe,
 
 	// Method filtering
 	"isInheritedFromNSObject": isInheritedFromNSObject,

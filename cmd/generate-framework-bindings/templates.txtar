@@ -1003,7 +1003,12 @@ const (
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
+{{if typedefsNeedUnsafe . -}}
 
+import (
+	"unsafe"
+)
+{{end}}
 {{if gt (len .Typedefs) 0 -}}
 // Type aliases and typedefs
 {{range $typedef := .Typedefs -}}
@@ -1024,7 +1029,9 @@ package {{.PackageName}}
 //
 // [Full Topic]: {{convertDocURL $typedef.DocURL}}
 {{end -}}
-{{if eq $typedef.BaseType "int" -}}
+{{if eq $typeName "Index" -}}
+type {{$typeName}} int64
+{{else if eq $typedef.BaseType "int" -}}
 type {{$typeName}} int32
 {{else if eq $typedef.BaseType "unsigned int" -}}
 type {{$typeName}} uint32
@@ -1040,8 +1047,15 @@ type {{$typeName}} = string
 // Block types are not yet fully supported in Go bindings
 type {{$typeName}} uintptr
 {{else -}}
+{{$callbackInfo := parseCFunctionPointer $typedef.BaseType -}}
+{{if $callbackInfo.IsCallback -}}
+// {{$typedef.Name}} is a callback function
+// C type: {{$typedef.BaseType}}
+type {{$typeName}} = {{$callbackInfo.GoType}}
+{{else -}}
 // {{$typedef.Name}} has base type: {{$typedef.BaseType}}
 type {{$typeName}} uintptr
+{{end -}}
 {{end -}}
 {{end -}}
 
