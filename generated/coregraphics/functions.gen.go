@@ -9,17 +9,322 @@ import (
 )
 
 
-// CoreGraphics Functions (727 total)
+// CoreGraphics Functions (714 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CGColorSpaceRelease func(CGColorSpaceRef) unsafe.Pointer
-	_CGContextEOFillPath func(CGContextRef) unsafe.Pointer
-	_CGContextSetInterpolationQuality func(unsafe.Pointer) unsafe.Pointer
-	_CGContextFillPath func(CGContextRef) unsafe.Pointer
-	_CGImageRelease func(CGImageRef) unsafe.Pointer
+	_CGBitmapContextCreateAdaptive func(uintptr, uintptr, unsafe.Pointer, bool) ContextRef
+	_CGColorGetAlpha func(ColorRef) float64
+	_CGColorGetColorSpace func(ColorRef) ColorSpaceRef
+	_CGColorGetContentHeadroom func(ColorRef) float32
+	_CGColorCreateCopyByMatchingToColorSpace func(ColorSpaceRef, unsafe.Pointer, ColorRef, unsafe.Pointer) ColorRef
+	_CGColorCreateCopy func(ColorRef) ColorRef
+	_CGColorCreateCopyWithAlpha func(ColorRef, float64) ColorRef
+	_CGColorCreate func(ColorSpaceRef, []float64) ColorRef
+	_CGColorCreateGenericCMYK func(float64, float64, float64, float64, float64) ColorRef
+	_CGColorCreateGenericGrayGamma2_2 func(float64, float64) ColorRef
+	_CGColorCreateGenericGray func(float64, float64) ColorRef
+	_CGColorCreateWithContentHeadroom func(float32, ColorSpaceRef, float64, float64, float64, float64) ColorRef
+	_CGColorCreateWithPattern func(ColorSpaceRef, PatternRef, []float64) ColorRef
+	_CGColorCreateGenericRGB func(float64, float64, float64, float64) ColorRef
+	_CGColorCreateSRGB func(float64, float64, float64, float64) ColorRef
+	_CGColorGetNumberOfComponents func(ColorRef) uintptr
+	_CGColorGetPattern func(ColorRef) PatternRef
+	_CGColorGetTypeID func() unsafe.Pointer
+	_CGColorConversionInfoConvertData func(ColorConversionInfoRef, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGColorConversionInfoCreateWithOptions func(ColorSpaceRef, ColorSpaceRef, unsafe.Pointer) ColorConversionInfoRef
+	_CGColorConversionInfoCreate func(ColorSpaceRef, ColorSpaceRef) ColorConversionInfoRef
+	_CGColorConversionInfoCreateForToneMapping func(ColorSpaceRef, float32, ColorSpaceRef, float32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorConversionInfoRef
+	_CGColorConversionInfoGetTypeID func() unsafe.Pointer
+	_CGColorSpaceGetBaseColorSpace func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCopyICCData func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceCopyPropertyList func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceCopyICCProfile func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceCreateCalibratedGray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateCalibratedRGB func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateICCBased func(uintptr, []float64, DataProviderRef, ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateWithICCData func(unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateWithICCProfile func(unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateIndexed func(ColorSpaceRef, uintptr, unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateLab func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateWithName func(unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreatePattern func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateWithPlatformColorSpace func(unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceCreateWithPropertyList func(unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceIsHDR func(ColorSpaceRef) bool
+	_CGColorSpaceIsWideGamutRGB func(ColorSpaceRef) bool
+	_CGColorSpaceGetModel func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceCopyName func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceGetNumberOfComponents func(ColorSpaceRef) uintptr
+	_CGColorSpaceSupportsOutput func(ColorSpaceRef) bool
+	_CGColorSpaceGetTypeID func() unsafe.Pointer
+	_CGPDFContextAddDestinationAtPoint func(ContextRef, unsafe.Pointer, CGPoint)
+	_CGPDFContextAddDocumentMetadata func(ContextRef, unsafe.Pointer)
+	_CGContextAddEllipseInRect func(ContextRef, CGRect)
+	_CGContextAddPath func(ContextRef, PathRef)
+	_CGContextAddRect func(ContextRef, CGRect)
+	_CGBitmapContextGetAlphaInfo func(ContextRef) unsafe.Pointer
+	_CGContextBeginPage func(ContextRef, unsafe.Pointer)
+	_CGContextBeginPath func(ContextRef)
+	_CGPDFContextBeginPage func(ContextRef, unsafe.Pointer)
+	_CGContextBeginTransparencyLayer func(ContextRef, unsafe.Pointer)
+	_CGContextBeginTransparencyLayerWithRect func(ContextRef, CGRect, unsafe.Pointer)
+	_CGBitmapContextGetBitmapInfo func(ContextRef) unsafe.Pointer
+	_CGBitmapContextGetBitsPerComponent func(ContextRef) uintptr
+	_CGBitmapContextGetBitsPerPixel func(ContextRef) uintptr
+	_CGContextGetClipBoundingBox func(ContextRef) CGRect
+	_CGContextGetPathBoundingBox func(ContextRef) CGRect
+	_CGBitmapContextGetBytesPerRow func(ContextRef) uintptr
+	_CGContextClearRect func(ContextRef, CGRect)
+	_CGContextClipToRect func(ContextRef, CGRect)
+	_CGContextClipToMask func(ContextRef, CGRect, ImageRef)
+	_CGContextClosePath func(ContextRef)
+	_CGPDFContextClose func(ContextRef)
+	_CGBitmapContextGetColorSpace func(ContextRef) ColorSpaceRef
+	_CGContextConcatCTM func(ContextRef, CGAffineTransform)
+	_CGContextConvertSizeToDeviceSpace func(ContextRef, CGSize) CGSize
+	_CGContextConvertPointToDeviceSpace func(ContextRef, CGPoint) CGPoint
+	_CGContextConvertRectToDeviceSpace func(ContextRef, CGRect) CGRect
+	_CGContextConvertRectToUserSpace func(ContextRef, CGRect) CGRect
+	_CGContextConvertPointToUserSpace func(ContextRef, CGPoint) CGPoint
+	_CGContextConvertSizeToUserSpace func(ContextRef, CGSize) CGSize
+	_CGContextGetCTM func(ContextRef) CGAffineTransform
+	_CGContextGetPathCurrentPoint func(ContextRef) CGPoint
+	_CGBitmapContextGetData func(ContextRef) unsafe.Pointer
+	_CGContextDrawLinearGradient func(ContextRef, GradientRef, CGPoint, CGPoint, unsafe.Pointer)
+	_CGContextDrawPath func(ContextRef, unsafe.Pointer)
+	_CGContextDrawPDFPage func(ContextRef, PDFPageRef)
+	_CGContextDrawRadialGradient func(ContextRef, GradientRef, CGPoint, float64, CGPoint, float64, unsafe.Pointer)
+	_CGContextDrawShading func(ContextRef, ShadingRef)
+	_CGContextEndPage func(ContextRef)
+	_CGPDFContextEndPage func(ContextRef)
+	_CGContextEndTransparencyLayer func(ContextRef)
+	_CGContextFillRect func(ContextRef, CGRect)
+	_CGContextFillEllipseInRect func(ContextRef, CGRect)
+	_CGContextFlush func(ContextRef)
+	_CGBitmapContextGetHeight func(ContextRef) uintptr
+	_CGPDFContextCreateWithURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ContextRef
+	_CGPDFContextCreate func(DataConsumerRef, unsafe.Pointer, unsafe.Pointer) ContextRef
+	_CGBitmapContextCreate func(unsafe.Pointer, uintptr, uintptr, uintptr, uintptr, ColorSpaceRef, unsafe.Pointer) ContextRef
+	_CGBitmapContextCreateWithData func(unsafe.Pointer, uintptr, uintptr, uintptr, uintptr, ColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ContextRef
+	_CGContextGetInterpolationQuality func(ContextRef) unsafe.Pointer
+	_CGContextIsPathEmpty func(ContextRef) bool
+	_CGBitmapContextCreateImage func(ContextRef) ImageRef
+	_CGContextCopyPath func(ContextRef) PathRef
+	_CGContextPathContainsPoint func(ContextRef, CGPoint, unsafe.Pointer) bool
+	_CGContextReplacePathWithStrokedPath func(ContextRef)
+	_CGContextResetClip func(ContextRef)
+	_CGContextRestoreGState func(ContextRef)
+	_CGContextRotateCTM func(ContextRef, float64)
+	_CGContextSaveGState func(ContextRef)
+	_CGContextScaleCTM func(ContextRef, float64, float64)
+	_CGContextSelectFont func(ContextRef, unsafe.Pointer, float64, unsafe.Pointer)
+	_CGContextSetAllowsAntialiasing func(ContextRef, bool)
+	_CGContextSetAllowsFontSmoothing func(ContextRef, bool)
+	_CGContextSetAllowsFontSubpixelPositioning func(ContextRef, bool)
+	_CGContextSetAllowsFontSubpixelQuantization func(ContextRef, bool)
+	_CGContextSetAlpha func(ContextRef, float64)
+	_CGContextSetBlendMode func(ContextRef, unsafe.Pointer)
+	_CGContextSetCharacterSpacing func(ContextRef, float64)
+	_CGPDFContextSetDestinationForRect func(ContextRef, unsafe.Pointer, CGRect)
+	_CGContextSetEDRTargetHeadroom func(ContextRef, float32) bool
+	_CGContextSetFillColor func(ContextRef, []float64)
+	_CGContextSetFillColorWithColor func(ContextRef, ColorRef)
+	_CGContextSetCMYKFillColor func(ContextRef, float64, float64, float64, float64, float64)
+	_CGContextSetGrayFillColor func(ContextRef, float64, float64)
+	_CGContextSetRGBFillColor func(ContextRef, float64, float64, float64, float64)
+	_CGContextSetFillColorSpace func(ContextRef, ColorSpaceRef)
+	_CGContextSetFillPattern func(ContextRef, PatternRef, []float64)
+	_CGContextSetFlatness func(ContextRef, float64)
+	_CGContextSetFont func(ContextRef, FontRef)
+	_CGContextSetFontSize func(ContextRef, float64)
+	_CGContextSetLineCap func(ContextRef, unsafe.Pointer)
+	_CGContextSetLineJoin func(ContextRef, unsafe.Pointer)
+	_CGContextSetLineWidth func(ContextRef, float64)
+	_CGContextSetMiterLimit func(ContextRef, float64)
+	_CGContextSetPatternPhase func(ContextRef, CGSize)
+	_CGContextSetRenderingIntent func(ContextRef, unsafe.Pointer)
+	_CGContextSetShadow func(ContextRef, CGSize, float64)
+	_CGContextSetShadowWithColor func(ContextRef, CGSize, float64, ColorRef)
+	_CGContextSetShouldAntialias func(ContextRef, bool)
+	_CGContextSetShouldSmoothFonts func(ContextRef, bool)
+	_CGContextSetShouldSubpixelPositionFonts func(ContextRef, bool)
+	_CGContextSetShouldSubpixelQuantizeFonts func(ContextRef, bool)
+	_CGContextSetStrokeColorWithColor func(ContextRef, ColorRef)
+	_CGContextSetStrokeColor func(ContextRef, []float64)
+	_CGContextSetCMYKStrokeColor func(ContextRef, float64, float64, float64, float64, float64)
+	_CGContextSetGrayStrokeColor func(ContextRef, float64, float64)
+	_CGContextSetRGBStrokeColor func(ContextRef, float64, float64, float64, float64)
+	_CGContextSetStrokeColorSpace func(ContextRef, ColorSpaceRef)
+	_CGContextSetStrokePattern func(ContextRef, PatternRef, []float64)
+	_CGContextSetTextDrawingMode func(ContextRef, unsafe.Pointer)
+	_CGPDFContextSetURLForRect func(ContextRef, unsafe.Pointer, CGRect)
+	_CGContextShowGlyphs func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextShowGlyphsAtPoint func(ContextRef, float64, float64, unsafe.Pointer, uintptr)
+	_CGContextShowGlyphsWithAdvances func(ContextRef, unsafe.Pointer, unsafe.Pointer, uintptr)
+	_CGContextShowText func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextShowTextAtPoint func(ContextRef, float64, float64, unsafe.Pointer, uintptr)
+	_CGContextStrokeRect func(ContextRef, CGRect)
+	_CGContextStrokeRectWithWidth func(ContextRef, CGRect, float64)
+	_CGContextStrokeEllipseInRect func(ContextRef, CGRect)
+	_CGContextStrokePath func(ContextRef)
+	_CGContextSynchronize func(ContextRef)
+	_CGContextSynchronizeAttributes func(ContextRef)
+	_CGContextGetTextMatrix func(ContextRef) CGAffineTransform
+	_CGContextTranslateCTM func(ContextRef, float64, float64)
+	_CGContextGetTypeID func() unsafe.Pointer
+	_CGContextGetUserSpaceToDeviceSpaceTransform func(ContextRef) CGAffineTransform
+	_CGBitmapContextGetWidth func(ContextRef) uintptr
+	_CGContextGetContentToneMappingInfo func(ContextRef) unsafe.Pointer
+	_CGContextSetContentToneMappingInfo func(ContextRef, unsafe.Pointer)
+	_CGDataConsumerCreateWithCFData func(unsafe.Pointer) DataConsumerRef
+	_CGDataConsumerCreate func(unsafe.Pointer, unsafe.Pointer) DataConsumerRef
+	_CGDataConsumerCreateWithURL func(unsafe.Pointer) DataConsumerRef
+	_CGDataConsumerGetTypeID func() unsafe.Pointer
+	_CGDataProviderCopyData func(DataProviderRef) unsafe.Pointer
+	_CGDataProviderGetInfo func(DataProviderRef) unsafe.Pointer
+	_CGDataProviderCreateWithCFData func(unsafe.Pointer) DataProviderRef
+	_CGDataProviderCreateWithData func(unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer) DataProviderRef
+	_CGDataProviderCreateDirect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DataProviderRef
+	_CGDataProviderCreateWithFilename func(unsafe.Pointer) DataProviderRef
+	_CGDataProviderCreateSequential func(unsafe.Pointer, unsafe.Pointer) DataProviderRef
+	_CGDataProviderCreateWithURL func(unsafe.Pointer) DataProviderRef
+	_CGDataProviderGetTypeID func() unsafe.Pointer
+	_CGEXRToneMappingGammaGetDefaultOptions func() unsafe.Pointer
+	_CGFontGetAscent func(FontRef) int
+	_CGFontCanCreatePostScriptSubset func(FontRef, unsafe.Pointer) bool
+	_CGFontGetCapHeight func(FontRef) int
+	_CGFontCreateCopyWithVariations func(FontRef, unsafe.Pointer) FontRef
+	_CGFontCreatePostScriptEncoding func(FontRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGFontCreatePostScriptSubset func(FontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGFontGetDescent func(FontRef) int
+	_CGFontGetFontBBox func(FontRef) CGRect
+	_CGFontCopyFullName func(FontRef) unsafe.Pointer
+	_CGFontGetGlyphAdvances func(FontRef, unsafe.Pointer, uintptr, []int) bool
+	_CGFontGetGlyphBBoxes func(FontRef, unsafe.Pointer, uintptr, unsafe.Pointer) bool
+	_CGFontGetGlyphWithGlyphName func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CGFontCreateWithFontName func(unsafe.Pointer) FontRef
+	_CGFontCreateWithDataProvider func(DataProviderRef) FontRef
+	_CGFontGetItalicAngle func(FontRef) float64
+	_CGFontGetLeading func(FontRef) int
+	_CGFontCopyGlyphNameForGlyph func(FontRef, unsafe.Pointer) unsafe.Pointer
+	_CGFontGetNumberOfGlyphs func(FontRef) uintptr
+	_CGFontCopyPostScriptName func(FontRef) unsafe.Pointer
+	_CGFontGetStemV func(FontRef) float64
+	_CGFontCopyTableForTag func(FontRef, uint32) unsafe.Pointer
+	_CGFontCopyTableTags func(FontRef) unsafe.Pointer
+	_CGFontGetTypeID func() unsafe.Pointer
+	_CGFontGetUnitsPerEm func(FontRef) int
+	_CGFontCopyVariationAxes func(FontRef) unsafe.Pointer
+	_CGFontCopyVariations func(FontRef) unsafe.Pointer
+	_CGFontGetXHeight func(FontRef) int
+	_CGFunctionCreate func(unsafe.Pointer, uintptr, []float64, uintptr, []float64, unsafe.Pointer) FunctionRef
+	_CGFunctionGetTypeID func() unsafe.Pointer
+	_CGGradientGetContentHeadroom func(GradientRef) float32
+	_CGGradientCreateWithColorComponents func(ColorSpaceRef, []float64, []float64, uintptr) GradientRef
+	_CGGradientCreateWithColors func(ColorSpaceRef, unsafe.Pointer, []float64) GradientRef
+	_CGGradientCreateWithContentHeadroom func(float32, ColorSpaceRef, []float64, []float64, uintptr) GradientRef
+	_CGGradientGetTypeID func() unsafe.Pointer
+	_CGImageGetAlphaInfo func(ImageRef) unsafe.Pointer
+	_CGImageGetBitmapInfo func(ImageRef) unsafe.Pointer
+	_CGImageGetBitsPerComponent func(ImageRef) uintptr
+	_CGImageGetBitsPerPixel func(ImageRef) uintptr
+	_CGImageGetByteOrderInfo func(ImageRef) unsafe.Pointer
+	_CGImageGetBytesPerRow func(ImageRef) uintptr
+	_CGImageCalculateContentAverageLightLevel func(ImageRef) float32
+	_CGImageCalculateContentHeadroom func(ImageRef) float32
+	_CGImageGetColorSpace func(ImageRef) ColorSpaceRef
+	_CGImageContainsImageSpecificToneMappingMetadata func(ImageRef) bool
+	_CGImageGetContentAverageLightLevel func(ImageRef) float32
+	_CGImageGetContentHeadroom func(ImageRef) float32
+	_CGImageCreateCopy func(ImageRef) ImageRef
+	_CGImageCreateCopyWithColorSpace func(ImageRef, ColorSpaceRef) ImageRef
+	_CGImageCreateCopyWithContentAverageLightLevel func(ImageRef, float32) ImageRef
+	_CGImageCreateCopyWithCalculatedHDRStats func(ImageRef) ImageRef
+	_CGImageCreateWithImageInRect func(ImageRef, CGRect) ImageRef
+	_CGImageGetDataProvider func(ImageRef) DataProviderRef
+	_CGImageGetDecode func(ImageRef) []float64
+	_CGImageGetHeight func(ImageRef) uintptr
+	_CGImageCreateWithContentHeadroom func(float32, uintptr, uintptr, uintptr, uintptr, uintptr, ColorSpaceRef, unsafe.Pointer, DataProviderRef, []float64, bool, unsafe.Pointer) ImageRef
+	_CGImageCreateWithJPEGDataProvider func(DataProviderRef, []float64, bool, unsafe.Pointer) ImageRef
+	_CGImageMaskCreate func(uintptr, uintptr, uintptr, uintptr, uintptr, DataProviderRef, []float64, bool) ImageRef
+	_CGImageCreateWithPNGDataProvider func(DataProviderRef, []float64, bool, unsafe.Pointer) ImageRef
+	_CGImageCreate func(uintptr, uintptr, uintptr, uintptr, uintptr, ColorSpaceRef, unsafe.Pointer, DataProviderRef, []float64, bool, unsafe.Pointer) ImageRef
+	_CGWindowListCreateImageFromArray func(CGRect, unsafe.Pointer, unsafe.Pointer) ImageRef
+	_CGImageIsMask func(ImageRef) bool
+	_CGImageCreateWithMask func(ImageRef, ImageRef) ImageRef
+	_CGImageGetPixelFormatInfo func(ImageRef) unsafe.Pointer
+	_CGImageGetRenderingIntent func(ImageRef) unsafe.Pointer
+	_CGImageGetShouldInterpolate func(ImageRef) bool
+	_CGImageShouldToneMap func(ImageRef) bool
+	_CGImageGetTypeID func() unsafe.Pointer
+	_CGImageGetUTType func(ImageRef) unsafe.Pointer
+	_CGImageGetWidth func(ImageRef) uintptr
+	_CGLayerGetContext func(LayerRef) ContextRef
+	_CGLayerCreateWithContext func(ContextRef, CGSize, unsafe.Pointer) LayerRef
+	_CGLayerGetSize func(LayerRef) CGSize
+	_CGLayerGetTypeID func() unsafe.Pointer
+	_CGPathCloseSubpath func(MutablePathRef)
+	_CGPathCreateMutable func() MutablePathRef
+	_CGPDFDocumentGetAccessPermissions func(PDFDocumentRef) unsafe.Pointer
+	_CGPDFDocumentAllowsCopying func(PDFDocumentRef) bool
+	_CGPDFDocumentAllowsPrinting func(PDFDocumentRef) bool
+	_CGPDFDocumentGetCatalog func(PDFDocumentRef) PDFDictionaryRef
+	_CGPDFDocumentGetID func(PDFDocumentRef) PDFArrayRef
+	_CGPDFDocumentGetVersion func(PDFDocumentRef, []int, []int)
+	_CGPDFDocumentGetInfo func(PDFDocumentRef) PDFDictionaryRef
+	_CGPDFDocumentCreateWithURL func(unsafe.Pointer) PDFDocumentRef
+	_CGPDFDocumentCreateWithProvider func(DataProviderRef) PDFDocumentRef
+	_CGPDFDocumentIsEncrypted func(PDFDocumentRef) bool
+	_CGPDFDocumentIsUnlocked func(PDFDocumentRef) bool
+	_CGPDFDocumentGetNumberOfPages func(PDFDocumentRef) uintptr
+	_CGPDFDocumentGetOutline func(PDFDocumentRef) unsafe.Pointer
+	_CGPDFDocumentGetPage func(PDFDocumentRef, uintptr) PDFPageRef
+	_CGPDFDocumentGetTypeID func() unsafe.Pointer
+	_CGPDFDocumentUnlockWithPassword func(PDFDocumentRef, unsafe.Pointer) bool
+	_CGPDFPageGetDictionary func(PDFPageRef) PDFDictionaryRef
+	_CGPDFPageGetDocument func(PDFPageRef) PDFDocumentRef
+	_CGPDFPageGetBoxRect func(PDFPageRef, unsafe.Pointer) CGRect
+	_CGPDFPageGetDrawingTransform func(PDFPageRef, unsafe.Pointer, CGRect, int, bool) CGAffineTransform
+	_CGPDFPageGetPageNumber func(PDFPageRef) uintptr
+	_CGPDFPageGetRotationAngle func(PDFPageRef) int
+	_CGPDFPageGetTypeID func() unsafe.Pointer
+	_CGPSConverterAbort func(PSConverterRef) bool
+	_CGPSConverterConvert func(PSConverterRef, DataProviderRef, DataConsumerRef, unsafe.Pointer) bool
+	_CGPSConverterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) PSConverterRef
+	_CGPSConverterIsConverting func(PSConverterRef) bool
+	_CGPSConverterGetTypeID func() unsafe.Pointer
+	_CGPathApply func(PathRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPathApplyWithBlock func(PathRef, unsafe.Pointer)
+	_CGPathGetBoundingBox func(PathRef) CGRect
+	_CGPathGetPathBoundingBox func(PathRef) CGRect
+	_CGPathCreateCopy func(PathRef) PathRef
+	_CGPathCreateCopyByTransformingPath func(PathRef, unsafe.Pointer) PathRef
+	_CGPathGetCurrentPoint func(PathRef) CGPoint
+	_CGPathCreateWithEllipseInRect func(CGRect, unsafe.Pointer) PathRef
+	_CGPathCreateWithRect func(CGRect, unsafe.Pointer) PathRef
+	_CGPathCreateWithRoundedRect func(CGRect, float64, float64, unsafe.Pointer) PathRef
+	_CGPathIsEmpty func(PathRef) bool
+	_CGPathIsRect func(PathRef, unsafe.Pointer) bool
+	_CGPathCreateMutableCopy func(PathRef) MutablePathRef
+	_CGPathCreateMutableCopyByTransformingPath func(PathRef, unsafe.Pointer) MutablePathRef
+	_CGPathGetTypeID func() unsafe.Pointer
+	_CGPatternCreate func(unsafe.Pointer, CGRect, CGAffineTransform, float64, float64, unsafe.Pointer, bool, unsafe.Pointer) PatternRef
+	_CGPatternGetTypeID func() unsafe.Pointer
+	_CGRenderingBufferLockBytePtr func(RenderingBufferProviderRef) unsafe.Pointer
+	_CGRenderingBufferProviderCreate func(unsafe.Pointer, uintptr) RenderingBufferProviderRef
+	_CGRenderingBufferProviderCreateWithCFData func(unsafe.Pointer) RenderingBufferProviderRef
+	_CGRenderingBufferProviderGetSize func(RenderingBufferProviderRef) uintptr
+	_CGRenderingBufferProviderGetTypeID func() unsafe.Pointer
+	_CGRenderingBufferUnlockBytePtr func(RenderingBufferProviderRef)
+	_CGShadingGetContentHeadroom func(ShadingRef) float32
+	_CGShadingCreateAxialWithContentHeadroom func(float32, ColorSpaceRef, CGPoint, CGPoint, FunctionRef, bool, bool) ShadingRef
+	_CGShadingCreateAxial func(ColorSpaceRef, CGPoint, CGPoint, FunctionRef, bool, bool) ShadingRef
+	_CGShadingCreateRadialWithContentHeadroom func(float32, ColorSpaceRef, CGPoint, float64, CGPoint, float64, FunctionRef, bool, bool) ShadingRef
+	_CGShadingCreateRadial func(ColorSpaceRef, CGPoint, float64, CGPoint, float64, FunctionRef, bool, bool) ShadingRef
+	_CGShadingGetTypeID func() unsafe.Pointer
 	_CGAcquireDisplayFadeReservation func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGAffineTransformConcat func(CGAffineTransform, CGAffineTransform) CGAffineTransform
 	_CGAffineTransformDecompose func(CGAffineTransform) unsafe.Pointer
@@ -36,269 +341,96 @@ var (
 	_CGAffineTransformTranslate func(CGAffineTransform, float64, float64) CGAffineTransform
 	_CGAssociateMouseAndMouseCursorPosition func(unsafe.Pointer) unsafe.Pointer
 	_CGBeginDisplayConfiguration func(unsafe.Pointer) unsafe.Pointer
-	_CGBitmapContextCreateAdaptive func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool) CGContextRef
-	_CGCancelDisplayConfiguration func(CGDisplayConfigRef) unsafe.Pointer
+	_CGCancelDisplayConfiguration func(DisplayConfigRef) unsafe.Pointer
 	_CGCaptureAllDisplays func() unsafe.Pointer
 	_CGCaptureAllDisplaysWithOptions func(unsafe.Pointer) unsafe.Pointer
-	_CGColorGetAlpha func(CGColorRef) float64
-	_CGColorGetColorSpace func(CGColorRef) CGColorSpaceRef
-	_CGColorGetContentHeadroom func(CGColorRef) unsafe.Pointer
-	_CGColorCreateCopyByMatchingToColorSpace func(CGColorSpaceRef, unsafe.Pointer, CGColorRef, unsafe.Pointer) CGColorRef
-	_CGColorCreateCopy func(CGColorRef) CGColorRef
-	_CGColorCreateCopyWithAlpha func(CGColorRef, float64) CGColorRef
-	_CGColorCreate func(CGColorSpaceRef, unsafe.Pointer) CGColorRef
-	_CGColorCreateGenericCMYK func(float64, float64, float64, float64, float64) CGColorRef
-	_CGColorCreateGenericGrayGamma2_2 func(float64, float64) CGColorRef
-	_CGColorCreateGenericGray func(float64, float64) CGColorRef
-	_CGColorCreateWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, float64, float64, float64, float64) CGColorRef
-	_CGColorCreateWithPattern func(CGColorSpaceRef, CGPatternRef, unsafe.Pointer) CGColorRef
-	_CGColorCreateGenericRGB func(float64, float64, float64, float64) CGColorRef
-	_CGColorCreateSRGB func(float64, float64, float64, float64) CGColorRef
-	_CGColorGetNumberOfComponents func(CGColorRef) unsafe.Pointer
-	_CGColorGetPattern func(CGColorRef) CGPatternRef
-	_CGColorGetTypeID func() unsafe.Pointer
-	_CGColorConversionInfoConvertData func(CGColorConversionInfoRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CGColorConversionInfoCreateWithOptions func(CGColorSpaceRef, CGColorSpaceRef, unsafe.Pointer) CGColorConversionInfoRef
-	_CGColorConversionInfoCreate func(CGColorSpaceRef, CGColorSpaceRef) CGColorConversionInfoRef
-	_CGColorConversionInfoCreateForToneMapping func(CGColorSpaceRef, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
-	_CGColorConversionInfoGetTypeID func() unsafe.Pointer
-	_CGColorConversionInfoCreateFromList func(unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
-	_CGColorConversionInfoCreateFromListWithArguments func(unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorConversionInfoRef
-	_CGColorEqualToColor func(CGColorRef, CGColorRef) bool
-	_CGColorGetComponents func(CGColorRef) unsafe.Pointer
-	_CGColorGetConstantColor func(unsafe.Pointer) CGColorRef
-	_CGColorRelease func(CGColorRef) unsafe.Pointer
-	_CGColorRetain func(CGColorRef) CGColorRef
-	_CGColorSpaceGetBaseColorSpace func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCopyICCData func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceCopyPropertyList func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceCopyICCProfile func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceCreateCalibratedGray func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateCalibratedRGB func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateICCBased func(unsafe.Pointer, unsafe.Pointer, CGDataProviderRef, CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateWithICCData func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateWithICCProfile func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateIndexed func(CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateLab func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateWithName func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreatePattern func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateWithPlatformColorSpace func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceCreateWithPropertyList func(unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceIsHDR func(CGColorSpaceRef) bool
-	_CGColorSpaceIsWideGamutRGB func(CGColorSpaceRef) bool
-	_CGColorSpaceGetModel func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceCopyName func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceGetNumberOfComponents func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceSupportsOutput func(CGColorSpaceRef) bool
-	_CGColorSpaceGetTypeID func() unsafe.Pointer
-	_CGColorSpaceCopyBaseColorSpace func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateCopyWithStandardRange func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateDeviceCMYK func() CGColorSpaceRef
-	_CGColorSpaceCreateDeviceGray func() CGColorSpaceRef
-	_CGColorSpaceCreateDeviceRGB func() CGColorSpaceRef
-	_CGColorSpaceCreateExtended func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateExtendedLinearized func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateLinearized func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceCreateWithColorSyncProfile func(unsafe.Pointer, unsafe.Pointer) CGColorSpaceRef
-	_CGColorSpaceGetColorTable func(CGColorSpaceRef, unsafe.Pointer) unsafe.Pointer
-	_CGColorSpaceGetColorTableCount func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceGetName func(CGColorSpaceRef) unsafe.Pointer
-	_CGColorSpaceIsHLGBased func(CGColorSpaceRef) bool
-	_CGColorSpaceIsPQBased func(CGColorSpaceRef) bool
-	_CGColorSpaceRetain func(CGColorSpaceRef) CGColorSpaceRef
-	_CGColorSpaceUsesExtendedRange func(CGColorSpaceRef) bool
-	_CGColorSpaceUsesITUR_2100TF func(CGColorSpaceRef) bool
-	_CGCompleteDisplayConfiguration func(CGDisplayConfigRef, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayFadeEffect func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayMirrorOfDisplay func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayMode func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayOrigin func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayStereoOperation func(CGDisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConfigureDisplayWithDisplayMode func(CGDisplayConfigRef, unsafe.Pointer, CGDisplayModeRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFContextAddDestinationAtPoint func(CGContextRef, unsafe.Pointer, CGPoint) unsafe.Pointer
-	_CGPDFContextAddDocumentMetadata func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextAddEllipseInRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextAddPath func(CGContextRef, CGPathRef) unsafe.Pointer
-	_CGContextAddRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGBitmapContextGetAlphaInfo func(CGContextRef) unsafe.Pointer
-	_CGPDFContextBeginPage func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextBeginPage func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextBeginPath func(CGContextRef) unsafe.Pointer
-	_CGContextBeginTransparencyLayer func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextBeginTransparencyLayerWithRect func(CGContextRef, CGRect, unsafe.Pointer) unsafe.Pointer
-	_CGBitmapContextGetBitmapInfo func(CGContextRef) unsafe.Pointer
-	_CGBitmapContextGetBitsPerComponent func(CGContextRef) unsafe.Pointer
-	_CGBitmapContextGetBitsPerPixel func(CGContextRef) unsafe.Pointer
-	_CGContextGetClipBoundingBox func(CGContextRef) CGRect
-	_CGContextGetPathBoundingBox func(CGContextRef) CGRect
-	_CGBitmapContextGetBytesPerRow func(CGContextRef) unsafe.Pointer
-	_CGContextClearRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextClipToRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextClipToMask func(CGContextRef, CGRect, CGImageRef) unsafe.Pointer
-	_CGPDFContextClose func(CGContextRef) unsafe.Pointer
-	_CGContextClosePath func(CGContextRef) unsafe.Pointer
-	_CGBitmapContextGetColorSpace func(CGContextRef) CGColorSpaceRef
-	_CGContextConcatCTM func(CGContextRef, CGAffineTransform) unsafe.Pointer
-	_CGContextConvertSizeToDeviceSpace func(CGContextRef, CGSize) CGSize
-	_CGContextConvertPointToDeviceSpace func(CGContextRef, CGPoint) CGPoint
-	_CGContextConvertRectToDeviceSpace func(CGContextRef, CGRect) CGRect
-	_CGContextConvertRectToUserSpace func(CGContextRef, CGRect) CGRect
-	_CGContextConvertPointToUserSpace func(CGContextRef, CGPoint) CGPoint
-	_CGContextConvertSizeToUserSpace func(CGContextRef, CGSize) CGSize
-	_CGContextGetCTM func(CGContextRef) CGAffineTransform
-	_CGContextGetPathCurrentPoint func(CGContextRef) CGPoint
-	_CGBitmapContextGetData func(CGContextRef) unsafe.Pointer
-	_CGContextDrawLinearGradient func(CGContextRef, CGGradientRef, CGPoint, CGPoint, unsafe.Pointer) unsafe.Pointer
-	_CGContextDrawPDFPage func(CGContextRef, CGPDFPageRef) unsafe.Pointer
-	_CGContextDrawPath func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextDrawRadialGradient func(CGContextRef, CGGradientRef, CGPoint, float64, CGPoint, float64, unsafe.Pointer) unsafe.Pointer
-	_CGContextDrawShading func(CGContextRef, CGShadingRef) unsafe.Pointer
-	_CGPDFContextEndPage func(CGContextRef) unsafe.Pointer
-	_CGContextEndPage func(CGContextRef) unsafe.Pointer
-	_CGContextEndTransparencyLayer func(CGContextRef) unsafe.Pointer
-	_CGContextFillRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextFillEllipseInRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextFlush func(CGContextRef) unsafe.Pointer
-	_CGBitmapContextGetHeight func(CGContextRef) unsafe.Pointer
-	_CGPDFContextCreateWithURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGContextRef
-	_CGPDFContextCreate func(CGDataConsumerRef, unsafe.Pointer, unsafe.Pointer) CGContextRef
-	_CGBitmapContextCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer) CGContextRef
-	_CGBitmapContextCreateWithData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGContextRef
-	_CGContextGetInterpolationQuality func(CGContextRef) unsafe.Pointer
-	_CGContextIsPathEmpty func(CGContextRef) bool
-	_CGBitmapContextCreateImage func(CGContextRef) CGImageRef
-	_CGContextCopyPath func(CGContextRef) CGPathRef
-	_CGContextPathContainsPoint func(CGContextRef, CGPoint, unsafe.Pointer) bool
-	_CGContextReplacePathWithStrokedPath func(CGContextRef) unsafe.Pointer
-	_CGContextResetClip func(CGContextRef) unsafe.Pointer
-	_CGContextRestoreGState func(CGContextRef) unsafe.Pointer
-	_CGContextRotateCTM func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSaveGState func(CGContextRef) unsafe.Pointer
-	_CGContextScaleCTM func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextSelectFont func(CGContextRef, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetAllowsAntialiasing func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetAllowsFontSmoothing func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetAllowsFontSubpixelPositioning func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetAllowsFontSubpixelQuantization func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetAlpha func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSetBlendMode func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetCharacterSpacing func(CGContextRef, float64) unsafe.Pointer
-	_CGPDFContextSetDestinationForRect func(CGContextRef, unsafe.Pointer, CGRect) unsafe.Pointer
-	_CGContextSetEDRTargetHeadroom func(CGContextRef, unsafe.Pointer) bool
-	_CGContextSetFillColor func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetFillColorWithColor func(CGContextRef, CGColorRef) unsafe.Pointer
-	_CGContextSetCMYKFillColor func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextSetGrayFillColor func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextSetRGBFillColor func(CGContextRef, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextSetFillColorSpace func(CGContextRef, CGColorSpaceRef) unsafe.Pointer
-	_CGContextSetFillPattern func(CGContextRef, CGPatternRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetFlatness func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSetFont func(CGContextRef, CGFontRef) unsafe.Pointer
-	_CGContextSetFontSize func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSetLineCap func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetLineJoin func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetLineWidth func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSetMiterLimit func(CGContextRef, float64) unsafe.Pointer
-	_CGContextSetPatternPhase func(CGContextRef, CGSize) unsafe.Pointer
-	_CGContextSetRenderingIntent func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetShadow func(CGContextRef, CGSize, float64) unsafe.Pointer
-	_CGContextSetShadowWithColor func(CGContextRef, CGSize, float64, CGColorRef) unsafe.Pointer
-	_CGContextSetShouldAntialias func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetShouldSmoothFonts func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetShouldSubpixelPositionFonts func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetShouldSubpixelQuantizeFonts func(CGContextRef, bool) unsafe.Pointer
-	_CGContextSetStrokeColorWithColor func(CGContextRef, CGColorRef) unsafe.Pointer
-	_CGContextSetStrokeColor func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetCMYKStrokeColor func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextSetGrayStrokeColor func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextSetRGBStrokeColor func(CGContextRef, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextSetStrokeColorSpace func(CGContextRef, CGColorSpaceRef) unsafe.Pointer
-	_CGContextSetStrokePattern func(CGContextRef, CGPatternRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetTextDrawingMode func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFContextSetURLForRect func(CGContextRef, unsafe.Pointer, CGRect) unsafe.Pointer
-	_CGContextShowGlyphs func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextShowGlyphsAtPoint func(CGContextRef, float64, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextShowGlyphsWithAdvances func(CGContextRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextShowText func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextShowTextAtPoint func(CGContextRef, float64, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextStrokeRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextStrokeRectWithWidth func(CGContextRef, CGRect, float64) unsafe.Pointer
-	_CGContextStrokeEllipseInRect func(CGContextRef, CGRect) unsafe.Pointer
-	_CGContextStrokePath func(CGContextRef) unsafe.Pointer
-	_CGContextSynchronize func(CGContextRef) unsafe.Pointer
-	_CGContextSynchronizeAttributes func(CGContextRef) unsafe.Pointer
-	_CGContextGetTextMatrix func(CGContextRef) CGAffineTransform
-	_CGContextTranslateCTM func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextGetTypeID func() unsafe.Pointer
-	_CGContextGetUserSpaceToDeviceSpaceTransform func(CGContextRef) CGAffineTransform
-	_CGBitmapContextGetWidth func(CGContextRef) unsafe.Pointer
-	_CGContextAddArc func(CGContextRef, float64, float64, float64, float64, float64, int) unsafe.Pointer
-	_CGContextAddArcToPoint func(CGContextRef, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextAddCurveToPoint func(CGContextRef, float64, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextAddLineToPoint func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextAddLines func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextAddQuadCurveToPoint func(CGContextRef, float64, float64, float64, float64) unsafe.Pointer
-	_CGContextAddRects func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextClip func(CGContextRef) unsafe.Pointer
-	_CGContextClipToRects func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextDrawConicGradient func(CGContextRef, CGGradientRef, CGPoint, float64) unsafe.Pointer
-	_CGContextDrawImage func(CGContextRef, CGRect, CGImageRef) unsafe.Pointer
-	_CGContextDrawImageApplyingToneMapping func(CGContextRef, CGRect, CGImageRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGContextDrawLayerAtPoint func(CGContextRef, CGPoint, CGLayerRef) unsafe.Pointer
-	_CGContextDrawLayerInRect func(CGContextRef, CGRect, CGLayerRef) unsafe.Pointer
-	_CGContextDrawPDFDocument func(CGContextRef, CGRect, CGPDFDocumentRef, int) unsafe.Pointer
-	_CGContextDrawTiledImage func(CGContextRef, CGRect, CGImageRef) unsafe.Pointer
-	_CGContextEOClip func(CGContextRef) unsafe.Pointer
-	_CGContextFillRects func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextGetContentToneMappingInfo func(CGContextRef) unsafe.Pointer
-	_CGContextGetEDRTargetHeadroom func(CGContextRef) unsafe.Pointer
-	_CGContextGetTextPosition func(CGContextRef) CGPoint
-	_CGContextMoveToPoint func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextRelease func(CGContextRef) unsafe.Pointer
-	_CGContextRetain func(CGContextRef) CGContextRef
-	_CGContextSetContentToneMappingInfo func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetLineDash func(CGContextRef, float64, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextSetTextMatrix func(CGContextRef, CGAffineTransform) unsafe.Pointer
-	_CGContextSetTextPosition func(CGContextRef, float64, float64) unsafe.Pointer
-	_CGContextShowGlyphsAtPositions func(CGContextRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGContextStrokeLineSegments func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGConvertColorDataWithFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CGColorConversionInfoCreateFromList func(unsafe.Pointer, ColorSpaceRef, unsafe.Pointer, unsafe.Pointer) ColorConversionInfoRef
+	_CGColorConversionInfoCreateFromListWithArguments func(unsafe.Pointer, ColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ColorConversionInfoRef
+	_CGColorEqualToColor func(ColorRef, ColorRef) bool
+	_CGColorGetComponents func(ColorRef) []float64
+	_CGColorGetConstantColor func(unsafe.Pointer) ColorRef
+	_CGColorRelease func(ColorRef)
+	_CGColorRetain func(ColorRef) ColorRef
+	_CGColorSpaceCopyBaseColorSpace func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateCopyWithStandardRange func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateDeviceCMYK func() ColorSpaceRef
+	_CGColorSpaceCreateDeviceGray func() ColorSpaceRef
+	_CGColorSpaceCreateDeviceRGB func() ColorSpaceRef
+	_CGColorSpaceCreateExtended func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateExtendedLinearized func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateLinearized func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceCreateWithColorSyncProfile func(unsafe.Pointer, unsafe.Pointer) ColorSpaceRef
+	_CGColorSpaceGetColorTable func(ColorSpaceRef, unsafe.Pointer)
+	_CGColorSpaceGetColorTableCount func(ColorSpaceRef) uintptr
+	_CGColorSpaceGetName func(ColorSpaceRef) unsafe.Pointer
+	_CGColorSpaceIsHLGBased func(ColorSpaceRef) bool
+	_CGColorSpaceIsPQBased func(ColorSpaceRef) bool
+	_CGColorSpaceRelease func(ColorSpaceRef)
+	_CGColorSpaceRetain func(ColorSpaceRef) ColorSpaceRef
+	_CGColorSpaceUsesExtendedRange func(ColorSpaceRef) bool
+	_CGColorSpaceUsesITUR_2100TF func(ColorSpaceRef) bool
+	_CGCompleteDisplayConfiguration func(DisplayConfigRef, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayFadeEffect func(DisplayConfigRef, unsafe.Pointer, unsafe.Pointer, float32, float32, float32) unsafe.Pointer
+	_CGConfigureDisplayMirrorOfDisplay func(DisplayConfigRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayMode func(DisplayConfigRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayOrigin func(DisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayStereoOperation func(DisplayConfigRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGConfigureDisplayWithDisplayMode func(DisplayConfigRef, unsafe.Pointer, DisplayModeRef, unsafe.Pointer) unsafe.Pointer
+	_CGContextAddArc func(ContextRef, float64, float64, float64, float64, float64, int)
+	_CGContextAddArcToPoint func(ContextRef, float64, float64, float64, float64, float64)
+	_CGContextAddCurveToPoint func(ContextRef, float64, float64, float64, float64, float64, float64)
+	_CGContextAddLines func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextAddLineToPoint func(ContextRef, float64, float64)
+	_CGContextAddQuadCurveToPoint func(ContextRef, float64, float64, float64, float64)
+	_CGContextAddRects func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextClip func(ContextRef)
+	_CGContextClipToRects func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextDrawConicGradient func(ContextRef, GradientRef, CGPoint, float64)
+	_CGContextDrawImage func(ContextRef, CGRect, ImageRef)
+	_CGContextDrawImageApplyingToneMapping func(ContextRef, CGRect, ImageRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGContextDrawLayerAtPoint func(ContextRef, CGPoint, LayerRef)
+	_CGContextDrawLayerInRect func(ContextRef, CGRect, LayerRef)
+	_CGContextDrawPDFDocument func(ContextRef, CGRect, PDFDocumentRef, int)
+	_CGContextDrawTiledImage func(ContextRef, CGRect, ImageRef)
+	_CGContextEOClip func(ContextRef)
+	_CGContextEOFillPath func(ContextRef)
+	_CGContextFillPath func(ContextRef)
+	_CGContextFillRects func(ContextRef, unsafe.Pointer, uintptr)
+	_CGContextGetEDRTargetHeadroom func(ContextRef) float32
+	_CGContextGetTextPosition func(ContextRef) CGPoint
+	_CGContextMoveToPoint func(ContextRef, float64, float64)
+	_CGContextRelease func(ContextRef)
+	_CGContextRetain func(ContextRef) ContextRef
+	_CGContextSetInterpolationQuality func(ContextRef, unsafe.Pointer)
+	_CGContextSetLineDash func(ContextRef, float64, []float64, uintptr)
+	_CGContextSetTextMatrix func(ContextRef, CGAffineTransform)
+	_CGContextSetTextPosition func(ContextRef, float64, float64)
+	_CGContextShowGlyphsAtPositions func(ContextRef, unsafe.Pointer, unsafe.Pointer, uintptr)
+	_CGContextStrokeLineSegments func(ContextRef, unsafe.Pointer, uintptr)
+	_CGConvertColorDataWithFormat func(uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_CGCursorIsDrawnInFramebuffer func() unsafe.Pointer
 	_CGCursorIsVisible func() unsafe.Pointer
-	_CGDataConsumerCreateWithCFData func(unsafe.Pointer) CGDataConsumerRef
-	_CGDataConsumerCreate func(unsafe.Pointer, unsafe.Pointer) CGDataConsumerRef
-	_CGDataConsumerCreateWithURL func(unsafe.Pointer) CGDataConsumerRef
-	_CGDataConsumerGetTypeID func() unsafe.Pointer
-	_CGDataConsumerRelease func(CGDataConsumerRef) unsafe.Pointer
-	_CGDataConsumerRetain func(CGDataConsumerRef) CGDataConsumerRef
-	_CGDataProviderCopyData func(CGDataProviderRef) unsafe.Pointer
-	_CGDataProviderGetInfo func(CGDataProviderRef) unsafe.Pointer
-	_CGDataProviderCreateWithCFData func(unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderCreateWithData func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderCreateDirect func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderCreateWithFilename func(unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderCreateSequential func(unsafe.Pointer, unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderCreateWithURL func(unsafe.Pointer) CGDataProviderRef
-	_CGDataProviderGetTypeID func() unsafe.Pointer
-	_CGDataProviderRelease func(CGDataProviderRef) unsafe.Pointer
-	_CGDataProviderRetain func(CGDataProviderRef) CGDataProviderRef
+	_CGDataConsumerRelease func(DataConsumerRef)
+	_CGDataConsumerRetain func(DataConsumerRef) DataConsumerRef
+	_CGDataProviderRelease func(DataProviderRef)
+	_CGDataProviderRetain func(DataProviderRef) DataProviderRef
 	_CGDirectDisplayCopyCurrentMetalDevice func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayAvailableModes func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayBestModeForParameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayBestModeForParametersAndRefreshRate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGDisplayBestModeForParameters func(unsafe.Pointer, uintptr, uintptr, uintptr, unsafe.Pointer) unsafe.Pointer
+	_CGDisplayBestModeForParametersAndRefreshRate func(unsafe.Pointer, uintptr, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayBounds func(unsafe.Pointer) CGRect
 	_CGDisplayCapture func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayCaptureWithOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayCopyAllDisplayModes func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayCopyColorSpace func(unsafe.Pointer) CGColorSpaceRef
-	_CGDisplayCopyDisplayMode func(unsafe.Pointer) CGDisplayModeRef
-	_CGDisplayCreateImage func(unsafe.Pointer) CGImageRef
-	_CGDisplayCreateImageForRect func(unsafe.Pointer, CGRect) CGImageRef
+	_CGDisplayCopyColorSpace func(unsafe.Pointer) ColorSpaceRef
+	_CGDisplayCopyDisplayMode func(unsafe.Pointer) DisplayModeRef
+	_CGDisplayCreateImage func(unsafe.Pointer) ImageRef
+	_CGDisplayCreateImageForRect func(unsafe.Pointer, CGRect) ImageRef
 	_CGDisplayCurrentMode func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayFade func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGDisplayFade func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float32, float32, float32, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayFadeOperationInProgress func() unsafe.Pointer
-	_CGDisplayGammaTableCapacity func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayGetDrawingContext func(unsafe.Pointer) CGContextRef
+	_CGDisplayGammaTableCapacity func(unsafe.Pointer) uint32
+	_CGDisplayGetDrawingContext func(unsafe.Pointer) ContextRef
 	_CGDisplayHideCursor func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayIDToOpenGLDisplayMask func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayIOServicePort func(unsafe.Pointer) unsafe.Pointer
@@ -313,353 +445,220 @@ var (
 	_CGDisplayIsOnline func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayIsStereo func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayMirrorsDisplay func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayModeGetHeight func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeGetIODisplayModeID func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeGetIOFlags func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeIsUsableForDesktopGUI func(CGDisplayModeRef) bool
-	_CGDisplayModeCopyPixelEncoding func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeGetPixelHeight func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeGetPixelWidth func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeGetRefreshRate func(CGDisplayModeRef) unsafe.Pointer
+	_CGDisplayModeGetHeight func(DisplayModeRef) uintptr
+	_CGDisplayModeGetIODisplayModeID func(DisplayModeRef) unsafe.Pointer
+	_CGDisplayModeGetIOFlags func(DisplayModeRef) uint32
+	_CGDisplayModeIsUsableForDesktopGUI func(DisplayModeRef) bool
+	_CGDisplayModeCopyPixelEncoding func(DisplayModeRef) unsafe.Pointer
+	_CGDisplayModeGetPixelHeight func(DisplayModeRef) uintptr
+	_CGDisplayModeGetPixelWidth func(DisplayModeRef) uintptr
+	_CGDisplayModeGetRefreshRate func(DisplayModeRef) float64
 	_CGDisplayModeGetTypeID func() unsafe.Pointer
-	_CGDisplayModeGetWidth func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeRelease func(CGDisplayModeRef) unsafe.Pointer
-	_CGDisplayModeRetain func(CGDisplayModeRef) CGDisplayModeRef
-	_CGDisplayModelNumber func(unsafe.Pointer) unsafe.Pointer
+	_CGDisplayModeGetWidth func(DisplayModeRef) uintptr
+	_CGDisplayModelNumber func(unsafe.Pointer) uint32
+	_CGDisplayModeRelease func(DisplayModeRef)
+	_CGDisplayModeRetain func(DisplayModeRef) DisplayModeRef
 	_CGDisplayMoveCursorToPoint func(unsafe.Pointer, CGPoint) unsafe.Pointer
-	_CGDisplayPixelsHigh func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayPixelsWide func(unsafe.Pointer) unsafe.Pointer
+	_CGDisplayPixelsHigh func(unsafe.Pointer) uintptr
+	_CGDisplayPixelsWide func(unsafe.Pointer) uintptr
 	_CGDisplayPrimaryDisplay func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayRegisterReconfigurationCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayRelease func(unsafe.Pointer) unsafe.Pointer
 	_CGDisplayRemoveReconfigurationCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayRestoreColorSyncSettings func() unsafe.Pointer
-	_CGDisplayRotation func(unsafe.Pointer) unsafe.Pointer
+	_CGDisplayRestoreColorSyncSettings func()
+	_CGDisplayRotation func(unsafe.Pointer) float64
 	_CGDisplayScreenSize func(unsafe.Pointer) CGSize
-	_CGDisplaySerialNumber func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplaySetDisplayMode func(unsafe.Pointer, CGDisplayModeRef, unsafe.Pointer) unsafe.Pointer
+	_CGDisplaySerialNumber func(unsafe.Pointer) uint32
+	_CGDisplaySetDisplayMode func(unsafe.Pointer, DisplayModeRef, unsafe.Pointer) unsafe.Pointer
 	_CGDisplaySetStereoOperation func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGDisplayShowCursor func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayStreamCreateWithDispatchQueue func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGDisplayStreamRef
-	_CGDisplayStreamCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGDisplayStreamRef
-	_CGDisplayStreamGetRunLoopSource func(CGDisplayStreamRef) unsafe.Pointer
-	_CGDisplayStreamStart func(CGDisplayStreamRef) unsafe.Pointer
-	_CGDisplayStreamStop func(CGDisplayStreamRef) unsafe.Pointer
+	_CGDisplayStreamCreateWithDispatchQueue func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
+	_CGDisplayStreamCreate func(unsafe.Pointer, uintptr, uintptr, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) DisplayStreamRef
+	_CGDisplayStreamGetRunLoopSource func(DisplayStreamRef) unsafe.Pointer
+	_CGDisplayStreamStart func(DisplayStreamRef) unsafe.Pointer
+	_CGDisplayStreamStop func(DisplayStreamRef) unsafe.Pointer
 	_CGDisplayStreamGetTypeID func() unsafe.Pointer
-	_CGDisplayStreamUpdateGetDropCount func(CGDisplayStreamUpdateRef) unsafe.Pointer
-	_CGDisplayStreamUpdateGetMovedRectsDelta func(CGDisplayStreamUpdateRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayStreamUpdateGetRects func(CGDisplayStreamUpdateRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayStreamUpdateCreateMergedUpdate func(CGDisplayStreamUpdateRef, CGDisplayStreamUpdateRef) CGDisplayStreamUpdateRef
+	_CGDisplayStreamUpdateGetDropCount func(DisplayStreamUpdateRef) uintptr
+	_CGDisplayStreamUpdateGetMovedRectsDelta func(DisplayStreamUpdateRef, []float64, []float64)
+	_CGDisplayStreamUpdateGetRects func(DisplayStreamUpdateRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGDisplayStreamUpdateCreateMergedUpdate func(DisplayStreamUpdateRef, DisplayStreamUpdateRef) DisplayStreamUpdateRef
 	_CGDisplayStreamUpdateGetTypeID func() unsafe.Pointer
 	_CGDisplaySwitchToMode func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGDisplayUnitNumber func(unsafe.Pointer) unsafe.Pointer
+	_CGDisplayUnitNumber func(unsafe.Pointer) uint32
 	_CGDisplayUsesOpenGLAcceleration func(unsafe.Pointer) unsafe.Pointer
-	_CGDisplayVendorNumber func(unsafe.Pointer) unsafe.Pointer
-	_CGEXRToneMappingGammaGetDefaultOptions func() unsafe.Pointer
+	_CGDisplayVendorNumber func(unsafe.Pointer) uint32
 	_CGEnableEventStateCombining func(unsafe.Pointer) unsafe.Pointer
-	_CGErrorSetCallback func(unsafe.Pointer) unsafe.Pointer
-	_CGEventCreateCopy func(CGEventRef) CGEventRef
-	_CGEventGetFlags func(CGEventRef) unsafe.Pointer
-	_CGEventGetDoubleValueField func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventGetIntegerValueField func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventCreateKeyboardEvent func(CGEventSourceRef, unsafe.Pointer, bool) CGEventRef
-	_CGEventCreateMouseEvent func(CGEventSourceRef, unsafe.Pointer, CGPoint, unsafe.Pointer) CGEventRef
-	_CGEventCreateScrollWheelEvent2 func(CGEventSourceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGEventRef
-	_CGEventCreate func(CGEventSourceRef) CGEventRef
-	_CGEventCreateFromData func(unsafe.Pointer, unsafe.Pointer) CGEventRef
-	_CGEventKeyboardGetUnicodeString func(CGEventRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventKeyboardSetUnicodeString func(CGEventRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventGetLocation func(CGEventRef) CGPoint
-	_CGEventPost func(unsafe.Pointer, CGEventRef) unsafe.Pointer
-	_CGEventPostToPSN func(unsafe.Pointer, CGEventRef) unsafe.Pointer
-	_CGEventPostToPid func(unsafe.Pointer, CGEventRef) unsafe.Pointer
-	_CGEventSetDoubleValueField func(CGEventRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventSetIntegerValueField func(CGEventRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventSetSource func(CGEventRef, CGEventSourceRef) unsafe.Pointer
+	_CGErrorSetCallback func(unsafe.Pointer)
+	_CGEventCreateCopy func(EventRef) EventRef
+	_CGEventGetFlags func(EventRef) unsafe.Pointer
+	_CGEventGetDoubleValueField func(EventRef, unsafe.Pointer) float64
+	_CGEventGetIntegerValueField func(EventRef, unsafe.Pointer) unsafe.Pointer
+	_CGEventCreateKeyboardEvent func(EventSourceRef, unsafe.Pointer, bool) EventRef
+	_CGEventCreateMouseEvent func(EventSourceRef, unsafe.Pointer, CGPoint, unsafe.Pointer) EventRef
+	_CGEventCreateScrollWheelEvent2 func(EventSourceRef, unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) EventRef
+	_CGEventCreate func(EventSourceRef) EventRef
+	_CGEventCreateFromData func(unsafe.Pointer, unsafe.Pointer) EventRef
+	_CGEventKeyboardGetUnicodeString func(EventRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_CGEventKeyboardSetUnicodeString func(EventRef, unsafe.Pointer, unsafe.Pointer)
+	_CGEventGetLocation func(EventRef) CGPoint
+	_CGEventPost func(unsafe.Pointer, EventRef)
+	_CGEventPostToPid func(unsafe.Pointer, EventRef)
+	_CGEventPostToPSN func(unsafe.Pointer, EventRef)
+	_CGEventSetDoubleValueField func(EventRef, unsafe.Pointer, float64)
+	_CGEventSetIntegerValueField func(EventRef, unsafe.Pointer, unsafe.Pointer)
+	_CGEventSetSource func(EventRef, EventSourceRef)
 	_CGEventTapCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventTapCreateForPSN func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGEventTapCreateForPid func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventTapEnable func(unsafe.Pointer, bool) unsafe.Pointer
+	_CGEventTapCreateForPSN func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGEventTapEnable func(unsafe.Pointer, bool)
 	_CGEventTapIsEnabled func(unsafe.Pointer) bool
-	_CGEventTapPostEvent func(unsafe.Pointer, CGEventRef) unsafe.Pointer
-	_CGEventGetTimestamp func(CGEventRef) unsafe.Pointer
-	_CGEventGetType func(CGEventRef) unsafe.Pointer
+	_CGEventTapPostEvent func(unsafe.Pointer, EventRef)
+	_CGEventGetTimestamp func(EventRef) unsafe.Pointer
+	_CGEventGetType func(EventRef) unsafe.Pointer
 	_CGEventGetTypeID func() unsafe.Pointer
-	_CGEventGetUnflippedLocation func(CGEventRef) CGPoint
-	_CGEventCreateData func(unsafe.Pointer, CGEventRef) unsafe.Pointer
-	_CGEventCreateScrollWheelEvent func(CGEventSourceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGEventRef
-	_CGEventSetFlags func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSetLocation func(CGEventRef, CGPoint) unsafe.Pointer
-	_CGEventSetTimestamp func(CGEventRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSetType func(CGEventRef, unsafe.Pointer) unsafe.Pointer
+	_CGEventGetUnflippedLocation func(EventRef) CGPoint
+	_CGEventCreateData func(unsafe.Pointer, EventRef) unsafe.Pointer
+	_CGEventCreateScrollWheelEvent func(EventSourceRef, unsafe.Pointer, uint32, unsafe.Pointer) EventRef
+	_CGEventSetFlags func(EventRef, unsafe.Pointer)
+	_CGEventSetLocation func(EventRef, CGPoint)
+	_CGEventSetTimestamp func(EventRef, unsafe.Pointer)
+	_CGEventSetType func(EventRef, unsafe.Pointer)
 	_CGEventSourceButtonState func(unsafe.Pointer, unsafe.Pointer) bool
-	_CGEventSourceCounterForEventType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGEventSourceCounterForEventType func(unsafe.Pointer, unsafe.Pointer) uint32
 	_CGEventSourceFlagsState func(unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceGetLocalEventsFilterDuringSuppressionState func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventCreateSourceFromEvent func(CGEventRef) CGEventSourceRef
-	_CGEventSourceCreate func(unsafe.Pointer) CGEventSourceRef
+	_CGEventSourceGetLocalEventsFilterDuringSuppressionState func(EventSourceRef, unsafe.Pointer) unsafe.Pointer
+	_CGEventCreateSourceFromEvent func(EventRef) EventSourceRef
+	_CGEventSourceCreate func(unsafe.Pointer) EventSourceRef
+	_CGEventSourceGetKeyboardType func(EventSourceRef) unsafe.Pointer
 	_CGEventSourceKeyState func(unsafe.Pointer, unsafe.Pointer) bool
-	_CGEventSourceGetKeyboardType func(CGEventSourceRef) unsafe.Pointer
-	_CGEventSourceGetLocalEventsSuppressionInterval func(CGEventSourceRef) unsafe.Pointer
-	_CGEventSourceGetPixelsPerLine func(CGEventSourceRef) unsafe.Pointer
+	_CGEventSourceGetLocalEventsSuppressionInterval func(EventSourceRef) unsafe.Pointer
+	_CGEventSourceGetPixelsPerLine func(EventSourceRef) float64
 	_CGEventSourceSecondsSinceLastEventType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceSetLocalEventsFilterDuringSuppressionState func(CGEventSourceRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceGetSourceStateID func(CGEventSourceRef) unsafe.Pointer
+	_CGEventSourceSetLocalEventsFilterDuringSuppressionState func(EventSourceRef, unsafe.Pointer, unsafe.Pointer)
+	_CGEventSourceGetSourceStateID func(EventSourceRef) unsafe.Pointer
 	_CGEventSourceGetTypeID func() unsafe.Pointer
-	_CGEventSourceGetUserData func(CGEventSourceRef) unsafe.Pointer
-	_CGEventSourceSetKeyboardType func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceSetLocalEventsSuppressionInterval func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceSetPixelsPerLine func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGEventSourceSetUserData func(CGEventSourceRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetAscent func(CGFontRef) int
-	_CGFontCanCreatePostScriptSubset func(CGFontRef, unsafe.Pointer) bool
-	_CGFontGetCapHeight func(CGFontRef) int
-	_CGFontCreateCopyWithVariations func(CGFontRef, unsafe.Pointer) CGFontRef
-	_CGFontCreatePostScriptEncoding func(CGFontRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGFontCreatePostScriptSubset func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetDescent func(CGFontRef) int
-	_CGFontGetFontBBox func(CGFontRef) CGRect
-	_CGFontCopyFullName func(CGFontRef) unsafe.Pointer
-	_CGFontGetGlyphAdvances func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CGFontGetGlyphBBoxes func(CGFontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CGFontGetGlyphWithGlyphName func(CGFontRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontCreateWithFontName func(unsafe.Pointer) CGFontRef
-	_CGFontCreateWithDataProvider func(CGDataProviderRef) CGFontRef
-	_CGFontGetItalicAngle func(CGFontRef) float64
-	_CGFontGetLeading func(CGFontRef) int
-	_CGFontCopyGlyphNameForGlyph func(CGFontRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontGetNumberOfGlyphs func(CGFontRef) unsafe.Pointer
-	_CGFontCopyPostScriptName func(CGFontRef) unsafe.Pointer
-	_CGFontGetStemV func(CGFontRef) float64
-	_CGFontCopyTableForTag func(CGFontRef, unsafe.Pointer) unsafe.Pointer
-	_CGFontCopyTableTags func(CGFontRef) unsafe.Pointer
-	_CGFontGetTypeID func() unsafe.Pointer
-	_CGFontGetUnitsPerEm func(CGFontRef) int
-	_CGFontCopyVariationAxes func(CGFontRef) unsafe.Pointer
-	_CGFontCopyVariations func(CGFontRef) unsafe.Pointer
-	_CGFontGetXHeight func(CGFontRef) int
-	_CGFontCreateWithPlatformFont func(unsafe.Pointer) CGFontRef
-	_CGFontRelease func(CGFontRef) unsafe.Pointer
-	_CGFontRetain func(CGFontRef) CGFontRef
-	_CGFunctionCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGFunctionRef
-	_CGFunctionGetTypeID func() unsafe.Pointer
-	_CGFunctionRelease func(CGFunctionRef) unsafe.Pointer
-	_CGFunctionRetain func(CGFunctionRef) CGFunctionRef
-	_CGGetActiveDisplayList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGEventSourceGetUserData func(EventSourceRef) unsafe.Pointer
+	_CGEventSourceSetKeyboardType func(EventSourceRef, unsafe.Pointer)
+	_CGEventSourceSetLocalEventsSuppressionInterval func(EventSourceRef, unsafe.Pointer)
+	_CGEventSourceSetPixelsPerLine func(EventSourceRef, float64)
+	_CGEventSourceSetUserData func(EventSourceRef, unsafe.Pointer)
+	_CGFontCreateWithPlatformFont func(unsafe.Pointer) FontRef
+	_CGFontRelease func(FontRef)
+	_CGFontRetain func(FontRef) FontRef
+	_CGFunctionRelease func(FunctionRef)
+	_CGFunctionRetain func(FunctionRef) FunctionRef
+	_CGGetActiveDisplayList func(uint32, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGetDisplaysWithOpenGLDisplayMask func(unsafe.Pointer, uint32, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGetDisplaysWithPoint func(CGPoint, uint32, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGetDisplaysWithRect func(CGRect, uint32, unsafe.Pointer, []uint32) unsafe.Pointer
 	_CGGetDisplayTransferByFormula func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetDisplayTransferByTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetDisplaysWithOpenGLDisplayMask func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetDisplaysWithPoint func(CGPoint, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetDisplaysWithRect func(CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetEventTapList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetLastMouseDelta func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGetOnlineDisplayList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGGradientGetContentHeadroom func(CGGradientRef) unsafe.Pointer
-	_CGGradientCreateWithColorComponents func(CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGGradientRef
-	_CGGradientCreateWithColors func(CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer) CGGradientRef
-	_CGGradientCreateWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGGradientRef
-	_CGGradientGetTypeID func() unsafe.Pointer
-	_CGGradientRelease func(CGGradientRef) unsafe.Pointer
-	_CGGradientRetain func(CGGradientRef) CGGradientRef
-	_CGImageGetAlphaInfo func(CGImageRef) unsafe.Pointer
-	_CGImageGetBitmapInfo func(CGImageRef) unsafe.Pointer
-	_CGImageGetBitsPerComponent func(CGImageRef) unsafe.Pointer
-	_CGImageGetBitsPerPixel func(CGImageRef) unsafe.Pointer
-	_CGImageGetByteOrderInfo func(CGImageRef) unsafe.Pointer
-	_CGImageGetBytesPerRow func(CGImageRef) unsafe.Pointer
-	_CGImageCalculateContentAverageLightLevel func(CGImageRef) unsafe.Pointer
-	_CGImageCalculateContentHeadroom func(CGImageRef) unsafe.Pointer
-	_CGImageGetColorSpace func(CGImageRef) CGColorSpaceRef
-	_CGImageContainsImageSpecificToneMappingMetadata func(CGImageRef) bool
-	_CGImageGetContentAverageLightLevel func(CGImageRef) unsafe.Pointer
-	_CGImageGetContentHeadroom func(CGImageRef) unsafe.Pointer
-	_CGImageCreateCopy func(CGImageRef) CGImageRef
-	_CGImageCreateCopyWithColorSpace func(CGImageRef, CGColorSpaceRef) CGImageRef
-	_CGImageCreateCopyWithContentAverageLightLevel func(CGImageRef, unsafe.Pointer) CGImageRef
-	_CGImageCreateCopyWithCalculatedHDRStats func(CGImageRef) CGImageRef
-	_CGImageCreateWithImageInRect func(CGImageRef, CGRect) CGImageRef
-	_CGImageGetDataProvider func(CGImageRef) CGDataProviderRef
-	_CGImageGetDecode func(CGImageRef) unsafe.Pointer
-	_CGImageGetHeight func(CGImageRef) unsafe.Pointer
-	_CGImageCreateWithContentHeadroom func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
-	_CGImageCreateWithJPEGDataProvider func(CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
-	_CGImageMaskCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool) CGImageRef
-	_CGImageCreateWithPNGDataProvider func(CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
-	_CGImageCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, CGColorSpaceRef, unsafe.Pointer, CGDataProviderRef, unsafe.Pointer, bool, unsafe.Pointer) CGImageRef
-	_CGWindowListCreateImageFromArray func(CGRect, unsafe.Pointer, unsafe.Pointer) CGImageRef
-	_CGImageIsMask func(CGImageRef) bool
-	_CGImageCreateWithMask func(CGImageRef, CGImageRef) CGImageRef
-	_CGImageGetPixelFormatInfo func(CGImageRef) unsafe.Pointer
-	_CGImageGetRenderingIntent func(CGImageRef) unsafe.Pointer
-	_CGImageGetShouldInterpolate func(CGImageRef) bool
-	_CGImageShouldToneMap func(CGImageRef) bool
-	_CGImageGetTypeID func() unsafe.Pointer
-	_CGImageGetUTType func(CGImageRef) unsafe.Pointer
-	_CGImageGetWidth func(CGImageRef) unsafe.Pointer
-	_CGImageCreateCopyWithContentHeadroom func(unsafe.Pointer, CGImageRef) CGImageRef
-	_CGImageCreateWithMaskingColors func(CGImageRef, unsafe.Pointer) CGImageRef
-	_CGImageRetain func(CGImageRef) CGImageRef
+	_CGGetDisplayTransferByTable func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGetEventTapList func(uint32, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGetLastMouseDelta func(unsafe.Pointer, unsafe.Pointer)
+	_CGGetOnlineDisplayList func(uint32, unsafe.Pointer, []uint32) unsafe.Pointer
+	_CGGradientRelease func(GradientRef)
+	_CGGradientRetain func(GradientRef) GradientRef
+	_CGImageCreateCopyWithContentHeadroom func(float32, ImageRef) ImageRef
+	_CGImageCreateWithMaskingColors func(ImageRef, []float64) ImageRef
+	_CGImageRelease func(ImageRef)
+	_CGImageRetain func(ImageRef) ImageRef
 	_CGInhibitLocalEvents func(unsafe.Pointer) unsafe.Pointer
-	_CGLayerGetContext func(CGLayerRef) CGContextRef
-	_CGLayerCreateWithContext func(CGContextRef, CGSize, unsafe.Pointer) CGLayerRef
-	_CGLayerGetSize func(CGLayerRef) CGSize
-	_CGLayerGetTypeID func() unsafe.Pointer
-	_CGLayerRelease func(CGLayerRef) unsafe.Pointer
-	_CGLayerRetain func(CGLayerRef) CGLayerRef
+	_CGLayerRelease func(LayerRef)
+	_CGLayerRetain func(LayerRef) LayerRef
 	_CGMainDisplayID func() unsafe.Pointer
-	_CGPathCloseSubpath func(CGMutablePathRef) unsafe.Pointer
-	_CGPathCreateMutable func() CGMutablePathRef
 	_CGOpenGLDisplayMaskToDisplayID func(unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayApplyBlock func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFArrayGetArray func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetBoolean func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetCount func(CGPDFArrayRef) unsafe.Pointer
-	_CGPDFArrayGetDictionary func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetInteger func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetName func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetNull func(CGPDFArrayRef, unsafe.Pointer) bool
-	_CGPDFArrayGetNumber func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetObject func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetStream func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFArrayGetString func(CGPDFArrayRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFContentStreamCreateWithPage func(CGPDFPageRef) CGPDFContentStreamRef
-	_CGPDFContentStreamCreateWithStream func(CGPDFStreamRef, CGPDFDictionaryRef, CGPDFContentStreamRef) CGPDFContentStreamRef
-	_CGPDFContentStreamGetResource func(CGPDFContentStreamRef, unsafe.Pointer, unsafe.Pointer) CGPDFObjectRef
-	_CGPDFContentStreamGetStreams func(CGPDFContentStreamRef) unsafe.Pointer
-	_CGPDFContentStreamRelease func(CGPDFContentStreamRef) unsafe.Pointer
-	_CGPDFContentStreamRetain func(CGPDFContentStreamRef) CGPDFContentStreamRef
-	_CGPDFContextBeginTag func(CGContextRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFContextEndTag func(CGContextRef) unsafe.Pointer
-	_CGPDFContextSetIDTree func(CGContextRef, CGPDFDictionaryRef) unsafe.Pointer
-	_CGPDFContextSetOutline func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFContextSetPageTagStructureTree func(CGContextRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFContextSetParentTree func(CGContextRef, CGPDFDictionaryRef) unsafe.Pointer
-	_CGPDFDictionaryApplyBlock func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryApplyFunction func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDictionaryGetArray func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetBoolean func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetCount func(CGPDFDictionaryRef) unsafe.Pointer
-	_CGPDFDictionaryGetDictionary func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetInteger func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetName func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetNumber func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetObject func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetStream func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDictionaryGetString func(CGPDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFDocumentGetAccessPermissions func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentAllowsCopying func(CGPDFDocumentRef) bool
-	_CGPDFDocumentAllowsPrinting func(CGPDFDocumentRef) bool
-	_CGPDFDocumentGetCatalog func(CGPDFDocumentRef) CGPDFDictionaryRef
-	_CGPDFDocumentGetID func(CGPDFDocumentRef) CGPDFArrayRef
-	_CGPDFDocumentGetVersion func(CGPDFDocumentRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFDocumentGetInfo func(CGPDFDocumentRef) CGPDFDictionaryRef
-	_CGPDFDocumentCreateWithURL func(unsafe.Pointer) CGPDFDocumentRef
-	_CGPDFDocumentCreateWithProvider func(CGDataProviderRef) CGPDFDocumentRef
-	_CGPDFDocumentIsEncrypted func(CGPDFDocumentRef) bool
-	_CGPDFDocumentIsUnlocked func(CGPDFDocumentRef) bool
-	_CGPDFDocumentGetNumberOfPages func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentGetOutline func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentGetPage func(CGPDFDocumentRef, unsafe.Pointer) CGPDFPageRef
-	_CGPDFDocumentGetTypeID func() unsafe.Pointer
-	_CGPDFDocumentUnlockWithPassword func(CGPDFDocumentRef, unsafe.Pointer) bool
-	_CGPDFDocumentGetArtBox func(CGPDFDocumentRef, int) CGRect
-	_CGPDFDocumentGetBleedBox func(CGPDFDocumentRef, int) CGRect
-	_CGPDFDocumentGetCropBox func(CGPDFDocumentRef, int) CGRect
-	_CGPDFDocumentGetMediaBox func(CGPDFDocumentRef, int) CGRect
-	_CGPDFDocumentGetRotationAngle func(CGPDFDocumentRef, int) int
-	_CGPDFDocumentGetTrimBox func(CGPDFDocumentRef, int) CGRect
-	_CGPDFDocumentRelease func(CGPDFDocumentRef) unsafe.Pointer
-	_CGPDFDocumentRetain func(CGPDFDocumentRef) CGPDFDocumentRef
-	_CGPDFObjectGetType func(CGPDFObjectRef) unsafe.Pointer
-	_CGPDFObjectGetValue func(CGPDFObjectRef, unsafe.Pointer, unsafe.Pointer) bool
-	_CGPDFOperatorTableCreate func() CGPDFOperatorTableRef
-	_CGPDFOperatorTableRelease func(CGPDFOperatorTableRef) unsafe.Pointer
-	_CGPDFOperatorTableRetain func(CGPDFOperatorTableRef) CGPDFOperatorTableRef
-	_CGPDFOperatorTableSetCallback func(CGPDFOperatorTableRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPDFPageGetDictionary func(CGPDFPageRef) CGPDFDictionaryRef
-	_CGPDFPageGetDocument func(CGPDFPageRef) CGPDFDocumentRef
-	_CGPDFPageGetBoxRect func(CGPDFPageRef, unsafe.Pointer) CGRect
-	_CGPDFPageGetDrawingTransform func(CGPDFPageRef, unsafe.Pointer, CGRect, int, bool) CGAffineTransform
-	_CGPDFPageGetPageNumber func(CGPDFPageRef) unsafe.Pointer
-	_CGPDFPageGetRotationAngle func(CGPDFPageRef) int
-	_CGPDFPageGetTypeID func() unsafe.Pointer
-	_CGPDFPageRelease func(CGPDFPageRef) unsafe.Pointer
-	_CGPDFPageRetain func(CGPDFPageRef) CGPDFPageRef
-	_CGPDFScannerCreate func(CGPDFContentStreamRef, CGPDFOperatorTableRef, unsafe.Pointer) CGPDFScannerRef
-	_CGPDFScannerGetContentStream func(CGPDFScannerRef) CGPDFContentStreamRef
-	_CGPDFScannerPopArray func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopBoolean func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopDictionary func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopInteger func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopName func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopNumber func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopObject func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopStream func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerPopString func(CGPDFScannerRef, unsafe.Pointer) bool
-	_CGPDFScannerRelease func(CGPDFScannerRef) unsafe.Pointer
-	_CGPDFScannerRetain func(CGPDFScannerRef) CGPDFScannerRef
-	_CGPDFScannerScan func(CGPDFScannerRef) bool
-	_CGPDFScannerStop func(CGPDFScannerRef) unsafe.Pointer
-	_CGPDFStreamCopyData func(CGPDFStreamRef, unsafe.Pointer) unsafe.Pointer
-	_CGPDFStreamGetDictionary func(CGPDFStreamRef) CGPDFDictionaryRef
-	_CGPDFStringCopyDate func(CGPDFStringRef) unsafe.Pointer
-	_CGPDFStringCopyTextString func(CGPDFStringRef) unsafe.Pointer
-	_CGPDFStringGetBytePtr func(CGPDFStringRef) unsafe.Pointer
-	_CGPDFStringGetLength func(CGPDFStringRef) unsafe.Pointer
+	_CGPathContainsPoint func(PathRef, unsafe.Pointer, CGPoint, bool) bool
+	_CGPathCreateCopyByDashingPath func(PathRef, unsafe.Pointer, float64, []float64, uintptr) PathRef
+	_CGPathCreateCopyByFlattening func(PathRef, float64) PathRef
+	_CGPathCreateCopyByIntersectingPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateCopyByNormalizing func(PathRef, bool) PathRef
+	_CGPathCreateCopyByStrokingPath func(PathRef, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer, float64) PathRef
+	_CGPathCreateCopyBySubtractingPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateCopyBySymmetricDifferenceOfPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateCopyByUnioningPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateCopyOfLineByIntersectingPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateCopyOfLineBySubtractingPath func(PathRef, PathRef, bool) PathRef
+	_CGPathCreateSeparateComponents func(PathRef, bool) unsafe.Pointer
+	_CGPathEqualToPath func(PathRef, PathRef) bool
+	_CGPathIntersectsPath func(PathRef, PathRef, bool) bool
+	_CGPathRelease func(PathRef)
+	_CGPathRetain func(PathRef) PathRef
+	_CGPatternRelease func(PatternRef)
+	_CGPatternRetain func(PatternRef) PatternRef
+	_CGPDFArrayApplyBlock func(PDFArrayRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPDFArrayGetArray func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetBoolean func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetCount func(PDFArrayRef) uintptr
+	_CGPDFArrayGetDictionary func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetInteger func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetName func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetNull func(PDFArrayRef, uintptr) bool
+	_CGPDFArrayGetNumber func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetObject func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetStream func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFArrayGetString func(PDFArrayRef, uintptr, unsafe.Pointer) bool
+	_CGPDFContentStreamCreateWithPage func(PDFPageRef) PDFContentStreamRef
+	_CGPDFContentStreamCreateWithStream func(PDFStreamRef, PDFDictionaryRef, PDFContentStreamRef) PDFContentStreamRef
+	_CGPDFContentStreamGetResource func(PDFContentStreamRef, unsafe.Pointer, unsafe.Pointer) PDFObjectRef
+	_CGPDFContentStreamGetStreams func(PDFContentStreamRef) unsafe.Pointer
+	_CGPDFContentStreamRelease func(PDFContentStreamRef)
+	_CGPDFContentStreamRetain func(PDFContentStreamRef) PDFContentStreamRef
+	_CGPDFContextBeginTag func(ContextRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPDFContextEndTag func(ContextRef)
+	_CGPDFContextSetIDTree func(ContextRef, PDFDictionaryRef)
+	_CGPDFContextSetOutline func(ContextRef, unsafe.Pointer)
+	_CGPDFContextSetPageTagStructureTree func(ContextRef, unsafe.Pointer)
+	_CGPDFContextSetParentTree func(ContextRef, PDFDictionaryRef)
+	_CGPDFDictionaryApplyBlock func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPDFDictionaryApplyFunction func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPDFDictionaryGetArray func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetBoolean func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetCount func(PDFDictionaryRef) uintptr
+	_CGPDFDictionaryGetDictionary func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetInteger func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetName func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetNumber func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetObject func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetStream func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDictionaryGetString func(PDFDictionaryRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFDocumentGetArtBox func(PDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetBleedBox func(PDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetCropBox func(PDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetMediaBox func(PDFDocumentRef, int) CGRect
+	_CGPDFDocumentGetRotationAngle func(PDFDocumentRef, int) int
+	_CGPDFDocumentGetTrimBox func(PDFDocumentRef, int) CGRect
+	_CGPDFDocumentRelease func(PDFDocumentRef)
+	_CGPDFDocumentRetain func(PDFDocumentRef) PDFDocumentRef
+	_CGPDFObjectGetType func(PDFObjectRef) unsafe.Pointer
+	_CGPDFObjectGetValue func(PDFObjectRef, unsafe.Pointer, unsafe.Pointer) bool
+	_CGPDFOperatorTableCreate func() PDFOperatorTableRef
+	_CGPDFOperatorTableRelease func(PDFOperatorTableRef)
+	_CGPDFOperatorTableRetain func(PDFOperatorTableRef) PDFOperatorTableRef
+	_CGPDFOperatorTableSetCallback func(PDFOperatorTableRef, unsafe.Pointer, unsafe.Pointer)
+	_CGPDFPageRelease func(PDFPageRef)
+	_CGPDFPageRetain func(PDFPageRef) PDFPageRef
+	_CGPDFScannerCreate func(PDFContentStreamRef, PDFOperatorTableRef, unsafe.Pointer) PDFScannerRef
+	_CGPDFScannerGetContentStream func(PDFScannerRef) PDFContentStreamRef
+	_CGPDFScannerPopArray func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopBoolean func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopDictionary func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopInteger func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopName func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopNumber func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopObject func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopStream func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerPopString func(PDFScannerRef, unsafe.Pointer) bool
+	_CGPDFScannerRelease func(PDFScannerRef)
+	_CGPDFScannerRetain func(PDFScannerRef) PDFScannerRef
+	_CGPDFScannerScan func(PDFScannerRef) bool
+	_CGPDFScannerStop func(PDFScannerRef)
+	_CGPDFStreamCopyData func(PDFStreamRef, unsafe.Pointer) unsafe.Pointer
+	_CGPDFStreamGetDictionary func(PDFStreamRef) PDFDictionaryRef
+	_CGPDFStringCopyDate func(PDFStringRef) unsafe.Pointer
+	_CGPDFStringCopyTextString func(PDFStringRef) unsafe.Pointer
+	_CGPDFStringGetBytePtr func(PDFStringRef) unsafe.Pointer
+	_CGPDFStringGetLength func(PDFStringRef) uintptr
 	_CGPDFTagTypeGetName func(unsafe.Pointer) unsafe.Pointer
-	_CGPSConverterAbort func(CGPSConverterRef) bool
-	_CGPSConverterConvert func(CGPSConverterRef, CGDataProviderRef, CGDataConsumerRef, unsafe.Pointer) bool
-	_CGPSConverterCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGPSConverterRef
-	_CGPSConverterIsConverting func(CGPSConverterRef) bool
-	_CGPSConverterGetTypeID func() unsafe.Pointer
-	_CGPathApply func(CGPathRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPathApplyWithBlock func(CGPathRef, unsafe.Pointer) unsafe.Pointer
-	_CGPathGetBoundingBox func(CGPathRef) CGRect
-	_CGPathGetPathBoundingBox func(CGPathRef) CGRect
-	_CGPathCreateCopy func(CGPathRef) CGPathRef
-	_CGPathCreateCopyByTransformingPath func(CGPathRef, unsafe.Pointer) CGPathRef
-	_CGPathGetCurrentPoint func(CGPathRef) CGPoint
-	_CGPathCreateWithEllipseInRect func(CGRect, unsafe.Pointer) CGPathRef
-	_CGPathCreateWithRect func(CGRect, unsafe.Pointer) CGPathRef
-	_CGPathCreateWithRoundedRect func(CGRect, float64, float64, unsafe.Pointer) CGPathRef
-	_CGPathIsEmpty func(CGPathRef) bool
-	_CGPathIsRect func(CGPathRef, unsafe.Pointer) bool
-	_CGPathCreateMutableCopy func(CGPathRef) CGMutablePathRef
-	_CGPathCreateMutableCopyByTransformingPath func(CGPathRef, unsafe.Pointer) CGMutablePathRef
-	_CGPathGetTypeID func() unsafe.Pointer
-	_CGPathAddArc func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64, bool) unsafe.Pointer
-	_CGPathAddArcToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGPathAddCurveToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGPathAddEllipseInRect func(CGMutablePathRef, unsafe.Pointer, CGRect) unsafe.Pointer
-	_CGPathAddLineToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64) unsafe.Pointer
-	_CGPathAddLines func(CGMutablePathRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPathAddPath func(CGMutablePathRef, unsafe.Pointer, CGPathRef) unsafe.Pointer
-	_CGPathAddQuadCurveToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64) unsafe.Pointer
-	_CGPathAddRect func(CGMutablePathRef, unsafe.Pointer, CGRect) unsafe.Pointer
-	_CGPathAddRects func(CGMutablePathRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGPathAddRelativeArc func(CGMutablePathRef, unsafe.Pointer, float64, float64, float64, float64, float64) unsafe.Pointer
-	_CGPathAddRoundedRect func(CGMutablePathRef, unsafe.Pointer, CGRect, float64, float64) unsafe.Pointer
-	_CGPathContainsPoint func(CGPathRef, unsafe.Pointer, CGPoint, bool) bool
-	_CGPathCreateCopyByDashingPath func(CGPathRef, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) CGPathRef
-	_CGPathCreateCopyByFlattening func(CGPathRef, float64) CGPathRef
-	_CGPathCreateCopyByIntersectingPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyByNormalizing func(CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyByStrokingPath func(CGPathRef, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer, float64) CGPathRef
-	_CGPathCreateCopyBySubtractingPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyBySymmetricDifferenceOfPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyByUnioningPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyOfLineByIntersectingPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateCopyOfLineBySubtractingPath func(CGPathRef, CGPathRef, bool) CGPathRef
-	_CGPathCreateSeparateComponents func(CGPathRef, bool) unsafe.Pointer
-	_CGPathEqualToPath func(CGPathRef, CGPathRef) bool
-	_CGPathIntersectsPath func(CGPathRef, CGPathRef, bool) bool
-	_CGPathMoveToPoint func(CGMutablePathRef, unsafe.Pointer, float64, float64) unsafe.Pointer
-	_CGPathRelease func(CGPathRef) unsafe.Pointer
-	_CGPathRetain func(CGPathRef) CGPathRef
-	_CGPatternCreate func(unsafe.Pointer, CGRect, CGAffineTransform, float64, float64, unsafe.Pointer, bool, unsafe.Pointer) CGPatternRef
-	_CGPatternGetTypeID func() unsafe.Pointer
-	_CGPatternRelease func(CGPatternRef) unsafe.Pointer
-	_CGPatternRetain func(CGPatternRef) CGPatternRef
 	_CGPointApplyAffineTransform func(CGPoint, CGAffineTransform) CGPoint
 	_CGPointCreateDictionaryRepresentation func(CGPoint) unsafe.Pointer
 	_CGPointEqualToPoint func(CGPoint, CGPoint) bool
@@ -674,7 +673,7 @@ var (
 	_CGRectContainsPoint func(CGRect, CGPoint) bool
 	_CGRectContainsRect func(CGRect, CGRect) bool
 	_CGRectCreateDictionaryRepresentation func(CGRect) unsafe.Pointer
-	_CGRectDivide func(CGRect, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
+	_CGRectDivide func(CGRect, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer)
 	_CGRectEqualToRect func(CGRect, CGRect) bool
 	_CGRectGetHeight func(CGRect) float64
 	_CGRectGetMaxX func(CGRect) float64
@@ -698,48 +697,36 @@ var (
 	_CGRegisterScreenRefreshCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGReleaseAllDisplays func() unsafe.Pointer
 	_CGReleaseDisplayFadeReservation func(unsafe.Pointer) unsafe.Pointer
-	_CGReleaseScreenRefreshRects func(unsafe.Pointer) unsafe.Pointer
-	_CGRenderingBufferLockBytePtr func(CGRenderingBufferProviderRef) unsafe.Pointer
-	_CGRenderingBufferProviderCreate func(unsafe.Pointer, unsafe.Pointer) CGRenderingBufferProviderRef
-	_CGRenderingBufferProviderCreateWithCFData func(unsafe.Pointer) CGRenderingBufferProviderRef
-	_CGRenderingBufferProviderGetSize func(CGRenderingBufferProviderRef) unsafe.Pointer
-	_CGRenderingBufferProviderGetTypeID func() unsafe.Pointer
-	_CGRenderingBufferUnlockBytePtr func(CGRenderingBufferProviderRef) unsafe.Pointer
+	_CGReleaseScreenRefreshRects func(unsafe.Pointer)
 	_CGRequestListenEventAccess func() bool
 	_CGRequestPostEventAccess func() bool
 	_CGRequestScreenCaptureAccess func() bool
-	_CGRestorePermanentDisplayConfiguration func() unsafe.Pointer
+	_CGRestorePermanentDisplayConfiguration func()
 	_CGScreenRegisterMoveCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGScreenUnregisterMoveCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGScreenUnregisterMoveCallback func(unsafe.Pointer, unsafe.Pointer)
 	_CGSessionCopyCurrentDictionary func() unsafe.Pointer
-	_CGSetDisplayTransferByByteTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGSetDisplayTransferByByteTable func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGSetDisplayTransferByFormula func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGSetDisplayTransferByTable func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGSetDisplayTransferByTable func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGSetLocalEventsFilterDuringSuppressionState func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGSetLocalEventsSuppressionInterval func(unsafe.Pointer) unsafe.Pointer
-	_CGShadingGetContentHeadroom func(CGShadingRef) unsafe.Pointer
-	_CGShadingCreateAxialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, bool, bool) CGShadingRef
-	_CGShadingCreateAxial func(CGColorSpaceRef, CGPoint, CGPoint, CGFunctionRef, bool, bool) CGShadingRef
-	_CGShadingCreateRadialWithContentHeadroom func(unsafe.Pointer, CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, bool, bool) CGShadingRef
-	_CGShadingCreateRadial func(CGColorSpaceRef, CGPoint, float64, CGPoint, float64, CGFunctionRef, bool, bool) CGShadingRef
-	_CGShadingGetTypeID func() unsafe.Pointer
-	_CGShadingRelease func(CGShadingRef) unsafe.Pointer
-	_CGShadingRetain func(CGShadingRef) CGShadingRef
+	_CGShadingRelease func(ShadingRef)
+	_CGShadingRetain func(ShadingRef) ShadingRef
 	_CGShieldingWindowID func(unsafe.Pointer) unsafe.Pointer
 	_CGShieldingWindowLevel func() unsafe.Pointer
 	_CGSizeApplyAffineTransform func(CGSize, CGAffineTransform) CGSize
 	_CGSizeCreateDictionaryRepresentation func(CGSize) unsafe.Pointer
 	_CGSizeEqualToSize func(CGSize, CGSize) bool
 	_CGSizeMakeWithDictionaryRepresentation func(unsafe.Pointer, unsafe.Pointer) bool
-	_CGUnregisterScreenRefreshCallback func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CGWaitForScreenRefreshRects func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CGUnregisterScreenRefreshCallback func(unsafe.Pointer, unsafe.Pointer)
+	_CGWaitForScreenRefreshRects func(unsafe.Pointer, []uint32) unsafe.Pointer
 	_CGWaitForScreenUpdateRects func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGWarpMouseCursorPosition func(CGPoint) unsafe.Pointer
 	_CGWindowLevelForKey func(unsafe.Pointer) unsafe.Pointer
 	_CGWindowListCopyWindowInfo func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGWindowListCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CGWindowListCreateDescriptionFromArray func(unsafe.Pointer) unsafe.Pointer
-	_CGWindowListCreateImage func(CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) CGImageRef
+	_CGWindowListCreateImage func(CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ImageRef
 	_CGWindowServerCFMachPort func() unsafe.Pointer
 	_CGWindowServerCreateServerPort func() unsafe.Pointer
 )
@@ -749,31 +736,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_CGColorSpaceRelease, lib, "CGColorSpaceRelease")
-	tryRegister(&_CGContextEOFillPath, lib, "CGContextEOFillPath")
-	tryRegister(&_CGContextSetInterpolationQuality, lib, "CGContextSetInterpolationQuality")
-	tryRegister(&_CGContextFillPath, lib, "CGContextFillPath")
-	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
-	tryRegister(&_CGAcquireDisplayFadeReservation, lib, "CGAcquireDisplayFadeReservation")
-	tryRegister(&_CGAffineTransformConcat, lib, "CGAffineTransformConcat")
-	tryRegister(&_CGAffineTransformDecompose, lib, "CGAffineTransformDecompose")
-	tryRegister(&_CGAffineTransformEqualToTransform, lib, "CGAffineTransformEqualToTransform")
-	tryRegister(&_CGAffineTransformInvert, lib, "CGAffineTransformInvert")
-	tryRegister(&_CGAffineTransformIsIdentity, lib, "CGAffineTransformIsIdentity")
-	tryRegister(&_CGAffineTransformMake, lib, "CGAffineTransformMake")
-	tryRegister(&_CGAffineTransformMakeRotation, lib, "CGAffineTransformMakeRotation")
-	tryRegister(&_CGAffineTransformMakeScale, lib, "CGAffineTransformMakeScale")
-	tryRegister(&_CGAffineTransformMakeTranslation, lib, "CGAffineTransformMakeTranslation")
-	tryRegister(&_CGAffineTransformMakeWithComponents, lib, "CGAffineTransformMakeWithComponents")
-	tryRegister(&_CGAffineTransformRotate, lib, "CGAffineTransformRotate")
-	tryRegister(&_CGAffineTransformScale, lib, "CGAffineTransformScale")
-	tryRegister(&_CGAffineTransformTranslate, lib, "CGAffineTransformTranslate")
-	tryRegister(&_CGAssociateMouseAndMouseCursorPosition, lib, "CGAssociateMouseAndMouseCursorPosition")
-	tryRegister(&_CGBeginDisplayConfiguration, lib, "CGBeginDisplayConfiguration")
 	tryRegister(&_CGBitmapContextCreateAdaptive, lib, "CGBitmapContextCreateAdaptive")
-	tryRegister(&_CGCancelDisplayConfiguration, lib, "CGCancelDisplayConfiguration")
-	tryRegister(&_CGCaptureAllDisplays, lib, "CGCaptureAllDisplays")
-	tryRegister(&_CGCaptureAllDisplaysWithOptions, lib, "CGCaptureAllDisplaysWithOptions")
 	tryRegister(&_CGColorGetAlpha, lib, "CGColorGetAlpha")
 	tryRegister(&_CGColorGetColorSpace, lib, "CGColorGetColorSpace")
 	tryRegister(&_CGColorGetContentHeadroom, lib, "CGColorGetContentHeadroom")
@@ -796,13 +759,6 @@ func init() {
 	tryRegister(&_CGColorConversionInfoCreate, lib, "CGColorConversionInfoCreate")
 	tryRegister(&_CGColorConversionInfoCreateForToneMapping, lib, "CGColorConversionInfoCreateForToneMapping")
 	tryRegister(&_CGColorConversionInfoGetTypeID, lib, "CGColorConversionInfoGetTypeID")
-	tryRegister(&_CGColorConversionInfoCreateFromList, lib, "CGColorConversionInfoCreateFromList")
-	tryRegister(&_CGColorConversionInfoCreateFromListWithArguments, lib, "CGColorConversionInfoCreateFromListWithArguments")
-	tryRegister(&_CGColorEqualToColor, lib, "CGColorEqualToColor")
-	tryRegister(&_CGColorGetComponents, lib, "CGColorGetComponents")
-	tryRegister(&_CGColorGetConstantColor, lib, "CGColorGetConstantColor")
-	tryRegister(&_CGColorRelease, lib, "CGColorRelease")
-	tryRegister(&_CGColorRetain, lib, "CGColorRetain")
 	tryRegister(&_CGColorSpaceGetBaseColorSpace, lib, "CGColorSpaceGetBaseColorSpace")
 	tryRegister(&_CGColorSpaceCopyICCData, lib, "CGColorSpaceCopyICCData")
 	tryRegister(&_CGColorSpaceCopyPropertyList, lib, "CGColorSpaceCopyPropertyList")
@@ -825,39 +781,15 @@ func init() {
 	tryRegister(&_CGColorSpaceGetNumberOfComponents, lib, "CGColorSpaceGetNumberOfComponents")
 	tryRegister(&_CGColorSpaceSupportsOutput, lib, "CGColorSpaceSupportsOutput")
 	tryRegister(&_CGColorSpaceGetTypeID, lib, "CGColorSpaceGetTypeID")
-	tryRegister(&_CGColorSpaceCopyBaseColorSpace, lib, "CGColorSpaceCopyBaseColorSpace")
-	tryRegister(&_CGColorSpaceCreateCopyWithStandardRange, lib, "CGColorSpaceCreateCopyWithStandardRange")
-	tryRegister(&_CGColorSpaceCreateDeviceCMYK, lib, "CGColorSpaceCreateDeviceCMYK")
-	tryRegister(&_CGColorSpaceCreateDeviceGray, lib, "CGColorSpaceCreateDeviceGray")
-	tryRegister(&_CGColorSpaceCreateDeviceRGB, lib, "CGColorSpaceCreateDeviceRGB")
-	tryRegister(&_CGColorSpaceCreateExtended, lib, "CGColorSpaceCreateExtended")
-	tryRegister(&_CGColorSpaceCreateExtendedLinearized, lib, "CGColorSpaceCreateExtendedLinearized")
-	tryRegister(&_CGColorSpaceCreateLinearized, lib, "CGColorSpaceCreateLinearized")
-	tryRegister(&_CGColorSpaceCreateWithColorSyncProfile, lib, "CGColorSpaceCreateWithColorSyncProfile")
-	tryRegister(&_CGColorSpaceGetColorTable, lib, "CGColorSpaceGetColorTable")
-	tryRegister(&_CGColorSpaceGetColorTableCount, lib, "CGColorSpaceGetColorTableCount")
-	tryRegister(&_CGColorSpaceGetName, lib, "CGColorSpaceGetName")
-	tryRegister(&_CGColorSpaceIsHLGBased, lib, "CGColorSpaceIsHLGBased")
-	tryRegister(&_CGColorSpaceIsPQBased, lib, "CGColorSpaceIsPQBased")
-	tryRegister(&_CGColorSpaceRetain, lib, "CGColorSpaceRetain")
-	tryRegister(&_CGColorSpaceUsesExtendedRange, lib, "CGColorSpaceUsesExtendedRange")
-	tryRegister(&_CGColorSpaceUsesITUR_2100TF, lib, "CGColorSpaceUsesITUR_2100TF")
-	tryRegister(&_CGCompleteDisplayConfiguration, lib, "CGCompleteDisplayConfiguration")
-	tryRegister(&_CGConfigureDisplayFadeEffect, lib, "CGConfigureDisplayFadeEffect")
-	tryRegister(&_CGConfigureDisplayMirrorOfDisplay, lib, "CGConfigureDisplayMirrorOfDisplay")
-	tryRegister(&_CGConfigureDisplayMode, lib, "CGConfigureDisplayMode")
-	tryRegister(&_CGConfigureDisplayOrigin, lib, "CGConfigureDisplayOrigin")
-	tryRegister(&_CGConfigureDisplayStereoOperation, lib, "CGConfigureDisplayStereoOperation")
-	tryRegister(&_CGConfigureDisplayWithDisplayMode, lib, "CGConfigureDisplayWithDisplayMode")
 	tryRegister(&_CGPDFContextAddDestinationAtPoint, lib, "CGPDFContextAddDestinationAtPoint")
 	tryRegister(&_CGPDFContextAddDocumentMetadata, lib, "CGPDFContextAddDocumentMetadata")
 	tryRegister(&_CGContextAddEllipseInRect, lib, "CGContextAddEllipseInRect")
 	tryRegister(&_CGContextAddPath, lib, "CGContextAddPath")
 	tryRegister(&_CGContextAddRect, lib, "CGContextAddRect")
 	tryRegister(&_CGBitmapContextGetAlphaInfo, lib, "CGBitmapContextGetAlphaInfo")
-	tryRegister(&_CGPDFContextBeginPage, lib, "CGPDFContextBeginPage")
 	tryRegister(&_CGContextBeginPage, lib, "CGContextBeginPage")
 	tryRegister(&_CGContextBeginPath, lib, "CGContextBeginPath")
+	tryRegister(&_CGPDFContextBeginPage, lib, "CGPDFContextBeginPage")
 	tryRegister(&_CGContextBeginTransparencyLayer, lib, "CGContextBeginTransparencyLayer")
 	tryRegister(&_CGContextBeginTransparencyLayerWithRect, lib, "CGContextBeginTransparencyLayerWithRect")
 	tryRegister(&_CGBitmapContextGetBitmapInfo, lib, "CGBitmapContextGetBitmapInfo")
@@ -869,8 +801,8 @@ func init() {
 	tryRegister(&_CGContextClearRect, lib, "CGContextClearRect")
 	tryRegister(&_CGContextClipToRect, lib, "CGContextClipToRect")
 	tryRegister(&_CGContextClipToMask, lib, "CGContextClipToMask")
-	tryRegister(&_CGPDFContextClose, lib, "CGPDFContextClose")
 	tryRegister(&_CGContextClosePath, lib, "CGContextClosePath")
+	tryRegister(&_CGPDFContextClose, lib, "CGPDFContextClose")
 	tryRegister(&_CGBitmapContextGetColorSpace, lib, "CGBitmapContextGetColorSpace")
 	tryRegister(&_CGContextConcatCTM, lib, "CGContextConcatCTM")
 	tryRegister(&_CGContextConvertSizeToDeviceSpace, lib, "CGContextConvertSizeToDeviceSpace")
@@ -883,12 +815,12 @@ func init() {
 	tryRegister(&_CGContextGetPathCurrentPoint, lib, "CGContextGetPathCurrentPoint")
 	tryRegister(&_CGBitmapContextGetData, lib, "CGBitmapContextGetData")
 	tryRegister(&_CGContextDrawLinearGradient, lib, "CGContextDrawLinearGradient")
-	tryRegister(&_CGContextDrawPDFPage, lib, "CGContextDrawPDFPage")
 	tryRegister(&_CGContextDrawPath, lib, "CGContextDrawPath")
+	tryRegister(&_CGContextDrawPDFPage, lib, "CGContextDrawPDFPage")
 	tryRegister(&_CGContextDrawRadialGradient, lib, "CGContextDrawRadialGradient")
 	tryRegister(&_CGContextDrawShading, lib, "CGContextDrawShading")
-	tryRegister(&_CGPDFContextEndPage, lib, "CGPDFContextEndPage")
 	tryRegister(&_CGContextEndPage, lib, "CGContextEndPage")
+	tryRegister(&_CGPDFContextEndPage, lib, "CGPDFContextEndPage")
 	tryRegister(&_CGContextEndTransparencyLayer, lib, "CGContextEndTransparencyLayer")
 	tryRegister(&_CGContextFillRect, lib, "CGContextFillRect")
 	tryRegister(&_CGContextFillEllipseInRect, lib, "CGContextFillEllipseInRect")
@@ -966,11 +898,210 @@ func init() {
 	tryRegister(&_CGContextGetTypeID, lib, "CGContextGetTypeID")
 	tryRegister(&_CGContextGetUserSpaceToDeviceSpaceTransform, lib, "CGContextGetUserSpaceToDeviceSpaceTransform")
 	tryRegister(&_CGBitmapContextGetWidth, lib, "CGBitmapContextGetWidth")
+	tryRegister(&_CGContextGetContentToneMappingInfo, lib, "CGContextGetContentToneMappingInfo")
+	tryRegister(&_CGContextSetContentToneMappingInfo, lib, "CGContextSetContentToneMappingInfo")
+	tryRegister(&_CGDataConsumerCreateWithCFData, lib, "CGDataConsumerCreateWithCFData")
+	tryRegister(&_CGDataConsumerCreate, lib, "CGDataConsumerCreate")
+	tryRegister(&_CGDataConsumerCreateWithURL, lib, "CGDataConsumerCreateWithURL")
+	tryRegister(&_CGDataConsumerGetTypeID, lib, "CGDataConsumerGetTypeID")
+	tryRegister(&_CGDataProviderCopyData, lib, "CGDataProviderCopyData")
+	tryRegister(&_CGDataProviderGetInfo, lib, "CGDataProviderGetInfo")
+	tryRegister(&_CGDataProviderCreateWithCFData, lib, "CGDataProviderCreateWithCFData")
+	tryRegister(&_CGDataProviderCreateWithData, lib, "CGDataProviderCreateWithData")
+	tryRegister(&_CGDataProviderCreateDirect, lib, "CGDataProviderCreateDirect")
+	tryRegister(&_CGDataProviderCreateWithFilename, lib, "CGDataProviderCreateWithFilename")
+	tryRegister(&_CGDataProviderCreateSequential, lib, "CGDataProviderCreateSequential")
+	tryRegister(&_CGDataProviderCreateWithURL, lib, "CGDataProviderCreateWithURL")
+	tryRegister(&_CGDataProviderGetTypeID, lib, "CGDataProviderGetTypeID")
+	tryRegister(&_CGEXRToneMappingGammaGetDefaultOptions, lib, "CGEXRToneMappingGammaGetDefaultOptions")
+	tryRegister(&_CGFontGetAscent, lib, "CGFontGetAscent")
+	tryRegister(&_CGFontCanCreatePostScriptSubset, lib, "CGFontCanCreatePostScriptSubset")
+	tryRegister(&_CGFontGetCapHeight, lib, "CGFontGetCapHeight")
+	tryRegister(&_CGFontCreateCopyWithVariations, lib, "CGFontCreateCopyWithVariations")
+	tryRegister(&_CGFontCreatePostScriptEncoding, lib, "CGFontCreatePostScriptEncoding")
+	tryRegister(&_CGFontCreatePostScriptSubset, lib, "CGFontCreatePostScriptSubset")
+	tryRegister(&_CGFontGetDescent, lib, "CGFontGetDescent")
+	tryRegister(&_CGFontGetFontBBox, lib, "CGFontGetFontBBox")
+	tryRegister(&_CGFontCopyFullName, lib, "CGFontCopyFullName")
+	tryRegister(&_CGFontGetGlyphAdvances, lib, "CGFontGetGlyphAdvances")
+	tryRegister(&_CGFontGetGlyphBBoxes, lib, "CGFontGetGlyphBBoxes")
+	tryRegister(&_CGFontGetGlyphWithGlyphName, lib, "CGFontGetGlyphWithGlyphName")
+	tryRegister(&_CGFontCreateWithFontName, lib, "CGFontCreateWithFontName")
+	tryRegister(&_CGFontCreateWithDataProvider, lib, "CGFontCreateWithDataProvider")
+	tryRegister(&_CGFontGetItalicAngle, lib, "CGFontGetItalicAngle")
+	tryRegister(&_CGFontGetLeading, lib, "CGFontGetLeading")
+	tryRegister(&_CGFontCopyGlyphNameForGlyph, lib, "CGFontCopyGlyphNameForGlyph")
+	tryRegister(&_CGFontGetNumberOfGlyphs, lib, "CGFontGetNumberOfGlyphs")
+	tryRegister(&_CGFontCopyPostScriptName, lib, "CGFontCopyPostScriptName")
+	tryRegister(&_CGFontGetStemV, lib, "CGFontGetStemV")
+	tryRegister(&_CGFontCopyTableForTag, lib, "CGFontCopyTableForTag")
+	tryRegister(&_CGFontCopyTableTags, lib, "CGFontCopyTableTags")
+	tryRegister(&_CGFontGetTypeID, lib, "CGFontGetTypeID")
+	tryRegister(&_CGFontGetUnitsPerEm, lib, "CGFontGetUnitsPerEm")
+	tryRegister(&_CGFontCopyVariationAxes, lib, "CGFontCopyVariationAxes")
+	tryRegister(&_CGFontCopyVariations, lib, "CGFontCopyVariations")
+	tryRegister(&_CGFontGetXHeight, lib, "CGFontGetXHeight")
+	tryRegister(&_CGFunctionCreate, lib, "CGFunctionCreate")
+	tryRegister(&_CGFunctionGetTypeID, lib, "CGFunctionGetTypeID")
+	tryRegister(&_CGGradientGetContentHeadroom, lib, "CGGradientGetContentHeadroom")
+	tryRegister(&_CGGradientCreateWithColorComponents, lib, "CGGradientCreateWithColorComponents")
+	tryRegister(&_CGGradientCreateWithColors, lib, "CGGradientCreateWithColors")
+	tryRegister(&_CGGradientCreateWithContentHeadroom, lib, "CGGradientCreateWithContentHeadroom")
+	tryRegister(&_CGGradientGetTypeID, lib, "CGGradientGetTypeID")
+	tryRegister(&_CGImageGetAlphaInfo, lib, "CGImageGetAlphaInfo")
+	tryRegister(&_CGImageGetBitmapInfo, lib, "CGImageGetBitmapInfo")
+	tryRegister(&_CGImageGetBitsPerComponent, lib, "CGImageGetBitsPerComponent")
+	tryRegister(&_CGImageGetBitsPerPixel, lib, "CGImageGetBitsPerPixel")
+	tryRegister(&_CGImageGetByteOrderInfo, lib, "CGImageGetByteOrderInfo")
+	tryRegister(&_CGImageGetBytesPerRow, lib, "CGImageGetBytesPerRow")
+	tryRegister(&_CGImageCalculateContentAverageLightLevel, lib, "CGImageCalculateContentAverageLightLevel")
+	tryRegister(&_CGImageCalculateContentHeadroom, lib, "CGImageCalculateContentHeadroom")
+	tryRegister(&_CGImageGetColorSpace, lib, "CGImageGetColorSpace")
+	tryRegister(&_CGImageContainsImageSpecificToneMappingMetadata, lib, "CGImageContainsImageSpecificToneMappingMetadata")
+	tryRegister(&_CGImageGetContentAverageLightLevel, lib, "CGImageGetContentAverageLightLevel")
+	tryRegister(&_CGImageGetContentHeadroom, lib, "CGImageGetContentHeadroom")
+	tryRegister(&_CGImageCreateCopy, lib, "CGImageCreateCopy")
+	tryRegister(&_CGImageCreateCopyWithColorSpace, lib, "CGImageCreateCopyWithColorSpace")
+	tryRegister(&_CGImageCreateCopyWithContentAverageLightLevel, lib, "CGImageCreateCopyWithContentAverageLightLevel")
+	tryRegister(&_CGImageCreateCopyWithCalculatedHDRStats, lib, "CGImageCreateCopyWithCalculatedHDRStats")
+	tryRegister(&_CGImageCreateWithImageInRect, lib, "CGImageCreateWithImageInRect")
+	tryRegister(&_CGImageGetDataProvider, lib, "CGImageGetDataProvider")
+	tryRegister(&_CGImageGetDecode, lib, "CGImageGetDecode")
+	tryRegister(&_CGImageGetHeight, lib, "CGImageGetHeight")
+	tryRegister(&_CGImageCreateWithContentHeadroom, lib, "CGImageCreateWithContentHeadroom")
+	tryRegister(&_CGImageCreateWithJPEGDataProvider, lib, "CGImageCreateWithJPEGDataProvider")
+	tryRegister(&_CGImageMaskCreate, lib, "CGImageMaskCreate")
+	tryRegister(&_CGImageCreateWithPNGDataProvider, lib, "CGImageCreateWithPNGDataProvider")
+	tryRegister(&_CGImageCreate, lib, "CGImageCreate")
+	tryRegister(&_CGWindowListCreateImageFromArray, lib, "CGWindowListCreateImageFromArray")
+	tryRegister(&_CGImageIsMask, lib, "CGImageIsMask")
+	tryRegister(&_CGImageCreateWithMask, lib, "CGImageCreateWithMask")
+	tryRegister(&_CGImageGetPixelFormatInfo, lib, "CGImageGetPixelFormatInfo")
+	tryRegister(&_CGImageGetRenderingIntent, lib, "CGImageGetRenderingIntent")
+	tryRegister(&_CGImageGetShouldInterpolate, lib, "CGImageGetShouldInterpolate")
+	tryRegister(&_CGImageShouldToneMap, lib, "CGImageShouldToneMap")
+	tryRegister(&_CGImageGetTypeID, lib, "CGImageGetTypeID")
+	tryRegister(&_CGImageGetUTType, lib, "CGImageGetUTType")
+	tryRegister(&_CGImageGetWidth, lib, "CGImageGetWidth")
+	tryRegister(&_CGLayerGetContext, lib, "CGLayerGetContext")
+	tryRegister(&_CGLayerCreateWithContext, lib, "CGLayerCreateWithContext")
+	tryRegister(&_CGLayerGetSize, lib, "CGLayerGetSize")
+	tryRegister(&_CGLayerGetTypeID, lib, "CGLayerGetTypeID")
+	tryRegister(&_CGPathCloseSubpath, lib, "CGPathCloseSubpath")
+	tryRegister(&_CGPathCreateMutable, lib, "CGPathCreateMutable")
+	tryRegister(&_CGPDFDocumentGetAccessPermissions, lib, "CGPDFDocumentGetAccessPermissions")
+	tryRegister(&_CGPDFDocumentAllowsCopying, lib, "CGPDFDocumentAllowsCopying")
+	tryRegister(&_CGPDFDocumentAllowsPrinting, lib, "CGPDFDocumentAllowsPrinting")
+	tryRegister(&_CGPDFDocumentGetCatalog, lib, "CGPDFDocumentGetCatalog")
+	tryRegister(&_CGPDFDocumentGetID, lib, "CGPDFDocumentGetID")
+	tryRegister(&_CGPDFDocumentGetVersion, lib, "CGPDFDocumentGetVersion")
+	tryRegister(&_CGPDFDocumentGetInfo, lib, "CGPDFDocumentGetInfo")
+	tryRegister(&_CGPDFDocumentCreateWithURL, lib, "CGPDFDocumentCreateWithURL")
+	tryRegister(&_CGPDFDocumentCreateWithProvider, lib, "CGPDFDocumentCreateWithProvider")
+	tryRegister(&_CGPDFDocumentIsEncrypted, lib, "CGPDFDocumentIsEncrypted")
+	tryRegister(&_CGPDFDocumentIsUnlocked, lib, "CGPDFDocumentIsUnlocked")
+	tryRegister(&_CGPDFDocumentGetNumberOfPages, lib, "CGPDFDocumentGetNumberOfPages")
+	tryRegister(&_CGPDFDocumentGetOutline, lib, "CGPDFDocumentGetOutline")
+	tryRegister(&_CGPDFDocumentGetPage, lib, "CGPDFDocumentGetPage")
+	tryRegister(&_CGPDFDocumentGetTypeID, lib, "CGPDFDocumentGetTypeID")
+	tryRegister(&_CGPDFDocumentUnlockWithPassword, lib, "CGPDFDocumentUnlockWithPassword")
+	tryRegister(&_CGPDFPageGetDictionary, lib, "CGPDFPageGetDictionary")
+	tryRegister(&_CGPDFPageGetDocument, lib, "CGPDFPageGetDocument")
+	tryRegister(&_CGPDFPageGetBoxRect, lib, "CGPDFPageGetBoxRect")
+	tryRegister(&_CGPDFPageGetDrawingTransform, lib, "CGPDFPageGetDrawingTransform")
+	tryRegister(&_CGPDFPageGetPageNumber, lib, "CGPDFPageGetPageNumber")
+	tryRegister(&_CGPDFPageGetRotationAngle, lib, "CGPDFPageGetRotationAngle")
+	tryRegister(&_CGPDFPageGetTypeID, lib, "CGPDFPageGetTypeID")
+	tryRegister(&_CGPSConverterAbort, lib, "CGPSConverterAbort")
+	tryRegister(&_CGPSConverterConvert, lib, "CGPSConverterConvert")
+	tryRegister(&_CGPSConverterCreate, lib, "CGPSConverterCreate")
+	tryRegister(&_CGPSConverterIsConverting, lib, "CGPSConverterIsConverting")
+	tryRegister(&_CGPSConverterGetTypeID, lib, "CGPSConverterGetTypeID")
+	tryRegister(&_CGPathApply, lib, "CGPathApply")
+	tryRegister(&_CGPathApplyWithBlock, lib, "CGPathApplyWithBlock")
+	tryRegister(&_CGPathGetBoundingBox, lib, "CGPathGetBoundingBox")
+	tryRegister(&_CGPathGetPathBoundingBox, lib, "CGPathGetPathBoundingBox")
+	tryRegister(&_CGPathCreateCopy, lib, "CGPathCreateCopy")
+	tryRegister(&_CGPathCreateCopyByTransformingPath, lib, "CGPathCreateCopyByTransformingPath")
+	tryRegister(&_CGPathGetCurrentPoint, lib, "CGPathGetCurrentPoint")
+	tryRegister(&_CGPathCreateWithEllipseInRect, lib, "CGPathCreateWithEllipseInRect")
+	tryRegister(&_CGPathCreateWithRect, lib, "CGPathCreateWithRect")
+	tryRegister(&_CGPathCreateWithRoundedRect, lib, "CGPathCreateWithRoundedRect")
+	tryRegister(&_CGPathIsEmpty, lib, "CGPathIsEmpty")
+	tryRegister(&_CGPathIsRect, lib, "CGPathIsRect")
+	tryRegister(&_CGPathCreateMutableCopy, lib, "CGPathCreateMutableCopy")
+	tryRegister(&_CGPathCreateMutableCopyByTransformingPath, lib, "CGPathCreateMutableCopyByTransformingPath")
+	tryRegister(&_CGPathGetTypeID, lib, "CGPathGetTypeID")
+	tryRegister(&_CGPatternCreate, lib, "CGPatternCreate")
+	tryRegister(&_CGPatternGetTypeID, lib, "CGPatternGetTypeID")
+	tryRegister(&_CGRenderingBufferLockBytePtr, lib, "CGRenderingBufferLockBytePtr")
+	tryRegister(&_CGRenderingBufferProviderCreate, lib, "CGRenderingBufferProviderCreate")
+	tryRegister(&_CGRenderingBufferProviderCreateWithCFData, lib, "CGRenderingBufferProviderCreateWithCFData")
+	tryRegister(&_CGRenderingBufferProviderGetSize, lib, "CGRenderingBufferProviderGetSize")
+	tryRegister(&_CGRenderingBufferProviderGetTypeID, lib, "CGRenderingBufferProviderGetTypeID")
+	tryRegister(&_CGRenderingBufferUnlockBytePtr, lib, "CGRenderingBufferUnlockBytePtr")
+	tryRegister(&_CGShadingGetContentHeadroom, lib, "CGShadingGetContentHeadroom")
+	tryRegister(&_CGShadingCreateAxialWithContentHeadroom, lib, "CGShadingCreateAxialWithContentHeadroom")
+	tryRegister(&_CGShadingCreateAxial, lib, "CGShadingCreateAxial")
+	tryRegister(&_CGShadingCreateRadialWithContentHeadroom, lib, "CGShadingCreateRadialWithContentHeadroom")
+	tryRegister(&_CGShadingCreateRadial, lib, "CGShadingCreateRadial")
+	tryRegister(&_CGShadingGetTypeID, lib, "CGShadingGetTypeID")
+	tryRegister(&_CGAcquireDisplayFadeReservation, lib, "CGAcquireDisplayFadeReservation")
+	tryRegister(&_CGAffineTransformConcat, lib, "CGAffineTransformConcat")
+	tryRegister(&_CGAffineTransformDecompose, lib, "CGAffineTransformDecompose")
+	tryRegister(&_CGAffineTransformEqualToTransform, lib, "CGAffineTransformEqualToTransform")
+	tryRegister(&_CGAffineTransformInvert, lib, "CGAffineTransformInvert")
+	tryRegister(&_CGAffineTransformIsIdentity, lib, "CGAffineTransformIsIdentity")
+	tryRegister(&_CGAffineTransformMake, lib, "CGAffineTransformMake")
+	tryRegister(&_CGAffineTransformMakeRotation, lib, "CGAffineTransformMakeRotation")
+	tryRegister(&_CGAffineTransformMakeScale, lib, "CGAffineTransformMakeScale")
+	tryRegister(&_CGAffineTransformMakeTranslation, lib, "CGAffineTransformMakeTranslation")
+	tryRegister(&_CGAffineTransformMakeWithComponents, lib, "CGAffineTransformMakeWithComponents")
+	tryRegister(&_CGAffineTransformRotate, lib, "CGAffineTransformRotate")
+	tryRegister(&_CGAffineTransformScale, lib, "CGAffineTransformScale")
+	tryRegister(&_CGAffineTransformTranslate, lib, "CGAffineTransformTranslate")
+	tryRegister(&_CGAssociateMouseAndMouseCursorPosition, lib, "CGAssociateMouseAndMouseCursorPosition")
+	tryRegister(&_CGBeginDisplayConfiguration, lib, "CGBeginDisplayConfiguration")
+	tryRegister(&_CGCancelDisplayConfiguration, lib, "CGCancelDisplayConfiguration")
+	tryRegister(&_CGCaptureAllDisplays, lib, "CGCaptureAllDisplays")
+	tryRegister(&_CGCaptureAllDisplaysWithOptions, lib, "CGCaptureAllDisplaysWithOptions")
+	tryRegister(&_CGColorConversionInfoCreateFromList, lib, "CGColorConversionInfoCreateFromList")
+	tryRegister(&_CGColorConversionInfoCreateFromListWithArguments, lib, "CGColorConversionInfoCreateFromListWithArguments")
+	tryRegister(&_CGColorEqualToColor, lib, "CGColorEqualToColor")
+	tryRegister(&_CGColorGetComponents, lib, "CGColorGetComponents")
+	tryRegister(&_CGColorGetConstantColor, lib, "CGColorGetConstantColor")
+	tryRegister(&_CGColorRelease, lib, "CGColorRelease")
+	tryRegister(&_CGColorRetain, lib, "CGColorRetain")
+	tryRegister(&_CGColorSpaceCopyBaseColorSpace, lib, "CGColorSpaceCopyBaseColorSpace")
+	tryRegister(&_CGColorSpaceCreateCopyWithStandardRange, lib, "CGColorSpaceCreateCopyWithStandardRange")
+	tryRegister(&_CGColorSpaceCreateDeviceCMYK, lib, "CGColorSpaceCreateDeviceCMYK")
+	tryRegister(&_CGColorSpaceCreateDeviceGray, lib, "CGColorSpaceCreateDeviceGray")
+	tryRegister(&_CGColorSpaceCreateDeviceRGB, lib, "CGColorSpaceCreateDeviceRGB")
+	tryRegister(&_CGColorSpaceCreateExtended, lib, "CGColorSpaceCreateExtended")
+	tryRegister(&_CGColorSpaceCreateExtendedLinearized, lib, "CGColorSpaceCreateExtendedLinearized")
+	tryRegister(&_CGColorSpaceCreateLinearized, lib, "CGColorSpaceCreateLinearized")
+	tryRegister(&_CGColorSpaceCreateWithColorSyncProfile, lib, "CGColorSpaceCreateWithColorSyncProfile")
+	tryRegister(&_CGColorSpaceGetColorTable, lib, "CGColorSpaceGetColorTable")
+	tryRegister(&_CGColorSpaceGetColorTableCount, lib, "CGColorSpaceGetColorTableCount")
+	tryRegister(&_CGColorSpaceGetName, lib, "CGColorSpaceGetName")
+	tryRegister(&_CGColorSpaceIsHLGBased, lib, "CGColorSpaceIsHLGBased")
+	tryRegister(&_CGColorSpaceIsPQBased, lib, "CGColorSpaceIsPQBased")
+	tryRegister(&_CGColorSpaceRelease, lib, "CGColorSpaceRelease")
+	tryRegister(&_CGColorSpaceRetain, lib, "CGColorSpaceRetain")
+	tryRegister(&_CGColorSpaceUsesExtendedRange, lib, "CGColorSpaceUsesExtendedRange")
+	tryRegister(&_CGColorSpaceUsesITUR_2100TF, lib, "CGColorSpaceUsesITUR_2100TF")
+	tryRegister(&_CGCompleteDisplayConfiguration, lib, "CGCompleteDisplayConfiguration")
+	tryRegister(&_CGConfigureDisplayFadeEffect, lib, "CGConfigureDisplayFadeEffect")
+	tryRegister(&_CGConfigureDisplayMirrorOfDisplay, lib, "CGConfigureDisplayMirrorOfDisplay")
+	tryRegister(&_CGConfigureDisplayMode, lib, "CGConfigureDisplayMode")
+	tryRegister(&_CGConfigureDisplayOrigin, lib, "CGConfigureDisplayOrigin")
+	tryRegister(&_CGConfigureDisplayStereoOperation, lib, "CGConfigureDisplayStereoOperation")
+	tryRegister(&_CGConfigureDisplayWithDisplayMode, lib, "CGConfigureDisplayWithDisplayMode")
 	tryRegister(&_CGContextAddArc, lib, "CGContextAddArc")
 	tryRegister(&_CGContextAddArcToPoint, lib, "CGContextAddArcToPoint")
 	tryRegister(&_CGContextAddCurveToPoint, lib, "CGContextAddCurveToPoint")
-	tryRegister(&_CGContextAddLineToPoint, lib, "CGContextAddLineToPoint")
 	tryRegister(&_CGContextAddLines, lib, "CGContextAddLines")
+	tryRegister(&_CGContextAddLineToPoint, lib, "CGContextAddLineToPoint")
 	tryRegister(&_CGContextAddQuadCurveToPoint, lib, "CGContextAddQuadCurveToPoint")
 	tryRegister(&_CGContextAddRects, lib, "CGContextAddRects")
 	tryRegister(&_CGContextClip, lib, "CGContextClip")
@@ -983,14 +1114,15 @@ func init() {
 	tryRegister(&_CGContextDrawPDFDocument, lib, "CGContextDrawPDFDocument")
 	tryRegister(&_CGContextDrawTiledImage, lib, "CGContextDrawTiledImage")
 	tryRegister(&_CGContextEOClip, lib, "CGContextEOClip")
+	tryRegister(&_CGContextEOFillPath, lib, "CGContextEOFillPath")
+	tryRegister(&_CGContextFillPath, lib, "CGContextFillPath")
 	tryRegister(&_CGContextFillRects, lib, "CGContextFillRects")
-	tryRegister(&_CGContextGetContentToneMappingInfo, lib, "CGContextGetContentToneMappingInfo")
 	tryRegister(&_CGContextGetEDRTargetHeadroom, lib, "CGContextGetEDRTargetHeadroom")
 	tryRegister(&_CGContextGetTextPosition, lib, "CGContextGetTextPosition")
 	tryRegister(&_CGContextMoveToPoint, lib, "CGContextMoveToPoint")
 	tryRegister(&_CGContextRelease, lib, "CGContextRelease")
 	tryRegister(&_CGContextRetain, lib, "CGContextRetain")
-	tryRegister(&_CGContextSetContentToneMappingInfo, lib, "CGContextSetContentToneMappingInfo")
+	tryRegister(&_CGContextSetInterpolationQuality, lib, "CGContextSetInterpolationQuality")
 	tryRegister(&_CGContextSetLineDash, lib, "CGContextSetLineDash")
 	tryRegister(&_CGContextSetTextMatrix, lib, "CGContextSetTextMatrix")
 	tryRegister(&_CGContextSetTextPosition, lib, "CGContextSetTextPosition")
@@ -999,21 +1131,8 @@ func init() {
 	tryRegister(&_CGConvertColorDataWithFormat, lib, "CGConvertColorDataWithFormat")
 	tryRegister(&_CGCursorIsDrawnInFramebuffer, lib, "CGCursorIsDrawnInFramebuffer")
 	tryRegister(&_CGCursorIsVisible, lib, "CGCursorIsVisible")
-	tryRegister(&_CGDataConsumerCreateWithCFData, lib, "CGDataConsumerCreateWithCFData")
-	tryRegister(&_CGDataConsumerCreate, lib, "CGDataConsumerCreate")
-	tryRegister(&_CGDataConsumerCreateWithURL, lib, "CGDataConsumerCreateWithURL")
-	tryRegister(&_CGDataConsumerGetTypeID, lib, "CGDataConsumerGetTypeID")
 	tryRegister(&_CGDataConsumerRelease, lib, "CGDataConsumerRelease")
 	tryRegister(&_CGDataConsumerRetain, lib, "CGDataConsumerRetain")
-	tryRegister(&_CGDataProviderCopyData, lib, "CGDataProviderCopyData")
-	tryRegister(&_CGDataProviderGetInfo, lib, "CGDataProviderGetInfo")
-	tryRegister(&_CGDataProviderCreateWithCFData, lib, "CGDataProviderCreateWithCFData")
-	tryRegister(&_CGDataProviderCreateWithData, lib, "CGDataProviderCreateWithData")
-	tryRegister(&_CGDataProviderCreateDirect, lib, "CGDataProviderCreateDirect")
-	tryRegister(&_CGDataProviderCreateWithFilename, lib, "CGDataProviderCreateWithFilename")
-	tryRegister(&_CGDataProviderCreateSequential, lib, "CGDataProviderCreateSequential")
-	tryRegister(&_CGDataProviderCreateWithURL, lib, "CGDataProviderCreateWithURL")
-	tryRegister(&_CGDataProviderGetTypeID, lib, "CGDataProviderGetTypeID")
 	tryRegister(&_CGDataProviderRelease, lib, "CGDataProviderRelease")
 	tryRegister(&_CGDataProviderRetain, lib, "CGDataProviderRetain")
 	tryRegister(&_CGDirectDisplayCopyCurrentMetalDevice, lib, "CGDirectDisplayCopyCurrentMetalDevice")
@@ -1057,9 +1176,9 @@ func init() {
 	tryRegister(&_CGDisplayModeGetRefreshRate, lib, "CGDisplayModeGetRefreshRate")
 	tryRegister(&_CGDisplayModeGetTypeID, lib, "CGDisplayModeGetTypeID")
 	tryRegister(&_CGDisplayModeGetWidth, lib, "CGDisplayModeGetWidth")
+	tryRegister(&_CGDisplayModelNumber, lib, "CGDisplayModelNumber")
 	tryRegister(&_CGDisplayModeRelease, lib, "CGDisplayModeRelease")
 	tryRegister(&_CGDisplayModeRetain, lib, "CGDisplayModeRetain")
-	tryRegister(&_CGDisplayModelNumber, lib, "CGDisplayModelNumber")
 	tryRegister(&_CGDisplayMoveCursorToPoint, lib, "CGDisplayMoveCursorToPoint")
 	tryRegister(&_CGDisplayPixelsHigh, lib, "CGDisplayPixelsHigh")
 	tryRegister(&_CGDisplayPixelsWide, lib, "CGDisplayPixelsWide")
@@ -1089,7 +1208,6 @@ func init() {
 	tryRegister(&_CGDisplayUnitNumber, lib, "CGDisplayUnitNumber")
 	tryRegister(&_CGDisplayUsesOpenGLAcceleration, lib, "CGDisplayUsesOpenGLAcceleration")
 	tryRegister(&_CGDisplayVendorNumber, lib, "CGDisplayVendorNumber")
-	tryRegister(&_CGEXRToneMappingGammaGetDefaultOptions, lib, "CGEXRToneMappingGammaGetDefaultOptions")
 	tryRegister(&_CGEnableEventStateCombining, lib, "CGEnableEventStateCombining")
 	tryRegister(&_CGErrorSetCallback, lib, "CGErrorSetCallback")
 	tryRegister(&_CGEventCreateCopy, lib, "CGEventCreateCopy")
@@ -1105,14 +1223,14 @@ func init() {
 	tryRegister(&_CGEventKeyboardSetUnicodeString, lib, "CGEventKeyboardSetUnicodeString")
 	tryRegister(&_CGEventGetLocation, lib, "CGEventGetLocation")
 	tryRegister(&_CGEventPost, lib, "CGEventPost")
-	tryRegister(&_CGEventPostToPSN, lib, "CGEventPostToPSN")
 	tryRegister(&_CGEventPostToPid, lib, "CGEventPostToPid")
+	tryRegister(&_CGEventPostToPSN, lib, "CGEventPostToPSN")
 	tryRegister(&_CGEventSetDoubleValueField, lib, "CGEventSetDoubleValueField")
 	tryRegister(&_CGEventSetIntegerValueField, lib, "CGEventSetIntegerValueField")
 	tryRegister(&_CGEventSetSource, lib, "CGEventSetSource")
 	tryRegister(&_CGEventTapCreate, lib, "CGEventTapCreate")
-	tryRegister(&_CGEventTapCreateForPSN, lib, "CGEventTapCreateForPSN")
 	tryRegister(&_CGEventTapCreateForPid, lib, "CGEventTapCreateForPid")
+	tryRegister(&_CGEventTapCreateForPSN, lib, "CGEventTapCreateForPSN")
 	tryRegister(&_CGEventTapEnable, lib, "CGEventTapEnable")
 	tryRegister(&_CGEventTapIsEnabled, lib, "CGEventTapIsEnabled")
 	tryRegister(&_CGEventTapPostEvent, lib, "CGEventTapPostEvent")
@@ -1132,8 +1250,8 @@ func init() {
 	tryRegister(&_CGEventSourceGetLocalEventsFilterDuringSuppressionState, lib, "CGEventSourceGetLocalEventsFilterDuringSuppressionState")
 	tryRegister(&_CGEventCreateSourceFromEvent, lib, "CGEventCreateSourceFromEvent")
 	tryRegister(&_CGEventSourceCreate, lib, "CGEventSourceCreate")
-	tryRegister(&_CGEventSourceKeyState, lib, "CGEventSourceKeyState")
 	tryRegister(&_CGEventSourceGetKeyboardType, lib, "CGEventSourceGetKeyboardType")
+	tryRegister(&_CGEventSourceKeyState, lib, "CGEventSourceKeyState")
 	tryRegister(&_CGEventSourceGetLocalEventsSuppressionInterval, lib, "CGEventSourceGetLocalEventsSuppressionInterval")
 	tryRegister(&_CGEventSourceGetPixelsPerLine, lib, "CGEventSourceGetPixelsPerLine")
 	tryRegister(&_CGEventSourceSecondsSinceLastEventType, lib, "CGEventSourceSecondsSinceLastEventType")
@@ -1145,105 +1263,49 @@ func init() {
 	tryRegister(&_CGEventSourceSetLocalEventsSuppressionInterval, lib, "CGEventSourceSetLocalEventsSuppressionInterval")
 	tryRegister(&_CGEventSourceSetPixelsPerLine, lib, "CGEventSourceSetPixelsPerLine")
 	tryRegister(&_CGEventSourceSetUserData, lib, "CGEventSourceSetUserData")
-	tryRegister(&_CGFontGetAscent, lib, "CGFontGetAscent")
-	tryRegister(&_CGFontCanCreatePostScriptSubset, lib, "CGFontCanCreatePostScriptSubset")
-	tryRegister(&_CGFontGetCapHeight, lib, "CGFontGetCapHeight")
-	tryRegister(&_CGFontCreateCopyWithVariations, lib, "CGFontCreateCopyWithVariations")
-	tryRegister(&_CGFontCreatePostScriptEncoding, lib, "CGFontCreatePostScriptEncoding")
-	tryRegister(&_CGFontCreatePostScriptSubset, lib, "CGFontCreatePostScriptSubset")
-	tryRegister(&_CGFontGetDescent, lib, "CGFontGetDescent")
-	tryRegister(&_CGFontGetFontBBox, lib, "CGFontGetFontBBox")
-	tryRegister(&_CGFontCopyFullName, lib, "CGFontCopyFullName")
-	tryRegister(&_CGFontGetGlyphAdvances, lib, "CGFontGetGlyphAdvances")
-	tryRegister(&_CGFontGetGlyphBBoxes, lib, "CGFontGetGlyphBBoxes")
-	tryRegister(&_CGFontGetGlyphWithGlyphName, lib, "CGFontGetGlyphWithGlyphName")
-	tryRegister(&_CGFontCreateWithFontName, lib, "CGFontCreateWithFontName")
-	tryRegister(&_CGFontCreateWithDataProvider, lib, "CGFontCreateWithDataProvider")
-	tryRegister(&_CGFontGetItalicAngle, lib, "CGFontGetItalicAngle")
-	tryRegister(&_CGFontGetLeading, lib, "CGFontGetLeading")
-	tryRegister(&_CGFontCopyGlyphNameForGlyph, lib, "CGFontCopyGlyphNameForGlyph")
-	tryRegister(&_CGFontGetNumberOfGlyphs, lib, "CGFontGetNumberOfGlyphs")
-	tryRegister(&_CGFontCopyPostScriptName, lib, "CGFontCopyPostScriptName")
-	tryRegister(&_CGFontGetStemV, lib, "CGFontGetStemV")
-	tryRegister(&_CGFontCopyTableForTag, lib, "CGFontCopyTableForTag")
-	tryRegister(&_CGFontCopyTableTags, lib, "CGFontCopyTableTags")
-	tryRegister(&_CGFontGetTypeID, lib, "CGFontGetTypeID")
-	tryRegister(&_CGFontGetUnitsPerEm, lib, "CGFontGetUnitsPerEm")
-	tryRegister(&_CGFontCopyVariationAxes, lib, "CGFontCopyVariationAxes")
-	tryRegister(&_CGFontCopyVariations, lib, "CGFontCopyVariations")
-	tryRegister(&_CGFontGetXHeight, lib, "CGFontGetXHeight")
 	tryRegister(&_CGFontCreateWithPlatformFont, lib, "CGFontCreateWithPlatformFont")
 	tryRegister(&_CGFontRelease, lib, "CGFontRelease")
 	tryRegister(&_CGFontRetain, lib, "CGFontRetain")
-	tryRegister(&_CGFunctionCreate, lib, "CGFunctionCreate")
-	tryRegister(&_CGFunctionGetTypeID, lib, "CGFunctionGetTypeID")
 	tryRegister(&_CGFunctionRelease, lib, "CGFunctionRelease")
 	tryRegister(&_CGFunctionRetain, lib, "CGFunctionRetain")
 	tryRegister(&_CGGetActiveDisplayList, lib, "CGGetActiveDisplayList")
-	tryRegister(&_CGGetDisplayTransferByFormula, lib, "CGGetDisplayTransferByFormula")
-	tryRegister(&_CGGetDisplayTransferByTable, lib, "CGGetDisplayTransferByTable")
 	tryRegister(&_CGGetDisplaysWithOpenGLDisplayMask, lib, "CGGetDisplaysWithOpenGLDisplayMask")
 	tryRegister(&_CGGetDisplaysWithPoint, lib, "CGGetDisplaysWithPoint")
 	tryRegister(&_CGGetDisplaysWithRect, lib, "CGGetDisplaysWithRect")
+	tryRegister(&_CGGetDisplayTransferByFormula, lib, "CGGetDisplayTransferByFormula")
+	tryRegister(&_CGGetDisplayTransferByTable, lib, "CGGetDisplayTransferByTable")
 	tryRegister(&_CGGetEventTapList, lib, "CGGetEventTapList")
 	tryRegister(&_CGGetLastMouseDelta, lib, "CGGetLastMouseDelta")
 	tryRegister(&_CGGetOnlineDisplayList, lib, "CGGetOnlineDisplayList")
-	tryRegister(&_CGGradientGetContentHeadroom, lib, "CGGradientGetContentHeadroom")
-	tryRegister(&_CGGradientCreateWithColorComponents, lib, "CGGradientCreateWithColorComponents")
-	tryRegister(&_CGGradientCreateWithColors, lib, "CGGradientCreateWithColors")
-	tryRegister(&_CGGradientCreateWithContentHeadroom, lib, "CGGradientCreateWithContentHeadroom")
-	tryRegister(&_CGGradientGetTypeID, lib, "CGGradientGetTypeID")
 	tryRegister(&_CGGradientRelease, lib, "CGGradientRelease")
 	tryRegister(&_CGGradientRetain, lib, "CGGradientRetain")
-	tryRegister(&_CGImageGetAlphaInfo, lib, "CGImageGetAlphaInfo")
-	tryRegister(&_CGImageGetBitmapInfo, lib, "CGImageGetBitmapInfo")
-	tryRegister(&_CGImageGetBitsPerComponent, lib, "CGImageGetBitsPerComponent")
-	tryRegister(&_CGImageGetBitsPerPixel, lib, "CGImageGetBitsPerPixel")
-	tryRegister(&_CGImageGetByteOrderInfo, lib, "CGImageGetByteOrderInfo")
-	tryRegister(&_CGImageGetBytesPerRow, lib, "CGImageGetBytesPerRow")
-	tryRegister(&_CGImageCalculateContentAverageLightLevel, lib, "CGImageCalculateContentAverageLightLevel")
-	tryRegister(&_CGImageCalculateContentHeadroom, lib, "CGImageCalculateContentHeadroom")
-	tryRegister(&_CGImageGetColorSpace, lib, "CGImageGetColorSpace")
-	tryRegister(&_CGImageContainsImageSpecificToneMappingMetadata, lib, "CGImageContainsImageSpecificToneMappingMetadata")
-	tryRegister(&_CGImageGetContentAverageLightLevel, lib, "CGImageGetContentAverageLightLevel")
-	tryRegister(&_CGImageGetContentHeadroom, lib, "CGImageGetContentHeadroom")
-	tryRegister(&_CGImageCreateCopy, lib, "CGImageCreateCopy")
-	tryRegister(&_CGImageCreateCopyWithColorSpace, lib, "CGImageCreateCopyWithColorSpace")
-	tryRegister(&_CGImageCreateCopyWithContentAverageLightLevel, lib, "CGImageCreateCopyWithContentAverageLightLevel")
-	tryRegister(&_CGImageCreateCopyWithCalculatedHDRStats, lib, "CGImageCreateCopyWithCalculatedHDRStats")
-	tryRegister(&_CGImageCreateWithImageInRect, lib, "CGImageCreateWithImageInRect")
-	tryRegister(&_CGImageGetDataProvider, lib, "CGImageGetDataProvider")
-	tryRegister(&_CGImageGetDecode, lib, "CGImageGetDecode")
-	tryRegister(&_CGImageGetHeight, lib, "CGImageGetHeight")
-	tryRegister(&_CGImageCreateWithContentHeadroom, lib, "CGImageCreateWithContentHeadroom")
-	tryRegister(&_CGImageCreateWithJPEGDataProvider, lib, "CGImageCreateWithJPEGDataProvider")
-	tryRegister(&_CGImageMaskCreate, lib, "CGImageMaskCreate")
-	tryRegister(&_CGImageCreateWithPNGDataProvider, lib, "CGImageCreateWithPNGDataProvider")
-	tryRegister(&_CGImageCreate, lib, "CGImageCreate")
-	tryRegister(&_CGWindowListCreateImageFromArray, lib, "CGWindowListCreateImageFromArray")
-	tryRegister(&_CGImageIsMask, lib, "CGImageIsMask")
-	tryRegister(&_CGImageCreateWithMask, lib, "CGImageCreateWithMask")
-	tryRegister(&_CGImageGetPixelFormatInfo, lib, "CGImageGetPixelFormatInfo")
-	tryRegister(&_CGImageGetRenderingIntent, lib, "CGImageGetRenderingIntent")
-	tryRegister(&_CGImageGetShouldInterpolate, lib, "CGImageGetShouldInterpolate")
-	tryRegister(&_CGImageShouldToneMap, lib, "CGImageShouldToneMap")
-	tryRegister(&_CGImageGetTypeID, lib, "CGImageGetTypeID")
-	tryRegister(&_CGImageGetUTType, lib, "CGImageGetUTType")
-	tryRegister(&_CGImageGetWidth, lib, "CGImageGetWidth")
 	tryRegister(&_CGImageCreateCopyWithContentHeadroom, lib, "CGImageCreateCopyWithContentHeadroom")
 	tryRegister(&_CGImageCreateWithMaskingColors, lib, "CGImageCreateWithMaskingColors")
+	tryRegister(&_CGImageRelease, lib, "CGImageRelease")
 	tryRegister(&_CGImageRetain, lib, "CGImageRetain")
 	tryRegister(&_CGInhibitLocalEvents, lib, "CGInhibitLocalEvents")
-	tryRegister(&_CGLayerGetContext, lib, "CGLayerGetContext")
-	tryRegister(&_CGLayerCreateWithContext, lib, "CGLayerCreateWithContext")
-	tryRegister(&_CGLayerGetSize, lib, "CGLayerGetSize")
-	tryRegister(&_CGLayerGetTypeID, lib, "CGLayerGetTypeID")
 	tryRegister(&_CGLayerRelease, lib, "CGLayerRelease")
 	tryRegister(&_CGLayerRetain, lib, "CGLayerRetain")
 	tryRegister(&_CGMainDisplayID, lib, "CGMainDisplayID")
-	tryRegister(&_CGPathCloseSubpath, lib, "CGPathCloseSubpath")
-	tryRegister(&_CGPathCreateMutable, lib, "CGPathCreateMutable")
 	tryRegister(&_CGOpenGLDisplayMaskToDisplayID, lib, "CGOpenGLDisplayMaskToDisplayID")
+	tryRegister(&_CGPathContainsPoint, lib, "CGPathContainsPoint")
+	tryRegister(&_CGPathCreateCopyByDashingPath, lib, "CGPathCreateCopyByDashingPath")
+	tryRegister(&_CGPathCreateCopyByFlattening, lib, "CGPathCreateCopyByFlattening")
+	tryRegister(&_CGPathCreateCopyByIntersectingPath, lib, "CGPathCreateCopyByIntersectingPath")
+	tryRegister(&_CGPathCreateCopyByNormalizing, lib, "CGPathCreateCopyByNormalizing")
+	tryRegister(&_CGPathCreateCopyByStrokingPath, lib, "CGPathCreateCopyByStrokingPath")
+	tryRegister(&_CGPathCreateCopyBySubtractingPath, lib, "CGPathCreateCopyBySubtractingPath")
+	tryRegister(&_CGPathCreateCopyBySymmetricDifferenceOfPath, lib, "CGPathCreateCopyBySymmetricDifferenceOfPath")
+	tryRegister(&_CGPathCreateCopyByUnioningPath, lib, "CGPathCreateCopyByUnioningPath")
+	tryRegister(&_CGPathCreateCopyOfLineByIntersectingPath, lib, "CGPathCreateCopyOfLineByIntersectingPath")
+	tryRegister(&_CGPathCreateCopyOfLineBySubtractingPath, lib, "CGPathCreateCopyOfLineBySubtractingPath")
+	tryRegister(&_CGPathCreateSeparateComponents, lib, "CGPathCreateSeparateComponents")
+	tryRegister(&_CGPathEqualToPath, lib, "CGPathEqualToPath")
+	tryRegister(&_CGPathIntersectsPath, lib, "CGPathIntersectsPath")
+	tryRegister(&_CGPathRelease, lib, "CGPathRelease")
+	tryRegister(&_CGPathRetain, lib, "CGPathRetain")
+	tryRegister(&_CGPatternRelease, lib, "CGPatternRelease")
+	tryRegister(&_CGPatternRetain, lib, "CGPatternRetain")
 	tryRegister(&_CGPDFArrayApplyBlock, lib, "CGPDFArrayApplyBlock")
 	tryRegister(&_CGPDFArrayGetArray, lib, "CGPDFArrayGetArray")
 	tryRegister(&_CGPDFArrayGetBoolean, lib, "CGPDFArrayGetBoolean")
@@ -1280,22 +1342,6 @@ func init() {
 	tryRegister(&_CGPDFDictionaryGetObject, lib, "CGPDFDictionaryGetObject")
 	tryRegister(&_CGPDFDictionaryGetStream, lib, "CGPDFDictionaryGetStream")
 	tryRegister(&_CGPDFDictionaryGetString, lib, "CGPDFDictionaryGetString")
-	tryRegister(&_CGPDFDocumentGetAccessPermissions, lib, "CGPDFDocumentGetAccessPermissions")
-	tryRegister(&_CGPDFDocumentAllowsCopying, lib, "CGPDFDocumentAllowsCopying")
-	tryRegister(&_CGPDFDocumentAllowsPrinting, lib, "CGPDFDocumentAllowsPrinting")
-	tryRegister(&_CGPDFDocumentGetCatalog, lib, "CGPDFDocumentGetCatalog")
-	tryRegister(&_CGPDFDocumentGetID, lib, "CGPDFDocumentGetID")
-	tryRegister(&_CGPDFDocumentGetVersion, lib, "CGPDFDocumentGetVersion")
-	tryRegister(&_CGPDFDocumentGetInfo, lib, "CGPDFDocumentGetInfo")
-	tryRegister(&_CGPDFDocumentCreateWithURL, lib, "CGPDFDocumentCreateWithURL")
-	tryRegister(&_CGPDFDocumentCreateWithProvider, lib, "CGPDFDocumentCreateWithProvider")
-	tryRegister(&_CGPDFDocumentIsEncrypted, lib, "CGPDFDocumentIsEncrypted")
-	tryRegister(&_CGPDFDocumentIsUnlocked, lib, "CGPDFDocumentIsUnlocked")
-	tryRegister(&_CGPDFDocumentGetNumberOfPages, lib, "CGPDFDocumentGetNumberOfPages")
-	tryRegister(&_CGPDFDocumentGetOutline, lib, "CGPDFDocumentGetOutline")
-	tryRegister(&_CGPDFDocumentGetPage, lib, "CGPDFDocumentGetPage")
-	tryRegister(&_CGPDFDocumentGetTypeID, lib, "CGPDFDocumentGetTypeID")
-	tryRegister(&_CGPDFDocumentUnlockWithPassword, lib, "CGPDFDocumentUnlockWithPassword")
 	tryRegister(&_CGPDFDocumentGetArtBox, lib, "CGPDFDocumentGetArtBox")
 	tryRegister(&_CGPDFDocumentGetBleedBox, lib, "CGPDFDocumentGetBleedBox")
 	tryRegister(&_CGPDFDocumentGetCropBox, lib, "CGPDFDocumentGetCropBox")
@@ -1310,13 +1356,6 @@ func init() {
 	tryRegister(&_CGPDFOperatorTableRelease, lib, "CGPDFOperatorTableRelease")
 	tryRegister(&_CGPDFOperatorTableRetain, lib, "CGPDFOperatorTableRetain")
 	tryRegister(&_CGPDFOperatorTableSetCallback, lib, "CGPDFOperatorTableSetCallback")
-	tryRegister(&_CGPDFPageGetDictionary, lib, "CGPDFPageGetDictionary")
-	tryRegister(&_CGPDFPageGetDocument, lib, "CGPDFPageGetDocument")
-	tryRegister(&_CGPDFPageGetBoxRect, lib, "CGPDFPageGetBoxRect")
-	tryRegister(&_CGPDFPageGetDrawingTransform, lib, "CGPDFPageGetDrawingTransform")
-	tryRegister(&_CGPDFPageGetPageNumber, lib, "CGPDFPageGetPageNumber")
-	tryRegister(&_CGPDFPageGetRotationAngle, lib, "CGPDFPageGetRotationAngle")
-	tryRegister(&_CGPDFPageGetTypeID, lib, "CGPDFPageGetTypeID")
 	tryRegister(&_CGPDFPageRelease, lib, "CGPDFPageRelease")
 	tryRegister(&_CGPDFPageRetain, lib, "CGPDFPageRetain")
 	tryRegister(&_CGPDFScannerCreate, lib, "CGPDFScannerCreate")
@@ -1341,59 +1380,6 @@ func init() {
 	tryRegister(&_CGPDFStringGetBytePtr, lib, "CGPDFStringGetBytePtr")
 	tryRegister(&_CGPDFStringGetLength, lib, "CGPDFStringGetLength")
 	tryRegister(&_CGPDFTagTypeGetName, lib, "CGPDFTagTypeGetName")
-	tryRegister(&_CGPSConverterAbort, lib, "CGPSConverterAbort")
-	tryRegister(&_CGPSConverterConvert, lib, "CGPSConverterConvert")
-	tryRegister(&_CGPSConverterCreate, lib, "CGPSConverterCreate")
-	tryRegister(&_CGPSConverterIsConverting, lib, "CGPSConverterIsConverting")
-	tryRegister(&_CGPSConverterGetTypeID, lib, "CGPSConverterGetTypeID")
-	tryRegister(&_CGPathApply, lib, "CGPathApply")
-	tryRegister(&_CGPathApplyWithBlock, lib, "CGPathApplyWithBlock")
-	tryRegister(&_CGPathGetBoundingBox, lib, "CGPathGetBoundingBox")
-	tryRegister(&_CGPathGetPathBoundingBox, lib, "CGPathGetPathBoundingBox")
-	tryRegister(&_CGPathCreateCopy, lib, "CGPathCreateCopy")
-	tryRegister(&_CGPathCreateCopyByTransformingPath, lib, "CGPathCreateCopyByTransformingPath")
-	tryRegister(&_CGPathGetCurrentPoint, lib, "CGPathGetCurrentPoint")
-	tryRegister(&_CGPathCreateWithEllipseInRect, lib, "CGPathCreateWithEllipseInRect")
-	tryRegister(&_CGPathCreateWithRect, lib, "CGPathCreateWithRect")
-	tryRegister(&_CGPathCreateWithRoundedRect, lib, "CGPathCreateWithRoundedRect")
-	tryRegister(&_CGPathIsEmpty, lib, "CGPathIsEmpty")
-	tryRegister(&_CGPathIsRect, lib, "CGPathIsRect")
-	tryRegister(&_CGPathCreateMutableCopy, lib, "CGPathCreateMutableCopy")
-	tryRegister(&_CGPathCreateMutableCopyByTransformingPath, lib, "CGPathCreateMutableCopyByTransformingPath")
-	tryRegister(&_CGPathGetTypeID, lib, "CGPathGetTypeID")
-	tryRegister(&_CGPathAddArc, lib, "CGPathAddArc")
-	tryRegister(&_CGPathAddArcToPoint, lib, "CGPathAddArcToPoint")
-	tryRegister(&_CGPathAddCurveToPoint, lib, "CGPathAddCurveToPoint")
-	tryRegister(&_CGPathAddEllipseInRect, lib, "CGPathAddEllipseInRect")
-	tryRegister(&_CGPathAddLineToPoint, lib, "CGPathAddLineToPoint")
-	tryRegister(&_CGPathAddLines, lib, "CGPathAddLines")
-	tryRegister(&_CGPathAddPath, lib, "CGPathAddPath")
-	tryRegister(&_CGPathAddQuadCurveToPoint, lib, "CGPathAddQuadCurveToPoint")
-	tryRegister(&_CGPathAddRect, lib, "CGPathAddRect")
-	tryRegister(&_CGPathAddRects, lib, "CGPathAddRects")
-	tryRegister(&_CGPathAddRelativeArc, lib, "CGPathAddRelativeArc")
-	tryRegister(&_CGPathAddRoundedRect, lib, "CGPathAddRoundedRect")
-	tryRegister(&_CGPathContainsPoint, lib, "CGPathContainsPoint")
-	tryRegister(&_CGPathCreateCopyByDashingPath, lib, "CGPathCreateCopyByDashingPath")
-	tryRegister(&_CGPathCreateCopyByFlattening, lib, "CGPathCreateCopyByFlattening")
-	tryRegister(&_CGPathCreateCopyByIntersectingPath, lib, "CGPathCreateCopyByIntersectingPath")
-	tryRegister(&_CGPathCreateCopyByNormalizing, lib, "CGPathCreateCopyByNormalizing")
-	tryRegister(&_CGPathCreateCopyByStrokingPath, lib, "CGPathCreateCopyByStrokingPath")
-	tryRegister(&_CGPathCreateCopyBySubtractingPath, lib, "CGPathCreateCopyBySubtractingPath")
-	tryRegister(&_CGPathCreateCopyBySymmetricDifferenceOfPath, lib, "CGPathCreateCopyBySymmetricDifferenceOfPath")
-	tryRegister(&_CGPathCreateCopyByUnioningPath, lib, "CGPathCreateCopyByUnioningPath")
-	tryRegister(&_CGPathCreateCopyOfLineByIntersectingPath, lib, "CGPathCreateCopyOfLineByIntersectingPath")
-	tryRegister(&_CGPathCreateCopyOfLineBySubtractingPath, lib, "CGPathCreateCopyOfLineBySubtractingPath")
-	tryRegister(&_CGPathCreateSeparateComponents, lib, "CGPathCreateSeparateComponents")
-	tryRegister(&_CGPathEqualToPath, lib, "CGPathEqualToPath")
-	tryRegister(&_CGPathIntersectsPath, lib, "CGPathIntersectsPath")
-	tryRegister(&_CGPathMoveToPoint, lib, "CGPathMoveToPoint")
-	tryRegister(&_CGPathRelease, lib, "CGPathRelease")
-	tryRegister(&_CGPathRetain, lib, "CGPathRetain")
-	tryRegister(&_CGPatternCreate, lib, "CGPatternCreate")
-	tryRegister(&_CGPatternGetTypeID, lib, "CGPatternGetTypeID")
-	tryRegister(&_CGPatternRelease, lib, "CGPatternRelease")
-	tryRegister(&_CGPatternRetain, lib, "CGPatternRetain")
 	tryRegister(&_CGPointApplyAffineTransform, lib, "CGPointApplyAffineTransform")
 	tryRegister(&_CGPointCreateDictionaryRepresentation, lib, "CGPointCreateDictionaryRepresentation")
 	tryRegister(&_CGPointEqualToPoint, lib, "CGPointEqualToPoint")
@@ -1433,12 +1419,6 @@ func init() {
 	tryRegister(&_CGReleaseAllDisplays, lib, "CGReleaseAllDisplays")
 	tryRegister(&_CGReleaseDisplayFadeReservation, lib, "CGReleaseDisplayFadeReservation")
 	tryRegister(&_CGReleaseScreenRefreshRects, lib, "CGReleaseScreenRefreshRects")
-	tryRegister(&_CGRenderingBufferLockBytePtr, lib, "CGRenderingBufferLockBytePtr")
-	tryRegister(&_CGRenderingBufferProviderCreate, lib, "CGRenderingBufferProviderCreate")
-	tryRegister(&_CGRenderingBufferProviderCreateWithCFData, lib, "CGRenderingBufferProviderCreateWithCFData")
-	tryRegister(&_CGRenderingBufferProviderGetSize, lib, "CGRenderingBufferProviderGetSize")
-	tryRegister(&_CGRenderingBufferProviderGetTypeID, lib, "CGRenderingBufferProviderGetTypeID")
-	tryRegister(&_CGRenderingBufferUnlockBytePtr, lib, "CGRenderingBufferUnlockBytePtr")
 	tryRegister(&_CGRequestListenEventAccess, lib, "CGRequestListenEventAccess")
 	tryRegister(&_CGRequestPostEventAccess, lib, "CGRequestPostEventAccess")
 	tryRegister(&_CGRequestScreenCaptureAccess, lib, "CGRequestScreenCaptureAccess")
@@ -1451,12 +1431,6 @@ func init() {
 	tryRegister(&_CGSetDisplayTransferByTable, lib, "CGSetDisplayTransferByTable")
 	tryRegister(&_CGSetLocalEventsFilterDuringSuppressionState, lib, "CGSetLocalEventsFilterDuringSuppressionState")
 	tryRegister(&_CGSetLocalEventsSuppressionInterval, lib, "CGSetLocalEventsSuppressionInterval")
-	tryRegister(&_CGShadingGetContentHeadroom, lib, "CGShadingGetContentHeadroom")
-	tryRegister(&_CGShadingCreateAxialWithContentHeadroom, lib, "CGShadingCreateAxialWithContentHeadroom")
-	tryRegister(&_CGShadingCreateAxial, lib, "CGShadingCreateAxial")
-	tryRegister(&_CGShadingCreateRadialWithContentHeadroom, lib, "CGShadingCreateRadialWithContentHeadroom")
-	tryRegister(&_CGShadingCreateRadial, lib, "CGShadingCreateRadial")
-	tryRegister(&_CGShadingGetTypeID, lib, "CGShadingGetTypeID")
 	tryRegister(&_CGShadingRelease, lib, "CGShadingRelease")
 	tryRegister(&_CGShadingRetain, lib, "CGShadingRetain")
 	tryRegister(&_CGShieldingWindowID, lib, "CGShieldingWindowID")
@@ -1492,68 +1466,3939 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Decrements the retain count of a color space.
+// CGBitmapContextCreateAdaptive is a CoreGraphics function.
 //
-// Added in macOS 10.0.
+// Added in macOS 26.0.
 
-// Decrements the retain count of a color space.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1408855-cgcolorspacerelease
-func CGColorSpaceRelease(p0 CGColorSpaceRef) {
-	_CGColorSpaceRelease(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapContextCreateAdaptive
+func CGBitmapContextCreateAdaptive(width uintptr, height uintptr, auxiliaryInfo unsafe.Pointer, onResolve bool) ContextRef {
+	return _CGBitmapContextCreateAdaptive(width, height, auxiliaryInfo, onResolve)
 	}
 
 
-// Paints the area within the current path, using the even-odd fill rule.
+// Returns the value of the alpha component associated with a color.
 //
-// Added in macOS 10.0.
+// Added in macOS 10.3.
 
-// Paints the area within the current path, using the even-odd fill rule.
+// Returns the value of the alpha component associated with a color.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1454865-cgcontexteofillpath
-func CGContextEOFillPath(p0 CGContextRef) {
-	_CGContextEOFillPath(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/alpha
+func CGColorGetAlpha(color ColorRef) float64 {
+	return _CGColorGetAlpha(color)
 	}
 
 
-// Sets the level of interpolation quality for a graphics context.
+// Returns the color space associated with a color.
 //
-// Added in macOS 10.0.
+// Added in macOS 10.3.
 
-// Sets the level of interpolation quality for a graphics context.
+// Returns the color space associated with a color.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1455656-cgcontextsetinterpolationquality
-func CGContextSetInterpolationQuality(p0 unsafe.Pointer) {
-	_CGContextSetInterpolationQuality(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/colorSpace
+func CGColorGetColorSpace(color ColorRef) ColorSpaceRef {
+	return _CGColorGetColorSpace(color)
 	}
 
 
-// Paints the area within the current path, using the nonzero winding number rule.
+// CGColorGetContentHeadroom is a CoreGraphics function.
 //
-// Added in macOS 10.0.
+// Added in macOS 26.0.
 
-// Paints the area within the current path, using the nonzero winding number rule.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1456306-cgcontextfillpath
-func CGContextFillPath(p0 CGContextRef) {
-	_CGContextFillPath(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/contentHeadroom
+func CGColorGetContentHeadroom(color ColorRef) float32 {
+	return _CGColorGetContentHeadroom(color)
 	}
 
 
-// Decrements the retain count of a bitmap image.
+// Creates a new color in a different color space that matches the provided color.
+//
+// Added in macOS 10.11.
+
+// Creates a new color in a different color space that matches the provided color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/converted(to:intent:options:)
+func CGColorCreateCopyByMatchingToColorSpace(p0 ColorSpaceRef, intent unsafe.Pointer, color ColorRef, options unsafe.Pointer) ColorRef {
+	return _CGColorCreateCopyByMatchingToColorSpace(p0, intent, color, options)
+	}
+
+
+// Creates a copy of an existing color.
+//
+// Added in macOS 10.3.
+
+// Creates a copy of an existing color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy()
+func CGColorCreateCopy(color ColorRef) ColorRef {
+	return _CGColorCreateCopy(color)
+	}
+
+
+// Creates a copy of an existing color, substituting a new alpha value.
+//
+// Added in macOS 10.3.
+
+// Creates a copy of an existing color, substituting a new alpha value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy(alpha:)
+func CGColorCreateCopyWithAlpha(color ColorRef, alpha float64) ColorRef {
+	return _CGColorCreateCopyWithAlpha(color, alpha)
+	}
+
+
+// Creates a color using a list of intensity values (including alpha) and an associated color space.
+//
+// Added in macOS 10.3.
+
+// Creates a color using a list of intensity values (including alpha) and an associated color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(colorSpace:components:)
+func CGColorCreate(space ColorSpaceRef, components []float64) ColorRef {
+	return _CGColorCreate(space, components)
+	}
+
+
+// Creates a color in the Generic CMYK color space.
+//
+// Added in macOS 10.5.
+
+// Creates a color in the Generic CMYK color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericCMYKCyan:magenta:yellow:black:alpha:)
+func CGColorCreateGenericCMYK(cyan float64, magenta float64, yellow float64, black float64, alpha float64) ColorRef {
+	return _CGColorCreateGenericCMYK(cyan, magenta, yellow, black, alpha)
+	}
+
+
+// Creates a color in the Generic gray color space with a gamma ramp of 2.2.
+//
+// Added in macOS 10.15.
+
+// Creates a color in the Generic gray color space with a gamma ramp of 2.2.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericGrayGamma2_2Gray:alpha:)
+func CGColorCreateGenericGrayGamma2_2(gray float64, alpha float64) ColorRef {
+	return _CGColorCreateGenericGrayGamma2_2(gray, alpha)
+	}
+
+
+// Creates a color in the Generic gray color space.
+//
+// Added in macOS 10.5.
+
+// Creates a color in the Generic gray color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(gray:alpha:)
+func CGColorCreateGenericGray(gray float64, alpha float64) ColorRef {
+	return _CGColorCreateGenericGray(gray, alpha)
+	}
+
+
+// CGColorCreateWithContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(headroom:colorSpace:red:green:blue:alpha:)
+func CGColorCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, red float64, green float64, blue float64, alpha float64) ColorRef {
+	return _CGColorCreateWithContentHeadroom(headroom, space, red, green, blue, alpha)
+	}
+
+
+// Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
+//
+// Added in macOS 10.3.
+
+// Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(patternSpace:pattern:components:)
+func CGColorCreateWithPattern(space ColorSpaceRef, pattern PatternRef, components []float64) ColorRef {
+	return _CGColorCreateWithPattern(space, pattern, components)
+	}
+
+
+// Creates a color in the Generic RGB color space.
+//
+// Added in macOS 10.5.
+
+// Creates a color in the Generic RGB color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(red:green:blue:alpha:)
+func CGColorCreateGenericRGB(red float64, green float64, blue float64, alpha float64) ColorRef {
+	return _CGColorCreateGenericRGB(red, green, blue, alpha)
+	}
+
+
+// Creates a color in the sRGB color space.
+//
+// Added in macOS 10.15.
+
+// Creates a color in the sRGB color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(srgbRed:green:blue:alpha:)
+func CGColorCreateSRGB(red float64, green float64, blue float64, alpha float64) ColorRef {
+	return _CGColorCreateSRGB(red, green, blue, alpha)
+	}
+
+
+// Returns the number of color components (including alpha) associated with a color.
+//
+// Added in macOS 10.3.
+
+// Returns the number of color components (including alpha) associated with a color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/numberOfComponents
+func CGColorGetNumberOfComponents(color ColorRef) uintptr {
+	return _CGColorGetNumberOfComponents(color)
+	}
+
+
+// Returns the pattern associated with a color in a pattern color space.
+//
+// Added in macOS 10.3.
+
+// Returns the pattern associated with a color in a pattern color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/pattern
+func CGColorGetPattern(color ColorRef) PatternRef {
+	return _CGColorGetPattern(color)
+	}
+
+
+// Returns the Core Foundation type identifier for a color data type.
+//
+// Added in macOS 10.3.
+
+// Returns the Core Foundation type identifier for a color data type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/typeID
+func CGColorGetTypeID() unsafe.Pointer {
+	return _CGColorGetTypeID()
+	}
+
+
+// CGColorConversionInfoConvertData is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/convert(width:height:to:format:from:format:options:)
+func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
+	return _CGColorConversionInfoConvertData(info, width, height, dst_data, dst_format, src_data, src_format, options)
+	}
+
+
+// CGColorConversionInfoCreateWithOptions is a CoreGraphics function.
+//
+// Added in macOS 10.14.6.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(optionsSrc:dst:options:)
+func CGColorConversionInfoCreateWithOptions(src ColorSpaceRef, dst ColorSpaceRef, options unsafe.Pointer) ColorConversionInfoRef {
+	return _CGColorConversionInfoCreateWithOptions(src, dst, options)
+	}
+
+
+// Creates a conversion between two specified color spaces.
+//
+// Added in macOS 10.12.
+
+// Creates a conversion between two specified color spaces.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:dst:)
+func CGColorConversionInfoCreate(src ColorSpaceRef, dst ColorSpaceRef) ColorConversionInfoRef {
+	return _CGColorConversionInfoCreate(src, dst)
+	}
+
+
+// CGColorConversionInfoCreateForToneMapping is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:srcHeadroom:dst:dstHeadroom:toneMapping:options:_:)
+func CGColorConversionInfoCreateForToneMapping(from ColorSpaceRef, source_headroom float32, to ColorSpaceRef, target_headroom float32, method unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) ColorConversionInfoRef {
+	return _CGColorConversionInfoCreateForToneMapping(from, source_headroom, to, target_headroom, method, options, error_)
+	}
+
+
+// Returns the Core Foundation type identifier for a color conversion info data type.
+
+// Returns the Core Foundation type identifier for a color conversion info data type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/typeID
+func CGColorConversionInfoGetTypeID() unsafe.Pointer {
+	return _CGColorConversionInfoGetTypeID()
+	}
+
+
+// Returns the base color space of a pattern or indexed color space.
+//
+// Added in macOS 10.5.
+
+// Returns the base color space of a pattern or indexed color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/baseColorSpace
+func CGColorSpaceGetBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
+	return _CGColorSpaceGetBaseColorSpace(space)
+	}
+
+
+// Returns a copy of the ICC profile data of the provided color space.
+//
+// Added in macOS 10.12.
+
+// Returns a copy of the ICC profile data of the provided color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyICCData()
+func CGColorSpaceCopyICCData(space ColorSpaceRef) unsafe.Pointer {
+	return _CGColorSpaceCopyICCData(space)
+	}
+
+
+// Returns a copy of the color space’s properties.
+//
+// Added in macOS 10.12.
+
+// Returns a copy of the color space’s properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyPropertyList()
+func CGColorSpaceCopyPropertyList(space ColorSpaceRef) unsafe.Pointer {
+	return _CGColorSpaceCopyPropertyList(space)
+	}
+
+
+// Returns a copy of the ICC profile of the provided color space.
+//
+// Deprecated: This function was deprecated in macOS 10.13.
+//
+// Added in macOS 10.5.
+
+// Returns a copy of the ICC profile of the provided color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/iccData
+func CGColorSpaceCopyICCProfile(space ColorSpaceRef) unsafe.Pointer {
+	return _CGColorSpaceCopyICCProfile(space)
+	}
+
+
+// Creates a calibrated grayscale color space.
 //
 // Added in macOS 10.0.
 
-// Decrements the retain count of a bitmap image.
+// Creates a calibrated grayscale color space.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coregraphics/1556742-cgimagerelease
-func CGImageRelease(p0 CGImageRef) {
-	_CGImageRelease(p0)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedGrayWhitePoint:blackPoint:gamma:)
+func CGColorSpaceCreateCalibratedGray(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateCalibratedGray(whitePoint, blackPoint, gamma)
+	}
+
+
+// Creates a calibrated RGB color space.
+//
+// Added in macOS 10.0.
+
+// Creates a calibrated RGB color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedRGBWhitePoint:blackPoint:gamma:matrix:)
+func CGColorSpaceCreateCalibratedRGB(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer, matrix unsafe.Pointer, p4 unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateCalibratedRGB(whitePoint, blackPoint, gamma, matrix, p4)
+	}
+
+
+// Creates a device-independent color space that is defined according to the ICC color profile specification.
+//
+// Added in macOS 10.0.
+
+// Creates a device-independent color space that is defined according to the ICC color profile specification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccBasedNComponents:range:profile:alternate:)
+func CGColorSpaceCreateICCBased(nComponents uintptr, range_ []float64, profile DataProviderRef, alternate ColorSpaceRef) ColorSpaceRef {
+	return _CGColorSpaceCreateICCBased(nComponents, range_, profile, alternate)
+	}
+
+
+// Creates an ICC-based color space using the ICC profile contained in the specified data.
+//
+// Added in macOS 10.12.
+
+// Creates an ICC-based color space using the ICC profile contained in the specified data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccData:)
+func CGColorSpaceCreateWithICCData(data unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateWithICCData(data)
+	}
+
+
+// Creates an ICC-based color space using the ICC profile contained in the specified data.
+//
+// Deprecated: This function was deprecated in macOS 10.13.
+//
+// Added in macOS 10.5.
+
+// Creates an ICC-based color space using the ICC profile contained in the specified data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccProfileData:)
+func CGColorSpaceCreateWithICCProfile(data unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateWithICCProfile(data)
+	}
+
+
+// Creates an indexed color space, consisting of colors specified by a color lookup table.
+//
+// Added in macOS 10.0.
+
+// Creates an indexed color space, consisting of colors specified by a color lookup table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(indexedBaseSpace:last:colorTable:)
+func CGColorSpaceCreateIndexed(baseSpace ColorSpaceRef, lastIndex uintptr, colorTable unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateIndexed(baseSpace, lastIndex, colorTable)
+	}
+
+
+// Creates a device-independent color space that is relative to human color perception, according to the CIE L*a*b* standard.
+//
+// Added in macOS 10.0.
+
+// Creates a device-independent color space that is relative to human color perception, according to the CIE L*a*b* standard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(labWhitePoint:blackPoint:range:)
+func CGColorSpaceCreateLab(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, range_ unsafe.Pointer, p3 unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateLab(whitePoint, blackPoint, range_, p3)
+	}
+
+
+// Creates a specified type of Quartz color space.
+//
+// Added in macOS 10.2.
+
+// Creates a specified type of Quartz color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(name:)
+func CGColorSpaceCreateWithName(name unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateWithName(name)
+	}
+
+
+// Creates a pattern color space.
+//
+// Added in macOS 10.0.
+
+// Creates a pattern color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(patternBaseSpace:)
+func CGColorSpaceCreatePattern(baseSpace ColorSpaceRef) ColorSpaceRef {
+	return _CGColorSpaceCreatePattern(baseSpace)
+	}
+
+
+// Creates a platform-specific color space.
+//
+// Deprecated: This function was deprecated in macOS 12.0.
+//
+// Added in macOS 10.0.
+
+// Creates a platform-specific color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(platformColorSpaceRef:)
+func CGColorSpaceCreateWithPlatformColorSpace(ref unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateWithPlatformColorSpace(ref)
+	}
+
+
+// Creates a color space from a property list.
+//
+// Added in macOS 10.12.
+
+// Creates a color space from a property list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(propertyListPlist:)
+func CGColorSpaceCreateWithPropertyList(plist unsafe.Pointer) ColorSpaceRef {
+	return _CGColorSpaceCreateWithPropertyList(plist)
+	}
+
+
+// CGColorSpaceIsHDR is a CoreGraphics function.
+//
+// Added in macOS 10.15.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isHDR()
+func CGColorSpaceIsHDR(p0 ColorSpaceRef) bool {
+	return _CGColorSpaceIsHDR(p0)
+	}
+
+
+// Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
+//
+// Added in macOS 10.12.
+
+// Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isWideGamutRGB
+func CGColorSpaceIsWideGamutRGB(p0 ColorSpaceRef) bool {
+	return _CGColorSpaceIsWideGamutRGB(p0)
+	}
+
+
+// Returns the color space model of the provided color space.
+//
+// Added in macOS 10.5.
+
+// Returns the color space model of the provided color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/model
+func CGColorSpaceGetModel(space ColorSpaceRef) unsafe.Pointer {
+	return _CGColorSpaceGetModel(space)
+	}
+
+
+// Returns the name used to create the specified color space.
+//
+// Added in macOS 10.6.
+
+// Returns the name used to create the specified color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/name
+func CGColorSpaceCopyName(space ColorSpaceRef) unsafe.Pointer {
+	return _CGColorSpaceCopyName(space)
+	}
+
+
+// Returns the number of color components in a color space.
+//
+// Added in macOS 10.0.
+
+// Returns the number of color components in a color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/numberOfComponents
+func CGColorSpaceGetNumberOfComponents(space ColorSpaceRef) uintptr {
+	return _CGColorSpaceGetNumberOfComponents(space)
+	}
+
+
+// Returns a Boolean indicating whether the color space can be used as a destination color space.
+//
+// Added in macOS 10.12.
+
+// Returns a Boolean indicating whether the color space can be used as a destination color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/supportsOutput
+func CGColorSpaceSupportsOutput(space ColorSpaceRef) bool {
+	return _CGColorSpaceSupportsOutput(space)
+	}
+
+
+// Returns the Core Foundation type identifier for Quartz color spaces.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for Quartz color spaces.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/typeID
+func CGColorSpaceGetTypeID() unsafe.Pointer {
+	return _CGColorSpaceGetTypeID()
+	}
+
+
+// Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
+//
+// Added in macOS 10.4.
+
+// Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDestination(_:at:)
+func CGPDFContextAddDestinationAtPoint(context ContextRef, name unsafe.Pointer, point CGPoint) {
+	_CGPDFContextAddDestinationAtPoint(context, name, point)
+	}
+
+
+// Associates custom metadata with the PDF document.
+//
+// Added in macOS 10.7.
+
+// Associates custom metadata with the PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDocumentMetadata(_:)
+func CGPDFContextAddDocumentMetadata(context ContextRef, metadata unsafe.Pointer) {
+	_CGPDFContextAddDocumentMetadata(context, metadata)
+	}
+
+
+// Adds an ellipse that fits inside the specified rectangle.
+//
+// Added in macOS 10.4.
+
+// Adds an ellipse that fits inside the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addEllipse(in:)
+func CGContextAddEllipseInRect(c ContextRef, rect CGRect) {
+	_CGContextAddEllipseInRect(c, rect)
+	}
+
+
+// Adds a previously created path object to the current path in a graphics context.
+//
+// Added in macOS 10.2.
+
+// Adds a previously created path object to the current path in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addPath(_:)
+func CGContextAddPath(c ContextRef, path PathRef) {
+	_CGContextAddPath(c, path)
+	}
+
+
+// Adds a rectangular path to the current path.
+//
+// Added in macOS 10.0.
+
+// Adds a rectangular path to the current path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addRect(_:)
+func CGContextAddRect(c ContextRef, rect CGRect) {
+	_CGContextAddRect(c, rect)
+	}
+
+
+// Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
+//
+// Added in macOS 10.2.
+
+// Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/alphaInfo
+func CGBitmapContextGetAlphaInfo(context ContextRef) unsafe.Pointer {
+	return _CGBitmapContextGetAlphaInfo(context)
+	}
+
+
+// Starts a new page in a page-based graphics context.
+//
+// Added in macOS 10.0.
+
+// Starts a new page in a page-based graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPage(mediaBox:)
+func CGContextBeginPage(c ContextRef, mediaBox unsafe.Pointer) {
+	_CGContextBeginPage(c, mediaBox)
+	}
+
+
+// Creates a new empty path in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Creates a new empty path in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPath()
+func CGContextBeginPath(c ContextRef) {
+	_CGContextBeginPath(c)
+	}
+
+
+// Begins a new page in a PDF graphics context.
+//
+// Added in macOS 10.4.
+
+// Begins a new page in a PDF graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPDFPage(_:)
+func CGPDFContextBeginPage(context ContextRef, pageInfo unsafe.Pointer) {
+	_CGPDFContextBeginPage(context, pageInfo)
+	}
+
+
+// Begins a transparency layer.
+//
+// Added in macOS 10.3.
+
+// Begins a transparency layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(auxiliaryInfo:)
+func CGContextBeginTransparencyLayer(c ContextRef, auxiliaryInfo unsafe.Pointer) {
+	_CGContextBeginTransparencyLayer(c, auxiliaryInfo)
+	}
+
+
+// Begins a transparency layer whose contents are bounded by the specified rectangle.
+//
+// Added in macOS 10.5.
+
+// Begins a transparency layer whose contents are bounded by the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(in:auxiliaryInfo:)
+func CGContextBeginTransparencyLayerWithRect(c ContextRef, rect CGRect, auxInfo unsafe.Pointer) {
+	_CGContextBeginTransparencyLayerWithRect(c, rect, auxInfo)
+	}
+
+
+// Obtains the bitmap information associated with a bitmap graphics context.
+//
+// Added in macOS 10.4.
+
+// Obtains the bitmap information associated with a bitmap graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitmapInfo
+func CGBitmapContextGetBitmapInfo(context ContextRef) unsafe.Pointer {
+	return _CGBitmapContextGetBitmapInfo(context)
+	}
+
+
+// Returns the bits per component of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the bits per component of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerComponent
+func CGBitmapContextGetBitsPerComponent(context ContextRef) uintptr {
+	return _CGBitmapContextGetBitsPerComponent(context)
+	}
+
+
+// Returns the bits per pixel of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the bits per pixel of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerPixel
+func CGBitmapContextGetBitsPerPixel(context ContextRef) uintptr {
+	return _CGBitmapContextGetBitsPerPixel(context)
+	}
+
+
+// Returns the bounding box of a clipping path.
+//
+// Added in macOS 10.3.
+
+// Returns the bounding box of a clipping path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfClipPath
+func CGContextGetClipBoundingBox(c ContextRef) CGRect {
+	return _CGContextGetClipBoundingBox(c)
+	}
+
+
+// Returns the smallest rectangle that contains the current path.
+//
+// Added in macOS 10.0.
+
+// Returns the smallest rectangle that contains the current path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfPath
+func CGContextGetPathBoundingBox(c ContextRef) CGRect {
+	return _CGContextGetPathBoundingBox(c)
+	}
+
+
+// Returns the bytes per row of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the bytes per row of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bytesPerRow
+func CGBitmapContextGetBytesPerRow(context ContextRef) uintptr {
+	return _CGBitmapContextGetBytesPerRow(context)
+	}
+
+
+// Paints a transparent rectangle.
+//
+// Added in macOS 10.0.
+
+// Paints a transparent rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clear(_:)
+func CGContextClearRect(c ContextRef, rect CGRect) {
+	_CGContextClearRect(c, rect)
+	}
+
+
+// Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
+//
+// Added in macOS 10.0.
+
+// Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:)-7cbwq
+func CGContextClipToRect(c ContextRef, rect CGRect) {
+	_CGContextClipToRect(c, rect)
+	}
+
+
+// Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
+//
+// Added in macOS 10.4.
+
+// Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:mask:)
+func CGContextClipToMask(c ContextRef, rect CGRect, mask ImageRef) {
+	_CGContextClipToMask(c, rect, mask)
+	}
+
+
+// Closes and terminates the current path’s subpath.
+//
+// Added in macOS 10.0.
+
+// Closes and terminates the current path’s subpath.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePath()
+func CGContextClosePath(c ContextRef) {
+	_CGContextClosePath(c)
+	}
+
+
+// Closes a PDF document.
+//
+// Added in macOS 10.5.
+
+// Closes a PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePDF()
+func CGPDFContextClose(context ContextRef) {
+	_CGPDFContextClose(context)
+	}
+
+
+// Returns the color space of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the color space of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/colorSpace
+func CGBitmapContextGetColorSpace(context ContextRef) ColorSpaceRef {
+	return _CGBitmapContextGetColorSpace(context)
+	}
+
+
+// Transforms the user coordinate system in a context using a specified matrix.
+//
+// Added in macOS 10.0.
+
+// Transforms the user coordinate system in a context using a specified matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/concatenate(_:)
+func CGContextConcatCTM(c ContextRef, transform CGAffineTransform) {
+	_CGContextConcatCTM(c, transform)
+	}
+
+
+// Returns a size that is transformed from user space coordinates to device space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a size that is transformed from user space coordinates to device space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-224h2
+func CGContextConvertSizeToDeviceSpace(c ContextRef, size CGSize) CGSize {
+	return _CGContextConvertSizeToDeviceSpace(c, size)
+	}
+
+
+// Returns a point that is transformed from user space coordinates to device space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a point that is transformed from user space coordinates to device space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-53m7u
+func CGContextConvertPointToDeviceSpace(c ContextRef, point CGPoint) CGPoint {
+	return _CGContextConvertPointToDeviceSpace(c, point)
+	}
+
+
+// Returns a rectangle that is transformed from user space coordinate to device space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a rectangle that is transformed from user space coordinate to device space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-91x5g
+func CGContextConvertRectToDeviceSpace(c ContextRef, rect CGRect) CGRect {
+	return _CGContextConvertRectToDeviceSpace(c, rect)
+	}
+
+
+// Returns a rectangle that is transformed from device space coordinate to user space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a rectangle that is transformed from device space coordinate to user space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-1hk5r
+func CGContextConvertRectToUserSpace(c ContextRef, rect CGRect) CGRect {
+	return _CGContextConvertRectToUserSpace(c, rect)
+	}
+
+
+// Returns a point that is transformed from device space coordinates to user space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a point that is transformed from device space coordinates to user space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-3mtg3
+func CGContextConvertPointToUserSpace(c ContextRef, point CGPoint) CGPoint {
+	return _CGContextConvertPointToUserSpace(c, point)
+	}
+
+
+// Returns a size that is transformed from device space coordinates to user space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns a size that is transformed from device space coordinates to user space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-693ur
+func CGContextConvertSizeToUserSpace(c ContextRef, size CGSize) CGSize {
+	return _CGContextConvertSizeToUserSpace(c, size)
+	}
+
+
+// Returns the current transformation matrix.
+//
+// Added in macOS 10.0.
+
+// Returns the current transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/ctm
+func CGContextGetCTM(c ContextRef) CGAffineTransform {
+	return _CGContextGetCTM(c)
+	}
+
+
+// Returns the current point in a non-empty path.
+//
+// Added in macOS 10.0.
+
+// Returns the current point in a non-empty path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/currentPointOfPath
+func CGContextGetPathCurrentPoint(c ContextRef) CGPoint {
+	return _CGContextGetPathCurrentPoint(c)
+	}
+
+
+// Returns a pointer to the image data associated with a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns a pointer to the image data associated with a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/data
+func CGBitmapContextGetData(context ContextRef) unsafe.Pointer {
+	return _CGBitmapContextGetData(context)
+	}
+
+
+// Paints a gradient fill that varies along the line defined by the provided starting and ending points.
+//
+// Added in macOS 10.5.
+
+// Paints a gradient fill that varies along the line defined by the provided starting and ending points.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawLinearGradient(_:start:end:options:)
+func CGContextDrawLinearGradient(c ContextRef, gradient GradientRef, startPoint CGPoint, endPoint CGPoint, options unsafe.Pointer) {
+	_CGContextDrawLinearGradient(c, gradient, startPoint, endPoint, options)
+	}
+
+
+// Draws the current path using the provided drawing mode.
+//
+// Added in macOS 10.0.
+
+// Draws the current path using the provided drawing mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPath(using:)
+func CGContextDrawPath(c ContextRef, mode unsafe.Pointer) {
+	_CGContextDrawPath(c, mode)
+	}
+
+
+// Draws the content of a PDF page into the current graphics context.
+//
+// Added in macOS 10.3.
+
+// Draws the content of a PDF page into the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPDFPage(_:)
+func CGContextDrawPDFPage(c ContextRef, page PDFPageRef) {
+	_CGContextDrawPDFPage(c, page)
+	}
+
+
+// Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
+//
+// Added in macOS 10.5.
+
+// Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawRadialGradient(_:startCenter:startRadius:endCenter:endRadius:options:)
+func CGContextDrawRadialGradient(c ContextRef, gradient GradientRef, startCenter CGPoint, startRadius float64, endCenter CGPoint, endRadius float64, options unsafe.Pointer) {
+	_CGContextDrawRadialGradient(c, gradient, startCenter, startRadius, endCenter, endRadius, options)
+	}
+
+
+// Fills the clipping path of a context with the specified shading.
+//
+// Added in macOS 10.2.
+
+// Fills the clipping path of a context with the specified shading.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawShading(_:)
+func CGContextDrawShading(c ContextRef, shading ShadingRef) {
+	_CGContextDrawShading(c, shading)
+	}
+
+
+// Ends the current page in a page-based graphics context.
+//
+// Added in macOS 10.0.
+
+// Ends the current page in a page-based graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPage()
+func CGContextEndPage(c ContextRef) {
+	_CGContextEndPage(c)
+	}
+
+
+// Ends the current page in the PDF graphics context.
+//
+// Added in macOS 10.4.
+
+// Ends the current page in the PDF graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPDFPage()
+func CGPDFContextEndPage(context ContextRef) {
+	_CGPDFContextEndPage(context)
+	}
+
+
+// Ends a transparency layer.
+//
+// Added in macOS 10.3.
+
+// Ends a transparency layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endTransparencyLayer()
+func CGContextEndTransparencyLayer(c ContextRef) {
+	_CGContextEndTransparencyLayer(c)
+	}
+
+
+// Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
+//
+// Added in macOS 10.0.
+
+// Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fill(_:)-7a0rk
+func CGContextFillRect(c ContextRef, rect CGRect) {
+	_CGContextFillRect(c, rect)
+	}
+
+
+// Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
+//
+// Added in macOS 10.4.
+
+// Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fillEllipse(in:)
+func CGContextFillEllipseInRect(c ContextRef, rect CGRect) {
+	_CGContextFillEllipseInRect(c, rect)
+	}
+
+
+// Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
+//
+// Added in macOS 10.0.
+
+// Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/flush()
+func CGContextFlush(c ContextRef) {
+	_CGContextFlush(c)
+	}
+
+
+// Returns the height in pixels of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the height in pixels of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/height
+func CGBitmapContextGetHeight(context ContextRef) uintptr {
+	return _CGBitmapContextGetHeight(context)
+	}
+
+
+// Creates a URL-based PDF graphics context.
+//
+// Added in macOS 10.0.
+
+// Creates a URL-based PDF graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(_:mediaBox:_:)
+func CGPDFContextCreateWithURL(url unsafe.Pointer, mediaBox unsafe.Pointer, auxiliaryInfo unsafe.Pointer) ContextRef {
+	return _CGPDFContextCreateWithURL(url, mediaBox, auxiliaryInfo)
+	}
+
+
+// Creates a PDF graphics context.
+//
+// Added in macOS 10.0.
+
+// Creates a PDF graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(consumer:mediaBox:_:)
+func CGPDFContextCreate(consumer DataConsumerRef, mediaBox unsafe.Pointer, auxiliaryInfo unsafe.Pointer) ContextRef {
+	return _CGPDFContextCreate(consumer, mediaBox, auxiliaryInfo)
+	}
+
+
+// CGBitmapContextCreate is a CoreGraphics function.
+//
+// Added in macOS 10.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:)-10b3i
+func CGBitmapContextCreate(data unsafe.Pointer, width uintptr, height uintptr, bitsPerComponent uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo unsafe.Pointer) ContextRef {
+	return _CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo)
+	}
+
+
+// CGBitmapContextCreateWithData is a CoreGraphics function.
+//
+// Added in macOS 10.6.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:releaseCallback:releaseInfo:)-4yzt5
+func CGBitmapContextCreateWithData(data unsafe.Pointer, width uintptr, height uintptr, bitsPerComponent uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo unsafe.Pointer, releaseCallback unsafe.Pointer, releaseInfo unsafe.Pointer) ContextRef {
+	return _CGBitmapContextCreateWithData(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback, releaseInfo)
+	}
+
+
+// Returns the current level of interpolation quality for a graphics context.
+//
+// Added in macOS 10.0.
+
+// Returns the current level of interpolation quality for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/interpolationQuality
+func CGContextGetInterpolationQuality(c ContextRef) unsafe.Pointer {
+	return _CGContextGetInterpolationQuality(c)
+	}
+
+
+// Indicates whether the current path contains any subpaths.
+//
+// Added in macOS 10.0.
+
+// Indicates whether the current path contains any subpaths.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/isPathEmpty
+func CGContextIsPathEmpty(c ContextRef) bool {
+	return _CGContextIsPathEmpty(c)
+	}
+
+
+// Creates and returns a CGImage from the pixel data in a bitmap graphics context.
+//
+// Added in macOS 10.4.
+
+// Creates and returns a CGImage from the pixel data in a bitmap graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/makeImage()
+func CGBitmapContextCreateImage(context ContextRef) ImageRef {
+	return _CGBitmapContextCreateImage(context)
+	}
+
+
+// Returns a path object built from the current path information in a graphics context.
+//
+// Added in macOS 10.2.
+
+// Returns a path object built from the current path information in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/path
+func CGContextCopyPath(c ContextRef) PathRef {
+	return _CGContextCopyPath(c)
+	}
+
+
+// Checks to see whether the specified point is contained in the current path.
+//
+// Added in macOS 10.4.
+
+// Checks to see whether the specified point is contained in the current path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/pathContains(_:mode:)
+func CGContextPathContainsPoint(c ContextRef, point CGPoint, mode unsafe.Pointer) bool {
+	return _CGContextPathContainsPoint(c, point, mode)
+	}
+
+
+// Replaces the path in the graphics context with the stroked version of the path.
+//
+// Added in macOS 10.4.
+
+// Replaces the path in the graphics context with the stroked version of the path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/replacePathWithStrokedPath()
+func CGContextReplacePathWithStrokedPath(c ContextRef) {
+	_CGContextReplacePathWithStrokedPath(c)
+	}
+
+
+// CGContextResetClip is a CoreGraphics function.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/resetClip()
+func CGContextResetClip(c ContextRef) {
+	_CGContextResetClip(c)
+	}
+
+
+// Sets the current graphics state to the state most recently saved.
+//
+// Added in macOS 10.0.
+
+// Sets the current graphics state to the state most recently saved.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/restoreGState()
+func CGContextRestoreGState(c ContextRef) {
+	_CGContextRestoreGState(c)
+	}
+
+
+// Rotates the user coordinate system in a context.
+//
+// Added in macOS 10.0.
+
+// Rotates the user coordinate system in a context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/rotate(by:)
+func CGContextRotateCTM(c ContextRef, angle float64) {
+	_CGContextRotateCTM(c, angle)
+	}
+
+
+// Pushes a copy of the current graphics state onto the graphics state stack for the context.
+//
+// Added in macOS 10.0.
+
+// Pushes a copy of the current graphics state onto the graphics state stack for the context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/saveGState()
+func CGContextSaveGState(c ContextRef) {
+	_CGContextSaveGState(c)
+	}
+
+
+// Changes the scale of the user coordinate system in a context.
+//
+// Added in macOS 10.0.
+
+// Changes the scale of the user coordinate system in a context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/scaleBy(x:y:)
+func CGContextScaleCTM(c ContextRef, sx float64, sy float64) {
+	_CGContextScaleCTM(c, sx, sy)
+	}
+
+
+// Sets the font and font size in a graphics context.
+
+// Sets the font and font size in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/selectFont(name:size:textEncoding:)
+func CGContextSelectFont(c ContextRef, name unsafe.Pointer, size float64, textEncoding unsafe.Pointer) {
+	_CGContextSelectFont(c, name, size, textEncoding)
+	}
+
+
+// Sets whether or not to allow antialiasing for a graphics context.
+//
+// Added in macOS 10.4.
+
+// Sets whether or not to allow antialiasing for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsAntialiasing(_:)
+func CGContextSetAllowsAntialiasing(c ContextRef, allowsAntialiasing bool) {
+	_CGContextSetAllowsAntialiasing(c, allowsAntialiasing)
+	}
+
+
+// Sets whether or not to allow font smoothing for a graphics context.
+//
+// Added in macOS 10.2.
+
+// Sets whether or not to allow font smoothing for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSmoothing(_:)
+func CGContextSetAllowsFontSmoothing(c ContextRef, allowsFontSmoothing bool) {
+	_CGContextSetAllowsFontSmoothing(c, allowsFontSmoothing)
+	}
+
+
+// Sets whether or not to allow subpixel positioning for a graphics context.
+//
+// Added in macOS 10.5.
+
+// Sets whether or not to allow subpixel positioning for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelPositioning(_:)
+func CGContextSetAllowsFontSubpixelPositioning(c ContextRef, allowsFontSubpixelPositioning bool) {
+	_CGContextSetAllowsFontSubpixelPositioning(c, allowsFontSubpixelPositioning)
+	}
+
+
+// Sets whether or not to allow subpixel quantization for a graphics context.
+//
+// Added in macOS 10.5.
+
+// Sets whether or not to allow subpixel quantization for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelQuantization(_:)
+func CGContextSetAllowsFontSubpixelQuantization(c ContextRef, allowsFontSubpixelQuantization bool) {
+	_CGContextSetAllowsFontSubpixelQuantization(c, allowsFontSubpixelQuantization)
+	}
+
+
+// Sets the opacity level for objects drawn in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the opacity level for objects drawn in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAlpha(_:)
+func CGContextSetAlpha(c ContextRef, alpha float64) {
+	_CGContextSetAlpha(c, alpha)
+	}
+
+
+// Sets how sample values are composited by a graphics context.
+//
+// Added in macOS 10.4.
+
+// Sets how sample values are composited by a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setBlendMode(_:)
+func CGContextSetBlendMode(c ContextRef, mode unsafe.Pointer) {
+	_CGContextSetBlendMode(c, mode)
+	}
+
+
+// Sets the current character spacing.
+//
+// Added in macOS 10.0.
+
+// Sets the current character spacing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setCharacterSpacing(_:)
+func CGContextSetCharacterSpacing(c ContextRef, spacing float64) {
+	_CGContextSetCharacterSpacing(c, spacing)
+	}
+
+
+// Sets a destination to jump to when a rectangle in the current PDF page is clicked.
+//
+// Added in macOS 10.4.
+
+// Sets a destination to jump to when a rectangle in the current PDF page is clicked.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setDestination(_:for:)
+func CGPDFContextSetDestinationForRect(context ContextRef, name unsafe.Pointer, rect CGRect) {
+	_CGPDFContextSetDestinationForRect(context, name, rect)
+	}
+
+
+// CGContextSetEDRTargetHeadroom is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setEDRTargetHeadroom(_:)
+func CGContextSetEDRTargetHeadroom(c ContextRef, headroom float32) bool {
+	return _CGContextSetEDRTargetHeadroom(c, headroom)
+	}
+
+
+// Sets the current fill color.
+//
+// Added in macOS 10.0.
+
+// Sets the current fill color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-756dy
+func CGContextSetFillColor(c ContextRef, components []float64) {
+	_CGContextSetFillColor(c, components)
+	}
+
+
+// Sets the current fill color in a graphics context, using a CGColor.
+//
+// Added in macOS 10.3.
+
+// Sets the current fill color in a graphics context, using a CGColor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-8lhn8
+func CGContextSetFillColorWithColor(c ContextRef, color ColorRef) {
+	_CGContextSetFillColorWithColor(c, color)
+	}
+
+
+// Sets the current fill color to a value in the DeviceCMYK color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current fill color to a value in the DeviceCMYK color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(cyan:magenta:yellow:black:alpha:)
+func CGContextSetCMYKFillColor(c ContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
+	_CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha)
+	}
+
+
+// Sets the current fill color to a value in the DeviceGray color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current fill color to a value in the DeviceGray color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(gray:alpha:)
+func CGContextSetGrayFillColor(c ContextRef, gray float64, alpha float64) {
+	_CGContextSetGrayFillColor(c, gray, alpha)
+	}
+
+
+// Sets the current fill color to a value in the DeviceRGB color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current fill color to a value in the DeviceRGB color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(red:green:blue:alpha:)
+func CGContextSetRGBFillColor(c ContextRef, red float64, green float64, blue float64, alpha float64) {
+	_CGContextSetRGBFillColor(c, red, green, blue, alpha)
+	}
+
+
+// Sets the fill color space in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the fill color space in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColorSpace(_:)
+func CGContextSetFillColorSpace(c ContextRef, space ColorSpaceRef) {
+	_CGContextSetFillColorSpace(c, space)
+	}
+
+
+// Sets the fill pattern in the specified graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the fill pattern in the specified graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillPattern(_:colorComponents:)
+func CGContextSetFillPattern(c ContextRef, pattern PatternRef, components []float64) {
+	_CGContextSetFillPattern(c, pattern, components)
+	}
+
+
+// Sets the accuracy of curved paths in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the accuracy of curved paths in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFlatness(_:)
+func CGContextSetFlatness(c ContextRef, flatness float64) {
+	_CGContextSetFlatness(c, flatness)
+	}
+
+
+// Sets the platform font in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the platform font in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFont(_:)
+func CGContextSetFont(c ContextRef, font FontRef) {
+	_CGContextSetFont(c, font)
+	}
+
+
+// Sets the current font size.
+//
+// Added in macOS 10.0.
+
+// Sets the current font size.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFontSize(_:)
+func CGContextSetFontSize(c ContextRef, size float64) {
+	_CGContextSetFontSize(c, size)
+	}
+
+
+// Sets the style for the endpoints of lines drawn in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the style for the endpoints of lines drawn in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineCap(_:)
+func CGContextSetLineCap(c ContextRef, cap_ unsafe.Pointer) {
+	_CGContextSetLineCap(c, cap_)
+	}
+
+
+// Sets the style for the joins of connected lines in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the style for the joins of connected lines in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineJoin(_:)
+func CGContextSetLineJoin(c ContextRef, join unsafe.Pointer) {
+	_CGContextSetLineJoin(c, join)
+	}
+
+
+// Sets the line width for a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the line width for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineWidth(_:)
+func CGContextSetLineWidth(c ContextRef, width float64) {
+	_CGContextSetLineWidth(c, width)
+	}
+
+
+// Sets the miter limit for the joins of connected lines in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the miter limit for the joins of connected lines in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setMiterLimit(_:)
+func CGContextSetMiterLimit(c ContextRef, limit float64) {
+	_CGContextSetMiterLimit(c, limit)
+	}
+
+
+// Sets the pattern phase of a context.
+//
+// Added in macOS 10.0.
+
+// Sets the pattern phase of a context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setPatternPhase(_:)
+func CGContextSetPatternPhase(c ContextRef, phase CGSize) {
+	_CGContextSetPatternPhase(c, phase)
+	}
+
+
+// Sets the rendering intent in the current graphics state.
+//
+// Added in macOS 10.0.
+
+// Sets the rendering intent in the current graphics state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setRenderingIntent(_:)
+func CGContextSetRenderingIntent(c ContextRef, intent unsafe.Pointer) {
+	_CGContextSetRenderingIntent(c, intent)
+	}
+
+
+// Enables shadowing in a graphics context.
+//
+// Added in macOS 10.3.
+
+// Enables shadowing in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:)
+func CGContextSetShadow(c ContextRef, offset CGSize, blur float64) {
+	_CGContextSetShadow(c, offset, blur)
+	}
+
+
+// Enables shadowing with color a graphics context.
+//
+// Added in macOS 10.3.
+
+// Enables shadowing with color a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:color:)
+func CGContextSetShadowWithColor(c ContextRef, offset CGSize, blur float64, color ColorRef) {
+	_CGContextSetShadowWithColor(c, offset, blur, color)
+	}
+
+
+// Sets antialiasing on or off for a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets antialiasing on or off for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldAntialias(_:)
+func CGContextSetShouldAntialias(c ContextRef, shouldAntialias bool) {
+	_CGContextSetShouldAntialias(c, shouldAntialias)
+	}
+
+
+// Enables or disables font smoothing in a graphics context.
+//
+// Added in macOS 10.2.
+
+// Enables or disables font smoothing in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSmoothFonts(_:)
+func CGContextSetShouldSmoothFonts(c ContextRef, shouldSmoothFonts bool) {
+	_CGContextSetShouldSmoothFonts(c, shouldSmoothFonts)
+	}
+
+
+// Enables or disables subpixel positioning in a graphics context.
+//
+// Added in macOS 10.5.
+
+// Enables or disables subpixel positioning in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelPositionFonts(_:)
+func CGContextSetShouldSubpixelPositionFonts(c ContextRef, shouldSubpixelPositionFonts bool) {
+	_CGContextSetShouldSubpixelPositionFonts(c, shouldSubpixelPositionFonts)
+	}
+
+
+// Enables or disables subpixel quantization in a graphics context.
+//
+// Added in macOS 10.5.
+
+// Enables or disables subpixel quantization in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelQuantizeFonts(_:)
+func CGContextSetShouldSubpixelQuantizeFonts(c ContextRef, shouldSubpixelQuantizeFonts bool) {
+	_CGContextSetShouldSubpixelQuantizeFonts(c, shouldSubpixelQuantizeFonts)
+	}
+
+
+// Sets the current stroke color in a context, using a CGColor.
+//
+// Added in macOS 10.3.
+
+// Sets the current stroke color in a context, using a CGColor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-1sskg
+func CGContextSetStrokeColorWithColor(c ContextRef, color ColorRef) {
+	_CGContextSetStrokeColorWithColor(c, color)
+	}
+
+
+// Sets the current stroke color.
+//
+// Added in macOS 10.0.
+
+// Sets the current stroke color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-4pd8p
+func CGContextSetStrokeColor(c ContextRef, components []float64) {
+	_CGContextSetStrokeColor(c, components)
+	}
+
+
+// Sets the current stroke color to a value in the DeviceCMYK color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current stroke color to a value in the DeviceCMYK color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(cyan:magenta:yellow:black:alpha:)
+func CGContextSetCMYKStrokeColor(c ContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
+	_CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha)
+	}
+
+
+// Sets the current stroke color to a value in the DeviceGray color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current stroke color to a value in the DeviceGray color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(gray:alpha:)
+func CGContextSetGrayStrokeColor(c ContextRef, gray float64, alpha float64) {
+	_CGContextSetGrayStrokeColor(c, gray, alpha)
+	}
+
+
+// Sets the current stroke color to a value in the DeviceRGB color space.
+//
+// Added in macOS 10.0.
+
+// Sets the current stroke color to a value in the DeviceRGB color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(red:green:blue:alpha:)
+func CGContextSetRGBStrokeColor(c ContextRef, red float64, green float64, blue float64, alpha float64) {
+	_CGContextSetRGBStrokeColor(c, red, green, blue, alpha)
+	}
+
+
+// Sets the stroke color space in a graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the stroke color space in a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColorSpace(_:)
+func CGContextSetStrokeColorSpace(c ContextRef, space ColorSpaceRef) {
+	_CGContextSetStrokeColorSpace(c, space)
+	}
+
+
+// Sets the stroke pattern in the specified graphics context.
+//
+// Added in macOS 10.0.
+
+// Sets the stroke pattern in the specified graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokePattern(_:colorComponents:)
+func CGContextSetStrokePattern(c ContextRef, pattern PatternRef, components []float64) {
+	_CGContextSetStrokePattern(c, pattern, components)
+	}
+
+
+// Sets the current text drawing mode.
+//
+// Added in macOS 10.0.
+
+// Sets the current text drawing mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setTextDrawingMode(_:)
+func CGContextSetTextDrawingMode(c ContextRef, mode unsafe.Pointer) {
+	_CGContextSetTextDrawingMode(c, mode)
+	}
+
+
+// Sets the URL associated with a rectangle in a PDF graphics context.
+//
+// Added in macOS 10.4.
+
+// Sets the URL associated with a rectangle in a PDF graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setURL(_:for:)
+func CGPDFContextSetURLForRect(context ContextRef, url unsafe.Pointer, rect CGRect) {
+	_CGPDFContextSetURLForRect(context, url, rect)
+	}
+
+
+// Displays an array of glyphs at the current text position.
+
+// Displays an array of glyphs at the current text position.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphs(g:count:)
+func CGContextShowGlyphs(c ContextRef, g unsafe.Pointer, count uintptr) {
+	_CGContextShowGlyphs(c, g, count)
+	}
+
+
+// Displays an array of glyphs at a position you specify.
+
+// Displays an array of glyphs at a position you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsAtPoint(x:y:glyphs:count:)
+func CGContextShowGlyphsAtPoint(c ContextRef, x float64, y float64, glyphs unsafe.Pointer, count uintptr) {
+	_CGContextShowGlyphsAtPoint(c, x, y, glyphs, count)
+	}
+
+
+// Draws an array of glyphs with varying offsets.
+
+// Draws an array of glyphs with varying offsets.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsWithAdvances(glyphs:advances:count:)
+func CGContextShowGlyphsWithAdvances(c ContextRef, glyphs unsafe.Pointer, advances unsafe.Pointer, count uintptr) {
+	_CGContextShowGlyphsWithAdvances(c, glyphs, advances, count)
+	}
+
+
+// Displays a character array at the current text position, a point specified by the current text matrix.
+
+// Displays a character array at the current text position, a point specified by the current text matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showText(string:length:)
+func CGContextShowText(c ContextRef, string_ unsafe.Pointer, length uintptr) {
+	_CGContextShowText(c, string_, length)
+	}
+
+
+// Displays a character string at a position you specify.
+
+// Displays a character string at a position you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showTextAtPoint(x:y:string:length:)
+func CGContextShowTextAtPoint(c ContextRef, x float64, y float64, string_ unsafe.Pointer, length uintptr) {
+	_CGContextShowTextAtPoint(c, x, y, string_, length)
+	}
+
+
+// Paints a rectangular path.
+//
+// Added in macOS 10.0.
+
+// Paints a rectangular path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:)
+func CGContextStrokeRect(c ContextRef, rect CGRect) {
+	_CGContextStrokeRect(c, rect)
+	}
+
+
+// Paints a rectangular path, using the specified line width.
+//
+// Added in macOS 10.0.
+
+// Paints a rectangular path, using the specified line width.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:width:)
+func CGContextStrokeRectWithWidth(c ContextRef, rect CGRect, width float64) {
+	_CGContextStrokeRectWithWidth(c, rect, width)
+	}
+
+
+// Strokes an ellipse that fits inside the specified rectangle.
+//
+// Added in macOS 10.4.
+
+// Strokes an ellipse that fits inside the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokeEllipse(in:)
+func CGContextStrokeEllipseInRect(c ContextRef, rect CGRect) {
+	_CGContextStrokeEllipseInRect(c, rect)
+	}
+
+
+// Paints a line along the current path.
+//
+// Added in macOS 10.0.
+
+// Paints a line along the current path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokePath()
+func CGContextStrokePath(c ContextRef) {
+	_CGContextStrokePath(c)
+	}
+
+
+// Marks a window context for update.
+//
+// Added in macOS 10.0.
+
+// Marks a window context for update.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronize()
+func CGContextSynchronize(c ContextRef) {
+	_CGContextSynchronize(c)
+	}
+
+
+// CGContextSynchronizeAttributes is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronizeAttributes()
+func CGContextSynchronizeAttributes(c ContextRef) {
+	_CGContextSynchronizeAttributes(c)
+	}
+
+
+// Returns the current text matrix.
+//
+// Added in macOS 10.0.
+
+// Returns the current text matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/textMatrix
+func CGContextGetTextMatrix(c ContextRef) CGAffineTransform {
+	return _CGContextGetTextMatrix(c)
+	}
+
+
+// Changes the origin of the user coordinate system in a context.
+//
+// Added in macOS 10.0.
+
+// Changes the origin of the user coordinate system in a context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/translateBy(x:y:)
+func CGContextTranslateCTM(c ContextRef, tx float64, ty float64) {
+	_CGContextTranslateCTM(c, tx, ty)
+	}
+
+
+// Returns the type identifier for a graphics context.
+//
+// Added in macOS 10.2.
+
+// Returns the type identifier for a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/typeID
+func CGContextGetTypeID() unsafe.Pointer {
+	return _CGContextGetTypeID()
+	}
+
+
+// Returns an affine transform that maps user space coordinates to device space coordinates.
+//
+// Added in macOS 10.4.
+
+// Returns an affine transform that maps user space coordinates to device space coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/userSpaceToDeviceSpaceTransform
+func CGContextGetUserSpaceToDeviceSpaceTransform(c ContextRef) CGAffineTransform {
+	return _CGContextGetUserSpaceToDeviceSpaceTransform(c)
+	}
+
+
+// Returns the width in pixels of a bitmap context.
+//
+// Added in macOS 10.2.
+
+// Returns the width in pixels of a bitmap context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/width
+func CGBitmapContextGetWidth(context ContextRef) uintptr {
+	return _CGBitmapContextGetWidth(context)
+	}
+
+
+// CGContextGetContentToneMappingInfo is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetContentToneMappingInfo
+func CGContextGetContentToneMappingInfo(c ContextRef) unsafe.Pointer {
+	return _CGContextGetContentToneMappingInfo(c)
+	}
+
+
+// CGContextSetContentToneMappingInfo is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetContentToneMappingInfo
+func CGContextSetContentToneMappingInfo(c ContextRef, info unsafe.Pointer) {
+	_CGContextSetContentToneMappingInfo(c, info)
+	}
+
+
+// Creates a data consumer that writes to a CFData object.
+//
+// Added in macOS 10.4.
+
+// Creates a data consumer that writes to a CFData object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(data:)
+func CGDataConsumerCreateWithCFData(data unsafe.Pointer) DataConsumerRef {
+	return _CGDataConsumerCreateWithCFData(data)
+	}
+
+
+// Creates a data consumer that uses callback functions to write data.
+//
+// Added in macOS 10.0.
+
+// Creates a data consumer that uses callback functions to write data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(info:cbks:)
+func CGDataConsumerCreate(info unsafe.Pointer, cbks unsafe.Pointer) DataConsumerRef {
+	return _CGDataConsumerCreate(info, cbks)
+	}
+
+
+// Creates a data consumer that writes data to a location specified by a URL.
+//
+// Added in macOS 10.0.
+
+// Creates a data consumer that writes data to a location specified by a URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(url:)
+func CGDataConsumerCreateWithURL(url unsafe.Pointer) DataConsumerRef {
+	return _CGDataConsumerCreateWithURL(url)
+	}
+
+
+// Returns the Core Foundation type identifier for Core Graphics data consumers.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for Core Graphics data consumers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/typeID
+func CGDataConsumerGetTypeID() unsafe.Pointer {
+	return _CGDataConsumerGetTypeID()
+	}
+
+
+// Returns a copy of the provider’s data.
+//
+// Added in macOS 10.3.
+
+// Returns a copy of the provider’s data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/data
+func CGDataProviderCopyData(provider DataProviderRef) unsafe.Pointer {
+	return _CGDataProviderCopyData(provider)
+	}
+
+
+// CGDataProviderGetInfo is a CoreGraphics function.
+//
+// Added in macOS 10.13.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/info
+func CGDataProviderGetInfo(provider DataProviderRef) unsafe.Pointer {
+	return _CGDataProviderGetInfo(provider)
+	}
+
+
+// Creates a data provider that reads from a CFData object.
+//
+// Added in macOS 10.4.
+
+// Creates a data provider that reads from a CFData object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(data:)
+func CGDataProviderCreateWithCFData(data unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateWithCFData(data)
+	}
+
+
+// Creates a direct-access data provider that uses data your program supplies.
+//
+// Added in macOS 10.0.
+
+// Creates a direct-access data provider that uses data your program supplies.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(dataInfo:data:size:releaseData:)
+func CGDataProviderCreateWithData(info unsafe.Pointer, data unsafe.Pointer, size uintptr, releaseData unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateWithData(info, data, size, releaseData)
+	}
+
+
+// Creates a direct-access data provider.
+//
+// Added in macOS 10.5.
+
+// Creates a direct-access data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(directInfo:size:callbacks:)
+func CGDataProviderCreateDirect(info unsafe.Pointer, size unsafe.Pointer, callbacks unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateDirect(info, size, callbacks)
+	}
+
+
+// Creates a direct-access data provider that uses a file to supply data.
+//
+// Added in macOS 10.0.
+
+// Creates a direct-access data provider that uses a file to supply data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(filename:)
+func CGDataProviderCreateWithFilename(filename unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateWithFilename(filename)
+	}
+
+
+// Creates a sequential-access data provider.
+//
+// Added in macOS 10.5.
+
+// Creates a sequential-access data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(sequentialInfo:callbacks:)
+func CGDataProviderCreateSequential(info unsafe.Pointer, callbacks unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateSequential(info, callbacks)
+	}
+
+
+// Creates a direct-access data provider that uses a URL to supply data.
+//
+// Added in macOS 10.0.
+
+// Creates a direct-access data provider that uses a URL to supply data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(url:)
+func CGDataProviderCreateWithURL(url unsafe.Pointer) DataProviderRef {
+	return _CGDataProviderCreateWithURL(url)
+	}
+
+
+// Returns the Core Foundation type identifier for data providers.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for data providers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/typeID
+func CGDataProviderGetTypeID() unsafe.Pointer {
+	return _CGDataProviderGetTypeID()
+	}
+
+
+// CGEXRToneMappingGammaGetDefaultOptions is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEXRToneMappingGammaGetDefaultOptions
+func CGEXRToneMappingGammaGetDefaultOptions() unsafe.Pointer {
+	return _CGEXRToneMappingGammaGetDefaultOptions()
+	}
+
+
+// Returns the ascent of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the ascent of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/ascent
+func CGFontGetAscent(font FontRef) int {
+	return _CGFontGetAscent(font)
+	}
+
+
+// Determines whether Core Graphics can create a subset of the font in PostScript format.
+//
+// Added in macOS 10.4.
+
+// Determines whether Core Graphics can create a subset of the font in PostScript format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/canCreatePostScriptSubset(_:)
+func CGFontCanCreatePostScriptSubset(font FontRef, format unsafe.Pointer) bool {
+	return _CGFontCanCreatePostScriptSubset(font, format)
+	}
+
+
+// Returns the cap height of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the cap height of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/capHeight
+func CGFontGetCapHeight(font FontRef) int {
+	return _CGFontGetCapHeight(font)
+	}
+
+
+// Creates a copy of a font using a variation specification dictionary.
+//
+// Added in macOS 10.4.
+
+// Creates a copy of a font using a variation specification dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/copy(withVariations:)
+func CGFontCreateCopyWithVariations(font FontRef, variations unsafe.Pointer) FontRef {
+	return _CGFontCreateCopyWithVariations(font, variations)
+	}
+
+
+// Creates a PostScript encoding of a font.
+//
+// Added in macOS 10.4.
+
+// Creates a PostScript encoding of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptEncoding(encoding:)
+func CGFontCreatePostScriptEncoding(font FontRef, encoding unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
+	return _CGFontCreatePostScriptEncoding(font, encoding, p2)
+	}
+
+
+// Creates a subset of the font in the specified PostScript format.
+//
+// Added in macOS 10.4.
+
+// Creates a subset of the font in the specified PostScript format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptSubset(subsetName:format:glyphs:count:encoding:)
+func CGFontCreatePostScriptSubset(font FontRef, subsetName unsafe.Pointer, format unsafe.Pointer, glyphs unsafe.Pointer, count uintptr, encoding unsafe.Pointer, p6 unsafe.Pointer) unsafe.Pointer {
+	return _CGFontCreatePostScriptSubset(font, subsetName, format, glyphs, count, encoding, p6)
+	}
+
+
+// Returns the descent of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the descent of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/descent
+func CGFontGetDescent(font FontRef) int {
+	return _CGFontGetDescent(font)
+	}
+
+
+// Returns the bounding box of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the bounding box of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fontBBox
+func CGFontGetFontBBox(font FontRef) CGRect {
+	return _CGFontGetFontBBox(font)
+	}
+
+
+// Returns the full name associated with a font object.
+//
+// Added in macOS 10.5.
+
+// Returns the full name associated with a font object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fullName
+func CGFontCopyFullName(font FontRef) unsafe.Pointer {
+	return _CGFontCopyFullName(font)
+	}
+
+
+// Gets the advance width of each glyph in the provided array.
+//
+// Added in macOS 10.0.
+
+// Gets the advance width of each glyph in the provided array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphAdvances(glyphs:count:advances:)
+func CGFontGetGlyphAdvances(font FontRef, glyphs unsafe.Pointer, count uintptr, advances []int) bool {
+	return _CGFontGetGlyphAdvances(font, glyphs, count, advances)
+	}
+
+
+// Get the bounding box of each glyph in an array.
+//
+// Added in macOS 10.5.
+
+// Get the bounding box of each glyph in an array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphBBoxes(glyphs:count:bboxes:)
+func CGFontGetGlyphBBoxes(font FontRef, glyphs unsafe.Pointer, count uintptr, bboxes unsafe.Pointer) bool {
+	return _CGFontGetGlyphBBoxes(font, glyphs, count, bboxes)
+	}
+
+
+// Returns the glyph for the glyph name associated with the specified font object.
+//
+// Added in macOS 10.5.
+
+// Returns the glyph for the glyph name associated with the specified font object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphWithGlyphName(name:)
+func CGFontGetGlyphWithGlyphName(font FontRef, name unsafe.Pointer) unsafe.Pointer {
+	return _CGFontGetGlyphWithGlyphName(font, name)
+	}
+
+
+// Creates a font object corresponding to the font specified by a PostScript or full name.
+//
+// Added in macOS 10.5.
+
+// Creates a font object corresponding to the font specified by a PostScript or full name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-1p4b
+func CGFontCreateWithFontName(name unsafe.Pointer) FontRef {
+	return _CGFontCreateWithFontName(name)
+	}
+
+
+// Creates a font object from data supplied from a data provider.
+//
+// Added in macOS 10.5.
+
+// Creates a font object from data supplied from a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-9aour
+func CGFontCreateWithDataProvider(provider DataProviderRef) FontRef {
+	return _CGFontCreateWithDataProvider(provider)
+	}
+
+
+// Returns the italic angle of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the italic angle of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/italicAngle
+func CGFontGetItalicAngle(font FontRef) float64 {
+	return _CGFontGetItalicAngle(font)
+	}
+
+
+// Returns the leading of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the leading of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/leading
+func CGFontGetLeading(font FontRef) int {
+	return _CGFontGetLeading(font)
+	}
+
+
+// Returns the glyph name of the specified glyph in the specified font.
+//
+// Added in macOS 10.5.
+
+// Returns the glyph name of the specified glyph in the specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/name(for:)
+func CGFontCopyGlyphNameForGlyph(font FontRef, glyph unsafe.Pointer) unsafe.Pointer {
+	return _CGFontCopyGlyphNameForGlyph(font, glyph)
+	}
+
+
+// Returns the number of glyphs in a font.
+//
+// Added in macOS 10.0.
+
+// Returns the number of glyphs in a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/numberOfGlyphs
+func CGFontGetNumberOfGlyphs(font FontRef) uintptr {
+	return _CGFontGetNumberOfGlyphs(font)
+	}
+
+
+// Obtains the PostScript name of a font.
+//
+// Added in macOS 10.4.
+
+// Obtains the PostScript name of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/postScriptName
+func CGFontCopyPostScriptName(font FontRef) unsafe.Pointer {
+	return _CGFontCopyPostScriptName(font)
+	}
+
+
+// Returns the thickness of the dominant vertical stems of glyphs in a font.
+//
+// Added in macOS 10.5.
+
+// Returns the thickness of the dominant vertical stems of glyphs in a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/stemV
+func CGFontGetStemV(font FontRef) float64 {
+	return _CGFontGetStemV(font)
+	}
+
+
+// Returns the font table that corresponds to the provided tag.
+//
+// Added in macOS 10.5.
+
+// Returns the font table that corresponds to the provided tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/table(for:)
+func CGFontCopyTableForTag(font FontRef, tag uint32) unsafe.Pointer {
+	return _CGFontCopyTableForTag(font, tag)
+	}
+
+
+// Returns an array of tags that correspond to the font tables for a font.
+//
+// Added in macOS 10.5.
+
+// Returns an array of tags that correspond to the font tables for a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/tableTags
+func CGFontCopyTableTags(font FontRef) unsafe.Pointer {
+	return _CGFontCopyTableTags(font)
+	}
+
+
+// Returns the Core Foundation type identifier for Core Graphics fonts.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for Core Graphics fonts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/typeID
+func CGFontGetTypeID() unsafe.Pointer {
+	return _CGFontGetTypeID()
+	}
+
+
+// Returns the number of glyph space units per em for the provided font.
+//
+// Added in macOS 10.0.
+
+// Returns the number of glyph space units per em for the provided font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/unitsPerEm
+func CGFontGetUnitsPerEm(font FontRef) int {
+	return _CGFontGetUnitsPerEm(font)
+	}
+
+
+// Returns an array of the variation axis dictionaries for a font.
+//
+// Added in macOS 10.4.
+
+// Returns an array of the variation axis dictionaries for a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variationAxes
+func CGFontCopyVariationAxes(font FontRef) unsafe.Pointer {
+	return _CGFontCopyVariationAxes(font)
+	}
+
+
+// Returns the variation specification dictionary for a font.
+//
+// Added in macOS 10.4.
+
+// Returns the variation specification dictionary for a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variations
+func CGFontCopyVariations(font FontRef) unsafe.Pointer {
+	return _CGFontCopyVariations(font)
+	}
+
+
+// Returns the x-height of a font.
+//
+// Added in macOS 10.5.
+
+// Returns the x-height of a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/xHeight
+func CGFontGetXHeight(font FontRef) int {
+	return _CGFontGetXHeight(font)
+	}
+
+
+// Creates a Core Graphics function.
+//
+// Added in macOS 10.2.
+
+// Creates a Core Graphics function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/init(info:domainDimension:domain:rangeDimension:range:callbacks:)
+func CGFunctionCreate(info unsafe.Pointer, domainDimension uintptr, domain []float64, rangeDimension uintptr, range_ []float64, callbacks unsafe.Pointer) FunctionRef {
+	return _CGFunctionCreate(info, domainDimension, domain, rangeDimension, range_, callbacks)
+	}
+
+
+// Returns the type identifier for Core Graphics function objects.
+//
+// Added in macOS 10.2.
+
+// Returns the type identifier for Core Graphics function objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/typeID
+func CGFunctionGetTypeID() unsafe.Pointer {
+	return _CGFunctionGetTypeID()
+	}
+
+
+// CGGradientGetContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/contentHeadroom
+func CGGradientGetContentHeadroom(gradient GradientRef) float32 {
+	return _CGGradientGetContentHeadroom(gradient)
+	}
+
+
+// Creates a CGGradient object from a color space and the provided color components and locations.
+//
+// Added in macOS 10.5.
+
+// Creates a CGGradient object from a color space and the provided color components and locations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorSpace:colorComponents:locations:count:)
+func CGGradientCreateWithColorComponents(space ColorSpaceRef, components []float64, locations []float64, count uintptr) GradientRef {
+	return _CGGradientCreateWithColorComponents(space, components, locations, count)
+	}
+
+
+// Creates a gradient object from a color space and the provided color objects and locations.
+//
+// Added in macOS 10.5.
+
+// Creates a gradient object from a color space and the provided color objects and locations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorsSpace:colors:locations:)
+func CGGradientCreateWithColors(space ColorSpaceRef, colors unsafe.Pointer, locations []float64) GradientRef {
+	return _CGGradientCreateWithColors(space, colors, locations)
+	}
+
+
+// CGGradientCreateWithContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(headroom:colorSpace:colorComponents:locations:count:)
+func CGGradientCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, components []float64, locations []float64, count uintptr) GradientRef {
+	return _CGGradientCreateWithContentHeadroom(headroom, space, components, locations, count)
+	}
+
+
+// Returns the Core Foundation type identifier for CGGradient objects.
+//
+// Added in macOS 10.5.
+
+// Returns the Core Foundation type identifier for CGGradient objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/typeID
+func CGGradientGetTypeID() unsafe.Pointer {
+	return _CGGradientGetTypeID()
+	}
+
+
+// Returns the alpha channel information for a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the alpha channel information for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/alphaInfo
+func CGImageGetAlphaInfo(image ImageRef) unsafe.Pointer {
+	return _CGImageGetAlphaInfo(image)
+	}
+
+
+// Returns the bitmap information for a bitmap image.
+//
+// Added in macOS 10.4.
+
+// Returns the bitmap information for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitmapInfo
+func CGImageGetBitmapInfo(image ImageRef) unsafe.Pointer {
+	return _CGImageGetBitmapInfo(image)
+	}
+
+
+// Returns the number of bits allocated for a single color component of a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the number of bits allocated for a single color component of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerComponent
+func CGImageGetBitsPerComponent(image ImageRef) uintptr {
+	return _CGImageGetBitsPerComponent(image)
+	}
+
+
+// Returns the number of bits allocated for a single pixel in a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the number of bits allocated for a single pixel in a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerPixel
+func CGImageGetBitsPerPixel(image ImageRef) uintptr {
+	return _CGImageGetBitsPerPixel(image)
+	}
+
+
+// CGImageGetByteOrderInfo is a CoreGraphics function.
+//
+// Added in macOS 10.14.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/byteOrderInfo
+func CGImageGetByteOrderInfo(image ImageRef) unsafe.Pointer {
+	return _CGImageGetByteOrderInfo(image)
+	}
+
+
+// Returns the number of bytes allocated for a single row of a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the number of bytes allocated for a single row of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bytesPerRow
+func CGImageGetBytesPerRow(image ImageRef) uintptr {
+	return _CGImageGetBytesPerRow(image)
+	}
+
+
+// CGImageCalculateContentAverageLightLevel is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentAverageLightLevel
+func CGImageCalculateContentAverageLightLevel(image ImageRef) float32 {
+	return _CGImageCalculateContentAverageLightLevel(image)
+	}
+
+
+// CGImageCalculateContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentHeadroom
+func CGImageCalculateContentHeadroom(image ImageRef) float32 {
+	return _CGImageCalculateContentHeadroom(image)
+	}
+
+
+// Return the color space for a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Return the color space for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/colorSpace
+func CGImageGetColorSpace(image ImageRef) ColorSpaceRef {
+	return _CGImageGetColorSpace(image)
+	}
+
+
+// CGImageContainsImageSpecificToneMappingMetadata is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/containsImageSpecificToneMappingMetadata
+func CGImageContainsImageSpecificToneMappingMetadata(image ImageRef) bool {
+	return _CGImageContainsImageSpecificToneMappingMetadata(image)
+	}
+
+
+// CGImageGetContentAverageLightLevel is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentAverageLightLevel
+func CGImageGetContentAverageLightLevel(image ImageRef) float32 {
+	return _CGImageGetContentAverageLightLevel(image)
+	}
+
+
+// CGImageGetContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentHeadroom
+func CGImageGetContentHeadroom(image ImageRef) float32 {
+	return _CGImageGetContentHeadroom(image)
+	}
+
+
+// Creates a copy of a bitmap image.
+//
+// Added in macOS 10.4.
+
+// Creates a copy of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy()
+func CGImageCreateCopy(image ImageRef) ImageRef {
+	return _CGImageCreateCopy(image)
+	}
+
+
+// Creates a copy of a bitmap image, replacing its colorspace.
+//
+// Added in macOS 10.3.
+
+// Creates a copy of a bitmap image, replacing its colorspace.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(colorSpace:)
+func CGImageCreateCopyWithColorSpace(image ImageRef, space ColorSpaceRef) ImageRef {
+	return _CGImageCreateCopyWithColorSpace(image, space)
+	}
+
+
+// CGImageCreateCopyWithContentAverageLightLevel is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(contentAverageLightLevel:)
+func CGImageCreateCopyWithContentAverageLightLevel(image ImageRef, avll float32) ImageRef {
+	return _CGImageCreateCopyWithContentAverageLightLevel(image, avll)
+	}
+
+
+// CGImageCreateCopyWithCalculatedHDRStats is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copyWithCalculatedHDRStats()
+func CGImageCreateCopyWithCalculatedHDRStats(image ImageRef) ImageRef {
+	return _CGImageCreateCopyWithCalculatedHDRStats(image)
+	}
+
+
+// Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
+//
+// Added in macOS 10.4.
+
+// Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/cropping(to:)
+func CGImageCreateWithImageInRect(image ImageRef, rect CGRect) ImageRef {
+	return _CGImageCreateWithImageInRect(image, rect)
+	}
+
+
+// Returns the data provider for a bitmap image or image mask.
+//
+// Added in macOS 10.0.
+
+// Returns the data provider for a bitmap image or image mask.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/dataProvider
+func CGImageGetDataProvider(image ImageRef) DataProviderRef {
+	return _CGImageGetDataProvider(image)
+	}
+
+
+// Returns the decode array for a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the decode array for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/decode
+func CGImageGetDecode(image ImageRef) []float64 {
+	return _CGImageGetDecode(image)
+	}
+
+
+// Returns the height of a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the height of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/height
+func CGImageGetHeight(image ImageRef) uintptr {
+	return _CGImageGetHeight(image)
+	}
+
+
+// CGImageCreateWithContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(headroom:width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
+func CGImageCreateWithContentHeadroom(headroom float32, width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo unsafe.Pointer, provider DataProviderRef, decode []float64, shouldInterpolate bool, intent unsafe.Pointer) ImageRef {
+	return _CGImageCreateWithContentHeadroom(headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
+	}
+
+
+// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
+//
+// Added in macOS 10.1.
+
+// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(jpegDataProviderSource:decode:shouldInterpolate:intent:)
+func CGImageCreateWithJPEGDataProvider(source DataProviderRef, decode []float64, shouldInterpolate bool, intent unsafe.Pointer) ImageRef {
+	return _CGImageCreateWithJPEGDataProvider(source, decode, shouldInterpolate, intent)
+	}
+
+
+// Creates a bitmap image mask from data supplied by a data provider.
+//
+// Added in macOS 10.0.
+
+// Creates a bitmap image mask from data supplied by a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(maskWidth:height:bitsPerComponent:bitsPerPixel:bytesPerRow:provider:decode:shouldInterpolate:)
+func CGImageMaskCreate(width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, provider DataProviderRef, decode []float64, shouldInterpolate bool) ImageRef {
+	return _CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate)
+	}
+
+
+// Creates a bitmap image using PNG-encoded data supplied by a data provider.
+//
+// Added in macOS 10.2.
+
+// Creates a bitmap image using PNG-encoded data supplied by a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(pngDataProviderSource:decode:shouldInterpolate:intent:)
+func CGImageCreateWithPNGDataProvider(source DataProviderRef, decode []float64, shouldInterpolate bool, intent unsafe.Pointer) ImageRef {
+	return _CGImageCreateWithPNGDataProvider(source, decode, shouldInterpolate, intent)
+	}
+
+
+// Creates a bitmap image from data supplied by a data provider.
+//
+// Added in macOS 10.0.
+
+// Creates a bitmap image from data supplied by a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
+func CGImageCreate(width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo unsafe.Pointer, provider DataProviderRef, decode []float64, shouldInterpolate bool, intent unsafe.Pointer) ImageRef {
+	return _CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
+	}
+
+
+// Returns a composite image of the specified windows.
+
+// Returns a composite image of the specified windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(windowListFromArrayScreenBounds:windowArray:imageOption:)
+func CGWindowListCreateImageFromArray(screenBounds CGRect, windowArray unsafe.Pointer, imageOption unsafe.Pointer) ImageRef {
+	return _CGWindowListCreateImageFromArray(screenBounds, windowArray, imageOption)
+	}
+
+
+// Returns whether a bitmap image is an image mask.
+//
+// Added in macOS 10.0.
+
+// Returns whether a bitmap image is an image mask.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/isMask
+func CGImageIsMask(image ImageRef) bool {
+	return _CGImageIsMask(image)
+	}
+
+
+// Creates a bitmap image from an existing image and an image mask.
+//
+// Added in macOS 10.4.
+
+// Creates a bitmap image from an existing image and an image mask.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/masking(_:)
+func CGImageCreateWithMask(image ImageRef, mask ImageRef) ImageRef {
+	return _CGImageCreateWithMask(image, mask)
+	}
+
+
+// CGImageGetPixelFormatInfo is a CoreGraphics function.
+//
+// Added in macOS 10.14.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/pixelFormatInfo
+func CGImageGetPixelFormatInfo(image ImageRef) unsafe.Pointer {
+	return _CGImageGetPixelFormatInfo(image)
+	}
+
+
+// Returns the rendering intent setting for a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the rendering intent setting for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/renderingIntent
+func CGImageGetRenderingIntent(image ImageRef) unsafe.Pointer {
+	return _CGImageGetRenderingIntent(image)
+	}
+
+
+// Returns the interpolation setting for a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Returns the interpolation setting for a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldInterpolate
+func CGImageGetShouldInterpolate(image ImageRef) bool {
+	return _CGImageGetShouldInterpolate(image)
+	}
+
+
+// CGImageShouldToneMap is a CoreGraphics function.
+//
+// Added in macOS 15.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldToneMap
+func CGImageShouldToneMap(image ImageRef) bool {
+	return _CGImageShouldToneMap(image)
+	}
+
+
+// Returns the type identifier for CGImage objects.
+//
+// Added in macOS 10.2.
+
+// Returns the type identifier for CGImage objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/typeID
+func CGImageGetTypeID() unsafe.Pointer {
+	return _CGImageGetTypeID()
+	}
+
+
+// The Universal Type Identifier for the image.
+//
+// Added in macOS 10.11.
+
+// The Universal Type Identifier for the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/utType
+func CGImageGetUTType(image ImageRef) unsafe.Pointer {
+	return _CGImageGetUTType(image)
+	}
+
+
+// Returns the width of a bitmap image, in pixels.
+//
+// Added in macOS 10.0.
+
+// Returns the width of a bitmap image, in pixels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/width
+func CGImageGetWidth(image ImageRef) uintptr {
+	return _CGImageGetWidth(image)
+	}
+
+
+// Returns the graphics context associated with a layer object.
+//
+// Added in macOS 10.4.
+
+// Returns the graphics context associated with a layer object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/context
+func CGLayerGetContext(layer LayerRef) ContextRef {
+	return _CGLayerGetContext(layer)
+	}
+
+
+// Creates a layer object that is associated with a graphics context.
+//
+// Added in macOS 10.4.
+
+// Creates a layer object that is associated with a graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/init(_:size:auxiliaryInfo:)
+func CGLayerCreateWithContext(context ContextRef, size CGSize, auxiliaryInfo unsafe.Pointer) LayerRef {
+	return _CGLayerCreateWithContext(context, size, auxiliaryInfo)
+	}
+
+
+// Returns the width and height of a layer object.
+//
+// Added in macOS 10.4.
+
+// Returns the width and height of a layer object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/size
+func CGLayerGetSize(layer LayerRef) CGSize {
+	return _CGLayerGetSize(layer)
+	}
+
+
+// Returns the unique type identifier used for objects.
+//
+// Added in macOS 10.4.
+
+// Returns the unique type identifier used for objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/typeID
+func CGLayerGetTypeID() unsafe.Pointer {
+	return _CGLayerGetTypeID()
+	}
+
+
+// Closes and completes a subpath in a mutable graphics path.
+//
+// Added in macOS 10.2.
+
+// Closes and completes a subpath in a mutable graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/closeSubpath()
+func CGPathCloseSubpath(path MutablePathRef) {
+	_CGPathCloseSubpath(path)
+	}
+
+
+// Creates a mutable graphics path.
+//
+// Added in macOS 10.2.
+
+// Creates a mutable graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/init()
+func CGPathCreateMutable() MutablePathRef {
+	return _CGPathCreateMutable()
+	}
+
+
+// CGPDFDocumentGetAccessPermissions is a CoreGraphics function.
+//
+// Added in macOS 10.13.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/accessPermissions
+func CGPDFDocumentGetAccessPermissions(document PDFDocumentRef) unsafe.Pointer {
+	return _CGPDFDocumentGetAccessPermissions(document)
+	}
+
+
+// Returns whether the specified PDF document allows copying.
+//
+// Added in macOS 10.2.
+
+// Returns whether the specified PDF document allows copying.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsCopying
+func CGPDFDocumentAllowsCopying(document PDFDocumentRef) bool {
+	return _CGPDFDocumentAllowsCopying(document)
+	}
+
+
+// Returns whether a PDF document allows printing.
+//
+// Added in macOS 10.2.
+
+// Returns whether a PDF document allows printing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsPrinting
+func CGPDFDocumentAllowsPrinting(document PDFDocumentRef) bool {
+	return _CGPDFDocumentAllowsPrinting(document)
+	}
+
+
+// Returns the document catalog of a Core Graphics PDF document.
+//
+// Added in macOS 10.3.
+
+// Returns the document catalog of a Core Graphics PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/catalog
+func CGPDFDocumentGetCatalog(document PDFDocumentRef) PDFDictionaryRef {
+	return _CGPDFDocumentGetCatalog(document)
+	}
+
+
+// Gets the file identifier for a PDF document.
+//
+// Added in macOS 10.4.
+
+// Gets the file identifier for a PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/fileIdentifier
+func CGPDFDocumentGetID(document PDFDocumentRef) PDFArrayRef {
+	return _CGPDFDocumentGetID(document)
+	}
+
+
+// Returns the major and minor version numbers of a Core Graphics PDF document.
+//
+// Added in macOS 10.3.
+
+// Returns the major and minor version numbers of a Core Graphics PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/getVersion(majorVersion:minorVersion:)
+func CGPDFDocumentGetVersion(document PDFDocumentRef, majorVersion []int, minorVersion []int) {
+	_CGPDFDocumentGetVersion(document, majorVersion, minorVersion)
+	}
+
+
+// Gets the information dictionary for a PDF document.
+//
+// Added in macOS 10.4.
+
+// Gets the information dictionary for a PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/info
+func CGPDFDocumentGetInfo(document PDFDocumentRef) PDFDictionaryRef {
+	return _CGPDFDocumentGetInfo(document)
+	}
+
+
+// Creates a Core Graphics PDF document using data specified by a URL.
+//
+// Added in macOS 10.0.
+
+// Creates a Core Graphics PDF document using data specified by a URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-2gtsd
+func CGPDFDocumentCreateWithURL(url unsafe.Pointer) PDFDocumentRef {
+	return _CGPDFDocumentCreateWithURL(url)
+	}
+
+
+// Creates a Core Graphics PDF document using a data provider.
+//
+// Added in macOS 10.0.
+
+// Creates a Core Graphics PDF document using a data provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-gbq6
+func CGPDFDocumentCreateWithProvider(provider DataProviderRef) PDFDocumentRef {
+	return _CGPDFDocumentCreateWithProvider(provider)
+	}
+
+
+// Returns whether the specified PDF file is encrypted.
+//
+// Added in macOS 10.2.
+
+// Returns whether the specified PDF file is encrypted.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isEncrypted
+func CGPDFDocumentIsEncrypted(document PDFDocumentRef) bool {
+	return _CGPDFDocumentIsEncrypted(document)
+	}
+
+
+// Returns whether the specified PDF document is currently unlocked.
+//
+// Added in macOS 10.2.
+
+// Returns whether the specified PDF document is currently unlocked.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isUnlocked
+func CGPDFDocumentIsUnlocked(document PDFDocumentRef) bool {
+	return _CGPDFDocumentIsUnlocked(document)
+	}
+
+
+// Returns the number of pages in a PDF document.
+//
+// Added in macOS 10.0.
+
+// Returns the number of pages in a PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/numberOfPages
+func CGPDFDocumentGetNumberOfPages(document PDFDocumentRef) uintptr {
+	return _CGPDFDocumentGetNumberOfPages(document)
+	}
+
+
+// CGPDFDocumentGetOutline is a CoreGraphics function.
+//
+// Added in macOS 10.13.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/outline
+func CGPDFDocumentGetOutline(document PDFDocumentRef) unsafe.Pointer {
+	return _CGPDFDocumentGetOutline(document)
+	}
+
+
+// Returns a page from a Core Graphics PDF document.
+//
+// Added in macOS 10.3.
+
+// Returns a page from a Core Graphics PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/page(at:)
+func CGPDFDocumentGetPage(document PDFDocumentRef, pageNumber uintptr) PDFPageRef {
+	return _CGPDFDocumentGetPage(document, pageNumber)
+	}
+
+
+// Returns the type identifier for Core Graphics PDF documents.
+//
+// Added in macOS 10.2.
+
+// Returns the type identifier for Core Graphics PDF documents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/typeID
+func CGPDFDocumentGetTypeID() unsafe.Pointer {
+	return _CGPDFDocumentGetTypeID()
+	}
+
+
+// Unlocks an encrypted PDF document when a valid password is supplied.
+//
+// Added in macOS 10.2.
+
+// Unlocks an encrypted PDF document when a valid password is supplied.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/unlockWithPassword(_:)
+func CGPDFDocumentUnlockWithPassword(document PDFDocumentRef, password unsafe.Pointer) bool {
+	return _CGPDFDocumentUnlockWithPassword(document, password)
+	}
+
+
+// Returns the dictionary of a PDF page.
+//
+// Added in macOS 10.3.
+
+// Returns the dictionary of a PDF page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/dictionary
+func CGPDFPageGetDictionary(page PDFPageRef) PDFDictionaryRef {
+	return _CGPDFPageGetDictionary(page)
+	}
+
+
+// Returns the document for a page.
+//
+// Added in macOS 10.3.
+
+// Returns the document for a page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/document
+func CGPDFPageGetDocument(page PDFPageRef) PDFDocumentRef {
+	return _CGPDFPageGetDocument(page)
+	}
+
+
+// Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
+//
+// Added in macOS 10.3.
+
+// Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getBoxRect(_:)
+func CGPDFPageGetBoxRect(page PDFPageRef, box unsafe.Pointer) CGRect {
+	return _CGPDFPageGetBoxRect(page, box)
+	}
+
+
+// Returns the affine transform that maps a box to a given rectangle on a PDF page.
+//
+// Added in macOS 10.3.
+
+// Returns the affine transform that maps a box to a given rectangle on a PDF page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getDrawingTransform(_:rect:rotate:preserveAspectRatio:)
+func CGPDFPageGetDrawingTransform(page PDFPageRef, box unsafe.Pointer, rect CGRect, rotate int, preserveAspectRatio bool) CGAffineTransform {
+	return _CGPDFPageGetDrawingTransform(page, box, rect, rotate, preserveAspectRatio)
+	}
+
+
+// Returns the page number of the specified PDF page.
+//
+// Added in macOS 10.3.
+
+// Returns the page number of the specified PDF page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/pageNumber
+func CGPDFPageGetPageNumber(page PDFPageRef) uintptr {
+	return _CGPDFPageGetPageNumber(page)
+	}
+
+
+// Returns the rotation angle of a PDF page, in degrees.
+//
+// Added in macOS 10.3.
+
+// Returns the rotation angle of a PDF page, in degrees.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/rotationAngle
+func CGPDFPageGetRotationAngle(page PDFPageRef) int {
+	return _CGPDFPageGetRotationAngle(page)
+	}
+
+
+// Returns the CFType ID for PDF page objects.
+//
+// Added in macOS 10.3.
+
+// Returns the CFType ID for PDF page objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/typeID
+func CGPDFPageGetTypeID() unsafe.Pointer {
+	return _CGPDFPageGetTypeID()
+	}
+
+
+// Tells a PostScript converter to abort a conversion at the next available opportunity.
+//
+// Added in macOS 10.3.
+
+// Tells a PostScript converter to abort a conversion at the next available opportunity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/abort()
+func CGPSConverterAbort(converter PSConverterRef) bool {
+	return _CGPSConverterAbort(converter)
+	}
+
+
+// Uses a PostScript converter to convert PostScript data to PDF data.
+//
+// Added in macOS 10.3.
+
+// Uses a PostScript converter to convert PostScript data to PDF data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/convert(_:consumer:options:)
+func CGPSConverterConvert(converter PSConverterRef, provider DataProviderRef, consumer DataConsumerRef, options unsafe.Pointer) bool {
+	return _CGPSConverterConvert(converter, provider, consumer, options)
+	}
+
+
+// Creates a new PostScript converter.
+//
+// Added in macOS 10.3.
+
+// Creates a new PostScript converter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/init(info:callbacks:options:)
+func CGPSConverterCreate(info unsafe.Pointer, callbacks unsafe.Pointer, options unsafe.Pointer) PSConverterRef {
+	return _CGPSConverterCreate(info, callbacks, options)
+	}
+
+
+// Checks whether the converter is currently converting data.
+//
+// Added in macOS 10.3.
+
+// Checks whether the converter is currently converting data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/isConverting
+func CGPSConverterIsConverting(converter PSConverterRef) bool {
+	return _CGPSConverterIsConverting(converter)
+	}
+
+
+// Returns the Core Foundation type identifier for PostScript converters.
+//
+// Added in macOS 10.3.
+
+// Returns the Core Foundation type identifier for PostScript converters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/typeID
+func CGPSConverterGetTypeID() unsafe.Pointer {
+	return _CGPSConverterGetTypeID()
+	}
+
+
+// For each element in a graphics path, calls a custom applier function.
+//
+// Added in macOS 10.2.
+
+// For each element in a graphics path, calls a custom applier function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/apply(info:function:)
+func CGPathApply(path PathRef, info unsafe.Pointer, function unsafe.Pointer) {
+	_CGPathApply(path, info, function)
+	}
+
+
+// CGPathApplyWithBlock is a CoreGraphics function.
+//
+// Added in macOS 10.13.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/applyWithBlock(_:)
+func CGPathApplyWithBlock(path PathRef, block unsafe.Pointer) {
+	_CGPathApplyWithBlock(path, block)
+	}
+
+
+// Returns the bounding box containing all points in a graphics path.
+//
+// Added in macOS 10.2.
+
+// Returns the bounding box containing all points in a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBox
+func CGPathGetBoundingBox(path PathRef) CGRect {
+	return _CGPathGetBoundingBox(path)
+	}
+
+
+// Returns the bounding box of a graphics path.
+//
+// Added in macOS 10.6.
+
+// Returns the bounding box of a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBoxOfPath
+func CGPathGetPathBoundingBox(path PathRef) CGRect {
+	return _CGPathGetPathBoundingBox(path)
+	}
+
+
+// Creates an immutable copy of a graphics path.
+//
+// Added in macOS 10.2.
+
+// Creates an immutable copy of a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy()
+func CGPathCreateCopy(path PathRef) PathRef {
+	return _CGPathCreateCopy(path)
+	}
+
+
+// Creates an immutable copy of a graphics path transformed by a transformation matrix.
+//
+// Added in macOS 10.7.
+
+// Creates an immutable copy of a graphics path transformed by a transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy(using:)
+func CGPathCreateCopyByTransformingPath(path PathRef, transform unsafe.Pointer) PathRef {
+	return _CGPathCreateCopyByTransformingPath(path, transform)
+	}
+
+
+// Returns the current point in a graphics path.
+//
+// Added in macOS 10.2.
+
+// Returns the current point in a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/currentPoint
+func CGPathGetCurrentPoint(path PathRef) CGPoint {
+	return _CGPathGetCurrentPoint(path)
+	}
+
+
+// Create an immutable path of an ellipse.
+//
+// Added in macOS 10.7.
+
+// Create an immutable path of an ellipse.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(ellipseIn:transform:)
+func CGPathCreateWithEllipseInRect(rect CGRect, transform unsafe.Pointer) PathRef {
+	return _CGPathCreateWithEllipseInRect(rect, transform)
+	}
+
+
+// Create an immutable path of a rectangle.
+//
+// Added in macOS 10.5.
+
+// Create an immutable path of a rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(rect:transform:)
+func CGPathCreateWithRect(rect CGRect, transform unsafe.Pointer) PathRef {
+	return _CGPathCreateWithRect(rect, transform)
+	}
+
+
+// Create an immutable path of a rounded rectangle.
+//
+// Added in macOS 10.9.
+
+// Create an immutable path of a rounded rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(roundedRect:cornerWidth:cornerHeight:transform:)
+func CGPathCreateWithRoundedRect(rect CGRect, cornerWidth float64, cornerHeight float64, transform unsafe.Pointer) PathRef {
+	return _CGPathCreateWithRoundedRect(rect, cornerWidth, cornerHeight, transform)
+	}
+
+
+// Indicates whether or not a graphics path is empty.
+//
+// Added in macOS 10.2.
+
+// Indicates whether or not a graphics path is empty.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isEmpty
+func CGPathIsEmpty(path PathRef) bool {
+	return _CGPathIsEmpty(path)
+	}
+
+
+// Indicates whether or not a graphics path represents a rectangle.
+//
+// Added in macOS 10.2.
+
+// Indicates whether or not a graphics path represents a rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isRect(_:)
+func CGPathIsRect(path PathRef, rect unsafe.Pointer) bool {
+	return _CGPathIsRect(path, rect)
+	}
+
+
+// Creates a mutable copy of an existing graphics path.
+//
+// Added in macOS 10.2.
+
+// Creates a mutable copy of an existing graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy()
+func CGPathCreateMutableCopy(path PathRef) MutablePathRef {
+	return _CGPathCreateMutableCopy(path)
+	}
+
+
+// Creates a mutable copy of a graphics path transformed by a transformation matrix.
+//
+// Added in macOS 10.7.
+
+// Creates a mutable copy of a graphics path transformed by a transformation matrix.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy(using:)
+func CGPathCreateMutableCopyByTransformingPath(path PathRef, transform unsafe.Pointer) MutablePathRef {
+	return _CGPathCreateMutableCopyByTransformingPath(path, transform)
+	}
+
+
+// Returns the Core Foundation type identifier for Core Graphics paths.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for Core Graphics paths.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/typeID
+func CGPathGetTypeID() unsafe.Pointer {
+	return _CGPathGetTypeID()
+	}
+
+
+// Creates a pattern object.
+//
+// Added in macOS 10.0.
+
+// Creates a pattern object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/init(info:bounds:matrix:xStep:yStep:tiling:isColored:callbacks:)
+func CGPatternCreate(info unsafe.Pointer, bounds CGRect, matrix CGAffineTransform, xStep float64, yStep float64, tiling unsafe.Pointer, isColored bool, callbacks unsafe.Pointer) PatternRef {
+	return _CGPatternCreate(info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks)
+	}
+
+
+// Returns the type identifier for Core Graphics patterns.
+//
+// Added in macOS 10.2.
+
+// Returns the type identifier for Core Graphics patterns.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/typeID
+func CGPatternGetTypeID() unsafe.Pointer {
+	return _CGPatternGetTypeID()
+	}
+
+
+// CGRenderingBufferLockBytePtr is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferLockBytePtr
+func CGRenderingBufferLockBytePtr(provider RenderingBufferProviderRef) unsafe.Pointer {
+	return _CGRenderingBufferLockBytePtr(provider)
+	}
+
+
+// CGRenderingBufferProviderCreate is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreate
+func CGRenderingBufferProviderCreate(info unsafe.Pointer, size uintptr) RenderingBufferProviderRef {
+	return _CGRenderingBufferProviderCreate(info, size)
+	}
+
+
+// CGRenderingBufferProviderCreateWithCFData is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreateWithCFData
+func CGRenderingBufferProviderCreateWithCFData(data unsafe.Pointer) RenderingBufferProviderRef {
+	return _CGRenderingBufferProviderCreateWithCFData(data)
+	}
+
+
+// CGRenderingBufferProviderGetSize is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetSize
+func CGRenderingBufferProviderGetSize(provider RenderingBufferProviderRef) uintptr {
+	return _CGRenderingBufferProviderGetSize(provider)
+	}
+
+
+// CGRenderingBufferProviderGetTypeID is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetTypeID
+func CGRenderingBufferProviderGetTypeID() unsafe.Pointer {
+	return _CGRenderingBufferProviderGetTypeID()
+	}
+
+
+// CGRenderingBufferUnlockBytePtr is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferUnlockBytePtr
+func CGRenderingBufferUnlockBytePtr(provider RenderingBufferProviderRef) {
+	_CGRenderingBufferUnlockBytePtr(provider)
+	}
+
+
+// CGShadingGetContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/contentHeadroom
+func CGShadingGetContentHeadroom(shading ShadingRef) float32 {
+	return _CGShadingGetContentHeadroom(shading)
+	}
+
+
+// CGShadingCreateAxialWithContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialHeadroom:space:start:end:function:extendStart:extendEnd:)
+func CGShadingCreateAxialWithContentHeadroom(headroom float32, space ColorSpaceRef, start CGPoint, end CGPoint, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
+	return _CGShadingCreateAxialWithContentHeadroom(headroom, space, start, end, function, extendStart, extendEnd)
+	}
+
+
+// Creates a shading object to use for axial shading.
+//
+// Added in macOS 10.2.
+
+// Creates a shading object to use for axial shading.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialSpace:start:end:function:extendStart:extendEnd:)
+func CGShadingCreateAxial(space ColorSpaceRef, start CGPoint, end CGPoint, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
+	return _CGShadingCreateAxial(space, start, end, function, extendStart, extendEnd)
+	}
+
+
+// CGShadingCreateRadialWithContentHeadroom is a CoreGraphics function.
+//
+// Added in macOS 26.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialHeadroom:space:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
+func CGShadingCreateRadialWithContentHeadroom(headroom float32, space ColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
+	return _CGShadingCreateRadialWithContentHeadroom(headroom, space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
+	}
+
+
+// Creates a shading object to use for radial shading.
+//
+// Added in macOS 10.2.
+
+// Creates a shading object to use for radial shading.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialSpace:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
+func CGShadingCreateRadial(space ColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
+	return _CGShadingCreateRadial(space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
+	}
+
+
+// Returns the Core Foundation type identifier for Core Graphics shading objects.
+//
+// Added in macOS 10.2.
+
+// Returns the Core Foundation type identifier for Core Graphics shading objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/typeID
+func CGShadingGetTypeID() unsafe.Pointer {
+	return _CGShadingGetTypeID()
 	}
 
 
@@ -1761,17 +5606,6 @@ func CGBeginDisplayConfiguration(config unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// CGBitmapContextCreateAdaptive is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapContextCreateAdaptive
-func CGBitmapContextCreateAdaptive(width unsafe.Pointer, height unsafe.Pointer, auxiliaryInfo unsafe.Pointer, onResolve bool) CGContextRef {
-	return _CGBitmapContextCreateAdaptive(width, height, auxiliaryInfo, onResolve)
-	}
-
-
 // Cancels a set of display configuration changes.
 //
 // Added in macOS 10.0.
@@ -1780,7 +5614,7 @@ func CGBitmapContextCreateAdaptive(width unsafe.Pointer, height unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCancelDisplayConfiguration(_:)
-func CGCancelDisplayConfiguration(config CGDisplayConfigRef) unsafe.Pointer {
+func CGCancelDisplayConfiguration(config DisplayConfigRef) unsafe.Pointer {
 	return _CGCancelDisplayConfiguration(config)
 	}
 
@@ -1811,280 +5645,6 @@ func CGCaptureAllDisplaysWithOptions(options unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Returns the value of the alpha component associated with a color.
-//
-// Added in macOS 10.3.
-
-// Returns the value of the alpha component associated with a color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/alpha
-func CGColorGetAlpha(color CGColorRef) float64 {
-	return _CGColorGetAlpha(color)
-	}
-
-
-// Returns the color space associated with a color.
-//
-// Added in macOS 10.3.
-
-// Returns the color space associated with a color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/colorSpace
-func CGColorGetColorSpace(color CGColorRef) CGColorSpaceRef {
-	return _CGColorGetColorSpace(color)
-	}
-
-
-// CGColorGetContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/contentHeadroom
-func CGColorGetContentHeadroom(color CGColorRef) unsafe.Pointer {
-	return _CGColorGetContentHeadroom(color)
-	}
-
-
-// Creates a new color in a different color space that matches the provided color.
-//
-// Added in macOS 10.11.
-
-// Creates a new color in a different color space that matches the provided color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/converted(to:intent:options:)
-func CGColorCreateCopyByMatchingToColorSpace(p0 CGColorSpaceRef, intent unsafe.Pointer, color CGColorRef, options unsafe.Pointer) CGColorRef {
-	return _CGColorCreateCopyByMatchingToColorSpace(p0, intent, color, options)
-	}
-
-
-// Creates a copy of an existing color.
-//
-// Added in macOS 10.3.
-
-// Creates a copy of an existing color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy()
-func CGColorCreateCopy(color CGColorRef) CGColorRef {
-	return _CGColorCreateCopy(color)
-	}
-
-
-// Creates a copy of an existing color, substituting a new alpha value.
-//
-// Added in macOS 10.3.
-
-// Creates a copy of an existing color, substituting a new alpha value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy(alpha:)
-func CGColorCreateCopyWithAlpha(color CGColorRef, alpha float64) CGColorRef {
-	return _CGColorCreateCopyWithAlpha(color, alpha)
-	}
-
-
-// Creates a color using a list of intensity values (including alpha) and an associated color space.
-//
-// Added in macOS 10.3.
-
-// Creates a color using a list of intensity values (including alpha) and an associated color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(colorSpace:components:)
-func CGColorCreate(space CGColorSpaceRef, components unsafe.Pointer) CGColorRef {
-	return _CGColorCreate(space, components)
-	}
-
-
-// Creates a color in the Generic CMYK color space.
-//
-// Added in macOS 10.5.
-
-// Creates a color in the Generic CMYK color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericCMYKCyan:magenta:yellow:black:alpha:)
-func CGColorCreateGenericCMYK(cyan float64, magenta float64, yellow float64, black float64, alpha float64) CGColorRef {
-	return _CGColorCreateGenericCMYK(cyan, magenta, yellow, black, alpha)
-	}
-
-
-// Creates a color in the Generic gray color space with a gamma ramp of 2.2.
-//
-// Added in macOS 10.15.
-
-// Creates a color in the Generic gray color space with a gamma ramp of 2.2.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericGrayGamma2_2Gray:alpha:)
-func CGColorCreateGenericGrayGamma2_2(gray float64, alpha float64) CGColorRef {
-	return _CGColorCreateGenericGrayGamma2_2(gray, alpha)
-	}
-
-
-// Creates a color in the Generic gray color space.
-//
-// Added in macOS 10.5.
-
-// Creates a color in the Generic gray color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(gray:alpha:)
-func CGColorCreateGenericGray(gray float64, alpha float64) CGColorRef {
-	return _CGColorCreateGenericGray(gray, alpha)
-	}
-
-
-// CGColorCreateWithContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(headroom:colorSpace:red:green:blue:alpha:)
-func CGColorCreateWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, red float64, green float64, blue float64, alpha float64) CGColorRef {
-	return _CGColorCreateWithContentHeadroom(headroom, space, red, green, blue, alpha)
-	}
-
-
-// Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
-//
-// Added in macOS 10.3.
-
-// Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(patternSpace:pattern:components:)
-func CGColorCreateWithPattern(space CGColorSpaceRef, pattern CGPatternRef, components unsafe.Pointer) CGColorRef {
-	return _CGColorCreateWithPattern(space, pattern, components)
-	}
-
-
-// Creates a color in the Generic RGB color space.
-//
-// Added in macOS 10.5.
-
-// Creates a color in the Generic RGB color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(red:green:blue:alpha:)
-func CGColorCreateGenericRGB(red float64, green float64, blue float64, alpha float64) CGColorRef {
-	return _CGColorCreateGenericRGB(red, green, blue, alpha)
-	}
-
-
-// Creates a color in the sRGB color space.
-//
-// Added in macOS 10.15.
-
-// Creates a color in the sRGB color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(srgbRed:green:blue:alpha:)
-func CGColorCreateSRGB(red float64, green float64, blue float64, alpha float64) CGColorRef {
-	return _CGColorCreateSRGB(red, green, blue, alpha)
-	}
-
-
-// Returns the number of color components (including alpha) associated with a color.
-//
-// Added in macOS 10.3.
-
-// Returns the number of color components (including alpha) associated with a color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/numberOfComponents
-func CGColorGetNumberOfComponents(color CGColorRef) unsafe.Pointer {
-	return _CGColorGetNumberOfComponents(color)
-	}
-
-
-// Returns the pattern associated with a color in a pattern color space.
-//
-// Added in macOS 10.3.
-
-// Returns the pattern associated with a color in a pattern color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/pattern
-func CGColorGetPattern(color CGColorRef) CGPatternRef {
-	return _CGColorGetPattern(color)
-	}
-
-
-// Returns the Core Foundation type identifier for a color data type.
-//
-// Added in macOS 10.3.
-
-// Returns the Core Foundation type identifier for a color data type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/typeID
-func CGColorGetTypeID() unsafe.Pointer {
-	return _CGColorGetTypeID()
-	}
-
-
-// CGColorConversionInfoConvertData is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/convert(width:height:to:format:from:format:options:)
-func CGColorConversionInfoConvertData(info CGColorConversionInfoRef, width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
-	return _CGColorConversionInfoConvertData(info, width, height, dst_data, dst_format, src_data, src_format, options)
-	}
-
-
-// CGColorConversionInfoCreateWithOptions is a CoreGraphics function.
-//
-// Added in macOS 10.14.6.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(optionsSrc:dst:options:)
-func CGColorConversionInfoCreateWithOptions(src CGColorSpaceRef, dst CGColorSpaceRef, options unsafe.Pointer) CGColorConversionInfoRef {
-	return _CGColorConversionInfoCreateWithOptions(src, dst, options)
-	}
-
-
-// Creates a conversion between two specified color spaces.
-//
-// Added in macOS 10.12.
-
-// Creates a conversion between two specified color spaces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:dst:)
-func CGColorConversionInfoCreate(src CGColorSpaceRef, dst CGColorSpaceRef) CGColorConversionInfoRef {
-	return _CGColorConversionInfoCreate(src, dst)
-	}
-
-
-// CGColorConversionInfoCreateForToneMapping is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:srcHeadroom:dst:dstHeadroom:toneMapping:options:_:)
-func CGColorConversionInfoCreateForToneMapping(from CGColorSpaceRef, source_headroom unsafe.Pointer, to CGColorSpaceRef, target_headroom unsafe.Pointer, method unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) CGColorConversionInfoRef {
-	return _CGColorConversionInfoCreateForToneMapping(from, source_headroom, to, target_headroom, method, options, error_)
-	}
-
-
-// Returns the Core Foundation type identifier for a color conversion info data type.
-
-// Returns the Core Foundation type identifier for a color conversion info data type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/typeID
-func CGColorConversionInfoGetTypeID() unsafe.Pointer {
-	return _CGColorConversionInfoGetTypeID()
-	}
-
-
 // Creates a conversion between an arbitrary number of specified color spaces.
 //
 // Added in macOS 10.12.
@@ -2093,7 +5653,7 @@ func CGColorConversionInfoGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfoCreateFromList
-func CGColorConversionInfoCreateFromList(options unsafe.Pointer, p1 CGColorSpaceRef, p2 unsafe.Pointer, p3 unsafe.Pointer) CGColorConversionInfoRef {
+func CGColorConversionInfoCreateFromList(options unsafe.Pointer, p1 ColorSpaceRef, p2 unsafe.Pointer, p3 unsafe.Pointer) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateFromList(options, p1, p2, p3)
 	}
 
@@ -2104,7 +5664,7 @@ func CGColorConversionInfoCreateFromList(options unsafe.Pointer, p1 CGColorSpace
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfoCreateFromListWithArguments
-func CGColorConversionInfoCreateFromListWithArguments(options unsafe.Pointer, p1 CGColorSpaceRef, p2 unsafe.Pointer, p3 unsafe.Pointer, p4 unsafe.Pointer) CGColorConversionInfoRef {
+func CGColorConversionInfoCreateFromListWithArguments(options unsafe.Pointer, p1 ColorSpaceRef, p2 unsafe.Pointer, p3 unsafe.Pointer, p4 unsafe.Pointer) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateFromListWithArguments(options, p1, p2, p3, p4)
 	}
 
@@ -2117,7 +5677,7 @@ func CGColorConversionInfoCreateFromListWithArguments(options unsafe.Pointer, p1
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorEqualToColor
-func CGColorEqualToColor(color1 CGColorRef, color2 CGColorRef) bool {
+func CGColorEqualToColor(color1 ColorRef, color2 ColorRef) bool {
 	return _CGColorEqualToColor(color1, color2)
 	}
 
@@ -2130,7 +5690,7 @@ func CGColorEqualToColor(color1 CGColorRef, color2 CGColorRef) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorGetComponents
-func CGColorGetComponents(color CGColorRef) unsafe.Pointer {
+func CGColorGetComponents(color ColorRef) []float64 {
 	return _CGColorGetComponents(color)
 	}
 
@@ -2143,7 +5703,7 @@ func CGColorGetComponents(color CGColorRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorGetConstantColor
-func CGColorGetConstantColor(colorName unsafe.Pointer) CGColorRef {
+func CGColorGetConstantColor(colorName unsafe.Pointer) ColorRef {
 	return _CGColorGetConstantColor(colorName)
 	}
 
@@ -2156,7 +5716,7 @@ func CGColorGetConstantColor(colorName unsafe.Pointer) CGColorRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRelease
-func CGColorRelease(color CGColorRef) {
+func CGColorRelease(color ColorRef) {
 	_CGColorRelease(color)
 	}
 
@@ -2169,298 +5729,8 @@ func CGColorRelease(color CGColorRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRetain
-func CGColorRetain(color CGColorRef) CGColorRef {
+func CGColorRetain(color ColorRef) ColorRef {
 	return _CGColorRetain(color)
-	}
-
-
-// Returns the base color space of a pattern or indexed color space.
-//
-// Added in macOS 10.5.
-
-// Returns the base color space of a pattern or indexed color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/baseColorSpace
-func CGColorSpaceGetBaseColorSpace(space CGColorSpaceRef) CGColorSpaceRef {
-	return _CGColorSpaceGetBaseColorSpace(space)
-	}
-
-
-// Returns a copy of the ICC profile data of the provided color space.
-//
-// Added in macOS 10.12.
-
-// Returns a copy of the ICC profile data of the provided color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyICCData()
-func CGColorSpaceCopyICCData(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceCopyICCData(space)
-	}
-
-
-// Returns a copy of the color space’s properties.
-//
-// Added in macOS 10.12.
-
-// Returns a copy of the color space’s properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyPropertyList()
-func CGColorSpaceCopyPropertyList(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceCopyPropertyList(space)
-	}
-
-
-// Returns a copy of the ICC profile of the provided color space.
-//
-// Deprecated: This function was deprecated in macOS 10.13.
-//
-// Added in macOS 10.5.
-
-// Returns a copy of the ICC profile of the provided color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/iccData
-func CGColorSpaceCopyICCProfile(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceCopyICCProfile(space)
-	}
-
-
-// Creates a calibrated grayscale color space.
-//
-// Added in macOS 10.0.
-
-// Creates a calibrated grayscale color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedGrayWhitePoint:blackPoint:gamma:)
-func CGColorSpaceCreateCalibratedGray(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateCalibratedGray(whitePoint, blackPoint, gamma)
-	}
-
-
-// Creates a calibrated RGB color space.
-//
-// Added in macOS 10.0.
-
-// Creates a calibrated RGB color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedRGBWhitePoint:blackPoint:gamma:matrix:)
-func CGColorSpaceCreateCalibratedRGB(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer, matrix unsafe.Pointer, p4 unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateCalibratedRGB(whitePoint, blackPoint, gamma, matrix, p4)
-	}
-
-
-// Creates a device-independent color space that is defined according to the ICC color profile specification.
-//
-// Added in macOS 10.0.
-
-// Creates a device-independent color space that is defined according to the ICC color profile specification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccBasedNComponents:range:profile:alternate:)
-func CGColorSpaceCreateICCBased(nComponents unsafe.Pointer, range_ unsafe.Pointer, profile CGDataProviderRef, alternate CGColorSpaceRef) CGColorSpaceRef {
-	return _CGColorSpaceCreateICCBased(nComponents, range_, profile, alternate)
-	}
-
-
-// Creates an ICC-based color space using the ICC profile contained in the specified data.
-//
-// Added in macOS 10.12.
-
-// Creates an ICC-based color space using the ICC profile contained in the specified data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccData:)
-func CGColorSpaceCreateWithICCData(data unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateWithICCData(data)
-	}
-
-
-// Creates an ICC-based color space using the ICC profile contained in the specified data.
-//
-// Deprecated: This function was deprecated in macOS 10.13.
-//
-// Added in macOS 10.5.
-
-// Creates an ICC-based color space using the ICC profile contained in the specified data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccProfileData:)
-func CGColorSpaceCreateWithICCProfile(data unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateWithICCProfile(data)
-	}
-
-
-// Creates an indexed color space, consisting of colors specified by a color lookup table.
-//
-// Added in macOS 10.0.
-
-// Creates an indexed color space, consisting of colors specified by a color lookup table.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(indexedBaseSpace:last:colorTable:)
-func CGColorSpaceCreateIndexed(baseSpace CGColorSpaceRef, lastIndex unsafe.Pointer, colorTable unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateIndexed(baseSpace, lastIndex, colorTable)
-	}
-
-
-// Creates a device-independent color space that is relative to human color perception, according to the CIE L*a*b* standard.
-//
-// Added in macOS 10.0.
-
-// Creates a device-independent color space that is relative to human color perception, according to the CIE L*a*b* standard.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(labWhitePoint:blackPoint:range:)
-func CGColorSpaceCreateLab(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, range_ unsafe.Pointer, p3 unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateLab(whitePoint, blackPoint, range_, p3)
-	}
-
-
-// Creates a specified type of Quartz color space.
-//
-// Added in macOS 10.2.
-
-// Creates a specified type of Quartz color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(name:)
-func CGColorSpaceCreateWithName(name unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateWithName(name)
-	}
-
-
-// Creates a pattern color space.
-//
-// Added in macOS 10.0.
-
-// Creates a pattern color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(patternBaseSpace:)
-func CGColorSpaceCreatePattern(baseSpace CGColorSpaceRef) CGColorSpaceRef {
-	return _CGColorSpaceCreatePattern(baseSpace)
-	}
-
-
-// Creates a platform-specific color space.
-//
-// Deprecated: This function was deprecated in macOS 12.0.
-//
-// Added in macOS 10.0.
-
-// Creates a platform-specific color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(platformColorSpaceRef:)
-func CGColorSpaceCreateWithPlatformColorSpace(ref unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateWithPlatformColorSpace(ref)
-	}
-
-
-// Creates a color space from a property list.
-//
-// Added in macOS 10.12.
-
-// Creates a color space from a property list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(propertyListPlist:)
-func CGColorSpaceCreateWithPropertyList(plist unsafe.Pointer) CGColorSpaceRef {
-	return _CGColorSpaceCreateWithPropertyList(plist)
-	}
-
-
-// CGColorSpaceIsHDR is a CoreGraphics function.
-//
-// Added in macOS 10.15.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isHDR()
-func CGColorSpaceIsHDR(p0 CGColorSpaceRef) bool {
-	return _CGColorSpaceIsHDR(p0)
-	}
-
-
-// Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
-//
-// Added in macOS 10.12.
-
-// Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isWideGamutRGB
-func CGColorSpaceIsWideGamutRGB(p0 CGColorSpaceRef) bool {
-	return _CGColorSpaceIsWideGamutRGB(p0)
-	}
-
-
-// Returns the color space model of the provided color space.
-//
-// Added in macOS 10.5.
-
-// Returns the color space model of the provided color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/model
-func CGColorSpaceGetModel(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceGetModel(space)
-	}
-
-
-// Returns the name used to create the specified color space.
-//
-// Added in macOS 10.6.
-
-// Returns the name used to create the specified color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/name
-func CGColorSpaceCopyName(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceCopyName(space)
-	}
-
-
-// Returns the number of color components in a color space.
-//
-// Added in macOS 10.0.
-
-// Returns the number of color components in a color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/numberOfComponents
-func CGColorSpaceGetNumberOfComponents(space CGColorSpaceRef) unsafe.Pointer {
-	return _CGColorSpaceGetNumberOfComponents(space)
-	}
-
-
-// Returns a Boolean indicating whether the color space can be used as a destination color space.
-//
-// Added in macOS 10.12.
-
-// Returns a Boolean indicating whether the color space can be used as a destination color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/supportsOutput
-func CGColorSpaceSupportsOutput(space CGColorSpaceRef) bool {
-	return _CGColorSpaceSupportsOutput(space)
-	}
-
-
-// Returns the Core Foundation type identifier for Quartz color spaces.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for Quartz color spaces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/typeID
-func CGColorSpaceGetTypeID() unsafe.Pointer {
-	return _CGColorSpaceGetTypeID()
 	}
 
 
@@ -2470,7 +5740,7 @@ func CGColorSpaceGetTypeID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCopyBaseColorSpace(_:)
-func CGColorSpaceCopyBaseColorSpace(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceCopyBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCopyBaseColorSpace(space)
 	}
 
@@ -2481,7 +5751,7 @@ func CGColorSpaceCopyBaseColorSpace(space CGColorSpaceRef) CGColorSpaceRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateCopyWithStandardRange(_:)
-func CGColorSpaceCreateCopyWithStandardRange(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceCreateCopyWithStandardRange(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateCopyWithStandardRange(space)
 	}
 
@@ -2494,7 +5764,7 @@ func CGColorSpaceCreateCopyWithStandardRange(space CGColorSpaceRef) CGColorSpace
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceCMYK()
-func CGColorSpaceCreateDeviceCMYK() CGColorSpaceRef {
+func CGColorSpaceCreateDeviceCMYK() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceCMYK()
 	}
 
@@ -2507,7 +5777,7 @@ func CGColorSpaceCreateDeviceCMYK() CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceGray()
-func CGColorSpaceCreateDeviceGray() CGColorSpaceRef {
+func CGColorSpaceCreateDeviceGray() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceGray()
 	}
 
@@ -2520,7 +5790,7 @@ func CGColorSpaceCreateDeviceGray() CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceRGB()
-func CGColorSpaceCreateDeviceRGB() CGColorSpaceRef {
+func CGColorSpaceCreateDeviceRGB() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceRGB()
 	}
 
@@ -2531,7 +5801,7 @@ func CGColorSpaceCreateDeviceRGB() CGColorSpaceRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateExtended(_:)
-func CGColorSpaceCreateExtended(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceCreateExtended(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateExtended(space)
 	}
 
@@ -2542,7 +5812,7 @@ func CGColorSpaceCreateExtended(space CGColorSpaceRef) CGColorSpaceRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateExtendedLinearized(_:)
-func CGColorSpaceCreateExtendedLinearized(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceCreateExtendedLinearized(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateExtendedLinearized(space)
 	}
 
@@ -2553,7 +5823,7 @@ func CGColorSpaceCreateExtendedLinearized(space CGColorSpaceRef) CGColorSpaceRef
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateLinearized(_:)
-func CGColorSpaceCreateLinearized(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceCreateLinearized(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateLinearized(space)
 	}
 
@@ -2564,7 +5834,7 @@ func CGColorSpaceCreateLinearized(space CGColorSpaceRef) CGColorSpaceRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateWithColorSyncProfile(_:_:)
-func CGColorSpaceCreateWithColorSyncProfile(p0 unsafe.Pointer, options unsafe.Pointer) CGColorSpaceRef {
+func CGColorSpaceCreateWithColorSyncProfile(p0 unsafe.Pointer, options unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateWithColorSyncProfile(p0, options)
 	}
 
@@ -2577,7 +5847,7 @@ func CGColorSpaceCreateWithColorSyncProfile(p0 unsafe.Pointer, options unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetColorTable
-func CGColorSpaceGetColorTable(space CGColorSpaceRef, table unsafe.Pointer) {
+func CGColorSpaceGetColorTable(space ColorSpaceRef, table unsafe.Pointer) {
 	_CGColorSpaceGetColorTable(space, table)
 	}
 
@@ -2590,7 +5860,7 @@ func CGColorSpaceGetColorTable(space CGColorSpaceRef, table unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetColorTableCount
-func CGColorSpaceGetColorTableCount(space CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceGetColorTableCount(space ColorSpaceRef) uintptr {
 	return _CGColorSpaceGetColorTableCount(space)
 	}
 
@@ -2601,7 +5871,7 @@ func CGColorSpaceGetColorTableCount(space CGColorSpaceRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetName
-func CGColorSpaceGetName(space CGColorSpaceRef) unsafe.Pointer {
+func CGColorSpaceGetName(space ColorSpaceRef) unsafe.Pointer {
 	return _CGColorSpaceGetName(space)
 	}
 
@@ -2612,7 +5882,7 @@ func CGColorSpaceGetName(space CGColorSpaceRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsHLGBased(_:)
-func CGColorSpaceIsHLGBased(s CGColorSpaceRef) bool {
+func CGColorSpaceIsHLGBased(s ColorSpaceRef) bool {
 	return _CGColorSpaceIsHLGBased(s)
 	}
 
@@ -2623,8 +5893,21 @@ func CGColorSpaceIsHLGBased(s CGColorSpaceRef) bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsPQBased(_:)
-func CGColorSpaceIsPQBased(s CGColorSpaceRef) bool {
+func CGColorSpaceIsPQBased(s ColorSpaceRef) bool {
 	return _CGColorSpaceIsPQBased(s)
+	}
+
+
+// Decrements the retain count of a color space.
+//
+// Added in macOS 10.0.
+
+// Decrements the retain count of a color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceRelease
+func CGColorSpaceRelease(space ColorSpaceRef) {
+	_CGColorSpaceRelease(space)
 	}
 
 
@@ -2636,7 +5919,7 @@ func CGColorSpaceIsPQBased(s CGColorSpaceRef) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceRetain
-func CGColorSpaceRetain(space CGColorSpaceRef) CGColorSpaceRef {
+func CGColorSpaceRetain(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceRetain(space)
 	}
 
@@ -2647,7 +5930,7 @@ func CGColorSpaceRetain(space CGColorSpaceRef) CGColorSpaceRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesExtendedRange(_:)
-func CGColorSpaceUsesExtendedRange(space CGColorSpaceRef) bool {
+func CGColorSpaceUsesExtendedRange(space ColorSpaceRef) bool {
 	return _CGColorSpaceUsesExtendedRange(space)
 	}
 
@@ -2658,7 +5941,7 @@ func CGColorSpaceUsesExtendedRange(space CGColorSpaceRef) bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesITUR_2100TF(_:)
-func CGColorSpaceUsesITUR_2100TF(p0 CGColorSpaceRef) bool {
+func CGColorSpaceUsesITUR_2100TF(p0 ColorSpaceRef) bool {
 	return _CGColorSpaceUsesITUR_2100TF(p0)
 	}
 
@@ -2671,7 +5954,7 @@ func CGColorSpaceUsesITUR_2100TF(p0 CGColorSpaceRef) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCompleteDisplayConfiguration(_:_:)
-func CGCompleteDisplayConfiguration(config CGDisplayConfigRef, option unsafe.Pointer) unsafe.Pointer {
+func CGCompleteDisplayConfiguration(config DisplayConfigRef, option unsafe.Pointer) unsafe.Pointer {
 	return _CGCompleteDisplayConfiguration(config, option)
 	}
 
@@ -2684,7 +5967,7 @@ func CGCompleteDisplayConfiguration(config CGDisplayConfigRef, option unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayFadeEffect(_:_:_:_:_:_:)
-func CGConfigureDisplayFadeEffect(config CGDisplayConfigRef, fadeOutSeconds unsafe.Pointer, fadeInSeconds unsafe.Pointer, fadeRed unsafe.Pointer, fadeGreen unsafe.Pointer, fadeBlue unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds unsafe.Pointer, fadeInSeconds unsafe.Pointer, fadeRed float32, fadeGreen float32, fadeBlue float32) unsafe.Pointer {
 	return _CGConfigureDisplayFadeEffect(config, fadeOutSeconds, fadeInSeconds, fadeRed, fadeGreen, fadeBlue)
 	}
 
@@ -2697,7 +5980,7 @@ func CGConfigureDisplayFadeEffect(config CGDisplayConfigRef, fadeOutSeconds unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMirrorOfDisplay(_:_:_:)
-func CGConfigureDisplayMirrorOfDisplay(config CGDisplayConfigRef, display unsafe.Pointer, master unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display unsafe.Pointer, master unsafe.Pointer) unsafe.Pointer {
 	return _CGConfigureDisplayMirrorOfDisplay(config, display, master)
 	}
 
@@ -2708,7 +5991,7 @@ func CGConfigureDisplayMirrorOfDisplay(config CGDisplayConfigRef, display unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMode(_:_:_:)
-func CGConfigureDisplayMode(config CGDisplayConfigRef, display unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayMode(config DisplayConfigRef, display unsafe.Pointer, mode unsafe.Pointer) unsafe.Pointer {
 	return _CGConfigureDisplayMode(config, display, mode)
 	}
 
@@ -2721,7 +6004,7 @@ func CGConfigureDisplayMode(config CGDisplayConfigRef, display unsafe.Pointer, m
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayOrigin(_:_:_:_:)
-func CGConfigureDisplayOrigin(config CGDisplayConfigRef, display unsafe.Pointer, x unsafe.Pointer, y unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayOrigin(config DisplayConfigRef, display unsafe.Pointer, x unsafe.Pointer, y unsafe.Pointer) unsafe.Pointer {
 	return _CGConfigureDisplayOrigin(config, display, x, y)
 	}
 
@@ -2734,7 +6017,7 @@ func CGConfigureDisplayOrigin(config CGDisplayConfigRef, display unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayStereoOperation(_:_:_:_:)
-func CGConfigureDisplayStereoOperation(config CGDisplayConfigRef, display unsafe.Pointer, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display unsafe.Pointer, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer) unsafe.Pointer {
 	return _CGConfigureDisplayStereoOperation(config, display, stereo, forceBlueLine)
 	}
 
@@ -2747,1505 +6030,8 @@ func CGConfigureDisplayStereoOperation(config CGDisplayConfigRef, display unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayWithDisplayMode(_:_:_:_:)
-func CGConfigureDisplayWithDisplayMode(config CGDisplayConfigRef, display unsafe.Pointer, mode CGDisplayModeRef, options unsafe.Pointer) unsafe.Pointer {
+func CGConfigureDisplayWithDisplayMode(config DisplayConfigRef, display unsafe.Pointer, mode DisplayModeRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CGConfigureDisplayWithDisplayMode(config, display, mode, options)
-	}
-
-
-// Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
-//
-// Added in macOS 10.4.
-
-// Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDestination(_:at:)
-func CGPDFContextAddDestinationAtPoint(context CGContextRef, name unsafe.Pointer, point CGPoint) {
-	_CGPDFContextAddDestinationAtPoint(context, name, point)
-	}
-
-
-// Associates custom metadata with the PDF document.
-//
-// Added in macOS 10.7.
-
-// Associates custom metadata with the PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDocumentMetadata(_:)
-func CGPDFContextAddDocumentMetadata(context CGContextRef, metadata unsafe.Pointer) {
-	_CGPDFContextAddDocumentMetadata(context, metadata)
-	}
-
-
-// Adds an ellipse that fits inside the specified rectangle.
-//
-// Added in macOS 10.4.
-
-// Adds an ellipse that fits inside the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addEllipse(in:)
-func CGContextAddEllipseInRect(c CGContextRef, rect CGRect) {
-	_CGContextAddEllipseInRect(c, rect)
-	}
-
-
-// Adds a previously created path object to the current path in a graphics context.
-//
-// Added in macOS 10.2.
-
-// Adds a previously created path object to the current path in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addPath(_:)
-func CGContextAddPath(c CGContextRef, path CGPathRef) {
-	_CGContextAddPath(c, path)
-	}
-
-
-// Adds a rectangular path to the current path.
-//
-// Added in macOS 10.0.
-
-// Adds a rectangular path to the current path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addRect(_:)
-func CGContextAddRect(c CGContextRef, rect CGRect) {
-	_CGContextAddRect(c, rect)
-	}
-
-
-// Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
-//
-// Added in macOS 10.2.
-
-// Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/alphaInfo
-func CGBitmapContextGetAlphaInfo(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetAlphaInfo(context)
-	}
-
-
-// Begins a new page in a PDF graphics context.
-//
-// Added in macOS 10.4.
-
-// Begins a new page in a PDF graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPDFPage(_:)
-func CGPDFContextBeginPage(context CGContextRef, pageInfo unsafe.Pointer) {
-	_CGPDFContextBeginPage(context, pageInfo)
-	}
-
-
-// Starts a new page in a page-based graphics context.
-//
-// Added in macOS 10.0.
-
-// Starts a new page in a page-based graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPage(mediaBox:)
-func CGContextBeginPage(c CGContextRef, mediaBox unsafe.Pointer) {
-	_CGContextBeginPage(c, mediaBox)
-	}
-
-
-// Creates a new empty path in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Creates a new empty path in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPath()
-func CGContextBeginPath(c CGContextRef) {
-	_CGContextBeginPath(c)
-	}
-
-
-// Begins a transparency layer.
-//
-// Added in macOS 10.3.
-
-// Begins a transparency layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(auxiliaryInfo:)
-func CGContextBeginTransparencyLayer(c CGContextRef, auxiliaryInfo unsafe.Pointer) {
-	_CGContextBeginTransparencyLayer(c, auxiliaryInfo)
-	}
-
-
-// Begins a transparency layer whose contents are bounded by the specified rectangle.
-//
-// Added in macOS 10.5.
-
-// Begins a transparency layer whose contents are bounded by the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(in:auxiliaryInfo:)
-func CGContextBeginTransparencyLayerWithRect(c CGContextRef, rect CGRect, auxInfo unsafe.Pointer) {
-	_CGContextBeginTransparencyLayerWithRect(c, rect, auxInfo)
-	}
-
-
-// Obtains the bitmap information associated with a bitmap graphics context.
-//
-// Added in macOS 10.4.
-
-// Obtains the bitmap information associated with a bitmap graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitmapInfo
-func CGBitmapContextGetBitmapInfo(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetBitmapInfo(context)
-	}
-
-
-// Returns the bits per component of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the bits per component of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerComponent
-func CGBitmapContextGetBitsPerComponent(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetBitsPerComponent(context)
-	}
-
-
-// Returns the bits per pixel of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the bits per pixel of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerPixel
-func CGBitmapContextGetBitsPerPixel(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetBitsPerPixel(context)
-	}
-
-
-// Returns the bounding box of a clipping path.
-//
-// Added in macOS 10.3.
-
-// Returns the bounding box of a clipping path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfClipPath
-func CGContextGetClipBoundingBox(c CGContextRef) CGRect {
-	return _CGContextGetClipBoundingBox(c)
-	}
-
-
-// Returns the smallest rectangle that contains the current path.
-//
-// Added in macOS 10.0.
-
-// Returns the smallest rectangle that contains the current path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfPath
-func CGContextGetPathBoundingBox(c CGContextRef) CGRect {
-	return _CGContextGetPathBoundingBox(c)
-	}
-
-
-// Returns the bytes per row of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the bytes per row of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bytesPerRow
-func CGBitmapContextGetBytesPerRow(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetBytesPerRow(context)
-	}
-
-
-// Paints a transparent rectangle.
-//
-// Added in macOS 10.0.
-
-// Paints a transparent rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clear(_:)
-func CGContextClearRect(c CGContextRef, rect CGRect) {
-	_CGContextClearRect(c, rect)
-	}
-
-
-// Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
-//
-// Added in macOS 10.0.
-
-// Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:)-7cbwq
-func CGContextClipToRect(c CGContextRef, rect CGRect) {
-	_CGContextClipToRect(c, rect)
-	}
-
-
-// Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
-//
-// Added in macOS 10.4.
-
-// Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:mask:)
-func CGContextClipToMask(c CGContextRef, rect CGRect, mask CGImageRef) {
-	_CGContextClipToMask(c, rect, mask)
-	}
-
-
-// Closes a PDF document.
-//
-// Added in macOS 10.5.
-
-// Closes a PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePDF()
-func CGPDFContextClose(context CGContextRef) {
-	_CGPDFContextClose(context)
-	}
-
-
-// Closes and terminates the current path’s subpath.
-//
-// Added in macOS 10.0.
-
-// Closes and terminates the current path’s subpath.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePath()
-func CGContextClosePath(c CGContextRef) {
-	_CGContextClosePath(c)
-	}
-
-
-// Returns the color space of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the color space of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/colorSpace
-func CGBitmapContextGetColorSpace(context CGContextRef) CGColorSpaceRef {
-	return _CGBitmapContextGetColorSpace(context)
-	}
-
-
-// Transforms the user coordinate system in a context using a specified matrix.
-//
-// Added in macOS 10.0.
-
-// Transforms the user coordinate system in a context using a specified matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/concatenate(_:)
-func CGContextConcatCTM(c CGContextRef, transform CGAffineTransform) {
-	_CGContextConcatCTM(c, transform)
-	}
-
-
-// Returns a size that is transformed from user space coordinates to device space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a size that is transformed from user space coordinates to device space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-224h2
-func CGContextConvertSizeToDeviceSpace(c CGContextRef, size CGSize) CGSize {
-	return _CGContextConvertSizeToDeviceSpace(c, size)
-	}
-
-
-// Returns a point that is transformed from user space coordinates to device space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a point that is transformed from user space coordinates to device space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-53m7u
-func CGContextConvertPointToDeviceSpace(c CGContextRef, point CGPoint) CGPoint {
-	return _CGContextConvertPointToDeviceSpace(c, point)
-	}
-
-
-// Returns a rectangle that is transformed from user space coordinate to device space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a rectangle that is transformed from user space coordinate to device space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-91x5g
-func CGContextConvertRectToDeviceSpace(c CGContextRef, rect CGRect) CGRect {
-	return _CGContextConvertRectToDeviceSpace(c, rect)
-	}
-
-
-// Returns a rectangle that is transformed from device space coordinate to user space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a rectangle that is transformed from device space coordinate to user space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-1hk5r
-func CGContextConvertRectToUserSpace(c CGContextRef, rect CGRect) CGRect {
-	return _CGContextConvertRectToUserSpace(c, rect)
-	}
-
-
-// Returns a point that is transformed from device space coordinates to user space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a point that is transformed from device space coordinates to user space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-3mtg3
-func CGContextConvertPointToUserSpace(c CGContextRef, point CGPoint) CGPoint {
-	return _CGContextConvertPointToUserSpace(c, point)
-	}
-
-
-// Returns a size that is transformed from device space coordinates to user space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns a size that is transformed from device space coordinates to user space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-693ur
-func CGContextConvertSizeToUserSpace(c CGContextRef, size CGSize) CGSize {
-	return _CGContextConvertSizeToUserSpace(c, size)
-	}
-
-
-// Returns the current transformation matrix.
-//
-// Added in macOS 10.0.
-
-// Returns the current transformation matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/ctm
-func CGContextGetCTM(c CGContextRef) CGAffineTransform {
-	return _CGContextGetCTM(c)
-	}
-
-
-// Returns the current point in a non-empty path.
-//
-// Added in macOS 10.0.
-
-// Returns the current point in a non-empty path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/currentPointOfPath
-func CGContextGetPathCurrentPoint(c CGContextRef) CGPoint {
-	return _CGContextGetPathCurrentPoint(c)
-	}
-
-
-// Returns a pointer to the image data associated with a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns a pointer to the image data associated with a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/data
-func CGBitmapContextGetData(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetData(context)
-	}
-
-
-// Paints a gradient fill that varies along the line defined by the provided starting and ending points.
-//
-// Added in macOS 10.5.
-
-// Paints a gradient fill that varies along the line defined by the provided starting and ending points.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawLinearGradient(_:start:end:options:)
-func CGContextDrawLinearGradient(c CGContextRef, gradient CGGradientRef, startPoint CGPoint, endPoint CGPoint, options unsafe.Pointer) {
-	_CGContextDrawLinearGradient(c, gradient, startPoint, endPoint, options)
-	}
-
-
-// Draws the content of a PDF page into the current graphics context.
-//
-// Added in macOS 10.3.
-
-// Draws the content of a PDF page into the current graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPDFPage(_:)
-func CGContextDrawPDFPage(c CGContextRef, page CGPDFPageRef) {
-	_CGContextDrawPDFPage(c, page)
-	}
-
-
-// Draws the current path using the provided drawing mode.
-//
-// Added in macOS 10.0.
-
-// Draws the current path using the provided drawing mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPath(using:)
-func CGContextDrawPath(c CGContextRef, mode unsafe.Pointer) {
-	_CGContextDrawPath(c, mode)
-	}
-
-
-// Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
-//
-// Added in macOS 10.5.
-
-// Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawRadialGradient(_:startCenter:startRadius:endCenter:endRadius:options:)
-func CGContextDrawRadialGradient(c CGContextRef, gradient CGGradientRef, startCenter CGPoint, startRadius float64, endCenter CGPoint, endRadius float64, options unsafe.Pointer) {
-	_CGContextDrawRadialGradient(c, gradient, startCenter, startRadius, endCenter, endRadius, options)
-	}
-
-
-// Fills the clipping path of a context with the specified shading.
-//
-// Added in macOS 10.2.
-
-// Fills the clipping path of a context with the specified shading.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawShading(_:)
-func CGContextDrawShading(c CGContextRef, shading CGShadingRef) {
-	_CGContextDrawShading(c, shading)
-	}
-
-
-// Ends the current page in the PDF graphics context.
-//
-// Added in macOS 10.4.
-
-// Ends the current page in the PDF graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPDFPage()
-func CGPDFContextEndPage(context CGContextRef) {
-	_CGPDFContextEndPage(context)
-	}
-
-
-// Ends the current page in a page-based graphics context.
-//
-// Added in macOS 10.0.
-
-// Ends the current page in a page-based graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPage()
-func CGContextEndPage(c CGContextRef) {
-	_CGContextEndPage(c)
-	}
-
-
-// Ends a transparency layer.
-//
-// Added in macOS 10.3.
-
-// Ends a transparency layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endTransparencyLayer()
-func CGContextEndTransparencyLayer(c CGContextRef) {
-	_CGContextEndTransparencyLayer(c)
-	}
-
-
-// Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
-//
-// Added in macOS 10.0.
-
-// Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fill(_:)-7a0rk
-func CGContextFillRect(c CGContextRef, rect CGRect) {
-	_CGContextFillRect(c, rect)
-	}
-
-
-// Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
-//
-// Added in macOS 10.4.
-
-// Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fillEllipse(in:)
-func CGContextFillEllipseInRect(c CGContextRef, rect CGRect) {
-	_CGContextFillEllipseInRect(c, rect)
-	}
-
-
-// Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
-//
-// Added in macOS 10.0.
-
-// Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/flush()
-func CGContextFlush(c CGContextRef) {
-	_CGContextFlush(c)
-	}
-
-
-// Returns the height in pixels of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the height in pixels of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/height
-func CGBitmapContextGetHeight(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetHeight(context)
-	}
-
-
-// Creates a URL-based PDF graphics context.
-//
-// Added in macOS 10.0.
-
-// Creates a URL-based PDF graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(_:mediaBox:_:)
-func CGPDFContextCreateWithURL(url unsafe.Pointer, mediaBox unsafe.Pointer, auxiliaryInfo unsafe.Pointer) CGContextRef {
-	return _CGPDFContextCreateWithURL(url, mediaBox, auxiliaryInfo)
-	}
-
-
-// Creates a PDF graphics context.
-//
-// Added in macOS 10.0.
-
-// Creates a PDF graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(consumer:mediaBox:_:)
-func CGPDFContextCreate(consumer CGDataConsumerRef, mediaBox unsafe.Pointer, auxiliaryInfo unsafe.Pointer) CGContextRef {
-	return _CGPDFContextCreate(consumer, mediaBox, auxiliaryInfo)
-	}
-
-
-// CGBitmapContextCreate is a CoreGraphics function.
-//
-// Added in macOS 10.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:)-10b3i
-func CGBitmapContextCreate(data unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer) CGContextRef {
-	return _CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo)
-	}
-
-
-// CGBitmapContextCreateWithData is a CoreGraphics function.
-//
-// Added in macOS 10.6.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:releaseCallback:releaseInfo:)-4yzt5
-func CGBitmapContextCreateWithData(data unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, releaseCallback unsafe.Pointer, releaseInfo unsafe.Pointer) CGContextRef {
-	return _CGBitmapContextCreateWithData(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback, releaseInfo)
-	}
-
-
-// Returns the current level of interpolation quality for a graphics context.
-//
-// Added in macOS 10.0.
-
-// Returns the current level of interpolation quality for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/interpolationQuality
-func CGContextGetInterpolationQuality(c CGContextRef) unsafe.Pointer {
-	return _CGContextGetInterpolationQuality(c)
-	}
-
-
-// Indicates whether the current path contains any subpaths.
-//
-// Added in macOS 10.0.
-
-// Indicates whether the current path contains any subpaths.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/isPathEmpty
-func CGContextIsPathEmpty(c CGContextRef) bool {
-	return _CGContextIsPathEmpty(c)
-	}
-
-
-// Creates and returns a CGImage from the pixel data in a bitmap graphics context.
-//
-// Added in macOS 10.4.
-
-// Creates and returns a CGImage from the pixel data in a bitmap graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/makeImage()
-func CGBitmapContextCreateImage(context CGContextRef) CGImageRef {
-	return _CGBitmapContextCreateImage(context)
-	}
-
-
-// Returns a path object built from the current path information in a graphics context.
-//
-// Added in macOS 10.2.
-
-// Returns a path object built from the current path information in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/path
-func CGContextCopyPath(c CGContextRef) CGPathRef {
-	return _CGContextCopyPath(c)
-	}
-
-
-// Checks to see whether the specified point is contained in the current path.
-//
-// Added in macOS 10.4.
-
-// Checks to see whether the specified point is contained in the current path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/pathContains(_:mode:)
-func CGContextPathContainsPoint(c CGContextRef, point CGPoint, mode unsafe.Pointer) bool {
-	return _CGContextPathContainsPoint(c, point, mode)
-	}
-
-
-// Replaces the path in the graphics context with the stroked version of the path.
-//
-// Added in macOS 10.4.
-
-// Replaces the path in the graphics context with the stroked version of the path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/replacePathWithStrokedPath()
-func CGContextReplacePathWithStrokedPath(c CGContextRef) {
-	_CGContextReplacePathWithStrokedPath(c)
-	}
-
-
-// CGContextResetClip is a CoreGraphics function.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/resetClip()
-func CGContextResetClip(c CGContextRef) {
-	_CGContextResetClip(c)
-	}
-
-
-// Sets the current graphics state to the state most recently saved.
-//
-// Added in macOS 10.0.
-
-// Sets the current graphics state to the state most recently saved.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/restoreGState()
-func CGContextRestoreGState(c CGContextRef) {
-	_CGContextRestoreGState(c)
-	}
-
-
-// Rotates the user coordinate system in a context.
-//
-// Added in macOS 10.0.
-
-// Rotates the user coordinate system in a context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/rotate(by:)
-func CGContextRotateCTM(c CGContextRef, angle float64) {
-	_CGContextRotateCTM(c, angle)
-	}
-
-
-// Pushes a copy of the current graphics state onto the graphics state stack for the context.
-//
-// Added in macOS 10.0.
-
-// Pushes a copy of the current graphics state onto the graphics state stack for the context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/saveGState()
-func CGContextSaveGState(c CGContextRef) {
-	_CGContextSaveGState(c)
-	}
-
-
-// Changes the scale of the user coordinate system in a context.
-//
-// Added in macOS 10.0.
-
-// Changes the scale of the user coordinate system in a context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/scaleBy(x:y:)
-func CGContextScaleCTM(c CGContextRef, sx float64, sy float64) {
-	_CGContextScaleCTM(c, sx, sy)
-	}
-
-
-// Sets the font and font size in a graphics context.
-
-// Sets the font and font size in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/selectFont(name:size:textEncoding:)
-func CGContextSelectFont(c CGContextRef, name unsafe.Pointer, size float64, textEncoding unsafe.Pointer) {
-	_CGContextSelectFont(c, name, size, textEncoding)
-	}
-
-
-// Sets whether or not to allow antialiasing for a graphics context.
-//
-// Added in macOS 10.4.
-
-// Sets whether or not to allow antialiasing for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsAntialiasing(_:)
-func CGContextSetAllowsAntialiasing(c CGContextRef, allowsAntialiasing bool) {
-	_CGContextSetAllowsAntialiasing(c, allowsAntialiasing)
-	}
-
-
-// Sets whether or not to allow font smoothing for a graphics context.
-//
-// Added in macOS 10.2.
-
-// Sets whether or not to allow font smoothing for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSmoothing(_:)
-func CGContextSetAllowsFontSmoothing(c CGContextRef, allowsFontSmoothing bool) {
-	_CGContextSetAllowsFontSmoothing(c, allowsFontSmoothing)
-	}
-
-
-// Sets whether or not to allow subpixel positioning for a graphics context.
-//
-// Added in macOS 10.5.
-
-// Sets whether or not to allow subpixel positioning for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelPositioning(_:)
-func CGContextSetAllowsFontSubpixelPositioning(c CGContextRef, allowsFontSubpixelPositioning bool) {
-	_CGContextSetAllowsFontSubpixelPositioning(c, allowsFontSubpixelPositioning)
-	}
-
-
-// Sets whether or not to allow subpixel quantization for a graphics context.
-//
-// Added in macOS 10.5.
-
-// Sets whether or not to allow subpixel quantization for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelQuantization(_:)
-func CGContextSetAllowsFontSubpixelQuantization(c CGContextRef, allowsFontSubpixelQuantization bool) {
-	_CGContextSetAllowsFontSubpixelQuantization(c, allowsFontSubpixelQuantization)
-	}
-
-
-// Sets the opacity level for objects drawn in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the opacity level for objects drawn in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAlpha(_:)
-func CGContextSetAlpha(c CGContextRef, alpha float64) {
-	_CGContextSetAlpha(c, alpha)
-	}
-
-
-// Sets how sample values are composited by a graphics context.
-//
-// Added in macOS 10.4.
-
-// Sets how sample values are composited by a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setBlendMode(_:)
-func CGContextSetBlendMode(c CGContextRef, mode unsafe.Pointer) {
-	_CGContextSetBlendMode(c, mode)
-	}
-
-
-// Sets the current character spacing.
-//
-// Added in macOS 10.0.
-
-// Sets the current character spacing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setCharacterSpacing(_:)
-func CGContextSetCharacterSpacing(c CGContextRef, spacing float64) {
-	_CGContextSetCharacterSpacing(c, spacing)
-	}
-
-
-// Sets a destination to jump to when a rectangle in the current PDF page is clicked.
-//
-// Added in macOS 10.4.
-
-// Sets a destination to jump to when a rectangle in the current PDF page is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setDestination(_:for:)
-func CGPDFContextSetDestinationForRect(context CGContextRef, name unsafe.Pointer, rect CGRect) {
-	_CGPDFContextSetDestinationForRect(context, name, rect)
-	}
-
-
-// CGContextSetEDRTargetHeadroom is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setEDRTargetHeadroom(_:)
-func CGContextSetEDRTargetHeadroom(c CGContextRef, headroom unsafe.Pointer) bool {
-	return _CGContextSetEDRTargetHeadroom(c, headroom)
-	}
-
-
-// Sets the current fill color.
-//
-// Added in macOS 10.0.
-
-// Sets the current fill color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-756dy
-func CGContextSetFillColor(c CGContextRef, components unsafe.Pointer) {
-	_CGContextSetFillColor(c, components)
-	}
-
-
-// Sets the current fill color in a graphics context, using a CGColor.
-//
-// Added in macOS 10.3.
-
-// Sets the current fill color in a graphics context, using a CGColor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-8lhn8
-func CGContextSetFillColorWithColor(c CGContextRef, color CGColorRef) {
-	_CGContextSetFillColorWithColor(c, color)
-	}
-
-
-// Sets the current fill color to a value in the DeviceCMYK color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current fill color to a value in the DeviceCMYK color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(cyan:magenta:yellow:black:alpha:)
-func CGContextSetCMYKFillColor(c CGContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
-	_CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha)
-	}
-
-
-// Sets the current fill color to a value in the DeviceGray color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current fill color to a value in the DeviceGray color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(gray:alpha:)
-func CGContextSetGrayFillColor(c CGContextRef, gray float64, alpha float64) {
-	_CGContextSetGrayFillColor(c, gray, alpha)
-	}
-
-
-// Sets the current fill color to a value in the DeviceRGB color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current fill color to a value in the DeviceRGB color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(red:green:blue:alpha:)
-func CGContextSetRGBFillColor(c CGContextRef, red float64, green float64, blue float64, alpha float64) {
-	_CGContextSetRGBFillColor(c, red, green, blue, alpha)
-	}
-
-
-// Sets the fill color space in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the fill color space in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColorSpace(_:)
-func CGContextSetFillColorSpace(c CGContextRef, space CGColorSpaceRef) {
-	_CGContextSetFillColorSpace(c, space)
-	}
-
-
-// Sets the fill pattern in the specified graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the fill pattern in the specified graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillPattern(_:colorComponents:)
-func CGContextSetFillPattern(c CGContextRef, pattern CGPatternRef, components unsafe.Pointer) {
-	_CGContextSetFillPattern(c, pattern, components)
-	}
-
-
-// Sets the accuracy of curved paths in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the accuracy of curved paths in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFlatness(_:)
-func CGContextSetFlatness(c CGContextRef, flatness float64) {
-	_CGContextSetFlatness(c, flatness)
-	}
-
-
-// Sets the platform font in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the platform font in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFont(_:)
-func CGContextSetFont(c CGContextRef, font CGFontRef) {
-	_CGContextSetFont(c, font)
-	}
-
-
-// Sets the current font size.
-//
-// Added in macOS 10.0.
-
-// Sets the current font size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFontSize(_:)
-func CGContextSetFontSize(c CGContextRef, size float64) {
-	_CGContextSetFontSize(c, size)
-	}
-
-
-// Sets the style for the endpoints of lines drawn in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the style for the endpoints of lines drawn in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineCap(_:)
-func CGContextSetLineCap(c CGContextRef, cap_ unsafe.Pointer) {
-	_CGContextSetLineCap(c, cap_)
-	}
-
-
-// Sets the style for the joins of connected lines in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the style for the joins of connected lines in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineJoin(_:)
-func CGContextSetLineJoin(c CGContextRef, join unsafe.Pointer) {
-	_CGContextSetLineJoin(c, join)
-	}
-
-
-// Sets the line width for a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the line width for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineWidth(_:)
-func CGContextSetLineWidth(c CGContextRef, width float64) {
-	_CGContextSetLineWidth(c, width)
-	}
-
-
-// Sets the miter limit for the joins of connected lines in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the miter limit for the joins of connected lines in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setMiterLimit(_:)
-func CGContextSetMiterLimit(c CGContextRef, limit float64) {
-	_CGContextSetMiterLimit(c, limit)
-	}
-
-
-// Sets the pattern phase of a context.
-//
-// Added in macOS 10.0.
-
-// Sets the pattern phase of a context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setPatternPhase(_:)
-func CGContextSetPatternPhase(c CGContextRef, phase CGSize) {
-	_CGContextSetPatternPhase(c, phase)
-	}
-
-
-// Sets the rendering intent in the current graphics state.
-//
-// Added in macOS 10.0.
-
-// Sets the rendering intent in the current graphics state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setRenderingIntent(_:)
-func CGContextSetRenderingIntent(c CGContextRef, intent unsafe.Pointer) {
-	_CGContextSetRenderingIntent(c, intent)
-	}
-
-
-// Enables shadowing in a graphics context.
-//
-// Added in macOS 10.3.
-
-// Enables shadowing in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:)
-func CGContextSetShadow(c CGContextRef, offset CGSize, blur float64) {
-	_CGContextSetShadow(c, offset, blur)
-	}
-
-
-// Enables shadowing with color a graphics context.
-//
-// Added in macOS 10.3.
-
-// Enables shadowing with color a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:color:)
-func CGContextSetShadowWithColor(c CGContextRef, offset CGSize, blur float64, color CGColorRef) {
-	_CGContextSetShadowWithColor(c, offset, blur, color)
-	}
-
-
-// Sets antialiasing on or off for a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets antialiasing on or off for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldAntialias(_:)
-func CGContextSetShouldAntialias(c CGContextRef, shouldAntialias bool) {
-	_CGContextSetShouldAntialias(c, shouldAntialias)
-	}
-
-
-// Enables or disables font smoothing in a graphics context.
-//
-// Added in macOS 10.2.
-
-// Enables or disables font smoothing in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSmoothFonts(_:)
-func CGContextSetShouldSmoothFonts(c CGContextRef, shouldSmoothFonts bool) {
-	_CGContextSetShouldSmoothFonts(c, shouldSmoothFonts)
-	}
-
-
-// Enables or disables subpixel positioning in a graphics context.
-//
-// Added in macOS 10.5.
-
-// Enables or disables subpixel positioning in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelPositionFonts(_:)
-func CGContextSetShouldSubpixelPositionFonts(c CGContextRef, shouldSubpixelPositionFonts bool) {
-	_CGContextSetShouldSubpixelPositionFonts(c, shouldSubpixelPositionFonts)
-	}
-
-
-// Enables or disables subpixel quantization in a graphics context.
-//
-// Added in macOS 10.5.
-
-// Enables or disables subpixel quantization in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelQuantizeFonts(_:)
-func CGContextSetShouldSubpixelQuantizeFonts(c CGContextRef, shouldSubpixelQuantizeFonts bool) {
-	_CGContextSetShouldSubpixelQuantizeFonts(c, shouldSubpixelQuantizeFonts)
-	}
-
-
-// Sets the current stroke color in a context, using a CGColor.
-//
-// Added in macOS 10.3.
-
-// Sets the current stroke color in a context, using a CGColor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-1sskg
-func CGContextSetStrokeColorWithColor(c CGContextRef, color CGColorRef) {
-	_CGContextSetStrokeColorWithColor(c, color)
-	}
-
-
-// Sets the current stroke color.
-//
-// Added in macOS 10.0.
-
-// Sets the current stroke color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-4pd8p
-func CGContextSetStrokeColor(c CGContextRef, components unsafe.Pointer) {
-	_CGContextSetStrokeColor(c, components)
-	}
-
-
-// Sets the current stroke color to a value in the DeviceCMYK color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current stroke color to a value in the DeviceCMYK color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(cyan:magenta:yellow:black:alpha:)
-func CGContextSetCMYKStrokeColor(c CGContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
-	_CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha)
-	}
-
-
-// Sets the current stroke color to a value in the DeviceGray color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current stroke color to a value in the DeviceGray color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(gray:alpha:)
-func CGContextSetGrayStrokeColor(c CGContextRef, gray float64, alpha float64) {
-	_CGContextSetGrayStrokeColor(c, gray, alpha)
-	}
-
-
-// Sets the current stroke color to a value in the DeviceRGB color space.
-//
-// Added in macOS 10.0.
-
-// Sets the current stroke color to a value in the DeviceRGB color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(red:green:blue:alpha:)
-func CGContextSetRGBStrokeColor(c CGContextRef, red float64, green float64, blue float64, alpha float64) {
-	_CGContextSetRGBStrokeColor(c, red, green, blue, alpha)
-	}
-
-
-// Sets the stroke color space in a graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the stroke color space in a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColorSpace(_:)
-func CGContextSetStrokeColorSpace(c CGContextRef, space CGColorSpaceRef) {
-	_CGContextSetStrokeColorSpace(c, space)
-	}
-
-
-// Sets the stroke pattern in the specified graphics context.
-//
-// Added in macOS 10.0.
-
-// Sets the stroke pattern in the specified graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokePattern(_:colorComponents:)
-func CGContextSetStrokePattern(c CGContextRef, pattern CGPatternRef, components unsafe.Pointer) {
-	_CGContextSetStrokePattern(c, pattern, components)
-	}
-
-
-// Sets the current text drawing mode.
-//
-// Added in macOS 10.0.
-
-// Sets the current text drawing mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setTextDrawingMode(_:)
-func CGContextSetTextDrawingMode(c CGContextRef, mode unsafe.Pointer) {
-	_CGContextSetTextDrawingMode(c, mode)
-	}
-
-
-// Sets the URL associated with a rectangle in a PDF graphics context.
-//
-// Added in macOS 10.4.
-
-// Sets the URL associated with a rectangle in a PDF graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setURL(_:for:)
-func CGPDFContextSetURLForRect(context CGContextRef, url unsafe.Pointer, rect CGRect) {
-	_CGPDFContextSetURLForRect(context, url, rect)
-	}
-
-
-// Displays an array of glyphs at the current text position.
-
-// Displays an array of glyphs at the current text position.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphs(g:count:)
-func CGContextShowGlyphs(c CGContextRef, g unsafe.Pointer, count unsafe.Pointer) {
-	_CGContextShowGlyphs(c, g, count)
-	}
-
-
-// Displays an array of glyphs at a position you specify.
-
-// Displays an array of glyphs at a position you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsAtPoint(x:y:glyphs:count:)
-func CGContextShowGlyphsAtPoint(c CGContextRef, x float64, y float64, glyphs unsafe.Pointer, count unsafe.Pointer) {
-	_CGContextShowGlyphsAtPoint(c, x, y, glyphs, count)
-	}
-
-
-// Draws an array of glyphs with varying offsets.
-
-// Draws an array of glyphs with varying offsets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsWithAdvances(glyphs:advances:count:)
-func CGContextShowGlyphsWithAdvances(c CGContextRef, glyphs unsafe.Pointer, advances unsafe.Pointer, count unsafe.Pointer) {
-	_CGContextShowGlyphsWithAdvances(c, glyphs, advances, count)
-	}
-
-
-// Displays a character array at the current text position, a point specified by the current text matrix.
-
-// Displays a character array at the current text position, a point specified by the current text matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showText(string:length:)
-func CGContextShowText(c CGContextRef, string_ unsafe.Pointer, length unsafe.Pointer) {
-	_CGContextShowText(c, string_, length)
-	}
-
-
-// Displays a character string at a position you specify.
-
-// Displays a character string at a position you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showTextAtPoint(x:y:string:length:)
-func CGContextShowTextAtPoint(c CGContextRef, x float64, y float64, string_ unsafe.Pointer, length unsafe.Pointer) {
-	_CGContextShowTextAtPoint(c, x, y, string_, length)
-	}
-
-
-// Paints a rectangular path.
-//
-// Added in macOS 10.0.
-
-// Paints a rectangular path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:)
-func CGContextStrokeRect(c CGContextRef, rect CGRect) {
-	_CGContextStrokeRect(c, rect)
-	}
-
-
-// Paints a rectangular path, using the specified line width.
-//
-// Added in macOS 10.0.
-
-// Paints a rectangular path, using the specified line width.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:width:)
-func CGContextStrokeRectWithWidth(c CGContextRef, rect CGRect, width float64) {
-	_CGContextStrokeRectWithWidth(c, rect, width)
-	}
-
-
-// Strokes an ellipse that fits inside the specified rectangle.
-//
-// Added in macOS 10.4.
-
-// Strokes an ellipse that fits inside the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokeEllipse(in:)
-func CGContextStrokeEllipseInRect(c CGContextRef, rect CGRect) {
-	_CGContextStrokeEllipseInRect(c, rect)
-	}
-
-
-// Paints a line along the current path.
-//
-// Added in macOS 10.0.
-
-// Paints a line along the current path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokePath()
-func CGContextStrokePath(c CGContextRef) {
-	_CGContextStrokePath(c)
-	}
-
-
-// Marks a window context for update.
-//
-// Added in macOS 10.0.
-
-// Marks a window context for update.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronize()
-func CGContextSynchronize(c CGContextRef) {
-	_CGContextSynchronize(c)
-	}
-
-
-// CGContextSynchronizeAttributes is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronizeAttributes()
-func CGContextSynchronizeAttributes(c CGContextRef) {
-	_CGContextSynchronizeAttributes(c)
-	}
-
-
-// Returns the current text matrix.
-//
-// Added in macOS 10.0.
-
-// Returns the current text matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/textMatrix
-func CGContextGetTextMatrix(c CGContextRef) CGAffineTransform {
-	return _CGContextGetTextMatrix(c)
-	}
-
-
-// Changes the origin of the user coordinate system in a context.
-//
-// Added in macOS 10.0.
-
-// Changes the origin of the user coordinate system in a context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/translateBy(x:y:)
-func CGContextTranslateCTM(c CGContextRef, tx float64, ty float64) {
-	_CGContextTranslateCTM(c, tx, ty)
-	}
-
-
-// Returns the type identifier for a graphics context.
-//
-// Added in macOS 10.2.
-
-// Returns the type identifier for a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/typeID
-func CGContextGetTypeID() unsafe.Pointer {
-	return _CGContextGetTypeID()
-	}
-
-
-// Returns an affine transform that maps user space coordinates to device space coordinates.
-//
-// Added in macOS 10.4.
-
-// Returns an affine transform that maps user space coordinates to device space coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/userSpaceToDeviceSpaceTransform
-func CGContextGetUserSpaceToDeviceSpaceTransform(c CGContextRef) CGAffineTransform {
-	return _CGContextGetUserSpaceToDeviceSpaceTransform(c)
-	}
-
-
-// Returns the width in pixels of a bitmap context.
-//
-// Added in macOS 10.2.
-
-// Returns the width in pixels of a bitmap context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/width
-func CGBitmapContextGetWidth(context CGContextRef) unsafe.Pointer {
-	return _CGBitmapContextGetWidth(context)
 	}
 
 
@@ -4257,7 +6043,7 @@ func CGBitmapContextGetWidth(context CGContextRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddArc
-func CGContextAddArc(c CGContextRef, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise int) {
+func CGContextAddArc(c ContextRef, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise int) {
 	_CGContextAddArc(c, x, y, radius, startAngle, endAngle, clockwise)
 	}
 
@@ -4270,7 +6056,7 @@ func CGContextAddArc(c CGContextRef, x float64, y float64, radius float64, start
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddArcToPoint
-func CGContextAddArcToPoint(c CGContextRef, x1 float64, y1 float64, x2 float64, y2 float64, radius float64) {
+func CGContextAddArcToPoint(c ContextRef, x1 float64, y1 float64, x2 float64, y2 float64, radius float64) {
 	_CGContextAddArcToPoint(c, x1, y1, x2, y2, radius)
 	}
 
@@ -4283,21 +6069,8 @@ func CGContextAddArcToPoint(c CGContextRef, x1 float64, y1 float64, x2 float64, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddCurveToPoint
-func CGContextAddCurveToPoint(c CGContextRef, cp1x float64, cp1y float64, cp2x float64, cp2y float64, x float64, y float64) {
+func CGContextAddCurveToPoint(c ContextRef, cp1x float64, cp1y float64, cp2x float64, cp2y float64, x float64, y float64) {
 	_CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y)
-	}
-
-
-// Appends a straight line segment from the current point to the provided point .
-//
-// Added in macOS 10.0.
-
-// Appends a straight line segment from the current point to the provided point .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddLineToPoint
-func CGContextAddLineToPoint(c CGContextRef, x float64, y float64) {
-	_CGContextAddLineToPoint(c, x, y)
 	}
 
 
@@ -4309,8 +6082,21 @@ func CGContextAddLineToPoint(c CGContextRef, x float64, y float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddLines
-func CGContextAddLines(c CGContextRef, points unsafe.Pointer, count unsafe.Pointer) {
+func CGContextAddLines(c ContextRef, points unsafe.Pointer, count uintptr) {
 	_CGContextAddLines(c, points, count)
+	}
+
+
+// Appends a straight line segment from the current point to the provided point .
+//
+// Added in macOS 10.0.
+
+// Appends a straight line segment from the current point to the provided point .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddLineToPoint
+func CGContextAddLineToPoint(c ContextRef, x float64, y float64) {
+	_CGContextAddLineToPoint(c, x, y)
 	}
 
 
@@ -4322,7 +6108,7 @@ func CGContextAddLines(c CGContextRef, points unsafe.Pointer, count unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddQuadCurveToPoint
-func CGContextAddQuadCurveToPoint(c CGContextRef, cpx float64, cpy float64, x float64, y float64) {
+func CGContextAddQuadCurveToPoint(c ContextRef, cpx float64, cpy float64, x float64, y float64) {
 	_CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y)
 	}
 
@@ -4335,7 +6121,7 @@ func CGContextAddQuadCurveToPoint(c CGContextRef, cpx float64, cpy float64, x fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddRects
-func CGContextAddRects(c CGContextRef, rects unsafe.Pointer, count unsafe.Pointer) {
+func CGContextAddRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextAddRects(c, rects, count)
 	}
 
@@ -4348,7 +6134,7 @@ func CGContextAddRects(c CGContextRef, rects unsafe.Pointer, count unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextClip
-func CGContextClip(c CGContextRef) {
+func CGContextClip(c ContextRef) {
 	_CGContextClip(c)
 	}
 
@@ -4361,7 +6147,7 @@ func CGContextClip(c CGContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextClipToRects
-func CGContextClipToRects(c CGContextRef, rects unsafe.Pointer, count unsafe.Pointer) {
+func CGContextClipToRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextClipToRects(c, rects, count)
 	}
 
@@ -4372,7 +6158,7 @@ func CGContextClipToRects(c CGContextRef, rects unsafe.Pointer, count unsafe.Poi
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawConicGradient(_:_:_:_:)
-func CGContextDrawConicGradient(c CGContextRef, gradient CGGradientRef, center CGPoint, angle float64) {
+func CGContextDrawConicGradient(c ContextRef, gradient GradientRef, center CGPoint, angle float64) {
 	_CGContextDrawConicGradient(c, gradient, center, angle)
 	}
 
@@ -4385,7 +6171,7 @@ func CGContextDrawConicGradient(c CGContextRef, gradient CGGradientRef, center C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawImage
-func CGContextDrawImage(c CGContextRef, rect CGRect, image CGImageRef) {
+func CGContextDrawImage(c ContextRef, rect CGRect, image ImageRef) {
 	_CGContextDrawImage(c, rect, image)
 	}
 
@@ -4396,7 +6182,7 @@ func CGContextDrawImage(c CGContextRef, rect CGRect, image CGImageRef) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawImageApplyingToneMapping
-func CGContextDrawImageApplyingToneMapping(c CGContextRef, r CGRect, image CGImageRef, method unsafe.Pointer, options unsafe.Pointer) bool {
+func CGContextDrawImageApplyingToneMapping(c ContextRef, r CGRect, image ImageRef, method unsafe.Pointer, options unsafe.Pointer) bool {
 	return _CGContextDrawImageApplyingToneMapping(c, r, image, method, options)
 	}
 
@@ -4409,7 +6195,7 @@ func CGContextDrawImageApplyingToneMapping(c CGContextRef, r CGRect, image CGIma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawLayerAtPoint
-func CGContextDrawLayerAtPoint(context CGContextRef, point CGPoint, layer CGLayerRef) {
+func CGContextDrawLayerAtPoint(context ContextRef, point CGPoint, layer LayerRef) {
 	_CGContextDrawLayerAtPoint(context, point, layer)
 	}
 
@@ -4422,7 +6208,7 @@ func CGContextDrawLayerAtPoint(context CGContextRef, point CGPoint, layer CGLaye
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawLayerInRect
-func CGContextDrawLayerInRect(context CGContextRef, rect CGRect, layer CGLayerRef) {
+func CGContextDrawLayerInRect(context ContextRef, rect CGRect, layer LayerRef) {
 	_CGContextDrawLayerInRect(context, rect, layer)
 	}
 
@@ -4435,7 +6221,7 @@ func CGContextDrawLayerInRect(context CGContextRef, rect CGRect, layer CGLayerRe
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawPDFDocument
-func CGContextDrawPDFDocument(c CGContextRef, rect CGRect, document CGPDFDocumentRef, page int) {
+func CGContextDrawPDFDocument(c ContextRef, rect CGRect, document PDFDocumentRef, page int) {
 	_CGContextDrawPDFDocument(c, rect, document, page)
 	}
 
@@ -4448,7 +6234,7 @@ func CGContextDrawPDFDocument(c CGContextRef, rect CGRect, document CGPDFDocumen
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawTiledImage
-func CGContextDrawTiledImage(c CGContextRef, rect CGRect, image CGImageRef) {
+func CGContextDrawTiledImage(c ContextRef, rect CGRect, image ImageRef) {
 	_CGContextDrawTiledImage(c, rect, image)
 	}
 
@@ -4461,8 +6247,34 @@ func CGContextDrawTiledImage(c CGContextRef, rect CGRect, image CGImageRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOClip
-func CGContextEOClip(c CGContextRef) {
+func CGContextEOClip(c ContextRef) {
 	_CGContextEOClip(c)
+	}
+
+
+// Paints the area within the current path, using the even-odd fill rule.
+//
+// Added in macOS 10.0.
+
+// Paints the area within the current path, using the even-odd fill rule.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOFillPath
+func CGContextEOFillPath(c ContextRef) {
+	_CGContextEOFillPath(c)
+	}
+
+
+// Paints the area within the current path, using the nonzero winding number rule.
+//
+// Added in macOS 10.0.
+
+// Paints the area within the current path, using the nonzero winding number rule.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextFillPath
+func CGContextFillPath(c ContextRef) {
+	_CGContextFillPath(c)
 	}
 
 
@@ -4474,19 +6286,8 @@ func CGContextEOClip(c CGContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextFillRects
-func CGContextFillRects(c CGContextRef, rects unsafe.Pointer, count unsafe.Pointer) {
+func CGContextFillRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextFillRects(c, rects, count)
-	}
-
-
-// CGContextGetContentToneMappingInfo is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetContentToneMappingInfo
-func CGContextGetContentToneMappingInfo(c CGContextRef) unsafe.Pointer {
-	return _CGContextGetContentToneMappingInfo(c)
 	}
 
 
@@ -4496,7 +6297,7 @@ func CGContextGetContentToneMappingInfo(c CGContextRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetEDRTargetHeadroom(_:)
-func CGContextGetEDRTargetHeadroom(c CGContextRef) unsafe.Pointer {
+func CGContextGetEDRTargetHeadroom(c ContextRef) float32 {
 	return _CGContextGetEDRTargetHeadroom(c)
 	}
 
@@ -4507,7 +6308,7 @@ func CGContextGetEDRTargetHeadroom(c CGContextRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetTextPosition
-func CGContextGetTextPosition(c CGContextRef) CGPoint {
+func CGContextGetTextPosition(c ContextRef) CGPoint {
 	return _CGContextGetTextPosition(c)
 	}
 
@@ -4520,7 +6321,7 @@ func CGContextGetTextPosition(c CGContextRef) CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextMoveToPoint
-func CGContextMoveToPoint(c CGContextRef, x float64, y float64) {
+func CGContextMoveToPoint(c ContextRef, x float64, y float64) {
 	_CGContextMoveToPoint(c, x, y)
 	}
 
@@ -4533,7 +6334,7 @@ func CGContextMoveToPoint(c CGContextRef, x float64, y float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextRelease
-func CGContextRelease(c CGContextRef) {
+func CGContextRelease(c ContextRef) {
 	_CGContextRelease(c)
 	}
 
@@ -4546,19 +6347,21 @@ func CGContextRelease(c CGContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextRetain
-func CGContextRetain(c CGContextRef) CGContextRef {
+func CGContextRetain(c ContextRef) ContextRef {
 	return _CGContextRetain(c)
 	}
 
 
-// CGContextSetContentToneMappingInfo is a CoreGraphics function.
+// Sets the level of interpolation quality for a graphics context.
 //
-// Added in macOS 26.0.
+// Added in macOS 10.0.
 
+// Sets the level of interpolation quality for a graphics context.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetContentToneMappingInfo
-func CGContextSetContentToneMappingInfo(c CGContextRef, info unsafe.Pointer) {
-	_CGContextSetContentToneMappingInfo(c, info)
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetInterpolationQuality
+func CGContextSetInterpolationQuality(c ContextRef, quality unsafe.Pointer) {
+	_CGContextSetInterpolationQuality(c, quality)
 	}
 
 
@@ -4570,7 +6373,7 @@ func CGContextSetContentToneMappingInfo(c CGContextRef, info unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetLineDash
-func CGContextSetLineDash(c CGContextRef, phase float64, lengths unsafe.Pointer, count unsafe.Pointer) {
+func CGContextSetLineDash(c ContextRef, phase float64, lengths []float64, count uintptr) {
 	_CGContextSetLineDash(c, phase, lengths, count)
 	}
 
@@ -4583,7 +6386,7 @@ func CGContextSetLineDash(c CGContextRef, phase float64, lengths unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetTextMatrix
-func CGContextSetTextMatrix(c CGContextRef, t CGAffineTransform) {
+func CGContextSetTextMatrix(c ContextRef, t CGAffineTransform) {
 	_CGContextSetTextMatrix(c, t)
 	}
 
@@ -4596,7 +6399,7 @@ func CGContextSetTextMatrix(c CGContextRef, t CGAffineTransform) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetTextPosition
-func CGContextSetTextPosition(c CGContextRef, x float64, y float64) {
+func CGContextSetTextPosition(c ContextRef, x float64, y float64) {
 	_CGContextSetTextPosition(c, x, y)
 	}
 
@@ -4609,7 +6412,7 @@ func CGContextSetTextPosition(c CGContextRef, x float64, y float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextShowGlyphsAtPositions
-func CGContextShowGlyphsAtPositions(c CGContextRef, glyphs unsafe.Pointer, Lpositions unsafe.Pointer, count unsafe.Pointer) {
+func CGContextShowGlyphsAtPositions(c ContextRef, glyphs unsafe.Pointer, Lpositions unsafe.Pointer, count uintptr) {
 	_CGContextShowGlyphsAtPositions(c, glyphs, Lpositions, count)
 	}
 
@@ -4622,7 +6425,7 @@ func CGContextShowGlyphsAtPositions(c CGContextRef, glyphs unsafe.Pointer, Lposi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextStrokeLineSegments
-func CGContextStrokeLineSegments(c CGContextRef, points unsafe.Pointer, count unsafe.Pointer) {
+func CGContextStrokeLineSegments(c ContextRef, points unsafe.Pointer, count uintptr) {
 	_CGContextStrokeLineSegments(c, points, count)
 	}
 
@@ -4631,7 +6434,7 @@ func CGContextStrokeLineSegments(c CGContextRef, points unsafe.Pointer, count un
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConvertColorDataWithFormat(_:_:_:_:_:_:_:)
-func CGConvertColorDataWithFormat(width unsafe.Pointer, height unsafe.Pointer, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
+func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format unsafe.Pointer, src_data unsafe.Pointer, src_format unsafe.Pointer, options unsafe.Pointer) bool {
 	return _CGConvertColorDataWithFormat(width, height, dst_data, dst_format, src_data, src_format, options)
 	}
 
@@ -4658,58 +6461,6 @@ func CGCursorIsVisible() unsafe.Pointer {
 	}
 
 
-// Creates a data consumer that writes to a CFData object.
-//
-// Added in macOS 10.4.
-
-// Creates a data consumer that writes to a CFData object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(data:)
-func CGDataConsumerCreateWithCFData(data unsafe.Pointer) CGDataConsumerRef {
-	return _CGDataConsumerCreateWithCFData(data)
-	}
-
-
-// Creates a data consumer that uses callback functions to write data.
-//
-// Added in macOS 10.0.
-
-// Creates a data consumer that uses callback functions to write data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(info:cbks:)
-func CGDataConsumerCreate(info unsafe.Pointer, cbks unsafe.Pointer) CGDataConsumerRef {
-	return _CGDataConsumerCreate(info, cbks)
-	}
-
-
-// Creates a data consumer that writes data to a location specified by a URL.
-//
-// Added in macOS 10.0.
-
-// Creates a data consumer that writes data to a location specified by a URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(url:)
-func CGDataConsumerCreateWithURL(url unsafe.Pointer) CGDataConsumerRef {
-	return _CGDataConsumerCreateWithURL(url)
-	}
-
-
-// Returns the Core Foundation type identifier for Core Graphics data consumers.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for Core Graphics data consumers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/typeID
-func CGDataConsumerGetTypeID() unsafe.Pointer {
-	return _CGDataConsumerGetTypeID()
-	}
-
-
 // Decrements the retain count of a data consumer.
 //
 // Added in macOS 10.0.
@@ -4718,7 +6469,7 @@ func CGDataConsumerGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumerRelease
-func CGDataConsumerRelease(consumer CGDataConsumerRef) {
+func CGDataConsumerRelease(consumer DataConsumerRef) {
 	_CGDataConsumerRelease(consumer)
 	}
 
@@ -4731,123 +6482,8 @@ func CGDataConsumerRelease(consumer CGDataConsumerRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumerRetain
-func CGDataConsumerRetain(consumer CGDataConsumerRef) CGDataConsumerRef {
+func CGDataConsumerRetain(consumer DataConsumerRef) DataConsumerRef {
 	return _CGDataConsumerRetain(consumer)
-	}
-
-
-// Returns a copy of the provider’s data.
-//
-// Added in macOS 10.3.
-
-// Returns a copy of the provider’s data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/data
-func CGDataProviderCopyData(provider CGDataProviderRef) unsafe.Pointer {
-	return _CGDataProviderCopyData(provider)
-	}
-
-
-// CGDataProviderGetInfo is a CoreGraphics function.
-//
-// Added in macOS 10.13.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/info
-func CGDataProviderGetInfo(provider CGDataProviderRef) unsafe.Pointer {
-	return _CGDataProviderGetInfo(provider)
-	}
-
-
-// Creates a data provider that reads from a CFData object.
-//
-// Added in macOS 10.4.
-
-// Creates a data provider that reads from a CFData object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(data:)
-func CGDataProviderCreateWithCFData(data unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateWithCFData(data)
-	}
-
-
-// Creates a direct-access data provider that uses data your program supplies.
-//
-// Added in macOS 10.0.
-
-// Creates a direct-access data provider that uses data your program supplies.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(dataInfo:data:size:releaseData:)
-func CGDataProviderCreateWithData(info unsafe.Pointer, data unsafe.Pointer, size unsafe.Pointer, releaseData unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateWithData(info, data, size, releaseData)
-	}
-
-
-// Creates a direct-access data provider.
-//
-// Added in macOS 10.5.
-
-// Creates a direct-access data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(directInfo:size:callbacks:)
-func CGDataProviderCreateDirect(info unsafe.Pointer, size unsafe.Pointer, callbacks unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateDirect(info, size, callbacks)
-	}
-
-
-// Creates a direct-access data provider that uses a file to supply data.
-//
-// Added in macOS 10.0.
-
-// Creates a direct-access data provider that uses a file to supply data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(filename:)
-func CGDataProviderCreateWithFilename(filename unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateWithFilename(filename)
-	}
-
-
-// Creates a sequential-access data provider.
-//
-// Added in macOS 10.5.
-
-// Creates a sequential-access data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(sequentialInfo:callbacks:)
-func CGDataProviderCreateSequential(info unsafe.Pointer, callbacks unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateSequential(info, callbacks)
-	}
-
-
-// Creates a direct-access data provider that uses a URL to supply data.
-//
-// Added in macOS 10.0.
-
-// Creates a direct-access data provider that uses a URL to supply data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(url:)
-func CGDataProviderCreateWithURL(url unsafe.Pointer) CGDataProviderRef {
-	return _CGDataProviderCreateWithURL(url)
-	}
-
-
-// Returns the Core Foundation type identifier for data providers.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for data providers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/typeID
-func CGDataProviderGetTypeID() unsafe.Pointer {
-	return _CGDataProviderGetTypeID()
 	}
 
 
@@ -4859,7 +6495,7 @@ func CGDataProviderGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProviderRelease
-func CGDataProviderRelease(provider CGDataProviderRef) {
+func CGDataProviderRelease(provider DataProviderRef) {
 	_CGDataProviderRelease(provider)
 	}
 
@@ -4872,7 +6508,7 @@ func CGDataProviderRelease(provider CGDataProviderRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProviderRetain
-func CGDataProviderRetain(provider CGDataProviderRef) CGDataProviderRef {
+func CGDataProviderRetain(provider DataProviderRef) DataProviderRef {
 	return _CGDataProviderRetain(provider)
 	}
 
@@ -4907,7 +6543,7 @@ func CGDisplayAvailableModes(dsp unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParameters(_:_:_:_:_:)
-func CGDisplayBestModeForParameters(display unsafe.Pointer, bitsPerPixel unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, exactMatch unsafe.Pointer) unsafe.Pointer {
+func CGDisplayBestModeForParameters(display unsafe.Pointer, bitsPerPixel uintptr, width uintptr, height uintptr, exactMatch unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayBestModeForParameters(display, bitsPerPixel, width, height, exactMatch)
 	}
 
@@ -4918,7 +6554,7 @@ func CGDisplayBestModeForParameters(display unsafe.Pointer, bitsPerPixel unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParametersAndRefreshRate(_:_:_:_:_:_:)
-func CGDisplayBestModeForParametersAndRefreshRate(display unsafe.Pointer, bitsPerPixel unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, refreshRate unsafe.Pointer, exactMatch unsafe.Pointer) unsafe.Pointer {
+func CGDisplayBestModeForParametersAndRefreshRate(display unsafe.Pointer, bitsPerPixel uintptr, width uintptr, height uintptr, refreshRate unsafe.Pointer, exactMatch unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayBestModeForParametersAndRefreshRate(display, bitsPerPixel, width, height, refreshRate, exactMatch)
 	}
 
@@ -4983,7 +6619,7 @@ func CGDisplayCopyAllDisplayModes(display unsafe.Pointer, options unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyColorSpace(_:)
-func CGDisplayCopyColorSpace(display unsafe.Pointer) CGColorSpaceRef {
+func CGDisplayCopyColorSpace(display unsafe.Pointer) ColorSpaceRef {
 	return _CGDisplayCopyColorSpace(display)
 	}
 
@@ -4996,7 +6632,7 @@ func CGDisplayCopyColorSpace(display unsafe.Pointer) CGColorSpaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyDisplayMode(_:)
-func CGDisplayCopyDisplayMode(display unsafe.Pointer) CGDisplayModeRef {
+func CGDisplayCopyDisplayMode(display unsafe.Pointer) DisplayModeRef {
 	return _CGDisplayCopyDisplayMode(display)
 	}
 
@@ -5007,7 +6643,7 @@ func CGDisplayCopyDisplayMode(display unsafe.Pointer) CGDisplayModeRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:)
-func CGDisplayCreateImage(displayID unsafe.Pointer) CGImageRef {
+func CGDisplayCreateImage(displayID unsafe.Pointer) ImageRef {
 	return _CGDisplayCreateImage(displayID)
 	}
 
@@ -5018,7 +6654,7 @@ func CGDisplayCreateImage(displayID unsafe.Pointer) CGImageRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:rect:)
-func CGDisplayCreateImageForRect(display unsafe.Pointer, rect CGRect) CGImageRef {
+func CGDisplayCreateImageForRect(display unsafe.Pointer, rect CGRect) ImageRef {
 	return _CGDisplayCreateImageForRect(display, rect)
 	}
 
@@ -5042,7 +6678,7 @@ func CGDisplayCurrentMode(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFade(_:_:_:_:_:_:_:_:)
-func CGDisplayFade(token unsafe.Pointer, duration unsafe.Pointer, startBlend unsafe.Pointer, endBlend unsafe.Pointer, redBlend unsafe.Pointer, greenBlend unsafe.Pointer, blueBlend unsafe.Pointer, synchronous unsafe.Pointer) unsafe.Pointer {
+func CGDisplayFade(token unsafe.Pointer, duration unsafe.Pointer, startBlend unsafe.Pointer, endBlend unsafe.Pointer, redBlend float32, greenBlend float32, blueBlend float32, synchronous unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayFade(token, duration, startBlend, endBlend, redBlend, greenBlend, blueBlend, synchronous)
 	}
 
@@ -5066,7 +6702,7 @@ func CGDisplayFadeOperationInProgress() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGammaTableCapacity(_:)
-func CGDisplayGammaTableCapacity(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayGammaTableCapacity(display unsafe.Pointer) uint32 {
 	return _CGDisplayGammaTableCapacity(display)
 	}
 
@@ -5079,7 +6715,7 @@ func CGDisplayGammaTableCapacity(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGetDrawingContext(_:)
-func CGDisplayGetDrawingContext(display unsafe.Pointer) CGContextRef {
+func CGDisplayGetDrawingContext(display unsafe.Pointer) ContextRef {
 	return _CGDisplayGetDrawingContext(display)
 	}
 
@@ -5270,7 +6906,7 @@ func CGDisplayMirrorsDisplay(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/height
-func CGDisplayModeGetHeight(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetHeight(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetHeight(mode)
 	}
 
@@ -5283,7 +6919,7 @@ func CGDisplayModeGetHeight(mode CGDisplayModeRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/ioDisplayModeID
-func CGDisplayModeGetIODisplayModeID(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetIODisplayModeID(mode DisplayModeRef) unsafe.Pointer {
 	return _CGDisplayModeGetIODisplayModeID(mode)
 	}
 
@@ -5296,7 +6932,7 @@ func CGDisplayModeGetIODisplayModeID(mode CGDisplayModeRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/ioFlags
-func CGDisplayModeGetIOFlags(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetIOFlags(mode DisplayModeRef) uint32 {
 	return _CGDisplayModeGetIOFlags(mode)
 	}
 
@@ -5309,7 +6945,7 @@ func CGDisplayModeGetIOFlags(mode CGDisplayModeRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/isUsableForDesktopGUI()
-func CGDisplayModeIsUsableForDesktopGUI(mode CGDisplayModeRef) bool {
+func CGDisplayModeIsUsableForDesktopGUI(mode DisplayModeRef) bool {
 	return _CGDisplayModeIsUsableForDesktopGUI(mode)
 	}
 
@@ -5324,7 +6960,7 @@ func CGDisplayModeIsUsableForDesktopGUI(mode CGDisplayModeRef) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelEncoding
-func CGDisplayModeCopyPixelEncoding(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeCopyPixelEncoding(mode DisplayModeRef) unsafe.Pointer {
 	return _CGDisplayModeCopyPixelEncoding(mode)
 	}
 
@@ -5335,7 +6971,7 @@ func CGDisplayModeCopyPixelEncoding(mode CGDisplayModeRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelHeight
-func CGDisplayModeGetPixelHeight(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetPixelHeight(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetPixelHeight(mode)
 	}
 
@@ -5346,7 +6982,7 @@ func CGDisplayModeGetPixelHeight(mode CGDisplayModeRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelWidth
-func CGDisplayModeGetPixelWidth(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetPixelWidth(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetPixelWidth(mode)
 	}
 
@@ -5359,7 +6995,7 @@ func CGDisplayModeGetPixelWidth(mode CGDisplayModeRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/refreshRate
-func CGDisplayModeGetRefreshRate(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetRefreshRate(mode DisplayModeRef) float64 {
 	return _CGDisplayModeGetRefreshRate(mode)
 	}
 
@@ -5385,8 +7021,21 @@ func CGDisplayModeGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/width
-func CGDisplayModeGetWidth(mode CGDisplayModeRef) unsafe.Pointer {
+func CGDisplayModeGetWidth(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetWidth(mode)
+	}
+
+
+// Returns the model number of a display monitor.
+//
+// Added in macOS 10.2.
+
+// Returns the model number of a display monitor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModelNumber(_:)
+func CGDisplayModelNumber(display unsafe.Pointer) uint32 {
+	return _CGDisplayModelNumber(display)
 	}
 
 
@@ -5398,7 +7047,7 @@ func CGDisplayModeGetWidth(mode CGDisplayModeRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModeRelease
-func CGDisplayModeRelease(mode CGDisplayModeRef) {
+func CGDisplayModeRelease(mode DisplayModeRef) {
 	_CGDisplayModeRelease(mode)
 	}
 
@@ -5411,21 +7060,8 @@ func CGDisplayModeRelease(mode CGDisplayModeRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModeRetain
-func CGDisplayModeRetain(mode CGDisplayModeRef) CGDisplayModeRef {
+func CGDisplayModeRetain(mode DisplayModeRef) DisplayModeRef {
 	return _CGDisplayModeRetain(mode)
-	}
-
-
-// Returns the model number of a display monitor.
-//
-// Added in macOS 10.2.
-
-// Returns the model number of a display monitor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModelNumber(_:)
-func CGDisplayModelNumber(display unsafe.Pointer) unsafe.Pointer {
-	return _CGDisplayModelNumber(display)
 	}
 
 
@@ -5450,7 +7086,7 @@ func CGDisplayMoveCursorToPoint(display unsafe.Pointer, point CGPoint) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsHigh(_:)
-func CGDisplayPixelsHigh(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayPixelsHigh(display unsafe.Pointer) uintptr {
 	return _CGDisplayPixelsHigh(display)
 	}
 
@@ -5463,7 +7099,7 @@ func CGDisplayPixelsHigh(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsWide(_:)
-func CGDisplayPixelsWide(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayPixelsWide(display unsafe.Pointer) uintptr {
 	return _CGDisplayPixelsWide(display)
 	}
 
@@ -5541,7 +7177,7 @@ func CGDisplayRestoreColorSyncSettings() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRotation(_:)
-func CGDisplayRotation(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayRotation(display unsafe.Pointer) float64 {
 	return _CGDisplayRotation(display)
 	}
 
@@ -5567,7 +7203,7 @@ func CGDisplayScreenSize(display unsafe.Pointer) CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySerialNumber(_:)
-func CGDisplaySerialNumber(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplaySerialNumber(display unsafe.Pointer) uint32 {
 	return _CGDisplaySerialNumber(display)
 	}
 
@@ -5580,7 +7216,7 @@ func CGDisplaySerialNumber(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySetDisplayMode(_:_:_:)
-func CGDisplaySetDisplayMode(display unsafe.Pointer, mode CGDisplayModeRef, options unsafe.Pointer) unsafe.Pointer {
+func CGDisplaySetDisplayMode(display unsafe.Pointer, mode DisplayModeRef, options unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplaySetDisplayMode(display, mode, options)
 	}
 
@@ -5617,7 +7253,7 @@ func CGDisplayShowCursor(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(dispatchQueueDisplay:outputWidth:outputHeight:pixelFormat:properties:queue:handler:)
-func CGDisplayStreamCreateWithDispatchQueue(display unsafe.Pointer, outputWidth unsafe.Pointer, outputHeight unsafe.Pointer, pixelFormat unsafe.Pointer, properties unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) CGDisplayStreamRef {
+func CGDisplayStreamCreateWithDispatchQueue(display unsafe.Pointer, outputWidth uintptr, outputHeight uintptr, pixelFormat unsafe.Pointer, properties unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
 	return _CGDisplayStreamCreateWithDispatchQueue(display, outputWidth, outputHeight, pixelFormat, properties, queue, handler)
 	}
 
@@ -5628,7 +7264,7 @@ func CGDisplayStreamCreateWithDispatchQueue(display unsafe.Pointer, outputWidth 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(display:outputWidth:outputHeight:pixelFormat:properties:handler:)
-func CGDisplayStreamCreate(display unsafe.Pointer, outputWidth unsafe.Pointer, outputHeight unsafe.Pointer, pixelFormat unsafe.Pointer, properties unsafe.Pointer, handler unsafe.Pointer) CGDisplayStreamRef {
+func CGDisplayStreamCreate(display unsafe.Pointer, outputWidth uintptr, outputHeight uintptr, pixelFormat unsafe.Pointer, properties unsafe.Pointer, handler unsafe.Pointer) DisplayStreamRef {
 	return _CGDisplayStreamCreate(display, outputWidth, outputHeight, pixelFormat, properties, handler)
 	}
 
@@ -5639,7 +7275,7 @@ func CGDisplayStreamCreate(display unsafe.Pointer, outputWidth unsafe.Pointer, o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/runLoopSource
-func CGDisplayStreamGetRunLoopSource(displayStream CGDisplayStreamRef) unsafe.Pointer {
+func CGDisplayStreamGetRunLoopSource(displayStream DisplayStreamRef) unsafe.Pointer {
 	return _CGDisplayStreamGetRunLoopSource(displayStream)
 	}
 
@@ -5650,7 +7286,7 @@ func CGDisplayStreamGetRunLoopSource(displayStream CGDisplayStreamRef) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/start()
-func CGDisplayStreamStart(displayStream CGDisplayStreamRef) unsafe.Pointer {
+func CGDisplayStreamStart(displayStream DisplayStreamRef) unsafe.Pointer {
 	return _CGDisplayStreamStart(displayStream)
 	}
 
@@ -5661,7 +7297,7 @@ func CGDisplayStreamStart(displayStream CGDisplayStreamRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/stop()
-func CGDisplayStreamStop(displayStream CGDisplayStreamRef) unsafe.Pointer {
+func CGDisplayStreamStop(displayStream DisplayStreamRef) unsafe.Pointer {
 	return _CGDisplayStreamStop(displayStream)
 	}
 
@@ -5683,7 +7319,7 @@ func CGDisplayStreamGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/dropCount
-func CGDisplayStreamUpdateGetDropCount(updateRef CGDisplayStreamUpdateRef) unsafe.Pointer {
+func CGDisplayStreamUpdateGetDropCount(updateRef DisplayStreamUpdateRef) uintptr {
 	return _CGDisplayStreamUpdateGetDropCount(updateRef)
 	}
 
@@ -5694,7 +7330,7 @@ func CGDisplayStreamUpdateGetDropCount(updateRef CGDisplayStreamUpdateRef) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/getMovedRectsDelta(dx:dy:)
-func CGDisplayStreamUpdateGetMovedRectsDelta(updateRef CGDisplayStreamUpdateRef, dx unsafe.Pointer, dy unsafe.Pointer) {
+func CGDisplayStreamUpdateGetMovedRectsDelta(updateRef DisplayStreamUpdateRef, dx []float64, dy []float64) {
 	_CGDisplayStreamUpdateGetMovedRectsDelta(updateRef, dx, dy)
 	}
 
@@ -5705,7 +7341,7 @@ func CGDisplayStreamUpdateGetMovedRectsDelta(updateRef CGDisplayStreamUpdateRef,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/getRects(_:rectCount:)
-func CGDisplayStreamUpdateGetRects(updateRef CGDisplayStreamUpdateRef, rectType unsafe.Pointer, rectCount unsafe.Pointer) unsafe.Pointer {
+func CGDisplayStreamUpdateGetRects(updateRef DisplayStreamUpdateRef, rectType unsafe.Pointer, rectCount unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayStreamUpdateGetRects(updateRef, rectType, rectCount)
 	}
 
@@ -5716,7 +7352,7 @@ func CGDisplayStreamUpdateGetRects(updateRef CGDisplayStreamUpdateRef, rectType 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/init(mergedUpdateFirstUpdate:secondUpdate:)
-func CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate CGDisplayStreamUpdateRef, secondUpdate CGDisplayStreamUpdateRef) CGDisplayStreamUpdateRef {
+func CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate DisplayStreamUpdateRef, secondUpdate DisplayStreamUpdateRef) DisplayStreamUpdateRef {
 	return _CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate, secondUpdate)
 	}
 
@@ -5751,7 +7387,7 @@ func CGDisplaySwitchToMode(display unsafe.Pointer, mode unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayUnitNumber(_:)
-func CGDisplayUnitNumber(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayUnitNumber(display unsafe.Pointer) uint32 {
 	return _CGDisplayUnitNumber(display)
 	}
 
@@ -5777,19 +7413,8 @@ func CGDisplayUsesOpenGLAcceleration(display unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayVendorNumber(_:)
-func CGDisplayVendorNumber(display unsafe.Pointer) unsafe.Pointer {
+func CGDisplayVendorNumber(display unsafe.Pointer) uint32 {
 	return _CGDisplayVendorNumber(display)
-	}
-
-
-// CGEXRToneMappingGammaGetDefaultOptions is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEXRToneMappingGammaGetDefaultOptions
-func CGEXRToneMappingGammaGetDefaultOptions() unsafe.Pointer {
-	return _CGEXRToneMappingGammaGetDefaultOptions()
 	}
 
 
@@ -5821,7 +7446,7 @@ func CGErrorSetCallback(callback unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/copy()
-func CGEventCreateCopy(event CGEventRef) CGEventRef {
+func CGEventCreateCopy(event EventRef) EventRef {
 	return _CGEventCreateCopy(event)
 	}
 
@@ -5834,7 +7459,7 @@ func CGEventCreateCopy(event CGEventRef) CGEventRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/flags
-func CGEventGetFlags(event CGEventRef) unsafe.Pointer {
+func CGEventGetFlags(event EventRef) unsafe.Pointer {
 	return _CGEventGetFlags(event)
 	}
 
@@ -5847,7 +7472,7 @@ func CGEventGetFlags(event CGEventRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/getDoubleValueField(_:)
-func CGEventGetDoubleValueField(event CGEventRef, field unsafe.Pointer) unsafe.Pointer {
+func CGEventGetDoubleValueField(event EventRef, field unsafe.Pointer) float64 {
 	return _CGEventGetDoubleValueField(event, field)
 	}
 
@@ -5860,7 +7485,7 @@ func CGEventGetDoubleValueField(event CGEventRef, field unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/getIntegerValueField(_:)
-func CGEventGetIntegerValueField(event CGEventRef, field unsafe.Pointer) unsafe.Pointer {
+func CGEventGetIntegerValueField(event EventRef, field unsafe.Pointer) unsafe.Pointer {
 	return _CGEventGetIntegerValueField(event, field)
 	}
 
@@ -5873,7 +7498,7 @@ func CGEventGetIntegerValueField(event CGEventRef, field unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(keyboardEventSource:virtualKey:keyDown:)
-func CGEventCreateKeyboardEvent(source CGEventSourceRef, virtualKey unsafe.Pointer, keyDown bool) CGEventRef {
+func CGEventCreateKeyboardEvent(source EventSourceRef, virtualKey unsafe.Pointer, keyDown bool) EventRef {
 	return _CGEventCreateKeyboardEvent(source, virtualKey, keyDown)
 	}
 
@@ -5886,7 +7511,7 @@ func CGEventCreateKeyboardEvent(source CGEventSourceRef, virtualKey unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(mouseEventSource:mouseType:mouseCursorPosition:mouseButton:)
-func CGEventCreateMouseEvent(source CGEventSourceRef, mouseType unsafe.Pointer, mouseCursorPosition CGPoint, mouseButton unsafe.Pointer) CGEventRef {
+func CGEventCreateMouseEvent(source EventSourceRef, mouseType unsafe.Pointer, mouseCursorPosition CGPoint, mouseButton unsafe.Pointer) EventRef {
 	return _CGEventCreateMouseEvent(source, mouseType, mouseCursorPosition, mouseButton)
 	}
 
@@ -5897,7 +7522,7 @@ func CGEventCreateMouseEvent(source CGEventSourceRef, mouseType unsafe.Pointer, 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(scrollWheelEvent2Source:units:wheelCount:wheel1:wheel2:wheel3:)
-func CGEventCreateScrollWheelEvent2(source CGEventSourceRef, units unsafe.Pointer, wheelCount unsafe.Pointer, wheel1 unsafe.Pointer, wheel2 unsafe.Pointer, wheel3 unsafe.Pointer) CGEventRef {
+func CGEventCreateScrollWheelEvent2(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 unsafe.Pointer, wheel2 unsafe.Pointer, wheel3 unsafe.Pointer) EventRef {
 	return _CGEventCreateScrollWheelEvent2(source, units, wheelCount, wheel1, wheel2, wheel3)
 	}
 
@@ -5910,7 +7535,7 @@ func CGEventCreateScrollWheelEvent2(source CGEventSourceRef, units unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(source:)
-func CGEventCreate(source CGEventSourceRef) CGEventRef {
+func CGEventCreate(source EventSourceRef) EventRef {
 	return _CGEventCreate(source)
 	}
 
@@ -5923,7 +7548,7 @@ func CGEventCreate(source CGEventSourceRef) CGEventRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(withDataAllocator:data:)
-func CGEventCreateFromData(allocator unsafe.Pointer, data unsafe.Pointer) CGEventRef {
+func CGEventCreateFromData(allocator unsafe.Pointer, data unsafe.Pointer) EventRef {
 	return _CGEventCreateFromData(allocator, data)
 	}
 
@@ -5936,7 +7561,7 @@ func CGEventCreateFromData(allocator unsafe.Pointer, data unsafe.Pointer) CGEven
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/keyboardGetUnicodeString(maxStringLength:actualStringLength:unicodeString:)
-func CGEventKeyboardGetUnicodeString(event CGEventRef, maxStringLength unsafe.Pointer, actualStringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
+func CGEventKeyboardGetUnicodeString(event EventRef, maxStringLength unsafe.Pointer, actualStringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
 	_CGEventKeyboardGetUnicodeString(event, maxStringLength, actualStringLength, unicodeString)
 	}
 
@@ -5949,7 +7574,7 @@ func CGEventKeyboardGetUnicodeString(event CGEventRef, maxStringLength unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/keyboardSetUnicodeString(stringLength:unicodeString:)
-func CGEventKeyboardSetUnicodeString(event CGEventRef, stringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
+func CGEventKeyboardSetUnicodeString(event EventRef, stringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
 	_CGEventKeyboardSetUnicodeString(event, stringLength, unicodeString)
 	}
 
@@ -5962,7 +7587,7 @@ func CGEventKeyboardSetUnicodeString(event CGEventRef, stringLength unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/location
-func CGEventGetLocation(event CGEventRef) CGPoint {
+func CGEventGetLocation(event EventRef) CGPoint {
 	return _CGEventGetLocation(event)
 	}
 
@@ -5975,8 +7600,19 @@ func CGEventGetLocation(event CGEventRef) CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/post(tap:)
-func CGEventPost(tap unsafe.Pointer, event CGEventRef) {
+func CGEventPost(tap unsafe.Pointer, event EventRef) {
 	_CGEventPost(tap, event)
+	}
+
+
+// CGEventPostToPid is a CoreGraphics function.
+//
+// Added in macOS 10.11.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/postToPid(_:)
+func CGEventPostToPid(pid unsafe.Pointer, event EventRef) {
+	_CGEventPostToPid(pid, event)
 	}
 
 
@@ -5988,19 +7624,8 @@ func CGEventPost(tap unsafe.Pointer, event CGEventRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/postToPSN(processSerialNumber:)
-func CGEventPostToPSN(processSerialNumber unsafe.Pointer, event CGEventRef) {
+func CGEventPostToPSN(processSerialNumber unsafe.Pointer, event EventRef) {
 	_CGEventPostToPSN(processSerialNumber, event)
-	}
-
-
-// CGEventPostToPid is a CoreGraphics function.
-//
-// Added in macOS 10.11.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/postToPid(_:)
-func CGEventPostToPid(pid unsafe.Pointer, event CGEventRef) {
-	_CGEventPostToPid(pid, event)
 	}
 
 
@@ -6012,7 +7637,7 @@ func CGEventPostToPid(pid unsafe.Pointer, event CGEventRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setDoubleValueField(_:value:)
-func CGEventSetDoubleValueField(event CGEventRef, field unsafe.Pointer, value unsafe.Pointer) {
+func CGEventSetDoubleValueField(event EventRef, field unsafe.Pointer, value float64) {
 	_CGEventSetDoubleValueField(event, field, value)
 	}
 
@@ -6025,7 +7650,7 @@ func CGEventSetDoubleValueField(event CGEventRef, field unsafe.Pointer, value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setIntegerValueField(_:value:)
-func CGEventSetIntegerValueField(event CGEventRef, field unsafe.Pointer, value unsafe.Pointer) {
+func CGEventSetIntegerValueField(event EventRef, field unsafe.Pointer, value unsafe.Pointer) {
 	_CGEventSetIntegerValueField(event, field, value)
 	}
 
@@ -6038,7 +7663,7 @@ func CGEventSetIntegerValueField(event CGEventRef, field unsafe.Pointer, value u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setSource(_:)
-func CGEventSetSource(event CGEventRef, source CGEventSourceRef) {
+func CGEventSetSource(event EventRef, source EventSourceRef) {
 	_CGEventSetSource(event, source)
 	}
 
@@ -6056,6 +7681,17 @@ func CGEventTapCreate(tap unsafe.Pointer, place unsafe.Pointer, options unsafe.P
 	}
 
 
+// CGEventTapCreateForPid is a CoreGraphics function.
+//
+// Added in macOS 10.11.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPid(pid:place:options:eventsOfInterest:callback:userInfo:)
+func CGEventTapCreateForPid(pid unsafe.Pointer, place unsafe.Pointer, options unsafe.Pointer, eventsOfInterest unsafe.Pointer, callback unsafe.Pointer, userInfo unsafe.Pointer) unsafe.Pointer {
+	return _CGEventTapCreateForPid(pid, place, options, eventsOfInterest, callback, userInfo)
+	}
+
+
 // Creates an event tap for a specified process.
 //
 // Added in macOS 10.4.
@@ -6066,17 +7702,6 @@ func CGEventTapCreate(tap unsafe.Pointer, place unsafe.Pointer, options unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPSN(processSerialNumber:place:options:eventsOfInterest:callback:userInfo:)
 func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place unsafe.Pointer, options unsafe.Pointer, eventsOfInterest unsafe.Pointer, callback unsafe.Pointer, userInfo unsafe.Pointer) unsafe.Pointer {
 	return _CGEventTapCreateForPSN(processSerialNumber, place, options, eventsOfInterest, callback, userInfo)
-	}
-
-
-// CGEventTapCreateForPid is a CoreGraphics function.
-//
-// Added in macOS 10.11.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPid(pid:place:options:eventsOfInterest:callback:userInfo:)
-func CGEventTapCreateForPid(pid unsafe.Pointer, place unsafe.Pointer, options unsafe.Pointer, eventsOfInterest unsafe.Pointer, callback unsafe.Pointer, userInfo unsafe.Pointer) unsafe.Pointer {
-	return _CGEventTapCreateForPid(pid, place, options, eventsOfInterest, callback, userInfo)
 	}
 
 
@@ -6114,7 +7739,7 @@ func CGEventTapIsEnabled(tap unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapPostEvent(_:)
-func CGEventTapPostEvent(proxy unsafe.Pointer, event CGEventRef) {
+func CGEventTapPostEvent(proxy unsafe.Pointer, event EventRef) {
 	_CGEventTapPostEvent(proxy, event)
 	}
 
@@ -6127,7 +7752,7 @@ func CGEventTapPostEvent(proxy unsafe.Pointer, event CGEventRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/timestamp
-func CGEventGetTimestamp(event CGEventRef) unsafe.Pointer {
+func CGEventGetTimestamp(event EventRef) unsafe.Pointer {
 	return _CGEventGetTimestamp(event)
 	}
 
@@ -6140,7 +7765,7 @@ func CGEventGetTimestamp(event CGEventRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/type
-func CGEventGetType(event CGEventRef) unsafe.Pointer {
+func CGEventGetType(event EventRef) unsafe.Pointer {
 	return _CGEventGetType(event)
 	}
 
@@ -6166,7 +7791,7 @@ func CGEventGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/unflippedLocation
-func CGEventGetUnflippedLocation(event CGEventRef) CGPoint {
+func CGEventGetUnflippedLocation(event EventRef) CGPoint {
 	return _CGEventGetUnflippedLocation(event)
 	}
 
@@ -6179,7 +7804,7 @@ func CGEventGetUnflippedLocation(event CGEventRef) CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventCreateData
-func CGEventCreateData(allocator unsafe.Pointer, event CGEventRef) unsafe.Pointer {
+func CGEventCreateData(allocator unsafe.Pointer, event EventRef) unsafe.Pointer {
 	return _CGEventCreateData(allocator, event)
 	}
 
@@ -6192,7 +7817,7 @@ func CGEventCreateData(allocator unsafe.Pointer, event CGEventRef) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventCreateScrollWheelEvent
-func CGEventCreateScrollWheelEvent(source CGEventSourceRef, units unsafe.Pointer, wheelCount unsafe.Pointer, wheel1 unsafe.Pointer) CGEventRef {
+func CGEventCreateScrollWheelEvent(source EventSourceRef, units unsafe.Pointer, wheelCount uint32, wheel1 unsafe.Pointer) EventRef {
 	return _CGEventCreateScrollWheelEvent(source, units, wheelCount, wheel1)
 	}
 
@@ -6205,7 +7830,7 @@ func CGEventCreateScrollWheelEvent(source CGEventSourceRef, units unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetFlags
-func CGEventSetFlags(event CGEventRef, flags unsafe.Pointer) {
+func CGEventSetFlags(event EventRef, flags unsafe.Pointer) {
 	_CGEventSetFlags(event, flags)
 	}
 
@@ -6218,7 +7843,7 @@ func CGEventSetFlags(event CGEventRef, flags unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetLocation
-func CGEventSetLocation(event CGEventRef, location CGPoint) {
+func CGEventSetLocation(event EventRef, location CGPoint) {
 	_CGEventSetLocation(event, location)
 	}
 
@@ -6231,7 +7856,7 @@ func CGEventSetLocation(event CGEventRef, location CGPoint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetTimestamp
-func CGEventSetTimestamp(event CGEventRef, timestamp unsafe.Pointer) {
+func CGEventSetTimestamp(event EventRef, timestamp unsafe.Pointer) {
 	_CGEventSetTimestamp(event, timestamp)
 	}
 
@@ -6244,7 +7869,7 @@ func CGEventSetTimestamp(event CGEventRef, timestamp unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetType
-func CGEventSetType(event CGEventRef, type_ unsafe.Pointer) {
+func CGEventSetType(event EventRef, type_ unsafe.Pointer) {
 	_CGEventSetType(event, type_)
 	}
 
@@ -6270,7 +7895,7 @@ func CGEventSourceButtonState(stateID unsafe.Pointer, button unsafe.Pointer) boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/counterForEventType(_:eventType:)
-func CGEventSourceCounterForEventType(stateID unsafe.Pointer, eventType unsafe.Pointer) unsafe.Pointer {
+func CGEventSourceCounterForEventType(stateID unsafe.Pointer, eventType unsafe.Pointer) uint32 {
 	return _CGEventSourceCounterForEventType(stateID, eventType)
 	}
 
@@ -6296,7 +7921,7 @@ func CGEventSourceFlagsState(stateID unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/getLocalEventsFilterDuringSuppressionState(_:)
-func CGEventSourceGetLocalEventsFilterDuringSuppressionState(source CGEventSourceRef, state unsafe.Pointer) unsafe.Pointer {
+func CGEventSourceGetLocalEventsFilterDuringSuppressionState(source EventSourceRef, state unsafe.Pointer) unsafe.Pointer {
 	return _CGEventSourceGetLocalEventsFilterDuringSuppressionState(source, state)
 	}
 
@@ -6309,7 +7934,7 @@ func CGEventSourceGetLocalEventsFilterDuringSuppressionState(source CGEventSourc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/init(event:)
-func CGEventCreateSourceFromEvent(event CGEventRef) CGEventSourceRef {
+func CGEventCreateSourceFromEvent(event EventRef) EventSourceRef {
 	return _CGEventCreateSourceFromEvent(event)
 	}
 
@@ -6322,8 +7947,21 @@ func CGEventCreateSourceFromEvent(event CGEventRef) CGEventSourceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/init(stateID:)
-func CGEventSourceCreate(stateID unsafe.Pointer) CGEventSourceRef {
+func CGEventSourceCreate(stateID unsafe.Pointer) EventSourceRef {
 	return _CGEventSourceCreate(stateID)
+	}
+
+
+// Returns the keyboard type to be used with a Quartz event source.
+//
+// Added in macOS 10.4.
+
+// Returns the keyboard type to be used with a Quartz event source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyboardType
+func CGEventSourceGetKeyboardType(source EventSourceRef) unsafe.Pointer {
+	return _CGEventSourceGetKeyboardType(source)
 	}
 
 
@@ -6340,19 +7978,6 @@ func CGEventSourceKeyState(stateID unsafe.Pointer, key unsafe.Pointer) bool {
 	}
 
 
-// Returns the keyboard type to be used with a Quartz event source.
-//
-// Added in macOS 10.4.
-
-// Returns the keyboard type to be used with a Quartz event source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyboardType
-func CGEventSourceGetKeyboardType(source CGEventSourceRef) unsafe.Pointer {
-	return _CGEventSourceGetKeyboardType(source)
-	}
-
-
 // Returns the interval that local hardware events may be suppressed following the posting of a Quartz event.
 //
 // Added in macOS 10.4.
@@ -6361,7 +7986,7 @@ func CGEventSourceGetKeyboardType(source CGEventSourceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/localEventsSuppressionInterval
-func CGEventSourceGetLocalEventsSuppressionInterval(source CGEventSourceRef) unsafe.Pointer {
+func CGEventSourceGetLocalEventsSuppressionInterval(source EventSourceRef) unsafe.Pointer {
 	return _CGEventSourceGetLocalEventsSuppressionInterval(source)
 	}
 
@@ -6374,7 +7999,7 @@ func CGEventSourceGetLocalEventsSuppressionInterval(source CGEventSourceRef) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/pixelsPerLine
-func CGEventSourceGetPixelsPerLine(source CGEventSourceRef) unsafe.Pointer {
+func CGEventSourceGetPixelsPerLine(source EventSourceRef) float64 {
 	return _CGEventSourceGetPixelsPerLine(source)
 	}
 
@@ -6400,7 +8025,7 @@ func CGEventSourceSecondsSinceLastEventType(stateID unsafe.Pointer, eventType un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/setLocalEventsFilterDuringSuppressionState(_:state:)
-func CGEventSourceSetLocalEventsFilterDuringSuppressionState(source CGEventSourceRef, filter unsafe.Pointer, state unsafe.Pointer) {
+func CGEventSourceSetLocalEventsFilterDuringSuppressionState(source EventSourceRef, filter unsafe.Pointer, state unsafe.Pointer) {
 	_CGEventSourceSetLocalEventsFilterDuringSuppressionState(source, filter, state)
 	}
 
@@ -6413,7 +8038,7 @@ func CGEventSourceSetLocalEventsFilterDuringSuppressionState(source CGEventSourc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/sourceStateID
-func CGEventSourceGetSourceStateID(source CGEventSourceRef) unsafe.Pointer {
+func CGEventSourceGetSourceStateID(source EventSourceRef) unsafe.Pointer {
 	return _CGEventSourceGetSourceStateID(source)
 	}
 
@@ -6439,7 +8064,7 @@ func CGEventSourceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/userData
-func CGEventSourceGetUserData(source CGEventSourceRef) unsafe.Pointer {
+func CGEventSourceGetUserData(source EventSourceRef) unsafe.Pointer {
 	return _CGEventSourceGetUserData(source)
 	}
 
@@ -6452,7 +8077,7 @@ func CGEventSourceGetUserData(source CGEventSourceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetKeyboardType
-func CGEventSourceSetKeyboardType(source CGEventSourceRef, keyboardType unsafe.Pointer) {
+func CGEventSourceSetKeyboardType(source EventSourceRef, keyboardType unsafe.Pointer) {
 	_CGEventSourceSetKeyboardType(source, keyboardType)
 	}
 
@@ -6465,7 +8090,7 @@ func CGEventSourceSetKeyboardType(source CGEventSourceRef, keyboardType unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetLocalEventsSuppressionInterval
-func CGEventSourceSetLocalEventsSuppressionInterval(source CGEventSourceRef, seconds unsafe.Pointer) {
+func CGEventSourceSetLocalEventsSuppressionInterval(source EventSourceRef, seconds unsafe.Pointer) {
 	_CGEventSourceSetLocalEventsSuppressionInterval(source, seconds)
 	}
 
@@ -6478,7 +8103,7 @@ func CGEventSourceSetLocalEventsSuppressionInterval(source CGEventSourceRef, sec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetPixelsPerLine
-func CGEventSourceSetPixelsPerLine(source CGEventSourceRef, pixelsPerLine unsafe.Pointer) {
+func CGEventSourceSetPixelsPerLine(source EventSourceRef, pixelsPerLine float64) {
 	_CGEventSourceSetPixelsPerLine(source, pixelsPerLine)
 	}
 
@@ -6491,359 +8116,8 @@ func CGEventSourceSetPixelsPerLine(source CGEventSourceRef, pixelsPerLine unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetUserData
-func CGEventSourceSetUserData(source CGEventSourceRef, userData unsafe.Pointer) {
+func CGEventSourceSetUserData(source EventSourceRef, userData unsafe.Pointer) {
 	_CGEventSourceSetUserData(source, userData)
-	}
-
-
-// Returns the ascent of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the ascent of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/ascent
-func CGFontGetAscent(font CGFontRef) int {
-	return _CGFontGetAscent(font)
-	}
-
-
-// Determines whether Core Graphics can create a subset of the font in PostScript format.
-//
-// Added in macOS 10.4.
-
-// Determines whether Core Graphics can create a subset of the font in PostScript format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/canCreatePostScriptSubset(_:)
-func CGFontCanCreatePostScriptSubset(font CGFontRef, format unsafe.Pointer) bool {
-	return _CGFontCanCreatePostScriptSubset(font, format)
-	}
-
-
-// Returns the cap height of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the cap height of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/capHeight
-func CGFontGetCapHeight(font CGFontRef) int {
-	return _CGFontGetCapHeight(font)
-	}
-
-
-// Creates a copy of a font using a variation specification dictionary.
-//
-// Added in macOS 10.4.
-
-// Creates a copy of a font using a variation specification dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/copy(withVariations:)
-func CGFontCreateCopyWithVariations(font CGFontRef, variations unsafe.Pointer) CGFontRef {
-	return _CGFontCreateCopyWithVariations(font, variations)
-	}
-
-
-// Creates a PostScript encoding of a font.
-//
-// Added in macOS 10.4.
-
-// Creates a PostScript encoding of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptEncoding(encoding:)
-func CGFontCreatePostScriptEncoding(font CGFontRef, encoding unsafe.Pointer, p2 unsafe.Pointer) unsafe.Pointer {
-	return _CGFontCreatePostScriptEncoding(font, encoding, p2)
-	}
-
-
-// Creates a subset of the font in the specified PostScript format.
-//
-// Added in macOS 10.4.
-
-// Creates a subset of the font in the specified PostScript format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptSubset(subsetName:format:glyphs:count:encoding:)
-func CGFontCreatePostScriptSubset(font CGFontRef, subsetName unsafe.Pointer, format unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer, encoding unsafe.Pointer, p6 unsafe.Pointer) unsafe.Pointer {
-	return _CGFontCreatePostScriptSubset(font, subsetName, format, glyphs, count, encoding, p6)
-	}
-
-
-// Returns the descent of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the descent of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/descent
-func CGFontGetDescent(font CGFontRef) int {
-	return _CGFontGetDescent(font)
-	}
-
-
-// Returns the bounding box of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the bounding box of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fontBBox
-func CGFontGetFontBBox(font CGFontRef) CGRect {
-	return _CGFontGetFontBBox(font)
-	}
-
-
-// Returns the full name associated with a font object.
-//
-// Added in macOS 10.5.
-
-// Returns the full name associated with a font object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fullName
-func CGFontCopyFullName(font CGFontRef) unsafe.Pointer {
-	return _CGFontCopyFullName(font)
-	}
-
-
-// Gets the advance width of each glyph in the provided array.
-//
-// Added in macOS 10.0.
-
-// Gets the advance width of each glyph in the provided array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphAdvances(glyphs:count:advances:)
-func CGFontGetGlyphAdvances(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, advances unsafe.Pointer) bool {
-	return _CGFontGetGlyphAdvances(font, glyphs, count, advances)
-	}
-
-
-// Get the bounding box of each glyph in an array.
-//
-// Added in macOS 10.5.
-
-// Get the bounding box of each glyph in an array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphBBoxes(glyphs:count:bboxes:)
-func CGFontGetGlyphBBoxes(font CGFontRef, glyphs unsafe.Pointer, count unsafe.Pointer, bboxes unsafe.Pointer) bool {
-	return _CGFontGetGlyphBBoxes(font, glyphs, count, bboxes)
-	}
-
-
-// Returns the glyph for the glyph name associated with the specified font object.
-//
-// Added in macOS 10.5.
-
-// Returns the glyph for the glyph name associated with the specified font object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphWithGlyphName(name:)
-func CGFontGetGlyphWithGlyphName(font CGFontRef, name unsafe.Pointer) unsafe.Pointer {
-	return _CGFontGetGlyphWithGlyphName(font, name)
-	}
-
-
-// Creates a font object corresponding to the font specified by a PostScript or full name.
-//
-// Added in macOS 10.5.
-
-// Creates a font object corresponding to the font specified by a PostScript or full name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-1p4b
-func CGFontCreateWithFontName(name unsafe.Pointer) CGFontRef {
-	return _CGFontCreateWithFontName(name)
-	}
-
-
-// Creates a font object from data supplied from a data provider.
-//
-// Added in macOS 10.5.
-
-// Creates a font object from data supplied from a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-9aour
-func CGFontCreateWithDataProvider(provider CGDataProviderRef) CGFontRef {
-	return _CGFontCreateWithDataProvider(provider)
-	}
-
-
-// Returns the italic angle of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the italic angle of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/italicAngle
-func CGFontGetItalicAngle(font CGFontRef) float64 {
-	return _CGFontGetItalicAngle(font)
-	}
-
-
-// Returns the leading of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the leading of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/leading
-func CGFontGetLeading(font CGFontRef) int {
-	return _CGFontGetLeading(font)
-	}
-
-
-// Returns the glyph name of the specified glyph in the specified font.
-//
-// Added in macOS 10.5.
-
-// Returns the glyph name of the specified glyph in the specified font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/name(for:)
-func CGFontCopyGlyphNameForGlyph(font CGFontRef, glyph unsafe.Pointer) unsafe.Pointer {
-	return _CGFontCopyGlyphNameForGlyph(font, glyph)
-	}
-
-
-// Returns the number of glyphs in a font.
-//
-// Added in macOS 10.0.
-
-// Returns the number of glyphs in a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/numberOfGlyphs
-func CGFontGetNumberOfGlyphs(font CGFontRef) unsafe.Pointer {
-	return _CGFontGetNumberOfGlyphs(font)
-	}
-
-
-// Obtains the PostScript name of a font.
-//
-// Added in macOS 10.4.
-
-// Obtains the PostScript name of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/postScriptName
-func CGFontCopyPostScriptName(font CGFontRef) unsafe.Pointer {
-	return _CGFontCopyPostScriptName(font)
-	}
-
-
-// Returns the thickness of the dominant vertical stems of glyphs in a font.
-//
-// Added in macOS 10.5.
-
-// Returns the thickness of the dominant vertical stems of glyphs in a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/stemV
-func CGFontGetStemV(font CGFontRef) float64 {
-	return _CGFontGetStemV(font)
-	}
-
-
-// Returns the font table that corresponds to the provided tag.
-//
-// Added in macOS 10.5.
-
-// Returns the font table that corresponds to the provided tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/table(for:)
-func CGFontCopyTableForTag(font CGFontRef, tag unsafe.Pointer) unsafe.Pointer {
-	return _CGFontCopyTableForTag(font, tag)
-	}
-
-
-// Returns an array of tags that correspond to the font tables for a font.
-//
-// Added in macOS 10.5.
-
-// Returns an array of tags that correspond to the font tables for a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/tableTags
-func CGFontCopyTableTags(font CGFontRef) unsafe.Pointer {
-	return _CGFontCopyTableTags(font)
-	}
-
-
-// Returns the Core Foundation type identifier for Core Graphics fonts.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for Core Graphics fonts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/typeID
-func CGFontGetTypeID() unsafe.Pointer {
-	return _CGFontGetTypeID()
-	}
-
-
-// Returns the number of glyph space units per em for the provided font.
-//
-// Added in macOS 10.0.
-
-// Returns the number of glyph space units per em for the provided font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/unitsPerEm
-func CGFontGetUnitsPerEm(font CGFontRef) int {
-	return _CGFontGetUnitsPerEm(font)
-	}
-
-
-// Returns an array of the variation axis dictionaries for a font.
-//
-// Added in macOS 10.4.
-
-// Returns an array of the variation axis dictionaries for a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variationAxes
-func CGFontCopyVariationAxes(font CGFontRef) unsafe.Pointer {
-	return _CGFontCopyVariationAxes(font)
-	}
-
-
-// Returns the variation specification dictionary for a font.
-//
-// Added in macOS 10.4.
-
-// Returns the variation specification dictionary for a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variations
-func CGFontCopyVariations(font CGFontRef) unsafe.Pointer {
-	return _CGFontCopyVariations(font)
-	}
-
-
-// Returns the x-height of a font.
-//
-// Added in macOS 10.5.
-
-// Returns the x-height of a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/xHeight
-func CGFontGetXHeight(font CGFontRef) int {
-	return _CGFontGetXHeight(font)
 	}
 
 
@@ -6857,7 +8131,7 @@ func CGFontGetXHeight(font CGFontRef) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontCreateWithPlatformFont
-func CGFontCreateWithPlatformFont(platformFontReference unsafe.Pointer) CGFontRef {
+func CGFontCreateWithPlatformFont(platformFontReference unsafe.Pointer) FontRef {
 	return _CGFontCreateWithPlatformFont(platformFontReference)
 	}
 
@@ -6870,7 +8144,7 @@ func CGFontCreateWithPlatformFont(platformFontReference unsafe.Pointer) CGFontRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontRelease
-func CGFontRelease(font CGFontRef) {
+func CGFontRelease(font FontRef) {
 	_CGFontRelease(font)
 	}
 
@@ -6883,34 +8157,8 @@ func CGFontRelease(font CGFontRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontRetain
-func CGFontRetain(font CGFontRef) CGFontRef {
+func CGFontRetain(font FontRef) FontRef {
 	return _CGFontRetain(font)
-	}
-
-
-// Creates a Core Graphics function.
-//
-// Added in macOS 10.2.
-
-// Creates a Core Graphics function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/init(info:domainDimension:domain:rangeDimension:range:callbacks:)
-func CGFunctionCreate(info unsafe.Pointer, domainDimension unsafe.Pointer, domain unsafe.Pointer, rangeDimension unsafe.Pointer, range_ unsafe.Pointer, callbacks unsafe.Pointer) CGFunctionRef {
-	return _CGFunctionCreate(info, domainDimension, domain, rangeDimension, range_, callbacks)
-	}
-
-
-// Returns the type identifier for Core Graphics function objects.
-//
-// Added in macOS 10.2.
-
-// Returns the type identifier for Core Graphics function objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/typeID
-func CGFunctionGetTypeID() unsafe.Pointer {
-	return _CGFunctionGetTypeID()
 	}
 
 
@@ -6922,7 +8170,7 @@ func CGFunctionGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunctionRelease
-func CGFunctionRelease(function CGFunctionRef) {
+func CGFunctionRelease(function FunctionRef) {
 	_CGFunctionRelease(function)
 	}
 
@@ -6935,7 +8183,7 @@ func CGFunctionRelease(function CGFunctionRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunctionRetain
-func CGFunctionRetain(function CGFunctionRef) CGFunctionRef {
+func CGFunctionRetain(function FunctionRef) FunctionRef {
 	return _CGFunctionRetain(function)
 	}
 
@@ -6948,8 +8196,47 @@ func CGFunctionRetain(function CGFunctionRef) CGFunctionRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetActiveDisplayList(_:_:_:)
-func CGGetActiveDisplayList(maxDisplays unsafe.Pointer, activeDisplays unsafe.Pointer, displayCount unsafe.Pointer) unsafe.Pointer {
+func CGGetActiveDisplayList(maxDisplays uint32, activeDisplays unsafe.Pointer, displayCount []uint32) unsafe.Pointer {
 	return _CGGetActiveDisplayList(maxDisplays, activeDisplays, displayCount)
+	}
+
+
+// Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
+//
+// Added in macOS 10.0.
+
+// Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithOpenGLDisplayMask(_:_:_:_:)
+func CGGetDisplaysWithOpenGLDisplayMask(mask unsafe.Pointer, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) unsafe.Pointer {
+	return _CGGetDisplaysWithOpenGLDisplayMask(mask, maxDisplays, displays, matchingDisplayCount)
+	}
+
+
+// Provides a list of online displays with bounds that include the specified point.
+//
+// Added in macOS 10.0.
+
+// Provides a list of online displays with bounds that include the specified point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithPoint(_:_:_:_:)
+func CGGetDisplaysWithPoint(point CGPoint, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) unsafe.Pointer {
+	return _CGGetDisplaysWithPoint(point, maxDisplays, displays, matchingDisplayCount)
+	}
+
+
+// Gets a list of online displays with bounds that intersect the specified rectangle.
+//
+// Added in macOS 10.0.
+
+// Gets a list of online displays with bounds that intersect the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithRect(_:_:_:_:)
+func CGGetDisplaysWithRect(rect CGRect, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) unsafe.Pointer {
+	return _CGGetDisplaysWithRect(rect, maxDisplays, displays, matchingDisplayCount)
 	}
 
 
@@ -6974,47 +8261,8 @@ func CGGetDisplayTransferByFormula(display unsafe.Pointer, redMin unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplayTransferByTable(_:_:_:_:_:_:)
-func CGGetDisplayTransferByTable(display unsafe.Pointer, capacity unsafe.Pointer, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer, sampleCount unsafe.Pointer) unsafe.Pointer {
+func CGGetDisplayTransferByTable(display unsafe.Pointer, capacity uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer, sampleCount []uint32) unsafe.Pointer {
 	return _CGGetDisplayTransferByTable(display, capacity, redTable, greenTable, blueTable, sampleCount)
-	}
-
-
-// Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
-//
-// Added in macOS 10.0.
-
-// Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithOpenGLDisplayMask(_:_:_:_:)
-func CGGetDisplaysWithOpenGLDisplayMask(mask unsafe.Pointer, maxDisplays unsafe.Pointer, displays unsafe.Pointer, matchingDisplayCount unsafe.Pointer) unsafe.Pointer {
-	return _CGGetDisplaysWithOpenGLDisplayMask(mask, maxDisplays, displays, matchingDisplayCount)
-	}
-
-
-// Provides a list of online displays with bounds that include the specified point.
-//
-// Added in macOS 10.0.
-
-// Provides a list of online displays with bounds that include the specified point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithPoint(_:_:_:_:)
-func CGGetDisplaysWithPoint(point CGPoint, maxDisplays unsafe.Pointer, displays unsafe.Pointer, matchingDisplayCount unsafe.Pointer) unsafe.Pointer {
-	return _CGGetDisplaysWithPoint(point, maxDisplays, displays, matchingDisplayCount)
-	}
-
-
-// Gets a list of online displays with bounds that intersect the specified rectangle.
-//
-// Added in macOS 10.0.
-
-// Gets a list of online displays with bounds that intersect the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithRect(_:_:_:_:)
-func CGGetDisplaysWithRect(rect CGRect, maxDisplays unsafe.Pointer, displays unsafe.Pointer, matchingDisplayCount unsafe.Pointer) unsafe.Pointer {
-	return _CGGetDisplaysWithRect(rect, maxDisplays, displays, matchingDisplayCount)
 	}
 
 
@@ -7026,7 +8274,7 @@ func CGGetDisplaysWithRect(rect CGRect, maxDisplays unsafe.Pointer, displays uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetEventTapList(_:_:_:)
-func CGGetEventTapList(maxNumberOfTaps unsafe.Pointer, tapList unsafe.Pointer, eventTapCount unsafe.Pointer) unsafe.Pointer {
+func CGGetEventTapList(maxNumberOfTaps uint32, tapList unsafe.Pointer, eventTapCount []uint32) unsafe.Pointer {
 	return _CGGetEventTapList(maxNumberOfTaps, tapList, eventTapCount)
 	}
 
@@ -7052,69 +8300,8 @@ func CGGetLastMouseDelta(deltaX unsafe.Pointer, deltaY unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetOnlineDisplayList(_:_:_:)
-func CGGetOnlineDisplayList(maxDisplays unsafe.Pointer, onlineDisplays unsafe.Pointer, displayCount unsafe.Pointer) unsafe.Pointer {
+func CGGetOnlineDisplayList(maxDisplays uint32, onlineDisplays unsafe.Pointer, displayCount []uint32) unsafe.Pointer {
 	return _CGGetOnlineDisplayList(maxDisplays, onlineDisplays, displayCount)
-	}
-
-
-// CGGradientGetContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/contentHeadroom
-func CGGradientGetContentHeadroom(gradient CGGradientRef) unsafe.Pointer {
-	return _CGGradientGetContentHeadroom(gradient)
-	}
-
-
-// Creates a CGGradient object from a color space and the provided color components and locations.
-//
-// Added in macOS 10.5.
-
-// Creates a CGGradient object from a color space and the provided color components and locations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorSpace:colorComponents:locations:count:)
-func CGGradientCreateWithColorComponents(space CGColorSpaceRef, components unsafe.Pointer, locations unsafe.Pointer, count unsafe.Pointer) CGGradientRef {
-	return _CGGradientCreateWithColorComponents(space, components, locations, count)
-	}
-
-
-// Creates a gradient object from a color space and the provided color objects and locations.
-//
-// Added in macOS 10.5.
-
-// Creates a gradient object from a color space and the provided color objects and locations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorsSpace:colors:locations:)
-func CGGradientCreateWithColors(space CGColorSpaceRef, colors unsafe.Pointer, locations unsafe.Pointer) CGGradientRef {
-	return _CGGradientCreateWithColors(space, colors, locations)
-	}
-
-
-// CGGradientCreateWithContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(headroom:colorSpace:colorComponents:locations:count:)
-func CGGradientCreateWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, components unsafe.Pointer, locations unsafe.Pointer, count unsafe.Pointer) CGGradientRef {
-	return _CGGradientCreateWithContentHeadroom(headroom, space, components, locations, count)
-	}
-
-
-// Returns the Core Foundation type identifier for CGGradient objects.
-//
-// Added in macOS 10.5.
-
-// Returns the Core Foundation type identifier for CGGradient objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/typeID
-func CGGradientGetTypeID() unsafe.Pointer {
-	return _CGGradientGetTypeID()
 	}
 
 
@@ -7126,7 +8313,7 @@ func CGGradientGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradientRelease
-func CGGradientRelease(gradient CGGradientRef) {
+func CGGradientRelease(gradient GradientRef) {
 	_CGGradientRelease(gradient)
 	}
 
@@ -7139,439 +8326,8 @@ func CGGradientRelease(gradient CGGradientRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradientRetain
-func CGGradientRetain(gradient CGGradientRef) CGGradientRef {
+func CGGradientRetain(gradient GradientRef) GradientRef {
 	return _CGGradientRetain(gradient)
-	}
-
-
-// Returns the alpha channel information for a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the alpha channel information for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/alphaInfo
-func CGImageGetAlphaInfo(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetAlphaInfo(image)
-	}
-
-
-// Returns the bitmap information for a bitmap image.
-//
-// Added in macOS 10.4.
-
-// Returns the bitmap information for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitmapInfo
-func CGImageGetBitmapInfo(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetBitmapInfo(image)
-	}
-
-
-// Returns the number of bits allocated for a single color component of a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the number of bits allocated for a single color component of a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerComponent
-func CGImageGetBitsPerComponent(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetBitsPerComponent(image)
-	}
-
-
-// Returns the number of bits allocated for a single pixel in a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the number of bits allocated for a single pixel in a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerPixel
-func CGImageGetBitsPerPixel(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetBitsPerPixel(image)
-	}
-
-
-// CGImageGetByteOrderInfo is a CoreGraphics function.
-//
-// Added in macOS 10.14.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/byteOrderInfo
-func CGImageGetByteOrderInfo(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetByteOrderInfo(image)
-	}
-
-
-// Returns the number of bytes allocated for a single row of a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the number of bytes allocated for a single row of a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bytesPerRow
-func CGImageGetBytesPerRow(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetBytesPerRow(image)
-	}
-
-
-// CGImageCalculateContentAverageLightLevel is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentAverageLightLevel
-func CGImageCalculateContentAverageLightLevel(image CGImageRef) unsafe.Pointer {
-	return _CGImageCalculateContentAverageLightLevel(image)
-	}
-
-
-// CGImageCalculateContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentHeadroom
-func CGImageCalculateContentHeadroom(image CGImageRef) unsafe.Pointer {
-	return _CGImageCalculateContentHeadroom(image)
-	}
-
-
-// Return the color space for a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Return the color space for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/colorSpace
-func CGImageGetColorSpace(image CGImageRef) CGColorSpaceRef {
-	return _CGImageGetColorSpace(image)
-	}
-
-
-// CGImageContainsImageSpecificToneMappingMetadata is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/containsImageSpecificToneMappingMetadata
-func CGImageContainsImageSpecificToneMappingMetadata(image CGImageRef) bool {
-	return _CGImageContainsImageSpecificToneMappingMetadata(image)
-	}
-
-
-// CGImageGetContentAverageLightLevel is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentAverageLightLevel
-func CGImageGetContentAverageLightLevel(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetContentAverageLightLevel(image)
-	}
-
-
-// CGImageGetContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentHeadroom
-func CGImageGetContentHeadroom(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetContentHeadroom(image)
-	}
-
-
-// Creates a copy of a bitmap image.
-//
-// Added in macOS 10.4.
-
-// Creates a copy of a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy()
-func CGImageCreateCopy(image CGImageRef) CGImageRef {
-	return _CGImageCreateCopy(image)
-	}
-
-
-// Creates a copy of a bitmap image, replacing its colorspace.
-//
-// Added in macOS 10.3.
-
-// Creates a copy of a bitmap image, replacing its colorspace.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(colorSpace:)
-func CGImageCreateCopyWithColorSpace(image CGImageRef, space CGColorSpaceRef) CGImageRef {
-	return _CGImageCreateCopyWithColorSpace(image, space)
-	}
-
-
-// CGImageCreateCopyWithContentAverageLightLevel is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(contentAverageLightLevel:)
-func CGImageCreateCopyWithContentAverageLightLevel(image CGImageRef, avll unsafe.Pointer) CGImageRef {
-	return _CGImageCreateCopyWithContentAverageLightLevel(image, avll)
-	}
-
-
-// CGImageCreateCopyWithCalculatedHDRStats is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copyWithCalculatedHDRStats()
-func CGImageCreateCopyWithCalculatedHDRStats(image CGImageRef) CGImageRef {
-	return _CGImageCreateCopyWithCalculatedHDRStats(image)
-	}
-
-
-// Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
-//
-// Added in macOS 10.4.
-
-// Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/cropping(to:)
-func CGImageCreateWithImageInRect(image CGImageRef, rect CGRect) CGImageRef {
-	return _CGImageCreateWithImageInRect(image, rect)
-	}
-
-
-// Returns the data provider for a bitmap image or image mask.
-//
-// Added in macOS 10.0.
-
-// Returns the data provider for a bitmap image or image mask.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/dataProvider
-func CGImageGetDataProvider(image CGImageRef) CGDataProviderRef {
-	return _CGImageGetDataProvider(image)
-	}
-
-
-// Returns the decode array for a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the decode array for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/decode
-func CGImageGetDecode(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetDecode(image)
-	}
-
-
-// Returns the height of a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the height of a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/height
-func CGImageGetHeight(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetHeight(image)
-	}
-
-
-// CGImageCreateWithContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(headroom:width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
-func CGImageCreateWithContentHeadroom(headroom unsafe.Pointer, width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
-	return _CGImageCreateWithContentHeadroom(headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
-	}
-
-
-// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
-//
-// Added in macOS 10.1.
-
-// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(jpegDataProviderSource:decode:shouldInterpolate:intent:)
-func CGImageCreateWithJPEGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
-	return _CGImageCreateWithJPEGDataProvider(source, decode, shouldInterpolate, intent)
-	}
-
-
-// Creates a bitmap image mask from data supplied by a data provider.
-//
-// Added in macOS 10.0.
-
-// Creates a bitmap image mask from data supplied by a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(maskWidth:height:bitsPerComponent:bitsPerPixel:bytesPerRow:provider:decode:shouldInterpolate:)
-func CGImageMaskCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool) CGImageRef {
-	return _CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate)
-	}
-
-
-// Creates a bitmap image using PNG-encoded data supplied by a data provider.
-//
-// Added in macOS 10.2.
-
-// Creates a bitmap image using PNG-encoded data supplied by a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(pngDataProviderSource:decode:shouldInterpolate:intent:)
-func CGImageCreateWithPNGDataProvider(source CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
-	return _CGImageCreateWithPNGDataProvider(source, decode, shouldInterpolate, intent)
-	}
-
-
-// Creates a bitmap image from data supplied by a data provider.
-//
-// Added in macOS 10.0.
-
-// Creates a bitmap image from data supplied by a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
-func CGImageCreate(width unsafe.Pointer, height unsafe.Pointer, bitsPerComponent unsafe.Pointer, bitsPerPixel unsafe.Pointer, bytesPerRow unsafe.Pointer, space CGColorSpaceRef, bitmapInfo unsafe.Pointer, provider CGDataProviderRef, decode unsafe.Pointer, shouldInterpolate bool, intent unsafe.Pointer) CGImageRef {
-	return _CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
-	}
-
-
-// Returns a composite image of the specified windows.
-
-// Returns a composite image of the specified windows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(windowListFromArrayScreenBounds:windowArray:imageOption:)
-func CGWindowListCreateImageFromArray(screenBounds CGRect, windowArray unsafe.Pointer, imageOption unsafe.Pointer) CGImageRef {
-	return _CGWindowListCreateImageFromArray(screenBounds, windowArray, imageOption)
-	}
-
-
-// Returns whether a bitmap image is an image mask.
-//
-// Added in macOS 10.0.
-
-// Returns whether a bitmap image is an image mask.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/isMask
-func CGImageIsMask(image CGImageRef) bool {
-	return _CGImageIsMask(image)
-	}
-
-
-// Creates a bitmap image from an existing image and an image mask.
-//
-// Added in macOS 10.4.
-
-// Creates a bitmap image from an existing image and an image mask.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/masking(_:)
-func CGImageCreateWithMask(image CGImageRef, mask CGImageRef) CGImageRef {
-	return _CGImageCreateWithMask(image, mask)
-	}
-
-
-// CGImageGetPixelFormatInfo is a CoreGraphics function.
-//
-// Added in macOS 10.14.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/pixelFormatInfo
-func CGImageGetPixelFormatInfo(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetPixelFormatInfo(image)
-	}
-
-
-// Returns the rendering intent setting for a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the rendering intent setting for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/renderingIntent
-func CGImageGetRenderingIntent(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetRenderingIntent(image)
-	}
-
-
-// Returns the interpolation setting for a bitmap image.
-//
-// Added in macOS 10.0.
-
-// Returns the interpolation setting for a bitmap image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldInterpolate
-func CGImageGetShouldInterpolate(image CGImageRef) bool {
-	return _CGImageGetShouldInterpolate(image)
-	}
-
-
-// CGImageShouldToneMap is a CoreGraphics function.
-//
-// Added in macOS 15.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldToneMap
-func CGImageShouldToneMap(image CGImageRef) bool {
-	return _CGImageShouldToneMap(image)
-	}
-
-
-// Returns the type identifier for CGImage objects.
-//
-// Added in macOS 10.2.
-
-// Returns the type identifier for CGImage objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/typeID
-func CGImageGetTypeID() unsafe.Pointer {
-	return _CGImageGetTypeID()
-	}
-
-
-// The Universal Type Identifier for the image.
-//
-// Added in macOS 10.11.
-
-// The Universal Type Identifier for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/utType
-func CGImageGetUTType(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetUTType(image)
-	}
-
-
-// Returns the width of a bitmap image, in pixels.
-//
-// Added in macOS 10.0.
-
-// Returns the width of a bitmap image, in pixels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/width
-func CGImageGetWidth(image CGImageRef) unsafe.Pointer {
-	return _CGImageGetWidth(image)
 	}
 
 
@@ -7581,7 +8337,7 @@ func CGImageGetWidth(image CGImageRef) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateCopyWithContentHeadroom(_:_:)
-func CGImageCreateCopyWithContentHeadroom(headroom unsafe.Pointer, image CGImageRef) CGImageRef {
+func CGImageCreateCopyWithContentHeadroom(headroom float32, image ImageRef) ImageRef {
 	return _CGImageCreateCopyWithContentHeadroom(headroom, image)
 	}
 
@@ -7594,8 +8350,21 @@ func CGImageCreateCopyWithContentHeadroom(headroom unsafe.Pointer, image CGImage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateWithMaskingColors
-func CGImageCreateWithMaskingColors(image CGImageRef, components unsafe.Pointer) CGImageRef {
+func CGImageCreateWithMaskingColors(image ImageRef, components []float64) ImageRef {
 	return _CGImageCreateWithMaskingColors(image, components)
+	}
+
+
+// Decrements the retain count of a bitmap image.
+//
+// Added in macOS 10.0.
+
+// Decrements the retain count of a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRelease
+func CGImageRelease(image ImageRef) {
+	_CGImageRelease(image)
 	}
 
 
@@ -7607,7 +8376,7 @@ func CGImageCreateWithMaskingColors(image CGImageRef, components unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRetain
-func CGImageRetain(image CGImageRef) CGImageRef {
+func CGImageRetain(image ImageRef) ImageRef {
 	return _CGImageRetain(image)
 	}
 
@@ -7623,58 +8392,6 @@ func CGInhibitLocalEvents(inhibit unsafe.Pointer) unsafe.Pointer {
 	}
 
 
-// Returns the graphics context associated with a layer object.
-//
-// Added in macOS 10.4.
-
-// Returns the graphics context associated with a layer object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/context
-func CGLayerGetContext(layer CGLayerRef) CGContextRef {
-	return _CGLayerGetContext(layer)
-	}
-
-
-// Creates a layer object that is associated with a graphics context.
-//
-// Added in macOS 10.4.
-
-// Creates a layer object that is associated with a graphics context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/init(_:size:auxiliaryInfo:)
-func CGLayerCreateWithContext(context CGContextRef, size CGSize, auxiliaryInfo unsafe.Pointer) CGLayerRef {
-	return _CGLayerCreateWithContext(context, size, auxiliaryInfo)
-	}
-
-
-// Returns the width and height of a layer object.
-//
-// Added in macOS 10.4.
-
-// Returns the width and height of a layer object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/size
-func CGLayerGetSize(layer CGLayerRef) CGSize {
-	return _CGLayerGetSize(layer)
-	}
-
-
-// Returns the unique type identifier used for objects.
-//
-// Added in macOS 10.4.
-
-// Returns the unique type identifier used for objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/typeID
-func CGLayerGetTypeID() unsafe.Pointer {
-	return _CGLayerGetTypeID()
-	}
-
-
 // Decrements the retain count of a layer object.
 //
 // Added in macOS 10.4.
@@ -7683,7 +8400,7 @@ func CGLayerGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayerRelease
-func CGLayerRelease(layer CGLayerRef) {
+func CGLayerRelease(layer LayerRef) {
 	_CGLayerRelease(layer)
 	}
 
@@ -7696,7 +8413,7 @@ func CGLayerRelease(layer CGLayerRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayerRetain
-func CGLayerRetain(layer CGLayerRef) CGLayerRef {
+func CGLayerRetain(layer LayerRef) LayerRef {
 	return _CGLayerRetain(layer)
 	}
 
@@ -7714,32 +8431,6 @@ func CGMainDisplayID() unsafe.Pointer {
 	}
 
 
-// Closes and completes a subpath in a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Closes and completes a subpath in a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/closeSubpath()
-func CGPathCloseSubpath(path CGMutablePathRef) {
-	_CGPathCloseSubpath(path)
-	}
-
-
-// Creates a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Creates a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/init()
-func CGPathCreateMutable() CGMutablePathRef {
-	return _CGPathCreateMutable()
-	}
-
-
 // Maps an OpenGL display mask to a display ID.
 //
 // Added in macOS 10.2.
@@ -7753,13 +8444,227 @@ func CGOpenGLDisplayMaskToDisplayID(mask unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Checks whether a point is contained in a graphics path.
+//
+// Added in macOS 10.4.
+
+// Checks whether a point is contained in a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathContainsPoint
+func CGPathContainsPoint(path PathRef, m unsafe.Pointer, point CGPoint, eoFill bool) bool {
+	return _CGPathContainsPoint(path, m, point, eoFill)
+	}
+
+
+// Creates a dashed copy of another path.
+//
+// Added in macOS 10.7.
+
+// Creates a dashed copy of another path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByDashingPath
+func CGPathCreateCopyByDashingPath(path PathRef, transform unsafe.Pointer, phase float64, lengths []float64, count uintptr) PathRef {
+	return _CGPathCreateCopyByDashingPath(path, transform, phase, lengths, count)
+	}
+
+
+// CGPathCreateCopyByFlattening is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByFlattening
+func CGPathCreateCopyByFlattening(path PathRef, flatteningThreshold float64) PathRef {
+	return _CGPathCreateCopyByFlattening(path, flatteningThreshold)
+	}
+
+
+// CGPathCreateCopyByIntersectingPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByIntersectingPath
+func CGPathCreateCopyByIntersectingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyByIntersectingPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateCopyByNormalizing is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByNormalizing
+func CGPathCreateCopyByNormalizing(path PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyByNormalizing(path, evenOddFillRule)
+	}
+
+
+// Creates a stroked copy of another path.
+//
+// Added in macOS 10.7.
+
+// Creates a stroked copy of another path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByStrokingPath
+func CGPathCreateCopyByStrokingPath(path PathRef, transform unsafe.Pointer, lineWidth float64, lineCap unsafe.Pointer, lineJoin unsafe.Pointer, miterLimit float64) PathRef {
+	return _CGPathCreateCopyByStrokingPath(path, transform, lineWidth, lineCap, lineJoin, miterLimit)
+	}
+
+
+// CGPathCreateCopyBySubtractingPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySubtractingPath
+func CGPathCreateCopyBySubtractingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyBySubtractingPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateCopyBySymmetricDifferenceOfPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySymmetricDifferenceOfPath
+func CGPathCreateCopyBySymmetricDifferenceOfPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyBySymmetricDifferenceOfPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateCopyByUnioningPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByUnioningPath
+func CGPathCreateCopyByUnioningPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyByUnioningPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateCopyOfLineByIntersectingPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineByIntersectingPath
+func CGPathCreateCopyOfLineByIntersectingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyOfLineByIntersectingPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateCopyOfLineBySubtractingPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineBySubtractingPath
+func CGPathCreateCopyOfLineBySubtractingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
+	return _CGPathCreateCopyOfLineBySubtractingPath(path, maskPath, evenOddFillRule)
+	}
+
+
+// CGPathCreateSeparateComponents is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateSeparateComponents
+func CGPathCreateSeparateComponents(path PathRef, evenOddFillRule bool) unsafe.Pointer {
+	return _CGPathCreateSeparateComponents(path, evenOddFillRule)
+	}
+
+
+// Indicates whether two graphics paths are equivalent.
+//
+// Added in macOS 10.2.
+
+// Indicates whether two graphics paths are equivalent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathEqualToPath
+func CGPathEqualToPath(path1 PathRef, path2 PathRef) bool {
+	return _CGPathEqualToPath(path1, path2)
+	}
+
+
+// CGPathIntersectsPath is a CoreGraphics function.
+//
+// Added in macOS 13.0.
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathIntersectsPath
+func CGPathIntersectsPath(path1 PathRef, path2 PathRef, evenOddFillRule bool) bool {
+	return _CGPathIntersectsPath(path1, path2, evenOddFillRule)
+	}
+
+
+// Decrements the retain count of a graphics path.
+//
+// Added in macOS 10.2.
+
+// Decrements the retain count of a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRelease
+func CGPathRelease(path PathRef) {
+	_CGPathRelease(path)
+	}
+
+
+// Increments the retain count of a graphics path.
+//
+// Added in macOS 10.2.
+
+// Increments the retain count of a graphics path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRetain
+func CGPathRetain(path PathRef) PathRef {
+	return _CGPathRetain(path)
+	}
+
+
+// Decrements the retain count of a Core Graphics pattern.
+//
+// Added in macOS 10.0.
+
+// Decrements the retain count of a Core Graphics pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRelease
+func CGPatternRelease(pattern PatternRef) {
+	_CGPatternRelease(pattern)
+	}
+
+
+// Increments the retain count of a Core Graphics pattern.
+//
+// Added in macOS 10.0.
+
+// Increments the retain count of a Core Graphics pattern.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRetain
+func CGPatternRetain(pattern PatternRef) PatternRef {
+	return _CGPatternRetain(pattern)
+	}
+
+
 // CGPDFArrayApplyBlock is a CoreGraphics function.
 //
 // Added in macOS 10.14.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayApplyBlock(_:_:_:)
-func CGPDFArrayApplyBlock(array CGPDFArrayRef, block unsafe.Pointer, info unsafe.Pointer) {
+func CGPDFArrayApplyBlock(array PDFArrayRef, block unsafe.Pointer, info unsafe.Pointer) {
 	_CGPDFArrayApplyBlock(array, block, info)
 	}
 
@@ -7772,7 +8677,7 @@ func CGPDFArrayApplyBlock(array CGPDFArrayRef, block unsafe.Pointer, info unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetArray(_:_:_:)
-func CGPDFArrayGetArray(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetArray(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetArray(array, index, value)
 	}
 
@@ -7785,7 +8690,7 @@ func CGPDFArrayGetArray(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetBoolean(_:_:_:)
-func CGPDFArrayGetBoolean(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetBoolean(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetBoolean(array, index, value)
 	}
 
@@ -7798,7 +8703,7 @@ func CGPDFArrayGetBoolean(array CGPDFArrayRef, index unsafe.Pointer, value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetCount(_:)
-func CGPDFArrayGetCount(array CGPDFArrayRef) unsafe.Pointer {
+func CGPDFArrayGetCount(array PDFArrayRef) uintptr {
 	return _CGPDFArrayGetCount(array)
 	}
 
@@ -7811,7 +8716,7 @@ func CGPDFArrayGetCount(array CGPDFArrayRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetDictionary(_:_:_:)
-func CGPDFArrayGetDictionary(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetDictionary(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetDictionary(array, index, value)
 	}
 
@@ -7824,7 +8729,7 @@ func CGPDFArrayGetDictionary(array CGPDFArrayRef, index unsafe.Pointer, value un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetInteger(_:_:_:)
-func CGPDFArrayGetInteger(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetInteger(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetInteger(array, index, value)
 	}
 
@@ -7837,7 +8742,7 @@ func CGPDFArrayGetInteger(array CGPDFArrayRef, index unsafe.Pointer, value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetName(_:_:_:)
-func CGPDFArrayGetName(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetName(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetName(array, index, value)
 	}
 
@@ -7850,7 +8755,7 @@ func CGPDFArrayGetName(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNull(_:_:)
-func CGPDFArrayGetNull(array CGPDFArrayRef, index unsafe.Pointer) bool {
+func CGPDFArrayGetNull(array PDFArrayRef, index uintptr) bool {
 	return _CGPDFArrayGetNull(array, index)
 	}
 
@@ -7863,7 +8768,7 @@ func CGPDFArrayGetNull(array CGPDFArrayRef, index unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNumber(_:_:_:)
-func CGPDFArrayGetNumber(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetNumber(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetNumber(array, index, value)
 	}
 
@@ -7876,7 +8781,7 @@ func CGPDFArrayGetNumber(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetObject(_:_:_:)
-func CGPDFArrayGetObject(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetObject(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetObject(array, index, value)
 	}
 
@@ -7889,7 +8794,7 @@ func CGPDFArrayGetObject(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetStream(_:_:_:)
-func CGPDFArrayGetStream(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetStream(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetStream(array, index, value)
 	}
 
@@ -7902,7 +8807,7 @@ func CGPDFArrayGetStream(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetString(_:_:_:)
-func CGPDFArrayGetString(array CGPDFArrayRef, index unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFArrayGetString(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetString(array, index, value)
 	}
 
@@ -7915,7 +8820,7 @@ func CGPDFArrayGetString(array CGPDFArrayRef, index unsafe.Pointer, value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamCreateWithPage(_:)
-func CGPDFContentStreamCreateWithPage(page CGPDFPageRef) CGPDFContentStreamRef {
+func CGPDFContentStreamCreateWithPage(page PDFPageRef) PDFContentStreamRef {
 	return _CGPDFContentStreamCreateWithPage(page)
 	}
 
@@ -7928,7 +8833,7 @@ func CGPDFContentStreamCreateWithPage(page CGPDFPageRef) CGPDFContentStreamRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamCreateWithStream(_:_:_:)
-func CGPDFContentStreamCreateWithStream(stream CGPDFStreamRef, streamResources CGPDFDictionaryRef, parent CGPDFContentStreamRef) CGPDFContentStreamRef {
+func CGPDFContentStreamCreateWithStream(stream PDFStreamRef, streamResources PDFDictionaryRef, parent PDFContentStreamRef) PDFContentStreamRef {
 	return _CGPDFContentStreamCreateWithStream(stream, streamResources, parent)
 	}
 
@@ -7941,7 +8846,7 @@ func CGPDFContentStreamCreateWithStream(stream CGPDFStreamRef, streamResources C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamGetResource(_:_:_:)
-func CGPDFContentStreamGetResource(cs CGPDFContentStreamRef, category unsafe.Pointer, name unsafe.Pointer) CGPDFObjectRef {
+func CGPDFContentStreamGetResource(cs PDFContentStreamRef, category unsafe.Pointer, name unsafe.Pointer) PDFObjectRef {
 	return _CGPDFContentStreamGetResource(cs, category, name)
 	}
 
@@ -7954,7 +8859,7 @@ func CGPDFContentStreamGetResource(cs CGPDFContentStreamRef, category unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamGetStreams(_:)
-func CGPDFContentStreamGetStreams(cs CGPDFContentStreamRef) unsafe.Pointer {
+func CGPDFContentStreamGetStreams(cs PDFContentStreamRef) unsafe.Pointer {
 	return _CGPDFContentStreamGetStreams(cs)
 	}
 
@@ -7967,7 +8872,7 @@ func CGPDFContentStreamGetStreams(cs CGPDFContentStreamRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamRelease(_:)
-func CGPDFContentStreamRelease(cs CGPDFContentStreamRef) {
+func CGPDFContentStreamRelease(cs PDFContentStreamRef) {
 	_CGPDFContentStreamRelease(cs)
 	}
 
@@ -7980,7 +8885,7 @@ func CGPDFContentStreamRelease(cs CGPDFContentStreamRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamRetain(_:)
-func CGPDFContentStreamRetain(cs CGPDFContentStreamRef) CGPDFContentStreamRef {
+func CGPDFContentStreamRetain(cs PDFContentStreamRef) PDFContentStreamRef {
 	return _CGPDFContentStreamRetain(cs)
 	}
 
@@ -7991,7 +8896,7 @@ func CGPDFContentStreamRetain(cs CGPDFContentStreamRef) CGPDFContentStreamRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextBeginTag(_:_:_:)
-func CGPDFContextBeginTag(context CGContextRef, tagType unsafe.Pointer, tagProperties unsafe.Pointer) {
+func CGPDFContextBeginTag(context ContextRef, tagType unsafe.Pointer, tagProperties unsafe.Pointer) {
 	_CGPDFContextBeginTag(context, tagType, tagProperties)
 	}
 
@@ -8002,7 +8907,7 @@ func CGPDFContextBeginTag(context CGContextRef, tagType unsafe.Pointer, tagPrope
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextEndTag(_:)
-func CGPDFContextEndTag(context CGContextRef) {
+func CGPDFContextEndTag(context ContextRef) {
 	_CGPDFContextEndTag(context)
 	}
 
@@ -8011,7 +8916,7 @@ func CGPDFContextEndTag(context CGContextRef) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetIDTree(_:_:)
-func CGPDFContextSetIDTree(context CGContextRef, IDTreeDictionary CGPDFDictionaryRef) {
+func CGPDFContextSetIDTree(context ContextRef, IDTreeDictionary PDFDictionaryRef) {
 	_CGPDFContextSetIDTree(context, IDTreeDictionary)
 	}
 
@@ -8022,7 +8927,7 @@ func CGPDFContextSetIDTree(context CGContextRef, IDTreeDictionary CGPDFDictionar
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetOutline(_:_:)
-func CGPDFContextSetOutline(context CGContextRef, outline unsafe.Pointer) {
+func CGPDFContextSetOutline(context ContextRef, outline unsafe.Pointer) {
 	_CGPDFContextSetOutline(context, outline)
 	}
 
@@ -8031,7 +8936,7 @@ func CGPDFContextSetOutline(context CGContextRef, outline unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetPageTagStructureTree(_:_:)
-func CGPDFContextSetPageTagStructureTree(context CGContextRef, pageTagStructureTreeDictionary unsafe.Pointer) {
+func CGPDFContextSetPageTagStructureTree(context ContextRef, pageTagStructureTreeDictionary unsafe.Pointer) {
 	_CGPDFContextSetPageTagStructureTree(context, pageTagStructureTreeDictionary)
 	}
 
@@ -8040,7 +8945,7 @@ func CGPDFContextSetPageTagStructureTree(context CGContextRef, pageTagStructureT
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetParentTree(_:_:)
-func CGPDFContextSetParentTree(context CGContextRef, parentTreeDictionary CGPDFDictionaryRef) {
+func CGPDFContextSetParentTree(context ContextRef, parentTreeDictionary PDFDictionaryRef) {
 	_CGPDFContextSetParentTree(context, parentTreeDictionary)
 	}
 
@@ -8051,7 +8956,7 @@ func CGPDFContextSetParentTree(context CGContextRef, parentTreeDictionary CGPDFD
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryApplyBlock(_:_:_:)
-func CGPDFDictionaryApplyBlock(dict CGPDFDictionaryRef, block unsafe.Pointer, info unsafe.Pointer) {
+func CGPDFDictionaryApplyBlock(dict PDFDictionaryRef, block unsafe.Pointer, info unsafe.Pointer) {
 	_CGPDFDictionaryApplyBlock(dict, block, info)
 	}
 
@@ -8064,7 +8969,7 @@ func CGPDFDictionaryApplyBlock(dict CGPDFDictionaryRef, block unsafe.Pointer, in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryApplyFunction(_:_:_:)
-func CGPDFDictionaryApplyFunction(dict CGPDFDictionaryRef, function unsafe.Pointer, info unsafe.Pointer) {
+func CGPDFDictionaryApplyFunction(dict PDFDictionaryRef, function unsafe.Pointer, info unsafe.Pointer) {
 	_CGPDFDictionaryApplyFunction(dict, function, info)
 	}
 
@@ -8077,7 +8982,7 @@ func CGPDFDictionaryApplyFunction(dict CGPDFDictionaryRef, function unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetArray(_:_:_:)
-func CGPDFDictionaryGetArray(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetArray(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetArray(dict, key, value)
 	}
 
@@ -8090,7 +8995,7 @@ func CGPDFDictionaryGetArray(dict CGPDFDictionaryRef, key unsafe.Pointer, value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetBoolean(_:_:_:)
-func CGPDFDictionaryGetBoolean(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetBoolean(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetBoolean(dict, key, value)
 	}
 
@@ -8103,7 +9008,7 @@ func CGPDFDictionaryGetBoolean(dict CGPDFDictionaryRef, key unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetCount(_:)
-func CGPDFDictionaryGetCount(dict CGPDFDictionaryRef) unsafe.Pointer {
+func CGPDFDictionaryGetCount(dict PDFDictionaryRef) uintptr {
 	return _CGPDFDictionaryGetCount(dict)
 	}
 
@@ -8116,7 +9021,7 @@ func CGPDFDictionaryGetCount(dict CGPDFDictionaryRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetDictionary(_:_:_:)
-func CGPDFDictionaryGetDictionary(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetDictionary(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetDictionary(dict, key, value)
 	}
 
@@ -8129,7 +9034,7 @@ func CGPDFDictionaryGetDictionary(dict CGPDFDictionaryRef, key unsafe.Pointer, v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetInteger(_:_:_:)
-func CGPDFDictionaryGetInteger(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetInteger(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetInteger(dict, key, value)
 	}
 
@@ -8142,7 +9047,7 @@ func CGPDFDictionaryGetInteger(dict CGPDFDictionaryRef, key unsafe.Pointer, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetName(_:_:_:)
-func CGPDFDictionaryGetName(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetName(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetName(dict, key, value)
 	}
 
@@ -8155,7 +9060,7 @@ func CGPDFDictionaryGetName(dict CGPDFDictionaryRef, key unsafe.Pointer, value u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetNumber(_:_:_:)
-func CGPDFDictionaryGetNumber(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetNumber(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetNumber(dict, key, value)
 	}
 
@@ -8168,7 +9073,7 @@ func CGPDFDictionaryGetNumber(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetObject(_:_:_:)
-func CGPDFDictionaryGetObject(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetObject(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetObject(dict, key, value)
 	}
 
@@ -8181,7 +9086,7 @@ func CGPDFDictionaryGetObject(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetStream(_:_:_:)
-func CGPDFDictionaryGetStream(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetStream(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetStream(dict, key, value)
 	}
 
@@ -8194,212 +9099,8 @@ func CGPDFDictionaryGetStream(dict CGPDFDictionaryRef, key unsafe.Pointer, value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetString(_:_:_:)
-func CGPDFDictionaryGetString(dict CGPDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFDictionaryGetString(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetString(dict, key, value)
-	}
-
-
-// CGPDFDocumentGetAccessPermissions is a CoreGraphics function.
-//
-// Added in macOS 10.13.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/accessPermissions
-func CGPDFDocumentGetAccessPermissions(document CGPDFDocumentRef) unsafe.Pointer {
-	return _CGPDFDocumentGetAccessPermissions(document)
-	}
-
-
-// Returns whether the specified PDF document allows copying.
-//
-// Added in macOS 10.2.
-
-// Returns whether the specified PDF document allows copying.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsCopying
-func CGPDFDocumentAllowsCopying(document CGPDFDocumentRef) bool {
-	return _CGPDFDocumentAllowsCopying(document)
-	}
-
-
-// Returns whether a PDF document allows printing.
-//
-// Added in macOS 10.2.
-
-// Returns whether a PDF document allows printing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsPrinting
-func CGPDFDocumentAllowsPrinting(document CGPDFDocumentRef) bool {
-	return _CGPDFDocumentAllowsPrinting(document)
-	}
-
-
-// Returns the document catalog of a Core Graphics PDF document.
-//
-// Added in macOS 10.3.
-
-// Returns the document catalog of a Core Graphics PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/catalog
-func CGPDFDocumentGetCatalog(document CGPDFDocumentRef) CGPDFDictionaryRef {
-	return _CGPDFDocumentGetCatalog(document)
-	}
-
-
-// Gets the file identifier for a PDF document.
-//
-// Added in macOS 10.4.
-
-// Gets the file identifier for a PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/fileIdentifier
-func CGPDFDocumentGetID(document CGPDFDocumentRef) CGPDFArrayRef {
-	return _CGPDFDocumentGetID(document)
-	}
-
-
-// Returns the major and minor version numbers of a Core Graphics PDF document.
-//
-// Added in macOS 10.3.
-
-// Returns the major and minor version numbers of a Core Graphics PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/getVersion(majorVersion:minorVersion:)
-func CGPDFDocumentGetVersion(document CGPDFDocumentRef, majorVersion unsafe.Pointer, minorVersion unsafe.Pointer) {
-	_CGPDFDocumentGetVersion(document, majorVersion, minorVersion)
-	}
-
-
-// Gets the information dictionary for a PDF document.
-//
-// Added in macOS 10.4.
-
-// Gets the information dictionary for a PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/info
-func CGPDFDocumentGetInfo(document CGPDFDocumentRef) CGPDFDictionaryRef {
-	return _CGPDFDocumentGetInfo(document)
-	}
-
-
-// Creates a Core Graphics PDF document using data specified by a URL.
-//
-// Added in macOS 10.0.
-
-// Creates a Core Graphics PDF document using data specified by a URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-2gtsd
-func CGPDFDocumentCreateWithURL(url unsafe.Pointer) CGPDFDocumentRef {
-	return _CGPDFDocumentCreateWithURL(url)
-	}
-
-
-// Creates a Core Graphics PDF document using a data provider.
-//
-// Added in macOS 10.0.
-
-// Creates a Core Graphics PDF document using a data provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-gbq6
-func CGPDFDocumentCreateWithProvider(provider CGDataProviderRef) CGPDFDocumentRef {
-	return _CGPDFDocumentCreateWithProvider(provider)
-	}
-
-
-// Returns whether the specified PDF file is encrypted.
-//
-// Added in macOS 10.2.
-
-// Returns whether the specified PDF file is encrypted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isEncrypted
-func CGPDFDocumentIsEncrypted(document CGPDFDocumentRef) bool {
-	return _CGPDFDocumentIsEncrypted(document)
-	}
-
-
-// Returns whether the specified PDF document is currently unlocked.
-//
-// Added in macOS 10.2.
-
-// Returns whether the specified PDF document is currently unlocked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isUnlocked
-func CGPDFDocumentIsUnlocked(document CGPDFDocumentRef) bool {
-	return _CGPDFDocumentIsUnlocked(document)
-	}
-
-
-// Returns the number of pages in a PDF document.
-//
-// Added in macOS 10.0.
-
-// Returns the number of pages in a PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/numberOfPages
-func CGPDFDocumentGetNumberOfPages(document CGPDFDocumentRef) unsafe.Pointer {
-	return _CGPDFDocumentGetNumberOfPages(document)
-	}
-
-
-// CGPDFDocumentGetOutline is a CoreGraphics function.
-//
-// Added in macOS 10.13.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/outline
-func CGPDFDocumentGetOutline(document CGPDFDocumentRef) unsafe.Pointer {
-	return _CGPDFDocumentGetOutline(document)
-	}
-
-
-// Returns a page from a Core Graphics PDF document.
-//
-// Added in macOS 10.3.
-
-// Returns a page from a Core Graphics PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/page(at:)
-func CGPDFDocumentGetPage(document CGPDFDocumentRef, pageNumber unsafe.Pointer) CGPDFPageRef {
-	return _CGPDFDocumentGetPage(document, pageNumber)
-	}
-
-
-// Returns the type identifier for Core Graphics PDF documents.
-//
-// Added in macOS 10.2.
-
-// Returns the type identifier for Core Graphics PDF documents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/typeID
-func CGPDFDocumentGetTypeID() unsafe.Pointer {
-	return _CGPDFDocumentGetTypeID()
-	}
-
-
-// Unlocks an encrypted PDF document when a valid password is supplied.
-//
-// Added in macOS 10.2.
-
-// Unlocks an encrypted PDF document when a valid password is supplied.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/unlockWithPassword(_:)
-func CGPDFDocumentUnlockWithPassword(document CGPDFDocumentRef, password unsafe.Pointer) bool {
-	return _CGPDFDocumentUnlockWithPassword(document, password)
 	}
 
 
@@ -8413,7 +9114,7 @@ func CGPDFDocumentUnlockWithPassword(document CGPDFDocumentRef, password unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetArtBox
-func CGPDFDocumentGetArtBox(document CGPDFDocumentRef, page int) CGRect {
+func CGPDFDocumentGetArtBox(document PDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetArtBox(document, page)
 	}
 
@@ -8428,7 +9129,7 @@ func CGPDFDocumentGetArtBox(document CGPDFDocumentRef, page int) CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetBleedBox
-func CGPDFDocumentGetBleedBox(document CGPDFDocumentRef, page int) CGRect {
+func CGPDFDocumentGetBleedBox(document PDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetBleedBox(document, page)
 	}
 
@@ -8443,7 +9144,7 @@ func CGPDFDocumentGetBleedBox(document CGPDFDocumentRef, page int) CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetCropBox
-func CGPDFDocumentGetCropBox(document CGPDFDocumentRef, page int) CGRect {
+func CGPDFDocumentGetCropBox(document PDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetCropBox(document, page)
 	}
 
@@ -8458,7 +9159,7 @@ func CGPDFDocumentGetCropBox(document CGPDFDocumentRef, page int) CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetMediaBox
-func CGPDFDocumentGetMediaBox(document CGPDFDocumentRef, page int) CGRect {
+func CGPDFDocumentGetMediaBox(document PDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetMediaBox(document, page)
 	}
 
@@ -8473,7 +9174,7 @@ func CGPDFDocumentGetMediaBox(document CGPDFDocumentRef, page int) CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetRotationAngle
-func CGPDFDocumentGetRotationAngle(document CGPDFDocumentRef, page int) int {
+func CGPDFDocumentGetRotationAngle(document PDFDocumentRef, page int) int {
 	return _CGPDFDocumentGetRotationAngle(document, page)
 	}
 
@@ -8488,7 +9189,7 @@ func CGPDFDocumentGetRotationAngle(document CGPDFDocumentRef, page int) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetTrimBox
-func CGPDFDocumentGetTrimBox(document CGPDFDocumentRef, page int) CGRect {
+func CGPDFDocumentGetTrimBox(document PDFDocumentRef, page int) CGRect {
 	return _CGPDFDocumentGetTrimBox(document, page)
 	}
 
@@ -8501,7 +9202,7 @@ func CGPDFDocumentGetTrimBox(document CGPDFDocumentRef, page int) CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentRelease
-func CGPDFDocumentRelease(document CGPDFDocumentRef) {
+func CGPDFDocumentRelease(document PDFDocumentRef) {
 	_CGPDFDocumentRelease(document)
 	}
 
@@ -8514,7 +9215,7 @@ func CGPDFDocumentRelease(document CGPDFDocumentRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentRetain
-func CGPDFDocumentRetain(document CGPDFDocumentRef) CGPDFDocumentRef {
+func CGPDFDocumentRetain(document PDFDocumentRef) PDFDocumentRef {
 	return _CGPDFDocumentRetain(document)
 	}
 
@@ -8527,7 +9228,7 @@ func CGPDFDocumentRetain(document CGPDFDocumentRef) CGPDFDocumentRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectGetType(_:)
-func CGPDFObjectGetType(object CGPDFObjectRef) unsafe.Pointer {
+func CGPDFObjectGetType(object PDFObjectRef) unsafe.Pointer {
 	return _CGPDFObjectGetType(object)
 	}
 
@@ -8540,7 +9241,7 @@ func CGPDFObjectGetType(object CGPDFObjectRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectGetValue(_:_:_:)
-func CGPDFObjectGetValue(object CGPDFObjectRef, type_ unsafe.Pointer, value unsafe.Pointer) bool {
+func CGPDFObjectGetValue(object PDFObjectRef, type_ unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFObjectGetValue(object, type_, value)
 	}
 
@@ -8553,7 +9254,7 @@ func CGPDFObjectGetValue(object CGPDFObjectRef, type_ unsafe.Pointer, value unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableCreate()
-func CGPDFOperatorTableCreate() CGPDFOperatorTableRef {
+func CGPDFOperatorTableCreate() PDFOperatorTableRef {
 	return _CGPDFOperatorTableCreate()
 	}
 
@@ -8566,7 +9267,7 @@ func CGPDFOperatorTableCreate() CGPDFOperatorTableRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableRelease(_:)
-func CGPDFOperatorTableRelease(table CGPDFOperatorTableRef) {
+func CGPDFOperatorTableRelease(table PDFOperatorTableRef) {
 	_CGPDFOperatorTableRelease(table)
 	}
 
@@ -8579,7 +9280,7 @@ func CGPDFOperatorTableRelease(table CGPDFOperatorTableRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableRetain(_:)
-func CGPDFOperatorTableRetain(table CGPDFOperatorTableRef) CGPDFOperatorTableRef {
+func CGPDFOperatorTableRetain(table PDFOperatorTableRef) PDFOperatorTableRef {
 	return _CGPDFOperatorTableRetain(table)
 	}
 
@@ -8592,99 +9293,8 @@ func CGPDFOperatorTableRetain(table CGPDFOperatorTableRef) CGPDFOperatorTableRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableSetCallback(_:_:_:)
-func CGPDFOperatorTableSetCallback(table CGPDFOperatorTableRef, name unsafe.Pointer, callback unsafe.Pointer) {
+func CGPDFOperatorTableSetCallback(table PDFOperatorTableRef, name unsafe.Pointer, callback unsafe.Pointer) {
 	_CGPDFOperatorTableSetCallback(table, name, callback)
-	}
-
-
-// Returns the dictionary of a PDF page.
-//
-// Added in macOS 10.3.
-
-// Returns the dictionary of a PDF page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/dictionary
-func CGPDFPageGetDictionary(page CGPDFPageRef) CGPDFDictionaryRef {
-	return _CGPDFPageGetDictionary(page)
-	}
-
-
-// Returns the document for a page.
-//
-// Added in macOS 10.3.
-
-// Returns the document for a page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/document
-func CGPDFPageGetDocument(page CGPDFPageRef) CGPDFDocumentRef {
-	return _CGPDFPageGetDocument(page)
-	}
-
-
-// Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
-//
-// Added in macOS 10.3.
-
-// Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getBoxRect(_:)
-func CGPDFPageGetBoxRect(page CGPDFPageRef, box unsafe.Pointer) CGRect {
-	return _CGPDFPageGetBoxRect(page, box)
-	}
-
-
-// Returns the affine transform that maps a box to a given rectangle on a PDF page.
-//
-// Added in macOS 10.3.
-
-// Returns the affine transform that maps a box to a given rectangle on a PDF page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getDrawingTransform(_:rect:rotate:preserveAspectRatio:)
-func CGPDFPageGetDrawingTransform(page CGPDFPageRef, box unsafe.Pointer, rect CGRect, rotate int, preserveAspectRatio bool) CGAffineTransform {
-	return _CGPDFPageGetDrawingTransform(page, box, rect, rotate, preserveAspectRatio)
-	}
-
-
-// Returns the page number of the specified PDF page.
-//
-// Added in macOS 10.3.
-
-// Returns the page number of the specified PDF page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/pageNumber
-func CGPDFPageGetPageNumber(page CGPDFPageRef) unsafe.Pointer {
-	return _CGPDFPageGetPageNumber(page)
-	}
-
-
-// Returns the rotation angle of a PDF page, in degrees.
-//
-// Added in macOS 10.3.
-
-// Returns the rotation angle of a PDF page, in degrees.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/rotationAngle
-func CGPDFPageGetRotationAngle(page CGPDFPageRef) int {
-	return _CGPDFPageGetRotationAngle(page)
-	}
-
-
-// Returns the CFType ID for PDF page objects.
-//
-// Added in macOS 10.3.
-
-// Returns the CFType ID for PDF page objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/typeID
-func CGPDFPageGetTypeID() unsafe.Pointer {
-	return _CGPDFPageGetTypeID()
 	}
 
 
@@ -8696,7 +9306,7 @@ func CGPDFPageGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPageRelease
-func CGPDFPageRelease(page CGPDFPageRef) {
+func CGPDFPageRelease(page PDFPageRef) {
 	_CGPDFPageRelease(page)
 	}
 
@@ -8709,7 +9319,7 @@ func CGPDFPageRelease(page CGPDFPageRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPageRetain
-func CGPDFPageRetain(page CGPDFPageRef) CGPDFPageRef {
+func CGPDFPageRetain(page PDFPageRef) PDFPageRef {
 	return _CGPDFPageRetain(page)
 	}
 
@@ -8722,7 +9332,7 @@ func CGPDFPageRetain(page CGPDFPageRef) CGPDFPageRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerCreate(_:_:_:)
-func CGPDFScannerCreate(cs CGPDFContentStreamRef, table CGPDFOperatorTableRef, info unsafe.Pointer) CGPDFScannerRef {
+func CGPDFScannerCreate(cs PDFContentStreamRef, table PDFOperatorTableRef, info unsafe.Pointer) PDFScannerRef {
 	return _CGPDFScannerCreate(cs, table, info)
 	}
 
@@ -8735,7 +9345,7 @@ func CGPDFScannerCreate(cs CGPDFContentStreamRef, table CGPDFOperatorTableRef, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerGetContentStream(_:)
-func CGPDFScannerGetContentStream(scanner CGPDFScannerRef) CGPDFContentStreamRef {
+func CGPDFScannerGetContentStream(scanner PDFScannerRef) PDFContentStreamRef {
 	return _CGPDFScannerGetContentStream(scanner)
 	}
 
@@ -8748,7 +9358,7 @@ func CGPDFScannerGetContentStream(scanner CGPDFScannerRef) CGPDFContentStreamRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopArray(_:_:)
-func CGPDFScannerPopArray(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopArray(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopArray(scanner, value)
 	}
 
@@ -8761,7 +9371,7 @@ func CGPDFScannerPopArray(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopBoolean(_:_:)
-func CGPDFScannerPopBoolean(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopBoolean(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopBoolean(scanner, value)
 	}
 
@@ -8774,7 +9384,7 @@ func CGPDFScannerPopBoolean(scanner CGPDFScannerRef, value unsafe.Pointer) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopDictionary(_:_:)
-func CGPDFScannerPopDictionary(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopDictionary(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopDictionary(scanner, value)
 	}
 
@@ -8787,7 +9397,7 @@ func CGPDFScannerPopDictionary(scanner CGPDFScannerRef, value unsafe.Pointer) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopInteger(_:_:)
-func CGPDFScannerPopInteger(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopInteger(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopInteger(scanner, value)
 	}
 
@@ -8800,7 +9410,7 @@ func CGPDFScannerPopInteger(scanner CGPDFScannerRef, value unsafe.Pointer) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopName(_:_:)
-func CGPDFScannerPopName(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopName(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopName(scanner, value)
 	}
 
@@ -8813,7 +9423,7 @@ func CGPDFScannerPopName(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopNumber(_:_:)
-func CGPDFScannerPopNumber(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopNumber(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopNumber(scanner, value)
 	}
 
@@ -8826,7 +9436,7 @@ func CGPDFScannerPopNumber(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopObject(_:_:)
-func CGPDFScannerPopObject(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopObject(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopObject(scanner, value)
 	}
 
@@ -8839,7 +9449,7 @@ func CGPDFScannerPopObject(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopStream(_:_:)
-func CGPDFScannerPopStream(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopStream(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopStream(scanner, value)
 	}
 
@@ -8852,7 +9462,7 @@ func CGPDFScannerPopStream(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopString(_:_:)
-func CGPDFScannerPopString(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
+func CGPDFScannerPopString(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopString(scanner, value)
 	}
 
@@ -8865,7 +9475,7 @@ func CGPDFScannerPopString(scanner CGPDFScannerRef, value unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerRelease(_:)
-func CGPDFScannerRelease(scanner CGPDFScannerRef) {
+func CGPDFScannerRelease(scanner PDFScannerRef) {
 	_CGPDFScannerRelease(scanner)
 	}
 
@@ -8878,7 +9488,7 @@ func CGPDFScannerRelease(scanner CGPDFScannerRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerRetain(_:)
-func CGPDFScannerRetain(scanner CGPDFScannerRef) CGPDFScannerRef {
+func CGPDFScannerRetain(scanner PDFScannerRef) PDFScannerRef {
 	return _CGPDFScannerRetain(scanner)
 	}
 
@@ -8891,7 +9501,7 @@ func CGPDFScannerRetain(scanner CGPDFScannerRef) CGPDFScannerRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerScan(_:)
-func CGPDFScannerScan(scanner CGPDFScannerRef) bool {
+func CGPDFScannerScan(scanner PDFScannerRef) bool {
 	return _CGPDFScannerScan(scanner)
 	}
 
@@ -8900,7 +9510,7 @@ func CGPDFScannerScan(scanner CGPDFScannerRef) bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerStop(_:)
-func CGPDFScannerStop(s CGPDFScannerRef) {
+func CGPDFScannerStop(s PDFScannerRef) {
 	_CGPDFScannerStop(s)
 	}
 
@@ -8913,7 +9523,7 @@ func CGPDFScannerStop(s CGPDFScannerRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStreamCopyData(_:_:)
-func CGPDFStreamCopyData(stream CGPDFStreamRef, format unsafe.Pointer) unsafe.Pointer {
+func CGPDFStreamCopyData(stream PDFStreamRef, format unsafe.Pointer) unsafe.Pointer {
 	return _CGPDFStreamCopyData(stream, format)
 	}
 
@@ -8926,7 +9536,7 @@ func CGPDFStreamCopyData(stream CGPDFStreamRef, format unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStreamGetDictionary(_:)
-func CGPDFStreamGetDictionary(stream CGPDFStreamRef) CGPDFDictionaryRef {
+func CGPDFStreamGetDictionary(stream PDFStreamRef) PDFDictionaryRef {
 	return _CGPDFStreamGetDictionary(stream)
 	}
 
@@ -8939,7 +9549,7 @@ func CGPDFStreamGetDictionary(stream CGPDFStreamRef) CGPDFDictionaryRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyDate(_:)
-func CGPDFStringCopyDate(string_ CGPDFStringRef) unsafe.Pointer {
+func CGPDFStringCopyDate(string_ PDFStringRef) unsafe.Pointer {
 	return _CGPDFStringCopyDate(string_)
 	}
 
@@ -8952,7 +9562,7 @@ func CGPDFStringCopyDate(string_ CGPDFStringRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyTextString(_:)
-func CGPDFStringCopyTextString(string_ CGPDFStringRef) unsafe.Pointer {
+func CGPDFStringCopyTextString(string_ PDFStringRef) unsafe.Pointer {
 	return _CGPDFStringCopyTextString(string_)
 	}
 
@@ -8965,7 +9575,7 @@ func CGPDFStringCopyTextString(string_ CGPDFStringRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetBytePtr(_:)
-func CGPDFStringGetBytePtr(string_ CGPDFStringRef) unsafe.Pointer {
+func CGPDFStringGetBytePtr(string_ PDFStringRef) unsafe.Pointer {
 	return _CGPDFStringGetBytePtr(string_)
 	}
 
@@ -8978,7 +9588,7 @@ func CGPDFStringGetBytePtr(string_ CGPDFStringRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetLength(_:)
-func CGPDFStringGetLength(string_ CGPDFStringRef) unsafe.Pointer {
+func CGPDFStringGetLength(string_ PDFStringRef) uintptr {
 	return _CGPDFStringGetLength(string_)
 	}
 
@@ -8991,673 +9601,6 @@ func CGPDFStringGetLength(string_ CGPDFStringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/name
 func CGPDFTagTypeGetName(tagType unsafe.Pointer) unsafe.Pointer {
 	return _CGPDFTagTypeGetName(tagType)
-	}
-
-
-// Tells a PostScript converter to abort a conversion at the next available opportunity.
-//
-// Added in macOS 10.3.
-
-// Tells a PostScript converter to abort a conversion at the next available opportunity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/abort()
-func CGPSConverterAbort(converter CGPSConverterRef) bool {
-	return _CGPSConverterAbort(converter)
-	}
-
-
-// Uses a PostScript converter to convert PostScript data to PDF data.
-//
-// Added in macOS 10.3.
-
-// Uses a PostScript converter to convert PostScript data to PDF data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/convert(_:consumer:options:)
-func CGPSConverterConvert(converter CGPSConverterRef, provider CGDataProviderRef, consumer CGDataConsumerRef, options unsafe.Pointer) bool {
-	return _CGPSConverterConvert(converter, provider, consumer, options)
-	}
-
-
-// Creates a new PostScript converter.
-//
-// Added in macOS 10.3.
-
-// Creates a new PostScript converter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/init(info:callbacks:options:)
-func CGPSConverterCreate(info unsafe.Pointer, callbacks unsafe.Pointer, options unsafe.Pointer) CGPSConverterRef {
-	return _CGPSConverterCreate(info, callbacks, options)
-	}
-
-
-// Checks whether the converter is currently converting data.
-//
-// Added in macOS 10.3.
-
-// Checks whether the converter is currently converting data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/isConverting
-func CGPSConverterIsConverting(converter CGPSConverterRef) bool {
-	return _CGPSConverterIsConverting(converter)
-	}
-
-
-// Returns the Core Foundation type identifier for PostScript converters.
-//
-// Added in macOS 10.3.
-
-// Returns the Core Foundation type identifier for PostScript converters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/typeID
-func CGPSConverterGetTypeID() unsafe.Pointer {
-	return _CGPSConverterGetTypeID()
-	}
-
-
-// For each element in a graphics path, calls a custom applier function.
-//
-// Added in macOS 10.2.
-
-// For each element in a graphics path, calls a custom applier function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/apply(info:function:)
-func CGPathApply(path CGPathRef, info unsafe.Pointer, function unsafe.Pointer) {
-	_CGPathApply(path, info, function)
-	}
-
-
-// CGPathApplyWithBlock is a CoreGraphics function.
-//
-// Added in macOS 10.13.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/applyWithBlock(_:)
-func CGPathApplyWithBlock(path CGPathRef, block unsafe.Pointer) {
-	_CGPathApplyWithBlock(path, block)
-	}
-
-
-// Returns the bounding box containing all points in a graphics path.
-//
-// Added in macOS 10.2.
-
-// Returns the bounding box containing all points in a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBox
-func CGPathGetBoundingBox(path CGPathRef) CGRect {
-	return _CGPathGetBoundingBox(path)
-	}
-
-
-// Returns the bounding box of a graphics path.
-//
-// Added in macOS 10.6.
-
-// Returns the bounding box of a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBoxOfPath
-func CGPathGetPathBoundingBox(path CGPathRef) CGRect {
-	return _CGPathGetPathBoundingBox(path)
-	}
-
-
-// Creates an immutable copy of a graphics path.
-//
-// Added in macOS 10.2.
-
-// Creates an immutable copy of a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy()
-func CGPathCreateCopy(path CGPathRef) CGPathRef {
-	return _CGPathCreateCopy(path)
-	}
-
-
-// Creates an immutable copy of a graphics path transformed by a transformation matrix.
-//
-// Added in macOS 10.7.
-
-// Creates an immutable copy of a graphics path transformed by a transformation matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy(using:)
-func CGPathCreateCopyByTransformingPath(path CGPathRef, transform unsafe.Pointer) CGPathRef {
-	return _CGPathCreateCopyByTransformingPath(path, transform)
-	}
-
-
-// Returns the current point in a graphics path.
-//
-// Added in macOS 10.2.
-
-// Returns the current point in a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/currentPoint
-func CGPathGetCurrentPoint(path CGPathRef) CGPoint {
-	return _CGPathGetCurrentPoint(path)
-	}
-
-
-// Create an immutable path of an ellipse.
-//
-// Added in macOS 10.7.
-
-// Create an immutable path of an ellipse.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(ellipseIn:transform:)
-func CGPathCreateWithEllipseInRect(rect CGRect, transform unsafe.Pointer) CGPathRef {
-	return _CGPathCreateWithEllipseInRect(rect, transform)
-	}
-
-
-// Create an immutable path of a rectangle.
-//
-// Added in macOS 10.5.
-
-// Create an immutable path of a rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(rect:transform:)
-func CGPathCreateWithRect(rect CGRect, transform unsafe.Pointer) CGPathRef {
-	return _CGPathCreateWithRect(rect, transform)
-	}
-
-
-// Create an immutable path of a rounded rectangle.
-//
-// Added in macOS 10.9.
-
-// Create an immutable path of a rounded rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(roundedRect:cornerWidth:cornerHeight:transform:)
-func CGPathCreateWithRoundedRect(rect CGRect, cornerWidth float64, cornerHeight float64, transform unsafe.Pointer) CGPathRef {
-	return _CGPathCreateWithRoundedRect(rect, cornerWidth, cornerHeight, transform)
-	}
-
-
-// Indicates whether or not a graphics path is empty.
-//
-// Added in macOS 10.2.
-
-// Indicates whether or not a graphics path is empty.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isEmpty
-func CGPathIsEmpty(path CGPathRef) bool {
-	return _CGPathIsEmpty(path)
-	}
-
-
-// Indicates whether or not a graphics path represents a rectangle.
-//
-// Added in macOS 10.2.
-
-// Indicates whether or not a graphics path represents a rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isRect(_:)
-func CGPathIsRect(path CGPathRef, rect unsafe.Pointer) bool {
-	return _CGPathIsRect(path, rect)
-	}
-
-
-// Creates a mutable copy of an existing graphics path.
-//
-// Added in macOS 10.2.
-
-// Creates a mutable copy of an existing graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy()
-func CGPathCreateMutableCopy(path CGPathRef) CGMutablePathRef {
-	return _CGPathCreateMutableCopy(path)
-	}
-
-
-// Creates a mutable copy of a graphics path transformed by a transformation matrix.
-//
-// Added in macOS 10.7.
-
-// Creates a mutable copy of a graphics path transformed by a transformation matrix.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy(using:)
-func CGPathCreateMutableCopyByTransformingPath(path CGPathRef, transform unsafe.Pointer) CGMutablePathRef {
-	return _CGPathCreateMutableCopyByTransformingPath(path, transform)
-	}
-
-
-// Returns the Core Foundation type identifier for Core Graphics paths.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for Core Graphics paths.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/typeID
-func CGPathGetTypeID() unsafe.Pointer {
-	return _CGPathGetTypeID()
-	}
-
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// Added in macOS 10.2.
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddArc
-func CGPathAddArc(path CGMutablePathRef, m unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise bool) {
-	_CGPathAddArc(path, m, x, y, radius, startAngle, endAngle, clockwise)
-	}
-
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// Added in macOS 10.2.
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddArcToPoint
-func CGPathAddArcToPoint(path CGMutablePathRef, m unsafe.Pointer, x1 float64, y1 float64, x2 float64, y2 float64, radius float64) {
-	_CGPathAddArcToPoint(path, m, x1, y1, x2, y2, radius)
-	}
-
-
-// Appends a cubic Bézier curve to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends a cubic Bézier curve to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddCurveToPoint
-func CGPathAddCurveToPoint(path CGMutablePathRef, m unsafe.Pointer, cp1x float64, cp1y float64, cp2x float64, cp2y float64, x float64, y float64) {
-	_CGPathAddCurveToPoint(path, m, cp1x, cp1y, cp2x, cp2y, x, y)
-	}
-
-
-// Adds to a path an ellipse that fits inside a rectangle.
-//
-// Added in macOS 10.4.
-
-// Adds to a path an ellipse that fits inside a rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddEllipseInRect
-func CGPathAddEllipseInRect(path CGMutablePathRef, m unsafe.Pointer, rect CGRect) {
-	_CGPathAddEllipseInRect(path, m, rect)
-	}
-
-
-// Appends a line segment to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends a line segment to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddLineToPoint
-func CGPathAddLineToPoint(path CGMutablePathRef, m unsafe.Pointer, x float64, y float64) {
-	_CGPathAddLineToPoint(path, m, x, y)
-	}
-
-
-// Appends an array of new line segments to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends an array of new line segments to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddLines
-func CGPathAddLines(path CGMutablePathRef, m unsafe.Pointer, points unsafe.Pointer, count unsafe.Pointer) {
-	_CGPathAddLines(path, m, points, count)
-	}
-
-
-// Appends a path to onto a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends a path to onto a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddPath
-func CGPathAddPath(path1 CGMutablePathRef, m unsafe.Pointer, path2 CGPathRef) {
-	_CGPathAddPath(path1, m, path2)
-	}
-
-
-// Appends a quadratic Bézier curve to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends a quadratic Bézier curve to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddQuadCurveToPoint
-func CGPathAddQuadCurveToPoint(path CGMutablePathRef, m unsafe.Pointer, cpx float64, cpy float64, x float64, y float64) {
-	_CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y)
-	}
-
-
-// Appends a rectangle to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends a rectangle to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRect
-func CGPathAddRect(path CGMutablePathRef, m unsafe.Pointer, rect CGRect) {
-	_CGPathAddRect(path, m, rect)
-	}
-
-
-// Appends an array of rectangles to a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Appends an array of rectangles to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRects
-func CGPathAddRects(path CGMutablePathRef, m unsafe.Pointer, rects unsafe.Pointer, count unsafe.Pointer) {
-	_CGPathAddRects(path, m, rects, count)
-	}
-
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// Added in macOS 10.7.
-
-// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRelativeArc
-func CGPathAddRelativeArc(path CGMutablePathRef, matrix unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, delta float64) {
-	_CGPathAddRelativeArc(path, matrix, x, y, radius, startAngle, delta)
-	}
-
-
-// Appends a rounded rectangle to a mutable graphics path.
-//
-// Added in macOS 10.9.
-
-// Appends a rounded rectangle to a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRoundedRect
-func CGPathAddRoundedRect(path CGMutablePathRef, transform unsafe.Pointer, rect CGRect, cornerWidth float64, cornerHeight float64) {
-	_CGPathAddRoundedRect(path, transform, rect, cornerWidth, cornerHeight)
-	}
-
-
-// Checks whether a point is contained in a graphics path.
-//
-// Added in macOS 10.4.
-
-// Checks whether a point is contained in a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathContainsPoint
-func CGPathContainsPoint(path CGPathRef, m unsafe.Pointer, point CGPoint, eoFill bool) bool {
-	return _CGPathContainsPoint(path, m, point, eoFill)
-	}
-
-
-// Creates a dashed copy of another path.
-//
-// Added in macOS 10.7.
-
-// Creates a dashed copy of another path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByDashingPath
-func CGPathCreateCopyByDashingPath(path CGPathRef, transform unsafe.Pointer, phase float64, lengths unsafe.Pointer, count unsafe.Pointer) CGPathRef {
-	return _CGPathCreateCopyByDashingPath(path, transform, phase, lengths, count)
-	}
-
-
-// CGPathCreateCopyByFlattening is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByFlattening
-func CGPathCreateCopyByFlattening(path CGPathRef, flatteningThreshold float64) CGPathRef {
-	return _CGPathCreateCopyByFlattening(path, flatteningThreshold)
-	}
-
-
-// CGPathCreateCopyByIntersectingPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByIntersectingPath
-func CGPathCreateCopyByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyByIntersectingPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateCopyByNormalizing is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByNormalizing
-func CGPathCreateCopyByNormalizing(path CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyByNormalizing(path, evenOddFillRule)
-	}
-
-
-// Creates a stroked copy of another path.
-//
-// Added in macOS 10.7.
-
-// Creates a stroked copy of another path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByStrokingPath
-func CGPathCreateCopyByStrokingPath(path CGPathRef, transform unsafe.Pointer, lineWidth float64, lineCap unsafe.Pointer, lineJoin unsafe.Pointer, miterLimit float64) CGPathRef {
-	return _CGPathCreateCopyByStrokingPath(path, transform, lineWidth, lineCap, lineJoin, miterLimit)
-	}
-
-
-// CGPathCreateCopyBySubtractingPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySubtractingPath
-func CGPathCreateCopyBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyBySubtractingPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateCopyBySymmetricDifferenceOfPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySymmetricDifferenceOfPath
-func CGPathCreateCopyBySymmetricDifferenceOfPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyBySymmetricDifferenceOfPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateCopyByUnioningPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByUnioningPath
-func CGPathCreateCopyByUnioningPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyByUnioningPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateCopyOfLineByIntersectingPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineByIntersectingPath
-func CGPathCreateCopyOfLineByIntersectingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyOfLineByIntersectingPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateCopyOfLineBySubtractingPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineBySubtractingPath
-func CGPathCreateCopyOfLineBySubtractingPath(path CGPathRef, maskPath CGPathRef, evenOddFillRule bool) CGPathRef {
-	return _CGPathCreateCopyOfLineBySubtractingPath(path, maskPath, evenOddFillRule)
-	}
-
-
-// CGPathCreateSeparateComponents is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateSeparateComponents
-func CGPathCreateSeparateComponents(path CGPathRef, evenOddFillRule bool) unsafe.Pointer {
-	return _CGPathCreateSeparateComponents(path, evenOddFillRule)
-	}
-
-
-// Indicates whether two graphics paths are equivalent.
-//
-// Added in macOS 10.2.
-
-// Indicates whether two graphics paths are equivalent.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathEqualToPath
-func CGPathEqualToPath(path1 CGPathRef, path2 CGPathRef) bool {
-	return _CGPathEqualToPath(path1, path2)
-	}
-
-
-// CGPathIntersectsPath is a CoreGraphics function.
-//
-// Added in macOS 13.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathIntersectsPath
-func CGPathIntersectsPath(path1 CGPathRef, path2 CGPathRef, evenOddFillRule bool) bool {
-	return _CGPathIntersectsPath(path1, path2, evenOddFillRule)
-	}
-
-
-// Starts a new subpath at a specified location in a mutable graphics path.
-//
-// Added in macOS 10.2.
-
-// Starts a new subpath at a specified location in a mutable graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathMoveToPoint
-func CGPathMoveToPoint(path CGMutablePathRef, m unsafe.Pointer, x float64, y float64) {
-	_CGPathMoveToPoint(path, m, x, y)
-	}
-
-
-// Decrements the retain count of a graphics path.
-//
-// Added in macOS 10.2.
-
-// Decrements the retain count of a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRelease
-func CGPathRelease(path CGPathRef) {
-	_CGPathRelease(path)
-	}
-
-
-// Increments the retain count of a graphics path.
-//
-// Added in macOS 10.2.
-
-// Increments the retain count of a graphics path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRetain
-func CGPathRetain(path CGPathRef) CGPathRef {
-	return _CGPathRetain(path)
-	}
-
-
-// Creates a pattern object.
-//
-// Added in macOS 10.0.
-
-// Creates a pattern object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/init(info:bounds:matrix:xStep:yStep:tiling:isColored:callbacks:)
-func CGPatternCreate(info unsafe.Pointer, bounds CGRect, matrix CGAffineTransform, xStep float64, yStep float64, tiling unsafe.Pointer, isColored bool, callbacks unsafe.Pointer) CGPatternRef {
-	return _CGPatternCreate(info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks)
-	}
-
-
-// Returns the type identifier for Core Graphics patterns.
-//
-// Added in macOS 10.2.
-
-// Returns the type identifier for Core Graphics patterns.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/typeID
-func CGPatternGetTypeID() unsafe.Pointer {
-	return _CGPatternGetTypeID()
-	}
-
-
-// Decrements the retain count of a Core Graphics pattern.
-//
-// Added in macOS 10.0.
-
-// Decrements the retain count of a Core Graphics pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRelease
-func CGPatternRelease(pattern CGPatternRef) {
-	_CGPatternRelease(pattern)
-	}
-
-
-// Increments the retain count of a Core Graphics pattern.
-//
-// Added in macOS 10.0.
-
-// Increments the retain count of a Core Graphics pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRetain
-func CGPatternRetain(pattern CGPatternRef) CGPatternRef {
-	return _CGPatternRetain(pattern)
 	}
 
 
@@ -10160,72 +10103,6 @@ func CGReleaseScreenRefreshRects(rects unsafe.Pointer) {
 	}
 
 
-// CGRenderingBufferLockBytePtr is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferLockBytePtr
-func CGRenderingBufferLockBytePtr(provider CGRenderingBufferProviderRef) unsafe.Pointer {
-	return _CGRenderingBufferLockBytePtr(provider)
-	}
-
-
-// CGRenderingBufferProviderCreate is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreate
-func CGRenderingBufferProviderCreate(info unsafe.Pointer, size unsafe.Pointer) CGRenderingBufferProviderRef {
-	return _CGRenderingBufferProviderCreate(info, size)
-	}
-
-
-// CGRenderingBufferProviderCreateWithCFData is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreateWithCFData
-func CGRenderingBufferProviderCreateWithCFData(data unsafe.Pointer) CGRenderingBufferProviderRef {
-	return _CGRenderingBufferProviderCreateWithCFData(data)
-	}
-
-
-// CGRenderingBufferProviderGetSize is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetSize
-func CGRenderingBufferProviderGetSize(provider CGRenderingBufferProviderRef) unsafe.Pointer {
-	return _CGRenderingBufferProviderGetSize(provider)
-	}
-
-
-// CGRenderingBufferProviderGetTypeID is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetTypeID
-func CGRenderingBufferProviderGetTypeID() unsafe.Pointer {
-	return _CGRenderingBufferProviderGetTypeID()
-	}
-
-
-// CGRenderingBufferUnlockBytePtr is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferUnlockBytePtr
-func CGRenderingBufferUnlockBytePtr(provider CGRenderingBufferProviderRef) {
-	_CGRenderingBufferUnlockBytePtr(provider)
-	}
-
-
 // CGRequestListenEventAccess is a CoreGraphics function.
 //
 // Added in macOS 10.15.
@@ -10315,7 +10192,7 @@ func CGSessionCopyCurrentDictionary() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByByteTable(_:_:_:_:_:)
-func CGSetDisplayTransferByByteTable(display unsafe.Pointer, tableSize unsafe.Pointer, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) unsafe.Pointer {
+func CGSetDisplayTransferByByteTable(display unsafe.Pointer, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) unsafe.Pointer {
 	return _CGSetDisplayTransferByByteTable(display, tableSize, redTable, greenTable, blueTable)
 	}
 
@@ -10341,7 +10218,7 @@ func CGSetDisplayTransferByFormula(display unsafe.Pointer, redMin unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByTable(_:_:_:_:_:)
-func CGSetDisplayTransferByTable(display unsafe.Pointer, tableSize unsafe.Pointer, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) unsafe.Pointer {
+func CGSetDisplayTransferByTable(display unsafe.Pointer, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) unsafe.Pointer {
 	return _CGSetDisplayTransferByTable(display, tableSize, redTable, greenTable, blueTable)
 	}
 
@@ -10368,78 +10245,6 @@ func CGSetLocalEventsSuppressionInterval(seconds unsafe.Pointer) unsafe.Pointer 
 	}
 
 
-// CGShadingGetContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/contentHeadroom
-func CGShadingGetContentHeadroom(shading CGShadingRef) unsafe.Pointer {
-	return _CGShadingGetContentHeadroom(shading)
-	}
-
-
-// CGShadingCreateAxialWithContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialHeadroom:space:start:end:function:extendStart:extendEnd:)
-func CGShadingCreateAxialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
-	return _CGShadingCreateAxialWithContentHeadroom(headroom, space, start, end, function, extendStart, extendEnd)
-	}
-
-
-// Creates a shading object to use for axial shading.
-//
-// Added in macOS 10.2.
-
-// Creates a shading object to use for axial shading.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialSpace:start:end:function:extendStart:extendEnd:)
-func CGShadingCreateAxial(space CGColorSpaceRef, start CGPoint, end CGPoint, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
-	return _CGShadingCreateAxial(space, start, end, function, extendStart, extendEnd)
-	}
-
-
-// CGShadingCreateRadialWithContentHeadroom is a CoreGraphics function.
-//
-// Added in macOS 26.0.
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialHeadroom:space:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
-func CGShadingCreateRadialWithContentHeadroom(headroom unsafe.Pointer, space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
-	return _CGShadingCreateRadialWithContentHeadroom(headroom, space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
-	}
-
-
-// Creates a shading object to use for radial shading.
-//
-// Added in macOS 10.2.
-
-// Creates a shading object to use for radial shading.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialSpace:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
-func CGShadingCreateRadial(space CGColorSpaceRef, start CGPoint, startRadius float64, end CGPoint, endRadius float64, function CGFunctionRef, extendStart bool, extendEnd bool) CGShadingRef {
-	return _CGShadingCreateRadial(space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
-	}
-
-
-// Returns the Core Foundation type identifier for Core Graphics shading objects.
-//
-// Added in macOS 10.2.
-
-// Returns the Core Foundation type identifier for Core Graphics shading objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/typeID
-func CGShadingGetTypeID() unsafe.Pointer {
-	return _CGShadingGetTypeID()
-	}
-
-
 // Decrements the retain count of a shading object.
 //
 // Added in macOS 10.2.
@@ -10448,7 +10253,7 @@ func CGShadingGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShadingRelease
-func CGShadingRelease(shading CGShadingRef) {
+func CGShadingRelease(shading ShadingRef) {
 	_CGShadingRelease(shading)
 	}
 
@@ -10461,7 +10266,7 @@ func CGShadingRelease(shading CGShadingRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShadingRetain
-func CGShadingRetain(shading CGShadingRef) CGShadingRef {
+func CGShadingRetain(shading ShadingRef) ShadingRef {
 	return _CGShadingRetain(shading)
 	}
 
@@ -10561,7 +10366,7 @@ func CGUnregisterScreenRefreshCallback(callback unsafe.Pointer, userInfo unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWaitForScreenRefreshRects(_:_:)
-func CGWaitForScreenRefreshRects(rects unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func CGWaitForScreenRefreshRects(rects unsafe.Pointer, count []uint32) unsafe.Pointer {
 	return _CGWaitForScreenRefreshRects(rects, count)
 	}
 
@@ -10648,7 +10453,7 @@ func CGWindowListCreateDescriptionFromArray(windowArray unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreateImage(_:_:_:_:)
-func CGWindowListCreateImage(screenBounds CGRect, listOption unsafe.Pointer, windowID unsafe.Pointer, imageOption unsafe.Pointer) CGImageRef {
+func CGWindowListCreateImage(screenBounds CGRect, listOption unsafe.Pointer, windowID unsafe.Pointer, imageOption unsafe.Pointer) ImageRef {
 	return _CGWindowListCreateImage(screenBounds, listOption, windowID, imageOption)
 	}
 

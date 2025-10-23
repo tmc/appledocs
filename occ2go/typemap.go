@@ -64,7 +64,25 @@ func MapCTypeToGo(cType, framework string) string {
 	case cType == "bool", cType == "BOOL":
 		return "bool"
 	case strings.Contains(cType, "*"):
-		return "unsafe.Pointer"
+		// Handle pointer-to-primitive types as slices
+		// e.g., "const CGFloat *" -> []float64, "const float *" -> []float32
+		baseType := strings.TrimSpace(strings.ReplaceAll(strings.ReplaceAll(cType, "const", ""), "*", ""))
+		switch baseType {
+		case "CGFloat":
+			return "[]float64"
+		case "float":
+			return "[]float32"
+		case "double":
+			return "[]float64"
+		case "int":
+			return "[]int"
+		case "uint32_t":
+			return "[]uint32"
+		case "uint64_t":
+			return "[]uint64"
+		default:
+			return "unsafe.Pointer"
+		}
 	default:
 		// Default to unsafe.Pointer for unknown types
 		return "unsafe.Pointer"

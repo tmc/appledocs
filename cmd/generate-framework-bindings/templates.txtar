@@ -196,9 +196,6 @@ type Rect = CGRect    // NSRect
 {{end -}}
 
 {{if or (eq .Framework "Foundation") (eq .Framework "ObjectiveC") -}}
-// Type alias for NSTimeInterval
-type TimeInterval = float64  // NSTimeInterval
-
 {{end -}}
 {{if eq .Framework "Foundation" -}}
 // Foundation-specific types
@@ -398,17 +395,6 @@ type {{$classTypeName}} struct {
 // An interface definition for the [{{$structName}}] class.
 type I{{$structName}} interface {
 	{{getInterfaceParent . $.Framework}}
-	{{- range filterPropertyMethods .}}
-	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector))}}
-	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
-	{{- $interfaceType := typeToInterfaceType $goType}}
-	{{- $isInitMethod := hasPrefix .Selector "init"}}
-	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
-	{{- if $hasValidReturnType}}
-	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$interfaceType}}{{end}}{{end}}
-	{{- end}}
-	{{- end}}
-	{{- end}}
 	{{- range .Properties}}
 	{{- if not .IsClassProperty}}
 	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
@@ -423,6 +409,17 @@ type I{{$structName}} interface {
 	{{- $setterParamType := typeToInterfaceType $goType}}
 	Set{{$capitalizedName}}(value {{$setterParamType}})
 	{{- end}}
+	{{- end}}
+	{{- end}}
+	{{- end}}
+	{{- range filterPropertyMethods .}}
+	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $interfaceType := typeToInterfaceType $goType}}
+	{{- $isInitMethod := hasPrefix .Selector "init"}}
+	{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+	{{- if $hasValidReturnType}}
+	{{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$interfaceType}}{{end}}{{end}}
 	{{- end}}
 	{{- end}}
 	{{- end}}
@@ -508,7 +505,7 @@ func {{$constructorName}}({{formatMethodParams .}}) {{$structName}} {
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}} {
 	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{typeToStructName $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else}}
 	objc.Send[objc.ID](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
@@ -530,14 +527,14 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams .}})
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnType}} {
-	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
+	rv := objc.Send[{{typeToStructName $goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
 	return rv
 }
 {{- end}}
 {{- end}}
 {{- end}}
 {{- range filterPropertyMethods .}}
-{{- if not (isEssentialSelector .Selector)}}
+{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
@@ -554,7 +551,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
-	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	rv := objc.Send[{{typeToStructName $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
 	return rv
 	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
@@ -575,7 +572,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 {{template "doc_comment" .}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
-	rv := objc.Send[{{$goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	rv := objc.Send[{{typeToStructName $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
 	return rv
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}
@@ -867,12 +864,6 @@ type (
 	Class = purego.Class
 )
 
-// IObject is the root interface for all Objective-C objects.
-// It provides access to the underlying objc.ID.
-type IObject interface {
-	GetID() ID
-}
-
 var (
 	selCache sync.Map // map[string]purego.SEL
 )
@@ -1019,7 +1010,7 @@ package {{.PackageName}}
 //
 // [Full Topic]: {{convertDocURL $enum.DocURL}}
 {{end -}}
-type {{$enum.Name}} uint
+type {{$enum.Name}} {{enumUnderlyingType $enum}}
 
 {{if gt (len $enum.Cases) 0 -}}
 const (

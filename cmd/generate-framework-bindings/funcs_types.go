@@ -14,8 +14,37 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 	// First apply occ2go's basic C type mapping
 	goType := occ2go.MapCTypeToGo(cType, framework)
 
-	// Then apply our framework-specific mapping to add package qualifiers
-	// For example, CGAffineTransform -> coregraphics.CGAffineTransform
+	// If the result is a Go primitive type (int, float32, string, etc.) or a slice,
+	// return it directly without further processing. This prevents incorrectly
+	// passing Go types back through MapCTypeToGo, which would map "float32" to
+	// "unsafe.Pointer" (since MapCTypeToGo doesn't recognize "float32" as a C type).
+	goPrimitives := map[string]bool{
+		"":               true, // void
+		"string":         true,
+		"int":            true,
+		"int8":           true,
+		"int16":          true,
+		"int32":          true,
+		"int64":          true,
+		"uint":           true,
+		"uint8":          true,
+		"uint16":         true,
+		"uint32":         true,
+		"uint64":         true,
+		"float32":        true,
+		"float64":        true,
+		"bool":           true,
+		"byte":           true,
+		"rune":           true,
+		"uintptr":        true,
+		"unsafe.Pointer": true,
+	}
+	if goPrimitives[goType] || strings.HasPrefix(goType, "[]") {
+		return goType
+	}
+
+	// For non-primitives (CGColorRef, NSWindow, etc.), apply framework-specific mapping
+	// This handles prefix stripping (CGColorRef -> ColorRef) and cross-framework qualification
 	mapped := mapObjCTypeToGo(goType, framework)
 
 	return mapped
@@ -98,10 +127,22 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		elementType := occ2go.ExtractGenericElementType(objcType)
 		if elementType != "" {
 			// Successfully extracted NSArray element type
+			if os.Getenv("DEBUG_OBJECT") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG: ExtractGenericElementType: objcType=%q elementType=%q\n", objcType, elementType)
+			}
 
 			// Special case: NSString -> string
 			if elementType == "NSString" {
 				return "[]string"
+			}
+
+			// Special case: NSObject with protocol conformance (e.g., NSObject<SomeProtocol>)
+			// These should map to []objectivec.IObject
+			if strings.HasPrefix(elementType, "NSObject<") {
+				if os.Getenv("DEBUG_OBJECT") == "1" {
+					fmt.Fprintf(os.Stderr, "DEBUG: Matched NSObject< pattern, returning []objectivec.IObject\n")
+				}
+				return "[]objectivec.IObject"
 			}
 
 			// Strip common Apple prefixes from element types
@@ -701,4 +742,30 @@ func wrapObjCReturn(goType string) string {
 		// Default cast
 		return fmt.Sprintf("%s(ret)", goType)
 	}
+}
+
+// typeToStructName extracts the unqualified struct name from a Go type.
+// This is used for objc.Send[T] calls which need the local struct name.
+// Examples:
+//   foundation.Data -> Data
+//   NSData -> Data
+//   Data -> Data
+//   string -> string
+//   objc.ID -> objc.ID
+func typeToStructName(goType string) string {
+	// Handle empty or basic types
+	if goType == "" || goType == "string" || goType == "bool" || goType == "int" ||
+	   goType == "uint" || goType == "float32" || goType == "float64" ||
+	   strings.HasPrefix(goType, "objc.") || strings.HasPrefix(goType, "unsafe.") {
+		return goType
+	}
+
+	// Strip framework prefix (e.g., "foundation.Data" -> "Data")
+	if strings.Contains(goType, ".") {
+		parts := strings.Split(goType, ".")
+		goType = parts[len(parts)-1]
+	}
+
+	// Strip NS/CG/CA prefixes to get struct name
+	return classToStructName(goType)
 }

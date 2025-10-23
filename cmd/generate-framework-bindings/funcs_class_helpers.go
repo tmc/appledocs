@@ -25,7 +25,7 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 	// Special cases for ObjectiveC framework
 	if framework == "ObjectiveC" {
 		if className == "NSObject" {
-			return "objc.IObject"
+			return ""
 		}
 		return "objectivec.IObject"
 	}

@@ -31,6 +31,7 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		// Type Resolution
 		"shouldSkipTypedef":   gf.shouldSkipTypedef,
 		"typeToInterfaceType": gf.TypeToInterfaceType,
+		"typeToStructName":    typeToStructName,
 
 		// Name Conversion
 		// TODO: Add name conversion methods as they're converted
@@ -124,11 +125,6 @@ func (gf GeneratorFuncs) isTypeInTypesTemplate(typeName string) bool {
 		"Rect":   true, // NSRect/CGRect
 		"Range":  true, // NSRange
 		"Vector": true, // CGVector/NSVector
-	}
-
-	// TimeInterval is defined for Foundation and ObjectiveC
-	if (gf.Framework == "Foundation" || gf.Framework == "ObjectiveC") && typeName == "TimeInterval" {
-		return true
 	}
 
 	// Geometry types are defined in types.gen.go for several frameworks
