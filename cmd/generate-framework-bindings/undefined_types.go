@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -30,6 +31,19 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 		}
 	}
 
+	// TEMPORARY DEBUG: Log total class count for Foundation
+	if g.Framework == "Foundation" {
+		fmt.Printf("[Foundation Debug] Total classes: %d\n", len(g.Classes))
+		appleEventCount := 0
+		for _, cls := range g.Classes {
+			if strings.Contains(cls.Name, "Apple") || strings.Contains(cls.Name, "Event") {
+				appleEventCount++
+				fmt.Printf("[Foundation Debug] Apple/Event class: %s\n", cls.Name)
+			}
+		}
+		fmt.Printf("[Foundation Debug] Apple/Event classes found: %d\n", appleEventCount)
+	}
+
 	// Collect from class methods (only those that will be generated)
 	for _, cls := range g.Classes {
 		// Get the methods that will actually be generated
@@ -40,14 +54,31 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 			// Check return type - use MAPPED type, not raw ObjC type
 			if method.ReturnType != "" && method.ReturnType != "void" {
 				mappedType := mapObjCTypeToGo(method.ReturnType, g.Framework)
-				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+				// If mapping failed, collect the original type
+				if mappedType == "unsafe.Pointer" && !strings.Contains(method.ReturnType, "*") && !strings.Contains(method.ReturnType, "^") && !strings.Contains(method.ReturnType, "Block") {
+					typeToCollect := stripObjCPrefix(method.ReturnType)
+					collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
+				} else {
+					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+				}
 			}
 
 			// Check parameter types - use MAPPED types
 			for _, param := range method.Parameters {
 				if param.Type != "" {
 					mappedType := mapObjCTypeToGo(param.Type, g.Framework)
-					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+					// TEMPORARY DEBUG
+					if g.Framework == "Foundation" && (strings.Contains(param.Type, "AppleEvent") || strings.Contains(param.Type, "Suspension")) {
+						fmt.Printf("[Param Type] class=%s, method=%s, param=%s, objcType=%s, mappedType=%s\n",
+							cls.Name, method.Selector, param.Name, param.Type, mappedType)
+					}
+					// If mapping failed, collect the original type
+					if mappedType == "unsafe.Pointer" && !strings.Contains(param.Type, "*") && !strings.Contains(param.Type, "^") && !strings.Contains(param.Type, "Block") {
+						typeToCollect := stripObjCPrefix(param.Type)
+						collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
+					} else {
+						collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+					}
 				}
 			}
 		}
@@ -56,7 +87,22 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 		for _, prop := range cls.Properties {
 			if prop.Type != "" {
 				mappedType := mapObjCTypeToGo(prop.Type, g.Framework)
-				collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+				// If mapping failed (returned unsafe.Pointer for non-pointer types),
+				// collect the original ObjC type instead so it can be added as fallback
+				if mappedType == "unsafe.Pointer" && !strings.Contains(prop.Type, "*") && !strings.Contains(prop.Type, "^") && !strings.Contains(prop.Type, "Block") {
+					// Strip NS/CG/CA prefix from the ObjC type before collecting
+					typeToCollect := prop.Type
+					if strings.HasPrefix(typeToCollect, "NS") && len(typeToCollect) > 2 && typeToCollect[2] >= 'A' && typeToCollect[2] <= 'Z' {
+						typeToCollect = typeToCollect[2:]
+					} else if strings.HasPrefix(typeToCollect, "CG") && len(typeToCollect) > 2 && typeToCollect[2] >= 'A' && typeToCollect[2] <= 'Z' {
+						typeToCollect = typeToCollect[2:]
+					} else if strings.HasPrefix(typeToCollect, "CA") && len(typeToCollect) > 2 && typeToCollect[2] >= 'A' && typeToCollect[2] <= 'Z' {
+						typeToCollect = typeToCollect[2:]
+					}
+					collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
+				} else {
+					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+				}
 			}
 		}
 	}
@@ -77,12 +123,21 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 
 	// Filter out types that are defined
 	defined := g.getDefinedTypes()
+
+	// TEMPORARY DEBUG: Print all undefined types before filtering
+	fmt.Printf("\n=== UNDEFINED TYPES BEFORE FILTERING (framework=%s) ===\n", g.Framework)
+	for name, ut := range undefined {
+		fmt.Printf("  - %s (refs=%d, baseType=%s)\n", name, ut.References, ut.BaseType)
+	}
+	fmt.Printf("=== END UNDEFINED TYPES ===\n\n")
+
 	for name := range undefined {
 		Debug.Undefined("filtering undefined type", name, g.Framework,
 			"framework", g.Framework,
 			"name", name,
 			"defined", defined[name])
 		if defined[name] {
+			fmt.Printf("FILTERED OUT: %s (marked as defined)\n", name)
 			delete(undefined, name)
 		}
 	}
@@ -99,17 +154,11 @@ func (g *Generator) getGeneratedMethods(cls *occ2go.ParsedClass) []*occ2go.Parse
 
 	result := make([]*occ2go.ParsedMethod, 0)
 
-	// Get property methods (filtered to exclude property accessors that are auto-generated)
-	propertyMethods := filterPropertyMethods(cls)
-	result = append(result, propertyMethods...)
-
-	// Get init methods (constructor-style methods)
-	initMethods := prepareInitMethodsWithClassName(cls.Name, cls.Methods)
-	result = append(result, initMethods...)
-
-	// Get class methods
-	classMethods := prepareClassMethods(cls.Methods)
-	result = append(result, classMethods...)
+	// Get ALL methods - both instance and class methods
+	// This ensures we collect type information from all generated methods
+	for _, method := range cls.Methods {
+		result = append(result, method)
+	}
 
 	// Deduplicate in case there's overlap
 	seen := make(map[string]bool)
@@ -135,6 +184,11 @@ func boolToInt(b bool) int {
 // collectTypeReferences extracts type names from a type string and adds them to undefined.
 // IMPORTANT: This should only be called on MAPPED Go types (after resolveType), not raw ObjC types.
 func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, framework string, typedefNames map[string]bool) {
+	// TEMPORARY DEBUG: Log all calls for Foundation framework
+	if framework == "Foundation" && (strings.Contains(typeStr, "Decoding") || strings.Contains(typeStr, "Quality") || strings.Contains(typeStr, "AppleEvent") || strings.Contains(typeStr, "Progress")) {
+		fmt.Printf("[collectTypeReferences] framework=%s, typeStr=%s\n", framework, typeStr)
+	}
+
 	Debug.Undefined("collectTypeReferences entry", typeStr, framework,
 		"typeStr", typeStr,
 		"framework", framework)
@@ -169,36 +223,51 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 	matches := pattern.FindAllString(typeStr, -1)
 
 	for _, match := range matches {
+		// Strip ObjC prefixes (NS, CG, CA) to match what TypeToInterfaceType will output
+		// This ensures undefined types use the same names as the generated code
+		// Example: NSDecodingFailurePolicy -> DecodingFailurePolicy
+		strippedMatch := match
+		if strings.HasPrefix(match, "NS") && len(match) > 2 && match[2] >= 'A' && match[2] <= 'Z' {
+			strippedMatch = match[2:]
+		} else if strings.HasPrefix(match, "CG") && len(match) > 2 && match[2] >= 'A' && match[2] <= 'Z' {
+			strippedMatch = match[2:]
+		} else if strings.HasPrefix(match, "CA") && len(match) > 2 && match[2] >= 'A' && match[2] <= 'Z' {
+			strippedMatch = match[2:]
+		}
+
 		Debug.Undefined("match found", match, typeStr,
 			"match", match,
-			"isBuiltin", isBuiltinType(match),
-			"isTypedef", typedefNames != nil && typedefNames[match],
+			"strippedMatch", strippedMatch,
+			"isBuiltin", isBuiltinType(strippedMatch),
+			"isTypedef", typedefNames != nil && typedefNames[strippedMatch],
 			"framework", framework)
-		// Skip common built-ins and primitive types
-		if isBuiltinType(match) {
+		// Skip common built-ins and primitive types (check stripped version)
+		if isBuiltinType(strippedMatch) {
 			continue
 		}
 
-		// Skip if this match is a typedef
-		if typedefNames != nil && typedefNames[match] {
+		// Skip if this match is a typedef (check both original and stripped)
+		if typedefNames != nil && (typedefNames[match] || typedefNames[strippedMatch]) {
 			continue
 		}
 
-		// Skip if already tracking
-		if _, exists := undefined[match]; exists {
-			undefined[match].References++
-			Debug.Undefined("incrementing reference count", match, framework,
+		// Skip if already tracking (use stripped name as key)
+		if _, exists := undefined[strippedMatch]; exists {
+			undefined[strippedMatch].References++
+			Debug.Undefined("incrementing reference count", strippedMatch, framework,
 				"match", match,
-				"references", undefined[match].References)
+				"strippedMatch", strippedMatch,
+				"references", undefined[strippedMatch].References)
 		} else {
-			undefined[match] = &UndefinedType{
-				Name:       match,
+			undefined[strippedMatch] = &UndefinedType{
+				Name:       strippedMatch, // Use stripped name
 				Framework:  framework,
 				References: 1,
-				BaseType:   inferBaseType(match),
+				BaseType:   inferBaseType(strippedMatch),
 			}
-			Debug.Undefined("adding new undefined type", match, framework,
+			Debug.Undefined("adding new undefined type", strippedMatch, framework,
 				"match", match,
+				"strippedMatch", strippedMatch,
 				"framework", framework)
 		}
 	}

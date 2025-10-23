@@ -241,6 +241,15 @@ type WindowLevel = int  // NSWindowLevel
 type {{.Name}} = {{.BaseType}}
 
 {{end}}
+{{if eq .Framework "Foundation" -}}
+// Manual fallback types for API collection classes
+// These classes come from API collections and aren't in the parsed class list
+type AppleEventSendOptions = int
+type AppleEventManagerSuspensionID = int
+type DecodingFailurePolicy = int
+type ProgressFileOperationKind = int
+
+{{end -}}
 {{end -}}
 
 -- functions.gen.go --
