@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	g := &Generator{Framework: "Foundation"}
+	g.classIndex = make(map[string]*occ2go.ParsedClass)
+	
+	// Parse all classes
+	docs, _ := appledocs.ParseFrameworkDocs(os.ExpandEnv("$HOME/.appledocs/cache"), "Foundation")
+	for _, doc := range docs {
+		if class, err := occ2go.ParseClassDeclaration(doc); err == nil && class != nil {
+			if class.Name == "NSCharacterSet" {
+				strippedName := strings.TrimPrefix(class.Name, "NS")
+				fmt.Printf("Found NSCharacterSet! Stripped name: %s\n", strippedName)
+				fmt.Printf("Would be stored as: %s\n", strippedName)
+			}
+		}
+	}
+}
