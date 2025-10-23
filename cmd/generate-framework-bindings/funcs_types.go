@@ -542,104 +542,6 @@ func resolveType(framework, typeName string) string {
 		return strings.TrimPrefix(typeName, packagePrefix)
 	}
 
-	// Common Foundation base classes that other frameworks inherit from
-	foundationTypes := map[string]bool{
-		"MutableAttributedString": true,
-		"AttributedString":        true,
-		"Array":                   true,
-		"MutableArray":            true,
-		"Dictionary":              true,
-		"MutableDictionary":       true,
-		"Set":                     true,
-		"MutableSet":              true,
-		"String":                  true,
-		"MutableString":           true,
-		"Data":                    true,
-		"MutableData":             true,
-		"Date":                    true,
-		"URL":                     true,
-		"NSURL":                   true, // Include NS-prefixed version
-		"URLRequest":              true,
-		"MutableURLRequest":       true,
-		"Value":                   true,
-		"Number":                  true,
-		"NSNumber":                true, // Include NS-prefixed version
-		"URLSession":              true,
-		"URLSessionTask":          true,
-		"URLSessionDataTask":      true,
-		"URLSessionUploadTask":    true,
-		"URLSessionDownloadTask":  true,
-		"URLSessionStreamTask":    true,
-		"Enumerator":              true, // For OSLog.OSLogEnumerator
-		"Operation":               true,
-		"OperationQueue":          true,
-		"Expression":              true, // NSExpression - used by CoreData
-		"ExtensionContext":        true, // NSExtensionContext - used by AuthenticationServices
-		"Coder":                   true, // NSCoder - base class for archiving
-		"KeyedArchiver":           true, // NSKeyedArchiver
-		"KeyedUnarchiver":         true, // NSKeyedUnarchiver - used by MetalPerformanceShaders
-		"TimeInterval":            true, // NSTimeInterval - type alias for float64 used by many frameworks
-		"Error":                   true, // NSError - error handling across all frameworks
-		"NSError":                 true, // Include NS-prefixed version
-	}
-
-	// QuartzCore types used by other frameworks
-	quartzCoreTypes := map[string]bool{
-		"Layer":          true, // CALayer
-		"Animation":      true, // CAAnimation
-		"MediaTiming":    true, // CAMediaTiming protocol
-		"Transaction":    true, // CATransaction
-		"TransformLayer": true, // CATransformLayer
-		"OpenGLLayer":    true, // CAOpenGLLayer - used by NSOpenGLLayer in AppKit
-	}
-
-	// AppKit types used by other frameworks (common base classes)
-	appKitTypes := map[string]bool{
-		"Responder":            true, // NSResponder
-		"View":                 true, // NSView
-		"Control":              true, // NSControl
-		"Window":               true, // NSWindow
-		"ViewController":       true, // NSViewController
-		"NavigationController": true, // NSNavigationController (though less common on macOS)
-		"Panel":                true, // NSPanel
-		"Application":          true, // NSApplication
-		"Document":             true, // NSDocument
-		"WindowController":     true, // NSWindowController
-		"Menu":                 true, // NSMenu
-		"MenuItem":             true, // NSMenuItem
-		"BezierPath":           true, // NSBezierPath - used by NSAffineTransform in Foundation
-		"Pasteboard":           true, // NSPasteboard - used by NSURL in Foundation
-	}
-
-	// CoreGraphics types used by other frameworks
-	coreGraphicsTypes := map[string]bool{
-		// Struct types
-		"CGAffineTransform": true,
-		"CGPoint":           true,
-		"CGSize":            true,
-		"CGRect":            true,
-		"CGVector":          true,
-		"CGFloat":           true,
-		// Opaque ref types
-		"CGColorRef":            true,
-		"CGColorSpaceRef":       true,
-		"CGContextRef":          true,
-		"CGImageRef":            true,
-		"CGImageSourceRef":      true,
-		"CGImageDestinationRef": true,
-		"CGPathRef":             true,
-		"CGLayerRef":            true,
-		"CGFontRef":             true,
-		"CGDataProviderRef":     true,
-		"CGDataConsumerRef":     true,
-		"CGFunctionRef":         true,
-		"CGShadingRef":          true,
-		"CGGradientRef":         true,
-		"CGPatternRef":          true,
-		"CGPDFDocumentRef":      true,
-		"CGPDFPageRef":          true,
-	}
-
 	// Check if the type exists in current framework FIRST before adding qualifications
 	// This prevents self-imports (e.g., coregraphics.CGAffineTransform in CoreGraphics)
 	// Check classes, enums, and typedefs - all stored with stripped ObjC prefixes
@@ -651,7 +553,7 @@ func resolveType(framework, typeName string) string {
 		return typeName
 	}
 
-	// Check if we know about this type from the cross-framework registry FIRST
+	// Check if we know about this type from the cross-framework registry
 	// This automatically handles ALL cross-framework types without hardcoding
 	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
 		// Don't qualify types with their own framework name (e.g., foundation.NSString in foundation package)
@@ -669,91 +571,6 @@ func resolveType(framework, typeName string) string {
 			"targetFramework", frameworkPkg)
 		return frameworkPkg + "." + typeName
 	}
-
-	// If we're in CoreGraphics framework, all types are local
-	if framework == "CoreGraphics" && coreGraphicsTypes[typeName] {
-		return typeName
-	}
-
-	// If this is a known CoreGraphics type and we're not in CoreGraphics, qualify it
-	if coreGraphicsTypes[typeName] {
-		// Make sure the type has the CG prefix for proper type reference
-		if !strings.HasPrefix(typeName, "CG") {
-			return "coregraphics.CG" + typeName
-		}
-		return "coregraphics." + typeName
-	}
-
-	// If we're in QuartzCore framework, all types are local
-	if framework == "QuartzCore" && quartzCoreTypes[typeName] {
-		return typeName
-	}
-
-	// If this is a known QuartzCore type and we're not in QuartzCore, qualify it
-	if quartzCoreTypes[typeName] {
-		return "quartzcore." + typeName
-	}
-
-	// If we're in Foundation framework, all types are local
-	if framework == "Foundation" && foundationTypes[typeName] {
-		return typeName
-	}
-
-	// If we're in AppKit (or other frameworks that embed NSObject), Foundation types are also local
-	// since NSObject/Foundation is embedded in the object hierarchy
-	// This includes most UI/system frameworks that depend on Foundation
-	if (framework == "AppKit" || framework == "QuartzCore" || framework == "CoreData" ||
-		framework == "Accessibility" || framework == "Accounts" || framework == "AddressBook" ||
-		framework == "AdServices" || framework == "AdSupport" || framework == "Automator" ||
-		framework == "CallKit" || framework == "ClassKit" || framework == "CloudKit" ||
-		framework == "Collaboration" || framework == "Contacts" || framework == "ContactsUI" ||
-		framework == "CoreLocationUI" || framework == "CryptoKit" || framework == "Darwin" ||
-		framework == "DeviceCheck" || framework == "DocumentPickerUI" || framework == "EventKit" ||
-		framework == "EventKitUI" || framework == "ExtensionKit" || framework == "FileProvider" ||
-		framework == "FileProviderUI" || framework == "GameController" || framework == "GameKit" ||
-		framework == "GLKit" || framework == "HealthKit" || framework == "HealthKitUI" ||
-		framework == "HomeKit" || framework == "IOSurface" || framework == "LocalAuthentication" ||
-		framework == "MapKit" || framework == "MediaAccessibility" || framework == "MediaKit" ||
-		framework == "MessageUI" || framework == "Messages" || framework == "Metal" ||
-		framework == "MetalKit" || framework == "MetalPerformanceShaders" || framework == "ModelIO" ||
-		framework == "MultipeerConnectivity" || framework == "NaturalLanguage" || framework == "Network" ||
-		framework == "NotificationCenter" || framework == "PDFKit" || framework == "PencilKit" ||
-		framework == "Photos" || framework == "PhotosUI" || framework == "PlaygroundSupport" ||
-		framework == "PushKit" || framework == "QuickLook" || framework == "RealityKit" ||
-		framework == "SafariServices" || framework == "SceneKit" || framework == "ScreenTime" ||
-		framework == "Security" || framework == "SensorKit" || framework == "ServiceManagement" ||
-		framework == "SharedWithYou" || framework == "SharedWithYouCore" || framework == "ShazamKit" ||
-		framework == "SiriKit" || framework == "Social" || framework == "SoundAnalysis" ||
-		framework == "Speech" || framework == "SpriteKit" || framework == "StoreKit" ||
-		framework == "SwiftUI" || framework == "SystemConfiguration" || framework == "ThreadNetwork" ||
-		framework == "UserNotifications" || framework == "UserNotificationsUI" || framework == "VideoSubscriberAccount" ||
-		framework == "VideoToolbox" || framework == "Vision" || framework == "VisionKit" ||
-		framework == "WatchConnectivity" || framework == "WatchKit" || framework == "WebKit" ||
-		framework == "WidgetKit") && foundationTypes[typeName] {
-		return typeName
-	}
-
-	// If this is a known Foundation type and we're not in Foundation/AppKit, qualify it
-	if foundationTypes[typeName] {
-		return "foundation." + typeName
-	}
-
-	// If we're in AppKit framework, all types are local
-	if framework == "AppKit" && appKitTypes[typeName] {
-		return typeName
-	}
-
-	// If this is a known AppKit type and we're not in AppKit, qualify it
-	// NOTE: This is now a fallback - registry should handle most cases
-	if appKitTypes[typeName] {
-		Debug.TypeMap("hardcoded appkit fallback", typeName, framework,
-			"typeName", typeName,
-			"framework", framework)
-		return "appkit." + typeName
-	}
-
-	// Registry lookup was already checked above (lines 654-671)
-	// This duplicate check has been removed
 
 	// Before falling back to unsafe.Pointer, check if this type belongs to the current framework
 	// based on naming conventions. For example, in AppKit, types like NSView, NSButton, NSTextCheckingResult
