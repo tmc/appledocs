@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [UserAutomatorTask] class.
@@ -31,10 +30,7 @@ type _UserAutomatorTaskClass struct {
 type IUserAutomatorTask interface {
 	IUserScriptTask
 	// properties:
-	Variables() IDictionary /* already interface */
-	SetVariables(value IDictionary /* already interface */)
 	// methods:
-	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* foo */)
 }
 
 // An object that executes Automator workflows.
@@ -90,34 +86,6 @@ func NewUserAutomatorTask() UserAutomatorTask {
 	return getUserAutomatorTaskClass().New()
 }
 
-
-
-// Execute the Automator workflow by providing it as securely coded input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
-func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* foo */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
-}
-
-
-// The variables required by the Automator workflow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-func (u_ UserAutomatorTask) Variables() IDictionary /* already interface */ {
-	rv := objc.Send[IDictionary](u_.ID, objc.Sel("variables"))
-	return rv
-}
-
-
-// The variables required by the Automator workflow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/variables
-func (u_ UserAutomatorTask) SetVariables(value IDictionary /* already interface */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setVariables:"), value)
-}
 
 
 

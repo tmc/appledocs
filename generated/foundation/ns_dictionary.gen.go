@@ -35,12 +35,12 @@ type IDictionary interface {
 	SetAllKeys(value unsafe.Pointer)
 	AllValues() unsafe.Pointer
 	SetAllValues(value unsafe.Pointer)
-	Count() int /* primitive/slice/pointer */
-	SetCount(value int /* primitive/slice/pointer */)
-	Description() string /* primitive/slice/pointer */
-	SetDescription(value string /* primitive/slice/pointer */)
-	DescriptionInStringsFileFormat() string /* primitive/slice/pointer */
-	SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer */)
+	Count() int /* primitive/slice/pointer. */
+	SetCount(value int /* primitive/slice/pointer. */)
+	Description() string /* primitive/slice/pointer. */
+	SetDescription(value string /* primitive/slice/pointer. */)
+	DescriptionInStringsFileFormat() string /* primitive/slice/pointer. */
+	SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer. */)
 	// methods:
 	KeyEnumerator() unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
@@ -174,7 +174,7 @@ func (d_ Dictionary) SetAllValues(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/count
-func (d_ Dictionary) Count() int /* primitive/slice/pointer */ {
+func (d_ Dictionary) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("count"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (d_ Dictionary) Count() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/count
-func (d_ Dictionary) SetCount(value int /* primitive/slice/pointer */) {
+func (d_ Dictionary) SetCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -193,7 +193,7 @@ func (d_ Dictionary) SetCount(value int /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/description
-func (d_ Dictionary) Description() string /* primitive/slice/pointer */ {
+func (d_ Dictionary) Description() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
@@ -203,7 +203,7 @@ func (d_ Dictionary) Description() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/description
-func (d_ Dictionary) SetDescription(value string /* primitive/slice/pointer */) {
+func (d_ Dictionary) SetDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
@@ -212,7 +212,7 @@ func (d_ Dictionary) SetDescription(value string /* primitive/slice/pointer */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/descriptioninstringsfileformat
-func (d_ Dictionary) DescriptionInStringsFileFormat() string /* primitive/slice/pointer */ {
+func (d_ Dictionary) DescriptionInStringsFileFormat() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
 	return rv
 }
@@ -222,7 +222,7 @@ func (d_ Dictionary) DescriptionInStringsFileFormat() string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdictionary/descriptioninstringsfileformat
-func (d_ Dictionary) SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer */) {
+func (d_ Dictionary) SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescriptionInStringsFileFormat:"), objc.String(value))
 }
 

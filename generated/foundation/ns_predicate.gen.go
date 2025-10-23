@@ -31,8 +31,8 @@ type _PredicateClass struct {
 type IPredicate interface {
 	objectivec.IObject
 	// properties:
-	PredicateFormat() string /* primitive/slice/pointer */
-	SetPredicateFormat(value string /* primitive/slice/pointer */)
+	PredicateFormat() string /* primitive/slice/pointer. */
+	SetPredicateFormat(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewPredicate() Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func NewPredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) Predicate {
+func NewPredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer. */, argList unsafe.Pointer) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
@@ -104,7 +104,7 @@ func NewPredicateWithFormatArguments(predicateFormat string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
-func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) IPredicate {
+func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer. */, argList unsafe.Pointer) IPredicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
 	return rv
 }
@@ -114,7 +114,7 @@ func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspredicate/predicateformat
-func (p_ Predicate) PredicateFormat() string /* primitive/slice/pointer */ {
+func (p_ Predicate) PredicateFormat() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("predicateFormat"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (p_ Predicate) PredicateFormat() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspredicate/predicateformat
-func (p_ Predicate) SetPredicateFormat(value string /* primitive/slice/pointer */) {
+func (p_ Predicate) SetPredicateFormat(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateFormat:"), objc.String(value))
 }
 

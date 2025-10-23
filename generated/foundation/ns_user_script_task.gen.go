@@ -31,9 +31,7 @@ type _UserScriptTaskClass struct {
 type IUserScriptTask interface {
 	objectivec.IObject
 	// properties:
-	ScriptURL() IURL
 	// methods:
-	ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* foo */)
 }
 
 // An object that executes scripts.
@@ -88,36 +86,5 @@ func NewUserScriptTask() UserScriptTask {
 }
 
 
-
-// Return a user script task instance given a URL for a script file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/init(url:)
-func NewUserScriptTaskWithURLError(url IURL, error_ IError) UserScriptTask {
-	instance := getUserScriptTaskClass().Alloc()
-	rv := objc.Send[UserScriptTask](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Executes the script with no input and ignoring any result.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/execute(completionHandler:)
-func (u_ UserScriptTask) ExecuteWithCompletionHandler(handler UserScriptTaskCompletionHandler /* foo */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithCompletionHandler:"), handler)
-}
-
-
-// The URL of the script file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserScriptTask/scriptURL
-func (u_ UserScriptTask) ScriptURL() IURL {
-	rv := objc.Send[URL](u_.ID, objc.Sel("scriptURL"))
-	return rv
-}
 
 

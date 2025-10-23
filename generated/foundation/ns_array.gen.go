@@ -31,10 +31,10 @@ type _ArrayClass struct {
 type IArray interface {
 	objectivec.IObject
 	// properties:
-	Count() int /* primitive/slice/pointer */
-	SetCount(value int /* primitive/slice/pointer */)
-	Description() string /* primitive/slice/pointer */
-	SetDescription(value string /* primitive/slice/pointer */)
+	Count() int /* primitive/slice/pointer. */
+	SetCount(value int /* primitive/slice/pointer. */)
+	Description() string /* primitive/slice/pointer. */
+	SetDescription(value string /* primitive/slice/pointer. */)
 	FirstObject() unsafe.Pointer
 	SetFirstObject(value unsafe.Pointer)
 	LastObject() unsafe.Pointer
@@ -44,8 +44,8 @@ type IArray interface {
 	// methods:
 	DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer
 	DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
-	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer
-	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */
+	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer. */) unsafe.Pointer
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer. */
 	ReverseObjectEnumerator() unsafe.Pointer
 }
 
@@ -126,7 +126,7 @@ func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID /* already interf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:usingEquivalenceTest:
-func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer {
+func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:usingEquivalenceTest:"), other, options, block)
 	return rv
 }
@@ -136,7 +136,7 @@ func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:inSortedRange:options:usingComparator:)
-func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* not a class type */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer */ {
+func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r objc.IObject /* cross-framework Range */, opts BinarySearchingOptions, cmp Comparator /* not a class type */) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
 	return rv
 }
@@ -156,7 +156,7 @@ func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarray/count
-func (a_ Array) Count() int /* primitive/slice/pointer */ {
+func (a_ Array) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("count"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (a_ Array) Count() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarray/count
-func (a_ Array) SetCount(value int /* primitive/slice/pointer */) {
+func (a_ Array) SetCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -175,7 +175,7 @@ func (a_ Array) SetCount(value int /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarray/description
-func (a_ Array) Description() string /* primitive/slice/pointer */ {
+func (a_ Array) Description() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("description"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (a_ Array) Description() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarray/description
-func (a_ Array) SetDescription(value string /* primitive/slice/pointer */) {
+func (a_ Array) SetDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 

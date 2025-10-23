@@ -31,8 +31,8 @@ type _URLQueryItemClass struct {
 type IURLQueryItem interface {
 	objectivec.IObject
 	// properties:
-	Name() string /* primitive/slice/pointer */
-	Value() string /* primitive/slice/pointer */
+	Name() string /* primitive/slice/pointer. */
+	Value() string /* primitive/slice/pointer. */
 	QueryItems() IURLQueryItem
 	SetQueryItems(value IURLQueryItem)
 	// methods:
@@ -95,7 +95,7 @@ func NewURLQueryItem() URLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/init(name:value:)
-func NewURLQueryItemWithNameValue(name string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */) URLQueryItem {
+func NewURLQueryItemWithNameValue(name string /* primitive/slice/pointer. */, value string /* primitive/slice/pointer. */) URLQueryItem {
 	instance := getURLQueryItemClass().Alloc()
 	rv := objc.Send[URLQueryItem](instance.ID, objc.Sel("initWithName:value:"), objc.String(name), objc.String(value))
 	rv.Autorelease()
@@ -108,7 +108,7 @@ func NewURLQueryItemWithNameValue(name string /* primitive/slice/pointer */, val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/queryItemWithName:value:
-func (uc _URLQueryItemClass) QueryItemWithNameValue(name string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */) unsafe.Pointer {
+func (uc _URLQueryItemClass) QueryItemWithNameValue(name string /* primitive/slice/pointer. */, value string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("queryItemWithName:value:"), objc.String(name), objc.String(value))
 	return rv
 }
@@ -118,7 +118,7 @@ func (uc _URLQueryItemClass) QueryItemWithNameValue(name string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/name
-func (u_ URLQueryItem) Name() string /* primitive/slice/pointer */ {
+func (u_ URLQueryItem) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("name"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (u_ URLQueryItem) Name() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-func (u_ URLQueryItem) Value() string /* primitive/slice/pointer */ {
+func (u_ URLQueryItem) Value() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
 }

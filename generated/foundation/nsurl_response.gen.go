@@ -33,12 +33,12 @@ type IURLResponse interface {
 	// properties:
 	ExpectedContentLength() unsafe.Pointer
 	SetExpectedContentLength(value unsafe.Pointer)
-	MimeType() string /* primitive/slice/pointer */
-	SetMimeType(value string /* primitive/slice/pointer */)
-	SuggestedFilename() string /* primitive/slice/pointer */
-	SetSuggestedFilename(value string /* primitive/slice/pointer */)
-	TextEncodingName() string /* primitive/slice/pointer */
-	SetTextEncodingName(value string /* primitive/slice/pointer */)
+	MimeType() string /* primitive/slice/pointer. */
+	SetMimeType(value string /* primitive/slice/pointer. */)
+	SuggestedFilename() string /* primitive/slice/pointer. */
+	SetSuggestedFilename(value string /* primitive/slice/pointer. */)
+	TextEncodingName() string /* primitive/slice/pointer. */
+	SetTextEncodingName(value string /* primitive/slice/pointer. */)
 	Url() IURL
 	SetUrl(value IURL)
 	// methods:
@@ -120,7 +120,7 @@ func (u_ URLResponse) SetExpectedContentLength(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/mimetype
-func (u_ URLResponse) MimeType() string /* primitive/slice/pointer */ {
+func (u_ URLResponse) MimeType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("mimeType"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (u_ URLResponse) MimeType() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/mimetype
-func (u_ URLResponse) SetMimeType(value string /* primitive/slice/pointer */) {
+func (u_ URLResponse) SetMimeType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMimeType:"), objc.String(value))
 }
 
@@ -139,7 +139,7 @@ func (u_ URLResponse) SetMimeType(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
-func (u_ URLResponse) SuggestedFilename() string /* primitive/slice/pointer */ {
+func (u_ URLResponse) SuggestedFilename() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("suggestedFilename"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (u_ URLResponse) SuggestedFilename() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
-func (u_ URLResponse) SetSuggestedFilename(value string /* primitive/slice/pointer */) {
+func (u_ URLResponse) SetSuggestedFilename(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), objc.String(value))
 }
 
@@ -158,7 +158,7 @@ func (u_ URLResponse) SetSuggestedFilename(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
-func (u_ URLResponse) TextEncodingName() string /* primitive/slice/pointer */ {
+func (u_ URLResponse) TextEncodingName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("textEncodingName"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (u_ URLResponse) TextEncodingName() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
-func (u_ URLResponse) SetTextEncodingName(value string /* primitive/slice/pointer */) {
+func (u_ URLResponse) SetTextEncodingName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), objc.String(value))
 }
 

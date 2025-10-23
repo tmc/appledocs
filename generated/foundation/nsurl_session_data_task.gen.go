@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [URLSessionDataTask] class.
@@ -28,31 +29,24 @@ type _URLSessionDataTaskClass struct {
 
 // An interface definition for the [URLSessionDataTask] class.
 type IURLSessionDataTask interface {
-	IURLSessionTask
+	objectivec.IObject
 	// properties:
 	// methods:
 }
 
-// A URL session task that returns downloaded data directly to the app in memory.
-//
-// A is a concrete subclass of . The methods in the class are documented in . A data task returns data directly to the app (in memory) as one or more objects. When you use a data task: During upload of the body data (if your app provides any), the session periodically calls its delegate’s method with status information. After receiving an initial response, the session calls its delegate’s method to let you examine the status code and headers, and optionally convert the data task into a download task. During the transfer, the session calls its delegate’s method to provide your app with the content as it arrives. Upon completion, the session calls its delegate’s method to let you determine whether the response should be cached. For examples of using data tasks for fetching and uploading data, see and .
+// A parent class referenced by other Foundation classes.
 
 
-// A URL session task that returns downloaded data directly to the app in memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionDataTask
+// A parent class referenced by other Foundation classes. [Full Topic]
 type URLSessionDataTask struct {
-	URLSessionTask
+	objectivec.Object
 }
 
 // URLSessionDataTaskFrom constructs a [URLSessionDataTask] from an unsafe.Pointer.
 //
-// A URL session task that returns downloaded data directly to the app in memory.
+// A parent class referenced by other Foundation classes.
 func URLSessionDataTaskFrom(ptr unsafe.Pointer) URLSessionDataTask {
-	return URLSessionDataTask{
-		URLSessionTask: URLSessionTaskFrom(ptr),
-	}
+	return URLSessionDataTask{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.

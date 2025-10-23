@@ -13,7 +13,7 @@ var _ = foundation.NewInvocationOperation
 // Returns an   object initialized with the specified invocation object.
 func ExampleNewInvocationOperationWithInvocation() {
 	_ = foundation.NewInvocationOperationWithInvocation(
-		foundation.NSInvocation{}, // inv NSInvocation
+		foundation.Invocation{}, // inv Invocation
 	)
 	// Output:
 }

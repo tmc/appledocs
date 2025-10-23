@@ -31,81 +31,81 @@ type _DateFormatterClass struct {
 type IDateFormatter interface {
 	IFormatter
 	// properties:
-	AMSymbol() string /* primitive/slice/pointer */
-	SetAMSymbol(value string /* primitive/slice/pointer */)
+	AMSymbol() string /* primitive/slice/pointer. */
+	SetAMSymbol(value string /* primitive/slice/pointer. */)
 	Calendar() ICalendar
 	SetCalendar(value ICalendar)
-	DateFormat() string /* primitive/slice/pointer */
-	SetDateFormat(value string /* primitive/slice/pointer */)
+	DateFormat() string /* primitive/slice/pointer. */
+	SetDateFormat(value string /* primitive/slice/pointer. */)
 	DateStyle() DateFormatterStyle
 	SetDateStyle(value DateFormatterStyle)
 	DefaultDate() IDate
 	SetDefaultDate(value IDate)
-	DoesRelativeDateFormatting() bool /* primitive/slice/pointer */
-	SetDoesRelativeDateFormatting(value bool /* primitive/slice/pointer */)
-	EraSymbols() []string /* primitive/slice/pointer */
-	SetEraSymbols(value []string /* primitive/slice/pointer */)
+	DoesRelativeDateFormatting() bool /* primitive/slice/pointer. */
+	SetDoesRelativeDateFormatting(value bool /* primitive/slice/pointer. */)
+	EraSymbols() []string /* primitive/slice/pointer. */
+	SetEraSymbols(value []string /* primitive/slice/pointer. */)
 	FormatterBehavior() DateFormatterBehavior
 	SetFormatterBehavior(value DateFormatterBehavior)
-	FormattingContext() int /* primitive/slice/pointer */
-	SetFormattingContext(value int /* primitive/slice/pointer */)
-	GeneratesCalendarDates() bool /* primitive/slice/pointer */
-	SetGeneratesCalendarDates(value bool /* primitive/slice/pointer */)
+	FormattingContext() int /* primitive/slice/pointer. */
+	SetFormattingContext(value int /* primitive/slice/pointer. */)
+	GeneratesCalendarDates() bool /* primitive/slice/pointer. */
+	SetGeneratesCalendarDates(value bool /* primitive/slice/pointer. */)
 	GregorianStartDate() IDate
 	SetGregorianStartDate(value IDate)
-	Lenient() bool /* primitive/slice/pointer */
-	SetLenient(value bool /* primitive/slice/pointer */)
+	Lenient() bool /* primitive/slice/pointer. */
+	SetLenient(value bool /* primitive/slice/pointer. */)
 	Locale() ILocale
 	SetLocale(value ILocale)
-	LongEraSymbols() []string /* primitive/slice/pointer */
-	SetLongEraSymbols(value []string /* primitive/slice/pointer */)
-	MonthSymbols() []string /* primitive/slice/pointer */
-	SetMonthSymbols(value []string /* primitive/slice/pointer */)
-	PMSymbol() string /* primitive/slice/pointer */
-	SetPMSymbol(value string /* primitive/slice/pointer */)
-	QuarterSymbols() []string /* primitive/slice/pointer */
-	SetQuarterSymbols(value []string /* primitive/slice/pointer */)
-	ShortMonthSymbols() []string /* primitive/slice/pointer */
-	SetShortMonthSymbols(value []string /* primitive/slice/pointer */)
-	ShortQuarterSymbols() []string /* primitive/slice/pointer */
-	SetShortQuarterSymbols(value []string /* primitive/slice/pointer */)
-	ShortStandaloneMonthSymbols() []string /* primitive/slice/pointer */
-	SetShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer */)
-	ShortStandaloneQuarterSymbols() []string /* primitive/slice/pointer */
-	SetShortStandaloneQuarterSymbols(value []string /* primitive/slice/pointer */)
-	ShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer */
-	SetShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */)
-	ShortWeekdaySymbols() []string /* primitive/slice/pointer */
-	SetShortWeekdaySymbols(value []string /* primitive/slice/pointer */)
-	StandaloneMonthSymbols() []string /* primitive/slice/pointer */
-	SetStandaloneMonthSymbols(value []string /* primitive/slice/pointer */)
-	StandaloneQuarterSymbols() []string /* primitive/slice/pointer */
-	SetStandaloneQuarterSymbols(value []string /* primitive/slice/pointer */)
-	StandaloneWeekdaySymbols() []string /* primitive/slice/pointer */
-	SetStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */)
+	LongEraSymbols() []string /* primitive/slice/pointer. */
+	SetLongEraSymbols(value []string /* primitive/slice/pointer. */)
+	MonthSymbols() []string /* primitive/slice/pointer. */
+	SetMonthSymbols(value []string /* primitive/slice/pointer. */)
+	PMSymbol() string /* primitive/slice/pointer. */
+	SetPMSymbol(value string /* primitive/slice/pointer. */)
+	QuarterSymbols() []string /* primitive/slice/pointer. */
+	SetQuarterSymbols(value []string /* primitive/slice/pointer. */)
+	ShortMonthSymbols() []string /* primitive/slice/pointer. */
+	SetShortMonthSymbols(value []string /* primitive/slice/pointer. */)
+	ShortQuarterSymbols() []string /* primitive/slice/pointer. */
+	SetShortQuarterSymbols(value []string /* primitive/slice/pointer. */)
+	ShortStandaloneMonthSymbols() []string /* primitive/slice/pointer. */
+	SetShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */)
+	ShortStandaloneQuarterSymbols() []string /* primitive/slice/pointer. */
+	SetShortStandaloneQuarterSymbols(value []string /* primitive/slice/pointer. */)
+	ShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */)
+	ShortWeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetShortWeekdaySymbols(value []string /* primitive/slice/pointer. */)
+	StandaloneMonthSymbols() []string /* primitive/slice/pointer. */
+	SetStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */)
+	StandaloneQuarterSymbols() []string /* primitive/slice/pointer. */
+	SetStandaloneQuarterSymbols(value []string /* primitive/slice/pointer. */)
+	StandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */)
 	TimeStyle() DateFormatterStyle
 	SetTimeStyle(value DateFormatterStyle)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	TwoDigitStartDate() IDate
 	SetTwoDigitStartDate(value IDate)
-	VeryShortMonthSymbols() []string /* primitive/slice/pointer */
-	SetVeryShortMonthSymbols(value []string /* primitive/slice/pointer */)
-	VeryShortStandaloneMonthSymbols() []string /* primitive/slice/pointer */
-	SetVeryShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer */)
-	VeryShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer */
-	SetVeryShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */)
-	VeryShortWeekdaySymbols() []string /* primitive/slice/pointer */
-	SetVeryShortWeekdaySymbols(value []string /* primitive/slice/pointer */)
-	WeekdaySymbols() []string /* primitive/slice/pointer */
-	SetWeekdaySymbols(value []string /* primitive/slice/pointer */)
-	IsLenient() bool /* primitive/slice/pointer */
-	SetIsLenient(value bool /* primitive/slice/pointer */)
+	VeryShortMonthSymbols() []string /* primitive/slice/pointer. */
+	SetVeryShortMonthSymbols(value []string /* primitive/slice/pointer. */)
+	VeryShortStandaloneMonthSymbols() []string /* primitive/slice/pointer. */
+	SetVeryShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */)
+	VeryShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetVeryShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */)
+	VeryShortWeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetVeryShortWeekdaySymbols(value []string /* primitive/slice/pointer. */)
+	WeekdaySymbols() []string /* primitive/slice/pointer. */
+	SetWeekdaySymbols(value []string /* primitive/slice/pointer. */)
+	IsLenient() bool /* primitive/slice/pointer. */
+	SetIsLenient(value bool /* primitive/slice/pointer. */)
 	// methods:
-	DateFromString(string_ string /* primitive/slice/pointer */) IDate
-	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer */)
-	StringFromDate(date IDate) String /* not a class type */
+	DateFromString(string_ string /* primitive/slice/pointer. */) IDate
+	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer. */, rangep objc.IObject /* cross-framework Range */, error_ IError) bool /* primitive/slice/pointer. */
+	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer. */)
+	StringFromDate(date IDate) IString
 }
 
 // A formatter that converts between dates and their textual representations.
@@ -167,7 +167,7 @@ func NewDateFormatter() DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
-func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) DateFormatter {
+func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) DateFormatter {
 	instance := getDateFormatterClass().Alloc()
 	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)
 	rv.Autorelease()
@@ -180,7 +180,7 @@ func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat(fromTemplate:options:locale:)
-func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer */, opts uint /* primitive/slice/pointer */, locale ILocale) String /* not a class type */ {
+func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string /* primitive/slice/pointer. */, opts uint /* primitive/slice/pointer. */, locale ILocale) IString {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("dateFormatFromTemplate:options:locale:"), objc.String(tmplate), opts, locale)
 	return rv
 }
@@ -190,7 +190,7 @@ func (dc _DateFormatterClass) DateFormatFromTemplateOptionsLocale(tmplate string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/localizedString(from:dateStyle:timeStyle:)
-func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) String /* not a class type */ {
+func (dc _DateFormatterClass) LocalizedStringFromDateDateStyleTimeStyle(date IDate, dstyle DateFormatterStyle, tstyle DateFormatterStyle) IString {
 	rv := objc.Send[String](objc.ID(dc.class), objc.Sel("localizedStringFromDate:dateStyle:timeStyle:"), date, dstyle, tstyle)
 	return rv
 }
@@ -209,7 +209,7 @@ func (dc _DateFormatterClass) DefaultFormatterBehavior() DateFormatterBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/date(from:)
-func (d_ DateFormatter) DateFromString(string_ string /* primitive/slice/pointer */) IDate {
+func (d_ DateFormatter) DateFromString(string_ string /* primitive/slice/pointer. */) IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
@@ -219,7 +219,7 @@ func (d_ DateFormatter) DateFromString(string_ string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/getObjectValue(_:for:range:)
-func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer */, rangep Range /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string /* primitive/slice/pointer. */, rangep objc.IObject /* cross-framework Range */, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("getObjectValue:forString:range:error:"), obj, objc.String(string_), rangep, error_)
 	return rv
 }
@@ -229,7 +229,7 @@ func (d_ DateFormatter) GetObjectValueForStringRangeError(obj objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/setLocalizedDateFormatFromTemplate(_:)
-func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedDateFormatFromTemplate:"), objc.String(dateFormatTemplate))
 }
 
@@ -238,7 +238,7 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/string(from:)
-func (d_ DateFormatter) StringFromDate(date IDate) String /* not a class type */ {
+func (d_ DateFormatter) StringFromDate(date IDate) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }
@@ -248,7 +248,7 @@ func (d_ DateFormatter) StringFromDate(date IDate) String /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/amSymbol
-func (d_ DateFormatter) AMSymbol() string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) AMSymbol() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("AMSymbol"))
 	return rv
 }
@@ -258,7 +258,7 @@ func (d_ DateFormatter) AMSymbol() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/amSymbol
-func (d_ DateFormatter) SetAMSymbol(value string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetAMSymbol(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAMSymbol:"), objc.String(value))
 }
 
@@ -286,7 +286,7 @@ func (d_ DateFormatter) SetCalendar(value ICalendar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) DateFormat() string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) DateFormat() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("dateFormat"))
 	return rv
 }
@@ -296,7 +296,7 @@ func (d_ DateFormatter) DateFormat() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) SetDateFormat(value string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetDateFormat(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), objc.String(value))
 }
 
@@ -362,7 +362,7 @@ func (d_ DateFormatter) SetDefaultFormatterBehavior(value DateFormatterBehavior)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/doesRelativeDateFormatting
-func (d_ DateFormatter) DoesRelativeDateFormatting() bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) DoesRelativeDateFormatting() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("doesRelativeDateFormatting"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (d_ DateFormatter) DoesRelativeDateFormatting() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/doesRelativeDateFormatting
-func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDoesRelativeDateFormatting:"), value)
 }
 
@@ -381,7 +381,7 @@ func (d_ DateFormatter) SetDoesRelativeDateFormatting(value bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/eraSymbols
-func (d_ DateFormatter) EraSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) EraSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("eraSymbols"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (d_ DateFormatter) EraSymbols() []string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/eraSymbols
-func (d_ DateFormatter) SetEraSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetEraSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -429,7 +429,7 @@ func (d_ DateFormatter) SetFormatterBehavior(value DateFormatterBehavior) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-func (d_ DateFormatter) FormattingContext() int /* primitive/slice/pointer */ {
+func (d_ DateFormatter) FormattingContext() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("formattingContext"))
 	return rv
 }
@@ -439,7 +439,7 @@ func (d_ DateFormatter) FormattingContext() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/formattingContext
-func (d_ DateFormatter) SetFormattingContext(value int /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetFormattingContext(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
@@ -448,7 +448,7 @@ func (d_ DateFormatter) SetFormattingContext(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/generatesCalendarDates
-func (d_ DateFormatter) GeneratesCalendarDates() bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) GeneratesCalendarDates() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("generatesCalendarDates"))
 	return rv
 }
@@ -458,7 +458,7 @@ func (d_ DateFormatter) GeneratesCalendarDates() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/generatesCalendarDates
-func (d_ DateFormatter) SetGeneratesCalendarDates(value bool /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetGeneratesCalendarDates(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGeneratesCalendarDates:"), value)
 }
 
@@ -486,7 +486,7 @@ func (d_ DateFormatter) SetGregorianStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/isLenient
-func (d_ DateFormatter) Lenient() bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) Lenient() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("lenient"))
 	return rv
 }
@@ -496,7 +496,7 @@ func (d_ DateFormatter) Lenient() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/isLenient
-func (d_ DateFormatter) SetLenient(value bool /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetLenient(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLenient:"), value)
 }
 
@@ -524,7 +524,7 @@ func (d_ DateFormatter) SetLocale(value ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/longEraSymbols
-func (d_ DateFormatter) LongEraSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) LongEraSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("longEraSymbols"))
 	return rv
 }
@@ -534,7 +534,7 @@ func (d_ DateFormatter) LongEraSymbols() []string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/longEraSymbols
-func (d_ DateFormatter) SetLongEraSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetLongEraSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -553,7 +553,7 @@ func (d_ DateFormatter) SetLongEraSymbols(value []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
-func (d_ DateFormatter) MonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) MonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("monthSymbols"))
 	return rv
 }
@@ -563,7 +563,7 @@ func (d_ DateFormatter) MonthSymbols() []string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/monthSymbols
-func (d_ DateFormatter) SetMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -582,7 +582,7 @@ func (d_ DateFormatter) SetMonthSymbols(value []string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/pmSymbol
-func (d_ DateFormatter) PMSymbol() string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) PMSymbol() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("PMSymbol"))
 	return rv
 }
@@ -592,7 +592,7 @@ func (d_ DateFormatter) PMSymbol() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/pmSymbol
-func (d_ DateFormatter) SetPMSymbol(value string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetPMSymbol(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPMSymbol:"), objc.String(value))
 }
 
@@ -601,7 +601,7 @@ func (d_ DateFormatter) SetPMSymbol(value string /* primitive/slice/pointer */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/quarterSymbols
-func (d_ DateFormatter) QuarterSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) QuarterSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("quarterSymbols"))
 	return rv
 }
@@ -611,7 +611,7 @@ func (d_ DateFormatter) QuarterSymbols() []string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/quarterSymbols
-func (d_ DateFormatter) SetQuarterSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetQuarterSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -630,7 +630,7 @@ func (d_ DateFormatter) SetQuarterSymbols(value []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
-func (d_ DateFormatter) ShortMonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortMonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortMonthSymbols"))
 	return rv
 }
@@ -640,7 +640,7 @@ func (d_ DateFormatter) ShortMonthSymbols() []string /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortMonthSymbols
-func (d_ DateFormatter) SetShortMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -659,7 +659,7 @@ func (d_ DateFormatter) SetShortMonthSymbols(value []string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortQuarterSymbols
-func (d_ DateFormatter) ShortQuarterSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortQuarterSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortQuarterSymbols"))
 	return rv
 }
@@ -669,7 +669,7 @@ func (d_ DateFormatter) ShortQuarterSymbols() []string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortQuarterSymbols
-func (d_ DateFormatter) SetShortQuarterSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortQuarterSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -688,7 +688,7 @@ func (d_ DateFormatter) SetShortQuarterSymbols(value []string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
-func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneMonthSymbols"))
 	return rv
 }
@@ -698,7 +698,7 @@ func (d_ DateFormatter) ShortStandaloneMonthSymbols() []string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneMonthSymbols
-func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -717,7 +717,7 @@ func (d_ DateFormatter) SetShortStandaloneMonthSymbols(value []string /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneQuarterSymbols
-func (d_ DateFormatter) ShortStandaloneQuarterSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortStandaloneQuarterSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
 	return rv
 }
@@ -727,7 +727,7 @@ func (d_ DateFormatter) ShortStandaloneQuarterSymbols() []string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneQuarterSymbols
-func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -746,7 +746,7 @@ func (d_ DateFormatter) SetShortStandaloneQuarterSymbols(value []string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
-func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
 	return rv
 }
@@ -756,7 +756,7 @@ func (d_ DateFormatter) ShortStandaloneWeekdaySymbols() []string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortStandaloneWeekdaySymbols
-func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -775,7 +775,7 @@ func (d_ DateFormatter) SetShortStandaloneWeekdaySymbols(value []string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
-func (d_ DateFormatter) ShortWeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) ShortWeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("shortWeekdaySymbols"))
 	return rv
 }
@@ -785,7 +785,7 @@ func (d_ DateFormatter) ShortWeekdaySymbols() []string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/shortWeekdaySymbols
-func (d_ DateFormatter) SetShortWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetShortWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -804,7 +804,7 @@ func (d_ DateFormatter) SetShortWeekdaySymbols(value []string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
-func (d_ DateFormatter) StandaloneMonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) StandaloneMonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneMonthSymbols"))
 	return rv
 }
@@ -814,7 +814,7 @@ func (d_ DateFormatter) StandaloneMonthSymbols() []string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneMonthSymbols
-func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -833,7 +833,7 @@ func (d_ DateFormatter) SetStandaloneMonthSymbols(value []string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneQuarterSymbols
-func (d_ DateFormatter) StandaloneQuarterSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) StandaloneQuarterSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneQuarterSymbols"))
 	return rv
 }
@@ -843,7 +843,7 @@ func (d_ DateFormatter) StandaloneQuarterSymbols() []string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneQuarterSymbols
-func (d_ DateFormatter) SetStandaloneQuarterSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetStandaloneQuarterSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -862,7 +862,7 @@ func (d_ DateFormatter) SetStandaloneQuarterSymbols(value []string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneWeekdaySymbols
-func (d_ DateFormatter) StandaloneWeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) StandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("standaloneWeekdaySymbols"))
 	return rv
 }
@@ -872,7 +872,7 @@ func (d_ DateFormatter) StandaloneWeekdaySymbols() []string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/standaloneWeekdaySymbols
-func (d_ DateFormatter) SetStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -948,7 +948,7 @@ func (d_ DateFormatter) SetTwoDigitStartDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortMonthSymbols
-func (d_ DateFormatter) VeryShortMonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) VeryShortMonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("veryShortMonthSymbols"))
 	return rv
 }
@@ -958,7 +958,7 @@ func (d_ DateFormatter) VeryShortMonthSymbols() []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortMonthSymbols
-func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -977,7 +977,7 @@ func (d_ DateFormatter) SetVeryShortMonthSymbols(value []string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortStandaloneMonthSymbols
-func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
 }
@@ -987,7 +987,7 @@ func (d_ DateFormatter) VeryShortStandaloneMonthSymbols() []string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortStandaloneMonthSymbols
-func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1006,7 +1006,7 @@ func (d_ DateFormatter) SetVeryShortStandaloneMonthSymbols(value []string /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortStandaloneWeekdaySymbols
-func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
 }
@@ -1016,7 +1016,7 @@ func (d_ DateFormatter) VeryShortStandaloneWeekdaySymbols() []string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortStandaloneWeekdaySymbols
-func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1035,7 +1035,7 @@ func (d_ DateFormatter) SetVeryShortStandaloneWeekdaySymbols(value []string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortWeekdaySymbols
-func (d_ DateFormatter) VeryShortWeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) VeryShortWeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
 }
@@ -1045,7 +1045,7 @@ func (d_ DateFormatter) VeryShortWeekdaySymbols() []string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/veryShortWeekdaySymbols
-func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1064,7 +1064,7 @@ func (d_ DateFormatter) SetVeryShortWeekdaySymbols(value []string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
-func (d_ DateFormatter) WeekdaySymbols() []string /* primitive/slice/pointer */ {
+func (d_ DateFormatter) WeekdaySymbols() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](d_.ID, objc.Sel("weekdaySymbols"))
 	return rv
 }
@@ -1074,7 +1074,7 @@ func (d_ DateFormatter) WeekdaySymbols() []string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/weekdaySymbols
-func (d_ DateFormatter) SetWeekdaySymbols(value []string /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetWeekdaySymbols(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1093,7 +1093,7 @@ func (d_ DateFormatter) SetWeekdaySymbols(value []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
-func (d_ DateFormatter) IsLenient() bool /* primitive/slice/pointer */ {
+func (d_ DateFormatter) IsLenient() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isLenient"))
 	return rv
 }
@@ -1103,7 +1103,7 @@ func (d_ DateFormatter) IsLenient() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/dateformatter/islenient
-func (d_ DateFormatter) SetIsLenient(value bool /* primitive/slice/pointer */) {
+func (d_ DateFormatter) SetIsLenient(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLenient:"), value)
 }
 

@@ -31,7 +31,7 @@ type _MapTableClass struct {
 type IMapTable interface {
 	objectivec.IObject
 	// properties:
-	Count() uint /* primitive/slice/pointer */
+	Count() uint /* primitive/slice/pointer. */
 	KeyPointerFunctions() IPointerFunctions
 	ValuePointerFunctions() IPointerFunctions
 	// methods:
@@ -111,7 +111,7 @@ func NewMapTableWithKeyOptionsValueOptions(keyOptions PointerFunctionsOptions, v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyOptions:valueOptions:capacity:)
-func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions, initialCapacity uint /* primitive/slice/pointer */) MapTable {
+func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOptions, valueOptions PointerFunctionsOptions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
 	instance := getMapTableClass().Alloc()
 	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyOptions:valueOptions:capacity:"), keyOptions, valueOptions, initialCapacity)
 	rv.Autorelease()
@@ -123,7 +123,7 @@ func NewMapTableWithKeyOptionsValueOptionsCapacity(keyOptions PointerFunctionsOp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/init(keyPointerFunctions:valuePointerFunctions:capacity:)
-func NewMapTableWithKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions IPointerFunctions, valueFunctions IPointerFunctions, initialCapacity uint /* primitive/slice/pointer */) MapTable {
+func NewMapTableWithKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions IPointerFunctions, valueFunctions IPointerFunctions, initialCapacity uint /* primitive/slice/pointer. */) MapTable {
 	instance := getMapTableClass().Alloc()
 	rv := objc.Send[MapTable](instance.ID, objc.Sel("initWithKeyPointerFunctions:valuePointerFunctions:capacity:"), keyFunctions, valueFunctions, initialCapacity)
 	rv.Autorelease()
@@ -293,7 +293,7 @@ func (m_ MapTable) SetObjectForKey(anObject unsafe.Pointer, aKey unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/count
-func (m_ MapTable) Count() uint /* primitive/slice/pointer */ {
+func (m_ MapTable) Count() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("count"))
 	return rv
 }

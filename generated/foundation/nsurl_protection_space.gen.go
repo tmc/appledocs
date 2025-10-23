@@ -31,22 +31,22 @@ type _URLProtectionSpaceClass struct {
 type IURLProtectionSpace interface {
 	objectivec.IObject
 	// properties:
-	AuthenticationMethod() string /* primitive/slice/pointer */
-	SetAuthenticationMethod(value string /* primitive/slice/pointer */)
+	AuthenticationMethod() string /* primitive/slice/pointer. */
+	SetAuthenticationMethod(value string /* primitive/slice/pointer. */)
 	DistinguishedNames() IData
 	SetDistinguishedNames(value IData)
-	Host() string /* primitive/slice/pointer */
-	SetHost(value string /* primitive/slice/pointer */)
-	Port() int /* primitive/slice/pointer */
-	SetPort(value int /* primitive/slice/pointer */)
-	Protocol() string /* primitive/slice/pointer */
-	SetProtocol(value string /* primitive/slice/pointer */)
-	ProxyType() string /* primitive/slice/pointer */
-	SetProxyType(value string /* primitive/slice/pointer */)
-	Realm() string /* primitive/slice/pointer */
-	SetRealm(value string /* primitive/slice/pointer */)
-	ReceivesCredentialSecurely() bool /* primitive/slice/pointer */
-	SetReceivesCredentialSecurely(value bool /* primitive/slice/pointer */)
+	Host() string /* primitive/slice/pointer. */
+	SetHost(value string /* primitive/slice/pointer. */)
+	Port() int /* primitive/slice/pointer. */
+	SetPort(value int /* primitive/slice/pointer. */)
+	Protocol() string /* primitive/slice/pointer. */
+	SetProtocol(value string /* primitive/slice/pointer. */)
+	ProxyType() string /* primitive/slice/pointer. */
+	SetProxyType(value string /* primitive/slice/pointer. */)
+	Realm() string /* primitive/slice/pointer. */
+	SetRealm(value string /* primitive/slice/pointer. */)
+	ReceivesCredentialSecurely() bool /* primitive/slice/pointer. */
+	SetReceivesCredentialSecurely(value bool /* primitive/slice/pointer. */)
 	ServerTrust() unsafe.Pointer
 	SetServerTrust(value unsafe.Pointer)
 	// methods:
@@ -109,7 +109,7 @@ func NewURLProtectionSpace() URLProtectionSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/authenticationmethod
-func (u_ URLProtectionSpace) AuthenticationMethod() string /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) AuthenticationMethod() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (u_ URLProtectionSpace) AuthenticationMethod() string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/authenticationmethod
-func (u_ URLProtectionSpace) SetAuthenticationMethod(value string /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetAuthenticationMethod(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAuthenticationMethod:"), objc.String(value))
 }
 
@@ -147,7 +147,7 @@ func (u_ URLProtectionSpace) SetDistinguishedNames(value IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) Host() string /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) Host() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (u_ URLProtectionSpace) Host() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/host
-func (u_ URLProtectionSpace) SetHost(value string /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetHost(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHost:"), objc.String(value))
 }
 
@@ -166,7 +166,7 @@ func (u_ URLProtectionSpace) SetHost(value string /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-func (u_ URLProtectionSpace) Port() int /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) Port() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("port"))
 	return rv
 }
@@ -176,7 +176,7 @@ func (u_ URLProtectionSpace) Port() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/port
-func (u_ URLProtectionSpace) SetPort(value int /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetPort(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPort:"), value)
 }
 
@@ -185,7 +185,7 @@ func (u_ URLProtectionSpace) SetPort(value int /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) Protocol() string /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) Protocol() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("protocol"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (u_ URLProtectionSpace) Protocol() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/protocol
-func (u_ URLProtectionSpace) SetProtocol(value string /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetProtocol(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocol:"), objc.String(value))
 }
 
@@ -204,7 +204,7 @@ func (u_ URLProtectionSpace) SetProtocol(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/proxytype
-func (u_ URLProtectionSpace) ProxyType() string /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) ProxyType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (u_ URLProtectionSpace) ProxyType() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/proxytype
-func (u_ URLProtectionSpace) SetProxyType(value string /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetProxyType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProxyType:"), objc.String(value))
 }
 
@@ -223,7 +223,7 @@ func (u_ URLProtectionSpace) SetProxyType(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-func (u_ URLProtectionSpace) Realm() string /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) Realm() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("realm"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (u_ URLProtectionSpace) Realm() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/realm
-func (u_ URLProtectionSpace) SetRealm(value string /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetRealm(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRealm:"), objc.String(value))
 }
 
@@ -242,7 +242,7 @@ func (u_ URLProtectionSpace) SetRealm(value string /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
-func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool /* primitive/slice/pointer */ {
+func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("receivesCredentialSecurely"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (u_ URLProtectionSpace) ReceivesCredentialSecurely() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlprotectionspace/receivescredentialsecurely
-func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool /* primitive/slice/pointer */) {
+func (u_ URLProtectionSpace) SetReceivesCredentialSecurely(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReceivesCredentialSecurely:"), value)
 }
 

@@ -30,22 +30,22 @@ type _XMLDocumentClass struct {
 type IXMLDocument interface {
 	IXMLNode
 	// properties:
-	CharacterEncoding() string /* primitive/slice/pointer */
-	SetCharacterEncoding(value string /* primitive/slice/pointer */)
+	CharacterEncoding() string /* primitive/slice/pointer. */
+	SetCharacterEncoding(value string /* primitive/slice/pointer. */)
 	DocumentContentKind() unsafe.Pointer
 	SetDocumentContentKind(value unsafe.Pointer)
 	Dtd() XMLDTD /* not a class type */
 	SetDtd(value XMLDTD /* not a class type */)
-	IsStandalone() bool /* primitive/slice/pointer */
-	SetIsStandalone(value bool /* primitive/slice/pointer */)
-	MimeType() string /* primitive/slice/pointer */
-	SetMimeType(value string /* primitive/slice/pointer */)
-	Version() string /* primitive/slice/pointer */
-	SetVersion(value string /* primitive/slice/pointer */)
+	IsStandalone() bool /* primitive/slice/pointer. */
+	SetIsStandalone(value bool /* primitive/slice/pointer. */)
+	MimeType() string /* primitive/slice/pointer. */
+	SetMimeType(value string /* primitive/slice/pointer. */)
+	Version() string /* primitive/slice/pointer. */
+	SetVersion(value string /* primitive/slice/pointer. */)
 	XmlData() IData
 	SetXmlData(value IData)
 	// methods:
-	SetChildren(children []XMLNode /* primitive/slice/pointer */)
+	SetChildren(children []XMLNode /* primitive/slice/pointer. */)
 }
 
 // An XML document as internalized into a logical tree structure.
@@ -107,7 +107,7 @@ func NewXMLDocument() XMLDocument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/setChildren(_:)
-func (x_ XMLDocument) SetChildren(children []XMLNode /* primitive/slice/pointer */) {
+func (x_ XMLDocument) SetChildren(children []XMLNode /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
 }
 
@@ -116,7 +116,7 @@ func (x_ XMLDocument) SetChildren(children []XMLNode /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) CharacterEncoding() string /* primitive/slice/pointer */ {
+func (x_ XMLDocument) CharacterEncoding() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (x_ XMLDocument) CharacterEncoding() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) SetCharacterEncoding(value string /* primitive/slice/pointer */) {
+func (x_ XMLDocument) SetCharacterEncoding(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
 }
 
@@ -173,7 +173,7 @@ func (x_ XMLDocument) SetDtd(value XMLDTD /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer */ {
+func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](x_.ID, objc.Sel("isStandalone"))
 	return rv
 }
@@ -183,7 +183,7 @@ func (x_ XMLDocument) IsStandalone() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/isstandalone
-func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer */) {
+func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setIsStandalone:"), value)
 }
 
@@ -192,7 +192,7 @@ func (x_ XMLDocument) SetIsStandalone(value bool /* primitive/slice/pointer */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/mimetype
-func (x_ XMLDocument) MimeType() string /* primitive/slice/pointer */ {
+func (x_ XMLDocument) MimeType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("mimeType"))
 	return rv
 }
@@ -202,7 +202,7 @@ func (x_ XMLDocument) MimeType() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/mimetype
-func (x_ XMLDocument) SetMimeType(value string /* primitive/slice/pointer */) {
+func (x_ XMLDocument) SetMimeType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setMimeType:"), objc.String(value))
 }
 
@@ -211,7 +211,7 @@ func (x_ XMLDocument) SetMimeType(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) Version() string /* primitive/slice/pointer */ {
+func (x_ XMLDocument) Version() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](x_.ID, objc.Sel("version"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (x_ XMLDocument) Version() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) SetVersion(value string /* primitive/slice/pointer */) {
+func (x_ XMLDocument) SetVersion(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 

@@ -36,10 +36,10 @@ type ICharacterSet interface {
 	Inverted() ICharacterSet
 	SetInverted(value ICharacterSet)
 	// methods:
-	CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer */
-	HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer */
-	IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer */
-	LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer */
+	CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer. */
+	HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer. */
+	IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer. */
+	LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // An object representing a fixed set of Unicode character values for use in search operations.
@@ -109,7 +109,7 @@ func NewCharacterSetWithBitmapRepresentation(data IData) CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(charactersIn:)
-func NewCharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) CharacterSet {
+func NewCharacterSetWithCharactersInString(aString string /* primitive/slice/pointer. */) CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
@@ -129,7 +129,7 @@ func NewCharacterSetWithCoder(coder Coder /* not a class type */) CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(contentsOfFile:)
-func NewCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) CharacterSet {
+func NewCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer. */) CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
@@ -139,7 +139,7 @@ func NewCharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
-func NewCharacterSetWithRange(aRange Range /* not a class type */) CharacterSet {
+func NewCharacterSetWithRange(aRange objc.IObject /* cross-framework Range */) CharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(getCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -160,7 +160,7 @@ func (cc _CharacterSetClass) CharacterSetWithBitmapRepresentation(data IData) IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(charactersIn:)
-func (cc _CharacterSetClass) CharacterSetWithCharactersInString(aString string /* primitive/slice/pointer */) ICharacterSet {
+func (cc _CharacterSetClass) CharacterSetWithCharactersInString(aString string /* primitive/slice/pointer. */) ICharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithCharactersInString:"), objc.String(aString))
 	return rv
 }
@@ -170,7 +170,7 @@ func (cc _CharacterSetClass) CharacterSetWithCharactersInString(aString string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(contentsOfFile:)
-func (cc _CharacterSetClass) CharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer */) ICharacterSet {
+func (cc _CharacterSetClass) CharacterSetWithContentsOfFile(fName string /* primitive/slice/pointer. */) ICharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithContentsOfFile:"), objc.String(fName))
 	return rv
 }
@@ -180,7 +180,7 @@ func (cc _CharacterSetClass) CharacterSetWithContentsOfFile(fName string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/init(range:)
-func (cc _CharacterSetClass) CharacterSetWithRange(aRange Range /* not a class type */) ICharacterSet {
+func (cc _CharacterSetClass) CharacterSetWithRange(aRange objc.IObject /* cross-framework Range */) ICharacterSet {
 	rv := objc.Send[CharacterSet](objc.ID(cc.class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
@@ -379,7 +379,7 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/characterIsMember(_:)
-func (c_ CharacterSet) CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer */ {
+func (c_ CharacterSet) CharacterIsMember(aCharacter unichar /* typedef */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("characterIsMember:"), aCharacter)
 	return rv
 }
@@ -389,7 +389,7 @@ func (c_ CharacterSet) CharacterIsMember(aCharacter unichar /* typedef */) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/hasMemberInPlane(_:)
-func (c_ CharacterSet) HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (c_ CharacterSet) HasMemberInPlane(thePlane unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasMemberInPlane:"), thePlane)
 	return rv
 }
@@ -399,7 +399,7 @@ func (c_ CharacterSet) HasMemberInPlane(thePlane unsafe.Pointer) bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/isSuperset(of:)
-func (c_ CharacterSet) IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer */ {
+func (c_ CharacterSet) IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSupersetOfSet:"), theOtherSet)
 	return rv
 }
@@ -409,7 +409,7 @@ func (c_ CharacterSet) IsSupersetOfSet(theOtherSet ICharacterSet) bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/longCharacterIsMember(_:)
-func (c_ CharacterSet) LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (c_ CharacterSet) LongCharacterIsMember(theLongChar unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("longCharacterIsMember:"), theLongChar)
 	return rv
 }

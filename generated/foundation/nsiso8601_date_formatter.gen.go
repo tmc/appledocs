@@ -35,8 +35,8 @@ type IISO8601DateFormatter interface {
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	// methods:
-	DateFromString(string_ string /* primitive/slice/pointer */) IDate
-	StringFromDate(date IDate) String /* not a class type */
+	DateFromString(string_ string /* primitive/slice/pointer. */) IDate
+	StringFromDate(date IDate) IString
 }
 
 // A formatter that converts between dates and their ISO 8601 string representations.
@@ -99,7 +99,7 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) String /* not a class type */ {
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date IDate, timeZone ITimeZone, formatOptions ISO8601DateFormatOptions) IString {
 	rv := objc.Send[String](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
@@ -109,7 +109,7 @@ func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date ID
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/date(from:)
-func (i_ ISO8601DateFormatter) DateFromString(string_ string /* primitive/slice/pointer */) IDate {
+func (i_ ISO8601DateFormatter) DateFromString(string_ string /* primitive/slice/pointer. */) IDate {
 	rv := objc.Send[Date](i_.ID, objc.Sel("dateFromString:"), objc.String(string_))
 	return rv
 }
@@ -119,7 +119,7 @@ func (i_ ISO8601DateFormatter) DateFromString(string_ string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:)
-func (i_ ISO8601DateFormatter) StringFromDate(date IDate) String /* not a class type */ {
+func (i_ ISO8601DateFormatter) StringFromDate(date IDate) IString {
 	rv := objc.Send[String](i_.ID, objc.Sel("stringFromDate:"), date)
 	return rv
 }

@@ -29,7 +29,7 @@ func ExampleNewXMLParserWithData() {
 // Initializes a parser with the XML contents from the specified stream and parses it.
 func ExampleNewXMLParserWithStream() {
 	_ = foundation.NewXMLParserWithStream(
-		foundation.InputStream{}, // stream InputStream
+		foundation.NSInputStream{}, // stream NSInputStream
 	)
 	// Output:
 }

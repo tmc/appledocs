@@ -31,24 +31,28 @@ type _ErrorClass struct {
 type IError interface {
 	objectivec.IObject
 	// properties:
-	Code() int /* primitive/slice/pointer */
-	Domain() ErrorDomain /* foo */
-	HelpAnchor() string /* primitive/slice/pointer */
-	LocalizedDescription() string /* primitive/slice/pointer */
-	LocalizedFailureReason() string /* primitive/slice/pointer */
-	LocalizedRecoveryOptions() []string /* primitive/slice/pointer */
-	LocalizedRecoverySuggestion() string /* primitive/slice/pointer */
-	RecoveryAttempter() objc.ID
-	UnderlyingErrors() []Error /* primitive/slice/pointer */
+	Code() int /* primitive/slice/pointer. */
+	Domain() objc.IObject /* cross-framework: ErrorDomain */
+	HelpAnchor() string /* primitive/slice/pointer. */
+	LocalizedDescription() string /* primitive/slice/pointer. */
+	LocalizedFailureReason() string /* primitive/slice/pointer. */
 	UserInfo() IDictionary /* already interface */
-	NSCocoaErrorDomain() string /* primitive/slice/pointer */
-	NSMachErrorDomain() string /* primitive/slice/pointer */
-	NSOSStatusErrorDomain() string /* primitive/slice/pointer */
-	NSPOSIXErrorDomain() string /* primitive/slice/pointer */
-	NSRecoveryAttempterErrorKey() string /* primitive/slice/pointer */
-	NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer */
-	NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer */
-	NSURLErrorDomain() string /* primitive/slice/pointer */
+	NSCocoaErrorDomain() string /* primitive/slice/pointer. */
+	LocalizedRecoveryOptions() string /* primitive/slice/pointer. */
+	SetLocalizedRecoveryOptions(value string /* primitive/slice/pointer. */)
+	LocalizedRecoverySuggestion() string /* primitive/slice/pointer. */
+	SetLocalizedRecoverySuggestion(value string /* primitive/slice/pointer. */)
+	RecoveryAttempter() unsafe.Pointer
+	SetRecoveryAttempter(value unsafe.Pointer)
+	UnderlyingErrors() IError
+	SetUnderlyingErrors(value IError)
+	NSMachErrorDomain() string /* primitive/slice/pointer. */
+	NSOSStatusErrorDomain() string /* primitive/slice/pointer. */
+	NSPOSIXErrorDomain() string /* primitive/slice/pointer. */
+	NSRecoveryAttempterErrorKey() string /* primitive/slice/pointer. */
+	NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */
+	NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */
+	NSURLErrorDomain() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -105,78 +109,11 @@ func NewError() Error {
 
 
 
-// Returns an object initialized for a given domain and code with a given dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/init(domain:code:userInfo:)
-func NewErrorWithDomainCodeUserInfo(domain ErrorDomain /* foo */, code int /* primitive/slice/pointer */, dict IDictionary /* already interface */) Error {
-	instance := getErrorClass().Alloc()
-	rv := objc.Send[Error](instance.ID, objc.Sel("initWithDomain:code:userInfo:"), domain, code, dict)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Creates and initializes an object for a given domain and code with a given dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/errorWithDomain:code:userInfo:
-func (ec _ErrorClass) ErrorWithDomainCodeUserInfo(domain ErrorDomain /* foo */, code int /* primitive/slice/pointer */, dict IDictionary /* already interface */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("errorWithDomain:code:userInfo:"), domain, code, dict)
-	return rv
-}
-
-
-// Returns a properly formatted error object with a error code.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForCollision(with:)
-func (ec _ErrorClass) FileProviderErrorForCollisionWithItem(existingItem FileProviderItem /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForCollisionWithItem:"), existingItem)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForNonExistentItem(withIdentifier:)
-func (ec _ErrorClass) FileProviderErrorForNonExistentItemWithIdentifier(itemIdentifier FileProviderItemIdentifier /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForNonExistentItemWithIdentifier:"), itemIdentifier)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/fileProviderErrorForRejectedDeletion(of:)
-func (ec _ErrorClass) FileProviderErrorForRejectedDeletionOfItem(updatedVersion FileProviderItem /* foo */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("fileProviderErrorForRejectedDeletionOfItem:"), updatedVersion)
-	return rv
-}
-
-
-// Specifies a block to call when the corresponding property is not present in the user info dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/setUserInfoValueProvider(forDomain:provider:)
-func (ec _ErrorClass) SetUserInfoValueProviderForDomainProvider(errorDomain ErrorDomain /* foo */, provider unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("setUserInfoValueProviderForDomain:provider:"), errorDomain, provider)
-}
-
-
-// Returns any user info provider specified for a given error domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfoValueProvider(forDomain:)
-func (ec _ErrorClass) UserInfoValueProviderForDomain(errorDomain ErrorDomain /* foo */) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("userInfoValueProviderForDomain:"), errorDomain)
-}
-
-
 // The error code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/code
-func (e_ Error) Code() int /* primitive/slice/pointer */ {
+func (e_ Error) Code() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](e_.ID, objc.Sel("code"))
 	return rv
 }
@@ -186,7 +123,7 @@ func (e_ Error) Code() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
-func (e_ Error) Domain() ErrorDomain /* foo */ {
+func (e_ Error) Domain() objc.IObject /* cross-framework: ErrorDomain */ {
 	rv := objc.Send[ErrorDomain](e_.ID, objc.Sel("domain"))
 	return rv
 }
@@ -196,7 +133,7 @@ func (e_ Error) Domain() ErrorDomain /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/helpAnchor
-func (e_ Error) HelpAnchor() string /* primitive/slice/pointer */ {
+func (e_ Error) HelpAnchor() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
@@ -206,7 +143,7 @@ func (e_ Error) HelpAnchor() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
-func (e_ Error) LocalizedDescription() string /* primitive/slice/pointer */ {
+func (e_ Error) LocalizedDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
@@ -216,46 +153,8 @@ func (e_ Error) LocalizedDescription() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedFailureReason
-func (e_ Error) LocalizedFailureReason() string /* primitive/slice/pointer */ {
+func (e_ Error) LocalizedFailureReason() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedFailureReason"))
-	return rv
-}
-
-
-// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoveryOptions
-func (e_ Error) LocalizedRecoveryOptions() []string /* primitive/slice/pointer */ {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("localizedRecoveryOptions"))
-	return rv
-}
-
-
-// A string containing the localized recovery suggestion for the error.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoverySuggestion
-func (e_ Error) LocalizedRecoverySuggestion() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoverySuggestion"))
-	return rv
-}
-
-
-// The object in the user info dictionary corresponding to the key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/recoveryAttempter
-func (e_ Error) RecoveryAttempter() objc.ID {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("recoveryAttempter"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/underlyingErrors
-func (e_ Error) UnderlyingErrors() []Error /* primitive/slice/pointer */ {
-	rv := objc.Send[[]Error](e_.ID, objc.Sel("underlyingErrors"))
 	return rv
 }
 
@@ -274,9 +173,81 @@ func (e_ Error) UserInfo() IDictionary /* already interface */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscocoaerrordomain
-func (e_ Error) NSCocoaErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSCocoaErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSCocoaErrorDomain"))
 	return rv
+}
+
+
+// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoveryoptions
+func (e_ Error) LocalizedRecoveryOptions() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoveryOptions"))
+	return rv
+}
+
+
+// An array containing the localized titles of buttons appropriate for displaying in an alert panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoveryoptions
+func (e_ Error) SetLocalizedRecoveryOptions(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedRecoveryOptions:"), objc.String(value))
+}
+
+
+// A string containing the localized recovery suggestion for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoverysuggestion
+func (e_ Error) LocalizedRecoverySuggestion() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoverySuggestion"))
+	return rv
+}
+
+
+// A string containing the localized recovery suggestion for the error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/localizedrecoverysuggestion
+func (e_ Error) SetLocalizedRecoverySuggestion(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocalizedRecoverySuggestion:"), objc.String(value))
+}
+
+
+// The object in the user info dictionary corresponding to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
+func (e_ Error) RecoveryAttempter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("recoveryAttempter"))
+	return rv
+}
+
+
+// The object in the user info dictionary corresponding to the
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
+func (e_ Error) SetRecoveryAttempter(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRecoveryAttempter:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
+func (e_ Error) UnderlyingErrors() IError {
+	rv := objc.Send[Error](e_.ID, objc.Sel("underlyingErrors"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
+func (e_ Error) SetUnderlyingErrors(value IError) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUnderlyingErrors:"), value)
 }
 
 
@@ -284,7 +255,7 @@ func (e_ Error) NSCocoaErrorDomain() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmacherrordomain
-func (e_ Error) NSMachErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSMachErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMachErrorDomain"))
 	return rv
 }
@@ -294,7 +265,7 @@ func (e_ Error) NSMachErrorDomain() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsosstatuserrordomain
-func (e_ Error) NSOSStatusErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSOSStatusErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSOSStatusErrorDomain"))
 	return rv
 }
@@ -304,7 +275,7 @@ func (e_ Error) NSOSStatusErrorDomain() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsposixerrordomain
-func (e_ Error) NSPOSIXErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSPOSIXErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSPOSIXErrorDomain"))
 	return rv
 }
@@ -314,7 +285,7 @@ func (e_ Error) NSPOSIXErrorDomain() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey
-func (e_ Error) NSRecoveryAttempterErrorKey() string /* primitive/slice/pointer */ {
+func (e_ Error) NSRecoveryAttempterErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSRecoveryAttempterErrorKey"))
 	return rv
 }
@@ -324,7 +295,7 @@ func (e_ Error) NSRecoveryAttempterErrorKey() string /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (e_ Error) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
@@ -334,7 +305,7 @@ func (e_ Error) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (e_ Error) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
@@ -344,9 +315,10 @@ func (e_ Error) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlerrordomain
-func (e_ Error) NSURLErrorDomain() string /* primitive/slice/pointer */ {
+func (e_ Error) NSURLErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSURLErrorDomain"))
 	return rv
 }
+
 
 

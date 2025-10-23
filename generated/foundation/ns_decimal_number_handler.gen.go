@@ -33,8 +33,8 @@ type IDecimalNumberHandler interface {
 	// properties:
 	RoundingBehavior() IDecimalNumberHandler
 	SetRoundingBehavior(value IDecimalNumberHandler)
-	RoundingIncrement() Number /* not a class type */
-	SetRoundingIncrement(value Number /* not a class type */)
+	RoundingIncrement() objc.IObject /* cross-framework: Number */
+	SetRoundingIncrement(value objc.IObject /* cross-framework: Number */)
 	RoundingMode() RoundingMode
 	SetRoundingMode(value RoundingMode)
 	// methods:
@@ -97,7 +97,7 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/init(roundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)
-func NewDecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool /* primitive/slice/pointer */, overflow bool /* primitive/slice/pointer */, underflow bool /* primitive/slice/pointer */, divideByZero bool /* primitive/slice/pointer */) DecimalNumberHandler {
+func NewDecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool /* primitive/slice/pointer. */, overflow bool /* primitive/slice/pointer. */, underflow bool /* primitive/slice/pointer. */, divideByZero bool /* primitive/slice/pointer. */) DecimalNumberHandler {
 	instance := getDecimalNumberHandlerClass().Alloc()
 	rv := objc.Send[DecimalNumberHandler](instance.ID, objc.Sel("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), roundingMode, scale, exact, overflow, underflow, divideByZero)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewDecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflow
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumberHandler/decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:
-func (dc _DecimalNumberHandlerClass) DecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool /* primitive/slice/pointer */, overflow bool /* primitive/slice/pointer */, underflow bool /* primitive/slice/pointer */, divideByZero bool /* primitive/slice/pointer */) unsafe.Pointer {
+func (dc _DecimalNumberHandlerClass) DecimalNumberHandlerWithRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode RoundingMode, scale unsafe.Pointer, exact bool /* primitive/slice/pointer. */, overflow bool /* primitive/slice/pointer. */, underflow bool /* primitive/slice/pointer. */, divideByZero bool /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), roundingMode, scale, exact, overflow, underflow, divideByZero)
 	return rv
 }
@@ -158,7 +158,7 @@ func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) RoundingIncrement() Number /* not a class type */ {
+func (d_ DecimalNumberHandler) RoundingIncrement() objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[Number](d_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (d_ DecimalNumberHandler) RoundingIncrement() Number /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) SetRoundingIncrement(value Number /* not a class type */) {
+func (d_ DecimalNumberHandler) SetRoundingIncrement(value objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 

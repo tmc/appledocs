@@ -31,7 +31,7 @@ type _NullClass struct {
 type INull interface {
 	objectivec.IObject
 	// properties:
-	NSNotFound() int /* primitive/slice/pointer */
+	NSNotFound() int /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -102,7 +102,7 @@ func (nc _NullClass) Null() INull {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (n_ Null) NSNotFound() int /* primitive/slice/pointer */ {
+func (n_ Null) NSNotFound() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](n_.ID, objc.Sel("NSNotFound"))
 	return rv
 }

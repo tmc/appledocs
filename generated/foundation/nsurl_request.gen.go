@@ -31,44 +31,44 @@ type _URLRequestClass struct {
 type IURLRequest interface {
 	objectivec.IObject
 	// properties:
-	AllHTTPHeaderFields() string /* primitive/slice/pointer */
-	SetAllHTTPHeaderFields(value string /* primitive/slice/pointer */)
-	AllowsCellularAccess() bool /* primitive/slice/pointer */
-	SetAllowsCellularAccess(value bool /* primitive/slice/pointer */)
-	AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer */
-	SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer */)
-	AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer */
-	SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer */)
-	AllowsPersistentDNS() bool /* primitive/slice/pointer */
-	SetAllowsPersistentDNS(value bool /* primitive/slice/pointer */)
-	AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer */
-	SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer */)
-	AssumesHTTP3Capable() bool /* primitive/slice/pointer */
-	SetAssumesHTTP3Capable(value bool /* primitive/slice/pointer */)
+	AllHTTPHeaderFields() string /* primitive/slice/pointer. */
+	SetAllHTTPHeaderFields(value string /* primitive/slice/pointer. */)
+	AllowsCellularAccess() bool /* primitive/slice/pointer. */
+	SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */)
+	AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer. */
+	SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer. */)
+	AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer. */
+	SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer. */)
+	AllowsPersistentDNS() bool /* primitive/slice/pointer. */
+	SetAllowsPersistentDNS(value bool /* primitive/slice/pointer. */)
+	AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer. */
+	SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer. */)
+	AssumesHTTP3Capable() bool /* primitive/slice/pointer. */
+	SetAssumesHTTP3Capable(value bool /* primitive/slice/pointer. */)
 	Attribution() unsafe.Pointer
 	SetAttribution(value unsafe.Pointer)
 	CachePolicy() unsafe.Pointer
 	SetCachePolicy(value unsafe.Pointer)
-	CookiePartitionIdentifier() string /* primitive/slice/pointer */
-	SetCookiePartitionIdentifier(value string /* primitive/slice/pointer */)
+	CookiePartitionIdentifier() string /* primitive/slice/pointer. */
+	SetCookiePartitionIdentifier(value string /* primitive/slice/pointer. */)
 	HttpBody() IData
 	SetHttpBody(value IData)
 	HttpBodyStream() IInputStream
 	SetHttpBodyStream(value IInputStream)
-	HttpMethod() string /* primitive/slice/pointer */
-	SetHttpMethod(value string /* primitive/slice/pointer */)
-	HttpShouldHandleCookies() bool /* primitive/slice/pointer */
-	SetHttpShouldHandleCookies(value bool /* primitive/slice/pointer */)
-	HttpShouldUsePipelining() bool /* primitive/slice/pointer */
-	SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer */)
+	HttpMethod() string /* primitive/slice/pointer. */
+	SetHttpMethod(value string /* primitive/slice/pointer. */)
+	HttpShouldHandleCookies() bool /* primitive/slice/pointer. */
+	SetHttpShouldHandleCookies(value bool /* primitive/slice/pointer. */)
+	HttpShouldUsePipelining() bool /* primitive/slice/pointer. */
+	SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */)
 	MainDocumentURL() IURL
 	SetMainDocumentURL(value IURL)
 	NetworkServiceType() unsafe.Pointer
 	SetNetworkServiceType(value unsafe.Pointer)
-	RequiresDNSSECValidation() bool /* primitive/slice/pointer */
-	SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer */)
-	TimeoutInterval() TimeInterval /* foo */
-	SetTimeoutInterval(value TimeInterval /* foo */)
+	RequiresDNSSECValidation() bool /* primitive/slice/pointer. */
+	SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer. */)
+	TimeoutInterval() objc.IObject /* cross-framework: TimeInterval */
+	SetTimeoutInterval(value objc.IObject /* cross-framework: TimeInterval */)
 	Url() IURL
 	SetUrl(value IURL)
 	// methods:
@@ -131,7 +131,7 @@ func NewURLRequest() URLRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) AllHTTPHeaderFields() string /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllHTTPHeaderFields() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (u_ URLRequest) AllHTTPHeaderFields() string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) SetAllHTTPHeaderFields(value string /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllHTTPHeaderFields(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
 }
 
@@ -150,7 +150,7 @@ func (u_ URLRequest) SetAllHTTPHeaderFields(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-func (u_ URLRequest) AllowsCellularAccess() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllowsCellularAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (u_ URLRequest) AllowsCellularAccess() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowscellularaccess
-func (u_ URLRequest) SetAllowsCellularAccess(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
@@ -169,7 +169,7 @@ func (u_ URLRequest) SetAllowsCellularAccess(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsconstrainednetworkaccess
-func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsConstrainedNetworkAccess"))
 	return rv
 }
@@ -179,7 +179,7 @@ func (u_ URLRequest) AllowsConstrainedNetworkAccess() bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsconstrainednetworkaccess
-func (u_ URLRequest) SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllowsConstrainedNetworkAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsConstrainedNetworkAccess:"), value)
 }
 
@@ -188,7 +188,7 @@ func (u_ URLRequest) SetAllowsConstrainedNetworkAccess(value bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsexpensivenetworkaccess
-func (u_ URLRequest) AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllowsExpensiveNetworkAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsExpensiveNetworkAccess"))
 	return rv
 }
@@ -198,14 +198,14 @@ func (u_ URLRequest) AllowsExpensiveNetworkAccess() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsexpensivenetworkaccess
-func (u_ URLRequest) SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllowsExpensiveNetworkAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsExpensiveNetworkAccess:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowspersistentdns
-func (u_ URLRequest) AllowsPersistentDNS() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllowsPersistentDNS() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsPersistentDNS"))
 	return rv
 }
@@ -213,14 +213,14 @@ func (u_ URLRequest) AllowsPersistentDNS() bool /* primitive/slice/pointer */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowspersistentdns
-func (u_ URLRequest) SetAllowsPersistentDNS(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllowsPersistentDNS(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsPersistentDNS:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("allowsUltraConstrainedNetworkAccess"))
 	return rv
 }
@@ -228,14 +228,14 @@ func (u_ URLRequest) AllowsUltraConstrainedNetworkAccess() bool /* primitive/sli
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allowsultraconstrainednetworkaccess
-func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAllowsUltraConstrainedNetworkAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllowsUltraConstrainedNetworkAccess:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
-func (u_ URLRequest) AssumesHTTP3Capable() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) AssumesHTTP3Capable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("assumesHTTP3Capable"))
 	return rv
 }
@@ -243,7 +243,7 @@ func (u_ URLRequest) AssumesHTTP3Capable() bool /* primitive/slice/pointer */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/assumeshttp3capable
-func (u_ URLRequest) SetAssumesHTTP3Capable(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetAssumesHTTP3Capable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAssumesHTTP3Capable:"), value)
 }
 
@@ -288,7 +288,7 @@ func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) CookiePartitionIdentifier() string /* primitive/slice/pointer */ {
+func (u_ URLRequest) CookiePartitionIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
 	return rv
 }
@@ -296,7 +296,7 @@ func (u_ URLRequest) CookiePartitionIdentifier() string /* primitive/slice/point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) SetCookiePartitionIdentifier(value string /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetCookiePartitionIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
 }
 
@@ -343,7 +343,7 @@ func (u_ URLRequest) SetHttpBodyStream(value IInputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) HttpMethod() string /* primitive/slice/pointer */ {
+func (u_ URLRequest) HttpMethod() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
 	return rv
 }
@@ -353,7 +353,7 @@ func (u_ URLRequest) HttpMethod() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) SetHttpMethod(value string /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetHttpMethod(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
 }
 
@@ -362,7 +362,7 @@ func (u_ URLRequest) SetHttpMethod(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldhandlecookies
-func (u_ URLRequest) HttpShouldHandleCookies() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) HttpShouldHandleCookies() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldHandleCookies"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (u_ URLRequest) HttpShouldHandleCookies() bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldhandlecookies
-func (u_ URLRequest) SetHttpShouldHandleCookies(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetHttpShouldHandleCookies(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldHandleCookies:"), value)
 }
 
@@ -381,7 +381,7 @@ func (u_ URLRequest) SetHttpShouldHandleCookies(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-func (u_ URLRequest) HttpShouldUsePipelining() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) HttpShouldUsePipelining() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("httpShouldUsePipelining"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (u_ URLRequest) HttpShouldUsePipelining() bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpshouldusepipelining
-func (u_ URLRequest) SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetHttpShouldUsePipelining(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpShouldUsePipelining:"), value)
 }
 
@@ -436,7 +436,7 @@ func (u_ URLRequest) SetNetworkServiceType(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-func (u_ URLRequest) RequiresDNSSECValidation() bool /* primitive/slice/pointer */ {
+func (u_ URLRequest) RequiresDNSSECValidation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("requiresDNSSECValidation"))
 	return rv
 }
@@ -444,7 +444,7 @@ func (u_ URLRequest) RequiresDNSSECValidation() bool /* primitive/slice/pointer 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/requiresdnssecvalidation
-func (u_ URLRequest) SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer */) {
+func (u_ URLRequest) SetRequiresDNSSECValidation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequiresDNSSECValidation:"), value)
 }
 
@@ -453,7 +453,7 @@ func (u_ URLRequest) SetRequiresDNSSECValidation(value bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) TimeoutInterval() TimeInterval /* foo */ {
+func (u_ URLRequest) TimeoutInterval() objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutInterval"))
 	return rv
 }
@@ -463,7 +463,7 @@ func (u_ URLRequest) TimeoutInterval() TimeInterval /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) SetTimeoutInterval(value TimeInterval /* foo */) {
+func (u_ URLRequest) SetTimeoutInterval(value objc.IObject /* cross-framework: TimeInterval */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
 }
 

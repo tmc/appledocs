@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewDataDetector
 
+// ExampleNewDataDetectorWithTypesError demonstrates how to create a DataDetector instance using NewDataDetectorWithTypesError.
+// Initializes and returns a data detector instance.
+func ExampleNewDataDetectorWithTypesError() {
+	_ = foundation.NewDataDetectorWithTypesError(
+		foundation.TextCheckingTypes{}, // checkingTypes TextCheckingTypes
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}

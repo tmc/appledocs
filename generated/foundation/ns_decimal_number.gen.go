@@ -32,21 +32,21 @@ type IDecimalNumber interface {
 	INumber
 	// properties:
 	DecimalValue() Decimal /* not a class type */
-	DoubleValue() float64 /* primitive/slice/pointer */
+	DoubleValue() float64 /* primitive/slice/pointer. */
 	ObjCType() unsafe.Pointer
 	// methods:
 	DecimalNumberByAdding(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
-	Compare(decimalNumber Number /* not a class type */) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */
+	Compare(decimalNumber objc.IObject /* cross-framework Number */) ComparisonResult /* not a class type */
+	DescriptionWithLocale(locale objectivec.IObject) IString
 	DecimalNumberByDividingBy(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
 	DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
 	DecimalNumberByMultiplyingByPowerOf10(power unsafe.Pointer) IDecimalNumber
 	DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objectivec.IObject) IDecimalNumber
-	DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer */) IDecimalNumber
-	DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer */, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer. */) IDecimalNumber
+	DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer. */, behavior objectivec.IObject) IDecimalNumber
 	DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) IDecimalNumber
 	DecimalNumberBySubtracting(decimalNumber IDecimalNumber) IDecimalNumber
 	DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
@@ -123,7 +123,7 @@ func NewDecimalNumberWithDecimal(dcm Decimal /* not a class type */) DecimalNumb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(mantissa:exponent:isNegative:)
-func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer */) DecimalNumber {
+func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer. */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer. */) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
 	rv.Autorelease()
@@ -135,7 +135,7 @@ func NewDecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:)
-func NewDecimalNumberWithString(numberValue string /* primitive/slice/pointer */) DecimalNumber {
+func NewDecimalNumberWithString(numberValue string /* primitive/slice/pointer. */) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:"), objc.String(numberValue))
 	rv.Autorelease()
@@ -147,7 +147,7 @@ func NewDecimalNumberWithString(numberValue string /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:locale:)
-func NewDecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer */, locale objectivec.IObject) DecimalNumber {
+func NewDecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer. */, locale objectivec.IObject) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
 	rv.Autorelease()
@@ -170,7 +170,7 @@ func (dc _DecimalNumberClass) DecimalNumberWithDecimal(dcm Decimal /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithMantissa:exponent:isNegative:
-func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer */) IDecimalNumber {
+func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantissa uint64 /* primitive/slice/pointer. */, exponent unsafe.Pointer, flag bool /* primitive/slice/pointer. */) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithMantissa:exponent:isNegative:"), mantissa, exponent, flag)
 	return rv
 }
@@ -180,7 +180,7 @@ func (dc _DecimalNumberClass) DecimalNumberWithMantissaExponentIsNegative(mantis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:
-func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string /* primitive/slice/pointer */) IDecimalNumber {
+func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string /* primitive/slice/pointer. */) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:"), objc.String(numberValue))
 	return rv
 }
@@ -190,7 +190,7 @@ func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:locale:
-func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer */, locale objectivec.IObject) IDecimalNumber {
+func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue string /* primitive/slice/pointer. */, locale objectivec.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), objc.String(numberValue), locale)
 	return rv
 }
@@ -274,7 +274,7 @@ func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimal
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/compare(_:)
-func (d_ DecimalNumber) Compare(decimalNumber Number /* not a class type */) ComparisonResult {
+func (d_ DecimalNumber) Compare(decimalNumber objc.IObject /* cross-framework Number */) ComparisonResult /* not a class type */ {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), decimalNumber)
 	return rv
 }
@@ -284,7 +284,7 @@ func (d_ DecimalNumber) Compare(decimalNumber Number /* not a class type */) Com
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/description(withLocale:)
-func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */ {
+func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -354,7 +354,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10WithBehavior(power 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/raising(toPower:)
-func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer */) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint /* primitive/slice/pointer. */) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:"), power)
 	return rv
 }
@@ -364,7 +364,7 @@ func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/raising(toPower:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer */, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint /* primitive/slice/pointer. */, behavior objectivec.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:withBehavior:"), power, behavior)
 	return rv
 }
@@ -433,7 +433,7 @@ func (d_ DecimalNumber) SetDefaultBehavior(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/doubleValue
-func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer */ {
+func (d_ DecimalNumber) DoubleValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("doubleValue"))
 	return rv
 }

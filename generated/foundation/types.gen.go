@@ -5,12 +5,6 @@ import (
 	"unsafe"
 )
 
-// CFPropertyListRef is a CoreGraphics opaque type.
-type CFPropertyListRef unsafe.Pointer
-
-// CFRunLoopSourceRef is a CoreGraphics opaque type.
-type CFRunLoopSourceRef unsafe.Pointer
-
 
 // Foundation-specific types
 
@@ -39,107 +33,24 @@ type Range struct {
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type AccessibilityNotifications = int
-
-type AccessibilityRole = int
-
-type AccessibilitySubrole = int
-
-type AccessibilityZoomType = int
-
-type AffineTransformStruct = int
-
-type AllocatorContext = int
-
-type ArrayCallBacks = int
-
-type AttributedStringCompletionHandler = int
-
-type BagCallBacks = int
-
-type BinaryHeapCallBacks = int
-
-type BinaryHeapCompareContext = int
-
 type Bool = int
 
-type CFString = int
+type Status = int
 
-type CFURL = int
+type StreamDelegate = int
 
-type ColorRenderingIntent = int
 
-type Comparator = int
-
-type CompositingOperation = int
-
-type Decimal = int
-
-type DictionaryKeyCallBacks = int
-
-type DictionaryValueCallBacks = int
-
-type EdgeInsets = int
-
-type FileDescriptorNativeDescriptor = int
-
-type FontManagerScope = int
-
-type FontTraitMask = int
-
-type FormattingUnitStyle = int
-
-type GregorianDate = int
-
-type GregorianUnits = int
-
-type HashEnumerator = int
-
-type HashTableCallBacks = int
-
-type ImageSymbolWeight = int
-
-type KeyValueObservingOptions = int
-
-type MapEnumerator = int
-
-type MapTableKeyCallBacks = int
-
-type MapTableValueCallBacks = int
-
-type MultibyteGlyphPacking = int
-
-type NetworkReachabilityCallBack = int
-
-type NetworkReachabilityContext = int
-
-type Offset = int
-
-type OpenGLGlobalOption = int
-
-type PropertyListRef = int
-
-type RunLoopSourceRef = int
-
-type SocketCallBack = int
-
-type SocketContext = int
-
-type SocketError = int
-
-type SocketSignature = int
-
-type StreamClientContext = int
-
-type StreamError = int
-
-type UIEdgeInsets = int
-
-type UInteger = int
-
-type UUIDBytes = int
-
-type Zone = int
-
+// Manual fallback types for API collection classes
+// These classes come from API collections and aren't in the parsed class list
+type AppleEventSendOptions = int
+type AppleEventManagerSuspensionID = int
+type ByteCountFormatterCountStyle = int
+type ByteCountFormatterUnits = int
+type DecodingFailurePolicy = int
+type ProgressFileOperationKind = int
+type ProgressKind = int
+type ProgressUserInfoKey = int
+type StringEncoding = int
+type StringTransform = int
 
 

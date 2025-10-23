@@ -34,69 +34,69 @@ type IBundle interface {
 	PrincipalClass() objc.Class
 	AppStoreReceiptURL() IURL
 	SetAppStoreReceiptURL(value IURL)
-	BuiltInPlugInsPath() string /* primitive/slice/pointer */
-	SetBuiltInPlugInsPath(value string /* primitive/slice/pointer */)
+	BuiltInPlugInsPath() string /* primitive/slice/pointer. */
+	SetBuiltInPlugInsPath(value string /* primitive/slice/pointer. */)
 	BuiltInPlugInsURL() IURL
 	SetBuiltInPlugInsURL(value IURL)
-	BundleIdentifier() string /* primitive/slice/pointer */
-	SetBundleIdentifier(value string /* primitive/slice/pointer */)
-	BundlePath() string /* primitive/slice/pointer */
-	SetBundlePath(value string /* primitive/slice/pointer */)
+	BundleIdentifier() string /* primitive/slice/pointer. */
+	SetBundleIdentifier(value string /* primitive/slice/pointer. */)
+	BundlePath() string /* primitive/slice/pointer. */
+	SetBundlePath(value string /* primitive/slice/pointer. */)
 	BundleURL() IURL
 	SetBundleURL(value IURL)
-	DevelopmentLocalization() string /* primitive/slice/pointer */
-	SetDevelopmentLocalization(value string /* primitive/slice/pointer */)
-	ExecutableArchitectures() Number /* not a class type */
-	SetExecutableArchitectures(value Number /* not a class type */)
-	ExecutablePath() string /* primitive/slice/pointer */
-	SetExecutablePath(value string /* primitive/slice/pointer */)
+	DevelopmentLocalization() string /* primitive/slice/pointer. */
+	SetDevelopmentLocalization(value string /* primitive/slice/pointer. */)
+	ExecutableArchitectures() objc.IObject /* cross-framework: Number */
+	SetExecutableArchitectures(value objc.IObject /* cross-framework: Number */)
+	ExecutablePath() string /* primitive/slice/pointer. */
+	SetExecutablePath(value string /* primitive/slice/pointer. */)
 	ExecutableURL() IURL
 	SetExecutableURL(value IURL)
-	InfoDictionary() string /* primitive/slice/pointer */
-	SetInfoDictionary(value string /* primitive/slice/pointer */)
-	IsLoaded() bool /* primitive/slice/pointer */
-	SetIsLoaded(value bool /* primitive/slice/pointer */)
-	Localizations() string /* primitive/slice/pointer */
-	SetLocalizations(value string /* primitive/slice/pointer */)
-	LocalizedInfoDictionary() string /* primitive/slice/pointer */
-	SetLocalizedInfoDictionary(value string /* primitive/slice/pointer */)
-	PreferredLocalizations() string /* primitive/slice/pointer */
-	SetPreferredLocalizations(value string /* primitive/slice/pointer */)
-	PrivateFrameworksPath() string /* primitive/slice/pointer */
-	SetPrivateFrameworksPath(value string /* primitive/slice/pointer */)
+	InfoDictionary() string /* primitive/slice/pointer. */
+	SetInfoDictionary(value string /* primitive/slice/pointer. */)
+	IsLoaded() bool /* primitive/slice/pointer. */
+	SetIsLoaded(value bool /* primitive/slice/pointer. */)
+	Localizations() string /* primitive/slice/pointer. */
+	SetLocalizations(value string /* primitive/slice/pointer. */)
+	LocalizedInfoDictionary() string /* primitive/slice/pointer. */
+	SetLocalizedInfoDictionary(value string /* primitive/slice/pointer. */)
+	PreferredLocalizations() string /* primitive/slice/pointer. */
+	SetPreferredLocalizations(value string /* primitive/slice/pointer. */)
+	PrivateFrameworksPath() string /* primitive/slice/pointer. */
+	SetPrivateFrameworksPath(value string /* primitive/slice/pointer. */)
 	PrivateFrameworksURL() IURL
 	SetPrivateFrameworksURL(value IURL)
-	ResourcePath() string /* primitive/slice/pointer */
-	SetResourcePath(value string /* primitive/slice/pointer */)
+	ResourcePath() string /* primitive/slice/pointer. */
+	SetResourcePath(value string /* primitive/slice/pointer. */)
 	ResourceURL() IURL
 	SetResourceURL(value IURL)
-	SharedFrameworksPath() string /* primitive/slice/pointer */
-	SetSharedFrameworksPath(value string /* primitive/slice/pointer */)
+	SharedFrameworksPath() string /* primitive/slice/pointer. */
+	SetSharedFrameworksPath(value string /* primitive/slice/pointer. */)
 	SharedFrameworksURL() IURL
 	SetSharedFrameworksURL(value IURL)
-	SharedSupportPath() string /* primitive/slice/pointer */
-	SetSharedSupportPath(value string /* primitive/slice/pointer */)
+	SharedSupportPath() string /* primitive/slice/pointer. */
+	SetSharedSupportPath(value string /* primitive/slice/pointer. */)
 	SharedSupportURL() IURL
 	SetSharedSupportURL(value IURL)
-	NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer */
-	SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer */)
-	NSExecutableErrorMaximum() int /* primitive/slice/pointer */
-	SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer */)
-	NSExecutableErrorMinimum() int /* primitive/slice/pointer */
-	SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer */)
-	NSExecutableLinkError() int /* primitive/slice/pointer */
-	SetNSExecutableLinkError(value int /* primitive/slice/pointer */)
-	NSExecutableLoadError() int /* primitive/slice/pointer */
-	SetNSExecutableLoadError(value int /* primitive/slice/pointer */)
-	NSExecutableNotLoadableError() int /* primitive/slice/pointer */
-	SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer */)
-	NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer */
-	SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer */)
-	NSLoadedClasses() string /* primitive/slice/pointer */
+	NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer. */
+	SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer. */)
+	NSExecutableErrorMaximum() int /* primitive/slice/pointer. */
+	SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer. */)
+	NSExecutableErrorMinimum() int /* primitive/slice/pointer. */
+	SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer. */)
+	NSExecutableLinkError() int /* primitive/slice/pointer. */
+	SetNSExecutableLinkError(value int /* primitive/slice/pointer. */)
+	NSExecutableLoadError() int /* primitive/slice/pointer. */
+	SetNSExecutableLoadError(value int /* primitive/slice/pointer. */)
+	NSExecutableNotLoadableError() int /* primitive/slice/pointer. */
+	SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer. */)
+	NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer. */
+	SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer. */)
+	NSLoadedClasses() string /* primitive/slice/pointer. */
 	// methods:
-	LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* not a class type */
-	PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer */, subpath string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */
+	LoadAndReturnError(error_ IError) bool /* primitive/slice/pointer. */
+	LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer. */, value string /* primitive/slice/pointer. */, tableName string /* primitive/slice/pointer. */) IString
+	PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer. */, subpath string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
 }
 
 // A representation of the code and resources stored in a bundle directory on disk.
@@ -186,7 +186,7 @@ func (bc _BundleClass) MainBundle() Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAndReturnError()
-func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (b_ Bundle) LoadAndReturnError(error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("loadAndReturnError:"), error_)
 	return rv
 }
@@ -196,7 +196,7 @@ func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
-func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* not a class type */ {
+func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer. */, value string /* primitive/slice/pointer. */, tableName string /* primitive/slice/pointer. */) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
 	return rv
 }
@@ -206,7 +206,7 @@ func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:)-swift.method
-func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer */, subpath string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */ {
+func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer. */, subpath string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:"), objc.String(ext), objc.String(subpath))
 	return rv
 }
@@ -255,7 +255,7 @@ func (b_ Bundle) SetAppStoreReceiptURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/builtinpluginspath
-func (b_ Bundle) BuiltInPlugInsPath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) BuiltInPlugInsPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("builtInPlugInsPath"))
 	return rv
 }
@@ -265,7 +265,7 @@ func (b_ Bundle) BuiltInPlugInsPath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/builtinpluginspath
-func (b_ Bundle) SetBuiltInPlugInsPath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetBuiltInPlugInsPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBuiltInPlugInsPath:"), objc.String(value))
 }
 
@@ -293,7 +293,7 @@ func (b_ Bundle) SetBuiltInPlugInsURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/bundleidentifier
-func (b_ Bundle) BundleIdentifier() string /* primitive/slice/pointer */ {
+func (b_ Bundle) BundleIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (b_ Bundle) BundleIdentifier() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/bundleidentifier
-func (b_ Bundle) SetBundleIdentifier(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetBundleIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
@@ -312,7 +312,7 @@ func (b_ Bundle) SetBundleIdentifier(value string /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/bundlepath
-func (b_ Bundle) BundlePath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) BundlePath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("bundlePath"))
 	return rv
 }
@@ -322,7 +322,7 @@ func (b_ Bundle) BundlePath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/bundlepath
-func (b_ Bundle) SetBundlePath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetBundlePath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBundlePath:"), objc.String(value))
 }
 
@@ -350,7 +350,7 @@ func (b_ Bundle) SetBundleURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/developmentlocalization
-func (b_ Bundle) DevelopmentLocalization() string /* primitive/slice/pointer */ {
+func (b_ Bundle) DevelopmentLocalization() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("developmentLocalization"))
 	return rv
 }
@@ -360,7 +360,7 @@ func (b_ Bundle) DevelopmentLocalization() string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/developmentlocalization
-func (b_ Bundle) SetDevelopmentLocalization(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetDevelopmentLocalization(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDevelopmentLocalization:"), objc.String(value))
 }
 
@@ -369,7 +369,7 @@ func (b_ Bundle) SetDevelopmentLocalization(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablearchitectures
-func (b_ Bundle) ExecutableArchitectures() Number /* not a class type */ {
+func (b_ Bundle) ExecutableArchitectures() objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[Number](b_.ID, objc.Sel("executableArchitectures"))
 	return rv
 }
@@ -379,7 +379,7 @@ func (b_ Bundle) ExecutableArchitectures() Number /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablearchitectures
-func (b_ Bundle) SetExecutableArchitectures(value Number /* not a class type */) {
+func (b_ Bundle) SetExecutableArchitectures(value objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setExecutableArchitectures:"), value)
 }
 
@@ -388,7 +388,7 @@ func (b_ Bundle) SetExecutableArchitectures(value Number /* not a class type */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablepath
-func (b_ Bundle) ExecutablePath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) ExecutablePath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("executablePath"))
 	return rv
 }
@@ -398,7 +398,7 @@ func (b_ Bundle) ExecutablePath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/executablepath
-func (b_ Bundle) SetExecutablePath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetExecutablePath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setExecutablePath:"), objc.String(value))
 }
 
@@ -426,7 +426,7 @@ func (b_ Bundle) SetExecutableURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/infodictionary
-func (b_ Bundle) InfoDictionary() string /* primitive/slice/pointer */ {
+func (b_ Bundle) InfoDictionary() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("infoDictionary"))
 	return rv
 }
@@ -436,7 +436,7 @@ func (b_ Bundle) InfoDictionary() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/infodictionary
-func (b_ Bundle) SetInfoDictionary(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetInfoDictionary(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInfoDictionary:"), objc.String(value))
 }
 
@@ -445,7 +445,7 @@ func (b_ Bundle) SetInfoDictionary(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) IsLoaded() bool /* primitive/slice/pointer */ {
+func (b_ Bundle) IsLoaded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isLoaded"))
 	return rv
 }
@@ -455,7 +455,7 @@ func (b_ Bundle) IsLoaded() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/isloaded
-func (b_ Bundle) SetIsLoaded(value bool /* primitive/slice/pointer */) {
+func (b_ Bundle) SetIsLoaded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
 }
 
@@ -464,7 +464,7 @@ func (b_ Bundle) SetIsLoaded(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizations
-func (b_ Bundle) Localizations() string /* primitive/slice/pointer */ {
+func (b_ Bundle) Localizations() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("localizations"))
 	return rv
 }
@@ -474,7 +474,7 @@ func (b_ Bundle) Localizations() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizations
-func (b_ Bundle) SetLocalizations(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetLocalizations(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLocalizations:"), objc.String(value))
 }
 
@@ -483,7 +483,7 @@ func (b_ Bundle) SetLocalizations(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizedinfodictionary
-func (b_ Bundle) LocalizedInfoDictionary() string /* primitive/slice/pointer */ {
+func (b_ Bundle) LocalizedInfoDictionary() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("localizedInfoDictionary"))
 	return rv
 }
@@ -493,7 +493,7 @@ func (b_ Bundle) LocalizedInfoDictionary() string /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/localizedinfodictionary
-func (b_ Bundle) SetLocalizedInfoDictionary(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetLocalizedInfoDictionary(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setLocalizedInfoDictionary:"), objc.String(value))
 }
 
@@ -502,7 +502,7 @@ func (b_ Bundle) SetLocalizedInfoDictionary(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/preferredlocalizations
-func (b_ Bundle) PreferredLocalizations() string /* primitive/slice/pointer */ {
+func (b_ Bundle) PreferredLocalizations() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("preferredLocalizations"))
 	return rv
 }
@@ -512,7 +512,7 @@ func (b_ Bundle) PreferredLocalizations() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/preferredlocalizations
-func (b_ Bundle) SetPreferredLocalizations(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetPreferredLocalizations(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPreferredLocalizations:"), objc.String(value))
 }
 
@@ -521,7 +521,7 @@ func (b_ Bundle) SetPreferredLocalizations(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/privateframeworkspath
-func (b_ Bundle) PrivateFrameworksPath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) PrivateFrameworksPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("privateFrameworksPath"))
 	return rv
 }
@@ -531,7 +531,7 @@ func (b_ Bundle) PrivateFrameworksPath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/privateframeworkspath
-func (b_ Bundle) SetPrivateFrameworksPath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetPrivateFrameworksPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPrivateFrameworksPath:"), objc.String(value))
 }
 
@@ -559,7 +559,7 @@ func (b_ Bundle) SetPrivateFrameworksURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/resourcepath
-func (b_ Bundle) ResourcePath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) ResourcePath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("resourcePath"))
 	return rv
 }
@@ -569,7 +569,7 @@ func (b_ Bundle) ResourcePath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/resourcepath
-func (b_ Bundle) SetResourcePath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetResourcePath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResourcePath:"), objc.String(value))
 }
 
@@ -597,7 +597,7 @@ func (b_ Bundle) SetResourceURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/sharedframeworkspath
-func (b_ Bundle) SharedFrameworksPath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) SharedFrameworksPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("sharedFrameworksPath"))
 	return rv
 }
@@ -607,7 +607,7 @@ func (b_ Bundle) SharedFrameworksPath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/sharedframeworkspath
-func (b_ Bundle) SetSharedFrameworksPath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetSharedFrameworksPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSharedFrameworksPath:"), objc.String(value))
 }
 
@@ -635,7 +635,7 @@ func (b_ Bundle) SetSharedFrameworksURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/sharedsupportpath
-func (b_ Bundle) SharedSupportPath() string /* primitive/slice/pointer */ {
+func (b_ Bundle) SharedSupportPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("sharedSupportPath"))
 	return rv
 }
@@ -645,7 +645,7 @@ func (b_ Bundle) SharedSupportPath() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/sharedsupportpath
-func (b_ Bundle) SetSharedSupportPath(value string /* primitive/slice/pointer */) {
+func (b_ Bundle) SetSharedSupportPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSharedSupportPath:"), objc.String(value))
 }
 
@@ -673,7 +673,7 @@ func (b_ Bundle) SetSharedSupportURL(value IURL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableArchitectureMismatchError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableArchitectureMismatchError"))
 	return rv
 }
@@ -683,7 +683,7 @@ func (b_ Bundle) NSExecutableArchitectureMismatchError() int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableArchitectureMismatchError:"), value)
 }
 
@@ -692,7 +692,7 @@ func (b_ Bundle) SetNSExecutableArchitectureMismatchError(value int /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) NSExecutableErrorMaximum() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableErrorMaximum() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMaximum"))
 	return rv
 }
@@ -702,7 +702,7 @@ func (b_ Bundle) NSExecutableErrorMaximum() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableErrorMaximum(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMaximum:"), value)
 }
 
@@ -711,7 +711,7 @@ func (b_ Bundle) SetNSExecutableErrorMaximum(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) NSExecutableErrorMinimum() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableErrorMinimum() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableErrorMinimum"))
 	return rv
 }
@@ -721,7 +721,7 @@ func (b_ Bundle) NSExecutableErrorMinimum() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-swift.var
-func (b_ Bundle) SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableErrorMinimum(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableErrorMinimum:"), value)
 }
 
@@ -730,7 +730,7 @@ func (b_ Bundle) SetNSExecutableErrorMinimum(value int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) NSExecutableLinkError() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableLinkError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLinkError"))
 	return rv
 }
@@ -740,7 +740,7 @@ func (b_ Bundle) NSExecutableLinkError() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-swift.var
-func (b_ Bundle) SetNSExecutableLinkError(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableLinkError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLinkError:"), value)
 }
 
@@ -749,7 +749,7 @@ func (b_ Bundle) SetNSExecutableLinkError(value int /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) NSExecutableLoadError() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableLoadError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableLoadError"))
 	return rv
 }
@@ -759,7 +759,7 @@ func (b_ Bundle) NSExecutableLoadError() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableloaderror-swift.var
-func (b_ Bundle) SetNSExecutableLoadError(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableLoadError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableLoadError:"), value)
 }
 
@@ -768,7 +768,7 @@ func (b_ Bundle) SetNSExecutableLoadError(value int /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) NSExecutableNotLoadableError() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableNotLoadableError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableNotLoadableError"))
 	return rv
 }
@@ -778,7 +778,7 @@ func (b_ Bundle) NSExecutableNotLoadableError() int /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-swift.var
-func (b_ Bundle) SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableNotLoadableError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableNotLoadableError:"), value)
 }
 
@@ -787,7 +787,7 @@ func (b_ Bundle) SetNSExecutableNotLoadableError(value int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer */ {
+func (b_ Bundle) NSExecutableRuntimeMismatchError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("NSExecutableRuntimeMismatchError"))
 	return rv
 }
@@ -797,7 +797,7 @@ func (b_ Bundle) NSExecutableRuntimeMismatchError() int /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-swift.var
-func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer */) {
+func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNSExecutableRuntimeMismatchError:"), value)
 }
 
@@ -806,7 +806,7 @@ func (b_ Bundle) SetNSExecutableRuntimeMismatchError(value int /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsloadedclasses
-func (b_ Bundle) NSLoadedClasses() string /* primitive/slice/pointer */ {
+func (b_ Bundle) NSLoadedClasses() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
 	return rv
 }

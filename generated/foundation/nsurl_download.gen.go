@@ -31,13 +31,13 @@ type _URLDownloadClass struct {
 type IURLDownload interface {
 	objectivec.IObject
 	// properties:
-	DeletesFileUponFailure() bool /* primitive/slice/pointer */
-	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer */)
-	Request() URLRequest /* not a class type */
+	DeletesFileUponFailure() bool /* primitive/slice/pointer. */
+	SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */)
+	Request() IURLRequest
 	ResumeData() IData
 	// methods:
 	Cancel()
-	SetDestinationAllowOverwrite(path string /* primitive/slice/pointer */, allowOverwrite bool /* primitive/slice/pointer */)
+	SetDestinationAllowOverwrite(path string /* primitive/slice/pointer. */, allowOverwrite bool /* primitive/slice/pointer. */)
 }
 
 // An object that downloads a resource asynchronously and saves the data to a file.
@@ -97,7 +97,7 @@ func NewURLDownload() URLDownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
-func NewURLDownloadWithRequestDelegate(request URLRequest /* not a class type */, delegate objectivec.IObject) URLDownload {
+func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewURLDownloadWithRequestDelegate(request URLRequest /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path string /* primitive/slice/pointer */) URLDownload {
+func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path string /* primitive/slice/pointer. */) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
 	rv.Autorelease()
@@ -122,7 +122,7 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objecti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
-func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), objc.String(MIMEType))
 	return rv
 }
@@ -141,7 +141,7 @@ func (u_ URLDownload) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
-func (u_ URLDownload) SetDestinationAllowOverwrite(path string /* primitive/slice/pointer */, allowOverwrite bool /* primitive/slice/pointer */) {
+func (u_ URLDownload) SetDestinationAllowOverwrite(path string /* primitive/slice/pointer. */, allowOverwrite bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), objc.String(path), allowOverwrite)
 }
 
@@ -150,7 +150,7 @@ func (u_ URLDownload) SetDestinationAllowOverwrite(path string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
-func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer */ {
+func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("deletesFileUponFailure"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (u_ URLDownload) DeletesFileUponFailure() bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/deletesFileUponFailure
-func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/pointer */) {
+func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
 
@@ -169,7 +169,7 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
-func (u_ URLDownload) Request() URLRequest /* not a class type */ {
+func (u_ URLDownload) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }

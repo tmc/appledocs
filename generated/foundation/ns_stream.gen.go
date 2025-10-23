@@ -31,20 +31,33 @@ type _StreamClass struct {
 type IStream interface {
 	objectivec.IObject
 	// properties:
+	NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */
+	NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+	StreamError() objc.IObject /* cross-framework: Error */
+	SetStreamError(value objc.IObject /* cross-framework: Error */)
+	StreamStatus() unsafe.Pointer
+	SetStreamStatus(value unsafe.Pointer)
 	// methods:
 }
 
-// A parent class referenced by other Foundation classes.
+// An abstract class representing a stream.
+//
+// This class’s interface is common to all Cocoa stream classes, including its concrete subclasses and . objects provide an easy way to read and write data to and from a variety of media in a device-independent way. You can create stream objects for data located in memory, in a file, or on a network (using sockets), and you can use stream objects without loading all of the data into memory at once. By default, instances that aren’t file-based are non-seekable, one-way streams (although custom seekable subclasses are possible). After you provide or consume data, you can’t retrieve the data from the stream.
 
 
-// A parent class referenced by other Foundation classes. [Full Topic]
+// An abstract class representing a stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream
 type Stream struct {
 	objectivec.Object
 }
 
 // StreamFrom constructs a [Stream] from an unsafe.Pointer.
 //
-// A parent class referenced by other Foundation classes.
+// An abstract class representing a stream.
 func StreamFrom(ptr unsafe.Pointer) Stream {
 	return Stream{objectivec.Object{objc.ID(ptr)}}
 }
@@ -78,6 +91,84 @@ func (s_ Stream) Autorelease() Stream {
 // NewStream creates a new Stream instance.
 func NewStream() Stream {
 	return getStreamClass().New()
+}
+
+
+
+// The error domain used by
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
+func (s_ Stream) NSStreamSOCKSErrorDomain() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+	return rv
+}
+
+
+// The error domain used by
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
+func (s_ Stream) NSStreamSocketSSLErrorDomain() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
+	return rv
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
+func (s_ Stream) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
+func (s_ Stream) SetDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// Returns an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
+func (s_ Stream) StreamError() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[Error](s_.ID, objc.Sel("streamError"))
+	return rv
+}
+
+
+// Returns an
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
+func (s_ Stream) SetStreamError(value objc.IObject /* cross-framework: Error */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamError:"), value)
+}
+
+
+// Returns the receiver’s status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamstatus
+func (s_ Stream) StreamStatus() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
+	return rv
+}
+
+
+// Returns the receiver’s status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamstatus
+func (s_ Stream) SetStreamStatus(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamStatus:"), value)
 }
 
 

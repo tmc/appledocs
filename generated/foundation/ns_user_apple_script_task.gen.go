@@ -31,7 +31,6 @@ type IUserAppleScriptTask interface {
 	IUserScriptTask
 	// properties:
 	// methods:
-	ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler UserAppleScriptTaskCompletionHandler /* foo */)
 }
 
 // An object that executes AppleScript scripts.
@@ -87,15 +86,6 @@ func NewUserAppleScriptTask() UserAppleScriptTask {
 	return getUserAppleScriptTaskClass().New()
 }
 
-
-
-// Execute the AppleScript script by sending it the specified Apple event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAppleScriptTask/execute(withAppleEvent:completionHandler:)
-func (u_ UserAppleScriptTask) ExecuteWithAppleEventCompletionHandler(event IAppleEventDescriptor, handler UserAppleScriptTaskCompletionHandler /* foo */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithAppleEvent:completionHandler:"), event, handler)
-}
 
 
 

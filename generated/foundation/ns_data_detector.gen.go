@@ -30,12 +30,12 @@ type _DataDetectorClass struct {
 type IDataDetector interface {
 	IRegularExpression
 	// properties:
-	CheckingTypes() TextCheckingTypes /* not a class type */
-	NSNotFound() int /* primitive/slice/pointer */
+	CheckingTypes() objc.IObject /* cross-framework: TextCheckingTypes */
+	NSNotFound() int /* primitive/slice/pointer. */
 	Date() IDate
 	SetDate(value IDate)
-	Duration() TimeInterval /* not a class type */
-	SetDuration(value TimeInterval /* not a class type */)
+	Duration() objc.IObject /* cross-framework: TimeInterval */
+	SetDuration(value objc.IObject /* cross-framework: TimeInterval */)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	Url() IURL
@@ -102,7 +102,7 @@ func NewDataDetector() DataDetector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/init(types:)
-func NewDataDetectorWithTypesError(checkingTypes TextCheckingTypes /* not a class type */, error_ unsafe.Pointer) DataDetector {
+func NewDataDetectorWithTypesError(checkingTypes objc.IObject /* cross-framework TextCheckingTypes */, error_ IError) DataDetector {
 	instance := getDataDetectorClass().Alloc()
 	rv := objc.Send[DataDetector](instance.ID, objc.Sel("initWithTypes:error:"), checkingTypes, error_)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewDataDetectorWithTypesError(checkingTypes TextCheckingTypes /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/dataDetectorWithTypes:error:
-func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes TextCheckingTypes /* not a class type */, error_ unsafe.Pointer) IDataDetector {
+func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes objc.IObject /* cross-framework TextCheckingTypes */, error_ IError) IDataDetector {
 	rv := objc.Send[DataDetector](objc.ID(dc.class), objc.Sel("dataDetectorWithTypes:error:"), checkingTypes, error_)
 	return rv
 }
@@ -125,7 +125,7 @@ func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes TextChecki
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/checkingTypes
-func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* not a class type */ {
+func (d_ DataDetector) CheckingTypes() objc.IObject /* cross-framework: TextCheckingTypes */ {
 	rv := objc.Send[TextCheckingTypes](d_.ID, objc.Sel("checkingTypes"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h
-func (d_ DataDetector) NSNotFound() int /* primitive/slice/pointer */ {
+func (d_ DataDetector) NSNotFound() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (d_ DataDetector) SetDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (d_ DataDetector) Duration() TimeInterval /* not a class type */ {
+func (d_ DataDetector) Duration() objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (d_ DataDetector) Duration() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
-func (d_ DataDetector) SetDuration(value TimeInterval /* not a class type */) {
+func (d_ DataDetector) SetDuration(value objc.IObject /* cross-framework: TimeInterval */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 

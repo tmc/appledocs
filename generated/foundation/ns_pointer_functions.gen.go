@@ -31,10 +31,10 @@ type _PointerFunctionsClass struct {
 type IPointerFunctions interface {
 	objectivec.IObject
 	// properties:
-	UsesStrongWriteBarrier() bool /* primitive/slice/pointer */
-	SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer */)
-	UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer */
-	SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer */)
+	UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */
+	SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */)
+	UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */
+	SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */)
 	PointerFunctions() IPointerFunctions
 	SetPointerFunctions(value IPointerFunctions)
 	// methods:
@@ -120,7 +120,7 @@ func (pc _PointerFunctionsClass) PointerFunctionsWithOptions(options PointerFunc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesStrongWriteBarrier
-func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/pointer */ {
+func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesStrongWriteBarrier"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (p_ PointerFunctions) UsesStrongWriteBarrier() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesStrongWriteBarrier
-func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer */) {
+func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesStrongWriteBarrier:"), value)
 }
 
@@ -139,7 +139,7 @@ func (p_ PointerFunctions) SetUsesStrongWriteBarrier(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesWeakReadAndWriteBarriers
-func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer */ {
+func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesWeakReadAndWriteBarriers"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (p_ PointerFunctions) UsesWeakReadAndWriteBarriers() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/usesWeakReadAndWriteBarriers
-func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer */) {
+func (p_ PointerFunctions) SetUsesWeakReadAndWriteBarriers(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesWeakReadAndWriteBarriers:"), value)
 }
 

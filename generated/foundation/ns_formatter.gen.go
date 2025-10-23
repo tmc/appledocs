@@ -32,8 +32,8 @@ type IFormatter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	StringForObjectValue(obj objectivec.IObject) String /* not a class type */
+	IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer. */, newString string /* primitive/slice/pointer. */, error_ string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	StringForObjectValue(obj objectivec.IObject) IString
 }
 
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
@@ -93,7 +93,7 @@ func NewFormatter() Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:newEditingString:errorDescription:)
-func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer. */, newString string /* primitive/slice/pointer. */, error_ string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:newEditingString:errorDescription:"), objc.String(partialString), objc.String(newString), objc.String(error_))
 	return rv
 }
@@ -103,7 +103,7 @@ func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partial
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
-func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) String /* not a class type */ {
+func (f_ Formatter) StringForObjectValue(obj objectivec.IObject) IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

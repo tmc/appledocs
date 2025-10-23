@@ -34,8 +34,8 @@ type ISpellServer interface {
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	// methods:
-	IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
-	RegisterLanguageByVendor(language string /* primitive/slice/pointer */, vendor string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
+	IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	RegisterLanguageByVendor(language string /* primitive/slice/pointer. */, vendor string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 	Run()
 }
 
@@ -96,7 +96,7 @@ func NewSpellServer() SpellServer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
-func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), objc.String(word), flag)
 	return rv
 }
@@ -106,7 +106,7 @@ func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/registerLanguage(_:byVendor:)
-func (s_ SpellServer) RegisterLanguageByVendor(language string /* primitive/slice/pointer */, vendor string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+func (s_ SpellServer) RegisterLanguageByVendor(language string /* primitive/slice/pointer. */, vendor string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerLanguage:byVendor:"), objc.String(language), objc.String(vendor))
 	return rv
 }

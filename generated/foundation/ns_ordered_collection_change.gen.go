@@ -31,13 +31,13 @@ type _OrderedCollectionChangeClass struct {
 type IOrderedCollectionChange interface {
 	objectivec.IObject
 	// properties:
-	AssociatedIndex() uint /* primitive/slice/pointer */
+	AssociatedIndex() uint /* primitive/slice/pointer. */
 	ChangeType() CollectionChangeType
-	Index() uint /* primitive/slice/pointer */
+	Index() uint /* primitive/slice/pointer. */
 	GetObject() unsafe.Pointer
-	NSNotFound() int /* primitive/slice/pointer */
-	HasChanges() bool /* primitive/slice/pointer */
-	SetHasChanges(value bool /* primitive/slice/pointer */)
+	NSNotFound() int /* primitive/slice/pointer. */
+	HasChanges() bool /* primitive/slice/pointer. */
+	SetHasChanges(value bool /* primitive/slice/pointer. */)
 	Insertions() IOrderedCollectionChange
 	SetInsertions(value IOrderedCollectionChange)
 	Removals() IOrderedCollectionChange
@@ -102,7 +102,7 @@ func NewOrderedCollectionChange() OrderedCollectionChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/init(object:type:index:)
-func NewOrderedCollectionChangeWithObjectTypeIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */) OrderedCollectionChange {
+func NewOrderedCollectionChangeWithObjectTypeIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer. */) OrderedCollectionChange {
 	instance := getOrderedCollectionChangeClass().Alloc()
 	rv := objc.Send[OrderedCollectionChange](instance.ID, objc.Sel("initWithObject:type:index:"), anObject, type_, index)
 	rv.Autorelease()
@@ -114,7 +114,7 @@ func NewOrderedCollectionChangeWithObjectTypeIndex(anObject unsafe.Pointer, type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/init(object:type:index:associatedIndex:)
-func NewOrderedCollectionChangeWithObjectTypeIndexAssociatedIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */, associatedIndex uint /* primitive/slice/pointer */) OrderedCollectionChange {
+func NewOrderedCollectionChangeWithObjectTypeIndexAssociatedIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer. */, associatedIndex uint /* primitive/slice/pointer. */) OrderedCollectionChange {
 	instance := getOrderedCollectionChangeClass().Alloc()
 	rv := objc.Send[OrderedCollectionChange](instance.ID, objc.Sel("initWithObject:type:index:associatedIndex:"), anObject, type_, index, associatedIndex)
 	rv.Autorelease()
@@ -127,7 +127,7 @@ func NewOrderedCollectionChangeWithObjectTypeIndexAssociatedIndex(anObject unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/changeWithObject:type:index:
-func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */) unsafe.Pointer {
+func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("changeWithObject:type:index:"), anObject, type_, index)
 	return rv
 }
@@ -137,7 +137,7 @@ func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndex(anObject unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/changeWithObject:type:index:associatedIndex:
-func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndexAssociatedIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */, associatedIndex uint /* primitive/slice/pointer */) unsafe.Pointer {
+func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndexAssociatedIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer. */, associatedIndex uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("changeWithObject:type:index:associatedIndex:"), anObject, type_, index, associatedIndex)
 	return rv
 }
@@ -147,7 +147,7 @@ func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndexAssociatedIndex
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/associatedIndex
-func (o_ OrderedCollectionChange) AssociatedIndex() uint /* primitive/slice/pointer */ {
+func (o_ OrderedCollectionChange) AssociatedIndex() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("associatedIndex"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (o_ OrderedCollectionChange) ChangeType() CollectionChangeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/index
-func (o_ OrderedCollectionChange) Index() uint /* primitive/slice/pointer */ {
+func (o_ OrderedCollectionChange) Index() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](o_.ID, objc.Sel("index"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (o_ OrderedCollectionChange) GetObject() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsnotfound-9t5v2
-func (o_ OrderedCollectionChange) NSNotFound() int /* primitive/slice/pointer */ {
+func (o_ OrderedCollectionChange) NSNotFound() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("NSNotFound"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (o_ OrderedCollectionChange) NSNotFound() int /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/haschanges
-func (o_ OrderedCollectionChange) HasChanges() bool /* primitive/slice/pointer */ {
+func (o_ OrderedCollectionChange) HasChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasChanges"))
 	return rv
 }
@@ -205,7 +205,7 @@ func (o_ OrderedCollectionChange) HasChanges() bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference/haschanges
-func (o_ OrderedCollectionChange) SetHasChanges(value bool /* primitive/slice/pointer */) {
+func (o_ OrderedCollectionChange) SetHasChanges(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setHasChanges:"), value)
 }
 

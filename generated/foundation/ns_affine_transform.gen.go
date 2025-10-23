@@ -38,15 +38,15 @@ type IAffineTransform interface {
 	Concat()
 	Invert()
 	PrependTransform(transform IAffineTransform)
-	RotateByDegrees(angle float64 /* primitive/slice/pointer */)
-	RotateByRadians(angle float64 /* primitive/slice/pointer */)
-	ScaleBy(scale float64 /* primitive/slice/pointer */)
-	ScaleXByYBy(scaleX float64 /* primitive/slice/pointer */, scaleY float64 /* primitive/slice/pointer */)
+	RotateByDegrees(angle float64 /* primitive/slice/pointer. */)
+	RotateByRadians(angle float64 /* primitive/slice/pointer. */)
+	ScaleBy(scale float64 /* primitive/slice/pointer. */)
+	ScaleXByYBy(scaleX float64 /* primitive/slice/pointer. */, scaleY float64 /* primitive/slice/pointer. */)
 	Set()
-	TransformPoint(aPoint Point /* not a class type */) Point /* not a class type */
-	TransformSize(aSize Size /* not a class type */) Size /* not a class type */
-	TransformBezierPath(path BezierPath /* not a class type */) BezierPath /* not a class type */
-	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */)
+	TransformPoint(aPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */
+	TransformSize(aSize objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */
+	TransformBezierPath(path objc.IObject /* cross-framework BezierPath */) objc.IObject /* cross-framework: BezierPath */
+	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer. */, deltaY float64 /* primitive/slice/pointer. */)
 }
 
 // A graphics coordinate transformation.
@@ -165,7 +165,7 @@ func (a_ AffineTransform) PrependTransform(transform IAffineTransform) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/rotate(byDegrees:)
-func (a_ AffineTransform) RotateByDegrees(angle float64 /* primitive/slice/pointer */) {
+func (a_ AffineTransform) RotateByDegrees(angle float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("rotateByDegrees:"), angle)
 }
 
@@ -174,7 +174,7 @@ func (a_ AffineTransform) RotateByDegrees(angle float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/rotate(byRadians:)
-func (a_ AffineTransform) RotateByRadians(angle float64 /* primitive/slice/pointer */) {
+func (a_ AffineTransform) RotateByRadians(angle float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("rotateByRadians:"), angle)
 }
 
@@ -183,7 +183,7 @@ func (a_ AffineTransform) RotateByRadians(angle float64 /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/scale(by:)
-func (a_ AffineTransform) ScaleBy(scale float64 /* primitive/slice/pointer */) {
+func (a_ AffineTransform) ScaleBy(scale float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("scaleBy:"), scale)
 }
 
@@ -192,7 +192,7 @@ func (a_ AffineTransform) ScaleBy(scale float64 /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/scaleX(by:yBy:)
-func (a_ AffineTransform) ScaleXByYBy(scaleX float64 /* primitive/slice/pointer */, scaleY float64 /* primitive/slice/pointer */) {
+func (a_ AffineTransform) ScaleXByYBy(scaleX float64 /* primitive/slice/pointer. */, scaleY float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("scaleXBy:yBy:"), scaleX, scaleY)
 }
 
@@ -210,7 +210,7 @@ func (a_ AffineTransform) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-41p16
-func (a_ AffineTransform) TransformPoint(aPoint Point /* not a class type */) Point /* not a class type */ {
+func (a_ AffineTransform) TransformPoint(aPoint objc.IObject /* cross-framework Point */) objc.IObject /* cross-framework: Point */ {
 	rv := objc.Send[Point](a_.ID, objc.Sel("transformPoint:"), aPoint)
 	return rv
 }
@@ -220,7 +220,7 @@ func (a_ AffineTransform) TransformPoint(aPoint Point /* not a class type */) Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-5r6ol
-func (a_ AffineTransform) TransformSize(aSize Size /* not a class type */) Size /* not a class type */ {
+func (a_ AffineTransform) TransformSize(aSize objc.IObject /* cross-framework Size */) objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[Size](a_.ID, objc.Sel("transformSize:"), aSize)
 	return rv
 }
@@ -230,7 +230,7 @@ func (a_ AffineTransform) TransformSize(aSize Size /* not a class type */) Size 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-6z1xo
-func (a_ AffineTransform) TransformBezierPath(path BezierPath /* not a class type */) BezierPath /* not a class type */ {
+func (a_ AffineTransform) TransformBezierPath(path objc.IObject /* cross-framework BezierPath */) objc.IObject /* cross-framework: BezierPath */ {
 	rv := objc.Send[BezierPath](a_.ID, objc.Sel("transformBezierPath:"), path)
 	return rv
 }
@@ -240,7 +240,7 @@ func (a_ AffineTransform) TransformBezierPath(path BezierPath /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/translateX(by:yBy:)
-func (a_ AffineTransform) TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */) {
+func (a_ AffineTransform) TranslateXByYBy(deltaX float64 /* primitive/slice/pointer. */, deltaY float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("translateXBy:yBy:"), deltaX, deltaY)
 }
 

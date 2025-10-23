@@ -30,26 +30,26 @@ type _MutableDataClass struct {
 type IMutableData interface {
 	IData
 	// properties:
-	Length() uint /* primitive/slice/pointer */
-	SetLength(value uint /* primitive/slice/pointer */)
+	Length() uint /* primitive/slice/pointer. */
+	SetLength(value uint /* primitive/slice/pointer. */)
 	MutableBytes() unsafe.Pointer
-	NSCompressionErrorMaximum() int /* primitive/slice/pointer */
-	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer */)
-	NSCompressionErrorMinimum() int /* primitive/slice/pointer */
-	SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer */)
-	NSCompressionFailedError() int /* primitive/slice/pointer */
-	SetNSCompressionFailedError(value int /* primitive/slice/pointer */)
-	NSDecompressionFailedError() int /* primitive/slice/pointer */
-	SetNSDecompressionFailedError(value int /* primitive/slice/pointer */)
+	NSCompressionErrorMaximum() int /* primitive/slice/pointer. */
+	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */)
+	NSCompressionErrorMinimum() int /* primitive/slice/pointer. */
+	SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */)
+	NSCompressionFailedError() int /* primitive/slice/pointer. */
+	SetNSCompressionFailedError(value int /* primitive/slice/pointer. */)
+	NSDecompressionFailedError() int /* primitive/slice/pointer. */
+	SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */)
 	// methods:
 	AppendData(other IData)
-	AppendBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer */)
-	CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */
-	IncreaseLengthBy(extraLength uint /* primitive/slice/pointer */)
-	ReplaceBytesInRangeWithBytes(range_ Range /* not a class type */, bytes unsafe.Pointer)
-	ReplaceBytesInRangeWithBytesLength(range_ Range /* not a class type */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */)
-	ResetBytesInRange(range_ Range /* not a class type */)
+	AppendBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */)
+	CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool /* primitive/slice/pointer. */
+	DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool /* primitive/slice/pointer. */
+	IncreaseLengthBy(extraLength uint /* primitive/slice/pointer. */)
+	ReplaceBytesInRangeWithBytes(range_ objc.IObject /* cross-framework Range */, bytes unsafe.Pointer)
+	ReplaceBytesInRangeWithBytesLength(range_ objc.IObject /* cross-framework Range */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer. */)
+	ResetBytesInRange(range_ objc.IObject /* cross-framework Range */)
 	SetData(data IData)
 }
 
@@ -112,7 +112,7 @@ func NewMutableData() MutableData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/init(capacity:)
-func NewMutableDataWithCapacity(capacity uint /* primitive/slice/pointer */) MutableData {
+func NewMutableDataWithCapacity(capacity uint /* primitive/slice/pointer. */) MutableData {
 	instance := getMutableDataClass().Alloc()
 	rv := objc.Send[MutableData](instance.ID, objc.Sel("initWithCapacity:"), capacity)
 	rv.Autorelease()
@@ -124,7 +124,7 @@ func NewMutableDataWithCapacity(capacity uint /* primitive/slice/pointer */) Mut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/init(length:)
-func NewMutableDataWithLength(length uint /* primitive/slice/pointer */) MutableData {
+func NewMutableDataWithLength(length uint /* primitive/slice/pointer. */) MutableData {
 	instance := getMutableDataClass().Alloc()
 	rv := objc.Send[MutableData](instance.ID, objc.Sel("initWithLength:"), length)
 	rv.Autorelease()
@@ -137,7 +137,7 @@ func NewMutableDataWithLength(length uint /* primitive/slice/pointer */) Mutable
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithCapacity:
-func (mc _MutableDataClass) DataWithCapacity(aNumItems uint /* primitive/slice/pointer */) unsafe.Pointer {
+func (mc _MutableDataClass) DataWithCapacity(aNumItems uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithCapacity:"), aNumItems)
 	return rv
 }
@@ -147,7 +147,7 @@ func (mc _MutableDataClass) DataWithCapacity(aNumItems uint /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/dataWithLength:
-func (mc _MutableDataClass) DataWithLength(length uint /* primitive/slice/pointer */) unsafe.Pointer {
+func (mc _MutableDataClass) DataWithLength(length uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dataWithLength:"), length)
 	return rv
 }
@@ -166,7 +166,7 @@ func (m_ MutableData) AppendData(other IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/append(_:length:)
-func (m_ MutableData) AppendBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer */) {
+func (m_ MutableData) AppendBytesLength(bytes unsafe.Pointer, length uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendBytes:length:"), bytes, length)
 }
 
@@ -175,7 +175,7 @@ func (m_ MutableData) AppendBytesLength(bytes unsafe.Pointer, length uint /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/compress(using:)
-func (m_ MutableData) CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (m_ MutableData) CompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("compressUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -185,7 +185,7 @@ func (m_ MutableData) CompressUsingAlgorithmError(algorithm DataCompressionAlgor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/decompress(using:)
-func (m_ MutableData) DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+func (m_ MutableData) DecompressUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("decompressUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -195,7 +195,7 @@ func (m_ MutableData) DecompressUsingAlgorithmError(algorithm DataCompressionAlg
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/increaseLength(by:)
-func (m_ MutableData) IncreaseLengthBy(extraLength uint /* primitive/slice/pointer */) {
+func (m_ MutableData) IncreaseLengthBy(extraLength uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("increaseLengthBy:"), extraLength)
 }
 
@@ -204,7 +204,7 @@ func (m_ MutableData) IncreaseLengthBy(extraLength uint /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:)
-func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ Range /* not a class type */, bytes unsafe.Pointer) {
+func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ objc.IObject /* cross-framework Range */, bytes unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:"), range_, bytes)
 }
 
@@ -213,7 +213,7 @@ func (m_ MutableData) ReplaceBytesInRangeWithBytes(range_ Range /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/replaceBytes(in:withBytes:length:)
-func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ Range /* not a class type */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer */) {
+func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ objc.IObject /* cross-framework Range */, replacementBytes unsafe.Pointer, replacementLength uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceBytesInRange:withBytes:length:"), range_, replacementBytes, replacementLength)
 }
 
@@ -222,7 +222,7 @@ func (m_ MutableData) ReplaceBytesInRangeWithBytesLength(range_ Range /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/resetBytes(in:)
-func (m_ MutableData) ResetBytesInRange(range_ Range /* not a class type */) {
+func (m_ MutableData) ResetBytesInRange(range_ objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resetBytesInRange:"), range_)
 }
 
@@ -240,7 +240,7 @@ func (m_ MutableData) SetData(data IData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/length
-func (m_ MutableData) Length() uint /* primitive/slice/pointer */ {
+func (m_ MutableData) Length() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("length"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (m_ MutableData) Length() uint /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableData/length
-func (m_ MutableData) SetLength(value uint /* primitive/slice/pointer */) {
+func (m_ MutableData) SetLength(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLength:"), value)
 }
 
@@ -269,7 +269,7 @@ func (m_ MutableData) MutableBytes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer */ {
+func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMaximum"))
 	return rv
 }
@@ -279,7 +279,7 @@ func (m_ MutableData) NSCompressionErrorMaximum() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer */) {
+func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMaximum:"), value)
 }
 
@@ -288,7 +288,7 @@ func (m_ MutableData) SetNSCompressionErrorMaximum(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer */ {
+func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionErrorMinimum"))
 	return rv
 }
@@ -298,7 +298,7 @@ func (m_ MutableData) NSCompressionErrorMinimum() int /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-swift.var
-func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer */) {
+func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionErrorMinimum:"), value)
 }
 
@@ -307,7 +307,7 @@ func (m_ MutableData) SetNSCompressionErrorMinimum(value int /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer */ {
+func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSCompressionFailedError"))
 	return rv
 }
@@ -317,7 +317,7 @@ func (m_ MutableData) NSCompressionFailedError() int /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscompressionfailederror-swift.var
-func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/pointer */) {
+func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSCompressionFailedError:"), value)
 }
 
@@ -326,7 +326,7 @@ func (m_ MutableData) SetNSCompressionFailedError(value int /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointer */ {
+func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("NSDecompressionFailedError"))
 	return rv
 }
@@ -336,7 +336,7 @@ func (m_ MutableData) NSDecompressionFailedError() int /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-swift.var
-func (m_ MutableData) SetNSDecompressionFailedError(value int /* primitive/slice/pointer */) {
+func (m_ MutableData) SetNSDecompressionFailedError(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNSDecompressionFailedError:"), value)
 }
 

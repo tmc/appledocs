@@ -34,13 +34,6 @@ func ExampleNewStringWithCharactersNoCopyLengthFreeWhenDone() {
 	)
 	// Output:
 }
-// ExampleNewStringWithCoder demonstrates how to create a String instance using NewStringWithCoder.
-func ExampleNewStringWithCoder() {
-	_ = foundation.NewStringWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
-	)
-	// Output:
-}
 // ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
 // Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
 func ExampleNewStringWithContentsOfFile() {
@@ -119,15 +112,6 @@ func ExampleNewStringWithFormat() {
 func ExampleNewStringWithString() {
 	_ = foundation.NewStringWithString(
 		"aString", // aString string
-	)
-	// Output:
-}
-// ExampleNewStringWithValidatedFormatValidFormatSpecifiersError demonstrates how to create a String instance using NewStringWithValidatedFormatValidFormatSpecifiersError.
-func ExampleNewStringWithValidatedFormatValidFormatSpecifiersError() {
-	_ = foundation.NewStringWithValidatedFormatValidFormatSpecifiersError(
-		"format", // format string
-		"validFormatSpecifiers", // validFormatSpecifiers string
-		foundation.NSError{}, // error NSError
 	)
 	// Output:
 }

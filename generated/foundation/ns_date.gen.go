@@ -31,23 +31,23 @@ type _DateClass struct {
 type IDate interface {
 	objectivec.IObject
 	// properties:
-	Description() string /* primitive/slice/pointer */
+	Description() string /* primitive/slice/pointer. */
 	SrAbsoluteTime() unsafe.Pointer
-	TimeIntervalSince1970() TimeInterval /* not a class type */
-	TimeIntervalSinceNow() TimeInterval /* not a class type */
-	TimeIntervalSinceReferenceDate() TimeInterval /* not a class type */
+	TimeIntervalSince1970() objc.IObject /* cross-framework: TimeInterval */
+	TimeIntervalSinceNow() objc.IObject /* cross-framework: TimeInterval */
+	TimeIntervalSinceReferenceDate() objc.IObject /* cross-framework: TimeInterval */
 	CustomPlaygroundQuickLook() unsafe.Pointer
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
-	NSTimeIntervalSince1970() float64 /* primitive/slice/pointer */
-	SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer */)
+	NSTimeIntervalSince1970() float64 /* primitive/slice/pointer. */
+	SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer. */)
 	// methods:
-	DateByAddingTimeInterval(ti TimeInterval /* not a class type */) unsafe.Pointer
-	Compare(other IDate) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */
+	DateByAddingTimeInterval(ti objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer
+	Compare(other IDate) ComparisonResult /* not a class type */
+	DescriptionWithLocale(locale objectivec.IObject) IString
 	EarlierDate(anotherDate IDate) IDate
-	IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer */
+	IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer. */
 	LaterDate(anotherDate IDate) IDate
-	TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* not a class type */
+	TimeIntervalSinceDate(anotherDate IDate) objc.IObject /* cross-framework: TimeInterval */
 }
 
 // A representation of a specific point in time, independent of any calendar or time zone.
@@ -129,7 +129,7 @@ func NewDateWithSRAbsoluteTime(time unsafe.Pointer) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(string:)
-func NewDateWithString(description string /* primitive/slice/pointer */) Date {
+func NewDateWithString(description string /* primitive/slice/pointer. */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithString:"), objc.String(description))
 	rv.Autorelease()
@@ -141,7 +141,7 @@ func NewDateWithString(description string /* primitive/slice/pointer */) Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSince1970:)
-func NewDateWithTimeIntervalSince1970(secs TimeInterval /* not a class type */) Date {
+func NewDateWithTimeIntervalSince1970(secs objc.IObject /* cross-framework TimeInterval */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSince1970:"), secs)
 	rv.Autorelease()
@@ -153,7 +153,7 @@ func NewDateWithTimeIntervalSince1970(secs TimeInterval /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeInterval:sinceDate:)-71m1f
-func NewDateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* not a class type */, date IDate) Date {
+func NewDateWithTimeIntervalSinceDate(secsToBeAdded objc.IObject /* cross-framework TimeInterval */, date IDate) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	rv.Autorelease()
@@ -165,7 +165,7 @@ func NewDateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSinceNow:)
-func NewDateWithTimeIntervalSinceNow(secs TimeInterval /* not a class type */) Date {
+func NewDateWithTimeIntervalSinceNow(secs objc.IObject /* cross-framework TimeInterval */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceNow:"), secs)
 	rv.Autorelease()
@@ -177,7 +177,7 @@ func NewDateWithTimeIntervalSinceNow(secs TimeInterval /* not a class type */) D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeIntervalSinceReferenceDate:)
-func NewDateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* not a class type */) Date {
+func NewDateWithTimeIntervalSinceReferenceDate(ti objc.IObject /* cross-framework TimeInterval */) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceReferenceDate:"), ti)
 	rv.Autorelease()
@@ -190,7 +190,7 @@ func NewDateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date(with:)
-func (dc _DateClass) DateWithString(aString string /* primitive/slice/pointer */) objc.ID {
+func (dc _DateClass) DateWithString(aString string /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithString:"), objc.String(aString))
 	return rv
 }
@@ -200,7 +200,7 @@ func (dc _DateClass) DateWithString(aString string /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date(withNaturalLanguageString:)
-func (dc _DateClass) DateWithNaturalLanguageString(string_ string /* primitive/slice/pointer */) objc.ID {
+func (dc _DateClass) DateWithNaturalLanguageString(string_ string /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithNaturalLanguageString:"), objc.String(string_))
 	return rv
 }
@@ -210,7 +210,7 @@ func (dc _DateClass) DateWithNaturalLanguageString(string_ string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date(withNaturalLanguageString:locale:)
-func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ string /* primitive/slice/pointer */, locale objectivec.IObject) objc.ID {
+func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ string /* primitive/slice/pointer. */, locale objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithNaturalLanguageString:locale:"), objc.String(string_), locale)
 	return rv
 }
@@ -230,7 +230,7 @@ func (dc _DateClass) Date() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSince1970:
-func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* not a class type */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSince1970(secs objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSince1970:"), secs)
 	return rv
 }
@@ -240,7 +240,7 @@ func (dc _DateClass) DateWithTimeIntervalSince1970(secs TimeInterval /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceNow:
-func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* not a class type */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceNow(secs objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceNow:"), secs)
 	return rv
 }
@@ -250,7 +250,7 @@ func (dc _DateClass) DateWithTimeIntervalSinceNow(secs TimeInterval /* not a cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceReferenceDate:
-func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti TimeInterval /* not a class type */) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceReferenceDate:"), ti)
 	return rv
 }
@@ -268,7 +268,7 @@ func (dc _DateClass) DateWithSRAbsoluteTime(time unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeInterval:sinceDate:)-49cea
-func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded TimeInterval /* not a class type */, date IDate) unsafe.Pointer {
+func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded objc.IObject /* cross-framework TimeInterval */, date IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	return rv
 }
@@ -305,7 +305,7 @@ func (dc _DateClass) Now() Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/addingTimeInterval(_:)
-func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* not a class type */) unsafe.Pointer {
+func (d_ Date) DateByAddingTimeInterval(ti objc.IObject /* cross-framework TimeInterval */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateByAddingTimeInterval:"), ti)
 	return rv
 }
@@ -315,7 +315,7 @@ func (d_ Date) DateByAddingTimeInterval(ti TimeInterval /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/compare(_:)
-func (d_ Date) Compare(other IDate) ComparisonResult {
+func (d_ Date) Compare(other IDate) ComparisonResult /* not a class type */ {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), other)
 	return rv
 }
@@ -325,7 +325,7 @@ func (d_ Date) Compare(other IDate) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/description(with:)
-func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) String /* not a class type */ {
+func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -345,7 +345,7 @@ func (d_ Date) EarlierDate(anotherDate IDate) IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/isEqual(to:)
-func (d_ Date) IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer */ {
+func (d_ Date) IsEqualToDate(otherDate IDate) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToDate:"), otherDate)
 	return rv
 }
@@ -365,7 +365,7 @@ func (d_ Date) LaterDate(anotherDate IDate) IDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince(_:)
-func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* not a class type */ {
+func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceDate:"), anotherDate)
 	return rv
 }
@@ -375,7 +375,7 @@ func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) TimeInterval /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/description
-func (d_ Date) Description() string /* primitive/slice/pointer */ {
+func (d_ Date) Description() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
@@ -423,7 +423,7 @@ func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince1970
-func (d_ Date) TimeIntervalSince1970() TimeInterval /* not a class type */ {
+func (d_ Date) TimeIntervalSince1970() objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
 }
@@ -433,7 +433,7 @@ func (d_ Date) TimeIntervalSince1970() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceNow
-func (d_ Date) TimeIntervalSinceNow() TimeInterval /* not a class type */ {
+func (d_ Date) TimeIntervalSinceNow() objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
 }
@@ -443,7 +443,7 @@ func (d_ Date) TimeIntervalSinceNow() TimeInterval /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.property
-func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval /* not a class type */ {
+func (d_ Date) TimeIntervalSinceReferenceDate() objc.IObject /* cross-framework: TimeInterval */ {
 	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
@@ -472,7 +472,7 @@ func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) NSTimeIntervalSince1970() float64 /* primitive/slice/pointer */ {
+func (d_ Date) NSTimeIntervalSince1970() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
 	return rv
 }
@@ -482,7 +482,7 @@ func (d_ Date) NSTimeIntervalSince1970() float64 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
-func (d_ Date) SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer */) {
+func (d_ Date) SetNSTimeIntervalSince1970(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
 }
 

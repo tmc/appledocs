@@ -31,9 +31,9 @@ type _UUIDClass struct {
 type IUUID interface {
 	objectivec.IObject
 	// properties:
-	UUIDString() string /* primitive/slice/pointer */
+	UUIDString() string /* primitive/slice/pointer. */
 	// methods:
-	Compare(otherUUID IUUID) ComparisonResult
+	Compare(otherUUID IUUID) ComparisonResult /* not a class type */
 	GetUUIDBytes(uuid unsafe.Pointer)
 }
 
@@ -106,7 +106,7 @@ func NewUUIDWithUUIDBytes(bytes unsafe.Pointer) UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/init(uuidString:)
-func NewUUIDWithUUIDString(string_ string /* primitive/slice/pointer */) UUID {
+func NewUUIDWithUUIDString(string_ string /* primitive/slice/pointer. */) UUID {
 	instance := getUUIDClass().Alloc()
 	rv := objc.Send[UUID](instance.ID, objc.Sel("initWithUUIDString:"), objc.String(string_))
 	rv.Autorelease()
@@ -127,7 +127,7 @@ func (uc _UUIDClass) UUID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
-func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
+func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult /* not a class type */ {
 	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
 }
@@ -146,7 +146,7 @@ func (u_ UUID) GetUUIDBytes(uuid unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/uuidString
-func (u_ UUID) UUIDString() string /* primitive/slice/pointer */ {
+func (u_ UUID) UUIDString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("UUIDString"))
 	return rv
 }

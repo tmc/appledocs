@@ -30,9 +30,7 @@ type _BlockOperationClass struct {
 type IBlockOperation interface {
 	IOperation
 	// properties:
-	ExecutionBlocks() []func() /* primitive/slice/pointer */
 	// methods:
-	AddExecutionBlock(block unsafe.Pointer)
 }
 
 // An operation that manages the concurrent execution of one or more blocks.
@@ -89,44 +87,5 @@ func NewBlockOperation() BlockOperation {
 }
 
 
-
-// Creates and returns an object and adds the specified block to it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/init(block:)
-func NewBlockOperationWithBlock(block unsafe.Pointer) BlockOperation {
-	rv := objc.Send[BlockOperation](objc.ID(getBlockOperationClass().class), objc.Sel("blockOperationWithBlock:"), block)
-	return rv
-}
-
-
-
-// Creates and returns an object and adds the specified block to it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/init(block:)
-func (bc _BlockOperationClass) BlockOperationWithBlock(block unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("blockOperationWithBlock:"), block)
-	return rv
-}
-
-
-// Adds the specified block to the receiver’s list of blocks to perform.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/addExecutionBlock(_:)
-func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("addExecutionBlock:"), block)
-}
-
-
-// The blocks associated with the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
-func (b_ BlockOperation) ExecutionBlocks() []func() /* primitive/slice/pointer */ {
-	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
-	return rv
-}
 
 

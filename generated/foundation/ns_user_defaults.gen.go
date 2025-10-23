@@ -31,10 +31,10 @@ type _UserDefaultsClass struct {
 type IUserDefaults interface {
 	objectivec.IObject
 	// properties:
-	VolatileDomainNames() string /* primitive/slice/pointer */
-	SetVolatileDomainNames(value string /* primitive/slice/pointer */)
+	VolatileDomainNames() string /* primitive/slice/pointer. */
+	SetVolatileDomainNames(value string /* primitive/slice/pointer. */)
 	// methods:
-	StringForKey(defaultName string /* primitive/slice/pointer */) String /* not a class type */
+	StringForKey(defaultName string /* primitive/slice/pointer. */) IString
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
@@ -94,7 +94,7 @@ func NewUserDefaults() UserDefaults {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
-func (u_ UserDefaults) StringForKey(defaultName string /* primitive/slice/pointer */) String /* not a class type */ {
+func (u_ UserDefaults) StringForKey(defaultName string /* primitive/slice/pointer. */) IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
@@ -104,7 +104,7 @@ func (u_ UserDefaults) StringForKey(defaultName string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
-func (u_ UserDefaults) VolatileDomainNames() string /* primitive/slice/pointer */ {
+func (u_ UserDefaults) VolatileDomainNames() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("volatileDomainNames"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (u_ UserDefaults) VolatileDomainNames() string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/userdefaults/volatiledomainnames
-func (u_ UserDefaults) SetVolatileDomainNames(value string /* primitive/slice/pointer */) {
+func (u_ UserDefaults) SetVolatileDomainNames(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setVolatileDomainNames:"), objc.String(value))
 }
 

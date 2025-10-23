@@ -17,6 +17,16 @@ func ExampleNewURLAbsoluteURLWithDataRepresentationRelativeToURL() {
 	)
 	// Output:
 }
+// ExampleNewURLByResolvingAliasFileAtURLOptionsError demonstrates how to create a URL instance using NewURLByResolvingAliasFileAtURLOptionsError.
+// Returns a new URL made by resolving the alias file at  .
+func ExampleNewURLByResolvingAliasFileAtURLOptionsError() {
+	_ = foundation.NewURLByResolvingAliasFileAtURLOptionsError(
+		foundation.URL{}, // url URL
+		foundation.URLBookmarkResolutionOptions{}, // options URLBookmarkResolutionOptions
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
 func ExampleNewURLFileURLWithPath() {

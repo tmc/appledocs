@@ -34,8 +34,8 @@ type IDateIntervalFormatter interface {
 	SetCalendar(value ICalendar)
 	DateStyle() DateIntervalFormatterStyle
 	SetDateStyle(value DateIntervalFormatterStyle)
-	DateTemplate() string /* primitive/slice/pointer */
-	SetDateTemplate(value string /* primitive/slice/pointer */)
+	DateTemplate() string /* primitive/slice/pointer. */
+	SetDateTemplate(value string /* primitive/slice/pointer. */)
 	Locale() ILocale
 	SetLocale(value ILocale)
 	TimeStyle() DateIntervalFormatterStyle
@@ -43,8 +43,8 @@ type IDateIntervalFormatter interface {
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
 	// methods:
-	StringFromDateInterval(dateInterval IDateInterval) String /* not a class type */
-	StringFromDateToDate(fromDate IDate, toDate IDate) String /* not a class type */
+	StringFromDateInterval(dateInterval IDateInterval) IString
+	StringFromDateToDate(fromDate IDate, toDate IDate) IString
 }
 
 // A formatter that creates string representations of time intervals.
@@ -104,7 +104,7 @@ func NewDateIntervalFormatter() DateIntervalFormatter {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:)
-func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterval) String /* not a class type */ {
+func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterval) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDateInterval:"), dateInterval)
 	return rv
 }
@@ -114,7 +114,7 @@ func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterva
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:to:)
-func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) String /* not a class type */ {
+func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:toDate:"), fromDate, toDate)
 	return rv
 }
@@ -162,7 +162,7 @@ func (d_ DateIntervalFormatter) SetDateStyle(value DateIntervalFormatterStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/dateTemplate
-func (d_ DateIntervalFormatter) DateTemplate() string /* primitive/slice/pointer */ {
+func (d_ DateIntervalFormatter) DateTemplate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("dateTemplate"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (d_ DateIntervalFormatter) DateTemplate() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/dateTemplate
-func (d_ DateIntervalFormatter) SetDateTemplate(value string /* primitive/slice/pointer */) {
+func (d_ DateIntervalFormatter) SetDateTemplate(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), objc.String(value))
 }
 

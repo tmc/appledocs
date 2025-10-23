@@ -31,7 +31,7 @@ type _UnitClass struct {
 type IUnit interface {
 	objectivec.IObject
 	// properties:
-	Symbol() string /* primitive/slice/pointer */
+	Symbol() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewUnit() Unit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/init(symbol:)
-func NewUnitWithSymbol(symbol string /* primitive/slice/pointer */) Unit {
+func NewUnitWithSymbol(symbol string /* primitive/slice/pointer. */) Unit {
 	instance := getUnitClass().Alloc()
 	rv := objc.Send[Unit](instance.ID, objc.Sel("initWithSymbol:"), objc.String(symbol))
 	rv.Autorelease()
@@ -105,7 +105,7 @@ func NewUnitWithSymbol(symbol string /* primitive/slice/pointer */) Unit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
-func (u_ Unit) Symbol() string /* primitive/slice/pointer */ {
+func (u_ Unit) Symbol() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("symbol"))
 	return rv
 }

@@ -43,6 +43,28 @@ func ExampleNewAttributedStringWithAttributedString() {
 	)
 	// Output:
 }
+// ExampleNewAttributedStringWithContentsOfMarkdownFileAtURLOptionsBaseURLError demonstrates how to create a AttributedString instance using NewAttributedStringWithContentsOfMarkdownFileAtURLOptionsBaseURLError.
+// Creates an attributed string from the contents of a specified URL that contains Markdown-formatted data using the provided options.
+func ExampleNewAttributedStringWithContentsOfMarkdownFileAtURLOptionsBaseURLError() {
+	_ = foundation.NewAttributedStringWithContentsOfMarkdownFileAtURLOptionsBaseURLError(
+		foundation.URL{}, // markdownFile URL
+		foundation.NSAttributedStringMarkdownParsingOptions{}, // options NSAttributedStringMarkdownParsingOptions
+		foundation.URL{}, // baseURL URL
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithDataOptionsDocumentAttributesError demonstrates how to create a AttributedString instance using NewAttributedStringWithDataOptionsDocumentAttributesError.
+// Creates an attributed string from the contents of the specified data object.
+func ExampleNewAttributedStringWithDataOptionsDocumentAttributesError() {
+	_ = foundation.NewAttributedStringWithDataOptionsDocumentAttributesError(
+		foundation.NSData{}, // data NSData
+		foundation.IDictionary{}, // options IDictionary
+		foundation.IDictionary{}, // dict IDictionary
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
 // ExampleNewAttributedStringWithDocFormatDocumentAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithDocFormatDocumentAttributes.
 // Creates an attributed string from Microsoft Word format data in the specified data object.
 func ExampleNewAttributedStringWithDocFormatDocumentAttributes() {
@@ -102,6 +124,28 @@ func ExampleNewAttributedStringWithHTMLOptionsDocumentAttributes() {
 	)
 	// Output:
 }
+// ExampleNewAttributedStringWithMarkdownOptionsBaseURLError demonstrates how to create a AttributedString instance using NewAttributedStringWithMarkdownOptionsBaseURLError.
+// Creates an attributed string from Markdown-formatted data using the provided options.
+func ExampleNewAttributedStringWithMarkdownOptionsBaseURLError() {
+	_ = foundation.NewAttributedStringWithMarkdownOptionsBaseURLError(
+		foundation.NSData{}, // markdown NSData
+		foundation.NSAttributedStringMarkdownParsingOptions{}, // options NSAttributedStringMarkdownParsingOptions
+		foundation.URL{}, // baseURL URL
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithMarkdownStringOptionsBaseURLError demonstrates how to create a AttributedString instance using NewAttributedStringWithMarkdownStringOptionsBaseURLError.
+// Creates an attributed string from a Markdown-formatted string using the provided options.
+func ExampleNewAttributedStringWithMarkdownStringOptionsBaseURLError() {
+	_ = foundation.NewAttributedStringWithMarkdownStringOptionsBaseURLError(
+		"markdownString", // markdownString string
+		foundation.NSAttributedStringMarkdownParsingOptions{}, // options NSAttributedStringMarkdownParsingOptions
+		foundation.URL{}, // baseURL URL
+		foundation.NSError{}, // error NSError
+	)
+	// Output:
+}
 // ExampleNewAttributedStringWithRTFDDocumentAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithRTFDDocumentAttributes.
 // Creates an attributed string by decoding the stream of RTFD commands and data in the specified data object.
 func ExampleNewAttributedStringWithRTFDDocumentAttributes() {
@@ -143,6 +187,17 @@ func ExampleNewAttributedStringWithStringAttributes() {
 	_ = foundation.NewAttributedStringWithStringAttributes(
 		"str", // str string
 		foundation.IDictionary{}, // attrs IDictionary
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithURLOptionsDocumentAttributesError demonstrates how to create a AttributedString instance using NewAttributedStringWithURLOptionsDocumentAttributesError.
+// Creates an attributed string from the contents of the specified URL.
+func ExampleNewAttributedStringWithURLOptionsDocumentAttributesError() {
+	_ = foundation.NewAttributedStringWithURLOptionsDocumentAttributesError(
+		foundation.URL{}, // url URL
+		foundation.IDictionary{}, // options IDictionary
+		foundation.IDictionary{}, // dict IDictionary
+		foundation.NSError{}, // error NSError
 	)
 	// Output:
 }

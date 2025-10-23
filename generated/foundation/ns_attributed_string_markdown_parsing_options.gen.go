@@ -31,16 +31,16 @@ type _AttributedStringMarkdownParsingOptionsClass struct {
 type IAttributedStringMarkdownParsingOptions interface {
 	objectivec.IObject
 	// properties:
-	AllowsExtendedAttributes() bool /* primitive/slice/pointer */
-	SetAllowsExtendedAttributes(value bool /* primitive/slice/pointer */)
-	AppliesSourcePositionAttributes() bool /* primitive/slice/pointer */
-	SetAppliesSourcePositionAttributes(value bool /* primitive/slice/pointer */)
+	AllowsExtendedAttributes() bool /* primitive/slice/pointer. */
+	SetAllowsExtendedAttributes(value bool /* primitive/slice/pointer. */)
+	AppliesSourcePositionAttributes() bool /* primitive/slice/pointer. */
+	SetAppliesSourcePositionAttributes(value bool /* primitive/slice/pointer. */)
 	FailurePolicy() AttributedStringMarkdownParsingFailurePolicy
 	SetFailurePolicy(value AttributedStringMarkdownParsingFailurePolicy)
 	InterpretedSyntax() AttributedStringMarkdownInterpretedSyntax
 	SetInterpretedSyntax(value AttributedStringMarkdownInterpretedSyntax)
-	LanguageCode() string /* primitive/slice/pointer */
-	SetLanguageCode(value string /* primitive/slice/pointer */)
+	LanguageCode() string /* primitive/slice/pointer. */
+	SetLanguageCode(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -100,7 +100,7 @@ func NewAttributedStringMarkdownParsingOptions() AttributedStringMarkdownParsing
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/allowsExtendedAttributes
-func (a_ AttributedStringMarkdownParsingOptions) AllowsExtendedAttributes() bool /* primitive/slice/pointer */ {
+func (a_ AttributedStringMarkdownParsingOptions) AllowsExtendedAttributes() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExtendedAttributes"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (a_ AttributedStringMarkdownParsingOptions) AllowsExtendedAttributes() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/allowsExtendedAttributes
-func (a_ AttributedStringMarkdownParsingOptions) SetAllowsExtendedAttributes(value bool /* primitive/slice/pointer */) {
+func (a_ AttributedStringMarkdownParsingOptions) SetAllowsExtendedAttributes(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExtendedAttributes:"), value)
 }
 
@@ -119,7 +119,7 @@ func (a_ AttributedStringMarkdownParsingOptions) SetAllowsExtendedAttributes(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
-func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes() bool /* primitive/slice/pointer */ {
+func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("appliesSourcePositionAttributes"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (a_ AttributedStringMarkdownParsingOptions) AppliesSourcePositionAttributes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/appliesSourcePositionAttributes
-func (a_ AttributedStringMarkdownParsingOptions) SetAppliesSourcePositionAttributes(value bool /* primitive/slice/pointer */) {
+func (a_ AttributedStringMarkdownParsingOptions) SetAppliesSourcePositionAttributes(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAppliesSourcePositionAttributes:"), value)
 }
 
@@ -176,7 +176,7 @@ func (a_ AttributedStringMarkdownParsingOptions) SetInterpretedSyntax(value Attr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/languageCode
-func (a_ AttributedStringMarkdownParsingOptions) LanguageCode() string /* primitive/slice/pointer */ {
+func (a_ AttributedStringMarkdownParsingOptions) LanguageCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (a_ AttributedStringMarkdownParsingOptions) LanguageCode() string /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingOptions/languageCode
-func (a_ AttributedStringMarkdownParsingOptions) SetLanguageCode(value string /* primitive/slice/pointer */) {
+func (a_ AttributedStringMarkdownParsingOptions) SetLanguageCode(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
 }
 

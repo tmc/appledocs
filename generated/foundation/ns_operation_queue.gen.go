@@ -31,19 +31,19 @@ type _OperationQueueClass struct {
 type IOperationQueue interface {
 	objectivec.IObject
 	// properties:
-	Operations() []Operation /* primitive/slice/pointer */
-	IsReady() bool /* primitive/slice/pointer */
-	SetIsReady(value bool /* primitive/slice/pointer */)
+	Operations() []Operation /* primitive/slice/pointer. */
+	IsReady() bool /* primitive/slice/pointer. */
+	SetIsReady(value bool /* primitive/slice/pointer. */)
 	QueuePriority() unsafe.Pointer
 	SetQueuePriority(value unsafe.Pointer)
-	IsSuspended() bool /* primitive/slice/pointer */
-	SetIsSuspended(value bool /* primitive/slice/pointer */)
-	MaxConcurrentOperationCount() int /* primitive/slice/pointer */
-	SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */)
-	Name() string /* primitive/slice/pointer */
-	SetName(value string /* primitive/slice/pointer */)
-	OperationCount() int /* primitive/slice/pointer */
-	SetOperationCount(value int /* primitive/slice/pointer */)
+	IsSuspended() bool /* primitive/slice/pointer. */
+	SetIsSuspended(value bool /* primitive/slice/pointer. */)
+	MaxConcurrentOperationCount() int /* primitive/slice/pointer. */
+	SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	OperationCount() int /* primitive/slice/pointer. */
+	SetOperationCount(value int /* primitive/slice/pointer. */)
 	Progress() Progress /* not a class type */
 	SetProgress(value Progress /* not a class type */)
 	QualityOfService() unsafe.Pointer
@@ -110,7 +110,7 @@ func NewOperationQueue() OperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
-func (o_ OperationQueue) Operations() []Operation /* primitive/slice/pointer */ {
+func (o_ OperationQueue) Operations() []Operation /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
 	return rv
 }
@@ -120,7 +120,7 @@ func (o_ OperationQueue) Operations() []Operation /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ OperationQueue) IsReady() bool /* primitive/slice/pointer */ {
+func (o_ OperationQueue) IsReady() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isReady"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (o_ OperationQueue) IsReady() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operation/isready
-func (o_ OperationQueue) SetIsReady(value bool /* primitive/slice/pointer */) {
+func (o_ OperationQueue) SetIsReady(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsReady:"), value)
 }
 
@@ -158,7 +158,7 @@ func (o_ OperationQueue) SetQueuePriority(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-func (o_ OperationQueue) IsSuspended() bool /* primitive/slice/pointer */ {
+func (o_ OperationQueue) IsSuspended() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isSuspended"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (o_ OperationQueue) IsSuspended() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/issuspended
-func (o_ OperationQueue) SetIsSuspended(value bool /* primitive/slice/pointer */) {
+func (o_ OperationQueue) SetIsSuspended(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsSuspended:"), value)
 }
 
@@ -177,7 +177,7 @@ func (o_ OperationQueue) SetIsSuspended(value bool /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
-func (o_ OperationQueue) MaxConcurrentOperationCount() int /* primitive/slice/pointer */ {
+func (o_ OperationQueue) MaxConcurrentOperationCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("maxConcurrentOperationCount"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (o_ OperationQueue) MaxConcurrentOperationCount() int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/maxconcurrentoperationcount
-func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer */) {
+func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setMaxConcurrentOperationCount:"), value)
 }
 
@@ -196,7 +196,7 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) Name() string /* primitive/slice/pointer */ {
+func (o_ OperationQueue) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
 }
@@ -206,7 +206,7 @@ func (o_ OperationQueue) Name() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) SetName(value string /* primitive/slice/pointer */) {
+func (o_ OperationQueue) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -215,7 +215,7 @@ func (o_ OperationQueue) SetName(value string /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operationcount
-func (o_ OperationQueue) OperationCount() int /* primitive/slice/pointer */ {
+func (o_ OperationQueue) OperationCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](o_.ID, objc.Sel("operationCount"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (o_ OperationQueue) OperationCount() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operationcount
-func (o_ OperationQueue) SetOperationCount(value int /* primitive/slice/pointer */) {
+func (o_ OperationQueue) SetOperationCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOperationCount:"), value)
 }
 

@@ -31,15 +31,16 @@ type _URLSessionClass struct {
 type IURLSession interface {
 	objectivec.IObject
 	// properties:
-	Configuration() URLSessionConfiguration /* not a class type */
-	SetConfiguration(value URLSessionConfiguration /* not a class type */)
+	Configuration() IURLSessionConfiguration
+	SetConfiguration(value IURLSessionConfiguration)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DelegateQueue() IOperationQueue
 	SetDelegateQueue(value IOperationQueue)
-	SessionDescription() string /* primitive/slice/pointer */
-	SetSessionDescription(value string /* primitive/slice/pointer */)
+	SessionDescription() string /* primitive/slice/pointer. */
+	SetSessionDescription(value string /* primitive/slice/pointer. */)
 	// methods:
+	UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask
 }
 
 // An object that coordinates a group of related, network data transfer tasks.
@@ -95,11 +96,21 @@ func NewURLSession() URLSession {
 
 
 
+// Creates a task that performs an HTTP request for uploading data based on the specified URL request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/uploadTask(withStreamedRequest:)
+func (u_ URLSession) UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask {
+	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithStreamedRequest:"), request)
+	return rv
+}
+
+
 // A copy of the configuration object for this session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSession) Configuration() URLSessionConfiguration /* not a class type */ {
+func (u_ URLSession) Configuration() IURLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -109,7 +120,7 @@ func (u_ URLSession) Configuration() URLSessionConfiguration /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSession) SetConfiguration(value URLSessionConfiguration /* not a class type */) {
+func (u_ URLSession) SetConfiguration(value IURLSessionConfiguration) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfiguration:"), value)
 }
 
@@ -156,7 +167,7 @@ func (u_ URLSession) SetDelegateQueue(value IOperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/sessiondescription
-func (u_ URLSession) SessionDescription() string /* primitive/slice/pointer */ {
+func (u_ URLSession) SessionDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](u_.ID, objc.Sel("sessionDescription"))
 	return rv
 }
@@ -166,7 +177,7 @@ func (u_ URLSession) SessionDescription() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/sessiondescription
-func (u_ URLSession) SetSessionDescription(value string /* primitive/slice/pointer */) {
+func (u_ URLSession) SetSessionDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
 

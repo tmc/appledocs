@@ -31,25 +31,25 @@ type _ThreadClass struct {
 type IThread interface {
 	objectivec.IObject
 	// properties:
-	NSAssertionHandlerKey() string /* primitive/slice/pointer */
-	IsCancelled() bool /* primitive/slice/pointer */
-	SetIsCancelled(value bool /* primitive/slice/pointer */)
-	IsExecuting() bool /* primitive/slice/pointer */
-	SetIsExecuting(value bool /* primitive/slice/pointer */)
-	IsFinished() bool /* primitive/slice/pointer */
-	SetIsFinished(value bool /* primitive/slice/pointer */)
-	IsMainThread() bool /* primitive/slice/pointer */
-	SetIsMainThread(value bool /* primitive/slice/pointer */)
-	Name() string /* primitive/slice/pointer */
-	SetName(value string /* primitive/slice/pointer */)
+	NSAssertionHandlerKey() string /* primitive/slice/pointer. */
+	IsCancelled() bool /* primitive/slice/pointer. */
+	SetIsCancelled(value bool /* primitive/slice/pointer. */)
+	IsExecuting() bool /* primitive/slice/pointer. */
+	SetIsExecuting(value bool /* primitive/slice/pointer. */)
+	IsFinished() bool /* primitive/slice/pointer. */
+	SetIsFinished(value bool /* primitive/slice/pointer. */)
+	IsMainThread() bool /* primitive/slice/pointer. */
+	SetIsMainThread(value bool /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
-	StackSize() int /* primitive/slice/pointer */
-	SetStackSize(value int /* primitive/slice/pointer */)
+	StackSize() int /* primitive/slice/pointer. */
+	SetStackSize(value int /* primitive/slice/pointer. */)
 	ThreadDictionary() MutableDictionary /* not a class type */
 	SetThreadDictionary(value MutableDictionary /* not a class type */)
-	ThreadPriority() float64 /* primitive/slice/pointer */
-	SetThreadPriority(value float64 /* primitive/slice/pointer */)
+	ThreadPriority() float64 /* primitive/slice/pointer. */
+	SetThreadPriority(value float64 /* primitive/slice/pointer. */)
 	// methods:
 	Cancel()
 }
@@ -120,7 +120,7 @@ func (t_ Thread) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
-func (t_ Thread) NSAssertionHandlerKey() string /* primitive/slice/pointer */ {
+func (t_ Thread) NSAssertionHandlerKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (t_ Thread) NSAssertionHandlerKey() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) IsCancelled() bool /* primitive/slice/pointer */ {
+func (t_ Thread) IsCancelled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (t_ Thread) IsCancelled() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/iscancelled
-func (t_ Thread) SetIsCancelled(value bool /* primitive/slice/pointer */) {
+func (t_ Thread) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -149,7 +149,7 @@ func (t_ Thread) SetIsCancelled(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
-func (t_ Thread) IsExecuting() bool /* primitive/slice/pointer */ {
+func (t_ Thread) IsExecuting() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isExecuting"))
 	return rv
 }
@@ -159,7 +159,7 @@ func (t_ Thread) IsExecuting() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isexecuting
-func (t_ Thread) SetIsExecuting(value bool /* primitive/slice/pointer */) {
+func (t_ Thread) SetIsExecuting(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsExecuting:"), value)
 }
 
@@ -168,7 +168,7 @@ func (t_ Thread) SetIsExecuting(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) IsFinished() bool /* primitive/slice/pointer */ {
+func (t_ Thread) IsFinished() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFinished"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (t_ Thread) IsFinished() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/isfinished
-func (t_ Thread) SetIsFinished(value bool /* primitive/slice/pointer */) {
+func (t_ Thread) SetIsFinished(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFinished:"), value)
 }
 
@@ -187,7 +187,7 @@ func (t_ Thread) SetIsFinished(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/ismainthread-swift.property
-func (t_ Thread) IsMainThread() bool /* primitive/slice/pointer */ {
+func (t_ Thread) IsMainThread() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMainThread"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (t_ Thread) IsMainThread() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/ismainthread-swift.property
-func (t_ Thread) SetIsMainThread(value bool /* primitive/slice/pointer */) {
+func (t_ Thread) SetIsMainThread(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsMainThread:"), value)
 }
 
@@ -206,7 +206,7 @@ func (t_ Thread) SetIsMainThread(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/name
-func (t_ Thread) Name() string /* primitive/slice/pointer */ {
+func (t_ Thread) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
@@ -216,7 +216,7 @@ func (t_ Thread) Name() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/name
-func (t_ Thread) SetName(value string /* primitive/slice/pointer */) {
+func (t_ Thread) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -240,7 +240,7 @@ func (t_ Thread) SetQualityOfService(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/stacksize
-func (t_ Thread) StackSize() int /* primitive/slice/pointer */ {
+func (t_ Thread) StackSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("stackSize"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (t_ Thread) StackSize() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/stacksize
-func (t_ Thread) SetStackSize(value int /* primitive/slice/pointer */) {
+func (t_ Thread) SetStackSize(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStackSize:"), value)
 }
 
@@ -278,7 +278,7 @@ func (t_ Thread) SetThreadDictionary(value MutableDictionary /* not a class type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threadpriority
-func (t_ Thread) ThreadPriority() float64 /* primitive/slice/pointer */ {
+func (t_ Thread) ThreadPriority() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("threadPriority"))
 	return rv
 }
@@ -288,7 +288,7 @@ func (t_ Thread) ThreadPriority() float64 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threadpriority
-func (t_ Thread) SetThreadPriority(value float64 /* primitive/slice/pointer */) {
+func (t_ Thread) SetThreadPriority(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadPriority:"), value)
 }
 

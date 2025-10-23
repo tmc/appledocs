@@ -32,8 +32,8 @@ type IDirectoryEnumerator interface {
 	// properties:
 	DirectoryAttributes() IDictionary /* already interface */
 	FileAttributes() IDictionary /* already interface */
-	IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer */
-	Level() uint /* primitive/slice/pointer */
+	IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */
+	Level() uint /* primitive/slice/pointer. */
 	// methods:
 	SkipDescendants()
 	SkipDescendents()
@@ -134,7 +134,7 @@ func (d_ DirectoryEnumerator) FileAttributes() IDictionary /* already interface 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/isEnumeratingDirectoryPostOrder
-func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer */ {
+func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEnumeratingDirectoryPostOrder"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (d_ DirectoryEnumerator) IsEnumeratingDirectoryPostOrder() bool /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerator/level
-func (d_ DirectoryEnumerator) Level() uint /* primitive/slice/pointer */ {
+func (d_ DirectoryEnumerator) Level() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](d_.ID, objc.Sel("level"))
 	return rv
 }

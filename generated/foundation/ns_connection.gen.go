@@ -31,7 +31,7 @@ type _ConnectionClass struct {
 type IConnection interface {
 	objectivec.IObject
 	// properties:
-	MultipleThreadsEnabled() bool /* primitive/slice/pointer */
+	MultipleThreadsEnabled() bool /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -92,7 +92,7 @@ func NewConnection() Connection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/multipleThreadsEnabled
-func (c_ Connection) MultipleThreadsEnabled() bool /* primitive/slice/pointer */ {
+func (c_ Connection) MultipleThreadsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multipleThreadsEnabled"))
 	return rv
 }

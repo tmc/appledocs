@@ -91,7 +91,7 @@ func NewURLHandle() URLHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLHandle/initWithURL:cached:
-func NewURLHandleWithURLCached(anURL IURL, willCache bool /* primitive/slice/pointer */) URLHandle {
+func NewURLHandleWithURLCached(anURL IURL, willCache bool /* primitive/slice/pointer. */) URLHandle {
 	instance := getURLHandleClass().Alloc()
 	rv := objc.Send[URLHandle](instance.ID, objc.Sel("initWithURL:cached:"), anURL, willCache)
 	rv.Autorelease()

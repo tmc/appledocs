@@ -31,7 +31,7 @@ type _MorphologyPronounClass struct {
 type IMorphologyPronoun interface {
 	objectivec.IObject
 	// properties:
-	Pronoun() string /* primitive/slice/pointer */
+	Pronoun() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -90,7 +90,7 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/pronoun
-func (m_ MorphologyPronoun) Pronoun() string /* primitive/slice/pointer */ {
+func (m_ MorphologyPronoun) Pronoun() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("pronoun"))
 	return rv
 }

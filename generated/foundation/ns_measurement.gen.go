@@ -31,11 +31,11 @@ type _MeasurementClass struct {
 type IMeasurement interface {
 	objectivec.IObject
 	// properties:
-	DoubleValue() float64 /* primitive/slice/pointer */
+	DoubleValue() float64 /* primitive/slice/pointer. */
 	Unit() unsafe.Pointer
 	// methods:
 	MeasurementByAddingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
-	CanBeConvertedToUnit(unit IUnit) bool /* primitive/slice/pointer */
+	CanBeConvertedToUnit(unit IUnit) bool /* primitive/slice/pointer. */
 	MeasurementByConvertingToUnit(unit IUnit) IMeasurement
 	MeasurementBySubtractingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
 }
@@ -97,7 +97,7 @@ func NewMeasurement() Measurement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/init(doubleValue:unit:)
-func NewMeasurementWithDoubleValueUnit(doubleValue float64 /* primitive/slice/pointer */, unit unsafe.Pointer) Measurement {
+func NewMeasurementWithDoubleValueUnit(doubleValue float64 /* primitive/slice/pointer. */, unit unsafe.Pointer) Measurement {
 	instance := getMeasurementClass().Alloc()
 	rv := objc.Send[Measurement](instance.ID, objc.Sel("initWithDoubleValue:unit:"), doubleValue, unit)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func (m_ Measurement) MeasurementByAddingMeasurement(measurement unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/canBeConverted(to:)
-func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool /* primitive/slice/pointer */ {
+func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canBeConvertedToUnit:"), unit)
 	return rv
 }
@@ -150,7 +150,7 @@ func (m_ Measurement) MeasurementBySubtractingMeasurement(measurement unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/doubleValue
-func (m_ Measurement) DoubleValue() float64 /* primitive/slice/pointer */ {
+func (m_ Measurement) DoubleValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](m_.ID, objc.Sel("doubleValue"))
 	return rv
 }

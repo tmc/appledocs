@@ -32,8 +32,8 @@ type IMassFormatter interface {
 	// properties:
 	UnitStyle() FormattingUnitStyle /* not a class type */
 	SetUnitStyle(value FormattingUnitStyle /* not a class type */)
-	IsForPersonMassUse() bool /* primitive/slice/pointer */
-	SetIsForPersonMassUse(value bool /* primitive/slice/pointer */)
+	IsForPersonMassUse() bool /* primitive/slice/pointer. */
+	SetIsForPersonMassUse(value bool /* primitive/slice/pointer. */)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
 	// methods:
@@ -115,7 +115,7 @@ func (m_ MassFormatter) SetUnitStyle(value FormattingUnitStyle /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer */ {
+func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isForPersonMassUse"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (m_ MassFormatter) IsForPersonMassUse() bool /* primitive/slice/pointer */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/isforpersonmassuse
-func (m_ MassFormatter) SetIsForPersonMassUse(value bool /* primitive/slice/pointer */) {
+func (m_ MassFormatter) SetIsForPersonMassUse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForPersonMassUse:"), value)
 }
 

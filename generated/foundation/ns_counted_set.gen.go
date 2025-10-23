@@ -30,11 +30,11 @@ type _CountedSetClass struct {
 type ICountedSet interface {
 	IMutableSet
 	// properties:
-	Count() int /* primitive/slice/pointer */
-	SetCount(value int /* primitive/slice/pointer */)
+	Count() int /* primitive/slice/pointer. */
+	SetCount(value int /* primitive/slice/pointer. */)
 	// methods:
 	AddObject(object unsafe.Pointer)
-	CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer */
+	CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer. */
 	ObjectEnumerator() unsafe.Pointer
 	RemoveObject(object unsafe.Pointer)
 }
@@ -110,7 +110,7 @@ func NewCountedSetWithArray(array []objc.ID /* already interface */) CountedSet 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(capacity:)
-func NewCountedSetWithCapacity(numItems uint /* primitive/slice/pointer */) CountedSet {
+func NewCountedSetWithCapacity(numItems uint /* primitive/slice/pointer. */) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
 	rv.Autorelease()
@@ -144,7 +144,7 @@ func (c_ CountedSet) AddObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/count(for:)
-func (c_ CountedSet) CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer */ {
+func (c_ CountedSet) CountForObject(object unsafe.Pointer) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("countForObject:"), object)
 	return rv
 }
@@ -173,7 +173,7 @@ func (c_ CountedSet) RemoveObject(object unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) Count() int /* primitive/slice/pointer */ {
+func (c_ CountedSet) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("count"))
 	return rv
 }
@@ -183,7 +183,7 @@ func (c_ CountedSet) Count() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsset/count
-func (c_ CountedSet) SetCount(value int /* primitive/slice/pointer */) {
+func (c_ CountedSet) SetCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCount:"), value)
 }
 

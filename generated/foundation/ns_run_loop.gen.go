@@ -36,7 +36,7 @@ type IRunLoop interface {
 	// methods:
 	LimitDateForMode(mode RunLoopMode /* not a class type */) IDate
 	PerformBlock(block unsafe.Pointer)
-	PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer)
+	PerformInModesBlock(modes []string /* primitive/slice/pointer. */, block unsafe.Pointer)
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -115,7 +115,7 @@ func (r_ RunLoop) PerformBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(inModes:block:)
-func (r_ RunLoop) PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer) {
+func (r_ RunLoop) PerformInModesBlock(modes []string /* primitive/slice/pointer. */, block unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performInModes:block:"), modes, block)
 }
 

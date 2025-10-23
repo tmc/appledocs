@@ -31,19 +31,19 @@ type _PresentationIntentClass struct {
 type IPresentationIntent interface {
 	objectivec.IObject
 	// properties:
-	Column() int /* primitive/slice/pointer */
-	ColumnAlignments() []Number /* primitive/slice/pointer */
-	ColumnCount() int /* primitive/slice/pointer */
-	HeaderLevel() int /* primitive/slice/pointer */
-	Identity() int /* primitive/slice/pointer */
-	IndentationLevel() int /* primitive/slice/pointer */
+	Column() int /* primitive/slice/pointer. */
+	ColumnAlignments() []Number /* primitive/slice/pointer. */
+	ColumnCount() int /* primitive/slice/pointer. */
+	HeaderLevel() int /* primitive/slice/pointer. */
+	Identity() int /* primitive/slice/pointer. */
+	IndentationLevel() int /* primitive/slice/pointer. */
 	IntentKind() PresentationIntentKind
-	LanguageHint() string /* primitive/slice/pointer */
-	Ordinal() int /* primitive/slice/pointer */
+	LanguageHint() string /* primitive/slice/pointer. */
+	Ordinal() int /* primitive/slice/pointer. */
 	ParentIntent() IPresentationIntent
-	Row() int /* primitive/slice/pointer */
+	Row() int /* primitive/slice/pointer. */
 	// methods:
-	IsEquivalentToPresentationIntent(other IPresentationIntent) bool /* primitive/slice/pointer */
+	IsEquivalentToPresentationIntent(other IPresentationIntent) bool /* primitive/slice/pointer. */
 }
 
 // A type that contains the Markdown formatting for blocks of text, like paragraphs, lists, code blocks, and parts of tables.
@@ -103,7 +103,7 @@ func NewPresentationIntent() PresentationIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/blockQuoteIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) BlockQuoteIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) BlockQuoteIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("blockQuoteIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -113,7 +113,7 @@ func (pc _PresentationIntentClass) BlockQuoteIntentWithIdentityNestedInsideInten
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:
-func (pc _PresentationIntentClass) CodeBlockIntentWithIdentityLanguageHintNestedInsideIntent(identity int /* primitive/slice/pointer */, languageHint string /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) CodeBlockIntentWithIdentityLanguageHintNestedInsideIntent(identity int /* primitive/slice/pointer. */, languageHint string /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:"), identity, objc.String(languageHint), parent)
 	return rv
 }
@@ -123,7 +123,7 @@ func (pc _PresentationIntentClass) CodeBlockIntentWithIdentityLanguageHintNested
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/headerIntentWithIdentity:level:nestedInsideIntent:
-func (pc _PresentationIntentClass) HeaderIntentWithIdentityLevelNestedInsideIntent(identity int /* primitive/slice/pointer */, level int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) HeaderIntentWithIdentityLevelNestedInsideIntent(identity int /* primitive/slice/pointer. */, level int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("headerIntentWithIdentity:level:nestedInsideIntent:"), identity, level, parent)
 	return rv
 }
@@ -133,7 +133,7 @@ func (pc _PresentationIntentClass) HeaderIntentWithIdentityLevelNestedInsideInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/listItemIntentWithIdentity:ordinal:nestedInsideIntent:
-func (pc _PresentationIntentClass) ListItemIntentWithIdentityOrdinalNestedInsideIntent(identity int /* primitive/slice/pointer */, ordinal int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) ListItemIntentWithIdentityOrdinalNestedInsideIntent(identity int /* primitive/slice/pointer. */, ordinal int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("listItemIntentWithIdentity:ordinal:nestedInsideIntent:"), identity, ordinal, parent)
 	return rv
 }
@@ -143,7 +143,7 @@ func (pc _PresentationIntentClass) ListItemIntentWithIdentityOrdinalNestedInside
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/orderedListIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) OrderedListIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) OrderedListIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("orderedListIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -153,7 +153,7 @@ func (pc _PresentationIntentClass) OrderedListIntentWithIdentityNestedInsideInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/paragraphIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) ParagraphIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) ParagraphIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("paragraphIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -163,7 +163,7 @@ func (pc _PresentationIntentClass) ParagraphIntentWithIdentityNestedInsideIntent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/tableCellIntentWithIdentity:column:nestedInsideIntent:
-func (pc _PresentationIntentClass) TableCellIntentWithIdentityColumnNestedInsideIntent(identity int /* primitive/slice/pointer */, column int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) TableCellIntentWithIdentityColumnNestedInsideIntent(identity int /* primitive/slice/pointer. */, column int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("tableCellIntentWithIdentity:column:nestedInsideIntent:"), identity, column, parent)
 	return rv
 }
@@ -173,7 +173,7 @@ func (pc _PresentationIntentClass) TableCellIntentWithIdentityColumnNestedInside
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/tableHeaderRowIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) TableHeaderRowIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) TableHeaderRowIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("tableHeaderRowIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -183,7 +183,7 @@ func (pc _PresentationIntentClass) TableHeaderRowIntentWithIdentityNestedInsideI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:
-func (pc _PresentationIntentClass) TableIntentWithIdentityColumnCountAlignmentsNestedInsideIntent(identity int /* primitive/slice/pointer */, columnCount int /* primitive/slice/pointer */, alignments []Number /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) TableIntentWithIdentityColumnCountAlignmentsNestedInsideIntent(identity int /* primitive/slice/pointer. */, columnCount int /* primitive/slice/pointer. */, alignments []Number /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:"), identity, columnCount, alignments, parent)
 	return rv
 }
@@ -193,7 +193,7 @@ func (pc _PresentationIntentClass) TableIntentWithIdentityColumnCountAlignmentsN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/tableRowIntentWithIdentity:row:nestedInsideIntent:
-func (pc _PresentationIntentClass) TableRowIntentWithIdentityRowNestedInsideIntent(identity int /* primitive/slice/pointer */, row int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) TableRowIntentWithIdentityRowNestedInsideIntent(identity int /* primitive/slice/pointer. */, row int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("tableRowIntentWithIdentity:row:nestedInsideIntent:"), identity, row, parent)
 	return rv
 }
@@ -203,7 +203,7 @@ func (pc _PresentationIntentClass) TableRowIntentWithIdentityRowNestedInsideInte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/thematicBreakIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) ThematicBreakIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) ThematicBreakIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("thematicBreakIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -213,7 +213,7 @@ func (pc _PresentationIntentClass) ThematicBreakIntentWithIdentityNestedInsideIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/unorderedListIntentWithIdentity:nestedInsideIntent:
-func (pc _PresentationIntentClass) UnorderedListIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer */, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) UnorderedListIntentWithIdentityNestedInsideIntent(identity int /* primitive/slice/pointer. */, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("unorderedListIntentWithIdentity:nestedInsideIntent:"), identity, parent)
 	return rv
 }
@@ -223,7 +223,7 @@ func (pc _PresentationIntentClass) UnorderedListIntentWithIdentityNestedInsideIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/isEquivalentToPresentationIntent:
-func (p_ PresentationIntent) IsEquivalentToPresentationIntent(other IPresentationIntent) bool /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) IsEquivalentToPresentationIntent(other IPresentationIntent) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEquivalentToPresentationIntent:"), other)
 	return rv
 }
@@ -233,7 +233,7 @@ func (p_ PresentationIntent) IsEquivalentToPresentationIntent(other IPresentatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/column
-func (p_ PresentationIntent) Column() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) Column() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("column"))
 	return rv
 }
@@ -243,7 +243,7 @@ func (p_ PresentationIntent) Column() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/columnAlignments
-func (p_ PresentationIntent) ColumnAlignments() []Number /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) ColumnAlignments() []Number /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Number](p_.ID, objc.Sel("columnAlignments"))
 	return rv
 }
@@ -253,7 +253,7 @@ func (p_ PresentationIntent) ColumnAlignments() []Number /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/columnCount
-func (p_ PresentationIntent) ColumnCount() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) ColumnCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("columnCount"))
 	return rv
 }
@@ -263,7 +263,7 @@ func (p_ PresentationIntent) ColumnCount() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/headerLevel
-func (p_ PresentationIntent) HeaderLevel() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) HeaderLevel() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("headerLevel"))
 	return rv
 }
@@ -273,7 +273,7 @@ func (p_ PresentationIntent) HeaderLevel() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/identity
-func (p_ PresentationIntent) Identity() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) Identity() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("identity"))
 	return rv
 }
@@ -283,7 +283,7 @@ func (p_ PresentationIntent) Identity() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/indentationLevel
-func (p_ PresentationIntent) IndentationLevel() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) IndentationLevel() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("indentationLevel"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (p_ PresentationIntent) IntentKind() PresentationIntentKind {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/languageHint
-func (p_ PresentationIntent) LanguageHint() string /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) LanguageHint() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("languageHint"))
 	return rv
 }
@@ -313,7 +313,7 @@ func (p_ PresentationIntent) LanguageHint() string /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/ordinal
-func (p_ PresentationIntent) Ordinal() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) Ordinal() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("ordinal"))
 	return rv
 }
@@ -333,7 +333,7 @@ func (p_ PresentationIntent) ParentIntent() IPresentationIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/row
-func (p_ PresentationIntent) Row() int /* primitive/slice/pointer */ {
+func (p_ PresentationIntent) Row() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("row"))
 	return rv
 }

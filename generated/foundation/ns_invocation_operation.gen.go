@@ -31,7 +31,7 @@ type _InvocationOperationClass struct {
 type IInvocationOperation interface {
 	IOperation
 	// properties:
-	Invocation() IInvocation
+	Invocation() Invocation /* not a class type */
 	Result() objc.ID
 	// methods:
 }
@@ -95,7 +95,7 @@ func NewInvocationOperation() InvocationOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
-func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
+func NewInvocationOperationWithInvocation(inv Invocation /* not a class type */) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithInvocation:"), inv)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
-func (i_ InvocationOperation) Invocation() IInvocation {
+func (i_ InvocationOperation) Invocation() Invocation /* not a class type */ {
 	rv := objc.Send[Invocation](i_.ID, objc.Sel("invocation"))
 	return rv
 }
