@@ -10,25 +10,25 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
-// The class instance for the [map] class.
+// The class instance for the [Map] class.
 var (
-	MapClass     _mapClass
+	MapClass     _MapClass
 	MapClassOnce sync.Once
 )
 
-func getmapClass() _mapClass {
+func getMapClass() _MapClass {
 	MapClassOnce.Do(func() {
-		MapClass = _mapClass{objc.GetClass("map")}
+		MapClass = _MapClass{objc.GetClass("map")}
 	})
 	return MapClass
 }
 
-type _mapClass struct {
+type _MapClass struct {
 	class objc.Class
 }
 
-// An interface definition for the [map] class.
-type Imap interface {
+// An interface definition for the [Map] class.
+type IMap interface {
 	objectivec.IObject
 	// properties:
 	// methods:
@@ -38,44 +38,44 @@ type Imap interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/map
-type map struct {
+type Map struct {
 	objectivec.Object
 }
 
-// mapFrom constructs a [map] from an unsafe.Pointer.
-func mapFrom(ptr unsafe.Pointer) map {
-	return map{objectivec.Object{objc.ID(ptr)}}
+// MapFrom constructs a [Map] from an unsafe.Pointer.
+func MapFrom(ptr unsafe.Pointer) Map {
+	return Map{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.
-func (mc _mapClass) Alloc() map {
-	rv := objc.Send[map](objc.ID(mc.class), objc.Sel("alloc"))
+func (mc _MapClass) Alloc() Map {
+	rv := objc.Send[Map](objc.ID(mc.class), objc.Sel("alloc"))
 	return rv
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
 // Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
-func (mc _mapClass) New() map {
-	rv := objc.Send[map](objc.ID(mc.class), objc.Sel("new"))
+func (mc _MapClass) New() Map {
+	rv := objc.Send[Map](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
 	return rv
 }
 
 // Init initializes the instance.
-func (m_ map) Init() map {
-	rv := objc.Send[map](m_.ID, objc.Sel("init"))
+func (m_ Map) Init() Map {
+	rv := objc.Send[Map](m_.ID, objc.Sel("init"))
 	return rv
 }
 
 // Autorelease adds the receiver to the current autorelease pool.
-func (m_ map) Autorelease() map {
-	rv := objc.Send[map](m_.ID, objc.Sel("autorelease"))
+func (m_ Map) Autorelease() Map {
+	rv := objc.Send[Map](m_.ID, objc.Sel("autorelease"))
 	return rv
 }
 
-// Newmap creates a new map instance.
-func Newmap() map {
-	return getmapClass().New()
+// NewMap creates a new Map instance.
+func NewMap() Map {
+	return getMapClass().New()
 }
 
 

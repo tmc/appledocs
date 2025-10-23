@@ -8,6 +8,30 @@ import (
 // These functions handle the transformation of Objective-C identifiers
 // (class names, selectors, property names, etc.) into idiomatic Go names.
 
+// goKeywords contains Go keywords and predeclared identifiers
+var goKeywords = map[string]bool{
+	// Reserved keywords
+	"break": true, "case": true, "chan": true, "const": true, "continue": true,
+	"default": true, "defer": true, "else": true, "fallthrough": true, "for": true,
+	"func": true, "go": true, "goto": true, "if": true, "import": true,
+	"interface": true, "map": true, "package": true, "range": true, "return": true,
+	"select": true, "struct": true, "switch": true, "type": true, "var": true,
+	// Predeclared identifiers
+	"append": true, "bool": true, "byte": true, "cap": true, "close": true,
+	"complex": true, "complex64": true, "complex128": true, "copy": true,
+	"delete": true, "error": true, "false": true, "float32": true, "float64": true,
+	"imag": true, "int": true, "int8": true, "int16": true, "int32": true, "int64": true,
+	"iota": true, "len": true, "make": true, "new": true, "nil": true,
+	"panic": true, "print": true, "println": true, "real": true, "recover": true,
+	"rune": true, "string": true, "true": true, "uint": true, "uint8": true,
+	"uint16": true, "uint32": true, "uint64": true, "uintptr": true,
+}
+
+// isGoKeyword checks if a string is a Go reserved keyword or predeclared identifier
+func isGoKeyword(name string) bool {
+	return goKeywords[name]
+}
+
 // ClassToInterfaceName converts an Objective-C class name to a Go interface name.
 // Strips the NS/CG/CF prefix and adds an "I" prefix.
 // Examples:
@@ -26,18 +50,26 @@ func ClassToInterfaceName(className string) string {
 }
 
 // ClassToStructName converts an Objective-C class name to a Go struct name.
-// Strips the NS/CG/CF prefix.
+// Strips the NS/CG/CF prefix and capitalizes if it's a Go keyword.
 // Examples:
 //
 //	NSButton -> Button
 //	NSView -> View
 //	CGContext -> Context
+//	map -> Map (Go keyword, capitalized)
 func ClassToStructName(className string) string {
 	if className == "" {
 		return ""
 	}
 
-	return StripObjCPrefix(className)
+	name := StripObjCPrefix(className)
+
+	// If the name is a Go keyword, capitalize it
+	if isGoKeyword(name) {
+		return strings.ToUpper(name[:1]) + name[1:]
+	}
+
+	return name
 }
 
 // ClassToVarName converts an Objective-C class name to a Go variable name for the class.
