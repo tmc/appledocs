@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,14 @@ type _CKQueryClass struct {
 // An interface definition for the [CKQuery] class.
 type ICKQuery interface {
 	objectivec.IObject
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	// properties:
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
-	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.SortDescriptor)
+	SortDescriptors() SortDescriptor /* not a class type */
+	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	// methods:
 }
 
 // A query that describes the criteria to apply when searching for records in a database.
@@ -96,8 +97,8 @@ func NewCKQuery() CKQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/predicate
-func (c_ CKQuery) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
+func (c_ CKQuery) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -106,7 +107,7 @@ func (c_ CKQuery) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/predicate
-func (c_ CKQuery) SetPredicate(value foundation.Predicate) {
+func (c_ CKQuery) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -134,8 +135,8 @@ func (c_ CKQuery) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/sortdescriptors
-func (c_ CKQuery) SortDescriptors() foundation.SortDescriptor {
-	rv := objc.Send[foundation.SortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
+func (c_ CKQuery) SortDescriptors() SortDescriptor /* not a class type */ {
+	rv := objc.Send[SortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -144,7 +145,7 @@ func (c_ CKQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquery/sortdescriptors
-func (c_ CKQuery) SetSortDescriptors(value foundation.SortDescriptor) {
+func (c_ CKQuery) SetSortDescriptors(value SortDescriptor /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

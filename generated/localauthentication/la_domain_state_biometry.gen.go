@@ -32,8 +32,8 @@ type _DomainStateBiometryClass struct {
 type IDomainStateBiometry interface {
 	objectivec.IObject
 	// properties:
-	BiometryType() LABiometryType
-	StateHash() foundation.NSData
+	BiometryType() BiometryType
+	StateHash() foundation.objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -87,8 +87,8 @@ func NewDomainStateBiometry() DomainStateBiometry {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/biometryType
-func (d_ DomainStateBiometry) BiometryType() LABiometryType {
-	rv := objc.Send[LABiometryType](d_.ID, objc.Sel("biometryType"))
+func (d_ DomainStateBiometry) BiometryType() BiometryType {
+	rv := objc.Send[BiometryType](d_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
@@ -97,7 +97,7 @@ func (d_ DomainStateBiometry) BiometryType() LABiometryType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/stateHash
-func (d_ DomainStateBiometry) StateHash() foundation.NSData {
+func (d_ DomainStateBiometry) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }

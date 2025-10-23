@@ -30,26 +30,27 @@ type _AudioEnvironmentNodeClass struct {
 // An interface definition for the [AudioEnvironmentNode] class.
 type IAudioEnvironmentNode interface {
 	IAudioNode
-	ListenerHeadTrackingEnabled() bool
-	SetListenerHeadTrackingEnabled(value bool)
-	ApplicableRenderingAlgorithms() foundation.Number
-	SetApplicableRenderingAlgorithms(value foundation.Number)
+	// properties:
+	ListenerHeadTrackingEnabled() bool /* primitive/slice/pointer. */
+	SetListenerHeadTrackingEnabled(value bool /* primitive/slice/pointer. */)
+	ListenerAngularOrientation() Audio3DAngularOrientation /* not a class type */
+	SetListenerAngularOrientation(value Audio3DAngularOrientation /* not a class type */)
+	OutputType() AudioEnvironmentOutputType
+	SetOutputType(value AudioEnvironmentOutputType)
+	ApplicableRenderingAlgorithms() foundation.objc.IObject /* cross-framework: Number */
+	SetApplicableRenderingAlgorithms(value foundation.objc.IObject /* cross-framework: Number */)
 	DistanceAttenuationParameters() IAVAudioEnvironmentDistanceAttenuationParameters
 	SetDistanceAttenuationParameters(value IAVAudioEnvironmentDistanceAttenuationParameters)
-	IsListenerHeadTrackingEnabled() bool
-	SetIsListenerHeadTrackingEnabled(value bool)
-	ListenerAngularOrientation() unsafe.Pointer
-	SetListenerAngularOrientation(value unsafe.Pointer)
-	ListenerPosition() unsafe.Pointer
-	SetListenerPosition(value unsafe.Pointer)
-	ListenerVectorOrientation() unsafe.Pointer
-	SetListenerVectorOrientation(value unsafe.Pointer)
-	NextAvailableInputBus() unsafe.Pointer
-	SetNextAvailableInputBus(value unsafe.Pointer)
-	OutputType() AVAudioEnvironmentOutputType
-	SetOutputType(value AVAudioEnvironmentOutputType)
-	OutputVolume() float32
-	SetOutputVolume(value float32)
+	IsListenerHeadTrackingEnabled() bool /* primitive/slice/pointer. */
+	SetIsListenerHeadTrackingEnabled(value bool /* primitive/slice/pointer. */)
+	ListenerPosition() Audio3DPoint /* not a class type */
+	SetListenerPosition(value Audio3DPoint /* not a class type */)
+	ListenerVectorOrientation() Audio3DVectorOrientation /* not a class type */
+	SetListenerVectorOrientation(value Audio3DVectorOrientation /* not a class type */)
+	NextAvailableInputBus() AudioNodeBus /* not a class type */
+	SetNextAvailableInputBus(value AudioNodeBus /* not a class type */)
+	OutputVolume() float32 /* primitive/slice/pointer. */
+	SetOutputVolume(value float32 /* primitive/slice/pointer. */)
 	ReverbParameters() IAVAudioEnvironmentReverbParameters
 	SetReverbParameters(value IAVAudioEnvironmentReverbParameters)
 	KAudioChannelLayoutTag_AudioUnit_4() unsafe.Pointer
@@ -64,6 +65,7 @@ type IAudioEnvironmentNode interface {
 	SetKAudioChannelLayoutTag_AudioUnit_7_0_Front(value unsafe.Pointer)
 	KAudioChannelLayoutTag_AudioUnit_8() unsafe.Pointer
 	SetKAudioChannelLayoutTag_AudioUnit_8(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that simulates a 3D audio environment.
@@ -125,7 +127,7 @@ func NewAudioEnvironmentNode() AudioEnvironmentNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
-func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
+func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("listenerHeadTrackingEnabled"))
 	return rv
 }
@@ -135,8 +137,46 @@ func (a_ AudioEnvironmentNode) ListenerHeadTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/isListenerHeadTrackingEnabled
-func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
+func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerHeadTrackingEnabled:"), value)
+}
+
+
+// The listener’s angular orientation in the environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
+func (a_ AudioEnvironmentNode) ListenerAngularOrientation() Audio3DAngularOrientation /* not a class type */ {
+	rv := objc.Send[Audio3DAngularOrientation](a_.ID, objc.Sel("listenerAngularOrientation"))
+	return rv
+}
+
+
+// The listener’s angular orientation in the environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/listenerAngularOrientation
+func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value Audio3DAngularOrientation /* not a class type */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerAngularOrientation:"), value)
+}
+
+
+// The type of output hardware.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/outputType
+func (a_ AudioEnvironmentNode) OutputType() AudioEnvironmentOutputType {
+	rv := objc.Send[AudioEnvironmentOutputType](a_.ID, objc.Sel("outputType"))
+	return rv
+}
+
+
+// The type of output hardware.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioEnvironmentNode/outputType
+func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputType:"), value)
 }
 
 
@@ -144,7 +184,7 @@ func (a_ AudioEnvironmentNode) SetListenerHeadTrackingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/applicablerenderingalgorithms
-func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() foundation.Number {
+func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("applicableRenderingAlgorithms"))
 	return rv
 }
@@ -154,7 +194,7 @@ func (a_ AudioEnvironmentNode) ApplicableRenderingAlgorithms() foundation.Number
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/applicablerenderingalgorithms
-func (a_ AudioEnvironmentNode) SetApplicableRenderingAlgorithms(value foundation.Number) {
+func (a_ AudioEnvironmentNode) SetApplicableRenderingAlgorithms(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicableRenderingAlgorithms:"), value)
 }
 
@@ -182,7 +222,7 @@ func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value IAVAudioEn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
-func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool {
+func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isListenerHeadTrackingEnabled"))
 	return rv
 }
@@ -192,36 +232,17 @@ func (a_ AudioEnvironmentNode) IsListenerHeadTrackingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/islistenerheadtrackingenabled
-func (a_ AudioEnvironmentNode) SetIsListenerHeadTrackingEnabled(value bool) {
+func (a_ AudioEnvironmentNode) SetIsListenerHeadTrackingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsListenerHeadTrackingEnabled:"), value)
 }
 
 
-// The listener’s angular orientation in the environment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerangularorientation
-func (a_ AudioEnvironmentNode) ListenerAngularOrientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerAngularOrientation"))
-	return rv
-}
-
-
-// The listener’s angular orientation in the environment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerangularorientation
-func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerAngularOrientation:"), value)
-}
-
-
 // The listener’s position in the 3D environment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
-func (a_ AudioEnvironmentNode) ListenerPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerPosition"))
+func (a_ AudioEnvironmentNode) ListenerPosition() Audio3DPoint /* not a class type */ {
+	rv := objc.Send[Audio3DPoint](a_.ID, objc.Sel("listenerPosition"))
 	return rv
 }
 
@@ -230,7 +251,7 @@ func (a_ AudioEnvironmentNode) ListenerPosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenerposition
-func (a_ AudioEnvironmentNode) SetListenerPosition(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetListenerPosition(value Audio3DPoint /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerPosition:"), value)
 }
 
@@ -239,8 +260,8 @@ func (a_ AudioEnvironmentNode) SetListenerPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
-func (a_ AudioEnvironmentNode) ListenerVectorOrientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("listenerVectorOrientation"))
+func (a_ AudioEnvironmentNode) ListenerVectorOrientation() Audio3DVectorOrientation /* not a class type */ {
+	rv := objc.Send[Audio3DVectorOrientation](a_.ID, objc.Sel("listenerVectorOrientation"))
 	return rv
 }
 
@@ -249,7 +270,7 @@ func (a_ AudioEnvironmentNode) ListenerVectorOrientation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/listenervectororientation
-func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value Audio3DVectorOrientation /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setListenerVectorOrientation:"), value)
 }
 
@@ -258,8 +279,8 @@ func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-func (a_ AudioEnvironmentNode) NextAvailableInputBus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextAvailableInputBus"))
+func (a_ AudioEnvironmentNode) NextAvailableInputBus() AudioNodeBus /* not a class type */ {
+	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 
@@ -268,27 +289,8 @@ func (a_ AudioEnvironmentNode) NextAvailableInputBus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value AudioNodeBus /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNextAvailableInputBus:"), value)
-}
-
-
-// The type of output hardware.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-func (a_ AudioEnvironmentNode) OutputType() AVAudioEnvironmentOutputType {
-	rv := objc.Send[AVAudioEnvironmentOutputType](a_.ID, objc.Sel("outputType"))
-	return rv
-}
-
-
-// The type of output hardware.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-func (a_ AudioEnvironmentNode) SetOutputType(value AVAudioEnvironmentOutputType) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputType:"), value)
 }
 
 
@@ -296,7 +298,7 @@ func (a_ AudioEnvironmentNode) SetOutputType(value AVAudioEnvironmentOutputType)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-func (a_ AudioEnvironmentNode) OutputVolume() float32 {
+func (a_ AudioEnvironmentNode) OutputVolume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
@@ -306,7 +308,7 @@ func (a_ AudioEnvironmentNode) OutputVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputvolume
-func (a_ AudioEnvironmentNode) SetOutputVolume(value float32) {
+func (a_ AudioEnvironmentNode) SetOutputVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 

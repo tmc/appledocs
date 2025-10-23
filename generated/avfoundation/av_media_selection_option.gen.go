@@ -32,20 +32,20 @@ type _MediaSelectionOptionClass struct {
 type IMediaSelectionOption interface {
 	objectivec.IObject
 	// properties:
-	AvailableMetadataFormats() string /* primitive/slice/pointer */
-	SetAvailableMetadataFormats(value string /* primitive/slice/pointer */)
+	AvailableMetadataFormats() objc.IObject /* cross-framework: NSString */
+	SetAvailableMetadataFormats(value objc.IObject /* cross-framework: NSString */)
 	CommonMetadata() IAVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
-	DisplayName() string /* primitive/slice/pointer */
-	SetDisplayName(value string /* primitive/slice/pointer */)
-	ExtendedLanguageTag() string /* primitive/slice/pointer */
-	SetExtendedLanguageTag(value string /* primitive/slice/pointer */)
-	IsPlayable() bool /* primitive/slice/pointer */
-	SetIsPlayable(value bool /* primitive/slice/pointer */)
-	Locale() foundation.Locale /* not a class type */
-	SetLocale(value foundation.Locale /* not a class type */)
-	MediaSubTypes() foundation.Number /* not a class type */
-	SetMediaSubTypes(value foundation.Number /* not a class type */)
+	DisplayName() objc.IObject /* cross-framework: NSString */
+	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
+	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
+	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
+	IsPlayable() bool /* primitive/slice/pointer. */
+	SetIsPlayable(value bool /* primitive/slice/pointer. */)
+	Locale() unsafe.Pointer
+	SetLocale(value unsafe.Pointer)
+	MediaSubTypes() objc.IObject /* cross-framework: NSNumber */
+	SetMediaSubTypes(value objc.IObject /* cross-framework: NSNumber */)
 	MediaType() MediaType /* not a class type */
 	SetMediaType(value MediaType /* not a class type */)
 	// methods:
@@ -106,8 +106,8 @@ func NewMediaSelectionOption() MediaSelectionOption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-func (m_ MediaSelectionOption) AvailableMetadataFormats() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("availableMetadataFormats"))
+func (m_ MediaSelectionOption) AvailableMetadataFormats() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -116,8 +116,8 @@ func (m_ MediaSelectionOption) AvailableMetadataFormats() string /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAvailableMetadataFormats:"), objc.String(value))
+func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
 
@@ -144,8 +144,8 @@ func (m_ MediaSelectionOption) SetCommonMetadata(value IAVMetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-func (m_ MediaSelectionOption) DisplayName() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("displayName"))
+func (m_ MediaSelectionOption) DisplayName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (m_ MediaSelectionOption) DisplayName() string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-func (m_ MediaSelectionOption) SetDisplayName(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (m_ MediaSelectionOption) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 
@@ -163,8 +163,8 @@ func (m_ MediaSelectionOption) SetDisplayName(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-func (m_ MediaSelectionOption) ExtendedLanguageTag() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ MediaSelectionOption) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (m_ MediaSelectionOption) ExtendedLanguageTag() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-func (m_ MediaSelectionOption) SetExtendedLanguageTag(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (m_ MediaSelectionOption) SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 
@@ -182,7 +182,7 @@ func (m_ MediaSelectionOption) SetExtendedLanguageTag(value string /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-func (m_ MediaSelectionOption) IsPlayable() bool /* primitive/slice/pointer */ {
+func (m_ MediaSelectionOption) IsPlayable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPlayable"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (m_ MediaSelectionOption) IsPlayable() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/isplayable
-func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/pointer */) {
+func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlayable:"), value)
 }
 
@@ -201,8 +201,8 @@ func (m_ MediaSelectionOption) SetIsPlayable(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) Locale() foundation.Locale /* not a class type */ {
-	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
+func (m_ MediaSelectionOption) Locale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (m_ MediaSelectionOption) Locale() foundation.Locale /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) SetLocale(value foundation.Locale /* not a class type */) {
+func (m_ MediaSelectionOption) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -220,8 +220,8 @@ func (m_ MediaSelectionOption) SetLocale(value foundation.Locale /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number /* not a class type */ {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("mediaSubTypes"))
+func (m_ MediaSelectionOption) MediaSubTypes() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mediaSubTypes"))
 	return rv
 }
 
@@ -230,7 +230,7 @@ func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.Number /* not a class type */) {
+func (m_ MediaSelectionOption) SetMediaSubTypes(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSubTypes:"), value)
 }
 

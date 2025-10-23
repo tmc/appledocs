@@ -31,12 +31,14 @@ type _ShadowClass struct {
 // An interface definition for the [Shadow] class.
 type IShadow interface {
 	objectivec.IObject
-	ShadowBlurRadius() float64
-	SetShadowBlurRadius(value float64)
+	// properties:
+	ShadowBlurRadius() float64 /* primitive/slice/pointer. */
+	SetShadowBlurRadius(value float64 /* primitive/slice/pointer. */)
 	ShadowColor() IColor
 	SetShadowColor(value IColor)
 	ShadowOffset() coregraphics.CGSize
 	SetShadowOffset(value coregraphics.CGSize)
+	// methods:
 	Set()
 }
 
@@ -93,6 +95,7 @@ func NewShadow() Shadow {
 
 
 
+
 // Sets the shadow of subsequent drawing operations to the current shadow.
 //
 // [Full Topic]
@@ -106,7 +109,7 @@ func (s_ Shadow) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) ShadowBlurRadius() float64 {
+func (s_ Shadow) ShadowBlurRadius() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
 	return rv
 }
@@ -116,7 +119,7 @@ func (s_ Shadow) ShadowBlurRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) SetShadowBlurRadius(value float64) {
+func (s_ Shadow) SetShadowBlurRadius(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
 }
 
@@ -143,7 +146,7 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
 func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("shadowOffset"))
 	return rv
@@ -153,10 +156,9 @@ func (s_ Shadow) ShadowOffset() coregraphics.CGSize {
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
 func (s_ Shadow) SetShadowOffset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }
-
 
 

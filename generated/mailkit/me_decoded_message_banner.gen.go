@@ -31,11 +31,11 @@ type _MEDecodedMessageBannerClass struct {
 type IMEDecodedMessageBanner interface {
 	objectivec.IObject
 	// properties:
-	PrimaryActionTitle() string
-	IsDismissable() bool
-	SetIsDismissable(value bool)
-	Title() string
-	SetTitle(value string)
+	PrimaryActionTitle() string /* primitive/slice/pointer. */
+	IsDismissable() bool /* primitive/slice/pointer. */
+	SetIsDismissable(value bool /* primitive/slice/pointer. */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -87,7 +87,7 @@ func NewMEDecodedMessageBanner() MEDecodedMessageBanner {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/init(title:primaryActionTitle:dismissable:)
-func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title string, primaryActionTitle string, dismissable bool) MEDecodedMessageBanner {
+func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title string /* primitive/slice/pointer. */, primaryActionTitle string /* primitive/slice/pointer. */, dismissable bool /* primitive/slice/pointer. */) MEDecodedMessageBanner {
 	instance := getMEDecodedMessageBannerClass().Alloc()
 	rv := objc.Send[MEDecodedMessageBanner](instance.ID, objc.Sel("initWithTitle:primaryActionTitle:dismissable:"), objc.String(title), objc.String(primaryActionTitle), dismissable)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewMEDecodedMessageBannerWithTitlePrimaryActionTitleDismissable(title strin
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEDecodedMessageBanner/primaryActionTitle
-func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string {
+func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("primaryActionTitle"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (m_ MEDecodedMessageBanner) PrimaryActionTitle() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
-func (m_ MEDecodedMessageBanner) IsDismissable() bool {
+func (m_ MEDecodedMessageBanner) IsDismissable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDismissable"))
 	return rv
 }
@@ -114,14 +114,14 @@ func (m_ MEDecodedMessageBanner) IsDismissable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/isdismissable
-func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool) {
+func (m_ MEDecodedMessageBanner) SetIsDismissable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDismissable:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) Title() string {
+func (m_ MEDecodedMessageBanner) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (m_ MEDecodedMessageBanner) Title() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessagebanner/title
-func (m_ MEDecodedMessageBanner) SetTitle(value string) {
+func (m_ MEDecodedMessageBanner) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

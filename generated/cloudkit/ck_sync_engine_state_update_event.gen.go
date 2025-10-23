@@ -29,6 +29,8 @@ type _CKSyncEngineStateUpdateEventClass struct {
 // An interface definition for the [CKSyncEngineStateUpdateEvent] class.
 type ICKSyncEngineStateUpdateEvent interface {
 	ICKSyncEngineEvent
+	// properties:
+	// methods:
 }
 
 // An object that provides information about an update to the sync engine’s state.

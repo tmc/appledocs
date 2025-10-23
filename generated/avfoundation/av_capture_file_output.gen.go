@@ -33,18 +33,18 @@ type ICaptureFileOutput interface {
 	// properties:
 	Delegate() CaptureFileOutputDelegate /* not a class type */
 	SetDelegate(value CaptureFileOutputDelegate /* not a class type */)
-	IsRecording() bool /* primitive/slice/pointer */
-	SetIsRecording(value bool /* primitive/slice/pointer */)
-	IsRecordingPaused() bool /* primitive/slice/pointer */
-	SetIsRecordingPaused(value bool /* primitive/slice/pointer */)
+	IsRecording() bool /* primitive/slice/pointer. */
+	SetIsRecording(value bool /* primitive/slice/pointer. */)
+	IsRecordingPaused() bool /* primitive/slice/pointer. */
+	SetIsRecordingPaused(value bool /* primitive/slice/pointer. */)
 	MaxRecordedDuration() Time /* not a class type */
 	SetMaxRecordedDuration(value Time /* not a class type */)
 	MaxRecordedFileSize() unsafe.Pointer
 	SetMaxRecordedFileSize(value unsafe.Pointer)
 	MinFreeDiskSpaceLimit() unsafe.Pointer
 	SetMinFreeDiskSpaceLimit(value unsafe.Pointer)
-	OutputFileURL() foundation.URL /* not a class type */
-	SetOutputFileURL(value foundation.URL /* not a class type */)
+	OutputFileURL() objc.IObject /* cross-framework: URL */
+	SetOutputFileURL(value objc.IObject /* cross-framework: URL */)
 	RecordedDuration() Time /* not a class type */
 	SetRecordedDuration(value Time /* not a class type */)
 	RecordedFileSize() unsafe.Pointer
@@ -128,7 +128,7 @@ func (c_ CaptureFileOutput) SetDelegate(value CaptureFileOutputDelegate /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer */ {
+func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecording"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (c_ CaptureFileOutput) IsRecording() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecording
-func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecording:"), value)
 }
 
@@ -147,7 +147,7 @@ func (c_ CaptureFileOutput) SetIsRecording(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer */ {
+func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRecordingPaused"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (c_ CaptureFileOutput) IsRecordingPaused() bool /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/isrecordingpaused
-func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureFileOutput) SetIsRecordingPaused(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRecordingPaused:"), value)
 }
 
@@ -223,7 +223,7 @@ func (c_ CaptureFileOutput) SetMinFreeDiskSpaceLimit(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* not a class type */ {
+func (c_ CaptureFileOutput) OutputFileURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("outputFileURL"))
 	return rv
 }
@@ -233,7 +233,7 @@ func (c_ CaptureFileOutput) OutputFileURL() foundation.URL /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL /* not a class type */) {
+func (c_ CaptureFileOutput) SetOutputFileURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputFileURL:"), value)
 }
 

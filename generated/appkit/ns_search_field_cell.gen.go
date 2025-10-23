@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SearchFieldCell] class.
@@ -31,27 +30,25 @@ type _SearchFieldCellClass struct {
 // An interface definition for the [SearchFieldCell] class.
 type ISearchFieldCell interface {
 	ITextFieldCell
-	CancelButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	ResetCancelButtonCell()
-	ResetSearchButtonCell()
-	SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	SearchTextRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	CancelButtonCell() NSButtonCell
-	SetCancelButtonCell(value IButtonCell)
-	MaximumRecents() int
-	SetMaximumRecents(value int)
-	RecentSearches() []string
-	SetRecentSearches(value []string)
-	RecentsAutosaveName() SearchFieldRecentsAutosaveName
-	SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName)
-	SearchButtonCell() NSButtonCell
-	SetSearchButtonCell(value IButtonCell)
-	SearchMenuTemplate() NSMenu
+	// properties:
+	RecentsAutosaveName() objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */
+	SetRecentsAutosaveName(value objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */)
+	SearchMenuTemplate() IMenu
 	SetSearchMenuTemplate(value IMenu)
-	SendsSearchStringImmediately() bool
-	SetSendsSearchStringImmediately(value bool)
-	SendsWholeSearchString() bool
-	SetSendsWholeSearchString(value bool)
+	SendsWholeSearchString() bool /* primitive/slice/pointer. */
+	SetSendsWholeSearchString(value bool /* primitive/slice/pointer. */)
+	CancelButtonCell() IButtonCell
+	SetCancelButtonCell(value IButtonCell)
+	MaximumRecents() int /* primitive/slice/pointer. */
+	SetMaximumRecents(value int /* primitive/slice/pointer. */)
+	RecentSearches() string /* primitive/slice/pointer. */
+	SetRecentSearches(value string /* primitive/slice/pointer. */)
+	SearchButtonCell() IButtonCell
+	SetSearchButtonCell(value IButtonCell)
+	SendsSearchStringImmediately() bool /* primitive/slice/pointer. */
+	SetSendsSearchStringImmediately(value bool /* primitive/slice/pointer. */)
+	// methods:
+	SearchButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
 }
 
 // The programmatic interface for text fields that are used for text-based searches.
@@ -110,52 +107,14 @@ func NewSearchFieldCell() SearchFieldCell {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(textCell:)
-func NewSearchFieldCellTextCell(string_ string) SearchFieldCell {
-	instance := getSearchFieldCellClass().Alloc()
-	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/init(coder:)
-func NewSearchFieldCellWithCoder(coder foundation.ICoder) SearchFieldCell {
+func NewSearchFieldCellWithCoder(coder Coder /* not a class type */) SearchFieldCell {
 	instance := getSearchFieldCellClass().Alloc()
 	rv := objc.Send[SearchFieldCell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
 
-
-
-// Modifies the bounding rectangle for the cancel button cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonRect(forBounds:)
-func (s_ SearchFieldCell) CancelButtonRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("cancelButtonRectForBounds:"), rect)
-	return rv
-}
-
-
-// Resets the cancel button cell to its default attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/resetCancelButtonCell()
-func (s_ SearchFieldCell) ResetCancelButtonCell() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("resetCancelButtonCell"))
-}
-
-
-// Resets the search button cell to its default attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/resetSearchButtonCell()
-func (s_ SearchFieldCell) ResetSearchButtonCell() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("resetSearchButtonCell"))
-}
 
 
 // Modifies the bounding rectangle for the search button cell.
@@ -168,88 +127,11 @@ func (s_ SearchFieldCell) SearchButtonRectForBounds(rect coregraphics.CGRect) co
 }
 
 
-// Modifies the bounding rectangle for the search-text field cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchTextRect(forBounds:)
-func (s_ SearchFieldCell) SearchTextRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchTextRectForBounds:"), rect)
-	return rv
-}
-
-
-// The button cell used to display the cancel-button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-func (s_ SearchFieldCell) CancelButtonCell() NSButtonCell {
-	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("cancelButtonCell"))
-	return rv
-}
-
-
-// The button cell used to display the cancel-button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/cancelButtonCell
-func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCancelButtonCell:"), value)
-}
-
-
-// The maximum number of search strings that can appear in the search menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/maximumRecents
-func (s_ SearchFieldCell) MaximumRecents() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
-	return rv
-}
-
-
-// The maximum number of search strings that can appear in the search menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/maximumRecents
-func (s_ SearchFieldCell) SetMaximumRecents(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
-}
-
-
-// An array of the recent search strings to display in the pop-up icon menu of the search field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
-func (s_ SearchFieldCell) RecentSearches() []string {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("recentSearches"))
-	return rv
-}
-
-
-// An array of the recent search strings to display in the pop-up icon menu of the search field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentSearches
-func (s_ SearchFieldCell) SetRecentSearches(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), nsArray)
-}
-
-
 // The autosave name under which the search field automatically saves the list of recent search strings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-func (s_ SearchFieldCell) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
+func (s_ SearchFieldCell) RecentsAutosaveName() objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */ {
 	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
 	return rv
 }
@@ -259,27 +141,8 @@ func (s_ SearchFieldCell) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/recentsAutosaveName
-func (s_ SearchFieldCell) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
+func (s_ SearchFieldCell) SetRecentsAutosaveName(value objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
-}
-
-
-// The button cell used to display the search-button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-func (s_ SearchFieldCell) SearchButtonCell() NSButtonCell {
-	rv := objc.Send[NSButtonCell](s_.ID, objc.Sel("searchButtonCell"))
-	return rv
-}
-
-
-// The button cell used to display the search-button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchButtonCell
-func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchButtonCell:"), value)
 }
 
 
@@ -287,8 +150,8 @@ func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/searchMenuTemplate
-func (s_ SearchFieldCell) SearchMenuTemplate() NSMenu {
-	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
+func (s_ SearchFieldCell) SearchMenuTemplate() IMenu {
+	rv := objc.Send[Menu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
 
@@ -302,30 +165,11 @@ func (s_ SearchFieldCell) SetSearchMenuTemplate(value IMenu) {
 }
 
 
-// A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsSearchStringImmediately
-func (s_ SearchFieldCell) SendsSearchStringImmediately() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsSearchStringImmediately
-func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
-}
-
-
 // A Boolean value indicating whether the cell calls its search action method when the user clicks the search button (or presses Return) or after each keystroke.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-func (s_ SearchFieldCell) SendsWholeSearchString() bool {
+func (s_ SearchFieldCell) SendsWholeSearchString() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("sendsWholeSearchString"))
 	return rv
 }
@@ -335,8 +179,103 @@ func (s_ SearchFieldCell) SendsWholeSearchString() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchFieldCell/sendsWholeSearchString
-func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool) {
+func (s_ SearchFieldCell) SetSendsWholeSearchString(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsWholeSearchString:"), value)
+}
+
+
+// The button cell used to display the cancel-button image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/cancelbuttoncell
+func (s_ SearchFieldCell) CancelButtonCell() IButtonCell {
+	rv := objc.Send[ButtonCell](s_.ID, objc.Sel("cancelButtonCell"))
+	return rv
+}
+
+
+// The button cell used to display the cancel-button image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/cancelbuttoncell
+func (s_ SearchFieldCell) SetCancelButtonCell(value IButtonCell) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCancelButtonCell:"), value)
+}
+
+
+// The maximum number of search strings that can appear in the search menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/maximumrecents
+func (s_ SearchFieldCell) MaximumRecents() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](s_.ID, objc.Sel("maximumRecents"))
+	return rv
+}
+
+
+// The maximum number of search strings that can appear in the search menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/maximumrecents
+func (s_ SearchFieldCell) SetMaximumRecents(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRecents:"), value)
+}
+
+
+// An array of the recent search strings to display in the pop-up icon menu of the search field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/recentsearches
+func (s_ SearchFieldCell) RecentSearches() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](s_.ID, objc.Sel("recentSearches"))
+	return rv
+}
+
+
+// An array of the recent search strings to display in the pop-up icon menu of the search field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/recentsearches
+func (s_ SearchFieldCell) SetRecentSearches(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentSearches:"), objc.String(value))
+}
+
+
+// The button cell used to display the search-button image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/searchbuttoncell
+func (s_ SearchFieldCell) SearchButtonCell() IButtonCell {
+	rv := objc.Send[ButtonCell](s_.ID, objc.Sel("searchButtonCell"))
+	return rv
+}
+
+
+// The button cell used to display the search-button image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/searchbuttoncell
+func (s_ SearchFieldCell) SetSearchButtonCell(value IButtonCell) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSearchButtonCell:"), value)
+}
+
+
+// A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/sendssearchstringimmediately
+func (s_ SearchFieldCell) SendsSearchStringImmediately() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("sendsSearchStringImmediately"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the cell calls its action method immediately when an appropriate action occurs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssearchfieldcell/sendssearchstringimmediately
+func (s_ SearchFieldCell) SetSendsSearchStringImmediately(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSendsSearchStringImmediately:"), value)
 }
 
 

@@ -30,7 +30,7 @@ type _ICCameraFolderClass struct {
 type IICCameraFolder interface {
 	IICCameraItem
 	// properties:
-	Contents() []ICCameraItem
+	Contents() []ICCameraItem /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -91,7 +91,7 @@ func NewICCameraFolder() ICCameraFolder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFolder/contents
-func (i_ ICCameraFolder) Contents() []ICCameraItem {
+func (i_ ICCameraFolder) Contents() []ICCameraItem /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ICCameraItem](i_.ID, objc.Sel("contents"))
 	return rv
 }

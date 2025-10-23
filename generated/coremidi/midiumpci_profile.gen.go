@@ -30,15 +30,17 @@ type _MIDIUMPCIProfileClass struct {
 // An interface definition for the [MIDIUMPCIProfile] class.
 type IMIDIUMPCIProfile interface {
 	objectivec.IObject
-	EnabledChannelCount() MIDIUInteger14
-	FirstChannel() MIDIChannelNumber
-	GroupOffset() MIDIUMPGroupNumber
-	IsEnabled() bool
-	Name() string
+	// properties:
+	EnabledChannelCount() MIDIUInteger14 /* typedef */
+	FirstChannel() MIDIChannelNumber /* typedef */
+	GroupOffset() MIDIUMPGroupNumber /* typedef */
+	IsEnabled() bool /* primitive/slice/pointer. */
+	Name() string /* primitive/slice/pointer. */
 	ProfileID() unsafe.Pointer
 	ProfileType() MIDICIProfileType
-	TotalChannelCount() MIDIUInteger14
-	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount MIDIUInteger14, error_ unsafe.Pointer) bool
+	TotalChannelCount() MIDIUInteger14 /* typedef */
+	// methods:
+	SetProfileStateEnabledChannelCountError(isEnabled bool /* primitive/slice/pointer. */, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 
@@ -89,7 +91,7 @@ func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/setProfileState(_:enabledChannelCount:)
-func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount MIDIUInteger14, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool /* primitive/slice/pointer. */, enabledChannelCount MIDIUInteger14 /* typedef */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error_)
 	return rv
 }
@@ -97,7 +99,7 @@ func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled boo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/enabledChannelCount
-func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 {
+func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 /* typedef */ {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("enabledChannelCount"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/firstChannel
-func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber {
+func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber /* typedef */ {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("firstChannel"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/groupOffset
-func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber {
+func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber /* typedef */ {
 	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("groupOffset"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/isEnabled
-func (m_ MIDIUMPCIProfile) IsEnabled() bool {
+func (m_ MIDIUMPCIProfile) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-func (m_ MIDIUMPCIProfile) Name() string {
+func (m_ MIDIUMPCIProfile) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
@@ -153,7 +155,7 @@ func (m_ MIDIUMPCIProfile) ProfileType() MIDICIProfileType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/totalChannelCount
-func (m_ MIDIUMPCIProfile) TotalChannelCount() MIDIUInteger14 {
+func (m_ MIDIUMPCIProfile) TotalChannelCount() MIDIUInteger14 /* typedef */ {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("totalChannelCount"))
 	return rv
 }

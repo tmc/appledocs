@@ -30,16 +30,16 @@ type _GLKEffectPropertyMaterialClass struct {
 type IGLKEffectPropertyMaterial interface {
 	IGLKEffectProperty
 	// properties:
-	AmbientColor() GLKVector4
-	SetAmbientColor(value GLKVector4)
-	DiffuseColor() GLKVector4
-	SetDiffuseColor(value GLKVector4)
-	EmissiveColor() GLKVector4
-	SetEmissiveColor(value GLKVector4)
+	AmbientColor() GLKVector4 /* typedef */
+	SetAmbientColor(value GLKVector4 /* typedef */)
+	DiffuseColor() GLKVector4 /* typedef */
+	SetDiffuseColor(value GLKVector4 /* typedef */)
+	EmissiveColor() GLKVector4 /* typedef */
+	SetEmissiveColor(value GLKVector4 /* typedef */)
 	Shininess() unsafe.Pointer
 	SetShininess(value unsafe.Pointer)
-	SpecularColor() GLKVector4
-	SetSpecularColor(value GLKVector4)
+	SpecularColor() GLKVector4 /* typedef */
+	SetSpecularColor(value GLKVector4 /* typedef */)
 	// methods:
 }
 
@@ -102,7 +102,7 @@ func NewGLKEffectPropertyMaterial() GLKEffectPropertyMaterial {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/ambientColor
-func (g_ GLKEffectPropertyMaterial) AmbientColor() GLKVector4 {
+func (g_ GLKEffectPropertyMaterial) AmbientColor() GLKVector4 /* typedef */ {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("ambientColor"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (g_ GLKEffectPropertyMaterial) AmbientColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/ambientColor
-func (g_ GLKEffectPropertyMaterial) SetAmbientColor(value GLKVector4) {
+func (g_ GLKEffectPropertyMaterial) SetAmbientColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAmbientColor:"), value)
 }
 
@@ -121,7 +121,7 @@ func (g_ GLKEffectPropertyMaterial) SetAmbientColor(value GLKVector4) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/diffuseColor
-func (g_ GLKEffectPropertyMaterial) DiffuseColor() GLKVector4 {
+func (g_ GLKEffectPropertyMaterial) DiffuseColor() GLKVector4 /* typedef */ {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("diffuseColor"))
 	return rv
 }
@@ -131,7 +131,7 @@ func (g_ GLKEffectPropertyMaterial) DiffuseColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/diffuseColor
-func (g_ GLKEffectPropertyMaterial) SetDiffuseColor(value GLKVector4) {
+func (g_ GLKEffectPropertyMaterial) SetDiffuseColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDiffuseColor:"), value)
 }
 
@@ -140,7 +140,7 @@ func (g_ GLKEffectPropertyMaterial) SetDiffuseColor(value GLKVector4) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/emissiveColor
-func (g_ GLKEffectPropertyMaterial) EmissiveColor() GLKVector4 {
+func (g_ GLKEffectPropertyMaterial) EmissiveColor() GLKVector4 /* typedef */ {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("emissiveColor"))
 	return rv
 }
@@ -150,7 +150,7 @@ func (g_ GLKEffectPropertyMaterial) EmissiveColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/emissiveColor
-func (g_ GLKEffectPropertyMaterial) SetEmissiveColor(value GLKVector4) {
+func (g_ GLKEffectPropertyMaterial) SetEmissiveColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEmissiveColor:"), value)
 }
 
@@ -178,7 +178,7 @@ func (g_ GLKEffectPropertyMaterial) SetShininess(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/specularColor
-func (g_ GLKEffectPropertyMaterial) SpecularColor() GLKVector4 {
+func (g_ GLKEffectPropertyMaterial) SpecularColor() GLKVector4 /* typedef */ {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("specularColor"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (g_ GLKEffectPropertyMaterial) SpecularColor() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyMaterial/specularColor
-func (g_ GLKEffectPropertyMaterial) SetSpecularColor(value GLKVector4) {
+func (g_ GLKEffectPropertyMaterial) SetSpecularColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpecularColor:"), value)
 }
 

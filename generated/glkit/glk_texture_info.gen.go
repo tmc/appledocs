@@ -33,7 +33,7 @@ type IGLKTextureInfo interface {
 	// properties:
 	AlphaState() GLKTextureInfoAlphaState
 	ArrayLength() unsafe.Pointer
-	ContainsMipmaps() bool
+	ContainsMipmaps() bool /* primitive/slice/pointer. */
 	Depth() unsafe.Pointer
 	Height() unsafe.Pointer
 	MimapLevelCount() unsafe.Pointer
@@ -119,7 +119,7 @@ func (g_ GLKTextureInfo) ArrayLength() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/containsMipmaps-swift.property
-func (g_ GLKTextureInfo) ContainsMipmaps() bool {
+func (g_ GLKTextureInfo) ContainsMipmaps() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("containsMipmaps"))
 	return rv
 }

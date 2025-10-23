@@ -31,10 +31,12 @@ type _VisitClass struct {
 // An interface definition for the [Visit] class.
 type IVisit interface {
 	objectivec.IObject
-	ArrivalDate() foundation.NSDate
-	Coordinate() unsafe.Pointer
-	DepartureDate() foundation.NSDate
-	HorizontalAccuracy() unsafe.Pointer
+	// properties:
+	ArrivalDate() foundation.objc.IObject /* cross-framework: NSDate */
+	Coordinate() LocationCoordinate2D /* not a class type */
+	DepartureDate() foundation.objc.IObject /* cross-framework: NSDate */
+	HorizontalAccuracy() LocationAccuracy /* not a class type */
+	// methods:
 }
 
 // Information about the user’s location during a specific period of time.
@@ -94,7 +96,7 @@ func NewVisit() Visit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/arrivalDate
-func (v_ Visit) ArrivalDate() foundation.NSDate {
+func (v_ Visit) ArrivalDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("arrivalDate"))
 	return rv
 }
@@ -104,8 +106,8 @@ func (v_ Visit) ArrivalDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/coordinate
-func (v_ Visit) Coordinate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("coordinate"))
+func (v_ Visit) Coordinate() LocationCoordinate2D /* not a class type */ {
+	rv := objc.Send[LocationCoordinate2D](v_.ID, objc.Sel("coordinate"))
 	return rv
 }
 
@@ -114,7 +116,7 @@ func (v_ Visit) Coordinate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/departureDate
-func (v_ Visit) DepartureDate() foundation.NSDate {
+func (v_ Visit) DepartureDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("departureDate"))
 	return rv
 }
@@ -124,8 +126,8 @@ func (v_ Visit) DepartureDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/horizontalAccuracy
-func (v_ Visit) HorizontalAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("horizontalAccuracy"))
+func (v_ Visit) HorizontalAccuracy() LocationAccuracy /* not a class type */ {
+	rv := objc.Send[LocationAccuracy](v_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
 }
 

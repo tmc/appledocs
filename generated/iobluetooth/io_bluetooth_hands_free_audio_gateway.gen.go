@@ -32,11 +32,11 @@ type IBluetoothHandsFreeAudioGateway interface {
 	IBluetoothHandsFree
 	// properties:
 	// methods:
-	CreateIndicatorMinMaxCurrentValue(indicatorName string, minValue int, maxValue int, currentValue int)
-	ProcessATCommand(atCommand string)
+	CreateIndicatorMinMaxCurrentValue(indicatorName string /* primitive/slice/pointer. */, minValue int /* primitive/slice/pointer. */, maxValue int /* primitive/slice/pointer. */, currentValue int /* primitive/slice/pointer. */)
+	ProcessATCommand(atCommand string /* primitive/slice/pointer. */)
 	SendOKResponse()
-	SendResponse(response string)
-	SendResponseWithOK(response string, withOK bool)
+	SendResponse(response string /* primitive/slice/pointer. */)
+	SendResponseWithOK(response string /* primitive/slice/pointer. */, withOK bool /* primitive/slice/pointer. */)
 }
 
 // An object that sends data to a connected Bluetooth hands-free phone or headset and processes commands from it.
@@ -98,7 +98,7 @@ func NewBluetoothHandsFreeAudioGateway() BluetoothHandsFreeAudioGateway {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/init(device:delegate:)
-func NewBluetoothHandsFreeAudioGatewayWithDeviceDelegate(device IOBluetoothDevice, inDelegate objectivec.IObject) BluetoothHandsFreeAudioGateway {
+func NewBluetoothHandsFreeAudioGatewayWithDeviceDelegate(device BluetoothDevice /* already interface */, inDelegate objectivec.IObject) BluetoothHandsFreeAudioGateway {
 	instance := getBluetoothHandsFreeAudioGatewayClass().Alloc()
 	rv := objc.Send[BluetoothHandsFreeAudioGateway](instance.ID, objc.Sel("initWithDevice:delegate:"), device, inDelegate)
 	rv.Autorelease()
@@ -111,7 +111,7 @@ func NewBluetoothHandsFreeAudioGatewayWithDeviceDelegate(device IOBluetoothDevic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/createIndicator(_:min:max:currentValue:)
-func (b_ BluetoothHandsFreeAudioGateway) CreateIndicatorMinMaxCurrentValue(indicatorName string, minValue int, maxValue int, currentValue int) {
+func (b_ BluetoothHandsFreeAudioGateway) CreateIndicatorMinMaxCurrentValue(indicatorName string /* primitive/slice/pointer. */, minValue int /* primitive/slice/pointer. */, maxValue int /* primitive/slice/pointer. */, currentValue int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("createIndicator:min:max:currentValue:"), objc.String(indicatorName), minValue, maxValue, currentValue)
 }
 
@@ -120,7 +120,7 @@ func (b_ BluetoothHandsFreeAudioGateway) CreateIndicatorMinMaxCurrentValue(indic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/process(atCommand:)
-func (b_ BluetoothHandsFreeAudioGateway) ProcessATCommand(atCommand string) {
+func (b_ BluetoothHandsFreeAudioGateway) ProcessATCommand(atCommand string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("processATCommand:"), objc.String(atCommand))
 }
 
@@ -138,7 +138,7 @@ func (b_ BluetoothHandsFreeAudioGateway) SendOKResponse() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/sendResponse(_:)
-func (b_ BluetoothHandsFreeAudioGateway) SendResponse(response string) {
+func (b_ BluetoothHandsFreeAudioGateway) SendResponse(response string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendResponse:"), objc.String(response))
 }
 
@@ -147,7 +147,7 @@ func (b_ BluetoothHandsFreeAudioGateway) SendResponse(response string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeAudioGateway/sendResponse(_:withOK:)
-func (b_ BluetoothHandsFreeAudioGateway) SendResponseWithOK(response string, withOK bool) {
+func (b_ BluetoothHandsFreeAudioGateway) SendResponseWithOK(response string /* primitive/slice/pointer. */, withOK bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendResponse:withOK:"), objc.String(response), withOK)
 }
 

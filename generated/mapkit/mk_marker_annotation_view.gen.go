@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MKMarkerAnnotationView] class.
@@ -31,20 +30,20 @@ type _MKMarkerAnnotationViewClass struct {
 type IMKMarkerAnnotationView interface {
 	IMKAnnotationView
 	// properties:
-	GlyphImage() appkit.Image
-	SetGlyphImage(value appkit.Image)
-	MarkerTintColor() appkit.Color
-	SetMarkerTintColor(value appkit.Color)
+	GlyphImage() objc.IObject /* cross-framework: Image */
+	SetGlyphImage(value objc.IObject /* cross-framework: Image */)
+	MarkerTintColor() objc.IObject /* cross-framework: Color */
+	SetMarkerTintColor(value objc.IObject /* cross-framework: Color */)
 	DisplayPriority() unsafe.Pointer
 	SetDisplayPriority(value unsafe.Pointer)
-	AnimatesWhenAdded() bool
-	SetAnimatesWhenAdded(value bool)
-	GlyphText() string
-	SetGlyphText(value string)
-	GlyphTintColor() appkit.Color
-	SetGlyphTintColor(value appkit.Color)
-	SelectedGlyphImage() appkit.Image
-	SetSelectedGlyphImage(value appkit.Image)
+	AnimatesWhenAdded() bool /* primitive/slice/pointer. */
+	SetAnimatesWhenAdded(value bool /* primitive/slice/pointer. */)
+	GlyphText() string /* primitive/slice/pointer. */
+	SetGlyphText(value string /* primitive/slice/pointer. */)
+	GlyphTintColor() objc.IObject /* cross-framework: Color */
+	SetGlyphTintColor(value objc.IObject /* cross-framework: Color */)
+	SelectedGlyphImage() objc.IObject /* cross-framework: Image */
+	SetSelectedGlyphImage(value objc.IObject /* cross-framework: Image */)
 	SubtitleVisibility() unsafe.Pointer
 	SetSubtitleVisibility(value unsafe.Pointer)
 	TitleVisibility() unsafe.Pointer
@@ -111,8 +110,8 @@ func NewMKMarkerAnnotationView() MKMarkerAnnotationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
-func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
-	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("glyphImage"))
+func (m_ MKMarkerAnnotationView) GlyphImage() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](m_.ID, objc.Sel("glyphImage"))
 	return rv
 }
 
@@ -121,7 +120,7 @@ func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
-func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.Image) {
+func (m_ MKMarkerAnnotationView) SetGlyphImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphImage:"), value)
 }
 
@@ -130,8 +129,8 @@ func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.Image) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
-func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("markerTintColor"))
+func (m_ MKMarkerAnnotationView) MarkerTintColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](m_.ID, objc.Sel("markerTintColor"))
 	return rv
 }
 
@@ -140,7 +139,7 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
-func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value appkit.Color) {
+func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
 }
 
@@ -168,7 +167,7 @@ func (m_ MKMarkerAnnotationView) SetDisplayPriority(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
-func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
+func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("animatesWhenAdded"))
 	return rv
 }
@@ -178,7 +177,7 @@ func (m_ MKMarkerAnnotationView) AnimatesWhenAdded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/animateswhenadded
-func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
+func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesWhenAdded:"), value)
 }
 
@@ -187,7 +186,7 @@ func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) GlyphText() string {
+func (m_ MKMarkerAnnotationView) GlyphText() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
 	return rv
 }
@@ -197,7 +196,7 @@ func (m_ MKMarkerAnnotationView) GlyphText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
+func (m_ MKMarkerAnnotationView) SetGlyphText(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
 }
 
@@ -206,8 +205,8 @@ func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtintcolor
-func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("glyphTintColor"))
+func (m_ MKMarkerAnnotationView) GlyphTintColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](m_.ID, objc.Sel("glyphTintColor"))
 	return rv
 }
 
@@ -216,7 +215,7 @@ func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtintcolor
-func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.Color) {
+func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
 }
 
@@ -225,8 +224,8 @@ func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.Color) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
-	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("selectedGlyphImage"))
+func (m_ MKMarkerAnnotationView) SelectedGlyphImage() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](m_.ID, objc.Sel("selectedGlyphImage"))
 	return rv
 }
 
@@ -235,7 +234,7 @@ func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value appkit.Image) {
+func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
 }
 

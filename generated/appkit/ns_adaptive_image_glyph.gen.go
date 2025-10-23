@@ -31,12 +31,11 @@ type _AdaptiveImageGlyphClass struct {
 // An interface definition for the [AdaptiveImageGlyph] class.
 type IAdaptiveImageGlyph interface {
 	objectivec.IObject
-	ContentDescription() string
-	SetContentDescription(value string)
-	ContentIdentifier() string
-	SetContentIdentifier(value string)
-	ImageContent() foundation.Data
-	SetImageContent(value foundation.Data)
+	// properties:
+	ContentDescription() string /* primitive/slice/pointer. */
+	ContentIdentifier() string /* primitive/slice/pointer. */
+	ImageContent() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // A data object for an emoji-like image that can appear in attributed text.
@@ -92,11 +91,21 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(coder:)
+func NewAdaptiveImageGlyphWithCoder(coder Coder /* not a class type */) AdaptiveImageGlyph {
+	instance := getAdaptiveImageGlyphClass().Alloc()
+	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
 // Create an adaptive image glyph from the previously saved data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(imageContent:)
-func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.NSData) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.objc.IObject /* cross-framework NSData */) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithImageContent:"), imageContent)
 	rv.Autorelease()
@@ -105,50 +114,41 @@ func NewAdaptiveImageGlyphWithImageContent(imageContent foundation.NSData) Adapt
 
 
 
+// The image data format to use for this image type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
+func (ac _AdaptiveImageGlyphClass) ContentType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("contentType"))
+	return rv
+}
+
 // An alternate textual description of the image contents.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
-func (a_ AdaptiveImageGlyph) ContentDescription() string {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentDescription
+func (a_ AdaptiveImageGlyph) ContentDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("contentDescription"))
 	return rv
 }
 
 
-// An alternate textual description of the image contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentdescription
-func (a_ AdaptiveImageGlyph) SetContentDescription(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContentDescription:"), objc.String(value))
-}
-
-
 // A unique identifier for this image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
-func (a_ AdaptiveImageGlyph) ContentIdentifier() string {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentIdentifier
+func (a_ AdaptiveImageGlyph) ContentIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("contentIdentifier"))
 	return rv
 }
 
 
-// A unique identifier for this image.
+// The image data format to use for this image type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/contentidentifier
-func (a_ AdaptiveImageGlyph) SetContentIdentifier(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContentIdentifier:"), objc.String(value))
-}
-
-
-// The raw data for the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
-	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("imageContent"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
+func (a_ AdaptiveImageGlyph) ContentType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -156,9 +156,10 @@ func (a_ AdaptiveImageGlyph) ImageContent() foundation.Data {
 // The raw data for the image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph/imagecontent
-func (a_ AdaptiveImageGlyph) SetImageContent(value foundation.Data) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setImageContent:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/imageContent
+func (a_ AdaptiveImageGlyph) ImageContent() foundation.objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("imageContent"))
+	return rv
 }
 
 

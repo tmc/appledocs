@@ -29,14 +29,16 @@ type _AudioUnitSamplerClass struct {
 // An interface definition for the [AudioUnitSampler] class.
 type IAudioUnitSampler interface {
 	IAudioUnitMIDIInstrument
-	GlobalTuning() float32
-	SetGlobalTuning(value float32)
-	MasterGain() float32
-	SetMasterGain(value float32)
-	OverallGain() float32
-	SetOverallGain(value float32)
-	StereoPan() float32
-	SetStereoPan(value float32)
+	// properties:
+	GlobalTuning() float32 /* primitive/slice/pointer. */
+	SetGlobalTuning(value float32 /* primitive/slice/pointer. */)
+	MasterGain() float32 /* primitive/slice/pointer. */
+	SetMasterGain(value float32 /* primitive/slice/pointer. */)
+	OverallGain() float32 /* primitive/slice/pointer. */
+	SetOverallGain(value float32 /* primitive/slice/pointer. */)
+	StereoPan() float32 /* primitive/slice/pointer. */
+	SetStereoPan(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.
@@ -98,7 +100,7 @@ func NewAudioUnitSampler() AudioUnitSampler {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
-func (a_ AudioUnitSampler) GlobalTuning() float32 {
+func (a_ AudioUnitSampler) GlobalTuning() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("globalTuning"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (a_ AudioUnitSampler) GlobalTuning() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/globaltuning
-func (a_ AudioUnitSampler) SetGlobalTuning(value float32) {
+func (a_ AudioUnitSampler) SetGlobalTuning(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGlobalTuning:"), value)
 }
 
@@ -117,7 +119,7 @@ func (a_ AudioUnitSampler) SetGlobalTuning(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
-func (a_ AudioUnitSampler) MasterGain() float32 {
+func (a_ AudioUnitSampler) MasterGain() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("masterGain"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (a_ AudioUnitSampler) MasterGain() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/mastergain
-func (a_ AudioUnitSampler) SetMasterGain(value float32) {
+func (a_ AudioUnitSampler) SetMasterGain(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMasterGain:"), value)
 }
 
@@ -136,7 +138,7 @@ func (a_ AudioUnitSampler) SetMasterGain(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
-func (a_ AudioUnitSampler) OverallGain() float32 {
+func (a_ AudioUnitSampler) OverallGain() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("overallGain"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (a_ AudioUnitSampler) OverallGain() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/overallgain
-func (a_ AudioUnitSampler) SetOverallGain(value float32) {
+func (a_ AudioUnitSampler) SetOverallGain(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverallGain:"), value)
 }
 
@@ -155,7 +157,7 @@ func (a_ AudioUnitSampler) SetOverallGain(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
-func (a_ AudioUnitSampler) StereoPan() float32 {
+func (a_ AudioUnitSampler) StereoPan() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("stereoPan"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (a_ AudioUnitSampler) StereoPan() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiounitsampler/stereopan
-func (a_ AudioUnitSampler) SetStereoPan(value float32) {
+func (a_ AudioUnitSampler) SetStereoPan(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStereoPan:"), value)
 }
 

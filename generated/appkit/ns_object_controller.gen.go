@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coredata"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ObjectController] class.
@@ -31,30 +29,32 @@ type _ObjectControllerClass struct {
 // An interface definition for the [ObjectController] class.
 type IObjectController interface {
 	IController
-	AutomaticallyPreparesContent() bool
-	SetAutomaticallyPreparesContent(value bool)
-	CanAdd() bool
-	SetCanAdd(value bool)
-	CanRemove() bool
-	SetCanRemove(value bool)
+	// properties:
+	AutomaticallyPreparesContent() bool /* primitive/slice/pointer. */
+	SetAutomaticallyPreparesContent(value bool /* primitive/slice/pointer. */)
+	CanAdd() bool /* primitive/slice/pointer. */
+	SetCanAdd(value bool /* primitive/slice/pointer. */)
+	CanRemove() bool /* primitive/slice/pointer. */
+	SetCanRemove(value bool /* primitive/slice/pointer. */)
 	Content() unsafe.Pointer
 	SetContent(value unsafe.Pointer)
-	EntityName() string
-	SetEntityName(value string)
-	FetchPredicate() foundation.Predicate
-	SetFetchPredicate(value foundation.Predicate)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	ManagedObjectContext() coredata.ManagedObjectContext
-	SetManagedObjectContext(value coredata.ManagedObjectContext)
+	EntityName() string /* primitive/slice/pointer. */
+	SetEntityName(value string /* primitive/slice/pointer. */)
+	FetchPredicate() objc.IObject /* cross-framework: Predicate */
+	SetFetchPredicate(value objc.IObject /* cross-framework: Predicate */)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */
+	SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */)
 	ObjectClass() unsafe.Pointer
 	SetObjectClass(value unsafe.Pointer)
 	SelectedObjects() unsafe.Pointer
 	SetSelectedObjects(value unsafe.Pointer)
 	Selection() unsafe.Pointer
 	SetSelection(value unsafe.Pointer)
-	UsesLazyFetching() bool
-	SetUsesLazyFetching(value bool)
+	UsesLazyFetching() bool /* primitive/slice/pointer. */
+	SetUsesLazyFetching(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A controller that can manage an object’s properties referenced by key-value paths.
@@ -116,7 +116,7 @@ func NewObjectController() ObjectController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
-func (o_ ObjectController) AutomaticallyPreparesContent() bool {
+func (o_ ObjectController) AutomaticallyPreparesContent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("automaticallyPreparesContent"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
-func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
+func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomaticallyPreparesContent:"), value)
 }
 
@@ -135,7 +135,7 @@ func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
-func (o_ ObjectController) CanAdd() bool {
+func (o_ ObjectController) CanAdd() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canAdd"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (o_ ObjectController) CanAdd() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
-func (o_ ObjectController) SetCanAdd(value bool) {
+func (o_ ObjectController) SetCanAdd(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanAdd:"), value)
 }
 
@@ -154,7 +154,7 @@ func (o_ ObjectController) SetCanAdd(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
-func (o_ ObjectController) CanRemove() bool {
+func (o_ ObjectController) CanRemove() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canRemove"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (o_ ObjectController) CanRemove() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
-func (o_ ObjectController) SetCanRemove(value bool) {
+func (o_ ObjectController) SetCanRemove(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setCanRemove:"), value)
 }
 
@@ -192,7 +192,7 @@ func (o_ ObjectController) SetContent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-func (o_ ObjectController) EntityName() string {
+func (o_ ObjectController) EntityName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("entityName"))
 	return rv
 }
@@ -202,7 +202,7 @@ func (o_ ObjectController) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
-func (o_ ObjectController) SetEntityName(value string) {
+func (o_ ObjectController) SetEntityName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setEntityName:"), objc.String(value))
 }
 
@@ -211,8 +211,8 @@ func (o_ ObjectController) SetEntityName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) FetchPredicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](o_.ID, objc.Sel("fetchPredicate"))
+func (o_ ObjectController) FetchPredicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](o_.ID, objc.Sel("fetchPredicate"))
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (o_ ObjectController) FetchPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) SetFetchPredicate(value foundation.Predicate) {
+func (o_ ObjectController) SetFetchPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFetchPredicate:"), value)
 }
 
@@ -230,7 +230,7 @@ func (o_ ObjectController) SetFetchPredicate(value foundation.Predicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/iseditable
-func (o_ ObjectController) IsEditable() bool {
+func (o_ ObjectController) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -240,7 +240,7 @@ func (o_ ObjectController) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/iseditable
-func (o_ ObjectController) SetIsEditable(value bool) {
+func (o_ ObjectController) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -249,8 +249,8 @@ func (o_ ObjectController) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext {
-	rv := objc.Send[coredata.ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
+func (o_ ObjectController) ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */ {
+	rv := objc.Send[ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
@@ -259,7 +259,7 @@ func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) SetManagedObjectContext(value coredata.ManagedObjectContext) {
+func (o_ ObjectController) SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
 }
 
@@ -325,7 +325,7 @@ func (o_ ObjectController) SetSelection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-func (o_ ObjectController) UsesLazyFetching() bool {
+func (o_ ObjectController) UsesLazyFetching() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("usesLazyFetching"))
 	return rv
 }
@@ -335,7 +335,7 @@ func (o_ ObjectController) UsesLazyFetching() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-func (o_ ObjectController) SetUsesLazyFetching(value bool) {
+func (o_ ObjectController) SetUsesLazyFetching(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUsesLazyFetching:"), value)
 }
 

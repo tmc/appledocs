@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +31,14 @@ type _ABPersonPickerClass struct {
 // An interface definition for the [ABPersonPicker] class.
 type IABPersonPicker interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Properties() objc.ID
 	SetProperties(value objc.ID)
+	// methods:
 	Close()
-	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.View, preferredEdge foundation.RectEdge)
+	ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */)
 }
 
 // A picker object that you display when you want the user to select contacts.
@@ -104,7 +105,7 @@ func (a_ ABPersonPicker) Close() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonPicker/showRelativeToRect:ofView:preferredEdge:
-func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.Rect, positioningView appkit.View, preferredEdge foundation.RectEdge) {
+func (a_ ABPersonPicker) ShowRelativeToRectOfViewPreferredEdge(positioningRect foundation.objc.IObject /* cross-framework Rect */, positioningView objc.IObject /* cross-framework View */, preferredEdge foundation.RectEdge /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), positioningRect, positioningView, preferredEdge)
 }
 

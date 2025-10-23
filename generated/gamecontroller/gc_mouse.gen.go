@@ -30,8 +30,10 @@ type _GCMouseClass struct {
 // An interface definition for the [GCMouse] class.
 type IGCMouse interface {
 	objectivec.IObject
+	// properties:
 	MouseInput() unsafe.Pointer
 	SetMouseInput(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents a physical mouse connected to a device.
@@ -85,6 +87,35 @@ func NewGCMouse() GCMouse {
 	return getGCMouseClass().New()
 }
 
+
+
+// Returns any mice that the user connects to the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/mice()
+func (gc _GCMouseClass) Mice() []GCMouse /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]GCMouse](objc.ID(gc.class), objc.Sel("mice"))
+	return rv
+}
+
+
+// The most recent mouse that the user connects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+func (gc _GCMouseClass) Current() GCMouse {
+	rv := objc.Send[GCMouse](objc.ID(gc.class), objc.Sel("current"))
+	return rv
+}
+
+// The most recent mouse that the user connects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMouse/current
+func (g_ GCMouse) Current() IGCMouse {
+	rv := objc.Send[GCMouse](g_.ID, objc.Sel("current"))
+	return rv
+}
 
 
 // The controller profile for the mouse device.

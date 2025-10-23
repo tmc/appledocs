@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ColorWell] class.
@@ -29,26 +30,30 @@ type _ColorWellClass struct {
 // An interface definition for the [ColorWell] class.
 type IColorWell interface {
 	IControl
-	Bordered() bool
-	SetBordered(value bool)
-	PulldownTarget() objc.ID
-	SetPulldownTarget(value objc.ID)
+	// properties:
 	Color() IColor
 	SetColor(value IColor)
+	Bordered() bool /* primitive/slice/pointer. */
+	SetBordered(value bool /* primitive/slice/pointer. */)
+	PulldownTarget() objc.ID
+	SetPulldownTarget(value objc.ID)
+	SupportsAlpha() bool /* primitive/slice/pointer. */
+	SetSupportsAlpha(value bool /* primitive/slice/pointer. */)
 	ColorWellStyle() unsafe.Pointer
 	SetColorWellStyle(value unsafe.Pointer)
 	Image() IImage
 	SetImage(value IImage)
-	IsActive() bool
-	SetIsActive(value bool)
-	IsBordered() bool
-	SetIsBordered(value bool)
-	MaximumLinearExposure() float64
-	SetMaximumLinearExposure(value float64)
+	IsActive() bool /* primitive/slice/pointer. */
+	SetIsActive(value bool /* primitive/slice/pointer. */)
+	IsBordered() bool /* primitive/slice/pointer. */
+	SetIsBordered(value bool /* primitive/slice/pointer. */)
+	MaximumLinearExposure() float64 /* primitive/slice/pointer. */
+	SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */)
 	PulldownAction() unsafe.Pointer
 	SetPulldownAction(value unsafe.Pointer)
-	SupportsAlpha() bool
-	SetSupportsAlpha(value bool)
+	// methods:
+	Activate(exclusive bool /* primitive/slice/pointer. */)
+	TakeColorFrom(sender objectivec.IObject)
 }
 
 // A control that displays a color value and lets the user change that color value.
@@ -106,11 +111,48 @@ func NewColorWell() ColorWell {
 
 
 
+// Activates the color well, displays the color panel, and synchronizes the two UI elements.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/activate(_:)
+func (c_ ColorWell) Activate(exclusive bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("activate:"), exclusive)
+}
+
+
+// Changes the currently selected color to the color of the specified object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/takeColorFrom(_:)
+func (c_ ColorWell) TakeColorFrom(sender objectivec.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("takeColorFrom:"), sender)
+}
+
+
+// The currently selected color for the color well.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/color
+func (c_ ColorWell) Color() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// The currently selected color for the color well.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/color
+func (c_ ColorWell) SetColor(value IColor) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+
 // A Boolean value that determines whether the color well has a border.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/isBordered
-func (c_ ColorWell) Bordered() bool {
+func (c_ ColorWell) Bordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -120,7 +162,7 @@ func (c_ ColorWell) Bordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/isBordered
-func (c_ ColorWell) SetBordered(value bool) {
+func (c_ ColorWell) SetBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -144,22 +186,22 @@ func (c_ ColorWell) SetPulldownTarget(value objc.ID) {
 }
 
 
-// The currently selected color for the color well.
+// A Boolean value that determines whether the color picker supports alpha values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
-func (c_ ColorWell) Color() IColor {
-	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
+func (c_ ColorWell) SupportsAlpha() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAlpha"))
 	return rv
 }
 
 
-// The currently selected color for the color well.
+// A Boolean value that determines whether the color picker supports alpha values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/color
-func (c_ ColorWell) SetColor(value IColor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/supportsAlpha
+func (c_ ColorWell) SetSupportsAlpha(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
 
 
@@ -205,7 +247,7 @@ func (c_ ColorWell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
-func (c_ ColorWell) IsActive() bool {
+func (c_ ColorWell) IsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -215,7 +257,7 @@ func (c_ ColorWell) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isactive
-func (c_ ColorWell) SetIsActive(value bool) {
+func (c_ ColorWell) SetIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -224,7 +266,7 @@ func (c_ ColorWell) SetIsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
-func (c_ ColorWell) IsBordered() bool {
+func (c_ ColorWell) IsBordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -234,7 +276,7 @@ func (c_ ColorWell) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/isbordered
-func (c_ ColorWell) SetIsBordered(value bool) {
+func (c_ ColorWell) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -243,7 +285,7 @@ func (c_ ColorWell) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
-func (c_ ColorWell) MaximumLinearExposure() float64 {
+func (c_ ColorWell) MaximumLinearExposure() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("maximumLinearExposure"))
 	return rv
 }
@@ -253,7 +295,7 @@ func (c_ ColorWell) MaximumLinearExposure() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/maximumlinearexposure
-func (c_ ColorWell) SetMaximumLinearExposure(value float64) {
+func (c_ ColorWell) SetMaximumLinearExposure(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumLinearExposure:"), value)
 }
 
@@ -274,25 +316,6 @@ func (c_ ColorWell) PulldownAction() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction
 func (c_ ColorWell) SetPulldownAction(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPulldownAction:"), value)
-}
-
-
-// A Boolean value that determines whether the color picker supports alpha values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/supportsalpha
-func (c_ ColorWell) SupportsAlpha() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAlpha"))
-	return rv
-}
-
-
-// A Boolean value that determines whether the color picker supports alpha values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorwell/supportsalpha
-func (c_ ColorWell) SetSupportsAlpha(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAlpha:"), value)
 }
 
 

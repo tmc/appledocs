@@ -30,6 +30,8 @@ type _ViewLayoutRegionClass struct {
 // An interface definition for the [ViewLayoutRegion] class.
 type IViewLayoutRegion interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 
@@ -80,7 +82,7 @@ func NewViewLayoutRegion() ViewLayoutRegion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/marginsLayoutRegionWithCornerAdaptation:
-func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptivityAxis NSViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
+func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptivityAxis ViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
 	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("marginsLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv
 }
@@ -88,7 +90,7 @@ func (vc _ViewLayoutRegionClass) MarginsLayoutRegionWithCornerAdaptation(adaptiv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegion/safeAreaLayoutRegionWithCornerAdaptation:
-func (vc _ViewLayoutRegionClass) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAxis NSViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
+func (vc _ViewLayoutRegionClass) SafeAreaLayoutRegionWithCornerAdaptation(adaptivityAxis ViewLayoutRegionAdaptivityAxis) IViewLayoutRegion {
 	rv := objc.Send[ViewLayoutRegion](objc.ID(vc.class), objc.Sel("safeAreaLayoutRegionWithCornerAdaptation:"), adaptivityAxis)
 	return rv
 }

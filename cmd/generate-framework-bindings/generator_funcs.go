@@ -43,6 +43,9 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 
 		// Import Resolution
 		// TODO: Add import resolution methods as they're converted
+
+		// Test Generation
+		"canGenerateTestValue": gf.canGenerateTestValue,
 	}
 }
 
@@ -345,4 +348,105 @@ func (gf GeneratorFuncs) stripFrameworkPrefix(name string) string {
 	}
 
 	return name
+}
+
+// Test Generation
+// ---------------
+
+// canGenerateTestValue checks if we can generate a reasonable test value for the given type and parameter name.
+// Returns true if generateTestValue will produce a usable value.
+// Rejects undefined type aliases like Coder = _undefined which are int aliases that can't use {} syntax.
+// Params may include the parameter name (for context-sensitive filtering like file paths).
+func (gf GeneratorFuncs) canGenerateTestValue(args ...string) bool {
+	if len(args) == 0 {
+		return false
+	}
+	goType := args[0]
+	paramName := ""
+	if len(args) > 1 {
+		paramName = strings.ToLower(args[1])
+	}
+
+	// Check if this is an undefined type alias (e.g., Coder, StringEncoding)
+	// These are int aliases and cannot use {} syntax in tests
+	if !strings.Contains(goType, ".") {
+		if _, isUndefined := gf.undefinedTypes[goType]; isUndefined {
+			return false
+		}
+	}
+
+	// Check if this is an interface type (I prefix)
+	// Interface types cannot be instantiated with {} syntax
+	// We need to reject unqualified interface types (ICoder, IString) and qualified ones (foundation.ICoder)
+	typeName := goType
+	if strings.Contains(goType, ".") {
+		parts := strings.Split(goType, ".")
+		if len(parts) == 2 {
+			typeName = parts[1]
+		}
+	}
+	if strings.HasPrefix(typeName, "I") && len(typeName) > 1 && typeName[1] >= 'A' && typeName[1] <= 'Z' {
+		// Type starts with I followed by uppercase letter - likely an interface
+		return false
+	}
+
+	// We can generate test values for most primitive types and some common types
+	switch goType {
+	case "string", "int", "int8", "int16", "int32", "int64",
+		"uint", "uint8", "uint16", "uint32", "uint64",
+		"float32", "float64", "bool",
+		"objc.SEL":
+		return true
+	}
+
+	// objc.ID and objc.Class cannot be tested with 0/nil as they cause crashes in many
+	// Foundation/AppKit APIs that expect valid object/class pointers.
+	// Examples:
+	//   - +[NSClassDescription classDescriptionForClass:] requires non-nil class
+	//   - +[NSMutableDictionary dictionaryWithSharedKeySet:] requires non-nil keyset
+	//   - Metal APIs require non-nil device pointers
+	//
+	// TODO: We could whitelist specific parameter names that are known to accept nil
+	// (e.g., "target", "object" in some contexts), but for now we're conservative.
+	if goType == "objc.ID" || goType == "objc.Class" {
+		return false
+	}
+
+	// We can handle Foundation geometry types
+	if strings.HasPrefix(goType, "foundation.") {
+		typeName := strings.TrimPrefix(goType, "foundation.")
+		switch typeName {
+		case "Rect", "Size", "Point", "Range":
+			return true
+		}
+	}
+
+	// We can handle package-local types (enums and structs) BUT NOT undefined type aliases
+	if !strings.Contains(goType, ".") {
+		return true
+	}
+
+	// We CANNOT safely generate test values for unsafe.Pointer
+	// as they would require actual allocated objects which we don't have in tests
+	if goType == "unsafe.Pointer" {
+		return false
+	}
+
+	// Special handling for string parameters that are likely file paths or URLs
+	// These would cause runtime crashes if we try to use them
+	if goType == "string" && paramName != "" {
+		problematicNames := []string{
+			"path", "filepath", "filename", "file",
+			"url", "uri",
+			"bundlepath", "resourcepath", "directory", "dir",
+		}
+		for _, name := range problematicNames {
+			if strings.Contains(paramName, name) {
+				return false
+			}
+		}
+	}
+
+	// For other types, we don't know how to create test values
+	return false
 }

@@ -29,6 +29,8 @@ type _AuthorizationPasswordRequestClass struct {
 // An interface definition for the [AuthorizationPasswordRequest] class.
 type IAuthorizationPasswordRequest interface {
 	IAuthorizationRequest
+	// properties:
+	// methods:
 }
 
 // An authorization request that uses credentials stored in the keychain.

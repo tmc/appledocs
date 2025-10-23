@@ -31,16 +31,18 @@ type _PasskeyRegistrationCredentialClass struct {
 // An interface definition for the [PasskeyRegistrationCredential] class.
 type IPasskeyRegistrationCredential interface {
 	objectivec.IObject
-	AttestationObject() foundation.Data
-	SetAttestationObject(value foundation.Data)
-	ClientDataHash() foundation.Data
-	SetClientDataHash(value foundation.Data)
-	CredentialID() foundation.Data
-	SetCredentialID(value foundation.Data)
+	// properties:
+	AttestationObject() foundation.objc.IObject /* cross-framework: Data */
+	SetAttestationObject(value foundation.objc.IObject /* cross-framework: Data */)
+	ClientDataHash() foundation.objc.IObject /* cross-framework: Data */
+	SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */)
+	CredentialID() foundation.objc.IObject /* cross-framework: Data */
+	SetCredentialID(value foundation.objc.IObject /* cross-framework: Data */)
 	ExtensionOutput() IPasskeyRegistrationCredentialExtensionOutput
 	SetExtensionOutput(value IPasskeyRegistrationCredentialExtensionOutput)
-	RelyingParty() string
-	SetRelyingParty(value string)
+	RelyingParty() string /* primitive/slice/pointer. */
+	SetRelyingParty(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A passkey registration credential.
@@ -100,7 +102,7 @@ func NewPasskeyRegistrationCredential() PasskeyRegistrationCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/attestationobject
-func (p_ PasskeyRegistrationCredential) AttestationObject() foundation.Data {
+func (p_ PasskeyRegistrationCredential) AttestationObject() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("attestationObject"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (p_ PasskeyRegistrationCredential) AttestationObject() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/attestationobject
-func (p_ PasskeyRegistrationCredential) SetAttestationObject(value foundation.Data) {
+func (p_ PasskeyRegistrationCredential) SetAttestationObject(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttestationObject:"), value)
 }
 
@@ -119,7 +121,7 @@ func (p_ PasskeyRegistrationCredential) SetAttestationObject(value foundation.Da
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/clientdatahash
-func (p_ PasskeyRegistrationCredential) ClientDataHash() foundation.Data {
+func (p_ PasskeyRegistrationCredential) ClientDataHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (p_ PasskeyRegistrationCredential) ClientDataHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/clientdatahash
-func (p_ PasskeyRegistrationCredential) SetClientDataHash(value foundation.Data) {
+func (p_ PasskeyRegistrationCredential) SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 
@@ -138,7 +140,7 @@ func (p_ PasskeyRegistrationCredential) SetClientDataHash(value foundation.Data)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
-func (p_ PasskeyRegistrationCredential) CredentialID() foundation.Data {
+func (p_ PasskeyRegistrationCredential) CredentialID() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("credentialID"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (p_ PasskeyRegistrationCredential) CredentialID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/credentialid
-func (p_ PasskeyRegistrationCredential) SetCredentialID(value foundation.Data) {
+func (p_ PasskeyRegistrationCredential) SetCredentialID(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
 }
 
@@ -172,7 +174,7 @@ func (p_ PasskeyRegistrationCredential) SetExtensionOutput(value IPasskeyRegistr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) RelyingParty() string {
+func (p_ PasskeyRegistrationCredential) RelyingParty() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
@@ -182,7 +184,7 @@ func (p_ PasskeyRegistrationCredential) RelyingParty() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential/relyingparty
-func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string) {
+func (p_ PasskeyRegistrationCredential) SetRelyingParty(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
 

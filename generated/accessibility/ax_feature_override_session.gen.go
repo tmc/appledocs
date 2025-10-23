@@ -30,7 +30,9 @@ type _AXFeatureOverrideSessionClass struct {
 // An interface definition for the [AXFeatureOverrideSession] class.
 type IAXFeatureOverrideSession interface {
 	objectivec.IObject
-	AXFeatureOverrideSessionErrorDomain() string
+	// properties:
+	AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A token object that represents an override session held by your app.
@@ -86,7 +88,7 @@ func NewAXFeatureOverrideSession() AXFeatureOverrideSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() string {
+func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }

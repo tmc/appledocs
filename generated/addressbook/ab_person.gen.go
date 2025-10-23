@@ -31,12 +31,14 @@ type _ABPersonClass struct {
 // An interface definition for the [ABPerson] class.
 type IABPerson interface {
 	IABRecord
-	BeginLoadingImageDataForClient(client objectivec.IObject) int
-	ImageData() foundation.Data
-	LinkedPeople() foundation.Array
-	ParentGroups() foundation.Array
-	SetImageData(data foundation.NSData) bool
-	VCardRepresentation() foundation.Data
+	// properties:
+	// methods:
+	BeginLoadingImageDataForClient(client objectivec.IObject) int /* primitive/slice/pointer. */
+	ImageData() objc.IObject /* cross-framework: Data */
+	LinkedPeople() objc.IObject /* cross-framework: Array */
+	ParentGroups() objc.IObject /* cross-framework: Array */
+	SetImageData(data foundation.objc.IObject /* cross-framework NSData */) bool /* primitive/slice/pointer. */
+	VCardRepresentation() objc.IObject /* cross-framework: Data */
 }
 
 // An object that encapsulates all information about a person in the Address Book database.
@@ -98,7 +100,7 @@ func NewABPerson() ABPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/init(VCardRepresentation:)
-func NewABPersonWithVCardRepresentation(vCardData foundation.NSData) ABPerson {
+func NewABPersonWithVCardRepresentation(vCardData foundation.objc.IObject /* cross-framework NSData */) ABPerson {
 	instance := getABPersonClass().Alloc()
 	rv := objc.Send[ABPerson](instance.ID, objc.Sel("initWithVCardRepresentation:"), vCardData)
 	rv.Autorelease()
@@ -111,7 +113,7 @@ func NewABPersonWithVCardRepresentation(vCardData foundation.NSData) ABPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/addPropertiesAndTypes(_:)
-func (ac _ABPersonClass) AddPropertiesAndTypes(properties objectivec.IObject) int {
+func (ac _ABPersonClass) AddPropertiesAndTypes(properties objectivec.IObject) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("addPropertiesAndTypes:"), properties)
 	return rv
 }
@@ -121,7 +123,7 @@ func (ac _ABPersonClass) AddPropertiesAndTypes(properties objectivec.IObject) in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/cancelLoadingImageData(forTag:)
-func (ac _ABPersonClass) CancelLoadingImageDataForTag(tag int) {
+func (ac _ABPersonClass) CancelLoadingImageDataForTag(tag int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("cancelLoadingImageDataForTag:"), tag)
 }
 
@@ -130,8 +132,8 @@ func (ac _ABPersonClass) CancelLoadingImageDataForTag(tag int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/properties()
-func (ac _ABPersonClass) Properties() foundation.Array {
-	rv := objc.Send[foundation.Array](objc.ID(ac.class), objc.Sel("properties"))
+func (ac _ABPersonClass) Properties() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("properties"))
 	return rv
 }
 
@@ -140,7 +142,7 @@ func (ac _ABPersonClass) Properties() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/removeProperties(_:)
-func (ac _ABPersonClass) RemoveProperties(properties objectivec.IObject) int {
+func (ac _ABPersonClass) RemoveProperties(properties objectivec.IObject) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](objc.ID(ac.class), objc.Sel("removeProperties:"), properties)
 	return rv
 }
@@ -150,7 +152,7 @@ func (ac _ABPersonClass) RemoveProperties(properties objectivec.IObject) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/searchElement(forProperty:label:key:value:comparison:)
-func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property string, label string, key string, value objectivec.IObject, comparison ABSearchComparison) IABSearchElement {
+func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(property string /* primitive/slice/pointer. */, label string /* primitive/slice/pointer. */, key string /* primitive/slice/pointer. */, value objectivec.IObject, comparison ABSearchComparison /* typedef */) IABSearchElement {
 	rv := objc.Send[ABSearchElement](objc.ID(ac.class), objc.Sel("searchElementForProperty:label:key:value:comparison:"), objc.String(property), objc.String(label), objc.String(key), value, comparison)
 	return rv
 }
@@ -160,7 +162,7 @@ func (ac _ABPersonClass) SearchElementForPropertyLabelKeyValueComparison(propert
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/type(ofProperty:)
-func (ac _ABPersonClass) TypeOfProperty(property string) ABPropertyType {
+func (ac _ABPersonClass) TypeOfProperty(property string /* primitive/slice/pointer. */) ABPropertyType /* typedef */ {
 	rv := objc.Send[ABPropertyType](objc.ID(ac.class), objc.Sel("typeOfProperty:"), objc.String(property))
 	return rv
 }
@@ -170,7 +172,7 @@ func (ac _ABPersonClass) TypeOfProperty(property string) ABPropertyType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/beginLoadingImageData(for:)
-func (a_ ABPerson) BeginLoadingImageDataForClient(client objectivec.IObject) int {
+func (a_ ABPerson) BeginLoadingImageDataForClient(client objectivec.IObject) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("beginLoadingImageDataForClient:"), client)
 	return rv
 }
@@ -180,8 +182,8 @@ func (a_ ABPerson) BeginLoadingImageDataForClient(client objectivec.IObject) int
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/imageData()
-func (a_ ABPerson) ImageData() foundation.Data {
-	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("imageData"))
+func (a_ ABPerson) ImageData() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](a_.ID, objc.Sel("imageData"))
 	return rv
 }
 
@@ -190,8 +192,8 @@ func (a_ ABPerson) ImageData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/linkedPeople()
-func (a_ ABPerson) LinkedPeople() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("linkedPeople"))
+func (a_ ABPerson) LinkedPeople() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("linkedPeople"))
 	return rv
 }
 
@@ -200,8 +202,8 @@ func (a_ ABPerson) LinkedPeople() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/parentGroups()
-func (a_ ABPerson) ParentGroups() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("parentGroups"))
+func (a_ ABPerson) ParentGroups() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("parentGroups"))
 	return rv
 }
 
@@ -210,7 +212,7 @@ func (a_ ABPerson) ParentGroups() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/setImageData(_:)
-func (a_ ABPerson) SetImageData(data foundation.NSData) bool {
+func (a_ ABPerson) SetImageData(data foundation.objc.IObject /* cross-framework NSData */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setImageData:"), data)
 	return rv
 }
@@ -220,8 +222,8 @@ func (a_ ABPerson) SetImageData(data foundation.NSData) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPerson/vCardRepresentation()
-func (a_ ABPerson) VCardRepresentation() foundation.Data {
-	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("vCardRepresentation"))
+func (a_ ABPerson) VCardRepresentation() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](a_.ID, objc.Sel("vCardRepresentation"))
 	return rv
 }
 

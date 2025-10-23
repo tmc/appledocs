@@ -30,12 +30,14 @@ type _TurnBasedMatchmakerViewControllerClass struct {
 // An interface definition for the [TurnBasedMatchmakerViewController] class.
 type ITurnBasedMatchmakerViewController interface {
 	appkit.IViewController
-	ShowExistingMatches() bool
-	SetShowExistingMatches(value bool)
+	// properties:
+	ShowExistingMatches() bool /* primitive/slice/pointer. */
+	SetShowExistingMatches(value bool /* primitive/slice/pointer. */)
 	TurnBasedMatchmakerDelegate() objc.ID
 	SetTurnBasedMatchmakerDelegate(value objc.ID)
-	MatchmakingMode() unsafe.Pointer
-	SetMatchmakingMode(value unsafe.Pointer)
+	MatchmakingMode() MatchmakingMode /* not a class type */
+	SetMatchmakingMode(value MatchmakingMode /* not a class type */)
+	// methods:
 }
 
 // An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.
@@ -110,7 +112,7 @@ func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchReques
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
+func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("showExistingMatches"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (t_ TurnBasedMatchmakerViewController) ShowExistingMatches() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/showExistingMatches
-func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool) {
+func (t_ TurnBasedMatchmakerViewController) SetShowExistingMatches(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowExistingMatches:"), value)
 }
 
@@ -148,8 +150,8 @@ func (t_ TurnBasedMatchmakerViewController) SetTurnBasedMatchmakerDelegate(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
-func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("matchmakingMode"))
+func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() MatchmakingMode /* not a class type */ {
+	rv := objc.Send[MatchmakingMode](t_.ID, objc.Sel("matchmakingMode"))
 	return rv
 }
 
@@ -158,7 +160,7 @@ func (t_ TurnBasedMatchmakerViewController) MatchmakingMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller/matchmakingmode
-func (t_ TurnBasedMatchmakerViewController) SetMatchmakingMode(value unsafe.Pointer) {
+func (t_ TurnBasedMatchmakerViewController) SetMatchmakingMode(value MatchmakingMode /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMatchmakingMode:"), value)
 }
 

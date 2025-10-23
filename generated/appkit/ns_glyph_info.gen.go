@@ -30,15 +30,13 @@ type _GlyphInfoClass struct {
 // An interface definition for the [GlyphInfo] class.
 type IGlyphInfo interface {
 	objectivec.IObject
-	CharacterIdentifier() uint
-	BaseString() string
-	SetBaseString(value string)
-	CharacterCollection() unsafe.Pointer
-	SetCharacterCollection(value unsafe.Pointer)
-	GlyphID() unsafe.Pointer
-	SetGlyphID(value unsafe.Pointer)
-	GlyphName() string
-	SetGlyphName(value string)
+	// properties:
+	BaseString() string /* primitive/slice/pointer. */
+	CharacterCollection() CharacterCollection
+	CharacterIdentifier() uint /* primitive/slice/pointer. */
+	GlyphID() objc.IObject /* cross-framework: Glyph */
+	GlyphName() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A glyph attribute in an attributed string.
@@ -94,12 +92,83 @@ func NewGlyphInfo() GlyphInfo {
 
 
 
-// The receiver’s character identifier (CID).
+// Creates a glyph info object from the specified glyph identifier and font informaton.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/characterIdentifier
-func (g_ GlyphInfo) CharacterIdentifier() uint {
-	rv := objc.Send[uint](g_.ID, objc.Sel("characterIdentifier"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(cgGlyph:for:baseString:)
+func NewGlyphInfoWithCGGlyphForFontBaseString(glyph objc.IObject /* cross-framework Glyph */, font IFont, string_ string /* primitive/slice/pointer. */) GlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(getGlyphInfoClass().class), objc.Sel("glyphInfoWithCGGlyph:forFont:baseString:"), glyph, font, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns an object using a character identifier and a character collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(characterIdentifier:collection:baseString:)
+func NewGlyphInfoWithCharacterIdentifierCollectionBaseString(cid uint /* primitive/slice/pointer. */, characterCollection CharacterCollection, string_ string /* primitive/slice/pointer. */) GlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(getGlyphInfoClass().class), objc.Sel("glyphInfoWithCharacterIdentifier:collection:baseString:"), cid, characterCollection, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns a glyph information object using a glyph index and a specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(glyph:forFont:baseString:)
+func NewGlyphInfoWithGlyphForFontBaseString(glyph objc.IObject /* cross-framework Glyph */, font IFont, string_ string /* primitive/slice/pointer. */) GlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(getGlyphInfoClass().class), objc.Sel("glyphInfoWithGlyph:forFont:baseString:"), glyph, font, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns a glyph information object using a glyph name and a specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(glyphName:forFont:baseString:)
+func NewGlyphInfoWithGlyphNameForFontBaseString(glyphName string /* primitive/slice/pointer. */, font IFont, string_ string /* primitive/slice/pointer. */) GlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(getGlyphInfoClass().class), objc.Sel("glyphInfoWithGlyphName:forFont:baseString:"), objc.String(glyphName), font, objc.String(string_))
+	return rv
+}
+
+
+
+// Creates a glyph info object from the specified glyph identifier and font informaton.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(cgGlyph:for:baseString:)
+func (gc _GlyphInfoClass) GlyphInfoWithCGGlyphForFontBaseString(glyph objc.IObject /* cross-framework Glyph */, font IFont, string_ string /* primitive/slice/pointer. */) IGlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("glyphInfoWithCGGlyph:forFont:baseString:"), glyph, font, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns an object using a character identifier and a character collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(characterIdentifier:collection:baseString:)
+func (gc _GlyphInfoClass) GlyphInfoWithCharacterIdentifierCollectionBaseString(cid uint /* primitive/slice/pointer. */, characterCollection CharacterCollection, string_ string /* primitive/slice/pointer. */) IGlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("glyphInfoWithCharacterIdentifier:collection:baseString:"), cid, characterCollection, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns a glyph information object using a glyph index and a specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(glyph:forFont:baseString:)
+func (gc _GlyphInfoClass) GlyphInfoWithGlyphForFontBaseString(glyph objc.IObject /* cross-framework Glyph */, font IFont, string_ string /* primitive/slice/pointer. */) IGlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("glyphInfoWithGlyph:forFont:baseString:"), glyph, font, objc.String(string_))
+	return rv
+}
+
+
+// Instantiates and returns a glyph information object using a glyph name and a specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/init(glyphName:forFont:baseString:)
+func (gc _GlyphInfoClass) GlyphInfoWithGlyphNameForFontBaseString(glyphName string /* primitive/slice/pointer. */, font IFont, string_ string /* primitive/slice/pointer. */) IGlyphInfo {
+	rv := objc.Send[GlyphInfo](objc.ID(gc.class), objc.Sel("glyphInfoWithGlyphName:forFont:baseString:"), objc.String(glyphName), font, objc.String(string_))
 	return rv
 }
 
@@ -107,47 +176,29 @@ func (g_ GlyphInfo) CharacterIdentifier() uint {
 // The string containing the character represented by the glyph.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
-func (g_ GlyphInfo) BaseString() string {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/baseString
+func (g_ GlyphInfo) BaseString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](g_.ID, objc.Sel("baseString"))
 	return rv
 }
 
 
-// The string containing the character represented by the glyph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/basestring
-func (g_ GlyphInfo) SetBaseString(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setBaseString:"), objc.String(value))
-}
-
-
 // A value specifying the glyph–to–character identifier mapping of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
-func (g_ GlyphInfo) CharacterCollection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("characterCollection"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/characterCollection
+func (g_ GlyphInfo) CharacterCollection() CharacterCollection {
+	rv := objc.Send[CharacterCollection](g_.ID, objc.Sel("characterCollection"))
 	return rv
 }
 
 
-// A value specifying the glyph–to–character identifier mapping of the receiver.
+// The receiver’s character identifier (CID).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/charactercollection
-func (g_ GlyphInfo) SetCharacterCollection(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCharacterCollection:"), value)
-}
-
-
-// The glyph identifier, specified as the index into the internal glyph table of the font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("glyphID"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/characterIdentifier
+func (g_ GlyphInfo) CharacterIdentifier() uint /* primitive/slice/pointer. */ {
+	rv := objc.Send[uint](g_.ID, objc.Sel("characterIdentifier"))
 	return rv
 }
 
@@ -155,29 +206,20 @@ func (g_ GlyphInfo) GlyphID() unsafe.Pointer {
 // The glyph identifier, specified as the index into the internal glyph table of the font.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphid
-func (g_ GlyphInfo) SetGlyphID(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphID:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/glyphID
+func (g_ GlyphInfo) GlyphID() objc.IObject /* cross-framework: Glyph */ {
+	rv := objc.Send[Glyph](g_.ID, objc.Sel("glyphID"))
+	return rv
 }
 
 
 // The receiver’s glyph name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
-func (g_ GlyphInfo) GlyphName() string {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInfo/glyphName
+func (g_ GlyphInfo) GlyphName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](g_.ID, objc.Sel("glyphName"))
 	return rv
 }
-
-
-// The receiver’s glyph name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglyphinfo/glyphname
-func (g_ GlyphInfo) SetGlyphName(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGlyphName:"), objc.String(value))
-}
-
 
 

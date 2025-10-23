@@ -30,6 +30,8 @@ type _FSClientClass struct {
 // An interface definition for the [FSClient] class.
 type IFSClient interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An interface for apps and daemons to interact with FSKit.

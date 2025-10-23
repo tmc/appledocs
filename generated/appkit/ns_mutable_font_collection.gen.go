@@ -29,10 +29,13 @@ type _MutableFontCollectionClass struct {
 // An interface definition for the [MutableFontCollection] class.
 type IMutableFontCollection interface {
 	IFontCollection
-	ExclusionDescriptors() NSFontDescriptor
-	SetExclusionDescriptors(value IFontDescriptor)
-	QueryDescriptors() NSFontDescriptor
-	SetQueryDescriptors(value IFontDescriptor)
+	// properties:
+	ExclusionDescriptors() []FontDescriptor /* primitive/slice/pointer. */
+	SetExclusionDescriptors(value []FontDescriptor /* primitive/slice/pointer. */)
+	QueryDescriptors() []FontDescriptor /* primitive/slice/pointer. */
+	SetQueryDescriptors(value []FontDescriptor /* primitive/slice/pointer. */)
+	// methods:
+	RemoveQueryForDescriptors(descriptors []FontDescriptor /* primitive/slice/pointer. */)
 }
 
 // A mutable collection of font descriptors taken together as a single object.
@@ -90,12 +93,71 @@ func NewMutableFontCollection() MutableFontCollection {
 
 
 
+// Creates a mutable named font collection object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/init(name:)
+func NewMutableFontCollectionWithName(name FontCollectionName /* not a class type */) MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(getMutableFontCollectionClass().class), objc.Sel("fontCollectionWithName:"), name)
+	return rv
+}
+
+
+// Creates a mutable font collection with the specified name and font visibility.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/init(name:visibility:)
+func NewMutableFontCollectionWithNameVisibility(name FontCollectionName /* not a class type */, visibility FontCollectionVisibility /* not a class type */) MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(getMutableFontCollectionClass().class), objc.Sel("fontCollectionWithName:visibility:"), name, visibility)
+	return rv
+}
+
+
+
+// Creates a mutable named font collection object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/init(name:)
+func (mc _MutableFontCollectionClass) FontCollectionWithName(name FontCollectionName /* not a class type */) IMutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("fontCollectionWithName:"), name)
+	return rv
+}
+
+
+// Creates a mutable font collection with the specified name and font visibility.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/init(name:visibility:)
+func (mc _MutableFontCollectionClass) FontCollectionWithNameVisibility(name FontCollectionName /* not a class type */, visibility FontCollectionVisibility /* not a class type */) IMutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("fontCollectionWithName:visibility:"), name, visibility)
+	return rv
+}
+
+
+// The mutable font collection that matches all registered fonts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/withAllAvailableDescriptors
+func (mc _MutableFontCollectionClass) FontCollectionWithAllAvailableDescriptors() MutableFontCollection {
+	rv := objc.Send[MutableFontCollection](objc.ID(mc.class), objc.Sel("fontCollectionWithAllAvailableDescriptors"))
+	return rv
+}
+
+// Edits the query and exclusion arrays by removing the specified font descriptors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/removeQuery(for:)
+func (m_ MutableFontCollection) RemoveQueryForDescriptors(descriptors []FontDescriptor /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeQueryForDescriptors:"), descriptors)
+}
+
+
 // The font descriptors to exclude from query results.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
-func (m_ MutableFontCollection) ExclusionDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("exclusionDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/exclusionDescriptors
+func (m_ MutableFontCollection) ExclusionDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]FontDescriptor](m_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
 }
 
@@ -103,18 +165,28 @@ func (m_ MutableFontCollection) ExclusionDescriptors() NSFontDescriptor {
 // The font descriptors to exclude from query results.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/exclusiondescriptors
-func (m_ MutableFontCollection) SetExclusionDescriptors(value IFontDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExclusionDescriptors:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/exclusionDescriptors
+func (m_ MutableFontCollection) SetExclusionDescriptors(value []FontDescriptor /* primitive/slice/pointer. */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExclusionDescriptors:"), nsArray)
 }
 
 
 // The font descriptors to include in query results.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
-func (m_ MutableFontCollection) QueryDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](m_.ID, objc.Sel("queryDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/queryDescriptors
+func (m_ MutableFontCollection) QueryDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]FontDescriptor](m_.ID, objc.Sel("queryDescriptors"))
 	return rv
 }
 
@@ -122,10 +194,29 @@ func (m_ MutableFontCollection) QueryDescriptors() NSFontDescriptor {
 // The font descriptors to include in query results.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutablefontcollection/querydescriptors
-func (m_ MutableFontCollection) SetQueryDescriptors(value IFontDescriptor) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryDescriptors:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/queryDescriptors
+func (m_ MutableFontCollection) SetQueryDescriptors(value []FontDescriptor /* primitive/slice/pointer. */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryDescriptors:"), nsArray)
 }
 
+
+// The mutable font collection that matches all registered fonts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableFontCollection/withAllAvailableDescriptors
+func (m_ MutableFontCollection) FontCollectionWithAllAvailableDescriptors() IMutableFontCollection {
+	rv := objc.Send[MutableFontCollection](m_.ID, objc.Sel("fontCollectionWithAllAvailableDescriptors"))
+	return rv
+}
 
 

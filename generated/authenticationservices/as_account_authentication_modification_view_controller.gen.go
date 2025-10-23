@@ -31,9 +31,11 @@ type _AccountAuthenticationModificationViewControllerClass struct {
 // An interface definition for the [AccountAuthenticationModificationViewController] class.
 type IAccountAuthenticationModificationViewController interface {
 	appkit.IViewController
+	// properties:
 	ExtensionContext() IASAccountAuthenticationModificationExtensionContext
 	SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext)
-	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
+	// methods:
+	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier CredentialServiceIdentifier /* not a class type */, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
 }
 
 // A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.
@@ -95,7 +97,7 @@ func NewAccountAuthenticationModificationViewController() AccountAuthenticationM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)
-func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject) {
+func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier CredentialServiceIdentifier /* not a class type */, existingCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"), serviceIdentifier, existingCredential, userInfo)
 }
 

@@ -44,6 +44,7 @@ var (
 	crawlFetchBoth    bool
 	crawlPrune        bool
 	crawlMaxDepth     int
+	crawlObjCOnly     bool
 )
 
 func init() {
@@ -78,6 +79,8 @@ func init() {
 		"prune old cache files (HTML files and pre-index.json structure)")
 	crawlCmd.Flags().IntVar(&crawlMaxDepth, "max-depth", 0,
 		"maximum link depth to follow from entry point (0 = unlimited)")
+	crawlCmd.Flags().BoolVar(&crawlObjCOnly, "objc-only", false,
+		"only crawl Objective-C types (skip pure Swift types without c:objc externalID)")
 }
 
 func runCrawl(cmd *cobra.Command, args []string) error {

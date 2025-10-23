@@ -36,8 +36,8 @@ type IHKQuantitySeriesSampleBuilder interface {
 	SetDevice(value IHKDevice)
 	QuantityType() IHKQuantityType
 	SetQuantityType(value IHKQuantityType)
-	StartDate() foundation.Date
-	SetStartDate(value foundation.Date)
+	StartDate() foundation.objc.IObject /* cross-framework: Date */
+	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
 	// methods:
 }
 
@@ -134,7 +134,7 @@ func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value IHKQuantityType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
+func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value foundation.Date) {
+func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

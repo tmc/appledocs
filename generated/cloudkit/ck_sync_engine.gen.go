@@ -30,8 +30,10 @@ type _CKSyncEngineClass struct {
 // An interface definition for the [CKSyncEngine] class.
 type ICKSyncEngine interface {
 	objectivec.IObject
+	// properties:
 	Database() ICKDatabase
 	State() ICKSyncEngineState
+	// methods:
 	CancelOperationsWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchChangesWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchChangesWithOptionsCompletionHandler(options ICKSyncEngineFetchChangesOptions, completionHandler unsafe.Pointer)

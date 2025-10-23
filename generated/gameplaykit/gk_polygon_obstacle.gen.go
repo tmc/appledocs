@@ -29,8 +29,10 @@ type _PolygonObstacleClass struct {
 // An interface definition for the [PolygonObstacle] class.
 type IPolygonObstacle interface {
 	IObstacle
-	VertexCount() uint
-	VertexAtIndex(index uint) unsafe.Pointer
+	// properties:
+	VertexCount() uint /* primitive/slice/pointer. */
+	// methods:
+	VertexAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer
 }
 
 // A polygon-shaped impassable area in a 2D game world.
@@ -92,7 +94,7 @@ func NewPolygonObstacle() PolygonObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/initWithPoints:count:
-func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints uintptr) PolygonObstacle {
+func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints uintptr /* not a class type */) PolygonObstacle {
 	instance := getPolygonObstacleClass().Alloc()
 	rv := objc.Send[PolygonObstacle](instance.ID, objc.Sel("initWithPoints:count:"), points, numPoints)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewPolygonObstacleWithPointsCount(points unsafe.Pointer, numPoints uintptr)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/obstacleWithPoints:count:
-func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, numPoints uintptr) unsafe.Pointer {
+func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, numPoints uintptr /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("obstacleWithPoints:count:"), points, numPoints)
 	return rv
 }
@@ -115,7 +117,7 @@ func (pc _PolygonObstacleClass) ObstacleWithPointsCount(points unsafe.Pointer, n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertex(at:)
-func (p_ PolygonObstacle) VertexAtIndex(index uint) unsafe.Pointer {
+func (p_ PolygonObstacle) VertexAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("vertexAtIndex:"), index)
 	return rv
 }
@@ -125,7 +127,7 @@ func (p_ PolygonObstacle) VertexAtIndex(index uint) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKPolygonObstacle/vertexCount
-func (p_ PolygonObstacle) VertexCount() uint {
+func (p_ PolygonObstacle) VertexCount() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](p_.ID, objc.Sel("vertexCount"))
 	return rv
 }

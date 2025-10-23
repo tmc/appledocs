@@ -30,6 +30,14 @@ func ExampleNewImageNamed() {
 	)
 	// Output:
 }
+// ExampleNewImageWithCoder demonstrates how to create a Image instance using NewImageWithCoder.
+// Initializes and returns an image object from data in an unarchiver.
+func ExampleNewImageWithCoder() {
+	_ = appkit.NewImageWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}
 // ExampleNewImageWithContentsOfFile demonstrates how to create a Image instance using NewImageWithContentsOfFile.
 // Initializes and returns an image object with the contents of the specified file.
 func ExampleNewImageWithContentsOfFile() {
@@ -43,6 +51,15 @@ func ExampleNewImageWithContentsOfFile() {
 func ExampleNewImageWithPasteboard() {
 	_ = appkit.NewImageWithPasteboard(
 		appkit.NSPasteboard{}, // pasteboard NSPasteboard
+	)
+	// Output:
+}
+// ExampleNewImageWithSymbolNameBundleVariableValue demonstrates how to create a Image instance using NewImageWithSymbolNameBundleVariableValue.
+func ExampleNewImageWithSymbolNameBundleVariableValue() {
+	_ = appkit.NewImageWithSymbolNameBundleVariableValue(
+		"name", // name string
+		appkit.Bundle{}, // bundle Bundle
+		0.0, // value float64
 	)
 	// Output:
 }

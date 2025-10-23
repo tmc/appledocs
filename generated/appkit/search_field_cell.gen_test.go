@@ -9,10 +9,10 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewSearchFieldCell
 
-// ExampleNewSearchFieldCellTextCell demonstrates how to create a SearchFieldCell instance using NewSearchFieldCellTextCell.
-func ExampleNewSearchFieldCellTextCell() {
-	_ = appkit.NewSearchFieldCellTextCell(
-		"string", // string string
+// ExampleNewSearchFieldCellWithCoder demonstrates how to create a SearchFieldCell instance using NewSearchFieldCellWithCoder.
+func ExampleNewSearchFieldCellWithCoder() {
+	_ = appkit.NewSearchFieldCellWithCoder(
+		appkit.Coder{}, // coder Coder
 	)
 	// Output:
 }

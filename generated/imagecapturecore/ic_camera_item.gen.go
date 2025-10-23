@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,40 +32,40 @@ type _ICCameraItemClass struct {
 type IICCameraItem interface {
 	objectivec.IObject
 	// properties:
-	Name() string
-	UTI() string
-	CreationDate() foundation.Date
-	SetCreationDate(value foundation.Date)
-	Device() ICCameraDevice
-	SetDevice(value ICCameraDevice)
-	FileSystemPath() string
-	SetFileSystemPath(value string)
-	IsInTemporaryStore() bool
-	SetIsInTemporaryStore(value bool)
-	IsLocked() bool
-	SetIsLocked(value bool)
-	IsRaw() bool
-	SetIsRaw(value bool)
-	LargeThumbnailIfAvailable() appkit.Image
-	SetLargeThumbnailIfAvailable(value appkit.Image)
+	Name() string /* primitive/slice/pointer. */
+	UTI() string /* primitive/slice/pointer. */
+	CreationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Device() ICCameraDevice /* already interface */
+	SetDevice(value ICCameraDevice /* already interface */)
+	FileSystemPath() string /* primitive/slice/pointer. */
+	SetFileSystemPath(value string /* primitive/slice/pointer. */)
+	IsInTemporaryStore() bool /* primitive/slice/pointer. */
+	SetIsInTemporaryStore(value bool /* primitive/slice/pointer. */)
+	IsLocked() bool /* primitive/slice/pointer. */
+	SetIsLocked(value bool /* primitive/slice/pointer. */)
+	IsRaw() bool /* primitive/slice/pointer. */
+	SetIsRaw(value bool /* primitive/slice/pointer. */)
+	LargeThumbnailIfAvailable() objc.IObject /* cross-framework: Image */
+	SetLargeThumbnailIfAvailable(value objc.IObject /* cross-framework: Image */)
 	Metadata() unsafe.Pointer
 	SetMetadata(value unsafe.Pointer)
-	MetadataIfAvailable() string
-	SetMetadataIfAvailable(value string)
-	ModificationDate() foundation.Date
-	SetModificationDate(value foundation.Date)
-	ParentFolder() ICCameraFolder
-	SetParentFolder(value ICCameraFolder)
+	MetadataIfAvailable() string /* primitive/slice/pointer. */
+	SetMetadataIfAvailable(value string /* primitive/slice/pointer. */)
+	ModificationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	ParentFolder() ICCameraFolder /* already interface */
+	SetParentFolder(value ICCameraFolder /* already interface */)
 	PtpObjectHandle() unsafe.Pointer
 	SetPtpObjectHandle(value unsafe.Pointer)
-	Thumbnail() appkit.Image
-	SetThumbnail(value appkit.Image)
-	ThumbnailIfAvailable() appkit.Image
-	SetThumbnailIfAvailable(value appkit.Image)
-	UserData() foundation.MutableDictionary
-	SetUserData(value foundation.MutableDictionary)
-	WasAddedAfterContentCatalogCompleted() bool
-	SetWasAddedAfterContentCatalogCompleted(value bool)
+	Thumbnail() objc.IObject /* cross-framework: Image */
+	SetThumbnail(value objc.IObject /* cross-framework: Image */)
+	ThumbnailIfAvailable() objc.IObject /* cross-framework: Image */
+	SetThumbnailIfAvailable(value objc.IObject /* cross-framework: Image */)
+	UserData() MutableDictionary /* not a class type */
+	SetUserData(value MutableDictionary /* not a class type */)
+	WasAddedAfterContentCatalogCompleted() bool /* primitive/slice/pointer. */
+	SetWasAddedAfterContentCatalogCompleted(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -127,7 +126,7 @@ func NewICCameraItem() ICCameraItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/name
-func (i_ ICCameraItem) Name() string {
+func (i_ ICCameraItem) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("name"))
 	return rv
 }
@@ -137,7 +136,7 @@ func (i_ ICCameraItem) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraItem/uti
-func (i_ ICCameraItem) UTI() string {
+func (i_ ICCameraItem) UTI() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("UTI"))
 	return rv
 }
@@ -147,7 +146,7 @@ func (i_ ICCameraItem) UTI() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/creationdate
-func (i_ ICCameraItem) CreationDate() foundation.Date {
+func (i_ ICCameraItem) CreationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -157,7 +156,7 @@ func (i_ ICCameraItem) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/creationdate
-func (i_ ICCameraItem) SetCreationDate(value foundation.Date) {
+func (i_ ICCameraItem) SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -166,7 +165,7 @@ func (i_ ICCameraItem) SetCreationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/device
-func (i_ ICCameraItem) Device() ICCameraDevice {
+func (i_ ICCameraItem) Device() ICCameraDevice /* already interface */ {
 	rv := objc.Send[ICCameraDevice](i_.ID, objc.Sel("device"))
 	return rv
 }
@@ -176,7 +175,7 @@ func (i_ ICCameraItem) Device() ICCameraDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/device
-func (i_ ICCameraItem) SetDevice(value ICCameraDevice) {
+func (i_ ICCameraItem) SetDevice(value ICCameraDevice /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDevice:"), value)
 }
 
@@ -185,7 +184,7 @@ func (i_ ICCameraItem) SetDevice(value ICCameraDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
-func (i_ ICCameraItem) FileSystemPath() string {
+func (i_ ICCameraItem) FileSystemPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("fileSystemPath"))
 	return rv
 }
@@ -195,7 +194,7 @@ func (i_ ICCameraItem) FileSystemPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/filesystempath
-func (i_ ICCameraItem) SetFileSystemPath(value string) {
+func (i_ ICCameraItem) SetFileSystemPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileSystemPath:"), objc.String(value))
 }
 
@@ -204,7 +203,7 @@ func (i_ ICCameraItem) SetFileSystemPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/isintemporarystore
-func (i_ ICCameraItem) IsInTemporaryStore() bool {
+func (i_ ICCameraItem) IsInTemporaryStore() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isInTemporaryStore"))
 	return rv
 }
@@ -214,7 +213,7 @@ func (i_ ICCameraItem) IsInTemporaryStore() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/isintemporarystore
-func (i_ ICCameraItem) SetIsInTemporaryStore(value bool) {
+func (i_ ICCameraItem) SetIsInTemporaryStore(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsInTemporaryStore:"), value)
 }
 
@@ -223,7 +222,7 @@ func (i_ ICCameraItem) SetIsInTemporaryStore(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/islocked
-func (i_ ICCameraItem) IsLocked() bool {
+func (i_ ICCameraItem) IsLocked() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isLocked"))
 	return rv
 }
@@ -233,7 +232,7 @@ func (i_ ICCameraItem) IsLocked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/islocked
-func (i_ ICCameraItem) SetIsLocked(value bool) {
+func (i_ ICCameraItem) SetIsLocked(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsLocked:"), value)
 }
 
@@ -242,7 +241,7 @@ func (i_ ICCameraItem) SetIsLocked(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/israw
-func (i_ ICCameraItem) IsRaw() bool {
+func (i_ ICCameraItem) IsRaw() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isRaw"))
 	return rv
 }
@@ -252,7 +251,7 @@ func (i_ ICCameraItem) IsRaw() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/israw
-func (i_ ICCameraItem) SetIsRaw(value bool) {
+func (i_ ICCameraItem) SetIsRaw(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsRaw:"), value)
 }
 
@@ -261,8 +260,8 @@ func (i_ ICCameraItem) SetIsRaw(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/largethumbnailifavailable
-func (i_ ICCameraItem) LargeThumbnailIfAvailable() appkit.Image {
-	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("largeThumbnailIfAvailable"))
+func (i_ ICCameraItem) LargeThumbnailIfAvailable() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](i_.ID, objc.Sel("largeThumbnailIfAvailable"))
 	return rv
 }
 
@@ -271,7 +270,7 @@ func (i_ ICCameraItem) LargeThumbnailIfAvailable() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/largethumbnailifavailable
-func (i_ ICCameraItem) SetLargeThumbnailIfAvailable(value appkit.Image) {
+func (i_ ICCameraItem) SetLargeThumbnailIfAvailable(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLargeThumbnailIfAvailable:"), value)
 }
 
@@ -299,7 +298,7 @@ func (i_ ICCameraItem) SetMetadata(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
-func (i_ ICCameraItem) MetadataIfAvailable() string {
+func (i_ ICCameraItem) MetadataIfAvailable() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("metadataIfAvailable"))
 	return rv
 }
@@ -309,7 +308,7 @@ func (i_ ICCameraItem) MetadataIfAvailable() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/metadataifavailable
-func (i_ ICCameraItem) SetMetadataIfAvailable(value string) {
+func (i_ ICCameraItem) SetMetadataIfAvailable(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMetadataIfAvailable:"), objc.String(value))
 }
 
@@ -318,7 +317,7 @@ func (i_ ICCameraItem) SetMetadataIfAvailable(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/modificationdate
-func (i_ ICCameraItem) ModificationDate() foundation.Date {
+func (i_ ICCameraItem) ModificationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("modificationDate"))
 	return rv
 }
@@ -328,7 +327,7 @@ func (i_ ICCameraItem) ModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/modificationdate
-func (i_ ICCameraItem) SetModificationDate(value foundation.Date) {
+func (i_ ICCameraItem) SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setModificationDate:"), value)
 }
 
@@ -337,7 +336,7 @@ func (i_ ICCameraItem) SetModificationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/parentfolder
-func (i_ ICCameraItem) ParentFolder() ICCameraFolder {
+func (i_ ICCameraItem) ParentFolder() ICCameraFolder /* already interface */ {
 	rv := objc.Send[ICCameraFolder](i_.ID, objc.Sel("parentFolder"))
 	return rv
 }
@@ -347,7 +346,7 @@ func (i_ ICCameraItem) ParentFolder() ICCameraFolder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/parentfolder
-func (i_ ICCameraItem) SetParentFolder(value ICCameraFolder) {
+func (i_ ICCameraItem) SetParentFolder(value ICCameraFolder /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParentFolder:"), value)
 }
 
@@ -375,8 +374,8 @@ func (i_ ICCameraItem) SetPtpObjectHandle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnail
-func (i_ ICCameraItem) Thumbnail() appkit.Image {
-	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("thumbnail"))
+func (i_ ICCameraItem) Thumbnail() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](i_.ID, objc.Sel("thumbnail"))
 	return rv
 }
 
@@ -385,7 +384,7 @@ func (i_ ICCameraItem) Thumbnail() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnail
-func (i_ ICCameraItem) SetThumbnail(value appkit.Image) {
+func (i_ ICCameraItem) SetThumbnail(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThumbnail:"), value)
 }
 
@@ -394,8 +393,8 @@ func (i_ ICCameraItem) SetThumbnail(value appkit.Image) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnailifavailable
-func (i_ ICCameraItem) ThumbnailIfAvailable() appkit.Image {
-	rv := objc.Send[appkit.Image](i_.ID, objc.Sel("thumbnailIfAvailable"))
+func (i_ ICCameraItem) ThumbnailIfAvailable() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](i_.ID, objc.Sel("thumbnailIfAvailable"))
 	return rv
 }
 
@@ -404,7 +403,7 @@ func (i_ ICCameraItem) ThumbnailIfAvailable() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/thumbnailifavailable
-func (i_ ICCameraItem) SetThumbnailIfAvailable(value appkit.Image) {
+func (i_ ICCameraItem) SetThumbnailIfAvailable(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setThumbnailIfAvailable:"), value)
 }
 
@@ -413,8 +412,8 @@ func (i_ ICCameraItem) SetThumbnailIfAvailable(value appkit.Image) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/userdata
-func (i_ ICCameraItem) UserData() foundation.MutableDictionary {
-	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("userData"))
+func (i_ ICCameraItem) UserData() MutableDictionary /* not a class type */ {
+	rv := objc.Send[MutableDictionary](i_.ID, objc.Sel("userData"))
 	return rv
 }
 
@@ -423,7 +422,7 @@ func (i_ ICCameraItem) UserData() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/userdata
-func (i_ ICCameraItem) SetUserData(value foundation.MutableDictionary) {
+func (i_ ICCameraItem) SetUserData(value MutableDictionary /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserData:"), value)
 }
 
@@ -432,7 +431,7 @@ func (i_ ICCameraItem) SetUserData(value foundation.MutableDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/wasaddedaftercontentcatalogcompleted
-func (i_ ICCameraItem) WasAddedAfterContentCatalogCompleted() bool {
+func (i_ ICCameraItem) WasAddedAfterContentCatalogCompleted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("wasAddedAfterContentCatalogCompleted"))
 	return rv
 }
@@ -442,7 +441,7 @@ func (i_ ICCameraItem) WasAddedAfterContentCatalogCompleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameraitem/wasaddedaftercontentcatalogcompleted
-func (i_ ICCameraItem) SetWasAddedAfterContentCatalogCompleted(value bool) {
+func (i_ ICCameraItem) SetWasAddedAfterContentCatalogCompleted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWasAddedAfterContentCatalogCompleted:"), value)
 }
 

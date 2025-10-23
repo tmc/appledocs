@@ -30,15 +30,17 @@ type _InviteClass struct {
 // An interface definition for the [Invite] class.
 type IInvite interface {
 	objectivec.IObject
-	PlayerGroup() uint
-	Inviter() string
-	SetInviter(value string)
-	IsHosted() bool
-	SetIsHosted(value bool)
-	PlayerAttributes() unsafe.Pointer
-	SetPlayerAttributes(value unsafe.Pointer)
+	// properties:
+	Hosted() bool /* primitive/slice/pointer. */
+	PlayerAttributes() uint32 /* not a class type */
+	PlayerGroup() uint /* primitive/slice/pointer. */
+	Inviter() string /* primitive/slice/pointer. */
+	SetInviter(value string /* primitive/slice/pointer. */)
+	IsHosted() bool /* primitive/slice/pointer. */
+	SetIsHosted(value bool /* primitive/slice/pointer. */)
 	Sender() IGKPlayer
 	SetSender(value IGKPlayer)
+	// methods:
 }
 
 // An invitation to join a match sent to the local player from another player.
@@ -94,11 +96,31 @@ func NewInvite() Invite {
 
 
 
+// A Boolean value that indicates whether you host the game on your own servers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/isHosted
+func (i_ Invite) Hosted() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](i_.ID, objc.Sel("hosted"))
+	return rv
+}
+
+
+// The player attributes for the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/playerAttributes
+func (i_ Invite) PlayerAttributes() uint32 /* not a class type */ {
+	rv := objc.Send[uint32](i_.ID, objc.Sel("playerAttributes"))
+	return rv
+}
+
+
 // The player group for the match.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKInvite/playerGroup
-func (i_ Invite) PlayerGroup() uint {
+func (i_ Invite) PlayerGroup() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("playerGroup"))
 	return rv
 }
@@ -108,7 +130,7 @@ func (i_ Invite) PlayerGroup() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) Inviter() string {
+func (i_ Invite) Inviter() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
 	return rv
 }
@@ -118,7 +140,7 @@ func (i_ Invite) Inviter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) SetInviter(value string) {
+func (i_ Invite) SetInviter(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
 }
 
@@ -127,7 +149,7 @@ func (i_ Invite) SetInviter(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-func (i_ Invite) IsHosted() bool {
+func (i_ Invite) IsHosted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isHosted"))
 	return rv
 }
@@ -137,27 +159,8 @@ func (i_ Invite) IsHosted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/ishosted
-func (i_ Invite) SetIsHosted(value bool) {
+func (i_ Invite) SetIsHosted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsHosted:"), value)
-}
-
-
-// The player attributes for the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
-func (i_ Invite) PlayerAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playerAttributes"))
-	return rv
-}
-
-
-// The player attributes for the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/playerattributes
-func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayerAttributes:"), value)
 }
 
 

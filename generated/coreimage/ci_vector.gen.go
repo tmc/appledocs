@@ -31,16 +31,18 @@ type _VectorClass struct {
 // An interface definition for the [Vector] class.
 type IVector interface {
 	objectivec.IObject
+	// properties:
 	CGAffineTransformValue() coregraphics.CGAffineTransform
 	CGPointValue() coregraphics.CGPoint
 	CGRectValue() coregraphics.CGRect
-	Count() uintptr
-	StringRepresentation() string
-	W() float64
-	X() float64
-	Y() float64
-	Z() float64
-	ValueAtIndex(index uintptr) float64
+	Count() uintptr /* not a class type */
+	StringRepresentation() string /* primitive/slice/pointer. */
+	W() float64 /* primitive/slice/pointer. */
+	X() float64 /* primitive/slice/pointer. */
+	Y() float64 /* primitive/slice/pointer. */
+	Z() float64 /* primitive/slice/pointer. */
+	// methods:
+	ValueAtIndex(index uintptr /* not a class type */) float64 /* primitive/slice/pointer. */
 }
 
 // The Core Image class that defines a vector object.
@@ -136,7 +138,7 @@ func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(string:)
-func NewVectorWithString(representation string) Vector {
+func NewVectorWithString(representation string /* primitive/slice/pointer. */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), objc.String(representation))
 	rv.Autorelease()
@@ -148,7 +150,7 @@ func NewVectorWithString(representation string) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
-func NewVectorWithValuesCount(values coregraphics.float64, count uintptr) Vector {
+func NewVectorWithValuesCount(values coregraphics.float64 /* primitive/slice/pointer. */, count uintptr /* not a class type */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
 	rv.Autorelease()
@@ -160,7 +162,7 @@ func NewVectorWithValuesCount(values coregraphics.float64, count uintptr) Vector
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:)
-func NewVectorWithX(x float64) Vector {
+func NewVectorWithX(x float64 /* primitive/slice/pointer. */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:"), x)
 	rv.Autorelease()
@@ -172,7 +174,7 @@ func NewVectorWithX(x float64) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:)
-func NewVectorWithXY(x float64, y float64) Vector {
+func NewVectorWithXY(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:"), x, y)
 	rv.Autorelease()
@@ -184,7 +186,7 @@ func NewVectorWithXY(x float64, y float64) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:)
-func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
+func NewVectorWithXYZ(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:"), x, y, z)
 	rv.Autorelease()
@@ -196,7 +198,7 @@ func NewVectorWithXYZ(x float64, y float64, z float64) Vector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(x:y:z:w:)
-func NewVectorWithXYZW(x float64, y float64, z float64, w float64) Vector {
+func NewVectorWithXYZW(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */, w float64 /* primitive/slice/pointer. */) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithX:Y:Z:W:"), x, y, z, w)
 	rv.Autorelease()
@@ -239,7 +241,7 @@ func (vc _VectorClass) VectorWithCGRect(r coregraphics.CGRect) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithString:
-func (vc _VectorClass) VectorWithString(representation string) unsafe.Pointer {
+func (vc _VectorClass) VectorWithString(representation string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithString:"), objc.String(representation))
 	return rv
 }
@@ -249,7 +251,7 @@ func (vc _VectorClass) VectorWithString(representation string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithValues:count:
-func (vc _VectorClass) VectorWithValuesCount(values coregraphics.float64, count uintptr) unsafe.Pointer {
+func (vc _VectorClass) VectorWithValuesCount(values float64 /* primitive/slice/pointer. */, count uintptr /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithValues:count:"), values, count)
 	return rv
 }
@@ -259,7 +261,7 @@ func (vc _VectorClass) VectorWithValuesCount(values coregraphics.float64, count 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:
-func (vc _VectorClass) VectorWithX(x float64) unsafe.Pointer {
+func (vc _VectorClass) VectorWithX(x float64 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:"), x)
 	return rv
 }
@@ -269,7 +271,7 @@ func (vc _VectorClass) VectorWithX(x float64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:
-func (vc _VectorClass) VectorWithXY(x float64, y float64) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXY(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:"), x, y)
 	return rv
 }
@@ -279,7 +281,7 @@ func (vc _VectorClass) VectorWithXY(x float64, y float64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:Z:
-func (vc _VectorClass) VectorWithXYZ(x float64, y float64, z float64) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXYZ(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:Z:"), x, y, z)
 	return rv
 }
@@ -289,7 +291,7 @@ func (vc _VectorClass) VectorWithXYZ(x float64, y float64, z float64) unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithX:Y:Z:W:
-func (vc _VectorClass) VectorWithXYZW(x float64, y float64, z float64, w float64) unsafe.Pointer {
+func (vc _VectorClass) VectorWithXYZW(x float64 /* primitive/slice/pointer. */, y float64 /* primitive/slice/pointer. */, z float64 /* primitive/slice/pointer. */, w float64 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithX:Y:Z:W:"), x, y, z, w)
 	return rv
 }
@@ -299,7 +301,7 @@ func (vc _VectorClass) VectorWithXYZW(x float64, y float64, z float64, w float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/value(at:)
-func (v_ Vector) ValueAtIndex(index uintptr) float64 {
+func (v_ Vector) ValueAtIndex(index uintptr /* not a class type */) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("valueAtIndex:"), index)
 	return rv
 }
@@ -339,7 +341,7 @@ func (v_ Vector) CGRectValue() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/count
-func (v_ Vector) Count() uintptr {
+func (v_ Vector) Count() uintptr /* not a class type */ {
 	rv := objc.Send[uintptr](v_.ID, objc.Sel("count"))
 	return rv
 }
@@ -349,7 +351,7 @@ func (v_ Vector) Count() uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/stringRepresentation
-func (v_ Vector) StringRepresentation() string {
+func (v_ Vector) StringRepresentation() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](v_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
@@ -359,7 +361,7 @@ func (v_ Vector) StringRepresentation() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/w
-func (v_ Vector) W() float64 {
+func (v_ Vector) W() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("W"))
 	return rv
 }
@@ -369,7 +371,7 @@ func (v_ Vector) W() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/x
-func (v_ Vector) X() float64 {
+func (v_ Vector) X() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("X"))
 	return rv
 }
@@ -379,7 +381,7 @@ func (v_ Vector) X() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/y
-func (v_ Vector) Y() float64 {
+func (v_ Vector) Y() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Y"))
 	return rv
 }
@@ -389,7 +391,7 @@ func (v_ Vector) Y() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/z
-func (v_ Vector) Z() float64 {
+func (v_ Vector) Z() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("Z"))
 	return rv
 }

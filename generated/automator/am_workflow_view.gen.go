@@ -30,14 +30,16 @@ type _AMWorkflowViewClass struct {
 // An interface definition for the [AMWorkflowView] class.
 type IAMWorkflowView interface {
 	appkit.IView
-	Editable() bool
-	SetEditable(value bool)
+	// properties:
+	Editable() bool /* primitive/slice/pointer. */
+	SetEditable(value bool /* primitive/slice/pointer. */)
 	WorkflowController() IAMWorkflowController
 	SetWorkflowController(value IAMWorkflowController)
 	WorkflowView() IAMWorkflowView
 	SetWorkflowView(value IAMWorkflowView)
-	IsEditable() bool
-	SetIsEditable(value bool)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that lets you view and edit Automator workflows in your app.
@@ -99,7 +101,7 @@ func NewAMWorkflowView() AMWorkflowView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-func (a_ AMWorkflowView) Editable() bool {
+func (a_ AMWorkflowView) Editable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("editable"))
 	return rv
 }
@@ -109,7 +111,7 @@ func (a_ AMWorkflowView) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/isEditable
-func (a_ AMWorkflowView) SetEditable(value bool) {
+func (a_ AMWorkflowView) SetEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEditable:"), value)
 }
 
@@ -156,7 +158,7 @@ func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) IsEditable() bool {
+func (a_ AMWorkflowView) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -166,7 +168,7 @@ func (a_ AMWorkflowView) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowview/iseditable
-func (a_ AMWorkflowView) SetIsEditable(value bool) {
+func (a_ AMWorkflowView) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEditable:"), value)
 }
 

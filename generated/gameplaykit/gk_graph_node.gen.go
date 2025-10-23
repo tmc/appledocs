@@ -30,13 +30,15 @@ type _GraphNodeClass struct {
 // An interface definition for the [GraphNode] class.
 type IGraphNode interface {
 	objectivec.IObject
-	ConnectedNodes() []GraphNode
-	AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
-	CostToNode(node IGKGraphNode) float32
-	EstimatedCostToNode(node IGKGraphNode) float32
-	FindPathFromNode(startNode IGKGraphNode) []GraphNode
-	FindPathToNode(goalNode IGKGraphNode) []GraphNode
-	RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
+	// properties:
+	ConnectedNodes() []GraphNode /* primitive/slice/pointer. */
+	// methods:
+	AddConnectionsToNodesBidirectional(nodes []GraphNode /* primitive/slice/pointer. */, bidirectional bool /* primitive/slice/pointer. */)
+	CostToNode(node IGKGraphNode) float32 /* primitive/slice/pointer. */
+	EstimatedCostToNode(node IGKGraphNode) float32 /* primitive/slice/pointer. */
+	FindPathFromNode(startNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */
+	FindPathToNode(goalNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */
+	RemoveConnectionsToNodesBidirectional(nodes []GraphNode /* primitive/slice/pointer. */, bidirectional bool /* primitive/slice/pointer. */)
 }
 
 // A single node in a navigation graph for use in pathfinding.
@@ -96,7 +98,7 @@ func NewGraphNode() GraphNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/addConnections(to:bidirectional:)
-func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
+func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode /* primitive/slice/pointer. */, bidirectional bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
 
@@ -105,7 +107,7 @@ func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode, bidire
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/cost(to:)
-func (g_ GraphNode) CostToNode(node IGKGraphNode) float32 {
+func (g_ GraphNode) CostToNode(node IGKGraphNode) float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("costToNode:"), node)
 	return rv
 }
@@ -115,7 +117,7 @@ func (g_ GraphNode) CostToNode(node IGKGraphNode) float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/estimatedCost(to:)
-func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) float32 {
+func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("estimatedCostToNode:"), node)
 	return rv
 }
@@ -125,7 +127,7 @@ func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(from:)
-func (g_ GraphNode) FindPathFromNode(startNode IGKGraphNode) []GraphNode {
+func (g_ GraphNode) FindPathFromNode(startNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:"), startNode)
 	return rv
 }
@@ -135,7 +137,7 @@ func (g_ GraphNode) FindPathFromNode(startNode IGKGraphNode) []GraphNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(to:)
-func (g_ GraphNode) FindPathToNode(goalNode IGKGraphNode) []GraphNode {
+func (g_ GraphNode) FindPathToNode(goalNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathToNode:"), goalNode)
 	return rv
 }
@@ -145,7 +147,7 @@ func (g_ GraphNode) FindPathToNode(goalNode IGKGraphNode) []GraphNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/removeConnections(to:bidirectional:)
-func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
+func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode /* primitive/slice/pointer. */, bidirectional bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
 
@@ -154,7 +156,7 @@ func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/connectedNodes
-func (g_ GraphNode) ConnectedNodes() []GraphNode {
+func (g_ GraphNode) ConnectedNodes() []GraphNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("connectedNodes"))
 	return rv
 }

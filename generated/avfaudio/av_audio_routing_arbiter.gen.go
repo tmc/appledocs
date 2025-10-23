@@ -30,7 +30,9 @@ type _AudioRoutingArbiterClass struct {
 // An interface definition for the [AudioRoutingArbiter] class.
 type IAudioRoutingArbiter interface {
 	objectivec.IObject
-	BeginArbitrationWithCategoryCompletionHandler(category AVAudioRoutingArbitrationCategory, handler unsafe.Pointer)
+	// properties:
+	// methods:
+	BeginArbitrationWithCategoryCompletionHandler(category AudioRoutingArbitrationCategory, handler unsafe.Pointer)
 	LeaveArbitration()
 }
 
@@ -100,7 +102,7 @@ func (ac _AudioRoutingArbiterClass) SharedRoutingArbiter() AudioRoutingArbiter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRoutingArbiter/begin(category:completionHandler:)
-func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category AVAudioRoutingArbitrationCategory, handler unsafe.Pointer) {
+func (a_ AudioRoutingArbiter) BeginArbitrationWithCategoryCompletionHandler(category AudioRoutingArbitrationCategory, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("beginArbitrationWithCategory:completionHandler:"), category, handler)
 }
 

@@ -30,6 +30,8 @@ type _MonitorConfigurationClass struct {
 // An interface definition for the [MonitorConfiguration] class.
 type IMonitorConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object for configuring a location monitor instance.

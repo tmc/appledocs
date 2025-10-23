@@ -29,12 +29,14 @@ type _AMShellScriptActionClass struct {
 // An interface definition for the [AMShellScriptAction] class.
 type IAMShellScriptAction interface {
 	IAMBundleAction
-	InputFieldSeparator() string
-	SetInputFieldSeparator(value string)
-	OutputFieldSeparator() string
-	SetOutputFieldSeparator(value string)
-	RemapLineEndings() bool
-	SetRemapLineEndings(value bool)
+	// properties:
+	InputFieldSeparator() string /* primitive/slice/pointer. */
+	SetInputFieldSeparator(value string /* primitive/slice/pointer. */)
+	OutputFieldSeparator() string /* primitive/slice/pointer. */
+	SetOutputFieldSeparator(value string /* primitive/slice/pointer. */)
+	RemapLineEndings() bool /* primitive/slice/pointer. */
+	SetRemapLineEndings(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.
@@ -96,7 +98,7 @@ func NewAMShellScriptAction() AMShellScriptAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/inputfieldseparator
-func (a_ AMShellScriptAction) InputFieldSeparator() string {
+func (a_ AMShellScriptAction) InputFieldSeparator() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("inputFieldSeparator"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (a_ AMShellScriptAction) InputFieldSeparator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/inputfieldseparator
-func (a_ AMShellScriptAction) SetInputFieldSeparator(value string) {
+func (a_ AMShellScriptAction) SetInputFieldSeparator(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputFieldSeparator:"), objc.String(value))
 }
 
@@ -115,7 +117,7 @@ func (a_ AMShellScriptAction) SetInputFieldSeparator(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/outputfieldseparator
-func (a_ AMShellScriptAction) OutputFieldSeparator() string {
+func (a_ AMShellScriptAction) OutputFieldSeparator() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("outputFieldSeparator"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (a_ AMShellScriptAction) OutputFieldSeparator() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/outputfieldseparator
-func (a_ AMShellScriptAction) SetOutputFieldSeparator(value string) {
+func (a_ AMShellScriptAction) SetOutputFieldSeparator(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFieldSeparator:"), objc.String(value))
 }
 
@@ -134,7 +136,7 @@ func (a_ AMShellScriptAction) SetOutputFieldSeparator(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/remaplineendings
-func (a_ AMShellScriptAction) RemapLineEndings() bool {
+func (a_ AMShellScriptAction) RemapLineEndings() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("remapLineEndings"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (a_ AMShellScriptAction) RemapLineEndings() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amshellscriptaction/remaplineendings
-func (a_ AMShellScriptAction) SetRemapLineEndings(value bool) {
+func (a_ AMShellScriptAction) SetRemapLineEndings(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRemapLineEndings:"), value)
 }
 

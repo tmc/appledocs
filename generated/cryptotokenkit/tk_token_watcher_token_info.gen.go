@@ -30,10 +30,12 @@ type _TKTokenWatcherTokenInfoClass struct {
 // An interface definition for the [TKTokenWatcherTokenInfo] class.
 type ITKTokenWatcherTokenInfo interface {
 	objectivec.IObject
-	DriverName() string
-	SlotName() string
-	TokenID() string
-	SetTokenID(value string)
+	// properties:
+	DriverName() string /* primitive/slice/pointer. */
+	SlotName() string /* primitive/slice/pointer. */
+	TokenID() string /* primitive/slice/pointer. */
+	SetTokenID(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 
@@ -84,7 +86,7 @@ func NewTKTokenWatcherTokenInfo() TKTokenWatcherTokenInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/driverName
-func (t_ TKTokenWatcherTokenInfo) DriverName() string {
+func (t_ TKTokenWatcherTokenInfo) DriverName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("driverName"))
 	return rv
 }
@@ -92,7 +94,7 @@ func (t_ TKTokenWatcherTokenInfo) DriverName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/slotName
-func (t_ TKTokenWatcherTokenInfo) SlotName() string {
+func (t_ TKTokenWatcherTokenInfo) SlotName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (t_ TKTokenWatcherTokenInfo) SlotName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokeninfo/tokenid
-func (t_ TKTokenWatcherTokenInfo) TokenID() string {
+func (t_ TKTokenWatcherTokenInfo) TokenID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("tokenID"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (t_ TKTokenWatcherTokenInfo) TokenID() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokeninfo/tokenid
-func (t_ TKTokenWatcherTokenInfo) SetTokenID(value string) {
+func (t_ TKTokenWatcherTokenInfo) SetTokenID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenID:"), objc.String(value))
 }
 

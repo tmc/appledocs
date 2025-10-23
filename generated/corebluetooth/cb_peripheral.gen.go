@@ -30,26 +30,28 @@ type _CBPeripheralClass struct {
 // An interface definition for the [CBPeripheral] class.
 type ICBPeripheral interface {
 	ICBPeer
-	AncsAuthorized() bool
-	CanSendWriteWithoutResponse() bool
+	// properties:
+	AncsAuthorized() bool /* primitive/slice/pointer. */
+	CanSendWriteWithoutResponse() bool /* primitive/slice/pointer. */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Name() string
-	RSSI() foundation.Number
-	Services() []CBService
+	Name() string /* primitive/slice/pointer. */
+	RSSI() foundation.objc.IObject /* cross-framework: Number */
+	Services() []CBService /* primitive/slice/pointer. */
 	State() CBPeripheralState
-	DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService)
+	// methods:
+	DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID /* primitive/slice/pointer. */, service ICBService)
 	DiscoverDescriptorsForCharacteristic(characteristic ICBCharacteristic)
-	DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService)
-	DiscoverServices(serviceUUIDs []CBUUID)
-	MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint
-	OpenL2CAPChannel(PSM CBL2CAPPSM)
+	DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID /* primitive/slice/pointer. */, service ICBService)
+	DiscoverServices(serviceUUIDs []CBUUID /* primitive/slice/pointer. */)
+	MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint /* primitive/slice/pointer. */
+	OpenL2CAPChannel(PSM CBL2CAPPSM /* typedef */)
 	ReadRSSI()
 	ReadValueForCharacteristic(characteristic ICBCharacteristic)
 	ReadValueForDescriptor(descriptor ICBDescriptor)
-	SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic)
-	WriteValueForDescriptor(data foundation.NSData, descriptor ICBDescriptor)
-	WriteValueForCharacteristicType(data foundation.NSData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
+	SetNotifyValueForCharacteristic(enabled bool /* primitive/slice/pointer. */, characteristic ICBCharacteristic)
+	WriteValueForDescriptor(data foundation.objc.IObject /* cross-framework NSData */, descriptor ICBDescriptor)
+	WriteValueForCharacteristicType(data foundation.objc.IObject /* cross-framework NSData */, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
 }
 
 // A remote peripheral device.
@@ -111,7 +113,7 @@ func NewCBPeripheral() CBPeripheral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)
-func (c_ CBPeripheral) DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService) {
+func (c_ CBPeripheral) DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID /* primitive/slice/pointer. */, service ICBService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverCharacteristics:forService:"), characteristicUUIDs, service)
 }
 
@@ -129,7 +131,7 @@ func (c_ CBPeripheral) DiscoverDescriptorsForCharacteristic(characteristic ICBCh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)
-func (c_ CBPeripheral) DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService) {
+func (c_ CBPeripheral) DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID /* primitive/slice/pointer. */, service ICBService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverIncludedServices:forService:"), includedServiceUUIDs, service)
 }
 
@@ -138,7 +140,7 @@ func (c_ CBPeripheral) DiscoverIncludedServicesForService(includedServiceUUIDs [
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)
-func (c_ CBPeripheral) DiscoverServices(serviceUUIDs []CBUUID) {
+func (c_ CBPeripheral) DiscoverServices(serviceUUIDs []CBUUID /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverServices:"), serviceUUIDs)
 }
 
@@ -147,7 +149,7 @@ func (c_ CBPeripheral) DiscoverServices(serviceUUIDs []CBUUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/maximumWriteValueLength(for:)
-func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint {
+func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumWriteValueLengthForType:"), type_)
 	return rv
 }
@@ -157,7 +159,7 @@ func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ CBCharacteristicWrit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/openL2CAPChannel(_:)
-func (c_ CBPeripheral) OpenL2CAPChannel(PSM CBL2CAPPSM) {
+func (c_ CBPeripheral) OpenL2CAPChannel(PSM CBL2CAPPSM /* typedef */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("openL2CAPChannel:"), PSM)
 }
 
@@ -193,7 +195,7 @@ func (c_ CBPeripheral) ReadValueForDescriptor(descriptor ICBDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)
-func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic) {
+func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool /* primitive/slice/pointer. */, characteristic ICBCharacteristic) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotifyValue:forCharacteristic:"), enabled, characteristic)
 }
 
@@ -202,7 +204,7 @@ func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool, characteris
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:)
-func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.NSData, descriptor ICBDescriptor) {
+func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.objc.IObject /* cross-framework NSData */, descriptor ICBDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forDescriptor:"), data, descriptor)
 }
 
@@ -211,7 +213,7 @@ func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.NSData, descripto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:type:)
-func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.NSData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType) {
+func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.objc.IObject /* cross-framework NSData */, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forCharacteristic:type:"), data, characteristic, type_)
 }
 
@@ -220,7 +222,7 @@ func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.NSData, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/ancsAuthorized
-func (c_ CBPeripheral) AncsAuthorized() bool {
+func (c_ CBPeripheral) AncsAuthorized() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ancsAuthorized"))
 	return rv
 }
@@ -230,7 +232,7 @@ func (c_ CBPeripheral) AncsAuthorized() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/canSendWriteWithoutResponse
-func (c_ CBPeripheral) CanSendWriteWithoutResponse() bool {
+func (c_ CBPeripheral) CanSendWriteWithoutResponse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canSendWriteWithoutResponse"))
 	return rv
 }
@@ -259,7 +261,7 @@ func (c_ CBPeripheral) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/name
-func (c_ CBPeripheral) Name() string {
+func (c_ CBPeripheral) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -269,7 +271,7 @@ func (c_ CBPeripheral) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/rssi
-func (c_ CBPeripheral) RSSI() foundation.Number {
+func (c_ CBPeripheral) RSSI() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("RSSI"))
 	return rv
 }
@@ -279,7 +281,7 @@ func (c_ CBPeripheral) RSSI() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/services
-func (c_ CBPeripheral) Services() []CBService {
+func (c_ CBPeripheral) Services() []CBService /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("services"))
 	return rv
 }

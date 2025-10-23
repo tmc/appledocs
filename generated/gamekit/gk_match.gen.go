@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,20 @@ type _MatchClass struct {
 // An interface definition for the [Match] class.
 type IMatch interface {
 	objectivec.IObject
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	ExpectedPlayerCount() int
-	SetExpectedPlayerCount(value int)
-	PlayerIDs() string
-	SetPlayerIDs(value string)
-	PlayerProperties() string
-	SetPlayerProperties(value string)
+	// properties:
+	ExpectedPlayerCount() uint /* primitive/slice/pointer. */
+	PlayerProperties() foundation.IDictionary /* already interface */
+	Delegate() MatchDelegate /* not a class type */
+	SetDelegate(value MatchDelegate /* not a class type */)
+	PlayerIDs() string /* primitive/slice/pointer. */
+	SetPlayerIDs(value string /* primitive/slice/pointer. */)
 	Players() IGKPlayer
 	SetPlayers(value IGKPlayer)
-	Properties() string
-	SetProperties(value string)
+	Properties() string /* primitive/slice/pointer. */
+	SetProperties(value string /* primitive/slice/pointer. */)
+	// methods:
+	Disconnect()
+	SendDataToPlayersDataModeError(data foundation.objc.IObject /* cross-framework NSData */, players []Player /* primitive/slice/pointer. */, mode MatchSendDataMode /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A peer-to-peer network between a group of players that sign into Game Center.
@@ -97,12 +100,41 @@ func NewMatch() Match {
 
 
 
-// The delegate that handles communication between players in a match.
+// Disconnects the local player from the match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
-func (m_ Match) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/disconnect()
+func (m_ Match) Disconnect() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("disconnect"))
+}
+
+
+// Transmits data to one or more players connected to the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/send(_:to:dataMode:)
+func (m_ Match) SendDataToPlayersDataModeError(data foundation.objc.IObject /* cross-framework NSData */, players []Player /* primitive/slice/pointer. */, mode MatchSendDataMode /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("sendData:toPlayers:dataMode:error:"), data, players, mode, error_)
+	return rv
+}
+
+
+// The remaining number of players invited but not yet connected to the match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/expectedPlayerCount
+func (m_ Match) ExpectedPlayerCount() uint /* primitive/slice/pointer. */ {
+	rv := objc.Send[uint](m_.ID, objc.Sel("expectedPlayerCount"))
+	return rv
+}
+
+
+// The properties for other players that matchmaking rules uses to find players, with some additions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/playerProperties
+func (m_ Match) PlayerProperties() foundation.IDictionary /* already interface */ {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("playerProperties"))
 	return rv
 }
 
@@ -111,27 +143,18 @@ func (m_ Match) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
-func (m_ Match) SetDelegate(value unsafe.Pointer) {
+func (m_ Match) Delegate() MatchDelegate /* not a class type */ {
+	rv := objc.Send[MatchDelegate](m_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The delegate that handles communication between players in a match.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/delegate
+func (m_ Match) SetDelegate(value MatchDelegate /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The remaining number of players invited but not yet connected to the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-func (m_ Match) ExpectedPlayerCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("expectedPlayerCount"))
-	return rv
-}
-
-
-// The remaining number of players invited but not yet connected to the match.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount
-func (m_ Match) SetExpectedPlayerCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedPlayerCount:"), value)
 }
 
 
@@ -139,7 +162,7 @@ func (m_ Match) SetExpectedPlayerCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-func (m_ Match) PlayerIDs() string {
+func (m_ Match) PlayerIDs() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("playerIDs"))
 	return rv
 }
@@ -149,27 +172,8 @@ func (m_ Match) PlayerIDs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-func (m_ Match) SetPlayerIDs(value string) {
+func (m_ Match) SetPlayerIDs(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
-}
-
-
-// The properties for other players that matchmaking rules uses to find players, with some additions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-func (m_ Match) PlayerProperties() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("playerProperties"))
-	return rv
-}
-
-
-// The properties for other players that matchmaking rules uses to find players, with some additions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-func (m_ Match) SetPlayerProperties(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerProperties:"), objc.String(value))
 }
 
 
@@ -196,7 +200,7 @@ func (m_ Match) SetPlayers(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-func (m_ Match) Properties() string {
+func (m_ Match) Properties() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
 	return rv
 }
@@ -206,7 +210,7 @@ func (m_ Match) Properties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-func (m_ Match) SetProperties(value string) {
+func (m_ Match) SetProperties(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
 }
 

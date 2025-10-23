@@ -30,21 +30,23 @@ type _CNContactRelationClass struct {
 // An interface definition for the [CNContactRelation] class.
 type ICNContactRelation interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	CNLabelContactRelationAssistant() string
-	CNLabelContactRelationBrother() string
-	CNLabelContactRelationChild() string
-	CNLabelContactRelationDaughter() string
-	CNLabelContactRelationFather() string
-	CNLabelContactRelationFriend() string
-	CNLabelContactRelationManager() string
-	CNLabelContactRelationMother() string
-	CNLabelContactRelationParent() string
-	CNLabelContactRelationPartner() string
-	CNLabelContactRelationSister() string
-	CNLabelContactRelationSon() string
-	CNLabelContactRelationSpouse() string
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	CNLabelContactRelationAssistant() string /* primitive/slice/pointer. */
+	CNLabelContactRelationBrother() string /* primitive/slice/pointer. */
+	CNLabelContactRelationChild() string /* primitive/slice/pointer. */
+	CNLabelContactRelationDaughter() string /* primitive/slice/pointer. */
+	CNLabelContactRelationFather() string /* primitive/slice/pointer. */
+	CNLabelContactRelationFriend() string /* primitive/slice/pointer. */
+	CNLabelContactRelationManager() string /* primitive/slice/pointer. */
+	CNLabelContactRelationMother() string /* primitive/slice/pointer. */
+	CNLabelContactRelationParent() string /* primitive/slice/pointer. */
+	CNLabelContactRelationPartner() string /* primitive/slice/pointer. */
+	CNLabelContactRelationSister() string /* primitive/slice/pointer. */
+	CNLabelContactRelationSon() string /* primitive/slice/pointer. */
+	CNLabelContactRelationSpouse() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An immutable object that represents the relationship between one contact to another.
@@ -104,7 +106,7 @@ func NewCNContactRelation() CNContactRelation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) Name() string {
+func (c_ CNContactRelation) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (c_ CNContactRelation) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactrelation/name
-func (c_ CNContactRelation) SetName(value string) {
+func (c_ CNContactRelation) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -123,7 +125,7 @@ func (c_ CNContactRelation) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationassistant
-func (c_ CNContactRelation) CNLabelContactRelationAssistant() string {
+func (c_ CNContactRelation) CNLabelContactRelationAssistant() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationAssistant"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (c_ CNContactRelation) CNLabelContactRelationAssistant() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationbrother
-func (c_ CNContactRelation) CNLabelContactRelationBrother() string {
+func (c_ CNContactRelation) CNLabelContactRelationBrother() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationBrother"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (c_ CNContactRelation) CNLabelContactRelationBrother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationchild
-func (c_ CNContactRelation) CNLabelContactRelationChild() string {
+func (c_ CNContactRelation) CNLabelContactRelationChild() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationChild"))
 	return rv
 }
@@ -153,7 +155,7 @@ func (c_ CNContactRelation) CNLabelContactRelationChild() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationdaughter
-func (c_ CNContactRelation) CNLabelContactRelationDaughter() string {
+func (c_ CNContactRelation) CNLabelContactRelationDaughter() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationDaughter"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (c_ CNContactRelation) CNLabelContactRelationDaughter() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfather
-func (c_ CNContactRelation) CNLabelContactRelationFather() string {
+func (c_ CNContactRelation) CNLabelContactRelationFather() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFather"))
 	return rv
 }
@@ -173,7 +175,7 @@ func (c_ CNContactRelation) CNLabelContactRelationFather() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationfriend
-func (c_ CNContactRelation) CNLabelContactRelationFriend() string {
+func (c_ CNContactRelation) CNLabelContactRelationFriend() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationFriend"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (c_ CNContactRelation) CNLabelContactRelationFriend() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmanager
-func (c_ CNContactRelation) CNLabelContactRelationManager() string {
+func (c_ CNContactRelation) CNLabelContactRelationManager() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationManager"))
 	return rv
 }
@@ -193,7 +195,7 @@ func (c_ CNContactRelation) CNLabelContactRelationManager() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationmother
-func (c_ CNContactRelation) CNLabelContactRelationMother() string {
+func (c_ CNContactRelation) CNLabelContactRelationMother() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationMother"))
 	return rv
 }
@@ -203,7 +205,7 @@ func (c_ CNContactRelation) CNLabelContactRelationMother() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationparent
-func (c_ CNContactRelation) CNLabelContactRelationParent() string {
+func (c_ CNContactRelation) CNLabelContactRelationParent() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationParent"))
 	return rv
 }
@@ -213,7 +215,7 @@ func (c_ CNContactRelation) CNLabelContactRelationParent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationpartner
-func (c_ CNContactRelation) CNLabelContactRelationPartner() string {
+func (c_ CNContactRelation) CNLabelContactRelationPartner() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationPartner"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (c_ CNContactRelation) CNLabelContactRelationPartner() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationsister
-func (c_ CNContactRelation) CNLabelContactRelationSister() string {
+func (c_ CNContactRelation) CNLabelContactRelationSister() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSister"))
 	return rv
 }
@@ -233,7 +235,7 @@ func (c_ CNContactRelation) CNLabelContactRelationSister() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationson
-func (c_ CNContactRelation) CNLabelContactRelationSon() string {
+func (c_ CNContactRelation) CNLabelContactRelationSon() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSon"))
 	return rv
 }
@@ -243,7 +245,7 @@ func (c_ CNContactRelation) CNLabelContactRelationSon() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnlabelcontactrelationspouse
-func (c_ CNContactRelation) CNLabelContactRelationSpouse() string {
+func (c_ CNContactRelation) CNLabelContactRelationSpouse() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNLabelContactRelationSpouse"))
 	return rv
 }

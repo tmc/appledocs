@@ -30,7 +30,9 @@ type _AXRequestClass struct {
 // An interface definition for the [AXRequest] class.
 type IAXRequest interface {
 	objectivec.IObject
-	Technology() AXTechnology
+	// properties:
+	Technology() AXTechnology /* typedef */
+	// methods:
 }
 
 
@@ -88,7 +90,7 @@ func (ac _AXRequestClass) CurrentRequest() AXRequest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/current
-func (a_ AXRequest) CurrentRequest() AXRequest {
+func (a_ AXRequest) CurrentRequest() IAXRequest {
 	rv := objc.Send[AXRequest](a_.ID, objc.Sel("currentRequest"))
 	return rv
 }
@@ -96,7 +98,7 @@ func (a_ AXRequest) CurrentRequest() AXRequest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/technology
-func (a_ AXRequest) Technology() AXTechnology {
+func (a_ AXRequest) Technology() AXTechnology /* typedef */ {
 	rv := objc.Send[AXTechnology](a_.ID, objc.Sel("technology"))
 	return rv
 }

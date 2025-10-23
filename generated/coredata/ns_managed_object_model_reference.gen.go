@@ -30,10 +30,12 @@ type _ManagedObjectModelReferenceClass struct {
 // An interface definition for the [ManagedObjectModelReference] class.
 type IManagedObjectModelReference interface {
 	objectivec.IObject
+	// properties:
 	ResolvedModel() IManagedObjectModel
 	SetResolvedModel(value IManagedObjectModel)
-	VersionChecksum() string
-	SetVersionChecksum(value string)
+	VersionChecksum() string /* primitive/slice/pointer. */
+	SetVersionChecksum(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that describes a specific version of an object model.
@@ -110,7 +112,7 @@ func (m_ ManagedObjectModelReference) SetResolvedModel(value IManagedObjectModel
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) VersionChecksum() string {
+func (m_ ManagedObjectModelReference) VersionChecksum() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (m_ ManagedObjectModelReference) VersionChecksum() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) SetVersionChecksum(value string) {
+func (m_ ManagedObjectModelReference) SetVersionChecksum(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
 }
 

@@ -30,12 +30,14 @@ type _FilePromiseProviderClass struct {
 // An interface definition for the [FilePromiseProvider] class.
 type IFilePromiseProvider interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	FileType() string
-	SetFileType(value string)
+	FileType() string /* primitive/slice/pointer. */
+	SetFileType(value string /* primitive/slice/pointer. */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that provides a promise for the pasteboard.
@@ -110,7 +112,7 @@ func (f_ FilePromiseProvider) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
-func (f_ FilePromiseProvider) FileType() string {
+func (f_ FilePromiseProvider) FileType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("fileType"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (f_ FilePromiseProvider) FileType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype
-func (f_ FilePromiseProvider) SetFileType(value string) {
+func (f_ FilePromiseProvider) SetFileType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileType:"), objc.String(value))
 }
 

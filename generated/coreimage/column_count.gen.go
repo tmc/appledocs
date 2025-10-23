@@ -30,6 +30,8 @@ type _columnCountClass struct {
 // An interface definition for the [columnCount] class.
 type IcolumnCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

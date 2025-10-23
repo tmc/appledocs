@@ -31,8 +31,10 @@ type _SensorRecorderClass struct {
 // An interface definition for the [SensorRecorder] class.
 type ISensorRecorder interface {
 	objectivec.IObject
-	AccelerometerDataFromDateToDate(fromDate foundation.NSDate, toDate foundation.NSDate) ISensorDataList
-	RecordAccelerometerForDuration(duration foundation.TimeInterval)
+	// properties:
+	// methods:
+	AccelerometerDataFromDateToDate(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */) ISensorDataList
+	RecordAccelerometerForDuration(duration foundation.TimeInterval /* not a class type */)
 }
 
 // An object that gathers and retrieves accelerometer data from a device.
@@ -92,8 +94,8 @@ func NewSensorRecorder() SensorRecorder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/authorizationStatus()
-func (sc _SensorRecorderClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(sc.class), objc.Sel("authorizationStatus"))
+func (sc _SensorRecorderClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(sc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -102,7 +104,7 @@ func (sc _SensorRecorderClass) AuthorizationStatus() CMAuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAccelerometerRecordingAvailable()
-func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool {
+func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAccelerometerRecordingAvailable"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (sc _SensorRecorderClass) IsAccelerometerRecordingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/isAuthorizedForRecording()
-func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool {
+func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isAuthorizedForRecording"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/accelerometerData(from:to:)
-func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.NSDate, toDate foundation.NSDate) ISensorDataList {
+func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.objc.IObject /* cross-framework NSDate */, toDate foundation.objc.IObject /* cross-framework NSDate */) ISensorDataList {
 	rv := objc.Send[SensorDataList](s_.ID, objc.Sel("accelerometerDataFromDate:toDate:"), fromDate, toDate)
 	return rv
 }
@@ -132,7 +134,7 @@ func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.NSD
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/recordAccelerometer(forDuration:)
-func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval) {
+func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("recordAccelerometerForDuration:"), duration)
 }
 

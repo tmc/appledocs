@@ -30,14 +30,16 @@ type _MinmaxStrategistClass struct {
 // An interface definition for the [MinmaxStrategist] class.
 type IMinmaxStrategist interface {
 	objectivec.IObject
-	MaxLookAheadDepth() int
-	SetMaxLookAheadDepth(value int)
-	GameModel() unsafe.Pointer
-	SetGameModel(value unsafe.Pointer)
-	RandomSource() unsafe.Pointer
-	SetRandomSource(value unsafe.Pointer)
+	// properties:
+	MaxLookAheadDepth() int /* primitive/slice/pointer. */
+	SetMaxLookAheadDepth(value int /* primitive/slice/pointer. */)
+	GameModel() GameModel /* not a class type */
+	SetGameModel(value GameModel /* not a class type */)
+	RandomSource() Random /* not a class type */
+	SetRandomSource(value Random /* not a class type */)
+	// methods:
 	BestMoveForPlayer(player objectivec.IObject) objc.ID
-	RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID
+	RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int /* primitive/slice/pointer. */) objc.ID
 }
 
 // An AI that chooses moves in turn-based games using a strategy.
@@ -107,7 +109,7 @@ func (m_ MinmaxStrategist) BestMoveForPlayer(player objectivec.IObject) objc.ID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/randomMove(for:fromNumberOfBestMoves:)
-func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID {
+func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("randomMoveForPlayer:fromNumberOfBestMoves:"), player, numMovesToConsider)
 	return rv
 }
@@ -117,7 +119,7 @@ func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth
-func (m_ MinmaxStrategist) MaxLookAheadDepth() int {
+func (m_ MinmaxStrategist) MaxLookAheadDepth() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("maxLookAheadDepth"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (m_ MinmaxStrategist) MaxLookAheadDepth() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/maxLookAheadDepth
-func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int) {
+func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxLookAheadDepth:"), value)
 }
 
@@ -136,8 +138,8 @@ func (m_ MinmaxStrategist) SetMaxLookAheadDepth(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-func (m_ MinmaxStrategist) GameModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gameModel"))
+func (m_ MinmaxStrategist) GameModel() GameModel /* not a class type */ {
+	rv := objc.Send[GameModel](m_.ID, objc.Sel("gameModel"))
 	return rv
 }
 
@@ -146,7 +148,7 @@ func (m_ MinmaxStrategist) GameModel() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel
-func (m_ MinmaxStrategist) SetGameModel(value unsafe.Pointer) {
+func (m_ MinmaxStrategist) SetGameModel(value GameModel /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGameModel:"), value)
 }
 
@@ -155,8 +157,8 @@ func (m_ MinmaxStrategist) SetGameModel(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-func (m_ MinmaxStrategist) RandomSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("randomSource"))
+func (m_ MinmaxStrategist) RandomSource() Random /* not a class type */ {
+	rv := objc.Send[Random](m_.ID, objc.Sel("randomSource"))
 	return rv
 }
 
@@ -165,7 +167,7 @@ func (m_ MinmaxStrategist) RandomSource() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource
-func (m_ MinmaxStrategist) SetRandomSource(value unsafe.Pointer) {
+func (m_ MinmaxStrategist) SetRandomSource(value Random /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRandomSource:"), value)
 }
 

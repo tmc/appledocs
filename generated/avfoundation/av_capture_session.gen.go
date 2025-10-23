@@ -31,49 +31,49 @@ type _CaptureSessionClass struct {
 type ICaptureSession interface {
 	objectivec.IObject
 	// properties:
-	AutomaticallyConfiguresApplicationAudioSession() bool /* primitive/slice/pointer */
-	SetAutomaticallyConfiguresApplicationAudioSession(value bool /* primitive/slice/pointer */)
-	AutomaticallyConfiguresCaptureDeviceForWideColor() bool /* primitive/slice/pointer */
-	SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool /* primitive/slice/pointer */)
-	AutomaticallyRunsDeferredStart() bool /* primitive/slice/pointer */
-	SetAutomaticallyRunsDeferredStart(value bool /* primitive/slice/pointer */)
-	ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool /* primitive/slice/pointer */
-	SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool /* primitive/slice/pointer */)
-	ConfiguresApplicationAudioSessionToMixWithOthers() bool /* primitive/slice/pointer */
-	SetConfiguresApplicationAudioSessionToMixWithOthers(value bool /* primitive/slice/pointer */)
-	Connections() []CaptureConnection /* primitive/slice/pointer */
-	Controls() []CaptureControl /* primitive/slice/pointer */
+	AutomaticallyConfiguresApplicationAudioSession() bool /* primitive/slice/pointer. */
+	SetAutomaticallyConfiguresApplicationAudioSession(value bool /* primitive/slice/pointer. */)
+	AutomaticallyConfiguresCaptureDeviceForWideColor() bool /* primitive/slice/pointer. */
+	SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool /* primitive/slice/pointer. */)
+	AutomaticallyRunsDeferredStart() bool /* primitive/slice/pointer. */
+	SetAutomaticallyRunsDeferredStart(value bool /* primitive/slice/pointer. */)
+	ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool /* primitive/slice/pointer. */
+	SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool /* primitive/slice/pointer. */)
+	ConfiguresApplicationAudioSessionToMixWithOthers() bool /* primitive/slice/pointer. */
+	SetConfiguresApplicationAudioSessionToMixWithOthers(value bool /* primitive/slice/pointer. */)
+	Connections() []CaptureConnection /* primitive/slice/pointer. */
+	Controls() []CaptureControl /* primitive/slice/pointer. */
 	ControlsDelegate() objc.ID
 	ControlsDelegateCallbackQueue() unsafe.Pointer
 	DeferredStartDelegate() objc.ID
 	DeferredStartDelegateCallbackQueue() unsafe.Pointer
-	HardwareCost() float32 /* primitive/slice/pointer */
-	Inputs() []CaptureInput /* primitive/slice/pointer */
-	Interrupted() bool /* primitive/slice/pointer */
-	ManualDeferredStartSupported() bool /* primitive/slice/pointer */
-	MultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer */
-	SetMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer */)
-	MultitaskingCameraAccessSupported() bool /* primitive/slice/pointer */
-	Running() bool /* primitive/slice/pointer */
+	HardwareCost() float32 /* primitive/slice/pointer. */
+	Inputs() []CaptureInput /* primitive/slice/pointer. */
+	Interrupted() bool /* primitive/slice/pointer. */
+	ManualDeferredStartSupported() bool /* primitive/slice/pointer. */
+	MultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer. */
+	SetMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer. */)
+	MultitaskingCameraAccessSupported() bool /* primitive/slice/pointer. */
+	Running() bool /* primitive/slice/pointer. */
 	MasterClock() ClockRef /* not a class type */
-	MaxControlsCount() int /* primitive/slice/pointer */
-	Outputs() []CaptureOutput /* primitive/slice/pointer */
-	SessionPreset() CaptureSessionPreset /* not a class type */
-	SetSessionPreset(value CaptureSessionPreset /* not a class type */)
-	SupportsControls() bool /* primitive/slice/pointer */
+	MaxControlsCount() int /* primitive/slice/pointer. */
+	Outputs() []CaptureOutput /* primitive/slice/pointer. */
+	SessionPreset() objc.IObject /* cross-framework: CaptureSessionPreset */
+	SetSessionPreset(value objc.IObject /* cross-framework: CaptureSessionPreset */)
+	SupportsControls() bool /* primitive/slice/pointer. */
 	SynchronizationClock() ClockRef /* not a class type */
-	UsesApplicationAudioSession() bool /* primitive/slice/pointer */
-	SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer */)
-	IsInterrupted() bool /* primitive/slice/pointer */
-	SetIsInterrupted(value bool /* primitive/slice/pointer */)
-	IsManualDeferredStartSupported() bool /* primitive/slice/pointer */
-	SetIsManualDeferredStartSupported(value bool /* primitive/slice/pointer */)
-	IsMultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer */
-	SetIsMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer */)
-	IsMultitaskingCameraAccessSupported() bool /* primitive/slice/pointer */
-	SetIsMultitaskingCameraAccessSupported(value bool /* primitive/slice/pointer */)
-	IsRunning() bool /* primitive/slice/pointer */
-	SetIsRunning(value bool /* primitive/slice/pointer */)
+	UsesApplicationAudioSession() bool /* primitive/slice/pointer. */
+	SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer. */)
+	IsInterrupted() bool /* primitive/slice/pointer. */
+	SetIsInterrupted(value bool /* primitive/slice/pointer. */)
+	IsManualDeferredStartSupported() bool /* primitive/slice/pointer. */
+	SetIsManualDeferredStartSupported(value bool /* primitive/slice/pointer. */)
+	IsMultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer. */
+	SetIsMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer. */)
+	IsMultitaskingCameraAccessSupported() bool /* primitive/slice/pointer. */
+	SetIsMultitaskingCameraAccessSupported(value bool /* primitive/slice/pointer. */)
+	IsRunning() bool /* primitive/slice/pointer. */
+	SetIsRunning(value bool /* primitive/slice/pointer. */)
 	// methods:
 	AddConnection(connection IAVCaptureConnection)
 	AddControl(control CaptureControl /* not a class type */)
@@ -82,11 +82,11 @@ type ICaptureSession interface {
 	AddOutput(output IAVCaptureOutput)
 	AddOutputWithNoConnections(output IAVCaptureOutput)
 	BeginConfiguration()
-	CanAddConnection(connection IAVCaptureConnection) bool /* primitive/slice/pointer */
-	CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer */
-	CanAddInput(input IAVCaptureInput) bool /* primitive/slice/pointer */
-	CanAddOutput(output IAVCaptureOutput) bool /* primitive/slice/pointer */
-	CanSetSessionPreset(preset CaptureSessionPreset /* not a class type */) bool /* primitive/slice/pointer */
+	CanAddConnection(connection IAVCaptureConnection) bool /* primitive/slice/pointer. */
+	CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer. */
+	CanAddInput(input IAVCaptureInput) bool /* primitive/slice/pointer. */
+	CanAddOutput(output IAVCaptureOutput) bool /* primitive/slice/pointer. */
+	CanSetSessionPreset(preset objc.IObject /* cross-framework CaptureSessionPreset */) bool /* primitive/slice/pointer. */
 	CommitConfiguration()
 	RemoveConnection(connection IAVCaptureConnection)
 	RemoveControl(control CaptureControl /* not a class type */)
@@ -219,7 +219,7 @@ func (c_ CaptureSession) BeginConfiguration() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)
-func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddConnection:"), connection)
 	return rv
 }
@@ -229,7 +229,7 @@ func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddControl(_:)
-func (c_ CaptureSession) CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanAddControl(control CaptureControl /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddControl:"), control)
 	return rv
 }
@@ -239,7 +239,7 @@ func (c_ CaptureSession) CanAddControl(control CaptureControl /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddInput(_:)
-func (c_ CaptureSession) CanAddInput(input IAVCaptureInput) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanAddInput(input IAVCaptureInput) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddInput:"), input)
 	return rv
 }
@@ -249,7 +249,7 @@ func (c_ CaptureSession) CanAddInput(input IAVCaptureInput) bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddOutput(_:)
-func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddOutput:"), output)
 	return rv
 }
@@ -259,7 +259,7 @@ func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canSetSessionPreset(_:)
-func (c_ CaptureSession) CanSetSessionPreset(preset CaptureSessionPreset /* not a class type */) bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) CanSetSessionPreset(preset objc.IObject /* cross-framework CaptureSessionPreset */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canSetSessionPreset:"), preset)
 	return rv
 }
@@ -359,7 +359,7 @@ func (c_ CaptureSession) StopRunning() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresApplicationAudioSession
-func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresApplicationAudioSession"))
 	return rv
 }
@@ -369,7 +369,7 @@ func (c_ CaptureSession) AutomaticallyConfiguresApplicationAudioSession() bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresApplicationAudioSession
-func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresApplicationAudioSession:"), value)
 }
 
@@ -378,7 +378,7 @@ func (c_ CaptureSession) SetAutomaticallyConfiguresApplicationAudioSession(value
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresCaptureDeviceForWideColor
-func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresCaptureDeviceForWideColor"))
 	return rv
 }
@@ -388,7 +388,7 @@ func (c_ CaptureSession) AutomaticallyConfiguresCaptureDeviceForWideColor() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyConfiguresCaptureDeviceForWideColor
-func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresCaptureDeviceForWideColor:"), value)
 }
 
@@ -397,7 +397,7 @@ func (c_ CaptureSession) SetAutomaticallyConfiguresCaptureDeviceForWideColor(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyRunsDeferredStart
-func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyRunsDeferredStart"))
 	return rv
 }
@@ -407,7 +407,7 @@ func (c_ CaptureSession) AutomaticallyRunsDeferredStart() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/automaticallyRunsDeferredStart
-func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyRunsDeferredStart:"), value)
 }
 
@@ -416,7 +416,7 @@ func (c_ CaptureSession) SetAutomaticallyRunsDeferredStart(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionForBluetoothHighQualityRecording
-func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualityRecording() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("configuresApplicationAudioSessionForBluetoothHighQualityRecording"))
 	return rv
 }
@@ -426,7 +426,7 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionForBluetoothHighQualit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionForBluetoothHighQualityRecording
-func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:"), value)
 }
 
@@ -435,7 +435,7 @@ func (c_ CaptureSession) SetConfiguresApplicationAudioSessionForBluetoothHighQua
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionToMixWithOthers
-func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("configuresApplicationAudioSessionToMixWithOthers"))
 	return rv
 }
@@ -445,7 +445,7 @@ func (c_ CaptureSession) ConfiguresApplicationAudioSessionToMixWithOthers() bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/configuresApplicationAudioSessionToMixWithOthers
-func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguresApplicationAudioSessionToMixWithOthers:"), value)
 }
 
@@ -454,7 +454,7 @@ func (c_ CaptureSession) SetConfiguresApplicationAudioSessionToMixWithOthers(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/connections
-func (c_ CaptureSession) Connections() []CaptureConnection /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Connections() []CaptureConnection /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
@@ -464,7 +464,7 @@ func (c_ CaptureSession) Connections() []CaptureConnection /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/controls
-func (c_ CaptureSession) Controls() []CaptureControl /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Controls() []CaptureControl /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CaptureControl](c_.ID, objc.Sel("controls"))
 	return rv
 }
@@ -514,7 +514,7 @@ func (c_ CaptureSession) DeferredStartDelegateCallbackQueue() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/hardwareCost
-func (c_ CaptureSession) HardwareCost() float32 /* primitive/slice/pointer */ {
+func (c_ CaptureSession) HardwareCost() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
 	return rv
 }
@@ -524,7 +524,7 @@ func (c_ CaptureSession) HardwareCost() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/inputs
-func (c_ CaptureSession) Inputs() []CaptureInput /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Inputs() []CaptureInput /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CaptureInput](c_.ID, objc.Sel("inputs"))
 	return rv
 }
@@ -534,7 +534,7 @@ func (c_ CaptureSession) Inputs() []CaptureInput /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isInterrupted
-func (c_ CaptureSession) Interrupted() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Interrupted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("interrupted"))
 	return rv
 }
@@ -544,7 +544,7 @@ func (c_ CaptureSession) Interrupted() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isManualDeferredStartSupported
-func (c_ CaptureSession) ManualDeferredStartSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) ManualDeferredStartSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("manualDeferredStartSupported"))
 	return rv
 }
@@ -554,7 +554,7 @@ func (c_ CaptureSession) ManualDeferredStartSupported() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled
-func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multitaskingCameraAccessEnabled"))
 	return rv
 }
@@ -564,7 +564,7 @@ func (c_ CaptureSession) MultitaskingCameraAccessEnabled() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessEnabled
-func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMultitaskingCameraAccessEnabled:"), value)
 }
 
@@ -573,7 +573,7 @@ func (c_ CaptureSession) SetMultitaskingCameraAccessEnabled(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isMultitaskingCameraAccessSupported
-func (c_ CaptureSession) MultitaskingCameraAccessSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) MultitaskingCameraAccessSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multitaskingCameraAccessSupported"))
 	return rv
 }
@@ -583,7 +583,7 @@ func (c_ CaptureSession) MultitaskingCameraAccessSupported() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/isRunning
-func (c_ CaptureSession) Running() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Running() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("running"))
 	return rv
 }
@@ -603,7 +603,7 @@ func (c_ CaptureSession) MasterClock() ClockRef /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/maxControlsCount
-func (c_ CaptureSession) MaxControlsCount() int /* primitive/slice/pointer */ {
+func (c_ CaptureSession) MaxControlsCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("maxControlsCount"))
 	return rv
 }
@@ -613,7 +613,7 @@ func (c_ CaptureSession) MaxControlsCount() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/outputs
-func (c_ CaptureSession) Outputs() []CaptureOutput /* primitive/slice/pointer */ {
+func (c_ CaptureSession) Outputs() []CaptureOutput /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CaptureOutput](c_.ID, objc.Sel("outputs"))
 	return rv
 }
@@ -623,7 +623,7 @@ func (c_ CaptureSession) Outputs() []CaptureOutput /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SessionPreset() CaptureSessionPreset /* not a class type */ {
+func (c_ CaptureSession) SessionPreset() objc.IObject /* cross-framework: CaptureSessionPreset */ {
 	rv := objc.Send[CaptureSessionPreset](c_.ID, objc.Sel("sessionPreset"))
 	return rv
 }
@@ -633,7 +633,7 @@ func (c_ CaptureSession) SessionPreset() CaptureSessionPreset /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SetSessionPreset(value CaptureSessionPreset /* not a class type */) {
+func (c_ CaptureSession) SetSessionPreset(value objc.IObject /* cross-framework: CaptureSessionPreset */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSessionPreset:"), value)
 }
 
@@ -642,7 +642,7 @@ func (c_ CaptureSession) SetSessionPreset(value CaptureSessionPreset /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/supportsControls
-func (c_ CaptureSession) SupportsControls() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) SupportsControls() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsControls"))
 	return rv
 }
@@ -662,7 +662,7 @@ func (c_ CaptureSession) SynchronizationClock() ClockRef /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/usesApplicationAudioSession
-func (c_ CaptureSession) UsesApplicationAudioSession() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) UsesApplicationAudioSession() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("usesApplicationAudioSession"))
 	return rv
 }
@@ -672,7 +672,7 @@ func (c_ CaptureSession) UsesApplicationAudioSession() bool /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/usesApplicationAudioSession
-func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesApplicationAudioSession:"), value)
 }
 
@@ -681,7 +681,7 @@ func (c_ CaptureSession) SetUsesApplicationAudioSession(value bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
-func (c_ CaptureSession) IsInterrupted() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) IsInterrupted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isInterrupted"))
 	return rv
 }
@@ -691,7 +691,7 @@ func (c_ CaptureSession) IsInterrupted() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isinterrupted
-func (c_ CaptureSession) SetIsInterrupted(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetIsInterrupted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsInterrupted:"), value)
 }
 
@@ -700,7 +700,7 @@ func (c_ CaptureSession) SetIsInterrupted(value bool /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
-func (c_ CaptureSession) IsManualDeferredStartSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) IsManualDeferredStartSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isManualDeferredStartSupported"))
 	return rv
 }
@@ -710,7 +710,7 @@ func (c_ CaptureSession) IsManualDeferredStartSupported() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismanualdeferredstartsupported
-func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsManualDeferredStartSupported:"), value)
 }
 
@@ -719,7 +719,7 @@ func (c_ CaptureSession) SetIsManualDeferredStartSupported(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
-func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessEnabled"))
 	return rv
 }
@@ -729,7 +729,7 @@ func (c_ CaptureSession) IsMultitaskingCameraAccessEnabled() bool /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled
-func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessEnabled:"), value)
 }
 
@@ -738,7 +738,7 @@ func (c_ CaptureSession) SetIsMultitaskingCameraAccessEnabled(value bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
-func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMultitaskingCameraAccessSupported"))
 	return rv
 }
@@ -748,7 +748,7 @@ func (c_ CaptureSession) IsMultitaskingCameraAccessSupported() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccesssupported
-func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMultitaskingCameraAccessSupported:"), value)
 }
 
@@ -757,7 +757,7 @@ func (c_ CaptureSession) SetIsMultitaskingCameraAccessSupported(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
-func (c_ CaptureSession) IsRunning() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSession) IsRunning() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isRunning"))
 	return rv
 }
@@ -767,7 +767,7 @@ func (c_ CaptureSession) IsRunning() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/isrunning
-func (c_ CaptureSession) SetIsRunning(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSession) SetIsRunning(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsRunning:"), value)
 }
 

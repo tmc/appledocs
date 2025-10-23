@@ -31,12 +31,12 @@ type _HKClinicalCodingClass struct {
 type IHKClinicalCoding interface {
 	objectivec.IObject
 	// properties:
-	Code() string
-	SetCode(value string)
-	System() string
-	SetSystem(value string)
-	Version() string
-	SetVersion(value string)
+	Code() string /* primitive/slice/pointer. */
+	SetCode(value string /* primitive/slice/pointer. */)
+	System() string /* primitive/slice/pointer. */
+	SetSystem(value string /* primitive/slice/pointer. */)
+	Version() string /* primitive/slice/pointer. */
+	SetVersion(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewHKClinicalCoding() HKClinicalCoding {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/code
-func (h_ HKClinicalCoding) Code() string {
+func (h_ HKClinicalCoding) Code() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("code"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (h_ HKClinicalCoding) Code() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/code
-func (h_ HKClinicalCoding) SetCode(value string) {
+func (h_ HKClinicalCoding) SetCode(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCode:"), objc.String(value))
 }
 
@@ -116,7 +116,7 @@ func (h_ HKClinicalCoding) SetCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/system
-func (h_ HKClinicalCoding) System() string {
+func (h_ HKClinicalCoding) System() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("system"))
 	return rv
 }
@@ -126,7 +126,7 @@ func (h_ HKClinicalCoding) System() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/system
-func (h_ HKClinicalCoding) SetSystem(value string) {
+func (h_ HKClinicalCoding) SetSystem(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSystem:"), objc.String(value))
 }
 
@@ -135,7 +135,7 @@ func (h_ HKClinicalCoding) SetSystem(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/version
-func (h_ HKClinicalCoding) Version() string {
+func (h_ HKClinicalCoding) Version() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (h_ HKClinicalCoding) Version() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkclinicalcoding/version
-func (h_ HKClinicalCoding) SetVersion(value string) {
+func (h_ HKClinicalCoding) SetVersion(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 

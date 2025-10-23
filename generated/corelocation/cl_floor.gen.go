@@ -30,8 +30,10 @@ type _FloorClass struct {
 // An interface definition for the [Floor] class.
 type IFloor interface {
 	objectivec.IObject
+	// properties:
 	Level() unsafe.Pointer
 	SetLevel(value unsafe.Pointer)
+	// methods:
 }
 
 // The floor of a building on which the user’s device is located.

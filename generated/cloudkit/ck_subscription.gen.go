@@ -30,14 +30,16 @@ type _CKSubscriptionClass struct {
 // An interface definition for the [CKSubscription] class.
 type ICKSubscription interface {
 	objectivec.IObject
+	// properties:
 	DesiredKeys() unsafe.Pointer
 	SetDesiredKeys(value unsafe.Pointer)
-	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value CKNotificationInfo)
+	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
+	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
 	SubscriptionID() unsafe.Pointer
 	SetSubscriptionID(value unsafe.Pointer)
 	SubscriptionType() unsafe.Pointer
 	SetSubscriptionType(value unsafe.Pointer)
+	// methods:
 }
 
 // An abstract base class for subscriptions.
@@ -116,7 +118,7 @@ func (c_ CKSubscription) SetDesiredKeys(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
+func (c_ CKSubscription) NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */ {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKSubscription) SetNotificationInfo(value CKNotificationInfo) {
+func (c_ CKSubscription) SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

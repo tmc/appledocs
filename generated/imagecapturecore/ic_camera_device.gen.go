@@ -31,37 +31,37 @@ type _ICCameraDeviceClass struct {
 type IICCameraDevice interface {
 	IICDevice
 	// properties:
-	BatteryLevel() int
-	SetBatteryLevel(value int)
-	BatteryLevelAvailable() bool
-	SetBatteryLevelAvailable(value bool)
-	ContentCatalogPercentCompleted() int
-	SetContentCatalogPercentCompleted(value int)
-	Contents() ICCameraItem
-	SetContents(value ICCameraItem)
-	ICloudPhotosEnabled() bool
-	SetICloudPhotosEnabled(value bool)
-	IsAccessRestrictedAppleDevice() bool
-	SetIsAccessRestrictedAppleDevice(value bool)
-	IsEjectable() bool
-	SetIsEjectable(value bool)
-	IsLocked() bool
-	SetIsLocked(value bool)
-	MediaFiles() ICCameraItem
-	SetMediaFiles(value ICCameraItem)
-	MediaPresentation() ICMediaPresentation
-	SetMediaPresentation(value ICMediaPresentation)
-	MountPoint() string
-	SetMountPoint(value string)
+	BatteryLevel() int /* primitive/slice/pointer. */
+	SetBatteryLevel(value int /* primitive/slice/pointer. */)
+	BatteryLevelAvailable() bool /* primitive/slice/pointer. */
+	SetBatteryLevelAvailable(value bool /* primitive/slice/pointer. */)
+	ContentCatalogPercentCompleted() int /* primitive/slice/pointer. */
+	SetContentCatalogPercentCompleted(value int /* primitive/slice/pointer. */)
+	Contents() ICCameraItem /* already interface */
+	SetContents(value ICCameraItem /* already interface */)
+	ICloudPhotosEnabled() bool /* primitive/slice/pointer. */
+	SetICloudPhotosEnabled(value bool /* primitive/slice/pointer. */)
+	IsAccessRestrictedAppleDevice() bool /* primitive/slice/pointer. */
+	SetIsAccessRestrictedAppleDevice(value bool /* primitive/slice/pointer. */)
+	IsEjectable() bool /* primitive/slice/pointer. */
+	SetIsEjectable(value bool /* primitive/slice/pointer. */)
+	IsLocked() bool /* primitive/slice/pointer. */
+	SetIsLocked(value bool /* primitive/slice/pointer. */)
+	MediaFiles() ICCameraItem /* already interface */
+	SetMediaFiles(value ICCameraItem /* already interface */)
+	MediaPresentation() ICMediaPresentation /* already interface */
+	SetMediaPresentation(value ICMediaPresentation /* already interface */)
+	MountPoint() string /* primitive/slice/pointer. */
+	SetMountPoint(value string /* primitive/slice/pointer. */)
 	PtpEventHandler() unsafe.Pointer
 	SetPtpEventHandler(value unsafe.Pointer)
-	TetheredCaptureEnabled() bool
-	SetTetheredCaptureEnabled(value bool)
+	TetheredCaptureEnabled() bool /* primitive/slice/pointer. */
+	SetTetheredCaptureEnabled(value bool /* primitive/slice/pointer. */)
 	TimeOffset() unsafe.Pointer
 	SetTimeOffset(value unsafe.Pointer)
 	// methods:
 	CancelDelete()
-	RequestDeleteFiles(files []ICCameraItem)
+	RequestDeleteFiles(files []ICCameraItem /* primitive/slice/pointer. */)
 }
 
 // An object that represents a camera.
@@ -130,7 +130,7 @@ func (i_ ICCameraDevice) CancelDelete() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice/requestDeleteFiles(_:)
-func (i_ ICCameraDevice) RequestDeleteFiles(files []ICCameraItem) {
+func (i_ ICCameraDevice) RequestDeleteFiles(files []ICCameraItem /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestDeleteFiles:"), files)
 }
 
@@ -139,7 +139,7 @@ func (i_ ICCameraDevice) RequestDeleteFiles(files []ICCameraItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevel
-func (i_ ICCameraDevice) BatteryLevel() int {
+func (i_ ICCameraDevice) BatteryLevel() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("batteryLevel"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (i_ ICCameraDevice) BatteryLevel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevel
-func (i_ ICCameraDevice) SetBatteryLevel(value int) {
+func (i_ ICCameraDevice) SetBatteryLevel(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBatteryLevel:"), value)
 }
 
@@ -158,7 +158,7 @@ func (i_ ICCameraDevice) SetBatteryLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevelavailable
-func (i_ ICCameraDevice) BatteryLevelAvailable() bool {
+func (i_ ICCameraDevice) BatteryLevelAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("batteryLevelAvailable"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (i_ ICCameraDevice) BatteryLevelAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/batterylevelavailable
-func (i_ ICCameraDevice) SetBatteryLevelAvailable(value bool) {
+func (i_ ICCameraDevice) SetBatteryLevelAvailable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBatteryLevelAvailable:"), value)
 }
 
@@ -177,7 +177,7 @@ func (i_ ICCameraDevice) SetBatteryLevelAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contentcatalogpercentcompleted
-func (i_ ICCameraDevice) ContentCatalogPercentCompleted() int {
+func (i_ ICCameraDevice) ContentCatalogPercentCompleted() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("contentCatalogPercentCompleted"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (i_ ICCameraDevice) ContentCatalogPercentCompleted() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contentcatalogpercentcompleted
-func (i_ ICCameraDevice) SetContentCatalogPercentCompleted(value int) {
+func (i_ ICCameraDevice) SetContentCatalogPercentCompleted(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentCatalogPercentCompleted:"), value)
 }
 
@@ -196,7 +196,7 @@ func (i_ ICCameraDevice) SetContentCatalogPercentCompleted(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
-func (i_ ICCameraDevice) Contents() ICCameraItem {
+func (i_ ICCameraDevice) Contents() ICCameraItem /* already interface */ {
 	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("contents"))
 	return rv
 }
@@ -206,7 +206,7 @@ func (i_ ICCameraDevice) Contents() ICCameraItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
-func (i_ ICCameraDevice) SetContents(value ICCameraItem) {
+func (i_ ICCameraDevice) SetContents(value ICCameraItem /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -215,7 +215,7 @@ func (i_ ICCameraDevice) SetContents(value ICCameraItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/icloudphotosenabled
-func (i_ ICCameraDevice) ICloudPhotosEnabled() bool {
+func (i_ ICCameraDevice) ICloudPhotosEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("iCloudPhotosEnabled"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (i_ ICCameraDevice) ICloudPhotosEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/icloudphotosenabled
-func (i_ ICCameraDevice) SetICloudPhotosEnabled(value bool) {
+func (i_ ICCameraDevice) SetICloudPhotosEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setICloudPhotosEnabled:"), value)
 }
 
@@ -234,7 +234,7 @@ func (i_ ICCameraDevice) SetICloudPhotosEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isaccessrestrictedappledevice
-func (i_ ICCameraDevice) IsAccessRestrictedAppleDevice() bool {
+func (i_ ICCameraDevice) IsAccessRestrictedAppleDevice() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isAccessRestrictedAppleDevice"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (i_ ICCameraDevice) IsAccessRestrictedAppleDevice() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isaccessrestrictedappledevice
-func (i_ ICCameraDevice) SetIsAccessRestrictedAppleDevice(value bool) {
+func (i_ ICCameraDevice) SetIsAccessRestrictedAppleDevice(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsAccessRestrictedAppleDevice:"), value)
 }
 
@@ -253,7 +253,7 @@ func (i_ ICCameraDevice) SetIsAccessRestrictedAppleDevice(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isejectable
-func (i_ ICCameraDevice) IsEjectable() bool {
+func (i_ ICCameraDevice) IsEjectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEjectable"))
 	return rv
 }
@@ -263,7 +263,7 @@ func (i_ ICCameraDevice) IsEjectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/isejectable
-func (i_ ICCameraDevice) SetIsEjectable(value bool) {
+func (i_ ICCameraDevice) SetIsEjectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEjectable:"), value)
 }
 
@@ -272,7 +272,7 @@ func (i_ ICCameraDevice) SetIsEjectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/islocked
-func (i_ ICCameraDevice) IsLocked() bool {
+func (i_ ICCameraDevice) IsLocked() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isLocked"))
 	return rv
 }
@@ -282,7 +282,7 @@ func (i_ ICCameraDevice) IsLocked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/islocked
-func (i_ ICCameraDevice) SetIsLocked(value bool) {
+func (i_ ICCameraDevice) SetIsLocked(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsLocked:"), value)
 }
 
@@ -291,7 +291,7 @@ func (i_ ICCameraDevice) SetIsLocked(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
-func (i_ ICCameraDevice) MediaFiles() ICCameraItem {
+func (i_ ICCameraDevice) MediaFiles() ICCameraItem /* already interface */ {
 	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("mediaFiles"))
 	return rv
 }
@@ -301,14 +301,14 @@ func (i_ ICCameraDevice) MediaFiles() ICCameraItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
-func (i_ ICCameraDevice) SetMediaFiles(value ICCameraItem) {
+func (i_ ICCameraDevice) SetMediaFiles(value ICCameraItem /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaFiles:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
-func (i_ ICCameraDevice) MediaPresentation() ICMediaPresentation {
+func (i_ ICCameraDevice) MediaPresentation() ICMediaPresentation /* already interface */ {
 	rv := objc.Send[ICMediaPresentation](i_.ID, objc.Sel("mediaPresentation"))
 	return rv
 }
@@ -316,7 +316,7 @@ func (i_ ICCameraDevice) MediaPresentation() ICMediaPresentation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediapresentation
-func (i_ ICCameraDevice) SetMediaPresentation(value ICMediaPresentation) {
+func (i_ ICCameraDevice) SetMediaPresentation(value ICMediaPresentation /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaPresentation:"), value)
 }
 
@@ -325,7 +325,7 @@ func (i_ ICCameraDevice) SetMediaPresentation(value ICMediaPresentation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) MountPoint() string {
+func (i_ ICCameraDevice) MountPoint() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("mountPoint"))
 	return rv
 }
@@ -335,7 +335,7 @@ func (i_ ICCameraDevice) MountPoint() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) SetMountPoint(value string) {
+func (i_ ICCameraDevice) SetMountPoint(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), objc.String(value))
 }
 
@@ -363,7 +363,7 @@ func (i_ ICCameraDevice) SetPtpEventHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/tetheredcaptureenabled
-func (i_ ICCameraDevice) TetheredCaptureEnabled() bool {
+func (i_ ICCameraDevice) TetheredCaptureEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("tetheredCaptureEnabled"))
 	return rv
 }
@@ -373,7 +373,7 @@ func (i_ ICCameraDevice) TetheredCaptureEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/tetheredcaptureenabled
-func (i_ ICCameraDevice) SetTetheredCaptureEnabled(value bool) {
+func (i_ ICCameraDevice) SetTetheredCaptureEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTetheredCaptureEnabled:"), value)
 }
 

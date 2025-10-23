@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKCDADocumentSample] class.
@@ -30,13 +31,12 @@ type _HKCDADocumentSampleClass struct {
 type IHKCDADocumentSample interface {
 	IHKDocumentSample
 	// properties:
-	Document() unsafe.Pointer
-	SetDocument(value unsafe.Pointer)
-	HKDetailedCDAValidationErrorKey() string
-	HKPredicateKeyPathCDAAuthorName() string
-	HKPredicateKeyPathCDACustodianName() string
-	HKPredicateKeyPathCDAPatientName() string
-	HKPredicateKeyPathCDATitle() string
+	Document() IHKCDADocument
+	HKDetailedCDAValidationErrorKey() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathCDAAuthorName() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathCDACustodianName() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathCDAPatientName() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathCDATitle() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -95,12 +95,23 @@ func NewHKCDADocumentSample() HKCDADocumentSample {
 
 
 
-// The CDA document.
+// Returns a CDA document sample containing the provided XML document and metadata.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document
-func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("document"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample/init(data:start:end:metadata:)
+func NewHKCDADocumentSampleWithDataStartDateEndDateMetadataValidationError(documentData foundation.objc.IObject /* cross-framework NSData */, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */, validationError unsafe.Pointer) HKCDADocumentSample {
+	rv := objc.Send[HKCDADocumentSample](objc.ID(getHKCDADocumentSampleClass().class), objc.Sel("CDADocumentSampleWithData:startDate:endDate:metadata:validationError:"), documentData, startDate, endDate, metadata, validationError)
+	return rv
+}
+
+
+
+// Returns a CDA document sample containing the provided XML document and metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample/init(data:start:end:metadata:)
+func (hc _HKCDADocumentSampleClass) CDADocumentSampleWithDataStartDateEndDateMetadataValidationError(documentData foundation.objc.IObject /* cross-framework NSData */, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */, validationError unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("CDADocumentSampleWithData:startDate:endDate:metadata:validationError:"), documentData, startDate, endDate, metadata, validationError)
 	return rv
 }
 
@@ -108,9 +119,10 @@ func (h_ HKCDADocumentSample) Document() unsafe.Pointer {
 // The CDA document.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document
-func (h_ HKCDADocumentSample) SetDocument(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDocument:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCDADocumentSample/document
+func (h_ HKCDADocumentSample) Document() IHKCDADocument {
+	rv := objc.Send[HKCDADocument](h_.ID, objc.Sel("document"))
+	return rv
 }
 
 
@@ -118,7 +130,7 @@ func (h_ HKCDADocumentSample) SetDocument(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey
-func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
+func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKDetailedCDAValidationErrorKey"))
 	return rv
 }
@@ -128,7 +140,7 @@ func (h_ HKCDADocumentSample) HKDetailedCDAValidationErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string {
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAAuthorName"))
 	return rv
 }
@@ -138,7 +150,7 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAAuthorName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdacustodianname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDACustodianName"))
 	return rv
 }
@@ -148,7 +160,7 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDACustodianName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDAPatientName"))
 	return rv
 }
@@ -158,10 +170,9 @@ func (h_ HKCDADocumentSample) HKPredicateKeyPathCDAPatientName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle
-func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string {
+func (h_ HKCDADocumentSample) HKPredicateKeyPathCDATitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCDATitle"))
 	return rv
 }
-
 
 

@@ -31,10 +31,10 @@ type _MKShapeClass struct {
 type IMKShape interface {
 	objectivec.IObject
 	// properties:
-	Subtitle() string
-	SetSubtitle(value string)
-	Title() string
-	SetTitle(value string)
+	Subtitle() string /* primitive/slice/pointer. */
+	SetSubtitle(value string /* primitive/slice/pointer. */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewMKShape() MKShape {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkshape/subtitle
-func (m_ MKShape) Subtitle() string {
+func (m_ MKShape) Subtitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (m_ MKShape) Subtitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkshape/subtitle
-func (m_ MKShape) SetSubtitle(value string) {
+func (m_ MKShape) SetSubtitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 
@@ -114,7 +114,7 @@ func (m_ MKShape) SetSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkshape/title
-func (m_ MKShape) Title() string {
+func (m_ MKShape) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (m_ MKShape) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkshape/title
-func (m_ MKShape) SetTitle(value string) {
+func (m_ MKShape) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

@@ -29,8 +29,10 @@ type _RotationRateDataClass struct {
 // An interface definition for the [RotationRateData] class.
 type IRotationRateData interface {
 	ILogItem
-	RotationRate() unsafe.Pointer
-	SetRotationRate(value unsafe.Pointer)
+	// properties:
+	RotationRate() RotationRate /* not a class type */
+	SetRotationRate(value RotationRate /* not a class type */)
+	// methods:
 }
 
 // A data object that contains a single rotation-rate measurement.
@@ -90,8 +92,8 @@ func NewRotationRateData() RotationRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RotationRateData) RotationRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("rotationRate"))
+func (r_ RotationRateData) RotationRate() RotationRate /* not a class type */ {
+	rv := objc.Send[RotationRate](r_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 
@@ -100,7 +102,7 @@ func (r_ RotationRateData) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmgyrodata/rotationrate
-func (r_ RotationRateData) SetRotationRate(value unsafe.Pointer) {
+func (r_ RotationRateData) SetRotationRate(value RotationRate /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationRate:"), value)
 }
 

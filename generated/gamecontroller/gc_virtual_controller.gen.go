@@ -30,8 +30,10 @@ type _GCVirtualControllerClass struct {
 // An interface definition for the [GCVirtualController] class.
 type IGCVirtualController interface {
 	objectivec.IObject
+	// properties:
 	Controller() IGCController
 	SetController(value IGCController)
+	// methods:
 	ConnectWithReplyHandler(reply unsafe.Pointer)
 }
 
@@ -92,7 +94,7 @@ func NewGCVirtualController() GCVirtualController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
-func NewGCVirtualControllerWithConfiguration(configuration GCVirtualControllerConfiguration) GCVirtualController {
+func NewGCVirtualControllerWithConfiguration(configuration objc.IObject /* cross-framework GCVirtualControllerConfiguration */) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()

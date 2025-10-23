@@ -31,32 +31,35 @@ type _AchievementDescriptionClass struct {
 // An interface definition for the [AchievementDescription] class.
 type IAchievementDescription interface {
 	objectivec.IObject
-	AchievedDescription() string
-	SetAchievedDescription(value string)
-	ActivityIdentifier() string
-	SetActivityIdentifier(value string)
-	ActivityProperties() string
-	SetActivityProperties(value string)
-	GroupIdentifier() string
-	SetGroupIdentifier(value string)
-	Identifier() string
-	SetIdentifier(value string)
-	Image() appkit.Image
-	SetImage(value appkit.Image)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	IsReplayable() bool
-	SetIsReplayable(value bool)
-	MaximumPoints() int
-	SetMaximumPoints(value int)
-	RarityPercent() float64
-	SetRarityPercent(value float64)
-	ReleaseState() unsafe.Pointer
-	SetReleaseState(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
-	UnachievedDescription() string
-	SetUnachievedDescription(value string)
+	// properties:
+	Hidden() bool /* primitive/slice/pointer. */
+	AchievedDescription() string /* primitive/slice/pointer. */
+	SetAchievedDescription(value string /* primitive/slice/pointer. */)
+	ActivityIdentifier() string /* primitive/slice/pointer. */
+	SetActivityIdentifier(value string /* primitive/slice/pointer. */)
+	ActivityProperties() string /* primitive/slice/pointer. */
+	SetActivityProperties(value string /* primitive/slice/pointer. */)
+	GroupIdentifier() string /* primitive/slice/pointer. */
+	SetGroupIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Image() appkit.objc.IObject /* cross-framework: Image */
+	SetImage(value appkit.objc.IObject /* cross-framework: Image */)
+	IsHidden() bool /* primitive/slice/pointer. */
+	SetIsHidden(value bool /* primitive/slice/pointer. */)
+	IsReplayable() bool /* primitive/slice/pointer. */
+	SetIsReplayable(value bool /* primitive/slice/pointer. */)
+	MaximumPoints() int /* primitive/slice/pointer. */
+	SetMaximumPoints(value int /* primitive/slice/pointer. */)
+	RarityPercent() float64 /* primitive/slice/pointer. */
+	SetRarityPercent(value float64 /* primitive/slice/pointer. */)
+	ReleaseState() ReleaseState /* not a class type */
+	SetReleaseState(value ReleaseState /* not a class type */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	UnachievedDescription() string /* primitive/slice/pointer. */
+	SetUnachievedDescription(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object containing the text and artwork used to present an achievement to a player.
@@ -116,8 +119,8 @@ func NewAchievementDescription() AchievementDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription/incompleteAchievementImage()
-func (ac _AchievementDescriptionClass) IncompleteAchievementImage() appkit.Image {
-	rv := objc.Send[appkit.Image](objc.ID(ac.class), objc.Sel("incompleteAchievementImage"))
+func (ac _AchievementDescriptionClass) IncompleteAchievementImage() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](objc.ID(ac.class), objc.Sel("incompleteAchievementImage"))
 	return rv
 }
 
@@ -126,8 +129,18 @@ func (ac _AchievementDescriptionClass) IncompleteAchievementImage() appkit.Image
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription/placeholderCompletedAchievementImage()
-func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() appkit.Image {
+func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](objc.ID(ac.class), objc.Sel("placeholderCompletedAchievementImage"))
+	return rv
+}
+
+
+// A Boolean value that states whether the achievement is initially visible to players.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievementDescription/isHidden
+func (a_ AchievementDescription) Hidden() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("hidden"))
 	return rv
 }
 
@@ -136,7 +149,7 @@ func (ac _AchievementDescriptionClass) PlaceholderCompletedAchievementImage() ap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-func (a_ AchievementDescription) AchievedDescription() string {
+func (a_ AchievementDescription) AchievedDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("achievedDescription"))
 	return rv
 }
@@ -146,7 +159,7 @@ func (a_ AchievementDescription) AchievedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/achieveddescription
-func (a_ AchievementDescription) SetAchievedDescription(value string) {
+func (a_ AchievementDescription) SetAchievedDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAchievedDescription:"), objc.String(value))
 }
 
@@ -155,7 +168,7 @@ func (a_ AchievementDescription) SetAchievedDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-func (a_ AchievementDescription) ActivityIdentifier() string {
+func (a_ AchievementDescription) ActivityIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("activityIdentifier"))
 	return rv
 }
@@ -165,7 +178,7 @@ func (a_ AchievementDescription) ActivityIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityidentifier
-func (a_ AchievementDescription) SetActivityIdentifier(value string) {
+func (a_ AchievementDescription) SetActivityIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
 }
 
@@ -174,7 +187,7 @@ func (a_ AchievementDescription) SetActivityIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-func (a_ AchievementDescription) ActivityProperties() string {
+func (a_ AchievementDescription) ActivityProperties() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("activityProperties"))
 	return rv
 }
@@ -184,7 +197,7 @@ func (a_ AchievementDescription) ActivityProperties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/activityproperties
-func (a_ AchievementDescription) SetActivityProperties(value string) {
+func (a_ AchievementDescription) SetActivityProperties(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
 
@@ -193,7 +206,7 @@ func (a_ AchievementDescription) SetActivityProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-func (a_ AchievementDescription) GroupIdentifier() string {
+func (a_ AchievementDescription) GroupIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
@@ -203,7 +216,7 @@ func (a_ AchievementDescription) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/groupidentifier
-func (a_ AchievementDescription) SetGroupIdentifier(value string) {
+func (a_ AchievementDescription) SetGroupIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
@@ -212,7 +225,7 @@ func (a_ AchievementDescription) SetGroupIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-func (a_ AchievementDescription) Identifier() string {
+func (a_ AchievementDescription) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -222,7 +235,7 @@ func (a_ AchievementDescription) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/identifier
-func (a_ AchievementDescription) SetIdentifier(value string) {
+func (a_ AchievementDescription) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -231,7 +244,7 @@ func (a_ AchievementDescription) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
-func (a_ AchievementDescription) Image() appkit.Image {
+func (a_ AchievementDescription) Image() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](a_.ID, objc.Sel("image"))
 	return rv
 }
@@ -241,7 +254,7 @@ func (a_ AchievementDescription) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/image
-func (a_ AchievementDescription) SetImage(value appkit.Image) {
+func (a_ AchievementDescription) SetImage(value appkit.objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -250,7 +263,7 @@ func (a_ AchievementDescription) SetImage(value appkit.Image) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
-func (a_ AchievementDescription) IsHidden() bool {
+func (a_ AchievementDescription) IsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -260,7 +273,7 @@ func (a_ AchievementDescription) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/ishidden
-func (a_ AchievementDescription) SetIsHidden(value bool) {
+func (a_ AchievementDescription) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -269,7 +282,7 @@ func (a_ AchievementDescription) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
-func (a_ AchievementDescription) IsReplayable() bool {
+func (a_ AchievementDescription) IsReplayable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isReplayable"))
 	return rv
 }
@@ -279,7 +292,7 @@ func (a_ AchievementDescription) IsReplayable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/isreplayable
-func (a_ AchievementDescription) SetIsReplayable(value bool) {
+func (a_ AchievementDescription) SetIsReplayable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsReplayable:"), value)
 }
 
@@ -288,7 +301,7 @@ func (a_ AchievementDescription) SetIsReplayable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
-func (a_ AchievementDescription) MaximumPoints() int {
+func (a_ AchievementDescription) MaximumPoints() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("maximumPoints"))
 	return rv
 }
@@ -298,7 +311,7 @@ func (a_ AchievementDescription) MaximumPoints() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/maximumpoints
-func (a_ AchievementDescription) SetMaximumPoints(value int) {
+func (a_ AchievementDescription) SetMaximumPoints(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumPoints:"), value)
 }
 
@@ -307,7 +320,7 @@ func (a_ AchievementDescription) SetMaximumPoints(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-func (a_ AchievementDescription) RarityPercent() float64 {
+func (a_ AchievementDescription) RarityPercent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("rarityPercent"))
 	return rv
 }
@@ -317,7 +330,7 @@ func (a_ AchievementDescription) RarityPercent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/raritypercent-4bh6k
-func (a_ AchievementDescription) SetRarityPercent(value float64) {
+func (a_ AchievementDescription) SetRarityPercent(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRarityPercent:"), value)
 }
 
@@ -326,8 +339,8 @@ func (a_ AchievementDescription) SetRarityPercent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
-func (a_ AchievementDescription) ReleaseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("releaseState"))
+func (a_ AchievementDescription) ReleaseState() ReleaseState /* not a class type */ {
+	rv := objc.Send[ReleaseState](a_.ID, objc.Sel("releaseState"))
 	return rv
 }
 
@@ -336,7 +349,7 @@ func (a_ AchievementDescription) ReleaseState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/releasestate
-func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
+func (a_ AchievementDescription) SetReleaseState(value ReleaseState /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReleaseState:"), value)
 }
 
@@ -345,7 +358,7 @@ func (a_ AchievementDescription) SetReleaseState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-func (a_ AchievementDescription) Title() string {
+func (a_ AchievementDescription) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("title"))
 	return rv
 }
@@ -355,7 +368,7 @@ func (a_ AchievementDescription) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/title
-func (a_ AchievementDescription) SetTitle(value string) {
+func (a_ AchievementDescription) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -364,7 +377,7 @@ func (a_ AchievementDescription) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-func (a_ AchievementDescription) UnachievedDescription() string {
+func (a_ AchievementDescription) UnachievedDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("unachievedDescription"))
 	return rv
 }
@@ -374,7 +387,7 @@ func (a_ AchievementDescription) UnachievedDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievementdescription/unachieveddescription
-func (a_ AchievementDescription) SetUnachievedDescription(value string) {
+func (a_ AchievementDescription) SetUnachievedDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUnachievedDescription:"), objc.String(value))
 }
 

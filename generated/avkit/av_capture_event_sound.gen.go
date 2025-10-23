@@ -31,6 +31,8 @@ type _CaptureEventSoundClass struct {
 // An interface definition for the [CaptureEventSound] class.
 type ICaptureEventSound interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A sound object for a capture event.
@@ -88,7 +90,7 @@ func NewCaptureEventSound() CaptureEventSound {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)
-func NewCaptureEventSoundWithURLError(url foundation.URL, error_ unsafe.Pointer) CaptureEventSound {
+func NewCaptureEventSoundWithURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) CaptureEventSound {
 	instance := getCaptureEventSoundClass().Alloc()
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()

@@ -31,15 +31,16 @@ type JSONFileEntry struct {
 
 // Crawler holds all the application settings
 type Crawler struct {
-	client         *http.Client
-	visitedURLs    sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
-	jsonEntries    []JSONFileEntry
-	entriesMutex   sync.Mutex
-	processedCount int
-	badURLs        map[string]bool // URLs known to be 404s or invalid
-	urlDepths      map[string]int  // Track semantic depth of each URL
-	depthMutex     sync.RWMutex    // Mutex for urlDepths
-	rateLimiter    *rate.Limiter   // Rate limiter for HTTP requests
+	client           *http.Client
+	visitedURLs      sync.Map // map[string]bool - tracks visited URLs, safe for concurrent access
+	jsonEntries      []JSONFileEntry
+	entriesMutex     sync.Mutex
+	processedCount   int
+	badURLs          map[string]bool // URLs known to be 404s or invalid
+	urlDepths        map[string]int  // Track semantic depth of each URL
+	depthMutex       sync.RWMutex    // Mutex for urlDepths
+	rateLimiter      *rate.Limiter   // Rate limiter for HTTP requests
+	entryPointPrefix string          // Path prefix to restrict crawling scope
 
 	// Status tracking metrics
 	cacheHits      int
@@ -79,7 +80,8 @@ type Config struct {
 	PrettyJSON         bool
 	FetchBothLanguages bool
 	ChecksumValidation bool
-	MaxDepth           int // Maximum link depth to follow (0 = unlimited)
+	MaxDepth           int  // Maximum link depth to follow (0 = unlimited)
+	ObjCOnly           bool // Only crawl Objective-C types (skip Swift-only docs)
 	Verbose            bool
 	Logger             *slog.Logger
 }
@@ -120,6 +122,18 @@ func (c *Crawler) Run(ctx context.Context, cfg *Config) error {
 		log.Printf("Warning: failed to load bad URLs file: %v", err)
 	} else if cfg.Verbose {
 		log.Printf("Loaded %d known bad URLs", len(c.badURLs))
+	}
+
+	// Set entry point prefix to restrict crawling scope
+	// Extract the base path from entry point (e.g., /tutorials/data/documentation/foundation/NSOutputStream.json
+	// becomes /tutorials/data/documentation/foundation/nsoutputstream)
+	if parsed, err := url.Parse(cfg.EntryPoint); err == nil {
+		basePath := strings.TrimSuffix(parsed.Path, ".json")
+		basePath = strings.TrimSuffix(basePath, "/index")
+		c.entryPointPrefix = strings.ToLower(basePath)
+		if cfg.Verbose {
+			log.Printf("Restricting crawl to paths under: %s", c.entryPointPrefix)
+		}
 	}
 
 	// Determine start URLs
@@ -302,23 +316,24 @@ func (c *Crawler) processURL(ctx context.Context, u string, urlQueue chan<- stri
 		return fmt.Errorf("not a supported URL type: %s", u)
 	}
 
-	// Get content
+	// Get content (this also caches it)
 	data, err := c.fetchWithCache(ctx, u, cfg)
 	if err != nil {
 		return fmt.Errorf("fetch %q: %v", u, err)
 	}
 
-	// Save to output
-	outputPath := strings.TrimPrefix(parsed.Path, "/")
-	if err := c.saveToOutputDir(outputPath, data, cfg); err != nil {
-		return fmt.Errorf("save %q: %v", outputPath, err)
-	}
-
-	if cfg.Verbose {
-		log.Printf("Saved %s", outputPath)
+	// Check if this is an Objective-C document when ObjCOnly is enabled
+	if cfg.ObjCOnly && !IsObjectiveCDocument(data) {
+		if cfg.Verbose {
+			log.Printf("Skipping non-Objective-C document: %s", u)
+		}
+		// Still mark as visited to avoid re-checking
+		c.visitedURLs.Store(u, true)
+		return nil
 	}
 
 	// Record content type for metrics
+	outputPath := strings.TrimPrefix(parsed.Path, "/")
 	c.recordContentType(outputPath)
 
 	// Create entry for the index

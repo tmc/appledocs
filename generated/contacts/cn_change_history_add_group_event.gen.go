@@ -29,8 +29,10 @@ type _CNChangeHistoryAddGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddGroupEvent] class.
 type ICNChangeHistoryAddGroupEvent interface {
 	ICNChangeHistoryEvent
-	ContainerIdentifier() string
+	// properties:
+	ContainerIdentifier() string /* primitive/slice/pointer. */
 	Group() ICNGroup
+	// methods:
 }
 
 // An object that represents a user adding a group.
@@ -90,7 +92,7 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
-func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string {
+func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }

@@ -167,7 +167,7 @@ func NewArrayWithArrayCopyItems(array []objc.ID /* already interface */, flag bo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
-func NewArrayWithCoder(coder Coder /* not a class type */) Array {
+func NewArrayWithCoder(coder ICoder) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

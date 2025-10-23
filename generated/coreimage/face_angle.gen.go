@@ -30,6 +30,8 @@ type _faceAngleClass struct {
 // An interface definition for the [faceAngle] class.
 type IfaceAngle interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

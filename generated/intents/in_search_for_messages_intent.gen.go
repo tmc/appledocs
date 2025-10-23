@@ -32,38 +32,38 @@ type IINSearchForMessagesIntent interface {
 	// properties:
 	Attributes() unsafe.Pointer
 	SetAttributes(value unsafe.Pointer)
-	ConversationIdentifiers() string
-	SetConversationIdentifiers(value string)
+	ConversationIdentifiers() string /* primitive/slice/pointer. */
+	SetConversationIdentifiers(value string /* primitive/slice/pointer. */)
 	ConversationIdentifiersOperator() unsafe.Pointer
 	SetConversationIdentifiersOperator(value unsafe.Pointer)
-	DateTimeRange() INDateComponentsRange
-	SetDateTimeRange(value INDateComponentsRange)
-	GroupNames() string
-	SetGroupNames(value string)
+	DateTimeRange() INDateComponentsRange /* already interface */
+	SetDateTimeRange(value INDateComponentsRange /* already interface */)
+	GroupNames() string /* primitive/slice/pointer. */
+	SetGroupNames(value string /* primitive/slice/pointer. */)
 	GroupNamesOperator() unsafe.Pointer
 	SetGroupNamesOperator(value unsafe.Pointer)
-	Identifiers() string
-	SetIdentifiers(value string)
+	Identifiers() string /* primitive/slice/pointer. */
+	SetIdentifiers(value string /* primitive/slice/pointer. */)
 	IdentifiersOperator() unsafe.Pointer
 	SetIdentifiersOperator(value unsafe.Pointer)
-	NotificationIdentifiers() string
-	SetNotificationIdentifiers(value string)
+	NotificationIdentifiers() string /* primitive/slice/pointer. */
+	SetNotificationIdentifiers(value string /* primitive/slice/pointer. */)
 	NotificationIdentifiersOperator() unsafe.Pointer
 	SetNotificationIdentifiersOperator(value unsafe.Pointer)
-	Recipients() INPerson
-	SetRecipients(value INPerson)
+	Recipients() INPerson /* already interface */
+	SetRecipients(value INPerson /* already interface */)
 	RecipientsOperator() unsafe.Pointer
 	SetRecipientsOperator(value unsafe.Pointer)
-	SearchTerms() string
-	SetSearchTerms(value string)
+	SearchTerms() string /* primitive/slice/pointer. */
+	SetSearchTerms(value string /* primitive/slice/pointer. */)
 	SearchTermsOperator() unsafe.Pointer
 	SetSearchTermsOperator(value unsafe.Pointer)
-	Senders() INPerson
-	SetSenders(value INPerson)
+	Senders() INPerson /* already interface */
+	SetSenders(value INPerson /* already interface */)
 	SendersOperator() unsafe.Pointer
 	SetSendersOperator(value unsafe.Pointer)
-	SpeakableGroupNames() INSpeakableString
-	SetSpeakableGroupNames(value INSpeakableString)
+	SpeakableGroupNames() INSpeakableString /* already interface */
+	SetSpeakableGroupNames(value INSpeakableString /* already interface */)
 	SpeakableGroupNamesOperator() unsafe.Pointer
 	SetSpeakableGroupNamesOperator(value unsafe.Pointer)
 	// methods:
@@ -147,7 +147,7 @@ func (i_ INSearchForMessagesIntent) SetAttributes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiers
-func (i_ INSearchForMessagesIntent) ConversationIdentifiers() string {
+func (i_ INSearchForMessagesIntent) ConversationIdentifiers() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifiers"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiers() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/conversationidentifiers
-func (i_ INSearchForMessagesIntent) SetConversationIdentifiers(value string) {
+func (i_ INSearchForMessagesIntent) SetConversationIdentifiers(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifiers:"), objc.String(value))
 }
 
@@ -185,7 +185,7 @@ func (i_ INSearchForMessagesIntent) SetConversationIdentifiersOperator(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/datetimerange
-func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
+func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange /* already interface */ {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateTimeRange"))
 	return rv
 }
@@ -195,7 +195,7 @@ func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/datetimerange
-func (i_ INSearchForMessagesIntent) SetDateTimeRange(value INDateComponentsRange) {
+func (i_ INSearchForMessagesIntent) SetDateTimeRange(value INDateComponentsRange /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateTimeRange:"), value)
 }
 
@@ -204,7 +204,7 @@ func (i_ INSearchForMessagesIntent) SetDateTimeRange(value INDateComponentsRange
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnames
-func (i_ INSearchForMessagesIntent) GroupNames() string {
+func (i_ INSearchForMessagesIntent) GroupNames() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupNames"))
 	return rv
 }
@@ -214,7 +214,7 @@ func (i_ INSearchForMessagesIntent) GroupNames() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/groupnames
-func (i_ INSearchForMessagesIntent) SetGroupNames(value string) {
+func (i_ INSearchForMessagesIntent) SetGroupNames(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupNames:"), objc.String(value))
 }
 
@@ -242,7 +242,7 @@ func (i_ INSearchForMessagesIntent) SetGroupNamesOperator(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiers
-func (i_ INSearchForMessagesIntent) Identifiers() string {
+func (i_ INSearchForMessagesIntent) Identifiers() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifiers"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (i_ INSearchForMessagesIntent) Identifiers() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/identifiers
-func (i_ INSearchForMessagesIntent) SetIdentifiers(value string) {
+func (i_ INSearchForMessagesIntent) SetIdentifiers(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifiers:"), objc.String(value))
 }
 
@@ -280,7 +280,7 @@ func (i_ INSearchForMessagesIntent) SetIdentifiersOperator(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiers
-func (i_ INSearchForMessagesIntent) NotificationIdentifiers() string {
+func (i_ INSearchForMessagesIntent) NotificationIdentifiers() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("notificationIdentifiers"))
 	return rv
 }
@@ -290,7 +290,7 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiers() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/notificationidentifiers
-func (i_ INSearchForMessagesIntent) SetNotificationIdentifiers(value string) {
+func (i_ INSearchForMessagesIntent) SetNotificationIdentifiers(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotificationIdentifiers:"), objc.String(value))
 }
 
@@ -318,7 +318,7 @@ func (i_ INSearchForMessagesIntent) SetNotificationIdentifiersOperator(value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipients
-func (i_ INSearchForMessagesIntent) Recipients() INPerson {
+func (i_ INSearchForMessagesIntent) Recipients() INPerson /* already interface */ {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("recipients"))
 	return rv
 }
@@ -328,7 +328,7 @@ func (i_ INSearchForMessagesIntent) Recipients() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/recipients
-func (i_ INSearchForMessagesIntent) SetRecipients(value INPerson) {
+func (i_ INSearchForMessagesIntent) SetRecipients(value INPerson /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipients:"), value)
 }
 
@@ -356,7 +356,7 @@ func (i_ INSearchForMessagesIntent) SetRecipientsOperator(value unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchterms
-func (i_ INSearchForMessagesIntent) SearchTerms() string {
+func (i_ INSearchForMessagesIntent) SearchTerms() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
@@ -366,7 +366,7 @@ func (i_ INSearchForMessagesIntent) SearchTerms() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/searchterms
-func (i_ INSearchForMessagesIntent) SetSearchTerms(value string) {
+func (i_ INSearchForMessagesIntent) SetSearchTerms(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
 
@@ -394,7 +394,7 @@ func (i_ INSearchForMessagesIntent) SetSearchTermsOperator(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/senders
-func (i_ INSearchForMessagesIntent) Senders() INPerson {
+func (i_ INSearchForMessagesIntent) Senders() INPerson /* already interface */ {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("senders"))
 	return rv
 }
@@ -404,7 +404,7 @@ func (i_ INSearchForMessagesIntent) Senders() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/senders
-func (i_ INSearchForMessagesIntent) SetSenders(value INPerson) {
+func (i_ INSearchForMessagesIntent) SetSenders(value INPerson /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSenders:"), value)
 }
 
@@ -432,7 +432,7 @@ func (i_ INSearchForMessagesIntent) SetSendersOperator(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnames
-func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString {
+func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString /* already interface */ {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("speakableGroupNames"))
 	return rv
 }
@@ -442,7 +442,7 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformessagesintent/speakablegroupnames
-func (i_ INSearchForMessagesIntent) SetSpeakableGroupNames(value INSpeakableString) {
+func (i_ INSearchForMessagesIntent) SetSpeakableGroupNames(value INSpeakableString /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpeakableGroupNames:"), value)
 }
 

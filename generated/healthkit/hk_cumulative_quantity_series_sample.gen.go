@@ -32,7 +32,7 @@ type IHKCumulativeQuantitySeriesSample interface {
 	// properties:
 	Sum() IHKQuantity
 	SetSum(value IHKQuantity)
-	HKPredicateKeyPathSum() string
+	HKPredicateKeyPathSum() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -112,7 +112,7 @@ func (h_ HKCumulativeQuantitySeriesSample) SetSum(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum
-func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string {
+func (h_ HKCumulativeQuantitySeriesSample) HKPredicateKeyPathSum() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathSum"))
 	return rv
 }

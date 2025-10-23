@@ -32,7 +32,7 @@ type IHKAnchoredObjectQuery interface {
 	// properties:
 	UpdateHandler() unsafe.Pointer
 	SetUpdateHandler(value unsafe.Pointer)
-	HKObjectQueryNoLimit() int
+	HKObjectQueryNoLimit() int /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -91,6 +91,31 @@ func NewHKAnchoredObjectQuery() HKAnchoredObjectQuery {
 
 
 
+// Initializes a new anchored object query.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:completionHandler:)
+func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitCompletionHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework Predicate */, anchor uint /* primitive/slice/pointer. */, limit uint /* primitive/slice/pointer. */, handler unsafe.Pointer) HKAnchoredObjectQuery {
+	instance := getHKAnchoredObjectQueryClass().Alloc()
+	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:completionHandler:"), type_, predicate, anchor, limit, handler)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes a new anchored object query.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAnchoredObjectQuery/init(type:predicate:anchor:limit:resultsHandler:)
+func NewHKAnchoredObjectQueryWithTypePredicateAnchorLimitResultsHandler(type_ IHKSampleType, predicate objc.IObject /* cross-framework Predicate */, anchor objc.IObject /* cross-framework HKQueryAnchor */, limit uint /* primitive/slice/pointer. */, handler unsafe.Pointer) HKAnchoredObjectQuery {
+	instance := getHKAnchoredObjectQueryClass().Alloc()
+	rv := objc.Send[HKAnchoredObjectQuery](instance.ID, objc.Sel("initWithType:predicate:anchor:limit:resultsHandler:"), type_, predicate, anchor, limit, handler)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Handler for monitoring updates to the HealthKit store.
 //
 // [Full Topic]
@@ -114,10 +139,9 @@ func (h_ HKAnchoredObjectQuery) SetUpdateHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int {
+func (h_ HKAnchoredObjectQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }
-
 
 

@@ -29,12 +29,14 @@ type _AuthorizationPlatformPublicKeyCredentialRegistrationRequestClass struct {
 // An interface definition for the [AuthorizationPlatformPublicKeyCredentialRegistrationRequest] class.
 type IAuthorizationPlatformPublicKeyCredentialRegistrationRequest interface {
 	IAuthorizationRequest
+	// properties:
 	LargeBlob() IAuthorizationPublicKeyCredentialLargeBlobRegistrationInput
 	SetLargeBlob(value IAuthorizationPublicKeyCredentialLargeBlobRegistrationInput)
 	Prf() IAuthorizationPublicKeyCredentialPRFRegistrationInput
 	SetPrf(value IAuthorizationPublicKeyCredentialPRFRegistrationInput)
 	RequestStyle() unsafe.Pointer
 	SetRequestStyle(value unsafe.Pointer)
+	// methods:
 }
 
 // The object for registering a new platform public key credential.

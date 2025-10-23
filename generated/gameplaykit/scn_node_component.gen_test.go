@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewSCNNodeComponent
 
+// ExampleNewSCNNodeComponentWithNode demonstrates how to create a SCNNodeComponent instance using NewSCNNodeComponentWithNode.
+func ExampleNewSCNNodeComponentWithNode() {
+	_ = gameplaykit.NewSCNNodeComponentWithNode(
+		gameplaykit.NNode{}, // node NNode
+	)
+	// Output:
+}

@@ -30,6 +30,8 @@ type _MonitoringEventClass struct {
 // An interface definition for the [MonitoringEvent] class.
 type IMonitoringEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The object that the framework passes to the monitor’s callback handler upon receiving an event.

@@ -29,22 +29,24 @@ type _DictionaryControllerClass struct {
 // An interface definition for the [DictionaryController] class.
 type IDictionaryController interface {
 	IArrayController
+	// properties:
 	ArrangedObjects() unsafe.Pointer
 	SetArrangedObjects(value unsafe.Pointer)
-	ExcludedKeys() string
-	SetExcludedKeys(value string)
-	IncludedKeys() string
-	SetIncludedKeys(value string)
-	InitialKey() string
-	SetInitialKey(value string)
+	ExcludedKeys() string /* primitive/slice/pointer. */
+	SetExcludedKeys(value string /* primitive/slice/pointer. */)
+	IncludedKeys() string /* primitive/slice/pointer. */
+	SetIncludedKeys(value string /* primitive/slice/pointer. */)
+	InitialKey() string /* primitive/slice/pointer. */
+	SetInitialKey(value string /* primitive/slice/pointer. */)
 	InitialValue() unsafe.Pointer
 	SetInitialValue(value unsafe.Pointer)
-	LocalizedKeyDictionary() string
-	SetLocalizedKeyDictionary(value string)
-	LocalizedKeyTable() string
-	SetLocalizedKeyTable(value string)
+	LocalizedKeyDictionary() string /* primitive/slice/pointer. */
+	SetLocalizedKeyDictionary(value string /* primitive/slice/pointer. */)
+	LocalizedKeyTable() string /* primitive/slice/pointer. */
+	SetLocalizedKeyTable(value string /* primitive/slice/pointer. */)
 	Content() unsafe.Pointer
 	SetContent(value unsafe.Pointer)
+	// methods:
 }
 
 // A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
@@ -125,7 +127,7 @@ func (d_ DictionaryController) SetArrangedObjects(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
-func (d_ DictionaryController) ExcludedKeys() string {
+func (d_ DictionaryController) ExcludedKeys() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("excludedKeys"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (d_ DictionaryController) ExcludedKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
-func (d_ DictionaryController) SetExcludedKeys(value string) {
+func (d_ DictionaryController) SetExcludedKeys(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setExcludedKeys:"), objc.String(value))
 }
 
@@ -144,7 +146,7 @@ func (d_ DictionaryController) SetExcludedKeys(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
-func (d_ DictionaryController) IncludedKeys() string {
+func (d_ DictionaryController) IncludedKeys() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("includedKeys"))
 	return rv
 }
@@ -154,7 +156,7 @@ func (d_ DictionaryController) IncludedKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
-func (d_ DictionaryController) SetIncludedKeys(value string) {
+func (d_ DictionaryController) SetIncludedKeys(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludedKeys:"), objc.String(value))
 }
 
@@ -163,7 +165,7 @@ func (d_ DictionaryController) SetIncludedKeys(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
-func (d_ DictionaryController) InitialKey() string {
+func (d_ DictionaryController) InitialKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("initialKey"))
 	return rv
 }
@@ -173,7 +175,7 @@ func (d_ DictionaryController) InitialKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
-func (d_ DictionaryController) SetInitialKey(value string) {
+func (d_ DictionaryController) SetInitialKey(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialKey:"), objc.String(value))
 }
 
@@ -201,7 +203,7 @@ func (d_ DictionaryController) SetInitialValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
-func (d_ DictionaryController) LocalizedKeyDictionary() string {
+func (d_ DictionaryController) LocalizedKeyDictionary() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("localizedKeyDictionary"))
 	return rv
 }
@@ -211,7 +213,7 @@ func (d_ DictionaryController) LocalizedKeyDictionary() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
-func (d_ DictionaryController) SetLocalizedKeyDictionary(value string) {
+func (d_ DictionaryController) SetLocalizedKeyDictionary(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyDictionary:"), objc.String(value))
 }
 
@@ -220,7 +222,7 @@ func (d_ DictionaryController) SetLocalizedKeyDictionary(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
-func (d_ DictionaryController) LocalizedKeyTable() string {
+func (d_ DictionaryController) LocalizedKeyTable() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("localizedKeyTable"))
 	return rv
 }
@@ -230,7 +232,7 @@ func (d_ DictionaryController) LocalizedKeyTable() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
-func (d_ DictionaryController) SetLocalizedKeyTable(value string) {
+func (d_ DictionaryController) SetLocalizedKeyTable(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyTable:"), objc.String(value))
 }
 

@@ -29,8 +29,10 @@ type _CompositeAttributeDescriptionClass struct {
 // An interface definition for the [CompositeAttributeDescription] class.
 type ICompositeAttributeDescription interface {
 	IAttributeDescription
-	Elements() []AttributeDescription
-	SetElements(value []AttributeDescription)
+	// properties:
+	Elements() []AttributeDescription /* primitive/slice/pointer. */
+	SetElements(value []AttributeDescription /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A description of an attribute that derives its value by composing other attributes.
@@ -92,7 +94,7 @@ func NewCompositeAttributeDescription() CompositeAttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) Elements() []AttributeDescription {
+func (c_ CompositeAttributeDescription) Elements() []AttributeDescription /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AttributeDescription](c_.ID, objc.Sel("elements"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (c_ CompositeAttributeDescription) Elements() []AttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCompositeAttributeDescription/elements
-func (c_ CompositeAttributeDescription) SetElements(value []AttributeDescription) {
+func (c_ CompositeAttributeDescription) SetElements(value []AttributeDescription /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

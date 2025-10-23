@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +30,16 @@ type _AXDataPointClass struct {
 // An interface definition for the [AXDataPoint] class.
 type IAXDataPoint interface {
 	objectivec.IObject
-	AdditionalValues() []AXDataPointValue
-	SetAdditionalValues(value []AXDataPointValue)
-	AttributedLabel() foundation.AttributedString
-	SetAttributedLabel(value foundation.IAttributedString)
-	Label() string
-	SetLabel(value string)
-	XValue() AXDataPointValue
-	SetXValue(value IAXDataPointValue)
-	YValue() AXDataPointValue
-	SetYValue(value IAXDataPointValue)
+	// properties:
+	AttributedLabel() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedLabel(value objc.IObject /* cross-framework: AttributedString */)
+	Label() string /* primitive/slice/pointer. */
+	SetLabel(value string /* primitive/slice/pointer. */)
+	XValue() objc.IObject /* cross-framework: AXDataPointValue */
+	SetXValue(value objc.IObject /* cross-framework: AXDataPointValue */)
+	YValue() objc.IObject /* cross-framework: AXDataPointValue */
+	SetYValue(value objc.IObject /* cross-framework: AXDataPointValue */)
+	// methods:
 }
 
 // An object that represents a single data point in a chart.
@@ -94,78 +93,12 @@ func NewAXDataPoint() AXDataPoint {
 
 
 
-// Creates a data point with the specified x- and y-values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:
-func NewAXDataPointWithXY(xValue IAXDataPointValue, yValue IAXDataPointValue) AXDataPoint {
-	instance := getAXDataPointClass().Alloc()
-	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:"), xValue, yValue)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a data point with the specified x-value, y-value, and additional values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:
-func NewAXDataPointWithXYAdditionalValues(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue) AXDataPoint {
-	instance := getAXDataPointClass().Alloc()
-	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:"), xValue, yValue, additionalValues)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Creates a data point with the specified x-value, y-value, additional values, and label.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/initWithX:y:additionalValues:label:
-func NewAXDataPointWithXYAdditionalValuesLabel(xValue IAXDataPointValue, yValue IAXDataPointValue, additionalValues []AXDataPointValue, label string) AXDataPoint {
-	instance := getAXDataPointClass().Alloc()
-	rv := objc.Send[AXDataPoint](instance.ID, objc.Sel("initWithX:y:additionalValues:label:"), xValue, yValue, additionalValues, objc.String(label))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// An array of values for additional axes for the data point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/additionalValues
-func (a_ AXDataPoint) AdditionalValues() []AXDataPointValue {
-	rv := objc.Send[[]AXDataPointValue](a_.ID, objc.Sel("additionalValues"))
-	return rv
-}
-
-
-// An array of values for additional axes for the data point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/additionalValues
-func (a_ AXDataPoint) SetAdditionalValues(value []AXDataPointValue) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdditionalValues:"), nsArray)
-}
-
-
 // An attributed version of the label for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/attributedLabel
-func (a_ AXDataPoint) AttributedLabel() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/attributedlabel
+func (a_ AXDataPoint) AttributedLabel() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
 }
 
@@ -173,8 +106,8 @@ func (a_ AXDataPoint) AttributedLabel() foundation.AttributedString {
 // An attributed version of the label for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/attributedLabel
-func (a_ AXDataPoint) SetAttributedLabel(value foundation.IAttributedString) {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/attributedlabel
+func (a_ AXDataPoint) SetAttributedLabel(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
 
@@ -182,8 +115,8 @@ func (a_ AXDataPoint) SetAttributedLabel(value foundation.IAttributedString) {
 // The label for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) Label() string {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/label
+func (a_ AXDataPoint) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("label"))
 	return rv
 }
@@ -192,8 +125,8 @@ func (a_ AXDataPoint) Label() string {
 // The label for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/label
-func (a_ AXDataPoint) SetLabel(value string) {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/label
+func (a_ AXDataPoint) SetLabel(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 
@@ -201,8 +134,8 @@ func (a_ AXDataPoint) SetLabel(value string) {
 // The value of the x-axis for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/xValue
-func (a_ AXDataPoint) XValue() AXDataPointValue {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+func (a_ AXDataPoint) XValue() objc.IObject /* cross-framework: AXDataPointValue */ {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("xValue"))
 	return rv
 }
@@ -211,8 +144,8 @@ func (a_ AXDataPoint) XValue() AXDataPointValue {
 // The value of the x-axis for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/xValue
-func (a_ AXDataPoint) SetXValue(value IAXDataPointValue) {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/xvalue
+func (a_ AXDataPoint) SetXValue(value objc.IObject /* cross-framework: AXDataPointValue */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setXValue:"), value)
 }
 
@@ -220,8 +153,8 @@ func (a_ AXDataPoint) SetXValue(value IAXDataPointValue) {
 // The value of the y-axis for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/yValue
-func (a_ AXDataPoint) YValue() AXDataPointValue {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+func (a_ AXDataPoint) YValue() objc.IObject /* cross-framework: AXDataPointValue */ {
 	rv := objc.Send[AXDataPointValue](a_.ID, objc.Sel("yValue"))
 	return rv
 }
@@ -230,9 +163,10 @@ func (a_ AXDataPoint) YValue() AXDataPointValue {
 // The value of the y-axis for the data point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataPoint/yValue
-func (a_ AXDataPoint) SetYValue(value IAXDataPointValue) {
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axdatapoint/yvalue
+func (a_ AXDataPoint) SetYValue(value objc.IObject /* cross-framework: AXDataPointValue */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setYValue:"), value)
 }
+
 
 

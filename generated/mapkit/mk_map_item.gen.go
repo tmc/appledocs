@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -38,25 +37,25 @@ type IMKMapItem interface {
 	SetAddress(value IMKAddress)
 	AddressRepresentations() IMKAddressRepresentations
 	SetAddressRepresentations(value IMKAddressRepresentations)
-	Identifier() MKMapItemIdentifier
-	SetIdentifier(value MKMapItemIdentifier)
-	IsCurrentLocation() bool
-	SetIsCurrentLocation(value bool)
-	Location() corelocation.Location
-	SetLocation(value corelocation.Location)
-	Name() string
-	SetName(value string)
-	PhoneNumber() string
-	SetPhoneNumber(value string)
-	Placemark() MKPlacemark
-	SetPlacemark(value MKPlacemark)
-	PointOfInterestCategory() MKPointOfInterestCategory
-	SetPointOfInterestCategory(value MKPointOfInterestCategory)
-	TimeZone() foundation.TimeZone
-	SetTimeZone(value foundation.TimeZone)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
-	MKMapItemTypeIdentifier() string
+	Identifier() objc.IObject /* cross-framework: MKMapItemIdentifier */
+	SetIdentifier(value objc.IObject /* cross-framework: MKMapItemIdentifier */)
+	IsCurrentLocation() bool /* primitive/slice/pointer. */
+	SetIsCurrentLocation(value bool /* primitive/slice/pointer. */)
+	Location() objc.IObject /* cross-framework: Location */
+	SetLocation(value objc.IObject /* cross-framework: Location */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	PhoneNumber() string /* primitive/slice/pointer. */
+	SetPhoneNumber(value string /* primitive/slice/pointer. */)
+	Placemark() objc.IObject /* cross-framework: MKPlacemark */
+	SetPlacemark(value objc.IObject /* cross-framework: MKPlacemark */)
+	PointOfInterestCategory() MKPointOfInterestCategory /* typedef */
+	SetPointOfInterestCategory(value MKPointOfInterestCategory /* typedef */)
+	TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */
+	SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	MKMapItemTypeIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -165,7 +164,7 @@ func (m_ MKMapItem) SetAddressRepresentations(value IMKAddressRepresentations) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/identifier-swift.property
-func (m_ MKMapItem) Identifier() MKMapItemIdentifier {
+func (m_ MKMapItem) Identifier() objc.IObject /* cross-framework: MKMapItemIdentifier */ {
 	rv := objc.Send[MKMapItemIdentifier](m_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -175,7 +174,7 @@ func (m_ MKMapItem) Identifier() MKMapItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/identifier-swift.property
-func (m_ MKMapItem) SetIdentifier(value MKMapItemIdentifier) {
+func (m_ MKMapItem) SetIdentifier(value objc.IObject /* cross-framework: MKMapItemIdentifier */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -184,7 +183,7 @@ func (m_ MKMapItem) SetIdentifier(value MKMapItemIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/iscurrentlocation
-func (m_ MKMapItem) IsCurrentLocation() bool {
+func (m_ MKMapItem) IsCurrentLocation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCurrentLocation"))
 	return rv
 }
@@ -194,7 +193,7 @@ func (m_ MKMapItem) IsCurrentLocation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/iscurrentlocation
-func (m_ MKMapItem) SetIsCurrentLocation(value bool) {
+func (m_ MKMapItem) SetIsCurrentLocation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCurrentLocation:"), value)
 }
 
@@ -203,8 +202,8 @@ func (m_ MKMapItem) SetIsCurrentLocation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/location
-func (m_ MKMapItem) Location() corelocation.Location {
-	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
+func (m_ MKMapItem) Location() objc.IObject /* cross-framework: Location */ {
+	rv := objc.Send[Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -213,7 +212,7 @@ func (m_ MKMapItem) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/location
-func (m_ MKMapItem) SetLocation(value corelocation.Location) {
+func (m_ MKMapItem) SetLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -222,7 +221,7 @@ func (m_ MKMapItem) SetLocation(value corelocation.Location) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItem) Name() string {
+func (m_ MKMapItem) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
@@ -232,7 +231,7 @@ func (m_ MKMapItem) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/name
-func (m_ MKMapItem) SetName(value string) {
+func (m_ MKMapItem) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -241,7 +240,7 @@ func (m_ MKMapItem) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItem) PhoneNumber() string {
+func (m_ MKMapItem) PhoneNumber() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
@@ -251,7 +250,7 @@ func (m_ MKMapItem) PhoneNumber() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/phonenumber
-func (m_ MKMapItem) SetPhoneNumber(value string) {
+func (m_ MKMapItem) SetPhoneNumber(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPhoneNumber:"), objc.String(value))
 }
 
@@ -260,7 +259,7 @@ func (m_ MKMapItem) SetPhoneNumber(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/placemark
-func (m_ MKMapItem) Placemark() MKPlacemark {
+func (m_ MKMapItem) Placemark() objc.IObject /* cross-framework: MKPlacemark */ {
 	rv := objc.Send[MKPlacemark](m_.ID, objc.Sel("placemark"))
 	return rv
 }
@@ -270,7 +269,7 @@ func (m_ MKMapItem) Placemark() MKPlacemark {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/placemark
-func (m_ MKMapItem) SetPlacemark(value MKPlacemark) {
+func (m_ MKMapItem) SetPlacemark(value objc.IObject /* cross-framework: MKPlacemark */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlacemark:"), value)
 }
 
@@ -279,7 +278,7 @@ func (m_ MKMapItem) SetPlacemark(value MKPlacemark) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
-func (m_ MKMapItem) PointOfInterestCategory() MKPointOfInterestCategory {
+func (m_ MKMapItem) PointOfInterestCategory() MKPointOfInterestCategory /* typedef */ {
 	rv := objc.Send[MKPointOfInterestCategory](m_.ID, objc.Sel("pointOfInterestCategory"))
 	return rv
 }
@@ -289,7 +288,7 @@ func (m_ MKMapItem) PointOfInterestCategory() MKPointOfInterestCategory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/pointofinterestcategory
-func (m_ MKMapItem) SetPointOfInterestCategory(value MKPointOfInterestCategory) {
+func (m_ MKMapItem) SetPointOfInterestCategory(value MKPointOfInterestCategory /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
 }
 
@@ -298,7 +297,7 @@ func (m_ MKMapItem) SetPointOfInterestCategory(value MKPointOfInterestCategory) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
-func (m_ MKMapItem) TimeZone() foundation.TimeZone {
+func (m_ MKMapItem) TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[foundation.TimeZone](m_.ID, objc.Sel("timeZone"))
 	return rv
 }
@@ -308,7 +307,7 @@ func (m_ MKMapItem) TimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/timezone
-func (m_ MKMapItem) SetTimeZone(value foundation.TimeZone) {
+func (m_ MKMapItem) SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
 }
 
@@ -317,7 +316,7 @@ func (m_ MKMapItem) SetTimeZone(value foundation.TimeZone) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
-func (m_ MKMapItem) Url() foundation.URL {
+func (m_ MKMapItem) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
 	return rv
 }
@@ -327,7 +326,7 @@ func (m_ MKMapItem) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitem/url
-func (m_ MKMapItem) SetUrl(value foundation.URL) {
+func (m_ MKMapItem) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -336,7 +335,7 @@ func (m_ MKMapItem) SetUrl(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier
-func (m_ MKMapItem) MKMapItemTypeIdentifier() string {
+func (m_ MKMapItem) MKMapItemTypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("MKMapItemTypeIdentifier"))
 	return rv
 }

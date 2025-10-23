@@ -29,7 +29,9 @@ type _AXMathExpressionTableRowClass struct {
 // An interface definition for the [AXMathExpressionTableRow] class.
 type IAXMathExpressionTableRow interface {
 	IAXMathExpression
-	Expressions() []AXMathExpression
+	// properties:
+	Expressions() []AXMathExpression /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -82,7 +84,7 @@ func NewAXMathExpressionTableRow() AXMathExpressionTableRow {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableRow/init(expressions:)
-func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression) AXMathExpressionTableRow {
+func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression /* primitive/slice/pointer. */) AXMathExpressionTableRow {
 	instance := getAXMathExpressionTableRowClass().Alloc()
 	rv := objc.Send[AXMathExpressionTableRow](instance.ID, objc.Sel("initWithExpressions:"), expressions)
 	rv.Autorelease()
@@ -93,7 +95,7 @@ func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableRow/expressions
-func (a_ AXMathExpressionTableRow) Expressions() []AXMathExpression {
+func (a_ AXMathExpressionTableRow) Expressions() []AXMathExpression /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv
 }

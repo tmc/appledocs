@@ -29,12 +29,14 @@ type _ParameterKeyClass struct {
 // An interface definition for the [ParameterKey] class.
 type IParameterKey interface {
 	IKey
+	// properties:
 	Configuration() IMLModelConfiguration
 	SetConfiguration(value IMLModelConfiguration)
 	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
 	Parameters() IMLParameterKey
 	SetParameters(value IMLParameterKey)
+	// methods:
 }
 
 // The keys for the parameter dictionary in a model configuration or a model update context.

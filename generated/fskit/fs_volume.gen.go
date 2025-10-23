@@ -30,10 +30,12 @@ type _FSVolumeClass struct {
 // An interface definition for the [FSVolume] class.
 type IFSVolume interface {
 	objectivec.IObject
+	// properties:
 	Name() IFSFileName
 	SetName(value IFSFileName)
-	VolumeID() FSVolumeIdentifier
-	SetVolumeID(value FSVolumeIdentifier)
+	VolumeID() objc.IObject /* cross-framework: FSVolumeIdentifier */
+	SetVolumeID(value objc.IObject /* cross-framework: FSVolumeIdentifier */)
+	// methods:
 }
 
 // A directory structure for files and folders.
@@ -112,7 +114,7 @@ func (f_ FSVolume) SetName(value IFSFileName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/volumeid
-func (f_ FSVolume) VolumeID() FSVolumeIdentifier {
+func (f_ FSVolume) VolumeID() objc.IObject /* cross-framework: FSVolumeIdentifier */ {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeID"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (f_ FSVolume) VolumeID() FSVolumeIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/volumeid
-func (f_ FSVolume) SetVolumeID(value FSVolumeIdentifier) {
+func (f_ FSVolume) SetVolumeID(value objc.IObject /* cross-framework: FSVolumeIdentifier */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeID:"), value)
 }
 

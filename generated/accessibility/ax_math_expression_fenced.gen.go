@@ -29,9 +29,11 @@ type _AXMathExpressionFencedClass struct {
 // An interface definition for the [AXMathExpressionFenced] class.
 type IAXMathExpressionFenced interface {
 	IAXMathExpression
-	CloseString() string
-	Expressions() []AXMathExpression
-	OpenString() string
+	// properties:
+	CloseString() string /* primitive/slice/pointer. */
+	Expressions() []AXMathExpression /* primitive/slice/pointer. */
+	OpenString() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -84,7 +86,7 @@ func NewAXMathExpressionFenced() AXMathExpressionFenced {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/init(expressions:open:close:)
-func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression, openString string, closeString string) AXMathExpressionFenced {
+func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions []AXMathExpression /* primitive/slice/pointer. */, openString string /* primitive/slice/pointer. */, closeString string /* primitive/slice/pointer. */) AXMathExpressionFenced {
 	instance := getAXMathExpressionFencedClass().Alloc()
 	rv := objc.Send[AXMathExpressionFenced](instance.ID, objc.Sel("initWithExpressions:openString:closeString:"), expressions, objc.String(openString), objc.String(closeString))
 	rv.Autorelease()
@@ -95,7 +97,7 @@ func NewAXMathExpressionFencedWithExpressionsOpenStringCloseString(expressions [
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/closeString
-func (a_ AXMathExpressionFenced) CloseString() string {
+func (a_ AXMathExpressionFenced) CloseString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("closeString"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (a_ AXMathExpressionFenced) CloseString() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/expressions
-func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression {
+func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (a_ AXMathExpressionFenced) Expressions() []AXMathExpression {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFenced/openString
-func (a_ AXMathExpressionFenced) OpenString() string {
+func (a_ AXMathExpressionFenced) OpenString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("openString"))
 	return rv
 }

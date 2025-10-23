@@ -30,6 +30,8 @@ type _ObstacleClass struct {
 // An interface definition for the [Obstacle] class.
 type IObstacle interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract base class for objects representing impassable areas in a game world.

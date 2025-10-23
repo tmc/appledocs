@@ -30,10 +30,12 @@ type _KeyClass struct {
 // An interface definition for the [Key] class.
 type IKey interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	Scope() string
-	SetScope(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	Scope() string /* primitive/slice/pointer. */
+	SetScope(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An abstract base class for machine learning key types.
@@ -93,7 +95,7 @@ func NewKey() Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-func (k_ Key) Name() string {
+func (k_ Key) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](k_.ID, objc.Sel("name"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (k_ Key) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/name
-func (k_ Key) SetName(value string) {
+func (k_ Key) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -112,7 +114,7 @@ func (k_ Key) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) Scope() string {
+func (k_ Key) Scope() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](k_.ID, objc.Sel("scope"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (k_ Key) Scope() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlkey/scope
-func (k_ Key) SetScope(value string) {
+func (k_ Key) SetScope(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setScope:"), objc.String(value))
 }
 

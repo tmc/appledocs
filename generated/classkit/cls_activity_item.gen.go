@@ -29,9 +29,11 @@ type _SActivityItemClass struct {
 // An interface definition for the [SActivityItem] class.
 type ISActivityItem interface {
 	ISObject
-	Identifier() string
-	Title() string
-	SetTitle(value string)
+	// properties:
+	Identifier() string /* primitive/slice/pointer. */
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An abstract base class for gathering information about an activity.
@@ -93,7 +95,7 @@ func NewSActivityItem() SActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
-func (s_ SActivityItem) Identifier() string {
+func (s_ SActivityItem) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (s_ SActivityItem) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) Title() string {
+func (s_ SActivityItem) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (s_ SActivityItem) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) SetTitle(value string) {
+func (s_ SActivityItem) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

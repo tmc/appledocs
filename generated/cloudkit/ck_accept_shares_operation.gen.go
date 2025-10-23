@@ -30,6 +30,7 @@ type _CKAcceptSharesOperationClass struct {
 // An interface definition for the [CKAcceptSharesOperation] class.
 type ICKAcceptSharesOperation interface {
 	ICKOperation
+	// properties:
 	AcceptSharesCompletionBlock() unsafe.Pointer
 	SetAcceptSharesCompletionBlock(value unsafe.Pointer)
 	AcceptSharesResultBlock() unsafe.Pointer
@@ -38,15 +39,16 @@ type ICKAcceptSharesOperation interface {
 	SetPerShareCompletionBlock(value unsafe.Pointer)
 	PerShareResultBlock() unsafe.Pointer
 	SetPerShareResultBlock(value unsafe.Pointer)
-	ShareMetadatas() CKShareMetadata
-	SetShareMetadatas(value CKShareMetadata)
-	CKPartialErrorsByItemIDKey() string
-	ContainerIdentifier() string
-	SetContainerIdentifier(value string)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
-	UserInfo() string
-	SetUserInfo(value string)
+	ShareMetadatas() objc.IObject /* cross-framework: CKShareMetadata */
+	SetShareMetadatas(value objc.IObject /* cross-framework: CKShareMetadata */)
+	CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */
+	ContainerIdentifier() string /* primitive/slice/pointer. */
+	SetContainerIdentifier(value string /* primitive/slice/pointer. */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	UserInfo() string /* primitive/slice/pointer. */
+	SetUserInfo(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An operation that confirms a user’s participation in a share.
@@ -176,7 +178,7 @@ func (c_ CKAcceptSharesOperation) SetPerShareResultBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
-func (c_ CKAcceptSharesOperation) ShareMetadatas() CKShareMetadata {
+func (c_ CKAcceptSharesOperation) ShareMetadatas() objc.IObject /* cross-framework: CKShareMetadata */ {
 	rv := objc.Send[CKShareMetadata](c_.ID, objc.Sel("shareMetadatas"))
 	return rv
 }
@@ -186,7 +188,7 @@ func (c_ CKAcceptSharesOperation) ShareMetadatas() CKShareMetadata {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
-func (c_ CKAcceptSharesOperation) SetShareMetadatas(value CKShareMetadata) {
+func (c_ CKAcceptSharesOperation) SetShareMetadatas(value objc.IObject /* cross-framework: CKShareMetadata */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareMetadatas:"), value)
 }
 
@@ -195,7 +197,7 @@ func (c_ CKAcceptSharesOperation) SetShareMetadatas(value CKShareMetadata) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
-func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string {
+func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
 }
@@ -205,7 +207,7 @@ func (c_ CKAcceptSharesOperation) CKPartialErrorsByItemIDKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
-func (c_ CKAcceptSharesOperation) ContainerIdentifier() string {
+func (c_ CKAcceptSharesOperation) ContainerIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (c_ CKAcceptSharesOperation) ContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/metadata/containeridentifier
-func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string) {
+func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
 }
 
@@ -224,7 +226,7 @@ func (c_ CKAcceptSharesOperation) SetContainerIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) Url() foundation.URL {
+func (c_ CKAcceptSharesOperation) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("url"))
 	return rv
 }
@@ -234,7 +236,7 @@ func (c_ CKAcceptSharesOperation) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) SetUrl(value foundation.URL) {
+func (c_ CKAcceptSharesOperation) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -243,7 +245,7 @@ func (c_ CKAcceptSharesOperation) SetUrl(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKAcceptSharesOperation) UserInfo() string {
+func (c_ CKAcceptSharesOperation) UserInfo() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (c_ CKAcceptSharesOperation) UserInfo() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKAcceptSharesOperation) SetUserInfo(value string) {
+func (c_ CKAcceptSharesOperation) SetUserInfo(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }
 

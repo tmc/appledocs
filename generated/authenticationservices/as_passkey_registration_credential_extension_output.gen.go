@@ -30,7 +30,9 @@ type _PasskeyRegistrationCredentialExtensionOutputClass struct {
 // An interface definition for the [PasskeyRegistrationCredentialExtensionOutput] class.
 type IPasskeyRegistrationCredentialExtensionOutput interface {
 	objectivec.IObject
+	// properties:
 	LargeBlobRegistrationOutput() IASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput
+	// methods:
 }
 
 // This class encapsulates output for various WebAuthn extensions used during passkey registration.

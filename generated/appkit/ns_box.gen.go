@@ -30,35 +30,37 @@ type _BoxClass struct {
 // An interface definition for the [Box] class.
 type IBox interface {
 	IView
+	// properties:
 	BorderColor() IColor
 	SetBorderColor(value IColor)
 	BorderRect() coregraphics.CGRect
-	BorderType() unsafe.Pointer
-	SetBorderType(value unsafe.Pointer)
-	BorderWidth() float64
-	SetBorderWidth(value float64)
-	BoxType() NSBoxType
-	SetBoxType(value NSBoxType)
+	BorderType() BorderType
+	SetBorderType(value BorderType)
+	BorderWidth() float64 /* primitive/slice/pointer. */
+	SetBorderWidth(value float64 /* primitive/slice/pointer. */)
+	BoxType() BoxType
+	SetBoxType(value BoxType)
 	ContentView() IView
 	SetContentView(value IView)
 	ContentViewMargins() coregraphics.CGSize
 	SetContentViewMargins(value coregraphics.CGSize)
-	CornerRadius() float64
-	SetCornerRadius(value float64)
+	CornerRadius() float64 /* primitive/slice/pointer. */
+	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
 	FillColor() IColor
 	SetFillColor(value IColor)
-	Transparent() bool
-	SetTransparent(value bool)
-	Title() string
-	SetTitle(value string)
+	Transparent() bool /* primitive/slice/pointer. */
+	SetTransparent(value bool /* primitive/slice/pointer. */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
 	TitleCell() objc.ID
 	TitleFont() IFont
 	SetTitleFont(value IFont)
-	TitlePosition() NSTitlePosition
-	SetTitlePosition(value NSTitlePosition)
+	TitlePosition() TitlePosition
+	SetTitlePosition(value TitlePosition)
 	TitleRect() coregraphics.CGRect
-	IsTransparent() bool
-	SetIsTransparent(value bool)
+	IsTransparent() bool /* primitive/slice/pointer. */
+	SetIsTransparent(value bool /* primitive/slice/pointer. */)
+	// methods:
 	SetFrameFromContentFrame(contentFrame coregraphics.CGRect)
 	SizeToFit()
 }
@@ -169,8 +171,8 @@ func (b_ Box) BorderRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) BorderType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("borderType"))
+func (b_ Box) BorderType() BorderType {
+	rv := objc.Send[BorderType](b_.ID, objc.Sel("borderType"))
 	return rv
 }
 
@@ -179,7 +181,7 @@ func (b_ Box) BorderType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderType
-func (b_ Box) SetBorderType(value unsafe.Pointer) {
+func (b_ Box) SetBorderType(value BorderType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderType:"), value)
 }
 
@@ -188,7 +190,7 @@ func (b_ Box) SetBorderType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderWidth
-func (b_ Box) BorderWidth() float64 {
+func (b_ Box) BorderWidth() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](b_.ID, objc.Sel("borderWidth"))
 	return rv
 }
@@ -198,7 +200,7 @@ func (b_ Box) BorderWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/borderWidth
-func (b_ Box) SetBorderWidth(value float64) {
+func (b_ Box) SetBorderWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderWidth:"), value)
 }
 
@@ -207,8 +209,8 @@ func (b_ Box) SetBorderWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) BoxType() NSBoxType {
-	rv := objc.Send[NSBoxType](b_.ID, objc.Sel("boxType"))
+func (b_ Box) BoxType() BoxType {
+	rv := objc.Send[BoxType](b_.ID, objc.Sel("boxType"))
 	return rv
 }
 
@@ -217,7 +219,7 @@ func (b_ Box) BoxType() NSBoxType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/boxType-swift.property
-func (b_ Box) SetBoxType(value NSBoxType) {
+func (b_ Box) SetBoxType(value BoxType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBoxType:"), value)
 }
 
@@ -264,7 +266,7 @@ func (b_ Box) SetContentViewMargins(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/cornerRadius
-func (b_ Box) CornerRadius() float64 {
+func (b_ Box) CornerRadius() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](b_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
@@ -274,7 +276,7 @@ func (b_ Box) CornerRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/cornerRadius
-func (b_ Box) SetCornerRadius(value float64) {
+func (b_ Box) SetCornerRadius(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCornerRadius:"), value)
 }
 
@@ -302,7 +304,7 @@ func (b_ Box) SetFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/isTransparent
-func (b_ Box) Transparent() bool {
+func (b_ Box) Transparent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("transparent"))
 	return rv
 }
@@ -312,7 +314,7 @@ func (b_ Box) Transparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/isTransparent
-func (b_ Box) SetTransparent(value bool) {
+func (b_ Box) SetTransparent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTransparent:"), value)
 }
 
@@ -321,7 +323,7 @@ func (b_ Box) SetTransparent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) Title() string {
+func (b_ Box) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
 }
@@ -331,7 +333,7 @@ func (b_ Box) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) SetTitle(value string) {
+func (b_ Box) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -369,8 +371,8 @@ func (b_ Box) SetTitleFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) TitlePosition() NSTitlePosition {
-	rv := objc.Send[NSTitlePosition](b_.ID, objc.Sel("titlePosition"))
+func (b_ Box) TitlePosition() TitlePosition {
+	rv := objc.Send[TitlePosition](b_.ID, objc.Sel("titlePosition"))
 	return rv
 }
 
@@ -379,7 +381,7 @@ func (b_ Box) TitlePosition() NSTitlePosition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/titlePosition-swift.property
-func (b_ Box) SetTitlePosition(value NSTitlePosition) {
+func (b_ Box) SetTitlePosition(value TitlePosition) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitlePosition:"), value)
 }
 
@@ -398,7 +400,7 @@ func (b_ Box) TitleRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbox/istransparent
-func (b_ Box) IsTransparent() bool {
+func (b_ Box) IsTransparent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
 	return rv
 }
@@ -408,7 +410,7 @@ func (b_ Box) IsTransparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbox/istransparent
-func (b_ Box) SetIsTransparent(value bool) {
+func (b_ Box) SetIsTransparent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
 }
 

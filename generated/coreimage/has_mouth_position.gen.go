@@ -30,6 +30,8 @@ type _hasMouthPositionClass struct {
 // An interface definition for the [hasMouthPosition] class.
 type IhasMouthPosition interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

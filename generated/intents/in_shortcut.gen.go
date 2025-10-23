@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +31,9 @@ type _INShortcutClass struct {
 type IINShortcut interface {
 	objectivec.IObject
 	// properties:
-	UserActivity() foundation.UserActivity
-	Intent() INIntent
-	SetIntent(value INIntent)
+	UserActivity() UserActivity /* not a class type */
+	Intent() INIntent /* already interface */
+	SetIntent(value INIntent /* already interface */)
 	// methods:
 }
 
@@ -93,7 +92,7 @@ func NewINShortcut() INShortcut {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/init(intent:)
-func NewINShortcutWithIntent(intent INIntent) INShortcut {
+func NewINShortcutWithIntent(intent INIntent /* already interface */) INShortcut {
 	instance := getINShortcutClass().Alloc()
 	rv := objc.Send[INShortcut](instance.ID, objc.Sel("initWithIntent:"), intent)
 	rv.Autorelease()
@@ -106,8 +105,8 @@ func NewINShortcutWithIntent(intent INIntent) INShortcut {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/userActivity
-func (i_ INShortcut) UserActivity() foundation.UserActivity {
-	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
+func (i_ INShortcut) UserActivity() UserActivity /* not a class type */ {
+	rv := objc.Send[UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -116,7 +115,7 @@ func (i_ INShortcut) UserActivity() foundation.UserActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inshortcutreference/intent
-func (i_ INShortcut) Intent() INIntent {
+func (i_ INShortcut) Intent() INIntent /* already interface */ {
 	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
 	return rv
 }
@@ -126,7 +125,7 @@ func (i_ INShortcut) Intent() INIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inshortcutreference/intent
-func (i_ INShortcut) SetIntent(value INIntent) {
+func (i_ INShortcut) SetIntent(value INIntent /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
 

@@ -31,28 +31,30 @@ type _CNContactViewControllerClass struct {
 // An interface definition for the [CNContactViewController] class.
 type ICNContactViewController interface {
 	appkit.IViewController
-	AllowsActions() bool
-	SetAllowsActions(value bool)
-	AllowsEditing() bool
-	SetAllowsEditing(value bool)
-	AlternateName() string
-	SetAlternateName(value string)
-	Contact() contacts.CNContact
-	ContactStore() contacts.CNContactStore
-	SetContactStore(value contacts.CNContactStore)
+	// properties:
+	AllowsActions() bool /* primitive/slice/pointer. */
+	SetAllowsActions(value bool /* primitive/slice/pointer. */)
+	AllowsEditing() bool /* primitive/slice/pointer. */
+	SetAllowsEditing(value bool /* primitive/slice/pointer. */)
+	AlternateName() string /* primitive/slice/pointer. */
+	SetAlternateName(value string /* primitive/slice/pointer. */)
+	Contact() contacts.objc.IObject /* cross-framework: CNContact */
+	ContactStore() contacts.objc.IObject /* cross-framework: CNContactStore */
+	SetContactStore(value contacts.objc.IObject /* cross-framework: CNContactStore */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DisplayedPropertyKeys() objc.ID
 	SetDisplayedPropertyKeys(value objc.ID)
-	Message() string
-	SetMessage(value string)
-	ParentContainer() contacts.CNContainer
-	SetParentContainer(value contacts.CNContainer)
-	ParentGroup() contacts.CNGroup
-	SetParentGroup(value contacts.CNGroup)
-	ShouldShowLinkedContacts() bool
-	SetShouldShowLinkedContacts(value bool)
-	HighlightPropertyWithKeyIdentifier(key string, identifier string)
+	Message() string /* primitive/slice/pointer. */
+	SetMessage(value string /* primitive/slice/pointer. */)
+	ParentContainer() contacts.objc.IObject /* cross-framework: CNContainer */
+	SetParentContainer(value contacts.objc.IObject /* cross-framework: CNContainer */)
+	ParentGroup() contacts.objc.IObject /* cross-framework: CNGroup */
+	SetParentGroup(value contacts.objc.IObject /* cross-framework: CNGroup */)
+	ShouldShowLinkedContacts() bool /* primitive/slice/pointer. */
+	SetShouldShowLinkedContacts(value bool /* primitive/slice/pointer. */)
+	// methods:
+	HighlightPropertyWithKeyIdentifier(key string /* primitive/slice/pointer. */, identifier string /* primitive/slice/pointer. */)
 }
 
 // A view controller that displays a new, unknown, or existing contact.
@@ -114,7 +116,7 @@ func NewCNContactViewController() CNContactViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func NewCNContactViewControllerForContact(contact contacts.CNContact) CNContactViewController {
+func NewCNContactViewControllerForContact(contact contacts.objc.IObject /* cross-framework CNContact */) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -124,7 +126,7 @@ func NewCNContactViewControllerForContact(contact contacts.CNContact) CNContactV
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func NewCNContactViewControllerForNewContact(contact contacts.CNContact) CNContactViewController {
+func NewCNContactViewControllerForNewContact(contact contacts.objc.IObject /* cross-framework CNContact */) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -134,7 +136,7 @@ func NewCNContactViewControllerForNewContact(contact contacts.CNContact) CNConta
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func NewCNContactViewControllerForUnknownContact(contact contacts.CNContact) CNContactViewController {
+func NewCNContactViewControllerForUnknownContact(contact contacts.objc.IObject /* cross-framework CNContact */) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -155,7 +157,7 @@ func (cc _CNContactViewControllerClass) DescriptorForRequiredKeys() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contacts.CNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contacts.objc.IObject /* cross-framework CNContact */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -165,7 +167,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact contacts.CNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact contacts.objc.IObject /* cross-framework CNContact */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -175,7 +177,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact contacts.CNContact) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact contacts.objc.IObject /* cross-framework CNContact */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -185,7 +187,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/highlightProperty(withKey:identifier:)
-func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key string, identifier string) {
+func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key string /* primitive/slice/pointer. */, identifier string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("highlightPropertyWithKey:identifier:"), objc.String(key), objc.String(identifier))
 }
 
@@ -194,7 +196,7 @@ func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key string,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/allowsActions
-func (c_ CNContactViewController) AllowsActions() bool {
+func (c_ CNContactViewController) AllowsActions() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsActions"))
 	return rv
 }
@@ -204,7 +206,7 @@ func (c_ CNContactViewController) AllowsActions() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/allowsActions
-func (c_ CNContactViewController) SetAllowsActions(value bool) {
+func (c_ CNContactViewController) SetAllowsActions(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsActions:"), value)
 }
 
@@ -213,7 +215,7 @@ func (c_ CNContactViewController) SetAllowsActions(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/allowsEditing
-func (c_ CNContactViewController) AllowsEditing() bool {
+func (c_ CNContactViewController) AllowsEditing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsEditing"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (c_ CNContactViewController) AllowsEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/allowsEditing
-func (c_ CNContactViewController) SetAllowsEditing(value bool) {
+func (c_ CNContactViewController) SetAllowsEditing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsEditing:"), value)
 }
 
@@ -232,7 +234,7 @@ func (c_ CNContactViewController) SetAllowsEditing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) AlternateName() string {
+func (c_ CNContactViewController) AlternateName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("alternateName"))
 	return rv
 }
@@ -242,7 +244,7 @@ func (c_ CNContactViewController) AlternateName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) SetAlternateName(value string) {
+func (c_ CNContactViewController) SetAlternateName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), objc.String(value))
 }
 
@@ -251,7 +253,7 @@ func (c_ CNContactViewController) SetAlternateName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contact
-func (c_ CNContactViewController) Contact() contacts.CNContact {
+func (c_ CNContactViewController) Contact() contacts.objc.IObject /* cross-framework: CNContact */ {
 	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
@@ -261,7 +263,7 @@ func (c_ CNContactViewController) Contact() contacts.CNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) ContactStore() contacts.CNContactStore {
+func (c_ CNContactViewController) ContactStore() contacts.objc.IObject /* cross-framework: CNContactStore */ {
 	rv := objc.Send[contacts.CNContactStore](c_.ID, objc.Sel("contactStore"))
 	return rv
 }
@@ -271,7 +273,7 @@ func (c_ CNContactViewController) ContactStore() contacts.CNContactStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) SetContactStore(value contacts.CNContactStore) {
+func (c_ CNContactViewController) SetContactStore(value contacts.objc.IObject /* cross-framework: CNContactStore */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactStore:"), value)
 }
 
@@ -318,7 +320,7 @@ func (c_ CNContactViewController) SetDisplayedPropertyKeys(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) Message() string {
+func (c_ CNContactViewController) Message() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("message"))
 	return rv
 }
@@ -328,7 +330,7 @@ func (c_ CNContactViewController) Message() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) SetMessage(value string) {
+func (c_ CNContactViewController) SetMessage(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 
@@ -337,7 +339,7 @@ func (c_ CNContactViewController) SetMessage(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) ParentContainer() contacts.CNContainer {
+func (c_ CNContactViewController) ParentContainer() contacts.objc.IObject /* cross-framework: CNContainer */ {
 	rv := objc.Send[contacts.CNContainer](c_.ID, objc.Sel("parentContainer"))
 	return rv
 }
@@ -347,7 +349,7 @@ func (c_ CNContactViewController) ParentContainer() contacts.CNContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) SetParentContainer(value contacts.CNContainer) {
+func (c_ CNContactViewController) SetParentContainer(value contacts.objc.IObject /* cross-framework: CNContainer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentContainer:"), value)
 }
 
@@ -356,7 +358,7 @@ func (c_ CNContactViewController) SetParentContainer(value contacts.CNContainer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) ParentGroup() contacts.CNGroup {
+func (c_ CNContactViewController) ParentGroup() contacts.objc.IObject /* cross-framework: CNGroup */ {
 	rv := objc.Send[contacts.CNGroup](c_.ID, objc.Sel("parentGroup"))
 	return rv
 }
@@ -366,7 +368,7 @@ func (c_ CNContactViewController) ParentGroup() contacts.CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) SetParentGroup(value contacts.CNGroup) {
+func (c_ CNContactViewController) SetParentGroup(value contacts.objc.IObject /* cross-framework: CNGroup */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentGroup:"), value)
 }
 
@@ -375,7 +377,7 @@ func (c_ CNContactViewController) SetParentGroup(value contacts.CNGroup) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/shouldShowLinkedContacts
-func (c_ CNContactViewController) ShouldShowLinkedContacts() bool {
+func (c_ CNContactViewController) ShouldShowLinkedContacts() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldShowLinkedContacts"))
 	return rv
 }
@@ -385,7 +387,7 @@ func (c_ CNContactViewController) ShouldShowLinkedContacts() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/shouldShowLinkedContacts
-func (c_ CNContactViewController) SetShouldShowLinkedContacts(value bool) {
+func (c_ CNContactViewController) SetShouldShowLinkedContacts(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldShowLinkedContacts:"), value)
 }
 

@@ -30,8 +30,10 @@ type _PersistentCloudKitContainerEventRequestClass struct {
 // An interface definition for the [PersistentCloudKitContainerEventRequest] class.
 type IPersistentCloudKitContainerEventRequest interface {
 	IPersistentStoreRequest
-	ResultType() NSPersistentCloudKitContainerEventResultType
-	SetResultType(value NSPersistentCloudKitContainerEventResultType)
+	// properties:
+	ResultType() PersistentCloudKitContainerEventResultType
+	SetResultType(value PersistentCloudKitContainerEventResultType)
+	// methods:
 }
 
 // A request to fetch setup, import, or export events in a persistent CloudKit container.
@@ -101,7 +103,7 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(ev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/fetchEvents(after:)-5izg7
-func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date foundation.NSDate) unsafe.Pointer {
+func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(date foundation.objc.IObject /* cross-framework NSDate */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterDate:"), date)
 	return rv
 }
@@ -131,8 +133,8 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
-func (p_ PersistentCloudKitContainerEventRequest) ResultType() NSPersistentCloudKitContainerEventResultType {
-	rv := objc.Send[NSPersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKitContainerEventResultType {
+	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -141,7 +143,7 @@ func (p_ PersistentCloudKitContainerEventRequest) ResultType() NSPersistentCloud
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerEventRequest/resultType
-func (p_ PersistentCloudKitContainerEventRequest) SetResultType(value NSPersistentCloudKitContainerEventResultType) {
+func (p_ PersistentCloudKitContainerEventRequest) SetResultType(value PersistentCloudKitContainerEventResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 

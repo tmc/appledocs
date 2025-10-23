@@ -30,6 +30,8 @@ type _AccountAuthenticationModificationRequestClass struct {
 // An interface definition for the [AccountAuthenticationModificationRequest] class.
 type IAccountAuthenticationModificationRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A request to modify an account’s authentication properties.

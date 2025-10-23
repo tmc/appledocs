@@ -30,8 +30,10 @@ type _CNDecisionClass struct {
 // An interface definition for the [CNDecision] class.
 type ICNDecision interface {
 	objectivec.IObject
-	GroupDecision() bool
-	StrongDecision() bool
+	// properties:
+	GroupDecision() bool /* primitive/slice/pointer. */
+	StrongDecision() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.
@@ -89,7 +91,7 @@ func NewCNDecision() CNDecision {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/groupDecision
-func (c_ CNDecision) GroupDecision() bool {
+func (c_ CNDecision) GroupDecision() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("groupDecision"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (c_ CNDecision) GroupDecision() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/strongDecision
-func (c_ CNDecision) StrongDecision() bool {
+func (c_ CNDecision) StrongDecision() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("strongDecision"))
 	return rv
 }

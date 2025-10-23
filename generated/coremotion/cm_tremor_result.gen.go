@@ -31,14 +31,16 @@ type _TremorResultClass struct {
 // An interface definition for the [TremorResult] class.
 type ITremorResult interface {
 	objectivec.IObject
-	EndDate() foundation.NSDate
-	PercentMild() float32
-	PercentModerate() float32
-	PercentNone() float32
-	PercentSlight() float32
-	PercentStrong() float32
-	PercentUnknown() float32
-	StartDate() foundation.NSDate
+	// properties:
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	PercentMild() float32 /* primitive/slice/pointer. */
+	PercentModerate() float32 /* primitive/slice/pointer. */
+	PercentNone() float32 /* primitive/slice/pointer. */
+	PercentSlight() float32 /* primitive/slice/pointer. */
+	PercentStrong() float32 /* primitive/slice/pointer. */
+	PercentUnknown() float32 /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	// methods:
 }
 
 // A result object that contains data about the presence and strength of tremors during a one-minute interval.
@@ -98,7 +100,7 @@ func NewTremorResult() TremorResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/endDate
-func (t_ TremorResult) EndDate() foundation.NSDate {
+func (t_ TremorResult) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (t_ TremorResult) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentMild
-func (t_ TremorResult) PercentMild() float32 {
+func (t_ TremorResult) PercentMild() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentMild"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (t_ TremorResult) PercentMild() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentModerate
-func (t_ TremorResult) PercentModerate() float32 {
+func (t_ TremorResult) PercentModerate() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentModerate"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (t_ TremorResult) PercentModerate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentNone
-func (t_ TremorResult) PercentNone() float32 {
+func (t_ TremorResult) PercentNone() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentNone"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (t_ TremorResult) PercentNone() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentSlight
-func (t_ TremorResult) PercentSlight() float32 {
+func (t_ TremorResult) PercentSlight() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentSlight"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (t_ TremorResult) PercentSlight() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentStrong
-func (t_ TremorResult) PercentStrong() float32 {
+func (t_ TremorResult) PercentStrong() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentStrong"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (t_ TremorResult) PercentStrong() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/percentUnknown
-func (t_ TremorResult) PercentUnknown() float32 {
+func (t_ TremorResult) PercentUnknown() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](t_.ID, objc.Sel("percentUnknown"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (t_ TremorResult) PercentUnknown() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/startDate
-func (t_ TremorResult) StartDate() foundation.NSDate {
+func (t_ TremorResult) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("startDate"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [GenericViewController] class.
@@ -30,8 +29,10 @@ type _GenericViewControllerClass struct {
 // An interface definition for the [GenericViewController] class.
 type IGenericViewController interface {
 	IViewController
-	AuAudioUnit() audiotoolbox.AudioUnit
-	SetAuAudioUnit(value audiotoolbox.AudioUnit)
+	// properties:
+	AuAudioUnit() objc.IObject /* cross-framework: AudioUnit */
+	SetAuAudioUnit(value objc.IObject /* cross-framework: AudioUnit */)
+	// methods:
 }
 
 
@@ -84,15 +85,15 @@ func NewGenericViewController() GenericViewController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
-func (g_ GenericViewController) AuAudioUnit() audiotoolbox.AudioUnit {
-	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("auAudioUnit"))
+func (g_ GenericViewController) AuAudioUnit() objc.IObject /* cross-framework: AudioUnit */ {
+	rv := objc.Send[AudioUnit](g_.ID, objc.Sel("auAudioUnit"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
-func (g_ GenericViewController) SetAuAudioUnit(value audiotoolbox.AudioUnit) {
+func (g_ GenericViewController) SetAuAudioUnit(value objc.IObject /* cross-framework: AudioUnit */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAuAudioUnit:"), value)
 }
 

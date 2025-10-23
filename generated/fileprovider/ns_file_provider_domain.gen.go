@@ -31,35 +31,37 @@ type _FileProviderDomainClass struct {
 // An interface definition for the [FileProviderDomain] class.
 type IFileProviderDomain interface {
 	objectivec.IObject
-	BackingStoreIdentity() foundation.NSData
-	DisplayName() string
-	Identifier() FileProviderDomainIdentifier
-	Disconnected() bool
-	Hidden() bool
-	SetHidden(value bool)
-	Replicated() bool
-	PathRelativeToDocumentStorage() string
-	ReplicatedKnownFolders() NSFileProviderKnownFolders
-	SupportedKnownFolders() NSFileProviderKnownFolders
-	SetSupportedKnownFolders(value NSFileProviderKnownFolders)
-	SupportsStringSearchRequest() bool
-	SetSupportsStringSearchRequest(value bool)
-	SupportsSyncingTrash() bool
-	SetSupportsSyncingTrash(value bool)
-	TestingModes() NSFileProviderDomainTestingModes
-	SetTestingModes(value NSFileProviderDomainTestingModes)
-	UserEnabled() bool
+	// properties:
+	BackingStoreIdentity() foundation.objc.IObject /* cross-framework: NSData */
+	DisplayName() string /* primitive/slice/pointer. */
+	Identifier() objc.IObject /* cross-framework: FileProviderDomainIdentifier */
+	Disconnected() bool /* primitive/slice/pointer. */
+	Hidden() bool /* primitive/slice/pointer. */
+	SetHidden(value bool /* primitive/slice/pointer. */)
+	Replicated() bool /* primitive/slice/pointer. */
+	PathRelativeToDocumentStorage() string /* primitive/slice/pointer. */
+	ReplicatedKnownFolders() FileProviderKnownFolders
+	SupportedKnownFolders() FileProviderKnownFolders
+	SetSupportedKnownFolders(value FileProviderKnownFolders)
+	SupportsStringSearchRequest() bool /* primitive/slice/pointer. */
+	SetSupportsStringSearchRequest(value bool /* primitive/slice/pointer. */)
+	SupportsSyncingTrash() bool /* primitive/slice/pointer. */
+	SetSupportsSyncingTrash(value bool /* primitive/slice/pointer. */)
+	TestingModes() FileProviderDomainTestingModes
+	SetTestingModes(value FileProviderDomainTestingModes)
+	UserEnabled() bool /* primitive/slice/pointer. */
 	UserInfo() objc.ID
 	SetUserInfo(value objc.ID)
-	VolumeUUID() foundation.UUID
-	IsDisconnected() bool
-	SetIsDisconnected(value bool)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	IsReplicated() bool
-	SetIsReplicated(value bool)
+	VolumeUUID() objc.IObject /* cross-framework: UUID */
+	IsDisconnected() bool /* primitive/slice/pointer. */
+	SetIsDisconnected(value bool /* primitive/slice/pointer. */)
+	IsHidden() bool /* primitive/slice/pointer. */
+	SetIsHidden(value bool /* primitive/slice/pointer. */)
+	IsReplicated() bool /* primitive/slice/pointer. */
+	SetIsReplicated(value bool /* primitive/slice/pointer. */)
 	Domain() IFileProviderDomain
 	SetDomain(value IFileProviderDomain)
+	// methods:
 }
 
 // A File Provider extension’s domain.
@@ -119,7 +121,7 @@ func NewFileProviderDomain() FileProviderDomain {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objectivec.IObject, volumeURL foundation.URL) FileProviderDomain {
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string /* primitive/slice/pointer. */, userInfo objectivec.IObject, volumeURL foundation.objc.IObject /* cross-framework URL */) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
 	rv.Autorelease()
@@ -131,7 +133,7 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
-func NewFileProviderDomainWithIdentifierDisplayName(identifier FileProviderDomainIdentifier, displayName string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayName(identifier objc.IObject /* cross-framework FileProviderDomainIdentifier */, displayName string /* primitive/slice/pointer. */) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, objc.String(displayName))
 	rv.Autorelease()
@@ -143,7 +145,7 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier FileProviderDomai
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:pathRelativeToDocumentStorage:)
-func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier FileProviderDomainIdentifier, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier objc.IObject /* cross-framework FileProviderDomainIdentifier */, displayName string /* primitive/slice/pointer. */, pathRelativeToDocumentStorage string /* primitive/slice/pointer. */) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, objc.String(displayName), objc.String(pathRelativeToDocumentStorage))
 	rv.Autorelease()
@@ -156,7 +158,7 @@ func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/backingStoreIdentity
-func (f_ FileProviderDomain) BackingStoreIdentity() foundation.NSData {
+func (f_ FileProviderDomain) BackingStoreIdentity() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("backingStoreIdentity"))
 	return rv
 }
@@ -166,7 +168,7 @@ func (f_ FileProviderDomain) BackingStoreIdentity() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/displayName
-func (f_ FileProviderDomain) DisplayName() string {
+func (f_ FileProviderDomain) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (f_ FileProviderDomain) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/identifier
-func (f_ FileProviderDomain) Identifier() FileProviderDomainIdentifier {
+func (f_ FileProviderDomain) Identifier() objc.IObject /* cross-framework: FileProviderDomainIdentifier */ {
 	rv := objc.Send[FileProviderDomainIdentifier](f_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -186,7 +188,7 @@ func (f_ FileProviderDomain) Identifier() FileProviderDomainIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isDisconnected
-func (f_ FileProviderDomain) Disconnected() bool {
+func (f_ FileProviderDomain) Disconnected() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("disconnected"))
 	return rv
 }
@@ -196,7 +198,7 @@ func (f_ FileProviderDomain) Disconnected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isHidden
-func (f_ FileProviderDomain) Hidden() bool {
+func (f_ FileProviderDomain) Hidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hidden"))
 	return rv
 }
@@ -206,14 +208,14 @@ func (f_ FileProviderDomain) Hidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isHidden
-func (f_ FileProviderDomain) SetHidden(value bool) {
+func (f_ FileProviderDomain) SetHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHidden:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isReplicated
-func (f_ FileProviderDomain) Replicated() bool {
+func (f_ FileProviderDomain) Replicated() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("replicated"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (f_ FileProviderDomain) Replicated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/pathRelativeToDocumentStorage
-func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
+func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
 	return rv
 }
@@ -233,8 +235,8 @@ func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders
-func (f_ FileProviderDomain) ReplicatedKnownFolders() NSFileProviderKnownFolders {
-	rv := objc.Send[NSFileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
+func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
+	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
 	return rv
 }
 
@@ -243,8 +245,8 @@ func (f_ FileProviderDomain) ReplicatedKnownFolders() NSFileProviderKnownFolders
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SupportedKnownFolders() NSFileProviderKnownFolders {
-	rv := objc.Send[NSFileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
+func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
+	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
 	return rv
 }
 
@@ -253,7 +255,7 @@ func (f_ FileProviderDomain) SupportedKnownFolders() NSFileProviderKnownFolders 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SetSupportedKnownFolders(value NSFileProviderKnownFolders) {
+func (f_ FileProviderDomain) SetSupportedKnownFolders(value FileProviderKnownFolders) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedKnownFolders:"), value)
 }
 
@@ -262,7 +264,7 @@ func (f_ FileProviderDomain) SetSupportedKnownFolders(value NSFileProviderKnownF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsStringSearchRequest
-func (f_ FileProviderDomain) SupportsStringSearchRequest() bool {
+func (f_ FileProviderDomain) SupportsStringSearchRequest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsStringSearchRequest"))
 	return rv
 }
@@ -272,14 +274,14 @@ func (f_ FileProviderDomain) SupportsStringSearchRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsStringSearchRequest
-func (f_ FileProviderDomain) SetSupportsStringSearchRequest(value bool) {
+func (f_ FileProviderDomain) SetSupportsStringSearchRequest(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsStringSearchRequest:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsSyncingTrash
-func (f_ FileProviderDomain) SupportsSyncingTrash() bool {
+func (f_ FileProviderDomain) SupportsSyncingTrash() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsSyncingTrash"))
 	return rv
 }
@@ -287,7 +289,7 @@ func (f_ FileProviderDomain) SupportsSyncingTrash() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsSyncingTrash
-func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
+func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSyncingTrash:"), value)
 }
 
@@ -296,8 +298,8 @@ func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) TestingModes() NSFileProviderDomainTestingModes {
-	rv := objc.Send[NSFileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
+func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
+	rv := objc.Send[FileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
 	return rv
 }
 
@@ -306,7 +308,7 @@ func (f_ FileProviderDomain) TestingModes() NSFileProviderDomainTestingModes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) SetTestingModes(value NSFileProviderDomainTestingModes) {
+func (f_ FileProviderDomain) SetTestingModes(value FileProviderDomainTestingModes) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTestingModes:"), value)
 }
 
@@ -315,7 +317,7 @@ func (f_ FileProviderDomain) SetTestingModes(value NSFileProviderDomainTestingMo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/userEnabled
-func (f_ FileProviderDomain) UserEnabled() bool {
+func (f_ FileProviderDomain) UserEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("userEnabled"))
 	return rv
 }
@@ -338,8 +340,8 @@ func (f_ FileProviderDomain) SetUserInfo(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/volumeUUID
-func (f_ FileProviderDomain) VolumeUUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("volumeUUID"))
+func (f_ FileProviderDomain) VolumeUUID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](f_.ID, objc.Sel("volumeUUID"))
 	return rv
 }
 
@@ -348,7 +350,7 @@ func (f_ FileProviderDomain) VolumeUUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isdisconnected
-func (f_ FileProviderDomain) IsDisconnected() bool {
+func (f_ FileProviderDomain) IsDisconnected() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDisconnected"))
 	return rv
 }
@@ -358,7 +360,7 @@ func (f_ FileProviderDomain) IsDisconnected() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isdisconnected
-func (f_ FileProviderDomain) SetIsDisconnected(value bool) {
+func (f_ FileProviderDomain) SetIsDisconnected(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDisconnected:"), value)
 }
 
@@ -367,7 +369,7 @@ func (f_ FileProviderDomain) SetIsDisconnected(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/ishidden
-func (f_ FileProviderDomain) IsHidden() bool {
+func (f_ FileProviderDomain) IsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -377,14 +379,14 @@ func (f_ FileProviderDomain) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/ishidden
-func (f_ FileProviderDomain) SetIsHidden(value bool) {
+func (f_ FileProviderDomain) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsHidden:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isreplicated
-func (f_ FileProviderDomain) IsReplicated() bool {
+func (f_ FileProviderDomain) IsReplicated() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isReplicated"))
 	return rv
 }
@@ -392,7 +394,7 @@ func (f_ FileProviderDomain) IsReplicated() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isreplicated
-func (f_ FileProviderDomain) SetIsReplicated(value bool) {
+func (f_ FileProviderDomain) SetIsReplicated(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReplicated:"), value)
 }
 

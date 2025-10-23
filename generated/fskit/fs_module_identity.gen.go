@@ -31,12 +31,14 @@ type _FSModuleIdentityClass struct {
 // An interface definition for the [FSModuleIdentity] class.
 type IFSModuleIdentity interface {
 	objectivec.IObject
-	BundleIdentifier() string
-	SetBundleIdentifier(value string)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
+	// properties:
+	BundleIdentifier() string /* primitive/slice/pointer. */
+	SetBundleIdentifier(value string /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // An installed file system module.
@@ -94,7 +96,7 @@ func NewFSModuleIdentity() FSModuleIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/bundleidentifier
-func (f_ FSModuleIdentity) BundleIdentifier() string {
+func (f_ FSModuleIdentity) BundleIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (f_ FSModuleIdentity) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/bundleidentifier
-func (f_ FSModuleIdentity) SetBundleIdentifier(value string) {
+func (f_ FSModuleIdentity) SetBundleIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
@@ -113,7 +115,7 @@ func (f_ FSModuleIdentity) SetBundleIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-func (f_ FSModuleIdentity) IsEnabled() bool {
+func (f_ FSModuleIdentity) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (f_ FSModuleIdentity) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/isenabled
-func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
+func (f_ FSModuleIdentity) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -132,7 +134,7 @@ func (f_ FSModuleIdentity) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/url
-func (f_ FSModuleIdentity) Url() foundation.URL {
+func (f_ FSModuleIdentity) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (f_ FSModuleIdentity) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmoduleidentity/url
-func (f_ FSModuleIdentity) SetUrl(value foundation.URL) {
+func (f_ FSModuleIdentity) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 

@@ -29,6 +29,7 @@ type _CKFetchRecordZonesOperationClass struct {
 // An interface definition for the [CKFetchRecordZonesOperation] class.
 type ICKFetchRecordZonesOperation interface {
 	ICKDatabaseOperation
+	// properties:
 	FetchRecordZonesCompletionBlock() unsafe.Pointer
 	SetFetchRecordZonesCompletionBlock(value unsafe.Pointer)
 	FetchRecordZonesResultBlock() unsafe.Pointer
@@ -39,6 +40,7 @@ type ICKFetchRecordZonesOperation interface {
 	SetRecordZoneIDs(value ICKRecordZoneID)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation for retrieving record zones from a database.

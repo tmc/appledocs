@@ -31,8 +31,10 @@ type _ImageAccumulatorClass struct {
 // An interface definition for the [ImageAccumulator] class.
 type IImageAccumulator interface {
 	objectivec.IObject
+	// properties:
 	Extent() coregraphics.CGRect
-	Format() Format
+	Format() objc.IObject /* cross-framework: Format */
+	// methods:
 	Clear()
 	Image() IImage
 	SetImage(image ICIImage)
@@ -96,7 +98,7 @@ func NewImageAccumulator() ImageAccumulator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:)
-func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format Format) ImageAccumulator {
+func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format objc.IObject /* cross-framework Format */) ImageAccumulator {
 	instance := getImageAccumulatorClass().Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:"), extent, format)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format Form
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/init(extent:format:colorSpace:)
-func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format Format, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
+func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef) ImageAccumulator {
 	instance := getImageAccumulatorClass().Alloc()
 	rv := objc.Send[ImageAccumulator](instance.ID, objc.Sel("initWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	rv.Autorelease()
@@ -121,7 +123,7 @@ func NewImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/imageAccumulatorWithExtent:format:
-func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format Format) unsafe.Pointer {
+func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent coregraphics.CGRect, format objc.IObject /* cross-framework Format */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:"), extent, format)
 	return rv
 }
@@ -131,7 +133,7 @@ func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormat(extent coregra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/imageAccumulatorWithExtent:format:colorSpace:
-func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format Format, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
+func (ic _ImageAccumulatorClass) ImageAccumulatorWithExtentFormatColorSpace(extent coregraphics.CGRect, format objc.IObject /* cross-framework Format */, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageAccumulatorWithExtent:format:colorSpace:"), extent, format, colorSpace)
 	return rv
 }
@@ -188,7 +190,7 @@ func (i_ ImageAccumulator) Extent() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAccumulator/format
-func (i_ ImageAccumulator) Format() Format {
+func (i_ ImageAccumulator) Format() objc.IObject /* cross-framework: Format */ {
 	rv := objc.Send[Format](i_.ID, objc.Sel("format"))
 	return rv
 }

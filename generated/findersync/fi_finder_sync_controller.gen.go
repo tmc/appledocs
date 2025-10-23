@@ -31,16 +31,18 @@ type _FIFinderSyncControllerClass struct {
 // An interface definition for the [FIFinderSyncController] class.
 type IFIFinderSyncController interface {
 	foundation.IExtensionContext
+	// properties:
 	DirectoryURLs() unsafe.Pointer
 	SetDirectoryURLs(value unsafe.Pointer)
-	LastUsedDateForItemWithURL(itemURL foundation.URL) foundation.Date
-	SelectedItemURLs() []foundation.URL
-	SetBadgeIdentifierForURL(badgeID string, url foundation.URL)
-	SetBadgeImageLabelForBadgeIdentifier(image appkit.Image, label string, badgeID string)
-	SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.NSDate, itemURL foundation.URL, completion unsafe.Pointer)
-	SetTagDataForItemWithURLCompletion(tagData foundation.NSData, itemURL foundation.URL, completion unsafe.Pointer)
-	TagDataForItemWithURL(itemURL foundation.URL) foundation.Data
-	TargetedURL() foundation.URL
+	// methods:
+	LastUsedDateForItemWithURL(itemURL foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Date */
+	SelectedItemURLs() []foundation.objc.IObject /* cross-framework: URL */
+	SetBadgeIdentifierForURL(badgeID string /* primitive/slice/pointer. */, url foundation.objc.IObject /* cross-framework URL */)
+	SetBadgeImageLabelForBadgeIdentifier(image appkit.objc.IObject /* cross-framework Image */, label string /* primitive/slice/pointer. */, badgeID string /* primitive/slice/pointer. */)
+	SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.objc.IObject /* cross-framework NSDate */, itemURL foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer)
+	SetTagDataForItemWithURLCompletion(tagData foundation.objc.IObject /* cross-framework NSData */, itemURL foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer)
+	TagDataForItemWithURL(itemURL foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Data */
+	TargetedURL() foundation.objc.IObject /* cross-framework: URL */
 }
 
 // A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
@@ -117,15 +119,15 @@ func (fc _FIFinderSyncControllerClass) ShowExtensionManagementInterface() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/isExtensionEnabled
-func (fc _FIFinderSyncControllerClass) ExtensionEnabled() bool {
+func (fc _FIFinderSyncControllerClass) ExtensionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("extensionEnabled"))
 	return rv
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/lastUsedDateForItem(with:)
-func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.URL) foundation.Date {
-	rv := objc.Send[foundation.Date](f_.ID, objc.Sel("lastUsedDateForItemWithURL:"), itemURL)
+func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[Date](f_.ID, objc.Sel("lastUsedDateForItemWithURL:"), itemURL)
 	return rv
 }
 
@@ -134,7 +136,7 @@ func (f_ FIFinderSyncController) LastUsedDateForItemWithURL(itemURL foundation.U
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/selectedItemURLs()
-func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.URL {
+func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](f_.ID, objc.Sel("selectedItemURLs"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (f_ FIFinderSyncController) SelectedItemURLs() []foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeIdentifier(_:for:)
-func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url foundation.URL) {
+func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string /* primitive/slice/pointer. */, url foundation.objc.IObject /* cross-framework URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeIdentifier:forURL:"), objc.String(badgeID), url)
 }
 
@@ -153,29 +155,29 @@ func (f_ FIFinderSyncController) SetBadgeIdentifierForURL(badgeID string, url fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setBadgeImage(_:label:forBadgeIdentifier:)
-func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.Image, label string, badgeID string) {
+func (f_ FIFinderSyncController) SetBadgeImageLabelForBadgeIdentifier(image appkit.objc.IObject /* cross-framework Image */, label string /* primitive/slice/pointer. */, badgeID string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setBadgeImage:label:forBadgeIdentifier:"), image, objc.String(label), objc.String(badgeID))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setLastUsedDate(_:forItemWith:completion:)
-func (f_ FIFinderSyncController) SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.NSDate, itemURL foundation.URL, completion unsafe.Pointer) {
+func (f_ FIFinderSyncController) SetLastUsedDateForItemWithURLCompletion(lastUsedDate foundation.objc.IObject /* cross-framework NSDate */, itemURL foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLastUsedDate:forItemWithURL:completion:"), lastUsedDate, itemURL, completion)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/setTagData(_:forItemWith:completion:)
-func (f_ FIFinderSyncController) SetTagDataForItemWithURLCompletion(tagData foundation.NSData, itemURL foundation.URL, completion unsafe.Pointer) {
+func (f_ FIFinderSyncController) SetTagDataForItemWithURLCompletion(tagData foundation.objc.IObject /* cross-framework NSData */, itemURL foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTagData:forItemWithURL:completion:"), tagData, itemURL, completion)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/tagDataForItem(with:)
-func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.URL) foundation.Data {
-	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("tagDataForItemWithURL:"), itemURL)
+func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.objc.IObject /* cross-framework URL */) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](f_.ID, objc.Sel("tagDataForItemWithURL:"), itemURL)
 	return rv
 }
 
@@ -184,7 +186,7 @@ func (f_ FIFinderSyncController) TagDataForItemWithURL(itemURL foundation.URL) f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/targetedURL()
-func (f_ FIFinderSyncController) TargetedURL() foundation.URL {
+func (f_ FIFinderSyncController) TargetedURL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("targetedURL"))
 	return rv
 }
@@ -211,7 +213,7 @@ func (f_ FIFinderSyncController) SetDirectoryURLs(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIFinderSyncController/isExtensionEnabled
-func (f_ FIFinderSyncController) ExtensionEnabled() bool {
+func (f_ FIFinderSyncController) ExtensionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("extensionEnabled"))
 	return rv
 }

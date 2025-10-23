@@ -31,32 +31,34 @@ type _PropertyDescriptionClass struct {
 // An interface definition for the [PropertyDescription] class.
 type IPropertyDescription interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	Entity() IEntityDescription
 	SetEntity(value IEntityDescription)
-	IsIndexed() bool
-	SetIsIndexed(value bool)
-	IsIndexedBySpotlight() bool
-	SetIsIndexedBySpotlight(value bool)
-	IsOptional() bool
-	SetIsOptional(value bool)
-	IsStoredInExternalRecord() bool
-	SetIsStoredInExternalRecord(value bool)
-	IsTransient() bool
-	SetIsTransient(value bool)
-	RenamingIdentifier() string
-	SetRenamingIdentifier(value string)
+	IsIndexed() bool /* primitive/slice/pointer. */
+	SetIsIndexed(value bool /* primitive/slice/pointer. */)
+	IsIndexedBySpotlight() bool /* primitive/slice/pointer. */
+	SetIsIndexedBySpotlight(value bool /* primitive/slice/pointer. */)
+	IsOptional() bool /* primitive/slice/pointer. */
+	SetIsOptional(value bool /* primitive/slice/pointer. */)
+	IsStoredInExternalRecord() bool /* primitive/slice/pointer. */
+	SetIsStoredInExternalRecord(value bool /* primitive/slice/pointer. */)
+	IsTransient() bool /* primitive/slice/pointer. */
+	SetIsTransient(value bool /* primitive/slice/pointer. */)
+	RenamingIdentifier() string /* primitive/slice/pointer. */
+	SetRenamingIdentifier(value string /* primitive/slice/pointer. */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
-	ValidationPredicates() foundation.Predicate
-	SetValidationPredicates(value foundation.Predicate)
+	ValidationPredicates() objc.IObject /* cross-framework: Predicate */
+	SetValidationPredicates(value objc.IObject /* cross-framework: Predicate */)
 	ValidationWarnings() unsafe.Pointer
 	SetValidationWarnings(value unsafe.Pointer)
-	VersionHash() foundation.Data
-	SetVersionHash(value foundation.Data)
-	VersionHashModifier() string
-	SetVersionHashModifier(value string)
+	VersionHash() foundation.objc.IObject /* cross-framework: Data */
+	SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	VersionHashModifier() string /* primitive/slice/pointer. */
+	SetVersionHashModifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A description of a single property belonging to an entity.
@@ -116,7 +118,7 @@ func NewPropertyDescription() PropertyDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) Name() string {
+func (p_ PropertyDescription) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (p_ PropertyDescription) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/name
-func (p_ PropertyDescription) SetName(value string) {
+func (p_ PropertyDescription) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -154,7 +156,7 @@ func (p_ PropertyDescription) SetEntity(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-func (p_ PropertyDescription) IsIndexed() bool {
+func (p_ PropertyDescription) IsIndexed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexed"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (p_ PropertyDescription) IsIndexed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexed
-func (p_ PropertyDescription) SetIsIndexed(value bool) {
+func (p_ PropertyDescription) SetIsIndexed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexed:"), value)
 }
 
@@ -173,7 +175,7 @@ func (p_ PropertyDescription) SetIsIndexed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
+func (p_ PropertyDescription) IsIndexedBySpotlight() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isIndexedBySpotlight"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isindexedbyspotlight
-func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
+func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexedBySpotlight:"), value)
 }
 
@@ -192,7 +194,7 @@ func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-func (p_ PropertyDescription) IsOptional() bool {
+func (p_ PropertyDescription) IsOptional() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOptional"))
 	return rv
 }
@@ -202,7 +204,7 @@ func (p_ PropertyDescription) IsOptional() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isoptional
-func (p_ PropertyDescription) SetIsOptional(value bool) {
+func (p_ PropertyDescription) SetIsOptional(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOptional:"), value)
 }
 
@@ -211,7 +213,7 @@ func (p_ PropertyDescription) SetIsOptional(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
+func (p_ PropertyDescription) IsStoredInExternalRecord() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isStoredInExternalRecord"))
 	return rv
 }
@@ -221,7 +223,7 @@ func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/isstoredinexternalrecord
-func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
+func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsStoredInExternalRecord:"), value)
 }
 
@@ -230,7 +232,7 @@ func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-func (p_ PropertyDescription) IsTransient() bool {
+func (p_ PropertyDescription) IsTransient() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isTransient"))
 	return rv
 }
@@ -240,7 +242,7 @@ func (p_ PropertyDescription) IsTransient() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/istransient
-func (p_ PropertyDescription) SetIsTransient(value bool) {
+func (p_ PropertyDescription) SetIsTransient(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
 }
 
@@ -249,7 +251,7 @@ func (p_ PropertyDescription) SetIsTransient(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/renamingidentifier
-func (p_ PropertyDescription) RenamingIdentifier() string {
+func (p_ PropertyDescription) RenamingIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
@@ -259,7 +261,7 @@ func (p_ PropertyDescription) RenamingIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/renamingidentifier
-func (p_ PropertyDescription) SetRenamingIdentifier(value string) {
+func (p_ PropertyDescription) SetRenamingIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
 }
 
@@ -287,8 +289,8 @@ func (p_ PropertyDescription) SetUserInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationpredicates
-func (p_ PropertyDescription) ValidationPredicates() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("validationPredicates"))
+func (p_ PropertyDescription) ValidationPredicates() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](p_.ID, objc.Sel("validationPredicates"))
 	return rv
 }
 
@@ -297,7 +299,7 @@ func (p_ PropertyDescription) ValidationPredicates() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/validationpredicates
-func (p_ PropertyDescription) SetValidationPredicates(value foundation.Predicate) {
+func (p_ PropertyDescription) SetValidationPredicates(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:"), value)
 }
 
@@ -325,7 +327,7 @@ func (p_ PropertyDescription) SetValidationWarnings(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhash
-func (p_ PropertyDescription) VersionHash() foundation.Data {
+func (p_ PropertyDescription) VersionHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -335,7 +337,7 @@ func (p_ PropertyDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhash
-func (p_ PropertyDescription) SetVersionHash(value foundation.Data) {
+func (p_ PropertyDescription) SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHash:"), value)
 }
 
@@ -344,7 +346,7 @@ func (p_ PropertyDescription) SetVersionHash(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhashmodifier
-func (p_ PropertyDescription) VersionHashModifier() string {
+func (p_ PropertyDescription) VersionHashModifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
@@ -354,7 +356,7 @@ func (p_ PropertyDescription) VersionHashModifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertydescription/versionhashmodifier
-func (p_ PropertyDescription) SetVersionHashModifier(value string) {
+func (p_ PropertyDescription) SetVersionHashModifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
 

@@ -30,6 +30,8 @@ type _StringClass struct {
 // An interface definition for the [String] class.
 type IString interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other CoreSpotlight classes.

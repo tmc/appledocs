@@ -17,3 +17,12 @@ func ExampleNewToolbarItemWithItemIdentifier() {
 	)
 	// Output:
 }
+// ExampleNewToolbarItemWithItemIdentifierBarButtonItem demonstrates how to create a ToolbarItem instance using NewToolbarItemWithItemIdentifierBarButtonItem.
+// Creates a toolbar item with property values from the specified bar button item.
+func ExampleNewToolbarItemWithItemIdentifierBarButtonItem() {
+	_ = appkit.NewToolbarItemWithItemIdentifierBarButtonItem(
+		appkit.ToolbarItemIdentifier{}, // itemIdentifier ToolbarItemIdentifier
+		appkit.BarButtonItem{}, // barButtonItem BarButtonItem
+	)
+	// Output:
+}

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,18 +30,20 @@ type _WindowTabClass struct {
 // An interface definition for the [WindowTab] class.
 type IWindowTab interface {
 	objectivec.IObject
+	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	AttributedTitle() foundation.AttributedString
-	SetAttributedTitle(value foundation.AttributedString)
-	Title() string
-	SetTitle(value string)
-	ToolTip() string
-	SetToolTip(value string)
+	AttributedTitle() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	ToolTip() string /* primitive/slice/pointer. */
+	SetToolTip(value string /* primitive/slice/pointer. */)
 	Tab() IWindowTab
 	SetTab(value IWindowTab)
 	TabbingIdentifier() unsafe.Pointer
 	SetTabbingIdentifier(value unsafe.Pointer)
+	// methods:
 }
 
 // A tab associated with a window that is part of a tabbing group.
@@ -121,8 +122,8 @@ func (w_ WindowTab) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
+func (w_ WindowTab) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
+func (w_ WindowTab) SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -140,7 +141,7 @@ func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) Title() string {
+func (w_ WindowTab) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
@@ -150,7 +151,7 @@ func (w_ WindowTab) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) SetTitle(value string) {
+func (w_ WindowTab) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -159,7 +160,7 @@ func (w_ WindowTab) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) ToolTip() string {
+func (w_ WindowTab) ToolTip() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](w_.ID, objc.Sel("toolTip"))
 	return rv
 }
@@ -169,7 +170,7 @@ func (w_ WindowTab) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) SetToolTip(value string) {
+func (w_ WindowTab) SetToolTip(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 

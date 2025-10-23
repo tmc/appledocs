@@ -31,7 +31,9 @@ type _ArrayBatchProviderClass struct {
 // An interface definition for the [ArrayBatchProvider] class.
 type IArrayBatchProvider interface {
 	objectivec.IObject
-	Array() []objc.ID
+	// properties:
+	Array() []objc.ID /* already interface */
+	// methods:
 }
 
 // A convenience wrapper for batches of feature providers.
@@ -91,7 +93,7 @@ func NewArrayBatchProvider() ArrayBatchProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(dictionary:)
-func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary, error_ unsafe.Pointer) ArrayBatchProvider {
+func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary /* already interface */, error_ unsafe.Pointer) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
@@ -103,7 +105,7 @@ func NewArrayBatchProviderWithDictionaryError(dictionary foundation.IDictionary,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(array:)
-func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchProvider {
+func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID /* already interface */) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
 	rv.Autorelease()
@@ -116,7 +118,7 @@ func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchPr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/array
-func (a_ ArrayBatchProvider) Array() []objc.ID {
+func (a_ ArrayBatchProvider) Array() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("array"))
 	return rv
 }

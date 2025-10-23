@@ -29,26 +29,27 @@ type _LevelIndicatorClass struct {
 // An interface definition for the [LevelIndicator] class.
 type ILevelIndicator interface {
 	IControl
+	// properties:
 	CriticalFillColor() IColor
 	SetCriticalFillColor(value IColor)
-	CriticalValue() float64
-	SetCriticalValue(value float64)
-	DrawsTieredCapacityLevels() bool
-	SetDrawsTieredCapacityLevels(value bool)
+	CriticalValue() float64 /* primitive/slice/pointer. */
+	SetCriticalValue(value float64 /* primitive/slice/pointer. */)
+	DrawsTieredCapacityLevels() bool /* primitive/slice/pointer. */
+	SetDrawsTieredCapacityLevels(value bool /* primitive/slice/pointer. */)
 	FillColor() IColor
 	SetFillColor(value IColor)
-	IsEditable() bool
-	SetIsEditable(value bool)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
 	LevelIndicatorStyle() unsafe.Pointer
 	SetLevelIndicatorStyle(value unsafe.Pointer)
-	MaxValue() float64
-	SetMaxValue(value float64)
-	MinValue() float64
-	SetMinValue(value float64)
-	NumberOfMajorTickMarks() int
-	SetNumberOfMajorTickMarks(value int)
-	NumberOfTickMarks() int
-	SetNumberOfTickMarks(value int)
+	MaxValue() float64 /* primitive/slice/pointer. */
+	SetMaxValue(value float64 /* primitive/slice/pointer. */)
+	MinValue() float64 /* primitive/slice/pointer. */
+	SetMinValue(value float64 /* primitive/slice/pointer. */)
+	NumberOfMajorTickMarks() int /* primitive/slice/pointer. */
+	SetNumberOfMajorTickMarks(value int /* primitive/slice/pointer. */)
+	NumberOfTickMarks() int /* primitive/slice/pointer. */
+	SetNumberOfTickMarks(value int /* primitive/slice/pointer. */)
 	PlaceholderVisibility() unsafe.Pointer
 	SetPlaceholderVisibility(value unsafe.Pointer)
 	RatingImage() IImage
@@ -59,8 +60,9 @@ type ILevelIndicator interface {
 	SetTickMarkPosition(value unsafe.Pointer)
 	WarningFillColor() IColor
 	SetWarningFillColor(value IColor)
-	WarningValue() float64
-	SetWarningValue(value float64)
+	WarningValue() float64 /* primitive/slice/pointer. */
+	SetWarningValue(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A visual representation of a level or quantity, using discrete values.
@@ -137,7 +139,7 @@ func (l_ LevelIndicator) SetCriticalFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/criticalvalue
-func (l_ LevelIndicator) CriticalValue() float64 {
+func (l_ LevelIndicator) CriticalValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("criticalValue"))
 	return rv
 }
@@ -147,14 +149,14 @@ func (l_ LevelIndicator) CriticalValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/criticalvalue
-func (l_ LevelIndicator) SetCriticalValue(value float64) {
+func (l_ LevelIndicator) SetCriticalValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCriticalValue:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/drawstieredcapacitylevels
-func (l_ LevelIndicator) DrawsTieredCapacityLevels() bool {
+func (l_ LevelIndicator) DrawsTieredCapacityLevels() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("drawsTieredCapacityLevels"))
 	return rv
 }
@@ -162,7 +164,7 @@ func (l_ LevelIndicator) DrawsTieredCapacityLevels() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/drawstieredcapacitylevels
-func (l_ LevelIndicator) SetDrawsTieredCapacityLevels(value bool) {
+func (l_ LevelIndicator) SetDrawsTieredCapacityLevels(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDrawsTieredCapacityLevels:"), value)
 }
 
@@ -184,7 +186,7 @@ func (l_ LevelIndicator) SetFillColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/iseditable
-func (l_ LevelIndicator) IsEditable() bool {
+func (l_ LevelIndicator) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -192,7 +194,7 @@ func (l_ LevelIndicator) IsEditable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/iseditable
-func (l_ LevelIndicator) SetIsEditable(value bool) {
+func (l_ LevelIndicator) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -220,7 +222,7 @@ func (l_ LevelIndicator) SetLevelIndicatorStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/maxvalue
-func (l_ LevelIndicator) MaxValue() float64 {
+func (l_ LevelIndicator) MaxValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("maxValue"))
 	return rv
 }
@@ -230,7 +232,7 @@ func (l_ LevelIndicator) MaxValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/maxvalue
-func (l_ LevelIndicator) SetMaxValue(value float64) {
+func (l_ LevelIndicator) SetMaxValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaxValue:"), value)
 }
 
@@ -239,7 +241,7 @@ func (l_ LevelIndicator) SetMaxValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/minvalue
-func (l_ LevelIndicator) MinValue() float64 {
+func (l_ LevelIndicator) MinValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("minValue"))
 	return rv
 }
@@ -249,7 +251,7 @@ func (l_ LevelIndicator) MinValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/minvalue
-func (l_ LevelIndicator) SetMinValue(value float64) {
+func (l_ LevelIndicator) SetMinValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinValue:"), value)
 }
 
@@ -258,7 +260,7 @@ func (l_ LevelIndicator) SetMinValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/numberofmajortickmarks
-func (l_ LevelIndicator) NumberOfMajorTickMarks() int {
+func (l_ LevelIndicator) NumberOfMajorTickMarks() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](l_.ID, objc.Sel("numberOfMajorTickMarks"))
 	return rv
 }
@@ -268,7 +270,7 @@ func (l_ LevelIndicator) NumberOfMajorTickMarks() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/numberofmajortickmarks
-func (l_ LevelIndicator) SetNumberOfMajorTickMarks(value int) {
+func (l_ LevelIndicator) SetNumberOfMajorTickMarks(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfMajorTickMarks:"), value)
 }
 
@@ -277,7 +279,7 @@ func (l_ LevelIndicator) SetNumberOfMajorTickMarks(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/numberoftickmarks
-func (l_ LevelIndicator) NumberOfTickMarks() int {
+func (l_ LevelIndicator) NumberOfTickMarks() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](l_.ID, objc.Sel("numberOfTickMarks"))
 	return rv
 }
@@ -287,7 +289,7 @@ func (l_ LevelIndicator) NumberOfTickMarks() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/numberoftickmarks
-func (l_ LevelIndicator) SetNumberOfTickMarks(value int) {
+func (l_ LevelIndicator) SetNumberOfTickMarks(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfTickMarks:"), value)
 }
 
@@ -375,7 +377,7 @@ func (l_ LevelIndicator) SetWarningFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/warningvalue
-func (l_ LevelIndicator) WarningValue() float64 {
+func (l_ LevelIndicator) WarningValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("warningValue"))
 	return rv
 }
@@ -385,7 +387,7 @@ func (l_ LevelIndicator) WarningValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicator/warningvalue
-func (l_ LevelIndicator) SetWarningValue(value float64) {
+func (l_ LevelIndicator) SetWarningValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWarningValue:"), value)
 }
 

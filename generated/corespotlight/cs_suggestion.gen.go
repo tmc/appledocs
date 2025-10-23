@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,12 @@ type _CSSuggestionClass struct {
 // An interface definition for the [CSSuggestion] class.
 type ICSSuggestion interface {
 	objectivec.IObject
-	LocalizedAttributedSuggestion() foundation.AttributedString
+	// properties:
+	LocalizedAttributedSuggestion() objc.IObject /* cross-framework: AttributedString */
 	SuggestionKind() CSSuggestionKind
-	Compare(other ICSSuggestion) unsafe.Pointer
-	CompareByRank(other ICSSuggestion) unsafe.Pointer
+	// methods:
+	Compare(other ICSSuggestion) ComparisonResult /* not a class type */
+	CompareByRank(other ICSSuggestion) ComparisonResult /* not a class type */
 }
 
 // The kind of suggestion to use in a query.
@@ -94,24 +95,24 @@ func NewCSSuggestion() CSSuggestion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(_:)
-func (c_ CSSuggestion) Compare(other ICSSuggestion) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compare:"), other)
+func (c_ CSSuggestion) Compare(other ICSSuggestion) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compare:"), other)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(byRank:)
-func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compareByRank:"), other)
+func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareByRank:"), other)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/localizedAttributedSuggestion-oq3b
-func (c_ CSSuggestion) LocalizedAttributedSuggestion() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
+func (c_ CSSuggestion) LocalizedAttributedSuggestion() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
 	return rv
 }
 

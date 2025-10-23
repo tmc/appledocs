@@ -30,6 +30,8 @@ type _hasSmileClass struct {
 // An interface definition for the [hasSmile] class.
 type IhasSmile interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -29,7 +29,9 @@ type _SceneAnchoringStrategyClass struct {
 // An interface definition for the [SceneAnchoringStrategy] class.
 type ISceneAnchoringStrategy interface {
 	IAnchoringStrategy
-	SceneIdentifier() string
+	// properties:
+	SceneIdentifier() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Anchor to the visual center of a particular UIScene.
@@ -87,7 +89,7 @@ func NewSceneAnchoringStrategy() SceneAnchoringStrategy {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/initWithSceneIdentifier:
-func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneAnchoringStrategy {
+func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string /* primitive/slice/pointer. */) SceneAnchoringStrategy {
 	instance := getSceneAnchoringStrategyClass().Alloc()
 	rv := objc.Send[SceneAnchoringStrategy](instance.ID, objc.Sel("initWithSceneIdentifier:"), objc.String(sceneIdentifier))
 	rv.Autorelease()
@@ -98,7 +100,7 @@ func NewSceneAnchoringStrategyWithSceneIdentifier(sceneIdentifier string) SceneA
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CASceneAnchoringStrategy/sceneIdentifier
-func (s_ SceneAnchoringStrategy) SceneIdentifier() string {
+func (s_ SceneAnchoringStrategy) SceneIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("sceneIdentifier"))
 	return rv
 }

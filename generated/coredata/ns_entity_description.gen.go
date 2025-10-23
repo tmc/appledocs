@@ -31,31 +31,32 @@ type _EntityDescriptionClass struct {
 // An interface definition for the [EntityDescription] class.
 type IEntityDescription interface {
 	objectivec.IObject
-	VersionHash() foundation.NSData
+	// properties:
+	VersionHash() foundation.objc.IObject /* cross-framework: NSData */
 	AttributesByName() IAttributeDescription
 	SetAttributesByName(value IAttributeDescription)
 	CompoundIndexes() unsafe.Pointer
 	SetCompoundIndexes(value unsafe.Pointer)
-	CoreSpotlightDisplayNameExpression() Expression
-	SetCoreSpotlightDisplayNameExpression(value Expression)
-	Indexes() unsafe.Pointer
-	SetIndexes(value unsafe.Pointer)
-	IsAbstract() bool
-	SetIsAbstract(value bool)
-	ManagedObjectClassName() string
-	SetManagedObjectClassName(value string)
+	CoreSpotlightDisplayNameExpression() objc.IObject /* cross-framework: Expression */
+	SetCoreSpotlightDisplayNameExpression(value objc.IObject /* cross-framework: Expression */)
+	Indexes() FetchIndexDescription /* not a class type */
+	SetIndexes(value FetchIndexDescription /* not a class type */)
+	IsAbstract() bool /* primitive/slice/pointer. */
+	SetIsAbstract(value bool /* primitive/slice/pointer. */)
+	ManagedObjectClassName() string /* primitive/slice/pointer. */
+	SetManagedObjectClassName(value string /* primitive/slice/pointer. */)
 	ManagedObjectModel() IManagedObjectModel
 	SetManagedObjectModel(value IManagedObjectModel)
-	Name() string
-	SetName(value string)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	Properties() IPropertyDescription
 	SetProperties(value IPropertyDescription)
 	PropertiesByName() IPropertyDescription
 	SetPropertiesByName(value IPropertyDescription)
 	RelationshipsByName() IRelationshipDescription
 	SetRelationshipsByName(value IRelationshipDescription)
-	RenamingIdentifier() string
-	SetRenamingIdentifier(value string)
+	RenamingIdentifier() string /* primitive/slice/pointer. */
+	SetRenamingIdentifier(value string /* primitive/slice/pointer. */)
 	Subentities() IEntityDescription
 	SetSubentities(value IEntityDescription)
 	SubentitiesByName() IEntityDescription
@@ -66,8 +67,9 @@ type IEntityDescription interface {
 	SetUniquenessConstraints(value unsafe.Pointer)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
-	VersionHashModifier() string
-	SetVersionHashModifier(value string)
+	VersionHashModifier() string /* primitive/slice/pointer. */
+	SetVersionHashModifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A description of a Core Data entity.
@@ -127,7 +129,7 @@ func NewEntityDescription() EntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/versionHash
-func (e_ EntityDescription) VersionHash() foundation.NSData {
+func (e_ EntityDescription) VersionHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (e_ EntityDescription) SetCompoundIndexes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() Expression {
+func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](e_.ID, objc.Sel("coreSpotlightDisplayNameExpression"))
 	return rv
 }
@@ -185,7 +187,7 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value Expression) {
+func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCoreSpotlightDisplayNameExpression:"), value)
 }
 
@@ -194,8 +196,8 @@ func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value Expressi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/indexes
-func (e_ EntityDescription) Indexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("indexes"))
+func (e_ EntityDescription) Indexes() FetchIndexDescription /* not a class type */ {
+	rv := objc.Send[FetchIndexDescription](e_.ID, objc.Sel("indexes"))
 	return rv
 }
 
@@ -204,7 +206,7 @@ func (e_ EntityDescription) Indexes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/indexes
-func (e_ EntityDescription) SetIndexes(value unsafe.Pointer) {
+func (e_ EntityDescription) SetIndexes(value FetchIndexDescription /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIndexes:"), value)
 }
 
@@ -213,7 +215,7 @@ func (e_ EntityDescription) SetIndexes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/isabstract
-func (e_ EntityDescription) IsAbstract() bool {
+func (e_ EntityDescription) IsAbstract() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isAbstract"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (e_ EntityDescription) IsAbstract() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/isabstract
-func (e_ EntityDescription) SetIsAbstract(value bool) {
+func (e_ EntityDescription) SetIsAbstract(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsAbstract:"), value)
 }
 
@@ -232,7 +234,7 @@ func (e_ EntityDescription) SetIsAbstract(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) ManagedObjectClassName() string {
+func (e_ EntityDescription) ManagedObjectClassName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("managedObjectClassName"))
 	return rv
 }
@@ -242,7 +244,7 @@ func (e_ EntityDescription) ManagedObjectClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) SetManagedObjectClassName(value string) {
+func (e_ EntityDescription) SetManagedObjectClassName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), objc.String(value))
 }
 
@@ -270,7 +272,7 @@ func (e_ EntityDescription) SetManagedObjectModel(value IManagedObjectModel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
-func (e_ EntityDescription) Name() string {
+func (e_ EntityDescription) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
@@ -280,7 +282,7 @@ func (e_ EntityDescription) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/name
-func (e_ EntityDescription) SetName(value string) {
+func (e_ EntityDescription) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -346,7 +348,7 @@ func (e_ EntityDescription) SetRelationshipsByName(value IRelationshipDescriptio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) RenamingIdentifier() string {
+func (e_ EntityDescription) RenamingIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
@@ -356,7 +358,7 @@ func (e_ EntityDescription) RenamingIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) SetRenamingIdentifier(value string) {
+func (e_ EntityDescription) SetRenamingIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
 }
 
@@ -460,7 +462,7 @@ func (e_ EntityDescription) SetUserInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) VersionHashModifier() string {
+func (e_ EntityDescription) VersionHashModifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
@@ -470,7 +472,7 @@ func (e_ EntityDescription) VersionHashModifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) SetVersionHashModifier(value string) {
+func (e_ EntityDescription) SetVersionHashModifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
 }
 

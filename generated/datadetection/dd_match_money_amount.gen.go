@@ -29,8 +29,10 @@ type _DDMatchMoneyAmountClass struct {
 // An interface definition for the [DDMatchMoneyAmount] class.
 type IDDMatchMoneyAmount interface {
 	IDDMatch
-	Amount() float64
-	Currency() string
+	// properties:
+	Amount() float64 /* primitive/slice/pointer. */
+	Currency() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains an amount of money that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchMoneyAmount() DDMatchMoneyAmount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/amount
-func (d_ DDMatchMoneyAmount) Amount() float64 {
+func (d_ DDMatchMoneyAmount) Amount() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("amount"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (d_ DDMatchMoneyAmount) Amount() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchMoneyAmount/currency
-func (d_ DDMatchMoneyAmount) Currency() string {
+func (d_ DDMatchMoneyAmount) Currency() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("currency"))
 	return rv
 }

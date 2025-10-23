@@ -30,7 +30,9 @@ type _WarpKernelClass struct {
 // An interface definition for the [WarpKernel] class.
 type IWarpKernel interface {
 	IKernel
-	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) IImage
+	// properties:
+	// methods:
+	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID /* already interface */) IImage
 }
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
@@ -92,7 +94,7 @@ func NewWarpKernel() WarpKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func NewWarpKernelWithString(string_ string) WarpKernel {
+func NewWarpKernelWithString(string_ string /* primitive/slice/pointer. */) WarpKernel {
 	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
@@ -103,7 +105,7 @@ func NewWarpKernelWithString(string_ string) WarpKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func (wc _WarpKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+func (wc _WarpKernelClass) KernelWithString(string_ string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
@@ -113,7 +115,7 @@ func (wc _WarpKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
-func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) IImage {
+func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback KernelROICallback /* not a class type */, image ICIImage, args []objc.ID /* already interface */) IImage {
 	rv := objc.Send[Image](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }

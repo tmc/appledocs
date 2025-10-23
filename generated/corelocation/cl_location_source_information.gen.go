@@ -30,10 +30,12 @@ type _LocationSourceInformationClass struct {
 // An interface definition for the [LocationSourceInformation] class.
 type ILocationSourceInformation interface {
 	objectivec.IObject
+	// properties:
 	IsProducedByAccessory() unsafe.Pointer
 	SetIsProducedByAccessory(value unsafe.Pointer)
 	IsSimulatedBySoftware() unsafe.Pointer
 	SetIsSimulatedBySoftware(value unsafe.Pointer)
+	// methods:
 }
 
 // Information about the source that provides a location.

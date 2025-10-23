@@ -29,8 +29,10 @@ type _AuthorizationAppleIDRequestClass struct {
 // An interface definition for the [AuthorizationAppleIDRequest] class.
 type IAuthorizationAppleIDRequest interface {
 	IAuthorizationOpenIDRequest
-	User() string
-	SetUser(value string)
+	// properties:
+	User() string /* primitive/slice/pointer. */
+	SetUser(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An OpenID authorization request that relies on the user’s Apple ID.
@@ -90,7 +92,7 @@ func NewAuthorizationAppleIDRequest() AuthorizationAppleIDRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) User() string {
+func (a_ AuthorizationAppleIDRequest) User() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (a_ AuthorizationAppleIDRequest) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) SetUser(value string) {
+func (a_ AuthorizationAppleIDRequest) SetUser(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 

@@ -29,7 +29,9 @@ type _CIImageRepClass struct {
 // An interface definition for the [CIImageRep] class.
 type ICIImageRep interface {
 	IImageRep
-	CIImage() Image
+	// properties:
+	CIImage() IImage
+	// methods:
 }
 
 // An object that can render an image from a Core Image object.
@@ -98,11 +100,21 @@ func NewCIImageRepWithCIImage(image IImage) CIImageRep {
 
 
 
+// Creates and returns a representation of an image initialized to the specified Core Image instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/imageRepWithCIImage:
+func (ic _CIImageRepClass) ImageRepWithCIImage(image IImage) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageRepWithCIImage:"), image)
+	return rv
+}
+
+
 // The Core Image instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCIImageRep/ciImage
-func (i_ CIImageRep) CIImage() Image {
+func (i_ CIImageRep) CIImage() IImage {
 	rv := objc.Send[Image](i_.ID, objc.Sel("CIImage"))
 	return rv
 }

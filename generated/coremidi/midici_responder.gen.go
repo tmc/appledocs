@@ -30,12 +30,14 @@ type _MIDICIResponderClass struct {
 // An interface definition for the [MIDICIResponder] class.
 type IMIDICIResponder interface {
 	objectivec.IObject
-	DeviceInfo() MIDICIDeviceInfo
-	SetDeviceInfo(value MIDICIDeviceInfo)
+	// properties:
+	DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */
+	SetDeviceInfo(value objc.IObject /* cross-framework: MIDICIDeviceInfo */)
 	Initiators() unsafe.Pointer
 	SetInitiators(value unsafe.Pointer)
 	ProfileDelegate() unsafe.Pointer
 	SetProfileDelegate(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.
@@ -93,7 +95,7 @@ func NewMIDICIResponder() MIDICIResponder {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
+func (m_ MIDICIResponder) DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */ {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIResponder) SetDeviceInfo(value MIDICIDeviceInfo) {
+func (m_ MIDICIResponder) SetDeviceInfo(value objc.IObject /* cross-framework: MIDICIDeviceInfo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 

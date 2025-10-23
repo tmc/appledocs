@@ -30,6 +30,8 @@ type _NetworkBrowserWindowControllerClass struct {
 // An interface definition for the [NetworkBrowserWindowController] class.
 type INetworkBrowserWindowController interface {
 	appkit.IWindowController
+	// properties:
+	// methods:
 }
 
 // A window controller that displays available network audio devices.

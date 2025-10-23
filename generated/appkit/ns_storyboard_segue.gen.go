@@ -30,12 +30,14 @@ type _StoryboardSegueClass struct {
 // An interface definition for the [StoryboardSegue] class.
 type IStoryboardSegue interface {
 	objectivec.IObject
+	// properties:
 	DestinationController() unsafe.Pointer
 	SetDestinationController(value unsafe.Pointer)
 	Identifier() unsafe.Pointer
 	SetIdentifier(value unsafe.Pointer)
 	SourceController() unsafe.Pointer
 	SetSourceController(value unsafe.Pointer)
+	// methods:
 }
 
 // A transition or containment relationship between two scenes in a storyboard.

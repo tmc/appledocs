@@ -31,18 +31,20 @@ type _PersistentCloudKitContainerEventClass struct {
 // An interface definition for the [PersistentCloudKitContainerEvent] class.
 type IPersistentCloudKitContainerEvent interface {
 	objectivec.IObject
-	Error() foundation.Error
-	Succeeded() bool
-	EndDate() foundation.Date
-	SetEndDate(value foundation.Date)
-	Identifier() foundation.UUID
-	SetIdentifier(value foundation.UUID)
-	StartDate() foundation.Date
-	SetStartDate(value foundation.Date)
-	StoreIdentifier() string
-	SetStoreIdentifier(value string)
+	// properties:
+	Error() Error /* not a class type */
+	Succeeded() bool /* primitive/slice/pointer. */
+	EndDate() foundation.objc.IObject /* cross-framework: Date */
+	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Identifier() foundation.objc.IObject /* cross-framework: UUID */
+	SetIdentifier(value foundation.objc.IObject /* cross-framework: UUID */)
+	StartDate() foundation.objc.IObject /* cross-framework: Date */
+	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	StoreIdentifier() string /* primitive/slice/pointer. */
+	SetStoreIdentifier(value string /* primitive/slice/pointer. */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents activity in a persistent CloudKit container.
@@ -100,8 +102,8 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/error
-func (p_ PersistentCloudKitContainerEvent) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("error"))
+func (p_ PersistentCloudKitContainerEvent) Error() Error /* not a class type */ {
+	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -110,7 +112,7 @@ func (p_ PersistentCloudKitContainerEvent) Error() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainer/Event/succeeded
-func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
+func (p_ PersistentCloudKitContainerEvent) Succeeded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("succeeded"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
-func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
+func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (p_ PersistentCloudKitContainerEvent) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/enddate
-func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.Date) {
+func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -139,7 +141,7 @@ func (p_ PersistentCloudKitContainerEvent) SetEndDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
+func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](p_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (p_ PersistentCloudKitContainerEvent) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/identifier
-func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.UUID) {
+func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -158,7 +160,7 @@ func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value foundation.UUID) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
+func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (p_ PersistentCloudKitContainerEvent) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/startdate
-func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.Date) {
+func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -177,7 +179,7 @@ func (p_ PersistentCloudKitContainerEvent) SetStartDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
+func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeIdentifier"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event/storeidentifier
-func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string) {
+func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), objc.String(value))
 }
 

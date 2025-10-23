@@ -33,151 +33,164 @@ type _TextViewClass struct {
 // An interface definition for the [TextView] class.
 type ITextView interface {
 	IText
-	RangeForUserCompletion() foundation.Range
-	SelectedRanges() []foundation.Value
-	SetSelectedRanges(value []foundation.Value)
-	AcceptableDragTypes() PasteboardType
-	SetAcceptableDragTypes(value PasteboardType)
-	AcceptsGlyphInfo() bool
-	SetAcceptsGlyphInfo(value bool)
-	AllowedInputSourceLocales() string
-	SetAllowedInputSourceLocales(value string)
-	AllowedWritingToolsResultOptions() unsafe.Pointer
-	SetAllowedWritingToolsResultOptions(value unsafe.Pointer)
-	AllowsCharacterPickerTouchBarItem() bool
-	SetAllowsCharacterPickerTouchBarItem(value bool)
-	AllowsDocumentBackgroundColorChange() bool
-	SetAllowsDocumentBackgroundColorChange(value bool)
-	AllowsImageEditing() bool
-	SetAllowsImageEditing(value bool)
-	AllowsUndo() bool
-	SetAllowsUndo(value bool)
+	// properties:
+	LayoutManager() objc.IObject /* cross-framework: LayoutManager */
+	RangeForUserCompletion() foundation.objc.IObject /* cross-framework: Range */
+	SelectedRanges() []Value /* primitive/slice/pointer. */
+	SetSelectedRanges(value []Value /* primitive/slice/pointer. */)
+	TextContainer() ITextContainer
+	SetTextContainer(value ITextContainer)
+	TextContainerOrigin() coregraphics.CGPoint
+	TextStorage() ITextStorage
+	TypingAttributes() foundation.IDictionary /* already interface */
+	SetTypingAttributes(value foundation.IDictionary /* already interface */)
+	AcceptableDragTypes() objc.IObject /* cross-framework: PasteboardType */
+	SetAcceptableDragTypes(value objc.IObject /* cross-framework: PasteboardType */)
+	AcceptsGlyphInfo() bool /* primitive/slice/pointer. */
+	SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */)
+	AllowedInputSourceLocales() string /* primitive/slice/pointer. */
+	SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */)
+	AllowedWritingToolsResultOptions() WritingToolsResultOptions
+	SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions)
+	AllowsCharacterPickerTouchBarItem() bool /* primitive/slice/pointer. */
+	SetAllowsCharacterPickerTouchBarItem(value bool /* primitive/slice/pointer. */)
+	AllowsDocumentBackgroundColorChange() bool /* primitive/slice/pointer. */
+	SetAllowsDocumentBackgroundColorChange(value bool /* primitive/slice/pointer. */)
+	AllowsImageEditing() bool /* primitive/slice/pointer. */
+	SetAllowsImageEditing(value bool /* primitive/slice/pointer. */)
+	AllowsUndo() bool /* primitive/slice/pointer. */
+	SetAllowsUndo(value bool /* primitive/slice/pointer. */)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	CandidateListTouchBarItem() CandidateListTouchBarItem
-	SetCandidateListTouchBarItem(value CandidateListTouchBarItem)
+	CandidateListTouchBarItem() objc.IObject /* cross-framework: CandidateListTouchBarItem */
+	SetCandidateListTouchBarItem(value objc.IObject /* cross-framework: CandidateListTouchBarItem */)
 	DefaultParagraphStyle() IParagraphStyle
 	SetDefaultParagraphStyle(value IParagraphStyle)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	DisplaysLinkToolTips() bool
-	SetDisplaysLinkToolTips(value bool)
-	DrawsBackground() bool
-	SetDrawsBackground(value bool)
-	EnabledTextCheckingTypes() unsafe.Pointer
-	SetEnabledTextCheckingTypes(value unsafe.Pointer)
-	ImportsGraphics() bool
-	SetImportsGraphics(value bool)
-	InlinePredictionType() unsafe.Pointer
-	SetInlinePredictionType(value unsafe.Pointer)
+	Delegate() TextViewDelegate /* not a class type */
+	SetDelegate(value TextViewDelegate /* not a class type */)
+	DisplaysLinkToolTips() bool /* primitive/slice/pointer. */
+	SetDisplaysLinkToolTips(value bool /* primitive/slice/pointer. */)
+	DrawsBackground() bool /* primitive/slice/pointer. */
+	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	EnabledTextCheckingTypes() TextCheckingTypes /* not a class type */
+	SetEnabledTextCheckingTypes(value TextCheckingTypes /* not a class type */)
+	ImportsGraphics() bool /* primitive/slice/pointer. */
+	SetImportsGraphics(value bool /* primitive/slice/pointer. */)
+	InlinePredictionType() TextInputTraitType /* not a class type */
+	SetInlinePredictionType(value TextInputTraitType /* not a class type */)
 	InsertionPointColor() IColor
 	SetInsertionPointColor(value IColor)
-	IsAutomaticDashSubstitutionEnabled() bool
-	SetIsAutomaticDashSubstitutionEnabled(value bool)
-	IsAutomaticDataDetectionEnabled() bool
-	SetIsAutomaticDataDetectionEnabled(value bool)
-	IsAutomaticLinkDetectionEnabled() bool
-	SetIsAutomaticLinkDetectionEnabled(value bool)
-	IsAutomaticQuoteSubstitutionEnabled() bool
-	SetIsAutomaticQuoteSubstitutionEnabled(value bool)
-	IsAutomaticSpellingCorrectionEnabled() bool
-	SetIsAutomaticSpellingCorrectionEnabled(value bool)
-	IsAutomaticTextCompletionEnabled() bool
-	SetIsAutomaticTextCompletionEnabled(value bool)
-	IsAutomaticTextReplacementEnabled() bool
-	SetIsAutomaticTextReplacementEnabled(value bool)
-	IsCoalescingUndo() bool
-	SetIsCoalescingUndo(value bool)
-	IsContinuousSpellCheckingEnabled() bool
-	SetIsContinuousSpellCheckingEnabled(value bool)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	IsFieldEditor() bool
-	SetIsFieldEditor(value bool)
-	IsGrammarCheckingEnabled() bool
-	SetIsGrammarCheckingEnabled(value bool)
-	IsIncrementalSearchingEnabled() bool
-	SetIsIncrementalSearchingEnabled(value bool)
-	IsRichText() bool
-	SetIsRichText(value bool)
-	IsRulerVisible() bool
-	SetIsRulerVisible(value bool)
-	IsSelectable() bool
-	SetIsSelectable(value bool)
-	IsWritingToolsActive() bool
-	SetIsWritingToolsActive(value bool)
-	LayoutManager() ILayoutManager
-	SetLayoutManager(value ILayoutManager)
-	LinkTextAttributes() coreml.Key
-	SetLinkTextAttributes(value coreml.Key)
-	MarkedTextAttributes() coreml.Key
-	SetMarkedTextAttributes(value coreml.Key)
-	MathExpressionCompletionType() unsafe.Pointer
-	SetMathExpressionCompletionType(value unsafe.Pointer)
-	RangeForUserCharacterAttributeChange() foundation.Range
-	SetRangeForUserCharacterAttributeChange(value foundation.Range)
-	RangeForUserParagraphAttributeChange() foundation.Range
-	SetRangeForUserParagraphAttributeChange(value foundation.Range)
-	RangeForUserTextChange() foundation.Range
-	SetRangeForUserTextChange(value foundation.Range)
-	RangesForUserCharacterAttributeChange() foundation.Value
-	SetRangesForUserCharacterAttributeChange(value foundation.Value)
-	RangesForUserParagraphAttributeChange() foundation.Value
-	SetRangesForUserParagraphAttributeChange(value foundation.Value)
-	RangesForUserTextChange() foundation.Value
-	SetRangesForUserTextChange(value foundation.Value)
-	ReadablePasteboardTypes() PasteboardType
-	SetReadablePasteboardTypes(value PasteboardType)
-	SelectedTextAttributes() coreml.Key
-	SetSelectedTextAttributes(value coreml.Key)
-	SelectionAffinity() unsafe.Pointer
-	SetSelectionAffinity(value unsafe.Pointer)
-	SelectionGranularity() unsafe.Pointer
-	SetSelectionGranularity(value unsafe.Pointer)
-	ShouldDrawInsertionPoint() bool
-	SetShouldDrawInsertionPoint(value bool)
-	SmartInsertDeleteEnabled() bool
-	SetSmartInsertDeleteEnabled(value bool)
-	SpellCheckerDocumentTag() int
-	SetSpellCheckerDocumentTag(value int)
-	TextContainer() TextContainer
-	SetTextContainer(value TextContainer)
+	IsAutomaticDashSubstitutionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticDashSubstitutionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticDataDetectionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticDataDetectionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticLinkDetectionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticLinkDetectionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticQuoteSubstitutionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticQuoteSubstitutionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticSpellingCorrectionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticSpellingCorrectionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticTextCompletionEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticTextCompletionEnabled(value bool /* primitive/slice/pointer. */)
+	IsAutomaticTextReplacementEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticTextReplacementEnabled(value bool /* primitive/slice/pointer. */)
+	IsCoalescingUndo() bool /* primitive/slice/pointer. */
+	SetIsCoalescingUndo(value bool /* primitive/slice/pointer. */)
+	IsContinuousSpellCheckingEnabled() bool /* primitive/slice/pointer. */
+	SetIsContinuousSpellCheckingEnabled(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsFieldEditor() bool /* primitive/slice/pointer. */
+	SetIsFieldEditor(value bool /* primitive/slice/pointer. */)
+	IsGrammarCheckingEnabled() bool /* primitive/slice/pointer. */
+	SetIsGrammarCheckingEnabled(value bool /* primitive/slice/pointer. */)
+	IsIncrementalSearchingEnabled() bool /* primitive/slice/pointer. */
+	SetIsIncrementalSearchingEnabled(value bool /* primitive/slice/pointer. */)
+	IsRichText() bool /* primitive/slice/pointer. */
+	SetIsRichText(value bool /* primitive/slice/pointer. */)
+	IsRulerVisible() bool /* primitive/slice/pointer. */
+	SetIsRulerVisible(value bool /* primitive/slice/pointer. */)
+	IsSelectable() bool /* primitive/slice/pointer. */
+	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	IsWritingToolsActive() bool /* primitive/slice/pointer. */
+	SetIsWritingToolsActive(value bool /* primitive/slice/pointer. */)
+	LinkTextAttributes() coreml.objc.IObject /* cross-framework: Key */
+	SetLinkTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	MarkedTextAttributes() coreml.objc.IObject /* cross-framework: Key */
+	SetMarkedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	MathExpressionCompletionType() TextInputTraitType /* not a class type */
+	SetMathExpressionCompletionType(value TextInputTraitType /* not a class type */)
+	RangeForUserCharacterAttributeChange() foundation.objc.IObject /* cross-framework: Range */
+	SetRangeForUserCharacterAttributeChange(value foundation.objc.IObject /* cross-framework: Range */)
+	RangeForUserParagraphAttributeChange() foundation.objc.IObject /* cross-framework: Range */
+	SetRangeForUserParagraphAttributeChange(value foundation.objc.IObject /* cross-framework: Range */)
+	RangeForUserTextChange() foundation.objc.IObject /* cross-framework: Range */
+	SetRangeForUserTextChange(value foundation.objc.IObject /* cross-framework: Range */)
+	RangesForUserCharacterAttributeChange() Value /* not a class type */
+	SetRangesForUserCharacterAttributeChange(value Value /* not a class type */)
+	RangesForUserParagraphAttributeChange() Value /* not a class type */
+	SetRangesForUserParagraphAttributeChange(value Value /* not a class type */)
+	RangesForUserTextChange() Value /* not a class type */
+	SetRangesForUserTextChange(value Value /* not a class type */)
+	ReadablePasteboardTypes() objc.IObject /* cross-framework: PasteboardType */
+	SetReadablePasteboardTypes(value objc.IObject /* cross-framework: PasteboardType */)
+	SelectedTextAttributes() coreml.objc.IObject /* cross-framework: Key */
+	SetSelectedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */)
+	SelectionAffinity() SelectionAffinity /* not a class type */
+	SetSelectionAffinity(value SelectionAffinity /* not a class type */)
+	SelectionGranularity() SelectionGranularity /* not a class type */
+	SetSelectionGranularity(value SelectionGranularity /* not a class type */)
+	ShouldDrawInsertionPoint() bool /* primitive/slice/pointer. */
+	SetShouldDrawInsertionPoint(value bool /* primitive/slice/pointer. */)
+	SmartInsertDeleteEnabled() bool /* primitive/slice/pointer. */
+	SetSmartInsertDeleteEnabled(value bool /* primitive/slice/pointer. */)
+	SpellCheckerDocumentTag() int /* primitive/slice/pointer. */
+	SetSpellCheckerDocumentTag(value int /* primitive/slice/pointer. */)
 	TextContainerInset() coregraphics.CGSize
 	SetTextContainerInset(value coregraphics.CGSize)
-	TextContainerOrigin() coregraphics.CGPoint
-	SetTextContainerOrigin(value coregraphics.CGPoint)
 	TextContentStorage() ITextContentStorage
 	SetTextContentStorage(value ITextContentStorage)
-	TextHighlightAttributes() coreml.Key
-	SetTextHighlightAttributes(value coreml.Key)
+	TextHighlightAttributes() coreml.objc.IObject /* cross-framework: Key */
+	SetTextHighlightAttributes(value coreml.objc.IObject /* cross-framework: Key */)
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
-	TextStorage() TextStorage
-	SetTextStorage(value TextStorage)
-	TypingAttributes() coreml.Key
-	SetTypingAttributes(value coreml.Key)
-	UsesAdaptiveColorMappingForDarkAppearance() bool
-	SetUsesAdaptiveColorMappingForDarkAppearance(value bool)
-	UsesFindBar() bool
-	SetUsesFindBar(value bool)
-	UsesFindPanel() bool
-	SetUsesFindPanel(value bool)
-	UsesFontPanel() bool
-	SetUsesFontPanel(value bool)
-	UsesInspectorBar() bool
-	SetUsesInspectorBar(value bool)
-	UsesRolloverButtonForSelection() bool
-	SetUsesRolloverButtonForSelection(value bool)
-	UsesRuler() bool
-	SetUsesRuler(value bool)
-	WritablePasteboardTypes() PasteboardType
-	SetWritablePasteboardTypes(value PasteboardType)
-	WritingToolsBehavior() NSWritingToolsBehavior
-	SetWritingToolsBehavior(value NSWritingToolsBehavior)
-	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.TextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options foundation.IDictionary, orthography foundation.Orthography, wordCount int)
-	QuickLookPreviewableItemsInRanges(ranges []foundation.Value) []objc.ID
+	UsesAdaptiveColorMappingForDarkAppearance() bool /* primitive/slice/pointer. */
+	SetUsesAdaptiveColorMappingForDarkAppearance(value bool /* primitive/slice/pointer. */)
+	UsesFindBar() bool /* primitive/slice/pointer. */
+	SetUsesFindBar(value bool /* primitive/slice/pointer. */)
+	UsesFindPanel() bool /* primitive/slice/pointer. */
+	SetUsesFindPanel(value bool /* primitive/slice/pointer. */)
+	UsesFontPanel() bool /* primitive/slice/pointer. */
+	SetUsesFontPanel(value bool /* primitive/slice/pointer. */)
+	UsesInspectorBar() bool /* primitive/slice/pointer. */
+	SetUsesInspectorBar(value bool /* primitive/slice/pointer. */)
+	UsesRolloverButtonForSelection() bool /* primitive/slice/pointer. */
+	SetUsesRolloverButtonForSelection(value bool /* primitive/slice/pointer. */)
+	UsesRuler() bool /* primitive/slice/pointer. */
+	SetUsesRuler(value bool /* primitive/slice/pointer. */)
+	WritablePasteboardTypes() objc.IObject /* cross-framework: PasteboardType */
+	SetWritablePasteboardTypes(value objc.IObject /* cross-framework: PasteboardType */)
+	WritingToolsBehavior() WritingToolsBehavior
+	SetWritingToolsBehavior(value WritingToolsBehavior)
+	// methods:
+	AlignJustified(sender objectivec.IObject)
+	ChangeAttributes(sender objectivec.IObject)
+	ChangeColor(sender objectivec.IObject)
+	HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.objc.IObject /* cross-framework TextCheckingResult */, range_ foundation.objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */)
+	LoosenKerning(sender objectivec.IObject)
+	LowerBaseline(sender objectivec.IObject)
+	QuickLookPreviewableItemsInRanges(ranges []Value /* primitive/slice/pointer. */) []objc.ID /* already interface */
+	RaiseBaseline(sender objectivec.IObject)
+	RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
+	SetAlignmentRange(alignment TextAlignment, range_ foundation.objc.IObject /* cross-framework Range */)
+	TightenKerning(sender objectivec.IObject)
 	ToggleAutomaticTextReplacement(sender objectivec.IObject)
 	ToggleSmartInsertDelete(sender objectivec.IObject)
+	TurnOffKerning(sender objectivec.IObject)
+	TurnOffLigatures(sender objectivec.IObject)
+	UseAllLigatures(sender objectivec.IObject)
+	UseStandardKerning(sender objectivec.IObject)
+	UseStandardLigatures(sender objectivec.IObject)
 }
 
 // A view that draws text and handles user interactions with that text.
@@ -235,12 +248,57 @@ func NewTextView() TextView {
 
 
 
+// Applies full justification to selected paragraphs (or all text, if the receiver is a plain text object).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/alignJustified(_:)
+func (t_ TextView) AlignJustified(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("alignJustified:"), sender)
+}
+
+
+// Changes the attributes of the current selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/changeAttributes(_:)
+func (t_ TextView) ChangeAttributes(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("changeAttributes:"), sender)
+}
+
+
+// Sets the color of the selected text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/changeColor(_:)
+func (t_ TextView) ChangeColor(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("changeColor:"), sender)
+}
+
+
 // Handles the text checking results returned by the text view
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)
-func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.TextCheckingResult, range_ foundation.Range, checkingTypes unsafe.Pointer, options foundation.IDictionary, orthography foundation.Orthography, wordCount int) {
+func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordCount(results []foundation.objc.IObject /* cross-framework TextCheckingResult */, range_ foundation.objc.IObject /* cross-framework Range */, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary /* already interface */, orthography objc.IObject /* cross-framework Orthography */, wordCount int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("handleTextCheckingResults:forRange:types:options:orthography:wordCount:"), results, range_, checkingTypes, options, orthography, wordCount)
+}
+
+
+// Increases the space between glyphs in the receiver’s selection, or in all text if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/loosenKerning(_:)
+func (t_ TextView) LoosenKerning(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("loosenKerning:"), sender)
+}
+
+
+// Lowers the baseline offset of selected text by 1 point, or of all text if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/lowerBaseline(_:)
+func (t_ TextView) LowerBaseline(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("lowerBaseline:"), sender)
 }
 
 
@@ -248,9 +306,46 @@ func (t_ TextView) HandleTextCheckingResultsForRangeTypesOptionsOrthographyWordC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/quickLookPreviewableItems(inRanges:)
-func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges []foundation.Value) []objc.ID {
+func (t_ TextView) QuickLookPreviewableItemsInRanges(ranges []Value /* primitive/slice/pointer. */) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("quickLookPreviewableItemsInRanges:"), ranges)
 	return rv
+}
+
+
+// Raises the baseline offset of selected text by 1 point, or of all text if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/raiseBaseline(_:)
+func (t_ TextView) RaiseBaseline(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("raiseBaseline:"), sender)
+}
+
+
+// Returns whether the marker should be removed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/rulerView(_:shouldRemove:)
+func (t_ TextView) RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("rulerView:shouldRemoveMarker:"), ruler, marker)
+	return rv
+}
+
+
+// Sets the alignment of the paragraphs containing characters in the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/setAlignment(_:range:)
+func (t_ TextView) SetAlignmentRange(alignment TextAlignment, range_ foundation.objc.IObject /* cross-framework Range */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:range:"), alignment, range_)
+}
+
+
+// Decreases the space between glyphs in the receiver’s selection, or for all glyphs if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/tightenKerning(_:)
+func (t_ TextView) TightenKerning(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("tightenKerning:"), sender)
 }
 
 
@@ -272,11 +367,66 @@ func (t_ TextView) ToggleSmartInsertDelete(sender objectivec.IObject) {
 }
 
 
+// Sets the receiver to use nominal glyph spacing for the glyphs in its selection, or for all glyphs if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/turnOffKerning(_:)
+func (t_ TextView) TurnOffKerning(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("turnOffKerning:"), sender)
+}
+
+
+// Sets the receiver to use only required ligatures when setting text, for the glyphs in the selection if the receiver is a rich text view, or for all glyphs if it’s a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/turnOffLigatures(_:)
+func (t_ TextView) TurnOffLigatures(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("turnOffLigatures:"), sender)
+}
+
+
+// Sets the receiver to use all ligatures available for the fonts and languages used when setting text, for the glyphs in the selection if the receiver is a rich text view, or for all glyphs if it’s a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/useAllLigatures(_:)
+func (t_ TextView) UseAllLigatures(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("useAllLigatures:"), sender)
+}
+
+
+// Set the receiver to use pair kerning data for the glyphs in its selection, or for all glyphs if the receiver is a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/useStandardKerning(_:)
+func (t_ TextView) UseStandardKerning(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("useStandardKerning:"), sender)
+}
+
+
+// Sets the receiver to use the standard ligatures available for the fonts and languages used when setting text, for the glyphs in the selection if the receiver is a rich text view, or for all glyphs if it’s a plain text view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/useStandardLigatures(_:)
+func (t_ TextView) UseStandardLigatures(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("useStandardLigatures:"), sender)
+}
+
+
+// The layout manager that lays out text for the receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/layoutManager
+func (t_ TextView) LayoutManager() objc.IObject /* cross-framework: LayoutManager */ {
+	rv := objc.Send[LayoutManager](t_.ID, objc.Sel("layoutManager"))
+	return rv
+}
+
+
 // The partial range from the most recent beginning of a word up to the insertion point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/rangeForUserCompletion
-func (t_ TextView) RangeForUserCompletion() foundation.Range {
+func (t_ TextView) RangeForUserCompletion() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCompletion"))
 	return rv
 }
@@ -286,8 +436,8 @@ func (t_ TextView) RangeForUserCompletion() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/selectedRanges
-func (t_ TextView) SelectedRanges() []foundation.Value {
-	rv := objc.Send[[]foundation.Value](t_.ID, objc.Sel("selectedRanges"))
+func (t_ TextView) SelectedRanges() []Value /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]Value](t_.ID, objc.Sel("selectedRanges"))
 	return rv
 }
 
@@ -296,7 +446,7 @@ func (t_ TextView) SelectedRanges() []foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/selectedRanges
-func (t_ TextView) SetSelectedRanges(value []foundation.Value) {
+func (t_ TextView) SetSelectedRanges(value []Value /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -311,11 +461,69 @@ func (t_ TextView) SetSelectedRanges(value []foundation.Value) {
 }
 
 
+// The receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
+func (t_ TextView) TextContainer() ITextContainer {
+	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
+	return rv
+}
+
+
+// The receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainer
+func (t_ TextView) SetTextContainer(value ITextContainer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
+}
+
+
+// The origin of the receiver’s text container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textContainerOrigin
+func (t_ TextView) TextContainerOrigin() coregraphics.CGPoint {
+	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("textContainerOrigin"))
+	return rv
+}
+
+
+// The receiver’s text storage object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/textStorage
+func (t_ TextView) TextStorage() ITextStorage {
+	rv := objc.Send[TextStorage](t_.ID, objc.Sel("textStorage"))
+	return rv
+}
+
+
+// The receiver’s typing attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/typingAttributes
+func (t_ TextView) TypingAttributes() foundation.IDictionary /* already interface */ {
+	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("typingAttributes"))
+	return rv
+}
+
+
+// The receiver’s typing attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextView/typingAttributes
+func (t_ TextView) SetTypingAttributes(value foundation.IDictionary /* already interface */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
+}
+
+
 // The data types that the receiver accepts as the destination view of a dragging operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptabledragtypes
-func (t_ TextView) AcceptableDragTypes() PasteboardType {
+func (t_ TextView) AcceptableDragTypes() objc.IObject /* cross-framework: PasteboardType */ {
 	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("acceptableDragTypes"))
 	return rv
 }
@@ -325,7 +533,7 @@ func (t_ TextView) AcceptableDragTypes() PasteboardType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptabledragtypes
-func (t_ TextView) SetAcceptableDragTypes(value PasteboardType) {
+func (t_ TextView) SetAcceptableDragTypes(value objc.IObject /* cross-framework: PasteboardType */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptableDragTypes:"), value)
 }
 
@@ -334,7 +542,7 @@ func (t_ TextView) SetAcceptableDragTypes(value PasteboardType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptsglyphinfo
-func (t_ TextView) AcceptsGlyphInfo() bool {
+func (t_ TextView) AcceptsGlyphInfo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsGlyphInfo"))
 	return rv
 }
@@ -344,7 +552,7 @@ func (t_ TextView) AcceptsGlyphInfo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/acceptsglyphinfo
-func (t_ TextView) SetAcceptsGlyphInfo(value bool) {
+func (t_ TextView) SetAcceptsGlyphInfo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsGlyphInfo:"), value)
 }
 
@@ -353,7 +561,7 @@ func (t_ TextView) SetAcceptsGlyphInfo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedinputsourcelocales
-func (t_ TextView) AllowedInputSourceLocales() string {
+func (t_ TextView) AllowedInputSourceLocales() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
 }
@@ -363,29 +571,29 @@ func (t_ TextView) AllowedInputSourceLocales() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedinputsourcelocales
-func (t_ TextView) SetAllowedInputSourceLocales(value string) {
+func (t_ TextView) SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) AllowedWritingToolsResultOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
+func (t_ TextView) AllowedWritingToolsResultOptions() WritingToolsResultOptions {
+	rv := objc.Send[WritingToolsResultOptions](t_.ID, objc.Sel("allowedWritingToolsResultOptions"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowedwritingtoolsresultoptions
-func (t_ TextView) SetAllowedWritingToolsResultOptions(value unsafe.Pointer) {
+func (t_ TextView) SetAllowedWritingToolsResultOptions(value WritingToolsResultOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedWritingToolsResultOptions:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowscharacterpickertouchbaritem
-func (t_ TextView) AllowsCharacterPickerTouchBarItem() bool {
+func (t_ TextView) AllowsCharacterPickerTouchBarItem() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsCharacterPickerTouchBarItem"))
 	return rv
 }
@@ -393,7 +601,7 @@ func (t_ TextView) AllowsCharacterPickerTouchBarItem() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowscharacterpickertouchbaritem
-func (t_ TextView) SetAllowsCharacterPickerTouchBarItem(value bool) {
+func (t_ TextView) SetAllowsCharacterPickerTouchBarItem(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsCharacterPickerTouchBarItem:"), value)
 }
 
@@ -402,7 +610,7 @@ func (t_ TextView) SetAllowsCharacterPickerTouchBarItem(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsdocumentbackgroundcolorchange
-func (t_ TextView) AllowsDocumentBackgroundColorChange() bool {
+func (t_ TextView) AllowsDocumentBackgroundColorChange() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDocumentBackgroundColorChange"))
 	return rv
 }
@@ -412,7 +620,7 @@ func (t_ TextView) AllowsDocumentBackgroundColorChange() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsdocumentbackgroundcolorchange
-func (t_ TextView) SetAllowsDocumentBackgroundColorChange(value bool) {
+func (t_ TextView) SetAllowsDocumentBackgroundColorChange(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsDocumentBackgroundColorChange:"), value)
 }
 
@@ -421,7 +629,7 @@ func (t_ TextView) SetAllowsDocumentBackgroundColorChange(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsimageediting
-func (t_ TextView) AllowsImageEditing() bool {
+func (t_ TextView) AllowsImageEditing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsImageEditing"))
 	return rv
 }
@@ -431,7 +639,7 @@ func (t_ TextView) AllowsImageEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsimageediting
-func (t_ TextView) SetAllowsImageEditing(value bool) {
+func (t_ TextView) SetAllowsImageEditing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsImageEditing:"), value)
 }
 
@@ -440,7 +648,7 @@ func (t_ TextView) SetAllowsImageEditing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsundo
-func (t_ TextView) AllowsUndo() bool {
+func (t_ TextView) AllowsUndo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsUndo"))
 	return rv
 }
@@ -450,7 +658,7 @@ func (t_ TextView) AllowsUndo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/allowsundo
-func (t_ TextView) SetAllowsUndo(value bool) {
+func (t_ TextView) SetAllowsUndo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsUndo:"), value)
 }
 
@@ -476,7 +684,7 @@ func (t_ TextView) SetBackgroundColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) CandidateListTouchBarItem() CandidateListTouchBarItem {
+func (t_ TextView) CandidateListTouchBarItem() objc.IObject /* cross-framework: CandidateListTouchBarItem */ {
 	rv := objc.Send[CandidateListTouchBarItem](t_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
@@ -484,7 +692,7 @@ func (t_ TextView) CandidateListTouchBarItem() CandidateListTouchBarItem {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/candidatelisttouchbaritem
-func (t_ TextView) SetCandidateListTouchBarItem(value CandidateListTouchBarItem) {
+func (t_ TextView) SetCandidateListTouchBarItem(value objc.IObject /* cross-framework: CandidateListTouchBarItem */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateListTouchBarItem:"), value)
 }
 
@@ -512,8 +720,8 @@ func (t_ TextView) SetDefaultParagraphStyle(value IParagraphStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/delegate
-func (t_ TextView) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+func (t_ TextView) Delegate() TextViewDelegate /* not a class type */ {
+	rv := objc.Send[TextViewDelegate](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -522,7 +730,7 @@ func (t_ TextView) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/delegate
-func (t_ TextView) SetDelegate(value unsafe.Pointer) {
+func (t_ TextView) SetDelegate(value TextViewDelegate /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -531,7 +739,7 @@ func (t_ TextView) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/displayslinktooltips
-func (t_ TextView) DisplaysLinkToolTips() bool {
+func (t_ TextView) DisplaysLinkToolTips() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("displaysLinkToolTips"))
 	return rv
 }
@@ -541,7 +749,7 @@ func (t_ TextView) DisplaysLinkToolTips() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/displayslinktooltips
-func (t_ TextView) SetDisplaysLinkToolTips(value bool) {
+func (t_ TextView) SetDisplaysLinkToolTips(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplaysLinkToolTips:"), value)
 }
 
@@ -550,7 +758,7 @@ func (t_ TextView) SetDisplaysLinkToolTips(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/drawsbackground
-func (t_ TextView) DrawsBackground() bool {
+func (t_ TextView) DrawsBackground() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -560,7 +768,7 @@ func (t_ TextView) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/drawsbackground
-func (t_ TextView) SetDrawsBackground(value bool) {
+func (t_ TextView) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -569,8 +777,8 @@ func (t_ TextView) SetDrawsBackground(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/enabledtextcheckingtypes
-func (t_ TextView) EnabledTextCheckingTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("enabledTextCheckingTypes"))
+func (t_ TextView) EnabledTextCheckingTypes() TextCheckingTypes /* not a class type */ {
+	rv := objc.Send[TextCheckingTypes](t_.ID, objc.Sel("enabledTextCheckingTypes"))
 	return rv
 }
 
@@ -579,7 +787,7 @@ func (t_ TextView) EnabledTextCheckingTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/enabledtextcheckingtypes
-func (t_ TextView) SetEnabledTextCheckingTypes(value unsafe.Pointer) {
+func (t_ TextView) SetEnabledTextCheckingTypes(value TextCheckingTypes /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnabledTextCheckingTypes:"), value)
 }
 
@@ -588,7 +796,7 @@ func (t_ TextView) SetEnabledTextCheckingTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/importsgraphics
-func (t_ TextView) ImportsGraphics() bool {
+func (t_ TextView) ImportsGraphics() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("importsGraphics"))
 	return rv
 }
@@ -598,22 +806,22 @@ func (t_ TextView) ImportsGraphics() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/importsgraphics
-func (t_ TextView) SetImportsGraphics(value bool) {
+func (t_ TextView) SetImportsGraphics(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImportsGraphics:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) InlinePredictionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inlinePredictionType"))
+func (t_ TextView) InlinePredictionType() TextInputTraitType /* not a class type */ {
+	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("inlinePredictionType"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/inlinepredictiontype
-func (t_ TextView) SetInlinePredictionType(value unsafe.Pointer) {
+func (t_ TextView) SetInlinePredictionType(value TextInputTraitType /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInlinePredictionType:"), value)
 }
 
@@ -641,7 +849,7 @@ func (t_ TextView) SetInsertionPointColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticdashsubstitutionenabled
-func (t_ TextView) IsAutomaticDashSubstitutionEnabled() bool {
+func (t_ TextView) IsAutomaticDashSubstitutionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticDashSubstitutionEnabled"))
 	return rv
 }
@@ -651,7 +859,7 @@ func (t_ TextView) IsAutomaticDashSubstitutionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticdashsubstitutionenabled
-func (t_ TextView) SetIsAutomaticDashSubstitutionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticDashSubstitutionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticDashSubstitutionEnabled:"), value)
 }
 
@@ -660,7 +868,7 @@ func (t_ TextView) SetIsAutomaticDashSubstitutionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticdatadetectionenabled
-func (t_ TextView) IsAutomaticDataDetectionEnabled() bool {
+func (t_ TextView) IsAutomaticDataDetectionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticDataDetectionEnabled"))
 	return rv
 }
@@ -670,7 +878,7 @@ func (t_ TextView) IsAutomaticDataDetectionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticdatadetectionenabled
-func (t_ TextView) SetIsAutomaticDataDetectionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticDataDetectionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticDataDetectionEnabled:"), value)
 }
 
@@ -679,7 +887,7 @@ func (t_ TextView) SetIsAutomaticDataDetectionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticlinkdetectionenabled
-func (t_ TextView) IsAutomaticLinkDetectionEnabled() bool {
+func (t_ TextView) IsAutomaticLinkDetectionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticLinkDetectionEnabled"))
 	return rv
 }
@@ -689,7 +897,7 @@ func (t_ TextView) IsAutomaticLinkDetectionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticlinkdetectionenabled
-func (t_ TextView) SetIsAutomaticLinkDetectionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticLinkDetectionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticLinkDetectionEnabled:"), value)
 }
 
@@ -698,7 +906,7 @@ func (t_ TextView) SetIsAutomaticLinkDetectionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticquotesubstitutionenabled
-func (t_ TextView) IsAutomaticQuoteSubstitutionEnabled() bool {
+func (t_ TextView) IsAutomaticQuoteSubstitutionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticQuoteSubstitutionEnabled"))
 	return rv
 }
@@ -708,7 +916,7 @@ func (t_ TextView) IsAutomaticQuoteSubstitutionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticquotesubstitutionenabled
-func (t_ TextView) SetIsAutomaticQuoteSubstitutionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticQuoteSubstitutionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticQuoteSubstitutionEnabled:"), value)
 }
 
@@ -717,7 +925,7 @@ func (t_ TextView) SetIsAutomaticQuoteSubstitutionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticspellingcorrectionenabled
-func (t_ TextView) IsAutomaticSpellingCorrectionEnabled() bool {
+func (t_ TextView) IsAutomaticSpellingCorrectionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticSpellingCorrectionEnabled"))
 	return rv
 }
@@ -727,7 +935,7 @@ func (t_ TextView) IsAutomaticSpellingCorrectionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomaticspellingcorrectionenabled
-func (t_ TextView) SetIsAutomaticSpellingCorrectionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticSpellingCorrectionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticSpellingCorrectionEnabled:"), value)
 }
 
@@ -736,7 +944,7 @@ func (t_ TextView) SetIsAutomaticSpellingCorrectionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomatictextcompletionenabled
-func (t_ TextView) IsAutomaticTextCompletionEnabled() bool {
+func (t_ TextView) IsAutomaticTextCompletionEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticTextCompletionEnabled"))
 	return rv
 }
@@ -746,7 +954,7 @@ func (t_ TextView) IsAutomaticTextCompletionEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomatictextcompletionenabled
-func (t_ TextView) SetIsAutomaticTextCompletionEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticTextCompletionEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticTextCompletionEnabled:"), value)
 }
 
@@ -755,7 +963,7 @@ func (t_ TextView) SetIsAutomaticTextCompletionEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomatictextreplacementenabled
-func (t_ TextView) IsAutomaticTextReplacementEnabled() bool {
+func (t_ TextView) IsAutomaticTextReplacementEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticTextReplacementEnabled"))
 	return rv
 }
@@ -765,7 +973,7 @@ func (t_ TextView) IsAutomaticTextReplacementEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isautomatictextreplacementenabled
-func (t_ TextView) SetIsAutomaticTextReplacementEnabled(value bool) {
+func (t_ TextView) SetIsAutomaticTextReplacementEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticTextReplacementEnabled:"), value)
 }
 
@@ -774,7 +982,7 @@ func (t_ TextView) SetIsAutomaticTextReplacementEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iscoalescingundo
-func (t_ TextView) IsCoalescingUndo() bool {
+func (t_ TextView) IsCoalescingUndo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isCoalescingUndo"))
 	return rv
 }
@@ -784,7 +992,7 @@ func (t_ TextView) IsCoalescingUndo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iscoalescingundo
-func (t_ TextView) SetIsCoalescingUndo(value bool) {
+func (t_ TextView) SetIsCoalescingUndo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsCoalescingUndo:"), value)
 }
 
@@ -793,7 +1001,7 @@ func (t_ TextView) SetIsCoalescingUndo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iscontinuousspellcheckingenabled
-func (t_ TextView) IsContinuousSpellCheckingEnabled() bool {
+func (t_ TextView) IsContinuousSpellCheckingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isContinuousSpellCheckingEnabled"))
 	return rv
 }
@@ -803,7 +1011,7 @@ func (t_ TextView) IsContinuousSpellCheckingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iscontinuousspellcheckingenabled
-func (t_ TextView) SetIsContinuousSpellCheckingEnabled(value bool) {
+func (t_ TextView) SetIsContinuousSpellCheckingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsContinuousSpellCheckingEnabled:"), value)
 }
 
@@ -812,7 +1020,7 @@ func (t_ TextView) SetIsContinuousSpellCheckingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iseditable
-func (t_ TextView) IsEditable() bool {
+func (t_ TextView) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -822,7 +1030,7 @@ func (t_ TextView) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iseditable
-func (t_ TextView) SetIsEditable(value bool) {
+func (t_ TextView) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -831,7 +1039,7 @@ func (t_ TextView) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isfieldeditor
-func (t_ TextView) IsFieldEditor() bool {
+func (t_ TextView) IsFieldEditor() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFieldEditor"))
 	return rv
 }
@@ -841,7 +1049,7 @@ func (t_ TextView) IsFieldEditor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isfieldeditor
-func (t_ TextView) SetIsFieldEditor(value bool) {
+func (t_ TextView) SetIsFieldEditor(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFieldEditor:"), value)
 }
 
@@ -850,7 +1058,7 @@ func (t_ TextView) SetIsFieldEditor(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isgrammarcheckingenabled
-func (t_ TextView) IsGrammarCheckingEnabled() bool {
+func (t_ TextView) IsGrammarCheckingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isGrammarCheckingEnabled"))
 	return rv
 }
@@ -860,7 +1068,7 @@ func (t_ TextView) IsGrammarCheckingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isgrammarcheckingenabled
-func (t_ TextView) SetIsGrammarCheckingEnabled(value bool) {
+func (t_ TextView) SetIsGrammarCheckingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsGrammarCheckingEnabled:"), value)
 }
 
@@ -869,7 +1077,7 @@ func (t_ TextView) SetIsGrammarCheckingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isincrementalsearchingenabled
-func (t_ TextView) IsIncrementalSearchingEnabled() bool {
+func (t_ TextView) IsIncrementalSearchingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isIncrementalSearchingEnabled"))
 	return rv
 }
@@ -879,7 +1087,7 @@ func (t_ TextView) IsIncrementalSearchingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isincrementalsearchingenabled
-func (t_ TextView) SetIsIncrementalSearchingEnabled(value bool) {
+func (t_ TextView) SetIsIncrementalSearchingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsIncrementalSearchingEnabled:"), value)
 }
 
@@ -888,7 +1096,7 @@ func (t_ TextView) SetIsIncrementalSearchingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isrichtext
-func (t_ TextView) IsRichText() bool {
+func (t_ TextView) IsRichText() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRichText"))
 	return rv
 }
@@ -898,7 +1106,7 @@ func (t_ TextView) IsRichText() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isrichtext
-func (t_ TextView) SetIsRichText(value bool) {
+func (t_ TextView) SetIsRichText(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRichText:"), value)
 }
 
@@ -907,7 +1115,7 @@ func (t_ TextView) SetIsRichText(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isrulervisible
-func (t_ TextView) IsRulerVisible() bool {
+func (t_ TextView) IsRulerVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRulerVisible"))
 	return rv
 }
@@ -917,7 +1125,7 @@ func (t_ TextView) IsRulerVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isrulervisible
-func (t_ TextView) SetIsRulerVisible(value bool) {
+func (t_ TextView) SetIsRulerVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRulerVisible:"), value)
 }
 
@@ -926,7 +1134,7 @@ func (t_ TextView) SetIsRulerVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isselectable
-func (t_ TextView) IsSelectable() bool {
+func (t_ TextView) IsSelectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
 	return rv
 }
@@ -936,14 +1144,14 @@ func (t_ TextView) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/isselectable
-func (t_ TextView) SetIsSelectable(value bool) {
+func (t_ TextView) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iswritingtoolsactive
-func (t_ TextView) IsWritingToolsActive() bool {
+func (t_ TextView) IsWritingToolsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isWritingToolsActive"))
 	return rv
 }
@@ -951,27 +1159,8 @@ func (t_ TextView) IsWritingToolsActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/iswritingtoolsactive
-func (t_ TextView) SetIsWritingToolsActive(value bool) {
+func (t_ TextView) SetIsWritingToolsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsWritingToolsActive:"), value)
-}
-
-
-// The layout manager that lays out text for the receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/layoutmanager
-func (t_ TextView) LayoutManager() ILayoutManager {
-	rv := objc.Send[LayoutManager](t_.ID, objc.Sel("layoutManager"))
-	return rv
-}
-
-
-// The layout manager that lays out text for the receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/layoutmanager
-func (t_ TextView) SetLayoutManager(value ILayoutManager) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
 
@@ -979,7 +1168,7 @@ func (t_ TextView) SetLayoutManager(value ILayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) LinkTextAttributes() coreml.Key {
+func (t_ TextView) LinkTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("linkTextAttributes"))
 	return rv
 }
@@ -989,7 +1178,7 @@ func (t_ TextView) LinkTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/linktextattributes
-func (t_ TextView) SetLinkTextAttributes(value coreml.Key) {
+func (t_ TextView) SetLinkTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkTextAttributes:"), value)
 }
 
@@ -998,7 +1187,7 @@ func (t_ TextView) SetLinkTextAttributes(value coreml.Key) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) MarkedTextAttributes() coreml.Key {
+func (t_ TextView) MarkedTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("markedTextAttributes"))
 	return rv
 }
@@ -1008,22 +1197,22 @@ func (t_ TextView) MarkedTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/markedtextattributes
-func (t_ TextView) SetMarkedTextAttributes(value coreml.Key) {
+func (t_ TextView) SetMarkedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMarkedTextAttributes:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) MathExpressionCompletionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mathExpressionCompletionType"))
+func (t_ TextView) MathExpressionCompletionType() TextInputTraitType /* not a class type */ {
+	rv := objc.Send[TextInputTraitType](t_.ID, objc.Sel("mathExpressionCompletionType"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/mathexpressioncompletiontype
-func (t_ TextView) SetMathExpressionCompletionType(value unsafe.Pointer) {
+func (t_ TextView) SetMathExpressionCompletionType(value TextInputTraitType /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMathExpressionCompletionType:"), value)
 }
 
@@ -1032,7 +1221,7 @@ func (t_ TextView) SetMathExpressionCompletionType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
-func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.Range {
+func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserCharacterAttributeChange"))
 	return rv
 }
@@ -1042,7 +1231,7 @@ func (t_ TextView) RangeForUserCharacterAttributeChange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusercharacterattributechange
-func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserCharacterAttributeChange:"), value)
 }
 
@@ -1051,7 +1240,7 @@ func (t_ TextView) SetRangeForUserCharacterAttributeChange(value foundation.Rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforuserparagraphattributechange
-func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.Range {
+func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserParagraphAttributeChange"))
 	return rv
 }
@@ -1061,7 +1250,7 @@ func (t_ TextView) RangeForUserParagraphAttributeChange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforuserparagraphattributechange
-func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserParagraphAttributeChange:"), value)
 }
 
@@ -1070,7 +1259,7 @@ func (t_ TextView) SetRangeForUserParagraphAttributeChange(value foundation.Rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusertextchange
-func (t_ TextView) RangeForUserTextChange() foundation.Range {
+func (t_ TextView) RangeForUserTextChange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("rangeForUserTextChange"))
 	return rv
 }
@@ -1080,7 +1269,7 @@ func (t_ TextView) RangeForUserTextChange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangeforusertextchange
-func (t_ TextView) SetRangeForUserTextChange(value foundation.Range) {
+func (t_ TextView) SetRangeForUserTextChange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangeForUserTextChange:"), value)
 }
 
@@ -1089,8 +1278,8 @@ func (t_ TextView) SetRangeForUserTextChange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) RangesForUserCharacterAttributeChange() foundation.Value {
-	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
+func (t_ TextView) RangesForUserCharacterAttributeChange() Value /* not a class type */ {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserCharacterAttributeChange"))
 	return rv
 }
 
@@ -1099,7 +1288,7 @@ func (t_ TextView) RangesForUserCharacterAttributeChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusercharacterattributechange
-func (t_ TextView) SetRangesForUserCharacterAttributeChange(value foundation.Value) {
+func (t_ TextView) SetRangesForUserCharacterAttributeChange(value Value /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserCharacterAttributeChange:"), value)
 }
 
@@ -1108,8 +1297,8 @@ func (t_ TextView) SetRangesForUserCharacterAttributeChange(value foundation.Val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) RangesForUserParagraphAttributeChange() foundation.Value {
-	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
+func (t_ TextView) RangesForUserParagraphAttributeChange() Value /* not a class type */ {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserParagraphAttributeChange"))
 	return rv
 }
 
@@ -1118,7 +1307,7 @@ func (t_ TextView) RangesForUserParagraphAttributeChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforuserparagraphattributechange
-func (t_ TextView) SetRangesForUserParagraphAttributeChange(value foundation.Value) {
+func (t_ TextView) SetRangesForUserParagraphAttributeChange(value Value /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserParagraphAttributeChange:"), value)
 }
 
@@ -1127,8 +1316,8 @@ func (t_ TextView) SetRangesForUserParagraphAttributeChange(value foundation.Val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) RangesForUserTextChange() foundation.Value {
-	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("rangesForUserTextChange"))
+func (t_ TextView) RangesForUserTextChange() Value /* not a class type */ {
+	rv := objc.Send[Value](t_.ID, objc.Sel("rangesForUserTextChange"))
 	return rv
 }
 
@@ -1137,7 +1326,7 @@ func (t_ TextView) RangesForUserTextChange() foundation.Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/rangesforusertextchange
-func (t_ TextView) SetRangesForUserTextChange(value foundation.Value) {
+func (t_ TextView) SetRangesForUserTextChange(value Value /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRangesForUserTextChange:"), value)
 }
 
@@ -1146,7 +1335,7 @@ func (t_ TextView) SetRangesForUserTextChange(value foundation.Value) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/readablepasteboardtypes
-func (t_ TextView) ReadablePasteboardTypes() PasteboardType {
+func (t_ TextView) ReadablePasteboardTypes() objc.IObject /* cross-framework: PasteboardType */ {
 	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("readablePasteboardTypes"))
 	return rv
 }
@@ -1156,7 +1345,7 @@ func (t_ TextView) ReadablePasteboardTypes() PasteboardType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/readablepasteboardtypes
-func (t_ TextView) SetReadablePasteboardTypes(value PasteboardType) {
+func (t_ TextView) SetReadablePasteboardTypes(value objc.IObject /* cross-framework: PasteboardType */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReadablePasteboardTypes:"), value)
 }
 
@@ -1165,7 +1354,7 @@ func (t_ TextView) SetReadablePasteboardTypes(value PasteboardType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SelectedTextAttributes() coreml.Key {
+func (t_ TextView) SelectedTextAttributes() coreml.objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("selectedTextAttributes"))
 	return rv
 }
@@ -1175,7 +1364,7 @@ func (t_ TextView) SelectedTextAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectedtextattributes
-func (t_ TextView) SetSelectedTextAttributes(value coreml.Key) {
+func (t_ TextView) SetSelectedTextAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTextAttributes:"), value)
 }
 
@@ -1184,8 +1373,8 @@ func (t_ TextView) SetSelectedTextAttributes(value coreml.Key) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectionaffinity
-func (t_ TextView) SelectionAffinity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionAffinity"))
+func (t_ TextView) SelectionAffinity() SelectionAffinity /* not a class type */ {
+	rv := objc.Send[SelectionAffinity](t_.ID, objc.Sel("selectionAffinity"))
 	return rv
 }
 
@@ -1194,7 +1383,7 @@ func (t_ TextView) SelectionAffinity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectionaffinity
-func (t_ TextView) SetSelectionAffinity(value unsafe.Pointer) {
+func (t_ TextView) SetSelectionAffinity(value SelectionAffinity /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionAffinity:"), value)
 }
 
@@ -1203,8 +1392,8 @@ func (t_ TextView) SetSelectionAffinity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectiongranularity
-func (t_ TextView) SelectionGranularity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectionGranularity"))
+func (t_ TextView) SelectionGranularity() SelectionGranularity /* not a class type */ {
+	rv := objc.Send[SelectionGranularity](t_.ID, objc.Sel("selectionGranularity"))
 	return rv
 }
 
@@ -1213,7 +1402,7 @@ func (t_ TextView) SelectionGranularity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/selectiongranularity
-func (t_ TextView) SetSelectionGranularity(value unsafe.Pointer) {
+func (t_ TextView) SetSelectionGranularity(value SelectionGranularity /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionGranularity:"), value)
 }
 
@@ -1222,7 +1411,7 @@ func (t_ TextView) SetSelectionGranularity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/shoulddrawinsertionpoint
-func (t_ TextView) ShouldDrawInsertionPoint() bool {
+func (t_ TextView) ShouldDrawInsertionPoint() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("shouldDrawInsertionPoint"))
 	return rv
 }
@@ -1232,7 +1421,7 @@ func (t_ TextView) ShouldDrawInsertionPoint() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/shoulddrawinsertionpoint
-func (t_ TextView) SetShouldDrawInsertionPoint(value bool) {
+func (t_ TextView) SetShouldDrawInsertionPoint(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShouldDrawInsertionPoint:"), value)
 }
 
@@ -1241,7 +1430,7 @@ func (t_ TextView) SetShouldDrawInsertionPoint(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/smartinsertdeleteenabled
-func (t_ TextView) SmartInsertDeleteEnabled() bool {
+func (t_ TextView) SmartInsertDeleteEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("smartInsertDeleteEnabled"))
 	return rv
 }
@@ -1251,7 +1440,7 @@ func (t_ TextView) SmartInsertDeleteEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/smartinsertdeleteenabled
-func (t_ TextView) SetSmartInsertDeleteEnabled(value bool) {
+func (t_ TextView) SetSmartInsertDeleteEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSmartInsertDeleteEnabled:"), value)
 }
 
@@ -1260,7 +1449,7 @@ func (t_ TextView) SetSmartInsertDeleteEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/spellcheckerdocumenttag
-func (t_ TextView) SpellCheckerDocumentTag() int {
+func (t_ TextView) SpellCheckerDocumentTag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("spellCheckerDocumentTag"))
 	return rv
 }
@@ -1270,27 +1459,8 @@ func (t_ TextView) SpellCheckerDocumentTag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/spellcheckerdocumenttag
-func (t_ TextView) SetSpellCheckerDocumentTag(value int) {
+func (t_ TextView) SetSpellCheckerDocumentTag(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSpellCheckerDocumentTag:"), value)
-}
-
-
-// The receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainer
-func (t_ TextView) TextContainer() TextContainer {
-	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
-	return rv
-}
-
-
-// The receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainer
-func (t_ TextView) SetTextContainer(value TextContainer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
 }
 
 
@@ -1310,25 +1480,6 @@ func (t_ TextView) TextContainerInset() coregraphics.CGSize {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainerinset
 func (t_ TextView) SetTextContainerInset(value coregraphics.CGSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainerInset:"), value)
-}
-
-
-// The origin of the receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainerorigin
-func (t_ TextView) TextContainerOrigin() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("textContainerOrigin"))
-	return rv
-}
-
-
-// The origin of the receiver’s text container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textcontainerorigin
-func (t_ TextView) SetTextContainerOrigin(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainerOrigin:"), value)
 }
 
 
@@ -1355,7 +1506,7 @@ func (t_ TextView) SetTextContentStorage(value ITextContentStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) TextHighlightAttributes() coreml.Key {
+func (t_ TextView) TextHighlightAttributes() coreml.objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("textHighlightAttributes"))
 	return rv
 }
@@ -1365,7 +1516,7 @@ func (t_ TextView) TextHighlightAttributes() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/texthighlightattributes
-func (t_ TextView) SetTextHighlightAttributes(value coreml.Key) {
+func (t_ TextView) SetTextHighlightAttributes(value coreml.objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextHighlightAttributes:"), value)
 }
 
@@ -1389,49 +1540,11 @@ func (t_ TextView) SetTextLayoutManager(value ITextLayoutManager) {
 }
 
 
-// The receiver’s text storage object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textstorage
-func (t_ TextView) TextStorage() TextStorage {
-	rv := objc.Send[TextStorage](t_.ID, objc.Sel("textStorage"))
-	return rv
-}
-
-
-// The receiver’s text storage object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/textstorage
-func (t_ TextView) SetTextStorage(value TextStorage) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorage:"), value)
-}
-
-
-// The receiver’s typing attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/typingattributes
-func (t_ TextView) TypingAttributes() coreml.Key {
-	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
-	return rv
-}
-
-
-// The receiver’s typing attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/typingattributes
-func (t_ TextView) SetTypingAttributes(value coreml.Key) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
-}
-
-
 // A Boolean value that indicates whether the framework should use adaptive color mapping for dark appearance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesadaptivecolormappingfordarkappearance
-func (t_ TextView) UsesAdaptiveColorMappingForDarkAppearance() bool {
+func (t_ TextView) UsesAdaptiveColorMappingForDarkAppearance() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesAdaptiveColorMappingForDarkAppearance"))
 	return rv
 }
@@ -1441,7 +1554,7 @@ func (t_ TextView) UsesAdaptiveColorMappingForDarkAppearance() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesadaptivecolormappingfordarkappearance
-func (t_ TextView) SetUsesAdaptiveColorMappingForDarkAppearance(value bool) {
+func (t_ TextView) SetUsesAdaptiveColorMappingForDarkAppearance(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesAdaptiveColorMappingForDarkAppearance:"), value)
 }
 
@@ -1450,7 +1563,7 @@ func (t_ TextView) SetUsesAdaptiveColorMappingForDarkAppearance(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
-func (t_ TextView) UsesFindBar() bool {
+func (t_ TextView) UsesFindBar() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFindBar"))
 	return rv
 }
@@ -1460,7 +1573,7 @@ func (t_ TextView) UsesFindBar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindbar
-func (t_ TextView) SetUsesFindBar(value bool) {
+func (t_ TextView) SetUsesFindBar(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFindBar:"), value)
 }
 
@@ -1469,7 +1582,7 @@ func (t_ TextView) SetUsesFindBar(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindpanel
-func (t_ TextView) UsesFindPanel() bool {
+func (t_ TextView) UsesFindPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFindPanel"))
 	return rv
 }
@@ -1479,7 +1592,7 @@ func (t_ TextView) UsesFindPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfindpanel
-func (t_ TextView) SetUsesFindPanel(value bool) {
+func (t_ TextView) SetUsesFindPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFindPanel:"), value)
 }
 
@@ -1488,7 +1601,7 @@ func (t_ TextView) SetUsesFindPanel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfontpanel
-func (t_ TextView) UsesFontPanel() bool {
+func (t_ TextView) UsesFontPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontPanel"))
 	return rv
 }
@@ -1498,7 +1611,7 @@ func (t_ TextView) UsesFontPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesfontpanel
-func (t_ TextView) SetUsesFontPanel(value bool) {
+func (t_ TextView) SetUsesFontPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontPanel:"), value)
 }
 
@@ -1507,7 +1620,7 @@ func (t_ TextView) SetUsesFontPanel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesinspectorbar
-func (t_ TextView) UsesInspectorBar() bool {
+func (t_ TextView) UsesInspectorBar() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesInspectorBar"))
 	return rv
 }
@@ -1517,14 +1630,14 @@ func (t_ TextView) UsesInspectorBar() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesinspectorbar
-func (t_ TextView) SetUsesInspectorBar(value bool) {
+func (t_ TextView) SetUsesInspectorBar(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesInspectorBar:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesrolloverbuttonforselection
-func (t_ TextView) UsesRolloverButtonForSelection() bool {
+func (t_ TextView) UsesRolloverButtonForSelection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesRolloverButtonForSelection"))
 	return rv
 }
@@ -1532,7 +1645,7 @@ func (t_ TextView) UsesRolloverButtonForSelection() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesrolloverbuttonforselection
-func (t_ TextView) SetUsesRolloverButtonForSelection(value bool) {
+func (t_ TextView) SetUsesRolloverButtonForSelection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesRolloverButtonForSelection:"), value)
 }
 
@@ -1541,7 +1654,7 @@ func (t_ TextView) SetUsesRolloverButtonForSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesruler
-func (t_ TextView) UsesRuler() bool {
+func (t_ TextView) UsesRuler() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesRuler"))
 	return rv
 }
@@ -1551,7 +1664,7 @@ func (t_ TextView) UsesRuler() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/usesruler
-func (t_ TextView) SetUsesRuler(value bool) {
+func (t_ TextView) SetUsesRuler(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesRuler:"), value)
 }
 
@@ -1560,7 +1673,7 @@ func (t_ TextView) SetUsesRuler(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writablepasteboardtypes
-func (t_ TextView) WritablePasteboardTypes() PasteboardType {
+func (t_ TextView) WritablePasteboardTypes() objc.IObject /* cross-framework: PasteboardType */ {
 	rv := objc.Send[PasteboardType](t_.ID, objc.Sel("writablePasteboardTypes"))
 	return rv
 }
@@ -1570,22 +1683,22 @@ func (t_ TextView) WritablePasteboardTypes() PasteboardType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writablepasteboardtypes
-func (t_ TextView) SetWritablePasteboardTypes(value PasteboardType) {
+func (t_ TextView) SetWritablePasteboardTypes(value objc.IObject /* cross-framework: PasteboardType */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWritablePasteboardTypes:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) WritingToolsBehavior() NSWritingToolsBehavior {
-	rv := objc.Send[NSWritingToolsBehavior](t_.ID, objc.Sel("writingToolsBehavior"))
+func (t_ TextView) WritingToolsBehavior() WritingToolsBehavior {
+	rv := objc.Send[WritingToolsBehavior](t_.ID, objc.Sel("writingToolsBehavior"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextview/writingtoolsbehavior
-func (t_ TextView) SetWritingToolsBehavior(value NSWritingToolsBehavior) {
+func (t_ TextView) SetWritingToolsBehavior(value WritingToolsBehavior) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWritingToolsBehavior:"), value)
 }
 

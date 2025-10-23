@@ -30,6 +30,8 @@ type _trackingFrameCountClass struct {
 // An interface definition for the [trackingFrameCount] class.
 type ItrackingFrameCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

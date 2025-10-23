@@ -33,7 +33,7 @@ type IMediaSelection interface {
 	// properties:
 	Asset() IAVAsset
 	// methods:
-	MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer */
+	MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer. */
 	SelectedMediaOptionInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) IMediaSelectionOption
 }
 
@@ -92,7 +92,7 @@ func NewMediaSelection() MediaSelection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMediaSelection/mediaSelectionCriteriaCanBeAppliedAutomatically(to:)
-func (m_ MediaSelection) MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer */ {
+func (m_ MediaSelection) MediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }

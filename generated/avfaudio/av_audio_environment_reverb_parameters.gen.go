@@ -30,12 +30,14 @@ type _AudioEnvironmentReverbParametersClass struct {
 // An interface definition for the [AudioEnvironmentReverbParameters] class.
 type IAudioEnvironmentReverbParameters interface {
 	objectivec.IObject
-	Enable() bool
-	SetEnable(value bool)
-	FilterParameters() unsafe.Pointer
-	SetFilterParameters(value unsafe.Pointer)
-	Level() float32
-	SetLevel(value float32)
+	// properties:
+	Enable() bool /* primitive/slice/pointer. */
+	SetEnable(value bool /* primitive/slice/pointer. */)
+	FilterParameters() AudioUnitEQFilterParameters /* not a class type */
+	SetFilterParameters(value AudioUnitEQFilterParameters /* not a class type */)
+	Level() float32 /* primitive/slice/pointer. */
+	SetLevel(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A class that encapsulates the parameters that you use to control the reverb of the environment node class.
@@ -95,7 +97,7 @@ func NewAudioEnvironmentReverbParameters() AudioEnvironmentReverbParameters {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
-func (a_ AudioEnvironmentReverbParameters) Enable() bool {
+func (a_ AudioEnvironmentReverbParameters) Enable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("enable"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (a_ AudioEnvironmentReverbParameters) Enable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/enable
-func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
+func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEnable:"), value)
 }
 
@@ -114,8 +116,8 @@ func (a_ AudioEnvironmentReverbParameters) SetEnable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/filterparameters
-func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("filterParameters"))
+func (a_ AudioEnvironmentReverbParameters) FilterParameters() AudioUnitEQFilterParameters /* not a class type */ {
+	rv := objc.Send[AudioUnitEQFilterParameters](a_.ID, objc.Sel("filterParameters"))
 	return rv
 }
 
@@ -124,7 +126,7 @@ func (a_ AudioEnvironmentReverbParameters) FilterParameters() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/filterparameters
-func (a_ AudioEnvironmentReverbParameters) SetFilterParameters(value unsafe.Pointer) {
+func (a_ AudioEnvironmentReverbParameters) SetFilterParameters(value AudioUnitEQFilterParameters /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterParameters:"), value)
 }
 
@@ -133,7 +135,7 @@ func (a_ AudioEnvironmentReverbParameters) SetFilterParameters(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) Level() float32 {
+func (a_ AudioEnvironmentReverbParameters) Level() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("level"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (a_ AudioEnvironmentReverbParameters) Level() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters/level
-func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32) {
+func (a_ AudioEnvironmentReverbParameters) SetLevel(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLevel:"), value)
 }
 

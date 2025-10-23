@@ -30,9 +30,9 @@ type _HKSeriesSampleClass struct {
 type IHKSeriesSample interface {
 	IHKSample
 	// properties:
-	Count() int
-	SetCount(value int)
-	HKWorkoutRouteTypeIdentifier() string
+	Count() int /* primitive/slice/pointer. */
+	SetCount(value int /* primitive/slice/pointer. */)
+	HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewHKSeriesSample() HKSeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
-func (h_ HKSeriesSample) Count() int {
+func (h_ HKSeriesSample) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (h_ HKSeriesSample) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkseriessample/count
-func (h_ HKSeriesSample) SetCount(value int) {
+func (h_ HKSeriesSample) SetCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -114,7 +114,7 @@ func (h_ HKSeriesSample) SetCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string {
+func (h_ HKSeriesSample) HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetHeldCallAction] class.
@@ -30,10 +29,12 @@ type _CXSetHeldCallActionClass struct {
 // An interface definition for the [CXSetHeldCallAction] class.
 type ICXSetHeldCallAction interface {
 	ICXCallAction
-	OnHold() bool
-	SetOnHold(value bool)
-	IsOnHold() bool
-	SetIsOnHold(value bool)
+	// properties:
+	OnHold() bool /* primitive/slice/pointer. */
+	SetOnHold(value bool /* primitive/slice/pointer. */)
+	IsOnHold() bool /* primitive/slice/pointer. */
+	SetIsOnHold(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An encapsulation of the act of placing a call on hold or removing a call from hold.
@@ -95,7 +96,7 @@ func NewCXSetHeldCallAction() CXSetHeldCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(call:onHold:)
-func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.UUID, onHold bool) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID objc.IObject /* cross-framework UUID */, onHold bool /* primitive/slice/pointer. */) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCallUUID:onHold:"), callUUID, onHold)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.UUID, onHold b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(coder:)
-func NewCXSetHeldCallActionWithCoder(aDecoder foundation.Coder) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCoder(aDecoder Coder /* not a class type */) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -120,7 +121,7 @@ func NewCXSetHeldCallActionWithCoder(aDecoder foundation.Coder) CXSetHeldCallAct
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/isOnHold
-func (c_ CXSetHeldCallAction) OnHold() bool {
+func (c_ CXSetHeldCallAction) OnHold() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("onHold"))
 	return rv
 }
@@ -130,7 +131,7 @@ func (c_ CXSetHeldCallAction) OnHold() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/isOnHold
-func (c_ CXSetHeldCallAction) SetOnHold(value bool) {
+func (c_ CXSetHeldCallAction) SetOnHold(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOnHold:"), value)
 }
 
@@ -139,7 +140,7 @@ func (c_ CXSetHeldCallAction) SetOnHold(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
-func (c_ CXSetHeldCallAction) IsOnHold() bool {
+func (c_ CXSetHeldCallAction) IsOnHold() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isOnHold"))
 	return rv
 }
@@ -149,7 +150,7 @@ func (c_ CXSetHeldCallAction) IsOnHold() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxsetheldcallaction/isonhold
-func (c_ CXSetHeldCallAction) SetIsOnHold(value bool) {
+func (c_ CXSetHeldCallAction) SetIsOnHold(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOnHold:"), value)
 }
 

@@ -31,8 +31,10 @@ type _CNBoundsPredictionClass struct {
 // An interface definition for the [CNBoundsPrediction] class.
 type ICNBoundsPrediction interface {
 	objectivec.IObject
+	// properties:
 	NormalizedBounds() coregraphics.CGRect
 	SetNormalizedBounds(value coregraphics.CGRect)
+	// methods:
 }
 
 // An object representing the bounds of the predicted subject.

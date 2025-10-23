@@ -9,10 +9,12 @@ import (
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type IOBluetoothDeviceSearchAttributes unsafe.Pointer
+// Using inferred base types as fallback to allow code generation.
+type BluetoothDeviceSearchAttributes = int
 
-type IOReturn unsafe.Pointer
+type Bool = int
+
+type Return = int
 
 
 

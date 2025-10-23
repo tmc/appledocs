@@ -29,12 +29,13 @@ type _TitlebarAccessoryViewControllerClass struct {
 // An interface definition for the [TitlebarAccessoryViewController] class.
 type ITitlebarAccessoryViewController interface {
 	IViewController
-	FullScreenMinHeight() float64
-	SetFullScreenMinHeight(value float64)
-	AutomaticallyAdjustsSize() bool
-	SetAutomaticallyAdjustsSize(value bool)
-	IsHidden() bool
-	SetIsHidden(value bool)
+	// properties:
+	FullScreenMinHeight() float64 /* primitive/slice/pointer. */
+	SetFullScreenMinHeight(value float64 /* primitive/slice/pointer. */)
+	AutomaticallyAdjustsSize() bool /* primitive/slice/pointer. */
+	SetAutomaticallyAdjustsSize(value bool /* primitive/slice/pointer. */)
+	IsHidden() bool /* primitive/slice/pointer. */
+	SetIsHidden(value bool /* primitive/slice/pointer. */)
 	LayoutAttribute() unsafe.Pointer
 	SetLayoutAttribute(value unsafe.Pointer)
 	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
@@ -43,6 +44,7 @@ type ITitlebarAccessoryViewController interface {
 	SetFullScreenAccessoryView(value IView)
 	View() IView
 	SetView(value IView)
+	// methods:
 }
 
 // An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.
@@ -104,7 +106,7 @@ func NewTitlebarAccessoryViewController() TitlebarAccessoryViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/fullScreenMinHeight
-func (t_ TitlebarAccessoryViewController) FullScreenMinHeight() float64 {
+func (t_ TitlebarAccessoryViewController) FullScreenMinHeight() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("fullScreenMinHeight"))
 	return rv
 }
@@ -114,14 +116,14 @@ func (t_ TitlebarAccessoryViewController) FullScreenMinHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/fullScreenMinHeight
-func (t_ TitlebarAccessoryViewController) SetFullScreenMinHeight(value float64) {
+func (t_ TitlebarAccessoryViewController) SetFullScreenMinHeight(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenMinHeight:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
-func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool {
+func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallyAdjustsSize"))
 	return rv
 }
@@ -129,14 +131,14 @@ func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
-func (t_ TitlebarAccessoryViewController) SetAutomaticallyAdjustsSize(value bool) {
+func (t_ TitlebarAccessoryViewController) SetAutomaticallyAdjustsSize(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallyAdjustsSize:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/ishidden
-func (t_ TitlebarAccessoryViewController) IsHidden() bool {
+func (t_ TitlebarAccessoryViewController) IsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (t_ TitlebarAccessoryViewController) IsHidden() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/ishidden
-func (t_ TitlebarAccessoryViewController) SetIsHidden(value bool) {
+func (t_ TitlebarAccessoryViewController) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
 }
 

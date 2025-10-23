@@ -29,12 +29,13 @@ type _CKFetchRecordChangesOperationClass struct {
 // An interface definition for the [CKFetchRecordChangesOperation] class.
 type ICKFetchRecordChangesOperation interface {
 	ICKDatabaseOperation
-	DesiredKeys() string
-	SetDesiredKeys(value string)
+	// properties:
+	DesiredKeys() string /* primitive/slice/pointer. */
+	SetDesiredKeys(value string /* primitive/slice/pointer. */)
 	FetchRecordChangesCompletionBlock() unsafe.Pointer
 	SetFetchRecordChangesCompletionBlock(value unsafe.Pointer)
-	MoreComing() bool
-	SetMoreComing(value bool)
+	MoreComing() bool /* primitive/slice/pointer. */
+	SetMoreComing(value bool /* primitive/slice/pointer. */)
 	PreviousServerChangeToken() ICKServerChangeToken
 	SetPreviousServerChangeToken(value ICKServerChangeToken)
 	RecordChangedBlock() unsafe.Pointer
@@ -43,10 +44,11 @@ type ICKFetchRecordChangesOperation interface {
 	SetRecordWithIDWasDeletedBlock(value unsafe.Pointer)
 	RecordZoneID() ICKRecordZoneID
 	SetRecordZoneID(value ICKRecordZoneID)
-	ResultsLimit() int
-	SetResultsLimit(value int)
+	ResultsLimit() int /* primitive/slice/pointer. */
+	SetResultsLimit(value int /* primitive/slice/pointer. */)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation that reports on the changed and deleted records in the specified record zone.
@@ -108,7 +110,7 @@ func NewCKFetchRecordChangesOperation() CKFetchRecordChangesOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
-func (c_ CKFetchRecordChangesOperation) DesiredKeys() string {
+func (c_ CKFetchRecordChangesOperation) DesiredKeys() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("desiredKeys"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (c_ CKFetchRecordChangesOperation) DesiredKeys() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/desiredkeys
-func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value string) {
+func (c_ CKFetchRecordChangesOperation) SetDesiredKeys(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), objc.String(value))
 }
 
@@ -146,7 +148,7 @@ func (c_ CKFetchRecordChangesOperation) SetFetchRecordChangesCompletionBlock(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
-func (c_ CKFetchRecordChangesOperation) MoreComing() bool {
+func (c_ CKFetchRecordChangesOperation) MoreComing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("moreComing"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (c_ CKFetchRecordChangesOperation) MoreComing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/morecoming
-func (c_ CKFetchRecordChangesOperation) SetMoreComing(value bool) {
+func (c_ CKFetchRecordChangesOperation) SetMoreComing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMoreComing:"), value)
 }
 
@@ -241,7 +243,7 @@ func (c_ CKFetchRecordChangesOperation) SetRecordZoneID(value ICKRecordZoneID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
-func (c_ CKFetchRecordChangesOperation) ResultsLimit() int {
+func (c_ CKFetchRecordChangesOperation) ResultsLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
@@ -251,7 +253,7 @@ func (c_ CKFetchRecordChangesOperation) ResultsLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation/resultslimit
-func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value int) {
+func (c_ CKFetchRecordChangesOperation) SetResultsLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
 

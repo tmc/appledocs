@@ -31,12 +31,12 @@ type _HKStatisticsCollectionQueryClass struct {
 type IHKStatisticsCollectionQuery interface {
 	IHKQuery
 	// properties:
-	AnchorDate() foundation.Date
-	SetAnchorDate(value foundation.Date)
+	AnchorDate() foundation.objc.IObject /* cross-framework: Date */
+	SetAnchorDate(value foundation.objc.IObject /* cross-framework: Date */)
 	InitialResultsHandler() unsafe.Pointer
 	SetInitialResultsHandler(value unsafe.Pointer)
-	IntervalComponents() foundation.DateComponents
-	SetIntervalComponents(value foundation.DateComponents)
+	IntervalComponents() foundation.objc.IObject /* cross-framework: DateComponents */
+	SetIntervalComponents(value foundation.objc.IObject /* cross-framework: DateComponents */)
 	Options() HKStatisticsOptions
 	SetOptions(value HKStatisticsOptions)
 	StatisticsUpdateHandler() unsafe.Pointer
@@ -103,7 +103,7 @@ func NewHKStatisticsCollectionQuery() HKStatisticsCollectionQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
+func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("anchorDate"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.Date) {
+func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
 }
 
@@ -141,7 +141,7 @@ func (h_ HKStatisticsCollectionQuery) SetInitialResultsHandler(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateComponents {
+func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.objc.IObject /* cross-framework: DateComponents */ {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("intervalComponents"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateCompon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.DateComponents) {
+func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.objc.IObject /* cross-framework: DateComponents */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
 }
 

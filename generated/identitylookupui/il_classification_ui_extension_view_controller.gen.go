@@ -31,7 +31,7 @@ type _ILClassificationUIExtensionViewControllerClass struct {
 type IILClassificationUIExtensionViewController interface {
 	appkit.IViewController
 	// properties:
-	ExtensionContext() ILClassificationUIExtensionContext
+	ExtensionContext() ILClassificationUIExtensionContext /* already interface */
 	// methods:
 	ClassificationResponseForRequest(request unsafe.Pointer) unsafe.Pointer
 	PrepareForClassificationRequest(request unsafe.Pointer)
@@ -115,7 +115,7 @@ func (i_ ILClassificationUIExtensionViewController) PrepareForClassificationRequ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/extensionContext
-func (i_ ILClassificationUIExtensionViewController) ExtensionContext() ILClassificationUIExtensionContext {
+func (i_ ILClassificationUIExtensionViewController) ExtensionContext() ILClassificationUIExtensionContext /* already interface */ {
 	rv := objc.Send[ILClassificationUIExtensionContext](i_.ID, objc.Sel("extensionContext"))
 	return rv
 }

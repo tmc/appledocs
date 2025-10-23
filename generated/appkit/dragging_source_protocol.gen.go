@@ -4,11 +4,11 @@ package appkit
 
 import "github.com/ebitengine/purego/objc"
 
-// DraggingSourceProtocol is the NSDraggingSource protocol.
+// draggingSourceProtocol is the draggingSource protocol.
 //
-// Use this protocol when registering custom classes that conform to NSDraggingSource.
-var DraggingSourceProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to draggingSource.
+var draggingSourceProtocol *objc.Protocol
 
 func init() {
-	DraggingSourceProtocol = objc.GetProtocol("NSDraggingSource")
+	draggingSourceProtocol = objc.GetProtocol("draggingSource")
 }

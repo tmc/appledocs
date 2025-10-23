@@ -29,13 +29,15 @@ type _DeviceMotionClass struct {
 // An interface definition for the [DeviceMotion] class.
 type IDeviceMotion interface {
 	ILogItem
+	// properties:
 	Attitude() ICMAttitude
-	Gravity() unsafe.Pointer
-	Heading() float64
-	MagneticField() unsafe.Pointer
-	RotationRate() unsafe.Pointer
-	SensorLocation() CMDeviceMotionSensorLocation
-	UserAcceleration() unsafe.Pointer
+	Gravity() Acceleration /* not a class type */
+	Heading() float64 /* primitive/slice/pointer. */
+	MagneticField() CalibratedMagneticField /* not a class type */
+	RotationRate() RotationRate /* not a class type */
+	SensorLocation() DeviceMotionSensorLocation
+	UserAcceleration() Acceleration /* not a class type */
+	// methods:
 }
 
 // Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.
@@ -107,8 +109,8 @@ func (d_ DeviceMotion) Attitude() ICMAttitude {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/gravity
-func (d_ DeviceMotion) Gravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("gravity"))
+func (d_ DeviceMotion) Gravity() Acceleration /* not a class type */ {
+	rv := objc.Send[Acceleration](d_.ID, objc.Sel("gravity"))
 	return rv
 }
 
@@ -117,7 +119,7 @@ func (d_ DeviceMotion) Gravity() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/heading
-func (d_ DeviceMotion) Heading() float64 {
+func (d_ DeviceMotion) Heading() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](d_.ID, objc.Sel("heading"))
 	return rv
 }
@@ -127,8 +129,8 @@ func (d_ DeviceMotion) Heading() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/magneticField
-func (d_ DeviceMotion) MagneticField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("magneticField"))
+func (d_ DeviceMotion) MagneticField() CalibratedMagneticField /* not a class type */ {
+	rv := objc.Send[CalibratedMagneticField](d_.ID, objc.Sel("magneticField"))
 	return rv
 }
 
@@ -137,8 +139,8 @@ func (d_ DeviceMotion) MagneticField() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/rotationRate
-func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("rotationRate"))
+func (d_ DeviceMotion) RotationRate() RotationRate /* not a class type */ {
+	rv := objc.Send[RotationRate](d_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 
@@ -147,8 +149,8 @@ func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/sensorLocation-swift.property
-func (d_ DeviceMotion) SensorLocation() CMDeviceMotionSensorLocation {
-	rv := objc.Send[CMDeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
+func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
+	rv := objc.Send[DeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
 	return rv
 }
 
@@ -157,8 +159,8 @@ func (d_ DeviceMotion) SensorLocation() CMDeviceMotionSensorLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/userAcceleration
-func (d_ DeviceMotion) UserAcceleration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("userAcceleration"))
+func (d_ DeviceMotion) UserAcceleration() Acceleration /* not a class type */ {
+	rv := objc.Send[Acceleration](d_.ID, objc.Sel("userAcceleration"))
 	return rv
 }
 

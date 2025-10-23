@@ -30,6 +30,8 @@ type _CPUComputeDeviceClass struct {
 // An interface definition for the [CPUComputeDevice] class.
 type ICPUComputeDevice interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that represents a CPU compute device.

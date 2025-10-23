@@ -30,7 +30,9 @@ type _ModelStructureProgramArgumentClass struct {
 // An interface definition for the [ModelStructureProgramArgument] class.
 type IModelStructureProgramArgument interface {
 	objectivec.IObject
-	Bindings() []ModelStructureProgramBinding
+	// properties:
+	Bindings() []ModelStructureProgramBinding /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class representing an argument in the Program.
@@ -88,7 +90,7 @@ func NewModelStructureProgramArgument() ModelStructureProgramArgument {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramArgument/bindings
-func (m_ ModelStructureProgramArgument) Bindings() []ModelStructureProgramBinding {
+func (m_ ModelStructureProgramArgument) Bindings() []ModelStructureProgramBinding /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ModelStructureProgramBinding](m_.ID, objc.Sel("bindings"))
 	return rv
 }

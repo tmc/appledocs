@@ -30,10 +30,12 @@ type _ParameterTreeClass struct {
 // An interface definition for the [ParameterTree] class.
 type IParameterTree interface {
 	IParameterGroup
+	// properties:
 	ParameterTree() IAUParameterTree
 	SetParameterTree(value IAUParameterTree)
-	ParameterWithAddress(address ParameterAddress) IParameter
-	ParameterWithIDScopeElement(paramID AudioUnitParameterID, scope AudioUnitScope, element AudioUnitElement) IParameter
+	// methods:
+	ParameterWithAddress(address objc.IObject /* cross-framework ParameterAddress */) IParameter
+	ParameterWithIDScopeElement(paramID AudioUnitParameterID /* typedef */, scope AudioUnitScope /* typedef */, element AudioUnitElement /* typedef */) IParameter
 }
 
 // An object that represents a top-level group node that contains all of an audio unit’s parameters.
@@ -95,7 +97,7 @@ func NewParameterTree() ParameterTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createGroup(fromTemplate:identifier:name:addressOffset:)
-func (pc _ParameterTreeClass) CreateGroupFromTemplateIdentifierNameAddressOffset(templateGroup IAUParameterGroup, identifier string, name string, addressOffset ParameterAddress) IParameterGroup {
+func (pc _ParameterTreeClass) CreateGroupFromTemplateIdentifierNameAddressOffset(templateGroup IAUParameterGroup, identifier string /* primitive/slice/pointer. */, name string /* primitive/slice/pointer. */, addressOffset objc.IObject /* cross-framework ParameterAddress */) IParameterGroup {
 	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupFromTemplate:identifier:name:addressOffset:"), templateGroup, objc.String(identifier), objc.String(name), addressOffset)
 	return rv
 }
@@ -105,7 +107,7 @@ func (pc _ParameterTreeClass) CreateGroupFromTemplateIdentifierNameAddressOffset
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createGroup(withIdentifier:name:children:)
-func (pc _ParameterTreeClass) CreateGroupWithIdentifierNameChildren(identifier string, name string, children []ParameterNode) IParameterGroup {
+func (pc _ParameterTreeClass) CreateGroupWithIdentifierNameChildren(identifier string /* primitive/slice/pointer. */, name string /* primitive/slice/pointer. */, children []ParameterNode /* primitive/slice/pointer. */) IParameterGroup {
 	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupWithIdentifier:name:children:"), objc.String(identifier), objc.String(name), children)
 	return rv
 }
@@ -115,7 +117,7 @@ func (pc _ParameterTreeClass) CreateGroupWithIdentifierNameChildren(identifier s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createGroupTemplate(_:)
-func (pc _ParameterTreeClass) CreateGroupTemplate(children []ParameterNode) IParameterGroup {
+func (pc _ParameterTreeClass) CreateGroupTemplate(children []ParameterNode /* primitive/slice/pointer. */) IParameterGroup {
 	rv := objc.Send[ParameterGroup](objc.ID(pc.class), objc.Sel("createGroupTemplate:"), children)
 	return rv
 }
@@ -125,7 +127,7 @@ func (pc _ParameterTreeClass) CreateGroupTemplate(children []ParameterNode) IPar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createParameter(withIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)
-func (pc _ParameterTreeClass) CreateParameterWithIdentifierNameAddressMinMaxUnitUnitNameFlagsValueStringsDependentParameters(identifier string, name string, address ParameterAddress, min Value, max Value, unit AudioUnitParameterUnit, unitName string, flags AudioUnitParameterOptions, valueStrings []string, dependentParameters []foundation.Number) IParameter {
+func (pc _ParameterTreeClass) CreateParameterWithIdentifierNameAddressMinMaxUnitUnitNameFlagsValueStringsDependentParameters(identifier string /* primitive/slice/pointer. */, name string /* primitive/slice/pointer. */, address objc.IObject /* cross-framework ParameterAddress */, min objc.IObject /* cross-framework Value */, max objc.IObject /* cross-framework Value */, unit AudioUnitParameterUnit, unitName string /* primitive/slice/pointer. */, flags AudioUnitParameterOptions, valueStrings []string /* primitive/slice/pointer. */, dependentParameters []foundation.objc.IObject /* cross-framework Number */) IParameter {
 	rv := objc.Send[Parameter](objc.ID(pc.class), objc.Sel("createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:"), objc.String(identifier), objc.String(name), address, min, max, unit, objc.String(unitName), flags, valueStrings, dependentParameters)
 	return rv
 }
@@ -135,7 +137,7 @@ func (pc _ParameterTreeClass) CreateParameterWithIdentifierNameAddressMinMaxUnit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/createTree(withChildren:)
-func (pc _ParameterTreeClass) CreateTreeWithChildren(children []ParameterNode) IParameterTree {
+func (pc _ParameterTreeClass) CreateTreeWithChildren(children []ParameterNode /* primitive/slice/pointer. */) IParameterTree {
 	rv := objc.Send[ParameterTree](objc.ID(pc.class), objc.Sel("createTreeWithChildren:"), children)
 	return rv
 }
@@ -145,7 +147,7 @@ func (pc _ParameterTreeClass) CreateTreeWithChildren(children []ParameterNode) I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/parameter(withAddress:)
-func (p_ ParameterTree) ParameterWithAddress(address ParameterAddress) IParameter {
+func (p_ ParameterTree) ParameterWithAddress(address objc.IObject /* cross-framework ParameterAddress */) IParameter {
 	rv := objc.Send[Parameter](p_.ID, objc.Sel("parameterWithAddress:"), address)
 	return rv
 }
@@ -155,7 +157,7 @@ func (p_ ParameterTree) ParameterWithAddress(address ParameterAddress) IParamete
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterTree/parameter(withID:scope:element:)
-func (p_ ParameterTree) ParameterWithIDScopeElement(paramID AudioUnitParameterID, scope AudioUnitScope, element AudioUnitElement) IParameter {
+func (p_ ParameterTree) ParameterWithIDScopeElement(paramID AudioUnitParameterID /* typedef */, scope AudioUnitScope /* typedef */, element AudioUnitElement /* typedef */) IParameter {
 	rv := objc.Send[Parameter](p_.ID, objc.Sel("parameterWithID:scope:element:"), paramID, scope, element)
 	return rv
 }

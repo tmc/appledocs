@@ -30,14 +30,16 @@ type _Agent3DClass struct {
 // An interface definition for the [Agent3D] class.
 type IAgent3D interface {
 	IAgent
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
-	RightHanded() bool
-	SetRightHanded(value bool)
+	RightHanded() bool /* primitive/slice/pointer. */
+	SetRightHanded(value bool /* primitive/slice/pointer. */)
 	Rotation() unsafe.Pointer
 	SetRotation(value unsafe.Pointer)
 	Velocity() unsafe.Pointer
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	// methods:
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 }
 
 // An agent that operates in a three-dimensional space.
@@ -99,7 +101,7 @@ func NewAgent3D() Agent3D {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/update(deltaTime:)
-func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -125,7 +127,7 @@ func (a_ Agent3D) SetPosition(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rightHanded
-func (a_ Agent3D) RightHanded() bool {
+func (a_ Agent3D) RightHanded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("rightHanded"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (a_ Agent3D) RightHanded() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/rightHanded
-func (a_ Agent3D) SetRightHanded(value bool) {
+func (a_ Agent3D) SetRightHanded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRightHanded:"), value)
 }
 

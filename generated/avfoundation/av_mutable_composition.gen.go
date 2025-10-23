@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MutableComposition] class.
@@ -31,8 +30,8 @@ type _MutableCompositionClass struct {
 type IMutableComposition interface {
 	IComposition
 	// properties:
-	NaturalSize() coregraphics.CGSize
-	SetNaturalSize(value coregraphics.CGSize)
+	NaturalSize() objc.IObject /* cross-framework: Size */
+	SetNaturalSize(value objc.IObject /* cross-framework: Size */)
 	Tracks() MutableCompositionTrack /* not a class type */
 	SetTracks(value MutableCompositionTrack /* not a class type */)
 	// methods:
@@ -97,8 +96,8 @@ func NewMutableComposition() MutableComposition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
-func (m_ MutableComposition) NaturalSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](m_.ID, objc.Sel("naturalSize"))
+func (m_ MutableComposition) NaturalSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](m_.ID, objc.Sel("naturalSize"))
 	return rv
 }
 
@@ -107,7 +106,7 @@ func (m_ MutableComposition) NaturalSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutablecomposition/naturalsize
-func (m_ MutableComposition) SetNaturalSize(value coregraphics.CGSize) {
+func (m_ MutableComposition) SetNaturalSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
 }
 

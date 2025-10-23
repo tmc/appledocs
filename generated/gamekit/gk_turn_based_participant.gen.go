@@ -31,19 +31,21 @@ type _TurnBasedParticipantClass struct {
 // An interface definition for the [TurnBasedParticipant] class.
 type ITurnBasedParticipant interface {
 	objectivec.IObject
-	TimeoutDate() foundation.NSDate
+	// properties:
+	TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */
 	Participants() IGKTurnBasedParticipant
 	SetParticipants(value IGKTurnBasedParticipant)
-	LastTurnDate() foundation.Date
-	SetLastTurnDate(value foundation.Date)
+	LastTurnDate() foundation.objc.IObject /* cross-framework: Date */
+	SetLastTurnDate(value foundation.objc.IObject /* cross-framework: Date */)
 	MatchOutcome() unsafe.Pointer
 	SetMatchOutcome(value unsafe.Pointer)
 	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
-	PlayerID() string
-	SetPlayerID(value string)
+	PlayerID() string /* primitive/slice/pointer. */
+	SetPlayerID(value string /* primitive/slice/pointer. */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
+	// methods:
 }
 
 // A participant in a turn-based match.
@@ -103,7 +105,7 @@ func NewTurnBasedParticipant() TurnBasedParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedParticipant/timeoutDate
-func (t_ TurnBasedParticipant) TimeoutDate() foundation.NSDate {
+func (t_ TurnBasedParticipant) TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (t_ TurnBasedParticipant) SetParticipants(value IGKTurnBasedParticipant) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-func (t_ TurnBasedParticipant) LastTurnDate() foundation.Date {
+func (t_ TurnBasedParticipant) LastTurnDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("lastTurnDate"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (t_ TurnBasedParticipant) LastTurnDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-func (t_ TurnBasedParticipant) SetLastTurnDate(value foundation.Date) {
+func (t_ TurnBasedParticipant) SetLastTurnDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLastTurnDate:"), value)
 }
 
@@ -189,7 +191,7 @@ func (t_ TurnBasedParticipant) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) PlayerID() string {
+func (t_ TurnBasedParticipant) PlayerID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("playerID"))
 	return rv
 }
@@ -199,7 +201,7 @@ func (t_ TurnBasedParticipant) PlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) SetPlayerID(value string) {
+func (t_ TurnBasedParticipant) SetPlayerID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), objc.String(value))
 }
 

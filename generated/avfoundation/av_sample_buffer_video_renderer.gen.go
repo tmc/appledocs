@@ -37,8 +37,8 @@ type ISampleBufferVideoRenderer interface {
 	SetPresentationTimeExpectation(value unsafe.Pointer)
 	RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */
 	SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */)
-	RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer */
-	SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer */)
+	RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer. */
+	SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer. */)
 	Status() QueuedSampleBufferRenderingStatus /* not a class type */
 	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
 	// methods:
@@ -152,7 +152,7 @@ func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value Pi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer */ {
+func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("requiresFlushToResumeDecoding"))
 	return rv
 }
@@ -162,7 +162,7 @@ func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer */) {
+func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresFlushToResumeDecoding:"), value)
 }
 

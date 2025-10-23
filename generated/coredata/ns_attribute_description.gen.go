@@ -30,24 +30,26 @@ type _AttributeDescriptionClass struct {
 // An interface definition for the [AttributeDescription] class.
 type IAttributeDescription interface {
 	IPropertyDescription
-	AllowsCloudEncryption() bool
-	SetAllowsCloudEncryption(value bool)
-	AttributeType() NSAttributeType
-	SetAttributeType(value NSAttributeType)
-	AllowsExternalBinaryDataStorage() bool
-	SetAllowsExternalBinaryDataStorage(value bool)
-	AttributeValueClassName() string
-	SetAttributeValueClassName(value string)
-	DefaultValue() unsafe.Pointer
-	SetDefaultValue(value unsafe.Pointer)
-	PreservesValueInHistoryOnDeletion() bool
-	SetPreservesValueInHistoryOnDeletion(value bool)
-	Type() NSAttributeType
-	SetType(value NSAttributeType)
-	ValueTransformerName() string
-	SetValueTransformerName(value string)
-	VersionHash() foundation.Data
-	SetVersionHash(value foundation.Data)
+	// properties:
+	AllowsCloudEncryption() bool /* primitive/slice/pointer. */
+	SetAllowsCloudEncryption(value bool /* primitive/slice/pointer. */)
+	AttributeType() AttributeType
+	SetAttributeType(value AttributeType)
+	DefaultValue() objc.ID
+	SetDefaultValue(value objc.ID)
+	PreservesValueInHistoryOnDeletion() bool /* primitive/slice/pointer. */
+	SetPreservesValueInHistoryOnDeletion(value bool /* primitive/slice/pointer. */)
+	AllowsExternalBinaryDataStorage() bool /* primitive/slice/pointer. */
+	SetAllowsExternalBinaryDataStorage(value bool /* primitive/slice/pointer. */)
+	AttributeValueClassName() string /* primitive/slice/pointer. */
+	SetAttributeValueClassName(value string /* primitive/slice/pointer. */)
+	Type() AttributeType
+	SetType(value AttributeType)
+	ValueTransformerName() string /* primitive/slice/pointer. */
+	SetValueTransformerName(value string /* primitive/slice/pointer. */)
+	VersionHash() foundation.objc.IObject /* cross-framework: Data */
+	SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // A description of a single attribute belonging to an entity.
@@ -109,7 +111,7 @@ func NewAttributeDescription() AttributeDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) AllowsCloudEncryption() bool {
+func (a_ AttributeDescription) AllowsCloudEncryption() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsCloudEncryption"))
 	return rv
 }
@@ -119,7 +121,7 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption
-func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
+func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
 
@@ -128,8 +130,8 @@ func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) AttributeType() NSAttributeType {
-	rv := objc.Send[NSAttributeType](a_.ID, objc.Sel("attributeType"))
+func (a_ AttributeDescription) AttributeType() AttributeType {
+	rv := objc.Send[AttributeType](a_.ID, objc.Sel("attributeType"))
 	return rv
 }
 
@@ -138,8 +140,46 @@ func (a_ AttributeDescription) AttributeType() NSAttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) SetAttributeType(value NSAttributeType) {
+func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
+}
+
+
+// The default value of the attribute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/defaultValue
+func (a_ AttributeDescription) DefaultValue() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("defaultValue"))
+	return rv
+}
+
+
+// The default value of the attribute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/defaultValue
+func (a_ AttributeDescription) SetDefaultValue(value objc.ID) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDefaultValue:"), value)
+}
+
+
+// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/preservesValueInHistoryOnDeletion
+func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("preservesValueInHistoryOnDeletion"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/preservesValueInHistoryOnDeletion
+func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
 
 
@@ -147,7 +187,7 @@ func (a_ AttributeDescription) SetAttributeType(value NSAttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
-func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
+func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsExternalBinaryDataStorage"))
 	return rv
 }
@@ -157,7 +197,7 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage
-func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
+func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
 }
 
@@ -166,7 +206,7 @@ func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) AttributeValueClassName() string {
+func (a_ AttributeDescription) AttributeValueClassName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
 	return rv
 }
@@ -176,46 +216,8 @@ func (a_ AttributeDescription) AttributeValueClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
+func (a_ AttributeDescription) SetAttributeValueClassName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
-}
-
-
-// The default value of the attribute.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
-func (a_ AttributeDescription) DefaultValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultValue"))
-	return rv
-}
-
-
-// The default value of the attribute.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/defaultvalue
-func (a_ AttributeDescription) SetDefaultValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDefaultValue:"), value)
-}
-
-
-// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
-func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("preservesValueInHistoryOnDeletion"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/preservesvalueinhistoryondeletion
-func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
 
 
@@ -223,7 +225,7 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) Type() NSAttributeType {
+func (a_ AttributeDescription) Type() AttributeType {
 	rv := objc.Send[AttributeType](a_.ID, objc.Sel("type"))
 	return rv
 }
@@ -233,7 +235,7 @@ func (a_ AttributeDescription) Type() NSAttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) SetType(value NSAttributeType) {
+func (a_ AttributeDescription) SetType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
 
@@ -242,7 +244,7 @@ func (a_ AttributeDescription) SetType(value NSAttributeType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) ValueTransformerName() string {
+func (a_ AttributeDescription) ValueTransformerName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
 	return rv
 }
@@ -252,7 +254,7 @@ func (a_ AttributeDescription) ValueTransformerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) SetValueTransformerName(value string) {
+func (a_ AttributeDescription) SetValueTransformerName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
 }
 
@@ -261,7 +263,7 @@ func (a_ AttributeDescription) SetValueTransformerName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) VersionHash() foundation.Data {
+func (a_ AttributeDescription) VersionHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("versionHash"))
 	return rv
 }
@@ -271,7 +273,7 @@ func (a_ AttributeDescription) VersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) SetVersionHash(value foundation.Data) {
+func (a_ AttributeDescription) SetVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }
 

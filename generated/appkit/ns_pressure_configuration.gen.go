@@ -30,8 +30,10 @@ type _PressureConfigurationClass struct {
 // An interface definition for the [PressureConfiguration] class.
 type IPressureConfiguration interface {
 	objectivec.IObject
-	PressureBehavior() NSPressureBehavior
-	SetPressureBehavior(value NSPressureBehavior)
+	// properties:
+	PressureBehavior() PressureBehavior
+	SetPressureBehavior(value PressureBehavior)
+	// methods:
 	Set()
 }
 
@@ -92,7 +94,7 @@ func NewPressureConfiguration() PressureConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPressureConfiguration/init(pressureBehavior:)
-func NewPressureConfigurationWithPressureBehavior(pressureBehavior NSPressureBehavior) PressureConfiguration {
+func NewPressureConfigurationWithPressureBehavior(pressureBehavior PressureBehavior) PressureConfiguration {
 	instance := getPressureConfigurationClass().Alloc()
 	rv := objc.Send[PressureConfiguration](instance.ID, objc.Sel("initWithPressureBehavior:"), pressureBehavior)
 	rv.Autorelease()
@@ -114,7 +116,7 @@ func (p_ PressureConfiguration) Set() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-func (p_ PressureConfiguration) PressureBehavior() NSPressureBehavior {
+func (p_ PressureConfiguration) PressureBehavior() PressureBehavior {
 	rv := objc.Send[PressureBehavior](p_.ID, objc.Sel("pressureBehavior"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (p_ PressureConfiguration) PressureBehavior() NSPressureBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspressureconfiguration/pressurebehavior
-func (p_ PressureConfiguration) SetPressureBehavior(value NSPressureBehavior) {
+func (p_ PressureConfiguration) SetPressureBehavior(value PressureBehavior) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressureBehavior:"), value)
 }
 

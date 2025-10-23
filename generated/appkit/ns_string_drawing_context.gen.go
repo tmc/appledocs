@@ -31,10 +31,14 @@ type _StringDrawingContextClass struct {
 // An interface definition for the [StringDrawingContext] class.
 type IStringDrawingContext interface {
 	objectivec.IObject
-	ActualScaleFactor() float64
-	MinimumScaleFactor() float64
-	SetMinimumScaleFactor(value float64)
+	// properties:
+	ActualScaleFactor() float64 /* primitive/slice/pointer. */
+	SetActualScaleFactor(value float64 /* primitive/slice/pointer. */)
+	MinimumScaleFactor() float64 /* primitive/slice/pointer. */
+	SetMinimumScaleFactor(value float64 /* primitive/slice/pointer. */)
 	TotalBounds() coregraphics.CGRect
+	SetTotalBounds(value coregraphics.CGRect)
+	// methods:
 }
 
 // An object that manages metrics for drawing attributed strings.
@@ -93,18 +97,27 @@ func NewStringDrawingContext() StringDrawingContext {
 // The actual scale factor that the system applied to the font during drawing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/actualScaleFactor
-func (s_ StringDrawingContext) ActualScaleFactor() float64 {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
+func (s_ StringDrawingContext) ActualScaleFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("actualScaleFactor"))
 	return rv
+}
+
+
+// The actual scale factor that the system applied to the font during drawing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/actualscalefactor
+func (s_ StringDrawingContext) SetActualScaleFactor(value float64 /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setActualScaleFactor:"), value)
 }
 
 
 // The scale factor that determines the smallest font size to use during drawing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
-func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
+func (s_ StringDrawingContext) MinimumScaleFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
 	return rv
 }
@@ -113,8 +126,8 @@ func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
 // The scale factor that determines the smallest font size to use during drawing.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
-func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
+func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
 }
 
@@ -122,10 +135,19 @@ func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
 // The most recent bounding rectangle that the system used to draw the string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/totalBounds
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
 func (s_ StringDrawingContext) TotalBounds() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("totalBounds"))
 	return rv
+}
+
+
+// The most recent bounding rectangle that the system used to draw the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
+func (s_ StringDrawingContext) SetTotalBounds(value coregraphics.CGRect) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTotalBounds:"), value)
 }
 
 

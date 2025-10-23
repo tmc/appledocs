@@ -29,18 +29,20 @@ type _CKOperationClass struct {
 // An interface definition for the [CKOperation] class.
 type ICKOperation interface {
 	IOperation
+	// properties:
 	Group() ICKOperationGroup
 	SetGroup(value ICKOperationGroup)
 	Configuration() ICKOperationConfiguration
 	SetConfiguration(value ICKOperationConfiguration)
-	IsLongLived() bool
-	SetIsLongLived(value bool)
+	IsLongLived() bool /* primitive/slice/pointer. */
+	SetIsLongLived(value bool /* primitive/slice/pointer. */)
 	LongLivedOperationWasPersistedBlock() unsafe.Pointer
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
 	OperationID() unsafe.Pointer
 	SetOperationID(value unsafe.Pointer)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
+	// methods:
 }
 
 // The abstract base class for all operations that execute in a database.
@@ -140,7 +142,7 @@ func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) IsLongLived() bool {
+func (c_ CKOperation) IsLongLived() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (c_ CKOperation) IsLongLived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) SetIsLongLived(value bool) {
+func (c_ CKOperation) SetIsLongLived(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
 }
 

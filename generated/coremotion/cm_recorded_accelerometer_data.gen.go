@@ -30,8 +30,10 @@ type _RecordedAccelerometerDataClass struct {
 // An interface definition for the [RecordedAccelerometerData] class.
 type IRecordedAccelerometerData interface {
 	IAccelerometerData
-	Identifier() uint64
-	StartDate() foundation.NSDate
+	// properties:
+	Identifier() uint64 /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	// methods:
 }
 
 // A single piece of accelerometer data that was recorded by the device.
@@ -93,7 +95,7 @@ func NewRecordedAccelerometerData() RecordedAccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/identifier
-func (r_ RecordedAccelerometerData) Identifier() uint64 {
+func (r_ RecordedAccelerometerData) Identifier() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (r_ RecordedAccelerometerData) Identifier() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/startDate
-func (r_ RecordedAccelerometerData) StartDate() foundation.NSDate {
+func (r_ RecordedAccelerometerData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }

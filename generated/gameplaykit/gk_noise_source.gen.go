@@ -30,6 +30,8 @@ type _NoiseSourceClass struct {
 // An interface definition for the [NoiseSource] class.
 type INoiseSource interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract superclass for procedural noise generators.

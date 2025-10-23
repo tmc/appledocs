@@ -31,8 +31,8 @@ type _HKObjectTypeClass struct {
 type IHKObjectType interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string
-	SetIdentifier(value string)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -89,12 +89,30 @@ func NewHKObjectType() HKObjectType {
 
 
 
+// Returns the shared electrocardiogram type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObjectType/electrocardiogramType()
+func (hc _HKObjectTypeClass) ElectrocardiogramType() IHKElectrocardiogramType {
+	rv := objc.Send[HKElectrocardiogramType](objc.ID(hc.class), objc.Sel("electrocardiogramType"))
+	return rv
+}
+
+
 // Returns the shared quantity type for the provided identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObjectType/quantityType(forIdentifier:)
-func (hc _HKObjectTypeClass) QuantityTypeForIdentifier(identifier HKQuantityTypeIdentifier) IHKQuantityType {
+func (hc _HKObjectTypeClass) QuantityTypeForIdentifier(identifier HKQuantityTypeIdentifier /* typedef */) IHKQuantityType {
 	rv := objc.Send[HKQuantityType](objc.ID(hc.class), objc.Sel("quantityTypeForIdentifier:"), identifier)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKObjectType/stateOfMindType()
+func (hc _HKObjectTypeClass) StateOfMindType() IHKStateOfMindType {
+	rv := objc.Send[HKStateOfMindType](objc.ID(hc.class), objc.Sel("stateOfMindType"))
 	return rv
 }
 
@@ -103,7 +121,7 @@ func (hc _HKObjectTypeClass) QuantityTypeForIdentifier(identifier HKQuantityType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjecttype/identifier
-func (h_ HKObjectType) Identifier() string {
+func (h_ HKObjectType) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -113,7 +131,7 @@ func (h_ HKObjectType) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjecttype/identifier
-func (h_ HKObjectType) SetIdentifier(value string) {
+func (h_ HKObjectType) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 

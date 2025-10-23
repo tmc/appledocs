@@ -29,9 +29,11 @@ type _CBGroupIdentityClass struct {
 // An interface definition for the [CBGroupIdentity] class.
 type ICBGroupIdentity interface {
 	ICBIdentity
-	MemberIdentities() []CBIdentity
+	// properties:
+	MemberIdentities() []CBIdentity /* primitive/slice/pointer. */
 	PosixGID() unsafe.Pointer
 	SetPosixGID(value unsafe.Pointer)
+	// methods:
 }
 
 // An object of the class represents a group identity and is used for viewing the attributes of group identities from an identity authority. The principal attributes of a object are a POSIX group identifier (GID) and a list of members.
@@ -89,7 +91,7 @@ func NewCBGroupIdentity() CBGroupIdentity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/memberIdentities
-func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity {
+func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBIdentity](c_.ID, objc.Sel("memberIdentities"))
 	return rv
 }

@@ -32,15 +32,15 @@ type IUSBHostPipe interface {
 	IUSBHostIOSource
 	// properties:
 	IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer
-	Descriptors() unsafe.Pointer
-	SetDescriptors(value unsafe.Pointer)
+	Descriptors() USBHostIOSourceDescriptors /* not a class type */
+	SetDescriptors(value USBHostIOSourceDescriptors /* not a class type */)
 	IdleTimeout() unsafe.Pointer
 	SetIdleTimeout(value unsafe.Pointer)
-	OriginalDescriptors() unsafe.Pointer
-	SetOriginalDescriptors(value unsafe.Pointer)
+	OriginalDescriptors() USBHostIOSourceDescriptors /* not a class type */
+	SetOriginalDescriptors(value USBHostIOSourceDescriptors /* not a class type */)
 	// methods:
-	CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) IUSBHostStream
-	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data foundation.MutableData, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	CopyStreamWithStreamIDError(streamID uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) IUSBHostStream
+	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */
 }
 
 // The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.
@@ -102,7 +102,7 @@ func NewUSBHostPipe() USBHostPipe {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/copyStream(withStreamID:)
-func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) IUSBHostStream {
+func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint /* primitive/slice/pointer. */, error_ unsafe.Pointer) IUSBHostStream {
 	rv := objc.Send[USBHostStream](u_.ID, objc.Sel("copyStreamWithStreamID:error:"), streamID, error_)
 	return rv
 }
@@ -112,7 +112,7 @@ func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint, error_ unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/enqueueControlRequest:data:completionTimeout:error:completionHandler:
-func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data foundation.MutableData, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request USBDeviceRequest /* not a class type */, data objc.IObject /* cross-framework MutableData */, completionTimeout foundation.TimeInterval /* not a class type */, error_ unsafe.Pointer, completionHandler USBHostCompletionHandler /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueControlRequest:data:completionTimeout:error:completionHandler:"), request, data, completionTimeout, error_, completionHandler)
 	return rv
 }
@@ -132,8 +132,8 @@ func (u_ USBHostPipe) IOUSBHostDefaultControlCompletionTimeout() unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/descriptors
-func (u_ USBHostPipe) Descriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("descriptors"))
+func (u_ USBHostPipe) Descriptors() USBHostIOSourceDescriptors /* not a class type */ {
+	rv := objc.Send[USBHostIOSourceDescriptors](u_.ID, objc.Sel("descriptors"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (u_ USBHostPipe) Descriptors() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/descriptors
-func (u_ USBHostPipe) SetDescriptors(value unsafe.Pointer) {
+func (u_ USBHostPipe) SetDescriptors(value USBHostIOSourceDescriptors /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDescriptors:"), value)
 }
 
@@ -170,8 +170,8 @@ func (u_ USBHostPipe) SetIdleTimeout(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
-func (u_ USBHostPipe) OriginalDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalDescriptors"))
+func (u_ USBHostPipe) OriginalDescriptors() USBHostIOSourceDescriptors /* not a class type */ {
+	rv := objc.Send[USBHostIOSourceDescriptors](u_.ID, objc.Sel("originalDescriptors"))
 	return rv
 }
 
@@ -180,7 +180,7 @@ func (u_ USBHostPipe) OriginalDescriptors() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostpipe/originaldescriptors
-func (u_ USBHostPipe) SetOriginalDescriptors(value unsafe.Pointer) {
+func (u_ USBHostPipe) SetOriginalDescriptors(value USBHostIOSourceDescriptors /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOriginalDescriptors:"), value)
 }
 

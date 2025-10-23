@@ -30,8 +30,9 @@ type _MIDINetworkConnectionClass struct {
 // An interface definition for the [MIDINetworkConnection] class.
 type IMIDINetworkConnection interface {
 	objectivec.IObject
+	// properties:
 	Host() IMIDINetworkHost
-	SetHost(value IMIDINetworkHost)
+	// methods:
 }
 
 // An object that connects a session to a host.
@@ -85,12 +86,23 @@ func NewMIDINetworkConnection() MIDINetworkConnection {
 
 
 
-// The host connection.
+// Creates a connection to the specified host.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkconnection/host
-func (m_ MIDINetworkConnection) Host() IMIDINetworkHost {
-	rv := objc.Send[MIDINetworkHost](m_.ID, objc.Sel("host"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/init(host:)
+func NewMIDINetworkConnectionWithHost(host IMIDINetworkHost) MIDINetworkConnection {
+	rv := objc.Send[MIDINetworkConnection](objc.ID(getMIDINetworkConnectionClass().class), objc.Sel("connectionWithHost:"), host)
+	return rv
+}
+
+
+
+// Creates a connection to the specified host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/init(host:)
+func (mc _MIDINetworkConnectionClass) ConnectionWithHost(host IMIDINetworkHost) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("connectionWithHost:"), host)
 	return rv
 }
 
@@ -98,10 +110,10 @@ func (m_ MIDINetworkConnection) Host() IMIDINetworkHost {
 // The host connection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworkconnection/host
-func (m_ MIDINetworkConnection) SetHost(value IMIDINetworkHost) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHost:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/host
+func (m_ MIDINetworkConnection) Host() IMIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](m_.ID, objc.Sel("host"))
+	return rv
 }
-
 
 

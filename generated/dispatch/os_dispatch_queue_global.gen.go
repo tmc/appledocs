@@ -30,6 +30,8 @@ type _OS_dispatch_queue_globalClass struct {
 // An interface definition for the [OS_dispatch_queue_global] class.
 type IOS_dispatch_queue_global interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A system-provided dispatch queue that schedules tasks for concurrent execution.

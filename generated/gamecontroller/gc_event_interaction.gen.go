@@ -30,12 +30,14 @@ type _GCEventInteractionClass struct {
 // An interface definition for the [GCEventInteraction] class.
 type IGCEventInteraction interface {
 	objectivec.IObject
+	// properties:
 	HandledEventTypes() unsafe.Pointer
 	SetHandledEventTypes(value unsafe.Pointer)
-	ReceivesEventsInView() bool
-	SetReceivesEventsInView(value bool)
+	ReceivesEventsInView() bool /* primitive/slice/pointer. */
+	SetReceivesEventsInView(value bool /* primitive/slice/pointer. */)
 	ControllerPausedHandler() unsafe.Pointer
 	SetControllerPausedHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // An interaction that indicates the view’s intent to receive game controller events through the Game Controller framework.
@@ -115,7 +117,7 @@ func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/receivesEventsInView
-func (g_ GCEventInteraction) ReceivesEventsInView() bool {
+func (g_ GCEventInteraction) ReceivesEventsInView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("receivesEventsInView"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (g_ GCEventInteraction) ReceivesEventsInView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/receivesEventsInView
-func (g_ GCEventInteraction) SetReceivesEventsInView(value bool) {
+func (g_ GCEventInteraction) SetReceivesEventsInView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReceivesEventsInView:"), value)
 }
 

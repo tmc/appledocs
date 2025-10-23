@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _PreviewRepresentingActivityItemClass struct {
 // An interface definition for the [PreviewRepresentingActivityItem] class.
 type IPreviewRepresentingActivityItem interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A type that adds metadata to an item you share using the macOS share sheet.
@@ -90,7 +91,7 @@ func NewPreviewRepresentingActivityItem() PreviewRepresentingActivityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:image:icon:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IObject, title string, image IImage, icon IImage) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IObject, title string /* primitive/slice/pointer. */, image IImage, icon IImage) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:image:icon:"), item, objc.String(title), image, icon)
 	rv.Autorelease()
@@ -102,7 +103,7 @@ func NewPreviewRepresentingActivityItemWithItemTitleImageIcon(item objectivec.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPreviewRepresentingActivityItem/init(item:title:imageProvider:iconProvider:)
-func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string, imageProvider foundation.ItemProvider, iconProvider foundation.ItemProvider) PreviewRepresentingActivityItem {
+func NewPreviewRepresentingActivityItemWithItemTitleImageProviderIconProvider(item objectivec.IObject, title string /* primitive/slice/pointer. */, imageProvider ItemProvider /* not a class type */, iconProvider ItemProvider /* not a class type */) PreviewRepresentingActivityItem {
 	instance := getPreviewRepresentingActivityItemClass().Alloc()
 	rv := objc.Send[PreviewRepresentingActivityItem](instance.ID, objc.Sel("initWithItem:title:imageProvider:iconProvider:"), item, objc.String(title), imageProvider, iconProvider)
 	rv.Autorelease()

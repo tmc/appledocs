@@ -42,6 +42,9 @@ type Generator struct {
 	enumIndex    map[string]*occ2go.ParsedEnum
 	typedefIndex map[string]*occ2go.ParsedTypedef
 
+	// Undefined types (cached from CollectUndefinedTypes())
+	undefinedTypes map[string]*UndefinedType
+
 	// Error collection
 	Errors []error
 }
@@ -514,6 +517,9 @@ func (g *Generator) prepare() {
 	Debug.TimeInterval("built typedef index", "", "",
 		"entryCount", len(g.typedefIndex),
 		"hasTimeInterval", g.typedefIndex["TimeInterval"] != nil)
+
+	// Cache undefined types for test generation
+	g.undefinedTypes = g.CollectUndefinedTypes()
 }
 
 // SortClassesByDependency sorts classes topologically so parent classes come before children.

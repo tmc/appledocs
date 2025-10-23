@@ -30,8 +30,8 @@ type _GLKEffectPropertyFogClass struct {
 type IGLKEffectPropertyFog interface {
 	IGLKEffectProperty
 	// properties:
-	Color() GLKVector4
-	SetColor(value GLKVector4)
+	Color() GLKVector4 /* typedef */
+	SetColor(value GLKVector4 /* typedef */)
 	Density() unsafe.Pointer
 	SetDensity(value unsafe.Pointer)
 	Enabled() unsafe.Pointer
@@ -104,7 +104,7 @@ func NewGLKEffectPropertyFog() GLKEffectPropertyFog {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
+func (g_ GLKEffectPropertyFog) Color() GLKVector4 /* typedef */ {
 	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("color"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-func (g_ GLKEffectPropertyFog) SetColor(value GLKVector4) {
+func (g_ GLKEffectPropertyFog) SetColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
 

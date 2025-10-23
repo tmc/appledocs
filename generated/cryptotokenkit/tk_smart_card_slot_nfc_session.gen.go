@@ -30,7 +30,9 @@ type _TKSmartCardSlotNFCSessionClass struct {
 // An interface definition for the [TKSmartCardSlotNFCSession] class.
 type ITKSmartCardSlotNFCSession interface {
 	objectivec.IObject
-	SlotName() string
+	// properties:
+	SlotName() string /* primitive/slice/pointer. */
+	// methods:
 	EndSession()
 }
 
@@ -100,7 +102,7 @@ func (t_ TKSmartCardSlotNFCSession) EndSession() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotNFCSession/slotName
-func (t_ TKSmartCardSlotNFCSession) SlotName() string {
+func (t_ TKSmartCardSlotNFCSession) SlotName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
 	return rv
 }

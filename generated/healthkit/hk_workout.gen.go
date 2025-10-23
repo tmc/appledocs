@@ -30,14 +30,14 @@ type _HKWorkoutClass struct {
 type IHKWorkout interface {
 	IHKSample
 	// properties:
-	HKPredicateKeyPathWorkoutAverageQuantity() string
-	HKPredicateKeyPathWorkoutDuration() string
-	HKPredicateKeyPathWorkoutMaximumQuantity() string
-	HKPredicateKeyPathWorkoutMinimumQuantity() string
-	HKPredicateKeyPathWorkoutSumQuantity() string
-	HKPredicateKeyPathWorkoutTotalDistance() string
-	HKPredicateKeyPathWorkoutTotalEnergyBurned() string
-	HKPredicateKeyPathWorkoutType() string
+	HKPredicateKeyPathWorkoutAverageQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutDuration() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutMaximumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutMinimumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutSumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutTotalDistance() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutTotalEnergyBurned() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutType() string /* primitive/slice/pointer. */
 	AllStatistics() IHKStatistics
 	SetAllStatistics(value IHKStatistics)
 	Duration() unsafe.Pointer
@@ -58,10 +58,10 @@ type IHKWorkout interface {
 	SetWorkoutEvents(value IHKWorkoutEvent)
 	WorkoutPlan() unsafe.Pointer
 	SetWorkoutPlan(value unsafe.Pointer)
-	HKWorkoutSortIdentifierDuration() string
-	HKWorkoutSortIdentifierTotalDistance() string
-	HKWorkoutSortIdentifierTotalEnergyBurned() string
-	HKWorkoutTypeIdentifier() string
+	HKWorkoutSortIdentifierDuration() string /* primitive/slice/pointer. */
+	HKWorkoutSortIdentifierTotalDistance() string /* primitive/slice/pointer. */
+	HKWorkoutSortIdentifierTotalEnergyBurned() string /* primitive/slice/pointer. */
+	HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -124,7 +124,7 @@ func NewHKWorkout() HKWorkout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutaveragequantity
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutAverageQuantity() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutAverageQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutAverageQuantity"))
 	return rv
 }
@@ -134,7 +134,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutAverageQuantity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutduration
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutDuration() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutDuration() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutDuration"))
 	return rv
 }
@@ -144,7 +144,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutDuration() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutmaximumquantity
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutMaximumQuantity() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutMaximumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutMaximumQuantity"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutMaximumQuantity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutminimumquantity
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutMinimumQuantity() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutMinimumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutMinimumQuantity"))
 	return rv
 }
@@ -164,7 +164,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutMinimumQuantity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutsumquantity
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutSumQuantity() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutSumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutSumQuantity"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutSumQuantity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotaldistance
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalDistance() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalDistance() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutTotalDistance"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalDistance() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalenergyburned
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalEnergyBurned() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalEnergyBurned() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutTotalEnergyBurned"))
 	return rv
 }
@@ -194,7 +194,7 @@ func (h_ HKWorkout) HKPredicateKeyPathWorkoutTotalEnergyBurned() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttype
-func (h_ HKWorkout) HKPredicateKeyPathWorkoutType() string {
+func (h_ HKWorkout) HKPredicateKeyPathWorkoutType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutType"))
 	return rv
 }
@@ -386,7 +386,7 @@ func (h_ HKWorkout) SetWorkoutPlan(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifierduration
-func (h_ HKWorkout) HKWorkoutSortIdentifierDuration() string {
+func (h_ HKWorkout) HKWorkoutSortIdentifierDuration() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutSortIdentifierDuration"))
 	return rv
 }
@@ -396,7 +396,7 @@ func (h_ HKWorkout) HKWorkoutSortIdentifierDuration() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotaldistance
-func (h_ HKWorkout) HKWorkoutSortIdentifierTotalDistance() string {
+func (h_ HKWorkout) HKWorkoutSortIdentifierTotalDistance() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutSortIdentifierTotalDistance"))
 	return rv
 }
@@ -406,7 +406,7 @@ func (h_ HKWorkout) HKWorkoutSortIdentifierTotalDistance() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalenergyburned
-func (h_ HKWorkout) HKWorkoutSortIdentifierTotalEnergyBurned() string {
+func (h_ HKWorkout) HKWorkoutSortIdentifierTotalEnergyBurned() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutSortIdentifierTotalEnergyBurned"))
 	return rv
 }
@@ -416,7 +416,7 @@ func (h_ HKWorkout) HKWorkoutSortIdentifierTotalEnergyBurned() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkout) HKWorkoutTypeIdentifier() string {
+func (h_ HKWorkout) HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }

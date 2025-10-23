@@ -31,8 +31,10 @@ type _CKShareBlockedIdentityClass struct {
 // An interface definition for the [CKShareBlockedIdentity] class.
 type ICKShareBlockedIdentity interface {
 	objectivec.IObject
-	Contact() contacts.CNContact
+	// properties:
+	Contact() contacts.objc.IObject /* cross-framework: CNContact */
 	UserIdentity() ICKUserIdentity
+	// methods:
 }
 
 
@@ -85,7 +87,7 @@ func NewCKShareBlockedIdentity() CKShareBlockedIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/contact
-func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
+func (c_ CKShareBlockedIdentity) Contact() contacts.objc.IObject /* cross-framework: CNContact */ {
 	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +31,12 @@ type _MKMapSnapshotClass struct {
 type IMKMapSnapshot interface {
 	objectivec.IObject
 	// properties:
-	Appearance() appkit.Appearance
-	SetAppearance(value appkit.Appearance)
-	Image() appkit.Image
-	SetImage(value appkit.Image)
-	TraitCollection() unsafe.Pointer
-	SetTraitCollection(value unsafe.Pointer)
+	Appearance() objc.IObject /* cross-framework: Appearance */
+	SetAppearance(value objc.IObject /* cross-framework: Appearance */)
+	Image() objc.IObject /* cross-framework: Image */
+	SetImage(value objc.IObject /* cross-framework: Image */)
+	TraitCollection() TraitCollection /* not a class type */
+	SetTraitCollection(value TraitCollection /* not a class type */)
 	// methods:
 }
 
@@ -98,8 +97,8 @@ func NewMKMapSnapshot() MKMapSnapshot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
-func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
-	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
+func (m_ MKMapSnapshot) Appearance() objc.IObject /* cross-framework: Appearance */ {
+	rv := objc.Send[Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -108,7 +107,7 @@ func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
-func (m_ MKMapSnapshot) SetAppearance(value appkit.Appearance) {
+func (m_ MKMapSnapshot) SetAppearance(value objc.IObject /* cross-framework: Appearance */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
 }
 
@@ -117,8 +116,8 @@ func (m_ MKMapSnapshot) SetAppearance(value appkit.Appearance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) Image() appkit.Image {
-	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
+func (m_ MKMapSnapshot) Image() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -127,7 +126,7 @@ func (m_ MKMapSnapshot) Image() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) SetImage(value appkit.Image) {
+func (m_ MKMapSnapshot) SetImage(value objc.IObject /* cross-framework: Image */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -136,8 +135,8 @@ func (m_ MKMapSnapshot) SetImage(value appkit.Image) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
-func (m_ MKMapSnapshot) TraitCollection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("traitCollection"))
+func (m_ MKMapSnapshot) TraitCollection() TraitCollection /* not a class type */ {
+	rv := objc.Send[TraitCollection](m_.ID, objc.Sel("traitCollection"))
 	return rv
 }
 
@@ -146,7 +145,7 @@ func (m_ MKMapSnapshot) TraitCollection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
-func (m_ MKMapSnapshot) SetTraitCollection(value unsafe.Pointer) {
+func (m_ MKMapSnapshot) SetTraitCollection(value TraitCollection /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)
 }
 

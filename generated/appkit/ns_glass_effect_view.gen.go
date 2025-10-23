@@ -29,14 +29,16 @@ type _GlassEffectViewClass struct {
 // An interface definition for the [GlassEffectView] class.
 type IGlassEffectView interface {
 	IView
+	// properties:
 	ContentView() IView
 	SetContentView(value IView)
-	CornerRadius() float64
-	SetCornerRadius(value float64)
-	Style() NSGlassEffectViewStyle
-	SetStyle(value NSGlassEffectViewStyle)
+	CornerRadius() float64 /* primitive/slice/pointer. */
+	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
+	Style() GlassEffectViewStyle
+	SetStyle(value GlassEffectViewStyle)
 	TintColor() IColor
 	SetTintColor(value IColor)
+	// methods:
 }
 
 // A view that embeds its content view in a dynamic glass effect.
@@ -115,7 +117,7 @@ func (g_ GlassEffectView) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
-func (g_ GlassEffectView) CornerRadius() float64 {
+func (g_ GlassEffectView) CornerRadius() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](g_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (g_ GlassEffectView) CornerRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
-func (g_ GlassEffectView) SetCornerRadius(value float64) {
+func (g_ GlassEffectView) SetCornerRadius(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCornerRadius:"), value)
 }
 
@@ -134,8 +136,8 @@ func (g_ GlassEffectView) SetCornerRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) Style() NSGlassEffectViewStyle {
-	rv := objc.Send[NSGlassEffectViewStyle](g_.ID, objc.Sel("style"))
+func (g_ GlassEffectView) Style() GlassEffectViewStyle {
+	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -144,7 +146,7 @@ func (g_ GlassEffectView) Style() NSGlassEffectViewStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
-func (g_ GlassEffectView) SetStyle(value NSGlassEffectViewStyle) {
+func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
 

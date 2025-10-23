@@ -29,6 +29,8 @@ type _CKSyncEngineSentRecordZoneChangesEventClass struct {
 // An interface definition for the [CKSyncEngineSentRecordZoneChangesEvent] class.
 type ICKSyncEngineSentRecordZoneChangesEvent interface {
 	ICKSyncEngineEvent
+	// properties:
+	// methods:
 }
 
 // An object that provides information about a sent batch of record zone changes.

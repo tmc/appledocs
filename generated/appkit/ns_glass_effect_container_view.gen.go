@@ -29,10 +29,12 @@ type _GlassEffectContainerViewClass struct {
 // An interface definition for the [GlassEffectContainerView] class.
 type IGlassEffectContainerView interface {
 	IView
+	// properties:
 	ContentView() IView
 	SetContentView(value IView)
-	Spacing() float64
-	SetSpacing(value float64)
+	Spacing() float64 /* primitive/slice/pointer. */
+	SetSpacing(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
@@ -111,7 +113,7 @@ func (g_ GlassEffectContainerView) SetContentView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-func (g_ GlassEffectContainerView) Spacing() float64 {
+func (g_ GlassEffectContainerView) Spacing() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](g_.ID, objc.Sel("spacing"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (g_ GlassEffectContainerView) Spacing() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectContainerView/spacing
-func (g_ GlassEffectContainerView) SetSpacing(value float64) {
+func (g_ GlassEffectContainerView) SetSpacing(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSpacing:"), value)
 }
 

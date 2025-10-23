@@ -31,10 +31,10 @@ type _MKAddressClass struct {
 type IMKAddress interface {
 	objectivec.IObject
 	// properties:
-	FullAddress() string
-	SetFullAddress(value string)
-	ShortAddress() string
-	SetShortAddress(value string)
+	FullAddress() string /* primitive/slice/pointer. */
+	SetFullAddress(value string /* primitive/slice/pointer. */)
+	ShortAddress() string /* primitive/slice/pointer. */
+	SetShortAddress(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewMKAddress() MKAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) FullAddress() string {
+func (m_ MKAddress) FullAddress() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("fullAddress"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (m_ MKAddress) FullAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) SetFullAddress(value string) {
+func (m_ MKAddress) SetFullAddress(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), objc.String(value))
 }
 
@@ -114,7 +114,7 @@ func (m_ MKAddress) SetFullAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) ShortAddress() string {
+func (m_ MKAddress) ShortAddress() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("shortAddress"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (m_ MKAddress) ShortAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) SetShortAddress(value string) {
+func (m_ MKAddress) SetShortAddress(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))
 }
 

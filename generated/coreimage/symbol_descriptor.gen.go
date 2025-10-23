@@ -30,6 +30,8 @@ type _symbolDescriptorClass struct {
 // An interface definition for the [symbolDescriptor] class.
 type IsymbolDescriptor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

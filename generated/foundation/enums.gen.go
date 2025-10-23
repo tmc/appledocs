@@ -3,6 +3,22 @@
 package foundation
 
 // Enum types and constants
+// DecodingFailurePolicy - Policies describing the action the coder should take when encountering decode failures.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/DecodingFailurePolicy-swift.enum
+type DecodingFailurePolicy uint
+
+const (
+	// DecodingFailurePolicyRaiseException - A failure policy that directs the coder to raise an exception.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/DecodingFailurePolicy-swift.enum/raiseException
+	DecodingFailurePolicyRaiseException DecodingFailurePolicy = 0
+	// DecodingFailurePolicySetErrorAndReturn - A failure policy that directs the coder to capture the failure as an error object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/DecodingFailurePolicy-swift.enum/setErrorAndReturn
+	DecodingFailurePolicySetErrorAndReturn DecodingFailurePolicy = 1
+)
+
 // DataBase64DecodingOptions - Options to modify the decoding algorithm used to decode Base64 encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions
@@ -83,15 +99,42 @@ const (
 type StringCompareOptions uint
 
 const (
-	CaseInsensitiveSearch StringCompareOptions = 1
-	LiteralSearch StringCompareOptions = 2
-	BackwardsSearch StringCompareOptions = 4
+	// AnchoredSearch - Search is limited to start (or end, if  ) of source string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/anchored
 	AnchoredSearch StringCompareOptions = 8
-	NumericSearch StringCompareOptions = 64
+	// BackwardsSearch - Search from end of source string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/backwards
+	BackwardsSearch StringCompareOptions = 4
+	// CaseInsensitiveSearch - A case-insensitive search.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/caseInsensitive
+	CaseInsensitiveSearch StringCompareOptions = 1
+	// DiacriticInsensitiveSearch - Search ignores diacritic marks.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/diacriticInsensitive
 	DiacriticInsensitiveSearch StringCompareOptions = 65
-	WidthInsensitiveSearch StringCompareOptions = 66
+	// ForcedOrderingSearch - Comparisons are forced to return either   or   if the strings are equivalent but not strictly equal.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/forcedOrdering
 	ForcedOrderingSearch StringCompareOptions = 67
+	// LiteralSearch - Exact character-by-character equivalence.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/literal
+	LiteralSearch StringCompareOptions = 2
+	// NumericSearch - Numbers within strings are compared using numeric value, that is,   <   <  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/numeric
+	NumericSearch StringCompareOptions = 64
+	// RegularExpressionSearch - The search string is treated as an ICU-compatible regular expression. If set, no other options can apply except   and  . You can use this option only with the  … methods and  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/regularExpression
 	RegularExpressionSearch StringCompareOptions = 68
+	// WidthInsensitiveSearch - Search ignores width differences in characters that have full-width and half-width forms, as occurs in East Asian character sets.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions/widthInsensitive
+	WidthInsensitiveSearch StringCompareOptions = 66
 )
 
 // StringDrawingOptions enum type
@@ -99,13 +142,43 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions
 type StringDrawingOptions uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/disableScreenFontSubstitution
+	disableScreenFontSubstitution StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/oneShot
+	oneShot StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/optionsResolvesNaturalAlignmentWithBaseWritingDirection
+	optionsResolvesNaturalAlignmentWithBaseWritingDirection StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/truncatesLastVisibleLine
+	truncatesLastVisibleLine StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesDeviceMetrics
+	usesDeviceMetrics StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesFontLeading
+	usesFontLeading StringDrawingOptions = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions/usesLineFragmentOrigin
+	usesLineFragmentOrigin StringDrawingOptions = 0
+)
+
 // StringEncodingConversionOptions - Options for converting string encodings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EncodingConversionOptions
 type StringEncodingConversionOptions uint
 
 const (
+	// StringEncodingConversionAllowLossy - Allows lossy conversion.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EncodingConversionOptions/allowLossy
 	StringEncodingConversionAllowLossy StringEncodingConversionOptions = 1
+	// StringEncodingConversionExternalRepresentation - Specifies an external representation (with a byte-order mark, if necessary, to indicate endianness).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EncodingConversionOptions/externalRepresentation
 	StringEncodingConversionExternalRepresentation StringEncodingConversionOptions = 2
 )
 
@@ -115,16 +188,44 @@ const (
 type StringEnumerationOptions uint
 
 const (
-	StringEnumerationByLines StringEnumerationOptions = 0
-	StringEnumerationByParagraphs StringEnumerationOptions = 1
-	StringEnumerationByComposedCharacterSequences StringEnumerationOptions = 2
-	StringEnumerationByWords StringEnumerationOptions = 3
-	StringEnumerationBySentences StringEnumerationOptions = 4
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byCaretPositions
 	StringEnumerationByCaretPositions StringEnumerationOptions = 5
+	// StringEnumerationByComposedCharacterSequences - Enumerates by composed character sequences. Equivalent to  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byComposedCharacterSequences
+	StringEnumerationByComposedCharacterSequences StringEnumerationOptions = 2
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byDeletionClusters
 	StringEnumerationByDeletionClusters StringEnumerationOptions = 6
-	StringEnumerationReverse StringEnumerationOptions = 256
-	StringEnumerationSubstringNotRequired StringEnumerationOptions = 512
+	// StringEnumerationByLines - Enumerates by lines. Equivalent to  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byLines
+	StringEnumerationByLines StringEnumerationOptions = 0
+	// StringEnumerationByParagraphs - Enumerates by paragraphs. Equivalent to  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byParagraphs
+	StringEnumerationByParagraphs StringEnumerationOptions = 1
+	// StringEnumerationBySentences - Enumerates by sentences.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/bySentences
+	StringEnumerationBySentences StringEnumerationOptions = 4
+	// StringEnumerationByWords - Enumerates by words.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/byWords
+	StringEnumerationByWords StringEnumerationOptions = 3
+	// StringEnumerationLocalized - Causes the enumeration to occur using the current locale. This does not make a difference in line, paragraph, or composed character sequence enumeration, but it may for words or sentences.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/localized
 	StringEnumerationLocalized StringEnumerationOptions = 1024
+	// StringEnumerationReverse - Causes enumeration to occur from the end of the specified range to the start.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/reverse
+	StringEnumerationReverse StringEnumerationOptions = 256
+	// StringEnumerationSubstringNotRequired - A way to indicate that the block does not need substring, in which case   will be passed. This is simply a performance shortcut.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions/substringNotRequired
+	StringEnumerationSubstringNotRequired StringEnumerationOptions = 512
 )
 
 

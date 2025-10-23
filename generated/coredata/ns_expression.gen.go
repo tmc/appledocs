@@ -30,6 +30,8 @@ type _ExpressionClass struct {
 // An interface definition for the [Expression] class.
 type IExpression interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other CoreData classes.

@@ -30,6 +30,8 @@ type _DispatchIOClass struct {
 // An interface definition for the [DispatchIO] class.
 type IDispatchIO interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that manages operations on a file descriptor using either stream-based or random-access semantics.

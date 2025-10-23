@@ -30,6 +30,8 @@ type _DispatchObjectClass struct {
 // An interface definition for the [DispatchObject] class.
 type IDispatchObject interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for most dispatch types.

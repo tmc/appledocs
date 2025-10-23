@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,9 @@ type _CBPeerClass struct {
 // An interface definition for the [CBPeer] class.
 type ICBPeer interface {
 	objectivec.IObject
-	Identifier() foundation.UUID
+	// properties:
+	Identifier() objc.IObject /* cross-framework: UUID */
+	// methods:
 }
 
 // An object that represents a remote device.
@@ -91,8 +92,8 @@ func NewCBPeer() CBPeer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer/identifier
-func (c_ CBPeer) Identifier() foundation.UUID {
-	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
+func (c_ CBPeer) Identifier() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 

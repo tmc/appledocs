@@ -93,6 +93,13 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNEntityType
 type CNEntityType uint
 
+const (
+	// CNEntityTypeContacts - The user’s contacts.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNEntityType/contacts
+	CNEntityTypeContacts CNEntityType = 0
+)
+
 // CNErrorCode - Error codes that the system may return when you use Contacts framework methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNError/Code

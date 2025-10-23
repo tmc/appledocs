@@ -31,10 +31,12 @@ type _FileProviderItemVersionClass struct {
 // An interface definition for the [FileProviderItemVersion] class.
 type IFileProviderItemVersion interface {
 	objectivec.IObject
-	ContentVersion() foundation.Data
-	SetContentVersion(value foundation.Data)
-	MetadataVersion() foundation.Data
-	SetMetadataVersion(value foundation.Data)
+	// properties:
+	ContentVersion() foundation.objc.IObject /* cross-framework: Data */
+	SetContentVersion(value foundation.objc.IObject /* cross-framework: Data */)
+	MetadataVersion() foundation.objc.IObject /* cross-framework: Data */
+	SetMetadataVersion(value foundation.objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // The version of the item’s content and its metadata.
@@ -94,7 +96,7 @@ func NewFileProviderItemVersion() FileProviderItemVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/contentversion
-func (f_ FileProviderItemVersion) ContentVersion() foundation.Data {
+func (f_ FileProviderItemVersion) ContentVersion() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("contentVersion"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (f_ FileProviderItemVersion) ContentVersion() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/contentversion
-func (f_ FileProviderItemVersion) SetContentVersion(value foundation.Data) {
+func (f_ FileProviderItemVersion) SetContentVersion(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setContentVersion:"), value)
 }
 
@@ -113,7 +115,7 @@ func (f_ FileProviderItemVersion) SetContentVersion(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/metadataversion
-func (f_ FileProviderItemVersion) MetadataVersion() foundation.Data {
+func (f_ FileProviderItemVersion) MetadataVersion() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("metadataVersion"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (f_ FileProviderItemVersion) MetadataVersion() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion/metadataversion
-func (f_ FileProviderItemVersion) SetMetadataVersion(value foundation.Data) {
+func (f_ FileProviderItemVersion) SetMetadataVersion(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMetadataVersion:"), value)
 }
 

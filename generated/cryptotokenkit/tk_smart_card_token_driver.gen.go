@@ -29,6 +29,8 @@ type _TKSmartCardTokenDriverClass struct {
 // An interface definition for the [TKSmartCardTokenDriver] class.
 type ITKSmartCardTokenDriver interface {
 	ITKTokenDriver
+	// properties:
+	// methods:
 }
 
 // The driver that acts as an entry point for smart card app extensions.

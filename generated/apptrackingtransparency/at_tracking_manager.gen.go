@@ -30,6 +30,8 @@ type _ATTrackingManagerClass struct {
 // An interface definition for the [ATTrackingManager] class.
 type IATTrackingManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class that provides a tracking authorization request and the tracking authorization status of the app.

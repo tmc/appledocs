@@ -30,10 +30,12 @@ type _AuthorizationClass struct {
 // An interface definition for the [Authorization] class.
 type IAuthorization interface {
 	objectivec.IObject
-	Credential() unsafe.Pointer
-	SetCredential(value unsafe.Pointer)
-	Provider() unsafe.Pointer
-	SetProvider(value unsafe.Pointer)
+	// properties:
+	Credential() AuthorizationCredential /* not a class type */
+	SetCredential(value AuthorizationCredential /* not a class type */)
+	Provider() AuthorizationProvider /* not a class type */
+	SetProvider(value AuthorizationProvider /* not a class type */)
+	// methods:
 }
 
 // The encapsulation of a successful authorization by a controller.
@@ -91,8 +93,8 @@ func NewAuthorization() Authorization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
-func (a_ Authorization) Credential() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("credential"))
+func (a_ Authorization) Credential() AuthorizationCredential /* not a class type */ {
+	rv := objc.Send[AuthorizationCredential](a_.ID, objc.Sel("credential"))
 	return rv
 }
 
@@ -101,7 +103,7 @@ func (a_ Authorization) Credential() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
-func (a_ Authorization) SetCredential(value unsafe.Pointer) {
+func (a_ Authorization) SetCredential(value AuthorizationCredential /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
 }
 
@@ -110,8 +112,8 @@ func (a_ Authorization) SetCredential(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
-func (a_ Authorization) Provider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
+func (a_ Authorization) Provider() AuthorizationProvider /* not a class type */ {
+	rv := objc.Send[AuthorizationProvider](a_.ID, objc.Sel("provider"))
 	return rv
 }
 
@@ -120,7 +122,7 @@ func (a_ Authorization) Provider() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
-func (a_ Authorization) SetProvider(value unsafe.Pointer) {
+func (a_ Authorization) SetProvider(value AuthorizationProvider /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
 }
 

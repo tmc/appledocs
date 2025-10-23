@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INPlacemarkResolutionResult] class.
@@ -93,7 +92,7 @@ func NewINPlacemarkResolutionResult() INPlacemarkResolutionResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/confirmationRequired(with:)
-func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm corelocation.Placemark) unsafe.Pointer {
+func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm objc.IObject /* cross-framework Placemark */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("confirmationRequiredWithPlacemarkToConfirm:"), placemarkToConfirm)
 	return rv
 }

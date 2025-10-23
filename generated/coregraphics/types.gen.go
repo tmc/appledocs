@@ -34,9 +34,4 @@ type CGVector struct {
 	DY CGFloat
 }
 
-// Common type aliases
-type Range = CGPoint  // NSRange
-type Size = CGSize    // NSSize
-type Point = CGPoint  // NSPoint
-type Rect = CGRect    // NSRect
 

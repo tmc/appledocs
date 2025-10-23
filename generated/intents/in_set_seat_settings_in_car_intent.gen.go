@@ -30,16 +30,16 @@ type _INSetSeatSettingsInCarIntentClass struct {
 type IINSetSeatSettingsInCarIntent interface {
 	IINIntent
 	// properties:
-	CarName() INSpeakableString
-	SetCarName(value INSpeakableString)
-	EnableCooling() bool
-	SetEnableCooling(value bool)
-	EnableHeating() bool
-	SetEnableHeating(value bool)
-	EnableMassage() bool
-	SetEnableMassage(value bool)
-	Level() int
-	SetLevel(value int)
+	CarName() INSpeakableString /* already interface */
+	SetCarName(value INSpeakableString /* already interface */)
+	EnableCooling() bool /* primitive/slice/pointer. */
+	SetEnableCooling(value bool /* primitive/slice/pointer. */)
+	EnableHeating() bool /* primitive/slice/pointer. */
+	SetEnableHeating(value bool /* primitive/slice/pointer. */)
+	EnableMassage() bool /* primitive/slice/pointer. */
+	SetEnableMassage(value bool /* primitive/slice/pointer. */)
+	Level() int /* primitive/slice/pointer. */
+	SetLevel(value int /* primitive/slice/pointer. */)
 	RelativeLevelSetting() unsafe.Pointer
 	SetRelativeLevelSetting(value unsafe.Pointer)
 	Seat() unsafe.Pointer
@@ -106,7 +106,7 @@ func NewINSetSeatSettingsInCarIntent() INSetSeatSettingsInCarIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
-func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
+func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString /* already interface */ {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
-func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString) {
+func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
@@ -125,7 +125,7 @@ func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablecooling-8qqx3
-func (i_ INSetSeatSettingsInCarIntent) EnableCooling() bool {
+func (i_ INSetSeatSettingsInCarIntent) EnableCooling() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("enableCooling"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (i_ INSetSeatSettingsInCarIntent) EnableCooling() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablecooling-8qqx3
-func (i_ INSetSeatSettingsInCarIntent) SetEnableCooling(value bool) {
+func (i_ INSetSeatSettingsInCarIntent) SetEnableCooling(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableCooling:"), value)
 }
 
@@ -144,7 +144,7 @@ func (i_ INSetSeatSettingsInCarIntent) SetEnableCooling(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enableheating-8auz2
-func (i_ INSetSeatSettingsInCarIntent) EnableHeating() bool {
+func (i_ INSetSeatSettingsInCarIntent) EnableHeating() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("enableHeating"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (i_ INSetSeatSettingsInCarIntent) EnableHeating() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enableheating-8auz2
-func (i_ INSetSeatSettingsInCarIntent) SetEnableHeating(value bool) {
+func (i_ INSetSeatSettingsInCarIntent) SetEnableHeating(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableHeating:"), value)
 }
 
@@ -163,7 +163,7 @@ func (i_ INSetSeatSettingsInCarIntent) SetEnableHeating(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablemassage-46ndx
-func (i_ INSetSeatSettingsInCarIntent) EnableMassage() bool {
+func (i_ INSetSeatSettingsInCarIntent) EnableMassage() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("enableMassage"))
 	return rv
 }
@@ -173,7 +173,7 @@ func (i_ INSetSeatSettingsInCarIntent) EnableMassage() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/enablemassage-46ndx
-func (i_ INSetSeatSettingsInCarIntent) SetEnableMassage(value bool) {
+func (i_ INSetSeatSettingsInCarIntent) SetEnableMassage(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableMassage:"), value)
 }
 
@@ -182,7 +182,7 @@ func (i_ INSetSeatSettingsInCarIntent) SetEnableMassage(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/level-94975
-func (i_ INSetSeatSettingsInCarIntent) Level() int {
+func (i_ INSetSeatSettingsInCarIntent) Level() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("level"))
 	return rv
 }
@@ -192,7 +192,7 @@ func (i_ INSetSeatSettingsInCarIntent) Level() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/level-94975
-func (i_ INSetSeatSettingsInCarIntent) SetLevel(value int) {
+func (i_ INSetSeatSettingsInCarIntent) SetLevel(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLevel:"), value)
 }
 

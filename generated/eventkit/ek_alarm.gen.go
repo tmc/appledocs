@@ -30,21 +30,23 @@ type _EKAlarmClass struct {
 // An interface definition for the [EKAlarm] class.
 type IEKAlarm interface {
 	IEKObject
-	AbsoluteDate() foundation.NSDate
-	SetAbsoluteDate(value foundation.NSDate)
-	EmailAddress() string
-	SetEmailAddress(value string)
+	// properties:
+	AbsoluteDate() foundation.objc.IObject /* cross-framework: NSDate */
+	SetAbsoluteDate(value foundation.objc.IObject /* cross-framework: NSDate */)
+	EmailAddress() string /* primitive/slice/pointer. */
+	SetEmailAddress(value string /* primitive/slice/pointer. */)
 	Proximity() EKAlarmProximity
 	SetProximity(value EKAlarmProximity)
-	RelativeOffset() foundation.TimeInterval
-	SetRelativeOffset(value foundation.TimeInterval)
-	SoundName() string
-	SetSoundName(value string)
+	RelativeOffset() foundation.TimeInterval /* not a class type */
+	SetRelativeOffset(value foundation.TimeInterval /* not a class type */)
+	SoundName() string /* primitive/slice/pointer. */
+	SetSoundName(value string /* primitive/slice/pointer. */)
 	StructuredLocation() IEKStructuredLocation
 	SetStructuredLocation(value IEKStructuredLocation)
 	Type() EKAlarmType
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // A class that represents an alarm.
@@ -106,7 +108,7 @@ func NewEKAlarm() EKAlarm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(absoluteDate:)
-func NewEKAlarmWithAbsoluteDate(date foundation.NSDate) EKAlarm {
+func NewEKAlarmWithAbsoluteDate(date foundation.objc.IObject /* cross-framework NSDate */) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithAbsoluteDate:"), date)
 	return rv
 }
@@ -116,7 +118,7 @@ func NewEKAlarmWithAbsoluteDate(date foundation.NSDate) EKAlarm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func NewEKAlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
+func NewEKAlarmWithRelativeOffset(offset foundation.TimeInterval /* not a class type */) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(getEKAlarmClass().class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
@@ -127,7 +129,7 @@ func NewEKAlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(absoluteDate:)
-func (ec _EKAlarmClass) AlarmWithAbsoluteDate(date foundation.NSDate) EKAlarm {
+func (ec _EKAlarmClass) AlarmWithAbsoluteDate(date foundation.objc.IObject /* cross-framework NSDate */) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(ec.class), objc.Sel("alarmWithAbsoluteDate:"), date)
 	return rv
 }
@@ -137,7 +139,7 @@ func (ec _EKAlarmClass) AlarmWithAbsoluteDate(date foundation.NSDate) EKAlarm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/init(relativeOffset:)
-func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.TimeInterval) EKAlarm {
+func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.TimeInterval /* not a class type */) EKAlarm {
 	rv := objc.Send[EKAlarm](objc.ID(ec.class), objc.Sel("alarmWithRelativeOffset:"), offset)
 	return rv
 }
@@ -147,7 +149,7 @@ func (ec _EKAlarmClass) AlarmWithRelativeOffset(offset foundation.TimeInterval) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/absoluteDate
-func (e_ EKAlarm) AbsoluteDate() foundation.NSDate {
+func (e_ EKAlarm) AbsoluteDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("absoluteDate"))
 	return rv
 }
@@ -157,7 +159,7 @@ func (e_ EKAlarm) AbsoluteDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/absoluteDate
-func (e_ EKAlarm) SetAbsoluteDate(value foundation.NSDate) {
+func (e_ EKAlarm) SetAbsoluteDate(value foundation.objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAbsoluteDate:"), value)
 }
 
@@ -166,7 +168,7 @@ func (e_ EKAlarm) SetAbsoluteDate(value foundation.NSDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) EmailAddress() string {
+func (e_ EKAlarm) EmailAddress() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("emailAddress"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (e_ EKAlarm) EmailAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/emailAddress
-func (e_ EKAlarm) SetEmailAddress(value string) {
+func (e_ EKAlarm) SetEmailAddress(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmailAddress:"), objc.String(value))
 }
 
@@ -204,7 +206,7 @@ func (e_ EKAlarm) SetProximity(value EKAlarmProximity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
-func (e_ EKAlarm) RelativeOffset() foundation.TimeInterval {
+func (e_ EKAlarm) RelativeOffset() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](e_.ID, objc.Sel("relativeOffset"))
 	return rv
 }
@@ -214,7 +216,7 @@ func (e_ EKAlarm) RelativeOffset() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/relativeOffset
-func (e_ EKAlarm) SetRelativeOffset(value foundation.TimeInterval) {
+func (e_ EKAlarm) SetRelativeOffset(value foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelativeOffset:"), value)
 }
 
@@ -223,7 +225,7 @@ func (e_ EKAlarm) SetRelativeOffset(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SoundName() string {
+func (e_ EKAlarm) SoundName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("soundName"))
 	return rv
 }
@@ -233,7 +235,7 @@ func (e_ EKAlarm) SoundName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/soundName
-func (e_ EKAlarm) SetSoundName(value string) {
+func (e_ EKAlarm) SetSoundName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSoundName:"), objc.String(value))
 }
 
@@ -271,7 +273,7 @@ func (e_ EKAlarm) Type() EKAlarmType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
-func (e_ EKAlarm) Url() foundation.URL {
+func (e_ EKAlarm) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("url"))
 	return rv
 }
@@ -281,7 +283,7 @@ func (e_ EKAlarm) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKAlarm/url
-func (e_ EKAlarm) SetUrl(value foundation.URL) {
+func (e_ EKAlarm) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUrl:"), value)
 }
 

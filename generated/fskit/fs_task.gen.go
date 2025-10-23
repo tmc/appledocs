@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,11 @@ type _FSTaskClass struct {
 // An interface definition for the [FSTask] class.
 type IFSTask interface {
 	objectivec.IObject
-	CancellationHandler() foundation.Error
-	SetCancellationHandler(value foundation.Error)
-	LogMessage(str string)
+	// properties:
+	CancellationHandler() unsafe.Pointer
+	SetCancellationHandler(value unsafe.Pointer)
+	// methods:
+	LogMessage(str string /* primitive/slice/pointer. */)
 }
 
 // A class that enables a file system module to pass log messages and completion notifications to clients.
@@ -93,22 +94,22 @@ func NewFSTask() FSTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/logMessage(_:)
-func (f_ FSTask) LogMessage(str string) {
+func (f_ FSTask) LogMessage(str string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), objc.String(str))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fstask/cancellationhandler
-func (f_ FSTask) CancellationHandler() foundation.Error {
-	rv := objc.Send[foundation.Error](f_.ID, objc.Sel("cancellationHandler"))
+func (f_ FSTask) CancellationHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("cancellationHandler"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fstask/cancellationhandler
-func (f_ FSTask) SetCancellationHandler(value foundation.Error) {
+func (f_ FSTask) SetCancellationHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCancellationHandler:"), value)
 }
 

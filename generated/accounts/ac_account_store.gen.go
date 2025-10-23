@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,9 @@ type _ACAccountStoreClass struct {
 // An interface definition for the [ACAccountStore] class.
 type IACAccountStore interface {
 	objectivec.IObject
+	// properties:
 	Accounts() objc.ID
+	// methods:
 }
 
 // The object you use to request, manage, and store the user’s account information.

@@ -29,7 +29,9 @@ type _AXMathExpressionTableCellClass struct {
 // An interface definition for the [AXMathExpressionTableCell] class.
 type IAXMathExpressionTableCell interface {
 	IAXMathExpression
-	Expressions() []AXMathExpression
+	// properties:
+	Expressions() []AXMathExpression /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -81,11 +83,21 @@ func NewAXMathExpressionTableCell() AXMathExpressionTableCell {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableCell/expressions
-func (a_ AXMathExpressionTableCell) Expressions() []AXMathExpression {
-	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableCell/init(expressions:)
+func NewAXMathExpressionTableCellWithExpressions(expressions []AXMathExpression /* primitive/slice/pointer. */) AXMathExpressionTableCell {
+	instance := getAXMathExpressionTableCellClass().Alloc()
+	rv := objc.Send[AXMathExpressionTableCell](instance.ID, objc.Sel("initWithExpressions:"), expressions)
+	rv.Autorelease()
 	return rv
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableCell/expressions
+func (a_ AXMathExpressionTableCell) Expressions() []AXMathExpression /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("expressions"))
+	return rv
+}
 
 

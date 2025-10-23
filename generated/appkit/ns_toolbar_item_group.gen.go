@@ -29,14 +29,16 @@ type _ToolbarItemGroupClass struct {
 // An interface definition for the [ToolbarItemGroup] class.
 type IToolbarItemGroup interface {
 	IToolbarItem
-	SelectedIndex() int
-	SetSelectedIndex(value int)
+	// properties:
 	ControlRepresentation() unsafe.Pointer
 	SetControlRepresentation(value unsafe.Pointer)
+	SelectedIndex() int /* primitive/slice/pointer. */
+	SetSelectedIndex(value int /* primitive/slice/pointer. */)
 	SelectionMode() unsafe.Pointer
 	SetSelectionMode(value unsafe.Pointer)
-	Subitems() NSToolbarItem
+	Subitems() IToolbarItem
 	SetSubitems(value IToolbarItem)
+	// methods:
 }
 
 // A group of subitems in a toolbar item.
@@ -94,25 +96,6 @@ func NewToolbarItemGroup() ToolbarItemGroup {
 
 
 
-// The index value for the most recently selected subitem of a grouped toolbar item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
-func (t_ ToolbarItemGroup) SelectedIndex() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
-	return rv
-}
-
-
-// The index value for the most recently selected subitem of a grouped toolbar item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/selectedIndex
-func (t_ ToolbarItemGroup) SetSelectedIndex(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
-}
-
-
 // A value that represents how a toolbar displays a grouped toolbar item.
 //
 // [Full Topic]
@@ -129,6 +112,25 @@ func (t_ ToolbarItemGroup) ControlRepresentation() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.property
 func (t_ ToolbarItemGroup) SetControlRepresentation(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setControlRepresentation:"), value)
+}
+
+
+// The index value for the most recently selected subitem of a grouped toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectedindex
+func (t_ ToolbarItemGroup) SelectedIndex() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](t_.ID, objc.Sel("selectedIndex"))
+	return rv
+}
+
+
+// The index value for the most recently selected subitem of a grouped toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectedindex
+func (t_ ToolbarItemGroup) SetSelectedIndex(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedIndex:"), value)
 }
 
 
@@ -155,8 +157,8 @@ func (t_ ToolbarItemGroup) SetSelectionMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/subitems
-func (t_ ToolbarItemGroup) Subitems() NSToolbarItem {
-	rv := objc.Send[NSToolbarItem](t_.ID, objc.Sel("subitems"))
+func (t_ ToolbarItemGroup) Subitems() IToolbarItem {
+	rv := objc.Send[ToolbarItem](t_.ID, objc.Sel("subitems"))
 	return rv
 }
 

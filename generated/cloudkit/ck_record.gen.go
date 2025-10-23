@@ -31,26 +31,28 @@ type _CKRecordClass struct {
 // An interface definition for the [CKRecord] class.
 type ICKRecord interface {
 	objectivec.IObject
-	CreationDate() foundation.Date
-	SetCreationDate(value foundation.Date)
-	CreatorUserRecordID() CKRecordID
-	SetCreatorUserRecordID(value CKRecordID)
+	// properties:
+	RecordChangeTag() string /* primitive/slice/pointer. */
+	CreationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	CreatorUserRecordID() objc.IObject /* cross-framework: CKRecordID */
+	SetCreatorUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	EncryptedValues() unsafe.Pointer
 	SetEncryptedValues(value unsafe.Pointer)
-	LastModifiedUserRecordID() CKRecordID
-	SetLastModifiedUserRecordID(value CKRecordID)
-	ModificationDate() foundation.Date
-	SetModificationDate(value foundation.Date)
+	LastModifiedUserRecordID() objc.IObject /* cross-framework: CKRecordID */
+	SetLastModifiedUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
+	ModificationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */)
 	Parent() ICKReference
 	SetParent(value ICKReference)
-	RecordChangeTag() string
-	SetRecordChangeTag(value string)
-	RecordID() CKRecordID
-	SetRecordID(value CKRecordID)
+	RecordID() objc.IObject /* cross-framework: CKRecordID */
+	SetRecordID(value objc.IObject /* cross-framework: CKRecordID */)
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
 	Share() ICKReference
 	SetShare(value ICKReference)
+	// methods:
+	EncodeSystemFieldsWithCoder(coder Coder /* not a class type */)
 }
 
 // A collection of key-value pairs that store your app’s data.
@@ -106,11 +108,30 @@ func NewCKRecord() CKRecord {
 
 
 
+// Encodes the record’s system fields using the specified archiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/encodeSystemFields(with:)
+func (c_ CKRecord) EncodeSystemFieldsWithCoder(coder Coder /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("encodeSystemFieldsWithCoder:"), coder)
+}
+
+
+// The server change token for the record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/recordChangeTag
+func (c_ CKRecord) RecordChangeTag() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
+	return rv
+}
+
+
 // The time when CloudKit first saves the record to the server.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecord) CreationDate() foundation.Date {
+func (c_ CKRecord) CreationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -120,7 +141,7 @@ func (c_ CKRecord) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecord) SetCreationDate(value foundation.Date) {
+func (c_ CKRecord) SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -129,7 +150,7 @@ func (c_ CKRecord) SetCreationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecord) CreatorUserRecordID() CKRecordID {
+func (c_ CKRecord) CreatorUserRecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("creatorUserRecordID"))
 	return rv
 }
@@ -139,7 +160,7 @@ func (c_ CKRecord) CreatorUserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecord) SetCreatorUserRecordID(value CKRecordID) {
+func (c_ CKRecord) SetCreatorUserRecordID(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
 }
 
@@ -167,7 +188,7 @@ func (c_ CKRecord) SetEncryptedValues(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-func (c_ CKRecord) LastModifiedUserRecordID() CKRecordID {
+func (c_ CKRecord) LastModifiedUserRecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("lastModifiedUserRecordID"))
 	return rv
 }
@@ -177,7 +198,7 @@ func (c_ CKRecord) LastModifiedUserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-func (c_ CKRecord) SetLastModifiedUserRecordID(value CKRecordID) {
+func (c_ CKRecord) SetLastModifiedUserRecordID(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLastModifiedUserRecordID:"), value)
 }
 
@@ -186,7 +207,7 @@ func (c_ CKRecord) SetLastModifiedUserRecordID(value CKRecordID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecord) ModificationDate() foundation.Date {
+func (c_ CKRecord) ModificationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("modificationDate"))
 	return rv
 }
@@ -196,7 +217,7 @@ func (c_ CKRecord) ModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecord) SetModificationDate(value foundation.Date) {
+func (c_ CKRecord) SetModificationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
 }
 
@@ -220,30 +241,11 @@ func (c_ CKRecord) SetParent(value ICKReference) {
 }
 
 
-// The server change token for the record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKRecord) RecordChangeTag() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
-	return rv
-}
-
-
-// The server change token for the record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKRecord) SetRecordChangeTag(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
-}
-
-
 // The unique ID of the record.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-func (c_ CKRecord) RecordID() CKRecordID {
+func (c_ CKRecord) RecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (c_ CKRecord) RecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-func (c_ CKRecord) SetRecordID(value CKRecordID) {
+func (c_ CKRecord) SetRecordID(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
 }
 

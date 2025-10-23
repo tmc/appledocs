@@ -31,11 +31,13 @@ type _CNObjectTrackerClass struct {
 // An interface definition for the [CNObjectTracker] class.
 type ICNObjectTracker interface {
 	objectivec.IObject
-	ContinueTrackingAtSourceImageSourceDisparity(time unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) ICNBoundsPrediction
-	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) ICNBoundsPrediction
+	// properties:
+	// methods:
+	ContinueTrackingAtSourceImageSourceDisparity(time Time /* not a class type */, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */) ICNBoundsPrediction
+	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage PixelBufferRef /* not a class type */) ICNBoundsPrediction
 	FinishDetectionTrack() ICNDetectionTrack
 	ResetDetectionTrack()
-	StartTrackingAtWithinSourceImageSourceDisparity(time unsafe.Pointer, normalizedBounds coregraphics.CGRect, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) bool
+	StartTrackingAtWithinSourceImageSourceDisparity(time Time /* not a class type */, normalizedBounds coregraphics.CGRect, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */) bool /* primitive/slice/pointer. */
 }
 
 // An object that converts a normalized point or rectangle into a detection track that tracks an object over time.
@@ -106,7 +108,7 @@ func NewCNObjectTrackerWithCommandQueue(commandQueue objectivec.IObject) CNObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/isSupported
-func (cc _CNObjectTrackerClass) IsSupported() bool {
+func (cc _CNObjectTrackerClass) IsSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isSupported"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (cc _CNObjectTrackerClass) IsSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/continueTrackingAt:sourceImage:sourceDisparity:
-func (c_ CNObjectTracker) ContinueTrackingAtSourceImageSourceDisparity(time unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) ICNBoundsPrediction {
+func (c_ CNObjectTracker) ContinueTrackingAtSourceImageSourceDisparity(time Time /* not a class type */, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */) ICNBoundsPrediction {
 	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("continueTrackingAt:sourceImage:sourceDisparity:"), time, sourceImage, sourceDisparity)
 	return rv
 }
@@ -125,7 +127,7 @@ func (c_ CNObjectTracker) ContinueTrackingAtSourceImageSourceDisparity(time unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/findObjectAtPoint:sourceImage:
-func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) ICNBoundsPrediction {
+func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage PixelBufferRef /* not a class type */) ICNBoundsPrediction {
 	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("findObjectAtPoint:sourceImage:"), point, sourceImage)
 	return rv
 }
@@ -154,7 +156,7 @@ func (c_ CNObjectTracker) ResetDetectionTrack() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/startTrackingAt:within:sourceImage:sourceDisparity:
-func (c_ CNObjectTracker) StartTrackingAtWithinSourceImageSourceDisparity(time unsafe.Pointer, normalizedBounds coregraphics.CGRect, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer) bool {
+func (c_ CNObjectTracker) StartTrackingAtWithinSourceImageSourceDisparity(time Time /* not a class type */, normalizedBounds coregraphics.CGRect, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startTrackingAt:within:sourceImage:sourceDisparity:"), time, normalizedBounds, sourceImage, sourceDisparity)
 	return rv
 }
@@ -164,7 +166,7 @@ func (c_ CNObjectTracker) StartTrackingAtWithinSourceImageSourceDisparity(time u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/isSupported
-func (c_ CNObjectTracker) IsSupported() bool {
+func (c_ CNObjectTracker) IsSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSupported"))
 	return rv
 }

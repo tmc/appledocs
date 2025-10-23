@@ -31,19 +31,21 @@ type _AudioFileClass struct {
 // An interface definition for the [AudioFile] class.
 type IAudioFile interface {
 	objectivec.IObject
+	// properties:
 	FileFormat() IAVAudioFormat
 	SetFileFormat(value IAVAudioFormat)
-	FramePosition() unsafe.Pointer
-	SetFramePosition(value unsafe.Pointer)
-	IsOpen() bool
-	SetIsOpen(value bool)
-	Length() unsafe.Pointer
-	SetLength(value unsafe.Pointer)
+	FramePosition() AudioFramePosition /* not a class type */
+	SetFramePosition(value AudioFramePosition /* not a class type */)
+	IsOpen() bool /* primitive/slice/pointer. */
+	SetIsOpen(value bool /* primitive/slice/pointer. */)
+	Length() AudioFramePosition /* not a class type */
+	SetLength(value AudioFramePosition /* not a class type */)
 	ProcessingFormat() IAVAudioFormat
 	SetProcessingFormat(value IAVAudioFormat)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
-	AVAudioFileTypeKey() string
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	AVAudioFileTypeKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents an audio file that the system can open for reading or writing.
@@ -122,8 +124,8 @@ func (a_ AudioFile) SetFileFormat(value IAVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/frameposition
-func (a_ AudioFile) FramePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("framePosition"))
+func (a_ AudioFile) FramePosition() AudioFramePosition /* not a class type */ {
+	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("framePosition"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (a_ AudioFile) FramePosition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/frameposition
-func (a_ AudioFile) SetFramePosition(value unsafe.Pointer) {
+func (a_ AudioFile) SetFramePosition(value AudioFramePosition /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFramePosition:"), value)
 }
 
@@ -141,7 +143,7 @@ func (a_ AudioFile) SetFramePosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/isopen
-func (a_ AudioFile) IsOpen() bool {
+func (a_ AudioFile) IsOpen() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isOpen"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (a_ AudioFile) IsOpen() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/isopen
-func (a_ AudioFile) SetIsOpen(value bool) {
+func (a_ AudioFile) SetIsOpen(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOpen:"), value)
 }
 
@@ -160,8 +162,8 @@ func (a_ AudioFile) SetIsOpen(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/length
-func (a_ AudioFile) Length() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("length"))
+func (a_ AudioFile) Length() AudioFramePosition /* not a class type */ {
+	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("length"))
 	return rv
 }
 
@@ -170,7 +172,7 @@ func (a_ AudioFile) Length() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/length
-func (a_ AudioFile) SetLength(value unsafe.Pointer) {
+func (a_ AudioFile) SetLength(value AudioFramePosition /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLength:"), value)
 }
 
@@ -198,7 +200,7 @@ func (a_ AudioFile) SetProcessingFormat(value IAVAudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/url
-func (a_ AudioFile) Url() foundation.URL {
+func (a_ AudioFile) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("url"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (a_ AudioFile) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofile/url
-func (a_ AudioFile) SetUrl(value foundation.URL) {
+func (a_ AudioFile) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -217,7 +219,7 @@ func (a_ AudioFile) SetUrl(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey
-func (a_ AudioFile) AVAudioFileTypeKey() string {
+func (a_ AudioFile) AVAudioFileTypeKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVAudioFileTypeKey"))
 	return rv
 }

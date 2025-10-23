@@ -30,17 +30,19 @@ type _EAWiFiUnconfiguredAccessoryClass struct {
 // An interface definition for the [EAWiFiUnconfiguredAccessory] class.
 type IEAWiFiUnconfiguredAccessory interface {
 	objectivec.IObject
-	Manufacturer() string
-	MacAddress() string
-	SetMacAddress(value string)
-	Model() string
-	SetModel(value string)
-	Name() string
-	SetName(value string)
+	// properties:
+	Manufacturer() string /* primitive/slice/pointer. */
+	MacAddress() string /* primitive/slice/pointer. */
+	SetMacAddress(value string /* primitive/slice/pointer. */)
+	Model() string /* primitive/slice/pointer. */
+	SetModel(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	Properties() EAWiFiUnconfiguredAccessoryProperties
 	SetProperties(value EAWiFiUnconfiguredAccessoryProperties)
-	Ssid() string
-	SetSsid(value string)
+	Ssid() string /* primitive/slice/pointer. */
+	SetSsid(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
@@ -98,7 +100,7 @@ func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory/manufacturer
-func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
+func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("manufacturer"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (e_ EAWiFiUnconfiguredAccessory) Manufacturer() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
+func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("macAddress"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (e_ EAWiFiUnconfiguredAccessory) MacAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string) {
+func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMacAddress:"), objc.String(value))
 }
 
@@ -127,7 +129,7 @@ func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) Model() string {
+func (e_ EAWiFiUnconfiguredAccessory) Model() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("model"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (e_ EAWiFiUnconfiguredAccessory) Model() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string) {
+func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setModel:"), objc.String(value))
 }
 
@@ -146,7 +148,7 @@ func (e_ EAWiFiUnconfiguredAccessory) SetModel(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) Name() string {
+func (e_ EAWiFiUnconfiguredAccessory) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (e_ EAWiFiUnconfiguredAccessory) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) SetName(value string) {
+func (e_ EAWiFiUnconfiguredAccessory) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -184,7 +186,7 @@ func (e_ EAWiFiUnconfiguredAccessory) SetProperties(value EAWiFiUnconfiguredAcce
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
+func (e_ EAWiFiUnconfiguredAccessory) Ssid() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("ssid"))
 	return rv
 }
@@ -194,7 +196,7 @@ func (e_ EAWiFiUnconfiguredAccessory) Ssid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value string) {
+func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSsid:"), objc.String(value))
 }
 

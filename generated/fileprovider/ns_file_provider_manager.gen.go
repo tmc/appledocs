@@ -31,10 +31,12 @@ type _FileProviderManagerClass struct {
 // An interface definition for the [FileProviderManager] class.
 type IFileProviderManager interface {
 	objectivec.IObject
-	DocumentStorageURL() foundation.URL
-	SetDocumentStorageURL(value foundation.URL)
-	ProviderIdentifier() string
-	SetProviderIdentifier(value string)
+	// properties:
+	DocumentStorageURL() foundation.objc.IObject /* cross-framework: URL */
+	SetDocumentStorageURL(value foundation.objc.IObject /* cross-framework: URL */)
+	ProviderIdentifier() string /* primitive/slice/pointer. */
+	SetProviderIdentifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A manager object that you use to communicate with the file provider from either your app or your File Provider extension.
@@ -88,11 +90,38 @@ func NewFileProviderManager() FileProviderManager {
 
 
 
+// Adds a domain to the File Provider extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/add(_:completionHandler:)
+func (fc _FileProviderManagerClass) AddDomainCompletionHandler(domain IFileProviderDomain, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("addDomain:completionHandler:"), domain, completionHandler)
+}
+
+
+// Returns all of the File Provider extension’s domains.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/getDomainsWithCompletionHandler(_:)
+func (fc _FileProviderManagerClass) GetDomainsWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("getDomainsWithCompletionHandler:"), completionHandler)
+}
+
+
+// Creates a new domain that takes ownership of on-disk data that your app previously managed without a file provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderManager/import(_:fromDirectoryAt:completionHandler:)
+func (fc _FileProviderManagerClass) ImportDomainFromDirectoryAtURLCompletionHandler(domain IFileProviderDomain, url foundation.objc.IObject /* cross-framework URL */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("importDomain:fromDirectoryAtURL:completionHandler:"), domain, url, completionHandler)
+}
+
+
 // The root URL for all shared documents.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/documentstorageurl
-func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
+func (f_ FileProviderManager) DocumentStorageURL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("documentStorageURL"))
 	return rv
 }
@@ -102,7 +131,7 @@ func (f_ FileProviderManager) DocumentStorageURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/documentstorageurl
-func (f_ FileProviderManager) SetDocumentStorageURL(value foundation.URL) {
+func (f_ FileProviderManager) SetDocumentStorageURL(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentStorageURL:"), value)
 }
 
@@ -111,7 +140,7 @@ func (f_ FileProviderManager) SetDocumentStorageURL(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/provideridentifier
-func (f_ FileProviderManager) ProviderIdentifier() string {
+func (f_ FileProviderManager) ProviderIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("providerIdentifier"))
 	return rv
 }
@@ -121,7 +150,7 @@ func (f_ FileProviderManager) ProviderIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/provideridentifier
-func (f_ FileProviderManager) SetProviderIdentifier(value string) {
+func (f_ FileProviderManager) SetProviderIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setProviderIdentifier:"), objc.String(value))
 }
 

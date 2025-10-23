@@ -31,15 +31,17 @@ type _SDataStoreClass struct {
 // An interface definition for the [SDataStore] class.
 type ISDataStore interface {
 	objectivec.IObject
+	// properties:
 	ActiveContext() ICLSContext
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	MainAppContext() ICLSContext
 	RunningActivity() ICLSActivity
-	CompleteAllAssignedActivitiesMatching(contextPath []string)
-	ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer)
-	ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
-	FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer)
+	// methods:
+	CompleteAllAssignedActivitiesMatching(contextPath []string /* primitive/slice/pointer. */)
+	ContextsMatchingPredicateCompletion(predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer)
+	ContextsMatchingIdentifierPathCompletion(identifierPath []string /* primitive/slice/pointer. */, completion unsafe.Pointer)
+	FetchActivityForURLCompletion(url foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer)
 	RemoveContext(context ICLSContext)
 	SaveWithCompletion(completion unsafe.Pointer)
 }
@@ -110,7 +112,7 @@ func (sc _SDataStoreClass) Shared() SDataStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/completeAllAssignedActivities(matching:)
-func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string) {
+func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("completeAllAssignedActivitiesMatching:"), contextPath)
 }
 
@@ -119,7 +121,7 @@ func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matching:completion:)
-func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate objc.IObject /* cross-framework Predicate */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingPredicate:completion:"), predicate, completion)
 }
 
@@ -128,7 +130,7 @@ func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.Pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matchingIdentifierPath:completion:)
-func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingIdentifierPath:completion:"), identifierPath, completion)
 }
 
@@ -137,7 +139,7 @@ func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/fetchActivity(for:completion:)
-func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer) {
+func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.objc.IObject /* cross-framework URL */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchActivityForURL:completion:"), url, completion)
 }
 

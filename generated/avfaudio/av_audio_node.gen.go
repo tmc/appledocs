@@ -30,6 +30,7 @@ type _AudioNodeClass struct {
 // An interface definition for the [AudioNode] class.
 type IAudioNode interface {
 	objectivec.IObject
+	// properties:
 	AuAudioUnit() IAudioUnit
 	SetAuAudioUnit(value IAudioUnit)
 	Engine() IAVAudioEngine
@@ -38,12 +39,13 @@ type IAudioNode interface {
 	SetLastRenderTime(value IAVAudioTime)
 	Latency() unsafe.Pointer
 	SetLatency(value unsafe.Pointer)
-	NumberOfInputs() int
-	SetNumberOfInputs(value int)
-	NumberOfOutputs() int
-	SetNumberOfOutputs(value int)
+	NumberOfInputs() int /* primitive/slice/pointer. */
+	SetNumberOfInputs(value int /* primitive/slice/pointer. */)
+	NumberOfOutputs() int /* primitive/slice/pointer. */
+	SetNumberOfOutputs(value int /* primitive/slice/pointer. */)
 	OutputPresentationLatency() unsafe.Pointer
 	SetOutputPresentationLatency(value unsafe.Pointer)
+	// methods:
 }
 
 // An object you use for audio generation, processing, or an I/O block.
@@ -179,7 +181,7 @@ func (a_ AudioNode) SetLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
-func (a_ AudioNode) NumberOfInputs() int {
+func (a_ AudioNode) NumberOfInputs() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfInputs"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (a_ AudioNode) NumberOfInputs() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofinputs
-func (a_ AudioNode) SetNumberOfInputs(value int) {
+func (a_ AudioNode) SetNumberOfInputs(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfInputs:"), value)
 }
 
@@ -198,7 +200,7 @@ func (a_ AudioNode) SetNumberOfInputs(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
-func (a_ AudioNode) NumberOfOutputs() int {
+func (a_ AudioNode) NumberOfOutputs() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("numberOfOutputs"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (a_ AudioNode) NumberOfOutputs() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/numberofoutputs
-func (a_ AudioNode) SetNumberOfOutputs(value int) {
+func (a_ AudioNode) SetNumberOfOutputs(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumberOfOutputs:"), value)
 }
 

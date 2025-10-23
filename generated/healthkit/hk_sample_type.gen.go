@@ -30,12 +30,11 @@ type _HKSampleTypeClass struct {
 type IHKSampleType interface {
 	IHKObjectType
 	// properties:
-	AllowsRecalibrationForEstimates() bool
-	SetAllowsRecalibrationForEstimates(value bool)
-	IsMaximumDurationRestricted() bool
-	SetIsMaximumDurationRestricted(value bool)
-	IsMinimumDurationRestricted() bool
-	SetIsMinimumDurationRestricted(value bool)
+	AllowsRecalibrationForEstimates() bool /* primitive/slice/pointer. */
+	IsMaximumDurationRestricted() bool /* primitive/slice/pointer. */
+	SetIsMaximumDurationRestricted(value bool /* primitive/slice/pointer. */)
+	IsMinimumDurationRestricted() bool /* primitive/slice/pointer. */
+	SetIsMinimumDurationRestricted(value bool /* primitive/slice/pointer. */)
 	MaximumAllowedDuration() unsafe.Pointer
 	SetMaximumAllowedDuration(value unsafe.Pointer)
 	MinimumAllowedDuration() unsafe.Pointer
@@ -101,19 +100,10 @@ func NewHKSampleType() HKSampleType {
 // A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/allowsrecalibrationforestimates
-func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool {
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/allowsRecalibrationForEstimates
+func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("allowsRecalibrationForEstimates"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/allowsrecalibrationforestimates
-func (h_ HKSampleType) SetAllowsRecalibrationForEstimates(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAllowsRecalibrationForEstimates:"), value)
 }
 
 
@@ -121,7 +111,7 @@ func (h_ HKSampleType) SetAllowsRecalibrationForEstimates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
-func (h_ HKSampleType) IsMaximumDurationRestricted() bool {
+func (h_ HKSampleType) IsMaximumDurationRestricted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMaximumDurationRestricted"))
 	return rv
 }
@@ -131,7 +121,7 @@ func (h_ HKSampleType) IsMaximumDurationRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
-func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool) {
+func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMaximumDurationRestricted:"), value)
 }
 
@@ -140,7 +130,7 @@ func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
-func (h_ HKSampleType) IsMinimumDurationRestricted() bool {
+func (h_ HKSampleType) IsMinimumDurationRestricted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMinimumDurationRestricted"))
 	return rv
 }
@@ -150,7 +140,7 @@ func (h_ HKSampleType) IsMinimumDurationRestricted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
-func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool) {
+func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMinimumDurationRestricted:"), value)
 }
 

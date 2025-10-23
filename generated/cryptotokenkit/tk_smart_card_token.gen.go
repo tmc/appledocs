@@ -30,7 +30,9 @@ type _TKSmartCardTokenClass struct {
 // An interface definition for the [TKSmartCardToken] class.
 type ITKSmartCardToken interface {
 	ITKToken
-	AID() foundation.NSData
+	// properties:
+	AID() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // A representation of a smart card based cryptographic token.
@@ -90,7 +92,7 @@ func NewTKSmartCardToken() TKSmartCardToken {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/init(smartCard:aid:instanceID:tokenDriver:)
-func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.NSData, instanceID string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
+func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.objc.IObject /* cross-framework NSData */, instanceID string /* primitive/slice/pointer. */, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
 	instance := getTKSmartCardTokenClass().Alloc()
 	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, objc.String(instanceID), tokenDriver)
 	rv.Autorelease()
@@ -103,7 +105,7 @@ func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmart
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/aid
-func (t_ TKSmartCardToken) AID() foundation.NSData {
+func (t_ TKSmartCardToken) AID() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("AID"))
 	return rv
 }

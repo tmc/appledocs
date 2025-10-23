@@ -34,94 +34,94 @@ type IPlayer interface {
 	// properties:
 	ActionAtItemEnd() PlayerActionAtItemEnd
 	SetActionAtItemEnd(value PlayerActionAtItemEnd)
-	AllowsAirPlayVideo() bool /* primitive/slice/pointer */
-	SetAllowsAirPlayVideo(value bool /* primitive/slice/pointer */)
-	AllowsExternalPlayback() bool /* primitive/slice/pointer */
-	SetAllowsExternalPlayback(value bool /* primitive/slice/pointer */)
-	AppliesMediaSelectionCriteriaAutomatically() bool /* primitive/slice/pointer */
-	SetAppliesMediaSelectionCriteriaAutomatically(value bool /* primitive/slice/pointer */)
-	AudioOutputDeviceUniqueID() string /* primitive/slice/pointer */
-	SetAudioOutputDeviceUniqueID(value string /* primitive/slice/pointer */)
-	AudioOutputSuppressedDueToNonMixableAudioRoute() bool /* primitive/slice/pointer */
+	AllowsAirPlayVideo() bool /* primitive/slice/pointer. */
+	SetAllowsAirPlayVideo(value bool /* primitive/slice/pointer. */)
+	AllowsExternalPlayback() bool /* primitive/slice/pointer. */
+	SetAllowsExternalPlayback(value bool /* primitive/slice/pointer. */)
+	AppliesMediaSelectionCriteriaAutomatically() bool /* primitive/slice/pointer. */
+	SetAppliesMediaSelectionCriteriaAutomatically(value bool /* primitive/slice/pointer. */)
+	AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */
+	SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */)
+	AudioOutputSuppressedDueToNonMixableAudioRoute() bool /* primitive/slice/pointer. */
 	AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgroundPlaybackPolicy
 	SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy)
-	AutomaticallyWaitsToMinimizeStalling() bool /* primitive/slice/pointer */
-	SetAutomaticallyWaitsToMinimizeStalling(value bool /* primitive/slice/pointer */)
+	AutomaticallyWaitsToMinimizeStalling() bool /* primitive/slice/pointer. */
+	SetAutomaticallyWaitsToMinimizeStalling(value bool /* primitive/slice/pointer. */)
 	CurrentItem() IAVPlayerItem
-	DefaultRate() float32 /* primitive/slice/pointer */
-	SetDefaultRate(value float32 /* primitive/slice/pointer */)
+	DefaultRate() float32 /* primitive/slice/pointer. */
+	SetDefaultRate(value float32 /* primitive/slice/pointer. */)
 	Error() Error
 	ExternalPlaybackVideoGravity() LayerVideoGravity /* not a class type */
 	SetExternalPlaybackVideoGravity(value LayerVideoGravity /* not a class type */)
-	IntendedSpatialAudioExperience() SpatialAudioExperience /* not a class type */
-	SetIntendedSpatialAudioExperience(value SpatialAudioExperience /* not a class type */)
-	AirPlayVideoActive() bool /* primitive/slice/pointer */
-	ClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer */
-	SetClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer */)
-	ExternalPlaybackActive() bool /* primitive/slice/pointer */
-	Muted() bool /* primitive/slice/pointer */
-	SetMuted(value bool /* primitive/slice/pointer */)
-	OutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer */
+	IntendedSpatialAudioExperience() objc.IObject /* cross-framework: SpatialAudioExperience */
+	SetIntendedSpatialAudioExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */)
+	AirPlayVideoActive() bool /* primitive/slice/pointer. */
+	ClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer. */
+	SetClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer. */)
+	ExternalPlaybackActive() bool /* primitive/slice/pointer. */
+	Muted() bool /* primitive/slice/pointer. */
+	SetMuted(value bool /* primitive/slice/pointer. */)
+	OutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */
 	MasterClock() ClockRef /* not a class type */
 	SetMasterClock(value ClockRef /* not a class type */)
 	NetworkResourcePriority() PlayerNetworkResourcePriority
 	SetNetworkResourcePriority(value PlayerNetworkResourcePriority)
 	PlaybackCoordinator() IAVPlayerPlaybackCoordinator
-	PreferredVideoDecoderGPURegistryID() uint64 /* primitive/slice/pointer */
-	SetPreferredVideoDecoderGPURegistryID(value uint64 /* primitive/slice/pointer */)
-	PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer */
-	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer */)
-	PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer */
-	SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer */)
-	Rate() float32 /* primitive/slice/pointer */
-	SetRate(value float32 /* primitive/slice/pointer */)
-	ReasonForWaitingToPlay() PlayerWaitingReason /* not a class type */
+	PreferredVideoDecoderGPURegistryID() uint64 /* primitive/slice/pointer. */
+	SetPreferredVideoDecoderGPURegistryID(value uint64 /* primitive/slice/pointer. */)
+	PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer. */
+	SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer. */)
+	PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer. */
+	SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer. */)
+	Rate() float32 /* primitive/slice/pointer. */
+	SetRate(value float32 /* primitive/slice/pointer. */)
+	ReasonForWaitingToPlay() objc.IObject /* cross-framework: PlayerWaitingReason */
 	SourceClock() ClockRef /* not a class type */
 	SetSourceClock(value ClockRef /* not a class type */)
 	Status() PlayerStatus
 	TimeControlStatus() PlayerTimeControlStatus
-	UsesAirPlayVideoWhileAirPlayScreenIsActive() bool /* primitive/slice/pointer */
-	SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool /* primitive/slice/pointer */)
-	UsesExternalPlaybackWhileExternalScreenIsActive() bool /* primitive/slice/pointer */
-	SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool /* primitive/slice/pointer */)
+	UsesAirPlayVideoWhileAirPlayScreenIsActive() bool /* primitive/slice/pointer. */
+	SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool /* primitive/slice/pointer. */)
+	UsesExternalPlaybackWhileExternalScreenIsActive() bool /* primitive/slice/pointer. */
+	SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool /* primitive/slice/pointer. */)
 	VideoOutput() PlayerVideoOutput /* not a class type */
 	SetVideoOutput(value PlayerVideoOutput /* not a class type */)
-	Volume() float32 /* primitive/slice/pointer */
-	SetVolume(value float32 /* primitive/slice/pointer */)
-	IsAirPlayVideoActive() bool /* primitive/slice/pointer */
-	SetIsAirPlayVideoActive(value bool /* primitive/slice/pointer */)
-	IsClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer */
-	SetIsClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer */)
-	IsExternalPlaybackActive() bool /* primitive/slice/pointer */
-	SetIsExternalPlaybackActive(value bool /* primitive/slice/pointer */)
-	IsMuted() bool /* primitive/slice/pointer */
-	SetIsMuted(value bool /* primitive/slice/pointer */)
-	IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer */
-	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer */)
+	Volume() float32 /* primitive/slice/pointer. */
+	SetVolume(value float32 /* primitive/slice/pointer. */)
+	IsAirPlayVideoActive() bool /* primitive/slice/pointer. */
+	SetIsAirPlayVideoActive(value bool /* primitive/slice/pointer. */)
+	IsClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer. */
+	SetIsClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer. */)
+	IsExternalPlaybackActive() bool /* primitive/slice/pointer. */
+	SetIsExternalPlaybackActive(value bool /* primitive/slice/pointer. */)
+	IsMuted() bool /* primitive/slice/pointer. */
+	SetIsMuted(value bool /* primitive/slice/pointer. */)
+	IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */
+	SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer. */)
 	AllowedAudioSpatializationFormats() AudioSpatializationFormats
 	SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats)
-	IsAudioSpatializationAllowed() bool /* primitive/slice/pointer */
-	SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer */)
+	IsAudioSpatializationAllowed() bool /* primitive/slice/pointer. */
+	SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer. */)
 	// methods:
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* not a class type */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times objc.IObject /* cross-framework Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval Time /* not a class type */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	CancelPendingPrerolls()
 	CurrentTime() Time /* not a class type */
 	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* not a class type */) IPlayerMediaSelectionCriteria
 	Pause()
 	Play()
-	PlayImmediatelyAtRate(rate float32 /* primitive/slice/pointer */)
-	PrerollAtRateCompletionHandler(rate float32 /* primitive/slice/pointer */, completionHandler unsafe.Pointer)
+	PlayImmediatelyAtRate(rate float32 /* primitive/slice/pointer. */)
+	PrerollAtRateCompletionHandler(rate float32 /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
 	RemoveTimeObserver(observer objectivec.IObject)
 	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
 	SeekToTime(time Time /* not a class type */)
-	SeekToDate(date foundation.NSDate /* not a class type */)
+	SeekToDate(date objc.IObject /* cross-framework NSDate */)
 	SeekToTimeCompletionHandler(time Time /* not a class type */, completionHandler unsafe.Pointer)
-	SeekToDateCompletionHandler(date foundation.NSDate /* not a class type */, completionHandler unsafe.Pointer)
+	SeekToDateCompletionHandler(date objc.IObject /* cross-framework NSDate */, completionHandler unsafe.Pointer)
 	SeekToTimeToleranceBeforeToleranceAfter(time Time /* not a class type */, toleranceBefore Time /* not a class type */, toleranceAfter Time /* not a class type */)
 	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time Time /* not a class type */, toleranceBefore Time /* not a class type */, toleranceAfter Time /* not a class type */, completionHandler unsafe.Pointer)
 	SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPlayerMediaSelectionCriteria, mediaCharacteristic MediaCharacteristic /* not a class type */)
-	SetRateTimeAtHostTime(rate float32 /* primitive/slice/pointer */, itemTime Time /* not a class type */, hostClockTime Time /* not a class type */)
+	SetRateTimeAtHostTime(rate float32 /* primitive/slice/pointer. */, itemTime Time /* not a class type */, hostClockTime Time /* not a class type */)
 }
 
 // An object that provides the interface to control the player’s transport behavior.
@@ -193,7 +193,7 @@ func NewPlayerWithPlayerItem(item IAVPlayerItem) Player {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
-func NewPlayerWithURL(URL foundation.URL /* not a class type */) Player {
+func NewPlayerWithURL(URL objc.IObject /* cross-framework NSURL */) Player {
 	instance := getPlayerClass().Alloc()
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -216,7 +216,7 @@ func (pc _PlayerClass) PlayerWithPlayerItem(item IAVPlayerItem) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithURL:
-func (pc _PlayerClass) PlayerWithURL(URL foundation.URL /* not a class type */) unsafe.Pointer {
+func (pc _PlayerClass) PlayerWithURL(URL objc.IObject /* cross-framework NSURL */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithURL:"), URL)
 	return rv
 }
@@ -235,7 +235,7 @@ func (pc _PlayerClass) AvailableHDRModes() PlayerHDRMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/eligibleForHDRPlayback
-func (pc _PlayerClass) EligibleForHDRPlayback() bool /* primitive/slice/pointer */ {
+func (pc _PlayerClass) EligibleForHDRPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("eligibleForHDRPlayback"))
 	return rv
 }
@@ -244,7 +244,7 @@ func (pc _PlayerClass) EligibleForHDRPlayback() bool /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
-func (pc _PlayerClass) ObservationEnabled() bool /* primitive/slice/pointer */ {
+func (pc _PlayerClass) ObservationEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("observationEnabled"))
 	return rv
 }
@@ -253,7 +253,7 @@ func (pc _PlayerClass) ObservationEnabled() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value /* not a class type */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times objc.IObject /* cross-framework Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
@@ -320,7 +320,7 @@ func (p_ Player) Play() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playImmediately(atRate:)
-func (p_ Player) PlayImmediatelyAtRate(rate float32 /* primitive/slice/pointer */) {
+func (p_ Player) PlayImmediatelyAtRate(rate float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("playImmediatelyAtRate:"), rate)
 }
 
@@ -329,7 +329,7 @@ func (p_ Player) PlayImmediatelyAtRate(rate float32 /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preroll(atRate:completionHandler:)
-func (p_ Player) PrerollAtRateCompletionHandler(rate float32 /* primitive/slice/pointer */, completionHandler unsafe.Pointer) {
+func (p_ Player) PrerollAtRateCompletionHandler(rate float32 /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("prerollAtRate:completionHandler:"), rate, completionHandler)
 }
 
@@ -365,7 +365,7 @@ func (p_ Player) SeekToTime(time Time /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-9h9qr
-func (p_ Player) SeekToDate(date foundation.NSDate /* not a class type */) {
+func (p_ Player) SeekToDate(date objc.IObject /* cross-framework NSDate */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:"), date)
 }
 
@@ -383,7 +383,7 @@ func (p_ Player) SeekToTimeCompletionHandler(time Time /* not a class type */, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-wr1l
-func (p_ Player) SeekToDateCompletionHandler(date foundation.NSDate /* not a class type */, completionHandler unsafe.Pointer) {
+func (p_ Player) SeekToDateCompletionHandler(date objc.IObject /* cross-framework NSDate */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
 }
 
@@ -419,7 +419,7 @@ func (p_ Player) SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setRate(_:time:atHostTime:)
-func (p_ Player) SetRateTimeAtHostTime(rate float32 /* primitive/slice/pointer */, itemTime Time /* not a class type */, hostClockTime Time /* not a class type */) {
+func (p_ Player) SetRateTimeAtHostTime(rate float32 /* primitive/slice/pointer. */, itemTime Time /* not a class type */, hostClockTime Time /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:time:atHostTime:"), rate, itemTime, hostClockTime)
 }
 
@@ -447,7 +447,7 @@ func (p_ Player) SetActionAtItemEnd(value PlayerActionAtItemEnd) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsAirPlayVideo
-func (p_ Player) AllowsAirPlayVideo() bool /* primitive/slice/pointer */ {
+func (p_ Player) AllowsAirPlayVideo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsAirPlayVideo"))
 	return rv
 }
@@ -457,7 +457,7 @@ func (p_ Player) AllowsAirPlayVideo() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsAirPlayVideo
-func (p_ Player) SetAllowsAirPlayVideo(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetAllowsAirPlayVideo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsAirPlayVideo:"), value)
 }
 
@@ -466,7 +466,7 @@ func (p_ Player) SetAllowsAirPlayVideo(value bool /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsExternalPlayback
-func (p_ Player) AllowsExternalPlayback() bool /* primitive/slice/pointer */ {
+func (p_ Player) AllowsExternalPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsExternalPlayback"))
 	return rv
 }
@@ -476,7 +476,7 @@ func (p_ Player) AllowsExternalPlayback() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsExternalPlayback
-func (p_ Player) SetAllowsExternalPlayback(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetAllowsExternalPlayback(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsExternalPlayback:"), value)
 }
 
@@ -485,7 +485,7 @@ func (p_ Player) SetAllowsExternalPlayback(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/appliesMediaSelectionCriteriaAutomatically
-func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool /* primitive/slice/pointer */ {
+func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("appliesMediaSelectionCriteriaAutomatically"))
 	return rv
 }
@@ -495,7 +495,7 @@ func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/appliesMediaSelectionCriteriaAutomatically
-func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesMediaSelectionCriteriaAutomatically:"), value)
 }
 
@@ -504,8 +504,8 @@ func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) AudioOutputDeviceUniqueID() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (p_ Player) AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -514,8 +514,8 @@ func (p_ Player) AudioOutputDeviceUniqueID() string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) SetAudioOutputDeviceUniqueID(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
+func (p_ Player) SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
 }
 
 
@@ -523,7 +523,7 @@ func (p_ Player) SetAudioOutputDeviceUniqueID(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputSuppressedDueToNonMixableAudioRoute
-func (p_ Player) AudioOutputSuppressedDueToNonMixableAudioRoute() bool /* primitive/slice/pointer */ {
+func (p_ Player) AudioOutputSuppressedDueToNonMixableAudioRoute() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("audioOutputSuppressedDueToNonMixableAudioRoute"))
 	return rv
 }
@@ -552,7 +552,7 @@ func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/automaticallyWaitsToMinimizeStalling
-func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool /* primitive/slice/pointer */ {
+func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyWaitsToMinimizeStalling"))
 	return rv
 }
@@ -562,7 +562,7 @@ func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/automaticallyWaitsToMinimizeStalling
-func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyWaitsToMinimizeStalling:"), value)
 }
 
@@ -591,7 +591,7 @@ func (p_ Player) CurrentItem() IAVPlayerItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/defaultRate
-func (p_ Player) DefaultRate() float32 /* primitive/slice/pointer */ {
+func (p_ Player) DefaultRate() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](p_.ID, objc.Sel("defaultRate"))
 	return rv
 }
@@ -601,7 +601,7 @@ func (p_ Player) DefaultRate() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/defaultRate
-func (p_ Player) SetDefaultRate(value float32 /* primitive/slice/pointer */) {
+func (p_ Player) SetDefaultRate(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRate:"), value)
 }
 
@@ -610,7 +610,7 @@ func (p_ Player) SetDefaultRate(value float32 /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/eligibleForHDRPlayback
-func (p_ Player) EligibleForHDRPlayback() bool /* primitive/slice/pointer */ {
+func (p_ Player) EligibleForHDRPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("eligibleForHDRPlayback"))
 	return rv
 }
@@ -649,7 +649,7 @@ func (p_ Player) SetExternalPlaybackVideoGravity(value LayerVideoGravity /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
-func (p_ Player) IntendedSpatialAudioExperience() SpatialAudioExperience /* not a class type */ {
+func (p_ Player) IntendedSpatialAudioExperience() objc.IObject /* cross-framework: SpatialAudioExperience */ {
 	rv := objc.Send[SpatialAudioExperience](p_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
@@ -659,7 +659,7 @@ func (p_ Player) IntendedSpatialAudioExperience() SpatialAudioExperience /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
-func (p_ Player) SetIntendedSpatialAudioExperience(value SpatialAudioExperience /* not a class type */) {
+func (p_ Player) SetIntendedSpatialAudioExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
 }
 
@@ -668,7 +668,7 @@ func (p_ Player) SetIntendedSpatialAudioExperience(value SpatialAudioExperience 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isAirPlayVideoActive
-func (p_ Player) AirPlayVideoActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) AirPlayVideoActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("airPlayVideoActive"))
 	return rv
 }
@@ -678,7 +678,7 @@ func (p_ Player) AirPlayVideoActive() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isClosedCaptionDisplayEnabled
-func (p_ Player) ClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer */ {
+func (p_ Player) ClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("closedCaptionDisplayEnabled"))
 	return rv
 }
@@ -688,7 +688,7 @@ func (p_ Player) ClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isClosedCaptionDisplayEnabled
-func (p_ Player) SetClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClosedCaptionDisplayEnabled:"), value)
 }
 
@@ -697,7 +697,7 @@ func (p_ Player) SetClosedCaptionDisplayEnabled(value bool /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isExternalPlaybackActive
-func (p_ Player) ExternalPlaybackActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) ExternalPlaybackActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("externalPlaybackActive"))
 	return rv
 }
@@ -707,7 +707,7 @@ func (p_ Player) ExternalPlaybackActive() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isMuted
-func (p_ Player) Muted() bool /* primitive/slice/pointer */ {
+func (p_ Player) Muted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("muted"))
 	return rv
 }
@@ -717,7 +717,7 @@ func (p_ Player) Muted() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isMuted
-func (p_ Player) SetMuted(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetMuted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
 }
 
@@ -726,7 +726,7 @@ func (p_ Player) SetMuted(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
-func (p_ Player) ObservationEnabled() bool /* primitive/slice/pointer */ {
+func (p_ Player) ObservationEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("observationEnabled"))
 	return rv
 }
@@ -736,7 +736,7 @@ func (p_ Player) ObservationEnabled() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
-func (p_ Player) SetObservationEnabled(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetObservationEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservationEnabled:"), value)
 }
 
@@ -745,7 +745,7 @@ func (p_ Player) SetObservationEnabled(value bool /* primitive/slice/pointer */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isOutputObscuredDueToInsufficientExternalProtection
-func (p_ Player) OutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer */ {
+func (p_ Player) OutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("outputObscuredDueToInsufficientExternalProtection"))
 	return rv
 }
@@ -803,7 +803,7 @@ func (p_ Player) PlaybackCoordinator() IAVPlayerPlaybackCoordinator {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preferredVideoDecoderGPURegistryID
-func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 /* primitive/slice/pointer */ {
+func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](p_.ID, objc.Sel("preferredVideoDecoderGPURegistryID"))
 	return rv
 }
@@ -813,7 +813,7 @@ func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preferredVideoDecoderGPURegistryID
-func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64 /* primitive/slice/pointer */) {
+func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredVideoDecoderGPURegistryID:"), value)
 }
 
@@ -822,7 +822,7 @@ func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64 /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsAutomaticBackgroundingDuringVideoPlayback
-func (p_ Player) PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer */ {
+func (p_ Player) PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("preventsAutomaticBackgroundingDuringVideoPlayback"))
 	return rv
 }
@@ -832,7 +832,7 @@ func (p_ Player) PreventsAutomaticBackgroundingDuringVideoPlayback() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsAutomaticBackgroundingDuringVideoPlayback
-func (p_ Player) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreventsAutomaticBackgroundingDuringVideoPlayback:"), value)
 }
 
@@ -841,7 +841,7 @@ func (p_ Player) SetPreventsAutomaticBackgroundingDuringVideoPlayback(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsDisplaySleepDuringVideoPlayback
-func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer */ {
+func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("preventsDisplaySleepDuringVideoPlayback"))
 	return rv
 }
@@ -851,7 +851,7 @@ func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsDisplaySleepDuringVideoPlayback
-func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreventsDisplaySleepDuringVideoPlayback:"), value)
 }
 
@@ -860,7 +860,7 @@ func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
-func (p_ Player) Rate() float32 /* primitive/slice/pointer */ {
+func (p_ Player) Rate() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](p_.ID, objc.Sel("rate"))
 	return rv
 }
@@ -870,7 +870,7 @@ func (p_ Player) Rate() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
-func (p_ Player) SetRate(value float32 /* primitive/slice/pointer */) {
+func (p_ Player) SetRate(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -879,7 +879,7 @@ func (p_ Player) SetRate(value float32 /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/reasonForWaitingToPlay
-func (p_ Player) ReasonForWaitingToPlay() PlayerWaitingReason /* not a class type */ {
+func (p_ Player) ReasonForWaitingToPlay() objc.IObject /* cross-framework: PlayerWaitingReason */ {
 	rv := objc.Send[PlayerWaitingReason](p_.ID, objc.Sel("reasonForWaitingToPlay"))
 	return rv
 }
@@ -928,7 +928,7 @@ func (p_ Player) TimeControlStatus() PlayerTimeControlStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/usesAirPlayVideoWhileAirPlayScreenIsActive
-func (p_ Player) UsesAirPlayVideoWhileAirPlayScreenIsActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) UsesAirPlayVideoWhileAirPlayScreenIsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesAirPlayVideoWhileAirPlayScreenIsActive"))
 	return rv
 }
@@ -938,7 +938,7 @@ func (p_ Player) UsesAirPlayVideoWhileAirPlayScreenIsActive() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/usesAirPlayVideoWhileAirPlayScreenIsActive
-func (p_ Player) SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesAirPlayVideoWhileAirPlayScreenIsActive:"), value)
 }
 
@@ -947,7 +947,7 @@ func (p_ Player) SetUsesAirPlayVideoWhileAirPlayScreenIsActive(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/usesExternalPlaybackWhileExternalScreenIsActive
-func (p_ Player) UsesExternalPlaybackWhileExternalScreenIsActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) UsesExternalPlaybackWhileExternalScreenIsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesExternalPlaybackWhileExternalScreenIsActive"))
 	return rv
 }
@@ -957,7 +957,7 @@ func (p_ Player) UsesExternalPlaybackWhileExternalScreenIsActive() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/usesExternalPlaybackWhileExternalScreenIsActive
-func (p_ Player) SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetUsesExternalPlaybackWhileExternalScreenIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesExternalPlaybackWhileExternalScreenIsActive:"), value)
 }
 
@@ -985,7 +985,7 @@ func (p_ Player) SetVideoOutput(value PlayerVideoOutput /* not a class type */) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
-func (p_ Player) Volume() float32 /* primitive/slice/pointer */ {
+func (p_ Player) Volume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](p_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -995,7 +995,7 @@ func (p_ Player) Volume() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
-func (p_ Player) SetVolume(value float32 /* primitive/slice/pointer */) {
+func (p_ Player) SetVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVolume:"), value)
 }
 
@@ -1004,7 +1004,7 @@ func (p_ Player) SetVolume(value float32 /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isairplayvideoactive
-func (p_ Player) IsAirPlayVideoActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsAirPlayVideoActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAirPlayVideoActive"))
 	return rv
 }
@@ -1014,7 +1014,7 @@ func (p_ Player) IsAirPlayVideoActive() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isairplayvideoactive
-func (p_ Player) SetIsAirPlayVideoActive(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsAirPlayVideoActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAirPlayVideoActive:"), value)
 }
 
@@ -1023,7 +1023,7 @@ func (p_ Player) SetIsAirPlayVideoActive(value bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isclosedcaptiondisplayenabled
-func (p_ Player) IsClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isClosedCaptionDisplayEnabled"))
 	return rv
 }
@@ -1033,7 +1033,7 @@ func (p_ Player) IsClosedCaptionDisplayEnabled() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isclosedcaptiondisplayenabled
-func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsClosedCaptionDisplayEnabled:"), value)
 }
 
@@ -1042,7 +1042,7 @@ func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isexternalplaybackactive
-func (p_ Player) IsExternalPlaybackActive() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsExternalPlaybackActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isExternalPlaybackActive"))
 	return rv
 }
@@ -1052,7 +1052,7 @@ func (p_ Player) IsExternalPlaybackActive() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isexternalplaybackactive
-func (p_ Player) SetIsExternalPlaybackActive(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsExternalPlaybackActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsExternalPlaybackActive:"), value)
 }
 
@@ -1061,7 +1061,7 @@ func (p_ Player) SetIsExternalPlaybackActive(value bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/ismuted
-func (p_ Player) IsMuted() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsMuted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
 	return rv
 }
@@ -1071,7 +1071,7 @@ func (p_ Player) IsMuted() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/ismuted
-func (p_ Player) SetIsMuted(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsMuted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
 }
 
@@ -1080,7 +1080,7 @@ func (p_ Player) SetIsMuted(value bool /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isoutputobscuredduetoinsufficientexternalprotection
-func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOutputObscuredDueToInsufficientExternalProtection"))
 	return rv
 }
@@ -1090,7 +1090,7 @@ func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isoutputobscuredduetoinsufficientexternalprotection
-func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOutputObscuredDueToInsufficientExternalProtection:"), value)
 }
 
@@ -1118,7 +1118,7 @@ func (p_ Player) SetAllowedAudioSpatializationFormats(value AudioSpatializationF
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
-func (p_ Player) IsAudioSpatializationAllowed() bool /* primitive/slice/pointer */ {
+func (p_ Player) IsAudioSpatializationAllowed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAudioSpatializationAllowed"))
 	return rv
 }
@@ -1128,7 +1128,7 @@ func (p_ Player) IsAudioSpatializationAllowed() bool /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
-func (p_ Player) SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer */) {
+func (p_ Player) SetIsAudioSpatializationAllowed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAudioSpatializationAllowed:"), value)
 }
 

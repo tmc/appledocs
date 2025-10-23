@@ -30,6 +30,8 @@ type _BTMIDICentralViewControllerClass struct {
 // An interface definition for the [BTMIDICentralViewController] class.
 type IBTMIDICentralViewController interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A view controller that displays nearby Bluetooth-based MIDI peripherals.

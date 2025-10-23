@@ -19,6 +19,10 @@ type ASAuthorizationAppleIDButtonStyle uint
 type ASAuthorizationAppleIDProviderCredentialState uint
 
 const (
+	// ASAuthorizationAppleIDProviderCredentialAuthorized - The user is authorized.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/authorized
+	ASAuthorizationAppleIDProviderCredentialAuthorized ASAuthorizationAppleIDProviderCredentialState = 0
 	// ASAuthorizationAppleIDProviderCredentialNotFound - The user hasn’t established a relationship with Sign in with Apple.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState/notFound

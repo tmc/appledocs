@@ -31,30 +31,34 @@ type _TextContainerClass struct {
 // An interface definition for the [TextContainer] class.
 type ITextContainer interface {
 	objectivec.IObject
-	LayoutManager() NSLayoutManager
-	SetLayoutManager(value ILayoutManager)
+	// properties:
+	SimpleRectangularTextContainer() bool /* primitive/slice/pointer. */
 	ContainerSize() coregraphics.CGSize
 	SetContainerSize(value coregraphics.CGSize)
-	ExclusionPaths() NSBezierPath
+	ExclusionPaths() IBezierPath
 	SetExclusionPaths(value IBezierPath)
-	HeightTracksTextView() bool
-	SetHeightTracksTextView(value bool)
-	IsSimpleRectangularTextContainer() bool
-	SetIsSimpleRectangularTextContainer(value bool)
+	HeightTracksTextView() bool /* primitive/slice/pointer. */
+	SetHeightTracksTextView(value bool /* primitive/slice/pointer. */)
+	IsSimpleRectangularTextContainer() bool /* primitive/slice/pointer. */
+	SetIsSimpleRectangularTextContainer(value bool /* primitive/slice/pointer. */)
+	LayoutManager() objc.IObject /* cross-framework: LayoutManager */
+	SetLayoutManager(value objc.IObject /* cross-framework: LayoutManager */)
 	LineBreakMode() LineBreakMode
 	SetLineBreakMode(value LineBreakMode)
-	LineFragmentPadding() float64
-	SetLineFragmentPadding(value float64)
-	MaximumNumberOfLines() int
-	SetMaximumNumberOfLines(value int)
+	LineFragmentPadding() float64 /* primitive/slice/pointer. */
+	SetLineFragmentPadding(value float64 /* primitive/slice/pointer. */)
+	MaximumNumberOfLines() int /* primitive/slice/pointer. */
+	SetMaximumNumberOfLines(value int /* primitive/slice/pointer. */)
 	Size() coregraphics.CGSize
 	SetSize(value coregraphics.CGSize)
-	TextLayoutManager() NSTextLayoutManager
+	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
-	TextView() NSTextView
+	TextView() ITextView
 	SetTextView(value ITextView)
-	WidthTracksTextView() bool
-	SetWidthTracksTextView(value bool)
+	WidthTracksTextView() bool /* primitive/slice/pointer. */
+	SetWidthTracksTextView(value bool /* primitive/slice/pointer. */)
+	// methods:
+	ReplaceLayoutManager(newLayoutManager objc.IObject /* cross-framework LayoutManager */)
 }
 
 // A region where text layout occurs.
@@ -110,22 +114,22 @@ func NewTextContainer() TextContainer {
 
 
 
-// The text container’s layout manager.
+// Replaces the layout manager for the group of text system objects that contains the text container.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-func (t_ TextContainer) LayoutManager() NSLayoutManager {
-	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManager"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/replaceLayoutManager(_:)
+func (t_ TextContainer) ReplaceLayoutManager(newLayoutManager objc.IObject /* cross-framework LayoutManager */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("replaceLayoutManager:"), newLayoutManager)
 }
 
 
-// The text container’s layout manager.
+// A Boolean that indicates whether the text container’s region is a rectangle with no holes or gaps, and whose edges are parallel to the text view’s coordinate system axes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/layoutManager
-func (t_ TextContainer) SetLayoutManager(value ILayoutManager) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContainer/isSimpleRectangularTextContainer
+func (t_ TextContainer) SimpleRectangularTextContainer() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("simpleRectangularTextContainer"))
+	return rv
 }
 
 
@@ -152,8 +156,8 @@ func (t_ TextContainer) SetContainerSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/exclusionpaths
-func (t_ TextContainer) ExclusionPaths() NSBezierPath {
-	rv := objc.Send[NSBezierPath](t_.ID, objc.Sel("exclusionPaths"))
+func (t_ TextContainer) ExclusionPaths() IBezierPath {
+	rv := objc.Send[BezierPath](t_.ID, objc.Sel("exclusionPaths"))
 	return rv
 }
 
@@ -171,7 +175,7 @@ func (t_ TextContainer) SetExclusionPaths(value IBezierPath) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
-func (t_ TextContainer) HeightTracksTextView() bool {
+func (t_ TextContainer) HeightTracksTextView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("heightTracksTextView"))
 	return rv
 }
@@ -181,7 +185,7 @@ func (t_ TextContainer) HeightTracksTextView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/heighttrackstextview
-func (t_ TextContainer) SetHeightTracksTextView(value bool) {
+func (t_ TextContainer) SetHeightTracksTextView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeightTracksTextView:"), value)
 }
 
@@ -190,7 +194,7 @@ func (t_ TextContainer) SetHeightTracksTextView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
-func (t_ TextContainer) IsSimpleRectangularTextContainer() bool {
+func (t_ TextContainer) IsSimpleRectangularTextContainer() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSimpleRectangularTextContainer"))
 	return rv
 }
@@ -200,8 +204,27 @@ func (t_ TextContainer) IsSimpleRectangularTextContainer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/issimplerectangulartextcontainer
-func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool) {
+func (t_ TextContainer) SetIsSimpleRectangularTextContainer(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSimpleRectangularTextContainer:"), value)
+}
+
+
+// The text container’s layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/layoutmanager
+func (t_ TextContainer) LayoutManager() objc.IObject /* cross-framework: LayoutManager */ {
+	rv := objc.Send[LayoutManager](t_.ID, objc.Sel("layoutManager"))
+	return rv
+}
+
+
+// The text container’s layout manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/layoutmanager
+func (t_ TextContainer) SetLayoutManager(value objc.IObject /* cross-framework: LayoutManager */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
 
@@ -228,7 +251,7 @@ func (t_ TextContainer) SetLineBreakMode(value LineBreakMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
-func (t_ TextContainer) LineFragmentPadding() float64 {
+func (t_ TextContainer) LineFragmentPadding() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("lineFragmentPadding"))
 	return rv
 }
@@ -238,7 +261,7 @@ func (t_ TextContainer) LineFragmentPadding() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/linefragmentpadding
-func (t_ TextContainer) SetLineFragmentPadding(value float64) {
+func (t_ TextContainer) SetLineFragmentPadding(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineFragmentPadding:"), value)
 }
 
@@ -247,7 +270,7 @@ func (t_ TextContainer) SetLineFragmentPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
-func (t_ TextContainer) MaximumNumberOfLines() int {
+func (t_ TextContainer) MaximumNumberOfLines() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("maximumNumberOfLines"))
 	return rv
 }
@@ -257,7 +280,7 @@ func (t_ TextContainer) MaximumNumberOfLines() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/maximumnumberoflines
-func (t_ TextContainer) SetMaximumNumberOfLines(value int) {
+func (t_ TextContainer) SetMaximumNumberOfLines(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaximumNumberOfLines:"), value)
 }
 
@@ -283,8 +306,8 @@ func (t_ TextContainer) SetSize(value coregraphics.CGSize) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textlayoutmanager
-func (t_ TextContainer) TextLayoutManager() NSTextLayoutManager {
-	rv := objc.Send[NSTextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
+func (t_ TextContainer) TextLayoutManager() ITextLayoutManager {
+	rv := objc.Send[TextLayoutManager](t_.ID, objc.Sel("textLayoutManager"))
 	return rv
 }
 
@@ -300,8 +323,8 @@ func (t_ TextContainer) SetTextLayoutManager(value ITextLayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/textview
-func (t_ TextContainer) TextView() NSTextView {
-	rv := objc.Send[NSTextView](t_.ID, objc.Sel("textView"))
+func (t_ TextContainer) TextView() ITextView {
+	rv := objc.Send[TextView](t_.ID, objc.Sel("textView"))
 	return rv
 }
 
@@ -319,7 +342,7 @@ func (t_ TextContainer) SetTextView(value ITextView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
-func (t_ TextContainer) WidthTracksTextView() bool {
+func (t_ TextContainer) WidthTracksTextView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("widthTracksTextView"))
 	return rv
 }
@@ -329,7 +352,7 @@ func (t_ TextContainer) WidthTracksTextView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcontainer/widthtrackstextview
-func (t_ TextContainer) SetWidthTracksTextView(value bool) {
+func (t_ TextContainer) SetWidthTracksTextView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidthTracksTextView:"), value)
 }
 

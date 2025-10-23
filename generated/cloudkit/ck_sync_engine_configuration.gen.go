@@ -30,6 +30,8 @@ type _CKSyncEngineConfigurationClass struct {
 // An interface definition for the [CKSyncEngineConfiguration] class.
 type ICKSyncEngineConfiguration interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A type that configures the attributes and behavior of a sync engine.

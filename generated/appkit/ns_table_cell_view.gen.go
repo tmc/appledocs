@@ -29,17 +29,19 @@ type _TableCellViewClass struct {
 // An interface definition for the [TableCellView] class.
 type ITableCellView interface {
 	IView
-	BackgroundStyle() NSBackgroundStyle
-	SetBackgroundStyle(value NSBackgroundStyle)
-	DraggingImageComponents() []DraggingImageComponent
+	// properties:
+	BackgroundStyle() BackgroundStyle
+	SetBackgroundStyle(value BackgroundStyle)
+	DraggingImageComponents() []DraggingImageComponent /* primitive/slice/pointer. */
 	ImageView() IImageView
 	SetImageView(value IImageView)
 	ObjectValue() objc.ID
 	SetObjectValue(value objc.ID)
-	RowSizeStyle() unsafe.Pointer
-	SetRowSizeStyle(value unsafe.Pointer)
-	TextField() TextField
-	SetTextField(value TextField)
+	RowSizeStyle() TableViewRowSizeStyle
+	SetRowSizeStyle(value TableViewRowSizeStyle)
+	TextField() objc.IObject /* cross-framework: TextField */
+	SetTextField(value objc.IObject /* cross-framework: TextField */)
+	// methods:
 }
 
 // A reusable container view shown for a particular cell in a table view that uses rows for content.
@@ -101,8 +103,8 @@ func NewTableCellView() TableCellView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) BackgroundStyle() NSBackgroundStyle {
-	rv := objc.Send[NSBackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
+func (t_ TableCellView) BackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](t_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -111,7 +113,7 @@ func (t_ TableCellView) BackgroundStyle() NSBackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/backgroundStyle
-func (t_ TableCellView) SetBackgroundStyle(value NSBackgroundStyle) {
+func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
@@ -120,7 +122,7 @@ func (t_ TableCellView) SetBackgroundStyle(value NSBackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
-func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
+func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
@@ -168,8 +170,8 @@ func (t_ TableCellView) SetObjectValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("rowSizeStyle"))
+func (t_ TableCellView) RowSizeStyle() TableViewRowSizeStyle {
+	rv := objc.Send[TableViewRowSizeStyle](t_.ID, objc.Sel("rowSizeStyle"))
 	return rv
 }
 
@@ -178,7 +180,7 @@ func (t_ TableCellView) RowSizeStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/rowSizeStyle
-func (t_ TableCellView) SetRowSizeStyle(value unsafe.Pointer) {
+func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRowSizeStyle:"), value)
 }
 
@@ -187,7 +189,7 @@ func (t_ TableCellView) SetRowSizeStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) TextField() TextField {
+func (t_ TableCellView) TextField() objc.IObject /* cross-framework: TextField */ {
 	rv := objc.Send[TextField](t_.ID, objc.Sel("textField"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (t_ TableCellView) TextField() TextField {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) SetTextField(value TextField) {
+func (t_ TableCellView) SetTextField(value objc.IObject /* cross-framework: TextField */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }
 

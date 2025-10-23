@@ -29,12 +29,14 @@ type _MIDIUMPMutableEndpointClass struct {
 // An interface definition for the [MIDIUMPMutableEndpoint] class.
 type IMIDIUMPMutableEndpoint interface {
 	IMIDIUMPEndpoint
-	IsEnabled() bool
-	MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock
-	SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock)
-	RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool
-	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
-	SetNameError(name string, error_ unsafe.Pointer) bool
+	// properties:
+	IsEnabled() bool /* primitive/slice/pointer. */
+	MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */
+	SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */)
+	// methods:
+	RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */, markAsStatic bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetEnabledError(isEnabled bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetNameError(name string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 
@@ -87,7 +89,7 @@ func NewMIDIUMPMutableEndpoint() MIDIUMPMutableEndpoint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/init(name:deviceInfo:productInstanceID:midiProtocol:destinationCallback:)
-func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string, deviceInfo IMIDI2DeviceInfo, productInstanceID string, MIDIProtocol MIDIProtocolID, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
+func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string /* primitive/slice/pointer. */, deviceInfo IMIDI2DeviceInfo, productInstanceID string /* primitive/slice/pointer. */, MIDIProtocol MIDIProtocolID, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
 	instance := getMIDIUMPMutableEndpointClass().Alloc()
 	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), objc.String(name), deviceInfo, objc.String(productInstanceID), MIDIProtocol, destinationCallback)
 	rv.Autorelease()
@@ -98,7 +100,7 @@ func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDes
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/registerFunctionBlocks(_:markAsStatic:)
-func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */, markAsStatic bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("registerFunctionBlocks:markAsStatic:error:"), functionBlocks, markAsStatic, error_)
 	return rv
 }
@@ -106,7 +108,7 @@ func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setEnabled(_:)
-func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setEnabled:error:"), isEnabled, error_)
 	return rv
 }
@@ -114,7 +116,7 @@ func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error_ unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setName(_:)
-func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPMutableEndpoint) SetNameError(name string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
 	return rv
 }
@@ -122,7 +124,7 @@ func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error_ unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/isEnabled
-func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool {
+func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (m_ MIDIUMPMutableEndpoint) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/mutableFunctionBlocks
-func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock {
+func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MIDIUMPMutableFunctionBlock](m_.ID, objc.Sel("mutableFunctionBlocks"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (m_ MIDIUMPMutableEndpoint) MutableFunctionBlocks() []MIDIUMPMutableFunctio
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/mutableFunctionBlocks
-func (m_ MIDIUMPMutableEndpoint) SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock) {
+func (m_ MIDIUMPMutableEndpoint) SetMutableFunctionBlocks(value []MIDIUMPMutableFunctionBlock /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

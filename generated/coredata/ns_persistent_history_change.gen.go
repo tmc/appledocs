@@ -30,15 +30,17 @@ type _PersistentHistoryChangeClass struct {
 // An interface definition for the [PersistentHistoryChange] class.
 type IPersistentHistoryChange interface {
 	objectivec.IObject
+	// properties:
 	ChangeID() unsafe.Pointer
 	Tombstone() objc.ID
 	UpdatedProperties() unsafe.Pointer
-	ChangeType() unsafe.Pointer
-	SetChangeType(value unsafe.Pointer)
+	ChangeType() PersistentHistoryChangeType /* not a class type */
+	SetChangeType(value PersistentHistoryChangeType /* not a class type */)
 	ChangedObjectID() IManagedObjectID
 	SetChangedObjectID(value IManagedObjectID)
 	Transaction() IPersistentHistoryTransaction
 	SetTransaction(value IPersistentHistoryTransaction)
+	// methods:
 }
 
 // A change representing the insertion, update, or deletion of a managed object in the persistent store.
@@ -126,8 +128,8 @@ func (p_ PersistentHistoryChange) UpdatedProperties() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changetype
-func (p_ PersistentHistoryChange) ChangeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changeType"))
+func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType /* not a class type */ {
+	rv := objc.Send[PersistentHistoryChangeType](p_.ID, objc.Sel("changeType"))
 	return rv
 }
 
@@ -136,7 +138,7 @@ func (p_ PersistentHistoryChange) ChangeType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychange/changetype
-func (p_ PersistentHistoryChange) SetChangeType(value unsafe.Pointer) {
+func (p_ PersistentHistoryChange) SetChangeType(value PersistentHistoryChangeType /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangeType:"), value)
 }
 

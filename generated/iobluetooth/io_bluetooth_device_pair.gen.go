@@ -36,9 +36,9 @@ type IBluetoothDevicePair interface {
 	// methods:
 	Device() IBluetoothDevice
 	ReplyPINCodePINCode(PINCodeSize unsafe.Pointer, PINCode unsafe.Pointer)
-	ReplyUserConfirmation(reply bool)
-	SetDevice(inDevice IOBluetoothDevice)
-	Start() unsafe.Pointer
+	ReplyUserConfirmation(reply bool /* primitive/slice/pointer. */)
+	SetDevice(inDevice BluetoothDevice /* already interface */)
+	Start() Return /* not a class type */
 	Stop()
 }
 
@@ -99,7 +99,7 @@ func NewBluetoothDevicePair() BluetoothDevicePair {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/init(device:)
-func NewBluetoothDevicePairWithDevice(device IOBluetoothDevice) BluetoothDevicePair {
+func NewBluetoothDevicePairWithDevice(device BluetoothDevice /* already interface */) BluetoothDevicePair {
 	rv := objc.Send[BluetoothDevicePair](objc.ID(getBluetoothDevicePairClass().class), objc.Sel("pairWithDevice:"), device)
 	return rv
 }
@@ -110,7 +110,7 @@ func NewBluetoothDevicePairWithDevice(device IOBluetoothDevice) BluetoothDeviceP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/init(device:)
-func (bc _BluetoothDevicePairClass) PairWithDevice(device IOBluetoothDevice) unsafe.Pointer {
+func (bc _BluetoothDevicePairClass) PairWithDevice(device BluetoothDevice /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("pairWithDevice:"), device)
 	return rv
 }
@@ -139,7 +139,7 @@ func (b_ BluetoothDevicePair) ReplyPINCodePINCode(PINCodeSize unsafe.Pointer, PI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/replyUserConfirmation(_:)
-func (b_ BluetoothDevicePair) ReplyUserConfirmation(reply bool) {
+func (b_ BluetoothDevicePair) ReplyUserConfirmation(reply bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("replyUserConfirmation:"), reply)
 }
 
@@ -148,7 +148,7 @@ func (b_ BluetoothDevicePair) ReplyUserConfirmation(reply bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/setDevice(_:)
-func (b_ BluetoothDevicePair) SetDevice(inDevice IOBluetoothDevice) {
+func (b_ BluetoothDevicePair) SetDevice(inDevice BluetoothDevice /* already interface */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDevice:"), inDevice)
 }
 
@@ -157,8 +157,8 @@ func (b_ BluetoothDevicePair) SetDevice(inDevice IOBluetoothDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/start()
-func (b_ BluetoothDevicePair) Start() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("start"))
+func (b_ BluetoothDevicePair) Start() Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("start"))
 	return rv
 }
 

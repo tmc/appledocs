@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +30,24 @@ type _ResponderClass struct {
 // An interface definition for the [Responder] class.
 type IResponder interface {
 	objectivec.IObject
-	AcceptsFirstResponder() bool
-	SetAcceptsFirstResponder(value bool)
+	// properties:
+	AcceptsFirstResponder() bool /* primitive/slice/pointer. */
 	Menu() IMenu
 	SetMenu(value IMenu)
 	NextResponder() IResponder
 	SetNextResponder(value IResponder)
 	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
-	UndoManager() foundation.UndoManager
-	SetUndoManager(value foundation.UndoManager)
-	UserActivity() foundation.UserActivity
-	SetUserActivity(value foundation.UserActivity)
+	UndoManager() UndoManager /* not a class type */
+	SetUndoManager(value UndoManager /* not a class type */)
+	UserActivity() UserActivity /* not a class type */
+	SetUserActivity(value UserActivity /* not a class type */)
+	// methods:
+	ChangeModeWithEvent(event IEvent)
+	CursorUpdate(event IEvent)
+	EncodeRestorableStateWithCoder(coder Coder /* not a class type */)
 	FlagsChanged(event IEvent)
+	InterpretKeyEvents(eventArray []Event /* primitive/slice/pointer. */)
 	KeyDown(event IEvent)
 	KeyUp(event IEvent)
 	MouseDown(event IEvent)
@@ -55,8 +59,10 @@ type IResponder interface {
 	OtherMouseDown(event IEvent)
 	OtherMouseDragged(event IEvent)
 	OtherMouseUp(event IEvent)
-	PresentError(error_ foundation.Error) bool
-	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.Error, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	QuickLookWithEvent(event IEvent)
+	RestoreStateWithCoder(coder Coder /* not a class type */)
 	RightMouseDown(event IEvent)
 	RightMouseDragged(event IEvent)
 	RightMouseUp(event IEvent)
@@ -64,7 +70,9 @@ type IResponder interface {
 	SupplementalTargetForActionSender(action objc.SEL, sender objectivec.IObject) objc.ID
 	TabletPoint(event IEvent)
 	TabletProximity(event IEvent)
-	UpdateUserActivityState(userActivity foundation.UserActivity)
+	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */
+	UpdateUserActivityState(userActivity UserActivity /* not a class type */)
+	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID
 }
 
 // An abstract class that forms the basis of event and command processing in AppKit.
@@ -120,12 +128,48 @@ func NewResponder() Responder {
 
 
 
+// Informs the responder that performed a double-tap on the side of an Apple Pencil.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/changeMode(with:)
+func (r_ Responder) ChangeModeWithEvent(event IEvent) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("changeModeWithEvent:"), event)
+}
+
+
+// Informs the receiver that the mouse cursor has moved into a cursor rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/cursorUpdate(with:)
+func (r_ Responder) CursorUpdate(event IEvent) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("cursorUpdate:"), event)
+}
+
+
+// Saves the interface-related state of the responder.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/encodeRestorableState(with:)
+func (r_ Responder) EncodeRestorableStateWithCoder(coder Coder /* not a class type */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("encodeRestorableStateWithCoder:"), coder)
+}
+
+
 // Informs the receiver that the user has pressed or released a modifier key (Shift, Control, and so on).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/flagsChanged(with:)
 func (r_ Responder) FlagsChanged(event IEvent) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("flagsChanged:"), event)
+}
+
+
+// Handles a series of key events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/interpretKeyEvents(_:)
+func (r_ Responder) InterpretKeyEvents(eventArray []Event /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("interpretKeyEvents:"), eventArray)
 }
 
 
@@ -232,7 +276,7 @@ func (r_ Responder) OtherMouseUp(event IEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:)
-func (r_ Responder) PresentError(error_ foundation.Error) bool {
+func (r_ Responder) PresentError(error_ Error /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("presentError:"), error_)
 	return rv
 }
@@ -242,8 +286,26 @@ func (r_ Responder) PresentError(error_ foundation.Error) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/presentError(_:modalFor:delegate:didPresent:contextInfo:)
-func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ foundation.Error, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (r_ Responder) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ Error /* not a class type */, window IWindow, delegate objectivec.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
+}
+
+
+// Performs a Quick Look on the content at the location specified by the supplied event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/quickLook(with:)
+func (r_ Responder) QuickLookWithEvent(event IEvent) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("quickLookWithEvent:"), event)
+}
+
+
+// Restores the interface-related state of the responder.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/restoreState(with:)
+func (r_ Responder) RestoreStateWithCoder(coder Coder /* not a class type */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("restoreStateWithCoder:"), coder)
 }
 
 
@@ -311,21 +373,31 @@ func (r_ Responder) TabletProximity(event IEvent) {
 }
 
 
+// Attempts to perform the method indicated by an action with a specified argument.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/tryToPerform(_:with:)
+func (r_ Responder) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](r_.ID, objc.Sel("tryToPerform:with:"), action, object)
+	return rv
+}
+
+
 // Updates the state of the given user activity.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/updateUserActivityState(_:)
-func (r_ Responder) UpdateUserActivityState(userActivity foundation.UserActivity) {
+func (r_ Responder) UpdateUserActivityState(userActivity UserActivity /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateUserActivityState:"), userActivity)
 }
 
 
-// A Boolean value that indicates whether the responder accepts first responder status.
+// Overridden by subclasses to determine what services are available.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/acceptsfirstresponder
-func (r_ Responder) AcceptsFirstResponder() bool {
-	rv := objc.Send[bool](r_.ID, objc.Sel("acceptsFirstResponder"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/validRequestor(forSendType:returnType:)
+func (r_ Responder) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework PasteboardType */, returnType objc.IObject /* cross-framework PasteboardType */) objc.ID {
+	rv := objc.Send[objc.ID](r_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
 	return rv
 }
 
@@ -333,9 +405,10 @@ func (r_ Responder) AcceptsFirstResponder() bool {
 // A Boolean value that indicates whether the responder accepts first responder status.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/acceptsfirstresponder
-func (r_ Responder) SetAcceptsFirstResponder(value bool) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setAcceptsFirstResponder:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSResponder/acceptsFirstResponder
+func (r_ Responder) AcceptsFirstResponder() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](r_.ID, objc.Sel("acceptsFirstResponder"))
+	return rv
 }
 
 
@@ -400,8 +473,8 @@ func (r_ Responder) SetTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/undomanager
-func (r_ Responder) UndoManager() foundation.UndoManager {
-	rv := objc.Send[foundation.UndoManager](r_.ID, objc.Sel("undoManager"))
+func (r_ Responder) UndoManager() UndoManager /* not a class type */ {
+	rv := objc.Send[UndoManager](r_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -410,7 +483,7 @@ func (r_ Responder) UndoManager() foundation.UndoManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/undomanager
-func (r_ Responder) SetUndoManager(value foundation.UndoManager) {
+func (r_ Responder) SetUndoManager(value UndoManager /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUndoManager:"), value)
 }
 
@@ -419,8 +492,8 @@ func (r_ Responder) SetUndoManager(value foundation.UndoManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/useractivity
-func (r_ Responder) UserActivity() foundation.UserActivity {
-	rv := objc.Send[foundation.UserActivity](r_.ID, objc.Sel("userActivity"))
+func (r_ Responder) UserActivity() UserActivity /* not a class type */ {
+	rv := objc.Send[UserActivity](r_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -429,7 +502,7 @@ func (r_ Responder) UserActivity() foundation.UserActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsresponder/useractivity
-func (r_ Responder) SetUserActivity(value foundation.UserActivity) {
+func (r_ Responder) SetUserActivity(value UserActivity /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUserActivity:"), value)
 }
 

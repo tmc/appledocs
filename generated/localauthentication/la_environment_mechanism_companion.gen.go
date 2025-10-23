@@ -31,8 +31,8 @@ type _EnvironmentMechanismCompanionClass struct {
 type IEnvironmentMechanismCompanion interface {
 	IEnvironmentMechanism
 	// properties:
-	StateHash() foundation.NSData
-	Type() LACompanionType
+	StateHash() foundation.objc.IObject /* cross-framework: NSData */
+	Type() CompanionType
 	// methods:
 }
 
@@ -86,7 +86,7 @@ func NewEnvironmentMechanismCompanion() EnvironmentMechanismCompanion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion/stateHash
-func (e_ EnvironmentMechanismCompanion) StateHash() foundation.NSData {
+func (e_ EnvironmentMechanismCompanion) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))
 	return rv
 }
@@ -96,8 +96,8 @@ func (e_ EnvironmentMechanismCompanion) StateHash() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion/type
-func (e_ EnvironmentMechanismCompanion) Type() LACompanionType {
-	rv := objc.Send[LACompanionType](e_.ID, objc.Sel("type"))
+func (e_ EnvironmentMechanismCompanion) Type() CompanionType {
+	rv := objc.Send[CompanionType](e_.ID, objc.Sel("type"))
 	return rv
 }
 

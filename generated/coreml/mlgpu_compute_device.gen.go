@@ -30,7 +30,9 @@ type _GPUComputeDeviceClass struct {
 // An interface definition for the [GPUComputeDevice] class.
 type IGPUComputeDevice interface {
 	objectivec.IObject
+	// properties:
 	MetalDevice() objc.ID
+	// methods:
 }
 
 // An object that represents a GPU compute device.

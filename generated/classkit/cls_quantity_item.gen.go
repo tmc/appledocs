@@ -29,8 +29,10 @@ type _SQuantityItemClass struct {
 // An interface definition for the [SQuantityItem] class.
 type ISQuantityItem interface {
 	ISActivityItem
-	Quantity() float64
-	SetQuantity(value float64)
+	// properties:
+	Quantity() float64 /* primitive/slice/pointer. */
+	SetQuantity(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // Activity information that signifies a quantity.
@@ -92,7 +94,7 @@ func NewSQuantityItem() SQuantityItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
-func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuantityItem {
+func NewSQuantityItemWithIdentifierTitle(identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */) SQuantityItem {
 	instance := getSQuantityItemClass().Alloc()
 	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuant
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) Quantity() float64 {
+func (s_ SQuantityItem) Quantity() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("quantity"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (s_ SQuantityItem) Quantity() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/quantity
-func (s_ SQuantityItem) SetQuantity(value float64) {
+func (s_ SQuantityItem) SetQuantity(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQuantity:"), value)
 }
 

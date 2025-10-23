@@ -29,6 +29,7 @@ type _SaveChangesRequestClass struct {
 // An interface definition for the [SaveChangesRequest] class.
 type ISaveChangesRequest interface {
 	IPersistentStoreRequest
+	// properties:
 	UpdatedObjects() unsafe.Pointer
 	DeletedObjects() IManagedObject
 	SetDeletedObjects(value IManagedObject)
@@ -36,6 +37,7 @@ type ISaveChangesRequest interface {
 	SetInsertedObjects(value IManagedObject)
 	LockedObjects() IManagedObject
 	SetLockedObjects(value IManagedObject)
+	// methods:
 }
 
 // An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.

@@ -30,44 +30,46 @@ type _LocationManagerClass struct {
 // An interface definition for the [LocationManager] class.
 type ILocationManager interface {
 	objectivec.IObject
-	AccuracyAuthorization() CLAccuracyAuthorization
-	ActivityType() CLActivityType
-	SetActivityType(value CLActivityType)
-	AllowsBackgroundLocationUpdates() bool
-	SetAllowsBackgroundLocationUpdates(value bool)
-	AuthorizationStatus() CLAuthorizationStatus
+	// properties:
+	AccuracyAuthorization() AccuracyAuthorization
+	ActivityType() ActivityType
+	SetActivityType(value ActivityType)
+	AllowsBackgroundLocationUpdates() bool /* primitive/slice/pointer. */
+	SetAllowsBackgroundLocationUpdates(value bool /* primitive/slice/pointer. */)
+	AuthorizationStatus() AuthorizationStatus
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DesiredAccuracy() unsafe.Pointer
-	SetDesiredAccuracy(value unsafe.Pointer)
-	DistanceFilter() unsafe.Pointer
-	SetDistanceFilter(value unsafe.Pointer)
+	DesiredAccuracy() LocationAccuracy /* not a class type */
+	SetDesiredAccuracy(value LocationAccuracy /* not a class type */)
+	DistanceFilter() LocationDistance /* not a class type */
+	SetDistanceFilter(value LocationDistance /* not a class type */)
 	Heading() ICLHeading
-	HeadingFilter() unsafe.Pointer
-	SetHeadingFilter(value unsafe.Pointer)
-	HeadingOrientation() CLDeviceOrientation
-	SetHeadingOrientation(value CLDeviceOrientation)
-	AuthorizedForWidgetUpdates() bool
+	HeadingFilter() LocationDegrees /* not a class type */
+	SetHeadingFilter(value LocationDegrees /* not a class type */)
+	HeadingOrientation() DeviceOrientation
+	SetHeadingOrientation(value DeviceOrientation)
+	AuthorizedForWidgetUpdates() bool /* primitive/slice/pointer. */
 	Location() ICLLocation
-	MaximumRegionMonitoringDistance() unsafe.Pointer
+	MaximumRegionMonitoringDistance() LocationDistance /* not a class type */
 	MonitoredRegions() unsafe.Pointer
-	PausesLocationUpdatesAutomatically() bool
-	SetPausesLocationUpdatesAutomatically(value bool)
+	PausesLocationUpdatesAutomatically() bool /* primitive/slice/pointer. */
+	SetPausesLocationUpdatesAutomatically(value bool /* primitive/slice/pointer. */)
 	RangedBeaconConstraints() unsafe.Pointer
-	ShowsBackgroundLocationIndicator() bool
-	SetShowsBackgroundLocationIndicator(value bool)
-	CLLocationDistanceMax() unsafe.Pointer
-	IsAuthorizedForWidgetUpdates() bool
-	SetIsAuthorizedForWidgetUpdates(value bool)
+	ShowsBackgroundLocationIndicator() bool /* primitive/slice/pointer. */
+	SetShowsBackgroundLocationIndicator(value bool /* primitive/slice/pointer. */)
+	CLLocationDistanceMax() LocationDistance /* not a class type */
+	IsAuthorizedForWidgetUpdates() bool /* primitive/slice/pointer. */
+	SetIsAuthorizedForWidgetUpdates(value bool /* primitive/slice/pointer. */)
 	CLTimeIntervalMax() unsafe.Pointer
-	KCLDistanceFilterNone() unsafe.Pointer
-	KCLHeadingFilterNone() unsafe.Pointer
+	KCLDistanceFilterNone() LocationDistance /* not a class type */
+	KCLHeadingFilterNone() LocationDegrees /* not a class type */
+	// methods:
 	DismissHeadingCalibrationDisplay()
 	RequestAlwaysAuthorization()
-	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer)
+	RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string /* primitive/slice/pointer. */, sampleCount int /* primitive/slice/pointer. */, handler unsafe.Pointer)
 	RequestLocation()
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string)
-	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string /* primitive/slice/pointer. */)
+	RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string /* primitive/slice/pointer. */, completion unsafe.Pointer)
 	RequestWhenInUseAuthorization()
 	StartMonitoringLocationPushesWithCompletion(completion unsafe.Pointer)
 	StartMonitoringSignificantLocationChanges()
@@ -140,7 +142,7 @@ func NewLocationManager() LocationManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingAvailable()
-func (lc _LocationManagerClass) HeadingAvailable() bool {
+func (lc _LocationManagerClass) HeadingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("headingAvailable"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (lc _LocationManagerClass) HeadingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/isMonitoringAvailable(for:)
-func (lc _LocationManagerClass) IsMonitoringAvailableForClass(regionClass objc.Class) bool {
+func (lc _LocationManagerClass) IsMonitoringAvailableForClass(regionClass objc.Class) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("isMonitoringAvailableForClass:"), regionClass)
 	return rv
 }
@@ -160,7 +162,7 @@ func (lc _LocationManagerClass) IsMonitoringAvailableForClass(regionClass objc.C
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/isRangingAvailable()
-func (lc _LocationManagerClass) IsRangingAvailable() bool {
+func (lc _LocationManagerClass) IsRangingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("isRangingAvailable"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (lc _LocationManagerClass) IsRangingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/locationServicesEnabled()
-func (lc _LocationManagerClass) LocationServicesEnabled() bool {
+func (lc _LocationManagerClass) LocationServicesEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("locationServicesEnabled"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (lc _LocationManagerClass) LocationServicesEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/significantLocationChangeMonitoringAvailable()
-func (lc _LocationManagerClass) SignificantLocationChangeMonitoringAvailable() bool {
+func (lc _LocationManagerClass) SignificantLocationChangeMonitoringAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("significantLocationChangeMonitoringAvailable"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (l_ LocationManager) RequestAlwaysAuthorization() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestHistoricalLocations(purposeKey:sampleCount:completionHandler:)
-func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string, sampleCount int, handler unsafe.Pointer) {
+func (l_ LocationManager) RequestHistoricalLocationsWithPurposeKeySampleCountCompletionHandler(purposeKey string /* primitive/slice/pointer. */, sampleCount int /* primitive/slice/pointer. */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:"), objc.String(purposeKey), sampleCount, handler)
 }
 
@@ -224,7 +226,7 @@ func (l_ LocationManager) RequestLocation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:)
-func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string) {
+func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKey(purposeKey string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), objc.String(purposeKey))
 }
 
@@ -233,7 +235,7 @@ func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestTemporaryFullAccuracyAuthorization(withPurposeKey:completion:)
-func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string, completion unsafe.Pointer) {
+func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), objc.String(purposeKey), completion)
 }
 
@@ -359,8 +361,8 @@ func (l_ LocationManager) StopUpdatingLocation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/accuracyAuthorization
-func (l_ LocationManager) AccuracyAuthorization() CLAccuracyAuthorization {
-	rv := objc.Send[CLAccuracyAuthorization](l_.ID, objc.Sel("accuracyAuthorization"))
+func (l_ LocationManager) AccuracyAuthorization() AccuracyAuthorization {
+	rv := objc.Send[AccuracyAuthorization](l_.ID, objc.Sel("accuracyAuthorization"))
 	return rv
 }
 
@@ -369,8 +371,8 @@ func (l_ LocationManager) AccuracyAuthorization() CLAccuracyAuthorization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/activityType
-func (l_ LocationManager) ActivityType() CLActivityType {
-	rv := objc.Send[CLActivityType](l_.ID, objc.Sel("activityType"))
+func (l_ LocationManager) ActivityType() ActivityType {
+	rv := objc.Send[ActivityType](l_.ID, objc.Sel("activityType"))
 	return rv
 }
 
@@ -379,7 +381,7 @@ func (l_ LocationManager) ActivityType() CLActivityType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/activityType
-func (l_ LocationManager) SetActivityType(value CLActivityType) {
+func (l_ LocationManager) SetActivityType(value ActivityType) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityType:"), value)
 }
 
@@ -388,7 +390,7 @@ func (l_ LocationManager) SetActivityType(value CLActivityType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates
-func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
+func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("allowsBackgroundLocationUpdates"))
 	return rv
 }
@@ -398,7 +400,7 @@ func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates
-func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool) {
+func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAllowsBackgroundLocationUpdates:"), value)
 }
 
@@ -407,8 +409,8 @@ func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property
-func (l_ LocationManager) AuthorizationStatus() CLAuthorizationStatus {
-	rv := objc.Send[CLAuthorizationStatus](l_.ID, objc.Sel("authorizationStatus"))
+func (l_ LocationManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](l_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -436,8 +438,8 @@ func (l_ LocationManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/desiredAccuracy
-func (l_ LocationManager) DesiredAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("desiredAccuracy"))
+func (l_ LocationManager) DesiredAccuracy() LocationAccuracy /* not a class type */ {
+	rv := objc.Send[LocationAccuracy](l_.ID, objc.Sel("desiredAccuracy"))
 	return rv
 }
 
@@ -446,7 +448,7 @@ func (l_ LocationManager) DesiredAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/desiredAccuracy
-func (l_ LocationManager) SetDesiredAccuracy(value unsafe.Pointer) {
+func (l_ LocationManager) SetDesiredAccuracy(value LocationAccuracy /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDesiredAccuracy:"), value)
 }
 
@@ -455,8 +457,8 @@ func (l_ LocationManager) SetDesiredAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/distanceFilter
-func (l_ LocationManager) DistanceFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("distanceFilter"))
+func (l_ LocationManager) DistanceFilter() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](l_.ID, objc.Sel("distanceFilter"))
 	return rv
 }
 
@@ -465,7 +467,7 @@ func (l_ LocationManager) DistanceFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/distanceFilter
-func (l_ LocationManager) SetDistanceFilter(value unsafe.Pointer) {
+func (l_ LocationManager) SetDistanceFilter(value LocationDistance /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDistanceFilter:"), value)
 }
 
@@ -484,8 +486,8 @@ func (l_ LocationManager) Heading() ICLHeading {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingFilter
-func (l_ LocationManager) HeadingFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("headingFilter"))
+func (l_ LocationManager) HeadingFilter() LocationDegrees /* not a class type */ {
+	rv := objc.Send[LocationDegrees](l_.ID, objc.Sel("headingFilter"))
 	return rv
 }
 
@@ -494,7 +496,7 @@ func (l_ LocationManager) HeadingFilter() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingFilter
-func (l_ LocationManager) SetHeadingFilter(value unsafe.Pointer) {
+func (l_ LocationManager) SetHeadingFilter(value LocationDegrees /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingFilter:"), value)
 }
 
@@ -503,8 +505,8 @@ func (l_ LocationManager) SetHeadingFilter(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingOrientation
-func (l_ LocationManager) HeadingOrientation() CLDeviceOrientation {
-	rv := objc.Send[CLDeviceOrientation](l_.ID, objc.Sel("headingOrientation"))
+func (l_ LocationManager) HeadingOrientation() DeviceOrientation {
+	rv := objc.Send[DeviceOrientation](l_.ID, objc.Sel("headingOrientation"))
 	return rv
 }
 
@@ -513,7 +515,7 @@ func (l_ LocationManager) HeadingOrientation() CLDeviceOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/headingOrientation
-func (l_ LocationManager) SetHeadingOrientation(value CLDeviceOrientation) {
+func (l_ LocationManager) SetHeadingOrientation(value DeviceOrientation) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingOrientation:"), value)
 }
 
@@ -522,7 +524,7 @@ func (l_ LocationManager) SetHeadingOrientation(value CLDeviceOrientation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/isAuthorizedForWidgetUpdates
-func (l_ LocationManager) AuthorizedForWidgetUpdates() bool {
+func (l_ LocationManager) AuthorizedForWidgetUpdates() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("authorizedForWidgetUpdates"))
 	return rv
 }
@@ -542,8 +544,8 @@ func (l_ LocationManager) Location() ICLLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/maximumRegionMonitoringDistance
-func (l_ LocationManager) MaximumRegionMonitoringDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maximumRegionMonitoringDistance"))
+func (l_ LocationManager) MaximumRegionMonitoringDistance() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](l_.ID, objc.Sel("maximumRegionMonitoringDistance"))
 	return rv
 }
 
@@ -562,7 +564,7 @@ func (l_ LocationManager) MonitoredRegions() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically
-func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
+func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("pausesLocationUpdatesAutomatically"))
 	return rv
 }
@@ -572,7 +574,7 @@ func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically
-func (l_ LocationManager) SetPausesLocationUpdatesAutomatically(value bool) {
+func (l_ LocationManager) SetPausesLocationUpdatesAutomatically(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPausesLocationUpdatesAutomatically:"), value)
 }
 
@@ -591,7 +593,7 @@ func (l_ LocationManager) RangedBeaconConstraints() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator
-func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
+func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("showsBackgroundLocationIndicator"))
 	return rv
 }
@@ -601,7 +603,7 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator
-func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
+func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShowsBackgroundLocationIndicator:"), value)
 }
 
@@ -610,8 +612,8 @@ func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationdistancemax
-func (l_ LocationManager) CLLocationDistanceMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("CLLocationDistanceMax"))
+func (l_ LocationManager) CLLocationDistanceMax() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](l_.ID, objc.Sel("CLLocationDistanceMax"))
 	return rv
 }
 
@@ -620,7 +622,7 @@ func (l_ LocationManager) CLLocationDistanceMax() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
-func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
+func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isAuthorizedForWidgetUpdates"))
 	return rv
 }
@@ -630,7 +632,7 @@ func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/cllocationmanager/isauthorizedforwidgetupdates
-func (l_ LocationManager) SetIsAuthorizedForWidgetUpdates(value bool) {
+func (l_ LocationManager) SetIsAuthorizedForWidgetUpdates(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthorizedForWidgetUpdates:"), value)
 }
 
@@ -649,8 +651,8 @@ func (l_ LocationManager) CLTimeIntervalMax() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/kcldistancefilternone
-func (l_ LocationManager) KCLDistanceFilterNone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLDistanceFilterNone"))
+func (l_ LocationManager) KCLDistanceFilterNone() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](l_.ID, objc.Sel("kCLDistanceFilterNone"))
 	return rv
 }
 
@@ -659,8 +661,8 @@ func (l_ LocationManager) KCLDistanceFilterNone() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/kclheadingfilternone
-func (l_ LocationManager) KCLHeadingFilterNone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("kCLHeadingFilterNone"))
+func (l_ LocationManager) KCLHeadingFilterNone() LocationDegrees /* not a class type */ {
+	rv := objc.Send[LocationDegrees](l_.ID, objc.Sel("kCLHeadingFilterNone"))
 	return rv
 }
 

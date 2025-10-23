@@ -31,10 +31,10 @@ type _EPSImageRepClass struct {
 // An interface definition for the [EPSImageRep] class.
 type IEPSImageRep interface {
 	IImageRep
+	// properties:
 	BoundingBox() coregraphics.CGRect
-	SetBoundingBox(value coregraphics.CGRect)
-	EpsRepresentation() foundation.Data
-	SetEpsRepresentation(value foundation.Data)
+	EPSRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // An object that can render an image from encapsulated PostScript (EPS) code.
@@ -90,11 +90,24 @@ func NewEPSImageRep() EPSImageRep {
 
 
 
+// Returns a representation of an image initialized with the specified EPS data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/init(data:)
+func NewEPSImageRepWithData(epsData foundation.objc.IObject /* cross-framework NSData */) EPSImageRep {
+	instance := getEPSImageRepClass().Alloc()
+	rv := objc.Send[EPSImageRep](instance.ID, objc.Sel("initWithData:"), epsData)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Creates and returns a representation of an image initialized with the specified EPS data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/imageRepWithData:
-func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.NSData) unsafe.Pointer {
+func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.objc.IObject /* cross-framework NSData */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("imageRepWithData:"), epsData)
 	return rv
 }
@@ -103,39 +116,20 @@ func (ec _EPSImageRepClass) ImageRepWithData(epsData foundation.NSData) unsafe.P
 // The rectangle that bounds the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/boundingBox
 func (e_ EPSImageRep) BoundingBox() coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](e_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
 
-// The rectangle that bounds the image representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/boundingbox
-func (e_ EPSImageRep) SetBoundingBox(value coregraphics.CGRect) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setBoundingBox:"), value)
-}
-
-
 // The EPS representation of the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-func (e_ EPSImageRep) EpsRepresentation() foundation.Data {
-	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("epsRepresentation"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEPSImageRep/epsRepresentation
+func (e_ EPSImageRep) EPSRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("EPSRepresentation"))
 	return rv
 }
-
-
-// The EPS representation of the image representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsepsimagerep/epsrepresentation
-func (e_ EPSImageRep) SetEpsRepresentation(value foundation.Data) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setEpsRepresentation:"), value)
-}
-
 
 

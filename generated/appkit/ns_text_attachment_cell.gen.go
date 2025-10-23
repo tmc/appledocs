@@ -29,6 +29,8 @@ type _TextAttachmentCellClass struct {
 // An interface definition for the [TextAttachmentCell] class.
 type ITextAttachmentCell interface {
 	ICell
+	// properties:
+	// methods:
 }
 
 // An object that implements the functionality of the text attachment cell protocol.

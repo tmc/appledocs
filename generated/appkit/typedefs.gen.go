@@ -3,16 +3,46 @@
 package appkit
 
 // Type aliases and typedefs
+// AccessibilityActionName - Constants that describe types of actions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Action
+// NSAccessibilityActionName is a string typedef
+type AccessibilityActionName = string
 // AccessibilityAnnotationAttributeKey - Keys for annotation attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey
 // NSAccessibilityAnnotationAttributeKey is a string typedef
 type AccessibilityAnnotationAttributeKey = string
+// AccessibilityAttributeName - Constants that describe attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Attribute
+// NSAccessibilityAttributeName is a string typedef
+type AccessibilityAttributeName = string
+// AccessibilityFontAttributeKey - Keys for font attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey
+// NSAccessibilityFontAttributeKey is a string typedef
+type AccessibilityFontAttributeKey = string
 // AccessibilityNotificationName - The name of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Notification
 // NSAccessibilityNotificationName is a string typedef
 type AccessibilityNotificationName = string
+// AccessibilityOrientationValue - Values that indicate the orientation of user interface elements, such as scroll bars and split views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue
+// NSAccessibilityOrientationValue is a string typedef
+type AccessibilityOrientationValue = string
+// AccessibilityParameterizedAttributeName - Values that describe parameterized attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute
+// NSAccessibilityParameterizedAttributeName is a string typedef
+type AccessibilityParameterizedAttributeName = string
+// AccessibilityRulerMarkerTypeValue - Values that describe ruler marker types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue
+// NSAccessibilityRulerMarkerTypeValue is a string typedef
+type AccessibilityRulerMarkerTypeValue = string
 // AccessibilityRulerUnitValue - Values that indicate the unit values of a ruler or layout area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue
@@ -23,6 +53,16 @@ type AccessibilityRulerUnitValue = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue
 // NSAccessibilitySortDirectionValue is a string typedef
 type AccessibilitySortDirectionValue = string
+// AccessibilityLoadingToken - A token type for loading accessibility elements.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityLoadingToken
+// NSAccessibilityLoadingToken has base type: id<NSObject,NSSecureCoding>
+type AccessibilityLoadingToken uintptr
+// AnimatablePropertyKey type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimatablePropertyKey
+// NSAnimatablePropertyKey is a string typedef
+type AnimatablePropertyKey = string
 // AnimationProgress - The animation progress, as a floating-point number between   and  .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/Progress
@@ -37,6 +77,11 @@ type AppKitVersion uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ModalResponse
 type ModalResponse int
+// ModalSession - Variables of type   point to information used by the system between  ’s   and   messages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ModalSession
+// NSModalSession has base type: struct _NSModalSession *
+type ModalSession uintptr
 // CellStateValue - Constants for specifying a cell’s state and are used mostly for buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/StateValue
@@ -52,6 +97,16 @@ type CollectionViewDecorationElementKind = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/SupplementaryElementKind
 // NSCollectionViewSupplementaryElementKind is a string typedef
 type CollectionViewSupplementaryElementKind = string
+// ColorName - The name of a color.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/Name
+// NSColorName is a string typedef
+type ColorName = string
+// ColorListName - The name assigned to a color list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/Name-swift.typealias
+// NSColorListName is a string typedef
+type ColorListName = string
 // ColorSpaceName - Constants that specify color space names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpaceName
@@ -62,11 +117,70 @@ type ColorSpaceName = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDeviceDescriptionKey
 // NSDeviceDescriptionKey is a string typedef
 type DeviceDescriptionKey = string
+// FontTextStyle - Constants that specify the preferred text styles you use with fonts.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/TextStyle
+// NSFontTextStyle is a string typedef
+type FontTextStyle = string
+// FontTextStyleOptionKey - The options that you apply when requesting the font or font descriptor of a preferred text style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/TextStyleOptionKey
+// NSFontTextStyleOptionKey is a string typedef
+type FontTextStyleOptionKey = string
 // FontWidth type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFont/Width
 // NSFontWidth has base type: CGFloat
 type FontWidth uintptr
+// FontDescriptorAttributeName - Constants for the names of font attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/AttributeName
+// NSFontDescriptorAttributeName is a string typedef
+type FontDescriptorAttributeName = string
+// FontDescriptorFeatureKey - Constants to use as keys to retrieve information about a font descriptor from its feature dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/FeatureKey
+// NSFontDescriptorFeatureKey is a string typedef
+type FontDescriptorFeatureKey = string
+// FontDescriptorSystemDesign - Constants for font designs, such as monospace, rounded, and serif.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/SystemDesign
+// NSFontDescriptorSystemDesign is a string typedef
+type FontDescriptorSystemDesign = string
+// FontDescriptorTraitKey - Constants that can be used as keys to retrieve information about a font descriptor from its trait dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/TraitKey
+// NSFontDescriptorTraitKey is a string typedef
+type FontDescriptorTraitKey = string
+// FontDescriptorVariationKey - Constants that can be used as keys to retrieve information about a font descriptor from its variation axis dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/VariationKey
+// NSFontDescriptorVariationKey is a string typedef
+type FontDescriptorVariationKey = string
+// FontFamilyClass - Constants that classify certain stylistic qualities of the font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontFamilyClass
+// NSFontFamilyClass has base type: uint32_t
+type FontFamilyClass uintptr
+// FontSymbolicTraits - A symbolic description of stylistic aspects of a font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontSymbolicTraits
+// NSFontSymbolicTraits has base type: uint32_t
+type FontSymbolicTraits uintptr
+// Glyph - The type used to specify glyphs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyph
+type Glyph uint32
+// GraphicsContextAttributeKey - Constants that specify the dictionary keys for the attributes of the graphics context.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/AttributeKey
+// NSGraphicsContextAttributeKey is a string typedef
+type GraphicsContextAttributeKey = string
+// GraphicsContextRepresentationFormatName - Constants that specify values for the representation format name key in a graphic context’s attributes dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGraphicsContext/RepresentationFormatName
+// NSGraphicsContextRepresentationFormatName is a string typedef
+type GraphicsContextRepresentationFormatName = string
 // HelpAnchorName type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/AnchorName
@@ -107,11 +221,31 @@ type NibName = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormatAttribute
 // NSOpenGLPixelFormatAttribute has base type: uint32_t
 type OpenGLPixelFormatAttribute uintptr
+// PasteboardName - Constants that represent the standard pasteboard names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/Name-swift.struct
+// NSPasteboardName is a string typedef
+type PasteboardName = string
 // PasteboardType - The supported pasteboard types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType
 // NSPasteboardType is a string typedef
 type PasteboardType = string
+// PasteboardTypeFindPanelSearchOptionKey - Search options for the find panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/FindPanelSearchOptionKey
+// NSPasteboardTypeFindPanelSearchOptionKey is a string typedef
+type PasteboardTypeFindPanelSearchOptionKey = string
+// PasteboardTypeTextFinderOptionKey - Search options for text in Finder.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/TextFinderOptionKey
+// NSPasteboardTypeTextFinderOptionKey is a string typedef
+type PasteboardTypeTextFinderOptionKey = string
+// PasteboardReadingOptionKey - Options for reading pasteboard data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptionKey
+// NSPasteboardReadingOptionKey is a string typedef
+type PasteboardReadingOptionKey = string
 // PrintInfoAttributeKey - Constants that specify print job attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/AttributeKey
@@ -142,6 +276,16 @@ type PrinterPaperName = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/UnitName
 // NSRulerViewUnitName is a string typedef
 type RulerViewUnitName = string
+// SearchFieldRecentsAutosaveName - The string that stores the name under which a search field automatically archives a list of recent search strings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/RecentsAutosaveName-swift.typealias
+// NSSearchFieldRecentsAutosaveName is a string typedef
+type SearchFieldRecentsAutosaveName = string
+// TextCheckingOptionKey - Constants that define options for text checking.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellChecker/OptionKey
+// NSTextCheckingOptionKey is a string typedef
+type TextCheckingOptionKey = string
 // SplitViewAutosaveName - The type that specifies the split view’s autosave name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/AutosaveName-swift.typealias
@@ -162,6 +306,20 @@ type TextContentType = string
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/Identifier-swift.typealias
 // NSToolbarIdentifier is a string typedef
 type ToolbarIdentifier = string
+// ToolbarItemIdentifier - Constants for the standard toolbar items that the system provides.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/Identifier
+// NSToolbarItemIdentifier is a string typedef
+type ToolbarItemIdentifier = string
+// ToolbarItemVisibilityPriority - Constants that indicate which toolbar items to keep in the toolbar when space is limited.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/VisibilityPriority-swift.struct
+type ToolbarItemVisibilityPriority int
+// ToolbarUserInfoKey - Constants for specifying toolbar-related information in notifications.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarUserInfoKey
+// NSToolbarUserInfoKey is a string typedef
+type ToolbarUserInfoKey = string
 // TouchBarCustomizationIdentifier - The default type for a Touch Bar customization identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/CustomizationIdentifier-swift.typealias

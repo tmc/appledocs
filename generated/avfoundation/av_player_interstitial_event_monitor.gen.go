@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,8 +40,8 @@ type IPlayerInterstitialEventMonitor interface {
 	SetTemplateItems(value IAVPlayerItem)
 	CurrentEvent() IAVPlayerInterstitialEvent
 	SetCurrentEvent(value IAVPlayerInterstitialEvent)
-	CurrentEventSkipControlLabel() string /* primitive/slice/pointer */
-	SetCurrentEventSkipControlLabel(value string /* primitive/slice/pointer */)
+	CurrentEventSkipControlLabel() objc.IObject /* cross-framework: NSString */
+	SetCurrentEventSkipControlLabel(value objc.IObject /* cross-framework: NSString */)
 	CurrentEventSkippableState() unsafe.Pointer
 	SetCurrentEventSkippableState(value unsafe.Pointer)
 	Events() IAVPlayerInterstitialEvent
@@ -185,8 +186,8 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerIntersti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
+func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
 }
 
@@ -195,8 +196,8 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
+func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), value)
 }
 
 

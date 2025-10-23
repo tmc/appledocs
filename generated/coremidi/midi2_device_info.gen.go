@@ -30,10 +30,12 @@ type _MIDI2DeviceInfoClass struct {
 // An interface definition for the [MIDI2DeviceInfo] class.
 type IMIDI2DeviceInfo interface {
 	objectivec.IObject
-	Family() MIDIUInteger14
+	// properties:
+	Family() MIDIUInteger14 /* typedef */
 	ManufacturerID() unsafe.Pointer
-	ModelNumber() MIDIUInteger14
+	ModelNumber() MIDIUInteger14 /* typedef */
 	RevisionLevel() unsafe.Pointer
+	// methods:
 }
 
 
@@ -84,7 +86,7 @@ func NewMIDI2DeviceInfo() MIDI2DeviceInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/init(manufacturerID:family:modelNumber:revisionLevel:)
-func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family MIDIUInteger14, modelNumber MIDIUInteger14, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
+func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family MIDIUInteger14 /* typedef */, modelNumber MIDIUInteger14 /* typedef */, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
 	instance := getMIDI2DeviceInfoClass().Alloc()
 	rv := objc.Send[MIDI2DeviceInfo](instance.ID, objc.Sel("initWithManufacturerID:family:modelNumber:revisionLevel:"), manufacturerID, family, modelNumber, revisionLevel)
 	rv.Autorelease()
@@ -95,7 +97,7 @@ func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufact
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/family
-func (m_ MIDI2DeviceInfo) Family() MIDIUInteger14 {
+func (m_ MIDI2DeviceInfo) Family() MIDIUInteger14 /* typedef */ {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("family"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (m_ MIDI2DeviceInfo) ManufacturerID() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/modelNumber
-func (m_ MIDI2DeviceInfo) ModelNumber() MIDIUInteger14 {
+func (m_ MIDI2DeviceInfo) ModelNumber() MIDIUInteger14 /* typedef */ {
 	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("modelNumber"))
 	return rv
 }

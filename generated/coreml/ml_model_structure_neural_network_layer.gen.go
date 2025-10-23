@@ -30,10 +30,12 @@ type _ModelStructureNeuralNetworkLayerClass struct {
 // An interface definition for the [ModelStructureNeuralNetworkLayer] class.
 type IModelStructureNeuralNetworkLayer interface {
 	objectivec.IObject
-	InputNames() []string
-	Name() string
-	OutputNames() []string
-	Type() string
+	// properties:
+	InputNames() []string /* primitive/slice/pointer. */
+	Name() string /* primitive/slice/pointer. */
+	OutputNames() []string /* primitive/slice/pointer. */
+	Type() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class representing a layer in a NeuralNetwork.
@@ -91,7 +93,7 @@ func NewModelStructureNeuralNetworkLayer() ModelStructureNeuralNetworkLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/inputNames
-func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
+func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("inputNames"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/name
-func (m_ ModelStructureNeuralNetworkLayer) Name() string {
+func (m_ ModelStructureNeuralNetworkLayer) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (m_ ModelStructureNeuralNetworkLayer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/outputNames
-func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
+func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("outputNames"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/type
-func (m_ ModelStructureNeuralNetworkLayer) Type() string {
+func (m_ ModelStructureNeuralNetworkLayer) Type() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("type"))
 	return rv
 }

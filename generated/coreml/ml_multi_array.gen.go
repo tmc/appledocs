@@ -31,26 +31,28 @@ type _MultiArrayClass struct {
 // An interface definition for the [MultiArray] class.
 type IMultiArray interface {
 	objectivec.IObject
-	Count() int
+	// properties:
+	Count() int /* primitive/slice/pointer. */
 	DataPointer() unsafe.Pointer
-	DataType() MLMultiArrayDataType
-	PixelBuffer() unsafe.Pointer
-	Shape() []foundation.Number
-	Strides() []foundation.Number
-	MultiArrayConstraint() MultiArrayConstraint
-	SetMultiArrayConstraint(value MultiArrayConstraint)
+	DataType() MultiArrayDataType
+	PixelBuffer() PixelBufferRef /* not a class type */
+	Shape() []foundation.objc.IObject /* cross-framework: Number */
+	Strides() []foundation.objc.IObject /* cross-framework: Number */
+	MultiArrayConstraint() objc.IObject /* cross-framework: MultiArrayConstraint */
+	SetMultiArrayConstraint(value objc.IObject /* cross-framework: MultiArrayConstraint */)
 	ModelDescription() IMLModelDescription
 	SetModelDescription(value IMLModelDescription)
 	InputDescriptionsByName() IMLFeatureDescription
 	SetInputDescriptionsByName(value IMLFeatureDescription)
 	OutputDescriptionsByName() IMLFeatureDescription
 	SetOutputDescriptionsByName(value IMLFeatureDescription)
-	ShapeConstraint() MultiArrayShapeConstraint
-	SetShapeConstraint(value MultiArrayShapeConstraint)
-	GetBytesWithHandler(handler unsafe.Pointer)
+	ShapeConstraint() objc.IObject /* cross-framework: MultiArrayShapeConstraint */
+	SetShapeConstraint(value objc.IObject /* cross-framework: MultiArrayShapeConstraint */)
+	// methods:
+	GetBytesWithHandler(handler int /* primitive/slice/pointer. */)
 	GetMutableBytesWithHandler(handler unsafe.Pointer)
-	SetObjectAtIndexedSubscript(obj foundation.Number, idx int)
-	SetObjectForKeyedSubscript(obj foundation.Number, key []foundation.Number)
+	SetObjectAtIndexedSubscript(obj foundation.objc.IObject /* cross-framework Number */, idx int /* primitive/slice/pointer. */)
+	SetObjectForKeyedSubscript(obj foundation.objc.IObject /* cross-framework Number */, key []foundation.objc.IObject /* cross-framework Number */)
 	TransferToMultiArray(destinationMultiArray IMLMultiArray)
 }
 
@@ -111,7 +113,7 @@ func NewMultiArray() MultiArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray, axis int, dataType MLMultiArrayDataType) MultiArray {
+func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray /* primitive/slice/pointer. */, axis int /* primitive/slice/pointer. */, dataType MultiArrayDataType) MultiArray {
 	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
@@ -121,7 +123,7 @@ func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []Mult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
-func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape []foundation.Number, dataType MLMultiArrayDataType, strides []foundation.Number, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
+func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape []foundation.objc.IObject /* cross-framework Number */, dataType MultiArrayDataType, strides []foundation.objc.IObject /* cross-framework Number */, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error_)
 	rv.Autorelease()
@@ -133,7 +135,7 @@ func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(pixelBuffer:shape:)
-func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape []foundation.Number) MultiArray {
+func NewMultiArrayWithPixelBufferShape(pixelBuffer PixelBufferRef /* not a class type */, shape []foundation.objc.IObject /* cross-framework Number */) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithPixelBuffer:shape:"), pixelBuffer, shape)
 	rv.Autorelease()
@@ -145,7 +147,7 @@ func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape []found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(shape:dataType:)
-func NewMultiArrayWithShapeDataTypeError(shape []foundation.Number, dataType MLMultiArrayDataType, error_ unsafe.Pointer) MultiArray {
+func NewMultiArrayWithShapeDataTypeError(shape []foundation.objc.IObject /* cross-framework Number */, dataType MultiArrayDataType, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:error:"), shape, dataType, error_)
 	rv.Autorelease()
@@ -157,7 +159,7 @@ func NewMultiArrayWithShapeDataTypeError(shape []foundation.Number, dataType MLM
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/initWithShape:dataType:strides:
-func NewMultiArrayWithShapeDataTypeStrides(shape []foundation.Number, dataType MLMultiArrayDataType, strides []foundation.Number) MultiArray {
+func NewMultiArrayWithShapeDataTypeStrides(shape []foundation.objc.IObject /* cross-framework Number */, dataType MultiArrayDataType, strides []foundation.objc.IObject /* cross-framework Number */) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:strides:"), shape, dataType, strides)
 	rv.Autorelease()
@@ -170,7 +172,7 @@ func NewMultiArrayWithShapeDataTypeStrides(shape []foundation.Number, dataType M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func (mc _MultiArrayClass) MultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray, axis int, dataType MLMultiArrayDataType) unsafe.Pointer {
+func (mc _MultiArrayClass) MultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray /* primitive/slice/pointer. */, axis int /* primitive/slice/pointer. */, dataType MultiArrayDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
@@ -180,7 +182,7 @@ func (mc _MultiArrayClass) MultiArrayByConcatenatingMultiArraysAlongAxisDataType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/getBytesWithHandler:
-func (m_ MultiArray) GetBytesWithHandler(handler unsafe.Pointer) {
+func (m_ MultiArray) GetBytesWithHandler(handler int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getBytesWithHandler:"), handler)
 }
 
@@ -198,7 +200,7 @@ func (m_ MultiArray) GetMutableBytesWithHandler(handler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/setObject:atIndexedSubscript:
-func (m_ MultiArray) SetObjectAtIndexedSubscript(obj foundation.Number, idx int) {
+func (m_ MultiArray) SetObjectAtIndexedSubscript(obj foundation.objc.IObject /* cross-framework Number */, idx int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
 }
 
@@ -207,7 +209,7 @@ func (m_ MultiArray) SetObjectAtIndexedSubscript(obj foundation.Number, idx int)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/setObject:forKeyedSubscript:
-func (m_ MultiArray) SetObjectForKeyedSubscript(obj foundation.Number, key []foundation.Number) {
+func (m_ MultiArray) SetObjectForKeyedSubscript(obj foundation.objc.IObject /* cross-framework Number */, key []foundation.objc.IObject /* cross-framework Number */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
 
@@ -225,7 +227,7 @@ func (m_ MultiArray) TransferToMultiArray(destinationMultiArray IMLMultiArray) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/count
-func (m_ MultiArray) Count() int {
+func (m_ MultiArray) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("count"))
 	return rv
 }
@@ -245,8 +247,8 @@ func (m_ MultiArray) DataPointer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/dataType
-func (m_ MultiArray) DataType() MLMultiArrayDataType {
-	rv := objc.Send[MLMultiArrayDataType](m_.ID, objc.Sel("dataType"))
+func (m_ MultiArray) DataType() MultiArrayDataType {
+	rv := objc.Send[MultiArrayDataType](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -255,8 +257,8 @@ func (m_ MultiArray) DataType() MLMultiArrayDataType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/pixelBuffer
-func (m_ MultiArray) PixelBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pixelBuffer"))
+func (m_ MultiArray) PixelBuffer() PixelBufferRef /* not a class type */ {
+	rv := objc.Send[PixelBufferRef](m_.ID, objc.Sel("pixelBuffer"))
 	return rv
 }
 
@@ -265,7 +267,7 @@ func (m_ MultiArray) PixelBuffer() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/shape
-func (m_ MultiArray) Shape() []foundation.Number {
+func (m_ MultiArray) Shape() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("shape"))
 	return rv
 }
@@ -275,7 +277,7 @@ func (m_ MultiArray) Shape() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/strides
-func (m_ MultiArray) Strides() []foundation.Number {
+func (m_ MultiArray) Strides() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](m_.ID, objc.Sel("strides"))
 	return rv
 }
@@ -285,7 +287,7 @@ func (m_ MultiArray) Strides() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) MultiArrayConstraint() MultiArrayConstraint {
+func (m_ MultiArray) MultiArrayConstraint() objc.IObject /* cross-framework: MultiArrayConstraint */ {
 	rv := objc.Send[MultiArrayConstraint](m_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
 }
@@ -295,7 +297,7 @@ func (m_ MultiArray) MultiArrayConstraint() MultiArrayConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) SetMultiArrayConstraint(value MultiArrayConstraint) {
+func (m_ MultiArray) SetMultiArrayConstraint(value objc.IObject /* cross-framework: MultiArrayConstraint */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
 
@@ -361,7 +363,7 @@ func (m_ MultiArray) SetOutputDescriptionsByName(value IMLFeatureDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) ShapeConstraint() MultiArrayShapeConstraint {
+func (m_ MultiArray) ShapeConstraint() objc.IObject /* cross-framework: MultiArrayShapeConstraint */ {
 	rv := objc.Send[MultiArrayShapeConstraint](m_.ID, objc.Sel("shapeConstraint"))
 	return rv
 }
@@ -371,7 +373,7 @@ func (m_ MultiArray) ShapeConstraint() MultiArrayShapeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) SetShapeConstraint(value MultiArrayShapeConstraint) {
+func (m_ MultiArray) SetShapeConstraint(value objc.IObject /* cross-framework: MultiArrayShapeConstraint */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
 }
 

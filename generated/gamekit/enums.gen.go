@@ -9,6 +9,10 @@ package gamekit
 type GKErrorCode uint
 
 const (
+	// GKErrorChallengeInvalid - The challenge request failed due to invalid challenge data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKError/Code/challengeInvalid
+	GKErrorChallengeInvalid GKErrorCode = 0
 	// GKErrorNotAuthenticated - The system can’t complete the requested operation because the system hasn’t authorized the player.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKError/Code/notAuthenticated
@@ -36,6 +40,22 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKFriendsAuthorizationStatus
 type GKFriendsAuthorizationStatus uint
 
+// GKLeaderboardTimeScope - Specifies the time period for filtering data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum
+type GKLeaderboardTimeScope uint
+
+const (
+	// GKLeaderboardTimeScopeAllTime - Loads a player’s best score.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum/allTime
+	GKLeaderboardTimeScopeAllTime GKLeaderboardTimeScope = 0
+	// GKLeaderboardTimeScopeToday - Loads data for the past 24 hours.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/TimeScope-swift.enum/today
+	GKLeaderboardTimeScopeToday GKLeaderboardTimeScope = 0
+)
+
 // GKTurnBasedExchangeStatus - The status of an exchange or reply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeStatus
@@ -46,6 +66,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeStatus/complete
 	GKTurnBasedExchangeStatusComplete GKTurnBasedExchangeStatus = 0
+	// GKTurnBasedExchangeStatusResolved - The current participant saved the exchange request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeStatus/resolved
+	GKTurnBasedExchangeStatusResolved GKTurnBasedExchangeStatus = 0
+	// GKTurnBasedExchangeStatusUnknown - The state of the exchange request is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeStatus/unknown
+	GKTurnBasedExchangeStatusUnknown GKTurnBasedExchangeStatus = 0
 )
 
 

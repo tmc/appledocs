@@ -30,6 +30,8 @@ type _CellularPlanStatusClass struct {
 // An interface definition for the [CellularPlanStatus] class.
 type ICellularPlanStatus interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object used for retrieving and checking the validity of a token.
@@ -83,6 +85,15 @@ func NewCellularPlanStatus() CellularPlanStatus {
 	return getCellularPlanStatusClass().New()
 }
 
+
+
+// A method you use to retrieve and store the token.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanStatus/getTokenWithCompletion(_:)
+func (cc _CellularPlanStatusClass) GetTokenWithCompletion(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("getTokenWithCompletion:"), completionHandler)
+}
 
 
 

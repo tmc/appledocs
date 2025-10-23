@@ -30,6 +30,8 @@ type _eccVersionClass struct {
 // An interface definition for the [eccVersion] class.
 type IeccVersion interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

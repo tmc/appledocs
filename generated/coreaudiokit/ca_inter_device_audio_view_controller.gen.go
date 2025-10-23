@@ -29,6 +29,8 @@ type _InterDeviceAudioViewControllerClass struct {
 // An interface definition for the [InterDeviceAudioViewController] class.
 type IInterDeviceAudioViewController interface {
 	IViewController
+	// properties:
+	// methods:
 }
 
 // A view controller object that displays iOS devices that support inter-device audio.

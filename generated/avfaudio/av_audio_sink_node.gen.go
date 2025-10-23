@@ -29,6 +29,8 @@ type _AudioSinkNodeClass struct {
 // An interface definition for the [AudioSinkNode] class.
 type IAudioSinkNode interface {
 	IAudioNode
+	// properties:
+	// methods:
 }
 
 // An object that receives audio data.

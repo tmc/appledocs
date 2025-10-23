@@ -31,10 +31,10 @@ type _GLKSkyboxEffectClass struct {
 type IGLKSkyboxEffect interface {
 	objectivec.IObject
 	// properties:
-	Center() GLKVector3
-	SetCenter(value GLKVector3)
-	Label() string
-	SetLabel(value string)
+	Center() GLKVector3 /* typedef */
+	SetCenter(value GLKVector3 /* typedef */)
+	Label() string /* primitive/slice/pointer. */
+	SetLabel(value string /* primitive/slice/pointer. */)
 	TextureCubeMap() IGLKEffectPropertyTexture
 	Transform() IGLKEffectPropertyTransform
 	XSize() unsafe.Pointer
@@ -103,7 +103,7 @@ func NewGLKSkyboxEffect() GLKSkyboxEffect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-func (g_ GLKSkyboxEffect) Center() GLKVector3 {
+func (g_ GLKSkyboxEffect) Center() GLKVector3 /* typedef */ {
 	rv := objc.Send[GLKVector3](g_.ID, objc.Sel("center"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (g_ GLKSkyboxEffect) Center() GLKVector3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3) {
+func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
 }
 
@@ -122,7 +122,7 @@ func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) Label() string {
+func (g_ GLKSkyboxEffect) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](g_.ID, objc.Sel("label"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (g_ GLKSkyboxEffect) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) SetLabel(value string) {
+func (g_ GLKSkyboxEffect) SetLabel(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 

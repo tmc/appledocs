@@ -30,9 +30,11 @@ type _CoreDataCoreSpotlightDelegateClass struct {
 // An interface definition for the [CoreDataCoreSpotlightDelegate] class.
 type ICoreDataCoreSpotlightDelegate interface {
 	objectivec.IObject
-	IsIndexingEnabled() bool
-	SetIsIndexingEnabled(value bool)
-	NSCoreDataCoreSpotlightExporter() string
+	// properties:
+	IsIndexingEnabled() bool /* primitive/slice/pointer. */
+	SetIsIndexingEnabled(value bool /* primitive/slice/pointer. */)
+	NSCoreDataCoreSpotlightExporter() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A set of methods that enable integration with Core Spotlight.
@@ -90,7 +92,7 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
-func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
+func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isIndexingEnabled"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate/isindexingenabled
-func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
+func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIndexingEnabled:"), value)
 }
 
@@ -109,7 +111,7 @@ func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter
-func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string {
+func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }

@@ -34,7 +34,7 @@ type IDomainState interface {
 	// properties:
 	Biometry() ILADomainStateBiometry
 	Companion() ILADomainStateCompanion
-	StateHash() foundation.NSData
+	StateHash() foundation.objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -108,7 +108,7 @@ func (d_ DomainState) Companion() ILADomainStateCompanion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainState/stateHash
-func (d_ DomainState) StateHash() foundation.NSData {
+func (d_ DomainState) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INLodgingReservation] class.
@@ -31,14 +30,14 @@ type _INLodgingReservationClass struct {
 type IINLodgingReservation interface {
 	IINReservation
 	// properties:
-	LodgingBusinessLocation() corelocation.Placemark
-	SetLodgingBusinessLocation(value corelocation.Placemark)
-	NumberOfAdults() int
-	SetNumberOfAdults(value int)
-	NumberOfChildren() int
-	SetNumberOfChildren(value int)
-	ReservationDuration() INDateComponentsRange
-	SetReservationDuration(value INDateComponentsRange)
+	LodgingBusinessLocation() objc.IObject /* cross-framework: Placemark */
+	SetLodgingBusinessLocation(value objc.IObject /* cross-framework: Placemark */)
+	NumberOfAdults() int /* primitive/slice/pointer. */
+	SetNumberOfAdults(value int /* primitive/slice/pointer. */)
+	NumberOfChildren() int /* primitive/slice/pointer. */
+	SetNumberOfChildren(value int /* primitive/slice/pointer. */)
+	ReservationDuration() INDateComponentsRange /* already interface */
+	SetReservationDuration(value INDateComponentsRange /* already interface */)
 	// methods:
 }
 
@@ -99,8 +98,8 @@ func NewINLodgingReservation() INLodgingReservation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
-func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark {
-	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("lodgingBusinessLocation"))
+func (i_ INLodgingReservation) LodgingBusinessLocation() objc.IObject /* cross-framework: Placemark */ {
+	rv := objc.Send[Placemark](i_.ID, objc.Sel("lodgingBusinessLocation"))
 	return rv
 }
 
@@ -109,7 +108,7 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
-func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.Placemark) {
+func (i_ INLodgingReservation) SetLodgingBusinessLocation(value objc.IObject /* cross-framework: Placemark */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
 
@@ -118,7 +117,7 @@ func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.Pla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
-func (i_ INLodgingReservation) NumberOfAdults() int {
+func (i_ INLodgingReservation) NumberOfAdults() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("numberOfAdults"))
 	return rv
 }
@@ -128,7 +127,7 @@ func (i_ INLodgingReservation) NumberOfAdults() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofadults-6fsnq
-func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
+func (i_ INLodgingReservation) SetNumberOfAdults(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
 }
 
@@ -137,7 +136,7 @@ func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
-func (i_ INLodgingReservation) NumberOfChildren() int {
+func (i_ INLodgingReservation) NumberOfChildren() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("numberOfChildren"))
 	return rv
 }
@@ -147,7 +146,7 @@ func (i_ INLodgingReservation) NumberOfChildren() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/numberofchildren-1dm3g
-func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
+func (i_ INLodgingReservation) SetNumberOfChildren(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfChildren:"), value)
 }
 
@@ -156,7 +155,7 @@ func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
-func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
+func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange /* already interface */ {
 	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("reservationDuration"))
 	return rv
 }
@@ -166,7 +165,7 @@ func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
-func (i_ INLodgingReservation) SetReservationDuration(value INDateComponentsRange) {
+func (i_ INLodgingReservation) SetReservationDuration(value INDateComponentsRange /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
 

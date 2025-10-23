@@ -29,7 +29,9 @@ type _GridGraphNodeClass struct {
 // An interface definition for the [GridGraphNode] class.
 type IGridGraphNode interface {
 	IGraphNode
+	// properties:
 	GridPosition() unsafe.Pointer
+	// methods:
 }
 
 // A node in a navigation graph, associated with a position on a discrete two-dimensional grid.

@@ -31,15 +31,17 @@ type _MIDIPlayerClass struct {
 // An interface definition for the [MIDIPlayer] class.
 type IMIDIPlayer interface {
 	objectivec.IObject
-	CurrentPosition() foundation.TimeInterval
-	SetCurrentPosition(value foundation.TimeInterval)
-	Duration() foundation.TimeInterval
-	Playing() bool
-	Rate() float32
-	SetRate(value float32)
-	IsPlaying() bool
-	SetIsPlaying(value bool)
-	Play(completionHandler unsafe.Pointer)
+	// properties:
+	CurrentPosition() foundation.TimeInterval /* not a class type */
+	SetCurrentPosition(value foundation.TimeInterval /* not a class type */)
+	Duration() foundation.TimeInterval /* not a class type */
+	Playing() bool /* primitive/slice/pointer. */
+	Rate() float32 /* primitive/slice/pointer. */
+	SetRate(value float32 /* primitive/slice/pointer. */)
+	IsPlaying() bool /* primitive/slice/pointer. */
+	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	// methods:
+	Play(completionHandler MIDIPlayerCompletionHandler /* not a class type */)
 	PrepareToPlay()
 	Stop()
 }
@@ -101,7 +103,7 @@ func NewMIDIPlayer() MIDIPlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
-func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.objc.IObject /* cross-framework URL */, bankURL foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithContentsOfURL:soundBankURL:error:"), inURL, bankURL, outError)
 	rv.Autorelease()
@@ -113,7 +115,7 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankU
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(data:soundBankURL:)
-func NewMIDIPlayerWithDataSoundBankURLError(data foundation.NSData, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithDataSoundBankURLError(data foundation.objc.IObject /* cross-framework NSData */, bankURL foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithData:soundBankURL:error:"), data, bankURL, outError)
 	rv.Autorelease()
@@ -126,7 +128,7 @@ func NewMIDIPlayerWithDataSoundBankURLError(data foundation.NSData, bankURL foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/play(_:)
-func (m_ MIDIPlayer) Play(completionHandler unsafe.Pointer) {
+func (m_ MIDIPlayer) Play(completionHandler MIDIPlayerCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("play:"), completionHandler)
 }
 
@@ -153,7 +155,7 @@ func (m_ MIDIPlayer) Stop() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
+func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("currentPosition"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
+func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
 
@@ -172,7 +174,7 @@ func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/duration
-func (m_ MIDIPlayer) Duration() foundation.TimeInterval {
+func (m_ MIDIPlayer) Duration() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](m_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -182,7 +184,7 @@ func (m_ MIDIPlayer) Duration() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/isPlaying
-func (m_ MIDIPlayer) Playing() bool {
+func (m_ MIDIPlayer) Playing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("playing"))
 	return rv
 }
@@ -192,7 +194,7 @@ func (m_ MIDIPlayer) Playing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-func (m_ MIDIPlayer) Rate() float32 {
+func (m_ MIDIPlayer) Rate() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](m_.ID, objc.Sel("rate"))
 	return rv
 }
@@ -202,7 +204,7 @@ func (m_ MIDIPlayer) Rate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/rate
-func (m_ MIDIPlayer) SetRate(value float32) {
+func (m_ MIDIPlayer) SetRate(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -211,7 +213,7 @@ func (m_ MIDIPlayer) SetRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-func (m_ MIDIPlayer) IsPlaying() bool {
+func (m_ MIDIPlayer) IsPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -221,7 +223,7 @@ func (m_ MIDIPlayer) IsPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avmidiplayer/isplaying
-func (m_ MIDIPlayer) SetIsPlaying(value bool) {
+func (m_ MIDIPlayer) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPlaying:"), value)
 }
 

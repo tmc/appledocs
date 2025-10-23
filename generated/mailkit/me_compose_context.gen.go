@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,18 +31,18 @@ type _MEComposeContextClass struct {
 type IMEComposeContext interface {
 	objectivec.IObject
 	// properties:
-	ContextID() foundation.UUID
+	ContextID() objc.IObject /* cross-framework: UUID */
 	OriginalMessage() IMEMessage
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	IsEncrypted() bool
-	SetIsEncrypted(value bool)
-	IsSigned() bool
-	SetIsSigned(value bool)
-	ShouldEncrypt() bool
-	SetShouldEncrypt(value bool)
-	ShouldSign() bool
-	SetShouldSign(value bool)
+	IsEncrypted() bool /* primitive/slice/pointer. */
+	SetIsEncrypted(value bool /* primitive/slice/pointer. */)
+	IsSigned() bool /* primitive/slice/pointer. */
+	SetIsSigned(value bool /* primitive/slice/pointer. */)
+	ShouldEncrypt() bool /* primitive/slice/pointer. */
+	SetShouldEncrypt(value bool /* primitive/slice/pointer. */)
+	ShouldSign() bool /* primitive/slice/pointer. */
+	SetShouldSign(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -95,8 +94,8 @@ func NewMEComposeContext() MEComposeContext {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/contextID
-func (m_ MEComposeContext) ContextID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("contextID"))
+func (m_ MEComposeContext) ContextID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](m_.ID, objc.Sel("contextID"))
 	return rv
 }
 
@@ -126,7 +125,7 @@ func (m_ MEComposeContext) SetAction(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
-func (m_ MEComposeContext) IsEncrypted() bool {
+func (m_ MEComposeContext) IsEncrypted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEncrypted"))
 	return rv
 }
@@ -134,14 +133,14 @@ func (m_ MEComposeContext) IsEncrypted() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
-func (m_ MEComposeContext) SetIsEncrypted(value bool) {
+func (m_ MEComposeContext) SetIsEncrypted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEncrypted:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) IsSigned() bool {
+func (m_ MEComposeContext) IsSigned() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
 	return rv
 }
@@ -149,14 +148,14 @@ func (m_ MEComposeContext) IsSigned() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) SetIsSigned(value bool) {
+func (m_ MEComposeContext) SetIsSigned(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSigned:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
-func (m_ MEComposeContext) ShouldEncrypt() bool {
+func (m_ MEComposeContext) ShouldEncrypt() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldEncrypt"))
 	return rv
 }
@@ -164,14 +163,14 @@ func (m_ MEComposeContext) ShouldEncrypt() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
-func (m_ MEComposeContext) SetShouldEncrypt(value bool) {
+func (m_ MEComposeContext) SetShouldEncrypt(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldEncrypt:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
-func (m_ MEComposeContext) ShouldSign() bool {
+func (m_ MEComposeContext) ShouldSign() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldSign"))
 	return rv
 }
@@ -179,7 +178,7 @@ func (m_ MEComposeContext) ShouldSign() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
-func (m_ MEComposeContext) SetShouldSign(value bool) {
+func (m_ MEComposeContext) SetShouldSign(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldSign:"), value)
 }
 

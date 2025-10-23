@@ -29,7 +29,9 @@ type _CNChangeHistoryDeleteGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryDeleteGroupEvent] class.
 type ICNChangeHistoryDeleteGroupEvent interface {
 	ICNChangeHistoryEvent
-	GroupIdentifier() string
+	// properties:
+	GroupIdentifier() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a user deleting a group.
@@ -89,7 +91,7 @@ func NewCNChangeHistoryDeleteGroupEvent() CNChangeHistoryDeleteGroupEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteGroupEvent/groupIdentifier
-func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() string {
+func (c_ CNChangeHistoryDeleteGroupEvent) GroupIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }

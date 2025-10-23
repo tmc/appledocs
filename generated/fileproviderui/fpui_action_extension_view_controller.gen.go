@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FPUIActionExtensionViewController] class.
@@ -31,10 +30,11 @@ type _FPUIActionExtensionViewControllerClass struct {
 // An interface definition for the [FPUIActionExtensionViewController] class.
 type IFPUIActionExtensionViewController interface {
 	appkit.IViewController
+	// properties:
 	ExtensionContext() IFPUIActionExtensionContext
-	SetExtensionContext(value IFPUIActionExtensionContext)
-	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string)
-	PrepareForError(error_ foundation.Error)
+	// methods:
+	PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string /* primitive/slice/pointer. */, itemIdentifiers []string /* primitive/slice/pointer. */)
+	PrepareForError(error_ Error /* not a class type */)
 }
 
 // The custom user interface used to perform a selected action.
@@ -96,7 +96,7 @@ func NewFPUIActionExtensionViewController() FPUIActionExtensionViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)
-func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string, itemIdentifiers []string) {
+func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemIdentifiers(actionIdentifier string /* primitive/slice/pointer. */, itemIdentifiers []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForActionWithIdentifier:itemIdentifiers:"), objc.String(actionIdentifier), itemIdentifiers)
 }
 
@@ -105,7 +105,7 @@ func (f_ FPUIActionExtensionViewController) PrepareForActionWithIdentifierItemId
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forError:)
-func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.Error) {
+func (f_ FPUIActionExtensionViewController) PrepareForError(error_ Error /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("prepareForError:"), error_)
 }
 
@@ -113,19 +113,10 @@ func (f_ FPUIActionExtensionViewController) PrepareForError(error_ foundation.Er
 // The extension context provided by the host app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
+// [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionViewController/extensionContext
 func (f_ FPUIActionExtensionViewController) ExtensionContext() IFPUIActionExtensionContext {
 	rv := objc.Send[FPUIActionExtensionContext](f_.ID, objc.Sel("extensionContext"))
 	return rv
-}
-
-
-// The extension context provided by the host app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
-func (f_ FPUIActionExtensionViewController) SetExtensionContext(value IFPUIActionExtensionContext) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setExtensionContext:"), value)
 }
 
 

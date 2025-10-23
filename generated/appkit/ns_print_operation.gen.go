@@ -31,34 +31,36 @@ type _PrintOperationClass struct {
 // An interface definition for the [PrintOperation] class.
 type IPrintOperation interface {
 	objectivec.IObject
-	CanSpawnSeparateThread() bool
-	SetCanSpawnSeparateThread(value bool)
-	Context() IGraphicsContext
-	SetContext(value IGraphicsContext)
-	CurrentPage() int
-	SetCurrentPage(value int)
-	IsCopyingOperation() bool
-	SetIsCopyingOperation(value bool)
-	JobTitle() string
-	SetJobTitle(value string)
-	PageOrder() unsafe.Pointer
-	SetPageOrder(value unsafe.Pointer)
-	PageRange() foundation.Range
-	SetPageRange(value foundation.Range)
-	PdfPanel() PDFPanel
-	SetPdfPanel(value PDFPanel)
-	PreferredRenderingQuality() unsafe.Pointer
-	SetPreferredRenderingQuality(value unsafe.Pointer)
+	// properties:
 	PrintInfo() IPrintInfo
 	SetPrintInfo(value IPrintInfo)
+	CanSpawnSeparateThread() bool /* primitive/slice/pointer. */
+	SetCanSpawnSeparateThread(value bool /* primitive/slice/pointer. */)
+	Context() IGraphicsContext
+	SetContext(value IGraphicsContext)
+	CurrentPage() int /* primitive/slice/pointer. */
+	SetCurrentPage(value int /* primitive/slice/pointer. */)
+	IsCopyingOperation() bool /* primitive/slice/pointer. */
+	SetIsCopyingOperation(value bool /* primitive/slice/pointer. */)
+	JobTitle() string /* primitive/slice/pointer. */
+	SetJobTitle(value string /* primitive/slice/pointer. */)
+	PageOrder() unsafe.Pointer
+	SetPageOrder(value unsafe.Pointer)
+	PageRange() foundation.objc.IObject /* cross-framework: Range */
+	SetPageRange(value foundation.objc.IObject /* cross-framework: Range */)
+	PdfPanel() objc.IObject /* cross-framework: PDFPanel */
+	SetPdfPanel(value objc.IObject /* cross-framework: PDFPanel */)
+	PreferredRenderingQuality() unsafe.Pointer
+	SetPreferredRenderingQuality(value unsafe.Pointer)
 	PrintPanel() IPrintPanel
 	SetPrintPanel(value IPrintPanel)
-	ShowsPrintPanel() bool
-	SetShowsPrintPanel(value bool)
-	ShowsProgressPanel() bool
-	SetShowsProgressPanel(value bool)
+	ShowsPrintPanel() bool /* primitive/slice/pointer. */
+	SetShowsPrintPanel(value bool /* primitive/slice/pointer. */)
+	ShowsProgressPanel() bool /* primitive/slice/pointer. */
+	SetShowsProgressPanel(value bool /* primitive/slice/pointer. */)
 	View() IView
 	SetView(value IView)
+	// methods:
 }
 
 // An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
@@ -114,11 +116,30 @@ func NewPrintOperation() PrintOperation {
 
 
 
+// The printing information associated with the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
+func (p_ PrintOperation) PrintInfo() IPrintInfo {
+	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
+	return rv
+}
+
+
+// The printing information associated with the print operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/printInfo
+func (p_ PrintOperation) SetPrintInfo(value IPrintInfo) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
+}
+
+
 // A Boolean value that determines whether the print operation is allowed to spawn a separate printing thread.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/canspawnseparatethread
-func (p_ PrintOperation) CanSpawnSeparateThread() bool {
+func (p_ PrintOperation) CanSpawnSeparateThread() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canSpawnSeparateThread"))
 	return rv
 }
@@ -128,7 +149,7 @@ func (p_ PrintOperation) CanSpawnSeparateThread() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/canspawnseparatethread
-func (p_ PrintOperation) SetCanSpawnSeparateThread(value bool) {
+func (p_ PrintOperation) SetCanSpawnSeparateThread(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanSpawnSeparateThread:"), value)
 }
 
@@ -156,7 +177,7 @@ func (p_ PrintOperation) SetContext(value IGraphicsContext) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/currentpage
-func (p_ PrintOperation) CurrentPage() int {
+func (p_ PrintOperation) CurrentPage() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("currentPage"))
 	return rv
 }
@@ -166,7 +187,7 @@ func (p_ PrintOperation) CurrentPage() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/currentpage
-func (p_ PrintOperation) SetCurrentPage(value int) {
+func (p_ PrintOperation) SetCurrentPage(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPage:"), value)
 }
 
@@ -175,7 +196,7 @@ func (p_ PrintOperation) SetCurrentPage(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/iscopyingoperation
-func (p_ PrintOperation) IsCopyingOperation() bool {
+func (p_ PrintOperation) IsCopyingOperation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCopyingOperation"))
 	return rv
 }
@@ -185,7 +206,7 @@ func (p_ PrintOperation) IsCopyingOperation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/iscopyingoperation
-func (p_ PrintOperation) SetIsCopyingOperation(value bool) {
+func (p_ PrintOperation) SetIsCopyingOperation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsCopyingOperation:"), value)
 }
 
@@ -194,7 +215,7 @@ func (p_ PrintOperation) SetIsCopyingOperation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
-func (p_ PrintOperation) JobTitle() string {
+func (p_ PrintOperation) JobTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("jobTitle"))
 	return rv
 }
@@ -204,7 +225,7 @@ func (p_ PrintOperation) JobTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/jobtitle
-func (p_ PrintOperation) SetJobTitle(value string) {
+func (p_ PrintOperation) SetJobTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobTitle:"), objc.String(value))
 }
 
@@ -232,7 +253,7 @@ func (p_ PrintOperation) SetPageOrder(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
-func (p_ PrintOperation) PageRange() foundation.Range {
+func (p_ PrintOperation) PageRange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](p_.ID, objc.Sel("pageRange"))
 	return rv
 }
@@ -242,7 +263,7 @@ func (p_ PrintOperation) PageRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pagerange
-func (p_ PrintOperation) SetPageRange(value foundation.Range) {
+func (p_ PrintOperation) SetPageRange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageRange:"), value)
 }
 
@@ -251,7 +272,7 @@ func (p_ PrintOperation) SetPageRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pdfpanel
-func (p_ PrintOperation) PdfPanel() PDFPanel {
+func (p_ PrintOperation) PdfPanel() objc.IObject /* cross-framework: PDFPanel */ {
 	rv := objc.Send[PDFPanel](p_.ID, objc.Sel("pdfPanel"))
 	return rv
 }
@@ -261,7 +282,7 @@ func (p_ PrintOperation) PdfPanel() PDFPanel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/pdfpanel
-func (p_ PrintOperation) SetPdfPanel(value PDFPanel) {
+func (p_ PrintOperation) SetPdfPanel(value objc.IObject /* cross-framework: PDFPanel */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPdfPanel:"), value)
 }
 
@@ -282,25 +303,6 @@ func (p_ PrintOperation) PreferredRenderingQuality() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/preferredrenderingquality
 func (p_ PrintOperation) SetPreferredRenderingQuality(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredRenderingQuality:"), value)
-}
-
-
-// The printing information associated with the print operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printinfo
-func (p_ PrintOperation) PrintInfo() IPrintInfo {
-	rv := objc.Send[PrintInfo](p_.ID, objc.Sel("printInfo"))
-	return rv
-}
-
-
-// The printing information associated with the print operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/printinfo
-func (p_ PrintOperation) SetPrintInfo(value IPrintInfo) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPrintInfo:"), value)
 }
 
 
@@ -327,7 +329,7 @@ func (p_ PrintOperation) SetPrintPanel(value IPrintPanel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprintpanel
-func (p_ PrintOperation) ShowsPrintPanel() bool {
+func (p_ PrintOperation) ShowsPrintPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsPrintPanel"))
 	return rv
 }
@@ -337,7 +339,7 @@ func (p_ PrintOperation) ShowsPrintPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprintpanel
-func (p_ PrintOperation) SetShowsPrintPanel(value bool) {
+func (p_ PrintOperation) SetShowsPrintPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsPrintPanel:"), value)
 }
 
@@ -346,7 +348,7 @@ func (p_ PrintOperation) SetShowsPrintPanel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprogresspanel
-func (p_ PrintOperation) ShowsProgressPanel() bool {
+func (p_ PrintOperation) ShowsProgressPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsProgressPanel"))
 	return rv
 }
@@ -356,7 +358,7 @@ func (p_ PrintOperation) ShowsProgressPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintoperation/showsprogresspanel
-func (p_ PrintOperation) SetShowsProgressPanel(value bool) {
+func (p_ PrintOperation) SetShowsProgressPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsProgressPanel:"), value)
 }
 

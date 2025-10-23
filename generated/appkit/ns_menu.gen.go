@@ -31,49 +31,53 @@ type _MenuClass struct {
 // An interface definition for the [Menu] class.
 type IMenu interface {
 	objectivec.IObject
-	AutomaticallyInsertsWritingToolsItems() bool
-	SetAutomaticallyInsertsWritingToolsItems(value bool)
-	MenuChangedMessagesEnabled() bool
-	SetMenuChangedMessagesEnabled(value bool)
-	AllowsContextMenuPlugIns() bool
-	SetAllowsContextMenuPlugIns(value bool)
-	AutoenablesItems() bool
-	SetAutoenablesItems(value bool)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	AutomaticallyInsertsWritingToolsItems() bool /* primitive/slice/pointer. */
+	SetAutomaticallyInsertsWritingToolsItems(value bool /* primitive/slice/pointer. */)
+	ItemArray() []MenuItem /* primitive/slice/pointer. */
+	SetItemArray(value []MenuItem /* primitive/slice/pointer. */)
+	MenuChangedMessagesEnabled() bool /* primitive/slice/pointer. */
+	SetMenuChangedMessagesEnabled(value bool /* primitive/slice/pointer. */)
+	AllowsContextMenuPlugIns() bool /* primitive/slice/pointer. */
+	SetAllowsContextMenuPlugIns(value bool /* primitive/slice/pointer. */)
+	AutoenablesItems() bool /* primitive/slice/pointer. */
+	SetAutoenablesItems(value bool /* primitive/slice/pointer. */)
+	Delegate() MenuDelegate /* not a class type */
+	SetDelegate(value MenuDelegate /* not a class type */)
 	Font() IFont
 	SetFont(value IFont)
-	HighlightedItem() MenuItem
-	SetHighlightedItem(value MenuItem)
-	IsTornOff() bool
-	SetIsTornOff(value bool)
-	Items() MenuItem
-	SetItems(value MenuItem)
-	MenuBarHeight() float64
-	SetMenuBarHeight(value float64)
-	MinimumWidth() float64
-	SetMinimumWidth(value float64)
-	NumberOfItems() int
-	SetNumberOfItems(value int)
+	HighlightedItem() objc.IObject /* cross-framework: MenuItem */
+	SetHighlightedItem(value objc.IObject /* cross-framework: MenuItem */)
+	IsTornOff() bool /* primitive/slice/pointer. */
+	SetIsTornOff(value bool /* primitive/slice/pointer. */)
+	Items() objc.IObject /* cross-framework: MenuItem */
+	SetItems(value objc.IObject /* cross-framework: MenuItem */)
+	MenuBarHeight() float64 /* primitive/slice/pointer. */
+	SetMenuBarHeight(value float64 /* primitive/slice/pointer. */)
+	MinimumWidth() float64 /* primitive/slice/pointer. */
+	SetMinimumWidth(value float64 /* primitive/slice/pointer. */)
+	NumberOfItems() int /* primitive/slice/pointer. */
+	SetNumberOfItems(value int /* primitive/slice/pointer. */)
 	PresentationStyle() unsafe.Pointer
 	SetPresentationStyle(value unsafe.Pointer)
 	PropertiesToUpdate() unsafe.Pointer
 	SetPropertiesToUpdate(value unsafe.Pointer)
-	SelectedItems() MenuItem
-	SetSelectedItems(value MenuItem)
+	SelectedItems() objc.IObject /* cross-framework: MenuItem */
+	SetSelectedItems(value objc.IObject /* cross-framework: MenuItem */)
 	SelectionMode() unsafe.Pointer
 	SetSelectionMode(value unsafe.Pointer)
-	ShowsStateColumn() bool
-	SetShowsStateColumn(value bool)
+	ShowsStateColumn() bool /* primitive/slice/pointer. */
+	SetShowsStateColumn(value bool /* primitive/slice/pointer. */)
 	Size() coregraphics.CGSize
 	SetSize(value coregraphics.CGSize)
 	Supermenu() IMenu
 	SetSupermenu(value IMenu)
-	Title() string
-	SetTitle(value string)
-	UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection)
-	PopUpMenuPositioningItemAtLocationInView(item MenuItem, location coregraphics.CGPoint, view IView) bool
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	// methods:
+	PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location coregraphics.CGPoint, view IView) bool /* primitive/slice/pointer. */
 }
 
 // An object that manages an app’s menus.
@@ -136,11 +140,20 @@ func (mc _MenuClass) PopUpContextMenuWithEventForView(menu IMenu, event IEvent, 
 }
 
 
+// Displays a contextual menu over a view for an event using a specified font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:with:)
+func (mc _MenuClass) PopUpContextMenuWithEventForViewWithFont(menu IMenu, event IEvent, view IView, font IFont) {
+	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("popUpContextMenu:withEvent:forView:withFont:"), menu, event, view, font)
+}
+
+
 // Pops up the menu at the specified location.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUp(positioning:at:in:)
-func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item MenuItem, location coregraphics.CGPoint, view IView) bool {
+func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework MenuItem */, location coregraphics.CGPoint, view IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("popUpMenuPositioningItem:atLocation:inView:"), item, location, view)
 	return rv
 }
@@ -148,7 +161,7 @@ func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item MenuItem, location 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
+func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyInsertsWritingToolsItems"))
 	return rv
 }
@@ -156,8 +169,37 @@ func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
+func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyInsertsWritingToolsItems:"), value)
+}
+
+
+// An array containing the menu items in the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
+func (m_ Menu) ItemArray() []MenuItem /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("itemArray"))
+	return rv
+}
+
+
+// An array containing the menu items in the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
+func (m_ Menu) SetItemArray(value []MenuItem /* primitive/slice/pointer. */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setItemArray:"), nsArray)
 }
 
 
@@ -165,7 +207,7 @@ func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-func (m_ Menu) MenuChangedMessagesEnabled() bool {
+func (m_ Menu) MenuChangedMessagesEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("menuChangedMessagesEnabled"))
 	return rv
 }
@@ -175,7 +217,7 @@ func (m_ Menu) MenuChangedMessagesEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
+func (m_ Menu) SetMenuChangedMessagesEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuChangedMessagesEnabled:"), value)
 }
 
@@ -184,7 +226,7 @@ func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/allowscontextmenuplugins
-func (m_ Menu) AllowsContextMenuPlugIns() bool {
+func (m_ Menu) AllowsContextMenuPlugIns() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsContextMenuPlugIns"))
 	return rv
 }
@@ -194,7 +236,7 @@ func (m_ Menu) AllowsContextMenuPlugIns() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/allowscontextmenuplugins
-func (m_ Menu) SetAllowsContextMenuPlugIns(value bool) {
+func (m_ Menu) SetAllowsContextMenuPlugIns(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsContextMenuPlugIns:"), value)
 }
 
@@ -203,7 +245,7 @@ func (m_ Menu) SetAllowsContextMenuPlugIns(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/autoenablesitems
-func (m_ Menu) AutoenablesItems() bool {
+func (m_ Menu) AutoenablesItems() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("autoenablesItems"))
 	return rv
 }
@@ -213,7 +255,7 @@ func (m_ Menu) AutoenablesItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/autoenablesitems
-func (m_ Menu) SetAutoenablesItems(value bool) {
+func (m_ Menu) SetAutoenablesItems(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoenablesItems:"), value)
 }
 
@@ -222,8 +264,8 @@ func (m_ Menu) SetAutoenablesItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
-func (m_ Menu) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
+func (m_ Menu) Delegate() MenuDelegate /* not a class type */ {
+	rv := objc.Send[MenuDelegate](m_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -232,7 +274,7 @@ func (m_ Menu) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
-func (m_ Menu) SetDelegate(value unsafe.Pointer) {
+func (m_ Menu) SetDelegate(value MenuDelegate /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -260,7 +302,7 @@ func (m_ Menu) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
-func (m_ Menu) HighlightedItem() MenuItem {
+func (m_ Menu) HighlightedItem() objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("highlightedItem"))
 	return rv
 }
@@ -270,7 +312,7 @@ func (m_ Menu) HighlightedItem() MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
-func (m_ Menu) SetHighlightedItem(value MenuItem) {
+func (m_ Menu) SetHighlightedItem(value objc.IObject /* cross-framework: MenuItem */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHighlightedItem:"), value)
 }
 
@@ -279,7 +321,7 @@ func (m_ Menu) SetHighlightedItem(value MenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
-func (m_ Menu) IsTornOff() bool {
+func (m_ Menu) IsTornOff() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isTornOff"))
 	return rv
 }
@@ -289,7 +331,7 @@ func (m_ Menu) IsTornOff() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/istornoff
-func (m_ Menu) SetIsTornOff(value bool) {
+func (m_ Menu) SetIsTornOff(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTornOff:"), value)
 }
 
@@ -298,7 +340,7 @@ func (m_ Menu) SetIsTornOff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-func (m_ Menu) Items() MenuItem {
+func (m_ Menu) Items() objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("items"))
 	return rv
 }
@@ -308,7 +350,7 @@ func (m_ Menu) Items() MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-func (m_ Menu) SetItems(value MenuItem) {
+func (m_ Menu) SetItems(value objc.IObject /* cross-framework: MenuItem */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }
 
@@ -317,7 +359,7 @@ func (m_ Menu) SetItems(value MenuItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menubarheight
-func (m_ Menu) MenuBarHeight() float64 {
+func (m_ Menu) MenuBarHeight() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](m_.ID, objc.Sel("menuBarHeight"))
 	return rv
 }
@@ -327,7 +369,7 @@ func (m_ Menu) MenuBarHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menubarheight
-func (m_ Menu) SetMenuBarHeight(value float64) {
+func (m_ Menu) SetMenuBarHeight(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuBarHeight:"), value)
 }
 
@@ -336,7 +378,7 @@ func (m_ Menu) SetMenuBarHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/minimumwidth
-func (m_ Menu) MinimumWidth() float64 {
+func (m_ Menu) MinimumWidth() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](m_.ID, objc.Sel("minimumWidth"))
 	return rv
 }
@@ -346,7 +388,7 @@ func (m_ Menu) MinimumWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/minimumwidth
-func (m_ Menu) SetMinimumWidth(value float64) {
+func (m_ Menu) SetMinimumWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumWidth:"), value)
 }
 
@@ -355,7 +397,7 @@ func (m_ Menu) SetMinimumWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
-func (m_ Menu) NumberOfItems() int {
+func (m_ Menu) NumberOfItems() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("numberOfItems"))
 	return rv
 }
@@ -365,7 +407,7 @@ func (m_ Menu) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
-func (m_ Menu) SetNumberOfItems(value int) {
+func (m_ Menu) SetNumberOfItems(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfItems:"), value)
 }
 
@@ -412,7 +454,7 @@ func (m_ Menu) SetPropertiesToUpdate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
-func (m_ Menu) SelectedItems() MenuItem {
+func (m_ Menu) SelectedItems() objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("selectedItems"))
 	return rv
 }
@@ -422,7 +464,7 @@ func (m_ Menu) SelectedItems() MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
-func (m_ Menu) SetSelectedItems(value MenuItem) {
+func (m_ Menu) SetSelectedItems(value objc.IObject /* cross-framework: MenuItem */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedItems:"), value)
 }
 
@@ -450,7 +492,7 @@ func (m_ Menu) SetSelectionMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/showsstatecolumn
-func (m_ Menu) ShowsStateColumn() bool {
+func (m_ Menu) ShowsStateColumn() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsStateColumn"))
 	return rv
 }
@@ -460,7 +502,7 @@ func (m_ Menu) ShowsStateColumn() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/showsstatecolumn
-func (m_ Menu) SetShowsStateColumn(value bool) {
+func (m_ Menu) SetShowsStateColumn(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsStateColumn:"), value)
 }
 
@@ -507,7 +549,7 @@ func (m_ Menu) SetSupermenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
-func (m_ Menu) Title() string {
+func (m_ Menu) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("title"))
 	return rv
 }
@@ -517,7 +559,7 @@ func (m_ Menu) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/title
-func (m_ Menu) SetTitle(value string) {
+func (m_ Menu) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -526,8 +568,8 @@ func (m_ Menu) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/userinterfacelayoutdirection
-func (m_ Menu) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
-	rv := objc.Send[NSUserInterfaceLayoutDirection](m_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (m_ Menu) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](m_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -536,7 +578,7 @@ func (m_ Menu) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/userinterfacelayoutdirection
-func (m_ Menu) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection) {
+func (m_ Menu) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

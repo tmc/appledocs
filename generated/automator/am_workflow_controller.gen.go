@@ -31,19 +31,21 @@ type _AMWorkflowControllerClass struct {
 // An interface definition for the [AMWorkflowController] class.
 type IAMWorkflowController interface {
 	appkit.IController
-	CanRun() bool
+	// properties:
+	CanRun() bool /* primitive/slice/pointer. */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Paused() bool
-	Running() bool
+	Paused() bool /* primitive/slice/pointer. */
+	Running() bool /* primitive/slice/pointer. */
 	Workflow() IAMWorkflow
 	SetWorkflow(value IAMWorkflow)
 	WorkflowView() IAMWorkflowView
 	SetWorkflowView(value IAMWorkflowView)
-	IsPaused() bool
-	SetIsPaused(value bool)
-	IsRunning() bool
-	SetIsRunning(value bool)
+	IsPaused() bool /* primitive/slice/pointer. */
+	SetIsPaused(value bool /* primitive/slice/pointer. */)
+	IsRunning() bool /* primitive/slice/pointer. */
+	SetIsRunning(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Pause(sender objectivec.IObject)
 	Reset(sender objectivec.IObject)
 	Run(sender objectivec.IObject)
@@ -155,7 +157,7 @@ func (a_ AMWorkflowController) Stop(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/canRun
-func (a_ AMWorkflowController) CanRun() bool {
+func (a_ AMWorkflowController) CanRun() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canRun"))
 	return rv
 }
@@ -184,7 +186,7 @@ func (a_ AMWorkflowController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/isPaused
-func (a_ AMWorkflowController) Paused() bool {
+func (a_ AMWorkflowController) Paused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("paused"))
 	return rv
 }
@@ -194,7 +196,7 @@ func (a_ AMWorkflowController) Paused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/isRunning
-func (a_ AMWorkflowController) Running() bool {
+func (a_ AMWorkflowController) Running() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("running"))
 	return rv
 }
@@ -242,7 +244,7 @@ func (a_ AMWorkflowController) SetWorkflowView(value IAMWorkflowView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-func (a_ AMWorkflowController) IsPaused() bool {
+func (a_ AMWorkflowController) IsPaused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -252,7 +254,7 @@ func (a_ AMWorkflowController) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/ispaused
-func (a_ AMWorkflowController) SetIsPaused(value bool) {
+func (a_ AMWorkflowController) SetIsPaused(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPaused:"), value)
 }
 
@@ -261,7 +263,7 @@ func (a_ AMWorkflowController) SetIsPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-func (a_ AMWorkflowController) IsRunning() bool {
+func (a_ AMWorkflowController) IsRunning() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRunning"))
 	return rv
 }
@@ -271,7 +273,7 @@ func (a_ AMWorkflowController) IsRunning() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/isrunning
-func (a_ AMWorkflowController) SetIsRunning(value bool) {
+func (a_ AMWorkflowController) SetIsRunning(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
 }
 

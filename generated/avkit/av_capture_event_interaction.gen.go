@@ -30,10 +30,12 @@ type _CaptureEventInteractionClass struct {
 // An interface definition for the [CaptureEventInteraction] class.
 type ICaptureEventInteraction interface {
 	objectivec.IObject
-	Enabled() bool
-	SetEnabled(value bool)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
+	// properties:
+	Enabled() bool /* primitive/slice/pointer. */
+	SetEnabled(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that registers handlers to respond to capture events from system hardware buttons.
@@ -118,7 +120,7 @@ func NewCaptureEventInteractionWithPrimaryEventHandlerSecondaryEventHandler(prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
-func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool {
+func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("defaultCaptureSoundDisabled"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (cc _CaptureEventInteractionClass) DefaultCaptureSoundDisabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
-func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool {
+func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("defaultCaptureSoundDisabled"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (c_ CaptureEventInteraction) DefaultCaptureSoundDisabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/defaultCaptureSoundDisabled
-func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool) {
+func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultCaptureSoundDisabled:"), value)
 }
 
@@ -146,7 +148,7 @@ func (c_ CaptureEventInteraction) SetDefaultCaptureSoundDisabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
-func (c_ CaptureEventInteraction) Enabled() bool {
+func (c_ CaptureEventInteraction) Enabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (c_ CaptureEventInteraction) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventInteraction/isEnabled
-func (c_ CaptureEventInteraction) SetEnabled(value bool) {
+func (c_ CaptureEventInteraction) SetEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
 
@@ -165,7 +167,7 @@ func (c_ CaptureEventInteraction) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
-func (c_ CaptureEventInteraction) IsEnabled() bool {
+func (c_ CaptureEventInteraction) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (c_ CaptureEventInteraction) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcaptureeventinteraction/isenabled
-func (c_ CaptureEventInteraction) SetIsEnabled(value bool) {
+func (c_ CaptureEventInteraction) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

@@ -29,10 +29,12 @@ type _AXMathExpressionSubSuperscriptClass struct {
 // An interface definition for the [AXMathExpressionSubSuperscript] class.
 type IAXMathExpressionSubSuperscript interface {
 	IAXMathExpression
-	BaseExpression() AXMathExpression
-	SuperscriptExpressions() []AXMathExpression
-	SubscriptExpressions() AXMathExpression
+	// properties:
+	BaseExpression() IAXMathExpression
+	SuperscriptExpressions() []AXMathExpression /* primitive/slice/pointer. */
+	SubscriptExpressions() IAXMathExpression
 	SetSubscriptExpressions(value IAXMathExpression)
+	// methods:
 }
 
 
@@ -85,7 +87,7 @@ func NewAXMathExpressionSubSuperscript() AXMathExpressionSubSuperscript {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/baseExpression
-func (a_ AXMathExpressionSubSuperscript) BaseExpression() AXMathExpression {
+func (a_ AXMathExpressionSubSuperscript) BaseExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("baseExpression"))
 	return rv
 }
@@ -93,7 +95,7 @@ func (a_ AXMathExpressionSubSuperscript) BaseExpression() AXMathExpression {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionSubSuperscript/superscriptExpressions
-func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []AXMathExpression {
+func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []AXMathExpression /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AXMathExpression](a_.ID, objc.Sel("superscriptExpressions"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (a_ AXMathExpressionSubSuperscript) SuperscriptExpressions() []AXMathExpres
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript/subscriptexpressions
-func (a_ AXMathExpressionSubSuperscript) SubscriptExpressions() AXMathExpression {
+func (a_ AXMathExpressionSubSuperscript) SubscriptExpressions() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("subscriptExpressions"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +30,14 @@ type _AppearanceClass struct {
 // An interface definition for the [Appearance] class.
 type IAppearance interface {
 	objectivec.IObject
-	BestMatchFromAppearancesWithNames(appearances []string) AppearanceName
-	PerformAsCurrentDrawingAppearance(block unsafe.Pointer)
-	AllowsVibrancy() bool
-	Name() AppearanceName
-	Appearance() NSAppearance
+	// properties:
+	AllowsVibrancy() bool /* primitive/slice/pointer. */
+	SetAllowsVibrancy(value bool /* primitive/slice/pointer. */)
+	Name() unsafe.Pointer
+	SetName(value unsafe.Pointer)
+	Appearance() IAppearance
 	SetAppearance(value IAppearance)
+	// methods:
 }
 
 // An object that manages standard appearance attributes for UI elements in an app.
@@ -92,64 +93,12 @@ func NewAppearance() Appearance {
 
 
 
-// Creates an appearance object based on the name of one of the standard system appearances.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(named:)
-func NewAppearanceNamed(name IAppearanceName) Appearance {
-	rv := objc.Send[Appearance](objc.ID(getAppearanceClass().class), objc.Sel("appearanceNamed:"), name)
-	return rv
-}
-
-
-// Creates an appearance object from the named appearance file located in the specified bundle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(appearanceNamed:bundle:)
-func NewAppearanceWithAppearanceNamedBundle(name IAppearanceName, bundle foundation.IBundle) Appearance {
-	instance := getAppearanceClass().Alloc()
-	rv := objc.Send[Appearance](instance.ID, objc.Sel("initWithAppearanceNamed:bundle:"), name, bundle)
-	rv.Autorelease()
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(coder:)
-func NewAppearanceWithCoder(coder foundation.ICoder) Appearance {
-	instance := getAppearanceClass().Alloc()
-	rv := objc.Send[Appearance](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// The appearance that the system uses for color and asset resolution, and that’s active for drawing, usually from locking focus on a view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/currentDrawing()
-func (ac _AppearanceClass) CurrentDrawing() {
-	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("currentDrawing"))
-}
-
-
-// Creates an appearance object based on the name of one of the standard system appearances.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/init(named:)
-func (ac _AppearanceClass) AppearanceNamed(name IAppearanceName) Appearance {
-	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("appearanceNamed:"), name)
-	return rv
-}
-
-
 // Returns the appearance object that’s active on the current thread.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/current
 func (ac _AppearanceClass) CurrentAppearance() Appearance {
-	rv := objc.Send[NSAppearance](objc.ID(ac.class), objc.Sel("currentAppearance"))
+	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("currentAppearance"))
 	return rv
 }
 
@@ -158,45 +107,16 @@ func (ac _AppearanceClass) CurrentAppearance() Appearance {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/currentDrawingAppearance
 func (ac _AppearanceClass) CurrentDrawingAppearance() Appearance {
-	rv := objc.Send[NSAppearance](objc.ID(ac.class), objc.Sel("currentDrawingAppearance"))
+	rv := objc.Send[Appearance](objc.ID(ac.class), objc.Sel("currentDrawingAppearance"))
 	return rv
 }
-
-// Returns the appearance name that most closely matches the current appearance object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/bestMatch(from:)
-func (a_ Appearance) BestMatchFromAppearancesWithNames(appearances []string) AppearanceName {
-	rv := objc.Send[AppearanceName](a_.ID, objc.Sel("bestMatchFromAppearancesWithNames:"), appearances)
-	return rv
-}
-
-
-// Sets the appearance to be the active drawing appearance and perform the specified block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/performAsCurrentDrawingAppearance(_:)
-func (a_ Appearance) PerformAsCurrentDrawingAppearance(block unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("performAsCurrentDrawingAppearance:"), block)
-}
-
-
-// Specifies whether the current appearance allows vibrancy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/allowsVibrancy
-func (a_ Appearance) AllowsVibrancy() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("allowsVibrancy"))
-	return rv
-}
-
 
 // Returns the appearance object that’s active on the current thread.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/current
-func (a_ Appearance) CurrentAppearance() NSAppearance {
-	rv := objc.Send[NSAppearance](a_.ID, objc.Sel("currentAppearance"))
+func (a_ Appearance) CurrentAppearance() IAppearance {
+	rv := objc.Send[Appearance](a_.ID, objc.Sel("currentAppearance"))
 	return rv
 }
 
@@ -214,8 +134,37 @@ func (a_ Appearance) SetCurrentAppearance(value IAppearance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/currentDrawingAppearance
-func (a_ Appearance) CurrentDrawingAppearance() NSAppearance {
-	rv := objc.Send[NSAppearance](a_.ID, objc.Sel("currentDrawingAppearance"))
+func (a_ Appearance) CurrentDrawingAppearance() IAppearance {
+	rv := objc.Send[Appearance](a_.ID, objc.Sel("currentDrawingAppearance"))
+	return rv
+}
+
+
+// Specifies whether the current appearance allows vibrancy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
+func (a_ Appearance) AllowsVibrancy() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("allowsVibrancy"))
+	return rv
+}
+
+
+// Specifies whether the current appearance allows vibrancy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/allowsvibrancy
+func (a_ Appearance) SetAllowsVibrancy(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsVibrancy:"), value)
+}
+
+
+// The name of the appearance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/name-swift.property
+func (a_ Appearance) Name() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -223,10 +172,9 @@ func (a_ Appearance) CurrentDrawingAppearance() NSAppearance {
 // The name of the appearance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearance/name-swift.property
-func (a_ Appearance) Name() AppearanceName {
-	rv := objc.Send[AppearanceName](a_.ID, objc.Sel("name"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearance/name-swift.property
+func (a_ Appearance) SetName(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 
@@ -234,8 +182,8 @@ func (a_ Appearance) Name() AppearanceName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance
-func (a_ Appearance) Appearance() NSAppearance {
-	rv := objc.Send[NSAppearance](a_.ID, objc.Sel("appearance"))
+func (a_ Appearance) Appearance() IAppearance {
+	rv := objc.Send[Appearance](a_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -247,5 +195,6 @@ func (a_ Appearance) Appearance() NSAppearance {
 func (a_ Appearance) SetAppearance(value IAppearance) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAppearance:"), value)
 }
+
 
 

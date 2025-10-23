@@ -30,12 +30,14 @@ type _OpenGLLayerClass struct {
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
 	objectivec.IObject
-	OpenGLContext() NSOpenGLContext
+	// properties:
+	OpenGLContext() IOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
-	OpenGLPixelFormat() NSOpenGLPixelFormat
+	OpenGLPixelFormat() IOpenGLPixelFormat
 	SetOpenGLPixelFormat(value IOpenGLPixelFormat)
-	View() NSView
+	View() IView
 	SetView(value IView)
+	// methods:
 }
 
 // A subclass of that is suitable for rendering OpenGL into layers.
@@ -94,9 +96,9 @@ func NewOpenGLLayer() OpenGLLayer {
 // The layer’s OpenGL context.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
-func (o_ OpenGLLayer) OpenGLContext() NSOpenGLContext {
-	rv := objc.Send[NSOpenGLContext](o_.ID, objc.Sel("openGLContext"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/openGLContext
+func (o_ OpenGLLayer) OpenGLContext() IOpenGLContext {
+	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
 }
 
@@ -104,7 +106,7 @@ func (o_ OpenGLLayer) OpenGLContext() NSOpenGLContext {
 // The layer’s OpenGL context.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglcontext
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/openGLContext
 func (o_ OpenGLLayer) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
@@ -113,9 +115,9 @@ func (o_ OpenGLLayer) SetOpenGLContext(value IOpenGLContext) {
 // Provides access to the layer’s associated OpenGL pixel format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
-func (o_ OpenGLLayer) OpenGLPixelFormat() NSOpenGLPixelFormat {
-	rv := objc.Send[NSOpenGLPixelFormat](o_.ID, objc.Sel("openGLPixelFormat"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/openGLPixelFormat
+func (o_ OpenGLLayer) OpenGLPixelFormat() IOpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("openGLPixelFormat"))
 	return rv
 }
 
@@ -123,7 +125,7 @@ func (o_ OpenGLLayer) OpenGLPixelFormat() NSOpenGLPixelFormat {
 // Provides access to the layer’s associated OpenGL pixel format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/openglpixelformat
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/openGLPixelFormat
 func (o_ OpenGLLayer) SetOpenGLPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLPixelFormat:"), value)
 }
@@ -132,9 +134,9 @@ func (o_ OpenGLLayer) SetOpenGLPixelFormat(value IOpenGLPixelFormat) {
 // Returns the view associated with the layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
-func (o_ OpenGLLayer) View() NSView {
-	rv := objc.Send[NSView](o_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/view
+func (o_ OpenGLLayer) View() IView {
+	rv := objc.Send[View](o_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -142,7 +144,7 @@ func (o_ OpenGLLayer) View() NSView {
 // Returns the view associated with the layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopengllayer/view
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLLayer/view
 func (o_ OpenGLLayer) SetView(value IView) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setView:"), value)
 }

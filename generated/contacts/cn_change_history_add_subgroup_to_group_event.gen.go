@@ -29,8 +29,10 @@ type _CNChangeHistoryAddSubgroupToGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddSubgroupToGroupEvent] class.
 type ICNChangeHistoryAddSubgroupToGroupEvent interface {
 	ICNChangeHistoryEvent
+	// properties:
 	Group() ICNGroup
 	Subgroup() ICNGroup
+	// methods:
 }
 
 // An object that represents a user adding a subgroup to a group.

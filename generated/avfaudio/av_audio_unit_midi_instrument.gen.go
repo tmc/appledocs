@@ -30,6 +30,8 @@ type _AudioUnitMIDIInstrumentClass struct {
 // An interface definition for the [AudioUnitMIDIInstrument] class.
 type IAudioUnitMIDIInstrument interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AVFAudio classes.

@@ -6,9 +6,6 @@ import "github.com/ebitengine/purego/objc"
 
 // textViewProtocol is the textView: protocol.
 //
-// Availability:
-//   - macOS 10.8+
-//
 // Use this protocol when registering custom classes that conform to textView:.
 var textViewProtocol *objc.Protocol
 

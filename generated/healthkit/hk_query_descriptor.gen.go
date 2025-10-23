@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +31,8 @@ type _HKQueryDescriptorClass struct {
 type IHKQueryDescriptor interface {
 	objectivec.IObject
 	// properties:
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	SampleType() IHKSampleType
 	SetSampleType(value IHKSampleType)
 	// methods:
@@ -96,8 +95,8 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
+func (h_ HKQueryDescriptor) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -106,7 +105,7 @@ func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) SetPredicate(value foundation.Predicate) {
+func (h_ HKQueryDescriptor) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 

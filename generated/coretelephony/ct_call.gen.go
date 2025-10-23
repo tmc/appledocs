@@ -30,8 +30,10 @@ type _CallClass struct {
 // An interface definition for the [Call] class.
 type ICall interface {
 	objectivec.IObject
-	CallID() string
-	CallState() string
+	// properties:
+	CallID() string /* primitive/slice/pointer. */
+	CallState() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object used to identify a cellular call and determine its state.
@@ -89,7 +91,7 @@ func NewCall() Call {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
-func (c_ Call) CallID() string {
+func (c_ Call) CallID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (c_ Call) CallID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
-func (c_ Call) CallState() string {
+func (c_ Call) CallState() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
 	return rv
 }

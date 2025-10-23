@@ -31,50 +31,52 @@ type _ToolbarClass struct {
 // An interface definition for the [Toolbar] class.
 type IToolbar interface {
 	objectivec.IObject
-	AllowsDisplayModeCustomization() bool
-	SetAllowsDisplayModeCustomization(value bool)
-	AllowsExtensionItems() bool
-	SetAllowsExtensionItems(value bool)
-	AllowsUserCustomization() bool
-	SetAllowsUserCustomization(value bool)
-	AutosavesConfiguration() bool
-	SetAutosavesConfiguration(value bool)
-	CenteredItemIdentifier() unsafe.Pointer
-	SetCenteredItemIdentifier(value unsafe.Pointer)
+	// properties:
+	AllowsDisplayModeCustomization() bool /* primitive/slice/pointer. */
+	SetAllowsDisplayModeCustomization(value bool /* primitive/slice/pointer. */)
+	AllowsExtensionItems() bool /* primitive/slice/pointer. */
+	SetAllowsExtensionItems(value bool /* primitive/slice/pointer. */)
+	AllowsUserCustomization() bool /* primitive/slice/pointer. */
+	SetAllowsUserCustomization(value bool /* primitive/slice/pointer. */)
+	AutosavesConfiguration() bool /* primitive/slice/pointer. */
+	SetAutosavesConfiguration(value bool /* primitive/slice/pointer. */)
+	CenteredItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
+	SetCenteredItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */)
 	CenteredItemIdentifiers() unsafe.Pointer
 	SetCenteredItemIdentifiers(value unsafe.Pointer)
-	ConfigurationDictionary() foundation.IDictionary
-	CustomizationPaletteIsRunning() bool
+	ConfigurationDictionary() foundation.IDictionary /* already interface */
+	CustomizationPaletteIsRunning() bool /* primitive/slice/pointer. */
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DisplayMode() NSToolbarDisplayMode
-	SetDisplayMode(value NSToolbarDisplayMode)
+	DisplayMode() ToolbarDisplayMode
+	SetDisplayMode(value ToolbarDisplayMode)
 	FullScreenAccessoryView() IView
 	SetFullScreenAccessoryView(value IView)
-	FullScreenAccessoryViewMaxHeight() float64
-	SetFullScreenAccessoryViewMaxHeight(value float64)
-	FullScreenAccessoryViewMinHeight() float64
-	SetFullScreenAccessoryViewMinHeight(value float64)
-	Identifier() ToolbarIdentifier
-	Visible() bool
-	SetVisible(value bool)
-	ItemIdentifiers() []string
-	SetItemIdentifiers(value []string)
-	Items() []ToolbarItem
-	SelectedItemIdentifier() unsafe.Pointer
-	SetSelectedItemIdentifier(value unsafe.Pointer)
-	ShowsBaselineSeparator() bool
-	SetShowsBaselineSeparator(value bool)
-	SizeMode() NSToolbarSizeMode
-	SetSizeMode(value NSToolbarSizeMode)
-	VisibleItems() []ToolbarItem
-	Configuration() string
-	SetConfiguration(value string)
-	IsVisible() bool
-	SetIsVisible(value bool)
-	InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Pointer, index int)
-	RemoveItemAtIndex(index int)
-	RemoveItemWithItemIdentifier(itemIdentifier unsafe.Pointer)
+	FullScreenAccessoryViewMaxHeight() float64 /* primitive/slice/pointer. */
+	SetFullScreenAccessoryViewMaxHeight(value float64 /* primitive/slice/pointer. */)
+	FullScreenAccessoryViewMinHeight() float64 /* primitive/slice/pointer. */
+	SetFullScreenAccessoryViewMinHeight(value float64 /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: ToolbarIdentifier */
+	Visible() bool /* primitive/slice/pointer. */
+	SetVisible(value bool /* primitive/slice/pointer. */)
+	ItemIdentifiers() []string /* primitive/slice/pointer. */
+	SetItemIdentifiers(value []string /* primitive/slice/pointer. */)
+	Items() []ToolbarItem /* primitive/slice/pointer. */
+	SelectedItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
+	SetSelectedItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */)
+	ShowsBaselineSeparator() bool /* primitive/slice/pointer. */
+	SetShowsBaselineSeparator(value bool /* primitive/slice/pointer. */)
+	SizeMode() ToolbarSizeMode
+	SetSizeMode(value ToolbarSizeMode)
+	VisibleItems() []ToolbarItem /* primitive/slice/pointer. */
+	Configuration() string /* primitive/slice/pointer. */
+	SetConfiguration(value string /* primitive/slice/pointer. */)
+	IsVisible() bool /* primitive/slice/pointer. */
+	SetIsVisible(value bool /* primitive/slice/pointer. */)
+	// methods:
+	InsertItemWithItemIdentifierAtIndex(itemIdentifier objc.IObject /* cross-framework ToolbarItemIdentifier */, index int /* primitive/slice/pointer. */)
+	RemoveItemAtIndex(index int /* primitive/slice/pointer. */)
+	RemoveItemWithItemIdentifier(itemIdentifier objc.IObject /* cross-framework ToolbarItemIdentifier */)
 	RunCustomizationPalette(sender objectivec.IObject)
 	ValidateVisibleItems()
 }
@@ -136,7 +138,7 @@ func NewToolbar() Toolbar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/init(identifier:)
-func NewToolbarWithIdentifier(identifier ToolbarIdentifier) Toolbar {
+func NewToolbarWithIdentifier(identifier objc.IObject /* cross-framework ToolbarIdentifier */) Toolbar {
 	instance := getToolbarClass().Alloc()
 	rv := objc.Send[Toolbar](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
@@ -149,7 +151,7 @@ func NewToolbarWithIdentifier(identifier ToolbarIdentifier) Toolbar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/insertItem(withItemIdentifier:at:)
-func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Pointer, index int) {
+func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier objc.IObject /* cross-framework ToolbarItemIdentifier */, index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("insertItemWithItemIdentifier:atIndex:"), itemIdentifier, index)
 }
 
@@ -158,7 +160,7 @@ func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/removeItem(at:)
-func (t_ Toolbar) RemoveItemAtIndex(index int) {
+func (t_ Toolbar) RemoveItemAtIndex(index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeItemAtIndex:"), index)
 }
 
@@ -167,7 +169,7 @@ func (t_ Toolbar) RemoveItemAtIndex(index int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/removeItem(identifier:)
-func (t_ Toolbar) RemoveItemWithItemIdentifier(itemIdentifier unsafe.Pointer) {
+func (t_ Toolbar) RemoveItemWithItemIdentifier(itemIdentifier objc.IObject /* cross-framework ToolbarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeItemWithItemIdentifier:"), itemIdentifier)
 }
 
@@ -194,7 +196,7 @@ func (t_ Toolbar) ValidateVisibleItems() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsDisplayModeCustomization
-func (t_ Toolbar) AllowsDisplayModeCustomization() bool {
+func (t_ Toolbar) AllowsDisplayModeCustomization() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDisplayModeCustomization"))
 	return rv
 }
@@ -204,7 +206,7 @@ func (t_ Toolbar) AllowsDisplayModeCustomization() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsDisplayModeCustomization
-func (t_ Toolbar) SetAllowsDisplayModeCustomization(value bool) {
+func (t_ Toolbar) SetAllowsDisplayModeCustomization(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsDisplayModeCustomization:"), value)
 }
 
@@ -213,7 +215,7 @@ func (t_ Toolbar) SetAllowsDisplayModeCustomization(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsExtensionItems
-func (t_ Toolbar) AllowsExtensionItems() bool {
+func (t_ Toolbar) AllowsExtensionItems() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsExtensionItems"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (t_ Toolbar) AllowsExtensionItems() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsExtensionItems
-func (t_ Toolbar) SetAllowsExtensionItems(value bool) {
+func (t_ Toolbar) SetAllowsExtensionItems(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsExtensionItems:"), value)
 }
 
@@ -232,7 +234,7 @@ func (t_ Toolbar) SetAllowsExtensionItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsUserCustomization
-func (t_ Toolbar) AllowsUserCustomization() bool {
+func (t_ Toolbar) AllowsUserCustomization() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsUserCustomization"))
 	return rv
 }
@@ -242,7 +244,7 @@ func (t_ Toolbar) AllowsUserCustomization() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsUserCustomization
-func (t_ Toolbar) SetAllowsUserCustomization(value bool) {
+func (t_ Toolbar) SetAllowsUserCustomization(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsUserCustomization:"), value)
 }
 
@@ -251,7 +253,7 @@ func (t_ Toolbar) SetAllowsUserCustomization(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/autosavesConfiguration
-func (t_ Toolbar) AutosavesConfiguration() bool {
+func (t_ Toolbar) AutosavesConfiguration() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("autosavesConfiguration"))
 	return rv
 }
@@ -261,7 +263,7 @@ func (t_ Toolbar) AutosavesConfiguration() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/autosavesConfiguration
-func (t_ Toolbar) SetAutosavesConfiguration(value bool) {
+func (t_ Toolbar) SetAutosavesConfiguration(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutosavesConfiguration:"), value)
 }
 
@@ -270,8 +272,8 @@ func (t_ Toolbar) SetAutosavesConfiguration(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/centeredItemIdentifier
-func (t_ Toolbar) CenteredItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("centeredItemIdentifier"))
+func (t_ Toolbar) CenteredItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
+	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("centeredItemIdentifier"))
 	return rv
 }
 
@@ -280,7 +282,7 @@ func (t_ Toolbar) CenteredItemIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/centeredItemIdentifier
-func (t_ Toolbar) SetCenteredItemIdentifier(value unsafe.Pointer) {
+func (t_ Toolbar) SetCenteredItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCenteredItemIdentifier:"), value)
 }
 
@@ -308,7 +310,7 @@ func (t_ Toolbar) SetCenteredItemIdentifiers(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/configuration
-func (t_ Toolbar) ConfigurationDictionary() foundation.IDictionary {
+func (t_ Toolbar) ConfigurationDictionary() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("configurationDictionary"))
 	return rv
 }
@@ -318,7 +320,7 @@ func (t_ Toolbar) ConfigurationDictionary() foundation.IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/customizationPaletteIsRunning
-func (t_ Toolbar) CustomizationPaletteIsRunning() bool {
+func (t_ Toolbar) CustomizationPaletteIsRunning() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("customizationPaletteIsRunning"))
 	return rv
 }
@@ -347,8 +349,8 @@ func (t_ Toolbar) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
-func (t_ Toolbar) DisplayMode() NSToolbarDisplayMode {
-	rv := objc.Send[NSToolbarDisplayMode](t_.ID, objc.Sel("displayMode"))
+func (t_ Toolbar) DisplayMode() ToolbarDisplayMode {
+	rv := objc.Send[ToolbarDisplayMode](t_.ID, objc.Sel("displayMode"))
 	return rv
 }
 
@@ -357,7 +359,7 @@ func (t_ Toolbar) DisplayMode() NSToolbarDisplayMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
-func (t_ Toolbar) SetDisplayMode(value NSToolbarDisplayMode) {
+func (t_ Toolbar) SetDisplayMode(value ToolbarDisplayMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
 
@@ -385,7 +387,7 @@ func (t_ Toolbar) SetFullScreenAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryViewMaxHeight
-func (t_ Toolbar) FullScreenAccessoryViewMaxHeight() float64 {
+func (t_ Toolbar) FullScreenAccessoryViewMaxHeight() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("fullScreenAccessoryViewMaxHeight"))
 	return rv
 }
@@ -395,7 +397,7 @@ func (t_ Toolbar) FullScreenAccessoryViewMaxHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryViewMaxHeight
-func (t_ Toolbar) SetFullScreenAccessoryViewMaxHeight(value float64) {
+func (t_ Toolbar) SetFullScreenAccessoryViewMaxHeight(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenAccessoryViewMaxHeight:"), value)
 }
 
@@ -404,7 +406,7 @@ func (t_ Toolbar) SetFullScreenAccessoryViewMaxHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryViewMinHeight
-func (t_ Toolbar) FullScreenAccessoryViewMinHeight() float64 {
+func (t_ Toolbar) FullScreenAccessoryViewMinHeight() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("fullScreenAccessoryViewMinHeight"))
 	return rv
 }
@@ -414,7 +416,7 @@ func (t_ Toolbar) FullScreenAccessoryViewMinHeight() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/fullScreenAccessoryViewMinHeight
-func (t_ Toolbar) SetFullScreenAccessoryViewMinHeight(value float64) {
+func (t_ Toolbar) SetFullScreenAccessoryViewMinHeight(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFullScreenAccessoryViewMinHeight:"), value)
 }
 
@@ -423,7 +425,7 @@ func (t_ Toolbar) SetFullScreenAccessoryViewMinHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/identifier-swift.property
-func (t_ Toolbar) Identifier() ToolbarIdentifier {
+func (t_ Toolbar) Identifier() objc.IObject /* cross-framework: ToolbarIdentifier */ {
 	rv := objc.Send[ToolbarIdentifier](t_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -433,7 +435,7 @@ func (t_ Toolbar) Identifier() ToolbarIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/isVisible
-func (t_ Toolbar) Visible() bool {
+func (t_ Toolbar) Visible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
 	return rv
 }
@@ -443,7 +445,7 @@ func (t_ Toolbar) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/isVisible
-func (t_ Toolbar) SetVisible(value bool) {
+func (t_ Toolbar) SetVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisible:"), value)
 }
 
@@ -452,7 +454,7 @@ func (t_ Toolbar) SetVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/itemIdentifiers
-func (t_ Toolbar) ItemIdentifiers() []string {
+func (t_ Toolbar) ItemIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
 	return rv
 }
@@ -462,7 +464,7 @@ func (t_ Toolbar) ItemIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/itemIdentifiers
-func (t_ Toolbar) SetItemIdentifiers(value []string) {
+func (t_ Toolbar) SetItemIdentifiers(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -481,7 +483,7 @@ func (t_ Toolbar) SetItemIdentifiers(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/items
-func (t_ Toolbar) Items() []ToolbarItem {
+func (t_ Toolbar) Items() []ToolbarItem /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("items"))
 	return rv
 }
@@ -491,8 +493,8 @@ func (t_ Toolbar) Items() []ToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
-func (t_ Toolbar) SelectedItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedItemIdentifier"))
+func (t_ Toolbar) SelectedItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
+	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("selectedItemIdentifier"))
 	return rv
 }
 
@@ -501,7 +503,7 @@ func (t_ Toolbar) SelectedItemIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
-func (t_ Toolbar) SetSelectedItemIdentifier(value unsafe.Pointer) {
+func (t_ Toolbar) SetSelectedItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedItemIdentifier:"), value)
 }
 
@@ -510,7 +512,7 @@ func (t_ Toolbar) SetSelectedItemIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/showsBaselineSeparator
-func (t_ Toolbar) ShowsBaselineSeparator() bool {
+func (t_ Toolbar) ShowsBaselineSeparator() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("showsBaselineSeparator"))
 	return rv
 }
@@ -520,7 +522,7 @@ func (t_ Toolbar) ShowsBaselineSeparator() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/showsBaselineSeparator
-func (t_ Toolbar) SetShowsBaselineSeparator(value bool) {
+func (t_ Toolbar) SetShowsBaselineSeparator(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShowsBaselineSeparator:"), value)
 }
 
@@ -529,8 +531,8 @@ func (t_ Toolbar) SetShowsBaselineSeparator(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/sizeMode-swift.property
-func (t_ Toolbar) SizeMode() NSToolbarSizeMode {
-	rv := objc.Send[NSToolbarSizeMode](t_.ID, objc.Sel("sizeMode"))
+func (t_ Toolbar) SizeMode() ToolbarSizeMode {
+	rv := objc.Send[ToolbarSizeMode](t_.ID, objc.Sel("sizeMode"))
 	return rv
 }
 
@@ -539,7 +541,7 @@ func (t_ Toolbar) SizeMode() NSToolbarSizeMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/sizeMode-swift.property
-func (t_ Toolbar) SetSizeMode(value NSToolbarSizeMode) {
+func (t_ Toolbar) SetSizeMode(value ToolbarSizeMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSizeMode:"), value)
 }
 
@@ -548,7 +550,7 @@ func (t_ Toolbar) SetSizeMode(value NSToolbarSizeMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/visibleItems
-func (t_ Toolbar) VisibleItems() []ToolbarItem {
+func (t_ Toolbar) VisibleItems() []ToolbarItem /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("visibleItems"))
 	return rv
 }
@@ -558,7 +560,7 @@ func (t_ Toolbar) VisibleItems() []ToolbarItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
-func (t_ Toolbar) Configuration() string {
+func (t_ Toolbar) Configuration() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -568,7 +570,7 @@ func (t_ Toolbar) Configuration() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/configuration
-func (t_ Toolbar) SetConfiguration(value string) {
+func (t_ Toolbar) SetConfiguration(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfiguration:"), objc.String(value))
 }
 
@@ -577,7 +579,7 @@ func (t_ Toolbar) SetConfiguration(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/isvisible
-func (t_ Toolbar) IsVisible() bool {
+func (t_ Toolbar) IsVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -587,7 +589,7 @@ func (t_ Toolbar) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbar/isvisible
-func (t_ Toolbar) SetIsVisible(value bool) {
+func (t_ Toolbar) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }
 

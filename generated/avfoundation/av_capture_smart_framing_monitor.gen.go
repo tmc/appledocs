@@ -33,16 +33,16 @@ type ICaptureSmartFramingMonitor interface {
 	// properties:
 	SmartFramingMonitor() IAVCaptureSmartFramingMonitor
 	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
-	VideoZoomFactor() float64 /* primitive/slice/pointer */
-	SetVideoZoomFactor(value float64 /* primitive/slice/pointer */)
-	EnabledFramings() CaptureFraming /* not a class type */
-	SetEnabledFramings(value CaptureFraming /* not a class type */)
-	IsMonitoring() bool /* primitive/slice/pointer */
-	SetIsMonitoring(value bool /* primitive/slice/pointer */)
-	RecommendedFraming() CaptureFraming /* not a class type */
-	SetRecommendedFraming(value CaptureFraming /* not a class type */)
-	SupportedFramings() CaptureFraming /* not a class type */
-	SetSupportedFramings(value CaptureFraming /* not a class type */)
+	VideoZoomFactor() float64 /* primitive/slice/pointer. */
+	SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */)
+	EnabledFramings() objc.IObject /* cross-framework: CaptureFraming */
+	SetEnabledFramings(value objc.IObject /* cross-framework: CaptureFraming */)
+	IsMonitoring() bool /* primitive/slice/pointer. */
+	SetIsMonitoring(value bool /* primitive/slice/pointer. */)
+	RecommendedFraming() objc.IObject /* cross-framework: CaptureFraming */
+	SetRecommendedFraming(value objc.IObject /* cross-framework: CaptureFraming */)
+	SupportedFramings() objc.IObject /* cross-framework: CaptureFraming */
+	SetSupportedFramings(value objc.IObject /* cross-framework: CaptureFraming */)
 	// methods:
 }
 
@@ -122,7 +122,7 @@ func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactor"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
-func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactor:"), value)
 }
 
@@ -141,7 +141,7 @@ func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64 /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) EnabledFramings() CaptureFraming /* not a class type */ {
+func (c_ CaptureSmartFramingMonitor) EnabledFramings() objc.IObject /* cross-framework: CaptureFraming */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("enabledFramings"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (c_ CaptureSmartFramingMonitor) EnabledFramings() CaptureFraming /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value CaptureFraming /* not a class type */) {
+func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value objc.IObject /* cross-framework: CaptureFraming */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledFramings:"), value)
 }
 
@@ -160,7 +160,7 @@ func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value CaptureFraming /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool /* primitive/slice/pointer */ {
+func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMonitoring"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
-func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMonitoring:"), value)
 }
 
@@ -179,7 +179,7 @@ func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) RecommendedFraming() CaptureFraming /* not a class type */ {
+func (c_ CaptureSmartFramingMonitor) RecommendedFraming() objc.IObject /* cross-framework: CaptureFraming */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("recommendedFraming"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (c_ CaptureSmartFramingMonitor) RecommendedFraming() CaptureFraming /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value CaptureFraming /* not a class type */) {
+func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value objc.IObject /* cross-framework: CaptureFraming */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecommendedFraming:"), value)
 }
 
@@ -198,7 +198,7 @@ func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value CaptureFraming 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SupportedFramings() CaptureFraming /* not a class type */ {
+func (c_ CaptureSmartFramingMonitor) SupportedFramings() objc.IObject /* cross-framework: CaptureFraming */ {
 	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("supportedFramings"))
 	return rv
 }
@@ -208,7 +208,7 @@ func (c_ CaptureSmartFramingMonitor) SupportedFramings() CaptureFraming /* not a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value CaptureFraming /* not a class type */) {
+func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value objc.IObject /* cross-framework: CaptureFraming */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFramings:"), value)
 }
 

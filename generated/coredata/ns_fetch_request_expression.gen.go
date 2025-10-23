@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchRequestExpression] class.
@@ -30,22 +29,24 @@ type _FetchRequestExpressionClass struct {
 // An interface definition for the [FetchRequestExpression] class.
 type IFetchRequestExpression interface {
 	IExpression
-	ContextExpression() Expression
-	CountOnlyRequest() bool
-	RequestExpression() Expression
+	// properties:
+	ContextExpression() objc.IObject /* cross-framework: Expression */
+	CountOnlyRequest() bool /* primitive/slice/pointer. */
+	RequestExpression() objc.IObject /* cross-framework: Expression */
 	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
-	FetchBatchSize() int
-	SetFetchBatchSize(value int)
-	FetchLimit() int
-	SetFetchLimit(value int)
-	FetchOffset() int
-	SetFetchOffset(value int)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
-	IsCountOnlyRequest() bool
-	SetIsCountOnlyRequest(value bool)
+	FetchBatchSize() int /* primitive/slice/pointer. */
+	SetFetchBatchSize(value int /* primitive/slice/pointer. */)
+	FetchLimit() int /* primitive/slice/pointer. */
+	SetFetchLimit(value int /* primitive/slice/pointer. */)
+	FetchOffset() int /* primitive/slice/pointer. */
+	SetFetchOffset(value int /* primitive/slice/pointer. */)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
+	IsCountOnlyRequest() bool /* primitive/slice/pointer. */
+	SetIsCountOnlyRequest(value bool /* primitive/slice/pointer. */)
 	NSFetchRequestExpressionType() unsafe.Pointer
+	// methods:
 }
 
 // An expression that evaluates the result of a fetch request on a managed object context.
@@ -107,7 +108,7 @@ func NewFetchRequestExpression() FetchRequestExpression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
-func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch Expression, context Expression, countFlag bool) Expression {
+func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch objc.IObject /* cross-framework Expression */, context objc.IObject /* cross-framework Expression */, countFlag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
 }
@@ -117,7 +118,7 @@ func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/contextExpression
-func (f_ FetchRequestExpression) ContextExpression() Expression {
+func (f_ FetchRequestExpression) ContextExpression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](f_.ID, objc.Sel("contextExpression"))
 	return rv
 }
@@ -127,7 +128,7 @@ func (f_ FetchRequestExpression) ContextExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/isCountOnlyRequest
-func (f_ FetchRequestExpression) CountOnlyRequest() bool {
+func (f_ FetchRequestExpression) CountOnlyRequest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("countOnlyRequest"))
 	return rv
 }
@@ -137,7 +138,7 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
-func (f_ FetchRequestExpression) RequestExpression() Expression {
+func (f_ FetchRequestExpression) RequestExpression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](f_.ID, objc.Sel("requestExpression"))
 	return rv
 }
@@ -166,7 +167,7 @@ func (f_ FetchRequestExpression) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchRequestExpression) FetchBatchSize() int {
+func (f_ FetchRequestExpression) FetchBatchSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -176,7 +177,7 @@ func (f_ FetchRequestExpression) FetchBatchSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
+func (f_ FetchRequestExpression) SetFetchBatchSize(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -185,7 +186,7 @@ func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchRequestExpression) FetchLimit() int {
+func (f_ FetchRequestExpression) FetchLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -195,7 +196,7 @@ func (f_ FetchRequestExpression) FetchLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchRequestExpression) SetFetchLimit(value int) {
+func (f_ FetchRequestExpression) SetFetchLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -204,7 +205,7 @@ func (f_ FetchRequestExpression) SetFetchLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchRequestExpression) FetchOffset() int {
+func (f_ FetchRequestExpression) FetchOffset() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -214,7 +215,7 @@ func (f_ FetchRequestExpression) FetchOffset() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchRequestExpression) SetFetchOffset(value int) {
+func (f_ FetchRequestExpression) SetFetchOffset(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -223,8 +224,8 @@ func (f_ FetchRequestExpression) SetFetchOffset(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
+func (f_ FetchRequestExpression) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -233,7 +234,7 @@ func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) SetPredicate(value foundation.Predicate) {
+func (f_ FetchRequestExpression) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -242,7 +243,7 @@ func (f_ FetchRequestExpression) SetPredicate(value foundation.Predicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
+func (f_ FetchRequestExpression) IsCountOnlyRequest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isCountOnlyRequest"))
 	return rv
 }
@@ -252,7 +253,7 @@ func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequestexpression/iscountonlyrequest
-func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
+func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsCountOnlyRequest:"), value)
 }
 

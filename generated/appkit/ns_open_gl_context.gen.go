@@ -30,12 +30,14 @@ type _OpenGLContextClass struct {
 // An interface definition for the [OpenGLContext] class.
 type IOpenGLContext interface {
 	objectivec.IObject
-	CGLContextObj() unsafe.Pointer
+	// properties:
+	CGLContextObj() LContextObj /* not a class type */
 	CurrentVirtualScreen() unsafe.Pointer
 	SetCurrentVirtualScreen(value unsafe.Pointer)
 	PixelFormat() IOpenGLPixelFormat
 	View() IView
 	SetView(value IView)
+	// methods:
 }
 
 // An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
@@ -95,7 +97,7 @@ func NewOpenGLContext() OpenGLContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/init(cglContextObj:)
-func NewOpenGLContextWithCGLContextObj(context unsafe.Pointer) OpenGLContext {
+func NewOpenGLContextWithCGLContextObj(context LContextObj /* not a class type */) OpenGLContext {
 	instance := getOpenGLContextClass().Alloc()
 	rv := objc.Send[OpenGLContext](instance.ID, objc.Sel("initWithCGLContextObj:"), context)
 	rv.Autorelease()
@@ -138,8 +140,8 @@ func (oc _OpenGLContextClass) CurrentContext() OpenGLContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/cglContextObj
-func (o_ OpenGLContext) CGLContextObj() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLContextObj"))
+func (o_ OpenGLContext) CGLContextObj() LContextObj /* not a class type */ {
+	rv := objc.Send[LContextObj](o_.ID, objc.Sel("CGLContextObj"))
 	return rv
 }
 

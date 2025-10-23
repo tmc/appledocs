@@ -30,11 +30,13 @@ type _EKObjectClass struct {
 // An interface definition for the [EKObject] class.
 type IEKObject interface {
 	objectivec.IObject
-	HasChanges() bool
-	New() bool
-	IsNew() bool
-	SetIsNew(value bool)
-	Refresh() bool
+	// properties:
+	HasChanges() bool /* primitive/slice/pointer. */
+	New() bool /* primitive/slice/pointer. */
+	IsNew() bool /* primitive/slice/pointer. */
+	SetIsNew(value bool /* primitive/slice/pointer. */)
+	// methods:
+	Refresh() bool /* primitive/slice/pointer. */
 	Reset()
 	Rollback()
 }
@@ -96,7 +98,7 @@ func NewEKObject() EKObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/refresh()
-func (e_ EKObject) Refresh() bool {
+func (e_ EKObject) Refresh() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("refresh"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (e_ EKObject) Rollback() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/hasChanges
-func (e_ EKObject) HasChanges() bool {
+func (e_ EKObject) HasChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasChanges"))
 	return rv
 }
@@ -134,7 +136,7 @@ func (e_ EKObject) HasChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/isNew
-func (e_ EKObject) New() bool {
+func (e_ EKObject) New() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("new"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (e_ EKObject) New() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
-func (e_ EKObject) IsNew() bool {
+func (e_ EKObject) IsNew() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isNew"))
 	return rv
 }
@@ -154,7 +156,7 @@ func (e_ EKObject) IsNew() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
-func (e_ EKObject) SetIsNew(value bool) {
+func (e_ EKObject) SetIsNew(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsNew:"), value)
 }
 

@@ -30,11 +30,13 @@ type _CSPersonClass struct {
 // An interface definition for the [CSPerson] class.
 type ICSPerson interface {
 	objectivec.IObject
-	ContactIdentifier() string
-	SetContactIdentifier(value string)
-	DisplayName() string
-	HandleIdentifier() string
-	Handles() []string
+	// properties:
+	ContactIdentifier() string /* primitive/slice/pointer. */
+	SetContactIdentifier(value string /* primitive/slice/pointer. */)
+	DisplayName() string /* primitive/slice/pointer. */
+	HandleIdentifier() string /* primitive/slice/pointer. */
+	Handles() []string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a person in the context of search results.
@@ -94,7 +96,7 @@ func NewCSPerson() CSPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
-func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handles []string, handleIdentifier string) CSPerson {
+func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string /* primitive/slice/pointer. */, handles []string /* primitive/slice/pointer. */, handleIdentifier string /* primitive/slice/pointer. */) CSPerson {
 	instance := getCSPersonClass().Alloc()
 	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), objc.String(displayName), handles, objc.String(handleIdentifier))
 	rv.Autorelease()
@@ -107,7 +109,7 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) ContactIdentifier() string {
+func (c_ CSPerson) ContactIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
@@ -117,7 +119,7 @@ func (c_ CSPerson) ContactIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) SetContactIdentifier(value string) {
+func (c_ CSPerson) SetContactIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
 }
 
@@ -126,7 +128,7 @@ func (c_ CSPerson) SetContactIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
-func (c_ CSPerson) DisplayName() string {
+func (c_ CSPerson) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (c_ CSPerson) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
-func (c_ CSPerson) HandleIdentifier() string {
+func (c_ CSPerson) HandleIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (c_ CSPerson) HandleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handles
-func (c_ CSPerson) Handles() []string {
+func (c_ CSPerson) Handles() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("handles"))
 	return rv
 }

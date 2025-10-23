@@ -34,7 +34,7 @@ type IHKGlassesPrescription interface {
 	SetLeftEye(value IHKGlassesLensSpecification)
 	RightEye() IHKGlassesLensSpecification
 	SetRightEye(value IHKGlassesLensSpecification)
-	HKMetadataKeyGlassesPrescriptionDescription() string
+	HKMetadataKeyGlassesPrescriptionDescription() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -135,7 +135,7 @@ func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
-func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string {
+func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv
 }

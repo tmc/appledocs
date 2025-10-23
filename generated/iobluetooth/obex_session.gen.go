@@ -33,28 +33,28 @@ type IOBEXSession interface {
 	// properties:
 	// methods:
 	ClientHandleIncomingData(event unsafe.Pointer)
-	CloseTransportConnection() OBEXError
-	GetAvailableCommandPayloadLength(inOpCode OBEXOpCode) OBEXMaxPacketLength
-	GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCode) OBEXMaxPacketLength
-	GetMaxPacketLength() OBEXMaxPacketLength
-	HasOpenOBEXConnection() bool
+	CloseTransportConnection() OBEXError /* typedef */
+	GetAvailableCommandPayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */
+	GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */
+	GetMaxPacketLength() OBEXMaxPacketLength /* typedef */
+	HasOpenOBEXConnection() bool /* primitive/slice/pointer. */
 	HasOpenTransportConnection() unsafe.Pointer
-	OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXConnectMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXConnectResponseFlagsMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXDisconnectOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXDisconnectResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXGetHeadersHeadersLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeaders unsafe.Pointer, inHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXGetResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXPutHeadersDataHeadersDataLengthBodyDataBodyDataLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inBodyData unsafe.Pointer, inBodyDataLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXPutResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXSetPathConstantsOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags, inConstants OBEXConstants, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OBEXSetPathResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
-	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr) OBEXError
+	OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXConnectMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags /* typedef */, inMaxPacketLength OBEXMaxPacketLength /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXConnectResponseFlagsMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inFlags OBEXFlags /* typedef */, inMaxPacketLength OBEXMaxPacketLength /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXDisconnectOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXDisconnectResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXGetHeadersHeadersLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeaders unsafe.Pointer, inHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXGetResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXPutHeadersDataHeadersDataLengthBodyDataBodyDataLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr /* not a class type */, inBodyData unsafe.Pointer, inBodyDataLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXPutResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXSetPathConstantsOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags /* typedef */, inConstants OBEXConstants /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OBEXSetPathResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
+	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr /* not a class type */) OBEXError /* typedef */
 	ServerHandleIncomingData(event unsafe.Pointer)
-	SetEventCallback(inEventCallback OBEXSessionEventCallback)
+	SetEventCallback(inEventCallback OBEXSessionEventCallback /* typedef */)
 	SetEventRefCon(inRefCon unsafe.Pointer)
 	SetEventSelectorTargetRefCon(inEventSelector objc.SEL, inEventSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer)
 }
@@ -125,7 +125,7 @@ func (o_ OBEXSession) ClientHandleIncomingData(event unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/closeTransportConnection()
-func (o_ OBEXSession) CloseTransportConnection() OBEXError {
+func (o_ OBEXSession) CloseTransportConnection() OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("closeTransportConnection"))
 	return rv
 }
@@ -135,7 +135,7 @@ func (o_ OBEXSession) CloseTransportConnection() OBEXError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/getAvailableCommandPayloadLength(_:)
-func (o_ OBEXSession) GetAvailableCommandPayloadLength(inOpCode OBEXOpCode) OBEXMaxPacketLength {
+func (o_ OBEXSession) GetAvailableCommandPayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */ {
 	rv := objc.Send[OBEXMaxPacketLength](o_.ID, objc.Sel("getAvailableCommandPayloadLength:"), inOpCode)
 	return rv
 }
@@ -145,7 +145,7 @@ func (o_ OBEXSession) GetAvailableCommandPayloadLength(inOpCode OBEXOpCode) OBEX
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/getAvailableCommandResponsePayloadLength(_:)
-func (o_ OBEXSession) GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCode) OBEXMaxPacketLength {
+func (o_ OBEXSession) GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCode /* typedef */) OBEXMaxPacketLength /* typedef */ {
 	rv := objc.Send[OBEXMaxPacketLength](o_.ID, objc.Sel("getAvailableCommandResponsePayloadLength:"), inOpCode)
 	return rv
 }
@@ -155,7 +155,7 @@ func (o_ OBEXSession) GetAvailableCommandResponsePayloadLength(inOpCode OBEXOpCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/getMaxPacketLength()
-func (o_ OBEXSession) GetMaxPacketLength() OBEXMaxPacketLength {
+func (o_ OBEXSession) GetMaxPacketLength() OBEXMaxPacketLength /* typedef */ {
 	rv := objc.Send[OBEXMaxPacketLength](o_.ID, objc.Sel("getMaxPacketLength"))
 	return rv
 }
@@ -165,7 +165,7 @@ func (o_ OBEXSession) GetMaxPacketLength() OBEXMaxPacketLength {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/hasOpenOBEXConnection()
-func (o_ OBEXSession) HasOpenOBEXConnection() bool {
+func (o_ OBEXSession) HasOpenOBEXConnection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasOpenOBEXConnection"))
 	return rv
 }
@@ -185,7 +185,7 @@ func (o_ OBEXSession) HasOpenTransportConnection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexAbort(_:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXAbort:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -195,7 +195,7 @@ func (o_ OBEXSession) OBEXAbortOptionalHeadersLengthEventSelectorSelectorTargetR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexAbortResponse(_:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXAbortResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -205,7 +205,7 @@ func (o_ OBEXSession) OBEXAbortResponseOptionalHeadersOptionalHeadersLengthEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexConnect(_:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXConnectMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXConnectMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags /* typedef */, inMaxPacketLength OBEXMaxPacketLength /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXConnect:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inFlags, inMaxPacketLength, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -215,7 +215,7 @@ func (o_ OBEXSession) OBEXConnectMaxPacketLengthOptionalHeadersOptionalHeadersLe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexConnectResponse(_:flags:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXConnectResponseFlagsMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inFlags OBEXFlags, inMaxPacketLength OBEXMaxPacketLength, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXConnectResponseFlagsMaxPacketLengthOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inFlags OBEXFlags /* typedef */, inMaxPacketLength OBEXMaxPacketLength /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXConnectResponse:flags:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inFlags, inMaxPacketLength, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -225,7 +225,7 @@ func (o_ OBEXSession) OBEXConnectResponseFlagsMaxPacketLengthOptionalHeadersOpti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexDisconnect(_:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXDisconnectOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXDisconnectOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXDisconnect:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -235,7 +235,7 @@ func (o_ OBEXSession) OBEXDisconnectOptionalHeadersLengthEventSelectorSelectorTa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexDisconnectResponse(_:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXDisconnectResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXDisconnectResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXDisconnectResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -245,7 +245,7 @@ func (o_ OBEXSession) OBEXDisconnectResponseOptionalHeadersOptionalHeadersLength
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexGet(_:headers:headersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXGetHeadersHeadersLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeaders unsafe.Pointer, inHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXGetHeadersHeadersLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeaders unsafe.Pointer, inHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXGet:headers:headersLength:eventSelector:selectorTarget:refCon:"), isFinalChunk, inHeaders, inHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -255,7 +255,7 @@ func (o_ OBEXSession) OBEXGetHeadersHeadersLengthEventSelectorSelectorTargetRefC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexGetResponse(_:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXGetResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXGetResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXGetResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -265,7 +265,7 @@ func (o_ OBEXSession) OBEXGetResponseOptionalHeadersOptionalHeadersLengthEventSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexPut(_:headersData:headersDataLength:bodyData:bodyDataLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXPutHeadersDataHeadersDataLengthBodyDataBodyDataLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr, inBodyData unsafe.Pointer, inBodyDataLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXPutHeadersDataHeadersDataLengthBodyDataBodyDataLengthEventSelectorSelectorTargetRefCon(isFinalChunk unsafe.Pointer, inHeadersData unsafe.Pointer, inHeadersDataLength uintptr /* not a class type */, inBodyData unsafe.Pointer, inBodyDataLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXPut:headersData:headersDataLength:bodyData:bodyDataLength:eventSelector:selectorTarget:refCon:"), isFinalChunk, inHeadersData, inHeadersDataLength, inBodyData, inBodyDataLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -275,7 +275,7 @@ func (o_ OBEXSession) OBEXPutHeadersDataHeadersDataLengthBodyDataBodyDataLengthE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexPutResponse(_:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXPutResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXPutResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXPutResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -285,7 +285,7 @@ func (o_ OBEXSession) OBEXPutResponseOptionalHeadersOptionalHeadersLengthEventSe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexSetPath(_:constants:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXSetPathConstantsOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags, inConstants OBEXConstants, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXSetPathConstantsOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inFlags OBEXFlags /* typedef */, inConstants OBEXConstants /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXSetPath:constants:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inFlags, inConstants, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -295,7 +295,7 @@ func (o_ OBEXSession) OBEXSetPathConstantsOptionalHeadersOptionalHeadersLengthEv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/obexSetPathResponse(_:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:)
-func (o_ OBEXSession) OBEXSetPathResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OBEXSetPathResponseOptionalHeadersOptionalHeadersLengthEventSelectorSelectorTargetRefCon(inResponseOpCode OBEXOpCode /* typedef */, inOptionalHeaders unsafe.Pointer, inOptionalHeadersLength uintptr /* not a class type */, inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("OBEXSetPathResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:"), inResponseOpCode, inOptionalHeaders, inOptionalHeadersLength, inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -305,7 +305,7 @@ func (o_ OBEXSession) OBEXSetPathResponseOptionalHeadersOptionalHeadersLengthEve
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/openTransportConnection(_:selectorTarget:refCon:)
-func (o_ OBEXSession) OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (o_ OBEXSession) OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("openTransportConnection:selectorTarget:refCon:"), inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -315,7 +315,7 @@ func (o_ OBEXSession) OpenTransportConnectionSelectorTargetRefCon(inSelector obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/sendData(toTransport:dataLength:)
-func (o_ OBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr) OBEXError {
+func (o_ OBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr /* not a class type */) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](o_.ID, objc.Sel("sendDataToTransport:dataLength:"), inDataToSend, inDataLength)
 	return rv
 }
@@ -334,7 +334,7 @@ func (o_ OBEXSession) ServerHandleIncomingData(event unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/setEventCallback(_:)
-func (o_ OBEXSession) SetEventCallback(inEventCallback OBEXSessionEventCallback) {
+func (o_ OBEXSession) SetEventCallback(inEventCallback OBEXSessionEventCallback /* typedef */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setEventCallback:"), inEventCallback)
 }
 

@@ -2,11 +2,14 @@
 
 // Package uniformtypeidentifiers provides Go bindings for the UniformTypeIdentifiers framework.
 //
-// Provide uniform type identifiers that describe file types for storage or transfer. [Full Topic]
+// Provide uniform type identifiers that describe file types for storage or transfer.
 //
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to UniformTypeIdentifiers without requiring cgo.
+
+// Provide uniform type identifiers that describe file types for storage or transfer.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UniformTypeIdentifiers
 package uniformtypeidentifiers
 

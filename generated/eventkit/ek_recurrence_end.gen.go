@@ -31,8 +31,10 @@ type _EKRecurrenceEndClass struct {
 // An interface definition for the [EKRecurrenceEnd] class.
 type IEKRecurrenceEnd interface {
 	objectivec.IObject
-	EndDate() foundation.NSDate
-	OccurrenceCount() uint
+	// properties:
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	OccurrenceCount() uint /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class that defines the end of a recurrence rule.
@@ -92,7 +94,7 @@ func NewEKRecurrenceEnd() EKRecurrenceEnd {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func NewEKRecurrenceEndWithEndDate(endDate foundation.NSDate) EKRecurrenceEnd {
+func NewEKRecurrenceEndWithEndDate(endDate foundation.objc.IObject /* cross-framework NSDate */) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
@@ -102,7 +104,7 @@ func NewEKRecurrenceEndWithEndDate(endDate foundation.NSDate) EKRecurrenceEnd {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(occurrenceCount:)
-func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint) EKRecurrenceEnd {
+func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint /* primitive/slice/pointer. */) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithOccurrenceCount:"), occurrenceCount)
 	return rv
 }
@@ -113,7 +115,7 @@ func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint) EKRecurrenceEnd
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.NSDate) unsafe.Pointer {
+func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.objc.IObject /* cross-framework NSDate */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
@@ -123,7 +125,7 @@ func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.NSDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(occurrenceCount:)
-func (ec _EKRecurrenceEndClass) RecurrenceEndWithOccurrenceCount(occurrenceCount uint) unsafe.Pointer {
+func (ec _EKRecurrenceEndClass) RecurrenceEndWithOccurrenceCount(occurrenceCount uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithOccurrenceCount:"), occurrenceCount)
 	return rv
 }
@@ -133,7 +135,7 @@ func (ec _EKRecurrenceEndClass) RecurrenceEndWithOccurrenceCount(occurrenceCount
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/endDate
-func (e_ EKRecurrenceEnd) EndDate() foundation.NSDate {
+func (e_ EKRecurrenceEnd) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (e_ EKRecurrenceEnd) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/occurrenceCount
-func (e_ EKRecurrenceEnd) OccurrenceCount() uint {
+func (e_ EKRecurrenceEnd) OccurrenceCount() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](e_.ID, objc.Sel("occurrenceCount"))
 	return rv
 }

@@ -26,6 +26,15 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code/appNotEntitled
 	AXFeatureOverrideSessionErrorAppNotEntitled AXFeatureOverrideSessionError = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code/overrideIsAlreadyActive
+	AXFeatureOverrideSessionErrorOverrideIsAlreadyActive AXFeatureOverrideSessionError = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code/overrideNotFoundForUUID
+	AXFeatureOverrideSessionErrorOverrideNotFoundForUUID AXFeatureOverrideSessionError = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionError-swift.struct/Code/undefined
+	AXFeatureOverrideSessionErrorUndefined AXFeatureOverrideSessionError = 0
 )
 
 // AXHearingDeviceEar - Constants that represent a hearing device ear.
@@ -42,6 +51,12 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/assistiveTouch
 	AXSettingsFeatureAssistiveTouch AXSettingsFeature = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/assistiveTouchDevices
+	AXSettingsFeatureAssistiveTouchDevices AXSettingsFeature = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings/Feature/dwellControl
+	AXSettingsFeatureDwellControl AXSettingsFeature = 0
 )
 
 

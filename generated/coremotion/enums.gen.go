@@ -72,6 +72,17 @@ type CMOdometerOriginDevice uint
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEventType
 type CMPedometerEventType uint
 
+const (
+	// CMPedometerEventTypePause - The user’s pedestrian activity stopped.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEventType/pause
+	CMPedometerEventTypePause CMPedometerEventType = 0
+	// CMPedometerEventTypeResume - The user’s pedestrian activity resumed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEventType/resume
+	CMPedometerEventTypeResume CMPedometerEventType = 0
+)
+
 // CMWaterSubmersionState - The device’s submersion state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum

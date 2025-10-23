@@ -21,8 +21,10 @@ const (
 type NSFileProviderCreateItemOptions uint
 
 const (
+	// NSFileProviderCreateItemMayAlreadyExist - An option indicating that the item may already exist in your remote storage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderCreateItemOptions/mayAlreadyExist
 	NSFileProviderCreateItemMayAlreadyExist NSFileProviderCreateItemOptions = 1
-	NSFileProviderCreateItemDeletionConflicted NSFileProviderCreateItemOptions = 2
 )
 
 // NSFileProviderDeleteItemOptions - Options for deleting items.
@@ -236,7 +238,11 @@ const (
 type NSFileProviderKnownFolders uint
 
 const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolders/desktop
 	NSFileProviderDesktop NSFileProviderKnownFolders = 1
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolders/documents
 	NSFileProviderDocuments NSFileProviderKnownFolders = 2
 )
 

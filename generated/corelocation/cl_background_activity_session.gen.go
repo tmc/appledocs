@@ -30,6 +30,8 @@ type _BackgroundActivitySessionClass struct {
 // An interface definition for the [BackgroundActivitySession] class.
 type IBackgroundActivitySession interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	Invalidate()
 }
 

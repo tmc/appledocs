@@ -31,22 +31,23 @@ type _DDDeviceClass struct {
 // An interface definition for the [DDDevice] class.
 type IDDDevice interface {
 	objectivec.IObject
-	BluetoothIdentifier() foundation.UUID
-	SetBluetoothIdentifier(value foundation.UUID)
+	// properties:
+	BluetoothIdentifier() objc.IObject /* cross-framework: UUID */
+	SetBluetoothIdentifier(value objc.IObject /* cross-framework: UUID */)
 	Category() DDDeviceCategory
 	SetCategory(value DDDeviceCategory)
 	DeviceSupports() DDDeviceSupports
 	SetDeviceSupports(value DDDeviceSupports)
-	DisplayImageName() string
-	SetDisplayImageName(value string)
-	DisplayName() string
-	SetDisplayName(value string)
-	Identifier() string
-	SetIdentifier(value string)
-	MediaContentSubtitle() string
-	SetMediaContentSubtitle(value string)
-	MediaContentTitle() string
-	SetMediaContentTitle(value string)
+	DisplayImageName() string /* primitive/slice/pointer. */
+	SetDisplayImageName(value string /* primitive/slice/pointer. */)
+	DisplayName() string /* primitive/slice/pointer. */
+	SetDisplayName(value string /* primitive/slice/pointer. */)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	MediaContentSubtitle() string /* primitive/slice/pointer. */
+	SetMediaContentSubtitle(value string /* primitive/slice/pointer. */)
+	MediaContentTitle() string /* primitive/slice/pointer. */
+	SetMediaContentTitle(value string /* primitive/slice/pointer. */)
 	MediaPlaybackState() DDDeviceMediaPlaybackState
 	SetMediaPlaybackState(value DDDeviceMediaPlaybackState)
 	NetworkEndpoint() unsafe.Pointer
@@ -55,26 +56,27 @@ type IDDDevice interface {
 	SetProtocol(value DDDeviceProtocol)
 	ProtocolType() objectivec.IObject
 	SetProtocolType(value objectivec.IObject)
-	SSID() string
-	SetSSID(value string)
+	SSID() string /* primitive/slice/pointer. */
+	SetSSID(value string /* primitive/slice/pointer. */)
 	State() DDDeviceState
 	SetState(value DDDeviceState)
-	SupportsGrouping() bool
-	SetSupportsGrouping(value bool)
-	TxtRecordData() foundation.NSData
-	SetTxtRecordData(value foundation.NSData)
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
-	WifiAwareModelName() string
-	SetWifiAwareModelName(value string)
-	WifiAwareServiceName() string
-	SetWifiAwareServiceName(value string)
+	SupportsGrouping() bool /* primitive/slice/pointer. */
+	SetSupportsGrouping(value bool /* primitive/slice/pointer. */)
+	TxtRecordData() foundation.objc.IObject /* cross-framework: NSData */
+	SetTxtRecordData(value foundation.objc.IObject /* cross-framework: NSData */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	WifiAwareModelName() string /* primitive/slice/pointer. */
+	SetWifiAwareModelName(value string /* primitive/slice/pointer. */)
+	WifiAwareServiceName() string /* primitive/slice/pointer. */
+	SetWifiAwareServiceName(value string /* primitive/slice/pointer. */)
 	WifiAwareServiceRole() DDDeviceWiFiAwareServiceRole
 	SetWifiAwareServiceRole(value DDDeviceWiFiAwareServiceRole)
-	WifiAwareVendorName() string
-	SetWifiAwareVendorName(value string)
+	WifiAwareVendorName() string /* primitive/slice/pointer. */
+	SetWifiAwareVendorName(value string /* primitive/slice/pointer. */)
 	TxtRecord() unsafe.Pointer
 	SetTxtRecord(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that describes a discovered device of interest.
@@ -134,7 +136,7 @@ func NewDDDevice() DDDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/init(displayName:category:protocolType:identifier:)
-func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string, category DDDeviceCategory, protocolType objectivec.IObject, identifier string) DDDevice {
+func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string /* primitive/slice/pointer. */, category DDDeviceCategory, protocolType objectivec.IObject, identifier string /* primitive/slice/pointer. */) DDDevice {
 	instance := getDDDeviceClass().Alloc()
 	rv := objc.Send[DDDevice](instance.ID, objc.Sel("initWithDisplayName:category:protocolType:identifier:"), objc.String(displayName), category, protocolType, objc.String(identifier))
 	rv.Autorelease()
@@ -147,8 +149,8 @@ func NewDDDeviceWithDisplayNameCategoryProtocolTypeIdentifier(displayName string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/bluetoothIdentifier
-func (d_ DDDevice) BluetoothIdentifier() foundation.UUID {
-	rv := objc.Send[foundation.UUID](d_.ID, objc.Sel("bluetoothIdentifier"))
+func (d_ DDDevice) BluetoothIdentifier() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](d_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
 }
 
@@ -157,7 +159,7 @@ func (d_ DDDevice) BluetoothIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/bluetoothIdentifier
-func (d_ DDDevice) SetBluetoothIdentifier(value foundation.UUID) {
+func (d_ DDDevice) SetBluetoothIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBluetoothIdentifier:"), value)
 }
 
@@ -198,7 +200,7 @@ func (d_ DDDevice) SetDeviceSupports(value DDDeviceSupports) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayImageName
-func (d_ DDDevice) DisplayImageName() string {
+func (d_ DDDevice) DisplayImageName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("displayImageName"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (d_ DDDevice) DisplayImageName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayImageName
-func (d_ DDDevice) SetDisplayImageName(value string) {
+func (d_ DDDevice) SetDisplayImageName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayImageName:"), objc.String(value))
 }
 
@@ -215,7 +217,7 @@ func (d_ DDDevice) SetDisplayImageName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayName
-func (d_ DDDevice) DisplayName() string {
+func (d_ DDDevice) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -225,7 +227,7 @@ func (d_ DDDevice) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/displayName
-func (d_ DDDevice) SetDisplayName(value string) {
+func (d_ DDDevice) SetDisplayName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
@@ -234,7 +236,7 @@ func (d_ DDDevice) SetDisplayName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/identifier
-func (d_ DDDevice) Identifier() string {
+func (d_ DDDevice) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -244,7 +246,7 @@ func (d_ DDDevice) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/identifier
-func (d_ DDDevice) SetIdentifier(value string) {
+func (d_ DDDevice) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -253,7 +255,7 @@ func (d_ DDDevice) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentSubtitle
-func (d_ DDDevice) MediaContentSubtitle() string {
+func (d_ DDDevice) MediaContentSubtitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("mediaContentSubtitle"))
 	return rv
 }
@@ -263,7 +265,7 @@ func (d_ DDDevice) MediaContentSubtitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentSubtitle
-func (d_ DDDevice) SetMediaContentSubtitle(value string) {
+func (d_ DDDevice) SetMediaContentSubtitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentSubtitle:"), objc.String(value))
 }
 
@@ -272,7 +274,7 @@ func (d_ DDDevice) SetMediaContentSubtitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentTitle
-func (d_ DDDevice) MediaContentTitle() string {
+func (d_ DDDevice) MediaContentTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("mediaContentTitle"))
 	return rv
 }
@@ -282,7 +284,7 @@ func (d_ DDDevice) MediaContentTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/mediaContentTitle
-func (d_ DDDevice) SetMediaContentTitle(value string) {
+func (d_ DDDevice) SetMediaContentTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMediaContentTitle:"), objc.String(value))
 }
 
@@ -365,7 +367,7 @@ func (d_ DDDevice) SetProtocolType(value objectivec.IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/ssid
-func (d_ DDDevice) SSID() string {
+func (d_ DDDevice) SSID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("SSID"))
 	return rv
 }
@@ -373,7 +375,7 @@ func (d_ DDDevice) SSID() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/ssid
-func (d_ DDDevice) SetSSID(value string) {
+func (d_ DDDevice) SetSSID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSSID:"), objc.String(value))
 }
 
@@ -401,7 +403,7 @@ func (d_ DDDevice) SetState(value DDDeviceState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/supportsGrouping
-func (d_ DDDevice) SupportsGrouping() bool {
+func (d_ DDDevice) SupportsGrouping() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supportsGrouping"))
 	return rv
 }
@@ -411,7 +413,7 @@ func (d_ DDDevice) SupportsGrouping() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/supportsGrouping
-func (d_ DDDevice) SetSupportsGrouping(value bool) {
+func (d_ DDDevice) SetSupportsGrouping(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSupportsGrouping:"), value)
 }
 
@@ -420,7 +422,7 @@ func (d_ DDDevice) SetSupportsGrouping(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/txtRecordData
-func (d_ DDDevice) TxtRecordData() foundation.NSData {
+func (d_ DDDevice) TxtRecordData() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("txtRecordData"))
 	return rv
 }
@@ -430,7 +432,7 @@ func (d_ DDDevice) TxtRecordData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/txtRecordData
-func (d_ DDDevice) SetTxtRecordData(value foundation.NSData) {
+func (d_ DDDevice) SetTxtRecordData(value foundation.objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTxtRecordData:"), value)
 }
 
@@ -439,7 +441,7 @@ func (d_ DDDevice) SetTxtRecordData(value foundation.NSData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/url
-func (d_ DDDevice) Url() foundation.URL {
+func (d_ DDDevice) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("url"))
 	return rv
 }
@@ -449,7 +451,7 @@ func (d_ DDDevice) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/url
-func (d_ DDDevice) SetUrl(value foundation.URL) {
+func (d_ DDDevice) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setUrl:"), value)
 }
 
@@ -458,7 +460,7 @@ func (d_ DDDevice) SetUrl(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareModelName
-func (d_ DDDevice) WifiAwareModelName() string {
+func (d_ DDDevice) WifiAwareModelName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareModelName"))
 	return rv
 }
@@ -468,7 +470,7 @@ func (d_ DDDevice) WifiAwareModelName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareModelName
-func (d_ DDDevice) SetWifiAwareModelName(value string) {
+func (d_ DDDevice) SetWifiAwareModelName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareModelName:"), objc.String(value))
 }
 
@@ -477,7 +479,7 @@ func (d_ DDDevice) SetWifiAwareModelName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareServiceName
-func (d_ DDDevice) WifiAwareServiceName() string {
+func (d_ DDDevice) WifiAwareServiceName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareServiceName"))
 	return rv
 }
@@ -487,7 +489,7 @@ func (d_ DDDevice) WifiAwareServiceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareServiceName
-func (d_ DDDevice) SetWifiAwareServiceName(value string) {
+func (d_ DDDevice) SetWifiAwareServiceName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareServiceName:"), objc.String(value))
 }
 
@@ -515,7 +517,7 @@ func (d_ DDDevice) SetWifiAwareServiceRole(value DDDeviceWiFiAwareServiceRole) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareVendorName
-func (d_ DDDevice) WifiAwareVendorName() string {
+func (d_ DDDevice) WifiAwareVendorName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("wifiAwareVendorName"))
 	return rv
 }
@@ -525,7 +527,7 @@ func (d_ DDDevice) WifiAwareVendorName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/wifiAwareVendorName
-func (d_ DDDevice) SetWifiAwareVendorName(value string) {
+func (d_ DDDevice) SetWifiAwareVendorName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setWifiAwareVendorName:"), objc.String(value))
 }
 

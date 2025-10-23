@@ -29,8 +29,10 @@ type _DDMatchFlightNumberClass struct {
 // An interface definition for the [DDMatchFlightNumber] class.
 type IDDMatchFlightNumber interface {
 	IDDMatch
-	Airline() string
-	FlightNumber() string
+	// properties:
+	Airline() string /* primitive/slice/pointer. */
+	FlightNumber() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains a flight number that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchFlightNumber() DDMatchFlightNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/airline
-func (d_ DDMatchFlightNumber) Airline() string {
+func (d_ DDMatchFlightNumber) Airline() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("airline"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (d_ DDMatchFlightNumber) Airline() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchFlightNumber/flightNumber
-func (d_ DDMatchFlightNumber) FlightNumber() string {
+func (d_ DDMatchFlightNumber) FlightNumber() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("flightNumber"))
 	return rv
 }

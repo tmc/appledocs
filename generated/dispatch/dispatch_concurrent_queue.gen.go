@@ -30,6 +30,8 @@ type _DispatchConcurrentQueueClass struct {
 // An interface definition for the [DispatchConcurrentQueue] class.
 type IDispatchConcurrentQueue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A custom dispatch queue that schedules tasks for concurrent execution.

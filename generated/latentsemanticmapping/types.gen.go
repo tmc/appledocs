@@ -33,12 +33,28 @@ type CFWriteStreamRef unsafe.Pointer
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFIndex unsafe.Pointer
+// Using inferred base types as fallback to allow code generation.
+type AllocatorRef = int
 
-type CFOptionFlags unsafe.Pointer
+type ArrayRef = int
 
-type CFTypeID unsafe.Pointer
+type DataRef = int
+
+type DictionaryRef = int
+
+type Index = int
+
+type LocaleRef = int
+
+type OptionFlags = int
+
+type StringRef = int
+
+type TypeID = int
+
+type URLRef = int
+
+type WriteStreamRef = int
 
 
 

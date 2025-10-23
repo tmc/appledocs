@@ -29,7 +29,9 @@ type _CBCentralClass struct {
 // An interface definition for the [CBCentral] class.
 type ICBCentral interface {
 	ICBPeer
-	MaximumUpdateValueLength() uint
+	// properties:
+	MaximumUpdateValueLength() uint /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A remote device connected to a local app, which is acting as a peripheral.
@@ -91,7 +93,7 @@ func NewCBCentral() CBCentral {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCentral/maximumUpdateValueLength
-func (c_ CBCentral) MaximumUpdateValueLength() uint {
+func (c_ CBCentral) MaximumUpdateValueLength() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumUpdateValueLength"))
 	return rv
 }

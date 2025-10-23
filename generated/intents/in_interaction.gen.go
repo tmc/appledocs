@@ -32,23 +32,23 @@ type _INInteractionClass struct {
 type IINInteraction interface {
 	objectivec.IObject
 	// properties:
-	DateInterval() foundation.DateInterval
-	SetDateInterval(value foundation.DateInterval)
+	DateInterval() foundation.objc.IObject /* cross-framework: DateInterval */
+	SetDateInterval(value foundation.objc.IObject /* cross-framework: DateInterval */)
 	Direction() unsafe.Pointer
 	SetDirection(value unsafe.Pointer)
-	GroupIdentifier() string
-	SetGroupIdentifier(value string)
-	Identifier() string
-	SetIdentifier(value string)
-	Intent() INIntent
-	SetIntent(value INIntent)
+	GroupIdentifier() string /* primitive/slice/pointer. */
+	SetGroupIdentifier(value string /* primitive/slice/pointer. */)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Intent() INIntent /* already interface */
+	SetIntent(value INIntent /* already interface */)
 	IntentHandlingStatus() unsafe.Pointer
 	SetIntentHandlingStatus(value unsafe.Pointer)
-	IntentResponse() INIntentResponse
-	SetIntentResponse(value INIntentResponse)
+	IntentResponse() INIntentResponse /* already interface */
+	SetIntentResponse(value INIntentResponse /* already interface */)
 	// methods:
 	DonateInteractionWithCompletion(completion unsafe.Pointer)
-	ParameterValueForParameter(parameter INParameter) objc.ID
+	ParameterValueForParameter(parameter INParameter /* already interface */) objc.ID
 }
 
 // An interaction between the user and your app involving an intent object.
@@ -108,7 +108,7 @@ func NewINInteraction() INInteraction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/delete(with:completion:)-2d1gs
-func (ic _INInteractionClass) DeleteInteractionsWithIdentifiersCompletion(identifiers []string, completion unsafe.Pointer) {
+func (ic _INInteractionClass) DeleteInteractionsWithIdentifiersCompletion(identifiers []string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithIdentifiers:completion:"), identifiers, completion)
 }
 
@@ -126,7 +126,7 @@ func (i_ INInteraction) DonateInteractionWithCompletion(completion unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/parameterValue(for:)
-func (i_ INInteraction) ParameterValueForParameter(parameter INParameter) objc.ID {
+func (i_ INInteraction) ParameterValueForParameter(parameter INParameter /* already interface */) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("parameterValueForParameter:"), parameter)
 	return rv
 }
@@ -136,7 +136,7 @@ func (i_ INInteraction) ParameterValueForParameter(parameter INParameter) objc.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
-func (i_ INInteraction) DateInterval() foundation.DateInterval {
+func (i_ INInteraction) DateInterval() foundation.objc.IObject /* cross-framework: DateInterval */ {
 	rv := objc.Send[foundation.DateInterval](i_.ID, objc.Sel("dateInterval"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ INInteraction) DateInterval() foundation.DateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
-func (i_ INInteraction) SetDateInterval(value foundation.DateInterval) {
+func (i_ INInteraction) SetDateInterval(value foundation.objc.IObject /* cross-framework: DateInterval */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
 }
 
@@ -174,7 +174,7 @@ func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/groupidentifier
-func (i_ INInteraction) GroupIdentifier() string {
+func (i_ INInteraction) GroupIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
@@ -184,7 +184,7 @@ func (i_ INInteraction) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/groupidentifier
-func (i_ INInteraction) SetGroupIdentifier(value string) {
+func (i_ INInteraction) SetGroupIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
@@ -193,7 +193,7 @@ func (i_ INInteraction) SetGroupIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/identifier
-func (i_ INInteraction) Identifier() string {
+func (i_ INInteraction) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -203,7 +203,7 @@ func (i_ INInteraction) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/identifier
-func (i_ INInteraction) SetIdentifier(value string) {
+func (i_ INInteraction) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -212,7 +212,7 @@ func (i_ INInteraction) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
-func (i_ INInteraction) Intent() INIntent {
+func (i_ INInteraction) Intent() INIntent /* already interface */ {
 	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
 	return rv
 }
@@ -222,7 +222,7 @@ func (i_ INInteraction) Intent() INIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
-func (i_ INInteraction) SetIntent(value INIntent) {
+func (i_ INInteraction) SetIntent(value INIntent /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
 
@@ -250,7 +250,7 @@ func (i_ INInteraction) SetIntentHandlingStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
-func (i_ INInteraction) IntentResponse() INIntentResponse {
+func (i_ INInteraction) IntentResponse() INIntentResponse /* already interface */ {
 	rv := objc.Send[INIntentResponse](i_.ID, objc.Sel("intentResponse"))
 	return rv
 }
@@ -260,7 +260,7 @@ func (i_ INInteraction) IntentResponse() INIntentResponse {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
-func (i_ INInteraction) SetIntentResponse(value INIntentResponse) {
+func (i_ INInteraction) SetIntentResponse(value INIntentResponse /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentResponse:"), value)
 }
 

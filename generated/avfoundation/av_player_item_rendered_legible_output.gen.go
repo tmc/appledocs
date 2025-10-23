@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PlayerItemRenderedLegibleOutput] class.
@@ -30,7 +28,7 @@ type _PlayerItemRenderedLegibleOutputClass struct {
 
 // An interface definition for the [PlayerItemRenderedLegibleOutput] class.
 type IPlayerItemRenderedLegibleOutput interface {
-	objectivec.IObject
+	IPlayerItemOutput
 	// properties:
 	AdvanceIntervalForDelegateInvocation() unsafe.Pointer
 	SetAdvanceIntervalForDelegateInvocation(value unsafe.Pointer)
@@ -38,8 +36,8 @@ type IPlayerItemRenderedLegibleOutput interface {
 	SetDelegate(value PlayerItemRenderedLegibleOutputPushDelegate /* not a class type */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
-	VideoDisplaySize() coregraphics.CGSize
-	SetVideoDisplaySize(value coregraphics.CGSize)
+	VideoDisplaySize() objc.IObject /* cross-framework: Size */
+	SetVideoDisplaySize(value objc.IObject /* cross-framework: Size */)
 	// methods:
 }
 
@@ -51,14 +49,16 @@ type IPlayerItemRenderedLegibleOutput interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemRenderedLegibleOutput
 type PlayerItemRenderedLegibleOutput struct {
-	objectivec.Object
+	PlayerItemOutput
 }
 
 // PlayerItemRenderedLegibleOutputFrom constructs a [PlayerItemRenderedLegibleOutput] from an unsafe.Pointer.
 //
 // A player item output that vends media with a legible characteristic as rendered pixel buffers.
 func PlayerItemRenderedLegibleOutputFrom(ptr unsafe.Pointer) PlayerItemRenderedLegibleOutput {
-	return PlayerItemRenderedLegibleOutput{objectivec.Object{objc.ID(ptr)}}
+	return PlayerItemRenderedLegibleOutput{
+		PlayerItemOutput: PlayerItemOutputFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -155,8 +155,8 @@ func (p_ PlayerItemRenderedLegibleOutput) SetDelegateQueue(value unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
-func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("videoDisplaySize"))
+func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](p_.ID, objc.Sel("videoDisplaySize"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (p_ PlayerItemRenderedLegibleOutput) VideoDisplaySize() coregraphics.CGSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput/videodisplaysize
-func (p_ PlayerItemRenderedLegibleOutput) SetVideoDisplaySize(value coregraphics.CGSize) {
+func (p_ PlayerItemRenderedLegibleOutput) SetVideoDisplaySize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoDisplaySize:"), value)
 }
 

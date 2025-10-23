@@ -29,14 +29,16 @@ type _AudioPlayerNodeClass struct {
 // An interface definition for the [AudioPlayerNode] class.
 type IAudioPlayerNode interface {
 	IAudioNode
+	// properties:
 	LastRenderTime() IAVAudioTime
 	SetLastRenderTime(value IAVAudioTime)
 	Latency() unsafe.Pointer
 	SetLatency(value unsafe.Pointer)
 	OutputPresentationLatency() unsafe.Pointer
 	SetOutputPresentationLatency(value unsafe.Pointer)
-	IsPlaying() bool
-	SetIsPlaying(value bool)
+	IsPlaying() bool /* primitive/slice/pointer. */
+	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object for scheduling the playback of buffers or segments of audio files.
@@ -155,7 +157,7 @@ func (a_ AudioPlayerNode) SetOutputPresentationLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) IsPlaying() bool {
+func (a_ AudioPlayerNode) IsPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (a_ AudioPlayerNode) IsPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioplayernode/isplaying
-func (a_ AudioPlayerNode) SetIsPlaying(value bool) {
+func (a_ AudioPlayerNode) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlaying:"), value)
 }
 

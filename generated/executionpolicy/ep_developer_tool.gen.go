@@ -30,7 +30,9 @@ type _EPDeveloperToolClass struct {
 // An interface definition for the [EPDeveloperTool] class.
 type IEPDeveloperTool interface {
 	objectivec.IObject
+	// properties:
 	AuthorizationStatus() EPDeveloperToolStatus
+	// methods:
 	RequestDeveloperToolAccessWithCompletionHandler(handler unsafe.Pointer)
 }
 

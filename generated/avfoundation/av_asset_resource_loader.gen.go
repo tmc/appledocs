@@ -31,14 +31,14 @@ type _AssetResourceLoaderClass struct {
 type IAssetResourceLoader interface {
 	objectivec.IObject
 	// properties:
-	SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer */
-	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer */)
+	SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer. */
+	SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer. */)
 	Delegate() AssetResourceLoaderDelegate /* not a class type */
 	SetDelegate(value AssetResourceLoaderDelegate /* not a class type */)
 	DelegateQueue() unsafe.Pointer
 	SetDelegateQueue(value unsafe.Pointer)
-	PreloadsEligibleContentKeys() bool /* primitive/slice/pointer */
-	SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer */)
+	PreloadsEligibleContentKeys() bool /* primitive/slice/pointer. */
+	SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer. */)
 	ResourceLoader() IAVAssetResourceLoader
 	SetResourceLoader(value IAVAssetResourceLoader)
 	// methods:
@@ -101,7 +101,7 @@ func NewAssetResourceLoader() AssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer */ {
+func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendsCommonMediaClientDataAsHTTPHeaders"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (a_ AssetResourceLoader) SendsCommonMediaClientDataAsHTTPHeaders() bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetResourceLoader/sendsCommonMediaClientDataAsHTTPHeaders
-func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer */) {
+func (a_ AssetResourceLoader) SetSendsCommonMediaClientDataAsHTTPHeaders(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSendsCommonMediaClientDataAsHTTPHeaders:"), value)
 }
 
@@ -158,7 +158,7 @@ func (a_ AssetResourceLoader) SetDelegateQueue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool /* primitive/slice/pointer */ {
+func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preloadsEligibleContentKeys"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (a_ AssetResourceLoader) PreloadsEligibleContentKeys() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetresourceloader/preloadseligiblecontentkeys
-func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer */) {
+func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreloadsEligibleContentKeys:"), value)
 }
 

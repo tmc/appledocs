@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MKPinAnnotationView] class.
@@ -31,12 +30,12 @@ type _MKPinAnnotationViewClass struct {
 type IMKPinAnnotationView interface {
 	IMKAnnotationView
 	// properties:
-	AnimatesDrop() bool
-	SetAnimatesDrop(value bool)
+	AnimatesDrop() bool /* primitive/slice/pointer. */
+	SetAnimatesDrop(value bool /* primitive/slice/pointer. */)
 	PinColor() unsafe.Pointer
 	SetPinColor(value unsafe.Pointer)
-	PinTintColor() appkit.Color
-	SetPinTintColor(value appkit.Color)
+	PinTintColor() objc.IObject /* cross-framework: Color */
+	SetPinTintColor(value objc.IObject /* cross-framework: Color */)
 	// methods:
 }
 
@@ -99,7 +98,7 @@ func NewMKPinAnnotationView() MKPinAnnotationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) AnimatesDrop() bool {
+func (m_ MKPinAnnotationView) AnimatesDrop() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("animatesDrop"))
 	return rv
 }
@@ -109,7 +108,7 @@ func (m_ MKPinAnnotationView) AnimatesDrop() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/animatesdrop
-func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool) {
+func (m_ MKPinAnnotationView) SetAnimatesDrop(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnimatesDrop:"), value)
 }
 
@@ -137,8 +136,8 @@ func (m_ MKPinAnnotationView) SetPinColor(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
-	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("pinTintColor"))
+func (m_ MKPinAnnotationView) PinTintColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](m_.ID, objc.Sel("pinTintColor"))
 	return rv
 }
 
@@ -147,7 +146,7 @@ func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) SetPinTintColor(value appkit.Color) {
+func (m_ MKPinAnnotationView) SetPinTintColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)
 }
 

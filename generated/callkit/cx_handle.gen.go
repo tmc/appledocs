@@ -30,9 +30,11 @@ type _CXHandleClass struct {
 // An interface definition for the [CXHandle] class.
 type ICXHandle interface {
 	objectivec.IObject
+	// properties:
 	Type() CXHandleType
-	Value() string
-	IsEqualToHandle(handle ICXHandle) bool
+	Value() string /* primitive/slice/pointer. */
+	// methods:
+	IsEqualToHandle(handle ICXHandle) bool /* primitive/slice/pointer. */
 }
 
 // A way to reach a call recipient, such as a phone number or email address.
@@ -92,7 +94,7 @@ func NewCXHandle() CXHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/init(type:value:)
-func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
+func NewCXHandleWithTypeValue(type_ CXHandleType, value string /* primitive/slice/pointer. */) CXHandle {
 	instance := getCXHandleClass().Alloc()
 	rv := objc.Send[CXHandle](instance.ID, objc.Sel("initWithType:value:"), type_, objc.String(value))
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/isEqualToHandle:
-func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool {
+func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToHandle:"), handle)
 	return rv
 }
@@ -125,7 +127,7 @@ func (c_ CXHandle) Type() CXHandleType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/value
-func (c_ CXHandle) Value() string {
+func (c_ CXHandle) Value() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("value"))
 	return rv
 }

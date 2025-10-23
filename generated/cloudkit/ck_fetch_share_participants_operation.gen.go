@@ -29,6 +29,7 @@ type _CKFetchShareParticipantsOperationClass struct {
 // An interface definition for the [CKFetchShareParticipantsOperation] class.
 type ICKFetchShareParticipantsOperation interface {
 	ICKOperation
+	// properties:
 	FetchShareParticipantsCompletionBlock() unsafe.Pointer
 	SetFetchShareParticipantsCompletionBlock(value unsafe.Pointer)
 	FetchShareParticipantsResultBlock() unsafe.Pointer
@@ -39,13 +40,14 @@ type ICKFetchShareParticipantsOperation interface {
 	SetShareParticipantFetchedBlock(value unsafe.Pointer)
 	UserIdentityLookupInfos() ICKUserIdentityLookupInfo
 	SetUserIdentityLookupInfos(value ICKUserIdentityLookupInfo)
-	CKPartialErrorsByItemIDKey() string
+	CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */
 	UserIdentity() ICKUserIdentity
 	SetUserIdentity(value ICKUserIdentity)
-	HasiCloudAccount() bool
-	SetHasiCloudAccount(value bool)
-	UserInfo() string
-	SetUserInfo(value string)
+	HasiCloudAccount() bool /* primitive/slice/pointer. */
+	SetHasiCloudAccount(value bool /* primitive/slice/pointer. */)
+	UserInfo() string /* primitive/slice/pointer. */
+	SetUserInfo(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An operation that converts user identities into share participants.
@@ -194,7 +196,7 @@ func (c_ CKFetchShareParticipantsOperation) SetUserIdentityLookupInfos(value ICK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
-func (c_ CKFetchShareParticipantsOperation) CKPartialErrorsByItemIDKey() string {
+func (c_ CKFetchShareParticipantsOperation) CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (c_ CKFetchShareParticipantsOperation) SetUserIdentity(value ICKUserIdentit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool {
+func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasiCloudAccount"))
 	return rv
 }
@@ -233,7 +235,7 @@ func (c_ CKFetchShareParticipantsOperation) HasiCloudAccount() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount
-func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool) {
+func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasiCloudAccount:"), value)
 }
 
@@ -242,7 +244,7 @@ func (c_ CKFetchShareParticipantsOperation) SetHasiCloudAccount(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKFetchShareParticipantsOperation) UserInfo() string {
+func (c_ CKFetchShareParticipantsOperation) UserInfo() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -252,7 +254,7 @@ func (c_ CKFetchShareParticipantsOperation) UserInfo() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKFetchShareParticipantsOperation) SetUserInfo(value string) {
+func (c_ CKFetchShareParticipantsOperation) SetUserInfo(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }
 

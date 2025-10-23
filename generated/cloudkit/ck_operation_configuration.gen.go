@@ -30,14 +30,15 @@ type _CKOperationConfigurationClass struct {
 // An interface definition for the [CKOperationConfiguration] class.
 type ICKOperationConfiguration interface {
 	objectivec.IObject
-	QualityOfService() unsafe.Pointer
-	SetQualityOfService(value unsafe.Pointer)
-	AllowsCellularAccess() bool
-	SetAllowsCellularAccess(value bool)
+	// properties:
+	QualityOfService() QualityOfService /* not a class type */
+	SetQualityOfService(value QualityOfService /* not a class type */)
+	AllowsCellularAccess() bool /* primitive/slice/pointer. */
+	SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */)
 	Container() ICKContainer
 	SetContainer(value ICKContainer)
-	IsLongLived() bool
-	SetIsLongLived(value bool)
+	IsLongLived() bool /* primitive/slice/pointer. */
+	SetIsLongLived(value bool /* primitive/slice/pointer. */)
 	TimeoutIntervalForRequest() unsafe.Pointer
 	SetTimeoutIntervalForRequest(value unsafe.Pointer)
 	TimeoutIntervalForResource() unsafe.Pointer
@@ -50,6 +51,7 @@ type ICKOperationConfiguration interface {
 	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
 	DefaultConfiguration() ICKOperationConfiguration
 	SetDefaultConfiguration(value ICKOperationConfiguration)
+	// methods:
 }
 
 // An object that describes how a CloudKit operation behaves.
@@ -109,8 +111,8 @@ func NewCKOperationConfiguration() CKOperationConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/qualityOfService
-func (c_ CKOperationConfiguration) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
+func (c_ CKOperationConfiguration) QualityOfService() QualityOfService /* not a class type */ {
+	rv := objc.Send[QualityOfService](c_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -119,7 +121,7 @@ func (c_ CKOperationConfiguration) QualityOfService() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/qualityOfService
-func (c_ CKOperationConfiguration) SetQualityOfService(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetQualityOfService(value QualityOfService /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -128,7 +130,7 @@ func (c_ CKOperationConfiguration) SetQualityOfService(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
-func (c_ CKOperationConfiguration) AllowsCellularAccess() bool {
+func (c_ CKOperationConfiguration) AllowsCellularAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsCellularAccess"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (c_ CKOperationConfiguration) AllowsCellularAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/allowscellularaccess
-func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool) {
+func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsCellularAccess:"), value)
 }
 
@@ -166,7 +168,7 @@ func (c_ CKOperationConfiguration) SetContainer(value ICKContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/islonglived
-func (c_ CKOperationConfiguration) IsLongLived() bool {
+func (c_ CKOperationConfiguration) IsLongLived() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (c_ CKOperationConfiguration) IsLongLived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/islonglived
-func (c_ CKOperationConfiguration) SetIsLongLived(value bool) {
+func (c_ CKOperationConfiguration) SetIsLongLived(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
 }
 

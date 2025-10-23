@@ -30,6 +30,8 @@ type _TouchBarItemClass struct {
 // An interface definition for the [TouchBarItem] class.
 type ITouchBarItem interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AppKit classes.

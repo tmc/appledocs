@@ -29,6 +29,8 @@ type _AudioSourceNodeClass struct {
 // An interface definition for the [AudioSourceNode] class.
 type IAudioSourceNode interface {
 	IAudioNode
+	// properties:
+	// methods:
 }
 
 // An object that supplies audio data.

@@ -30,7 +30,9 @@ type _MIDIUMPEndpointManagerClass struct {
 // An interface definition for the [MIDIUMPEndpointManager] class.
 type IMIDIUMPEndpointManager interface {
 	objectivec.IObject
-	UMPEndpoints() []MIDIUMPEndpoint
+	// properties:
+	UMPEndpoints() []MIDIUMPEndpoint /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -96,7 +98,7 @@ func (m_ MIDIUMPEndpointManager) SharedInstance() IMIDIUMPEndpointManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpointManager/umpEndpoints
-func (m_ MIDIUMPEndpointManager) UMPEndpoints() []MIDIUMPEndpoint {
+func (m_ MIDIUMPEndpointManager) UMPEndpoints() []MIDIUMPEndpoint /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoints"))
 	return rv
 }

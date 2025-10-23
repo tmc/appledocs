@@ -32,24 +32,25 @@ type _TextAttachmentClass struct {
 // An interface definition for the [TextAttachment] class.
 type ITextAttachment interface {
 	objectivec.IObject
-	AllowsTextAttachmentView() bool
-	SetAllowsTextAttachmentView(value bool)
+	// properties:
+	AllowsTextAttachmentView() bool /* primitive/slice/pointer. */
+	SetAllowsTextAttachmentView(value bool /* primitive/slice/pointer. */)
 	AttachmentCell() objc.ID
 	SetAttachmentCell(value objc.ID)
-	FileType() string
-	SetFileType(value string)
-	FileWrapper() foundation.FileWrapper
-	SetFileWrapper(value foundation.FileWrapper)
-	Image() IImage
-	SetImage(value IImage)
 	Bounds() coregraphics.CGRect
 	SetBounds(value coregraphics.CGRect)
-	Contents() foundation.Data
-	SetContents(value foundation.Data)
-	LineLayoutPadding() float64
-	SetLineLayoutPadding(value float64)
-	UsesTextAttachmentView() bool
-	SetUsesTextAttachmentView(value bool)
+	Contents() foundation.objc.IObject /* cross-framework: NSData */
+	SetContents(value foundation.objc.IObject /* cross-framework: NSData */)
+	FileType() string /* primitive/slice/pointer. */
+	SetFileType(value string /* primitive/slice/pointer. */)
+	FileWrapper() FileWrapper /* not a class type */
+	SetFileWrapper(value FileWrapper /* not a class type */)
+	Image() IImage
+	SetImage(value IImage)
+	LineLayoutPadding() float64 /* primitive/slice/pointer. */
+	SetLineLayoutPadding(value float64 /* primitive/slice/pointer. */)
+	UsesTextAttachmentView() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 // The values for the attachment characteristics of attributed strings and related objects.
@@ -105,11 +106,23 @@ func NewTextAttachment() TextAttachment {
 
 
 
+// Creates a text attachment object with the specified data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/init(data:ofType:)
+func NewTextAttachmentWithDataOfType(contentData foundation.objc.IObject /* cross-framework NSData */, uti string /* primitive/slice/pointer. */) TextAttachment {
+	instance := getTextAttachmentClass().Alloc()
+	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithData:ofType:"), contentData, objc.String(uti))
+	rv.Autorelease()
+	return rv
+}
+
+
 // Creates a text attachment object to contain the specified file wrapper.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/init(fileWrapper:)
-func NewTextAttachmentWithFileWrapper(fileWrapper foundation.FileWrapper) TextAttachment {
+func NewTextAttachmentWithFileWrapper(fileWrapper FileWrapper /* not a class type */) TextAttachment {
 	instance := getTextAttachmentClass().Alloc()
 	rv := objc.Send[TextAttachment](instance.ID, objc.Sel("initWithFileWrapper:"), fileWrapper)
 	rv.Autorelease()
@@ -122,7 +135,7 @@ func NewTextAttachmentWithFileWrapper(fileWrapper foundation.FileWrapper) TextAt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/registerViewProviderClass(_:forFileType:)
-func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileType(textAttachmentViewProviderClass objc.Class, fileType string) {
+func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileType(textAttachmentViewProviderClass objc.Class, fileType string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("registerTextAttachmentViewProviderClass:forFileType:"), textAttachmentViewProviderClass, objc.String(fileType))
 }
 
@@ -131,7 +144,7 @@ func (tc _TextAttachmentClass) RegisterTextAttachmentViewProviderClassForFileTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/textAttachmentViewProviderClass(forFileType:)
-func (tc _TextAttachmentClass) TextAttachmentViewProviderClassForFileType(fileType string) objc.Class {
+func (tc _TextAttachmentClass) TextAttachmentViewProviderClassForFileType(fileType string /* primitive/slice/pointer. */) objc.Class {
 	rv := objc.Send[objc.Class](objc.ID(tc.class), objc.Sel("textAttachmentViewProviderClassForFileType:"), objc.String(fileType))
 	return rv
 }
@@ -141,7 +154,7 @@ func (tc _TextAttachmentClass) TextAttachmentViewProviderClassForFileType(fileTy
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/allowsTextAttachmentView
-func (t_ TextAttachment) AllowsTextAttachmentView() bool {
+func (t_ TextAttachment) AllowsTextAttachmentView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsTextAttachmentView"))
 	return rv
 }
@@ -151,7 +164,7 @@ func (t_ TextAttachment) AllowsTextAttachmentView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/allowsTextAttachmentView
-func (t_ TextAttachment) SetAllowsTextAttachmentView(value bool) {
+func (t_ TextAttachment) SetAllowsTextAttachmentView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsTextAttachmentView:"), value)
 }
 
@@ -175,11 +188,49 @@ func (t_ TextAttachment) SetAttachmentCell(value objc.ID) {
 }
 
 
+// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/bounds
+func (t_ TextAttachment) Bounds() coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
+	return rv
+}
+
+
+// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/bounds
+func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBounds:"), value)
+}
+
+
+// The contents for the text attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/contents
+func (t_ TextAttachment) Contents() foundation.objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// The contents for the text attachment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/contents
+func (t_ TextAttachment) SetContents(value foundation.objc.IObject /* cross-framework: NSData */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
+}
+
+
 // The file type of the contents for the text attachment.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileType
-func (t_ TextAttachment) FileType() string {
+func (t_ TextAttachment) FileType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("fileType"))
 	return rv
 }
@@ -189,7 +240,7 @@ func (t_ TextAttachment) FileType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileType
-func (t_ TextAttachment) SetFileType(value string) {
+func (t_ TextAttachment) SetFileType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFileType:"), objc.String(value))
 }
 
@@ -198,8 +249,8 @@ func (t_ TextAttachment) SetFileType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileWrapper
-func (t_ TextAttachment) FileWrapper() foundation.FileWrapper {
-	rv := objc.Send[foundation.FileWrapper](t_.ID, objc.Sel("fileWrapper"))
+func (t_ TextAttachment) FileWrapper() FileWrapper /* not a class type */ {
+	rv := objc.Send[FileWrapper](t_.ID, objc.Sel("fileWrapper"))
 	return rv
 }
 
@@ -208,7 +259,7 @@ func (t_ TextAttachment) FileWrapper() foundation.FileWrapper {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/fileWrapper
-func (t_ TextAttachment) SetFileWrapper(value foundation.FileWrapper) {
+func (t_ TextAttachment) SetFileWrapper(value FileWrapper /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFileWrapper:"), value)
 }
 
@@ -232,49 +283,11 @@ func (t_ TextAttachment) SetImage(value IImage) {
 }
 
 
-// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/bounds
-func (t_ TextAttachment) Bounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("bounds"))
-	return rv
-}
-
-
-// The layout bounds of the text attachment’s graphical representation in the text coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/bounds
-func (t_ TextAttachment) SetBounds(value coregraphics.CGRect) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBounds:"), value)
-}
-
-
-// The contents for the text attachment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
-func (t_ TextAttachment) Contents() foundation.Data {
-	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("contents"))
-	return rv
-}
-
-
-// The contents for the text attachment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/contents
-func (t_ TextAttachment) SetContents(value foundation.Data) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setContents:"), value)
-}
-
-
 // The layout padding before and after the text attachment bounds.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/linelayoutpadding
-func (t_ TextAttachment) LineLayoutPadding() float64 {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/lineLayoutPadding
+func (t_ TextAttachment) LineLayoutPadding() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("lineLayoutPadding"))
 	return rv
 }
@@ -283,8 +296,8 @@ func (t_ TextAttachment) LineLayoutPadding() float64 {
 // The layout padding before and after the text attachment bounds.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/linelayoutpadding
-func (t_ TextAttachment) SetLineLayoutPadding(value float64) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/lineLayoutPadding
+func (t_ TextAttachment) SetLineLayoutPadding(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLineLayoutPadding:"), value)
 }
 
@@ -292,19 +305,10 @@ func (t_ TextAttachment) SetLineLayoutPadding(value float64) {
 // A Boolean value that indicates whether the text attachment uses text attachment views.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/usestextattachmentview
-func (t_ TextAttachment) UsesTextAttachmentView() bool {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachment/usesTextAttachmentView
+func (t_ TextAttachment) UsesTextAttachmentView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesTextAttachmentView"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether the text attachment uses text attachment views.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachment/usestextattachmentview
-func (t_ TextAttachment) SetUsesTextAttachmentView(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesTextAttachmentView:"), value)
 }
 
 

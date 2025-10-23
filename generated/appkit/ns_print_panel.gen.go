@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +30,23 @@ type _PrintPanelClass struct {
 // An interface definition for the [PrintPanel] class.
 type IPrintPanel interface {
 	objectivec.IObject
-	AccessoryControllers() []ViewController
-	HelpAnchor() HelpAnchorName
-	SetHelpAnchor(value HelpAnchorName)
-	JobStyleHint() PrintPanelJobStyleHint
-	SetJobStyleHint(value PrintPanelJobStyleHint)
-	Options() NSPrintPanelOptions
-	SetOptions(value NSPrintPanelOptions)
+	// properties:
+	AccessoryControllers() []ViewController /* primitive/slice/pointer. */
+	HelpAnchor() objc.IObject /* cross-framework: HelpAnchorName */
+	SetHelpAnchor(value objc.IObject /* cross-framework: HelpAnchorName */)
+	JobStyleHint() objc.IObject /* cross-framework: PrintPanelJobStyleHint */
+	SetJobStyleHint(value objc.IObject /* cross-framework: PrintPanelJobStyleHint */)
+	Options() PrintPanelOptions
+	SetOptions(value PrintPanelOptions)
 	PrintInfo() IPrintInfo
+	// methods:
 	AddAccessoryController(accessoryController unsafe.Pointer)
 	BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer)
-	DefaultButtonTitle() foundation.String
+	DefaultButtonTitle() objc.IObject /* cross-framework: String */
 	RemoveAccessoryController(accessoryController unsafe.Pointer)
-	RunModal() int
-	RunModalWithPrintInfo(printInfo IPrintInfo) int
-	SetDefaultButtonTitle(defaultButtonTitle string)
+	RunModal() int /* primitive/slice/pointer. */
+	RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */
+	SetDefaultButtonTitle(defaultButtonTitle string /* primitive/slice/pointer. */)
 }
 
 // The Print panel that queries the user for information about a print job.
@@ -131,8 +132,8 @@ func (p_ PrintPanel) BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/defaultButtonTitle()
-func (p_ PrintPanel) DefaultButtonTitle() foundation.String {
-	rv := objc.Send[foundation.String](p_.ID, objc.Sel("defaultButtonTitle"))
+func (p_ PrintPanel) DefaultButtonTitle() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](p_.ID, objc.Sel("defaultButtonTitle"))
 	return rv
 }
 
@@ -150,7 +151,7 @@ func (p_ PrintPanel) RemoveAccessoryController(accessoryController unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/runModal()
-func (p_ PrintPanel) RunModal() int {
+func (p_ PrintPanel) RunModal() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("runModal"))
 	return rv
 }
@@ -160,7 +161,7 @@ func (p_ PrintPanel) RunModal() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/runModal(with:)
-func (p_ PrintPanel) RunModalWithPrintInfo(printInfo IPrintInfo) int {
+func (p_ PrintPanel) RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("runModalWithPrintInfo:"), printInfo)
 	return rv
 }
@@ -170,7 +171,7 @@ func (p_ PrintPanel) RunModalWithPrintInfo(printInfo IPrintInfo) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/setDefaultButtonTitle(_:)
-func (p_ PrintPanel) SetDefaultButtonTitle(defaultButtonTitle string) {
+func (p_ PrintPanel) SetDefaultButtonTitle(defaultButtonTitle string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultButtonTitle:"), objc.String(defaultButtonTitle))
 }
 
@@ -179,7 +180,7 @@ func (p_ PrintPanel) SetDefaultButtonTitle(defaultButtonTitle string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/accessoryControllers
-func (p_ PrintPanel) AccessoryControllers() []ViewController {
+func (p_ PrintPanel) AccessoryControllers() []ViewController /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }
@@ -189,7 +190,7 @@ func (p_ PrintPanel) AccessoryControllers() []ViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/helpAnchor
-func (p_ PrintPanel) HelpAnchor() HelpAnchorName {
+func (p_ PrintPanel) HelpAnchor() objc.IObject /* cross-framework: HelpAnchorName */ {
 	rv := objc.Send[HelpAnchorName](p_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
@@ -199,7 +200,7 @@ func (p_ PrintPanel) HelpAnchor() HelpAnchorName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/helpAnchor
-func (p_ PrintPanel) SetHelpAnchor(value HelpAnchorName) {
+func (p_ PrintPanel) SetHelpAnchor(value objc.IObject /* cross-framework: HelpAnchorName */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHelpAnchor:"), value)
 }
 
@@ -208,7 +209,7 @@ func (p_ PrintPanel) SetHelpAnchor(value HelpAnchorName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/jobStyleHint-swift.property
-func (p_ PrintPanel) JobStyleHint() PrintPanelJobStyleHint {
+func (p_ PrintPanel) JobStyleHint() objc.IObject /* cross-framework: PrintPanelJobStyleHint */ {
 	rv := objc.Send[PrintPanelJobStyleHint](p_.ID, objc.Sel("jobStyleHint"))
 	return rv
 }
@@ -218,7 +219,7 @@ func (p_ PrintPanel) JobStyleHint() PrintPanelJobStyleHint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/jobStyleHint-swift.property
-func (p_ PrintPanel) SetJobStyleHint(value PrintPanelJobStyleHint) {
+func (p_ PrintPanel) SetJobStyleHint(value objc.IObject /* cross-framework: PrintPanelJobStyleHint */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobStyleHint:"), value)
 }
 
@@ -227,8 +228,8 @@ func (p_ PrintPanel) SetJobStyleHint(value PrintPanelJobStyleHint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/options-swift.property
-func (p_ PrintPanel) Options() NSPrintPanelOptions {
-	rv := objc.Send[NSPrintPanelOptions](p_.ID, objc.Sel("options"))
+func (p_ PrintPanel) Options() PrintPanelOptions {
+	rv := objc.Send[PrintPanelOptions](p_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -237,7 +238,7 @@ func (p_ PrintPanel) Options() NSPrintPanelOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/options-swift.property
-func (p_ PrintPanel) SetOptions(value NSPrintPanelOptions) {
+func (p_ PrintPanel) SetOptions(value PrintPanelOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
 }
 

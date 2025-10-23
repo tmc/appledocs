@@ -29,8 +29,10 @@ type _AMAppleScriptActionClass struct {
 // An interface definition for the [AMAppleScriptAction] class.
 type IAMAppleScriptAction interface {
 	IAMBundleAction
+	// properties:
 	Script() unsafe.Pointer
 	SetScript(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.

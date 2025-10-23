@@ -30,16 +30,18 @@ type _ACAccountClass struct {
 // An interface definition for the [ACAccount] class.
 type IACAccount interface {
 	objectivec.IObject
-	AccountDescription() string
-	SetAccountDescription(value string)
+	// properties:
+	AccountDescription() string /* primitive/slice/pointer. */
+	SetAccountDescription(value string /* primitive/slice/pointer. */)
 	AccountType() IACAccountType
 	SetAccountType(value IACAccountType)
 	Credential() IACAccountCredential
 	SetCredential(value IACAccountCredential)
-	Identifier() string
-	UserFullName() string
-	Username() string
-	SetUsername(value string)
+	Identifier() string /* primitive/slice/pointer. */
+	UserFullName() string /* primitive/slice/pointer. */
+	Username() string /* primitive/slice/pointer. */
+	SetUsername(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // The information associated with one of the user’s accounts.
@@ -112,7 +114,7 @@ func NewACAccountWithAccountType(type_ IACAccountType) ACAccount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) AccountDescription() string {
+func (a_ ACAccount) AccountDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountDescription"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (a_ ACAccount) AccountDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/accountDescription
-func (a_ ACAccount) SetAccountDescription(value string) {
+func (a_ ACAccount) SetAccountDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountDescription:"), objc.String(value))
 }
 
@@ -169,7 +171,7 @@ func (a_ ACAccount) SetCredential(value IACAccountCredential) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/identifier
-func (a_ ACAccount) Identifier() string {
+func (a_ ACAccount) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -179,7 +181,7 @@ func (a_ ACAccount) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/userFullName
-func (a_ ACAccount) UserFullName() string {
+func (a_ ACAccount) UserFullName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("userFullName"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (a_ ACAccount) UserFullName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) Username() string {
+func (a_ ACAccount) Username() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("username"))
 	return rv
 }
@@ -199,7 +201,7 @@ func (a_ ACAccount) Username() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccount/username
-func (a_ ACAccount) SetUsername(value string) {
+func (a_ ACAccount) SetUsername(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUsername:"), objc.String(value))
 }
 

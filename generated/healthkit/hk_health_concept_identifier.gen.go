@@ -31,8 +31,8 @@ type _HKHealthConceptIdentifierClass struct {
 type IHKHealthConceptIdentifier interface {
 	objectivec.IObject
 	// properties:
-	Domain() HKHealthConceptDomain
-	SetDomain(value HKHealthConceptDomain)
+	Domain() HKHealthConceptDomain /* typedef */
+	SetDomain(value HKHealthConceptDomain /* typedef */)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
-func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
+func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain /* typedef */ {
 	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
-func (h_ HKHealthConceptIdentifier) SetDomain(value HKHealthConceptDomain) {
+func (h_ HKHealthConceptIdentifier) SetDomain(value HKHealthConceptDomain /* typedef */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
 }
 

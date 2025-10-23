@@ -29,9 +29,11 @@ type _SBinaryItemClass struct {
 // An interface definition for the [SBinaryItem] class.
 type ISBinaryItem interface {
 	ISActivityItem
-	Value() bool
-	SetValue(value bool)
-	ValueType() CLSBinaryValueType
+	// properties:
+	Value() bool /* primitive/slice/pointer. */
+	SetValue(value bool /* primitive/slice/pointer. */)
+	ValueType() SBinaryValueType
+	// methods:
 }
 
 // Activity information that is true or false, pass or fail, yes or no.
@@ -93,7 +95,7 @@ func NewSBinaryItem() SBinaryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
-func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType CLSBinaryValueType) SBinaryItem {
+func NewSBinaryItemWithIdentifierTitleType(identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */, valueType SBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
 	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
 	rv.Autorelease()
@@ -106,7 +108,7 @@ func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-func (s_ SBinaryItem) Value() bool {
+func (s_ SBinaryItem) Value() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("value"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (s_ SBinaryItem) Value() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/value
-func (s_ SBinaryItem) SetValue(value bool) {
+func (s_ SBinaryItem) SetValue(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:"), value)
 }
 
@@ -125,8 +127,8 @@ func (s_ SBinaryItem) SetValue(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType
-func (s_ SBinaryItem) ValueType() CLSBinaryValueType {
-	rv := objc.Send[CLSBinaryValueType](s_.ID, objc.Sel("valueType"))
+func (s_ SBinaryItem) ValueType() SBinaryValueType {
+	rv := objc.Send[SBinaryValueType](s_.ID, objc.Sel("valueType"))
 	return rv
 }
 

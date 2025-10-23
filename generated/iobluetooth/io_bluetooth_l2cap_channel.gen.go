@@ -31,24 +31,24 @@ type _BluetoothL2CAPChannelClass struct {
 type IBluetoothL2CAPChannel interface {
 	IBluetoothObject
 	// properties:
-	Device() IOBluetoothDevice
-	IncomingMTU() BluetoothL2CAPMTU
-	LocalChannelID() BluetoothL2CAPChannelID
-	ObjectID() BluetoothObjectID
-	OutgoingMTU() BluetoothL2CAPMTU
-	PSM() BluetoothL2CAPPSM
-	RemoteChannelID() BluetoothL2CAPChannelID
+	Device() IOBluetoothDevice /* already interface */
+	IncomingMTU() BluetoothL2CAPMTU /* typedef */
+	LocalChannelID() BluetoothL2CAPChannelID /* typedef */
+	ObjectID() objc.IObject /* cross-framework: BluetoothObjectID */
+	OutgoingMTU() BluetoothL2CAPMTU /* typedef */
+	PSM() BluetoothL2CAPPSM /* typedef */
+	RemoteChannelID() BluetoothL2CAPChannelID /* typedef */
 	// methods:
-	CloseChannel() unsafe.Pointer
+	CloseChannel() Return /* not a class type */
 	Delegate() objc.ID
-	IsIncoming() bool
+	IsIncoming() bool /* primitive/slice/pointer. */
 	RegisterForChannelCloseNotificationSelector(observer objectivec.IObject, inSelector objc.SEL) IBluetoothUserNotification
-	RequestRemoteMTU(remoteMTU BluetoothL2CAPMTU) unsafe.Pointer
-	SetDelegate(channelDelegate objectivec.IObject) unsafe.Pointer
-	SetDelegateWithConfiguration(channelDelegate objectivec.IObject, channelConfiguration objectivec.IObject) unsafe.Pointer
-	WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer
-	WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer
-	WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer
+	RequestRemoteMTU(remoteMTU BluetoothL2CAPMTU /* typedef */) Return /* not a class type */
+	SetDelegate(channelDelegate objectivec.IObject) Return /* not a class type */
+	SetDelegateWithConfiguration(channelDelegate objectivec.IObject, channelConfiguration objectivec.IObject) Return /* not a class type */
+	WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) Return /* not a class type */
+	WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) Return /* not a class type */
+	WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) Return /* not a class type */
 }
 
 // An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
@@ -120,7 +120,7 @@ func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelecto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/register(forChannelOpenNotifications:selector:withPSM:direction:)
-func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelectorWithPSMDirection(object objectivec.IObject, selector objc.SEL, psm BluetoothL2CAPPSM, inDirection IOBluetoothUserNotificationChannelDirection) IBluetoothUserNotification {
+func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelectorWithPSMDirection(object objectivec.IObject, selector objc.SEL, psm BluetoothL2CAPPSM /* typedef */, inDirection BluetoothUserNotificationChannelDirection) IBluetoothUserNotification {
 	rv := objc.Send[BluetoothUserNotification](objc.ID(bc.class), objc.Sel("registerForChannelOpenNotifications:selector:withPSM:direction:"), object, selector, psm, inDirection)
 	return rv
 }
@@ -130,7 +130,7 @@ func (bc _BluetoothL2CAPChannelClass) RegisterForChannelOpenNotificationsSelecto
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/withObjectID(_:)
-func (bc _BluetoothL2CAPChannelClass) WithObjectID(objectID BluetoothObjectID) unsafe.Pointer {
+func (bc _BluetoothL2CAPChannelClass) WithObjectID(objectID objc.IObject /* cross-framework BluetoothObjectID */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withObjectID:"), objectID)
 	return rv
 }
@@ -140,8 +140,8 @@ func (bc _BluetoothL2CAPChannelClass) WithObjectID(objectID BluetoothObjectID) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/close()
-func (b_ BluetoothL2CAPChannel) CloseChannel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("closeChannel"))
+func (b_ BluetoothL2CAPChannel) CloseChannel() Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("closeChannel"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (b_ BluetoothL2CAPChannel) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/isIncoming()
-func (b_ BluetoothL2CAPChannel) IsIncoming() bool {
+func (b_ BluetoothL2CAPChannel) IsIncoming() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isIncoming"))
 	return rv
 }
@@ -180,8 +180,8 @@ func (b_ BluetoothL2CAPChannel) RegisterForChannelCloseNotificationSelector(obse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/requestRemoteMTU(_:)
-func (b_ BluetoothL2CAPChannel) RequestRemoteMTU(remoteMTU BluetoothL2CAPMTU) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("requestRemoteMTU:"), remoteMTU)
+func (b_ BluetoothL2CAPChannel) RequestRemoteMTU(remoteMTU BluetoothL2CAPMTU /* typedef */) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("requestRemoteMTU:"), remoteMTU)
 	return rv
 }
 
@@ -190,8 +190,8 @@ func (b_ BluetoothL2CAPChannel) RequestRemoteMTU(remoteMTU BluetoothL2CAPMTU) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/setDelegate(_:)
-func (b_ BluetoothL2CAPChannel) SetDelegate(channelDelegate objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setDelegate:"), channelDelegate)
+func (b_ BluetoothL2CAPChannel) SetDelegate(channelDelegate objectivec.IObject) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("setDelegate:"), channelDelegate)
 	return rv
 }
 
@@ -200,8 +200,8 @@ func (b_ BluetoothL2CAPChannel) SetDelegate(channelDelegate objectivec.IObject) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/setDelegate(_:withConfiguration:)
-func (b_ BluetoothL2CAPChannel) SetDelegateWithConfiguration(channelDelegate objectivec.IObject, channelConfiguration objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setDelegate:withConfiguration:"), channelDelegate, channelConfiguration)
+func (b_ BluetoothL2CAPChannel) SetDelegateWithConfiguration(channelDelegate objectivec.IObject, channelConfiguration objectivec.IObject) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("setDelegate:withConfiguration:"), channelDelegate, channelConfiguration)
 	return rv
 }
 
@@ -210,16 +210,16 @@ func (b_ BluetoothL2CAPChannel) SetDelegateWithConfiguration(channelDelegate obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeAsync(_:length:refcon:)
-func (b_ BluetoothL2CAPChannel) WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeAsync:length:refcon:"), data, length, refcon)
+func (b_ BluetoothL2CAPChannel) WriteAsyncLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("writeAsync:length:refcon:"), data, length, refcon)
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeAsyncTrap(_:length:refcon:)
-func (b_ BluetoothL2CAPChannel) WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeAsyncTrap:length:refcon:"), data, length, refcon)
+func (b_ BluetoothL2CAPChannel) WriteAsyncTrapLengthRefcon(data unsafe.Pointer, length unsafe.Pointer, refcon unsafe.Pointer) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("writeAsyncTrap:length:refcon:"), data, length, refcon)
 	return rv
 }
 
@@ -228,8 +228,8 @@ func (b_ BluetoothL2CAPChannel) WriteAsyncTrapLengthRefcon(data unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/writeSync(_:length:)
-func (b_ BluetoothL2CAPChannel) WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("writeSync:length:"), data, length)
+func (b_ BluetoothL2CAPChannel) WriteSyncLength(data unsafe.Pointer, length unsafe.Pointer) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("writeSync:length:"), data, length)
 	return rv
 }
 
@@ -238,7 +238,7 @@ func (b_ BluetoothL2CAPChannel) WriteSyncLength(data unsafe.Pointer, length unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/device
-func (b_ BluetoothL2CAPChannel) Device() IOBluetoothDevice {
+func (b_ BluetoothL2CAPChannel) Device() IOBluetoothDevice /* already interface */ {
 	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
@@ -248,7 +248,7 @@ func (b_ BluetoothL2CAPChannel) Device() IOBluetoothDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/incomingMTU
-func (b_ BluetoothL2CAPChannel) IncomingMTU() BluetoothL2CAPMTU {
+func (b_ BluetoothL2CAPChannel) IncomingMTU() BluetoothL2CAPMTU /* typedef */ {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("incomingMTU"))
 	return rv
 }
@@ -258,7 +258,7 @@ func (b_ BluetoothL2CAPChannel) IncomingMTU() BluetoothL2CAPMTU {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/localChannelID
-func (b_ BluetoothL2CAPChannel) LocalChannelID() BluetoothL2CAPChannelID {
+func (b_ BluetoothL2CAPChannel) LocalChannelID() BluetoothL2CAPChannelID /* typedef */ {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("localChannelID"))
 	return rv
 }
@@ -268,7 +268,7 @@ func (b_ BluetoothL2CAPChannel) LocalChannelID() BluetoothL2CAPChannelID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/objectID
-func (b_ BluetoothL2CAPChannel) ObjectID() BluetoothObjectID {
+func (b_ BluetoothL2CAPChannel) ObjectID() objc.IObject /* cross-framework: BluetoothObjectID */ {
 	rv := objc.Send[BluetoothObjectID](b_.ID, objc.Sel("objectID"))
 	return rv
 }
@@ -278,7 +278,7 @@ func (b_ BluetoothL2CAPChannel) ObjectID() BluetoothObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/outgoingMTU
-func (b_ BluetoothL2CAPChannel) OutgoingMTU() BluetoothL2CAPMTU {
+func (b_ BluetoothL2CAPChannel) OutgoingMTU() BluetoothL2CAPMTU /* typedef */ {
 	rv := objc.Send[BluetoothL2CAPMTU](b_.ID, objc.Sel("outgoingMTU"))
 	return rv
 }
@@ -288,7 +288,7 @@ func (b_ BluetoothL2CAPChannel) OutgoingMTU() BluetoothL2CAPMTU {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/psm
-func (b_ BluetoothL2CAPChannel) PSM() BluetoothL2CAPPSM {
+func (b_ BluetoothL2CAPChannel) PSM() BluetoothL2CAPPSM /* typedef */ {
 	rv := objc.Send[BluetoothL2CAPPSM](b_.ID, objc.Sel("PSM"))
 	return rv
 }
@@ -298,7 +298,7 @@ func (b_ BluetoothL2CAPChannel) PSM() BluetoothL2CAPPSM {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannel/remoteChannelID
-func (b_ BluetoothL2CAPChannel) RemoteChannelID() BluetoothL2CAPChannelID {
+func (b_ BluetoothL2CAPChannel) RemoteChannelID() BluetoothL2CAPChannelID /* typedef */ {
 	rv := objc.Send[BluetoothL2CAPChannelID](b_.ID, objc.Sel("remoteChannelID"))
 	return rv
 }

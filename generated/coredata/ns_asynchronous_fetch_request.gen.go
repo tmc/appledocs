@@ -29,10 +29,12 @@ type _AsynchronousFetchRequestClass struct {
 // An interface definition for the [AsynchronousFetchRequest] class.
 type IAsynchronousFetchRequest interface {
 	IPersistentStoreRequest
-	CompletionBlock() unsafe.Pointer
-	EstimatedResultCount() int
-	SetEstimatedResultCount(value int)
+	// properties:
+	CompletionBlock() PersistentStoreAsynchronousFetchResultCompletionBlock /* not a class type */
+	EstimatedResultCount() int /* primitive/slice/pointer. */
+	SetEstimatedResultCount(value int /* primitive/slice/pointer. */)
 	FetchRequest() unsafe.Pointer
+	// methods:
 }
 
 // A fetch request that retrieves results asynchronously and supports progress notification.
@@ -105,8 +107,8 @@ func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/completionBlock
-func (a_ AsynchronousFetchRequest) CompletionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("completionBlock"))
+func (a_ AsynchronousFetchRequest) CompletionBlock() PersistentStoreAsynchronousFetchResultCompletionBlock /* not a class type */ {
+	rv := objc.Send[PersistentStoreAsynchronousFetchResultCompletionBlock](a_.ID, objc.Sel("completionBlock"))
 	return rv
 }
 
@@ -115,7 +117,7 @@ func (a_ AsynchronousFetchRequest) CompletionBlock() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
+func (a_ AsynchronousFetchRequest) EstimatedResultCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("estimatedResultCount"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchRequest/estimatedResultCount
-func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
+func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedResultCount:"), value)
 }
 

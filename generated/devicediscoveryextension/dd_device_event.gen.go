@@ -30,8 +30,10 @@ type _DDDeviceEventClass struct {
 // An interface definition for the [DDDeviceEvent] class.
 type IDDDeviceEvent interface {
 	objectivec.IObject
+	// properties:
 	Device() IDDDevice
 	EventType() DDEventType
+	// methods:
 }
 
 // An object that provides a device or communicates its change in status.

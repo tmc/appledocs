@@ -31,29 +31,32 @@ type _LeaderboardClass struct {
 // An interface definition for the [Leaderboard] class.
 type ILeaderboard interface {
 	objectivec.IObject
-	StartDate() foundation.NSDate
-	ActivityIdentifier() string
-	SetActivityIdentifier(value string)
-	ActivityProperties() string
-	SetActivityProperties(value string)
-	BaseLeaderboardID() string
-	SetBaseLeaderboardID(value string)
+	// properties:
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	ActivityIdentifier() string /* primitive/slice/pointer. */
+	SetActivityIdentifier(value string /* primitive/slice/pointer. */)
+	ActivityProperties() string /* primitive/slice/pointer. */
+	SetActivityProperties(value string /* primitive/slice/pointer. */)
+	BaseLeaderboardID() string /* primitive/slice/pointer. */
+	SetBaseLeaderboardID(value string /* primitive/slice/pointer. */)
 	Duration() unsafe.Pointer
 	SetDuration(value unsafe.Pointer)
-	GroupIdentifier() string
-	SetGroupIdentifier(value string)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	LeaderboardDescription() string
-	SetLeaderboardDescription(value string)
-	NextStartDate() foundation.Date
-	SetNextStartDate(value foundation.Date)
-	ReleaseState() unsafe.Pointer
-	SetReleaseState(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
+	GroupIdentifier() string /* primitive/slice/pointer. */
+	SetGroupIdentifier(value string /* primitive/slice/pointer. */)
+	IsHidden() bool /* primitive/slice/pointer. */
+	SetIsHidden(value bool /* primitive/slice/pointer. */)
+	LeaderboardDescription() string /* primitive/slice/pointer. */
+	SetLeaderboardDescription(value string /* primitive/slice/pointer. */)
+	NextStartDate() foundation.objc.IObject /* cross-framework: Date */
+	SetNextStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	ReleaseState() ReleaseState /* not a class type */
+	SetReleaseState(value ReleaseState /* not a class type */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
+	// methods:
+	SubmitScoreContextPlayerCompletionHandler(score int /* primitive/slice/pointer. */, context uint /* primitive/slice/pointer. */, player IGKPlayer, completionHandler unsafe.Pointer)
 }
 
 // A leaderboard for a game that Game Center stores.
@@ -109,11 +112,20 @@ func NewLeaderboard() Leaderboard {
 
 
 
+// Submits a score to the leaderboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/submitScore(_:context:player:completionHandler:)
+func (l_ Leaderboard) SubmitScoreContextPlayerCompletionHandler(score int /* primitive/slice/pointer. */, context uint /* primitive/slice/pointer. */, player IGKPlayer, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("submitScore:context:player:completionHandler:"), score, context, player, completionHandler)
+}
+
+
 // The date and time a recurring leaderboard occurrence starts accepting scores.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLeaderboard/startDate
-func (l_ Leaderboard) StartDate() foundation.NSDate {
+func (l_ Leaderboard) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](l_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -123,7 +135,7 @@ func (l_ Leaderboard) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
-func (l_ Leaderboard) ActivityIdentifier() string {
+func (l_ Leaderboard) ActivityIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("activityIdentifier"))
 	return rv
 }
@@ -133,7 +145,7 @@ func (l_ Leaderboard) ActivityIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityidentifier
-func (l_ Leaderboard) SetActivityIdentifier(value string) {
+func (l_ Leaderboard) SetActivityIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityIdentifier:"), objc.String(value))
 }
 
@@ -142,7 +154,7 @@ func (l_ Leaderboard) SetActivityIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityproperties
-func (l_ Leaderboard) ActivityProperties() string {
+func (l_ Leaderboard) ActivityProperties() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("activityProperties"))
 	return rv
 }
@@ -152,7 +164,7 @@ func (l_ Leaderboard) ActivityProperties() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/activityproperties
-func (l_ Leaderboard) SetActivityProperties(value string) {
+func (l_ Leaderboard) SetActivityProperties(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityProperties:"), objc.String(value))
 }
 
@@ -161,7 +173,7 @@ func (l_ Leaderboard) SetActivityProperties(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-func (l_ Leaderboard) BaseLeaderboardID() string {
+func (l_ Leaderboard) BaseLeaderboardID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("baseLeaderboardID"))
 	return rv
 }
@@ -171,7 +183,7 @@ func (l_ Leaderboard) BaseLeaderboardID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/baseleaderboardid
-func (l_ Leaderboard) SetBaseLeaderboardID(value string) {
+func (l_ Leaderboard) SetBaseLeaderboardID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBaseLeaderboardID:"), objc.String(value))
 }
 
@@ -199,7 +211,7 @@ func (l_ Leaderboard) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-func (l_ Leaderboard) GroupIdentifier() string {
+func (l_ Leaderboard) GroupIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
@@ -209,7 +221,7 @@ func (l_ Leaderboard) GroupIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/groupidentifier
-func (l_ Leaderboard) SetGroupIdentifier(value string) {
+func (l_ Leaderboard) SetGroupIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
 }
 
@@ -218,7 +230,7 @@ func (l_ Leaderboard) SetGroupIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-func (l_ Leaderboard) IsHidden() bool {
+func (l_ Leaderboard) IsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -228,7 +240,7 @@ func (l_ Leaderboard) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/ishidden
-func (l_ Leaderboard) SetIsHidden(value bool) {
+func (l_ Leaderboard) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -237,7 +249,7 @@ func (l_ Leaderboard) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-func (l_ Leaderboard) LeaderboardDescription() string {
+func (l_ Leaderboard) LeaderboardDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardDescription"))
 	return rv
 }
@@ -247,7 +259,7 @@ func (l_ Leaderboard) LeaderboardDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboarddescription
-func (l_ Leaderboard) SetLeaderboardDescription(value string) {
+func (l_ Leaderboard) SetLeaderboardDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardDescription:"), objc.String(value))
 }
 
@@ -256,7 +268,7 @@ func (l_ Leaderboard) SetLeaderboardDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-func (l_ Leaderboard) NextStartDate() foundation.Date {
+func (l_ Leaderboard) NextStartDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](l_.ID, objc.Sel("nextStartDate"))
 	return rv
 }
@@ -266,7 +278,7 @@ func (l_ Leaderboard) NextStartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/nextstartdate
-func (l_ Leaderboard) SetNextStartDate(value foundation.Date) {
+func (l_ Leaderboard) SetNextStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNextStartDate:"), value)
 }
 
@@ -275,8 +287,8 @@ func (l_ Leaderboard) SetNextStartDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("releaseState"))
+func (l_ Leaderboard) ReleaseState() ReleaseState /* not a class type */ {
+	rv := objc.Send[ReleaseState](l_.ID, objc.Sel("releaseState"))
 	return rv
 }
 
@@ -285,7 +297,7 @@ func (l_ Leaderboard) ReleaseState() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/releasestate
-func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
+func (l_ Leaderboard) SetReleaseState(value ReleaseState /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setReleaseState:"), value)
 }
 
@@ -294,7 +306,7 @@ func (l_ Leaderboard) SetReleaseState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/title
-func (l_ Leaderboard) Title() string {
+func (l_ Leaderboard) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("title"))
 	return rv
 }
@@ -304,7 +316,7 @@ func (l_ Leaderboard) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboard/title
-func (l_ Leaderboard) SetTitle(value string) {
+func (l_ Leaderboard) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

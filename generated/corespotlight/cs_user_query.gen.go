@@ -29,7 +29,8 @@ type _CSUserQueryClass struct {
 // An interface definition for the [CSUserQuery] class.
 type ICSUserQuery interface {
 	ICSSearchQuery
-	FoundSuggestionCount() int
+	// properties:
+	FoundSuggestionCount() int /* primitive/slice/pointer. */
 	FoundSuggestionsHandler() unsafe.Pointer
 	SetFoundSuggestionsHandler(value unsafe.Pointer)
 	FoundItemsHandler() unsafe.Pointer
@@ -38,10 +39,11 @@ type ICSUserQuery interface {
 	SetResponses(value unsafe.Pointer)
 	Suggestions() unsafe.Pointer
 	SetSuggestions(value unsafe.Pointer)
+	// methods:
 	Cancel()
 	Start()
-	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType CSUserInteraction)
-	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType CSUserInteraction)
+	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem /* primitive/slice/pointer. */, userInteractionType CSUserInteraction)
+	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion /* primitive/slice/pointer. */, userInteractionType CSUserInteraction)
 }
 
 // A type you use to initiate searches from your interface and offer suggested text completions.
@@ -103,7 +105,7 @@ func NewCSUserQuery() CSUserQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)
-func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string, userQueryContext ICSUserQueryContext) CSUserQuery {
+func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string /* primitive/slice/pointer. */, userQueryContext ICSUserQueryContext) CSUserQuery {
 	instance := getCSUserQueryClass().Alloc()
 	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), objc.String(userQueryString), userQueryContext)
 	rv.Autorelease()
@@ -125,7 +127,7 @@ func (cc _CSUserQueryClass) Prepare() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/prepareProtectionClasses(_:)
-func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string) {
+func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("prepareProtectionClasses:"), protectionClasses)
 }
 
@@ -150,14 +152,14 @@ func (c_ CSUserQuery) Start() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithItem:visibleItems:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType CSUserInteraction) {
+func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem /* primitive/slice/pointer. */, userInteractionType CSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithItem:visibleItems:userInteractionType:"), item, visibleItems, userInteractionType)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithSuggestion:visibleSuggestions:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType CSUserInteraction) {
+func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion /* primitive/slice/pointer. */, userInteractionType CSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithSuggestion:visibleSuggestions:userInteractionType:"), suggestion, visibleSuggestions, userInteractionType)
 }
 
@@ -166,7 +168,7 @@ func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteraction
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionCount
-func (c_ CSUserQuery) FoundSuggestionCount() int {
+func (c_ CSUserQuery) FoundSuggestionCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
 	return rv
 }

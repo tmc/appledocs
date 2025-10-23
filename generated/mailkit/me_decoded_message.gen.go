@@ -34,10 +34,10 @@ type IMEDecodedMessage interface {
 	// properties:
 	Banner() IMEDecodedMessageBanner
 	SetBanner(value IMEDecodedMessageBanner)
-	Context() foundation.Data
-	SetContext(value foundation.Data)
-	RawData() foundation.Data
-	SetRawData(value foundation.Data)
+	Context() foundation.objc.IObject /* cross-framework: Data */
+	SetContext(value foundation.objc.IObject /* cross-framework: Data */)
+	RawData() foundation.objc.IObject /* cross-framework: Data */
+	SetRawData(value foundation.objc.IObject /* cross-framework: Data */)
 	SecurityInformation() unsafe.Pointer
 	SetSecurityInformation(value unsafe.Pointer)
 	// methods:
@@ -113,7 +113,7 @@ func (m_ MEDecodedMessage) SetBanner(value IMEDecodedMessageBanner) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
-func (m_ MEDecodedMessage) Context() foundation.Data {
+func (m_ MEDecodedMessage) Context() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("context"))
 	return rv
 }
@@ -121,7 +121,7 @@ func (m_ MEDecodedMessage) Context() foundation.Data {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
-func (m_ MEDecodedMessage) SetContext(value foundation.Data) {
+func (m_ MEDecodedMessage) SetContext(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -130,7 +130,7 @@ func (m_ MEDecodedMessage) SetContext(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
-func (m_ MEDecodedMessage) RawData() foundation.Data {
+func (m_ MEDecodedMessage) RawData() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rawData"))
 	return rv
 }
@@ -140,7 +140,7 @@ func (m_ MEDecodedMessage) RawData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
-func (m_ MEDecodedMessage) SetRawData(value foundation.Data) {
+func (m_ MEDecodedMessage) SetRawData(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 

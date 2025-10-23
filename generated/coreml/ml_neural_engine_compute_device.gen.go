@@ -30,7 +30,9 @@ type _NeuralEngineComputeDeviceClass struct {
 // An interface definition for the [NeuralEngineComputeDevice] class.
 type INeuralEngineComputeDevice interface {
 	objectivec.IObject
-	TotalCoreCount() int
+	// properties:
+	TotalCoreCount() int /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a Neural Engine compute device.
@@ -88,7 +90,7 @@ func NewNeuralEngineComputeDevice() NeuralEngineComputeDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLNeuralEngineComputeDevice/totalCoreCount
-func (n_ NeuralEngineComputeDevice) TotalCoreCount() int {
+func (n_ NeuralEngineComputeDevice) TotalCoreCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](n_.ID, objc.Sel("totalCoreCount"))
 	return rv
 }

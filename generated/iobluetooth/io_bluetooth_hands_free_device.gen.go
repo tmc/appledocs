@@ -37,19 +37,19 @@ type IBluetoothHandsFreeDevice interface {
 	AddHeldCall()
 	CallTransfer()
 	CurrentCallList()
-	DialNumber(aNumber string)
+	DialNumber(aNumber string /* primitive/slice/pointer. */)
 	EndCall()
 	HoldCall()
-	MemoryDial(memoryLocation int)
-	PlaceAllOthersOnHold(index int)
+	MemoryDial(memoryLocation int /* primitive/slice/pointer. */)
+	PlaceAllOthersOnHold(index int /* primitive/slice/pointer. */)
 	Redial()
 	ReleaseActiveCalls()
-	ReleaseCall(index int)
+	ReleaseCall(index int /* primitive/slice/pointer. */)
 	ReleaseHeldCalls()
-	SendATCommand(atCommand string)
-	SendATCommandTimeoutSelectorTarget(atCommand string, timeout float32, selector objc.SEL, target objectivec.IObject)
-	SendDTMF(character string)
-	SendSMSMessage(aNumber string, aMessage string)
+	SendATCommand(atCommand string /* primitive/slice/pointer. */)
+	SendATCommandTimeoutSelectorTarget(atCommand string /* primitive/slice/pointer. */, timeout float32 /* primitive/slice/pointer. */, selector objc.SEL, target objectivec.IObject)
+	SendDTMF(character string /* primitive/slice/pointer. */)
+	SendSMSMessage(aNumber string /* primitive/slice/pointer. */, aMessage string /* primitive/slice/pointer. */)
 	SubscriberNumber()
 	TransferAudioToComputer()
 	TransferAudioToPhone()
@@ -112,7 +112,7 @@ func NewBluetoothHandsFreeDevice() BluetoothHandsFreeDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/init(device:delegate:)
-func NewBluetoothHandsFreeDeviceWithDeviceDelegate(device IOBluetoothDevice, delegate objectivec.IObject) BluetoothHandsFreeDevice {
+func NewBluetoothHandsFreeDeviceWithDeviceDelegate(device BluetoothDevice /* already interface */, delegate objectivec.IObject) BluetoothHandsFreeDevice {
 	instance := getBluetoothHandsFreeDeviceClass().Alloc()
 	rv := objc.Send[BluetoothHandsFreeDevice](instance.ID, objc.Sel("initWithDevice:delegate:"), device, delegate)
 	rv.Autorelease()
@@ -170,7 +170,7 @@ func (b_ BluetoothHandsFreeDevice) CurrentCallList() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/dialNumber(_:)
-func (b_ BluetoothHandsFreeDevice) DialNumber(aNumber string) {
+func (b_ BluetoothHandsFreeDevice) DialNumber(aNumber string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("dialNumber:"), objc.String(aNumber))
 }
 
@@ -197,7 +197,7 @@ func (b_ BluetoothHandsFreeDevice) HoldCall() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/memoryDial(_:)
-func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation int) {
+func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("memoryDial:"), memoryLocation)
 }
 
@@ -206,7 +206,7 @@ func (b_ BluetoothHandsFreeDevice) MemoryDial(memoryLocation int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/placeAllOthers(onHold:)
-func (b_ BluetoothHandsFreeDevice) PlaceAllOthersOnHold(index int) {
+func (b_ BluetoothHandsFreeDevice) PlaceAllOthersOnHold(index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("placeAllOthersOnHold:"), index)
 }
 
@@ -233,7 +233,7 @@ func (b_ BluetoothHandsFreeDevice) ReleaseActiveCalls() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/releaseCall(_:)
-func (b_ BluetoothHandsFreeDevice) ReleaseCall(index int) {
+func (b_ BluetoothHandsFreeDevice) ReleaseCall(index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("releaseCall:"), index)
 }
 
@@ -251,7 +251,7 @@ func (b_ BluetoothHandsFreeDevice) ReleaseHeldCalls() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:)
-func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand string) {
+func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:"), objc.String(atCommand))
 }
 
@@ -260,7 +260,7 @@ func (b_ BluetoothHandsFreeDevice) SendATCommand(atCommand string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/send(atCommand:timeout:selector:target:)
-func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand string, timeout float32, selector objc.SEL, target objectivec.IObject) {
+func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand string /* primitive/slice/pointer. */, timeout float32 /* primitive/slice/pointer. */, selector objc.SEL, target objectivec.IObject) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendATCommand:timeout:selector:target:"), objc.String(atCommand), timeout, selector, target)
 }
 
@@ -269,7 +269,7 @@ func (b_ BluetoothHandsFreeDevice) SendATCommandTimeoutSelectorTarget(atCommand 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendDTMF(_:)
-func (b_ BluetoothHandsFreeDevice) SendDTMF(character string) {
+func (b_ BluetoothHandsFreeDevice) SendDTMF(character string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendDTMF:"), objc.String(character))
 }
 
@@ -278,7 +278,7 @@ func (b_ BluetoothHandsFreeDevice) SendDTMF(character string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFreeDevice/sendSMS(_:message:)
-func (b_ BluetoothHandsFreeDevice) SendSMSMessage(aNumber string, aMessage string) {
+func (b_ BluetoothHandsFreeDevice) SendSMSMessage(aNumber string /* primitive/slice/pointer. */, aMessage string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("sendSMS:message:"), objc.String(aNumber), objc.String(aMessage))
 }
 

@@ -31,14 +31,14 @@ type _HKUserAnnotatedMedicationClass struct {
 type IHKUserAnnotatedMedication interface {
 	objectivec.IObject
 	// properties:
-	HasSchedule() bool
-	SetHasSchedule(value bool)
-	IsArchived() bool
-	SetIsArchived(value bool)
+	HasSchedule() bool /* primitive/slice/pointer. */
+	SetHasSchedule(value bool /* primitive/slice/pointer. */)
+	IsArchived() bool /* primitive/slice/pointer. */
+	SetIsArchived(value bool /* primitive/slice/pointer. */)
 	Medication() IHKMedicationConcept
 	SetMedication(value IHKMedicationConcept)
-	Nickname() string
-	SetNickname(value string)
+	Nickname() string /* primitive/slice/pointer. */
+	SetNickname(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -99,7 +99,7 @@ func NewHKUserAnnotatedMedication() HKUserAnnotatedMedication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/hasschedule
-func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
+func (h_ HKUserAnnotatedMedication) HasSchedule() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("hasSchedule"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (h_ HKUserAnnotatedMedication) HasSchedule() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/hasschedule
-func (h_ HKUserAnnotatedMedication) SetHasSchedule(value bool) {
+func (h_ HKUserAnnotatedMedication) SetHasSchedule(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHasSchedule:"), value)
 }
 
@@ -118,7 +118,7 @@ func (h_ HKUserAnnotatedMedication) SetHasSchedule(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/isarchived
-func (h_ HKUserAnnotatedMedication) IsArchived() bool {
+func (h_ HKUserAnnotatedMedication) IsArchived() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isArchived"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/isarchived
-func (h_ HKUserAnnotatedMedication) SetIsArchived(value bool) {
+func (h_ HKUserAnnotatedMedication) SetIsArchived(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsArchived:"), value)
 }
 
@@ -156,7 +156,7 @@ func (h_ HKUserAnnotatedMedication) SetMedication(value IHKMedicationConcept) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/nickname
-func (h_ HKUserAnnotatedMedication) Nickname() string {
+func (h_ HKUserAnnotatedMedication) Nickname() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (h_ HKUserAnnotatedMedication) Nickname() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/nickname
-func (h_ HKUserAnnotatedMedication) SetNickname(value string) {
+func (h_ HKUserAnnotatedMedication) SetNickname(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNickname:"), objc.String(value))
 }
 

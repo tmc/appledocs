@@ -30,14 +30,16 @@ type _CSSearchQueryContextClass struct {
 // An interface definition for the [CSSearchQueryContext] class.
 type ICSSearchQueryContext interface {
 	objectivec.IObject
-	FetchAttributes() []string
-	SetFetchAttributes(value []string)
-	FilterQueries() []string
-	SetFilterQueries(value []string)
-	KeyboardLanguage() string
-	SetKeyboardLanguage(value string)
+	// properties:
+	FetchAttributes() []string /* primitive/slice/pointer. */
+	SetFetchAttributes(value []string /* primitive/slice/pointer. */)
+	FilterQueries() []string /* primitive/slice/pointer. */
+	SetFilterQueries(value []string /* primitive/slice/pointer. */)
+	KeyboardLanguage() string /* primitive/slice/pointer. */
+	SetKeyboardLanguage(value string /* primitive/slice/pointer. */)
 	SourceOptions() CSSearchQuerySourceOptions
 	SetSourceOptions(value CSSearchQuerySourceOptions)
+	// methods:
 }
 
 // The behavior configuration to use for a search query.
@@ -95,7 +97,7 @@ func NewCSSearchQueryContext() CSSearchQueryContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
-func (c_ CSSearchQueryContext) FetchAttributes() []string {
+func (c_ CSSearchQueryContext) FetchAttributes() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("fetchAttributes"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (c_ CSSearchQueryContext) FetchAttributes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/fetchAttributes
-func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
+func (c_ CSSearchQueryContext) SetFetchAttributes(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -124,7 +126,7 @@ func (c_ CSSearchQueryContext) SetFetchAttributes(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
-func (c_ CSSearchQueryContext) FilterQueries() []string {
+func (c_ CSSearchQueryContext) FilterQueries() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("filterQueries"))
 	return rv
 }
@@ -134,7 +136,7 @@ func (c_ CSSearchQueryContext) FilterQueries() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/filterQueries
-func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
+func (c_ CSSearchQueryContext) SetFilterQueries(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -153,7 +155,7 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) KeyboardLanguage() string {
+func (c_ CSSearchQueryContext) KeyboardLanguage() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
+func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
 }
 

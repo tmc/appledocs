@@ -29,22 +29,24 @@ type _ScrollerClass struct {
 // An interface definition for the [Scroller] class.
 type IScroller interface {
 	IControl
+	// properties:
 	ArrowsPosition() unsafe.Pointer
 	SetArrowsPosition(value unsafe.Pointer)
 	ControlSize() ControlSize
-	SetControlSize(value IControlSize)
+	SetControlSize(value ControlSize)
 	ControlTint() ControlTint
-	SetControlTint(value IControlTint)
+	SetControlTint(value ControlTint)
 	HitPart() unsafe.Pointer
 	SetHitPart(value unsafe.Pointer)
-	KnobProportion() float64
-	SetKnobProportion(value float64)
+	KnobProportion() float64 /* primitive/slice/pointer. */
+	SetKnobProportion(value float64 /* primitive/slice/pointer. */)
 	KnobStyle() unsafe.Pointer
 	SetKnobStyle(value unsafe.Pointer)
 	ScrollerStyle() unsafe.Pointer
 	SetScrollerStyle(value unsafe.Pointer)
 	UsableParts() unsafe.Pointer
 	SetUsableParts(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that controls scrolling of a document view within a scroll view or other type of container view.
@@ -106,8 +108,8 @@ func NewScroller() Scroller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-func (sc _ScrollerClass) PreferredScrollerStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
+func (sc _ScrollerClass) PreferredScrollerStyle() ScrollerStyle /* not a class type */ {
+	rv := objc.Send[ScrollerStyle](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
 	return rv
 }
 
@@ -115,8 +117,8 @@ func (sc _ScrollerClass) PreferredScrollerStyle() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-func (s_ Scroller) PreferredScrollerStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preferredScrollerStyle"))
+func (s_ Scroller) PreferredScrollerStyle() ScrollerStyle /* not a class type */ {
+	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("preferredScrollerStyle"))
 	return rv
 }
 
@@ -154,7 +156,7 @@ func (s_ Scroller) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
-func (s_ Scroller) SetControlSize(value IControlSize) {
+func (s_ Scroller) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -173,7 +175,7 @@ func (s_ Scroller) ControlTint() ControlTint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
-func (s_ Scroller) SetControlTint(value IControlTint) {
+func (s_ Scroller) SetControlTint(value ControlTint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -201,7 +203,7 @@ func (s_ Scroller) SetHitPart(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-func (s_ Scroller) KnobProportion() float64 {
+func (s_ Scroller) KnobProportion() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobProportion"))
 	return rv
 }
@@ -211,7 +213,7 @@ func (s_ Scroller) KnobProportion() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
-func (s_ Scroller) SetKnobProportion(value float64) {
+func (s_ Scroller) SetKnobProportion(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobProportion:"), value)
 }
 

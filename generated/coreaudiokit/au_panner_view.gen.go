@@ -31,7 +31,9 @@ type _PannerViewClass struct {
 // An interface definition for the [PannerView] class.
 type IPannerView interface {
 	appkit.IView
-	AudioUnit() audiotoolbox.AudioUnit
+	// properties:
+	AudioUnit() audiotoolbox.objc.IObject /* cross-framework: AudioUnit */
+	// methods:
 }
 
 // A view that provides a specialized user interface for a Cocoa-based panner audio unit.
@@ -91,7 +93,7 @@ func NewPannerView() PannerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUPannerView/audioUnit
-func (p_ PannerView) AudioUnit() audiotoolbox.AudioUnit {
+func (p_ PannerView) AudioUnit() audiotoolbox.objc.IObject /* cross-framework: AudioUnit */ {
 	rv := objc.Send[audiotoolbox.AudioUnit](p_.ID, objc.Sel("audioUnit"))
 	return rv
 }

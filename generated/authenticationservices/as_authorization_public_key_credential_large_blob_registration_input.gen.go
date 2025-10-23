@@ -30,8 +30,10 @@ type _AuthorizationPublicKeyCredentialLargeBlobRegistrationInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobRegistrationInput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobRegistrationInput interface {
 	objectivec.IObject
-	SupportRequirement() unsafe.Pointer
-	SetSupportRequirement(value unsafe.Pointer)
+	// properties:
+	SupportRequirement() AuthorizationPublicKeyCredentialLargeBlobSupportRequirement /* not a class type */
+	SetSupportRequirement(value AuthorizationPublicKeyCredentialLargeBlobSupportRequirement /* not a class type */)
+	// methods:
 }
 
 
@@ -82,15 +84,15 @@ func NewAuthorizationPublicKeyCredentialLargeBlobRegistrationInput() Authorizati
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput-c.class/supportRequirement
-func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationInput) SupportRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("supportRequirement"))
+func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationInput) SupportRequirement() AuthorizationPublicKeyCredentialLargeBlobSupportRequirement /* not a class type */ {
+	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobSupportRequirement](a_.ID, objc.Sel("supportRequirement"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput-c.class/supportRequirement
-func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationInput) SetSupportRequirement(value unsafe.Pointer) {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationInput) SetSupportRequirement(value AuthorizationPublicKeyCredentialLargeBlobSupportRequirement /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportRequirement:"), value)
 }
 

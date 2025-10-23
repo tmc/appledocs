@@ -31,8 +31,10 @@ type _FallDetectionEventClass struct {
 // An interface definition for the [FallDetectionEvent] class.
 type IFallDetectionEvent interface {
 	objectivec.IObject
-	Date() foundation.NSDate
-	Resolution() CMFallDetectionEventUserResolution
+	// properties:
+	Date() foundation.objc.IObject /* cross-framework: NSDate */
+	Resolution() FallDetectionEventUserResolution
+	// methods:
 }
 
 // An object that contains data about a fall detection event.
@@ -90,7 +92,7 @@ func NewFallDetectionEvent() FallDetectionEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/date
-func (f_ FallDetectionEvent) Date() foundation.NSDate {
+func (f_ FallDetectionEvent) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](f_.ID, objc.Sel("date"))
 	return rv
 }
@@ -100,8 +102,8 @@ func (f_ FallDetectionEvent) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionEvent/resolution
-func (f_ FallDetectionEvent) Resolution() CMFallDetectionEventUserResolution {
-	rv := objc.Send[CMFallDetectionEventUserResolution](f_.ID, objc.Sel("resolution"))
+func (f_ FallDetectionEvent) Resolution() FallDetectionEventUserResolution {
+	rv := objc.Send[FallDetectionEventUserResolution](f_.ID, objc.Sel("resolution"))
 	return rv
 }
 

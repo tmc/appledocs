@@ -31,9 +31,9 @@ type _USBHostIOSourceClass struct {
 type IUSBHostIOSource interface {
 	objectivec.IObject
 	// properties:
-	DeviceAddress() uint
-	EndpointAddress() uint
-	HostInterface() IOUSBHostInterface
+	DeviceAddress() uint /* primitive/slice/pointer. */
+	EndpointAddress() uint /* primitive/slice/pointer. */
+	HostInterface() IOUSBHostInterface /* already interface */
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewUSBHostIOSource() USBHostIOSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/deviceAddress
-func (u_ USBHostIOSource) DeviceAddress() uint {
+func (u_ USBHostIOSource) DeviceAddress() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("deviceAddress"))
 	return rv
 }
@@ -104,7 +104,7 @@ func (u_ USBHostIOSource) DeviceAddress() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/endpointAddress
-func (u_ USBHostIOSource) EndpointAddress() uint {
+func (u_ USBHostIOSource) EndpointAddress() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](u_.ID, objc.Sel("endpointAddress"))
 	return rv
 }
@@ -114,7 +114,7 @@ func (u_ USBHostIOSource) EndpointAddress() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/hostInterface
-func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface {
+func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface /* already interface */ {
 	rv := objc.Send[USBHostInterface](u_.ID, objc.Sel("hostInterface"))
 	return rv
 }

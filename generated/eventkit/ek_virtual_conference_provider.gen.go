@@ -30,8 +30,10 @@ type _EKVirtualConferenceProviderClass struct {
 // An interface definition for the [EKVirtualConferenceProvider] class.
 type IEKVirtualConferenceProvider interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	FetchAvailableRoomTypesWithCompletionHandler(completionHandler unsafe.Pointer)
-	FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier, completionHandler unsafe.Pointer)
+	FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */, completionHandler unsafe.Pointer)
 }
 
 // An object that associates virtual conferencing details with an event object in a user’s calendar.
@@ -100,7 +102,7 @@ func (e_ EKVirtualConferenceProvider) FetchAvailableRoomTypesWithCompletionHandl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)
-func (e_ EKVirtualConferenceProvider) FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier, completionHandler unsafe.Pointer) {
+func (e_ EKVirtualConferenceProvider) FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchVirtualConferenceForIdentifier:completionHandler:"), identifier, completionHandler)
 }
 

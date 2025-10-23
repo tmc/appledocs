@@ -30,9 +30,11 @@ type _WaterSubmersionManagerClass struct {
 // An interface definition for the [WaterSubmersionManager] class.
 type IWaterSubmersionManager interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	MaximumDepth() unsafe.Pointer
+	// methods:
 }
 
 // An object for managing the collection of pressure and temperature data during submersion.
@@ -92,8 +94,8 @@ func NewWaterSubmersionManager() WaterSubmersionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (wc _WaterSubmersionManagerClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
+func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -101,7 +103,7 @@ func (wc _WaterSubmersionManagerClass) AuthorizationStatus() CMAuthorizationStat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
+func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("waterSubmersionAvailable"))
 	return rv
 }
@@ -110,8 +112,8 @@ func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (w_ WaterSubmersionManager) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
+func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -149,7 +151,7 @@ func (w_ WaterSubmersionManager) MaximumDepth() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable
-func (w_ WaterSubmersionManager) WaterSubmersionAvailable() bool {
+func (w_ WaterSubmersionManager) WaterSubmersionAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("waterSubmersionAvailable"))
 	return rv
 }

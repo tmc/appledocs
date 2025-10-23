@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
@@ -32,16 +32,16 @@ type _PlayerLayerClass struct {
 type IPlayerLayer interface {
 	quartzcore.ILayer
 	// properties:
-	IsReadyForDisplay() bool /* primitive/slice/pointer */
-	SetIsReadyForDisplay(value bool /* primitive/slice/pointer */)
-	PixelBufferAttributes() string /* primitive/slice/pointer */
-	SetPixelBufferAttributes(value string /* primitive/slice/pointer */)
+	IsReadyForDisplay() bool /* primitive/slice/pointer. */
+	SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */)
+	PixelBufferAttributes() objc.IObject /* cross-framework: NSString */
+	SetPixelBufferAttributes(value objc.IObject /* cross-framework: NSString */)
 	Player() IAVPlayer
 	SetPlayer(value IAVPlayer)
 	VideoGravity() LayerVideoGravity /* not a class type */
 	SetVideoGravity(value LayerVideoGravity /* not a class type */)
-	VideoRect() coregraphics.CGRect
-	SetVideoRect(value coregraphics.CGRect)
+	VideoRect() objc.IObject /* cross-framework: Rect */
+	SetVideoRect(value objc.IObject /* cross-framework: Rect */)
 	Contents() unsafe.Pointer
 	SetContents(value unsafe.Pointer)
 	// methods:
@@ -106,7 +106,7 @@ func NewPlayerLayer() PlayerLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer */ {
+func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isReadyForDisplay"))
 	return rv
 }
@@ -116,7 +116,7 @@ func (p_ PlayerLayer) IsReadyForDisplay() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/isreadyfordisplay
-func (p_ PlayerLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadyForDisplay:"), value)
 }
 
@@ -125,8 +125,8 @@ func (p_ PlayerLayer) SetIsReadyForDisplay(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/pixelbufferattributes
-func (p_ PlayerLayer) PixelBufferAttributes() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("pixelBufferAttributes"))
+func (p_ PlayerLayer) PixelBufferAttributes() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("pixelBufferAttributes"))
 	return rv
 }
 
@@ -135,8 +135,8 @@ func (p_ PlayerLayer) PixelBufferAttributes() string /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/pixelbufferattributes
-func (p_ PlayerLayer) SetPixelBufferAttributes(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBufferAttributes:"), objc.String(value))
+func (p_ PlayerLayer) SetPixelBufferAttributes(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBufferAttributes:"), value)
 }
 
 
@@ -182,8 +182,8 @@ func (p_ PlayerLayer) SetVideoGravity(value LayerVideoGravity /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videorect
-func (p_ PlayerLayer) VideoRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("videoRect"))
+func (p_ PlayerLayer) VideoRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](p_.ID, objc.Sel("videoRect"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (p_ PlayerLayer) VideoRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlayer/videorect
-func (p_ PlayerLayer) SetVideoRect(value coregraphics.CGRect) {
+func (p_ PlayerLayer) SetVideoRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoRect:"), value)
 }
 

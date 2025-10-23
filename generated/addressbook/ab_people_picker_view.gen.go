@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,16 +31,17 @@ type _ABPeoplePickerViewClass struct {
 // An interface definition for the [ABPeoplePickerView] class.
 type IABPeoplePickerView interface {
 	appkit.IView
-	AccessoryView() appkit.View
-	SetAccessoryView(value appkit.View)
-	AllowsGroupSelection() bool
-	SetAllowsGroupSelection(value bool)
-	AllowsMultipleSelection() bool
-	SetAllowsMultipleSelection(value bool)
-	AutosaveName() string
-	SetAutosaveName(value string)
-	DisplayedProperty() string
-	SetDisplayedProperty(value string)
+	// properties:
+	AccessoryView() objc.IObject /* cross-framework: View */
+	SetAccessoryView(value objc.IObject /* cross-framework: View */)
+	AllowsGroupSelection() bool /* primitive/slice/pointer. */
+	SetAllowsGroupSelection(value bool /* primitive/slice/pointer. */)
+	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
+	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
+	AutosaveName() string /* primitive/slice/pointer. */
+	SetAutosaveName(value string /* primitive/slice/pointer. */)
+	DisplayedProperty() string /* primitive/slice/pointer. */
+	SetDisplayedProperty(value string /* primitive/slice/pointer. */)
 	GroupDoubleAction() objc.SEL
 	SetGroupDoubleAction(value objc.SEL)
 	NameDoubleAction() objc.SEL
@@ -52,23 +52,24 @@ type IABPeoplePickerView interface {
 	SetTarget(value objc.ID)
 	ValueSelectionBehavior() unsafe.Pointer
 	SetValueSelectionBehavior(value unsafe.Pointer)
-	AddProperty(property string)
+	// methods:
+	AddProperty(property string /* primitive/slice/pointer. */)
 	ClearSearchField(sender objectivec.IObject)
-	ColumnTitleForProperty(property string) foundation.String
+	ColumnTitleForProperty(property string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
 	DeselectRecord(record IABRecord)
 	DeselectGroup(group IABGroup)
 	DeselectAll(sender objectivec.IObject)
-	DeselectIdentifierForPerson(identifier string, person IABPerson)
+	DeselectIdentifierForPerson(identifier string /* primitive/slice/pointer. */, person IABPerson)
 	EditInAddressBook(sender objectivec.IObject)
-	Properties() foundation.Array
-	RemoveProperty(property string)
-	SelectGroupByExtendingSelection(group IABGroup, extend bool)
-	SelectRecordByExtendingSelection(record IABRecord, extend bool)
-	SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool)
+	Properties() objc.IObject /* cross-framework: Array */
+	RemoveProperty(property string /* primitive/slice/pointer. */)
+	SelectGroupByExtendingSelection(group IABGroup, extend bool /* primitive/slice/pointer. */)
+	SelectRecordByExtendingSelection(record IABRecord, extend bool /* primitive/slice/pointer. */)
+	SelectIdentifierForPersonByExtendingSelection(identifier string /* primitive/slice/pointer. */, person IABPerson, extend bool /* primitive/slice/pointer. */)
 	SelectInAddressBook(sender objectivec.IObject)
-	SelectedIdentifiersForPerson(person IABPerson) foundation.Array
-	SelectedValues() foundation.Array
-	SetColumnTitleForProperty(title string, property string)
+	SelectedIdentifiersForPerson(person IABPerson) objc.IObject /* cross-framework: Array */
+	SelectedValues() objc.IObject /* cross-framework: Array */
+	SetColumnTitleForProperty(title string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */)
 }
 
 // An object you use to customize the behavior of people-picker views in an app’s user interface.
@@ -128,7 +129,7 @@ func NewABPeoplePickerView() ABPeoplePickerView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/addProperty(_:)
-func (a_ ABPeoplePickerView) AddProperty(property string) {
+func (a_ ABPeoplePickerView) AddProperty(property string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addProperty:"), objc.String(property))
 }
 
@@ -146,8 +147,8 @@ func (a_ ABPeoplePickerView) ClearSearchField(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/columnTitle(forProperty:)
-func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
+func (a_ ABPeoplePickerView) ColumnTitleForProperty(property string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("columnTitleForProperty:"), objc.String(property))
 	return rv
 }
 
@@ -183,7 +184,7 @@ func (a_ ABPeoplePickerView) DeselectAll(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/deselectIdentifier(_:for:)
-func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier string, person IABPerson) {
+func (a_ ABPeoplePickerView) DeselectIdentifierForPerson(identifier string /* primitive/slice/pointer. */, person IABPerson) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("deselectIdentifier:forPerson:"), objc.String(identifier), person)
 }
 
@@ -201,8 +202,8 @@ func (a_ ABPeoplePickerView) EditInAddressBook(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/properties()
-func (a_ ABPeoplePickerView) Properties() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("properties"))
+func (a_ ABPeoplePickerView) Properties() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -211,7 +212,7 @@ func (a_ ABPeoplePickerView) Properties() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/removeProperty(_:)
-func (a_ ABPeoplePickerView) RemoveProperty(property string) {
+func (a_ ABPeoplePickerView) RemoveProperty(property string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeProperty:"), objc.String(property))
 }
 
@@ -220,7 +221,7 @@ func (a_ ABPeoplePickerView) RemoveProperty(property string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/select(_:byExtendingSelection:)-6mrii
-func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, extend bool) {
+func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, extend bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectGroup:byExtendingSelection:"), group, extend)
 }
 
@@ -229,7 +230,7 @@ func (a_ ABPeoplePickerView) SelectGroupByExtendingSelection(group IABGroup, ext
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/select(_:byExtendingSelection:)-9eldk
-func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, extend bool) {
+func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, extend bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectRecord:byExtendingSelection:"), record, extend)
 }
 
@@ -238,7 +239,7 @@ func (a_ ABPeoplePickerView) SelectRecordByExtendingSelection(record IABRecord, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectIdentifier(_:for:byExtendingSelection:)
-func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier string, person IABPerson, extend bool) {
+func (a_ ABPeoplePickerView) SelectIdentifierForPersonByExtendingSelection(identifier string /* primitive/slice/pointer. */, person IABPerson, extend bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectIdentifier:forPerson:byExtendingSelection:"), objc.String(identifier), person, extend)
 }
 
@@ -256,8 +257,8 @@ func (a_ ABPeoplePickerView) SelectInAddressBook(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedIdentifiers(for:)
-func (a_ ABPeoplePickerView) SelectedIdentifiersForPerson(person IABPerson) foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("selectedIdentifiersForPerson:"), person)
+func (a_ ABPeoplePickerView) SelectedIdentifiersForPerson(person IABPerson) objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("selectedIdentifiersForPerson:"), person)
 	return rv
 }
 
@@ -266,8 +267,8 @@ func (a_ ABPeoplePickerView) SelectedIdentifiersForPerson(person IABPerson) foun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/selectedValues()
-func (a_ ABPeoplePickerView) SelectedValues() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("selectedValues"))
+func (a_ ABPeoplePickerView) SelectedValues() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("selectedValues"))
 	return rv
 }
 
@@ -276,7 +277,7 @@ func (a_ ABPeoplePickerView) SelectedValues() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/setColumnTitle(_:forProperty:)
-func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string, property string) {
+func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string /* primitive/slice/pointer. */, property string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setColumnTitle:forProperty:"), objc.String(title), objc.String(property))
 }
 
@@ -285,8 +286,8 @@ func (a_ ABPeoplePickerView) SetColumnTitleForProperty(title string, property st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
-	rv := objc.Send[appkit.View](a_.ID, objc.Sel("accessoryView"))
+func (a_ ABPeoplePickerView) AccessoryView() objc.IObject /* cross-framework: View */ {
+	rv := objc.Send[View](a_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -295,7 +296,7 @@ func (a_ ABPeoplePickerView) AccessoryView() appkit.View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/accessoryView
-func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.View) {
+func (a_ ABPeoplePickerView) SetAccessoryView(value objc.IObject /* cross-framework: View */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessoryView:"), value)
 }
 
@@ -304,7 +305,7 @@ func (a_ ABPeoplePickerView) SetAccessoryView(value appkit.View) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsGroupSelection
-func (a_ ABPeoplePickerView) AllowsGroupSelection() bool {
+func (a_ ABPeoplePickerView) AllowsGroupSelection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsGroupSelection"))
 	return rv
 }
@@ -314,7 +315,7 @@ func (a_ ABPeoplePickerView) AllowsGroupSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsGroupSelection
-func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool) {
+func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsGroupSelection:"), value)
 }
 
@@ -323,7 +324,7 @@ func (a_ ABPeoplePickerView) SetAllowsGroupSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsMultipleSelection
-func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool {
+func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
@@ -333,7 +334,7 @@ func (a_ ABPeoplePickerView) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/allowsMultipleSelection
-func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
+func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
@@ -342,7 +343,7 @@ func (a_ ABPeoplePickerView) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) AutosaveName() string {
+func (a_ ABPeoplePickerView) AutosaveName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("autosaveName"))
 	return rv
 }
@@ -352,7 +353,7 @@ func (a_ ABPeoplePickerView) AutosaveName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/autosaveName
-func (a_ ABPeoplePickerView) SetAutosaveName(value string) {
+func (a_ ABPeoplePickerView) SetAutosaveName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutosaveName:"), objc.String(value))
 }
 
@@ -361,7 +362,7 @@ func (a_ ABPeoplePickerView) SetAutosaveName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) DisplayedProperty() string {
+func (a_ ABPeoplePickerView) DisplayedProperty() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("displayedProperty"))
 	return rv
 }
@@ -371,7 +372,7 @@ func (a_ ABPeoplePickerView) DisplayedProperty() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPeoplePickerView/displayedProperty
-func (a_ ABPeoplePickerView) SetDisplayedProperty(value string) {
+func (a_ ABPeoplePickerView) SetDisplayedProperty(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDisplayedProperty:"), objc.String(value))
 }
 

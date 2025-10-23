@@ -32,29 +32,29 @@ type _ContextClass struct {
 type IContext interface {
 	objectivec.IObject
 	// properties:
-	BiometryType() LABiometryType
+	BiometryType() BiometryType
 	DomainState() ILADomainState
-	EvaluatedPolicyDomainState() foundation.NSData
-	InteractionNotAllowed() bool
-	SetInteractionNotAllowed(value bool)
-	LocalizedCancelTitle() string
-	SetLocalizedCancelTitle(value string)
-	LocalizedFallbackTitle() string
-	SetLocalizedFallbackTitle(value string)
-	LocalizedReason() string
-	SetLocalizedReason(value string)
-	MaxBiometryFailures() foundation.Number
-	SetMaxBiometryFailures(value foundation.Number)
-	TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval
-	SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval)
+	EvaluatedPolicyDomainState() foundation.objc.IObject /* cross-framework: NSData */
+	InteractionNotAllowed() bool /* primitive/slice/pointer. */
+	SetInteractionNotAllowed(value bool /* primitive/slice/pointer. */)
+	LocalizedCancelTitle() string /* primitive/slice/pointer. */
+	SetLocalizedCancelTitle(value string /* primitive/slice/pointer. */)
+	LocalizedFallbackTitle() string /* primitive/slice/pointer. */
+	SetLocalizedFallbackTitle(value string /* primitive/slice/pointer. */)
+	LocalizedReason() string /* primitive/slice/pointer. */
+	SetLocalizedReason(value string /* primitive/slice/pointer. */)
+	MaxBiometryFailures() foundation.objc.IObject /* cross-framework: Number */
+	SetMaxBiometryFailures(value foundation.objc.IObject /* cross-framework: Number */)
+	TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval /* not a class type */
+	SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval /* not a class type */)
 	LATouchIDAuthenticationMaximumAllowableReuseDuration() unsafe.Pointer
 	// methods:
-	CanEvaluatePolicyError(policy LAPolicy, error_ unsafe.Pointer) bool
-	EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation LAAccessControlOperation, localizedReason string, reply unsafe.Pointer)
-	EvaluatePolicyLocalizedReasonReply(policy LAPolicy, localizedReason string, reply unsafe.Pointer)
+	CanEvaluatePolicyError(policy Policy, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation AccessControlOperation, localizedReason string /* primitive/slice/pointer. */, reply unsafe.Pointer)
+	EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason string /* primitive/slice/pointer. */, reply unsafe.Pointer)
 	Invalidate()
-	IsCredentialSet(type_ LACredentialType) bool
-	SetCredentialType(credential foundation.NSData, type_ LACredentialType) bool
+	IsCredentialSet(type_ CredentialType) bool /* primitive/slice/pointer. */
+	SetCredentialType(credential foundation.objc.IObject /* cross-framework NSData */, type_ CredentialType) bool /* primitive/slice/pointer. */
 }
 
 // A mechanism for evaluating authentication policies and access controls.
@@ -114,7 +114,7 @@ func NewContext() Context {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/canEvaluatePolicy(_:error:)
-func (c_ Context) CanEvaluatePolicyError(policy LAPolicy, error_ unsafe.Pointer) bool {
+func (c_ Context) CanEvaluatePolicyError(policy Policy, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canEvaluatePolicy:error:"), policy, error_)
 	return rv
 }
@@ -124,7 +124,7 @@ func (c_ Context) CanEvaluatePolicyError(policy LAPolicy, error_ unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluateAccessControl(_:operation:localizedReason:reply:)
-func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation LAAccessControlOperation, localizedReason string, reply unsafe.Pointer) {
+func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessControl unsafe.Pointer, operation AccessControlOperation, localizedReason string /* primitive/slice/pointer. */, reply unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("evaluateAccessControl:operation:localizedReason:reply:"), accessControl, operation, objc.String(localizedReason), reply)
 }
 
@@ -133,7 +133,7 @@ func (c_ Context) EvaluateAccessControlOperationLocalizedReasonReply(accessContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluatePolicy(_:localizedReason:reply:)
-func (c_ Context) EvaluatePolicyLocalizedReasonReply(policy LAPolicy, localizedReason string, reply unsafe.Pointer) {
+func (c_ Context) EvaluatePolicyLocalizedReasonReply(policy Policy, localizedReason string /* primitive/slice/pointer. */, reply unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("evaluatePolicy:localizedReason:reply:"), policy, objc.String(localizedReason), reply)
 }
 
@@ -151,7 +151,7 @@ func (c_ Context) Invalidate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/isCredentialSet(_:)
-func (c_ Context) IsCredentialSet(type_ LACredentialType) bool {
+func (c_ Context) IsCredentialSet(type_ CredentialType) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCredentialSet:"), type_)
 	return rv
 }
@@ -161,7 +161,7 @@ func (c_ Context) IsCredentialSet(type_ LACredentialType) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/setCredential(_:type:)
-func (c_ Context) SetCredentialType(credential foundation.NSData, type_ LACredentialType) bool {
+func (c_ Context) SetCredentialType(credential foundation.objc.IObject /* cross-framework NSData */, type_ CredentialType) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setCredential:type:"), credential, type_)
 	return rv
 }
@@ -171,8 +171,8 @@ func (c_ Context) SetCredentialType(credential foundation.NSData, type_ LACreden
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/biometryType
-func (c_ Context) BiometryType() LABiometryType {
-	rv := objc.Send[LABiometryType](c_.ID, objc.Sel("biometryType"))
+func (c_ Context) BiometryType() BiometryType {
+	rv := objc.Send[BiometryType](c_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
@@ -191,7 +191,7 @@ func (c_ Context) DomainState() ILADomainState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/evaluatedPolicyDomainState
-func (c_ Context) EvaluatedPolicyDomainState() foundation.NSData {
+func (c_ Context) EvaluatedPolicyDomainState() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("evaluatedPolicyDomainState"))
 	return rv
 }
@@ -201,7 +201,7 @@ func (c_ Context) EvaluatedPolicyDomainState() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/interactionNotAllowed
-func (c_ Context) InteractionNotAllowed() bool {
+func (c_ Context) InteractionNotAllowed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("interactionNotAllowed"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (c_ Context) InteractionNotAllowed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/interactionNotAllowed
-func (c_ Context) SetInteractionNotAllowed(value bool) {
+func (c_ Context) SetInteractionNotAllowed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInteractionNotAllowed:"), value)
 }
 
@@ -220,7 +220,7 @@ func (c_ Context) SetInteractionNotAllowed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) LocalizedCancelTitle() string {
+func (c_ Context) LocalizedCancelTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedCancelTitle"))
 	return rv
 }
@@ -230,7 +230,7 @@ func (c_ Context) LocalizedCancelTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedCancelTitle
-func (c_ Context) SetLocalizedCancelTitle(value string) {
+func (c_ Context) SetLocalizedCancelTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCancelTitle:"), objc.String(value))
 }
 
@@ -239,7 +239,7 @@ func (c_ Context) SetLocalizedCancelTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) LocalizedFallbackTitle() string {
+func (c_ Context) LocalizedFallbackTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedFallbackTitle"))
 	return rv
 }
@@ -249,7 +249,7 @@ func (c_ Context) LocalizedFallbackTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedFallbackTitle
-func (c_ Context) SetLocalizedFallbackTitle(value string) {
+func (c_ Context) SetLocalizedFallbackTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedFallbackTitle:"), objc.String(value))
 }
 
@@ -258,7 +258,7 @@ func (c_ Context) SetLocalizedFallbackTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) LocalizedReason() string {
+func (c_ Context) LocalizedReason() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedReason"))
 	return rv
 }
@@ -268,7 +268,7 @@ func (c_ Context) LocalizedReason() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/localizedReason
-func (c_ Context) SetLocalizedReason(value string) {
+func (c_ Context) SetLocalizedReason(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedReason:"), objc.String(value))
 }
 
@@ -277,7 +277,7 @@ func (c_ Context) SetLocalizedReason(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
-func (c_ Context) MaxBiometryFailures() foundation.Number {
+func (c_ Context) MaxBiometryFailures() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("maxBiometryFailures"))
 	return rv
 }
@@ -287,7 +287,7 @@ func (c_ Context) MaxBiometryFailures() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/maxBiometryFailures
-func (c_ Context) SetMaxBiometryFailures(value foundation.Number) {
+func (c_ Context) SetMaxBiometryFailures(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBiometryFailures:"), value)
 }
 
@@ -296,7 +296,7 @@ func (c_ Context) SetMaxBiometryFailures(value foundation.Number) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
-func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval {
+func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("touchIDAuthenticationAllowableReuseDuration"))
 	return rv
 }
@@ -306,7 +306,7 @@ func (c_ Context) TouchIDAuthenticationAllowableReuseDuration() foundation.TimeI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration
-func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval) {
+func (c_ Context) SetTouchIDAuthenticationAllowableReuseDuration(value foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTouchIDAuthenticationAllowableReuseDuration:"), value)
 }
 

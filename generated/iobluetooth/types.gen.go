@@ -22,3 +22,38 @@ type CFStringRef unsafe.Pointer
 
 
 
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type BluetoothDeviceAddress = int
+
+type BluetoothHCIPowerState = int
+
+type Bool = int
+
+type Boolean = int
+
+type ByteCount = int
+
+type Coder = int
+
+type DataRef = int
+
+type DictionaryRef = int
+
+type MutableDataRef = int
+
+type MutableDictionaryRef = int
+
+type Return = int
+
+type StringRef = int
+
+type UInt16 = int
+
+type UInt32 = int
+
+type UInt8 = int
+
+
+

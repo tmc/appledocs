@@ -30,10 +30,10 @@ type _USBHostDeviceClass struct {
 type IUSBHostDevice interface {
 	IUSBHostObject
 	// properties:
-	ConfigurationDescriptor() unsafe.Pointer
-	SetConfigurationDescriptor(value unsafe.Pointer)
+	ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */
+	SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */)
 	// methods:
-	ResetWithError(error_ unsafe.Pointer) bool
+	ResetWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // The class that claims and configures devices, retrieves descriptors, and sends device requests.
@@ -95,7 +95,7 @@ func NewUSBHostDevice() USBHostDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevice/reset()
-func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool {
+func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("resetWithError:"), error_)
 	return rv
 }
@@ -105,8 +105,8 @@ func (u_ USBHostDevice) ResetWithError(error_ unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
-func (u_ USBHostDevice) ConfigurationDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
+func (u_ USBHostDevice) ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */ {
+	rv := objc.Send[USBConfigurationDescriptor](u_.ID, objc.Sel("configurationDescriptor"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (u_ USBHostDevice) ConfigurationDescriptor() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostdevice/configurationdescriptor
-func (u_ USBHostDevice) SetConfigurationDescriptor(value unsafe.Pointer) {
+func (u_ USBHostDevice) SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
 }
 

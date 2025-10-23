@@ -48,10 +48,52 @@ type MIDICVStatus uint
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType
 type MIDIMessageType uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/channelVoice1
+	kMIDIMessageTypeChannelVoice1 MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/channelVoice2
+	kMIDIMessageTypeChannelVoice2 MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/flexData
+	kMIDIMessageTypeFlexData MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/invalid
+	kMIDIMessageTypeInvalid MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/stream
+	kMIDIMessageTypeStream MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/sysEx
+	kMIDIMessageTypeSysEx MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/system
+	kMIDIMessageTypeSystem MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/unknownF
+	kMIDIMessageTypeUnknownF MIDIMessageType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIMessageType/utility
+	kMIDIMessageTypeUtility MIDIMessageType = 0
+)
+
 // MIDINetworkConnectionPolicy enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnectionPolicy
 type MIDINetworkConnectionPolicy uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnectionPolicy/anyone
+	MIDINetworkConnectionPolicy_Anyone MIDINetworkConnectionPolicy = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnectionPolicy/hostsInContactList
+	MIDINetworkConnectionPolicy_HostsInContactList MIDINetworkConnectionPolicy = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnectionPolicy/noOne
+	MIDINetworkConnectionPolicy_NoOne MIDINetworkConnectionPolicy = 0
+)
 
 // MIDINoteAttribute enum type
 //

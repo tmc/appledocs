@@ -30,3 +30,10 @@ func ExampleNewCellTextCell() {
 	)
 	// Output:
 }
+// ExampleNewCellWithCoder demonstrates how to create a Cell instance using NewCellWithCoder.
+func ExampleNewCellWithCoder() {
+	_ = appkit.NewCellWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

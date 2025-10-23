@@ -30,13 +30,15 @@ type _TextFeatureClass struct {
 // An interface definition for the [TextFeature] class.
 type ITextFeature interface {
 	IFeature
+	// properties:
 	BottomLeft() coregraphics.CGPoint
 	BottomRight() coregraphics.CGPoint
 	Bounds() coregraphics.CGRect
 	SubFeatures() objc.ID
 	TopLeft() coregraphics.CGPoint
 	TopRight() coregraphics.CGPoint
-	CIDetectorTypeText() string
+	CIDetectorTypeText() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Information about a text that was detected in a still or video image.
@@ -158,7 +160,7 @@ func (t_ TextFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypetext
-func (t_ TextFeature) CIDetectorTypeText() string {
+func (t_ TextFeature) CIDetectorTypeText() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("CIDetectorTypeText"))
 	return rv
 }

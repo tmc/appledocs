@@ -30,6 +30,8 @@ type _AXMathExpressionClass struct {
 // An interface definition for the [AXMathExpression] class.
 type IAXMathExpression interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

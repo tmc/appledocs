@@ -30,11 +30,13 @@ type _AttitudeClass struct {
 // An interface definition for the [Attitude] class.
 type IAttitude interface {
 	objectivec.IObject
-	Pitch() float64
-	Quaternion() unsafe.Pointer
-	Roll() float64
-	RotationMatrix() unsafe.Pointer
-	Yaw() float64
+	// properties:
+	Pitch() float64 /* primitive/slice/pointer. */
+	Quaternion() Quaternion /* not a class type */
+	Roll() float64 /* primitive/slice/pointer. */
+	RotationMatrix() RotationMatrix /* not a class type */
+	Yaw() float64 /* primitive/slice/pointer. */
+	// methods:
 	MultiplyByInverseOfAttitude(attitude ICMAttitude)
 }
 
@@ -104,7 +106,7 @@ func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/pitch
-func (a_ Attitude) Pitch() float64 {
+func (a_ Attitude) Pitch() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("pitch"))
 	return rv
 }
@@ -114,8 +116,8 @@ func (a_ Attitude) Pitch() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/quaternion
-func (a_ Attitude) Quaternion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("quaternion"))
+func (a_ Attitude) Quaternion() Quaternion /* not a class type */ {
+	rv := objc.Send[Quaternion](a_.ID, objc.Sel("quaternion"))
 	return rv
 }
 
@@ -124,7 +126,7 @@ func (a_ Attitude) Quaternion() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/roll
-func (a_ Attitude) Roll() float64 {
+func (a_ Attitude) Roll() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("roll"))
 	return rv
 }
@@ -134,8 +136,8 @@ func (a_ Attitude) Roll() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/rotationMatrix
-func (a_ Attitude) RotationMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("rotationMatrix"))
+func (a_ Attitude) RotationMatrix() RotationMatrix /* not a class type */ {
+	rv := objc.Send[RotationMatrix](a_.ID, objc.Sel("rotationMatrix"))
 	return rv
 }
 
@@ -144,7 +146,7 @@ func (a_ Attitude) RotationMatrix() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/yaw
-func (a_ Attitude) Yaw() float64 {
+func (a_ Attitude) Yaw() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("yaw"))
 	return rv
 }

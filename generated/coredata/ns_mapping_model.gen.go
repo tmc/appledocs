@@ -31,10 +31,12 @@ type _MappingModelClass struct {
 // An interface definition for the [MappingModel] class.
 type IMappingModel interface {
 	objectivec.IObject
+	// properties:
 	EntityMappings() IEntityMapping
 	SetEntityMappings(value IEntityMapping)
 	EntityMappingsByName() IEntityMapping
 	SetEntityMappingsByName(value IEntityMapping)
+	// methods:
 }
 
 // A model instance that specifies how to map a model from a source to a destination managed object model.
@@ -92,7 +94,7 @@ func NewMappingModel() MappingModel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
-func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.Bundle, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
+func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.objc.IObject /* cross-framework Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) MappingModel {
 	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
@@ -113,7 +115,7 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMappingModel/init(from:forSourceModel:destinationModel:)
-func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.Bundle, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) IMappingModel {
+func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationModel(bundles []foundation.objc.IObject /* cross-framework Bundle */, sourceModel IManagedObjectModel, destinationModel IManagedObjectModel) IMappingModel {
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }

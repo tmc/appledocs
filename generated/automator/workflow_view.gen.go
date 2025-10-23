@@ -30,6 +30,8 @@ type _workflowViewClass struct {
 // An interface definition for the [workflowView] class.
 type IworkflowView interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

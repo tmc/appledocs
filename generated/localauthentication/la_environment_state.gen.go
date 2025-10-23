@@ -31,9 +31,9 @@ type _EnvironmentStateClass struct {
 type IEnvironmentState interface {
 	objectivec.IObject
 	// properties:
-	AllMechanisms() []EnvironmentMechanism
+	AllMechanisms() []EnvironmentMechanism /* primitive/slice/pointer. */
 	Biometry() ILAEnvironmentMechanismBiometry
-	Companions() []EnvironmentMechanismCompanion
+	Companions() []EnvironmentMechanismCompanion /* primitive/slice/pointer. */
 	UserPassword() ILAEnvironmentMechanismUserPassword
 	// methods:
 }
@@ -86,7 +86,7 @@ func NewEnvironmentState() EnvironmentState {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/allMechanisms
-func (e_ EnvironmentState) AllMechanisms() []EnvironmentMechanism {
+func (e_ EnvironmentState) AllMechanisms() []EnvironmentMechanism /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]EnvironmentMechanism](e_.ID, objc.Sel("allMechanisms"))
 	return rv
 }
@@ -102,7 +102,7 @@ func (e_ EnvironmentState) Biometry() ILAEnvironmentMechanismBiometry {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/companions
-func (e_ EnvironmentState) Companions() []EnvironmentMechanismCompanion {
+func (e_ EnvironmentState) Companions() []EnvironmentMechanismCompanion /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]EnvironmentMechanismCompanion](e_.ID, objc.Sel("companions"))
 	return rv
 }

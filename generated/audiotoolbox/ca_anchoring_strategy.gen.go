@@ -30,6 +30,8 @@ type _AnchoringStrategyClass struct {
 // An interface definition for the [AnchoringStrategy] class.
 type IAnchoringStrategy interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The center of a head-tracked spatial experience.

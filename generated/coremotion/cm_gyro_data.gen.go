@@ -29,7 +29,9 @@ type _GyroDataClass struct {
 // An interface definition for the [GyroData] class.
 type IGyroData interface {
 	ILogItem
-	RotationRate() unsafe.Pointer
+	// properties:
+	RotationRate() RotationRate /* not a class type */
+	// methods:
 }
 
 // A single measurement of the device’s rotation rate.
@@ -91,8 +93,8 @@ func NewGyroData() GyroData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData/rotationRate
-func (g_ GyroData) RotationRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
+func (g_ GyroData) RotationRate() RotationRate /* not a class type */ {
+	rv := objc.Send[RotationRate](g_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 

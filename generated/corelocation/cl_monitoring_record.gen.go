@@ -30,6 +30,8 @@ type _MonitoringRecordClass struct {
 // An interface definition for the [MonitoringRecord] class.
 type IMonitoringRecord interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that represents a condition and its associated information that a location monitor is monitoring.

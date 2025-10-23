@@ -17,3 +17,11 @@ func ExampleNewPictureInPictureControllerWithContentSource() {
 	)
 	// Output:
 }
+// ExampleNewPictureInPictureControllerWithPlayerLayer demonstrates how to create a PictureInPictureController instance using NewPictureInPictureControllerWithPlayerLayer.
+// Creates a Picture in Picture controller with a player layer.
+func ExampleNewPictureInPictureControllerWithPlayerLayer() {
+	_ = avkit.NewPictureInPictureControllerWithPlayerLayer(
+		avkit.PlayerLayer{}, // playerLayer PlayerLayer
+	)
+	// Output:
+}

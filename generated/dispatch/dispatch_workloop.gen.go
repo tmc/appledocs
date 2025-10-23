@@ -30,6 +30,8 @@ type _DispatchWorkloopClass struct {
 // An interface definition for the [DispatchWorkloop] class.
 type IDispatchWorkloop interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

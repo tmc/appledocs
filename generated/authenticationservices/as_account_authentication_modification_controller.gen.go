@@ -30,10 +30,12 @@ type _AccountAuthenticationModificationControllerClass struct {
 // An interface definition for the [AccountAuthenticationModificationController] class.
 type IAccountAuthenticationModificationController interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	PresentationContextProvider() unsafe.Pointer
-	SetPresentationContextProvider(value unsafe.Pointer)
+	PresentationContextProvider() AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */
+	SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */)
+	// methods:
 }
 
 // An object that performs a request to modify an account’s authentication properties.
@@ -110,8 +112,8 @@ func (a_ AccountAuthenticationModificationController) SetDelegate(value objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) PresentationContextProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
+func (a_ AccountAuthenticationModificationController) PresentationContextProvider() AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */ {
+	rv := objc.Send[AccountAuthenticationModificationControllerPresentationContextProviding](a_.ID, objc.Sel("presentationContextProvider"))
 	return rv
 }
 
@@ -120,7 +122,7 @@ func (a_ AccountAuthenticationModificationController) PresentationContextProvide
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value unsafe.Pointer) {
+func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 

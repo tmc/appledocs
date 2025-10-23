@@ -30,6 +30,7 @@ type _TKSmartCardClass struct {
 // An interface definition for the [TKSmartCard] class.
 type ITKSmartCard interface {
 	objectivec.IObject
+	// properties:
 	AllowedProtocols() unsafe.Pointer
 	SetAllowedProtocols(value unsafe.Pointer)
 	Cla() unsafe.Pointer
@@ -38,16 +39,17 @@ type ITKSmartCard interface {
 	SetContext(value unsafe.Pointer)
 	CurrentProtocol() unsafe.Pointer
 	SetCurrentProtocol(value unsafe.Pointer)
-	IsSensitive() bool
-	SetIsSensitive(value bool)
-	IsValid() bool
-	SetIsValid(value bool)
+	IsSensitive() bool /* primitive/slice/pointer. */
+	SetIsSensitive(value bool /* primitive/slice/pointer. */)
+	IsValid() bool /* primitive/slice/pointer. */
+	SetIsValid(value bool /* primitive/slice/pointer. */)
 	Slot() ITKSmartCardSlot
 	SetSlot(value ITKSmartCardSlot)
-	UseCommandChaining() bool
-	SetUseCommandChaining(value bool)
-	UseExtendedLength() bool
-	SetUseExtendedLength(value bool)
+	UseCommandChaining() bool /* primitive/slice/pointer. */
+	SetUseCommandChaining(value bool /* primitive/slice/pointer. */)
+	UseExtendedLength() bool /* primitive/slice/pointer. */
+	SetUseExtendedLength(value bool /* primitive/slice/pointer. */)
+	// methods:
 	BeginSessionWithReply(reply unsafe.Pointer)
 }
 
@@ -193,7 +195,7 @@ func (t_ TKSmartCard) SetCurrentProtocol(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/issensitive
-func (t_ TKSmartCard) IsSensitive() bool {
+func (t_ TKSmartCard) IsSensitive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSensitive"))
 	return rv
 }
@@ -203,7 +205,7 @@ func (t_ TKSmartCard) IsSensitive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/issensitive
-func (t_ TKSmartCard) SetIsSensitive(value bool) {
+func (t_ TKSmartCard) SetIsSensitive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSensitive:"), value)
 }
 
@@ -212,7 +214,7 @@ func (t_ TKSmartCard) SetIsSensitive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-func (t_ TKSmartCard) IsValid() bool {
+func (t_ TKSmartCard) IsValid() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isValid"))
 	return rv
 }
@@ -222,7 +224,7 @@ func (t_ TKSmartCard) IsValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid
-func (t_ TKSmartCard) SetIsValid(value bool) {
+func (t_ TKSmartCard) SetIsValid(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsValid:"), value)
 }
 
@@ -250,7 +252,7 @@ func (t_ TKSmartCard) SetSlot(value ITKSmartCardSlot) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/usecommandchaining
-func (t_ TKSmartCard) UseCommandChaining() bool {
+func (t_ TKSmartCard) UseCommandChaining() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("useCommandChaining"))
 	return rv
 }
@@ -260,7 +262,7 @@ func (t_ TKSmartCard) UseCommandChaining() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/usecommandchaining
-func (t_ TKSmartCard) SetUseCommandChaining(value bool) {
+func (t_ TKSmartCard) SetUseCommandChaining(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUseCommandChaining:"), value)
 }
 
@@ -269,7 +271,7 @@ func (t_ TKSmartCard) SetUseCommandChaining(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-func (t_ TKSmartCard) UseExtendedLength() bool {
+func (t_ TKSmartCard) UseExtendedLength() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("useExtendedLength"))
 	return rv
 }
@@ -279,7 +281,7 @@ func (t_ TKSmartCard) UseExtendedLength() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/useextendedlength
-func (t_ TKSmartCard) SetUseExtendedLength(value bool) {
+func (t_ TKSmartCard) SetUseExtendedLength(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUseExtendedLength:"), value)
 }
 

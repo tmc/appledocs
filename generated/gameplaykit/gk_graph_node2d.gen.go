@@ -29,8 +29,10 @@ type _GraphNode2DClass struct {
 // An interface definition for the [GraphNode2D] class.
 type IGraphNode2D interface {
 	IGraphNode
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
+	// methods:
 }
 
 // A node in a navigation graph, associated with a point in continuous 2D space.

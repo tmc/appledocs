@@ -30,7 +30,9 @@ type _CBAttributeClass struct {
 // An interface definition for the [CBAttribute] class.
 type ICBAttribute interface {
 	objectivec.IObject
+	// properties:
 	UUID() ICBUUID
+	// methods:
 }
 
 // A representation of common aspects of services offered by a peripheral.

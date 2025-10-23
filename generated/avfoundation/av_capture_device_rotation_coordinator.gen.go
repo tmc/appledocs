@@ -33,12 +33,12 @@ type ICaptureDeviceRotationCoordinator interface {
 	// properties:
 	Device() IAVCaptureDevice
 	SetDevice(value IAVCaptureDevice)
-	PreviewLayer() Layer /* not a class type */
-	SetPreviewLayer(value Layer /* not a class type */)
-	VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer */
-	SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer */)
-	VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer */
-	SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer */)
+	PreviewLayer() objc.IObject /* cross-framework: Layer */
+	SetPreviewLayer(value objc.IObject /* cross-framework: Layer */)
+	VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer. */
+	SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer. */)
+	VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer. */
+	SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -118,7 +118,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() Layer /* not a class type */ {
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() objc.IObject /* cross-framework: Layer */ {
 	rv := objc.Send[Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() Layer /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value Layer /* not a class type */) {
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value objc.IObject /* cross-framework: Layer */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 
@@ -137,7 +137,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value Layer /* not a 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
-func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelCapture"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelCapture:"), value)
 }
 
@@ -156,7 +156,7 @@ func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
-func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelPreview"))
 	return rv
 }
@@ -166,7 +166,7 @@ func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPrev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelPreview:"), value)
 }
 

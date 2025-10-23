@@ -31,12 +31,12 @@ type _RightClass struct {
 type IRight interface {
 	objectivec.IObject
 	// properties:
-	State() LARightState
-	Tag() int
-	SetTag(value int)
+	State() RightState
+	Tag() int /* primitive/slice/pointer. */
+	SetTag(value int /* primitive/slice/pointer. */)
 	// methods:
-	AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer)
-	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonCompletion(localizedReason string /* primitive/slice/pointer. */, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string /* primitive/slice/pointer. */, presentationContext PresentationContext /* not a class type */, handler unsafe.Pointer)
 	CheckCanAuthorizeWithCompletion(handler unsafe.Pointer)
 	DeauthorizeWithCompletion(handler unsafe.Pointer)
 }
@@ -111,7 +111,7 @@ func NewRightWithRequirement(requirement ILAAuthenticationRequirement) Right {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer) {
+func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string /* primitive/slice/pointer. */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), objc.String(localizedReason), handler)
 }
 
@@ -120,7 +120,7 @@ func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string, h
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:in:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
+func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string /* primitive/slice/pointer. */, presentationContext PresentationContext /* not a class type */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), objc.String(localizedReason), presentationContext, handler)
 }
 
@@ -147,8 +147,8 @@ func (r_ Right) DeauthorizeWithCompletion(handler unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/state-swift.property
-func (r_ Right) State() LARightState {
-	rv := objc.Send[LARightState](r_.ID, objc.Sel("state"))
+func (r_ Right) State() RightState {
+	rv := objc.Send[RightState](r_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -157,7 +157,7 @@ func (r_ Right) State() LARightState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/tag
-func (r_ Right) Tag() int {
+func (r_ Right) Tag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (r_ Right) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/tag
-func (r_ Right) SetTag(value int) {
+func (r_ Right) SetTag(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setTag:"), value)
 }
 

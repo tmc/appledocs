@@ -31,14 +31,14 @@ type _CaptureAudioChannelClass struct {
 type ICaptureAudioChannel interface {
 	objectivec.IObject
 	// properties:
-	AveragePowerLevel() float32 /* primitive/slice/pointer */
-	SetAveragePowerLevel(value float32 /* primitive/slice/pointer */)
-	IsEnabled() bool /* primitive/slice/pointer */
-	SetIsEnabled(value bool /* primitive/slice/pointer */)
-	PeakHoldLevel() float32 /* primitive/slice/pointer */
-	SetPeakHoldLevel(value float32 /* primitive/slice/pointer */)
-	Volume() float32 /* primitive/slice/pointer */
-	SetVolume(value float32 /* primitive/slice/pointer */)
+	AveragePowerLevel() float32 /* primitive/slice/pointer. */
+	SetAveragePowerLevel(value float32 /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	PeakHoldLevel() float32 /* primitive/slice/pointer. */
+	SetPeakHoldLevel(value float32 /* primitive/slice/pointer. */)
+	Volume() float32 /* primitive/slice/pointer. */
+	SetVolume(value float32 /* primitive/slice/pointer. */)
 	Connections() IAVCaptureConnection
 	SetConnections(value IAVCaptureConnection)
 	// methods:
@@ -101,7 +101,7 @@ func NewCaptureAudioChannel() CaptureAudioChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
-func (c_ CaptureAudioChannel) AveragePowerLevel() float32 /* primitive/slice/pointer */ {
+func (c_ CaptureAudioChannel) AveragePowerLevel() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("averagePowerLevel"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (c_ CaptureAudioChannel) AveragePowerLevel() float32 /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/averagepowerlevel
-func (c_ CaptureAudioChannel) SetAveragePowerLevel(value float32 /* primitive/slice/pointer */) {
+func (c_ CaptureAudioChannel) SetAveragePowerLevel(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAveragePowerLevel:"), value)
 }
 
@@ -120,7 +120,7 @@ func (c_ CaptureAudioChannel) SetAveragePowerLevel(value float32 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/isenabled
-func (c_ CaptureAudioChannel) IsEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureAudioChannel) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (c_ CaptureAudioChannel) IsEnabled() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/isenabled
-func (c_ CaptureAudioChannel) SetIsEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureAudioChannel) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -139,7 +139,7 @@ func (c_ CaptureAudioChannel) SetIsEnabled(value bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
-func (c_ CaptureAudioChannel) PeakHoldLevel() float32 /* primitive/slice/pointer */ {
+func (c_ CaptureAudioChannel) PeakHoldLevel() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("peakHoldLevel"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (c_ CaptureAudioChannel) PeakHoldLevel() float32 /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/peakholdlevel
-func (c_ CaptureAudioChannel) SetPeakHoldLevel(value float32 /* primitive/slice/pointer */) {
+func (c_ CaptureAudioChannel) SetPeakHoldLevel(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeakHoldLevel:"), value)
 }
 
@@ -158,7 +158,7 @@ func (c_ CaptureAudioChannel) SetPeakHoldLevel(value float32 /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
-func (c_ CaptureAudioChannel) Volume() float32 /* primitive/slice/pointer */ {
+func (c_ CaptureAudioChannel) Volume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (c_ CaptureAudioChannel) Volume() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel/volume
-func (c_ CaptureAudioChannel) SetVolume(value float32 /* primitive/slice/pointer */) {
+func (c_ CaptureAudioChannel) SetVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVolume:"), value)
 }
 

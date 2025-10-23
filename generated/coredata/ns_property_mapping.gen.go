@@ -30,12 +30,14 @@ type _PropertyMappingClass struct {
 // An interface definition for the [PropertyMapping] class.
 type IPropertyMapping interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
-	ValueExpression() Expression
-	SetValueExpression(value Expression)
+	ValueExpression() objc.IObject /* cross-framework: Expression */
+	SetValueExpression(value objc.IObject /* cross-framework: Expression */)
+	// methods:
 }
 
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
@@ -93,7 +95,7 @@ func NewPropertyMapping() PropertyMapping {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) Name() string {
+func (p_ PropertyMapping) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (p_ PropertyMapping) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) SetName(value string) {
+func (p_ PropertyMapping) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -131,7 +133,7 @@ func (p_ PropertyMapping) SetUserInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/valueexpression
-func (p_ PropertyMapping) ValueExpression() Expression {
+func (p_ PropertyMapping) ValueExpression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](p_.ID, objc.Sel("valueExpression"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (p_ PropertyMapping) ValueExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspropertymapping/valueexpression
-func (p_ PropertyMapping) SetValueExpression(value Expression) {
+func (p_ PropertyMapping) SetValueExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
 

@@ -30,6 +30,8 @@ type _AuthorizationPasswordProviderClass struct {
 // An interface definition for the [AuthorizationPasswordProvider] class.
 type IAuthorizationPasswordProvider interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	CreateRequest() IAuthorizationPasswordRequest
 }
 

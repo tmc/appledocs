@@ -29,6 +29,8 @@ type _NibControlConnectorClass struct {
 // An interface definition for the [NibControlConnector] class.
 type INibControlConnector interface {
 	INibConnector
+	// properties:
+	// methods:
 }
 
 // A control connection between two Interface Builder objects.

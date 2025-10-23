@@ -30,12 +30,14 @@ type _CWMutableNetworkProfileClass struct {
 // An interface definition for the [CWMutableNetworkProfile] class.
 type ICWMutableNetworkProfile interface {
 	ICWNetworkProfile
+	// properties:
 	Security() CWSecurity
 	SetSecurity(value CWSecurity)
-	SsidData() foundation.NSData
-	SetSsidData(value foundation.NSData)
-	NetworkProfiles() foundation.OrderedSet
-	SetNetworkProfiles(value foundation.OrderedSet)
+	SsidData() foundation.objc.IObject /* cross-framework: NSData */
+	SetSsidData(value foundation.objc.IObject /* cross-framework: NSData */)
+	NetworkProfiles() objc.IObject /* cross-framework: OrderedSet */
+	SetNetworkProfiles(value objc.IObject /* cross-framework: OrderedSet */)
+	// methods:
 }
 
 // Encapsulates a mutable network profile entry.
@@ -116,7 +118,7 @@ func (c_ CWMutableNetworkProfile) SetSecurity(value CWSecurity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
+func (c_ CWMutableNetworkProfile) SsidData() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.NSData) {
+func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
 
@@ -135,8 +137,8 @@ func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.NSData) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
-	rv := objc.Send[foundation.OrderedSet](c_.ID, objc.Sel("networkProfiles"))
+func (c_ CWMutableNetworkProfile) NetworkProfiles() objc.IObject /* cross-framework: OrderedSet */ {
+	rv := objc.Send[OrderedSet](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 
@@ -145,7 +147,7 @@ func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.OrderedSet) {
+func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value objc.IObject /* cross-framework: OrderedSet */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
 

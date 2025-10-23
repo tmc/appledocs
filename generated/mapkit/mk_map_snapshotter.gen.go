@@ -31,9 +31,9 @@ type _MKMapSnapshotterClass struct {
 type IMKMapSnapshotter interface {
 	objectivec.IObject
 	// properties:
-	Loading() bool
-	IsLoading() bool
-	SetIsLoading(value bool)
+	Loading() bool /* primitive/slice/pointer. */
+	IsLoading() bool /* primitive/slice/pointer. */
+	SetIsLoading(value bool /* primitive/slice/pointer. */)
 	// methods:
 	Cancel()
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -137,7 +137,7 @@ func (m_ MKMapSnapshotter) StartWithQueueCompletionHandler(queue unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/isLoading
-func (m_ MKMapSnapshotter) Loading() bool {
+func (m_ MKMapSnapshotter) Loading() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("loading"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (m_ MKMapSnapshotter) Loading() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/isloading
-func (m_ MKMapSnapshotter) IsLoading() bool {
+func (m_ MKMapSnapshotter) IsLoading() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (m_ MKMapSnapshotter) IsLoading() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/isloading
-func (m_ MKMapSnapshotter) SetIsLoading(value bool) {
+func (m_ MKMapSnapshotter) SetIsLoading(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 

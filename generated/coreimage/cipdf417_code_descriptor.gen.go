@@ -30,10 +30,12 @@ type _PDF417CodeDescriptorClass struct {
 // An interface definition for the [PDF417CodeDescriptor] class.
 type IPDF417CodeDescriptor interface {
 	IBarcodeDescriptor
-	ColumnCount() int
-	ErrorCorrectedPayload() foundation.NSData
-	IsCompact() bool
-	RowCount() int
+	// properties:
+	ColumnCount() int /* primitive/slice/pointer. */
+	ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */
+	IsCompact() bool /* primitive/slice/pointer. */
+	RowCount() int /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
@@ -95,7 +97,7 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)
-func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.NSData, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
+func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, isCompact bool /* primitive/slice/pointer. */, rowCount int /* primitive/slice/pointer. */, columnCount int /* primitive/slice/pointer. */) PDF417CodeDescriptor {
 	instance := getPDF417CodeDescriptorClass().Alloc()
 	rv := objc.Send[PDF417CodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/descriptorWithPayload:isCompact:rowCount:columnCount:
-func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.NSData, isCompact bool, rowCount int, columnCount int) unsafe.Pointer {
+func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, isCompact bool /* primitive/slice/pointer. */, rowCount int /* primitive/slice/pointer. */, columnCount int /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("descriptorWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	return rv
 }
@@ -118,7 +120,7 @@ func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColum
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/columnCount-swift.property
-func (p_ PDF417CodeDescriptor) ColumnCount() int {
+func (p_ PDF417CodeDescriptor) ColumnCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("columnCount"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (p_ PDF417CodeDescriptor) ColumnCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/errorCorrectedPayload-swift.property
-func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
+func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/isCompact-swift.property
-func (p_ PDF417CodeDescriptor) IsCompact() bool {
+func (p_ PDF417CodeDescriptor) IsCompact() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isCompact"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (p_ PDF417CodeDescriptor) IsCompact() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/rowCount-swift.property
-func (p_ PDF417CodeDescriptor) RowCount() int {
+func (p_ PDF417CodeDescriptor) RowCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("rowCount"))
 	return rv
 }

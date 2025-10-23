@@ -30,6 +30,8 @@ type _CNChangeHistoryEventClass struct {
 // An interface definition for the [CNChangeHistoryEvent] class.
 type ICNChangeHistoryEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	AcceptEventVisitor(visitor objectivec.IObject)
 }
 

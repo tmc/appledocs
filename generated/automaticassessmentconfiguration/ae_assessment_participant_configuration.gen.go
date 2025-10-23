@@ -30,16 +30,18 @@ type _AEAssessmentParticipantConfigurationClass struct {
 // An interface definition for the [AEAssessmentParticipantConfiguration] class.
 type IAEAssessmentParticipantConfiguration interface {
 	objectivec.IObject
+	// properties:
 	ConfigurationsByApplication() IAEAssessmentParticipantConfiguration
 	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
 	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
 	SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration)
-	AllowsNetworkAccess() bool
-	SetAllowsNetworkAccess(value bool)
-	ConfigurationInfo() string
-	SetConfigurationInfo(value string)
-	IsRequired() bool
-	SetIsRequired(value bool)
+	AllowsNetworkAccess() bool /* primitive/slice/pointer. */
+	SetAllowsNetworkAccess(value bool /* primitive/slice/pointer. */)
+	ConfigurationInfo() string /* primitive/slice/pointer. */
+	SetConfigurationInfo(value string /* primitive/slice/pointer. */)
+	IsRequired() bool /* primitive/slice/pointer. */
+	SetIsRequired(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // Configuration information for an app that’s available during an assessment.
@@ -137,7 +139,7 @@ func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/allowsnetworkaccess
-func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
+func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsNetworkAccess"))
 	return rv
 }
@@ -147,14 +149,14 @@ func (a_ AEAssessmentParticipantConfiguration) AllowsNetworkAccess() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/allowsnetworkaccess
-func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool) {
+func (a_ AEAssessmentParticipantConfiguration) SetAllowsNetworkAccess(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsNetworkAccess:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/configurationinfo
-func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() string {
+func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("configurationInfo"))
 	return rv
 }
@@ -162,14 +164,14 @@ func (a_ AEAssessmentParticipantConfiguration) ConfigurationInfo() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/configurationinfo
-func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value string) {
+func (a_ AEAssessmentParticipantConfiguration) SetConfigurationInfo(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationInfo:"), objc.String(value))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
-func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool {
+func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isRequired"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (a_ AEAssessmentParticipantConfiguration) IsRequired() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration/isrequired
-func (a_ AEAssessmentParticipantConfiguration) SetIsRequired(value bool) {
+func (a_ AEAssessmentParticipantConfiguration) SetIsRequired(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRequired:"), value)
 }
 

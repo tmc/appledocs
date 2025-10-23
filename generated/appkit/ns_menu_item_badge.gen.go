@@ -30,14 +30,16 @@ type _MenuItemBadgeClass struct {
 // An interface definition for the [MenuItemBadge] class.
 type IMenuItemBadge interface {
 	objectivec.IObject
+	// properties:
 	Badge() IMenuItemBadge
 	SetBadge(value IMenuItemBadge)
-	ItemCount() int
-	SetItemCount(value int)
-	StringValue() string
-	SetStringValue(value string)
+	ItemCount() int /* primitive/slice/pointer. */
+	SetItemCount(value int /* primitive/slice/pointer. */)
+	StringValue() string /* primitive/slice/pointer. */
+	SetStringValue(value string /* primitive/slice/pointer. */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
+	// methods:
 }
 
 // A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
@@ -112,7 +114,7 @@ func (m_ MenuItemBadge) SetBadge(value IMenuItemBadge) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
-func (m_ MenuItemBadge) ItemCount() int {
+func (m_ MenuItemBadge) ItemCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("itemCount"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (m_ MenuItemBadge) ItemCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount
-func (m_ MenuItemBadge) SetItemCount(value int) {
+func (m_ MenuItemBadge) SetItemCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemCount:"), value)
 }
 
@@ -131,7 +133,7 @@ func (m_ MenuItemBadge) SetItemCount(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
-func (m_ MenuItemBadge) StringValue() string {
+func (m_ MenuItemBadge) StringValue() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (m_ MenuItemBadge) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitembadge/stringvalue-32sbt
-func (m_ MenuItemBadge) SetStringValue(value string) {
+func (m_ MenuItemBadge) SetStringValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 

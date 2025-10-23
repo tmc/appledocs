@@ -39,15 +39,15 @@ type IHKDiscreteQuantitySample interface {
 	SetMinimumQuantity(value IHKQuantity)
 	MostRecentQuantity() IHKQuantity
 	SetMostRecentQuantity(value IHKQuantity)
-	MostRecentQuantityDateInterval() foundation.DateInterval
-	SetMostRecentQuantityDateInterval(value foundation.DateInterval)
-	HKPredicateKeyPathAverage() string
-	HKPredicateKeyPathMax() string
-	HKPredicateKeyPathMin() string
-	HKPredicateKeyPathMostRecent() string
-	HKPredicateKeyPathMostRecentDuration() string
-	HKPredicateKeyPathMostRecentEndDate() string
-	HKPredicateKeyPathMostRecentStartDate() string
+	MostRecentQuantityDateInterval() foundation.objc.IObject /* cross-framework: DateInterval */
+	SetMostRecentQuantityDateInterval(value foundation.objc.IObject /* cross-framework: DateInterval */)
+	HKPredicateKeyPathAverage() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMax() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMin() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMostRecent() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMostRecentDuration() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMostRecentEndDate() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathMostRecentStartDate() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -186,7 +186,7 @@ func (h_ HKDiscreteQuantitySample) SetMostRecentQuantity(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.DateInterval {
+func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.objc.IObject /* cross-framework: DateInterval */ {
 	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("mostRecentQuantityDateInterval"))
 	return rv
 }
@@ -196,7 +196,7 @@ func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value foundation.DateInterval) {
+func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value foundation.objc.IObject /* cross-framework: DateInterval */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantityDateInterval:"), value)
 }
 
@@ -205,7 +205,7 @@ func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverage
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmax
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
 	return rv
 }
@@ -225,7 +225,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
 	return rv
 }
@@ -235,7 +235,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecent
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
 	return rv
 }
@@ -245,7 +245,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentduration
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
 	return rv
 }
@@ -255,7 +255,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentenddate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
 	return rv
 }
@@ -265,7 +265,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentstartdate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() string {
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
 	return rv
 }

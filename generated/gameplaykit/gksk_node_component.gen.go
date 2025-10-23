@@ -29,8 +29,10 @@ type _SKNodeComponentClass struct {
 // An interface definition for the [SKNodeComponent] class.
 type ISKNodeComponent interface {
 	IComponent
-	Node() unsafe.Pointer
-	SetNode(value unsafe.Pointer)
+	// properties:
+	Node() Node /* not a class type */
+	SetNode(value Node /* not a class type */)
+	// methods:
 }
 
 // A component that manages a SpriteKit node.
@@ -92,7 +94,7 @@ func NewSKNodeComponent() SKNodeComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/init(node:)
-func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
+func NewSKNodeComponentWithNode(node Node /* not a class type */) SKNodeComponent {
 	instance := getSKNodeComponentClass().Alloc()
 	rv := objc.Send[SKNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewSKNodeComponentWithNode(node unsafe.Pointer) SKNodeComponent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/componentWithNode:
-func (nc _SKNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Pointer {
+func (nc _SKNodeComponentClass) ComponentWithNode(node Node /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
 }
@@ -115,8 +117,8 @@ func (nc _SKNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
-func (n_ SKNodeComponent) Node() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("node"))
+func (n_ SKNodeComponent) Node() Node /* not a class type */ {
+	rv := objc.Send[Node](n_.ID, objc.Sel("node"))
 	return rv
 }
 
@@ -125,7 +127,7 @@ func (n_ SKNodeComponent) Node() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
-func (n_ SKNodeComponent) SetNode(value unsafe.Pointer) {
+func (n_ SKNodeComponent) SetNode(value Node /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNode:"), value)
 }
 

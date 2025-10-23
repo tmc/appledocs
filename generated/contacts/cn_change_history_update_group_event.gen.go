@@ -29,7 +29,9 @@ type _CNChangeHistoryUpdateGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryUpdateGroupEvent] class.
 type ICNChangeHistoryUpdateGroupEvent interface {
 	ICNChangeHistoryEvent
+	// properties:
 	Group() ICNGroup
+	// methods:
 }
 
 // An object that represents an updated group event.

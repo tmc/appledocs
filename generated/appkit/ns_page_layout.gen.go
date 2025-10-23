@@ -30,13 +30,15 @@ type _PageLayoutClass struct {
 // An interface definition for the [PageLayout] class.
 type IPageLayout interface {
 	objectivec.IObject
-	AccessoryControllers() []ViewController
+	// properties:
+	AccessoryControllers() []ViewController /* primitive/slice/pointer. */
 	PrintInfo() IPrintInfo
+	// methods:
 	AddAccessoryController(accessoryController IViewController)
 	BeginSheetUsingPrintInfoOnWindowCompletionHandler(printInfo IPrintInfo, parentWindow IWindow, handler unsafe.Pointer)
 	RemoveAccessoryController(accessoryController IViewController)
-	RunModal() int
-	RunModalWithPrintInfo(printInfo IPrintInfo) int
+	RunModal() int /* primitive/slice/pointer. */
+	RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */
 }
 
 // A panel that queries the user for information such as paper type and orientation.
@@ -131,7 +133,7 @@ func (p_ PageLayout) RemoveAccessoryController(accessoryController IViewControll
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/runModal()
-func (p_ PageLayout) RunModal() int {
+func (p_ PageLayout) RunModal() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("runModal"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (p_ PageLayout) RunModal() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/runModal(with:)
-func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int {
+func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("runModalWithPrintInfo:"), printInfo)
 	return rv
 }
@@ -151,7 +153,7 @@ func (p_ PageLayout) RunModalWithPrintInfo(printInfo IPrintInfo) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/accessoryControllers
-func (p_ PageLayout) AccessoryControllers() []ViewController {
+func (p_ PageLayout) AccessoryControllers() []ViewController /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("accessoryControllers"))
 	return rv
 }

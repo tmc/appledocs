@@ -30,8 +30,10 @@ type _GCKeyboardClass struct {
 // An interface definition for the [GCKeyboard] class.
 type IGCKeyboard interface {
 	objectivec.IObject
+	// properties:
 	KeyboardInput() unsafe.Pointer
 	SetKeyboardInput(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents a physical keyboard connected to a device.
@@ -85,6 +87,25 @@ func NewGCKeyboard() GCKeyboard {
 	return getGCKeyboardClass().New()
 }
 
+
+
+// The keyboard currently connected to the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCKeyboard/coalesced
+func (gc _GCKeyboardClass) CoalescedKeyboard() GCKeyboard {
+	rv := objc.Send[GCKeyboard](objc.ID(gc.class), objc.Sel("coalescedKeyboard"))
+	return rv
+}
+
+// The keyboard currently connected to the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCKeyboard/coalesced
+func (g_ GCKeyboard) CoalescedKeyboard() IGCKeyboard {
+	rv := objc.Send[GCKeyboard](g_.ID, objc.Sel("coalescedKeyboard"))
+	return rv
+}
 
 
 // The controller profile for the keyboard.

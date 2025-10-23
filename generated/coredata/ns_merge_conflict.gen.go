@@ -30,17 +30,19 @@ type _MergeConflictClass struct {
 // An interface definition for the [MergeConflict] class.
 type IMergeConflict interface {
 	objectivec.IObject
-	OldVersionNumber() uint
-	CachedSnapshot() string
-	SetCachedSnapshot(value string)
-	NewVersionNumber() int
-	SetNewVersionNumber(value int)
-	ObjectSnapshot() string
-	SetObjectSnapshot(value string)
-	PersistedSnapshot() string
-	SetPersistedSnapshot(value string)
+	// properties:
+	OldVersionNumber() uint /* primitive/slice/pointer. */
+	CachedSnapshot() string /* primitive/slice/pointer. */
+	SetCachedSnapshot(value string /* primitive/slice/pointer. */)
+	NewVersionNumber() int /* primitive/slice/pointer. */
+	SetNewVersionNumber(value int /* primitive/slice/pointer. */)
+	ObjectSnapshot() string /* primitive/slice/pointer. */
+	SetObjectSnapshot(value string /* primitive/slice/pointer. */)
+	PersistedSnapshot() string /* primitive/slice/pointer. */
+	SetPersistedSnapshot(value string /* primitive/slice/pointer. */)
 	SourceObject() IManagedObject
 	SetSourceObject(value IManagedObject)
+	// methods:
 }
 
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
@@ -100,7 +102,7 @@ func NewMergeConflict() MergeConflict {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/oldVersionNumber
-func (m_ MergeConflict) OldVersionNumber() uint {
+func (m_ MergeConflict) OldVersionNumber() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("oldVersionNumber"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (m_ MergeConflict) OldVersionNumber() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/cachedsnapshot
-func (m_ MergeConflict) CachedSnapshot() string {
+func (m_ MergeConflict) CachedSnapshot() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("cachedSnapshot"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (m_ MergeConflict) CachedSnapshot() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/cachedsnapshot
-func (m_ MergeConflict) SetCachedSnapshot(value string) {
+func (m_ MergeConflict) SetCachedSnapshot(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCachedSnapshot:"), objc.String(value))
 }
 
@@ -129,7 +131,7 @@ func (m_ MergeConflict) SetCachedSnapshot(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/newversionnumber
-func (m_ MergeConflict) NewVersionNumber() int {
+func (m_ MergeConflict) NewVersionNumber() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("newVersionNumber"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (m_ MergeConflict) NewVersionNumber() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/newversionnumber
-func (m_ MergeConflict) SetNewVersionNumber(value int) {
+func (m_ MergeConflict) SetNewVersionNumber(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewVersionNumber:"), value)
 }
 
@@ -148,7 +150,7 @@ func (m_ MergeConflict) SetNewVersionNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/objectsnapshot
-func (m_ MergeConflict) ObjectSnapshot() string {
+func (m_ MergeConflict) ObjectSnapshot() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("objectSnapshot"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (m_ MergeConflict) ObjectSnapshot() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/objectsnapshot
-func (m_ MergeConflict) SetObjectSnapshot(value string) {
+func (m_ MergeConflict) SetObjectSnapshot(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectSnapshot:"), objc.String(value))
 }
 
@@ -167,7 +169,7 @@ func (m_ MergeConflict) SetObjectSnapshot(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/persistedsnapshot
-func (m_ MergeConflict) PersistedSnapshot() string {
+func (m_ MergeConflict) PersistedSnapshot() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("persistedSnapshot"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (m_ MergeConflict) PersistedSnapshot() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmergeconflict/persistedsnapshot
-func (m_ MergeConflict) SetPersistedSnapshot(value string) {
+func (m_ MergeConflict) SetPersistedSnapshot(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPersistedSnapshot:"), objc.String(value))
 }
 

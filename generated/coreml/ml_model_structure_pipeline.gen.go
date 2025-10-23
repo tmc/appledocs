@@ -30,8 +30,10 @@ type _ModelStructurePipelineClass struct {
 // An interface definition for the [ModelStructurePipeline] class.
 type IModelStructurePipeline interface {
 	objectivec.IObject
-	SubModelNames() []string
-	SubModels() []ModelStructure
+	// properties:
+	SubModelNames() []string /* primitive/slice/pointer. */
+	SubModels() []ModelStructure /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class representing the structure of a Pipeline model.
@@ -89,7 +91,7 @@ func NewModelStructurePipeline() ModelStructurePipeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModelNames
-func (m_ ModelStructurePipeline) SubModelNames() []string {
+func (m_ ModelStructurePipeline) SubModelNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("subModelNames"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (m_ ModelStructurePipeline) SubModelNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructurePipeline/subModels
-func (m_ ModelStructurePipeline) SubModels() []ModelStructure {
+func (m_ ModelStructurePipeline) SubModels() []ModelStructure /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ModelStructure](m_.ID, objc.Sel("subModels"))
 	return rv
 }

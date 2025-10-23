@@ -31,11 +31,13 @@ type _WaterSubmersionMeasurementClass struct {
 // An interface definition for the [WaterSubmersionMeasurement] class.
 type IWaterSubmersionMeasurement interface {
 	objectivec.IObject
-	Date() foundation.NSDate
+	// properties:
+	Date() foundation.objc.IObject /* cross-framework: NSDate */
 	Depth() unsafe.Pointer
 	Pressure() unsafe.Pointer
-	SubmersionState() CMWaterSubmersionDepthState
+	SubmersionState() WaterSubmersionDepthState
 	SurfacePressure() unsafe.Pointer
+	// methods:
 }
 
 // An update that contains data about the pressure and depth.
@@ -93,7 +95,7 @@ func NewWaterSubmersionMeasurement() WaterSubmersionMeasurement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/date
-func (w_ WaterSubmersionMeasurement) Date() foundation.NSDate {
+func (w_ WaterSubmersionMeasurement) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }
@@ -123,8 +125,8 @@ func (w_ WaterSubmersionMeasurement) Pressure() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/submersionState
-func (w_ WaterSubmersionMeasurement) SubmersionState() CMWaterSubmersionDepthState {
-	rv := objc.Send[CMWaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
+func (w_ WaterSubmersionMeasurement) SubmersionState() WaterSubmersionDepthState {
+	rv := objc.Send[WaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
 	return rv
 }
 

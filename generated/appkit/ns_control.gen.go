@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Control] class.
@@ -30,52 +29,54 @@ type _ControlClass struct {
 // An interface definition for the [Control] class.
 type IControl interface {
 	IView
-	Action() unsafe.Pointer
-	SetAction(value unsafe.Pointer)
-	Alignment() unsafe.Pointer
-	SetAlignment(value unsafe.Pointer)
-	AllowsExpansionToolTips() bool
-	SetAllowsExpansionToolTips(value bool)
-	AttributedStringValue() foundation.AttributedString
-	SetAttributedStringValue(value foundation.AttributedString)
-	BaseWritingDirection() unsafe.Pointer
-	SetBaseWritingDirection(value unsafe.Pointer)
-	ControlSize() unsafe.Pointer
-	SetControlSize(value unsafe.Pointer)
-	DoubleValue() float64
-	SetDoubleValue(value float64)
-	FloatValue() float32
-	SetFloatValue(value float32)
+	// properties:
+	Action() objc.SEL
+	SetAction(value objc.SEL)
+	ObjectValue() objc.ID
+	SetObjectValue(value objc.ID)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	AllowsExpansionToolTips() bool /* primitive/slice/pointer. */
+	SetAllowsExpansionToolTips(value bool /* primitive/slice/pointer. */)
+	AttributedStringValue() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedStringValue(value objc.IObject /* cross-framework: AttributedString */)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	ControlSize() ControlSize
+	SetControlSize(value ControlSize)
+	DoubleValue() float64 /* primitive/slice/pointer. */
+	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
+	FloatValue() float32 /* primitive/slice/pointer. */
+	SetFloatValue(value float32 /* primitive/slice/pointer. */)
 	Font() IFont
 	SetFont(value IFont)
-	Formatter() foundation.Formatter
-	SetFormatter(value foundation.Formatter)
-	IgnoresMultiClick() bool
-	SetIgnoresMultiClick(value bool)
+	Formatter() objc.IObject /* cross-framework: Formatter */
+	SetFormatter(value objc.IObject /* cross-framework: Formatter */)
+	IgnoresMultiClick() bool /* primitive/slice/pointer. */
+	SetIgnoresMultiClick(value bool /* primitive/slice/pointer. */)
 	IntValue() unsafe.Pointer
 	SetIntValue(value unsafe.Pointer)
-	IntegerValue() int
-	SetIntegerValue(value int)
-	IsContinuous() bool
-	SetIsContinuous(value bool)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	IsHighlighted() bool
-	SetIsHighlighted(value bool)
-	LineBreakMode() unsafe.Pointer
-	SetLineBreakMode(value unsafe.Pointer)
-	ObjectValue() unsafe.Pointer
-	SetObjectValue(value unsafe.Pointer)
-	RefusesFirstResponder() bool
-	SetRefusesFirstResponder(value bool)
-	StringValue() string
-	SetStringValue(value string)
-	Tag() int
-	SetTag(value int)
-	Target() unsafe.Pointer
-	SetTarget(value unsafe.Pointer)
-	UsesSingleLineMode() bool
-	SetUsesSingleLineMode(value bool)
+	IntegerValue() int /* primitive/slice/pointer. */
+	SetIntegerValue(value int /* primitive/slice/pointer. */)
+	IsContinuous() bool /* primitive/slice/pointer. */
+	SetIsContinuous(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsHighlighted() bool /* primitive/slice/pointer. */
+	SetIsHighlighted(value bool /* primitive/slice/pointer. */)
+	LineBreakMode() LineBreakMode
+	SetLineBreakMode(value LineBreakMode)
+	RefusesFirstResponder() bool /* primitive/slice/pointer. */
+	SetRefusesFirstResponder(value bool /* primitive/slice/pointer. */)
+	StringValue() string /* primitive/slice/pointer. */
+	SetStringValue(value string /* primitive/slice/pointer. */)
+	Tag() int /* primitive/slice/pointer. */
+	SetTag(value int /* primitive/slice/pointer. */)
+	UsesSingleLineMode() bool /* primitive/slice/pointer. */
+	SetUsesSingleLineMode(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.
@@ -136,9 +137,9 @@ func NewControl() Control {
 // The default action-message selector associated with the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-func (c_ Control) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("action"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/action
+func (c_ Control) Action() objc.SEL {
+	rv := objc.Send[objc.SEL](c_.ID, objc.Sel("action"))
 	return rv
 }
 
@@ -146,9 +147,47 @@ func (c_ Control) Action() unsafe.Pointer {
 // The default action-message selector associated with the control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/action
-func (c_ Control) SetAction(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/action
+func (c_ Control) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), value)
+}
+
+
+// The value of the receiver’s cell as an Objective-C object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/objectValue
+func (c_ Control) ObjectValue() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("objectValue"))
+	return rv
+}
+
+
+// The value of the receiver’s cell as an Objective-C object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/objectValue
+func (c_ Control) SetObjectValue(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValue:"), value)
+}
+
+
+// The target object that receives action messages from the cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/target
+func (c_ Control) Target() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// The target object that receives action messages from the cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/target
+func (c_ Control) SetTarget(value objc.ID) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
 }
 
 
@@ -156,8 +195,8 @@ func (c_ Control) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/alignment
-func (c_ Control) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
+func (c_ Control) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -166,7 +205,7 @@ func (c_ Control) Alignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/alignment
-func (c_ Control) SetAlignment(value unsafe.Pointer) {
+func (c_ Control) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -175,7 +214,7 @@ func (c_ Control) SetAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/allowsexpansiontooltips
-func (c_ Control) AllowsExpansionToolTips() bool {
+func (c_ Control) AllowsExpansionToolTips() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsExpansionToolTips"))
 	return rv
 }
@@ -185,7 +224,7 @@ func (c_ Control) AllowsExpansionToolTips() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/allowsexpansiontooltips
-func (c_ Control) SetAllowsExpansionToolTips(value bool) {
+func (c_ Control) SetAllowsExpansionToolTips(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsExpansionToolTips:"), value)
 }
 
@@ -194,8 +233,8 @@ func (c_ Control) SetAllowsExpansionToolTips(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/attributedstringvalue
-func (c_ Control) AttributedStringValue() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Control) AttributedStringValue() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -204,7 +243,7 @@ func (c_ Control) AttributedStringValue() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/attributedstringvalue
-func (c_ Control) SetAttributedStringValue(value foundation.AttributedString) {
+func (c_ Control) SetAttributedStringValue(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -213,8 +252,8 @@ func (c_ Control) SetAttributedStringValue(value foundation.AttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/basewritingdirection
-func (c_ Control) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
+func (c_ Control) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -223,7 +262,7 @@ func (c_ Control) BaseWritingDirection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/basewritingdirection
-func (c_ Control) SetBaseWritingDirection(value unsafe.Pointer) {
+func (c_ Control) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -232,8 +271,8 @@ func (c_ Control) SetBaseWritingDirection(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.property
-func (c_ Control) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
+func (c_ Control) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -242,7 +281,7 @@ func (c_ Control) ControlSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.property
-func (c_ Control) SetControlSize(value unsafe.Pointer) {
+func (c_ Control) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -251,7 +290,7 @@ func (c_ Control) SetControlSize(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (c_ Control) DoubleValue() float64 {
+func (c_ Control) DoubleValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -261,7 +300,7 @@ func (c_ Control) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (c_ Control) SetDoubleValue(value float64) {
+func (c_ Control) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
@@ -270,7 +309,7 @@ func (c_ Control) SetDoubleValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/floatvalue
-func (c_ Control) FloatValue() float32 {
+func (c_ Control) FloatValue() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
@@ -280,7 +319,7 @@ func (c_ Control) FloatValue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/floatvalue
-func (c_ Control) SetFloatValue(value float32) {
+func (c_ Control) SetFloatValue(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
 
@@ -308,8 +347,8 @@ func (c_ Control) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/formatter
-func (c_ Control) Formatter() foundation.Formatter {
-	rv := objc.Send[foundation.Formatter](c_.ID, objc.Sel("formatter"))
+func (c_ Control) Formatter() objc.IObject /* cross-framework: Formatter */ {
+	rv := objc.Send[Formatter](c_.ID, objc.Sel("formatter"))
 	return rv
 }
 
@@ -318,7 +357,7 @@ func (c_ Control) Formatter() foundation.Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/formatter
-func (c_ Control) SetFormatter(value foundation.Formatter) {
+func (c_ Control) SetFormatter(value objc.IObject /* cross-framework: Formatter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 
@@ -327,7 +366,7 @@ func (c_ Control) SetFormatter(value foundation.Formatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ignoresmulticlick
-func (c_ Control) IgnoresMultiClick() bool {
+func (c_ Control) IgnoresMultiClick() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ignoresMultiClick"))
 	return rv
 }
@@ -337,7 +376,7 @@ func (c_ Control) IgnoresMultiClick() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ignoresmulticlick
-func (c_ Control) SetIgnoresMultiClick(value bool) {
+func (c_ Control) SetIgnoresMultiClick(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIgnoresMultiClick:"), value)
 }
 
@@ -365,7 +404,7 @@ func (c_ Control) SetIntValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/integervalue
-func (c_ Control) IntegerValue() int {
+func (c_ Control) IntegerValue() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("integerValue"))
 	return rv
 }
@@ -375,7 +414,7 @@ func (c_ Control) IntegerValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/integervalue
-func (c_ Control) SetIntegerValue(value int) {
+func (c_ Control) SetIntegerValue(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntegerValue:"), value)
 }
 
@@ -384,7 +423,7 @@ func (c_ Control) SetIntegerValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-func (c_ Control) IsContinuous() bool {
+func (c_ Control) IsContinuous() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
 	return rv
 }
@@ -394,7 +433,7 @@ func (c_ Control) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous
-func (c_ Control) SetIsContinuous(value bool) {
+func (c_ Control) SetIsContinuous(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
 }
 
@@ -403,7 +442,7 @@ func (c_ Control) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
-func (c_ Control) IsEnabled() bool {
+func (c_ Control) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -413,7 +452,7 @@ func (c_ Control) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/isenabled
-func (c_ Control) SetIsEnabled(value bool) {
+func (c_ Control) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -422,7 +461,7 @@ func (c_ Control) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted
-func (c_ Control) IsHighlighted() bool {
+func (c_ Control) IsHighlighted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighlighted"))
 	return rv
 }
@@ -432,7 +471,7 @@ func (c_ Control) IsHighlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted
-func (c_ Control) SetIsHighlighted(value bool) {
+func (c_ Control) SetIsHighlighted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighlighted:"), value)
 }
 
@@ -441,8 +480,8 @@ func (c_ Control) SetIsHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/linebreakmode
-func (c_ Control) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
+func (c_ Control) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -451,27 +490,8 @@ func (c_ Control) LineBreakMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/linebreakmode
-func (c_ Control) SetLineBreakMode(value unsafe.Pointer) {
+func (c_ Control) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
-}
-
-
-// The value of the receiver’s cell as an Objective-C object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-func (c_ Control) ObjectValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectValue"))
-	return rv
-}
-
-
-// The value of the receiver’s cell as an Objective-C object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-func (c_ Control) SetObjectValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValue:"), value)
 }
 
 
@@ -479,7 +499,7 @@ func (c_ Control) SetObjectValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/refusesfirstresponder
-func (c_ Control) RefusesFirstResponder() bool {
+func (c_ Control) RefusesFirstResponder() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("refusesFirstResponder"))
 	return rv
 }
@@ -489,7 +509,7 @@ func (c_ Control) RefusesFirstResponder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/refusesfirstresponder
-func (c_ Control) SetRefusesFirstResponder(value bool) {
+func (c_ Control) SetRefusesFirstResponder(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRefusesFirstResponder:"), value)
 }
 
@@ -498,7 +518,7 @@ func (c_ Control) SetRefusesFirstResponder(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-func (c_ Control) StringValue() string {
+func (c_ Control) StringValue() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
@@ -508,7 +528,7 @@ func (c_ Control) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/stringvalue
-func (c_ Control) SetStringValue(value string) {
+func (c_ Control) SetStringValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
@@ -517,7 +537,7 @@ func (c_ Control) SetStringValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/tag
-func (c_ Control) Tag() int {
+func (c_ Control) Tag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -527,27 +547,8 @@ func (c_ Control) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/tag
-func (c_ Control) SetTag(value int) {
+func (c_ Control) SetTag(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTag:"), value)
-}
-
-
-// The target object that receives action messages from the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
-func (c_ Control) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// The target object that receives action messages from the cell.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/target
-func (c_ Control) SetTarget(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), value)
 }
 
 
@@ -555,7 +556,7 @@ func (c_ Control) SetTarget(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/usessinglelinemode
-func (c_ Control) UsesSingleLineMode() bool {
+func (c_ Control) UsesSingleLineMode() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("usesSingleLineMode"))
 	return rv
 }
@@ -565,7 +566,7 @@ func (c_ Control) UsesSingleLineMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/usessinglelinemode
-func (c_ Control) SetUsesSingleLineMode(value bool) {
+func (c_ Control) SetUsesSingleLineMode(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
 }
 

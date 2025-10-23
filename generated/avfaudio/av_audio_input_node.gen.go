@@ -29,16 +29,18 @@ type _AudioInputNodeClass struct {
 // An interface definition for the [AudioInputNode] class.
 type IAudioInputNode interface {
 	IAudioIONode
-	VoiceProcessingBypassed() bool
-	SetVoiceProcessingBypassed(value bool)
-	IsVoiceProcessingAGCEnabled() bool
-	SetIsVoiceProcessingAGCEnabled(value bool)
-	IsVoiceProcessingBypassed() bool
-	SetIsVoiceProcessingBypassed(value bool)
-	IsVoiceProcessingInputMuted() bool
-	SetIsVoiceProcessingInputMuted(value bool)
-	VoiceProcessingOtherAudioDuckingConfiguration() unsafe.Pointer
-	SetVoiceProcessingOtherAudioDuckingConfiguration(value unsafe.Pointer)
+	// properties:
+	VoiceProcessingBypassed() bool /* primitive/slice/pointer. */
+	SetVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */)
+	IsVoiceProcessingAGCEnabled() bool /* primitive/slice/pointer. */
+	SetIsVoiceProcessingAGCEnabled(value bool /* primitive/slice/pointer. */)
+	IsVoiceProcessingBypassed() bool /* primitive/slice/pointer. */
+	SetIsVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */)
+	IsVoiceProcessingInputMuted() bool /* primitive/slice/pointer. */
+	SetIsVoiceProcessingInputMuted(value bool /* primitive/slice/pointer. */)
+	VoiceProcessingOtherAudioDuckingConfiguration() AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */
+	SetVoiceProcessingOtherAudioDuckingConfiguration(value AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */)
+	// methods:
 }
 
 // An object that connects to the system’s audio input.
@@ -100,7 +102,7 @@ func NewAudioInputNode() AudioInputNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
-func (a_ AudioInputNode) VoiceProcessingBypassed() bool {
+func (a_ AudioInputNode) VoiceProcessingBypassed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("voiceProcessingBypassed"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (a_ AudioInputNode) VoiceProcessingBypassed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/isVoiceProcessingBypassed
-func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool) {
+func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVoiceProcessingBypassed:"), value)
 }
 
@@ -119,7 +121,7 @@ func (a_ AudioInputNode) SetVoiceProcessingBypassed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
-func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool {
+func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingAGCEnabled"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (a_ AudioInputNode) IsVoiceProcessingAGCEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingagcenabled
-func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool) {
+func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingAGCEnabled:"), value)
 }
 
@@ -138,7 +140,7 @@ func (a_ AudioInputNode) SetIsVoiceProcessingAGCEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
-func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool {
+func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingBypassed"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (a_ AudioInputNode) IsVoiceProcessingBypassed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessingbypassed
-func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool) {
+func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingBypassed:"), value)
 }
 
@@ -157,7 +159,7 @@ func (a_ AudioInputNode) SetIsVoiceProcessingBypassed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
-func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool {
+func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingInputMuted"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (a_ AudioInputNode) IsVoiceProcessingInputMuted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/isvoiceprocessinginputmuted
-func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool) {
+func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingInputMuted:"), value)
 }
 
@@ -176,8 +178,8 @@ func (a_ AudioInputNode) SetIsVoiceProcessingInputMuted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/voiceprocessingotheraudioduckingconfiguration
-func (a_ AudioInputNode) VoiceProcessingOtherAudioDuckingConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("voiceProcessingOtherAudioDuckingConfiguration"))
+func (a_ AudioInputNode) VoiceProcessingOtherAudioDuckingConfiguration() AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */ {
+	rv := objc.Send[AudioVoiceProcessingOtherAudioDuckingConfiguration](a_.ID, objc.Sel("voiceProcessingOtherAudioDuckingConfiguration"))
 	return rv
 }
 
@@ -186,7 +188,7 @@ func (a_ AudioInputNode) VoiceProcessingOtherAudioDuckingConfiguration() unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioinputnode/voiceprocessingotheraudioduckingconfiguration
-func (a_ AudioInputNode) SetVoiceProcessingOtherAudioDuckingConfiguration(value unsafe.Pointer) {
+func (a_ AudioInputNode) SetVoiceProcessingOtherAudioDuckingConfiguration(value AudioVoiceProcessingOtherAudioDuckingConfiguration /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVoiceProcessingOtherAudioDuckingConfiguration:"), value)
 }
 

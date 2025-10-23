@@ -30,9 +30,11 @@ type _BeaconIdentityConditionClass struct {
 // An interface definition for the [BeaconIdentityCondition] class.
 type IBeaconIdentityCondition interface {
 	ICondition
-	UUID() foundation.UUID
-	Major() foundation.Number
-	Minor() foundation.Number
+	// properties:
+	UUID() objc.IObject /* cross-framework: UUID */
+	Major() foundation.objc.IObject /* cross-framework: Number */
+	Minor() foundation.objc.IObject /* cross-framework: Number */
+	// methods:
 }
 
 // A condition that describes the identity characteristics of a beacon.
@@ -94,7 +96,7 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:
-func NewBeaconIdentityConditionWithUUID(uuid foundation.UUID) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework UUID */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:"), uuid)
 	rv.Autorelease()
@@ -106,7 +108,7 @@ func NewBeaconIdentityConditionWithUUID(uuid foundation.UUID) BeaconIdentityCond
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:
-func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.UUID, major unsafe.Pointer) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framework UUID */, major BeaconMajorValue /* not a class type */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:"), uuid, major)
 	rv.Autorelease()
@@ -118,7 +120,7 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid foundation.UUID, major unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/initWithUUID:major:minor:
-func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid foundation.UUID, major unsafe.Pointer, minor unsafe.Pointer) BeaconIdentityCondition {
+func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-framework UUID */, major BeaconMajorValue /* not a class type */, minor BeaconMinorValue /* not a class type */) BeaconIdentityCondition {
 	instance := getBeaconIdentityConditionClass().Alloc()
 	rv := objc.Send[BeaconIdentityCondition](instance.ID, objc.Sel("initWithUUID:major:minor:"), uuid, major, minor)
 	rv.Autorelease()
@@ -131,8 +133,8 @@ func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid foundation.UUID, major un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/UUID
-func (b_ BeaconIdentityCondition) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
+func (b_ BeaconIdentityCondition) UUID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
 
@@ -141,7 +143,7 @@ func (b_ BeaconIdentityCondition) UUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/major
-func (b_ BeaconIdentityCondition) Major() foundation.Number {
+func (b_ BeaconIdentityCondition) Major() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (b_ BeaconIdentityCondition) Major() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeaconIdentityCondition/minor
-func (b_ BeaconIdentityCondition) Minor() foundation.Number {
+func (b_ BeaconIdentityCondition) Minor() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }

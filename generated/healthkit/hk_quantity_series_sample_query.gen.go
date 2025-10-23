@@ -30,10 +30,10 @@ type _HKQuantitySeriesSampleQueryClass struct {
 type IHKQuantitySeriesSampleQuery interface {
 	IHKQuery
 	// properties:
-	IncludeSample() bool
-	SetIncludeSample(value bool)
-	OrderByQuantitySampleStartDate() bool
-	SetOrderByQuantitySampleStartDate(value bool)
+	IncludeSample() bool /* primitive/slice/pointer. */
+	SetIncludeSample(value bool /* primitive/slice/pointer. */)
+	OrderByQuantitySampleStartDate() bool /* primitive/slice/pointer. */
+	SetOrderByQuantitySampleStartDate(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewHKQuantitySeriesSampleQuery() HKQuantitySeriesSampleQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
-func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool {
+func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("includeSample"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (h_ HKQuantitySeriesSampleQuery) IncludeSample() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/includesample
-func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool) {
+func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeSample:"), value)
 }
 
@@ -115,7 +115,7 @@ func (h_ HKQuantitySeriesSampleQuery) SetIncludeSample(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
-func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool {
+func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("orderByQuantitySampleStartDate"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (h_ HKQuantitySeriesSampleQuery) OrderByQuantitySampleStartDate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery/orderbyquantitysamplestartdate
-func (h_ HKQuantitySeriesSampleQuery) SetOrderByQuantitySampleStartDate(value bool) {
+func (h_ HKQuantitySeriesSampleQuery) SetOrderByQuantitySampleStartDate(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOrderByQuantitySampleStartDate:"), value)
 }
 

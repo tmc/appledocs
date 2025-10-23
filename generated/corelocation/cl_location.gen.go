@@ -30,28 +30,30 @@ type _LocationClass struct {
 // An interface definition for the [Location] class.
 type ILocation interface {
 	objectivec.IObject
-	Altitude() unsafe.Pointer
-	SetAltitude(value unsafe.Pointer)
-	Coordinate() unsafe.Pointer
-	SetCoordinate(value unsafe.Pointer)
-	Course() unsafe.Pointer
-	SetCourse(value unsafe.Pointer)
-	CourseAccuracy() unsafe.Pointer
-	SetCourseAccuracy(value unsafe.Pointer)
-	EllipsoidalAltitude() unsafe.Pointer
-	SetEllipsoidalAltitude(value unsafe.Pointer)
-	HorizontalAccuracy() unsafe.Pointer
-	SetHorizontalAccuracy(value unsafe.Pointer)
+	// properties:
+	Altitude() LocationDistance get /* not a class type */
+	SetAltitude(value LocationDistance get /* not a class type */)
+	Coordinate() LocationCoordinate2D get /* not a class type */
+	SetCoordinate(value LocationCoordinate2D get /* not a class type */)
+	Course() LocationDirection get /* not a class type */
+	SetCourse(value LocationDirection get /* not a class type */)
+	CourseAccuracy() LocationDirectionAccuracy get /* not a class type */
+	SetCourseAccuracy(value LocationDirectionAccuracy get /* not a class type */)
+	EllipsoidalAltitude() LocationDistance get /* not a class type */
+	SetEllipsoidalAltitude(value LocationDistance get /* not a class type */)
+	HorizontalAccuracy() LocationAccuracy get /* not a class type */
+	SetHorizontalAccuracy(value LocationAccuracy get /* not a class type */)
 	SourceInformation() ICLLocationSourceInformation
 	SetSourceInformation(value ICLLocationSourceInformation)
-	Speed() unsafe.Pointer
-	SetSpeed(value unsafe.Pointer)
-	SpeedAccuracy() unsafe.Pointer
-	SetSpeedAccuracy(value unsafe.Pointer)
+	Speed() LocationSpeed get /* not a class type */
+	SetSpeed(value LocationSpeed get /* not a class type */)
+	SpeedAccuracy() LocationSpeedAccuracy get /* not a class type */
+	SetSpeedAccuracy(value LocationSpeedAccuracy get /* not a class type */)
 	Timestamp() unsafe.Pointer
 	SetTimestamp(value unsafe.Pointer)
-	VerticalAccuracy() unsafe.Pointer
-	SetVerticalAccuracy(value unsafe.Pointer)
+	VerticalAccuracy() LocationAccuracy get /* not a class type */
+	SetVerticalAccuracy(value LocationAccuracy get /* not a class type */)
+	// methods:
 	Distance()
 }
 
@@ -121,8 +123,8 @@ func (l_ Location) Distance() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/altitude
-func (l_ Location) Altitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("altitude"))
+func (l_ Location) Altitude() LocationDistance get /* not a class type */ {
+	rv := objc.Send[LocationDistance get](l_.ID, objc.Sel("altitude"))
 	return rv
 }
 
@@ -131,7 +133,7 @@ func (l_ Location) Altitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/altitude
-func (l_ Location) SetAltitude(value unsafe.Pointer) {
+func (l_ Location) SetAltitude(value LocationDistance get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAltitude:"), value)
 }
 
@@ -140,8 +142,8 @@ func (l_ Location) SetAltitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
-func (l_ Location) Coordinate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("coordinate"))
+func (l_ Location) Coordinate() LocationCoordinate2D get /* not a class type */ {
+	rv := objc.Send[LocationCoordinate2D get](l_.ID, objc.Sel("coordinate"))
 	return rv
 }
 
@@ -150,7 +152,7 @@ func (l_ Location) Coordinate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/coordinate
-func (l_ Location) SetCoordinate(value unsafe.Pointer) {
+func (l_ Location) SetCoordinate(value LocationCoordinate2D get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCoordinate:"), value)
 }
 
@@ -159,8 +161,8 @@ func (l_ Location) SetCoordinate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
-func (l_ Location) Course() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("course"))
+func (l_ Location) Course() LocationDirection get /* not a class type */ {
+	rv := objc.Send[LocationDirection get](l_.ID, objc.Sel("course"))
 	return rv
 }
 
@@ -169,7 +171,7 @@ func (l_ Location) Course() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/course
-func (l_ Location) SetCourse(value unsafe.Pointer) {
+func (l_ Location) SetCourse(value LocationDirection get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourse:"), value)
 }
 
@@ -178,8 +180,8 @@ func (l_ Location) SetCourse(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
-func (l_ Location) CourseAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("courseAccuracy"))
+func (l_ Location) CourseAccuracy() LocationDirectionAccuracy get /* not a class type */ {
+	rv := objc.Send[LocationDirectionAccuracy get](l_.ID, objc.Sel("courseAccuracy"))
 	return rv
 }
 
@@ -188,7 +190,7 @@ func (l_ Location) CourseAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/courseAccuracy
-func (l_ Location) SetCourseAccuracy(value unsafe.Pointer) {
+func (l_ Location) SetCourseAccuracy(value LocationDirectionAccuracy get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCourseAccuracy:"), value)
 }
 
@@ -197,8 +199,8 @@ func (l_ Location) SetCourseAccuracy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
-func (l_ Location) EllipsoidalAltitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("ellipsoidalAltitude"))
+func (l_ Location) EllipsoidalAltitude() LocationDistance get /* not a class type */ {
+	rv := objc.Send[LocationDistance get](l_.ID, objc.Sel("ellipsoidalAltitude"))
 	return rv
 }
 
@@ -207,7 +209,7 @@ func (l_ Location) EllipsoidalAltitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/ellipsoidalAltitude
-func (l_ Location) SetEllipsoidalAltitude(value unsafe.Pointer) {
+func (l_ Location) SetEllipsoidalAltitude(value LocationDistance get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEllipsoidalAltitude:"), value)
 }
 
@@ -216,8 +218,8 @@ func (l_ Location) SetEllipsoidalAltitude(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
-func (l_ Location) HorizontalAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("horizontalAccuracy"))
+func (l_ Location) HorizontalAccuracy() LocationAccuracy get /* not a class type */ {
+	rv := objc.Send[LocationAccuracy get](l_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
 }
 
@@ -226,7 +228,7 @@ func (l_ Location) HorizontalAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/horizontalAccuracy
-func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
+func (l_ Location) SetHorizontalAccuracy(value LocationAccuracy get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHorizontalAccuracy:"), value)
 }
 
@@ -254,8 +256,8 @@ func (l_ Location) SetSourceInformation(value ICLLocationSourceInformation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
-func (l_ Location) Speed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("speed"))
+func (l_ Location) Speed() LocationSpeed get /* not a class type */ {
+	rv := objc.Send[LocationSpeed get](l_.ID, objc.Sel("speed"))
 	return rv
 }
 
@@ -264,7 +266,7 @@ func (l_ Location) Speed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speed
-func (l_ Location) SetSpeed(value unsafe.Pointer) {
+func (l_ Location) SetSpeed(value LocationSpeed get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeed:"), value)
 }
 
@@ -273,8 +275,8 @@ func (l_ Location) SetSpeed(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
-func (l_ Location) SpeedAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("speedAccuracy"))
+func (l_ Location) SpeedAccuracy() LocationSpeedAccuracy get /* not a class type */ {
+	rv := objc.Send[LocationSpeedAccuracy get](l_.ID, objc.Sel("speedAccuracy"))
 	return rv
 }
 
@@ -283,7 +285,7 @@ func (l_ Location) SpeedAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/speedAccuracy
-func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
+func (l_ Location) SetSpeedAccuracy(value LocationSpeedAccuracy get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSpeedAccuracy:"), value)
 }
 
@@ -311,8 +313,8 @@ func (l_ Location) SetTimestamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
-func (l_ Location) VerticalAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("verticalAccuracy"))
+func (l_ Location) VerticalAccuracy() LocationAccuracy get /* not a class type */ {
+	rv := objc.Send[LocationAccuracy get](l_.ID, objc.Sel("verticalAccuracy"))
 	return rv
 }
 
@@ -321,7 +323,7 @@ func (l_ Location) VerticalAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/verticalAccuracy
-func (l_ Location) SetVerticalAccuracy(value unsafe.Pointer) {
+func (l_ Location) SetVerticalAccuracy(value LocationAccuracy get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVerticalAccuracy:"), value)
 }
 

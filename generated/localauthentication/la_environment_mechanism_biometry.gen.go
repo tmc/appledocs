@@ -31,11 +31,11 @@ type _EnvironmentMechanismBiometryClass struct {
 type IEnvironmentMechanismBiometry interface {
 	IEnvironmentMechanism
 	// properties:
-	BiometryType() LABiometryType
-	BuiltInSensorInaccessible() bool
-	IsEnrolled() bool
-	IsLockedOut() bool
-	StateHash() foundation.NSData
+	BiometryType() BiometryType
+	BuiltInSensorInaccessible() bool /* primitive/slice/pointer. */
+	IsEnrolled() bool /* primitive/slice/pointer. */
+	IsLockedOut() bool /* primitive/slice/pointer. */
+	StateHash() foundation.objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -89,15 +89,15 @@ func NewEnvironmentMechanismBiometry() EnvironmentMechanismBiometry {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/biometryType
-func (e_ EnvironmentMechanismBiometry) BiometryType() LABiometryType {
-	rv := objc.Send[LABiometryType](e_.ID, objc.Sel("biometryType"))
+func (e_ EnvironmentMechanismBiometry) BiometryType() BiometryType {
+	rv := objc.Send[BiometryType](e_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/builtInSensorInaccessible
-func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool {
+func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("builtInSensorInaccessible"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (e_ EnvironmentMechanismBiometry) BuiltInSensorInaccessible() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isEnrolled
-func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool {
+func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnrolled"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (e_ EnvironmentMechanismBiometry) IsEnrolled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/isLockedOut
-func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool {
+func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isLockedOut"))
 	return rv
 }
@@ -121,7 +121,7 @@ func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/stateHash
-func (e_ EnvironmentMechanismBiometry) StateHash() foundation.NSData {
+func (e_ EnvironmentMechanismBiometry) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))
 	return rv
 }

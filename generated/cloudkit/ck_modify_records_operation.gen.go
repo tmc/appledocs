@@ -30,12 +30,13 @@ type _CKModifyRecordsOperationClass struct {
 // An interface definition for the [CKModifyRecordsOperation] class.
 type ICKModifyRecordsOperation interface {
 	ICKDatabaseOperation
+	// properties:
 	SavePolicy() unsafe.Pointer
 	SetSavePolicy(value unsafe.Pointer)
-	ClientChangeTokenData() foundation.Data
-	SetClientChangeTokenData(value foundation.Data)
-	IsAtomic() bool
-	SetIsAtomic(value bool)
+	ClientChangeTokenData() foundation.objc.IObject /* cross-framework: Data */
+	SetClientChangeTokenData(value foundation.objc.IObject /* cross-framework: Data */)
+	IsAtomic() bool /* primitive/slice/pointer. */
+	SetIsAtomic(value bool /* primitive/slice/pointer. */)
 	ModifyRecordsCompletionBlock() unsafe.Pointer
 	SetModifyRecordsCompletionBlock(value unsafe.Pointer)
 	ModifyRecordsResultBlock() unsafe.Pointer
@@ -48,8 +49,8 @@ type ICKModifyRecordsOperation interface {
 	SetPerRecordProgressBlock(value unsafe.Pointer)
 	PerRecordSaveBlock() unsafe.Pointer
 	SetPerRecordSaveBlock(value unsafe.Pointer)
-	RecordIDsToDelete() CKRecordID
-	SetRecordIDsToDelete(value CKRecordID)
+	RecordIDsToDelete() objc.IObject /* cross-framework: CKRecordID */
+	SetRecordIDsToDelete(value objc.IObject /* cross-framework: CKRecordID */)
 	RecordsToSave() ICKRecord
 	SetRecordsToSave(value ICKRecord)
 	Action() unsafe.Pointer
@@ -58,6 +59,7 @@ type ICKModifyRecordsOperation interface {
 	SetParent(value ICKReference)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation that modifies one or more records.
@@ -138,7 +140,7 @@ func (c_ CKModifyRecordsOperation) SetSavePolicy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.Data {
+func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("clientChangeTokenData"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.Data) {
+func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
 }
 
@@ -157,7 +159,7 @@ func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.Dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) IsAtomic() bool {
+func (c_ CKModifyRecordsOperation) IsAtomic() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAtomic"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (c_ CKModifyRecordsOperation) IsAtomic() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/isatomic
-func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool) {
+func (c_ CKModifyRecordsOperation) SetIsAtomic(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAtomic:"), value)
 }
 
@@ -278,7 +280,7 @@ func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-func (c_ CKModifyRecordsOperation) RecordIDsToDelete() CKRecordID {
+func (c_ CKModifyRecordsOperation) RecordIDsToDelete() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordIDsToDelete"))
 	return rv
 }
@@ -288,7 +290,7 @@ func (c_ CKModifyRecordsOperation) RecordIDsToDelete() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value CKRecordID) {
+func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDsToDelete:"), value)
 }
 

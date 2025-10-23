@@ -29,6 +29,7 @@ type _CustomMigrationStageClass struct {
 // An interface definition for the [CustomMigrationStage] class.
 type ICustomMigrationStage interface {
 	IMigrationStage
+	// properties:
 	CurrentModel() IManagedObjectModelReference
 	DidMigrateHandler() unsafe.Pointer
 	SetDidMigrateHandler(value unsafe.Pointer)
@@ -37,6 +38,7 @@ type ICustomMigrationStage interface {
 	SetWillMigrateHandler(value unsafe.Pointer)
 	Container() IPersistentContainer
 	SetContainer(value IPersistentContainer)
+	// methods:
 }
 
 // An object that enables you to participate in the migration between two versions of the same model.

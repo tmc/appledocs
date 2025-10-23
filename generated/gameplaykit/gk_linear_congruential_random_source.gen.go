@@ -29,8 +29,10 @@ type _LinearCongruentialRandomSourceClass struct {
 // An interface definition for the [LinearCongruentialRandomSource] class.
 type ILinearCongruentialRandomSource interface {
 	IRandomSource
-	Seed() uint64
-	SetSeed(value uint64)
+	// properties:
+	Seed() uint64 /* primitive/slice/pointer. */
+	SetSeed(value uint64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A basic random number generator implementing the linear congruential generator algorithm, which is faster but less random than the default random source.
@@ -92,7 +94,7 @@ func NewLinearCongruentialRandomSource() LinearCongruentialRandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/init(seed:)
-func NewLinearCongruentialRandomSourceWithSeed(seed uint64) LinearCongruentialRandomSource {
+func NewLinearCongruentialRandomSourceWithSeed(seed uint64 /* primitive/slice/pointer. */) LinearCongruentialRandomSource {
 	instance := getLinearCongruentialRandomSourceClass().Alloc()
 	rv := objc.Send[LinearCongruentialRandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewLinearCongruentialRandomSourceWithSeed(seed uint64) LinearCongruentialRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/seed
-func (l_ LinearCongruentialRandomSource) Seed() uint64 {
+func (l_ LinearCongruentialRandomSource) Seed() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](l_.ID, objc.Sel("seed"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (l_ LinearCongruentialRandomSource) Seed() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKLinearCongruentialRandomSource/seed
-func (l_ LinearCongruentialRandomSource) SetSeed(value uint64) {
+func (l_ LinearCongruentialRandomSource) SetSeed(value uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSeed:"), value)
 }
 

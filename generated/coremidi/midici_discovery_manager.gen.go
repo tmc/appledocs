@@ -30,6 +30,8 @@ type _MIDICIDiscoveryManagerClass struct {
 // An interface definition for the [MIDICIDiscoveryManager] class.
 type IMIDICIDiscoveryManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A singleton object that performs systemwide MIDI-CI discovery.

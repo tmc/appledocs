@@ -30,6 +30,9 @@ type _SliderAccessoryBehaviorClass struct {
 // An interface definition for the [SliderAccessoryBehavior] class.
 type ISliderAccessoryBehavior interface {
 	objectivec.IObject
+	// properties:
+	// methods:
+	HandleAction(sender ISliderAccessory)
 }
 
 
@@ -77,5 +80,89 @@ func NewSliderAccessoryBehavior() SliderAccessoryBehavior {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(handler:)
+func NewSliderAccessoryBehaviorWithHandler(handler unsafe.Pointer) SliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(getSliderAccessoryBehaviorClass().class), objc.Sel("behaviorWithHandler:"), handler)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(target:action:)
+func NewSliderAccessoryBehaviorWithTargetAction(target objectivec.IObject, action objc.SEL) SliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(getSliderAccessoryBehaviorClass().class), objc.Sel("behaviorWithTarget:action:"), target, action)
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(handler:)
+func (sc _SliderAccessoryBehaviorClass) BehaviorWithHandler(handler unsafe.Pointer) ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("behaviorWithHandler:"), handler)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(target:action:)
+func (sc _SliderAccessoryBehaviorClass) BehaviorWithTargetAction(target objectivec.IObject, action objc.SEL) ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("behaviorWithTarget:action:"), target, action)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/automatic
+func (sc _SliderAccessoryBehaviorClass) AutomaticBehavior() SliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("automaticBehavior"))
+	return rv
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/valueReset
+func (sc _SliderAccessoryBehaviorClass) ValueResetBehavior() SliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("valueResetBehavior"))
+	return rv
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/valueStep
+func (sc _SliderAccessoryBehaviorClass) ValueStepBehavior() SliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("valueStepBehavior"))
+	return rv
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/handleAction(_:)
+func (s_ SliderAccessoryBehavior) HandleAction(sender ISliderAccessory) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("handleAction:"), sender)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/automatic
+func (s_ SliderAccessoryBehavior) AutomaticBehavior() ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](s_.ID, objc.Sel("automaticBehavior"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/valueReset
+func (s_ SliderAccessoryBehavior) ValueResetBehavior() ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](s_.ID, objc.Sel("valueResetBehavior"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/valueStep
+func (s_ SliderAccessoryBehavior) ValueStepBehavior() ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](s_.ID, objc.Sel("valueStepBehavior"))
+	return rv
+}
 
 

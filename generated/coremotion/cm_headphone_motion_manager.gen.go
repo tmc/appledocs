@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,21 +30,23 @@ type _HeadphoneMotionManagerClass struct {
 // An interface definition for the [HeadphoneMotionManager] class.
 type IHeadphoneMotionManager interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DeviceMotion() ICMDeviceMotion
-	ConnectionStatusActive() bool
-	DeviceMotionActive() bool
-	DeviceMotionAvailable() bool
-	IsConnectionStatusActive() bool
-	SetIsConnectionStatusActive(value bool)
-	IsDeviceMotionActive() bool
-	SetIsDeviceMotionActive(value bool)
-	IsDeviceMotionAvailable() bool
-	SetIsDeviceMotionAvailable(value bool)
+	ConnectionStatusActive() bool /* primitive/slice/pointer. */
+	DeviceMotionActive() bool /* primitive/slice/pointer. */
+	DeviceMotionAvailable() bool /* primitive/slice/pointer. */
+	IsConnectionStatusActive() bool /* primitive/slice/pointer. */
+	SetIsConnectionStatusActive(value bool /* primitive/slice/pointer. */)
+	IsDeviceMotionActive() bool /* primitive/slice/pointer. */
+	SetIsDeviceMotionActive(value bool /* primitive/slice/pointer. */)
+	IsDeviceMotionAvailable() bool /* primitive/slice/pointer. */
+	SetIsDeviceMotionAvailable(value bool /* primitive/slice/pointer. */)
+	// methods:
 	StartConnectionStatusUpdates()
 	StartDeviceMotionUpdates()
-	StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	StartDeviceMotionUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework OperationQueue */, handler HeadphoneDeviceMotionHandler /* not a class type */)
 	StopConnectionStatusUpdates()
 	StopDeviceMotionUpdates()
 }
@@ -107,8 +108,8 @@ func NewHeadphoneMotionManager() HeadphoneMotionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/authorizationStatus()
-func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
+func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -133,7 +134,7 @@ func (h_ HeadphoneMotionManager) StartDeviceMotionUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/startDeviceMotionUpdates(to:withHandler:)
-func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
+func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework OperationQueue */, handler HeadphoneDeviceMotionHandler /* not a class type */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startDeviceMotionUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -185,7 +186,7 @@ func (h_ HeadphoneMotionManager) DeviceMotion() ICMDeviceMotion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/isConnectionStatusActive
-func (h_ HeadphoneMotionManager) ConnectionStatusActive() bool {
+func (h_ HeadphoneMotionManager) ConnectionStatusActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("connectionStatusActive"))
 	return rv
 }
@@ -195,7 +196,7 @@ func (h_ HeadphoneMotionManager) ConnectionStatusActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/isDeviceMotionActive
-func (h_ HeadphoneMotionManager) DeviceMotionActive() bool {
+func (h_ HeadphoneMotionManager) DeviceMotionActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("deviceMotionActive"))
 	return rv
 }
@@ -205,7 +206,7 @@ func (h_ HeadphoneMotionManager) DeviceMotionActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/isDeviceMotionAvailable
-func (h_ HeadphoneMotionManager) DeviceMotionAvailable() bool {
+func (h_ HeadphoneMotionManager) DeviceMotionAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("deviceMotionAvailable"))
 	return rv
 }
@@ -213,7 +214,7 @@ func (h_ HeadphoneMotionManager) DeviceMotionAvailable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isconnectionstatusactive
-func (h_ HeadphoneMotionManager) IsConnectionStatusActive() bool {
+func (h_ HeadphoneMotionManager) IsConnectionStatusActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isConnectionStatusActive"))
 	return rv
 }
@@ -221,7 +222,7 @@ func (h_ HeadphoneMotionManager) IsConnectionStatusActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isconnectionstatusactive
-func (h_ HeadphoneMotionManager) SetIsConnectionStatusActive(value bool) {
+func (h_ HeadphoneMotionManager) SetIsConnectionStatusActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsConnectionStatusActive:"), value)
 }
 
@@ -230,7 +231,7 @@ func (h_ HeadphoneMotionManager) SetIsConnectionStatusActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionactive
-func (h_ HeadphoneMotionManager) IsDeviceMotionActive() bool {
+func (h_ HeadphoneMotionManager) IsDeviceMotionActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isDeviceMotionActive"))
 	return rv
 }
@@ -240,7 +241,7 @@ func (h_ HeadphoneMotionManager) IsDeviceMotionActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionactive
-func (h_ HeadphoneMotionManager) SetIsDeviceMotionActive(value bool) {
+func (h_ HeadphoneMotionManager) SetIsDeviceMotionActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
 }
 
@@ -249,7 +250,7 @@ func (h_ HeadphoneMotionManager) SetIsDeviceMotionActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionavailable
-func (h_ HeadphoneMotionManager) IsDeviceMotionAvailable() bool {
+func (h_ HeadphoneMotionManager) IsDeviceMotionAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isDeviceMotionAvailable"))
 	return rv
 }
@@ -259,7 +260,7 @@ func (h_ HeadphoneMotionManager) IsDeviceMotionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionavailable
-func (h_ HeadphoneMotionManager) SetIsDeviceMotionAvailable(value bool) {
+func (h_ HeadphoneMotionManager) SetIsDeviceMotionAvailable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
 }
 

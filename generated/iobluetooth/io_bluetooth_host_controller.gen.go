@@ -36,10 +36,10 @@ type IBluetoothHostController interface {
 	SetDelegate(value objc.ID)
 	PowerState() unsafe.Pointer
 	// methods:
-	AddressAsString() foundation.String
-	ClassOfDevice() BluetoothClassOfDevice
-	NameAsString() foundation.String
-	SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice, seconds foundation.TimeInterval) unsafe.Pointer
+	AddressAsString() objc.IObject /* cross-framework: String */
+	ClassOfDevice() BluetoothClassOfDevice /* typedef */
+	NameAsString() objc.IObject /* cross-framework: String */
+	SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds foundation.TimeInterval /* not a class type */) Return /* not a class type */
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
@@ -109,8 +109,8 @@ func (bc _BluetoothHostControllerClass) DefaultController() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/addressAsString()
-func (b_ BluetoothHostController) AddressAsString() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("addressAsString"))
+func (b_ BluetoothHostController) AddressAsString() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](b_.ID, objc.Sel("addressAsString"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (b_ BluetoothHostController) AddressAsString() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/classOfDevice()
-func (b_ BluetoothHostController) ClassOfDevice() BluetoothClassOfDevice {
+func (b_ BluetoothHostController) ClassOfDevice() BluetoothClassOfDevice /* typedef */ {
 	rv := objc.Send[BluetoothClassOfDevice](b_.ID, objc.Sel("classOfDevice"))
 	return rv
 }
@@ -129,8 +129,8 @@ func (b_ BluetoothHostController) ClassOfDevice() BluetoothClassOfDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/nameAsString()
-func (b_ BluetoothHostController) NameAsString() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("nameAsString"))
+func (b_ BluetoothHostController) NameAsString() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](b_.ID, objc.Sel("nameAsString"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (b_ BluetoothHostController) NameAsString() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/setClassOfDevice(_:forTimeInterval:)
-func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice, seconds foundation.TimeInterval) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
+func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice BluetoothClassOfDevice /* typedef */, seconds foundation.TimeInterval /* not a class type */) Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
 	return rv
 }
 

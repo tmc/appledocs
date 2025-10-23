@@ -30,22 +30,24 @@ type _FaceFeatureClass struct {
 // An interface definition for the [FaceFeature] class.
 type IFaceFeature interface {
 	IFeature
+	// properties:
 	Bounds() coregraphics.CGRect
-	FaceAngle() float32
-	HasFaceAngle() bool
-	HasLeftEyePosition() bool
-	HasMouthPosition() bool
-	HasRightEyePosition() bool
-	HasSmile() bool
-	HasTrackingFrameCount() bool
-	HasTrackingID() bool
-	LeftEyeClosed() bool
+	FaceAngle() float32 /* primitive/slice/pointer. */
+	HasFaceAngle() bool /* primitive/slice/pointer. */
+	HasLeftEyePosition() bool /* primitive/slice/pointer. */
+	HasMouthPosition() bool /* primitive/slice/pointer. */
+	HasRightEyePosition() bool /* primitive/slice/pointer. */
+	HasSmile() bool /* primitive/slice/pointer. */
+	HasTrackingFrameCount() bool /* primitive/slice/pointer. */
+	HasTrackingID() bool /* primitive/slice/pointer. */
+	LeftEyeClosed() bool /* primitive/slice/pointer. */
 	LeftEyePosition() coregraphics.CGPoint
 	MouthPosition() coregraphics.CGPoint
-	RightEyeClosed() bool
+	RightEyeClosed() bool /* primitive/slice/pointer. */
 	RightEyePosition() coregraphics.CGPoint
-	TrackingFrameCount() int
-	TrackingID() int
+	TrackingFrameCount() int /* primitive/slice/pointer. */
+	TrackingID() int /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Information about a face detected in a still or video image.
@@ -117,7 +119,7 @@ func (f_ FaceFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/faceAngle-swift.property
-func (f_ FaceFeature) FaceAngle() float32 {
+func (f_ FaceFeature) FaceAngle() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](f_.ID, objc.Sel("faceAngle"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (f_ FaceFeature) FaceAngle() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasFaceAngle-swift.property
-func (f_ FaceFeature) HasFaceAngle() bool {
+func (f_ FaceFeature) HasFaceAngle() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasFaceAngle"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (f_ FaceFeature) HasFaceAngle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasLeftEyePosition-swift.property
-func (f_ FaceFeature) HasLeftEyePosition() bool {
+func (f_ FaceFeature) HasLeftEyePosition() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasLeftEyePosition"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (f_ FaceFeature) HasLeftEyePosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasMouthPosition-swift.property
-func (f_ FaceFeature) HasMouthPosition() bool {
+func (f_ FaceFeature) HasMouthPosition() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasMouthPosition"))
 	return rv
 }
@@ -157,7 +159,7 @@ func (f_ FaceFeature) HasMouthPosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasRightEyePosition-swift.property
-func (f_ FaceFeature) HasRightEyePosition() bool {
+func (f_ FaceFeature) HasRightEyePosition() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasRightEyePosition"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (f_ FaceFeature) HasRightEyePosition() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasSmile-swift.property
-func (f_ FaceFeature) HasSmile() bool {
+func (f_ FaceFeature) HasSmile() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasSmile"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (f_ FaceFeature) HasSmile() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingFrameCount-swift.property
-func (f_ FaceFeature) HasTrackingFrameCount() bool {
+func (f_ FaceFeature) HasTrackingFrameCount() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingFrameCount"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (f_ FaceFeature) HasTrackingFrameCount() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/hasTrackingID-swift.property
-func (f_ FaceFeature) HasTrackingID() bool {
+func (f_ FaceFeature) HasTrackingID() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hasTrackingID"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (f_ FaceFeature) HasTrackingID() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-swift.property
-func (f_ FaceFeature) LeftEyeClosed() bool {
+func (f_ FaceFeature) LeftEyeClosed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("leftEyeClosed"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (f_ FaceFeature) MouthPosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/rightEyeClosed-swift.property
-func (f_ FaceFeature) RightEyeClosed() bool {
+func (f_ FaceFeature) RightEyeClosed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("rightEyeClosed"))
 	return rv
 }
@@ -247,7 +249,7 @@ func (f_ FaceFeature) RightEyePosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingFrameCount-swift.property
-func (f_ FaceFeature) TrackingFrameCount() int {
+func (f_ FaceFeature) TrackingFrameCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingFrameCount"))
 	return rv
 }
@@ -257,7 +259,7 @@ func (f_ FaceFeature) TrackingFrameCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/trackingID-swift.property
-func (f_ FaceFeature) TrackingID() int {
+func (f_ FaceFeature) TrackingID() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("trackingID"))
 	return rv
 }

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +30,13 @@ type _EAWiFiUnconfiguredAccessoryBrowserClass struct {
 // An interface definition for the [EAWiFiUnconfiguredAccessoryBrowser] class.
 type IEAWiFiUnconfiguredAccessoryBrowser interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	UnconfiguredAccessories() IEAWiFiUnconfiguredAccessory
 	SetUnconfiguredAccessories(value IEAWiFiUnconfiguredAccessory)
-	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.Predicate)
+	// methods:
+	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate objc.IObject /* cross-framework Predicate */)
 }
 
 // An object you use to scan for wireless accessories and configure them for use with the user’s app.
@@ -95,7 +96,7 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/startSearchingForUnconfiguredAccessories(matching:)
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.Predicate) {
+func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate objc.IObject /* cross-framework Predicate */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("startSearchingForUnconfiguredAccessoriesMatchingPredicate:"), predicate)
 }
 

@@ -31,10 +31,10 @@ type _HKSourceClass struct {
 type IHKSource interface {
 	objectivec.IObject
 	// properties:
-	BundleIdentifier() string
-	SetBundleIdentifier(value string)
-	Name() string
-	SetName(value string)
+	BundleIdentifier() string /* primitive/slice/pointer. */
+	SetBundleIdentifier(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewHKSource() HKSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
-func (h_ HKSource) BundleIdentifier() string {
+func (h_ HKSource) BundleIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (h_ HKSource) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/bundleidentifier
-func (h_ HKSource) SetBundleIdentifier(value string) {
+func (h_ HKSource) SetBundleIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
@@ -114,7 +114,7 @@ func (h_ HKSource) SetBundleIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
-func (h_ HKSource) Name() string {
+func (h_ HKSource) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (h_ HKSource) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksource/name
-func (h_ HKSource) SetName(value string) {
+func (h_ HKSource) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

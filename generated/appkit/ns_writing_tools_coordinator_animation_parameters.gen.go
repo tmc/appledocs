@@ -30,14 +30,14 @@ type _WritingToolsCoordinatorAnimationParametersClass struct {
 // An interface definition for the [WritingToolsCoordinatorAnimationParameters] class.
 type IWritingToolsCoordinatorAnimationParameters interface {
 	objectivec.IObject
+	// properties:
 	CompletionHandler() unsafe.Pointer
 	SetCompletionHandler(value unsafe.Pointer)
-	Delay() float64
-	SetDelay(value float64)
-	Duration() float64
-	SetDuration(value float64)
+	Delay() float64 /* primitive/slice/pointer. */
+	Duration() float64 /* primitive/slice/pointer. */
 	ProgressHandler() unsafe.Pointer
 	SetProgressHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // An object you use to configure additional tasks or animations to run alongside the Writing Tools animations.
@@ -96,7 +96,7 @@ func NewWritingToolsCoordinatorAnimationParameters() WritingToolsCoordinatorAnim
 // A custom block to run when the system animations finish.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/completionhandler
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/completionHandler
 func (w_ WritingToolsCoordinatorAnimationParameters) CompletionHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("completionHandler"))
 	return rv
@@ -106,7 +106,7 @@ func (w_ WritingToolsCoordinatorAnimationParameters) CompletionHandler() unsafe.
 // A custom block to run when the system animations finish.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/completionhandler
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/completionHandler
 func (w_ WritingToolsCoordinatorAnimationParameters) SetCompletionHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCompletionHandler:"), value)
 }
@@ -115,45 +115,27 @@ func (w_ WritingToolsCoordinatorAnimationParameters) SetCompletionHandler(value 
 // The number of seconds the system waits before starting its animations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/delay
-func (w_ WritingToolsCoordinatorAnimationParameters) Delay() float64 {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/delay
+func (w_ WritingToolsCoordinatorAnimationParameters) Delay() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](w_.ID, objc.Sel("delay"))
 	return rv
 }
 
 
-// The number of seconds the system waits before starting its animations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/delay
-func (w_ WritingToolsCoordinatorAnimationParameters) SetDelay(value float64) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDelay:"), value)
-}
-
-
 // The number of seconds it takes the system animations to run.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/duration
-func (w_ WritingToolsCoordinatorAnimationParameters) Duration() float64 {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/duration
+func (w_ WritingToolsCoordinatorAnimationParameters) Duration() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](w_.ID, objc.Sel("duration"))
 	return rv
-}
-
-
-// The number of seconds it takes the system animations to run.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/duration
-func (w_ WritingToolsCoordinatorAnimationParameters) SetDuration(value float64) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDuration:"), value)
 }
 
 
 // A custom block that runs at the same time as the system animations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/progresshandler
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/progressHandler
 func (w_ WritingToolsCoordinatorAnimationParameters) ProgressHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("progressHandler"))
 	return rv
@@ -163,7 +145,7 @@ func (w_ WritingToolsCoordinatorAnimationParameters) ProgressHandler() unsafe.Po
 // A custom block that runs at the same time as the system animations.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/animationparameters/progresshandler
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters/progressHandler
 func (w_ WritingToolsCoordinatorAnimationParameters) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setProgressHandler:"), value)
 }

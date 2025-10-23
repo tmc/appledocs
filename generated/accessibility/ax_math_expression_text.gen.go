@@ -29,7 +29,9 @@ type _AXMathExpressionTextClass struct {
 // An interface definition for the [AXMathExpressionText] class.
 type IAXMathExpressionText interface {
 	IAXMathExpression
-	Content() string
+	// properties:
+	Content() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -82,7 +84,7 @@ func NewAXMathExpressionText() AXMathExpressionText {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionText/init(content:)
-func NewAXMathExpressionTextWithContent(content string) AXMathExpressionText {
+func NewAXMathExpressionTextWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionText {
 	instance := getAXMathExpressionTextClass().Alloc()
 	rv := objc.Send[AXMathExpressionText](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
 	rv.Autorelease()
@@ -93,7 +95,7 @@ func NewAXMathExpressionTextWithContent(content string) AXMathExpressionText {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionText/content
-func (a_ AXMathExpressionText) Content() string {
+func (a_ AXMathExpressionText) Content() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }

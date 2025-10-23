@@ -31,17 +31,19 @@ type _BAAssetPackManagerClass struct {
 // An interface definition for the [BAAssetPackManager] class.
 type IBAAssetPackManager interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	URLForPathError(path string, error_ unsafe.Pointer) foundation.URL
+	// methods:
+	URLForPathError(path string /* primitive/slice/pointer. */, error_ unsafe.Pointer) foundation.objc.IObject /* cross-framework: URL */
 	CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer)
-	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data
+	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string /* primitive/slice/pointer. */, assetPackIdentifier string /* primitive/slice/pointer. */, options DataReadingOptions /* not a class type */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */
 	EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer)
-	FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string, assetPackIdentifier string, error_ unsafe.Pointer) int
+	FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string /* primitive/slice/pointer. */, assetPackIdentifier string /* primitive/slice/pointer. */, error_ unsafe.Pointer) int /* primitive/slice/pointer. */
 	GetAllAssetPacksWithCompletionHandler(completionHandler unsafe.Pointer)
-	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
-	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
-	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
+	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
+	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer)
 }
 
 // A class that manages asset packs.
@@ -110,7 +112,7 @@ func (bc _BAAssetPackManagerClass) SharedManager() BAAssetPackManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
-func (b_ BAAssetPackManager) URLForPathError(path string, error_ unsafe.Pointer) foundation.URL {
+func (b_ BAAssetPackManager) URLForPathError(path string /* primitive/slice/pointer. */, error_ unsafe.Pointer) foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), objc.String(path), error_)
 	return rv
 }
@@ -129,8 +131,8 @@ func (b_ BAAssetPackManager) CheckForUpdatesWithCompletionHandler(completionHand
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:
-func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data {
-	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), objc.String(path), objc.String(assetPackIdentifier), options, error_)
+func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string /* primitive/slice/pointer. */, assetPackIdentifier string /* primitive/slice/pointer. */, options DataReadingOptions /* not a class type */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), objc.String(path), objc.String(assetPackIdentifier), options, error_)
 	return rv
 }
 
@@ -148,7 +150,7 @@ func (b_ BAAssetPackManager) EnsureLocalAvailabilityOfAssetPackCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:
-func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string, assetPackIdentifier string, error_ unsafe.Pointer) int {
+func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string /* primitive/slice/pointer. */, assetPackIdentifier string /* primitive/slice/pointer. */, error_ unsafe.Pointer) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:"), objc.String(path), objc.String(assetPackIdentifier), error_)
 	return rv
 }
@@ -167,7 +169,7 @@ func (b_ BAAssetPackManager) GetAllAssetPacksWithCompletionHandler(completionHan
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
+func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
 
@@ -176,7 +178,7 @@ func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getStatusOfAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
+func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getStatusOfAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
 
@@ -185,7 +187,7 @@ func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/removeAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
+func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("removeAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
 }
 

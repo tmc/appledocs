@@ -35,8 +35,8 @@ type IINPersonHandle interface {
 	SetLabel(value unsafe.Pointer)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
-	Value() string
-	SetValue(value string)
+	Value() string /* primitive/slice/pointer. */
+	SetValue(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -135,7 +135,7 @@ func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) Value() string {
+func (i_ INPersonHandle) Value() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("value"))
 	return rv
 }
@@ -145,7 +145,7 @@ func (i_ INPersonHandle) Value() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) SetValue(value string) {
+func (i_ INPersonHandle) SetValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
 }
 

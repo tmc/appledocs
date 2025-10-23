@@ -29,11 +29,13 @@ type _EKSourceClass struct {
 // An interface definition for the [EKSource] class.
 type IEKSource interface {
 	IEKObject
+	// properties:
 	Calendars() unsafe.Pointer
-	IsDelegate() bool
-	SourceIdentifier() string
+	IsDelegate() bool /* primitive/slice/pointer. */
+	SourceIdentifier() string /* primitive/slice/pointer. */
 	SourceType() EKSourceType
-	Title() string
+	Title() string /* primitive/slice/pointer. */
+	// methods:
 	CalendarsForEntityType(entityType EKEntityType) unsafe.Pointer
 }
 
@@ -114,7 +116,7 @@ func (e_ EKSource) Calendars() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/isDelegate
-func (e_ EKSource) IsDelegate() bool {
+func (e_ EKSource) IsDelegate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDelegate"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (e_ EKSource) IsDelegate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/sourceIdentifier
-func (e_ EKSource) SourceIdentifier() string {
+func (e_ EKSource) SourceIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("sourceIdentifier"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (e_ EKSource) SourceType() EKSourceType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKSource/title
-func (e_ EKSource) Title() string {
+func (e_ EKSource) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }

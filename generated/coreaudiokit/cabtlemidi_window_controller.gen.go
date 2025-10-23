@@ -30,6 +30,8 @@ type _BTLEMIDIWindowControllerClass struct {
 // An interface definition for the [BTLEMIDIWindowController] class.
 type IBTLEMIDIWindowController interface {
 	appkit.IWindowController
+	// properties:
+	// methods:
 }
 
 // A window controller that displays nearby Bluetooth-based MIDI peripherals.

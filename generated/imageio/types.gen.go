@@ -17,9 +17,6 @@ type CFDictionaryRef unsafe.Pointer
 // CFStringRef is a CoreGraphics opaque type.
 type CFStringRef unsafe.Pointer
 
-// CFTypeRef is a CoreGraphics opaque type.
-type CFTypeRef unsafe.Pointer
-
 // CFURLRef is a CoreGraphics opaque type.
 type CFURLRef unsafe.Pointer
 
@@ -28,6 +25,29 @@ type CGDataProviderRef unsafe.Pointer
 
 // CGImageRef is a CoreGraphics opaque type.
 type CGImageRef unsafe.Pointer
+
+
+
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type ArrayRef = int
+
+type DataRef = int
+
+type DictionaryRef = int
+
+type ErrorRef = int
+
+type ImageSourceAnimationBlock = int
+
+type MutableDataRef = int
+
+type StringRef = int
+
+type TypeID = int
+
+type URLRef = int
 
 
 

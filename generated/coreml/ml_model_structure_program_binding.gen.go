@@ -30,8 +30,10 @@ type _ModelStructureProgramBindingClass struct {
 // An interface definition for the [ModelStructureProgramBinding] class.
 type IModelStructureProgramBinding interface {
 	objectivec.IObject
-	Name() string
+	// properties:
+	Name() string /* primitive/slice/pointer. */
 	Value() IMLModelStructureProgramValue
+	// methods:
 }
 
 // A class representing a binding in the Program
@@ -91,7 +93,7 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-func (m_ ModelStructureProgramBinding) Name() string {
+func (m_ ModelStructureProgramBinding) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }

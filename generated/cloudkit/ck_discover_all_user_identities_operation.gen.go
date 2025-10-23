@@ -29,18 +29,20 @@ type _CKDiscoverAllUserIdentitiesOperationClass struct {
 // An interface definition for the [CKDiscoverAllUserIdentitiesOperation] class.
 type ICKDiscoverAllUserIdentitiesOperation interface {
 	ICKOperation
+	// properties:
 	DiscoverAllUserIdentitiesCompletionBlock() unsafe.Pointer
 	SetDiscoverAllUserIdentitiesCompletionBlock(value unsafe.Pointer)
 	DiscoverAllUserIdentitiesResultBlock() unsafe.Pointer
 	SetDiscoverAllUserIdentitiesResultBlock(value unsafe.Pointer)
 	UserIdentityDiscoveredBlock() unsafe.Pointer
 	SetUserIdentityDiscoveredBlock(value unsafe.Pointer)
-	ContactIdentifiers() string
-	SetContactIdentifiers(value string)
+	ContactIdentifiers() string /* primitive/slice/pointer. */
+	SetContactIdentifiers(value string /* primitive/slice/pointer. */)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation that uses the device’s contacts to search for discoverable iCloud users.
@@ -155,7 +157,7 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string {
+func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifiers"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (c_ CKDiscoverAllUserIdentitiesOperation) ContactIdentifiers() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers
-func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string) {
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetContactIdentifiers(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifiers:"), objc.String(value))
 }
 

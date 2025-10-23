@@ -30,8 +30,10 @@ type _ViewAnimationClass struct {
 // An interface definition for the [ViewAnimation] class.
 type IViewAnimation interface {
 	IAnimation
-	ViewAnimations() coreml.Key
-	SetViewAnimations(value coreml.IKey)
+	// properties:
+	ViewAnimations() coreml.objc.IObject /* cross-framework: Key */
+	SetViewAnimations(value coreml.objc.IObject /* cross-framework: Key */)
+	// methods:
 }
 
 // An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
@@ -93,7 +95,7 @@ func NewViewAnimation() ViewAnimation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) ViewAnimations() coreml.Key {
+func (v_ ViewAnimation) ViewAnimations() coreml.objc.IObject /* cross-framework: Key */ {
 	rv := objc.Send[coreml.Key](v_.ID, objc.Sel("viewAnimations"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (v_ ViewAnimation) ViewAnimations() coreml.Key {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) SetViewAnimations(value coreml.IKey) {
+func (v_ ViewAnimation) SetViewAnimations(value coreml.objc.IObject /* cross-framework: Key */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
 }
 

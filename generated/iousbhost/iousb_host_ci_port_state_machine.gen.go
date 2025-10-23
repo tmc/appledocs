@@ -31,23 +31,23 @@ type _USBHostCIPortStateMachineClass struct {
 type IUSBHostCIPortStateMachine interface {
 	objectivec.IObject
 	// properties:
-	Speed() unsafe.Pointer
-	Connected() bool
-	SetConnected(value bool)
-	ControllerInterface() IOUSBHostControllerInterface
-	SetControllerInterface(value IOUSBHostControllerInterface)
-	LinkState() unsafe.Pointer
-	SetLinkState(value unsafe.Pointer)
-	Overcurrent() bool
-	SetOvercurrent(value bool)
-	PortNumber() int
-	SetPortNumber(value int)
-	PortState() unsafe.Pointer
-	SetPortState(value unsafe.Pointer)
-	PortStatus() unsafe.Pointer
-	SetPortStatus(value unsafe.Pointer)
-	Powered() bool
-	SetPowered(value bool)
+	Speed() USBHostCIDeviceSpeed /* not a class type */
+	Connected() bool /* primitive/slice/pointer. */
+	SetConnected(value bool /* primitive/slice/pointer. */)
+	ControllerInterface() IOUSBHostControllerInterface /* already interface */
+	SetControllerInterface(value IOUSBHostControllerInterface /* already interface */)
+	LinkState() USBHostCILinkState /* not a class type */
+	SetLinkState(value USBHostCILinkState /* not a class type */)
+	Overcurrent() bool /* primitive/slice/pointer. */
+	SetOvercurrent(value bool /* primitive/slice/pointer. */)
+	PortNumber() int /* primitive/slice/pointer. */
+	SetPortNumber(value int /* primitive/slice/pointer. */)
+	PortState() USBHostCIPortState /* not a class type */
+	SetPortState(value USBHostCIPortState /* not a class type */)
+	PortStatus() USBHostCIPortStatus /* not a class type */
+	SetPortStatus(value USBHostCIPortStatus /* not a class type */)
+	Powered() bool /* primitive/slice/pointer. */
+	SetPowered(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -99,15 +99,15 @@ func NewUSBHostCIPortStateMachine() USBHostCIPortStateMachine {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/speed
-func (u_ USBHostCIPortStateMachine) Speed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("speed"))
+func (u_ USBHostCIPortStateMachine) Speed() USBHostCIDeviceSpeed /* not a class type */ {
+	rv := objc.Send[USBHostCIDeviceSpeed](u_.ID, objc.Sel("speed"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/connected
-func (u_ USBHostCIPortStateMachine) Connected() bool {
+func (u_ USBHostCIPortStateMachine) Connected() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("connected"))
 	return rv
 }
@@ -115,14 +115,14 @@ func (u_ USBHostCIPortStateMachine) Connected() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/connected
-func (u_ USBHostCIPortStateMachine) SetConnected(value bool) {
+func (u_ USBHostCIPortStateMachine) SetConnected(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnected:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
-func (u_ USBHostCIPortStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+func (u_ USBHostCIPortStateMachine) ControllerInterface() IOUSBHostControllerInterface /* already interface */ {
 	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
@@ -130,29 +130,29 @@ func (u_ USBHostCIPortStateMachine) ControllerInterface() IOUSBHostControllerInt
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
-func (u_ USBHostCIPortStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
+func (u_ USBHostCIPortStateMachine) SetControllerInterface(value IOUSBHostControllerInterface /* already interface */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/linkstate
-func (u_ USBHostCIPortStateMachine) LinkState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("linkState"))
+func (u_ USBHostCIPortStateMachine) LinkState() USBHostCILinkState /* not a class type */ {
+	rv := objc.Send[USBHostCILinkState](u_.ID, objc.Sel("linkState"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/linkstate
-func (u_ USBHostCIPortStateMachine) SetLinkState(value unsafe.Pointer) {
+func (u_ USBHostCIPortStateMachine) SetLinkState(value USBHostCILinkState /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setLinkState:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/overcurrent
-func (u_ USBHostCIPortStateMachine) Overcurrent() bool {
+func (u_ USBHostCIPortStateMachine) Overcurrent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("overcurrent"))
 	return rv
 }
@@ -160,14 +160,14 @@ func (u_ USBHostCIPortStateMachine) Overcurrent() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/overcurrent
-func (u_ USBHostCIPortStateMachine) SetOvercurrent(value bool) {
+func (u_ USBHostCIPortStateMachine) SetOvercurrent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setOvercurrent:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portnumber
-func (u_ USBHostCIPortStateMachine) PortNumber() int {
+func (u_ USBHostCIPortStateMachine) PortNumber() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](u_.ID, objc.Sel("portNumber"))
 	return rv
 }
@@ -175,44 +175,44 @@ func (u_ USBHostCIPortStateMachine) PortNumber() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portnumber
-func (u_ USBHostCIPortStateMachine) SetPortNumber(value int) {
+func (u_ USBHostCIPortStateMachine) SetPortNumber(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPortNumber:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstate
-func (u_ USBHostCIPortStateMachine) PortState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("portState"))
+func (u_ USBHostCIPortStateMachine) PortState() USBHostCIPortState /* not a class type */ {
+	rv := objc.Send[USBHostCIPortState](u_.ID, objc.Sel("portState"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstate
-func (u_ USBHostCIPortStateMachine) SetPortState(value unsafe.Pointer) {
+func (u_ USBHostCIPortStateMachine) SetPortState(value USBHostCIPortState /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPortState:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstatus
-func (u_ USBHostCIPortStateMachine) PortStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("portStatus"))
+func (u_ USBHostCIPortStateMachine) PortStatus() USBHostCIPortStatus /* not a class type */ {
+	rv := objc.Send[USBHostCIPortStatus](u_.ID, objc.Sel("portStatus"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstatus
-func (u_ USBHostCIPortStateMachine) SetPortStatus(value unsafe.Pointer) {
+func (u_ USBHostCIPortStateMachine) SetPortStatus(value USBHostCIPortStatus /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPortStatus:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
-func (u_ USBHostCIPortStateMachine) Powered() bool {
+func (u_ USBHostCIPortStateMachine) Powered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("powered"))
 	return rv
 }
@@ -220,7 +220,7 @@ func (u_ USBHostCIPortStateMachine) Powered() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
-func (u_ USBHostCIPortStateMachine) SetPowered(value bool) {
+func (u_ USBHostCIPortStateMachine) SetPowered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPowered:"), value)
 }
 

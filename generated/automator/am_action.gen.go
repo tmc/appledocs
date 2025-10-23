@@ -30,20 +30,22 @@ type _AMActionClass struct {
 // An interface definition for the [AMAction] class.
 type IAMAction interface {
 	objectivec.IObject
-	IgnoresInput() bool
-	SetIgnoresInput(value bool)
-	IsStopped() bool
-	SetIsStopped(value bool)
-	Name() string
-	SetName(value string)
+	// properties:
+	IgnoresInput() bool /* primitive/slice/pointer. */
+	SetIgnoresInput(value bool /* primitive/slice/pointer. */)
+	IsStopped() bool /* primitive/slice/pointer. */
+	SetIsStopped(value bool /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	Output() unsafe.Pointer
 	SetOutput(value unsafe.Pointer)
-	ProgressValue() float64
-	SetProgressValue(value float64)
-	SelectedInputType() string
-	SetSelectedInputType(value string)
-	SelectedOutputType() string
-	SetSelectedOutputType(value string)
+	ProgressValue() float64 /* primitive/slice/pointer. */
+	SetProgressValue(value float64 /* primitive/slice/pointer. */)
+	SelectedInputType() string /* primitive/slice/pointer. */
+	SetSelectedInputType(value string /* primitive/slice/pointer. */)
+	SelectedOutputType() string /* primitive/slice/pointer. */
+	SetSelectedOutputType(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An abstract class that defines the interface and general characteristics of Automator actions.
@@ -103,7 +105,7 @@ func NewAMAction() AMAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/ignoresinput
-func (a_ AMAction) IgnoresInput() bool {
+func (a_ AMAction) IgnoresInput() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("ignoresInput"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (a_ AMAction) IgnoresInput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/ignoresinput
-func (a_ AMAction) SetIgnoresInput(value bool) {
+func (a_ AMAction) SetIgnoresInput(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIgnoresInput:"), value)
 }
 
@@ -122,7 +124,7 @@ func (a_ AMAction) SetIgnoresInput(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
-func (a_ AMAction) IsStopped() bool {
+func (a_ AMAction) IsStopped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isStopped"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (a_ AMAction) IsStopped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/isstopped
-func (a_ AMAction) SetIsStopped(value bool) {
+func (a_ AMAction) SetIsStopped(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsStopped:"), value)
 }
 
@@ -141,7 +143,7 @@ func (a_ AMAction) SetIsStopped(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/name
-func (a_ AMAction) Name() string {
+func (a_ AMAction) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (a_ AMAction) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/name
-func (a_ AMAction) SetName(value string) {
+func (a_ AMAction) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -179,7 +181,7 @@ func (a_ AMAction) SetOutput(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/progressvalue
-func (a_ AMAction) ProgressValue() float64 {
+func (a_ AMAction) ProgressValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("progressValue"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (a_ AMAction) ProgressValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/progressvalue
-func (a_ AMAction) SetProgressValue(value float64) {
+func (a_ AMAction) SetProgressValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressValue:"), value)
 }
 
@@ -198,7 +200,7 @@ func (a_ AMAction) SetProgressValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/selectedinputtype
-func (a_ AMAction) SelectedInputType() string {
+func (a_ AMAction) SelectedInputType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("selectedInputType"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (a_ AMAction) SelectedInputType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/selectedinputtype
-func (a_ AMAction) SetSelectedInputType(value string) {
+func (a_ AMAction) SetSelectedInputType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), objc.String(value))
 }
 
@@ -217,7 +219,7 @@ func (a_ AMAction) SetSelectedInputType(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/selectedoutputtype
-func (a_ AMAction) SelectedOutputType() string {
+func (a_ AMAction) SelectedOutputType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("selectedOutputType"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (a_ AMAction) SelectedOutputType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/amaction/selectedoutputtype
-func (a_ AMAction) SetSelectedOutputType(value string) {
+func (a_ AMAction) SetSelectedOutputType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
 }
 

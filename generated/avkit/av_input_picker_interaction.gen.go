@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +30,15 @@ type _InputPickerInteractionClass struct {
 // An interface definition for the [InputPickerInteraction] class.
 type IInputPickerInteraction interface {
 	objectivec.IObject
-	AudioSession() avfaudio.AudioSession
-	SetAudioSession(value avfaudio.AudioSession)
+	// properties:
+	AudioSession() objc.IObject /* cross-framework: AudioSession */
+	SetAudioSession(value objc.IObject /* cross-framework: AudioSession */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Presented() bool
-	IsPresented() bool
-	SetIsPresented(value bool)
+	Presented() bool /* primitive/slice/pointer. */
+	IsPresented() bool /* primitive/slice/pointer. */
+	SetIsPresented(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Dismiss()
 	Present()
 }
@@ -97,7 +98,7 @@ func NewInputPickerInteraction() InputPickerInteraction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/init(audioSession:)
-func NewInputPickerInteractionWithAudioSession(audioSession avfaudio.AudioSession) InputPickerInteraction {
+func NewInputPickerInteractionWithAudioSession(audioSession objc.IObject /* cross-framework AudioSession */) InputPickerInteraction {
 	instance := getInputPickerInteractionClass().Alloc()
 	rv := objc.Send[InputPickerInteraction](instance.ID, objc.Sel("initWithAudioSession:"), audioSession)
 	rv.Autorelease()
@@ -128,8 +129,8 @@ func (i_ InputPickerInteraction) Present() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) AudioSession() avfaudio.AudioSession {
-	rv := objc.Send[avfaudio.AudioSession](i_.ID, objc.Sel("audioSession"))
+func (i_ InputPickerInteraction) AudioSession() objc.IObject /* cross-framework: AudioSession */ {
+	rv := objc.Send[AudioSession](i_.ID, objc.Sel("audioSession"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (i_ InputPickerInteraction) AudioSession() avfaudio.AudioSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) SetAudioSession(value avfaudio.AudioSession) {
+func (i_ InputPickerInteraction) SetAudioSession(value objc.IObject /* cross-framework: AudioSession */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSession:"), value)
 }
 
@@ -166,7 +167,7 @@ func (i_ InputPickerInteraction) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/isPresented
-func (i_ InputPickerInteraction) Presented() bool {
+func (i_ InputPickerInteraction) Presented() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("presented"))
 	return rv
 }
@@ -176,7 +177,7 @@ func (i_ InputPickerInteraction) Presented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) IsPresented() bool {
+func (i_ InputPickerInteraction) IsPresented() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isPresented"))
 	return rv
 }
@@ -186,7 +187,7 @@ func (i_ InputPickerInteraction) IsPresented() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avinputpickerinteraction/ispresented
-func (i_ InputPickerInteraction) SetIsPresented(value bool) {
+func (i_ InputPickerInteraction) SetIsPresented(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPresented:"), value)
 }
 

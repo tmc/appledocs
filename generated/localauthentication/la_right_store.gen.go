@@ -35,10 +35,10 @@ type IRightStore interface {
 	// methods:
 	RemoveAllRightsWithCompletion(handler unsafe.Pointer)
 	RemoveRightCompletion(right ILAPersistedRight, handler unsafe.Pointer)
-	RemoveRightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
-	RightForIdentifierCompletion(identifier string, handler unsafe.Pointer)
-	SaveRightIdentifierCompletion(right ILARight, identifier string, handler unsafe.Pointer)
-	SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.NSData, handler unsafe.Pointer)
+	RemoveRightForIdentifierCompletion(identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer)
+	RightForIdentifierCompletion(identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer)
+	SaveRightIdentifierCompletion(right ILARight, identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer)
+	SaveRightIdentifierSecretCompletion(right ILARight, identifier string /* primitive/slice/pointer. */, secret foundation.objc.IObject /* cross-framework NSData */, handler unsafe.Pointer)
 }
 
 // A container for data protected by a right.
@@ -125,7 +125,7 @@ func (r_ RightStore) RemoveRightCompletion(right ILAPersistedRight, handler unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)
-func (r_ RightStore) RemoveRightForIdentifierCompletion(identifier string, handler unsafe.Pointer) {
+func (r_ RightStore) RemoveRightForIdentifierCompletion(identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeRightForIdentifier:completion:"), objc.String(identifier), handler)
 }
 
@@ -134,7 +134,7 @@ func (r_ RightStore) RemoveRightForIdentifierCompletion(identifier string, handl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)
-func (r_ RightStore) RightForIdentifierCompletion(identifier string, handler unsafe.Pointer) {
+func (r_ RightStore) RightForIdentifierCompletion(identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("rightForIdentifier:completion:"), objc.String(identifier), handler)
 }
 
@@ -143,7 +143,7 @@ func (r_ RightStore) RightForIdentifierCompletion(identifier string, handler uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)
-func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier string, handler unsafe.Pointer) {
+func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier string /* primitive/slice/pointer. */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:completion:"), right, objc.String(identifier), handler)
 }
 
@@ -152,7 +152,7 @@ func (r_ RightStore) SaveRightIdentifierCompletion(right ILARight, identifier st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)
-func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier string, secret foundation.NSData, handler unsafe.Pointer) {
+func (r_ RightStore) SaveRightIdentifierSecretCompletion(right ILARight, identifier string /* primitive/slice/pointer. */, secret foundation.objc.IObject /* cross-framework NSData */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("saveRight:identifier:secret:completion:"), right, objc.String(identifier), secret, handler)
 }
 

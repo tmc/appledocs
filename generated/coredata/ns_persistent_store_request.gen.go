@@ -30,9 +30,11 @@ type _PersistentStoreRequestClass struct {
 // An interface definition for the [PersistentStoreRequest] class.
 type IPersistentStoreRequest interface {
 	objectivec.IObject
-	AffectedStores() []PersistentStore
-	SetAffectedStores(value []PersistentStore)
-	RequestType() NSPersistentStoreRequestType
+	// properties:
+	AffectedStores() []PersistentStore /* primitive/slice/pointer. */
+	SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */)
+	RequestType() PersistentStoreRequestType
+	// methods:
 }
 
 // Criteria used to retrieve data from or save data to a persistent store.
@@ -90,7 +92,7 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
+func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (p_ PersistentStoreRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/affectedStores
-func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
+func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -119,8 +121,8 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
-func (p_ PersistentStoreRequest) RequestType() NSPersistentStoreRequestType {
-	rv := objc.Send[NSPersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
+func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
+	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv
 }
 

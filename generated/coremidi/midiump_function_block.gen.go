@@ -30,17 +30,19 @@ type _MIDIUMPFunctionBlockClass struct {
 // An interface definition for the [MIDIUMPFunctionBlock] class.
 type IMIDIUMPFunctionBlock interface {
 	objectivec.IObject
+	// properties:
 	Direction() MIDIUMPFunctionBlockDirection
-	FirstGroup() MIDIUMPGroupNumber
-	FunctionBlockID() MIDIUMPFunctionBlockID
-	IsEnabled() bool
+	FirstGroup() MIDIUMPGroupNumber /* typedef */
+	FunctionBlockID() MIDIUMPFunctionBlockID /* typedef */
+	IsEnabled() bool /* primitive/slice/pointer. */
 	MaxSysEx8Streams() unsafe.Pointer
 	MIDI1Info() MIDIUMPFunctionBlockMIDI1Info
 	MidiCIDevice() IMIDICIDevice
-	Name() string
-	TotalGroupsSpanned() MIDIUInteger7
+	Name() string /* primitive/slice/pointer. */
+	TotalGroupsSpanned() MIDIUInteger7 /* typedef */
 	UIHint() MIDIUMPFunctionBlockUIHint
 	UMPEndpoint() IMIDIUMPEndpoint
+	// methods:
 }
 
 
@@ -99,7 +101,7 @@ func (m_ MIDIUMPFunctionBlock) Direction() MIDIUMPFunctionBlockDirection {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/firstGroup
-func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber {
+func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber /* typedef */ {
 	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("firstGroup"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/functionBlockID
-func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID {
+func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID /* typedef */ {
 	rv := objc.Send[MIDIUMPFunctionBlockID](m_.ID, objc.Sel("functionBlockID"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/isEnabled
-func (m_ MIDIUMPFunctionBlock) IsEnabled() bool {
+func (m_ MIDIUMPFunctionBlock) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (m_ MIDIUMPFunctionBlock) MidiCIDevice() IMIDICIDevice {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-func (m_ MIDIUMPFunctionBlock) Name() string {
+func (m_ MIDIUMPFunctionBlock) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
@@ -155,7 +157,7 @@ func (m_ MIDIUMPFunctionBlock) Name() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/totalGroupsSpanned
-func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() MIDIUInteger7 {
+func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() MIDIUInteger7 /* typedef */ {
 	rv := objc.Send[MIDIUInteger7](m_.ID, objc.Sel("totalGroupsSpanned"))
 	return rv
 }

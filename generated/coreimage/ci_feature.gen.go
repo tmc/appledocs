@@ -31,12 +31,14 @@ type _FeatureClass struct {
 // An interface definition for the [Feature] class.
 type IFeature interface {
 	objectivec.IObject
+	// properties:
 	Bounds() coregraphics.CGRect
-	Type() string
-	CIFeatureTypeFace() string
-	CIFeatureTypeQRCode() string
-	CIFeatureTypeRectangle() string
-	CIFeatureTypeText() string
+	Type() string /* primitive/slice/pointer. */
+	CIFeatureTypeFace() string /* primitive/slice/pointer. */
+	CIFeatureTypeQRCode() string /* primitive/slice/pointer. */
+	CIFeatureTypeRectangle() string /* primitive/slice/pointer. */
+	CIFeatureTypeText() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // The abstract superclass for objects representing notable features detected in an image.
@@ -106,7 +108,7 @@ func (f_ Feature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-func (f_ Feature) Type() string {
+func (f_ Feature) Type() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("type"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (f_ Feature) Type() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
-func (f_ Feature) CIFeatureTypeFace() string {
+func (f_ Feature) CIFeatureTypeFace() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (f_ Feature) CIFeatureTypeFace() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
-func (f_ Feature) CIFeatureTypeQRCode() string {
+func (f_ Feature) CIFeatureTypeQRCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (f_ Feature) CIFeatureTypeQRCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
-func (f_ Feature) CIFeatureTypeRectangle() string {
+func (f_ Feature) CIFeatureTypeRectangle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (f_ Feature) CIFeatureTypeRectangle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
-func (f_ Feature) CIFeatureTypeText() string {
+func (f_ Feature) CIFeatureTypeText() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv
 }

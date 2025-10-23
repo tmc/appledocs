@@ -203,6 +203,27 @@ func IsSymbolURL(urlPath string) bool {
 	return false
 }
 
+// IsObjectiveCDocument determines if a document contains Objective-C content
+// by checking the metadata.externalID field for the c:objc or c:@ prefix
+func IsObjectiveCDocument(data []byte) bool {
+	var doc struct {
+		Metadata struct {
+			ExternalID string `json:"externalID"`
+		} `json:"metadata"`
+	}
+	if err := json.Unmarshal(data, &doc); err != nil {
+		// If we can't parse, assume it might be ObjC (e.g., collection pages)
+		return true
+	}
+	// If no externalID, assume it's a collection/article page and include it
+	if doc.Metadata.ExternalID == "" {
+		return true
+	}
+	// Objective-C symbols have externalID starting with "c:objc" or "c:@"
+	return strings.HasPrefix(doc.Metadata.ExternalID, "c:objc") ||
+	       strings.HasPrefix(doc.Metadata.ExternalID, "c:@")
+}
+
 // ShouldExcludePath checks if a URL path should be excluded based on user-defined exclude patterns
 func ShouldExcludePath(pathToCheck, excludePaths string, verbose bool) bool {
 	if excludePaths == "" {

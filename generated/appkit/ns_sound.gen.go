@@ -30,22 +30,24 @@ type _SoundClass struct {
 // An interface definition for the [Sound] class.
 type ISound interface {
 	objectivec.IObject
+	// properties:
 	CurrentTime() unsafe.Pointer
 	SetCurrentTime(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Delegate() SoundDelegate /* not a class type */
+	SetDelegate(value SoundDelegate /* not a class type */)
 	Duration() unsafe.Pointer
 	SetDuration(value unsafe.Pointer)
-	IsPlaying() bool
-	SetIsPlaying(value bool)
-	Loops() bool
-	SetLoops(value bool)
+	IsPlaying() bool /* primitive/slice/pointer. */
+	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	Loops() bool /* primitive/slice/pointer. */
+	SetLoops(value bool /* primitive/slice/pointer. */)
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	PlaybackDeviceIdentifier() unsafe.Pointer
 	SetPlaybackDeviceIdentifier(value unsafe.Pointer)
-	Volume() float32
-	SetVolume(value float32)
+	Volume() float32 /* primitive/slice/pointer. */
+	SetVolume(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A simple interface for loading and playing audio files.
@@ -124,8 +126,8 @@ func (s_ Sound) SetCurrentTime(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/delegate
-func (s_ Sound) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+func (s_ Sound) Delegate() SoundDelegate /* not a class type */ {
+	rv := objc.Send[SoundDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -134,7 +136,7 @@ func (s_ Sound) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/delegate
-func (s_ Sound) SetDelegate(value unsafe.Pointer) {
+func (s_ Sound) SetDelegate(value SoundDelegate /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -162,7 +164,7 @@ func (s_ Sound) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
-func (s_ Sound) IsPlaying() bool {
+func (s_ Sound) IsPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -172,7 +174,7 @@ func (s_ Sound) IsPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/isplaying
-func (s_ Sound) SetIsPlaying(value bool) {
+func (s_ Sound) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
@@ -181,7 +183,7 @@ func (s_ Sound) SetIsPlaying(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
-func (s_ Sound) Loops() bool {
+func (s_ Sound) Loops() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("loops"))
 	return rv
 }
@@ -191,7 +193,7 @@ func (s_ Sound) Loops() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/loops
-func (s_ Sound) SetLoops(value bool) {
+func (s_ Sound) SetLoops(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLoops:"), value)
 }
 
@@ -238,7 +240,7 @@ func (s_ Sound) SetPlaybackDeviceIdentifier(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
-func (s_ Sound) Volume() float32 {
+func (s_ Sound) Volume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -248,7 +250,7 @@ func (s_ Sound) Volume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssound/volume
-func (s_ Sound) SetVolume(value float32) {
+func (s_ Sound) SetVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 

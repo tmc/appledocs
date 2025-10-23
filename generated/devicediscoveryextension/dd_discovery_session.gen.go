@@ -30,6 +30,8 @@ type _DDDiscoverySessionClass struct {
 // An interface definition for the [DDDiscoverySession] class.
 type IDDDiscoverySession interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	ReportEvent(inEvent IDDDeviceEvent)
 }
 

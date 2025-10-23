@@ -33,8 +33,8 @@ type IHKCorrelationQuery interface {
 	// properties:
 	CorrelationType() IHKCorrelationType
 	SetCorrelationType(value IHKCorrelationType)
-	SamplePredicates() foundation.Predicate
-	SetSamplePredicates(value foundation.Predicate)
+	SamplePredicates() objc.IObject /* cross-framework: Predicate */
+	SetSamplePredicates(value objc.IObject /* cross-framework: Predicate */)
 	// methods:
 }
 
@@ -93,6 +93,19 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 
 
 
+// Instantiates and returns a correlation query.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)
+func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType IHKCorrelationType, predicate objc.IObject /* cross-framework Predicate */, samplePredicates foundation.IDictionary /* already interface */, completion unsafe.Pointer) HKCorrelationQuery {
+	instance := getHKCorrelationQueryClass().Alloc()
+	rv := objc.Send[HKCorrelationQuery](instance.ID, objc.Sel("initWithType:predicate:samplePredicates:completion:"), correlationType, predicate, samplePredicates, completion)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The type of correlation to search for.
 //
 // [Full Topic]
@@ -116,8 +129,8 @@ func (h_ HKCorrelationQuery) SetCorrelationType(value IHKCorrelationType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/samplepredicates
-func (h_ HKCorrelationQuery) SamplePredicates() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("samplePredicates"))
+func (h_ HKCorrelationQuery) SamplePredicates() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](h_.ID, objc.Sel("samplePredicates"))
 	return rv
 }
 
@@ -126,9 +139,8 @@ func (h_ HKCorrelationQuery) SamplePredicates() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcorrelationquery/samplepredicates
-func (h_ HKCorrelationQuery) SetSamplePredicates(value foundation.Predicate) {
+func (h_ HKCorrelationQuery) SetSamplePredicates(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSamplePredicates:"), value)
 }
-
 
 

@@ -30,8 +30,10 @@ type _EKVirtualConferenceRoomTypeDescriptorClass struct {
 // An interface definition for the [EKVirtualConferenceRoomTypeDescriptor] class.
 type IEKVirtualConferenceRoomTypeDescriptor interface {
 	objectivec.IObject
-	Identifier() EKVirtualConferenceRoomTypeIdentifier
-	Title() string
+	// properties:
+	Identifier() EKVirtualConferenceRoomTypeIdentifier /* typedef */
+	Title() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Details about a room where virtual conferences take place.
@@ -91,7 +93,7 @@ func NewEKVirtualConferenceRoomTypeDescriptor() EKVirtualConferenceRoomTypeDescr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/init(title:identifier:)
-func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, identifier EKVirtualConferenceRoomTypeIdentifier) EKVirtualConferenceRoomTypeDescriptor {
+func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string /* primitive/slice/pointer. */, identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */) EKVirtualConferenceRoomTypeDescriptor {
 	instance := getEKVirtualConferenceRoomTypeDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceRoomTypeDescriptor](instance.ID, objc.Sel("initWithTitle:identifier:"), objc.String(title), identifier)
 	rv.Autorelease()
@@ -104,7 +106,7 @@ func NewEKVirtualConferenceRoomTypeDescriptorWithTitleIdentifier(title string, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/identifier
-func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConferenceRoomTypeIdentifier {
+func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConferenceRoomTypeIdentifier /* typedef */ {
 	rv := objc.Send[EKVirtualConferenceRoomTypeIdentifier](e_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (e_ EKVirtualConferenceRoomTypeDescriptor) Identifier() EKVirtualConference
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceRoomTypeDescriptor/title
-func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string {
+func (e_ EKVirtualConferenceRoomTypeDescriptor) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }

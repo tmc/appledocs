@@ -30,18 +30,20 @@ type _AudioTimeClass struct {
 // An interface definition for the [AudioTime] class.
 type IAudioTime interface {
 	objectivec.IObject
+	// properties:
 	AudioTimeStamp() unsafe.Pointer
 	SetAudioTimeStamp(value unsafe.Pointer)
-	HostTime() uint64
-	SetHostTime(value uint64)
-	IsHostTimeValid() bool
-	SetIsHostTimeValid(value bool)
-	IsSampleTimeValid() bool
-	SetIsSampleTimeValid(value bool)
-	SampleRate() float64
-	SetSampleRate(value float64)
-	SampleTime() unsafe.Pointer
-	SetSampleTime(value unsafe.Pointer)
+	HostTime() uint64 /* primitive/slice/pointer. */
+	SetHostTime(value uint64 /* primitive/slice/pointer. */)
+	IsHostTimeValid() bool /* primitive/slice/pointer. */
+	SetIsHostTimeValid(value bool /* primitive/slice/pointer. */)
+	IsSampleTimeValid() bool /* primitive/slice/pointer. */
+	SetIsSampleTimeValid(value bool /* primitive/slice/pointer. */)
+	SampleRate() float64 /* primitive/slice/pointer. */
+	SetSampleRate(value float64 /* primitive/slice/pointer. */)
+	SampleTime() AudioFramePosition /* not a class type */
+	SetSampleTime(value AudioFramePosition /* not a class type */)
+	// methods:
 }
 
 // An object you use to represent a moment in time.
@@ -120,7 +122,7 @@ func (a_ AudioTime) SetAudioTimeStamp(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/hosttime
-func (a_ AudioTime) HostTime() uint64 {
+func (a_ AudioTime) HostTime() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](a_.ID, objc.Sel("hostTime"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (a_ AudioTime) HostTime() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/hosttime
-func (a_ AudioTime) SetHostTime(value uint64) {
+func (a_ AudioTime) SetHostTime(value uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHostTime:"), value)
 }
 
@@ -139,7 +141,7 @@ func (a_ AudioTime) SetHostTime(value uint64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
-func (a_ AudioTime) IsHostTimeValid() bool {
+func (a_ AudioTime) IsHostTimeValid() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isHostTimeValid"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (a_ AudioTime) IsHostTimeValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/ishosttimevalid
-func (a_ AudioTime) SetIsHostTimeValid(value bool) {
+func (a_ AudioTime) SetIsHostTimeValid(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsHostTimeValid:"), value)
 }
 
@@ -158,7 +160,7 @@ func (a_ AudioTime) SetIsHostTimeValid(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
-func (a_ AudioTime) IsSampleTimeValid() bool {
+func (a_ AudioTime) IsSampleTimeValid() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSampleTimeValid"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (a_ AudioTime) IsSampleTimeValid() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/issampletimevalid
-func (a_ AudioTime) SetIsSampleTimeValid(value bool) {
+func (a_ AudioTime) SetIsSampleTimeValid(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSampleTimeValid:"), value)
 }
 
@@ -177,7 +179,7 @@ func (a_ AudioTime) SetIsSampleTimeValid(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/samplerate
-func (a_ AudioTime) SampleRate() float64 {
+func (a_ AudioTime) SampleRate() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("sampleRate"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (a_ AudioTime) SampleRate() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/samplerate
-func (a_ AudioTime) SetSampleRate(value float64) {
+func (a_ AudioTime) SetSampleRate(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRate:"), value)
 }
 
@@ -196,8 +198,8 @@ func (a_ AudioTime) SetSampleRate(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/sampletime
-func (a_ AudioTime) SampleTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sampleTime"))
+func (a_ AudioTime) SampleTime() AudioFramePosition /* not a class type */ {
+	rv := objc.Send[AudioFramePosition](a_.ID, objc.Sel("sampleTime"))
 	return rv
 }
 
@@ -206,7 +208,7 @@ func (a_ AudioTime) SampleTime() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiotime/sampletime
-func (a_ AudioTime) SetSampleTime(value unsafe.Pointer) {
+func (a_ AudioTime) SetSampleTime(value AudioFramePosition /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleTime:"), value)
 }
 

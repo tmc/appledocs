@@ -30,8 +30,10 @@ type _ImageSymbolConfigurationClass struct {
 // An interface definition for the [ImageSymbolConfiguration] class.
 type IImageSymbolConfiguration interface {
 	objectivec.IObject
+	// properties:
 	SymbolConfiguration() IImageSymbolConfiguration
 	SetSymbolConfiguration(value IImageSymbolConfiguration)
+	// methods:
 	ConfigurationByApplyingConfiguration(configuration IImageSymbolConfiguration) unsafe.Pointer
 }
 
@@ -92,7 +94,7 @@ func NewImageSymbolConfiguration() ImageSymbolConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
-func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64, weight unsafe.Pointer) ImageSymbolConfiguration {
+func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) ImageSymbolConfiguration {
 	rv := objc.Send[ImageSymbolConfiguration](objc.ID(getImageSymbolConfigurationClass().class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
 	return rv
 }
@@ -103,7 +105,7 @@ func NewImageSymbolConfigurationWithPointSizeWeight(pointSize float64, weight un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)
-func (ic _ImageSymbolConfigurationClass) ConfigurationWithPointSizeWeight(pointSize float64, weight unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageSymbolConfigurationClass) ConfigurationWithPointSizeWeight(pointSize float64 /* primitive/slice/pointer. */, weight FontWeight /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("configurationWithPointSize:weight:"), pointSize, weight)
 	return rv
 }
@@ -113,6 +115,16 @@ func (ic _ImageSymbolConfigurationClass) ConfigurationWithPointSizeWeight(pointS
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringHierarchical()
 func (ic _ImageSymbolConfigurationClass) ConfigurationPreferringHierarchical() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("configurationPreferringHierarchical"))
+	return rv
+}
+
+
+// Creates a configuration that specifies that the symbol should prefer its multicolor variant if one exists.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMulticolor()
+func (ic _ImageSymbolConfigurationClass) ConfigurationPreferringMulticolor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("configurationPreferringMulticolor"))
 	return rv
 }
 

@@ -31,11 +31,13 @@ type _MIDICIDiscoveredNodeClass struct {
 // An interface definition for the [MIDICIDiscoveredNode] class.
 type IMIDICIDiscoveredNode interface {
 	objectivec.IObject
-	Destination() MIDIEntityRef
-	DeviceInfo() MIDICIDeviceInfo
-	MaximumSysExSize() foundation.Number
-	SupportsProfiles() bool
-	SupportsProperties() bool
+	// properties:
+	Destination() MIDIEntityRef /* typedef */
+	DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */
+	MaximumSysExSize() foundation.objc.IObject /* cross-framework: Number */
+	SupportsProfiles() bool /* primitive/slice/pointer. */
+	SupportsProperties() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.
@@ -93,7 +95,7 @@ func NewMIDICIDiscoveredNode() MIDICIDiscoveredNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/destination
-func (m_ MIDICIDiscoveredNode) Destination() MIDIEntityRef {
+func (m_ MIDICIDiscoveredNode) Destination() MIDIEntityRef /* typedef */ {
 	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("destination"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (m_ MIDICIDiscoveredNode) Destination() MIDIEntityRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/deviceInfo
-func (m_ MIDICIDiscoveredNode) DeviceInfo() MIDICIDeviceInfo {
+func (m_ MIDICIDiscoveredNode) DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */ {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (m_ MIDICIDiscoveredNode) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/maximumSysExSize
-func (m_ MIDICIDiscoveredNode) MaximumSysExSize() foundation.Number {
+func (m_ MIDICIDiscoveredNode) MaximumSysExSize() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maximumSysExSize"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (m_ MIDICIDiscoveredNode) MaximumSysExSize() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/supportsProfiles
-func (m_ MIDICIDiscoveredNode) SupportsProfiles() bool {
+func (m_ MIDICIDiscoveredNode) SupportsProfiles() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfiles"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (m_ MIDICIDiscoveredNode) SupportsProfiles() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/supportsProperties
-func (m_ MIDICIDiscoveredNode) SupportsProperties() bool {
+func (m_ MIDICIDiscoveredNode) SupportsProperties() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProperties"))
 	return rv
 }

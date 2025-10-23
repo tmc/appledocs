@@ -29,11 +29,13 @@ type _AccelerometerDataClass struct {
 // An interface definition for the [AccelerometerData] class.
 type IAccelerometerData interface {
 	ILogItem
-	Acceleration() unsafe.Pointer
+	// properties:
+	Acceleration() Acceleration /* not a class type */
 	Timestamp() unsafe.Pointer
 	SetTimestamp(value unsafe.Pointer)
 	AccelerometerData() ICMAccelerometerData
 	SetAccelerometerData(value ICMAccelerometerData)
+	// methods:
 }
 
 // A data sample from the device’s three accelerometers.
@@ -95,8 +97,8 @@ func NewAccelerometerData() AccelerometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAccelerometerData/acceleration
-func (a_ AccelerometerData) Acceleration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("acceleration"))
+func (a_ AccelerometerData) Acceleration() Acceleration /* not a class type */ {
+	rv := objc.Send[Acceleration](a_.ID, objc.Sel("acceleration"))
 	return rv
 }
 

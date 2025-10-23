@@ -30,9 +30,11 @@ type _OpenGLPixelFormatClass struct {
 // An interface definition for the [OpenGLPixelFormat] class.
 type IOpenGLPixelFormat interface {
 	objectivec.IObject
-	CGLPixelFormatObj() unsafe.Pointer
+	// properties:
+	CGLPixelFormatObj() LPixelFormatObj /* not a class type */
 	NumberOfVirtualScreens() unsafe.Pointer
 	SetNumberOfVirtualScreens(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that specifies the types of buffers and other attributes of the OpenGL context.
@@ -92,8 +94,8 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
-func (o_ OpenGLPixelFormat) CGLPixelFormatObj() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("CGLPixelFormatObj"))
+func (o_ OpenGLPixelFormat) CGLPixelFormatObj() LPixelFormatObj /* not a class type */ {
+	rv := objc.Send[LPixelFormatObj](o_.ID, objc.Sel("CGLPixelFormatObj"))
 	return rv
 }
 

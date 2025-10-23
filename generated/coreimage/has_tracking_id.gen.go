@@ -30,6 +30,8 @@ type _hasTrackingIDClass struct {
 // An interface definition for the [hasTrackingID] class.
 type IhasTrackingID interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

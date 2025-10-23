@@ -30,14 +30,16 @@ type _MotionActivityClass struct {
 // An interface definition for the [MotionActivity] class.
 type IMotionActivity interface {
 	ILogItem
-	Automotive() bool
-	Confidence() CMMotionActivityConfidence
-	Cycling() bool
-	Running() bool
-	StartDate() foundation.NSDate
-	Stationary() bool
-	Unknown() bool
-	Walking() bool
+	// properties:
+	Automotive() bool /* primitive/slice/pointer. */
+	Confidence() MotionActivityConfidence
+	Cycling() bool /* primitive/slice/pointer. */
+	Running() bool /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	Stationary() bool /* primitive/slice/pointer. */
+	Unknown() bool /* primitive/slice/pointer. */
+	Walking() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 // The data for a single motion update event.
@@ -99,7 +101,7 @@ func NewMotionActivity() MotionActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/automotive
-func (m_ MotionActivity) Automotive() bool {
+func (m_ MotionActivity) Automotive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automotive"))
 	return rv
 }
@@ -109,8 +111,8 @@ func (m_ MotionActivity) Automotive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/confidence
-func (m_ MotionActivity) Confidence() CMMotionActivityConfidence {
-	rv := objc.Send[CMMotionActivityConfidence](m_.ID, objc.Sel("confidence"))
+func (m_ MotionActivity) Confidence() MotionActivityConfidence {
+	rv := objc.Send[MotionActivityConfidence](m_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -119,7 +121,7 @@ func (m_ MotionActivity) Confidence() CMMotionActivityConfidence {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/cycling
-func (m_ MotionActivity) Cycling() bool {
+func (m_ MotionActivity) Cycling() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("cycling"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (m_ MotionActivity) Cycling() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/running
-func (m_ MotionActivity) Running() bool {
+func (m_ MotionActivity) Running() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("running"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (m_ MotionActivity) Running() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/startDate
-func (m_ MotionActivity) StartDate() foundation.NSDate {
+func (m_ MotionActivity) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (m_ MotionActivity) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/stationary
-func (m_ MotionActivity) Stationary() bool {
+func (m_ MotionActivity) Stationary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("stationary"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (m_ MotionActivity) Stationary() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/unknown
-func (m_ MotionActivity) Unknown() bool {
+func (m_ MotionActivity) Unknown() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("unknown"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (m_ MotionActivity) Unknown() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/walking
-func (m_ MotionActivity) Walking() bool {
+func (m_ MotionActivity) Walking() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("walking"))
 	return rv
 }

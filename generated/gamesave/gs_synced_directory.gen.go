@@ -32,6 +32,7 @@ type IGSSyncedDirectory interface {
 	objectivec.IObject
 	// properties:
 	DirectoryState() IGSSyncedDirectoryState
+	// methods:
 	Close()
 	FinishSyncingWithCompletionHandler(completion unsafe.Pointer)
 }

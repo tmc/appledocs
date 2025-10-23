@@ -29,7 +29,9 @@ type _FSContainerIdentifierClass struct {
 // An interface definition for the [FSContainerIdentifier] class.
 type IFSContainerIdentifier interface {
 	IFSEntityIdentifier
-	VolumeIdentifier() FSVolumeIdentifier
+	// properties:
+	VolumeIdentifier() objc.IObject /* cross-framework: FSVolumeIdentifier */
+	// methods:
 }
 
 // A type that identifies a container.
@@ -91,7 +93,7 @@ func NewFSContainerIdentifier() FSContainerIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier/volumeIdentifier
-func (f_ FSContainerIdentifier) VolumeIdentifier() FSVolumeIdentifier {
+func (f_ FSContainerIdentifier) VolumeIdentifier() objc.IObject /* cross-framework: FSVolumeIdentifier */ {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeIdentifier"))
 	return rv
 }

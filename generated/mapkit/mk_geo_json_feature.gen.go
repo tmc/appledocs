@@ -34,10 +34,10 @@ type IMKGeoJSONFeature interface {
 	// properties:
 	Geometry() unsafe.Pointer
 	SetGeometry(value unsafe.Pointer)
-	Identifier() string
-	SetIdentifier(value string)
-	Properties() foundation.Data
-	SetProperties(value foundation.Data)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Properties() foundation.objc.IObject /* cross-framework: Data */
+	SetProperties(value foundation.objc.IObject /* cross-framework: Data */)
 	// methods:
 }
 
@@ -117,7 +117,7 @@ func (m_ MKGeoJSONFeature) SetGeometry(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/identifier
-func (m_ MKGeoJSONFeature) Identifier() string {
+func (m_ MKGeoJSONFeature) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (m_ MKGeoJSONFeature) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/identifier
-func (m_ MKGeoJSONFeature) SetIdentifier(value string) {
+func (m_ MKGeoJSONFeature) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -136,7 +136,7 @@ func (m_ MKGeoJSONFeature) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
-func (m_ MKGeoJSONFeature) Properties() foundation.Data {
+func (m_ MKGeoJSONFeature) Properties() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("properties"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (m_ MKGeoJSONFeature) Properties() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
-func (m_ MKGeoJSONFeature) SetProperties(value foundation.Data) {
+func (m_ MKGeoJSONFeature) SetProperties(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
 }
 

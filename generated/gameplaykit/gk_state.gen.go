@@ -31,10 +31,12 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
+	// properties:
 	StateMachine() IGKStateMachine
+	// methods:
 	DidEnterWithPreviousState(previousState IGKState)
-	IsValidNextState(stateClass objc.Class) bool
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	IsValidNextState(stateClass objc.Class) bool /* primitive/slice/pointer. */
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 	WillExitWithNextState(nextState IGKState)
 }
 
@@ -115,7 +117,7 @@ func (s_ State) DidEnterWithPreviousState(previousState IGKState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/isValidNextState(_:)
-func (s_ State) IsValidNextState(stateClass objc.Class) bool {
+func (s_ State) IsValidNextState(stateClass objc.Class) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isValidNextState:"), stateClass)
 	return rv
 }
@@ -125,7 +127,7 @@ func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

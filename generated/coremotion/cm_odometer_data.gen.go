@@ -31,18 +31,20 @@ type _OdometerDataClass struct {
 // An interface definition for the [OdometerData] class.
 type IOdometerData interface {
 	objectivec.IObject
-	DeltaAltitude() unsafe.Pointer
-	DeltaDistance() unsafe.Pointer
-	DeltaDistanceAccuracy() unsafe.Pointer
-	EndDate() foundation.NSDate
-	GpsDate() foundation.NSDate
-	MaxAbsSlope() foundation.Number
-	OriginDevice() CMOdometerOriginDevice
-	Slope() foundation.Number
-	Speed() unsafe.Pointer
-	SpeedAccuracy() unsafe.Pointer
-	StartDate() foundation.NSDate
-	VerticalAccuracy() unsafe.Pointer
+	// properties:
+	DeltaAltitude() LocationDistance /* not a class type */
+	DeltaDistance() LocationDistance /* not a class type */
+	DeltaDistanceAccuracy() LocationAccuracy /* not a class type */
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	GpsDate() foundation.objc.IObject /* cross-framework: NSDate */
+	MaxAbsSlope() foundation.objc.IObject /* cross-framework: Number */
+	OriginDevice() OdometerOriginDevice
+	Slope() foundation.objc.IObject /* cross-framework: Number */
+	Speed() LocationSpeed /* not a class type */
+	SpeedAccuracy() LocationSpeedAccuracy /* not a class type */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	VerticalAccuracy() LocationAccuracy /* not a class type */
+	// methods:
 }
 
 // A class that represents odometer data for workouts.
@@ -102,8 +104,8 @@ func NewOdometerData() OdometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaAltitude
-func (o_ OdometerData) DeltaAltitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaAltitude"))
+func (o_ OdometerData) DeltaAltitude() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](o_.ID, objc.Sel("deltaAltitude"))
 	return rv
 }
 
@@ -112,8 +114,8 @@ func (o_ OdometerData) DeltaAltitude() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaDistance
-func (o_ OdometerData) DeltaDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaDistance"))
+func (o_ OdometerData) DeltaDistance() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](o_.ID, objc.Sel("deltaDistance"))
 	return rv
 }
 
@@ -122,8 +124,8 @@ func (o_ OdometerData) DeltaDistance() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/deltaDistanceAccuracy
-func (o_ OdometerData) DeltaDistanceAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("deltaDistanceAccuracy"))
+func (o_ OdometerData) DeltaDistanceAccuracy() LocationAccuracy /* not a class type */ {
+	rv := objc.Send[LocationAccuracy](o_.ID, objc.Sel("deltaDistanceAccuracy"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (o_ OdometerData) DeltaDistanceAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/endDate
-func (o_ OdometerData) EndDate() foundation.NSDate {
+func (o_ OdometerData) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (o_ OdometerData) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/gpsDate
-func (o_ OdometerData) GpsDate() foundation.NSDate {
+func (o_ OdometerData) GpsDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("gpsDate"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (o_ OdometerData) GpsDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/maxAbsSlope-96ulr
-func (o_ OdometerData) MaxAbsSlope() foundation.Number {
+func (o_ OdometerData) MaxAbsSlope() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("maxAbsSlope"))
 	return rv
 }
@@ -162,8 +164,8 @@ func (o_ OdometerData) MaxAbsSlope() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/originDevice
-func (o_ OdometerData) OriginDevice() CMOdometerOriginDevice {
-	rv := objc.Send[CMOdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
+func (o_ OdometerData) OriginDevice() OdometerOriginDevice {
+	rv := objc.Send[OdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
 	return rv
 }
 
@@ -172,7 +174,7 @@ func (o_ OdometerData) OriginDevice() CMOdometerOriginDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/slope-96hlt
-func (o_ OdometerData) Slope() foundation.Number {
+func (o_ OdometerData) Slope() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](o_.ID, objc.Sel("slope"))
 	return rv
 }
@@ -182,8 +184,8 @@ func (o_ OdometerData) Slope() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/speed
-func (o_ OdometerData) Speed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("speed"))
+func (o_ OdometerData) Speed() LocationSpeed /* not a class type */ {
+	rv := objc.Send[LocationSpeed](o_.ID, objc.Sel("speed"))
 	return rv
 }
 
@@ -192,8 +194,8 @@ func (o_ OdometerData) Speed() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/speedAccuracy
-func (o_ OdometerData) SpeedAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("speedAccuracy"))
+func (o_ OdometerData) SpeedAccuracy() LocationSpeedAccuracy /* not a class type */ {
+	rv := objc.Send[LocationSpeedAccuracy](o_.ID, objc.Sel("speedAccuracy"))
 	return rv
 }
 
@@ -202,7 +204,7 @@ func (o_ OdometerData) SpeedAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/startDate
-func (o_ OdometerData) StartDate() foundation.NSDate {
+func (o_ OdometerData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -212,8 +214,8 @@ func (o_ OdometerData) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/verticalAccuracy
-func (o_ OdometerData) VerticalAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("verticalAccuracy"))
+func (o_ OdometerData) VerticalAccuracy() LocationAccuracy /* not a class type */ {
+	rv := objc.Send[LocationAccuracy](o_.ID, objc.Sel("verticalAccuracy"))
 	return rv
 }
 

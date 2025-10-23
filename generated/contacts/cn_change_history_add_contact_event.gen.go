@@ -29,8 +29,10 @@ type _CNChangeHistoryAddContactEventClass struct {
 // An interface definition for the [CNChangeHistoryAddContactEvent] class.
 type ICNChangeHistoryAddContactEvent interface {
 	ICNChangeHistoryEvent
+	// properties:
 	Contact() ICNContact
-	ContainerIdentifier() string
+	ContainerIdentifier() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a user adding a contact.
@@ -100,7 +102,7 @@ func (c_ CNChangeHistoryAddContactEvent) Contact() ICNContact {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/containerIdentifier
-func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string {
+func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }

@@ -31,12 +31,14 @@ type _ManagedObjectIDClass struct {
 // An interface definition for the [ManagedObjectID] class.
 type IManagedObjectID interface {
 	objectivec.IObject
+	// properties:
 	Entity() IEntityDescription
-	TemporaryID() bool
+	TemporaryID() bool /* primitive/slice/pointer. */
 	PersistentStore() IPersistentStore
-	IsTemporaryID() bool
-	SetIsTemporaryID(value bool)
-	URIRepresentation() foundation.URL
+	IsTemporaryID() bool /* primitive/slice/pointer. */
+	SetIsTemporaryID(value bool /* primitive/slice/pointer. */)
+	// methods:
+	URIRepresentation() foundation.objc.IObject /* cross-framework: URL */
 }
 
 // A compact, universal identifier for a managed object.
@@ -96,7 +98,7 @@ func NewManagedObjectID() ManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/uriRepresentation()
-func (m_ ManagedObjectID) URIRepresentation() foundation.URL {
+func (m_ ManagedObjectID) URIRepresentation() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URIRepresentation"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (m_ ManagedObjectID) Entity() IEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/isTemporaryID
-func (m_ ManagedObjectID) TemporaryID() bool {
+func (m_ ManagedObjectID) TemporaryID() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("temporaryID"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (m_ ManagedObjectID) PersistentStore() IPersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
-func (m_ ManagedObjectID) IsTemporaryID() bool {
+func (m_ ManagedObjectID) IsTemporaryID() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isTemporaryID"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (m_ ManagedObjectID) IsTemporaryID() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectid/istemporaryid
-func (m_ ManagedObjectID) SetIsTemporaryID(value bool) {
+func (m_ ManagedObjectID) SetIsTemporaryID(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTemporaryID:"), value)
 }
 

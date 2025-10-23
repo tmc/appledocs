@@ -29,14 +29,16 @@ type _PanelClass struct {
 // An interface definition for the [Panel] class.
 type IPanel interface {
 	IWindow
-	BecomesKeyOnlyIfNeeded() bool
-	SetBecomesKeyOnlyIfNeeded(value bool)
-	FloatingPanel() bool
-	SetFloatingPanel(value bool)
-	WorksWhenModal() bool
-	SetWorksWhenModal(value bool)
-	IsFloatingPanel() bool
-	SetIsFloatingPanel(value bool)
+	// properties:
+	BecomesKeyOnlyIfNeeded() bool /* primitive/slice/pointer. */
+	SetBecomesKeyOnlyIfNeeded(value bool /* primitive/slice/pointer. */)
+	FloatingPanel() bool /* primitive/slice/pointer. */
+	SetFloatingPanel(value bool /* primitive/slice/pointer. */)
+	WorksWhenModal() bool /* primitive/slice/pointer. */
+	SetWorksWhenModal(value bool /* primitive/slice/pointer. */)
+	IsFloatingPanel() bool /* primitive/slice/pointer. */
+	SetIsFloatingPanel(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A special kind of window that typically performs a function that is auxiliary to the main window.
@@ -98,7 +100,7 @@ func NewPanel() Panel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
-func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
+func (p_ Panel) BecomesKeyOnlyIfNeeded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("becomesKeyOnlyIfNeeded"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (p_ Panel) BecomesKeyOnlyIfNeeded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/becomesKeyOnlyIfNeeded
-func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
+func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBecomesKeyOnlyIfNeeded:"), value)
 }
 
@@ -117,7 +119,7 @@ func (p_ Panel) SetBecomesKeyOnlyIfNeeded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
-func (p_ Panel) FloatingPanel() bool {
+func (p_ Panel) FloatingPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("floatingPanel"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (p_ Panel) FloatingPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/isFloatingPanel
-func (p_ Panel) SetFloatingPanel(value bool) {
+func (p_ Panel) SetFloatingPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFloatingPanel:"), value)
 }
 
@@ -136,7 +138,7 @@ func (p_ Panel) SetFloatingPanel(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
-func (p_ Panel) WorksWhenModal() bool {
+func (p_ Panel) WorksWhenModal() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("worksWhenModal"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (p_ Panel) WorksWhenModal() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPanel/worksWhenModal
-func (p_ Panel) SetWorksWhenModal(value bool) {
+func (p_ Panel) SetWorksWhenModal(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorksWhenModal:"), value)
 }
 
@@ -155,7 +157,7 @@ func (p_ Panel) SetWorksWhenModal(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
-func (p_ Panel) IsFloatingPanel() bool {
+func (p_ Panel) IsFloatingPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFloatingPanel"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (p_ Panel) IsFloatingPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspanel/isfloatingpanel
-func (p_ Panel) SetIsFloatingPanel(value bool) {
+func (p_ Panel) SetIsFloatingPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFloatingPanel:"), value)
 }
 

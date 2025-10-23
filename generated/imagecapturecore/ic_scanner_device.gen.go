@@ -32,17 +32,17 @@ type _ICScannerDeviceClass struct {
 type IICScannerDevice interface {
 	IICDevice
 	// properties:
-	AvailableFunctionalUnitTypes() []foundation.Number
+	AvailableFunctionalUnitTypes() []foundation.objc.IObject /* cross-framework: Number */
 	TransferMode() unsafe.Pointer
 	SetTransferMode(value unsafe.Pointer)
-	DefaultUsername() string
-	SetDefaultUsername(value string)
-	DocumentName() string
-	SetDocumentName(value string)
-	DocumentUTI() string
-	SetDocumentUTI(value string)
-	DownloadsDirectory() foundation.URL
-	SetDownloadsDirectory(value foundation.URL)
+	DefaultUsername() string /* primitive/slice/pointer. */
+	SetDefaultUsername(value string /* primitive/slice/pointer. */)
+	DocumentName() string /* primitive/slice/pointer. */
+	SetDocumentName(value string /* primitive/slice/pointer. */)
+	DocumentUTI() string /* primitive/slice/pointer. */
+	SetDocumentUTI(value string /* primitive/slice/pointer. */)
+	DownloadsDirectory() foundation.objc.IObject /* cross-framework: URL */
+	SetDownloadsDirectory(value foundation.objc.IObject /* cross-framework: URL */)
 	MaxMemoryBandSize() unsafe.Pointer
 	SetMaxMemoryBandSize(value unsafe.Pointer)
 	SelectedFunctionalUnit() unsafe.Pointer
@@ -109,7 +109,7 @@ func NewICScannerDevice() ICScannerDevice {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/availableFunctionalUnitTypes
-func (i_ ICScannerDevice) AvailableFunctionalUnitTypes() []foundation.Number {
+func (i_ ICScannerDevice) AvailableFunctionalUnitTypes() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](i_.ID, objc.Sel("availableFunctionalUnitTypes"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (i_ ICScannerDevice) SetTransferMode(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
-func (i_ ICScannerDevice) DefaultUsername() string {
+func (i_ ICScannerDevice) DefaultUsername() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("defaultUsername"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (i_ ICScannerDevice) DefaultUsername() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
-func (i_ ICScannerDevice) SetDefaultUsername(value string) {
+func (i_ ICScannerDevice) SetDefaultUsername(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultUsername:"), objc.String(value))
 }
 
@@ -157,7 +157,7 @@ func (i_ ICScannerDevice) SetDefaultUsername(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentname
-func (i_ ICScannerDevice) DocumentName() string {
+func (i_ ICScannerDevice) DocumentName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("documentName"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (i_ ICScannerDevice) DocumentName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentname
-func (i_ ICScannerDevice) SetDocumentName(value string) {
+func (i_ ICScannerDevice) SetDocumentName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
 }
 
@@ -176,7 +176,7 @@ func (i_ ICScannerDevice) SetDocumentName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
-func (i_ ICScannerDevice) DocumentUTI() string {
+func (i_ ICScannerDevice) DocumentUTI() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("documentUTI"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (i_ ICScannerDevice) DocumentUTI() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
-func (i_ ICScannerDevice) SetDocumentUTI(value string) {
+func (i_ ICScannerDevice) SetDocumentUTI(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentUTI:"), objc.String(value))
 }
 
@@ -195,7 +195,7 @@ func (i_ ICScannerDevice) SetDocumentUTI(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/downloadsdirectory
-func (i_ ICScannerDevice) DownloadsDirectory() foundation.URL {
+func (i_ ICScannerDevice) DownloadsDirectory() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](i_.ID, objc.Sel("downloadsDirectory"))
 	return rv
 }
@@ -205,7 +205,7 @@ func (i_ ICScannerDevice) DownloadsDirectory() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/downloadsdirectory
-func (i_ ICScannerDevice) SetDownloadsDirectory(value foundation.URL) {
+func (i_ ICScannerDevice) SetDownloadsDirectory(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 

@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,129 +31,131 @@ type _CellClass struct {
 // An interface definition for the [Cell] class.
 type ICell interface {
 	objectivec.IObject
-	AcceptsFirstResponder() bool
+	// properties:
+	AcceptsFirstResponder() bool /* primitive/slice/pointer. */
 	Action() objc.SEL
 	SetAction(value objc.SEL)
-	Alignment() unsafe.Pointer
-	SetAlignment(value unsafe.Pointer)
-	AllowsEditingTextAttributes() bool
-	SetAllowsEditingTextAttributes(value bool)
-	AllowsMixedState() bool
-	SetAllowsMixedState(value bool)
-	AllowsUndo() bool
-	SetAllowsUndo(value bool)
-	AttributedStringValue() foundation.AttributedString
-	SetAttributedStringValue(value foundation.AttributedString)
-	BackgroundStyle() NSBackgroundStyle
-	SetBackgroundStyle(value NSBackgroundStyle)
-	BaseWritingDirection() unsafe.Pointer
-	SetBaseWritingDirection(value unsafe.Pointer)
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
+	AllowsEditingTextAttributes() bool /* primitive/slice/pointer. */
+	SetAllowsEditingTextAttributes(value bool /* primitive/slice/pointer. */)
+	AllowsMixedState() bool /* primitive/slice/pointer. */
+	SetAllowsMixedState(value bool /* primitive/slice/pointer. */)
+	AllowsUndo() bool /* primitive/slice/pointer. */
+	SetAllowsUndo(value bool /* primitive/slice/pointer. */)
+	AttributedStringValue() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedStringValue(value objc.IObject /* cross-framework: AttributedString */)
+	BackgroundStyle() BackgroundStyle
+	SetBackgroundStyle(value BackgroundStyle)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
 	CellSize() coregraphics.CGSize
-	ControlSize() unsafe.Pointer
-	SetControlSize(value unsafe.Pointer)
-	ControlTint() unsafe.Pointer
-	SetControlTint(value unsafe.Pointer)
+	ControlSize() ControlSize
+	SetControlSize(value ControlSize)
+	ControlTint() ControlTint
+	SetControlTint(value ControlTint)
 	ControlView() IView
 	SetControlView(value IView)
-	DoubleValue() float64
-	SetDoubleValue(value float64)
-	FloatValue() float32
-	SetFloatValue(value float32)
-	FocusRingType() NSFocusRingType
-	SetFocusRingType(value NSFocusRingType)
+	DoubleValue() float64 /* primitive/slice/pointer. */
+	SetDoubleValue(value float64 /* primitive/slice/pointer. */)
+	FloatValue() float32 /* primitive/slice/pointer. */
+	SetFloatValue(value float32 /* primitive/slice/pointer. */)
+	FocusRingType() FocusRingType
+	SetFocusRingType(value FocusRingType)
 	Font() IFont
 	SetFont(value IFont)
-	Formatter() foundation.Formatter
-	SetFormatter(value foundation.Formatter)
-	HasValidObjectValue() bool
+	Formatter() objc.IObject /* cross-framework: Formatter */
+	SetFormatter(value objc.IObject /* cross-framework: Formatter */)
+	HasValidObjectValue() bool /* primitive/slice/pointer. */
 	Image() IImage
 	SetImage(value IImage)
-	ImportsGraphics() bool
-	SetImportsGraphics(value bool)
-	IntValue() int
-	SetIntValue(value int)
-	IntegerValue() int
-	SetIntegerValue(value int)
-	InteriorBackgroundStyle() NSBackgroundStyle
-	Bezeled() bool
-	SetBezeled(value bool)
-	Bordered() bool
-	SetBordered(value bool)
-	Continuous() bool
-	SetContinuous(value bool)
-	Editable() bool
-	SetEditable(value bool)
-	Enabled() bool
-	SetEnabled(value bool)
-	Highlighted() bool
-	SetHighlighted(value bool)
-	Opaque() bool
-	Scrollable() bool
-	SetScrollable(value bool)
-	Selectable() bool
-	SetSelectable(value bool)
-	KeyEquivalent() string
-	LineBreakMode() unsafe.Pointer
-	SetLineBreakMode(value unsafe.Pointer)
+	ImportsGraphics() bool /* primitive/slice/pointer. */
+	SetImportsGraphics(value bool /* primitive/slice/pointer. */)
+	IntValue() int /* primitive/slice/pointer. */
+	SetIntValue(value int /* primitive/slice/pointer. */)
+	IntegerValue() int /* primitive/slice/pointer. */
+	SetIntegerValue(value int /* primitive/slice/pointer. */)
+	InteriorBackgroundStyle() BackgroundStyle
+	Bezeled() bool /* primitive/slice/pointer. */
+	SetBezeled(value bool /* primitive/slice/pointer. */)
+	Bordered() bool /* primitive/slice/pointer. */
+	SetBordered(value bool /* primitive/slice/pointer. */)
+	Continuous() bool /* primitive/slice/pointer. */
+	SetContinuous(value bool /* primitive/slice/pointer. */)
+	Editable() bool /* primitive/slice/pointer. */
+	SetEditable(value bool /* primitive/slice/pointer. */)
+	Enabled() bool /* primitive/slice/pointer. */
+	SetEnabled(value bool /* primitive/slice/pointer. */)
+	Highlighted() bool /* primitive/slice/pointer. */
+	SetHighlighted(value bool /* primitive/slice/pointer. */)
+	Opaque() bool /* primitive/slice/pointer. */
+	Scrollable() bool /* primitive/slice/pointer. */
+	SetScrollable(value bool /* primitive/slice/pointer. */)
+	Selectable() bool /* primitive/slice/pointer. */
+	SetSelectable(value bool /* primitive/slice/pointer. */)
+	KeyEquivalent() string /* primitive/slice/pointer. */
+	LineBreakMode() LineBreakMode
+	SetLineBreakMode(value LineBreakMode)
 	Menu() IMenu
 	SetMenu(value IMenu)
-	MouseDownFlags() int
-	NextState() int
+	MouseDownFlags() int /* primitive/slice/pointer. */
+	NextState() int /* primitive/slice/pointer. */
 	ObjectValue() objc.ID
 	SetObjectValue(value objc.ID)
-	RefusesFirstResponder() bool
-	SetRefusesFirstResponder(value bool)
+	RefusesFirstResponder() bool /* primitive/slice/pointer. */
+	SetRefusesFirstResponder(value bool /* primitive/slice/pointer. */)
 	RepresentedObject() objc.ID
 	SetRepresentedObject(value objc.ID)
-	SendsActionOnEndEditing() bool
-	SetSendsActionOnEndEditing(value bool)
-	ShowsFirstResponder() bool
-	SetShowsFirstResponder(value bool)
-	State() unsafe.Pointer
-	SetState(value unsafe.Pointer)
-	StringValue() string
-	SetStringValue(value string)
-	Tag() int
-	SetTag(value int)
+	SendsActionOnEndEditing() bool /* primitive/slice/pointer. */
+	SetSendsActionOnEndEditing(value bool /* primitive/slice/pointer. */)
+	ShowsFirstResponder() bool /* primitive/slice/pointer. */
+	SetShowsFirstResponder(value bool /* primitive/slice/pointer. */)
+	State() ControlStateValue /* not a class type */
+	SetState(value ControlStateValue /* not a class type */)
+	StringValue() string /* primitive/slice/pointer. */
+	SetStringValue(value string /* primitive/slice/pointer. */)
+	Tag() int /* primitive/slice/pointer. */
+	SetTag(value int /* primitive/slice/pointer. */)
 	Target() objc.ID
 	SetTarget(value objc.ID)
-	Title() string
-	SetTitle(value string)
-	TruncatesLastVisibleLine() bool
-	SetTruncatesLastVisibleLine(value bool)
-	Type() NSCellType
-	SetType(value NSCellType)
-	UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection)
-	UsesSingleLineMode() bool
-	SetUsesSingleLineMode(value bool)
-	WantsNotificationForMarkedText() bool
-	Wraps() bool
-	SetWraps(value bool)
-	IsBezeled() bool
-	SetIsBezeled(value bool)
-	IsBordered() bool
-	SetIsBordered(value bool)
-	IsContinuous() bool
-	SetIsContinuous(value bool)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	IsHighlighted() bool
-	SetIsHighlighted(value bool)
-	IsOpaque() bool
-	SetIsOpaque(value bool)
-	IsScrollable() bool
-	SetIsScrollable(value bool)
-	IsSelectable() bool
-	SetIsSelectable(value bool)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	TruncatesLastVisibleLine() bool /* primitive/slice/pointer. */
+	SetTruncatesLastVisibleLine(value bool /* primitive/slice/pointer. */)
+	Type() CellType
+	SetType(value CellType)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	UsesSingleLineMode() bool /* primitive/slice/pointer. */
+	SetUsesSingleLineMode(value bool /* primitive/slice/pointer. */)
+	WantsNotificationForMarkedText() bool /* primitive/slice/pointer. */
+	Wraps() bool /* primitive/slice/pointer. */
+	SetWraps(value bool /* primitive/slice/pointer. */)
+	IsBezeled() bool /* primitive/slice/pointer. */
+	SetIsBezeled(value bool /* primitive/slice/pointer. */)
+	IsBordered() bool /* primitive/slice/pointer. */
+	SetIsBordered(value bool /* primitive/slice/pointer. */)
+	IsContinuous() bool /* primitive/slice/pointer. */
+	SetIsContinuous(value bool /* primitive/slice/pointer. */)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsHighlighted() bool /* primitive/slice/pointer. */
+	SetIsHighlighted(value bool /* primitive/slice/pointer. */)
+	IsOpaque() bool /* primitive/slice/pointer. */
+	SetIsOpaque(value bool /* primitive/slice/pointer. */)
+	IsScrollable() bool /* primitive/slice/pointer. */
+	SetIsScrollable(value bool /* primitive/slice/pointer. */)
+	IsSelectable() bool /* primitive/slice/pointer. */
+	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	// methods:
 	CalcDrawInfo(rect coregraphics.CGRect)
-	CellAttribute(parameter NSCellAttribute) int
+	CellAttribute(parameter CellAttribute) int /* primitive/slice/pointer. */
 	CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize
-	Compare(otherCell objectivec.IObject) unsafe.Pointer
-	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool
-	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent
+	Compare(otherCell objectivec.IObject) ComparisonResult /* not a class type */
+	ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */
+	DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent /* primitive/slice/pointer. */
 	DrawWithExpansionFrameInView(cellFrame coregraphics.CGRect, view IView)
 	DrawWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
 	DrawFocusRingMaskWithFrameInView(cellFrame coregraphics.CGRect, controlView IView)
@@ -166,19 +167,19 @@ type ICell interface {
 	FieldEditorForView(controlView IView) ITextView
 	FocusRingMaskBoundsForFrameInView(cellFrame coregraphics.CGRect, controlView IView) coregraphics.CGRect
 	GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
-	HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView)
+	HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame coregraphics.CGRect, controlView IView)
 	HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, controlView IView) IColor
-	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) NSCellHitResult
+	HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult
 	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
 	MenuForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, view IView) IMenu
 	PerformClick(sender objectivec.IObject)
 	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView IView)
-	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int)
-	SendActionOn(mask NSEventMask) int
-	SetCellAttributeTo(parameter NSCellAttribute, value int)
+	SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */)
+	SendActionOn(mask EventMask) int /* primitive/slice/pointer. */
+	SetCellAttributeTo(parameter CellAttribute, value int /* primitive/slice/pointer. */)
 	SetUpFieldEditorAttributes(textObj IText) IText
-	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool
-	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool)
+	StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */
+	StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool /* primitive/slice/pointer. */)
 	TakeDoubleValueFrom(sender objectivec.IObject)
 	TakeFloatValueFrom(sender objectivec.IObject)
 	TakeIntValueFrom(sender objectivec.IObject)
@@ -186,7 +187,7 @@ type ICell interface {
 	TakeObjectValueFrom(sender objectivec.IObject)
 	TakeStringValueFrom(sender objectivec.IObject)
 	TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
-	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool
+	TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // A mechanism for displaying text or images in a view object without the overhead of a full subclass.
@@ -258,7 +259,7 @@ func NewCellImageCell(image IImage) Cell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
-func NewCellTextCell(string_ string) Cell {
+func NewCellTextCell(string_ string /* primitive/slice/pointer. */) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
 	rv.Autorelease()
@@ -268,7 +269,7 @@ func NewCellTextCell(string_ string) Cell {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
-func NewCellWithCoder(coder foundation.Coder) Cell {
+func NewCellWithCoder(coder Coder /* not a class type */) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -281,8 +282,8 @@ func NewCellWithCoder(coder foundation.Coder) Cell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (cc _CellClass) DefaultFocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
+func (cc _CellClass) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](objc.ID(cc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -299,7 +300,7 @@ func (cc _CellClass) DefaultMenu() IMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/prefersTrackingUntilMouseUp
-func (cc _CellClass) PrefersTrackingUntilMouseUp() bool {
+func (cc _CellClass) PrefersTrackingUntilMouseUp() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("prefersTrackingUntilMouseUp"))
 	return rv
 }
@@ -317,7 +318,7 @@ func (c_ Cell) CalcDrawInfo(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/cellAttribute(_:)
-func (c_ Cell) CellAttribute(parameter NSCellAttribute) int {
+func (c_ Cell) CellAttribute(parameter CellAttribute) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("cellAttribute:"), parameter)
 	return rv
 }
@@ -337,8 +338,8 @@ func (c_ Cell) CellSizeForBounds(rect coregraphics.CGRect) coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/compare(_:)
-func (c_ Cell) Compare(otherCell objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compare:"), otherCell)
+func (c_ Cell) Compare(otherCell objectivec.IObject) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compare:"), otherCell)
 	return rv
 }
 
@@ -347,7 +348,7 @@ func (c_ Cell) Compare(otherCell objectivec.IObject) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/continueTracking(last:current:in:)
-func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool {
+func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continueTracking:at:inView:"), lastPoint, currentPoint, controlView)
 	return rv
 }
@@ -357,7 +358,7 @@ func (c_ Cell) ContinueTrackingAtInView(lastPoint coregraphics.CGPoint, currentP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/draggingImageComponents(withFrame:in:)
-func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent {
+func (c_ Cell) DraggingImageComponentsWithFrameInView(frame coregraphics.CGRect, view IView) []DraggingImageComponent /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]DraggingImageComponent](c_.ID, objc.Sel("draggingImageComponentsWithFrame:inView:"), frame, view)
 	return rv
 }
@@ -470,7 +471,7 @@ func (c_ Cell) GetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/highlight(_:withFrame:in:)
-func (c_ Cell) HighlightWithFrameInView(flag bool, cellFrame coregraphics.CGRect, controlView IView) {
+func (c_ Cell) HighlightWithFrameInView(flag bool /* primitive/slice/pointer. */, cellFrame coregraphics.CGRect, controlView IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("highlight:withFrame:inView:"), flag, cellFrame, controlView)
 }
 
@@ -489,8 +490,8 @@ func (c_ Cell) HighlightColorWithFrameInView(cellFrame coregraphics.CGRect, cont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/hitTest(for:in:of:)
-func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) NSCellHitResult {
-	rv := objc.Send[NSCellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
+func (c_ Cell) HitTestForEventInRectOfView(event IEvent, cellFrame coregraphics.CGRect, controlView IView) CellHitResult {
+	rv := objc.Send[CellHitResult](c_.ID, objc.Sel("hitTestForEvent:inRect:ofView:"), event, cellFrame, controlView)
 	return rv
 }
 
@@ -537,7 +538,7 @@ func (c_ Cell) ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/select(withFrame:in:editor:delegate:start:length:)
-func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int, selLength int) {
+func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.CGRect, controlView IView, textObj IText, delegate objectivec.IObject, selStart int /* primitive/slice/pointer. */, selLength int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectWithFrame:inView:editor:delegate:start:length:"), rect, controlView, textObj, delegate, selStart, selLength)
 }
 
@@ -546,7 +547,7 @@ func (c_ Cell) SelectWithFrameInViewEditorDelegateStartLength(rect coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/sendAction(on:)
-func (c_ Cell) SendActionOn(mask NSEventMask) int {
+func (c_ Cell) SendActionOn(mask EventMask) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("sendActionOn:"), mask)
 	return rv
 }
@@ -556,7 +557,7 @@ func (c_ Cell) SendActionOn(mask NSEventMask) int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/setCellAttribute(_:to:)
-func (c_ Cell) SetCellAttributeTo(parameter NSCellAttribute, value int) {
+func (c_ Cell) SetCellAttributeTo(parameter CellAttribute, value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCellAttribute:to:"), parameter, value)
 }
 
@@ -575,7 +576,7 @@ func (c_ Cell) SetUpFieldEditorAttributes(textObj IText) IText {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/startTracking(at:in:)
-func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool {
+func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlView IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startTrackingAt:inView:"), startPoint, controlView)
 	return rv
 }
@@ -585,7 +586,7 @@ func (c_ Cell) StartTrackingAtInView(startPoint coregraphics.CGPoint, controlVie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stopTracking(last:current:in:mouseIsUp:)
-func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool) {
+func (c_ Cell) StopTrackingAtInViewMouseIsUp(lastPoint coregraphics.CGPoint, stopPoint coregraphics.CGPoint, controlView IView, flag bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("stopTracking:at:inView:mouseIsUp:"), lastPoint, stopPoint, controlView, flag)
 }
 
@@ -658,7 +659,7 @@ func (c_ Cell) TitleRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/trackMouse(with:in:of:untilMouseUp:)
-func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool) bool {
+func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregraphics.CGRect, controlView IView, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("trackMouse:inRect:ofView:untilMouseUp:"), event, cellFrame, controlView, flag)
 	return rv
 }
@@ -668,7 +669,7 @@ func (c_ Cell) TrackMouseInRectOfViewUntilMouseUp(event IEvent, cellFrame coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/acceptsFirstResponder
-func (c_ Cell) AcceptsFirstResponder() bool {
+func (c_ Cell) AcceptsFirstResponder() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("acceptsFirstResponder"))
 	return rv
 }
@@ -697,8 +698,8 @@ func (c_ Cell) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("alignment"))
+func (c_ Cell) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](c_.ID, objc.Sel("alignment"))
 	return rv
 }
 
@@ -707,7 +708,7 @@ func (c_ Cell) Alignment() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/alignment
-func (c_ Cell) SetAlignment(value unsafe.Pointer) {
+func (c_ Cell) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -716,7 +717,7 @@ func (c_ Cell) SetAlignment(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsEditingTextAttributes
-func (c_ Cell) AllowsEditingTextAttributes() bool {
+func (c_ Cell) AllowsEditingTextAttributes() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsEditingTextAttributes"))
 	return rv
 }
@@ -726,7 +727,7 @@ func (c_ Cell) AllowsEditingTextAttributes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsEditingTextAttributes
-func (c_ Cell) SetAllowsEditingTextAttributes(value bool) {
+func (c_ Cell) SetAllowsEditingTextAttributes(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsEditingTextAttributes:"), value)
 }
 
@@ -735,7 +736,7 @@ func (c_ Cell) SetAllowsEditingTextAttributes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsMixedState
-func (c_ Cell) AllowsMixedState() bool {
+func (c_ Cell) AllowsMixedState() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsMixedState"))
 	return rv
 }
@@ -745,7 +746,7 @@ func (c_ Cell) AllowsMixedState() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsMixedState
-func (c_ Cell) SetAllowsMixedState(value bool) {
+func (c_ Cell) SetAllowsMixedState(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMixedState:"), value)
 }
 
@@ -754,7 +755,7 @@ func (c_ Cell) SetAllowsMixedState(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsUndo
-func (c_ Cell) AllowsUndo() bool {
+func (c_ Cell) AllowsUndo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsUndo"))
 	return rv
 }
@@ -764,7 +765,7 @@ func (c_ Cell) AllowsUndo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/allowsUndo
-func (c_ Cell) SetAllowsUndo(value bool) {
+func (c_ Cell) SetAllowsUndo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsUndo:"), value)
 }
 
@@ -773,8 +774,8 @@ func (c_ Cell) SetAllowsUndo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) AttributedStringValue() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringValue"))
+func (c_ Cell) AttributedStringValue() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](c_.ID, objc.Sel("attributedStringValue"))
 	return rv
 }
 
@@ -783,7 +784,7 @@ func (c_ Cell) AttributedStringValue() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/attributedStringValue
-func (c_ Cell) SetAttributedStringValue(value foundation.AttributedString) {
+func (c_ Cell) SetAttributedStringValue(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttributedStringValue:"), value)
 }
 
@@ -792,8 +793,8 @@ func (c_ Cell) SetAttributedStringValue(value foundation.AttributedString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) BackgroundStyle() NSBackgroundStyle {
-	rv := objc.Send[NSBackgroundStyle](c_.ID, objc.Sel("backgroundStyle"))
+func (c_ Cell) BackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("backgroundStyle"))
 	return rv
 }
 
@@ -802,7 +803,7 @@ func (c_ Cell) BackgroundStyle() NSBackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/backgroundStyle
-func (c_ Cell) SetBackgroundStyle(value NSBackgroundStyle) {
+func (c_ Cell) SetBackgroundStyle(value BackgroundStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundStyle:"), value)
 }
 
@@ -811,8 +812,8 @@ func (c_ Cell) SetBackgroundStyle(value NSBackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("baseWritingDirection"))
+func (c_ Cell) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](c_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -821,7 +822,7 @@ func (c_ Cell) BaseWritingDirection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/baseWritingDirection
-func (c_ Cell) SetBaseWritingDirection(value unsafe.Pointer) {
+func (c_ Cell) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBaseWritingDirection:"), value)
 }
 
@@ -840,8 +841,8 @@ func (c_ Cell) CellSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) ControlSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlSize"))
+func (c_ Cell) ControlSize() ControlSize {
+	rv := objc.Send[ControlSize](c_.ID, objc.Sel("controlSize"))
 	return rv
 }
 
@@ -850,7 +851,7 @@ func (c_ Cell) ControlSize() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlSize
-func (c_ Cell) SetControlSize(value unsafe.Pointer) {
+func (c_ Cell) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -859,8 +860,8 @@ func (c_ Cell) SetControlSize(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) ControlTint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlTint"))
+func (c_ Cell) ControlTint() ControlTint {
+	rv := objc.Send[ControlTint](c_.ID, objc.Sel("controlTint"))
 	return rv
 }
 
@@ -869,7 +870,7 @@ func (c_ Cell) ControlTint() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/controlTint
-func (c_ Cell) SetControlTint(value unsafe.Pointer) {
+func (c_ Cell) SetControlTint(value ControlTint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlTint:"), value)
 }
 
@@ -897,8 +898,8 @@ func (c_ Cell) SetControlView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/defaultFocusRingType
-func (c_ Cell) DefaultFocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](c_.ID, objc.Sel("defaultFocusRingType"))
+func (c_ Cell) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -917,7 +918,7 @@ func (c_ Cell) DefaultMenu() IMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) DoubleValue() float64 {
+func (c_ Cell) DoubleValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
 	return rv
 }
@@ -927,7 +928,7 @@ func (c_ Cell) DoubleValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) SetDoubleValue(value float64) {
+func (c_ Cell) SetDoubleValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
@@ -936,7 +937,7 @@ func (c_ Cell) SetDoubleValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) FloatValue() float32 {
+func (c_ Cell) FloatValue() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
@@ -946,7 +947,7 @@ func (c_ Cell) FloatValue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) SetFloatValue(value float32) {
+func (c_ Cell) SetFloatValue(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
 
@@ -955,8 +956,8 @@ func (c_ Cell) SetFloatValue(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) FocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](c_.ID, objc.Sel("focusRingType"))
+func (c_ Cell) FocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](c_.ID, objc.Sel("focusRingType"))
 	return rv
 }
 
@@ -965,7 +966,7 @@ func (c_ Cell) FocusRingType() NSFocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/focusRingType
-func (c_ Cell) SetFocusRingType(value NSFocusRingType) {
+func (c_ Cell) SetFocusRingType(value FocusRingType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFocusRingType:"), value)
 }
 
@@ -993,8 +994,8 @@ func (c_ Cell) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/formatter
-func (c_ Cell) Formatter() foundation.Formatter {
-	rv := objc.Send[foundation.Formatter](c_.ID, objc.Sel("formatter"))
+func (c_ Cell) Formatter() objc.IObject /* cross-framework: Formatter */ {
+	rv := objc.Send[Formatter](c_.ID, objc.Sel("formatter"))
 	return rv
 }
 
@@ -1003,7 +1004,7 @@ func (c_ Cell) Formatter() foundation.Formatter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/formatter
-func (c_ Cell) SetFormatter(value foundation.Formatter) {
+func (c_ Cell) SetFormatter(value objc.IObject /* cross-framework: Formatter */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatter:"), value)
 }
 
@@ -1012,7 +1013,7 @@ func (c_ Cell) SetFormatter(value foundation.Formatter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/hasValidObjectValue
-func (c_ Cell) HasValidObjectValue() bool {
+func (c_ Cell) HasValidObjectValue() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasValidObjectValue"))
 	return rv
 }
@@ -1041,7 +1042,7 @@ func (c_ Cell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/importsGraphics
-func (c_ Cell) ImportsGraphics() bool {
+func (c_ Cell) ImportsGraphics() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("importsGraphics"))
 	return rv
 }
@@ -1051,7 +1052,7 @@ func (c_ Cell) ImportsGraphics() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/importsGraphics
-func (c_ Cell) SetImportsGraphics(value bool) {
+func (c_ Cell) SetImportsGraphics(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImportsGraphics:"), value)
 }
 
@@ -1060,7 +1061,7 @@ func (c_ Cell) SetImportsGraphics(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) IntValue() int {
+func (c_ Cell) IntValue() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("intValue"))
 	return rv
 }
@@ -1070,7 +1071,7 @@ func (c_ Cell) IntValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) SetIntValue(value int) {
+func (c_ Cell) SetIntValue(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntValue:"), value)
 }
 
@@ -1079,7 +1080,7 @@ func (c_ Cell) SetIntValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/integerValue
-func (c_ Cell) IntegerValue() int {
+func (c_ Cell) IntegerValue() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("integerValue"))
 	return rv
 }
@@ -1089,7 +1090,7 @@ func (c_ Cell) IntegerValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/integerValue
-func (c_ Cell) SetIntegerValue(value int) {
+func (c_ Cell) SetIntegerValue(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntegerValue:"), value)
 }
 
@@ -1098,8 +1099,8 @@ func (c_ Cell) SetIntegerValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/interiorBackgroundStyle
-func (c_ Cell) InteriorBackgroundStyle() NSBackgroundStyle {
-	rv := objc.Send[NSBackgroundStyle](c_.ID, objc.Sel("interiorBackgroundStyle"))
+func (c_ Cell) InteriorBackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](c_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -1108,7 +1109,7 @@ func (c_ Cell) InteriorBackgroundStyle() NSBackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isBezeled
-func (c_ Cell) Bezeled() bool {
+func (c_ Cell) Bezeled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bezeled"))
 	return rv
 }
@@ -1118,7 +1119,7 @@ func (c_ Cell) Bezeled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isBezeled
-func (c_ Cell) SetBezeled(value bool) {
+func (c_ Cell) SetBezeled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBezeled:"), value)
 }
 
@@ -1127,7 +1128,7 @@ func (c_ Cell) SetBezeled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isBordered
-func (c_ Cell) Bordered() bool {
+func (c_ Cell) Bordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -1137,7 +1138,7 @@ func (c_ Cell) Bordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isBordered
-func (c_ Cell) SetBordered(value bool) {
+func (c_ Cell) SetBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -1146,7 +1147,7 @@ func (c_ Cell) SetBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isContinuous
-func (c_ Cell) Continuous() bool {
+func (c_ Cell) Continuous() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
 	return rv
 }
@@ -1156,7 +1157,7 @@ func (c_ Cell) Continuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isContinuous
-func (c_ Cell) SetContinuous(value bool) {
+func (c_ Cell) SetContinuous(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContinuous:"), value)
 }
 
@@ -1165,7 +1166,7 @@ func (c_ Cell) SetContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEditable
-func (c_ Cell) Editable() bool {
+func (c_ Cell) Editable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("editable"))
 	return rv
 }
@@ -1175,7 +1176,7 @@ func (c_ Cell) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEditable
-func (c_ Cell) SetEditable(value bool) {
+func (c_ Cell) SetEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEditable:"), value)
 }
 
@@ -1184,7 +1185,7 @@ func (c_ Cell) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEnabled
-func (c_ Cell) Enabled() bool {
+func (c_ Cell) Enabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
 	return rv
 }
@@ -1194,7 +1195,7 @@ func (c_ Cell) Enabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isEnabled
-func (c_ Cell) SetEnabled(value bool) {
+func (c_ Cell) SetEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
 }
 
@@ -1203,7 +1204,7 @@ func (c_ Cell) SetEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isHighlighted
-func (c_ Cell) Highlighted() bool {
+func (c_ Cell) Highlighted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("highlighted"))
 	return rv
 }
@@ -1213,7 +1214,7 @@ func (c_ Cell) Highlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isHighlighted
-func (c_ Cell) SetHighlighted(value bool) {
+func (c_ Cell) SetHighlighted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHighlighted:"), value)
 }
 
@@ -1222,7 +1223,7 @@ func (c_ Cell) SetHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isOpaque
-func (c_ Cell) Opaque() bool {
+func (c_ Cell) Opaque() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("opaque"))
 	return rv
 }
@@ -1232,7 +1233,7 @@ func (c_ Cell) Opaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isScrollable
-func (c_ Cell) Scrollable() bool {
+func (c_ Cell) Scrollable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("scrollable"))
 	return rv
 }
@@ -1242,7 +1243,7 @@ func (c_ Cell) Scrollable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isScrollable
-func (c_ Cell) SetScrollable(value bool) {
+func (c_ Cell) SetScrollable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScrollable:"), value)
 }
 
@@ -1251,7 +1252,7 @@ func (c_ Cell) SetScrollable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isSelectable
-func (c_ Cell) Selectable() bool {
+func (c_ Cell) Selectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("selectable"))
 	return rv
 }
@@ -1261,7 +1262,7 @@ func (c_ Cell) Selectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/isSelectable
-func (c_ Cell) SetSelectable(value bool) {
+func (c_ Cell) SetSelectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectable:"), value)
 }
 
@@ -1270,7 +1271,7 @@ func (c_ Cell) SetSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/keyEquivalent
-func (c_ Cell) KeyEquivalent() string {
+func (c_ Cell) KeyEquivalent() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
@@ -1280,8 +1281,8 @@ func (c_ Cell) KeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) LineBreakMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lineBreakMode"))
+func (c_ Cell) LineBreakMode() LineBreakMode {
+	rv := objc.Send[LineBreakMode](c_.ID, objc.Sel("lineBreakMode"))
 	return rv
 }
 
@@ -1290,7 +1291,7 @@ func (c_ Cell) LineBreakMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/lineBreakMode
-func (c_ Cell) SetLineBreakMode(value unsafe.Pointer) {
+func (c_ Cell) SetLineBreakMode(value LineBreakMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLineBreakMode:"), value)
 }
 
@@ -1318,7 +1319,7 @@ func (c_ Cell) SetMenu(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/mouseDownFlags
-func (c_ Cell) MouseDownFlags() int {
+func (c_ Cell) MouseDownFlags() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("mouseDownFlags"))
 	return rv
 }
@@ -1328,7 +1329,7 @@ func (c_ Cell) MouseDownFlags() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/nextState
-func (c_ Cell) NextState() int {
+func (c_ Cell) NextState() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("nextState"))
 	return rv
 }
@@ -1357,7 +1358,7 @@ func (c_ Cell) SetObjectValue(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/prefersTrackingUntilMouseUp
-func (c_ Cell) PrefersTrackingUntilMouseUp() bool {
+func (c_ Cell) PrefersTrackingUntilMouseUp() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("prefersTrackingUntilMouseUp"))
 	return rv
 }
@@ -1367,7 +1368,7 @@ func (c_ Cell) PrefersTrackingUntilMouseUp() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/refusesFirstResponder
-func (c_ Cell) RefusesFirstResponder() bool {
+func (c_ Cell) RefusesFirstResponder() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("refusesFirstResponder"))
 	return rv
 }
@@ -1377,7 +1378,7 @@ func (c_ Cell) RefusesFirstResponder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/refusesFirstResponder
-func (c_ Cell) SetRefusesFirstResponder(value bool) {
+func (c_ Cell) SetRefusesFirstResponder(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRefusesFirstResponder:"), value)
 }
 
@@ -1405,7 +1406,7 @@ func (c_ Cell) SetRepresentedObject(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/sendsActionOnEndEditing
-func (c_ Cell) SendsActionOnEndEditing() bool {
+func (c_ Cell) SendsActionOnEndEditing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("sendsActionOnEndEditing"))
 	return rv
 }
@@ -1415,7 +1416,7 @@ func (c_ Cell) SendsActionOnEndEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/sendsActionOnEndEditing
-func (c_ Cell) SetSendsActionOnEndEditing(value bool) {
+func (c_ Cell) SetSendsActionOnEndEditing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSendsActionOnEndEditing:"), value)
 }
 
@@ -1424,7 +1425,7 @@ func (c_ Cell) SetSendsActionOnEndEditing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/showsFirstResponder
-func (c_ Cell) ShowsFirstResponder() bool {
+func (c_ Cell) ShowsFirstResponder() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("showsFirstResponder"))
 	return rv
 }
@@ -1434,7 +1435,7 @@ func (c_ Cell) ShowsFirstResponder() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/showsFirstResponder
-func (c_ Cell) SetShowsFirstResponder(value bool) {
+func (c_ Cell) SetShowsFirstResponder(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsFirstResponder:"), value)
 }
 
@@ -1443,8 +1444,8 @@ func (c_ Cell) SetShowsFirstResponder(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
+func (c_ Cell) State() ControlStateValue /* not a class type */ {
+	rv := objc.Send[ControlStateValue](c_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -1453,7 +1454,7 @@ func (c_ Cell) State() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/state
-func (c_ Cell) SetState(value unsafe.Pointer) {
+func (c_ Cell) SetState(value ControlStateValue /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setState:"), value)
 }
 
@@ -1462,7 +1463,7 @@ func (c_ Cell) SetState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) StringValue() string {
+func (c_ Cell) StringValue() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
@@ -1472,7 +1473,7 @@ func (c_ Cell) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) SetStringValue(value string) {
+func (c_ Cell) SetStringValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 
@@ -1481,7 +1482,7 @@ func (c_ Cell) SetStringValue(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/tag
-func (c_ Cell) Tag() int {
+func (c_ Cell) Tag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -1491,7 +1492,7 @@ func (c_ Cell) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/tag
-func (c_ Cell) SetTag(value int) {
+func (c_ Cell) SetTag(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTag:"), value)
 }
 
@@ -1519,7 +1520,7 @@ func (c_ Cell) SetTarget(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) Title() string {
+func (c_ Cell) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
@@ -1529,7 +1530,7 @@ func (c_ Cell) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) SetTitle(value string) {
+func (c_ Cell) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -1538,7 +1539,7 @@ func (c_ Cell) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/truncatesLastVisibleLine
-func (c_ Cell) TruncatesLastVisibleLine() bool {
+func (c_ Cell) TruncatesLastVisibleLine() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("truncatesLastVisibleLine"))
 	return rv
 }
@@ -1548,7 +1549,7 @@ func (c_ Cell) TruncatesLastVisibleLine() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/truncatesLastVisibleLine
-func (c_ Cell) SetTruncatesLastVisibleLine(value bool) {
+func (c_ Cell) SetTruncatesLastVisibleLine(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTruncatesLastVisibleLine:"), value)
 }
 
@@ -1557,8 +1558,8 @@ func (c_ Cell) SetTruncatesLastVisibleLine(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) Type() NSCellType {
-	rv := objc.Send[NSCellType](c_.ID, objc.Sel("type"))
+func (c_ Cell) Type() CellType {
+	rv := objc.Send[CellType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -1567,7 +1568,7 @@ func (c_ Cell) Type() NSCellType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/type
-func (c_ Cell) SetType(value NSCellType) {
+func (c_ Cell) SetType(value CellType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 
@@ -1576,8 +1577,8 @@ func (c_ Cell) SetType(value NSCellType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
-	rv := objc.Send[NSUserInterfaceLayoutDirection](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (c_ Cell) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](c_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -1586,7 +1587,7 @@ func (c_ Cell) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/userInterfaceLayoutDirection
-func (c_ Cell) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection) {
+func (c_ Cell) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 
@@ -1595,7 +1596,7 @@ func (c_ Cell) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/usesSingleLineMode
-func (c_ Cell) UsesSingleLineMode() bool {
+func (c_ Cell) UsesSingleLineMode() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("usesSingleLineMode"))
 	return rv
 }
@@ -1605,7 +1606,7 @@ func (c_ Cell) UsesSingleLineMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/usesSingleLineMode
-func (c_ Cell) SetUsesSingleLineMode(value bool) {
+func (c_ Cell) SetUsesSingleLineMode(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesSingleLineMode:"), value)
 }
 
@@ -1614,7 +1615,7 @@ func (c_ Cell) SetUsesSingleLineMode(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/wantsNotificationForMarkedText
-func (c_ Cell) WantsNotificationForMarkedText() bool {
+func (c_ Cell) WantsNotificationForMarkedText() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("wantsNotificationForMarkedText"))
 	return rv
 }
@@ -1624,7 +1625,7 @@ func (c_ Cell) WantsNotificationForMarkedText() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/wraps
-func (c_ Cell) Wraps() bool {
+func (c_ Cell) Wraps() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("wraps"))
 	return rv
 }
@@ -1634,7 +1635,7 @@ func (c_ Cell) Wraps() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/wraps
-func (c_ Cell) SetWraps(value bool) {
+func (c_ Cell) SetWraps(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWraps:"), value)
 }
 
@@ -1643,7 +1644,7 @@ func (c_ Cell) SetWraps(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbezeled
-func (c_ Cell) IsBezeled() bool {
+func (c_ Cell) IsBezeled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBezeled"))
 	return rv
 }
@@ -1653,7 +1654,7 @@ func (c_ Cell) IsBezeled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbezeled
-func (c_ Cell) SetIsBezeled(value bool) {
+func (c_ Cell) SetIsBezeled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBezeled:"), value)
 }
 
@@ -1662,7 +1663,7 @@ func (c_ Cell) SetIsBezeled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbordered
-func (c_ Cell) IsBordered() bool {
+func (c_ Cell) IsBordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -1672,7 +1673,7 @@ func (c_ Cell) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isbordered
-func (c_ Cell) SetIsBordered(value bool) {
+func (c_ Cell) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -1681,7 +1682,7 @@ func (c_ Cell) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iscontinuous
-func (c_ Cell) IsContinuous() bool {
+func (c_ Cell) IsContinuous() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContinuous"))
 	return rv
 }
@@ -1691,7 +1692,7 @@ func (c_ Cell) IsContinuous() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iscontinuous
-func (c_ Cell) SetIsContinuous(value bool) {
+func (c_ Cell) SetIsContinuous(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContinuous:"), value)
 }
 
@@ -1700,7 +1701,7 @@ func (c_ Cell) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (c_ Cell) IsEditable() bool {
+func (c_ Cell) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -1710,7 +1711,7 @@ func (c_ Cell) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (c_ Cell) SetIsEditable(value bool) {
+func (c_ Cell) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -1719,7 +1720,7 @@ func (c_ Cell) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isenabled
-func (c_ Cell) IsEnabled() bool {
+func (c_ Cell) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -1729,7 +1730,7 @@ func (c_ Cell) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isenabled
-func (c_ Cell) SetIsEnabled(value bool) {
+func (c_ Cell) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -1738,7 +1739,7 @@ func (c_ Cell) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/ishighlighted
-func (c_ Cell) IsHighlighted() bool {
+func (c_ Cell) IsHighlighted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighlighted"))
 	return rv
 }
@@ -1748,7 +1749,7 @@ func (c_ Cell) IsHighlighted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/ishighlighted
-func (c_ Cell) SetIsHighlighted(value bool) {
+func (c_ Cell) SetIsHighlighted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighlighted:"), value)
 }
 
@@ -1757,7 +1758,7 @@ func (c_ Cell) SetIsHighlighted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isopaque
-func (c_ Cell) IsOpaque() bool {
+func (c_ Cell) IsOpaque() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isOpaque"))
 	return rv
 }
@@ -1767,7 +1768,7 @@ func (c_ Cell) IsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isopaque
-func (c_ Cell) SetIsOpaque(value bool) {
+func (c_ Cell) SetIsOpaque(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsOpaque:"), value)
 }
 
@@ -1776,7 +1777,7 @@ func (c_ Cell) SetIsOpaque(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isscrollable
-func (c_ Cell) IsScrollable() bool {
+func (c_ Cell) IsScrollable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isScrollable"))
 	return rv
 }
@@ -1786,7 +1787,7 @@ func (c_ Cell) IsScrollable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isscrollable
-func (c_ Cell) SetIsScrollable(value bool) {
+func (c_ Cell) SetIsScrollable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsScrollable:"), value)
 }
 
@@ -1795,7 +1796,7 @@ func (c_ Cell) SetIsScrollable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (c_ Cell) IsSelectable() bool {
+func (c_ Cell) IsSelectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isSelectable"))
 	return rv
 }
@@ -1805,7 +1806,7 @@ func (c_ Cell) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (c_ Cell) SetIsSelectable(value bool) {
+func (c_ Cell) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelectable:"), value)
 }
 

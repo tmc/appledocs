@@ -29,22 +29,24 @@ type _PlayerClass struct {
 // An interface definition for the [Player] class.
 type IPlayer interface {
 	IBasePlayer
-	Alias() string
-	DisplayName() string
-	SetDisplayName(value string)
-	GamePlayerID() string
-	SetGamePlayerID(value string)
-	GuestIdentifier() string
-	SetGuestIdentifier(value string)
-	IsFriend() bool
-	SetIsFriend(value bool)
-	IsInvitable() bool
-	SetIsInvitable(value bool)
-	PlayerID() string
-	SetPlayerID(value string)
-	TeamPlayerID() string
-	SetTeamPlayerID(value string)
-	GKPlayerIDNoLongerAvailable() string
+	// properties:
+	Alias() string /* primitive/slice/pointer. */
+	DisplayName() string /* primitive/slice/pointer. */
+	SetDisplayName(value string /* primitive/slice/pointer. */)
+	GamePlayerID() string /* primitive/slice/pointer. */
+	SetGamePlayerID(value string /* primitive/slice/pointer. */)
+	GuestIdentifier() string /* primitive/slice/pointer. */
+	SetGuestIdentifier(value string /* primitive/slice/pointer. */)
+	IsFriend() bool /* primitive/slice/pointer. */
+	SetIsFriend(value bool /* primitive/slice/pointer. */)
+	IsInvitable() bool /* primitive/slice/pointer. */
+	SetIsInvitable(value bool /* primitive/slice/pointer. */)
+	PlayerID() string /* primitive/slice/pointer. */
+	SetPlayerID(value string /* primitive/slice/pointer. */)
+	TeamPlayerID() string /* primitive/slice/pointer. */
+	SetTeamPlayerID(value string /* primitive/slice/pointer. */)
+	GKPlayerIDNoLongerAvailable() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A remote player who the local player running your game can invite and communicate with through Game Center.
@@ -106,7 +108,7 @@ func NewPlayer() Player {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPlayer/alias
-func (p_ Player) Alias() string {
+func (p_ Player) Alias() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("alias"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (p_ Player) Alias() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/displayname
-func (p_ Player) DisplayName() string {
+func (p_ Player) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (p_ Player) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/displayname
-func (p_ Player) SetDisplayName(value string) {
+func (p_ Player) SetDisplayName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 
@@ -135,7 +137,7 @@ func (p_ Player) SetDisplayName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/gameplayerid
-func (p_ Player) GamePlayerID() string {
+func (p_ Player) GamePlayerID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("gamePlayerID"))
 	return rv
 }
@@ -145,7 +147,7 @@ func (p_ Player) GamePlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/gameplayerid
-func (p_ Player) SetGamePlayerID(value string) {
+func (p_ Player) SetGamePlayerID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGamePlayerID:"), objc.String(value))
 }
 
@@ -154,7 +156,7 @@ func (p_ Player) SetGamePlayerID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/guestidentifier
-func (p_ Player) GuestIdentifier() string {
+func (p_ Player) GuestIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("guestIdentifier"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (p_ Player) GuestIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/guestidentifier
-func (p_ Player) SetGuestIdentifier(value string) {
+func (p_ Player) SetGuestIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGuestIdentifier:"), objc.String(value))
 }
 
@@ -173,7 +175,7 @@ func (p_ Player) SetGuestIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/isfriend
-func (p_ Player) IsFriend() bool {
+func (p_ Player) IsFriend() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFriend"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (p_ Player) IsFriend() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/isfriend
-func (p_ Player) SetIsFriend(value bool) {
+func (p_ Player) SetIsFriend(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFriend:"), value)
 }
 
@@ -192,7 +194,7 @@ func (p_ Player) SetIsFriend(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/isinvitable
-func (p_ Player) IsInvitable() bool {
+func (p_ Player) IsInvitable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isInvitable"))
 	return rv
 }
@@ -202,7 +204,7 @@ func (p_ Player) IsInvitable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/isinvitable
-func (p_ Player) SetIsInvitable(value bool) {
+func (p_ Player) SetIsInvitable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsInvitable:"), value)
 }
 
@@ -211,7 +213,7 @@ func (p_ Player) SetIsInvitable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/playerid
-func (p_ Player) PlayerID() string {
+func (p_ Player) PlayerID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("playerID"))
 	return rv
 }
@@ -221,7 +223,7 @@ func (p_ Player) PlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/playerid
-func (p_ Player) SetPlayerID(value string) {
+func (p_ Player) SetPlayerID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerID:"), objc.String(value))
 }
 
@@ -230,7 +232,7 @@ func (p_ Player) SetPlayerID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/teamplayerid
-func (p_ Player) TeamPlayerID() string {
+func (p_ Player) TeamPlayerID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("teamPlayerID"))
 	return rv
 }
@@ -240,7 +242,7 @@ func (p_ Player) TeamPlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayer/teamplayerid
-func (p_ Player) SetTeamPlayerID(value string) {
+func (p_ Player) SetTeamPlayerID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTeamPlayerID:"), objc.String(value))
 }
 
@@ -249,7 +251,7 @@ func (p_ Player) SetTeamPlayerID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable
-func (p_ Player) GKPlayerIDNoLongerAvailable() string {
+func (p_ Player) GKPlayerIDNoLongerAvailable() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("GKPlayerIDNoLongerAvailable"))
 	return rv
 }

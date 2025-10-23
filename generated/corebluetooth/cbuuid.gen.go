@@ -31,8 +31,10 @@ type _CBUUIDClass struct {
 // An interface definition for the [CBUUID] class.
 type ICBUUID interface {
 	objectivec.IObject
-	Data() foundation.NSData
-	UUIDString() string
+	// properties:
+	Data() foundation.objc.IObject /* cross-framework: NSData */
+	UUIDString() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A universally unique identifier, as defined by Bluetooth standards.
@@ -92,7 +94,7 @@ func NewCBUUID() CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(cfuuid:)
-func NewCBUUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
+func NewCBUUIDWithCFUUID(theUUID UUIDRef /* not a class type */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithCFUUID:"), theUUID)
 	return rv
 }
@@ -102,7 +104,7 @@ func NewCBUUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(data:)
-func NewCBUUIDWithData(theData foundation.NSData) CBUUID {
+func NewCBUUIDWithData(theData foundation.objc.IObject /* cross-framework NSData */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithData:"), theData)
 	return rv
 }
@@ -112,7 +114,7 @@ func NewCBUUIDWithData(theData foundation.NSData) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(nsuuid:)
-func NewCBUUIDWithNSUUID(theUUID foundation.UUID) CBUUID {
+func NewCBUUIDWithNSUUID(theUUID objc.IObject /* cross-framework UUID */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithNSUUID:"), theUUID)
 	return rv
 }
@@ -122,7 +124,7 @@ func NewCBUUIDWithNSUUID(theUUID foundation.UUID) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(string:)
-func NewCBUUIDWithString(theString string) CBUUID {
+func NewCBUUIDWithString(theString string /* primitive/slice/pointer. */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(getCBUUIDClass().class), objc.Sel("UUIDWithString:"), objc.String(theString))
 	return rv
 }
@@ -133,7 +135,7 @@ func NewCBUUIDWithString(theString string) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(cfuuid:)
-func (cc _CBUUIDClass) UUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
+func (cc _CBUUIDClass) UUIDWithCFUUID(theUUID UUIDRef /* not a class type */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(cc.class), objc.Sel("UUIDWithCFUUID:"), theUUID)
 	return rv
 }
@@ -143,7 +145,7 @@ func (cc _CBUUIDClass) UUIDWithCFUUID(theUUID unsafe.Pointer) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(data:)
-func (cc _CBUUIDClass) UUIDWithData(theData foundation.NSData) CBUUID {
+func (cc _CBUUIDClass) UUIDWithData(theData foundation.objc.IObject /* cross-framework NSData */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(cc.class), objc.Sel("UUIDWithData:"), theData)
 	return rv
 }
@@ -153,7 +155,7 @@ func (cc _CBUUIDClass) UUIDWithData(theData foundation.NSData) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(nsuuid:)
-func (cc _CBUUIDClass) UUIDWithNSUUID(theUUID foundation.UUID) CBUUID {
+func (cc _CBUUIDClass) UUIDWithNSUUID(theUUID objc.IObject /* cross-framework UUID */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(cc.class), objc.Sel("UUIDWithNSUUID:"), theUUID)
 	return rv
 }
@@ -163,7 +165,7 @@ func (cc _CBUUIDClass) UUIDWithNSUUID(theUUID foundation.UUID) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/init(string:)
-func (cc _CBUUIDClass) UUIDWithString(theString string) CBUUID {
+func (cc _CBUUIDClass) UUIDWithString(theString string /* primitive/slice/pointer. */) CBUUID {
 	rv := objc.Send[CBUUID](objc.ID(cc.class), objc.Sel("UUIDWithString:"), objc.String(theString))
 	return rv
 }
@@ -173,7 +175,7 @@ func (cc _CBUUIDClass) UUIDWithString(theString string) CBUUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/data
-func (c_ CBUUID) Data() foundation.NSData {
+func (c_ CBUUID) Data() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("data"))
 	return rv
 }
@@ -183,7 +185,7 @@ func (c_ CBUUID) Data() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBUUID/uuidString
-func (c_ CBUUID) UUIDString() string {
+func (c_ CBUUID) UUIDString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("UUIDString"))
 	return rv
 }

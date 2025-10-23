@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BatchUpdateRequest] class.
@@ -30,16 +29,18 @@ type _BatchUpdateRequestClass struct {
 // An interface definition for the [BatchUpdateRequest] class.
 type IBatchUpdateRequest interface {
 	IPersistentStoreRequest
+	// properties:
 	Entity() IEntityDescription
-	EntityName() string
-	IncludesSubentities() bool
-	SetIncludesSubentities(value bool)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	EntityName() string /* primitive/slice/pointer. */
+	IncludesSubentities() bool /* primitive/slice/pointer. */
+	SetIncludesSubentities(value bool /* primitive/slice/pointer. */)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	PropertiesToUpdate() objc.ID
 	SetPropertiesToUpdate(value objc.ID)
-	ResultType() unsafe.Pointer
-	SetResultType(value unsafe.Pointer)
+	ResultType() BatchUpdateRequestResultType /* not a class type */
+	SetResultType(value BatchUpdateRequestResultType /* not a class type */)
+	// methods:
 }
 
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
@@ -111,7 +112,7 @@ func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateReque
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
-func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
+func NewBatchUpdateRequestWithEntityName(entityName string /* primitive/slice/pointer. */) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
@@ -124,7 +125,7 @@ func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
-func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {
+func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
@@ -144,7 +145,7 @@ func (b_ BatchUpdateRequest) Entity() IEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
-func (b_ BatchUpdateRequest) EntityName() string {
+func (b_ BatchUpdateRequest) EntityName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
 	return rv
 }
@@ -154,7 +155,7 @@ func (b_ BatchUpdateRequest) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/includesSubentities
-func (b_ BatchUpdateRequest) IncludesSubentities() bool {
+func (b_ BatchUpdateRequest) IncludesSubentities() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("includesSubentities"))
 	return rv
 }
@@ -164,7 +165,7 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/includesSubentities
-func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
+func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
 
@@ -173,8 +174,8 @@ func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](b_.ID, objc.Sel("predicate"))
+func (b_ BatchUpdateRequest) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](b_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -183,7 +184,7 @@ func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-func (b_ BatchUpdateRequest) SetPredicate(value foundation.Predicate) {
+func (b_ BatchUpdateRequest) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -211,8 +212,8 @@ func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/resultType
-func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+func (b_ BatchUpdateRequest) ResultType() BatchUpdateRequestResultType /* not a class type */ {
+	rv := objc.Send[BatchUpdateRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -221,7 +222,7 @@ func (b_ BatchUpdateRequest) ResultType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/resultType
-func (b_ BatchUpdateRequest) SetResultType(value unsafe.Pointer) {
+func (b_ BatchUpdateRequest) SetResultType(value BatchUpdateRequestResultType /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
 

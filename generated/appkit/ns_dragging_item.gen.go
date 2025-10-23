@@ -31,14 +31,16 @@ type _DraggingItemClass struct {
 // An interface definition for the [DraggingItem] class.
 type IDraggingItem interface {
 	objectivec.IObject
-	ImageComponentsProvider() []DraggingImageComponent
-	SetImageComponentsProvider(value []DraggingImageComponent)
+	// properties:
 	DraggingFrame() coregraphics.CGRect
 	SetDraggingFrame(value coregraphics.CGRect)
-	ImageComponents() NSDraggingImageComponent
+	ImageComponents() IDraggingImageComponent
 	SetImageComponents(value IDraggingImageComponent)
+	ImageComponentsProvider() IDraggingImageComponent
+	SetImageComponentsProvider(value IDraggingImageComponent)
 	Item() unsafe.Pointer
 	SetItem(value unsafe.Pointer)
+	// methods:
 }
 
 // A single dragged item within a dragging session.
@@ -94,48 +96,6 @@ func NewDraggingItem() DraggingItem {
 
 
 
-// Creates and returns a dragging item using the specified content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/init(pasteboardWriter:)
-func NewDraggingItemWithPasteboardWriter(pasteboardWriter objectivec.IObject) DraggingItem {
-	instance := getDraggingItemClass().Alloc()
-	rv := objc.Send[DraggingItem](instance.ID, objc.Sel("initWithPasteboardWriter:"), pasteboardWriter)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// An array of blocks that provide the dragging image components.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
-func (d_ DraggingItem) ImageComponentsProvider() []DraggingImageComponent {
-	rv := objc.Send[[]DraggingImageComponent](d_.ID, objc.Sel("imageComponentsProvider"))
-	return rv
-}
-
-
-// An array of blocks that provide the dragging image components.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItem/imageComponentsProvider
-func (d_ DraggingItem) SetImageComponentsProvider(value []DraggingImageComponent) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), nsArray)
-}
-
-
 // The frame of the dragging item.
 //
 // [Full Topic]
@@ -159,8 +119,8 @@ func (d_ DraggingItem) SetDraggingFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
-func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
-	rv := objc.Send[NSDraggingImageComponent](d_.ID, objc.Sel("imageComponents"))
+func (d_ DraggingItem) ImageComponents() IDraggingImageComponent {
+	rv := objc.Send[DraggingImageComponent](d_.ID, objc.Sel("imageComponents"))
 	return rv
 }
 
@@ -171,6 +131,25 @@ func (d_ DraggingItem) ImageComponents() NSDraggingImageComponent {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponents
 func (d_ DraggingItem) SetImageComponents(value IDraggingImageComponent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponents:"), value)
+}
+
+
+// An array of blocks that provide the dragging image components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentsprovider
+func (d_ DraggingItem) ImageComponentsProvider() IDraggingImageComponent {
+	rv := objc.Send[DraggingImageComponent](d_.ID, objc.Sel("imageComponentsProvider"))
+	return rv
+}
+
+
+// An array of blocks that provide the dragging image components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentsprovider
+func (d_ DraggingItem) SetImageComponentsProvider(value IDraggingImageComponent) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setImageComponentsProvider:"), value)
 }
 
 
@@ -191,5 +170,6 @@ func (d_ DraggingItem) Item() unsafe.Pointer {
 func (d_ DraggingItem) SetItem(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItem:"), value)
 }
+
 
 

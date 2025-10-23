@@ -29,8 +29,10 @@ type _PersistentHistoryResultClass struct {
 // An interface definition for the [PersistentHistoryResult] class.
 type IPersistentHistoryResult interface {
 	IPersistentStoreResult
+	// properties:
 	Result() objc.ID
-	ResultType() NSPersistentHistoryResultType
+	ResultType() PersistentHistoryResultType
+	// methods:
 }
 
 // The result of a request to fetch persistent history.
@@ -100,8 +102,8 @@ func (p_ PersistentHistoryResult) Result() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryResult/resultType
-func (p_ PersistentHistoryResult) ResultType() NSPersistentHistoryResultType {
-	rv := objc.Send[NSPersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentHistoryResult) ResultType() PersistentHistoryResultType {
+	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 

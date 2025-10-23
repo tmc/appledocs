@@ -13,7 +13,7 @@ var _ = coreml.NewFeatureValue
 // Creates a feature value with a type that represents an undefined or missing value.
 func ExampleNewFeatureValueUndefinedFeatureValueWithType() {
 	_ = coreml.NewFeatureValueUndefinedFeatureValueWithType(
-		coreml.MLFeatureType{}, // type MLFeatureType
+		coreml.FeatureType{}, // type FeatureType
 	)
 	// Output:
 }
@@ -30,6 +30,14 @@ func ExampleNewFeatureValueWithDouble() {
 func ExampleNewFeatureValueWithMultiArray() {
 	_ = coreml.NewFeatureValueWithMultiArray(
 		coreml.MLMultiArray{}, // value MLMultiArray
+	)
+	// Output:
+}
+// ExampleNewFeatureValueWithPixelBuffer demonstrates how to create a FeatureValue instance using NewFeatureValueWithPixelBuffer.
+// Creates a feature value that contains an image from a pixel buffer.
+func ExampleNewFeatureValueWithPixelBuffer() {
+	_ = coreml.NewFeatureValueWithPixelBuffer(
+		coreml.PixelBufferRef{}, // value PixelBufferRef
 	)
 	// Output:
 }

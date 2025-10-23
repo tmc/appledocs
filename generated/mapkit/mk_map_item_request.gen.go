@@ -35,16 +35,16 @@ type IMKMapItemRequest interface {
 	SetFeature(value unsafe.Pointer)
 	FeatureAnnotation() IMKMapFeatureAnnotation
 	SetFeatureAnnotation(value IMKMapFeatureAnnotation)
-	IsCancelled() bool
-	SetIsCancelled(value bool)
-	IsLoading() bool
-	SetIsLoading(value bool)
+	IsCancelled() bool /* primitive/slice/pointer. */
+	SetIsCancelled(value bool /* primitive/slice/pointer. */)
+	IsLoading() bool /* primitive/slice/pointer. */
+	SetIsLoading(value bool /* primitive/slice/pointer. */)
 	MapFeature() unsafe.Pointer
 	SetMapFeature(value unsafe.Pointer)
 	MapFeatureAnnotation() IMKMapFeatureAnnotation
 	SetMapFeatureAnnotation(value IMKMapFeatureAnnotation)
-	MapItemIdentifier() MKMapItemIdentifier
-	SetMapItemIdentifier(value MKMapItemIdentifier)
+	MapItemIdentifier() objc.IObject /* cross-framework: MKMapItemIdentifier */
+	SetMapItemIdentifier(value objc.IObject /* cross-framework: MKMapItemIdentifier */)
 	PlaceDescriptor() unsafe.Pointer
 	SetPlaceDescriptor(value unsafe.Pointer)
 	// methods:
@@ -143,7 +143,7 @@ func (m_ MKMapItemRequest) SetFeatureAnnotation(value IMKMapFeatureAnnotation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/iscancelled
-func (m_ MKMapItemRequest) IsCancelled() bool {
+func (m_ MKMapItemRequest) IsCancelled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCancelled"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (m_ MKMapItemRequest) IsCancelled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/iscancelled
-func (m_ MKMapItemRequest) SetIsCancelled(value bool) {
+func (m_ MKMapItemRequest) SetIsCancelled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCancelled:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MKMapItemRequest) SetIsCancelled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/isloading
-func (m_ MKMapItemRequest) IsLoading() bool {
+func (m_ MKMapItemRequest) IsLoading() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isLoading"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (m_ MKMapItemRequest) IsLoading() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/isloading
-func (m_ MKMapItemRequest) SetIsLoading(value bool) {
+func (m_ MKMapItemRequest) SetIsLoading(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsLoading:"), value)
 }
 
@@ -219,7 +219,7 @@ func (m_ MKMapItemRequest) SetMapFeatureAnnotation(value IMKMapFeatureAnnotation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapitemidentifier
-func (m_ MKMapItemRequest) MapItemIdentifier() MKMapItemIdentifier {
+func (m_ MKMapItemRequest) MapItemIdentifier() objc.IObject /* cross-framework: MKMapItemIdentifier */ {
 	rv := objc.Send[MKMapItemIdentifier](m_.ID, objc.Sel("mapItemIdentifier"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (m_ MKMapItemRequest) MapItemIdentifier() MKMapItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapitemidentifier
-func (m_ MKMapItemRequest) SetMapItemIdentifier(value MKMapItemIdentifier) {
+func (m_ MKMapItemRequest) SetMapItemIdentifier(value objc.IObject /* cross-framework: MKMapItemIdentifier */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItemIdentifier:"), value)
 }
 

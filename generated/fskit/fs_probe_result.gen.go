@@ -30,11 +30,13 @@ type _FSProbeResultClass struct {
 // An interface definition for the [FSProbeResult] class.
 type IFSProbeResult interface {
 	objectivec.IObject
+	// properties:
 	Result() FSMatchResult
 	ContainerID() IFSContainerIdentifier
 	SetContainerID(value IFSContainerIdentifier)
-	Name() string
-	SetName(value string)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that represents the results of a specific probe.
@@ -123,7 +125,7 @@ func (f_ FSProbeResult) SetContainerID(value IFSContainerIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsproberesult/name
-func (f_ FSProbeResult) Name() string {
+func (f_ FSProbeResult) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (f_ FSProbeResult) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsproberesult/name
-func (f_ FSProbeResult) SetName(value string) {
+func (f_ FSProbeResult) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [CaptureMetadataOutput] class.
@@ -39,8 +38,8 @@ type ICaptureMetadataOutput interface {
 	SetMetadataObjectsCallbackQueue(value unsafe.Pointer)
 	MetadataObjectsDelegate() CaptureMetadataOutputObjectsDelegate /* not a class type */
 	SetMetadataObjectsDelegate(value CaptureMetadataOutputObjectsDelegate /* not a class type */)
-	RectOfInterest() coregraphics.CGRect
-	SetRectOfInterest(value coregraphics.CGRect)
+	RectOfInterest() objc.IObject /* cross-framework: Rect */
+	SetRectOfInterest(value objc.IObject /* cross-framework: Rect */)
 	RequiredMetadataObjectTypesForCinematicVideoCapture() unsafe.Pointer
 	SetRequiredMetadataObjectTypesForCinematicVideoCapture(value unsafe.Pointer)
 	// methods:
@@ -181,8 +180,8 @@ func (c_ CaptureMetadataOutput) SetMetadataObjectsDelegate(value CaptureMetadata
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/rectofinterest
-func (c_ CaptureMetadataOutput) RectOfInterest() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](c_.ID, objc.Sel("rectOfInterest"))
+func (c_ CaptureMetadataOutput) RectOfInterest() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](c_.ID, objc.Sel("rectOfInterest"))
 	return rv
 }
 
@@ -191,7 +190,7 @@ func (c_ CaptureMetadataOutput) RectOfInterest() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/rectofinterest
-func (c_ CaptureMetadataOutput) SetRectOfInterest(value coregraphics.CGRect) {
+func (c_ CaptureMetadataOutput) SetRectOfInterest(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRectOfInterest:"), value)
 }
 

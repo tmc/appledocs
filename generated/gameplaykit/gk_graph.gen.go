@@ -30,11 +30,13 @@ type _GraphClass struct {
 // An interface definition for the [Graph] class.
 type IGraph interface {
 	objectivec.IObject
-	Nodes() []GraphNode
-	AddNodes(nodes []GraphNode)
-	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool)
-	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode
-	RemoveNodes(nodes []GraphNode)
+	// properties:
+	Nodes() []GraphNode /* primitive/slice/pointer. */
+	// methods:
+	AddNodes(nodes []GraphNode /* primitive/slice/pointer. */)
+	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool /* primitive/slice/pointer. */)
+	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */
+	RemoveNodes(nodes []GraphNode /* primitive/slice/pointer. */)
 }
 
 // A collection of nodes that describes the navigability of a game world and provides methods to search for routes through that space.
@@ -94,7 +96,7 @@ func NewGraph() Graph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/init(_:)
-func NewGraphWithNodes(nodes []GraphNode) Graph {
+func NewGraphWithNodes(nodes []GraphNode /* primitive/slice/pointer. */) Graph {
 	instance := getGraphClass().Alloc()
 	rv := objc.Send[Graph](instance.ID, objc.Sel("initWithNodes:"), nodes)
 	rv.Autorelease()
@@ -107,7 +109,7 @@ func NewGraphWithNodes(nodes []GraphNode) Graph {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/graphWithNodes:
-func (gc _GraphClass) GraphWithNodes(nodes []GraphNode) unsafe.Pointer {
+func (gc _GraphClass) GraphWithNodes(nodes []GraphNode /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphWithNodes:"), nodes)
 	return rv
 }
@@ -117,7 +119,7 @@ func (gc _GraphClass) GraphWithNodes(nodes []GraphNode) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/add(_:)
-func (g_ Graph) AddNodes(nodes []GraphNode) {
+func (g_ Graph) AddNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addNodes:"), nodes)
 }
 
@@ -126,7 +128,7 @@ func (g_ Graph) AddNodes(nodes []GraphNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/connectToLowestCostNode(node:bidirectional:)
-func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool) {
+func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToLowestCostNode:bidirectional:"), node, bidirectional)
 }
 
@@ -135,7 +137,7 @@ func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/findPath(from:to:)
-func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode {
+func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:toNode:"), startNode, endNode)
 	return rv
 }
@@ -145,7 +147,7 @@ func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/remove(_:)
-func (g_ Graph) RemoveNodes(nodes []GraphNode) {
+func (g_ Graph) RemoveNodes(nodes []GraphNode /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeNodes:"), nodes)
 }
 
@@ -154,7 +156,7 @@ func (g_ Graph) RemoveNodes(nodes []GraphNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/nodes
-func (g_ Graph) Nodes() []GraphNode {
+func (g_ Graph) Nodes() []GraphNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("nodes"))
 	return rv
 }

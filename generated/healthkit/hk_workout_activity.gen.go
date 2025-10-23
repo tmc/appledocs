@@ -32,32 +32,32 @@ type _HKWorkoutActivityClass struct {
 type IHKWorkoutActivity interface {
 	objectivec.IObject
 	// properties:
-	HKPredicateKeyPathWorkoutActivity() string
-	HKPredicateKeyPathWorkoutActivityAverageQuantity() string
-	HKPredicateKeyPathWorkoutActivityDuration() string
-	HKPredicateKeyPathWorkoutActivityEndDate() string
-	HKPredicateKeyPathWorkoutActivityMaximumQuantity() string
-	HKPredicateKeyPathWorkoutActivityMinimumQuantity() string
-	HKPredicateKeyPathWorkoutActivityStartDate() string
-	HKPredicateKeyPathWorkoutActivitySumQuantity() string
-	HKPredicateKeyPathWorkoutActivityType() string
+	HKPredicateKeyPathWorkoutActivity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityAverageQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityDuration() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityEndDate() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityMaximumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityMinimumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityStartDate() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivitySumQuantity() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathWorkoutActivityType() string /* primitive/slice/pointer. */
 	AllStatistics() IHKStatistics
 	SetAllStatistics(value IHKStatistics)
 	Duration() unsafe.Pointer
 	SetDuration(value unsafe.Pointer)
-	EndDate() foundation.Date
-	SetEndDate(value foundation.Date)
-	Metadata() string
-	SetMetadata(value string)
-	StartDate() foundation.Date
-	SetStartDate(value foundation.Date)
-	Uuid() foundation.UUID
-	SetUuid(value foundation.UUID)
+	EndDate() foundation.objc.IObject /* cross-framework: Date */
+	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Metadata() string /* primitive/slice/pointer. */
+	SetMetadata(value string /* primitive/slice/pointer. */)
+	StartDate() foundation.objc.IObject /* cross-framework: Date */
+	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Uuid() foundation.objc.IObject /* cross-framework: UUID */
+	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
 	WorkoutConfiguration() IHKWorkoutConfiguration
 	SetWorkoutConfiguration(value IHKWorkoutConfiguration)
 	WorkoutEvents() IHKWorkoutEvent
 	SetWorkoutEvents(value IHKWorkoutEvent)
-	HKWorkoutTypeIdentifier() string
+	HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -118,7 +118,7 @@ func NewHKWorkoutActivity() HKWorkoutActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivity() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivity"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityaveragequantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityAverageQuantity() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityAverageQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityAverageQuantity"))
 	return rv
 }
@@ -138,7 +138,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityAverageQuantity() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityduration
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityDuration() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityDuration() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityDuration"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityDuration() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityenddate
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityEndDate() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityEndDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityEndDate"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityEndDate() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitymaximumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMaximumQuantity() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMaximumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMaximumQuantity"))
 	return rv
 }
@@ -168,7 +168,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMaximumQuantity() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityminimumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMinimumQuantity() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMinimumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityMinimumQuantity"))
 	return rv
 }
@@ -178,7 +178,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityMinimumQuantity() s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitystartdate
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityStartDate() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityStartDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityStartDate"))
 	return rv
 }
@@ -188,7 +188,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityStartDate() string 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitysumquantity
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivitySumQuantity() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivitySumQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivitySumQuantity"))
 	return rv
 }
@@ -198,7 +198,7 @@ func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivitySumQuantity() strin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitytype
-func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityType() string {
+func (h_ HKWorkoutActivity) HKPredicateKeyPathWorkoutActivityType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathWorkoutActivityType"))
 	return rv
 }
@@ -246,7 +246,7 @@ func (h_ HKWorkoutActivity) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/enddate
-func (h_ HKWorkoutActivity) EndDate() foundation.Date {
+func (h_ HKWorkoutActivity) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -256,7 +256,7 @@ func (h_ HKWorkoutActivity) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/enddate
-func (h_ HKWorkoutActivity) SetEndDate(value foundation.Date) {
+func (h_ HKWorkoutActivity) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -265,7 +265,7 @@ func (h_ HKWorkoutActivity) SetEndDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/metadata
-func (h_ HKWorkoutActivity) Metadata() string {
+func (h_ HKWorkoutActivity) Metadata() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -275,7 +275,7 @@ func (h_ HKWorkoutActivity) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/metadata
-func (h_ HKWorkoutActivity) SetMetadata(value string) {
+func (h_ HKWorkoutActivity) SetMetadata(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
@@ -284,7 +284,7 @@ func (h_ HKWorkoutActivity) SetMetadata(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/startdate
-func (h_ HKWorkoutActivity) StartDate() foundation.Date {
+func (h_ HKWorkoutActivity) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -294,7 +294,7 @@ func (h_ HKWorkoutActivity) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/startdate
-func (h_ HKWorkoutActivity) SetStartDate(value foundation.Date) {
+func (h_ HKWorkoutActivity) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
@@ -303,7 +303,7 @@ func (h_ HKWorkoutActivity) SetStartDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/uuid
-func (h_ HKWorkoutActivity) Uuid() foundation.UUID {
+func (h_ HKWorkoutActivity) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -313,7 +313,7 @@ func (h_ HKWorkoutActivity) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutactivity/uuid
-func (h_ HKWorkoutActivity) SetUuid(value foundation.UUID) {
+func (h_ HKWorkoutActivity) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 
@@ -360,7 +360,7 @@ func (h_ HKWorkoutActivity) SetWorkoutEvents(value IHKWorkoutEvent) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutActivity) HKWorkoutTypeIdentifier() string {
+func (h_ HKWorkoutActivity) HKWorkoutTypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }

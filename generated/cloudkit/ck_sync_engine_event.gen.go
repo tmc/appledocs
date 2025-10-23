@@ -30,6 +30,8 @@ type _CKSyncEngineEventClass struct {
 // An interface definition for the [CKSyncEngineEvent] class.
 type ICKSyncEngineEvent interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other CloudKit classes.

@@ -30,8 +30,10 @@ type _ControllerClass struct {
 // An interface definition for the [Controller] class.
 type IController interface {
 	objectivec.IObject
-	IsEditing() bool
-	SetIsEditing(value bool)
+	// properties:
+	IsEditing() bool /* primitive/slice/pointer. */
+	SetIsEditing(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An abstract class that implements the and informal protocols required for controller classes.
@@ -89,7 +91,7 @@ func NewController() Controller {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-func (c_ Controller) IsEditing() bool {
+func (c_ Controller) IsEditing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEditing"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (c_ Controller) IsEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
-func (c_ Controller) SetIsEditing(value bool) {
+func (c_ Controller) SetIsEditing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
 }
 

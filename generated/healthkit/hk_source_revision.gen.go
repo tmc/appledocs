@@ -35,12 +35,12 @@ type IHKSourceRevision interface {
 	SetSourceRevision(value IHKSourceRevision)
 	OperatingSystemVersion() unsafe.Pointer
 	SetOperatingSystemVersion(value unsafe.Pointer)
-	ProductType() string
-	SetProductType(value string)
+	ProductType() string /* primitive/slice/pointer. */
+	SetProductType(value string /* primitive/slice/pointer. */)
 	Source() IHKSource
 	SetSource(value IHKSource)
-	Version() string
-	SetVersion(value string)
+	Version() string /* primitive/slice/pointer. */
+	SetVersion(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -139,7 +139,7 @@ func (h_ HKSourceRevision) SetOperatingSystemVersion(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-func (h_ HKSourceRevision) ProductType() string {
+func (h_ HKSourceRevision) ProductType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("productType"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (h_ HKSourceRevision) ProductType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/producttype
-func (h_ HKSourceRevision) SetProductType(value string) {
+func (h_ HKSourceRevision) SetProductType(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setProductType:"), objc.String(value))
 }
 
@@ -177,7 +177,7 @@ func (h_ HKSourceRevision) SetSource(value IHKSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-func (h_ HKSourceRevision) Version() string {
+func (h_ HKSourceRevision) Version() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("version"))
 	return rv
 }
@@ -187,7 +187,7 @@ func (h_ HKSourceRevision) Version() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksourcerevision/version
-func (h_ HKSourceRevision) SetVersion(value string) {
+func (h_ HKSourceRevision) SetVersion(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), objc.String(value))
 }
 

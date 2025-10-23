@@ -105,15 +105,25 @@ func ParseDocument(doc *appledocs.Document) (*ParsedFunction, *ParsedClass, *Par
 		enum.Abstract = abstract
 		return nil, nil, nil, fmt.Errorf("enum type parsed (use ParseEnum): %s", externalID)
 
+	case strings.HasPrefix(externalID, "c:@SA@") && !strings.Contains(externalID, "@FI@"):
+		// C struct (c:@SA@NSAffineTransformStruct)
+		// Note: struct fields have @FI@ and are handled separately
+		s := ParseStructDeclaration(tokens)
+		if s == nil {
+			return nil, nil, nil, fmt.Errorf("failed to parse struct declaration")
+		}
+		s.Availability = availability
+		s.DocURL = docURL
+		s.Abstract = abstract
+		return nil, nil, nil, fmt.Errorf("struct parsed (use ParseStruct): %s", externalID)
+
 	case strings.HasPrefix(externalID, "c:@T@"),
-		strings.HasPrefix(externalID, "c:@SA@"),
 		strings.HasPrefix(externalID, "c:@UA@"),
 		strings.HasPrefix(externalID, "c:objc(cy)"),
 		strings.HasPrefix(externalID, "s:"),
 		strings.HasPrefix(externalID, "doc:"):
 		// Known but unsupported types:
 		// c:@T@ = typedefs
-		// c:@SA@ = struct
 		// c:@UA@ = union
 		// c:objc(cy) = ObjC category
 		// s: = Swift symbols
@@ -637,6 +647,98 @@ func ParseProtocolDeclaration(tokens []appledocs.Token) *ParsedProtocol {
 	}
 
 	return proto
+}
+
+// ParseStructDeclaration parses a C struct declaration from tokens.
+// Example: "typedef struct { ... } NSAffineTransformStruct;"
+func ParseStructDeclaration(tokens []appledocs.Token) *ParsedStruct {
+	s := &ParsedStruct{}
+
+	// Look for struct keyword followed by identifier
+	// Format: "struct NSAffineTransformStruct" or "typedef struct { ... } NSAffineTransformStruct;"
+	for i := 0; i < len(tokens); i++ {
+		if tokens[i].Kind == "keyword" && tokens[i].Text == "struct" {
+			// Look for the struct name after "struct" or after "{ ... }"
+			for j := i + 1; j < len(tokens); j++ {
+				if tokens[j].Kind == "identifier" {
+					s.Name = tokens[j].Text
+					return s
+				}
+			}
+		}
+	}
+
+	// If we didn't find "struct", try to find first identifier
+	for i := 0; i < len(tokens); i++ {
+		if tokens[i].Kind == "identifier" {
+			s.Name = tokens[i].Text
+			break
+		}
+	}
+
+	if s.Name == "" {
+		return nil
+	}
+
+	return s
+}
+
+// ParseStructField parses a C struct field declaration from a document.
+// External IDs: c:@SA@NSAffineTransformStruct@FI@m11
+func ParseStructField(doc *appledocs.Document) (*ParsedStructField, error) {
+	if doc == nil {
+		return nil, fmt.Errorf("document is nil")
+	}
+
+	externalID := doc.Metadata.ExternalID
+	availability := ExtractAvailability(doc.Metadata.Platforms)
+	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
+	abstract := ExtractAbstract(doc.Abstract)
+
+	// Get the Objective-C variant for type information
+	tokens := GetObjectiveCVariant(doc)
+	if tokens == nil {
+		// Fall back to primary declarations
+		for _, section := range doc.PrimaryContentSections {
+			if len(section.Declarations) > 0 && len(section.Declarations[0].Tokens) > 0 {
+				tokens = section.Declarations[0].Tokens
+				break
+			}
+		}
+	}
+
+	if tokens == nil || len(tokens) == 0 {
+		return nil, fmt.Errorf("no declaration found for %s", externalID)
+	}
+
+	field := &ParsedStructField{}
+
+	// Parse tokens: "CGFloat m11;"
+	// Find the field name (last identifier before semicolon)
+	// Find the type (typeIdentifier before field name)
+	var fieldName string
+	var fieldType string
+
+	for i := 0; i < len(tokens); i++ {
+		if tokens[i].Kind == "typeIdentifier" {
+			fieldType = tokens[i].Text
+		} else if tokens[i].Kind == "identifier" {
+			fieldName = tokens[i].Text
+		}
+	}
+
+	if fieldName == "" {
+		return nil, fmt.Errorf("could not extract field name from %s", externalID)
+	}
+
+	field.Name = fieldName
+	field.Type = fieldType
+	field.Comment = abstract
+
+	_ = availability
+	_ = docURL
+
+	return field, nil
 }
 
 // ParseMethod parses an Objective-C method declaration from a document.

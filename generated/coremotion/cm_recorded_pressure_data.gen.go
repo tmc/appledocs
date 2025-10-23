@@ -30,8 +30,10 @@ type _RecordedPressureDataClass struct {
 // An interface definition for the [RecordedPressureData] class.
 type IRecordedPressureData interface {
 	IAmbientPressureData
-	Identifier() uint64
-	StartDate() foundation.NSDate
+	// properties:
+	Identifier() uint64 /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	// methods:
 }
 
 // A recorded measurement of pressure data.
@@ -93,7 +95,7 @@ func NewRecordedPressureData() RecordedPressureData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/identifier
-func (r_ RecordedPressureData) Identifier() uint64 {
+func (r_ RecordedPressureData) Identifier() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](r_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (r_ RecordedPressureData) Identifier() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/startDate
-func (r_ RecordedPressureData) StartDate() foundation.NSDate {
+func (r_ RecordedPressureData) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }

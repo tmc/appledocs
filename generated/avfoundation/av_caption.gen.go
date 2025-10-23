@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,12 +33,12 @@ type _CaptionClass struct {
 type ICaption interface {
 	objectivec.IObject
 	// properties:
-	Animation() appkit.Animation /* not a class type */
-	SetAnimation(value appkit.Animation /* not a class type */)
+	Animation() objc.IObject /* cross-framework: Animation */
+	SetAnimation(value objc.IObject /* cross-framework: Animation */)
 	Region() CaptionRegion /* not a class type */
 	SetRegion(value CaptionRegion /* not a class type */)
-	Text() string /* primitive/slice/pointer */
-	SetText(value string /* primitive/slice/pointer */)
+	Text() objc.IObject /* cross-framework: NSString */
+	SetText(value objc.IObject /* cross-framework: NSString */)
 	TextAlignment() unsafe.Pointer
 	SetTextAlignment(value unsafe.Pointer)
 	TimeRange() TimeRange /* not a class type */
@@ -102,7 +103,7 @@ func NewCaption() Caption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) Animation() appkit.Animation /* not a class type */ {
+func (c_ Caption) Animation() objc.IObject /* cross-framework: Animation */ {
 	rv := objc.Send[appkit.Animation](c_.ID, objc.Sel("animation"))
 	return rv
 }
@@ -112,7 +113,7 @@ func (c_ Caption) Animation() appkit.Animation /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) SetAnimation(value appkit.Animation /* not a class type */) {
+func (c_ Caption) SetAnimation(value objc.IObject /* cross-framework: Animation */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAnimation:"), value)
 }
 
@@ -140,8 +141,8 @@ func (c_ Caption) SetRegion(value CaptionRegion /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) Text() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("text"))
+func (c_ Caption) Text() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("text"))
 	return rv
 }
 
@@ -150,8 +151,8 @@ func (c_ Caption) Text() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) SetText(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), objc.String(value))
+func (c_ Caption) SetText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), value)
 }
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchRequest] class.
@@ -30,44 +29,46 @@ type _FetchRequestClass struct {
 // An interface definition for the [FetchRequest] class.
 type IFetchRequest interface {
 	IPersistentStoreRequest
-	AffectedStores() []PersistentStore
-	SetAffectedStores(value []PersistentStore)
+	// properties:
+	AffectedStores() []PersistentStore /* primitive/slice/pointer. */
+	SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */)
 	Entity() IEntityDescription
 	SetEntity(value IEntityDescription)
-	EntityName() string
-	FetchBatchSize() uint
-	SetFetchBatchSize(value uint)
-	FetchLimit() uint
-	SetFetchLimit(value uint)
-	FetchOffset() uint
-	SetFetchOffset(value uint)
-	HavingPredicate() foundation.Predicate
-	SetHavingPredicate(value foundation.Predicate)
-	IncludesPendingChanges() bool
-	SetIncludesPendingChanges(value bool)
-	IncludesPropertyValues() bool
-	SetIncludesPropertyValues(value bool)
-	IncludesSubentities() bool
-	SetIncludesSubentities(value bool)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	EntityName() string /* primitive/slice/pointer. */
+	FetchBatchSize() uint /* primitive/slice/pointer. */
+	SetFetchBatchSize(value uint /* primitive/slice/pointer. */)
+	FetchLimit() uint /* primitive/slice/pointer. */
+	SetFetchLimit(value uint /* primitive/slice/pointer. */)
+	FetchOffset() uint /* primitive/slice/pointer. */
+	SetFetchOffset(value uint /* primitive/slice/pointer. */)
+	HavingPredicate() objc.IObject /* cross-framework: Predicate */
+	SetHavingPredicate(value objc.IObject /* cross-framework: Predicate */)
+	IncludesPendingChanges() bool /* primitive/slice/pointer. */
+	SetIncludesPendingChanges(value bool /* primitive/slice/pointer. */)
+	IncludesPropertyValues() bool /* primitive/slice/pointer. */
+	SetIncludesPropertyValues(value bool /* primitive/slice/pointer. */)
+	IncludesSubentities() bool /* primitive/slice/pointer. */
+	SetIncludesSubentities(value bool /* primitive/slice/pointer. */)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	PropertiesToFetch() objc.ID
 	SetPropertiesToFetch(value objc.ID)
 	PropertiesToGroupBy() objc.ID
 	SetPropertiesToGroupBy(value objc.ID)
-	RelationshipKeyPathsForPrefetching() []string
-	SetRelationshipKeyPathsForPrefetching(value []string)
-	ResultType() NSFetchRequestResultType
-	SetResultType(value NSFetchRequestResultType)
-	ReturnsDistinctResults() bool
-	SetReturnsDistinctResults(value bool)
-	ReturnsObjectsAsFaults() bool
-	SetReturnsObjectsAsFaults(value bool)
-	ShouldRefreshRefetchedObjects() bool
-	SetShouldRefreshRefetchedObjects(value bool)
-	SortDescriptors() []foundation.SortDescriptor
-	SetSortDescriptors(value []foundation.SortDescriptor)
-	Execute(error_ unsafe.Pointer) []objc.ID
+	RelationshipKeyPathsForPrefetching() []string /* primitive/slice/pointer. */
+	SetRelationshipKeyPathsForPrefetching(value []string /* primitive/slice/pointer. */)
+	ResultType() FetchRequestResultType
+	SetResultType(value FetchRequestResultType)
+	ReturnsDistinctResults() bool /* primitive/slice/pointer. */
+	SetReturnsDistinctResults(value bool /* primitive/slice/pointer. */)
+	ReturnsObjectsAsFaults() bool /* primitive/slice/pointer. */
+	SetReturnsObjectsAsFaults(value bool /* primitive/slice/pointer. */)
+	ShouldRefreshRefetchedObjects() bool /* primitive/slice/pointer. */
+	SetShouldRefreshRefetchedObjects(value bool /* primitive/slice/pointer. */)
+	SortDescriptors() []SortDescriptor /* primitive/slice/pointer. */
+	SetSortDescriptors(value []SortDescriptor /* primitive/slice/pointer. */)
+	// methods:
+	Execute(error_ unsafe.Pointer) []objc.ID /* already interface */
 }
 
 // A description of search criteria used to retrieve data from a persistent store.
@@ -129,7 +130,7 @@ func NewFetchRequest() FetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
-func NewFetchRequestWithEntityName(entityName string) FetchRequest {
+func NewFetchRequestWithEntityName(entityName string /* primitive/slice/pointer. */) FetchRequest {
 	instance := getFetchRequestClass().Alloc()
 	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
 	rv.Autorelease()
@@ -142,7 +143,7 @@ func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
-func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
+func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
 	return rv
 }
@@ -152,7 +153,7 @@ func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/execute()
-func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
+func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("execute:"), error_)
 	return rv
 }
@@ -162,7 +163,7 @@ func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/affectedStores
-func (f_ FetchRequest) AffectedStores() []PersistentStore {
+func (f_ FetchRequest) AffectedStores() []PersistentStore /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]PersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
@@ -172,7 +173,7 @@ func (f_ FetchRequest) AffectedStores() []PersistentStore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/affectedStores
-func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
+func (f_ FetchRequest) SetAffectedStores(value []PersistentStore /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -210,7 +211,7 @@ func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entityName
-func (f_ FetchRequest) EntityName() string {
+func (f_ FetchRequest) EntityName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("entityName"))
 	return rv
 }
@@ -220,7 +221,7 @@ func (f_ FetchRequest) EntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchBatchSize
-func (f_ FetchRequest) FetchBatchSize() uint {
+func (f_ FetchRequest) FetchBatchSize() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -230,7 +231,7 @@ func (f_ FetchRequest) FetchBatchSize() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchBatchSize
-func (f_ FetchRequest) SetFetchBatchSize(value uint) {
+func (f_ FetchRequest) SetFetchBatchSize(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -239,7 +240,7 @@ func (f_ FetchRequest) SetFetchBatchSize(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchLimit
-func (f_ FetchRequest) FetchLimit() uint {
+func (f_ FetchRequest) FetchLimit() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -249,7 +250,7 @@ func (f_ FetchRequest) FetchLimit() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchLimit
-func (f_ FetchRequest) SetFetchLimit(value uint) {
+func (f_ FetchRequest) SetFetchLimit(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -258,7 +259,7 @@ func (f_ FetchRequest) SetFetchLimit(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchOffset
-func (f_ FetchRequest) FetchOffset() uint {
+func (f_ FetchRequest) FetchOffset() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -268,7 +269,7 @@ func (f_ FetchRequest) FetchOffset() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchOffset
-func (f_ FetchRequest) SetFetchOffset(value uint) {
+func (f_ FetchRequest) SetFetchOffset(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -277,8 +278,8 @@ func (f_ FetchRequest) SetFetchOffset(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("havingPredicate"))
+func (f_ FetchRequest) HavingPredicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](f_.ID, objc.Sel("havingPredicate"))
 	return rv
 }
 
@@ -287,7 +288,7 @@ func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-func (f_ FetchRequest) SetHavingPredicate(value foundation.Predicate) {
+func (f_ FetchRequest) SetHavingPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHavingPredicate:"), value)
 }
 
@@ -296,7 +297,7 @@ func (f_ FetchRequest) SetHavingPredicate(value foundation.Predicate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPendingChanges
-func (f_ FetchRequest) IncludesPendingChanges() bool {
+func (f_ FetchRequest) IncludesPendingChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesPendingChanges"))
 	return rv
 }
@@ -306,7 +307,7 @@ func (f_ FetchRequest) IncludesPendingChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPendingChanges
-func (f_ FetchRequest) SetIncludesPendingChanges(value bool) {
+func (f_ FetchRequest) SetIncludesPendingChanges(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPendingChanges:"), value)
 }
 
@@ -315,7 +316,7 @@ func (f_ FetchRequest) SetIncludesPendingChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPropertyValues
-func (f_ FetchRequest) IncludesPropertyValues() bool {
+func (f_ FetchRequest) IncludesPropertyValues() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesPropertyValues"))
 	return rv
 }
@@ -325,7 +326,7 @@ func (f_ FetchRequest) IncludesPropertyValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesPropertyValues
-func (f_ FetchRequest) SetIncludesPropertyValues(value bool) {
+func (f_ FetchRequest) SetIncludesPropertyValues(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPropertyValues:"), value)
 }
 
@@ -334,7 +335,7 @@ func (f_ FetchRequest) SetIncludesPropertyValues(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesSubentities
-func (f_ FetchRequest) IncludesSubentities() bool {
+func (f_ FetchRequest) IncludesSubentities() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("includesSubentities"))
 	return rv
 }
@@ -344,7 +345,7 @@ func (f_ FetchRequest) IncludesSubentities() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/includesSubentities
-func (f_ FetchRequest) SetIncludesSubentities(value bool) {
+func (f_ FetchRequest) SetIncludesSubentities(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
 
@@ -353,8 +354,8 @@ func (f_ FetchRequest) SetIncludesSubentities(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-func (f_ FetchRequest) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
+func (f_ FetchRequest) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -363,7 +364,7 @@ func (f_ FetchRequest) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-func (f_ FetchRequest) SetPredicate(value foundation.Predicate) {
+func (f_ FetchRequest) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -410,7 +411,7 @@ func (f_ FetchRequest) SetPropertiesToGroupBy(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/relationshipKeyPathsForPrefetching
-func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
+func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("relationshipKeyPathsForPrefetching"))
 	return rv
 }
@@ -420,7 +421,7 @@ func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/relationshipKeyPathsForPrefetching
-func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
+func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -439,8 +440,8 @@ func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) ResultType() NSFetchRequestResultType {
-	rv := objc.Send[NSFetchRequestResultType](f_.ID, objc.Sel("resultType"))
+func (f_ FetchRequest) ResultType() FetchRequestResultType {
+	rv := objc.Send[FetchRequestResultType](f_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -449,7 +450,7 @@ func (f_ FetchRequest) ResultType() NSFetchRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) SetResultType(value NSFetchRequestResultType) {
+func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -458,7 +459,7 @@ func (f_ FetchRequest) SetResultType(value NSFetchRequestResultType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsDistinctResults
-func (f_ FetchRequest) ReturnsDistinctResults() bool {
+func (f_ FetchRequest) ReturnsDistinctResults() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("returnsDistinctResults"))
 	return rv
 }
@@ -468,7 +469,7 @@ func (f_ FetchRequest) ReturnsDistinctResults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsDistinctResults
-func (f_ FetchRequest) SetReturnsDistinctResults(value bool) {
+func (f_ FetchRequest) SetReturnsDistinctResults(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsDistinctResults:"), value)
 }
 
@@ -477,7 +478,7 @@ func (f_ FetchRequest) SetReturnsDistinctResults(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsObjectsAsFaults
-func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
+func (f_ FetchRequest) ReturnsObjectsAsFaults() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("returnsObjectsAsFaults"))
 	return rv
 }
@@ -487,7 +488,7 @@ func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/returnsObjectsAsFaults
-func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool) {
+func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsObjectsAsFaults:"), value)
 }
 
@@ -496,7 +497,7 @@ func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/shouldRefreshRefetchedObjects
-func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
+func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("shouldRefreshRefetchedObjects"))
 	return rv
 }
@@ -506,7 +507,7 @@ func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/shouldRefreshRefetchedObjects
-func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
+func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldRefreshRefetchedObjects:"), value)
 }
 
@@ -515,8 +516,8 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
-	rv := objc.Send[[]foundation.SortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []SortDescriptor /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]SortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -525,7 +526,7 @@ func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []foundation.SortDescriptor) {
+func (f_ FetchRequest) SetSortDescriptors(value []SortDescriptor /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

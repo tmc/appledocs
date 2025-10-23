@@ -30,10 +30,12 @@ type _RoutingPlaybackArbiterClass struct {
 // An interface definition for the [RoutingPlaybackArbiter] class.
 type IRoutingPlaybackArbiter interface {
 	objectivec.IObject
+	// properties:
 	PreferredParticipantForNonMixableAudioRoutes() objc.ID
 	SetPreferredParticipantForNonMixableAudioRoutes(value objc.ID)
-	PreferredParticipantForExternalPlayback() AVRoutingPlaybackParticipant
-	SetPreferredParticipantForExternalPlayback(value AVRoutingPlaybackParticipant)
+	PreferredParticipantForExternalPlayback() RoutingPlaybackParticipant /* not a class type */
+	SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */)
+	// methods:
 }
 
 // An object that manages playback routing preferences.
@@ -112,7 +114,7 @@ func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForNonMixableAudioRoutes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
-func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() AVRoutingPlaybackParticipant {
+func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() RoutingPlaybackParticipant /* not a class type */ {
 	rv := objc.Send[RoutingPlaybackParticipant](r_.ID, objc.Sel("preferredParticipantForExternalPlayback"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() AVRou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
-func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value AVRoutingPlaybackParticipant) {
+func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
 }
 

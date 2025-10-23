@@ -30,6 +30,8 @@ type _ViewControllerClass struct {
 // An interface definition for the [ViewController] class.
 type IViewController interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class to extend when creating a custom user interface for an audio unit.

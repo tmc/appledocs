@@ -31,8 +31,10 @@ type _CNDetectionClass struct {
 // An interface definition for the [CNDetection] class.
 type ICNDetection interface {
 	objectivec.IObject
-	FocusDisparity() float32
+	// properties:
+	FocusDisparity() float32 /* primitive/slice/pointer. */
 	NormalizedRect() coregraphics.CGRect
+	// methods:
 }
 
 // A structure that represents a detected subject, face, torso or pet at a particular time.
@@ -92,7 +94,7 @@ func NewCNDetection() CNDetection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetection-c.class/focusDisparity
-func (c_ CNDetection) FocusDisparity() float32 {
+func (c_ CNDetection) FocusDisparity() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](c_.ID, objc.Sel("focusDisparity"))
 	return rv
 }

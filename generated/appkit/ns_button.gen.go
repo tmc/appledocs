@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,66 +30,68 @@ type _ButtonClass struct {
 // An interface definition for the [Button] class.
 type IButton interface {
 	IControl
-	ActiveCompressionOptions() UserInterfaceCompressionOptions
-	AttributedTitle() foundation.AttributedString
-	SetAttributedTitle(value foundation.AttributedString)
+	// properties:
+	ActiveCompressionOptions() objc.IObject /* cross-framework: UserInterfaceCompressionOptions */
+	AttributedAlternateTitle() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedAlternateTitle(value objc.IObject /* cross-framework: AttributedString */)
+	AttributedTitle() objc.IObject /* cross-framework: AttributedString */
+	SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */)
 	BezelColor() IColor
 	SetBezelColor(value IColor)
-	BorderShape() unsafe.Pointer
-	SetBorderShape(value unsafe.Pointer)
+	BorderShape() ControlBorderShape /* not a class type */
+	SetBorderShape(value ControlBorderShape /* not a class type */)
 	ContentTintColor() IColor
 	SetContentTintColor(value IColor)
-	Bordered() bool
-	SetBordered(value bool)
-	Transparent() bool
-	SetTransparent(value bool)
+	Bordered() bool /* primitive/slice/pointer. */
+	SetBordered(value bool /* primitive/slice/pointer. */)
+	Transparent() bool /* primitive/slice/pointer. */
+	SetTransparent(value bool /* primitive/slice/pointer. */)
+	KeyEquivalentModifierMask() EventModifierFlags
+	SetKeyEquivalentModifierMask(value EventModifierFlags)
 	Sound() ISound
 	SetSound(value ISound)
-	AllowsMixedState() bool
-	SetAllowsMixedState(value bool)
+	AllowsMixedState() bool /* primitive/slice/pointer. */
+	SetAllowsMixedState(value bool /* primitive/slice/pointer. */)
 	AlternateImage() IImage
 	SetAlternateImage(value IImage)
-	AlternateTitle() string
-	SetAlternateTitle(value string)
-	AttributedAlternateTitle() foundation.AttributedString
-	SetAttributedAlternateTitle(value foundation.AttributedString)
+	AlternateTitle() string /* primitive/slice/pointer. */
+	SetAlternateTitle(value string /* primitive/slice/pointer. */)
 	BezelStyle() unsafe.Pointer
 	SetBezelStyle(value unsafe.Pointer)
-	HasDestructiveAction() bool
-	SetHasDestructiveAction(value bool)
+	HasDestructiveAction() bool /* primitive/slice/pointer. */
+	SetHasDestructiveAction(value bool /* primitive/slice/pointer. */)
 	Image() IImage
 	SetImage(value IImage)
-	ImageHugsTitle() bool
-	SetImageHugsTitle(value bool)
+	ImageHugsTitle() bool /* primitive/slice/pointer. */
+	SetImageHugsTitle(value bool /* primitive/slice/pointer. */)
 	ImagePosition() unsafe.Pointer
 	SetImagePosition(value unsafe.Pointer)
 	ImageScaling() ImageScaling
 	SetImageScaling(value ImageScaling)
-	IsBordered() bool
-	SetIsBordered(value bool)
-	IsSpringLoaded() bool
-	SetIsSpringLoaded(value bool)
-	IsTransparent() bool
-	SetIsTransparent(value bool)
-	KeyEquivalent() string
-	SetKeyEquivalent(value string)
-	KeyEquivalentModifierMask() unsafe.Pointer
-	SetKeyEquivalentModifierMask(value unsafe.Pointer)
-	MaxAcceleratorLevel() int
-	SetMaxAcceleratorLevel(value int)
-	ShowsBorderOnlyWhileMouseInside() bool
-	SetShowsBorderOnlyWhileMouseInside(value bool)
+	IsBordered() bool /* primitive/slice/pointer. */
+	SetIsBordered(value bool /* primitive/slice/pointer. */)
+	IsSpringLoaded() bool /* primitive/slice/pointer. */
+	SetIsSpringLoaded(value bool /* primitive/slice/pointer. */)
+	IsTransparent() bool /* primitive/slice/pointer. */
+	SetIsTransparent(value bool /* primitive/slice/pointer. */)
+	KeyEquivalent() string /* primitive/slice/pointer. */
+	SetKeyEquivalent(value string /* primitive/slice/pointer. */)
+	MaxAcceleratorLevel() int /* primitive/slice/pointer. */
+	SetMaxAcceleratorLevel(value int /* primitive/slice/pointer. */)
+	ShowsBorderOnlyWhileMouseInside() bool /* primitive/slice/pointer. */
+	SetShowsBorderOnlyWhileMouseInside(value bool /* primitive/slice/pointer. */)
 	State() unsafe.Pointer
 	SetState(value unsafe.Pointer)
 	SymbolConfiguration() IImageSymbolConfiguration
 	SetSymbolConfiguration(value IImageSymbolConfiguration)
-	TintProminence() unsafe.Pointer
-	SetTintProminence(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
-	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)
-	SetButtonType(type_ unsafe.Pointer)
-	SetPeriodicDelayInterval(delay float32, interval float32)
+	TintProminence() TintProminence /* not a class type */
+	SetTintProminence(value TintProminence /* not a class type */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	// methods:
+	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions /* primitive/slice/pointer. */)
+	SetButtonType(type_ ButtonType /* not a class type */)
+	SetPeriodicDelayInterval(delay float32 /* primitive/slice/pointer. */, interval float32 /* primitive/slice/pointer. */)
 }
 
 // A control that defines an area on the screen that a user clicks to trigger an action.
@@ -152,7 +153,7 @@ func NewButton() Button {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-func NewButtonCheckboxWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonCheckboxWithTitleTargetAction(title string /* primitive/slice/pointer. */, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
@@ -162,7 +163,7 @@ func NewButtonCheckboxWithTitleTargetAction(title string, target objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-func NewButtonWithTitleImageTargetAction(title string, image IImage, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonWithTitleImageTargetAction(title string /* primitive/slice/pointer. */, image IImage, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
@@ -172,7 +173,7 @@ func NewButtonWithTitleImageTargetAction(title string, image IImage, target obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func NewButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) Button {
+func NewButtonWithTitleTargetAction(title string /* primitive/slice/pointer. */, target objectivec.IObject, action objc.SEL) Button {
 	rv := objc.Send[Button](objc.ID(getButtonClass().class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
@@ -183,7 +184,7 @@ func NewButtonWithTitleTargetAction(title string, target objectivec.IObject, act
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(checkboxWithTitle:target:action:)
-func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string /* primitive/slice/pointer. */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("checkboxWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
@@ -193,7 +194,7 @@ func (bc _ButtonClass) CheckboxWithTitleTargetAction(title string, target object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:image:target:action:)
-func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string, image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string /* primitive/slice/pointer. */, image IImage, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:image:target:action:"), objc.String(title), image, target, action)
 	return rv
 }
@@ -203,7 +204,7 @@ func (bc _ButtonClass) ButtonWithTitleImageTargetAction(title string, image IIma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/init(title:target:action:)
-func (bc _ButtonClass) ButtonWithTitleTargetAction(title string, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
+func (bc _ButtonClass) ButtonWithTitleTargetAction(title string /* primitive/slice/pointer. */, target objectivec.IObject, action objc.SEL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("buttonWithTitle:target:action:"), objc.String(title), target, action)
 	return rv
 }
@@ -213,7 +214,7 @@ func (bc _ButtonClass) ButtonWithTitleTargetAction(title string, target objectiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/compress(withPrioritizedCompressionOptions:)
-func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) {
+func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("compressWithPrioritizedCompressionOptions:"), prioritizedOptions)
 }
 
@@ -222,7 +223,7 @@ func (b_ Button) CompressWithPrioritizedCompressionOptions(prioritizedOptions []
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setButtonType(_:)
-func (b_ Button) SetButtonType(type_ unsafe.Pointer) {
+func (b_ Button) SetButtonType(type_ ButtonType /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setButtonType:"), type_)
 }
 
@@ -231,7 +232,7 @@ func (b_ Button) SetButtonType(type_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
-func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
+func (b_ Button) SetPeriodicDelayInterval(delay float32 /* primitive/slice/pointer. */, interval float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
 
@@ -240,18 +241,37 @@ func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/activeCompressionOptions
-func (b_ Button) ActiveCompressionOptions() UserInterfaceCompressionOptions {
+func (b_ Button) ActiveCompressionOptions() objc.IObject /* cross-framework: UserInterfaceCompressionOptions */ {
 	rv := objc.Send[UserInterfaceCompressionOptions](b_.ID, objc.Sel("activeCompressionOptions"))
 	return rv
 }
 
 
+// The title that the button displays as an attributed string when the button is in an on state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
+func (b_ Button) AttributedAlternateTitle() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
+	return rv
+}
+
+
+// The title that the button displays as an attributed string when the button is in an on state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedAlternateTitle
+func (b_ Button) SetAttributedAlternateTitle(value objc.IObject /* cross-framework: AttributedString */) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
+}
+
+
 // The title that the button displays in an off state, as an attributed string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-func (b_ Button) AttributedTitle() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedTitle"))
+func (b_ Button) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](b_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
@@ -260,7 +280,7 @@ func (b_ Button) AttributedTitle() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/attributedTitle
-func (b_ Button) SetAttributedTitle(value foundation.AttributedString) {
+func (b_ Button) SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
@@ -286,15 +306,15 @@ func (b_ Button) SetBezelColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
-func (b_ Button) BorderShape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("borderShape"))
+func (b_ Button) BorderShape() ControlBorderShape /* not a class type */ {
+	rv := objc.Send[ControlBorderShape](b_.ID, objc.Sel("borderShape"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/borderShape
-func (b_ Button) SetBorderShape(value unsafe.Pointer) {
+func (b_ Button) SetBorderShape(value ControlBorderShape /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBorderShape:"), value)
 }
 
@@ -322,7 +342,7 @@ func (b_ Button) SetContentTintColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-func (b_ Button) Bordered() bool {
+func (b_ Button) Bordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("bordered"))
 	return rv
 }
@@ -332,7 +352,7 @@ func (b_ Button) Bordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isBordered
-func (b_ Button) SetBordered(value bool) {
+func (b_ Button) SetBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBordered:"), value)
 }
 
@@ -341,7 +361,7 @@ func (b_ Button) SetBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-func (b_ Button) Transparent() bool {
+func (b_ Button) Transparent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("transparent"))
 	return rv
 }
@@ -351,8 +371,27 @@ func (b_ Button) Transparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/isTransparent
-func (b_ Button) SetTransparent(value bool) {
+func (b_ Button) SetTransparent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTransparent:"), value)
+}
+
+
+// The mask specifying the modifier keys for the button’s key equivalent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalentModifierMask
+func (b_ Button) KeyEquivalentModifierMask() EventModifierFlags {
+	rv := objc.Send[EventModifierFlags](b_.ID, objc.Sel("keyEquivalentModifierMask"))
+	return rv
+}
+
+
+// The mask specifying the modifier keys for the button’s key equivalent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalentModifierMask
+func (b_ Button) SetKeyEquivalentModifierMask(value EventModifierFlags) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
 }
 
 
@@ -379,7 +418,7 @@ func (b_ Button) SetSound(value ISound) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
-func (b_ Button) AllowsMixedState() bool {
+func (b_ Button) AllowsMixedState() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("allowsMixedState"))
 	return rv
 }
@@ -389,7 +428,7 @@ func (b_ Button) AllowsMixedState() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate
-func (b_ Button) SetAllowsMixedState(value bool) {
+func (b_ Button) SetAllowsMixedState(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAllowsMixedState:"), value)
 }
 
@@ -417,7 +456,7 @@ func (b_ Button) SetAlternateImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle
-func (b_ Button) AlternateTitle() string {
+func (b_ Button) AlternateTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("alternateTitle"))
 	return rv
 }
@@ -427,27 +466,8 @@ func (b_ Button) AlternateTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle
-func (b_ Button) SetAlternateTitle(value string) {
+func (b_ Button) SetAlternateTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateTitle:"), objc.String(value))
-}
-
-
-// The title that the button displays as an attributed string when the button is in an on state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/attributedalternatetitle
-func (b_ Button) AttributedAlternateTitle() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](b_.ID, objc.Sel("attributedAlternateTitle"))
-	return rv
-}
-
-
-// The title that the button displays as an attributed string when the button is in an on state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/attributedalternatetitle
-func (b_ Button) SetAttributedAlternateTitle(value foundation.AttributedString) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setAttributedAlternateTitle:"), value)
 }
 
 
@@ -474,7 +494,7 @@ func (b_ Button) SetBezelStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
-func (b_ Button) HasDestructiveAction() bool {
+func (b_ Button) HasDestructiveAction() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("hasDestructiveAction"))
 	return rv
 }
@@ -484,7 +504,7 @@ func (b_ Button) HasDestructiveAction() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/hasdestructiveaction
-func (b_ Button) SetHasDestructiveAction(value bool) {
+func (b_ Button) SetHasDestructiveAction(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setHasDestructiveAction:"), value)
 }
 
@@ -512,7 +532,7 @@ func (b_ Button) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
-func (b_ Button) ImageHugsTitle() bool {
+func (b_ Button) ImageHugsTitle() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("imageHugsTitle"))
 	return rv
 }
@@ -522,7 +542,7 @@ func (b_ Button) ImageHugsTitle() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/imagehugstitle
-func (b_ Button) SetImageHugsTitle(value bool) {
+func (b_ Button) SetImageHugsTitle(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImageHugsTitle:"), value)
 }
 
@@ -569,7 +589,7 @@ func (b_ Button) SetImageScaling(value ImageScaling) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-func (b_ Button) IsBordered() bool {
+func (b_ Button) IsBordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isBordered"))
 	return rv
 }
@@ -579,7 +599,7 @@ func (b_ Button) IsBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isbordered
-func (b_ Button) SetIsBordered(value bool) {
+func (b_ Button) SetIsBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsBordered:"), value)
 }
 
@@ -588,7 +608,7 @@ func (b_ Button) SetIsBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-func (b_ Button) IsSpringLoaded() bool {
+func (b_ Button) IsSpringLoaded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSpringLoaded"))
 	return rv
 }
@@ -598,7 +618,7 @@ func (b_ Button) IsSpringLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/isspringloaded
-func (b_ Button) SetIsSpringLoaded(value bool) {
+func (b_ Button) SetIsSpringLoaded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
 
@@ -607,7 +627,7 @@ func (b_ Button) SetIsSpringLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-func (b_ Button) IsTransparent() bool {
+func (b_ Button) IsTransparent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isTransparent"))
 	return rv
 }
@@ -617,7 +637,7 @@ func (b_ Button) IsTransparent() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/istransparent
-func (b_ Button) SetIsTransparent(value bool) {
+func (b_ Button) SetIsTransparent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsTransparent:"), value)
 }
 
@@ -626,7 +646,7 @@ func (b_ Button) SetIsTransparent(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalent
-func (b_ Button) KeyEquivalent() string {
+func (b_ Button) KeyEquivalent() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
@@ -636,27 +656,8 @@ func (b_ Button) KeyEquivalent() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalent
-func (b_ Button) SetKeyEquivalent(value string) {
+func (b_ Button) SetKeyEquivalent(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
-}
-
-
-// The mask specifying the modifier keys for the button’s key equivalent.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalentmodifiermask
-func (b_ Button) KeyEquivalentModifierMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalentModifierMask"))
-	return rv
-}
-
-
-// The mask specifying the modifier keys for the button’s key equivalent.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/keyequivalentmodifiermask
-func (b_ Button) SetKeyEquivalentModifierMask(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalentModifierMask:"), value)
 }
 
 
@@ -664,7 +665,7 @@ func (b_ Button) SetKeyEquivalentModifierMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
-func (b_ Button) MaxAcceleratorLevel() int {
+func (b_ Button) MaxAcceleratorLevel() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("maxAcceleratorLevel"))
 	return rv
 }
@@ -674,7 +675,7 @@ func (b_ Button) MaxAcceleratorLevel() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel
-func (b_ Button) SetMaxAcceleratorLevel(value int) {
+func (b_ Button) SetMaxAcceleratorLevel(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMaxAcceleratorLevel:"), value)
 }
 
@@ -683,7 +684,7 @@ func (b_ Button) SetMaxAcceleratorLevel(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/showsborderonlywhilemouseinside
-func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
+func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("showsBorderOnlyWhileMouseInside"))
 	return rv
 }
@@ -693,7 +694,7 @@ func (b_ Button) ShowsBorderOnlyWhileMouseInside() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/showsborderonlywhilemouseinside
-func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool) {
+func (b_ Button) SetShowsBorderOnlyWhileMouseInside(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setShowsBorderOnlyWhileMouseInside:"), value)
 }
 
@@ -740,8 +741,8 @@ func (b_ Button) SetSymbolConfiguration(value IImageSymbolConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/tintprominence
-func (b_ Button) TintProminence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tintProminence"))
+func (b_ Button) TintProminence() TintProminence /* not a class type */ {
+	rv := objc.Send[TintProminence](b_.ID, objc.Sel("tintProminence"))
 	return rv
 }
 
@@ -750,7 +751,7 @@ func (b_ Button) TintProminence() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/tintprominence
-func (b_ Button) SetTintProminence(value unsafe.Pointer) {
+func (b_ Button) SetTintProminence(value TintProminence /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTintProminence:"), value)
 }
 
@@ -759,7 +760,7 @@ func (b_ Button) SetTintProminence(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/title
-func (b_ Button) Title() string {
+func (b_ Button) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
 }
@@ -769,7 +770,7 @@ func (b_ Button) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbutton/title
-func (b_ Button) SetTitle(value string) {
+func (b_ Button) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

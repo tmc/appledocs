@@ -29,10 +29,12 @@ type _CBMutableServiceClass struct {
 // An interface definition for the [CBMutableService] class.
 type ICBMutableService interface {
 	ICBService
-	Characteristics() []CBCharacteristic
-	SetCharacteristics(value []CBCharacteristic)
-	IncludedServices() []CBService
-	SetIncludedServices(value []CBService)
+	// properties:
+	Characteristics() []CBCharacteristic /* primitive/slice/pointer. */
+	SetCharacteristics(value []CBCharacteristic /* primitive/slice/pointer. */)
+	IncludedServices() []CBService /* primitive/slice/pointer. */
+	SetIncludedServices(value []CBService /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A service with writeable property values.
@@ -94,7 +96,7 @@ func NewCBMutableService() CBMutableService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/init(type:primary:)
-func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool) CBMutableService {
+func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool /* primitive/slice/pointer. */) CBMutableService {
 	instance := getCBMutableServiceClass().Alloc()
 	rv := objc.Send[CBMutableService](instance.ID, objc.Sel("initWithType:primary:"), UUID, isPrimary)
 	rv.Autorelease()
@@ -107,7 +109,7 @@ func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool) CBMutableS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/characteristics
-func (c_ CBMutableService) Characteristics() []CBCharacteristic {
+func (c_ CBMutableService) Characteristics() []CBCharacteristic /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBCharacteristic](c_.ID, objc.Sel("characteristics"))
 	return rv
 }
@@ -117,7 +119,7 @@ func (c_ CBMutableService) Characteristics() []CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/characteristics
-func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic) {
+func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -136,7 +138,7 @@ func (c_ CBMutableService) SetCharacteristics(value []CBCharacteristic) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/includedServices
-func (c_ CBMutableService) IncludedServices() []CBService {
+func (c_ CBMutableService) IncludedServices() []CBService /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("includedServices"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (c_ CBMutableService) IncludedServices() []CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/includedServices
-func (c_ CBMutableService) SetIncludedServices(value []CBService) {
+func (c_ CBMutableService) SetIncludedServices(value []CBService /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

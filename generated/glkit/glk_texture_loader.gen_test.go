@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = glkit.NewGLKTextureLoader
 
+// ExampleNewGLKTextureLoaderWithShareContext demonstrates how to create a GLKTextureLoader instance using NewGLKTextureLoaderWithShareContext.
+// Initializes a new texture loader object.
+func ExampleNewGLKTextureLoaderWithShareContext() {
+	_ = glkit.NewGLKTextureLoaderWithShareContext(
+		glkit.OpenGLContext{}, // context OpenGLContext
+	)
+	// Output:
+}

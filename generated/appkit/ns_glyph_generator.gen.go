@@ -30,6 +30,9 @@ type _GlyphGeneratorClass struct {
 // An interface definition for the [GlyphGenerator] class.
 type IGlyphGenerator interface {
 	objectivec.IObject
+	// properties:
+	// methods:
+	GenerateGlyphsForGlyphStorageDesiredNumberOfCharactersGlyphIndexCharacterIndex(glyphStorage objectivec.IObject, nChars uint /* primitive/slice/pointer. */, glyphIndex UInteger /* not a class type */, charIndex UInteger /* not a class type */)
 }
 
 // An object that performs the initial, nominal glyph generation phase in the layout process.
@@ -83,6 +86,34 @@ func NewGlyphGenerator() GlyphGenerator {
 	return getGlyphGeneratorClass().New()
 }
 
+
+
+// Returns a shared instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator/shared
+func (gc _GlyphGeneratorClass) SharedGlyphGenerator() GlyphGenerator {
+	rv := objc.Send[GlyphGenerator](objc.ID(gc.class), objc.Sel("sharedGlyphGenerator"))
+	return rv
+}
+
+// Generates glyphs for the specified glyph storage object ( by default).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator/generateGlyphs(for:desiredNumberOfCharacters:glyphIndex:characterIndex:)
+func (g_ GlyphGenerator) GenerateGlyphsForGlyphStorageDesiredNumberOfCharactersGlyphIndexCharacterIndex(glyphStorage objectivec.IObject, nChars uint /* primitive/slice/pointer. */, glyphIndex UInteger /* not a class type */, charIndex UInteger /* not a class type */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:"), glyphStorage, nChars, glyphIndex, charIndex)
+}
+
+
+// Returns a shared instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphGenerator/shared
+func (g_ GlyphGenerator) SharedGlyphGenerator() IGlyphGenerator {
+	rv := objc.Send[GlyphGenerator](g_.ID, objc.Sel("sharedGlyphGenerator"))
+	return rv
+}
 
 
 

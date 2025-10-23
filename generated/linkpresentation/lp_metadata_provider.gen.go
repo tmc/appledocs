@@ -32,14 +32,14 @@ type _LPMetadataProviderClass struct {
 type ILPMetadataProvider interface {
 	objectivec.IObject
 	// properties:
-	ShouldFetchSubresources() bool
-	SetShouldFetchSubresources(value bool)
-	Timeout() foundation.TimeInterval
-	SetTimeout(value foundation.TimeInterval)
+	ShouldFetchSubresources() bool /* primitive/slice/pointer. */
+	SetShouldFetchSubresources(value bool /* primitive/slice/pointer. */)
+	Timeout() foundation.TimeInterval /* not a class type */
+	SetTimeout(value foundation.TimeInterval /* not a class type */)
 	// methods:
 	Cancel()
-	StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer)
-	StartFetchingMetadataForRequestCompletionHandler(request foundation.URLRequest, completionHandler unsafe.Pointer)
+	StartFetchingMetadataForURLCompletionHandler(URL foundation.objc.IObject /* cross-framework URL */, completionHandler unsafe.Pointer)
+	StartFetchingMetadataForRequestCompletionHandler(request URLRequest /* not a class type */, completionHandler unsafe.Pointer)
 }
 
 // An object that retrieves metadata for a URL.
@@ -108,7 +108,7 @@ func (l_ LPMetadataProvider) Cancel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-54z5i
-func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.URL, completionHandler unsafe.Pointer) {
+func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL foundation.objc.IObject /* cross-framework URL */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForURL:completionHandler:"), URL, completionHandler)
 }
 
@@ -117,7 +117,7 @@ func (l_ LPMetadataProvider) StartFetchingMetadataForURLCompletionHandler(URL fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/startFetchingMetadata(for:completionHandler:)-9e6s8
-func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(request foundation.URLRequest, completionHandler unsafe.Pointer) {
+func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(request URLRequest /* not a class type */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startFetchingMetadataForRequest:completionHandler:"), request, completionHandler)
 }
 
@@ -126,7 +126,7 @@ func (l_ LPMetadataProvider) StartFetchingMetadataForRequestCompletionHandler(re
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/shouldFetchSubresources
-func (l_ LPMetadataProvider) ShouldFetchSubresources() bool {
+func (l_ LPMetadataProvider) ShouldFetchSubresources() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("shouldFetchSubresources"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (l_ LPMetadataProvider) ShouldFetchSubresources() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/shouldFetchSubresources
-func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool) {
+func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldFetchSubresources:"), value)
 }
 
@@ -145,7 +145,7 @@ func (l_ LPMetadataProvider) SetShouldFetchSubresources(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
-func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
+func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timeout"))
 	return rv
 }
@@ -155,7 +155,7 @@ func (l_ LPMetadataProvider) Timeout() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPMetadataProvider/timeout
-func (l_ LPMetadataProvider) SetTimeout(value foundation.TimeInterval) {
+func (l_ LPMetadataProvider) SetTimeout(value foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimeout:"), value)
 }
 

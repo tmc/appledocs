@@ -29,12 +29,14 @@ type _RotationGestureRecognizerClass struct {
 // An interface definition for the [RotationGestureRecognizer] class.
 type IRotationGestureRecognizer interface {
 	IGestureRecognizer
-	DelaysRotationEvents() bool
-	SetDelaysRotationEvents(value bool)
-	Rotation() float64
-	SetRotation(value float64)
-	RotationInDegrees() float64
-	SetRotationInDegrees(value float64)
+	// properties:
+	DelaysRotationEvents() bool /* primitive/slice/pointer. */
+	SetDelaysRotationEvents(value bool /* primitive/slice/pointer. */)
+	Rotation() float64 /* primitive/slice/pointer. */
+	SetRotation(value float64 /* primitive/slice/pointer. */)
+	RotationInDegrees() float64 /* primitive/slice/pointer. */
+	SetRotationInDegrees(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.
@@ -96,7 +98,7 @@ func NewRotationGestureRecognizer() RotationGestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents
-func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool {
+func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("delaysRotationEvents"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents
-func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool) {
+func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelaysRotationEvents:"), value)
 }
 
@@ -115,7 +117,7 @@ func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-func (r_ RotationGestureRecognizer) Rotation() float64 {
+func (r_ RotationGestureRecognizer) Rotation() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](r_.ID, objc.Sel("rotation"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (r_ RotationGestureRecognizer) Rotation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-func (r_ RotationGestureRecognizer) SetRotation(value float64) {
+func (r_ RotationGestureRecognizer) SetRotation(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotation:"), value)
 }
 
@@ -134,7 +136,7 @@ func (r_ RotationGestureRecognizer) SetRotation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
+func (r_ RotationGestureRecognizer) RotationInDegrees() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](r_.ID, objc.Sel("rotationInDegrees"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-func (r_ RotationGestureRecognizer) SetRotationInDegrees(value float64) {
+func (r_ RotationGestureRecognizer) SetRotationInDegrees(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationInDegrees:"), value)
 }
 

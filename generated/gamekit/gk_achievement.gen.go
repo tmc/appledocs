@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,18 +31,21 @@ type _AchievementClass struct {
 // An interface definition for the [Achievement] class.
 type IAchievement interface {
 	objectivec.IObject
-	Identifier() string
-	SetIdentifier(value string)
-	IsCompleted() bool
-	SetIsCompleted(value bool)
-	LastReportedDate() foundation.Date
-	SetLastReportedDate(value foundation.Date)
-	PercentComplete() float64
-	SetPercentComplete(value float64)
+	// properties:
+	Completed() bool /* primitive/slice/pointer. */
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	IsCompleted() bool /* primitive/slice/pointer. */
+	SetIsCompleted(value bool /* primitive/slice/pointer. */)
+	LastReportedDate() foundation.objc.IObject /* cross-framework: Date */
+	SetLastReportedDate(value foundation.objc.IObject /* cross-framework: Date */)
+	PercentComplete() float64 /* primitive/slice/pointer. */
+	SetPercentComplete(value float64 /* primitive/slice/pointer. */)
 	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
-	ShowsCompletionBanner() bool
-	SetShowsCompletionBanner(value bool)
+	ShowsCompletionBanner() bool /* primitive/slice/pointer. */
+	SetShowsCompletionBanner(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An achievement you can award a player as they make progress toward and reach a goal in your game.
@@ -99,11 +101,30 @@ func NewAchievement() Achievement {
 
 
 
+// Loads the achievements that you previously reported the player making progress toward.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/loadAchievements(completionHandler:)
+func (ac _AchievementClass) LoadAchievementsWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadAchievementsWithCompletionHandler:"), completionHandler)
+}
+
+
+// A Boolean value that states whether the player has completed the achievement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/isCompleted
+func (a_ Achievement) Completed() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](a_.ID, objc.Sel("completed"))
+	return rv
+}
+
+
 // The identifier for the achievement that you enter in App Store Connect.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) Identifier() string {
+func (a_ Achievement) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -113,7 +134,7 @@ func (a_ Achievement) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) SetIdentifier(value string) {
+func (a_ Achievement) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -122,7 +143,7 @@ func (a_ Achievement) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/iscompleted
-func (a_ Achievement) IsCompleted() bool {
+func (a_ Achievement) IsCompleted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCompleted"))
 	return rv
 }
@@ -132,7 +153,7 @@ func (a_ Achievement) IsCompleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/iscompleted
-func (a_ Achievement) SetIsCompleted(value bool) {
+func (a_ Achievement) SetIsCompleted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCompleted:"), value)
 }
 
@@ -141,7 +162,7 @@ func (a_ Achievement) SetIsCompleted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-func (a_ Achievement) LastReportedDate() foundation.Date {
+func (a_ Achievement) LastReportedDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](a_.ID, objc.Sel("lastReportedDate"))
 	return rv
 }
@@ -151,7 +172,7 @@ func (a_ Achievement) LastReportedDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-func (a_ Achievement) SetLastReportedDate(value foundation.Date) {
+func (a_ Achievement) SetLastReportedDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLastReportedDate:"), value)
 }
 
@@ -160,7 +181,7 @@ func (a_ Achievement) SetLastReportedDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-func (a_ Achievement) PercentComplete() float64 {
+func (a_ Achievement) PercentComplete() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("percentComplete"))
 	return rv
 }
@@ -170,7 +191,7 @@ func (a_ Achievement) PercentComplete() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete
-func (a_ Achievement) SetPercentComplete(value float64) {
+func (a_ Achievement) SetPercentComplete(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPercentComplete:"), value)
 }
 
@@ -198,7 +219,7 @@ func (a_ Achievement) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/showscompletionbanner
-func (a_ Achievement) ShowsCompletionBanner() bool {
+func (a_ Achievement) ShowsCompletionBanner() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("showsCompletionBanner"))
 	return rv
 }
@@ -208,7 +229,7 @@ func (a_ Achievement) ShowsCompletionBanner() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/showscompletionbanner
-func (a_ Achievement) SetShowsCompletionBanner(value bool) {
+func (a_ Achievement) SetShowsCompletionBanner(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShowsCompletionBanner:"), value)
 }
 

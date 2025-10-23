@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,9 @@ type _CSLocalizedStringClass struct {
 // An interface definition for the [CSLocalizedString] class.
 type ICSLocalizedString interface {
 	IString
-	LocalizedString() foundation.String
+	// properties:
+	// methods:
+	LocalizedString() objc.IObject /* cross-framework: String */
 }
 
 // An object that displays localized text in search results related to your app.
@@ -106,8 +107,8 @@ func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/localizedString()
-func (c_ CSLocalizedString) LocalizedString() foundation.String {
-	rv := objc.Send[foundation.String](c_.ID, objc.Sel("localizedString"))
+func (c_ CSLocalizedString) LocalizedString() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](c_.ID, objc.Sel("localizedString"))
 	return rv
 }
 

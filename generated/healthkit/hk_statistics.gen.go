@@ -32,14 +32,14 @@ type _HKStatisticsClass struct {
 type IHKStatistics interface {
 	objectivec.IObject
 	// properties:
-	EndDate() foundation.Date
-	SetEndDate(value foundation.Date)
+	EndDate() foundation.objc.IObject /* cross-framework: Date */
+	SetEndDate(value foundation.objc.IObject /* cross-framework: Date */)
 	QuantityType() IHKQuantityType
 	SetQuantityType(value IHKQuantityType)
 	Sources() IHKSource
 	SetSources(value IHKSource)
-	StartDate() foundation.Date
-	SetStartDate(value foundation.Date)
+	StartDate() foundation.objc.IObject /* cross-framework: Date */
+	SetStartDate(value foundation.objc.IObject /* cross-framework: Date */)
 	// methods:
 }
 
@@ -100,7 +100,7 @@ func NewHKStatistics() HKStatistics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
-func (h_ HKStatistics) EndDate() foundation.Date {
+func (h_ HKStatistics) EndDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -110,7 +110,7 @@ func (h_ HKStatistics) EndDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
-func (h_ HKStatistics) SetEndDate(value foundation.Date) {
+func (h_ HKStatistics) SetEndDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -157,7 +157,7 @@ func (h_ HKStatistics) SetSources(value IHKSource) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
-func (h_ HKStatistics) StartDate() foundation.Date {
+func (h_ HKStatistics) StartDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (h_ HKStatistics) StartDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
-func (h_ HKStatistics) SetStartDate(value foundation.Date) {
+func (h_ HKStatistics) SetStartDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

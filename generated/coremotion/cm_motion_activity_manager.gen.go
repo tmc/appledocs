@@ -31,8 +31,10 @@ type _MotionActivityManagerClass struct {
 // An interface definition for the [MotionActivityManager] class.
 type IMotionActivityManager interface {
 	objectivec.IObject
-	QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.NSDate, end foundation.NSDate, queue foundation.OperationQueue, handler unsafe.Pointer)
-	StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer)
+	// properties:
+	// methods:
+	QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, queue objc.IObject /* cross-framework OperationQueue */, handler MotionActivityQueryHandler /* not a class type */)
+	StartActivityUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework OperationQueue */, handler MotionActivityHandler /* not a class type */)
 	StopActivityUpdates()
 }
 
@@ -93,8 +95,8 @@ func NewMotionActivityManager() MotionActivityManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/authorizationStatus()
-func (mc _MotionActivityManagerClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
+func (mc _MotionActivityManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -103,7 +105,7 @@ func (mc _MotionActivityManagerClass) AuthorizationStatus() CMAuthorizationStatu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/isActivityAvailable()
-func (mc _MotionActivityManagerClass) IsActivityAvailable() bool {
+func (mc _MotionActivityManagerClass) IsActivityAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("isActivityAvailable"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (mc _MotionActivityManagerClass) IsActivityAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/queryActivityStarting(from:to:to:withHandler:)
-func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.NSDate, end foundation.NSDate, queue foundation.OperationQueue, handler unsafe.Pointer) {
+func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, queue objc.IObject /* cross-framework OperationQueue */, handler MotionActivityQueryHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryActivityStartingFromDate:toDate:toQueue:withHandler:"), start, end, queue, handler)
 }
 
@@ -122,7 +124,7 @@ func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/startActivityUpdates(to:withHandler:)
-func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler unsafe.Pointer) {
+func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework OperationQueue */, handler MotionActivityHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
 }
 

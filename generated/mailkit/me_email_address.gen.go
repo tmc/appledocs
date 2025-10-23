@@ -31,8 +31,8 @@ type _MEEmailAddressClass struct {
 type IMEEmailAddress interface {
 	objectivec.IObject
 	// properties:
-	AddressString() string
-	RawString() string
+	AddressString() string /* primitive/slice/pointer. */
+	RawString() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -84,7 +84,7 @@ func NewMEEmailAddress() MEEmailAddress {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/init(rawString:)
-func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
+func NewMEEmailAddressWithRawString(rawString string /* primitive/slice/pointer. */) MEEmailAddress {
 	instance := getMEEmailAddressClass().Alloc()
 	rv := objc.Send[MEEmailAddress](instance.ID, objc.Sel("initWithRawString:"), objc.String(rawString))
 	rv.Autorelease()
@@ -95,7 +95,7 @@ func NewMEEmailAddressWithRawString(rawString string) MEEmailAddress {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/addressString
-func (m_ MEEmailAddress) AddressString() string {
+func (m_ MEEmailAddress) AddressString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (m_ MEEmailAddress) AddressString() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEEmailAddress/rawString
-func (m_ MEEmailAddress) RawString() string {
+func (m_ MEEmailAddress) RawString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("rawString"))
 	return rv
 }

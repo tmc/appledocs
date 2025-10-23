@@ -33,8 +33,8 @@ type IPlayerLooper interface {
 	// properties:
 	Error() Error
 	SetError(value Error)
-	LoopCount() int /* primitive/slice/pointer */
-	SetLoopCount(value int /* primitive/slice/pointer */)
+	LoopCount() int /* primitive/slice/pointer. */
+	SetLoopCount(value int /* primitive/slice/pointer. */)
 	LoopingPlayerItems() IAVPlayerItem
 	SetLoopingPlayerItems(value IAVPlayerItem)
 	Status() unsafe.Pointer
@@ -118,7 +118,7 @@ func (p_ PlayerLooper) SetError(value Error) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer */ {
+func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](p_.ID, objc.Sel("loopCount"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (p_ PlayerLooper) LoopCount() int /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopcount
-func (p_ PlayerLooper) SetLoopCount(value int /* primitive/slice/pointer */) {
+func (p_ PlayerLooper) SetLoopCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopCount:"), value)
 }
 

@@ -30,7 +30,9 @@ type _DDMatchLinkClass struct {
 // An interface definition for the [DDMatchLink] class.
 type IDDMatchLink interface {
 	IDDMatch
-	URL() foundation.URL
+	// properties:
+	URL() foundation.objc.IObject /* cross-framework: URL */
+	// methods:
 }
 
 // An object that contains a web link that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchLink() DDMatchLink {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchLink/url
-func (d_ DDMatchLink) URL() foundation.URL {
+func (d_ DDMatchLink) URL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("URL"))
 	return rv
 }

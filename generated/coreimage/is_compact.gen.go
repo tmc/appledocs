@@ -30,6 +30,8 @@ type _isCompactClass struct {
 // An interface definition for the [isCompact] class.
 type IisCompact interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

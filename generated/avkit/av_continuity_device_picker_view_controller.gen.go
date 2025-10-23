@@ -30,8 +30,10 @@ type _ContinuityDevicePickerViewControllerClass struct {
 // An interface definition for the [ContinuityDevicePickerViewController] class.
 type IContinuityDevicePickerViewController interface {
 	appkit.IViewController
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
 }
 
 // A view controller that provides an interface to a person so they can select and connect a continuity device to the system.
@@ -93,7 +95,7 @@ func NewContinuityDevicePickerViewController() ContinuityDevicePickerViewControl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/isSupported
-func (cc _ContinuityDevicePickerViewControllerClass) Supported() bool {
+func (cc _ContinuityDevicePickerViewControllerClass) Supported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("supported"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (c_ ContinuityDevicePickerViewController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContinuityDevicePickerViewController/isSupported
-func (c_ ContinuityDevicePickerViewController) Supported() bool {
+func (c_ ContinuityDevicePickerViewController) Supported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supported"))
 	return rv
 }

@@ -30,8 +30,10 @@ type _MigrationStageClass struct {
 // An interface definition for the [MigrationStage] class.
 type IMigrationStage interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
+	// properties:
+	Label() string /* primitive/slice/pointer. */
+	SetLabel(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An abstract base class for describing an individual stage of a migration.
@@ -89,7 +91,7 @@ func NewMigrationStage() MigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) Label() string {
+func (m_ MigrationStage) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("label"))
 	return rv
 }
@@ -99,7 +101,7 @@ func (m_ MigrationStage) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMigrationStage/label
-func (m_ MigrationStage) SetLabel(value string) {
+func (m_ MigrationStage) SetLabel(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 

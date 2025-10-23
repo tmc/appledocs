@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INPlayMediaIntent] class.
@@ -30,22 +31,20 @@ type _INPlayMediaIntentClass struct {
 type IINPlayMediaIntent interface {
 	IINIntent
 	// properties:
-	MediaContainer() INMediaItem
-	SetMediaContainer(value INMediaItem)
-	MediaItems() INMediaItem
-	SetMediaItems(value INMediaItem)
-	MediaSearch() INMediaSearch
-	SetMediaSearch(value INMediaSearch)
-	PlayShuffled() bool
-	SetPlayShuffled(value bool)
+	PlaybackSpeed() foundation.objc.IObject /* cross-framework: Number */
+	ResumePlayback() foundation.objc.IObject /* cross-framework: Number */
+	MediaContainer() INMediaItem /* already interface */
+	SetMediaContainer(value INMediaItem /* already interface */)
+	MediaItems() INMediaItem /* already interface */
+	SetMediaItems(value INMediaItem /* already interface */)
+	MediaSearch() INMediaSearch /* already interface */
+	SetMediaSearch(value INMediaSearch /* already interface */)
+	PlayShuffled() bool /* primitive/slice/pointer. */
+	SetPlayShuffled(value bool /* primitive/slice/pointer. */)
 	PlaybackQueueLocation() unsafe.Pointer
 	SetPlaybackQueueLocation(value unsafe.Pointer)
-	PlaybackRepeatMode() unsafe.Pointer
-	SetPlaybackRepeatMode(value unsafe.Pointer)
-	PlaybackSpeed() float64
-	SetPlaybackSpeed(value float64)
-	ResumePlayback() bool
-	SetResumePlayback(value bool)
+	PlaybackRepeatMode() INPlaybackRepeatMode /* already interface */
+	SetPlaybackRepeatMode(value INPlaybackRepeatMode /* already interface */)
 	// methods:
 }
 
@@ -104,11 +103,31 @@ func NewINPlayMediaIntent() INPlayMediaIntent {
 
 
 
+// The playback speed for a media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/playbackSpeed-6ngbq
+func (i_ INPlayMediaIntent) PlaybackSpeed() foundation.objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("playbackSpeed"))
+	return rv
+}
+
+
+// The resume playback setting at the time the user plays the media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/resumePlayback-9zfyp
+func (i_ INPlayMediaIntent) ResumePlayback() foundation.objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("resumePlayback"))
+	return rv
+}
+
+
 // The media item container.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
-func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
+func (i_ INPlayMediaIntent) MediaContainer() INMediaItem /* already interface */ {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaContainer"))
 	return rv
 }
@@ -118,7 +137,7 @@ func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
-func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
+func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaContainer:"), value)
 }
 
@@ -127,7 +146,7 @@ func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediaitems
-func (i_ INPlayMediaIntent) MediaItems() INMediaItem {
+func (i_ INPlayMediaIntent) MediaItems() INMediaItem /* already interface */ {
 	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
@@ -137,7 +156,7 @@ func (i_ INPlayMediaIntent) MediaItems() INMediaItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediaitems
-func (i_ INPlayMediaIntent) SetMediaItems(value INMediaItem) {
+func (i_ INPlayMediaIntent) SetMediaItems(value INMediaItem /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
@@ -146,7 +165,7 @@ func (i_ INPlayMediaIntent) SetMediaItems(value INMediaItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediasearch
-func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
+func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch /* already interface */ {
 	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
@@ -156,7 +175,7 @@ func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediasearch
-func (i_ INPlayMediaIntent) SetMediaSearch(value INMediaSearch) {
+func (i_ INPlayMediaIntent) SetMediaSearch(value INMediaSearch /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 
@@ -165,7 +184,7 @@ func (i_ INPlayMediaIntent) SetMediaSearch(value INMediaSearch) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playshuffled-2btex
-func (i_ INPlayMediaIntent) PlayShuffled() bool {
+func (i_ INPlayMediaIntent) PlayShuffled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("playShuffled"))
 	return rv
 }
@@ -175,7 +194,7 @@ func (i_ INPlayMediaIntent) PlayShuffled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playshuffled-2btex
-func (i_ INPlayMediaIntent) SetPlayShuffled(value bool) {
+func (i_ INPlayMediaIntent) SetPlayShuffled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayShuffled:"), value)
 }
 
@@ -203,8 +222,8 @@ func (i_ INPlayMediaIntent) SetPlaybackQueueLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) PlaybackRepeatMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playbackRepeatMode"))
+func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode /* already interface */ {
+	rv := objc.Send[INPlaybackRepeatMode](i_.ID, objc.Sel("playbackRepeatMode"))
 	return rv
 }
 
@@ -213,46 +232,8 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value unsafe.Pointer) {
+func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value INPlaybackRepeatMode /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackRepeatMode:"), value)
-}
-
-
-// The playback speed for a media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackspeed-17r2t
-func (i_ INPlayMediaIntent) PlaybackSpeed() float64 {
-	rv := objc.Send[float64](i_.ID, objc.Sel("playbackSpeed"))
-	return rv
-}
-
-
-// The playback speed for a media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackspeed-17r2t
-func (i_ INPlayMediaIntent) SetPlaybackSpeed(value float64) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackSpeed:"), value)
-}
-
-
-// The resume playback setting at the time the user plays the media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/resumeplayback-1xw6r
-func (i_ INPlayMediaIntent) ResumePlayback() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("resumePlayback"))
-	return rv
-}
-
-
-// The resume playback setting at the time the user plays the media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/resumeplayback-1xw6r
-func (i_ INPlayMediaIntent) SetResumePlayback(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setResumePlayback:"), value)
 }
 
 

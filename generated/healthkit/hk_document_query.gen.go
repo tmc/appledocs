@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKDocumentQuery] class.
@@ -31,13 +30,13 @@ type _HKDocumentQueryClass struct {
 type IHKDocumentQuery interface {
 	IHKQuery
 	// properties:
-	IncludeDocumentData() bool
-	SetIncludeDocumentData(value bool)
-	Limit() int
-	SetLimit(value int)
-	SortDescriptors() foundation.SortDescriptor
-	SetSortDescriptors(value foundation.SortDescriptor)
-	HKObjectQueryNoLimit() int
+	IncludeDocumentData() bool /* primitive/slice/pointer. */
+	SetIncludeDocumentData(value bool /* primitive/slice/pointer. */)
+	Limit() int /* primitive/slice/pointer. */
+	SetLimit(value int /* primitive/slice/pointer. */)
+	SortDescriptors() SortDescriptor /* not a class type */
+	SetSortDescriptors(value SortDescriptor /* not a class type */)
+	HKObjectQueryNoLimit() int /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -100,7 +99,7 @@ func NewHKDocumentQuery() HKDocumentQuery {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-func (h_ HKDocumentQuery) IncludeDocumentData() bool {
+func (h_ HKDocumentQuery) IncludeDocumentData() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("includeDocumentData"))
 	return rv
 }
@@ -110,7 +109,7 @@ func (h_ HKDocumentQuery) IncludeDocumentData() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/includedocumentdata
-func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
+func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIncludeDocumentData:"), value)
 }
 
@@ -119,7 +118,7 @@ func (h_ HKDocumentQuery) SetIncludeDocumentData(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) Limit() int {
+func (h_ HKDocumentQuery) Limit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("limit"))
 	return rv
 }
@@ -129,7 +128,7 @@ func (h_ HKDocumentQuery) Limit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/limit
-func (h_ HKDocumentQuery) SetLimit(value int) {
+func (h_ HKDocumentQuery) SetLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLimit:"), value)
 }
 
@@ -138,8 +137,8 @@ func (h_ HKDocumentQuery) SetLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
-	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
+func (h_ HKDocumentQuery) SortDescriptors() SortDescriptor /* not a class type */ {
+	rv := objc.Send[SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -148,7 +147,7 @@ func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.SortDescriptor) {
+func (h_ HKDocumentQuery) SetSortDescriptors(value SortDescriptor /* not a class type */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 
@@ -157,7 +156,7 @@ func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.SortDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit
-func (h_ HKDocumentQuery) HKObjectQueryNoLimit() int {
+func (h_ HKDocumentQuery) HKObjectQueryNoLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("HKObjectQueryNoLimit"))
 	return rv
 }

@@ -31,13 +31,15 @@ type _HeadingClass struct {
 // An interface definition for the [Heading] class.
 type IHeading interface {
 	objectivec.IObject
-	HeadingAccuracy() unsafe.Pointer
-	MagneticHeading() unsafe.Pointer
-	Timestamp() foundation.NSDate
-	TrueHeading() unsafe.Pointer
-	X() HeadingComponentValue
-	Y() HeadingComponentValue
-	Z() HeadingComponentValue
+	// properties:
+	HeadingAccuracy() LocationDirection /* not a class type */
+	MagneticHeading() LocationDirection /* not a class type */
+	Timestamp() foundation.objc.IObject /* cross-framework: NSDate */
+	TrueHeading() LocationDirection /* not a class type */
+	X() objc.IObject /* cross-framework: HeadingComponentValue */
+	Y() objc.IObject /* cross-framework: HeadingComponentValue */
+	Z() objc.IObject /* cross-framework: HeadingComponentValue */
+	// methods:
 }
 
 // The orientation of the user’s device, relative to true or magnetic north.
@@ -97,8 +99,8 @@ func NewHeading() Heading {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/headingAccuracy
-func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("headingAccuracy"))
+func (h_ Heading) HeadingAccuracy() LocationDirection /* not a class type */ {
+	rv := objc.Send[LocationDirection](h_.ID, objc.Sel("headingAccuracy"))
 	return rv
 }
 
@@ -107,8 +109,8 @@ func (h_ Heading) HeadingAccuracy() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/magneticHeading
-func (h_ Heading) MagneticHeading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("magneticHeading"))
+func (h_ Heading) MagneticHeading() LocationDirection /* not a class type */ {
+	rv := objc.Send[LocationDirection](h_.ID, objc.Sel("magneticHeading"))
 	return rv
 }
 
@@ -117,7 +119,7 @@ func (h_ Heading) MagneticHeading() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
-func (h_ Heading) Timestamp() foundation.NSDate {
+func (h_ Heading) Timestamp() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("timestamp"))
 	return rv
 }
@@ -127,8 +129,8 @@ func (h_ Heading) Timestamp() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/trueHeading
-func (h_ Heading) TrueHeading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("trueHeading"))
+func (h_ Heading) TrueHeading() LocationDirection /* not a class type */ {
+	rv := objc.Send[LocationDirection](h_.ID, objc.Sel("trueHeading"))
 	return rv
 }
 
@@ -137,7 +139,7 @@ func (h_ Heading) TrueHeading() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
-func (h_ Heading) X() HeadingComponentValue {
+func (h_ Heading) X() objc.IObject /* cross-framework: HeadingComponentValue */ {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("x"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (h_ Heading) X() HeadingComponentValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
-func (h_ Heading) Y() HeadingComponentValue {
+func (h_ Heading) Y() objc.IObject /* cross-framework: HeadingComponentValue */ {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("y"))
 	return rv
 }
@@ -157,7 +159,7 @@ func (h_ Heading) Y() HeadingComponentValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
-func (h_ Heading) Z() HeadingComponentValue {
+func (h_ Heading) Z() objc.IObject /* cross-framework: HeadingComponentValue */ {
 	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("z"))
 	return rv
 }

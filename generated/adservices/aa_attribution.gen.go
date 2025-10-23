@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _AAAttributionClass struct {
 // An interface definition for the [AAAttribution] class.
 type IAAAttribution interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The parent class that the framework uses to request a token.
@@ -88,8 +89,8 @@ func NewAAAttribution() AAAttribution {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttribution/attributionToken()
-func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) foundation.String {
-	rv := objc.Send[foundation.String](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
+func (ac _AAAttributionClass) AttributionTokenWithError(error_ unsafe.Pointer) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](objc.ID(ac.class), objc.Sel("attributionTokenWithError:"), error_)
 	return rv
 }
 

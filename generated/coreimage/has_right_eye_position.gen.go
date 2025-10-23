@@ -30,6 +30,8 @@ type _hasRightEyePositionClass struct {
 // An interface definition for the [hasRightEyePosition] class.
 type IhasRightEyePosition interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

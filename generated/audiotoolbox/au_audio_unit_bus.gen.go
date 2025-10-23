@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,27 +31,29 @@ type _AudioUnitBusClass struct {
 // An interface definition for the [AudioUnitBus] class.
 type IAudioUnitBus interface {
 	objectivec.IObject
-	Index() uint
-	BusType() AUAudioUnitBusType
-	SetBusType(value AUAudioUnitBusType)
+	// properties:
+	Index() uint /* primitive/slice/pointer. */
+	BusType() AudioUnitBusType
+	SetBusType(value AudioUnitBusType)
 	ContextPresentationLatency() unsafe.Pointer
 	SetContextPresentationLatency(value unsafe.Pointer)
-	Format() avfaudio.AudioFormat
-	SetFormat(value avfaudio.AudioFormat)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	MaximumChannelCount() AudioChannelCount
-	SetMaximumChannelCount(value AudioChannelCount)
-	Name() string
-	SetName(value string)
+	Format() objc.IObject /* cross-framework: AudioFormat */
+	SetFormat(value objc.IObject /* cross-framework: AudioFormat */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	MaximumChannelCount() objc.IObject /* cross-framework: AudioChannelCount */
+	SetMaximumChannelCount(value objc.IObject /* cross-framework: AudioChannelCount */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	OwnerAudioUnit() IAUAudioUnit
 	SetOwnerAudioUnit(value IAUAudioUnit)
-	ShouldAllocateBuffer() bool
-	SetShouldAllocateBuffer(value bool)
-	SupportedChannelCounts() foundation.Number
-	SetSupportedChannelCounts(value foundation.Number)
-	SupportedChannelLayoutTags() foundation.Number
-	SetSupportedChannelLayoutTags(value foundation.Number)
+	ShouldAllocateBuffer() bool /* primitive/slice/pointer. */
+	SetShouldAllocateBuffer(value bool /* primitive/slice/pointer. */)
+	SupportedChannelCounts() foundation.objc.IObject /* cross-framework: Number */
+	SetSupportedChannelCounts(value foundation.objc.IObject /* cross-framework: Number */)
+	SupportedChannelLayoutTags() foundation.objc.IObject /* cross-framework: Number */
+	SetSupportedChannelLayoutTags(value foundation.objc.IObject /* cross-framework: Number */)
+	// methods:
 }
 
 // A class that defines an input or output connection point on an audio unit.
@@ -110,7 +111,7 @@ func NewAudioUnitBus() AudioUnitBus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/index
-func (a_ AudioUnitBus) Index() uint {
+func (a_ AudioUnitBus) Index() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("index"))
 	return rv
 }
@@ -120,8 +121,8 @@ func (a_ AudioUnitBus) Index() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/bustype
-func (a_ AudioUnitBus) BusType() AUAudioUnitBusType {
-	rv := objc.Send[AUAudioUnitBusType](a_.ID, objc.Sel("busType"))
+func (a_ AudioUnitBus) BusType() AudioUnitBusType {
+	rv := objc.Send[AudioUnitBusType](a_.ID, objc.Sel("busType"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (a_ AudioUnitBus) BusType() AUAudioUnitBusType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/bustype
-func (a_ AudioUnitBus) SetBusType(value AUAudioUnitBusType) {
+func (a_ AudioUnitBus) SetBusType(value AudioUnitBusType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBusType:"), value)
 }
 
@@ -158,8 +159,8 @@ func (a_ AudioUnitBus) SetContextPresentationLatency(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/format
-func (a_ AudioUnitBus) Format() avfaudio.AudioFormat {
-	rv := objc.Send[avfaudio.AudioFormat](a_.ID, objc.Sel("format"))
+func (a_ AudioUnitBus) Format() objc.IObject /* cross-framework: AudioFormat */ {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 
@@ -168,7 +169,7 @@ func (a_ AudioUnitBus) Format() avfaudio.AudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/format
-func (a_ AudioUnitBus) SetFormat(value avfaudio.AudioFormat) {
+func (a_ AudioUnitBus) SetFormat(value objc.IObject /* cross-framework: AudioFormat */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFormat:"), value)
 }
 
@@ -177,7 +178,7 @@ func (a_ AudioUnitBus) SetFormat(value avfaudio.AudioFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
-func (a_ AudioUnitBus) IsEnabled() bool {
+func (a_ AudioUnitBus) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -187,7 +188,7 @@ func (a_ AudioUnitBus) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/isenabled
-func (a_ AudioUnitBus) SetIsEnabled(value bool) {
+func (a_ AudioUnitBus) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -196,7 +197,7 @@ func (a_ AudioUnitBus) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/maximumchannelcount
-func (a_ AudioUnitBus) MaximumChannelCount() AudioChannelCount {
+func (a_ AudioUnitBus) MaximumChannelCount() objc.IObject /* cross-framework: AudioChannelCount */ {
 	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("maximumChannelCount"))
 	return rv
 }
@@ -206,7 +207,7 @@ func (a_ AudioUnitBus) MaximumChannelCount() AudioChannelCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/maximumchannelcount
-func (a_ AudioUnitBus) SetMaximumChannelCount(value AudioChannelCount) {
+func (a_ AudioUnitBus) SetMaximumChannelCount(value objc.IObject /* cross-framework: AudioChannelCount */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumChannelCount:"), value)
 }
 
@@ -215,7 +216,7 @@ func (a_ AudioUnitBus) SetMaximumChannelCount(value AudioChannelCount) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/name
-func (a_ AudioUnitBus) Name() string {
+func (a_ AudioUnitBus) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
@@ -225,7 +226,7 @@ func (a_ AudioUnitBus) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/name
-func (a_ AudioUnitBus) SetName(value string) {
+func (a_ AudioUnitBus) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -251,7 +252,7 @@ func (a_ AudioUnitBus) SetOwnerAudioUnit(value IAUAudioUnit) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/shouldallocatebuffer
-func (a_ AudioUnitBus) ShouldAllocateBuffer() bool {
+func (a_ AudioUnitBus) ShouldAllocateBuffer() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldAllocateBuffer"))
 	return rv
 }
@@ -259,7 +260,7 @@ func (a_ AudioUnitBus) ShouldAllocateBuffer() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/shouldallocatebuffer
-func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool) {
+func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldAllocateBuffer:"), value)
 }
 
@@ -268,7 +269,7 @@ func (a_ AudioUnitBus) SetShouldAllocateBuffer(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/supportedchannelcounts
-func (a_ AudioUnitBus) SupportedChannelCounts() foundation.Number {
+func (a_ AudioUnitBus) SupportedChannelCounts() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("supportedChannelCounts"))
 	return rv
 }
@@ -278,7 +279,7 @@ func (a_ AudioUnitBus) SupportedChannelCounts() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/supportedchannelcounts
-func (a_ AudioUnitBus) SetSupportedChannelCounts(value foundation.Number) {
+func (a_ AudioUnitBus) SetSupportedChannelCounts(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportedChannelCounts:"), value)
 }
 
@@ -287,7 +288,7 @@ func (a_ AudioUnitBus) SetSupportedChannelCounts(value foundation.Number) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/supportedchannellayouttags
-func (a_ AudioUnitBus) SupportedChannelLayoutTags() foundation.Number {
+func (a_ AudioUnitBus) SupportedChannelLayoutTags() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("supportedChannelLayoutTags"))
 	return rv
 }
@@ -297,7 +298,7 @@ func (a_ AudioUnitBus) SupportedChannelLayoutTags() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus/supportedchannellayouttags
-func (a_ AudioUnitBus) SetSupportedChannelLayoutTags(value foundation.Number) {
+func (a_ AudioUnitBus) SetSupportedChannelLayoutTags(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportedChannelLayoutTags:"), value)
 }
 

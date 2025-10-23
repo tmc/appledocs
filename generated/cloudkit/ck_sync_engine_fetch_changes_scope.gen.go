@@ -30,9 +30,11 @@ type _CKSyncEngineFetchChangesScopeClass struct {
 // An interface definition for the [CKSyncEngineFetchChangesScope] class.
 type ICKSyncEngineFetchChangesScope interface {
 	objectivec.IObject
+	// properties:
 	ExcludedZoneIDs() unsafe.Pointer
 	ZoneIDs() unsafe.Pointer
-	ContainsZoneID(zoneID ICKRecordZoneID) bool
+	// methods:
+	ContainsZoneID(zoneID ICKRecordZoneID) bool /* primitive/slice/pointer. */
 }
 
 
@@ -104,7 +106,7 @@ func NewCKSyncEngineFetchChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncE
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesScope/containsZoneID:
-func (c_ CKSyncEngineFetchChangesScope) ContainsZoneID(zoneID ICKRecordZoneID) bool {
+func (c_ CKSyncEngineFetchChangesScope) ContainsZoneID(zoneID ICKRecordZoneID) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsZoneID:"), zoneID)
 	return rv
 }

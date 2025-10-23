@@ -30,12 +30,14 @@ type _FontCollectionClass struct {
 // An interface definition for the [FontCollection] class.
 type IFontCollection interface {
 	objectivec.IObject
-	ExclusionDescriptors() NSFontDescriptor
+	// properties:
+	ExclusionDescriptors() IFontDescriptor
 	SetExclusionDescriptors(value IFontDescriptor)
-	MatchingDescriptors() NSFontDescriptor
+	MatchingDescriptors() IFontDescriptor
 	SetMatchingDescriptors(value IFontDescriptor)
-	QueryDescriptors() NSFontDescriptor
+	QueryDescriptors() IFontDescriptor
 	SetQueryDescriptors(value IFontDescriptor)
+	// methods:
 }
 
 // A font collection, which is a group of font descriptors taken together as a single object.
@@ -95,8 +97,8 @@ func NewFontCollection() FontCollection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/exclusiondescriptors
-func (f_ FontCollection) ExclusionDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("exclusionDescriptors"))
+func (f_ FontCollection) ExclusionDescriptors() IFontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("exclusionDescriptors"))
 	return rv
 }
 
@@ -114,8 +116,8 @@ func (f_ FontCollection) SetExclusionDescriptors(value IFontDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors
-func (f_ FontCollection) MatchingDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("matchingDescriptors"))
+func (f_ FontCollection) MatchingDescriptors() IFontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("matchingDescriptors"))
 	return rv
 }
 
@@ -133,8 +135,8 @@ func (f_ FontCollection) SetMatchingDescriptors(value IFontDescriptor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontcollection/querydescriptors
-func (f_ FontCollection) QueryDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("queryDescriptors"))
+func (f_ FontCollection) QueryDescriptors() IFontDescriptor {
+	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("queryDescriptors"))
 	return rv
 }
 

@@ -31,9 +31,11 @@ type _CKShareAccessRequesterClass struct {
 // An interface definition for the [CKShareAccessRequester] class.
 type ICKShareAccessRequester interface {
 	objectivec.IObject
-	Contact() contacts.CNContact
+	// properties:
+	Contact() contacts.objc.IObject /* cross-framework: CNContact */
 	ParticipantLookupInfo() ICKUserIdentityLookupInfo
 	UserIdentity() ICKUserIdentity
+	// methods:
 }
 
 
@@ -86,7 +88,7 @@ func NewCKShareAccessRequester() CKShareAccessRequester {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/contact
-func (c_ CKShareAccessRequester) Contact() contacts.CNContact {
+func (c_ CKShareAccessRequester) Contact() contacts.objc.IObject /* cross-framework: CNContact */ {
 	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }

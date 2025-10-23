@@ -29,6 +29,8 @@ type _AutomaticAnchoringStrategyClass struct {
 // An interface definition for the [AutomaticAnchoringStrategy] class.
 type IAutomaticAnchoringStrategy interface {
 	IAnchoringStrategy
+	// properties:
+	// methods:
 }
 
 // A system-defined anchoring strategy.

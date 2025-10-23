@@ -30,7 +30,10 @@ type _GCMotionClass struct {
 // An interface definition for the [GCMotion] class.
 type IGCMotion interface {
 	objectivec.IObject
-	HasAttitudeAndRotationRate() bool
+	// properties:
+	HasAttitudeAndRotationRate() bool /* primitive/slice/pointer. */
+	HasGravityAndUserAcceleration() bool /* primitive/slice/pointer. */
+	RotationRate() unsafe.Pointer
 	Motion() IGCMotion
 	SetMotion(value IGCMotion)
 	Acceleration() unsafe.Pointer
@@ -41,22 +44,19 @@ type IGCMotion interface {
 	SetController(value IGCController)
 	Gravity() unsafe.Pointer
 	SetGravity(value unsafe.Pointer)
-	HasAttitude() bool
-	SetHasAttitude(value bool)
-	HasGravityAndUserAcceleration() bool
-	SetHasGravityAndUserAcceleration(value bool)
-	HasRotationRate() bool
-	SetHasRotationRate(value bool)
-	RotationRate() unsafe.Pointer
-	SetRotationRate(value unsafe.Pointer)
-	SensorsActive() bool
-	SetSensorsActive(value bool)
-	SensorsRequireManualActivation() bool
-	SetSensorsRequireManualActivation(value bool)
+	HasAttitude() bool /* primitive/slice/pointer. */
+	SetHasAttitude(value bool /* primitive/slice/pointer. */)
+	HasRotationRate() bool /* primitive/slice/pointer. */
+	SetHasRotationRate(value bool /* primitive/slice/pointer. */)
+	SensorsActive() bool /* primitive/slice/pointer. */
+	SetSensorsActive(value bool /* primitive/slice/pointer. */)
+	SensorsRequireManualActivation() bool /* primitive/slice/pointer. */
+	SetSensorsRequireManualActivation(value bool /* primitive/slice/pointer. */)
 	UserAcceleration() unsafe.Pointer
 	SetUserAcceleration(value unsafe.Pointer)
 	ValueChangedHandler() unsafe.Pointer
 	SetValueChangedHandler(value unsafe.Pointer)
+	// methods:
 }
 
 // A controller profile that supports orientation and motion.
@@ -116,8 +116,28 @@ func NewGCMotion() GCMotion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/hasAttitudeAndRotationRate
-func (g_ GCMotion) HasAttitudeAndRotationRate() bool {
+func (g_ GCMotion) HasAttitudeAndRotationRate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitudeAndRotationRate"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the controller provides gravity and user acceleration data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/hasGravityAndUserAcceleration
+func (g_ GCMotion) HasGravityAndUserAcceleration() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hasGravityAndUserAcceleration"))
+	return rv
+}
+
+
+// The rotation rate of the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCMotion/rotationRate
+func (g_ GCMotion) RotationRate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
 	return rv
 }
 
@@ -221,7 +241,7 @@ func (g_ GCMotion) SetGravity(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-func (g_ GCMotion) HasAttitude() bool {
+func (g_ GCMotion) HasAttitude() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasAttitude"))
 	return rv
 }
@@ -231,27 +251,8 @@ func (g_ GCMotion) HasAttitude() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasattitude
-func (g_ GCMotion) SetHasAttitude(value bool) {
+func (g_ GCMotion) SetHasAttitude(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasAttitude:"), value)
-}
-
-
-// A Boolean value that indicates whether the controller provides gravity and user acceleration data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
-func (g_ GCMotion) HasGravityAndUserAcceleration() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("hasGravityAndUserAcceleration"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the controller provides gravity and user acceleration data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasgravityanduseracceleration
-func (g_ GCMotion) SetHasGravityAndUserAcceleration(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setHasGravityAndUserAcceleration:"), value)
 }
 
 
@@ -259,7 +260,7 @@ func (g_ GCMotion) SetHasGravityAndUserAcceleration(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-func (g_ GCMotion) HasRotationRate() bool {
+func (g_ GCMotion) HasRotationRate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasRotationRate"))
 	return rv
 }
@@ -269,27 +270,8 @@ func (g_ GCMotion) HasRotationRate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/hasrotationrate
-func (g_ GCMotion) SetHasRotationRate(value bool) {
+func (g_ GCMotion) SetHasRotationRate(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHasRotationRate:"), value)
-}
-
-
-// The rotation rate of the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/rotationrate
-func (g_ GCMotion) RotationRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rotationRate"))
-	return rv
-}
-
-
-// The rotation rate of the controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/rotationrate
-func (g_ GCMotion) SetRotationRate(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setRotationRate:"), value)
 }
 
 
@@ -297,7 +279,7 @@ func (g_ GCMotion) SetRotationRate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-func (g_ GCMotion) SensorsActive() bool {
+func (g_ GCMotion) SensorsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsActive"))
 	return rv
 }
@@ -307,7 +289,7 @@ func (g_ GCMotion) SensorsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsactive
-func (g_ GCMotion) SetSensorsActive(value bool) {
+func (g_ GCMotion) SetSensorsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsActive:"), value)
 }
 
@@ -316,7 +298,7 @@ func (g_ GCMotion) SetSensorsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
-func (g_ GCMotion) SensorsRequireManualActivation() bool {
+func (g_ GCMotion) SensorsRequireManualActivation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("sensorsRequireManualActivation"))
 	return rv
 }
@@ -326,7 +308,7 @@ func (g_ GCMotion) SensorsRequireManualActivation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/sensorsrequiremanualactivation
-func (g_ GCMotion) SetSensorsRequireManualActivation(value bool) {
+func (g_ GCMotion) SetSensorsRequireManualActivation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSensorsRequireManualActivation:"), value)
 }
 

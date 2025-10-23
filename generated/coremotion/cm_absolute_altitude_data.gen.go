@@ -29,9 +29,11 @@ type _AbsoluteAltitudeDataClass struct {
 // An interface definition for the [AbsoluteAltitudeData] class.
 type IAbsoluteAltitudeData interface {
 	ILogItem
-	Accuracy() float64
-	Altitude() float64
-	Precision() float64
+	// properties:
+	Accuracy() float64 /* primitive/slice/pointer. */
+	Altitude() float64 /* primitive/slice/pointer. */
+	Precision() float64 /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Data that records a change in absolute altitude.
@@ -93,7 +95,7 @@ func NewAbsoluteAltitudeData() AbsoluteAltitudeData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/accuracy
-func (a_ AbsoluteAltitudeData) Accuracy() float64 {
+func (a_ AbsoluteAltitudeData) Accuracy() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("accuracy"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (a_ AbsoluteAltitudeData) Accuracy() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/altitude
-func (a_ AbsoluteAltitudeData) Altitude() float64 {
+func (a_ AbsoluteAltitudeData) Altitude() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("altitude"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (a_ AbsoluteAltitudeData) Altitude() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAbsoluteAltitudeData/precision
-func (a_ AbsoluteAltitudeData) Precision() float64 {
+func (a_ AbsoluteAltitudeData) Precision() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("precision"))
 	return rv
 }

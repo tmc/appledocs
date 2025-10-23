@@ -29,8 +29,10 @@ type _FSItemSetAttributesRequestClass struct {
 // An interface definition for the [FSItemSetAttributesRequest] class.
 type IFSItemSetAttributesRequest interface {
 	IFSItemAttributes
+	// properties:
 	ConsumedAttributes() unsafe.Pointer
 	SetConsumedAttributes(value unsafe.Pointer)
+	// methods:
 }
 
 // A request to set attributes on an item.

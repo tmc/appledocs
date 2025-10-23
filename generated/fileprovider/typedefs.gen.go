@@ -28,6 +28,11 @@ type FileProviderItemDecorationIdentifier = string
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemIdentifier
 // NSFileProviderItemIdentifier is a string typedef
 type FileProviderItemIdentifier = string
+// FileProviderPage - A synchronization point that represents the next batch of items to be returned by an enumerator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderPage
+// NSFileProviderPage has base type: NSData *
+type FileProviderPage uintptr
 // FileProviderUserInfoKey type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderUserInfoKey

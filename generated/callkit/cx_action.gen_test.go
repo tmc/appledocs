@@ -15,3 +15,11 @@ func ExampleNewCXAction() {
 	_ = callkit.NewCXAction()
 	// Output:
 }
+// ExampleNewCXActionWithCoder demonstrates how to create a CXAction instance using NewCXActionWithCoder.
+// Creates a new telephony action with data in an unarchiver.
+func ExampleNewCXActionWithCoder() {
+	_ = callkit.NewCXActionWithCoder(
+		callkit.Coder{}, // aDecoder Coder
+	)
+	// Output:
+}

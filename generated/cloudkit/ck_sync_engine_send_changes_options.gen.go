@@ -30,6 +30,8 @@ type _CKSyncEngineSendChangesOptionsClass struct {
 // An interface definition for the [CKSyncEngineSendChangesOptions] class.
 type ICKSyncEngineSendChangesOptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A set of options to use with a send operation.

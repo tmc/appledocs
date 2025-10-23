@@ -29,14 +29,16 @@ type _ImageCellClass struct {
 // An interface definition for the [ImageCell] class.
 type IImageCell interface {
 	ICell
+	// properties:
+	ImageAlignment() ImageAlignment
+	SetImageAlignment(value ImageAlignment)
 	ObjectValue() unsafe.Pointer
 	SetObjectValue(value unsafe.Pointer)
-	ImageAlignment() unsafe.Pointer
-	SetImageAlignment(value unsafe.Pointer)
 	ImageFrameStyle() unsafe.Pointer
 	SetImageFrameStyle(value unsafe.Pointer)
 	ImageScaling() ImageScaling
 	SetImageScaling(value ImageScaling)
+	// methods:
 }
 
 // An object displays a single image (encapsulated in an object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
@@ -94,6 +96,25 @@ func NewImageCell() ImageCell {
 
 
 
+// The alignment of the receiver’s image relative to its frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell/imageAlignment
+func (i_ ImageCell) ImageAlignment() ImageAlignment {
+	rv := objc.Send[ImageAlignment](i_.ID, objc.Sel("imageAlignment"))
+	return rv
+}
+
+
+// The alignment of the receiver’s image relative to its frame.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageCell/imageAlignment
+func (i_ ImageCell) SetImageAlignment(value ImageAlignment) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
+}
+
+
 // The cell’s value as an Objective-C object.
 //
 // [Full Topic]
@@ -110,25 +131,6 @@ func (i_ ImageCell) ObjectValue() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/objectvalue
 func (i_ ImageCell) SetObjectValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setObjectValue:"), value)
-}
-
-
-// The alignment of the receiver’s image relative to its frame.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
-func (i_ ImageCell) ImageAlignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageAlignment"))
-	return rv
-}
-
-
-// The alignment of the receiver’s image relative to its frame.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment
-func (i_ ImageCell) SetImageAlignment(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAlignment:"), value)
 }
 
 

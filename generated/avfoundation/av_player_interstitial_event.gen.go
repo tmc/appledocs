@@ -32,21 +32,21 @@ type _PlayerInterstitialEventClass struct {
 type IPlayerInterstitialEvent interface {
 	objectivec.IObject
 	// properties:
-	UserDefinedAttributes() objc.ID
-	AlignsResumptionWithPrimarySegmentBoundary() bool /* primitive/slice/pointer */
-	SetAlignsResumptionWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer */)
-	AlignsStartWithPrimarySegmentBoundary() bool /* primitive/slice/pointer */
-	SetAlignsStartWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer */)
+	UserDefinedAttributes() objc.IObject /* cross-framework: NSDictionary */
+	AlignsResumptionWithPrimarySegmentBoundary() bool /* primitive/slice/pointer. */
+	SetAlignsResumptionWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer. */)
+	AlignsStartWithPrimarySegmentBoundary() bool /* primitive/slice/pointer. */
+	SetAlignsStartWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer. */)
 	AssetListResponse() unsafe.Pointer
 	SetAssetListResponse(value unsafe.Pointer)
-	ContentMayVary() bool /* primitive/slice/pointer */
-	SetContentMayVary(value bool /* primitive/slice/pointer */)
+	ContentMayVary() bool /* primitive/slice/pointer. */
+	SetContentMayVary(value bool /* primitive/slice/pointer. */)
 	Cue() unsafe.Pointer
 	SetCue(value unsafe.Pointer)
-	Date() foundation.Date /* not a class type */
-	SetDate(value foundation.Date /* not a class type */)
-	Identifier() string /* primitive/slice/pointer */
-	SetIdentifier(value string /* primitive/slice/pointer */)
+	Date() objc.IObject /* cross-framework: Date */
+	SetDate(value objc.IObject /* cross-framework: Date */)
+	Identifier() objc.IObject /* cross-framework: NSString */
+	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	PlannedDuration() Time /* not a class type */
 	SetPlannedDuration(value Time /* not a class type */)
 	PlayoutLimit() Time /* not a class type */
@@ -57,20 +57,20 @@ type IPlayerInterstitialEvent interface {
 	SetRestrictions(value unsafe.Pointer)
 	ResumptionOffset() Time /* not a class type */
 	SetResumptionOffset(value Time /* not a class type */)
-	SkipControlLocalizedLabelBundleKey() string /* primitive/slice/pointer */
-	SetSkipControlLocalizedLabelBundleKey(value string /* primitive/slice/pointer */)
+	SkipControlLocalizedLabelBundleKey() objc.IObject /* cross-framework: NSString */
+	SetSkipControlLocalizedLabelBundleKey(value objc.IObject /* cross-framework: NSString */)
 	SkipControlTimeRange() TimeRange /* not a class type */
 	SetSkipControlTimeRange(value TimeRange /* not a class type */)
-	SupplementsPrimaryContent() bool /* primitive/slice/pointer */
-	SetSupplementsPrimaryContent(value bool /* primitive/slice/pointer */)
+	SupplementsPrimaryContent() bool /* primitive/slice/pointer. */
+	SetSupplementsPrimaryContent(value bool /* primitive/slice/pointer. */)
 	TemplateItems() IAVPlayerItem
 	SetTemplateItems(value IAVPlayerItem)
 	Time() Time /* not a class type */
 	SetTime(value Time /* not a class type */)
 	TimelineOccupancy() unsafe.Pointer
 	SetTimelineOccupancy(value unsafe.Pointer)
-	WillPlayOnce() bool /* primitive/slice/pointer */
-	SetWillPlayOnce(value bool /* primitive/slice/pointer */)
+	WillPlayOnce() bool /* primitive/slice/pointer. */
+	SetWillPlayOnce(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -131,8 +131,8 @@ func NewPlayerInterstitialEvent() PlayerInterstitialEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes
-func (p_ PlayerInterstitialEvent) UserDefinedAttributes() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userDefinedAttributes"))
+func (p_ PlayerInterstitialEvent) UserDefinedAttributes() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](p_.ID, objc.Sel("userDefinedAttributes"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (p_ PlayerInterstitialEvent) UserDefinedAttributes() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsresumptionwithprimarysegmentboundary
-func (p_ PlayerInterstitialEvent) AlignsResumptionWithPrimarySegmentBoundary() bool /* primitive/slice/pointer */ {
+func (p_ PlayerInterstitialEvent) AlignsResumptionWithPrimarySegmentBoundary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("alignsResumptionWithPrimarySegmentBoundary"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (p_ PlayerInterstitialEvent) AlignsResumptionWithPrimarySegmentBoundary() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsresumptionwithprimarysegmentboundary
-func (p_ PlayerInterstitialEvent) SetAlignsResumptionWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerInterstitialEvent) SetAlignsResumptionWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignsResumptionWithPrimarySegmentBoundary:"), value)
 }
 
@@ -160,7 +160,7 @@ func (p_ PlayerInterstitialEvent) SetAlignsResumptionWithPrimarySegmentBoundary(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsstartwithprimarysegmentboundary
-func (p_ PlayerInterstitialEvent) AlignsStartWithPrimarySegmentBoundary() bool /* primitive/slice/pointer */ {
+func (p_ PlayerInterstitialEvent) AlignsStartWithPrimarySegmentBoundary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("alignsStartWithPrimarySegmentBoundary"))
 	return rv
 }
@@ -170,7 +170,7 @@ func (p_ PlayerInterstitialEvent) AlignsStartWithPrimarySegmentBoundary() bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/alignsstartwithprimarysegmentboundary
-func (p_ PlayerInterstitialEvent) SetAlignsStartWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerInterstitialEvent) SetAlignsStartWithPrimarySegmentBoundary(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAlignsStartWithPrimarySegmentBoundary:"), value)
 }
 
@@ -198,7 +198,7 @@ func (p_ PlayerInterstitialEvent) SetAssetListResponse(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/contentmayvary
-func (p_ PlayerInterstitialEvent) ContentMayVary() bool /* primitive/slice/pointer */ {
+func (p_ PlayerInterstitialEvent) ContentMayVary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("contentMayVary"))
 	return rv
 }
@@ -208,7 +208,7 @@ func (p_ PlayerInterstitialEvent) ContentMayVary() bool /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/contentmayvary
-func (p_ PlayerInterstitialEvent) SetContentMayVary(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerInterstitialEvent) SetContentMayVary(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMayVary:"), value)
 }
 
@@ -236,7 +236,7 @@ func (p_ PlayerInterstitialEvent) SetCue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) Date() foundation.Date /* not a class type */ {
+func (p_ PlayerInterstitialEvent) Date() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("date"))
 	return rv
 }
@@ -246,7 +246,7 @@ func (p_ PlayerInterstitialEvent) Date() foundation.Date /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) SetDate(value foundation.Date /* not a class type */) {
+func (p_ PlayerInterstitialEvent) SetDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDate:"), value)
 }
 
@@ -255,8 +255,8 @@ func (p_ PlayerInterstitialEvent) SetDate(value foundation.Date /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) Identifier() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PlayerInterstitialEvent) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -265,8 +265,8 @@ func (p_ PlayerInterstitialEvent) Identifier() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) SetIdentifier(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PlayerInterstitialEvent) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -369,8 +369,8 @@ func (p_ PlayerInterstitialEvent) SetResumptionOffset(value Time /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
+func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
 	return rv
 }
 
@@ -379,8 +379,8 @@ func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), objc.String(value))
+func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), value)
 }
 
 
@@ -407,7 +407,7 @@ func (p_ PlayerInterstitialEvent) SetSkipControlTimeRange(value TimeRange /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/supplementsprimarycontent
-func (p_ PlayerInterstitialEvent) SupplementsPrimaryContent() bool /* primitive/slice/pointer */ {
+func (p_ PlayerInterstitialEvent) SupplementsPrimaryContent() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("supplementsPrimaryContent"))
 	return rv
 }
@@ -417,7 +417,7 @@ func (p_ PlayerInterstitialEvent) SupplementsPrimaryContent() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/supplementsprimarycontent
-func (p_ PlayerInterstitialEvent) SetSupplementsPrimaryContent(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerInterstitialEvent) SetSupplementsPrimaryContent(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSupplementsPrimaryContent:"), value)
 }
 
@@ -483,7 +483,7 @@ func (p_ PlayerInterstitialEvent) SetTimelineOccupancy(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/willplayonce
-func (p_ PlayerInterstitialEvent) WillPlayOnce() bool /* primitive/slice/pointer */ {
+func (p_ PlayerInterstitialEvent) WillPlayOnce() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("willPlayOnce"))
 	return rv
 }
@@ -493,7 +493,7 @@ func (p_ PlayerInterstitialEvent) WillPlayOnce() bool /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/willplayonce
-func (p_ PlayerInterstitialEvent) SetWillPlayOnce(value bool /* primitive/slice/pointer */) {
+func (p_ PlayerInterstitialEvent) SetWillPlayOnce(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWillPlayOnce:"), value)
 }
 

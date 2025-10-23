@@ -29,12 +29,14 @@ type _CKRecordZoneSubscriptionClass struct {
 // An interface definition for the [CKRecordZoneSubscription] class.
 type ICKRecordZoneSubscription interface {
 	ICKSubscription
+	// properties:
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
 	ZoneID() ICKRecordZoneID
 	SetZoneID(value ICKRecordZoneID)
-	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value CKNotificationInfo)
+	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
+	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
+	// methods:
 }
 
 // A subscription that generates push notifications when CloudKit modifies records in a specific record zone.
@@ -134,7 +136,7 @@ func (c_ CKRecordZoneSubscription) SetZoneID(value ICKRecordZoneID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneSubscription) NotificationInfo() CKNotificationInfo {
+func (c_ CKRecordZoneSubscription) NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */ {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (c_ CKRecordZoneSubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneSubscription) SetNotificationInfo(value CKNotificationInfo) {
+func (c_ CKRecordZoneSubscription) SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

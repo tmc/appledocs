@@ -29,10 +29,12 @@ type _CBServiceClass struct {
 // An interface definition for the [CBService] class.
 type ICBService interface {
 	ICBAttribute
-	Characteristics() []CBCharacteristic
-	IncludedServices() []CBService
-	IsPrimary() bool
+	// properties:
+	Characteristics() []CBCharacteristic /* primitive/slice/pointer. */
+	IncludedServices() []CBService /* primitive/slice/pointer. */
+	IsPrimary() bool /* primitive/slice/pointer. */
 	Peripheral() ICBPeripheral
+	// methods:
 }
 
 // A collection of data and associated behaviors that accomplish a function or feature of a device.
@@ -94,7 +96,7 @@ func NewCBService() CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/characteristics
-func (c_ CBService) Characteristics() []CBCharacteristic {
+func (c_ CBService) Characteristics() []CBCharacteristic /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBCharacteristic](c_.ID, objc.Sel("characteristics"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (c_ CBService) Characteristics() []CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/includedServices
-func (c_ CBService) IncludedServices() []CBService {
+func (c_ CBService) IncludedServices() []CBService /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBService](c_.ID, objc.Sel("includedServices"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (c_ CBService) IncludedServices() []CBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/isPrimary
-func (c_ CBService) IsPrimary() bool {
+func (c_ CBService) IsPrimary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPrimary"))
 	return rv
 }

@@ -32,17 +32,19 @@ type _TextAttachmentViewProviderClass struct {
 // An interface definition for the [TextAttachmentViewProvider] class.
 type ITextAttachmentViewProvider interface {
 	objectivec.IObject
+	// properties:
+	TracksTextAttachmentViewBounds() bool /* primitive/slice/pointer. */
+	SetTracksTextAttachmentViewBounds(value bool /* primitive/slice/pointer. */)
 	View() IView
 	SetView(value IView)
-	Location() unsafe.Pointer
-	SetLocation(value unsafe.Pointer)
+	Location() TextLocation /* not a class type */
+	SetLocation(value TextLocation /* not a class type */)
 	TextAttachment() ITextAttachment
 	SetTextAttachment(value ITextAttachment)
 	TextLayoutManager() ITextLayoutManager
 	SetTextLayoutManager(value ITextLayoutManager)
-	TracksTextAttachmentViewBounds() bool
-	SetTracksTextAttachmentViewBounds(value bool)
-	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer TextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
+	// methods:
+	AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect
 	LoadView()
 }
 
@@ -103,7 +105,7 @@ func NewTextAttachmentViewProvider() TextAttachmentViewProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/attachmentBounds(for:location:textContainer:proposedLineFragment:position:)
-func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary, location objectivec.IObject, textContainer TextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
+func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextContainerProposedLineFragmentPosition(attributes foundation.IDictionary /* already interface */, location objectivec.IObject, textContainer ITextContainer, proposedLineFragment coregraphics.CGRect, position coregraphics.CGPoint) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), attributes, location, textContainer, proposedLineFragment, position)
 	return rv
 }
@@ -115,6 +117,25 @@ func (t_ TextAttachmentViewProvider) AttachmentBoundsForAttributesLocationTextCo
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/loadView()
 func (t_ TextAttachmentViewProvider) LoadView() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("loadView"))
+}
+
+
+// A Boolean value that determines the text attachment’s bounds policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/tracksTextAttachmentViewBounds
+func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("tracksTextAttachmentViewBounds"))
+	return rv
+}
+
+
+// A Boolean value that determines the text attachment’s bounds policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAttachmentViewProvider/tracksTextAttachmentViewBounds
+func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTracksTextAttachmentViewBounds:"), value)
 }
 
 
@@ -141,8 +162,8 @@ func (t_ TextAttachmentViewProvider) SetView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
-func (t_ TextAttachmentViewProvider) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("location"))
+func (t_ TextAttachmentViewProvider) Location() TextLocation /* not a class type */ {
+	rv := objc.Send[TextLocation](t_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -151,7 +172,7 @@ func (t_ TextAttachmentViewProvider) Location() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/location
-func (t_ TextAttachmentViewProvider) SetLocation(value unsafe.Pointer) {
+func (t_ TextAttachmentViewProvider) SetLocation(value TextLocation /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -191,25 +212,6 @@ func (t_ TextAttachmentViewProvider) TextLayoutManager() ITextLayoutManager {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/textlayoutmanager
 func (t_ TextAttachmentViewProvider) SetTextLayoutManager(value ITextLayoutManager) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextLayoutManager:"), value)
-}
-
-
-// A Boolean value that determines the text attachment’s bounds policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
-func (t_ TextAttachmentViewProvider) TracksTextAttachmentViewBounds() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("tracksTextAttachmentViewBounds"))
-	return rv
-}
-
-
-// A Boolean value that determines the text attachment’s bounds policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider/trackstextattachmentviewbounds
-func (t_ TextAttachmentViewProvider) SetTracksTextAttachmentViewBounds(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTracksTextAttachmentViewBounds:"), value)
 }
 
 

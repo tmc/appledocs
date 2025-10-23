@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +30,11 @@ type _FontAssetRequestClass struct {
 // An interface definition for the [FontAssetRequest] class.
 type IFontAssetRequest interface {
 	objectivec.IObject
-	DownloadedFontDescriptors() NSFontDescriptor
-	SetDownloadedFontDescriptors(value IFontDescriptor)
-	Progress() foundation.Progress
-	SetProgress(value foundation.IProgress)
+	// properties:
+	DownloadedFontDescriptors() []FontDescriptor /* primitive/slice/pointer. */
+	Progress() Progress /* not a class type */
+	// methods:
+	DownloadFontAssetsWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
 
@@ -84,33 +84,36 @@ func NewFontAssetRequest() FontAssetRequest {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
-func (f_ FontAssetRequest) DownloadedFontDescriptors() NSFontDescriptor {
-	rv := objc.Send[NSFontDescriptor](f_.ID, objc.Sel("downloadedFontDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/init(fontDescriptors:options:)
+func NewFontAssetRequestWithFontDescriptorsOptions(fontDescriptors []FontDescriptor /* primitive/slice/pointer. */, options FontAssetRequestOptions) FontAssetRequest {
+	instance := getFontAssetRequestClass().Alloc()
+	rv := objc.Send[FontAssetRequest](instance.ID, objc.Sel("initWithFontDescriptors:options:"), fontDescriptors, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/download(withCompletionHandler:)
+func (f_ FontAssetRequest) DownloadFontAssetsWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("downloadFontAssetsWithCompletionHandler:"), completionHandler)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/downloadedFontDescriptors
+func (f_ FontAssetRequest) DownloadedFontDescriptors() []FontDescriptor /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]FontDescriptor](f_.ID, objc.Sel("downloadedFontDescriptors"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/downloadedfontdescriptors
-func (f_ FontAssetRequest) SetDownloadedFontDescriptors(value IFontDescriptor) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDownloadedFontDescriptors:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-func (f_ FontAssetRequest) Progress() foundation.Progress {
-	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("progress"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/progress
+func (f_ FontAssetRequest) Progress() Progress /* not a class type */ {
+	rv := objc.Send[Progress](f_.ID, objc.Sel("progress"))
 	return rv
 }
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontassetrequest/progress
-func (f_ FontAssetRequest) SetProgress(value foundation.IProgress) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setProgress:"), value)
-}
-
 
 

@@ -30,8 +30,10 @@ type _FSResourceClass struct {
 // An interface definition for the [FSResource] class.
 type IFSResource interface {
 	objectivec.IObject
-	IsRevoked() bool
-	SetIsRevoked(value bool)
+	// properties:
+	IsRevoked() bool /* primitive/slice/pointer. */
+	SetIsRevoked(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Revoke()
 }
 
@@ -101,7 +103,7 @@ func (f_ FSResource) Revoke() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
-func (f_ FSResource) IsRevoked() bool {
+func (f_ FSResource) IsRevoked() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isRevoked"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (f_ FSResource) IsRevoked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsresource/isrevoked
-func (f_ FSResource) SetIsRevoked(value bool) {
+func (f_ FSResource) SetIsRevoked(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsRevoked:"), value)
 }
 

@@ -19,3 +19,20 @@ type CFTypeRef unsafe.Pointer
 
 
 
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type Bool = int
+
+type DictionaryRef = int
+
+type OSType = int
+
+type StringRef = int
+
+type TypeID = int
+
+type TypeRef = int
+
+
+

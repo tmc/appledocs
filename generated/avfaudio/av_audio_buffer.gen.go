@@ -30,12 +30,14 @@ type _AudioBufferClass struct {
 // An interface definition for the [AudioBuffer] class.
 type IAudioBuffer interface {
 	objectivec.IObject
+	// properties:
 	AudioBufferList() unsafe.Pointer
 	SetAudioBufferList(value unsafe.Pointer)
 	Format() IAVAudioFormat
 	SetFormat(value IAVAudioFormat)
 	MutableAudioBufferList() unsafe.Pointer
 	SetMutableAudioBufferList(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that represents a buffer of audio data with a format.

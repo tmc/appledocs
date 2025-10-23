@@ -32,13 +32,15 @@ type _ContentProposalViewControllerClass struct {
 // An interface definition for the [ContentProposalViewController] class.
 type IContentProposalViewController interface {
 	appkit.IViewController
+	// properties:
 	ContentProposal() IAVContentProposal
-	DateOfAutomaticAcceptance() foundation.NSDate
-	SetDateOfAutomaticAcceptance(value foundation.NSDate)
-	PlayerLayoutGuide() appkit.LayoutGuide
+	DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: NSDate */
+	SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: NSDate */)
+	PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */
 	PlayerViewController() IAVPlayerViewController
 	PreferredPlayerViewFrame() coregraphics.CGRect
-	DismissContentProposalForActionAnimatedCompletion(action AVContentProposalAction, animated bool, block unsafe.Pointer)
+	// methods:
+	DismissContentProposalForActionAnimatedCompletion(action ContentProposalAction, animated bool /* primitive/slice/pointer. */, block unsafe.Pointer)
 }
 
 // A view controller that proposes content to watch next.
@@ -100,7 +102,7 @@ func NewContentProposalViewController() ContentProposalViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dismissContentProposal(for:animated:completion:)
-func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedCompletion(action AVContentProposalAction, animated bool, block unsafe.Pointer) {
+func (c_ ContentProposalViewController) DismissContentProposalForActionAnimatedCompletion(action ContentProposalAction, animated bool /* primitive/slice/pointer. */, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("dismissContentProposalForAction:animated:completion:"), action, animated, block)
 }
 
@@ -119,7 +121,7 @@ func (c_ ContentProposalViewController) ContentProposal() IAVContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.NSDate {
+func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (c_ ContentProposalViewController) DateOfAutomaticAcceptance() foundation.N
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/dateOfAutomaticAcceptance
-func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value foundation.NSDate) {
+func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
 
@@ -138,8 +140,8 @@ func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide
-func (c_ ContentProposalViewController) PlayerLayoutGuide() appkit.LayoutGuide {
-	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
+func (c_ ContentProposalViewController) PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */ {
+	rv := objc.Send[LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
 }
 

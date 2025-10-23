@@ -31,28 +31,30 @@ type _EntityMappingClass struct {
 // An interface definition for the [EntityMapping] class.
 type IEntityMapping interface {
 	objectivec.IObject
-	MappingType() NSEntityMappingType
-	SetMappingType(value NSEntityMappingType)
+	// properties:
+	MappingType() EntityMappingType
+	SetMappingType(value EntityMappingType)
 	AttributeMappings() IPropertyMapping
 	SetAttributeMappings(value IPropertyMapping)
-	DestinationEntityName() string
-	SetDestinationEntityName(value string)
-	DestinationEntityVersionHash() foundation.Data
-	SetDestinationEntityVersionHash(value foundation.Data)
-	EntityMigrationPolicyClassName() string
-	SetEntityMigrationPolicyClassName(value string)
-	Name() string
-	SetName(value string)
+	DestinationEntityName() string /* primitive/slice/pointer. */
+	SetDestinationEntityName(value string /* primitive/slice/pointer. */)
+	DestinationEntityVersionHash() foundation.objc.IObject /* cross-framework: Data */
+	SetDestinationEntityVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	EntityMigrationPolicyClassName() string /* primitive/slice/pointer. */
+	SetEntityMigrationPolicyClassName(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	RelationshipMappings() IPropertyMapping
 	SetRelationshipMappings(value IPropertyMapping)
-	SourceEntityName() string
-	SetSourceEntityName(value string)
-	SourceEntityVersionHash() foundation.Data
-	SetSourceEntityVersionHash(value foundation.Data)
-	SourceExpression() Expression
-	SetSourceExpression(value Expression)
+	SourceEntityName() string /* primitive/slice/pointer. */
+	SetSourceEntityName(value string /* primitive/slice/pointer. */)
+	SourceEntityVersionHash() foundation.objc.IObject /* cross-framework: Data */
+	SetSourceEntityVersionHash(value foundation.objc.IObject /* cross-framework: Data */)
+	SourceExpression() objc.IObject /* cross-framework: Expression */
+	SetSourceExpression(value objc.IObject /* cross-framework: Expression */)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
+	// methods:
 }
 
 // A mapping instance that specifies how to map an entity from a source to a destination managed object model.
@@ -110,8 +112,8 @@ func NewEntityMapping() EntityMapping {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
-func (e_ EntityMapping) MappingType() NSEntityMappingType {
-	rv := objc.Send[NSEntityMappingType](e_.ID, objc.Sel("mappingType"))
+func (e_ EntityMapping) MappingType() EntityMappingType {
+	rv := objc.Send[EntityMappingType](e_.ID, objc.Sel("mappingType"))
 	return rv
 }
 
@@ -120,7 +122,7 @@ func (e_ EntityMapping) MappingType() NSEntityMappingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMapping/mappingType
-func (e_ EntityMapping) SetMappingType(value NSEntityMappingType) {
+func (e_ EntityMapping) SetMappingType(value EntityMappingType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMappingType:"), value)
 }
 
@@ -148,7 +150,7 @@ func (e_ EntityMapping) SetAttributeMappings(value IPropertyMapping) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityname
-func (e_ EntityMapping) DestinationEntityName() string {
+func (e_ EntityMapping) DestinationEntityName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("destinationEntityName"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (e_ EntityMapping) DestinationEntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityname
-func (e_ EntityMapping) SetDestinationEntityName(value string) {
+func (e_ EntityMapping) SetDestinationEntityName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityName:"), objc.String(value))
 }
 
@@ -167,7 +169,7 @@ func (e_ EntityMapping) SetDestinationEntityName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityversionhash
-func (e_ EntityMapping) DestinationEntityVersionHash() foundation.Data {
+func (e_ EntityMapping) DestinationEntityVersionHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("destinationEntityVersionHash"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (e_ EntityMapping) DestinationEntityVersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/destinationentityversionhash
-func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.Data) {
+func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityVersionHash:"), value)
 }
 
@@ -186,7 +188,7 @@ func (e_ EntityMapping) SetDestinationEntityVersionHash(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
-func (e_ EntityMapping) EntityMigrationPolicyClassName() string {
+func (e_ EntityMapping) EntityMigrationPolicyClassName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
 	return rv
 }
@@ -196,7 +198,7 @@ func (e_ EntityMapping) EntityMigrationPolicyClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
-func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value string) {
+func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), objc.String(value))
 }
 
@@ -205,7 +207,7 @@ func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/name
-func (e_ EntityMapping) Name() string {
+func (e_ EntityMapping) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (e_ EntityMapping) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/name
-func (e_ EntityMapping) SetName(value string) {
+func (e_ EntityMapping) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -243,7 +245,7 @@ func (e_ EntityMapping) SetRelationshipMappings(value IPropertyMapping) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityname
-func (e_ EntityMapping) SourceEntityName() string {
+func (e_ EntityMapping) SourceEntityName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("sourceEntityName"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (e_ EntityMapping) SourceEntityName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityname
-func (e_ EntityMapping) SetSourceEntityName(value string) {
+func (e_ EntityMapping) SetSourceEntityName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityName:"), objc.String(value))
 }
 
@@ -262,7 +264,7 @@ func (e_ EntityMapping) SetSourceEntityName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityversionhash
-func (e_ EntityMapping) SourceEntityVersionHash() foundation.Data {
+func (e_ EntityMapping) SourceEntityVersionHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](e_.ID, objc.Sel("sourceEntityVersionHash"))
 	return rv
 }
@@ -272,7 +274,7 @@ func (e_ EntityMapping) SourceEntityVersionHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceentityversionhash
-func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.Data) {
+func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityVersionHash:"), value)
 }
 
@@ -281,7 +283,7 @@ func (e_ EntityMapping) SetSourceEntityVersionHash(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceexpression
-func (e_ EntityMapping) SourceExpression() Expression {
+func (e_ EntityMapping) SourceExpression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](e_.ID, objc.Sel("sourceExpression"))
 	return rv
 }
@@ -291,7 +293,7 @@ func (e_ EntityMapping) SourceExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/sourceexpression
-func (e_ EntityMapping) SetSourceExpression(value Expression) {
+func (e_ EntityMapping) SetSourceExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceExpression:"), value)
 }
 

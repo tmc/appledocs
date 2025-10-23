@@ -30,39 +30,41 @@ type _SplitViewItemClass struct {
 // An interface definition for the [SplitViewItem] class.
 type ISplitViewItem interface {
 	objectivec.IObject
-	AllowsFullHeightLayout() bool
-	SetAllowsFullHeightLayout(value bool)
-	TitlebarSeparatorStyle() NSTitlebarSeparatorStyle
-	SetTitlebarSeparatorStyle(value NSTitlebarSeparatorStyle)
-	AutomaticMaximumThickness() float64
-	SetAutomaticMaximumThickness(value float64)
-	AutomaticallyAdjustsSafeAreaInsets() bool
-	SetAutomaticallyAdjustsSafeAreaInsets(value bool)
+	// properties:
+	AllowsFullHeightLayout() bool /* primitive/slice/pointer. */
+	SetAllowsFullHeightLayout(value bool /* primitive/slice/pointer. */)
+	TitlebarSeparatorStyle() TitlebarSeparatorStyle
+	SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle)
+	TopAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController /* primitive/slice/pointer. */
+	SetTopAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController /* primitive/slice/pointer. */)
+	AutomaticMaximumThickness() float64 /* primitive/slice/pointer. */
+	SetAutomaticMaximumThickness(value float64 /* primitive/slice/pointer. */)
+	AutomaticallyAdjustsSafeAreaInsets() bool /* primitive/slice/pointer. */
+	SetAutomaticallyAdjustsSafeAreaInsets(value bool /* primitive/slice/pointer. */)
 	BottomAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
-	CanCollapse() bool
-	SetCanCollapse(value bool)
-	CanCollapseFromWindowResize() bool
-	SetCanCollapseFromWindowResize(value bool)
+	CanCollapse() bool /* primitive/slice/pointer. */
+	SetCanCollapse(value bool /* primitive/slice/pointer. */)
+	CanCollapseFromWindowResize() bool /* primitive/slice/pointer. */
+	SetCanCollapseFromWindowResize(value bool /* primitive/slice/pointer. */)
 	CollapseBehavior() unsafe.Pointer
 	SetCollapseBehavior(value unsafe.Pointer)
 	HoldingPriority() unsafe.Pointer
 	SetHoldingPriority(value unsafe.Pointer)
-	IsCollapsed() bool
-	SetIsCollapsed(value bool)
-	IsSpringLoaded() bool
-	SetIsSpringLoaded(value bool)
-	MaximumThickness() float64
-	SetMaximumThickness(value float64)
-	MinimumThickness() float64
-	SetMinimumThickness(value float64)
-	PreferredThicknessFraction() float64
-	SetPreferredThicknessFraction(value float64)
-	TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
-	SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
+	IsCollapsed() bool /* primitive/slice/pointer. */
+	SetIsCollapsed(value bool /* primitive/slice/pointer. */)
+	IsSpringLoaded() bool /* primitive/slice/pointer. */
+	SetIsSpringLoaded(value bool /* primitive/slice/pointer. */)
+	MaximumThickness() float64 /* primitive/slice/pointer. */
+	SetMaximumThickness(value float64 /* primitive/slice/pointer. */)
+	MinimumThickness() float64 /* primitive/slice/pointer. */
+	SetMinimumThickness(value float64 /* primitive/slice/pointer. */)
+	PreferredThicknessFraction() float64 /* primitive/slice/pointer. */
+	SetPreferredThicknessFraction(value float64 /* primitive/slice/pointer. */)
 	ViewController() IViewController
 	SetViewController(value IViewController)
-	InsertTopAlignedAccessoryViewControllerAtIndex(childViewController ISplitViewItemAccessoryViewController, index int)
+	// methods:
+	InsertTopAlignedAccessoryViewControllerAtIndex(childViewController ISplitViewItemAccessoryViewController, index int /* primitive/slice/pointer. */)
 }
 
 // An item in a split view controller.
@@ -120,7 +122,7 @@ func NewSplitViewItem() SplitViewItem {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/insertTopAlignedAccessoryViewController(_:at:)
-func (s_ SplitViewItem) InsertTopAlignedAccessoryViewControllerAtIndex(childViewController ISplitViewItemAccessoryViewController, index int) {
+func (s_ SplitViewItem) InsertTopAlignedAccessoryViewControllerAtIndex(childViewController ISplitViewItemAccessoryViewController, index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertTopAlignedAccessoryViewController:atIndex:"), childViewController, index)
 }
 
@@ -129,7 +131,7 @@ func (s_ SplitViewItem) InsertTopAlignedAccessoryViewControllerAtIndex(childView
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/allowsFullHeightLayout
-func (s_ SplitViewItem) AllowsFullHeightLayout() bool {
+func (s_ SplitViewItem) AllowsFullHeightLayout() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsFullHeightLayout"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (s_ SplitViewItem) AllowsFullHeightLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/allowsFullHeightLayout
-func (s_ SplitViewItem) SetAllowsFullHeightLayout(value bool) {
+func (s_ SplitViewItem) SetAllowsFullHeightLayout(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsFullHeightLayout:"), value)
 }
 
@@ -148,8 +150,8 @@ func (s_ SplitViewItem) SetAllowsFullHeightLayout(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/titlebarSeparatorStyle
-func (s_ SplitViewItem) TitlebarSeparatorStyle() NSTitlebarSeparatorStyle {
-	rv := objc.Send[NSTitlebarSeparatorStyle](s_.ID, objc.Sel("titlebarSeparatorStyle"))
+func (s_ SplitViewItem) TitlebarSeparatorStyle() TitlebarSeparatorStyle {
+	rv := objc.Send[TitlebarSeparatorStyle](s_.ID, objc.Sel("titlebarSeparatorStyle"))
 	return rv
 }
 
@@ -158,8 +160,37 @@ func (s_ SplitViewItem) TitlebarSeparatorStyle() NSTitlebarSeparatorStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/titlebarSeparatorStyle
-func (s_ SplitViewItem) SetTitlebarSeparatorStyle(value NSTitlebarSeparatorStyle) {
+func (s_ SplitViewItem) SetTitlebarSeparatorStyle(value TitlebarSeparatorStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitlebarSeparatorStyle:"), value)
+}
+
+
+// The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/topAlignedAccessoryViewControllers
+func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() []SplitViewItemAccessoryViewController /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
+	return rv
+}
+
+
+// The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See for more details.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/topAlignedAccessoryViewControllers
+func (s_ SplitViewItem) SetTopAlignedAccessoryViewControllers(value []SplitViewItemAccessoryViewController /* primitive/slice/pointer. */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), nsArray)
 }
 
 
@@ -167,7 +198,7 @@ func (s_ SplitViewItem) SetTitlebarSeparatorStyle(value NSTitlebarSeparatorStyle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticmaximumthickness
-func (s_ SplitViewItem) AutomaticMaximumThickness() float64 {
+func (s_ SplitViewItem) AutomaticMaximumThickness() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("automaticMaximumThickness"))
 	return rv
 }
@@ -177,7 +208,7 @@ func (s_ SplitViewItem) AutomaticMaximumThickness() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticmaximumthickness
-func (s_ SplitViewItem) SetAutomaticMaximumThickness(value float64) {
+func (s_ SplitViewItem) SetAutomaticMaximumThickness(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticMaximumThickness:"), value)
 }
 
@@ -186,7 +217,7 @@ func (s_ SplitViewItem) SetAutomaticMaximumThickness(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticallyadjustssafeareainsets
-func (s_ SplitViewItem) AutomaticallyAdjustsSafeAreaInsets() bool {
+func (s_ SplitViewItem) AutomaticallyAdjustsSafeAreaInsets() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("automaticallyAdjustsSafeAreaInsets"))
 	return rv
 }
@@ -196,7 +227,7 @@ func (s_ SplitViewItem) AutomaticallyAdjustsSafeAreaInsets() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/automaticallyadjustssafeareainsets
-func (s_ SplitViewItem) SetAutomaticallyAdjustsSafeAreaInsets(value bool) {
+func (s_ SplitViewItem) SetAutomaticallyAdjustsSafeAreaInsets(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyAdjustsSafeAreaInsets:"), value)
 }
 
@@ -220,7 +251,7 @@ func (s_ SplitViewItem) SetBottomAlignedAccessoryViewControllers(value ISplitVie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapse
-func (s_ SplitViewItem) CanCollapse() bool {
+func (s_ SplitViewItem) CanCollapse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canCollapse"))
 	return rv
 }
@@ -230,14 +261,14 @@ func (s_ SplitViewItem) CanCollapse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapse
-func (s_ SplitViewItem) SetCanCollapse(value bool) {
+func (s_ SplitViewItem) SetCanCollapse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCollapse:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapsefromwindowresize
-func (s_ SplitViewItem) CanCollapseFromWindowResize() bool {
+func (s_ SplitViewItem) CanCollapseFromWindowResize() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canCollapseFromWindowResize"))
 	return rv
 }
@@ -245,7 +276,7 @@ func (s_ SplitViewItem) CanCollapseFromWindowResize() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/cancollapsefromwindowresize
-func (s_ SplitViewItem) SetCanCollapseFromWindowResize(value bool) {
+func (s_ SplitViewItem) SetCanCollapseFromWindowResize(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCanCollapseFromWindowResize:"), value)
 }
 
@@ -292,7 +323,7 @@ func (s_ SplitViewItem) SetHoldingPriority(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/iscollapsed
-func (s_ SplitViewItem) IsCollapsed() bool {
+func (s_ SplitViewItem) IsCollapsed() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isCollapsed"))
 	return rv
 }
@@ -302,7 +333,7 @@ func (s_ SplitViewItem) IsCollapsed() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/iscollapsed
-func (s_ SplitViewItem) SetIsCollapsed(value bool) {
+func (s_ SplitViewItem) SetIsCollapsed(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsCollapsed:"), value)
 }
 
@@ -311,7 +342,7 @@ func (s_ SplitViewItem) SetIsCollapsed(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/isspringloaded
-func (s_ SplitViewItem) IsSpringLoaded() bool {
+func (s_ SplitViewItem) IsSpringLoaded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSpringLoaded"))
 	return rv
 }
@@ -321,7 +352,7 @@ func (s_ SplitViewItem) IsSpringLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/isspringloaded
-func (s_ SplitViewItem) SetIsSpringLoaded(value bool) {
+func (s_ SplitViewItem) SetIsSpringLoaded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
 
@@ -330,7 +361,7 @@ func (s_ SplitViewItem) SetIsSpringLoaded(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/maximumthickness
-func (s_ SplitViewItem) MaximumThickness() float64 {
+func (s_ SplitViewItem) MaximumThickness() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumThickness"))
 	return rv
 }
@@ -340,7 +371,7 @@ func (s_ SplitViewItem) MaximumThickness() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/maximumthickness
-func (s_ SplitViewItem) SetMaximumThickness(value float64) {
+func (s_ SplitViewItem) SetMaximumThickness(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumThickness:"), value)
 }
 
@@ -349,7 +380,7 @@ func (s_ SplitViewItem) SetMaximumThickness(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/minimumthickness
-func (s_ SplitViewItem) MinimumThickness() float64 {
+func (s_ SplitViewItem) MinimumThickness() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThickness"))
 	return rv
 }
@@ -359,7 +390,7 @@ func (s_ SplitViewItem) MinimumThickness() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/minimumthickness
-func (s_ SplitViewItem) SetMinimumThickness(value float64) {
+func (s_ SplitViewItem) SetMinimumThickness(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThickness:"), value)
 }
 
@@ -368,7 +399,7 @@ func (s_ SplitViewItem) SetMinimumThickness(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/preferredthicknessfraction
-func (s_ SplitViewItem) PreferredThicknessFraction() float64 {
+func (s_ SplitViewItem) PreferredThicknessFraction() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](s_.ID, objc.Sel("preferredThicknessFraction"))
 	return rv
 }
@@ -378,27 +409,8 @@ func (s_ SplitViewItem) PreferredThicknessFraction() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/preferredthicknessfraction
-func (s_ SplitViewItem) SetPreferredThicknessFraction(value float64) {
+func (s_ SplitViewItem) SetPreferredThicknessFraction(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredThicknessFraction:"), value)
-}
-
-
-// The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
-func (s_ SplitViewItem) TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController {
-	rv := objc.Send[SplitViewItemAccessoryViewController](s_.ID, objc.Sel("topAlignedAccessoryViewControllers"))
-	return rv
-}
-
-
-// The following methods allow you to add accessory views to the top/bottom of this splitViewItem. See
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers
-func (s_ SplitViewItem) SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTopAlignedAccessoryViewControllers:"), value)
 }
 
 

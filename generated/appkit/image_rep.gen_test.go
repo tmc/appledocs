@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewImageRep
 
+// ExampleNewImageRepWithCoder demonstrates how to create a ImageRep instance using NewImageRepWithCoder.
+// Creates and returns an image representation object from data in an unarchiver.
+func ExampleNewImageRepWithCoder() {
+	_ = appkit.NewImageRepWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}
 // ExampleNewImageRepWithPasteboard demonstrates how to create a ImageRep instance using NewImageRepWithPasteboard.
 // Creates and returns an image representation object using the contents of the specified pasteboard.
 func ExampleNewImageRepWithPasteboard() {

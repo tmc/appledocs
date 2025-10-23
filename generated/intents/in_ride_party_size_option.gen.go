@@ -32,12 +32,12 @@ type _INRidePartySizeOptionClass struct {
 type IINRidePartySizeOption interface {
 	objectivec.IObject
 	// properties:
-	PartySizeRange() foundation.Range
-	SetPartySizeRange(value foundation.Range)
+	PartySizeRange() foundation.objc.IObject /* cross-framework: Range */
+	SetPartySizeRange(value foundation.objc.IObject /* cross-framework: Range */)
 	PriceRange() unsafe.Pointer
 	SetPriceRange(value unsafe.Pointer)
-	SizeDescription() string
-	SetSizeDescription(value string)
+	SizeDescription() string /* primitive/slice/pointer. */
+	SetSizeDescription(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -98,7 +98,7 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) PartySizeRange() foundation.Range {
+func (i_ INRidePartySizeOption) PartySizeRange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("partySizeRange"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (i_ INRidePartySizeOption) PartySizeRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.Range) {
+func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
 }
 
@@ -136,7 +136,7 @@ func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SizeDescription() string {
+func (i_ INRidePartySizeOption) SizeDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (i_ INRidePartySizeOption) SizeDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SetSizeDescription(value string) {
+func (i_ INRidePartySizeOption) SetSizeDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))
 }
 

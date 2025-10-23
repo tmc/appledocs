@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NSPredicateRule] class.
@@ -30,8 +29,10 @@ type _NSPredicateRuleClass struct {
 // An interface definition for the [NSPredicateRule] class.
 type INSPredicateRule interface {
 	IRule
-	Predicate() foundation.Predicate
-	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
+	// properties:
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	// methods:
+	EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */
 }
 
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.
@@ -93,7 +94,7 @@ func NewNSPredicateRule() NSPredicateRule {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
-func NewNSPredicateRuleWithPredicate(predicate foundation.Predicate) NSPredicateRule {
+func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework Predicate */) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewNSPredicateRuleWithPredicate(predicate foundation.Predicate) NSPredicate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/evaluatePredicate(in:)
-func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
+func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
 }
@@ -116,8 +117,8 @@ func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/predicate
-func (p_ NSPredicateRule) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
+func (p_ NSPredicateRule) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](p_.ID, objc.Sel("predicate"))
 	return rv
 }
 

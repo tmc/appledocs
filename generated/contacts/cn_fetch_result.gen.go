@@ -31,9 +31,11 @@ type _CNFetchResultClass struct {
 // An interface definition for the [CNFetchResult] class.
 type ICNFetchResult interface {
 	objectivec.IObject
+	// properties:
 	Value() unsafe.Pointer
-	CurrentHistoryToken() foundation.Data
-	SetCurrentHistoryToken(value foundation.Data)
+	CurrentHistoryToken() foundation.objc.IObject /* cross-framework: Data */
+	SetCurrentHistoryToken(value foundation.objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // An object that represents the result of a change-history fetch request.
@@ -101,7 +103,7 @@ func (c_ CNFetchResult) Value() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) CurrentHistoryToken() foundation.Data {
+func (c_ CNFetchResult) CurrentHistoryToken() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (c_ CNFetchResult) CurrentHistoryToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) SetCurrentHistoryToken(value foundation.Data) {
+func (c_ CNFetchResult) SetCurrentHistoryToken(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentHistoryToken:"), value)
 }
 

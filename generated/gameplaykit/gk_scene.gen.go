@@ -31,14 +31,16 @@ type _SceneClass struct {
 // An interface definition for the [Scene] class.
 type IScene interface {
 	objectivec.IObject
-	Entities() []Entity
-	Graphs() foundation.IDictionary
+	// properties:
+	Entities() []Entity /* primitive/slice/pointer. */
+	Graphs() foundation.IDictionary /* already interface */
 	RootNode() objc.ID
 	SetRootNode(value objc.ID)
+	// methods:
 	AddEntity(entity IGKEntity)
-	AddGraphName(graph IGKGraph, name string)
+	AddGraphName(graph IGKGraph, name string /* primitive/slice/pointer. */)
 	RemoveEntity(entity IGKEntity)
-	RemoveGraph(name string)
+	RemoveGraph(name string /* primitive/slice/pointer. */)
 }
 
 // A container for associating GameplayKit objects with a SpriteKit scene.
@@ -98,7 +100,7 @@ func NewScene() Scene {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
-func NewSceneWithFileNamed(filename string) Scene {
+func NewSceneWithFileNamed(filename string /* primitive/slice/pointer. */) Scene {
 	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
@@ -106,7 +108,7 @@ func NewSceneWithFileNamed(filename string) Scene {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
-func NewSceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) Scene {
+func NewSceneWithFileNamedRootNode(filename string /* primitive/slice/pointer. */, rootNode objectivec.IObject) Scene {
 	rv := objc.Send[Scene](objc.ID(getSceneClass().class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
@@ -117,7 +119,7 @@ func NewSceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:)
-func (sc _SceneClass) SceneWithFileNamed(filename string) unsafe.Pointer {
+func (sc _SceneClass) SceneWithFileNamed(filename string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:"), objc.String(filename))
 	return rv
 }
@@ -125,7 +127,7 @@ func (sc _SceneClass) SceneWithFileNamed(filename string) unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/init(fileNamed:rootNode:)
-func (sc _SceneClass) SceneWithFileNamedRootNode(filename string, rootNode objectivec.IObject) unsafe.Pointer {
+func (sc _SceneClass) SceneWithFileNamedRootNode(filename string /* primitive/slice/pointer. */, rootNode objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sceneWithFileNamed:rootNode:"), objc.String(filename), rootNode)
 	return rv
 }
@@ -142,7 +144,7 @@ func (s_ Scene) AddEntity(entity IGKEntity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/addGraph(_:name:)
-func (s_ Scene) AddGraphName(graph IGKGraph, name string) {
+func (s_ Scene) AddGraphName(graph IGKGraph, name string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addGraph:name:"), graph, objc.String(name))
 }
 
@@ -160,7 +162,7 @@ func (s_ Scene) RemoveEntity(entity IGKEntity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/removeGraph(_:)
-func (s_ Scene) RemoveGraph(name string) {
+func (s_ Scene) RemoveGraph(name string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeGraph:"), objc.String(name))
 }
 
@@ -169,7 +171,7 @@ func (s_ Scene) RemoveGraph(name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/entities
-func (s_ Scene) Entities() []Entity {
+func (s_ Scene) Entities() []Entity /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Entity](s_.ID, objc.Sel("entities"))
 	return rv
 }
@@ -179,7 +181,7 @@ func (s_ Scene) Entities() []Entity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKScene/graphs
-func (s_ Scene) Graphs() foundation.IDictionary {
+func (s_ Scene) Graphs() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](s_.ID, objc.Sel("graphs"))
 	return rv
 }

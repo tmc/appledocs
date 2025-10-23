@@ -30,21 +30,23 @@ type _ParameterClass struct {
 // An interface definition for the [Parameter] class.
 type IParameter interface {
 	IParameterNode
-	Address() ParameterAddress
-	DependentParameters() []foundation.Number
+	// properties:
+	Address() objc.IObject /* cross-framework: ParameterAddress */
+	DependentParameters() []foundation.objc.IObject /* cross-framework: Number */
 	Flags() AudioUnitParameterOptions
-	MaxValue() Value
-	MinValue() Value
+	MaxValue() objc.IObject /* cross-framework: Value */
+	MinValue() objc.IObject /* cross-framework: Value */
 	Unit() AudioUnitParameterUnit
-	UnitName() string
-	Value() Value
-	SetValue(value Value)
-	ValueStrings() []string
-	SetValueOriginator(value Value, originator ParameterObserverToken)
-	SetValueOriginatorAtHostTime(value Value, originator ParameterObserverToken, hostTime uint64)
-	SetValueOriginatorAtHostTimeEventType(value Value, originator ParameterObserverToken, hostTime uint64, eventType AUParameterAutomationEventType)
-	StringFromValue(value AUValue) foundation.String
-	ValueFromString(string_ string) Value
+	UnitName() string /* primitive/slice/pointer. */
+	Value() objc.IObject /* cross-framework: Value */
+	SetValue(value objc.IObject /* cross-framework: Value */)
+	ValueStrings() []string /* primitive/slice/pointer. */
+	// methods:
+	SetValueOriginator(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */)
+	SetValueOriginatorAtHostTime(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */, hostTime uint64 /* primitive/slice/pointer. */)
+	SetValueOriginatorAtHostTimeEventType(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */, hostTime uint64 /* primitive/slice/pointer. */, eventType ParameterAutomationEventType)
+	StringFromValue(value Value /* typedef */) objc.IObject /* cross-framework: String */
+	ValueFromString(string_ string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Value */
 }
 
 // An object that represents a single audio unit parameter.
@@ -104,7 +106,7 @@ func NewParameter() Parameter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:)
-func (p_ Parameter) SetValueOriginator(value Value, originator ParameterObserverToken) {
+func (p_ Parameter) SetValueOriginator(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:"), value, originator)
 }
 
@@ -113,14 +115,14 @@ func (p_ Parameter) SetValueOriginator(value Value, originator ParameterObserver
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:)
-func (p_ Parameter) SetValueOriginatorAtHostTime(value Value, originator ParameterObserverToken, hostTime uint64) {
+func (p_ Parameter) SetValueOriginatorAtHostTime(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */, hostTime uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:"), value, originator, hostTime)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:eventType:)
-func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value Value, originator ParameterObserverToken, hostTime uint64, eventType AUParameterAutomationEventType) {
+func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value objc.IObject /* cross-framework Value */, originator objc.IObject /* cross-framework ParameterObserverToken */, hostTime uint64 /* primitive/slice/pointer. */, eventType ParameterAutomationEventType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:eventType:"), value, originator, hostTime, eventType)
 }
 
@@ -129,8 +131,8 @@ func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value Value, originato
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/string(fromValue:)
-func (p_ Parameter) StringFromValue(value AUValue) foundation.String {
-	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringFromValue:"), value)
+func (p_ Parameter) StringFromValue(value Value /* typedef */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](p_.ID, objc.Sel("stringFromValue:"), value)
 	return rv
 }
 
@@ -139,7 +141,7 @@ func (p_ Parameter) StringFromValue(value AUValue) foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value(from:)
-func (p_ Parameter) ValueFromString(string_ string) Value {
+func (p_ Parameter) ValueFromString(string_ string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](p_.ID, objc.Sel("valueFromString:"), objc.String(string_))
 	return rv
 }
@@ -149,7 +151,7 @@ func (p_ Parameter) ValueFromString(string_ string) Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/address
-func (p_ Parameter) Address() ParameterAddress {
+func (p_ Parameter) Address() objc.IObject /* cross-framework: ParameterAddress */ {
 	rv := objc.Send[ParameterAddress](p_.ID, objc.Sel("address"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (p_ Parameter) Address() ParameterAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/dependentParameters
-func (p_ Parameter) DependentParameters() []foundation.Number {
+func (p_ Parameter) DependentParameters() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("dependentParameters"))
 	return rv
 }
@@ -179,7 +181,7 @@ func (p_ Parameter) Flags() AudioUnitParameterOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/maxValue
-func (p_ Parameter) MaxValue() Value {
+func (p_ Parameter) MaxValue() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (p_ Parameter) MaxValue() Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/minValue
-func (p_ Parameter) MinValue() Value {
+func (p_ Parameter) MinValue() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](p_.ID, objc.Sel("minValue"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (p_ Parameter) Unit() AudioUnitParameterUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unitName
-func (p_ Parameter) UnitName() string {
+func (p_ Parameter) UnitName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("unitName"))
 	return rv
 }
@@ -219,7 +221,7 @@ func (p_ Parameter) UnitName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
-func (p_ Parameter) Value() Value {
+func (p_ Parameter) Value() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](p_.ID, objc.Sel("value"))
 	return rv
 }
@@ -229,7 +231,7 @@ func (p_ Parameter) Value() Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
-func (p_ Parameter) SetValue(value Value) {
+func (p_ Parameter) SetValue(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
 
@@ -238,7 +240,7 @@ func (p_ Parameter) SetValue(value Value) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/valueStrings
-func (p_ Parameter) ValueStrings() []string {
+func (p_ Parameter) ValueStrings() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("valueStrings"))
 	return rv
 }

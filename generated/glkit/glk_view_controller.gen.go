@@ -34,22 +34,22 @@ type IGLKViewController interface {
 	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	FramesDisplayed() int
-	FramesPerSecond() int
-	Paused() bool
-	SetPaused(value bool)
-	PauseOnWillResignActive() bool
-	SetPauseOnWillResignActive(value bool)
-	PreferredFramesPerSecond() int
-	SetPreferredFramesPerSecond(value int)
-	ResumeOnDidBecomeActive() bool
-	SetResumeOnDidBecomeActive(value bool)
-	TimeSinceFirstResume() foundation.TimeInterval
-	TimeSinceLastDraw() foundation.TimeInterval
-	TimeSinceLastResume() foundation.TimeInterval
-	TimeSinceLastUpdate() foundation.TimeInterval
-	IsPaused() bool
-	SetIsPaused(value bool)
+	FramesDisplayed() int /* primitive/slice/pointer. */
+	FramesPerSecond() int /* primitive/slice/pointer. */
+	Paused() bool /* primitive/slice/pointer. */
+	SetPaused(value bool /* primitive/slice/pointer. */)
+	PauseOnWillResignActive() bool /* primitive/slice/pointer. */
+	SetPauseOnWillResignActive(value bool /* primitive/slice/pointer. */)
+	PreferredFramesPerSecond() int /* primitive/slice/pointer. */
+	SetPreferredFramesPerSecond(value int /* primitive/slice/pointer. */)
+	ResumeOnDidBecomeActive() bool /* primitive/slice/pointer. */
+	SetResumeOnDidBecomeActive(value bool /* primitive/slice/pointer. */)
+	TimeSinceFirstResume() foundation.TimeInterval /* not a class type */
+	TimeSinceLastDraw() foundation.TimeInterval /* not a class type */
+	TimeSinceLastResume() foundation.TimeInterval /* not a class type */
+	TimeSinceLastUpdate() foundation.TimeInterval /* not a class type */
+	IsPaused() bool /* primitive/slice/pointer. */
+	SetIsPaused(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -131,7 +131,7 @@ func (g_ GLKViewController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/framesDisplayed
-func (g_ GLKViewController) FramesDisplayed() int {
+func (g_ GLKViewController) FramesDisplayed() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](g_.ID, objc.Sel("framesDisplayed"))
 	return rv
 }
@@ -141,7 +141,7 @@ func (g_ GLKViewController) FramesDisplayed() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/framesPerSecond
-func (g_ GLKViewController) FramesPerSecond() int {
+func (g_ GLKViewController) FramesPerSecond() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](g_.ID, objc.Sel("framesPerSecond"))
 	return rv
 }
@@ -151,7 +151,7 @@ func (g_ GLKViewController) FramesPerSecond() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/isPaused
-func (g_ GLKViewController) Paused() bool {
+func (g_ GLKViewController) Paused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("paused"))
 	return rv
 }
@@ -161,7 +161,7 @@ func (g_ GLKViewController) Paused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/isPaused
-func (g_ GLKViewController) SetPaused(value bool) {
+func (g_ GLKViewController) SetPaused(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaused:"), value)
 }
 
@@ -170,7 +170,7 @@ func (g_ GLKViewController) SetPaused(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/pauseOnWillResignActive
-func (g_ GLKViewController) PauseOnWillResignActive() bool {
+func (g_ GLKViewController) PauseOnWillResignActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("pauseOnWillResignActive"))
 	return rv
 }
@@ -180,7 +180,7 @@ func (g_ GLKViewController) PauseOnWillResignActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/pauseOnWillResignActive
-func (g_ GLKViewController) SetPauseOnWillResignActive(value bool) {
+func (g_ GLKViewController) SetPauseOnWillResignActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPauseOnWillResignActive:"), value)
 }
 
@@ -189,7 +189,7 @@ func (g_ GLKViewController) SetPauseOnWillResignActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/preferredFramesPerSecond
-func (g_ GLKViewController) PreferredFramesPerSecond() int {
+func (g_ GLKViewController) PreferredFramesPerSecond() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](g_.ID, objc.Sel("preferredFramesPerSecond"))
 	return rv
 }
@@ -199,7 +199,7 @@ func (g_ GLKViewController) PreferredFramesPerSecond() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/preferredFramesPerSecond
-func (g_ GLKViewController) SetPreferredFramesPerSecond(value int) {
+func (g_ GLKViewController) SetPreferredFramesPerSecond(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPreferredFramesPerSecond:"), value)
 }
 
@@ -208,7 +208,7 @@ func (g_ GLKViewController) SetPreferredFramesPerSecond(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/resumeOnDidBecomeActive
-func (g_ GLKViewController) ResumeOnDidBecomeActive() bool {
+func (g_ GLKViewController) ResumeOnDidBecomeActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("resumeOnDidBecomeActive"))
 	return rv
 }
@@ -218,7 +218,7 @@ func (g_ GLKViewController) ResumeOnDidBecomeActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/resumeOnDidBecomeActive
-func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
+func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResumeOnDidBecomeActive:"), value)
 }
 
@@ -227,7 +227,7 @@ func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceFirstResume
-func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval {
+func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceFirstResume"))
 	return rv
 }
@@ -237,7 +237,7 @@ func (g_ GLKViewController) TimeSinceFirstResume() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastDraw
-func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval {
+func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastDraw"))
 	return rv
 }
@@ -247,7 +247,7 @@ func (g_ GLKViewController) TimeSinceLastDraw() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastResume
-func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
+func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastResume"))
 	return rv
 }
@@ -257,7 +257,7 @@ func (g_ GLKViewController) TimeSinceLastResume() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastUpdate
-func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
+func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
 }
@@ -267,7 +267,7 @@ func (g_ GLKViewController) TimeSinceLastUpdate() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-func (g_ GLKViewController) IsPaused() bool {
+func (g_ GLKViewController) IsPaused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -277,7 +277,7 @@ func (g_ GLKViewController) IsPaused() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkviewcontroller/ispaused
-func (g_ GLKViewController) SetIsPaused(value bool) {
+func (g_ GLKViewController) SetIsPaused(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsPaused:"), value)
 }
 

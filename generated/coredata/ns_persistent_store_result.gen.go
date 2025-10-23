@@ -30,6 +30,8 @@ type _PersistentStoreResultClass struct {
 // An interface definition for the [PersistentStoreResult] class.
 type IPersistentStoreResult interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract base class for results returned from a persistent store coordinator.

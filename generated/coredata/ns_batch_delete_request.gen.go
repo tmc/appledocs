@@ -29,10 +29,12 @@ type _BatchDeleteRequestClass struct {
 // An interface definition for the [BatchDeleteRequest] class.
 type IBatchDeleteRequest interface {
 	IPersistentStoreRequest
-	ResultType() NSBatchDeleteRequestResultType
-	SetResultType(value NSBatchDeleteRequestResultType)
-	FetchRequest() unsafe.Pointer
-	SetFetchRequest(value unsafe.Pointer)
+	// properties:
+	ResultType() BatchDeleteRequestResultType
+	SetResultType(value BatchDeleteRequestResultType)
+	FetchRequest() FetchRequestResult /* not a class type */
+	SetFetchRequest(value FetchRequestResult /* not a class type */)
+	// methods:
 }
 
 // A request that deletes objects in the SQLite persistent store without loading them into memory.
@@ -94,8 +96,8 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
-func (b_ BatchDeleteRequest) ResultType() NSBatchDeleteRequestResultType {
-	rv := objc.Send[NSBatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
+func (b_ BatchDeleteRequest) ResultType() BatchDeleteRequestResultType {
+	rv := objc.Send[BatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -104,7 +106,7 @@ func (b_ BatchDeleteRequest) ResultType() NSBatchDeleteRequestResultType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchDeleteRequest/resultType
-func (b_ BatchDeleteRequest) SetResultType(value NSBatchDeleteRequestResultType) {
+func (b_ BatchDeleteRequest) SetResultType(value BatchDeleteRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -113,8 +115,8 @@ func (b_ BatchDeleteRequest) SetResultType(value NSBatchDeleteRequestResultType)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchdeleterequest/fetchrequest
-func (b_ BatchDeleteRequest) FetchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("fetchRequest"))
+func (b_ BatchDeleteRequest) FetchRequest() FetchRequestResult /* not a class type */ {
+	rv := objc.Send[FetchRequestResult](b_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -123,7 +125,7 @@ func (b_ BatchDeleteRequest) FetchRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsbatchdeleterequest/fetchrequest
-func (b_ BatchDeleteRequest) SetFetchRequest(value unsafe.Pointer) {
+func (b_ BatchDeleteRequest) SetFetchRequest(value FetchRequestResult /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFetchRequest:"), value)
 }
 

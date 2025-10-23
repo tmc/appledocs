@@ -33,16 +33,16 @@ type IBluetoothSDPDataElement interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	ContainsDataElement(dataElement IOBluetoothSDPDataElement) bool
-	ContainsValue(cmpValue objectivec.IObject) bool
-	GetArrayValue() foundation.Array
-	GetDataValue() foundation.Data
-	GetNumberValue() foundation.Number
-	GetSDPDataElementRef() BluetoothSDPDataElementRef
-	GetSize() uint32
-	GetSizeDescriptor() BluetoothSDPDataElementSizeDescriptor
-	GetStringValue() foundation.String
-	GetTypeDescriptor() BluetoothSDPDataElementTypeDescriptor
+	ContainsDataElement(dataElement BluetoothSDPDataElement /* already interface */) bool /* primitive/slice/pointer. */
+	ContainsValue(cmpValue objectivec.IObject) bool /* primitive/slice/pointer. */
+	GetArrayValue() objc.IObject /* cross-framework: Array */
+	GetDataValue() objc.IObject /* cross-framework: Data */
+	GetNumberValue() foundation.objc.IObject /* cross-framework: Number */
+	GetSDPDataElementRef() objc.IObject /* cross-framework: BluetoothSDPDataElementRef */
+	GetSize() uint32 /* not a class type */
+	GetSizeDescriptor() BluetoothSDPDataElementSizeDescriptor /* typedef */
+	GetStringValue() objc.IObject /* cross-framework: String */
+	GetTypeDescriptor() BluetoothSDPDataElementTypeDescriptor /* typedef */
 	GetUUIDValue() IBluetoothSDPUUID
 	GetValue() objectivec.IObject
 }
@@ -116,7 +116,7 @@ func NewBluetoothSDPDataElementWithElementValue(element objectivec.IObject) Blue
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/init(type:sizeDescriptor:size:value:)
-func NewBluetoothSDPDataElementWithTypeSizeDescriptorSizeValue(newType BluetoothSDPDataElementTypeDescriptor, newSizeDescriptor BluetoothSDPDataElementSizeDescriptor, newSize uint32, newValue objectivec.IObject) BluetoothSDPDataElement {
+func NewBluetoothSDPDataElementWithTypeSizeDescriptorSizeValue(newType BluetoothSDPDataElementTypeDescriptor /* typedef */, newSizeDescriptor BluetoothSDPDataElementSizeDescriptor /* typedef */, newSize uint32 /* not a class type */, newValue objectivec.IObject) BluetoothSDPDataElement {
 	instance := getBluetoothSDPDataElementClass().Alloc()
 	rv := objc.Send[BluetoothSDPDataElement](instance.ID, objc.Sel("initWithType:sizeDescriptor:size:value:"), newType, newSizeDescriptor, newSize, newValue)
 	rv.Autorelease()
@@ -139,7 +139,7 @@ func (bc _BluetoothSDPDataElementClass) WithElementValue(element objectivec.IObj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/withSDPDataElementRef(_:)
-func (bc _BluetoothSDPDataElementClass) WithSDPDataElementRef(sdpDataElementRef BluetoothSDPDataElementRef) unsafe.Pointer {
+func (bc _BluetoothSDPDataElementClass) WithSDPDataElementRef(sdpDataElementRef objc.IObject /* cross-framework BluetoothSDPDataElementRef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withSDPDataElementRef:"), sdpDataElementRef)
 	return rv
 }
@@ -149,7 +149,7 @@ func (bc _BluetoothSDPDataElementClass) WithSDPDataElementRef(sdpDataElementRef 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/withType(_:sizeDescriptor:size:value:)
-func (bc _BluetoothSDPDataElementClass) WithTypeSizeDescriptorSizeValue(type_ BluetoothSDPDataElementTypeDescriptor, newSizeDescriptor BluetoothSDPDataElementSizeDescriptor, newSize uint32, newValue objectivec.IObject) unsafe.Pointer {
+func (bc _BluetoothSDPDataElementClass) WithTypeSizeDescriptorSizeValue(type_ BluetoothSDPDataElementTypeDescriptor /* typedef */, newSizeDescriptor BluetoothSDPDataElementSizeDescriptor /* typedef */, newSize uint32 /* not a class type */, newValue objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withType:sizeDescriptor:size:value:"), type_, newSizeDescriptor, newSize, newValue)
 	return rv
 }
@@ -159,7 +159,7 @@ func (bc _BluetoothSDPDataElementClass) WithTypeSizeDescriptorSizeValue(type_ Bl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/contains(_:)
-func (b_ BluetoothSDPDataElement) ContainsDataElement(dataElement IOBluetoothSDPDataElement) bool {
+func (b_ BluetoothSDPDataElement) ContainsDataElement(dataElement BluetoothSDPDataElement /* already interface */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("containsDataElement:"), dataElement)
 	return rv
 }
@@ -169,7 +169,7 @@ func (b_ BluetoothSDPDataElement) ContainsDataElement(dataElement IOBluetoothSDP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/containsValue(_:)
-func (b_ BluetoothSDPDataElement) ContainsValue(cmpValue objectivec.IObject) bool {
+func (b_ BluetoothSDPDataElement) ContainsValue(cmpValue objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("containsValue:"), cmpValue)
 	return rv
 }
@@ -179,8 +179,8 @@ func (b_ BluetoothSDPDataElement) ContainsValue(cmpValue objectivec.IObject) boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getArrayValue()
-func (b_ BluetoothSDPDataElement) GetArrayValue() foundation.Array {
-	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("getArrayValue"))
+func (b_ BluetoothSDPDataElement) GetArrayValue() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](b_.ID, objc.Sel("getArrayValue"))
 	return rv
 }
 
@@ -189,8 +189,8 @@ func (b_ BluetoothSDPDataElement) GetArrayValue() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getDataValue()
-func (b_ BluetoothSDPDataElement) GetDataValue() foundation.Data {
-	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("getDataValue"))
+func (b_ BluetoothSDPDataElement) GetDataValue() objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](b_.ID, objc.Sel("getDataValue"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (b_ BluetoothSDPDataElement) GetDataValue() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getNumberValue()
-func (b_ BluetoothSDPDataElement) GetNumberValue() foundation.Number {
+func (b_ BluetoothSDPDataElement) GetNumberValue() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("getNumberValue"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (b_ BluetoothSDPDataElement) GetNumberValue() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getRef()
-func (b_ BluetoothSDPDataElement) GetSDPDataElementRef() BluetoothSDPDataElementRef {
+func (b_ BluetoothSDPDataElement) GetSDPDataElementRef() objc.IObject /* cross-framework: BluetoothSDPDataElementRef */ {
 	rv := objc.Send[BluetoothSDPDataElementRef](b_.ID, objc.Sel("getSDPDataElementRef"))
 	return rv
 }
@@ -219,7 +219,7 @@ func (b_ BluetoothSDPDataElement) GetSDPDataElementRef() BluetoothSDPDataElement
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSize()
-func (b_ BluetoothSDPDataElement) GetSize() uint32 {
+func (b_ BluetoothSDPDataElement) GetSize() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](b_.ID, objc.Sel("getSize"))
 	return rv
 }
@@ -229,7 +229,7 @@ func (b_ BluetoothSDPDataElement) GetSize() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getSizeDescriptor()
-func (b_ BluetoothSDPDataElement) GetSizeDescriptor() BluetoothSDPDataElementSizeDescriptor {
+func (b_ BluetoothSDPDataElement) GetSizeDescriptor() BluetoothSDPDataElementSizeDescriptor /* typedef */ {
 	rv := objc.Send[BluetoothSDPDataElementSizeDescriptor](b_.ID, objc.Sel("getSizeDescriptor"))
 	return rv
 }
@@ -239,8 +239,8 @@ func (b_ BluetoothSDPDataElement) GetSizeDescriptor() BluetoothSDPDataElementSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getStringValue()
-func (b_ BluetoothSDPDataElement) GetStringValue() foundation.String {
-	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getStringValue"))
+func (b_ BluetoothSDPDataElement) GetStringValue() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](b_.ID, objc.Sel("getStringValue"))
 	return rv
 }
 
@@ -249,7 +249,7 @@ func (b_ BluetoothSDPDataElement) GetStringValue() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElement/getTypeDescriptor()
-func (b_ BluetoothSDPDataElement) GetTypeDescriptor() BluetoothSDPDataElementTypeDescriptor {
+func (b_ BluetoothSDPDataElement) GetTypeDescriptor() BluetoothSDPDataElementTypeDescriptor /* typedef */ {
 	rv := objc.Send[BluetoothSDPDataElementTypeDescriptor](b_.ID, objc.Sel("getTypeDescriptor"))
 	return rv
 }

@@ -349,7 +349,7 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
-func NewStringWithCoder(coder Coder /* not a class type */) String {
+func NewStringWithCoder(coder ICoder) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

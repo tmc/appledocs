@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,23 +30,25 @@ type _PlacemarkClass struct {
 // An interface definition for the [Placemark] class.
 type IPlacemark interface {
 	objectivec.IObject
+	// properties:
 	AddressDictionary() objc.ID
-	AdministrativeArea() string
-	AreasOfInterest() []string
-	Country() string
-	InlandWater() string
-	ISOcountryCode() string
-	Locality() string
+	AdministrativeArea() string /* primitive/slice/pointer. */
+	AreasOfInterest() []string /* primitive/slice/pointer. */
+	Country() string /* primitive/slice/pointer. */
+	InlandWater() string /* primitive/slice/pointer. */
+	ISOcountryCode() string /* primitive/slice/pointer. */
+	Locality() string /* primitive/slice/pointer. */
 	Location() ICLLocation
-	Name() string
-	Ocean() string
-	PostalCode() string
+	Name() string /* primitive/slice/pointer. */
+	Ocean() string /* primitive/slice/pointer. */
+	PostalCode() string /* primitive/slice/pointer. */
 	Region() ICLRegion
-	SubAdministrativeArea() string
-	SubLocality() string
-	SubThoroughfare() string
-	Thoroughfare() string
-	TimeZone() foundation.TimeZone
+	SubAdministrativeArea() string /* primitive/slice/pointer. */
+	SubLocality() string /* primitive/slice/pointer. */
+	SubThoroughfare() string /* primitive/slice/pointer. */
+	Thoroughfare() string /* primitive/slice/pointer. */
+	TimeZone() objc.IObject /* cross-framework: TimeZone */
+	// methods:
 }
 
 // A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
@@ -105,7 +106,7 @@ func NewPlacemark() Placemark {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress objectivec.IObject) Placemark {
+func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name string /* primitive/slice/pointer. */, postalAddress objectivec.IObject) Placemark {
 	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
 	return rv
 }
@@ -126,7 +127,7 @@ func NewPlacemarkWithPlacemark(placemark ICLPlacemark) Placemark {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name string, postalAddress objectivec.IObject) unsafe.Pointer {
+func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name string /* primitive/slice/pointer. */, postalAddress objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
 	return rv
 }
@@ -146,7 +147,7 @@ func (p_ Placemark) AddressDictionary() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/administrativeArea
-func (p_ Placemark) AdministrativeArea() string {
+func (p_ Placemark) AdministrativeArea() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("administrativeArea"))
 	return rv
 }
@@ -156,7 +157,7 @@ func (p_ Placemark) AdministrativeArea() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/areasOfInterest
-func (p_ Placemark) AreasOfInterest() []string {
+func (p_ Placemark) AreasOfInterest() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](p_.ID, objc.Sel("areasOfInterest"))
 	return rv
 }
@@ -166,7 +167,7 @@ func (p_ Placemark) AreasOfInterest() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/country
-func (p_ Placemark) Country() string {
+func (p_ Placemark) Country() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("country"))
 	return rv
 }
@@ -176,7 +177,7 @@ func (p_ Placemark) Country() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/inlandWater
-func (p_ Placemark) InlandWater() string {
+func (p_ Placemark) InlandWater() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("inlandWater"))
 	return rv
 }
@@ -186,7 +187,7 @@ func (p_ Placemark) InlandWater() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/isoCountryCode
-func (p_ Placemark) ISOcountryCode() string {
+func (p_ Placemark) ISOcountryCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("ISOcountryCode"))
 	return rv
 }
@@ -196,7 +197,7 @@ func (p_ Placemark) ISOcountryCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/locality
-func (p_ Placemark) Locality() string {
+func (p_ Placemark) Locality() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("locality"))
 	return rv
 }
@@ -216,7 +217,7 @@ func (p_ Placemark) Location() ICLLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/name
-func (p_ Placemark) Name() string {
+func (p_ Placemark) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
@@ -226,7 +227,7 @@ func (p_ Placemark) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/ocean
-func (p_ Placemark) Ocean() string {
+func (p_ Placemark) Ocean() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("ocean"))
 	return rv
 }
@@ -236,7 +237,7 @@ func (p_ Placemark) Ocean() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/postalCode
-func (p_ Placemark) PostalCode() string {
+func (p_ Placemark) PostalCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("postalCode"))
 	return rv
 }
@@ -256,7 +257,7 @@ func (p_ Placemark) Region() ICLRegion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subAdministrativeArea
-func (p_ Placemark) SubAdministrativeArea() string {
+func (p_ Placemark) SubAdministrativeArea() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("subAdministrativeArea"))
 	return rv
 }
@@ -266,7 +267,7 @@ func (p_ Placemark) SubAdministrativeArea() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subLocality
-func (p_ Placemark) SubLocality() string {
+func (p_ Placemark) SubLocality() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("subLocality"))
 	return rv
 }
@@ -276,7 +277,7 @@ func (p_ Placemark) SubLocality() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subThoroughfare
-func (p_ Placemark) SubThoroughfare() string {
+func (p_ Placemark) SubThoroughfare() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("subThoroughfare"))
 	return rv
 }
@@ -286,7 +287,7 @@ func (p_ Placemark) SubThoroughfare() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/thoroughfare
-func (p_ Placemark) Thoroughfare() string {
+func (p_ Placemark) Thoroughfare() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("thoroughfare"))
 	return rv
 }
@@ -296,8 +297,8 @@ func (p_ Placemark) Thoroughfare() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/timeZone
-func (p_ Placemark) TimeZone() foundation.TimeZone {
-	rv := objc.Send[foundation.TimeZone](p_.ID, objc.Sel("timeZone"))
+func (p_ Placemark) TimeZone() objc.IObject /* cross-framework: TimeZone */ {
+	rv := objc.Send[TimeZone](p_.ID, objc.Sel("timeZone"))
 	return rv
 }
 

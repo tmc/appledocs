@@ -30,11 +30,13 @@ type _AudioUnitViewConfigurationClass struct {
 // An interface definition for the [AudioUnitViewConfiguration] class.
 type IAudioUnitViewConfiguration interface {
 	objectivec.IObject
-	Width() float64
-	Height() float64
-	SetHeight(value float64)
-	HostHasController() bool
-	SetHostHasController(value bool)
+	// properties:
+	Width() float64 /* primitive/slice/pointer. */
+	Height() float64 /* primitive/slice/pointer. */
+	SetHeight(value float64 /* primitive/slice/pointer. */)
+	HostHasController() bool /* primitive/slice/pointer. */
+	SetHostHasController(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A configuration object that describes how to present the audio unit’s user interface.
@@ -92,7 +94,7 @@ func NewAudioUnitViewConfiguration() AudioUnitViewConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/init(width:height:hostHasController:)
-func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64, height float64, hostHasController bool) AudioUnitViewConfiguration {
+func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64 /* primitive/slice/pointer. */, height float64 /* primitive/slice/pointer. */, hostHasController bool /* primitive/slice/pointer. */) AudioUnitViewConfiguration {
 	instance := getAudioUnitViewConfigurationClass().Alloc()
 	rv := objc.Send[AudioUnitViewConfiguration](instance.ID, objc.Sel("initWithWidth:height:hostHasController:"), width, height, hostHasController)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewAudioUnitViewConfigurationWithWidthHeightHostHasController(width float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUAudioUnitViewConfiguration/width
-func (a_ AudioUnitViewConfiguration) Width() float64 {
+func (a_ AudioUnitViewConfiguration) Width() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("width"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (a_ AudioUnitViewConfiguration) Width() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/height
-func (a_ AudioUnitViewConfiguration) Height() float64 {
+func (a_ AudioUnitViewConfiguration) Height() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("height"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (a_ AudioUnitViewConfiguration) Height() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/height
-func (a_ AudioUnitViewConfiguration) SetHeight(value float64) {
+func (a_ AudioUnitViewConfiguration) SetHeight(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHeight:"), value)
 }
 
@@ -134,7 +136,7 @@ func (a_ AudioUnitViewConfiguration) SetHeight(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
-func (a_ AudioUnitViewConfiguration) HostHasController() bool {
+func (a_ AudioUnitViewConfiguration) HostHasController() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hostHasController"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (a_ AudioUnitViewConfiguration) HostHasController() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration/hosthascontroller
-func (a_ AudioUnitViewConfiguration) SetHostHasController(value bool) {
+func (a_ AudioUnitViewConfiguration) SetHostHasController(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHostHasController:"), value)
 }
 

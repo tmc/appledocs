@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewNSPredicateRule
 
+// ExampleNewNSPredicateRuleWithPredicate demonstrates how to create a NSPredicateRule instance using NewNSPredicateRuleWithPredicate.
+// Initializes a rule with the specified predicate.
+func ExampleNewNSPredicateRuleWithPredicate() {
+	_ = gameplaykit.NewNSPredicateRuleWithPredicate(
+		gameplaykit.Predicate{}, // predicate Predicate
+	)
+	// Output:
+}

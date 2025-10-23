@@ -29,8 +29,10 @@ type _GraphNode3DClass struct {
 // An interface definition for the [GraphNode3D] class.
 type IGraphNode3D interface {
 	IGraphNode
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
+	// methods:
 }
 
 // A node in a navigation graph, associated with a point in continuous 3D space.

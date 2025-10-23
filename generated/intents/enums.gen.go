@@ -20,6 +20,11 @@ const (
 	INPersonSuggestionTypeNone INPersonSuggestionType = 0
 )
 
+// INPlaybackRepeatMode - The possible repeat modes at the time the user plays the media item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INPlaybackRepeatMode
+type INPlaybackRepeatMode uint
+
 // INRelevantShortcutRole - Roles for a relevant shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRelevantShortcutRole

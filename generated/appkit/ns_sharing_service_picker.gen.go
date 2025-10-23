@@ -30,10 +30,12 @@ type _SharingServicePickerClass struct {
 // An interface definition for the [SharingServicePicker] class.
 type ISharingServicePicker interface {
 	objectivec.IObject
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	StandardShareMenuItem() MenuItem
-	SetStandardShareMenuItem(value MenuItem)
+	// properties:
+	Delegate() SharingServicePickerDelegate /* not a class type */
+	SetDelegate(value SharingServicePickerDelegate /* not a class type */)
+	StandardShareMenuItem() objc.IObject /* cross-framework: MenuItem */
+	SetStandardShareMenuItem(value objc.IObject /* cross-framework: MenuItem */)
+	// methods:
 }
 
 // A list of sharing services that the user can choose from.
@@ -93,8 +95,8 @@ func NewSharingServicePicker() SharingServicePicker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
-func (s_ SharingServicePicker) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+func (s_ SharingServicePicker) Delegate() SharingServicePickerDelegate /* not a class type */ {
+	rv := objc.Send[SharingServicePickerDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -103,7 +105,7 @@ func (s_ SharingServicePicker) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
-func (s_ SharingServicePicker) SetDelegate(value unsafe.Pointer) {
+func (s_ SharingServicePicker) SetDelegate(value SharingServicePickerDelegate /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -112,7 +114,7 @@ func (s_ SharingServicePicker) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) StandardShareMenuItem() MenuItem {
+func (s_ SharingServicePicker) StandardShareMenuItem() objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (s_ SharingServicePicker) StandardShareMenuItem() MenuItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) SetStandardShareMenuItem(value MenuItem) {
+func (s_ SharingServicePicker) SetStandardShareMenuItem(value objc.IObject /* cross-framework: MenuItem */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
 }
 

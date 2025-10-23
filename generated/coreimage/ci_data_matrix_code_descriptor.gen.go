@@ -30,10 +30,12 @@ type _DataMatrixCodeDescriptorClass struct {
 // An interface definition for the [DataMatrixCodeDescriptor] class.
 type IDataMatrixCodeDescriptor interface {
 	IBarcodeDescriptor
-	ColumnCount() int
-	EccVersion() CIDataMatrixCodeECCVersion
-	ErrorCorrectedPayload() foundation.NSData
-	RowCount() int
+	// properties:
+	ColumnCount() int /* primitive/slice/pointer. */
+	EccVersion() DataMatrixCodeECCVersion
+	ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */
+	RowCount() int /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
@@ -95,7 +97,7 @@ func NewDataMatrixCodeDescriptor() DataMatrixCodeDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/init(payload:rowCount:columnCount:eccVersion:)
-func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.NSData, rowCount int, columnCount int, eccVersion CIDataMatrixCodeECCVersion) DataMatrixCodeDescriptor {
+func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, rowCount int /* primitive/slice/pointer. */, columnCount int /* primitive/slice/pointer. */, eccVersion DataMatrixCodeECCVersion) DataMatrixCodeDescriptor {
 	instance := getDataMatrixCodeDescriptorClass().Alloc()
 	rv := objc.Send[DataMatrixCodeDescriptor](instance.ID, objc.Sel("initWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewDataMatrixCodeDescriptorWithPayloadRowCountColumnCountEccVersion(errorCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/descriptorWithPayload:rowCount:columnCount:eccVersion:
-func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.NSData, rowCount int, columnCount int, eccVersion CIDataMatrixCodeECCVersion) unsafe.Pointer {
+func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCountEccVersion(errorCorrectedPayload foundation.objc.IObject /* cross-framework NSData */, rowCount int /* primitive/slice/pointer. */, columnCount int /* primitive/slice/pointer. */, eccVersion DataMatrixCodeECCVersion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("descriptorWithPayload:rowCount:columnCount:eccVersion:"), errorCorrectedPayload, rowCount, columnCount, eccVersion)
 	return rv
 }
@@ -118,7 +120,7 @@ func (dc _DataMatrixCodeDescriptorClass) DescriptorWithPayloadRowCountColumnCoun
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/columnCount-swift.property
-func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
+func (d_ DataMatrixCodeDescriptor) ColumnCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("columnCount"))
 	return rv
 }
@@ -128,8 +130,8 @@ func (d_ DataMatrixCodeDescriptor) ColumnCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/eccVersion-swift.property
-func (d_ DataMatrixCodeDescriptor) EccVersion() CIDataMatrixCodeECCVersion {
-	rv := objc.Send[CIDataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
+func (d_ DataMatrixCodeDescriptor) EccVersion() DataMatrixCodeECCVersion {
+	rv := objc.Send[DataMatrixCodeECCVersion](d_.ID, objc.Sel("eccVersion"))
 	return rv
 }
 
@@ -138,7 +140,7 @@ func (d_ DataMatrixCodeDescriptor) EccVersion() CIDataMatrixCodeECCVersion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/errorCorrectedPayload-swift.property
-func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
+func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (d_ DataMatrixCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDataMatrixCodeDescriptor/rowCount-swift.property
-func (d_ DataMatrixCodeDescriptor) RowCount() int {
+func (d_ DataMatrixCodeDescriptor) RowCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](d_.ID, objc.Sel("rowCount"))
 	return rv
 }

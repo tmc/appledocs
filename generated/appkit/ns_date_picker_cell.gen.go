@@ -30,34 +30,36 @@ type _DatePickerCellClass struct {
 // An interface definition for the [DatePickerCell] class.
 type IDatePickerCell interface {
 	IActionCell
-	MaxDate() foundation.NSDate
-	SetMaxDate(value foundation.IDate)
-	BackgroundColor() NSColor
+	// properties:
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	Calendar() foundation.Calendar
-	SetCalendar(value foundation.ICalendar)
+	Calendar() foundation.objc.IObject /* cross-framework: Calendar */
+	SetCalendar(value foundation.objc.IObject /* cross-framework: Calendar */)
 	DatePickerElements() unsafe.Pointer
 	SetDatePickerElements(value unsafe.Pointer)
 	DatePickerMode() unsafe.Pointer
 	SetDatePickerMode(value unsafe.Pointer)
 	DatePickerStyle() unsafe.Pointer
 	SetDatePickerStyle(value unsafe.Pointer)
-	DateValue() foundation.Date
-	SetDateValue(value foundation.IDate)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	DrawsBackground() bool
-	SetDrawsBackground(value bool)
-	Locale() foundation.Locale
-	SetLocale(value foundation.ILocale)
-	MinDate() foundation.Date
-	SetMinDate(value foundation.IDate)
-	TextColor() NSColor
+	DateValue() foundation.objc.IObject /* cross-framework: Date */
+	SetDateValue(value foundation.objc.IObject /* cross-framework: Date */)
+	Delegate() DatePickerCellDelegate /* not a class type */
+	SetDelegate(value DatePickerCellDelegate /* not a class type */)
+	DrawsBackground() bool /* primitive/slice/pointer. */
+	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	Locale() foundation.objc.IObject /* cross-framework: Locale */
+	SetLocale(value foundation.objc.IObject /* cross-framework: Locale */)
+	MaxDate() foundation.objc.IObject /* cross-framework: Date */
+	SetMaxDate(value foundation.objc.IObject /* cross-framework: Date */)
+	MinDate() foundation.objc.IObject /* cross-framework: Date */
+	SetMinDate(value foundation.objc.IObject /* cross-framework: Date */)
+	TextColor() IColor
 	SetTextColor(value IColor)
 	TimeInterval() unsafe.Pointer
 	SetTimeInterval(value unsafe.Pointer)
-	TimeZone() foundation.TimeZone
-	SetTimeZone(value foundation.ITimeZone)
+	TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */
+	SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */)
+	// methods:
 }
 
 // An object that controls the behavior of a date picker, or of a single date picker cell in a matrix.
@@ -113,31 +115,12 @@ func NewDatePickerCell() DatePickerCell {
 
 
 
-// The maximum date that the picker allows as input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-func (d_ DatePickerCell) MaxDate() foundation.NSDate {
-	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("maxDate"))
-	return rv
-}
-
-
-// The maximum date that the picker allows as input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePickerCell/maxDate
-func (d_ DatePickerCell) SetMaxDate(value foundation.IDate) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
-}
-
-
 // The cell’s background color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/backgroundcolor
-func (d_ DatePickerCell) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](d_.ID, objc.Sel("backgroundColor"))
+func (d_ DatePickerCell) BackgroundColor() IColor {
+	rv := objc.Send[Color](d_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -155,7 +138,7 @@ func (d_ DatePickerCell) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-func (d_ DatePickerCell) Calendar() foundation.Calendar {
+func (d_ DatePickerCell) Calendar() foundation.objc.IObject /* cross-framework: Calendar */ {
 	rv := objc.Send[foundation.Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
@@ -165,7 +148,7 @@ func (d_ DatePickerCell) Calendar() foundation.Calendar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/calendar
-func (d_ DatePickerCell) SetCalendar(value foundation.ICalendar) {
+func (d_ DatePickerCell) SetCalendar(value foundation.objc.IObject /* cross-framework: Calendar */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
@@ -231,7 +214,7 @@ func (d_ DatePickerCell) SetDatePickerStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-func (d_ DatePickerCell) DateValue() foundation.Date {
+func (d_ DatePickerCell) DateValue() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("dateValue"))
 	return rv
 }
@@ -241,7 +224,7 @@ func (d_ DatePickerCell) DateValue() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/datevalue
-func (d_ DatePickerCell) SetDateValue(value foundation.IDate) {
+func (d_ DatePickerCell) SetDateValue(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -250,8 +233,8 @@ func (d_ DatePickerCell) SetDateValue(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/delegate
-func (d_ DatePickerCell) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("delegate"))
+func (d_ DatePickerCell) Delegate() DatePickerCellDelegate /* not a class type */ {
+	rv := objc.Send[DatePickerCellDelegate](d_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -260,7 +243,7 @@ func (d_ DatePickerCell) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/delegate
-func (d_ DatePickerCell) SetDelegate(value unsafe.Pointer) {
+func (d_ DatePickerCell) SetDelegate(value DatePickerCellDelegate /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -269,7 +252,7 @@ func (d_ DatePickerCell) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-func (d_ DatePickerCell) DrawsBackground() bool {
+func (d_ DatePickerCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -279,7 +262,7 @@ func (d_ DatePickerCell) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/drawsbackground
-func (d_ DatePickerCell) SetDrawsBackground(value bool) {
+func (d_ DatePickerCell) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -288,7 +271,7 @@ func (d_ DatePickerCell) SetDrawsBackground(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-func (d_ DatePickerCell) Locale() foundation.Locale {
+func (d_ DatePickerCell) Locale() foundation.objc.IObject /* cross-framework: Locale */ {
 	rv := objc.Send[foundation.Locale](d_.ID, objc.Sel("locale"))
 	return rv
 }
@@ -298,8 +281,27 @@ func (d_ DatePickerCell) Locale() foundation.Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/locale
-func (d_ DatePickerCell) SetLocale(value foundation.ILocale) {
+func (d_ DatePickerCell) SetLocale(value foundation.objc.IObject /* cross-framework: Locale */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
+}
+
+
+// The maximum date that the picker allows as input.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/maxdate
+func (d_ DatePickerCell) MaxDate() foundation.objc.IObject /* cross-framework: Date */ {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("maxDate"))
+	return rv
+}
+
+
+// The maximum date that the picker allows as input.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/maxdate
+func (d_ DatePickerCell) SetMaxDate(value foundation.objc.IObject /* cross-framework: Date */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxDate:"), value)
 }
 
 
@@ -307,7 +309,7 @@ func (d_ DatePickerCell) SetLocale(value foundation.ILocale) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-func (d_ DatePickerCell) MinDate() foundation.Date {
+func (d_ DatePickerCell) MinDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("minDate"))
 	return rv
 }
@@ -317,7 +319,7 @@ func (d_ DatePickerCell) MinDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/mindate
-func (d_ DatePickerCell) SetMinDate(value foundation.IDate) {
+func (d_ DatePickerCell) SetMinDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinDate:"), value)
 }
 
@@ -326,8 +328,8 @@ func (d_ DatePickerCell) SetMinDate(value foundation.IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/textcolor
-func (d_ DatePickerCell) TextColor() NSColor {
-	rv := objc.Send[NSColor](d_.ID, objc.Sel("textColor"))
+func (d_ DatePickerCell) TextColor() IColor {
+	rv := objc.Send[Color](d_.ID, objc.Sel("textColor"))
 	return rv
 }
 
@@ -364,7 +366,7 @@ func (d_ DatePickerCell) SetTimeInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-func (d_ DatePickerCell) TimeZone() foundation.TimeZone {
+func (d_ DatePickerCell) TimeZone() foundation.objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
@@ -374,7 +376,7 @@ func (d_ DatePickerCell) TimeZone() foundation.TimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdatepickercell/timezone
-func (d_ DatePickerCell) SetTimeZone(value foundation.ITimeZone) {
+func (d_ DatePickerCell) SetTimeZone(value foundation.objc.IObject /* cross-framework: TimeZone */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 

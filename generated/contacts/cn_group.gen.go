@@ -30,12 +30,14 @@ type _CNGroupClass struct {
 // An interface definition for the [CNGroup] class.
 type ICNGroup interface {
 	objectivec.IObject
-	Identifier() string
-	SetIdentifier(value string)
-	Name() string
-	SetName(value string)
-	CNGroupIdentifierKey() string
-	CNGroupNameKey() string
+	// properties:
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	CNGroupIdentifierKey() string /* primitive/slice/pointer. */
+	CNGroupNameKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An immutable object that represents a group of contacts.
@@ -95,7 +97,7 @@ func NewCNGroup() CNGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/identifier
-func (c_ CNGroup) Identifier() string {
+func (c_ CNGroup) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (c_ CNGroup) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/identifier
-func (c_ CNGroup) SetIdentifier(value string) {
+func (c_ CNGroup) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -114,7 +116,7 @@ func (c_ CNGroup) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/name
-func (c_ CNGroup) Name() string {
+func (c_ CNGroup) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (c_ CNGroup) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroup/name
-func (c_ CNGroup) SetName(value string) {
+func (c_ CNGroup) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -133,7 +135,7 @@ func (c_ CNGroup) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupidentifierkey
-func (c_ CNGroup) CNGroupIdentifierKey() string {
+func (c_ CNGroup) CNGroupIdentifierKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupIdentifierKey"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (c_ CNGroup) CNGroupIdentifierKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cngroupnamekey
-func (c_ CNGroup) CNGroupNameKey() string {
+func (c_ CNGroup) CNGroupNameKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNGroupNameKey"))
 	return rv
 }

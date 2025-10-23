@@ -30,8 +30,10 @@ type _AudioSessionPortExtensionBluetoothMicrophoneClass struct {
 // An interface definition for the [AudioSessionPortExtensionBluetoothMicrophone] class.
 type IAudioSessionPortExtensionBluetoothMicrophone interface {
 	objectivec.IObject
+	// properties:
 	FarFieldCapture() IAVAudioSessionCapability
 	HighQualityRecording() IAVAudioSessionCapability
+	// methods:
 }
 
 // An object that describes capabilities of Bluetooth microphone ports.

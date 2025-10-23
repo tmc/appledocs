@@ -30,6 +30,8 @@ type _FSFileSystemClass struct {
 // An interface definition for the [FSFileSystem] class.
 type IFSFileSystem interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract base class for implementing a full-featured file system.

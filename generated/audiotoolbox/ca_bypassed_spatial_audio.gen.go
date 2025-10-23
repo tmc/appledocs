@@ -29,6 +29,8 @@ type _BypassedSpatialAudioClass struct {
 // An interface definition for the [BypassedSpatialAudio] class.
 type IBypassedSpatialAudio interface {
 	ISpatialAudioExperience
+	// properties:
+	// methods:
 }
 
 // An experience in which the system does not apply spatial processing to the audio stream.

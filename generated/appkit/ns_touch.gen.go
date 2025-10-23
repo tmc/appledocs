@@ -31,15 +31,17 @@ type _TouchClass struct {
 // An interface definition for the [Touch] class.
 type ITouch interface {
 	objectivec.IObject
+	// properties:
 	Device() objc.ID
 	DeviceSize() coregraphics.CGSize
 	Identity() objc.ID
-	Resting() bool
+	Resting() bool /* primitive/slice/pointer. */
 	NormalizedPosition() coregraphics.CGPoint
-	Phase() NSTouchPhase
-	Type() NSTouchType
-	IsResting() bool
-	SetIsResting(value bool)
+	Phase() TouchPhase
+	Type() TouchType
+	IsResting() bool /* primitive/slice/pointer. */
+	SetIsResting(value bool /* primitive/slice/pointer. */)
+	// methods:
 	LocationInView(view IView) coregraphics.CGPoint
 	PreviousLocationInView(view IView) coregraphics.CGPoint
 }
@@ -151,7 +153,7 @@ func (t_ Touch) Identity() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/isResting
-func (t_ Touch) Resting() bool {
+func (t_ Touch) Resting() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resting"))
 	return rv
 }
@@ -171,8 +173,8 @@ func (t_ Touch) NormalizedPosition() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/phase-swift.property
-func (t_ Touch) Phase() NSTouchPhase {
-	rv := objc.Send[NSTouchPhase](t_.ID, objc.Sel("phase"))
+func (t_ Touch) Phase() TouchPhase {
+	rv := objc.Send[TouchPhase](t_.ID, objc.Sel("phase"))
 	return rv
 }
 
@@ -181,8 +183,8 @@ func (t_ Touch) Phase() NSTouchPhase {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/type
-func (t_ Touch) Type() NSTouchType {
-	rv := objc.Send[NSTouchType](t_.ID, objc.Sel("type"))
+func (t_ Touch) Type() TouchType {
+	rv := objc.Send[TouchType](t_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -191,7 +193,7 @@ func (t_ Touch) Type() NSTouchType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-func (t_ Touch) IsResting() bool {
+func (t_ Touch) IsResting() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isResting"))
 	return rv
 }
@@ -201,7 +203,7 @@ func (t_ Touch) IsResting() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/isresting
-func (t_ Touch) SetIsResting(value bool) {
+func (t_ Touch) SetIsResting(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsResting:"), value)
 }
 

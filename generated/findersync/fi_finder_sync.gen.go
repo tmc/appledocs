@@ -30,6 +30,8 @@ type _FIFinderSyncClass struct {
 // An interface definition for the [FIFinderSync] class.
 type IFIFinderSync interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.

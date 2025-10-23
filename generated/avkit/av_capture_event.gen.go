@@ -30,9 +30,11 @@ type _CaptureEventClass struct {
 // An interface definition for the [CaptureEvent] class.
 type ICaptureEvent interface {
 	objectivec.IObject
-	Phase() AVCaptureEventPhase
-	ShouldPlaySound() bool
-	PlaySound(sound IAVCaptureEventSound) bool
+	// properties:
+	Phase() CaptureEventPhase
+	ShouldPlaySound() bool /* primitive/slice/pointer. */
+	// methods:
+	PlaySound(sound IAVCaptureEventSound) bool /* primitive/slice/pointer. */
 }
 
 // An object that describes a user interaction with a system hardware button.
@@ -92,7 +94,7 @@ func NewCaptureEvent() CaptureEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/play(_:)
-func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
+func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("playSound:"), sound)
 	return rv
 }
@@ -102,8 +104,8 @@ func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
-func (c_ CaptureEvent) Phase() AVCaptureEventPhase {
-	rv := objc.Send[AVCaptureEventPhase](c_.ID, objc.Sel("phase"))
+func (c_ CaptureEvent) Phase() CaptureEventPhase {
+	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
 	return rv
 }
 
@@ -112,7 +114,7 @@ func (c_ CaptureEvent) Phase() AVCaptureEventPhase {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/shouldPlaySound
-func (c_ CaptureEvent) ShouldPlaySound() bool {
+func (c_ CaptureEvent) ShouldPlaySound() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldPlaySound"))
 	return rv
 }

@@ -31,8 +31,10 @@ type _CNScriptChangesClass struct {
 // An interface definition for the [CNScriptChanges] class.
 type ICNScriptChanges interface {
 	objectivec.IObject
-	AddedDetectionTracks() []CNDetectionTrack
-	DataRepresentation() foundation.NSData
+	// properties:
+	AddedDetectionTracks() []CNDetectionTrack /* primitive/slice/pointer. */
+	DataRepresentation() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.
@@ -92,7 +94,7 @@ func NewCNScriptChanges() CNScriptChanges {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/addedDetectionTracks
-func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
+func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CNDetectionTrack](c_.ID, objc.Sel("addedDetectionTracks"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
-func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
+func (c_ CNScriptChanges) DataRepresentation() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }

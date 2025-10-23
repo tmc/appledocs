@@ -32,10 +32,10 @@ type _PlayerItemIntegratedTimelineClass struct {
 type IPlayerItemIntegratedTimeline interface {
 	objectivec.IObject
 	// properties:
-	CurrentDate() foundation.Date /* not a class type */
-	SetCurrentDate(value foundation.Date /* not a class type */)
-	CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot /* not a class type */
-	SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot /* not a class type */)
+	CurrentDate() objc.IObject /* cross-framework: Date */
+	SetCurrentDate(value objc.IObject /* cross-framework: Date */)
+	CurrentSnapshot() objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */
+	SetCurrentSnapshot(value objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */)
 	CurrentTime() Time /* not a class type */
 	SetCurrentTime(value Time /* not a class type */)
 	// methods:
@@ -98,7 +98,7 @@ func NewPlayerItemIntegratedTimeline() PlayerItemIntegratedTimeline {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date /* not a class type */ {
+func (p_ PlayerItemIntegratedTimeline) CurrentDate() objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date /* not a cl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date /* not a class type */) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
@@ -117,7 +117,7 @@ func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.Date /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() PlayerItemIntegratedTimelineSnapshot /* not a class type */ {
+func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */ {
 	rv := objc.Send[PlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
@@ -127,7 +127,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() PlayerItemIntegratedTim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value PlayerItemIntegratedTimelineSnapshot /* not a class type */) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value objc.IObject /* cross-framework: PlayerItemIntegratedTimelineSnapshot */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }
 

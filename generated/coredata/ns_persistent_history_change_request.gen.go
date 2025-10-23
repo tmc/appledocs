@@ -30,12 +30,14 @@ type _PersistentHistoryChangeRequestClass struct {
 // An interface definition for the [PersistentHistoryChangeRequest] class.
 type IPersistentHistoryChangeRequest interface {
 	IPersistentStoreRequest
+	// properties:
 	FetchRequest() IFetchRequest
 	SetFetchRequest(value IFetchRequest)
-	ResultType() NSPersistentHistoryResultType
-	SetResultType(value NSPersistentHistoryResultType)
+	ResultType() PersistentHistoryResultType
+	SetResultType(value PersistentHistoryResultType)
 	Token() IPersistentHistoryToken
 	SetToken(value IPersistentHistoryToken)
+	// methods:
 }
 
 // A request to fetch or purge persistent history.
@@ -115,7 +117,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.NSDate) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.objc.IObject /* cross-framework NSDate */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
@@ -154,8 +156,8 @@ func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value IFetchRequest) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) ResultType() NSPersistentHistoryResultType {
-	rv := objc.Send[NSPersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultType {
+	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -164,7 +166,7 @@ func (p_ PersistentHistoryChangeRequest) ResultType() NSPersistentHistoryResultT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) SetResultType(value NSPersistentHistoryResultType) {
+func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 

@@ -30,6 +30,8 @@ type _AuthorizationPublicKeyCredentialPRFRegistrationInputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFRegistrationInput] class.
 type IAuthorizationPublicKeyCredentialPRFRegistrationInput interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

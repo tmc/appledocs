@@ -30,11 +30,13 @@ type _GCDeviceHapticsClass struct {
 // An interface definition for the [GCDeviceHaptics] class.
 type IGCDeviceHaptics interface {
 	objectivec.IObject
+	// properties:
 	SupportedLocalities() unsafe.Pointer
-	SupportsHaptics() bool
-	SetSupportsHaptics(value bool)
-	GCHapticDurationInfinite() float32
-	CreateEngineWithLocality(locality GCHapticsLocality) unsafe.Pointer
+	SupportsHaptics() bool /* primitive/slice/pointer. */
+	SetSupportsHaptics(value bool /* primitive/slice/pointer. */)
+	GCHapticDurationInfinite() float32 /* primitive/slice/pointer. */
+	// methods:
+	CreateEngineWithLocality(locality GCHapticsLocality /* typedef */) unsafe.Pointer
 }
 
 // The locations of haptic actuators on a game controller.
@@ -94,7 +96,7 @@ func NewGCDeviceHaptics() GCDeviceHaptics {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceHaptics/createEngine(withLocality:)
-func (g_ GCDeviceHaptics) CreateEngineWithLocality(locality GCHapticsLocality) unsafe.Pointer {
+func (g_ GCDeviceHaptics) CreateEngineWithLocality(locality GCHapticsLocality /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("createEngineWithLocality:"), locality)
 	return rv
 }
@@ -114,7 +116,7 @@ func (g_ GCDeviceHaptics) SupportedLocalities() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreHaptics/CHHapticDeviceCapability/supportsHaptics
-func (g_ GCDeviceHaptics) SupportsHaptics() bool {
+func (g_ GCDeviceHaptics) SupportsHaptics() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("supportsHaptics"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (g_ GCDeviceHaptics) SupportsHaptics() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreHaptics/CHHapticDeviceCapability/supportsHaptics
-func (g_ GCDeviceHaptics) SetSupportsHaptics(value bool) {
+func (g_ GCDeviceHaptics) SetSupportsHaptics(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSupportsHaptics:"), value)
 }
 
@@ -133,7 +135,7 @@ func (g_ GCDeviceHaptics) SetSupportsHaptics(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite
-func (g_ GCDeviceHaptics) GCHapticDurationInfinite() float32 {
+func (g_ GCDeviceHaptics) GCHapticDurationInfinite() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("GCHapticDurationInfinite"))
 	return rv
 }

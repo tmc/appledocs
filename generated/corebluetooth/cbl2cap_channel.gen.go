@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +30,16 @@ type _CBL2CAPChannelClass struct {
 // An interface definition for the [CBL2CAPChannel] class.
 type ICBL2CAPChannel interface {
 	objectivec.IObject
-	InputStream() foundation.InputStream
-	SetInputStream(value foundation.InputStream)
-	OutputStream() foundation.OutputStream
-	SetOutputStream(value foundation.OutputStream)
+	// properties:
+	InputStream() InputStream /* not a class type */
+	SetInputStream(value InputStream /* not a class type */)
+	OutputStream() objc.IObject /* cross-framework: OutputStream */
+	SetOutputStream(value objc.IObject /* cross-framework: OutputStream */)
 	Peer() ICBPeer
 	SetPeer(value ICBPeer)
-	Psm() CBL2CAPPSM
-	SetPsm(value CBL2CAPPSM)
+	Psm() CBL2CAPPSM /* typedef */
+	SetPsm(value CBL2CAPPSM /* typedef */)
+	// methods:
 }
 
 // A live L2CAP connection to a remote device.
@@ -96,8 +97,8 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
-	rv := objc.Send[foundation.InputStream](c_.ID, objc.Sel("inputStream"))
+func (c_ CBL2CAPChannel) InputStream() InputStream /* not a class type */ {
+	rv := objc.Send[InputStream](c_.ID, objc.Sel("inputStream"))
 	return rv
 }
 
@@ -106,7 +107,7 @@ func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) SetInputStream(value foundation.InputStream) {
+func (c_ CBL2CAPChannel) SetInputStream(value InputStream /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
 
@@ -115,8 +116,8 @@ func (c_ CBL2CAPChannel) SetInputStream(value foundation.InputStream) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
-	rv := objc.Send[foundation.OutputStream](c_.ID, objc.Sel("outputStream"))
+func (c_ CBL2CAPChannel) OutputStream() objc.IObject /* cross-framework: OutputStream */ {
+	rv := objc.Send[OutputStream](c_.ID, objc.Sel("outputStream"))
 	return rv
 }
 
@@ -125,7 +126,7 @@ func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-func (c_ CBL2CAPChannel) SetOutputStream(value foundation.OutputStream) {
+func (c_ CBL2CAPChannel) SetOutputStream(value objc.IObject /* cross-framework: OutputStream */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
 }
 
@@ -153,7 +154,7 @@ func (c_ CBL2CAPChannel) SetPeer(value ICBPeer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
+func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM /* typedef */ {
 	rv := objc.Send[CBL2CAPPSM](c_.ID, objc.Sel("psm"))
 	return rv
 }
@@ -163,7 +164,7 @@ func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) SetPsm(value CBL2CAPPSM) {
+func (c_ CBL2CAPChannel) SetPsm(value CBL2CAPPSM /* typedef */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }
 

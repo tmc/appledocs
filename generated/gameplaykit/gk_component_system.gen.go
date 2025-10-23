@@ -31,15 +31,17 @@ type _ComponentSystemClass struct {
 // An interface definition for the [ComponentSystem] class.
 type IComponentSystem interface {
 	objectivec.IObject
+	// properties:
 	ComponentClass() objc.Class
-	Components() []Component
+	Components() []Component /* primitive/slice/pointer. */
+	// methods:
 	AddComponent(component unsafe.Pointer)
 	AddComponentWithEntity(entity IGKEntity)
-	ClassForGenericArgumentAtIndex(index uint) objc.Class
+	ClassForGenericArgumentAtIndex(index uint /* primitive/slice/pointer. */) objc.Class
 	RemoveComponent(component unsafe.Pointer)
 	RemoveComponentWithEntity(entity IGKEntity)
-	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) unsafe.Pointer
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 }
 
 // Manages periodic update messages for all component objects of a specified class.
@@ -128,7 +130,7 @@ func (c_ ComponentSystem) AddComponentWithEntity(entity IGKEntity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/classForGenericArgument(at:)
-func (c_ ComponentSystem) ClassForGenericArgumentAtIndex(index uint) objc.Class {
+func (c_ ComponentSystem) ClassForGenericArgumentAtIndex(index uint /* primitive/slice/pointer. */) objc.Class {
 	rv := objc.Send[objc.Class](c_.ID, objc.Sel("classForGenericArgumentAtIndex:"), index)
 	return rv
 }
@@ -156,7 +158,7 @@ func (c_ ComponentSystem) RemoveComponentWithEntity(entity IGKEntity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/subscript(_:)
-func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
+func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
@@ -166,7 +168,7 @@ func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/update(deltaTime:)
-func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -185,7 +187,7 @@ func (c_ ComponentSystem) ComponentClass() objc.Class {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/components
-func (c_ ComponentSystem) Components() []Component {
+func (c_ ComponentSystem) Components() []Component /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Component](c_.ID, objc.Sel("components"))
 	return rv
 }

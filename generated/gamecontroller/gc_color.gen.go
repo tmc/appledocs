@@ -30,14 +30,16 @@ type _GCColorClass struct {
 // An interface definition for the [GCColor] class.
 type IGCColor interface {
 	objectivec.IObject
-	Blue() float32
-	SetBlue(value float32)
-	Green() float32
-	SetGreen(value float32)
-	Red() float32
-	SetRed(value float32)
+	// properties:
+	Blue() float32 /* primitive/slice/pointer. */
+	SetBlue(value float32 /* primitive/slice/pointer. */)
+	Green() float32 /* primitive/slice/pointer. */
+	SetGreen(value float32 /* primitive/slice/pointer. */)
+	Red() float32 /* primitive/slice/pointer. */
+	SetRed(value float32 /* primitive/slice/pointer. */)
 	Color() IGCColor
 	SetColor(value IGCColor)
+	// methods:
 }
 
 // The color of a device light.
@@ -95,7 +97,7 @@ func NewGCColor() GCColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/blue
-func (g_ GCColor) Blue() float32 {
+func (g_ GCColor) Blue() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("blue"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (g_ GCColor) Blue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/blue
-func (g_ GCColor) SetBlue(value float32) {
+func (g_ GCColor) SetBlue(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBlue:"), value)
 }
 
@@ -114,7 +116,7 @@ func (g_ GCColor) SetBlue(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/green
-func (g_ GCColor) Green() float32 {
+func (g_ GCColor) Green() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("green"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (g_ GCColor) Green() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/green
-func (g_ GCColor) SetGreen(value float32) {
+func (g_ GCColor) SetGreen(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGreen:"), value)
 }
 
@@ -133,7 +135,7 @@ func (g_ GCColor) SetGreen(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
-func (g_ GCColor) Red() float32 {
+func (g_ GCColor) Red() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](g_.ID, objc.Sel("red"))
 	return rv
 }
@@ -143,7 +145,7 @@ func (g_ GCColor) Red() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
-func (g_ GCColor) SetRed(value float32) {
+func (g_ GCColor) SetRed(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRed:"), value)
 }
 

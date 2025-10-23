@@ -30,7 +30,9 @@ type _ModelStructureNeuralNetworkClass struct {
 // An interface definition for the [ModelStructureNeuralNetwork] class.
 type IModelStructureNeuralNetwork interface {
 	objectivec.IObject
-	Layers() []ModelStructureNeuralNetworkLayer
+	// properties:
+	Layers() []ModelStructureNeuralNetworkLayer /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class representing the structure of a NeuralNetwork model.
@@ -88,7 +90,7 @@ func NewModelStructureNeuralNetwork() ModelStructureNeuralNetwork {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetwork/layers
-func (m_ ModelStructureNeuralNetwork) Layers() []ModelStructureNeuralNetworkLayer {
+func (m_ ModelStructureNeuralNetwork) Layers() []ModelStructureNeuralNetworkLayer /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ModelStructureNeuralNetworkLayer](m_.ID, objc.Sel("layers"))
 	return rv
 }

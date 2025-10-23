@@ -32,17 +32,18 @@ type _AudioSessionDataSourceDescriptionClass struct {
 // An interface definition for the [AudioSessionDataSourceDescription] class.
 type IAudioSessionDataSourceDescription interface {
 	objectivec.IObject
-	SupportedPolarPatterns() []string
+	// properties:
+	SupportedPolarPatterns() []string /* primitive/slice/pointer. */
 	OutputDataSource() IAVAudioSessionDataSourceDescription
 	SetOutputDataSource(value IAVAudioSessionDataSourceDescription)
 	OutputDataSources() IAVAudioSessionDataSourceDescription
 	SetOutputDataSources(value IAVAudioSessionDataSourceDescription)
-	DataSourceID() foundation.Number
-	SetDataSourceID(value foundation.Number)
-	DataSourceName() string
-	SetDataSourceName(value string)
-	Location() corelocation.Location
-	SetLocation(value corelocation.Location)
+	DataSourceID() foundation.objc.IObject /* cross-framework: Number */
+	SetDataSourceID(value foundation.objc.IObject /* cross-framework: Number */)
+	DataSourceName() string /* primitive/slice/pointer. */
+	SetDataSourceName(value string /* primitive/slice/pointer. */)
+	Location() corelocation.objc.IObject /* cross-framework: Location */
+	SetLocation(value corelocation.objc.IObject /* cross-framework: Location */)
 	Orientation() unsafe.Pointer
 	SetOrientation(value unsafe.Pointer)
 	PreferredPolarPattern() unsafe.Pointer
@@ -51,6 +52,7 @@ type IAudioSessionDataSourceDescription interface {
 	SetSelectedPolarPattern(value unsafe.Pointer)
 	DataSources() IAVAudioSessionDataSourceDescription
 	SetDataSources(value IAVAudioSessionDataSourceDescription)
+	// methods:
 }
 
 // An object that defines a data source for an audio input or output, giving information such as the source’s name, location, and orientation.
@@ -110,7 +112,7 @@ func NewAudioSessionDataSourceDescription() AudioSessionDataSourceDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionDataSourceDescription/supportedPolarPatterns
-func (a_ AudioSessionDataSourceDescription) SupportedPolarPatterns() []string {
+func (a_ AudioSessionDataSourceDescription) SupportedPolarPatterns() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("supportedPolarPatterns"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (a_ AudioSessionDataSourceDescription) SetOutputDataSources(value IAVAudioS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
-func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
+func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("dataSourceID"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (a_ AudioSessionDataSourceDescription) DataSourceID() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourceid
-func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.Number) {
+func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceID:"), value)
 }
 
@@ -177,7 +179,7 @@ func (a_ AudioSessionDataSourceDescription) SetDataSourceID(value foundation.Num
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
+func (a_ AudioSessionDataSourceDescription) DataSourceName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("dataSourceName"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (a_ AudioSessionDataSourceDescription) DataSourceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/datasourcename
-func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
+func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataSourceName:"), objc.String(value))
 }
 
@@ -196,7 +198,7 @@ func (a_ AudioSessionDataSourceDescription) SetDataSourceName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
-func (a_ AudioSessionDataSourceDescription) Location() corelocation.Location {
+func (a_ AudioSessionDataSourceDescription) Location() corelocation.objc.IObject /* cross-framework: Location */ {
 	rv := objc.Send[corelocation.Location](a_.ID, objc.Sel("location"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (a_ AudioSessionDataSourceDescription) Location() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription/location
-func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.Location) {
+func (a_ AudioSessionDataSourceDescription) SetLocation(value corelocation.objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKQuerySubscription] class.
@@ -30,16 +29,18 @@ type _CKQuerySubscriptionClass struct {
 // An interface definition for the [CKQuerySubscription] class.
 type ICKQuerySubscription interface {
 	ICKSubscription
+	// properties:
 	ZoneID() ICKRecordZoneID
 	SetZoneID(value ICKRecordZoneID)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	QuerySubscriptionOptions() unsafe.Pointer
 	SetQuerySubscriptionOptions(value unsafe.Pointer)
 	RecordType() unsafe.Pointer
 	SetRecordType(value unsafe.Pointer)
-	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value CKNotificationInfo)
+	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
+	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
+	// methods:
 }
 
 // A subscription that generates push notifications when CloudKit modifies records that match a predicate.
@@ -120,8 +121,8 @@ func (c_ CKQuerySubscription) SetZoneID(value ICKRecordZoneID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerysubscription/predicate
-func (c_ CKQuerySubscription) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
+func (c_ CKQuerySubscription) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (c_ CKQuerySubscription) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckquerysubscription/predicate
-func (c_ CKQuerySubscription) SetPredicate(value foundation.Predicate) {
+func (c_ CKQuerySubscription) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
@@ -177,7 +178,7 @@ func (c_ CKQuerySubscription) SetRecordType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) NotificationInfo() CKNotificationInfo {
+func (c_ CKQuerySubscription) NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */ {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
@@ -187,7 +188,7 @@ func (c_ CKQuerySubscription) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) SetNotificationInfo(value CKNotificationInfo) {
+func (c_ CKQuerySubscription) SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

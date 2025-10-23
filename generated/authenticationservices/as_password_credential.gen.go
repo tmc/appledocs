@@ -30,9 +30,11 @@ type _PasswordCredentialClass struct {
 // An interface definition for the [PasswordCredential] class.
 type IPasswordCredential interface {
 	objectivec.IObject
-	Password() string
-	User() string
-	SetUser(value string)
+	// properties:
+	Password() string /* primitive/slice/pointer. */
+	User() string /* primitive/slice/pointer. */
+	SetUser(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A password credential.
@@ -90,7 +92,7 @@ func NewPasswordCredential() PasswordCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password
-func (p_ PasswordCredential) Password() string {
+func (p_ PasswordCredential) Password() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("password"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (p_ PasswordCredential) Password() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) User() string {
+func (p_ PasswordCredential) User() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("user"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (p_ PasswordCredential) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) SetUser(value string) {
+func (p_ PasswordCredential) SetUser(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 

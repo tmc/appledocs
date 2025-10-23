@@ -30,15 +30,17 @@ type _CWWiFiClientClass struct {
 // An interface definition for the [CWWiFiClient] class.
 type ICWWiFiClient interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
 	Interface() ICWInterface
-	InterfaceWithName(interfaceName string) ICWInterface
-	InterfaceNames() []string
-	Interfaces() []CWInterface
-	StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
-	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool
-	StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
+	InterfaceWithName(interfaceName string /* primitive/slice/pointer. */) ICWInterface
+	InterfaceNames() []string /* primitive/slice/pointer. */
+	Interfaces() []CWInterface /* primitive/slice/pointer. */
+	StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
@@ -99,7 +101,7 @@ func NewCWWiFiClient() CWWiFiClient {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interfaceNames()-swift.type.method
-func (cc _CWWiFiClientClass) InterfaceNames() []string {
+func (cc _CWWiFiClientClass) InterfaceNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(cc.class), objc.Sel("interfaceNames"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (c_ CWWiFiClient) Interface() ICWInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface(withName:)
-func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) ICWInterface {
+func (c_ CWWiFiClient) InterfaceWithName(interfaceName string /* primitive/slice/pointer. */) ICWInterface {
 	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interfaceWithName:"), objc.String(interfaceName))
 	return rv
 }
@@ -137,7 +139,7 @@ func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) ICWInterface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interfaceNames()-swift.method
-func (c_ CWWiFiClient) InterfaceNames() []string {
+func (c_ CWWiFiClient) InterfaceNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("interfaceNames"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (c_ CWWiFiClient) InterfaceNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interfaces()
-func (c_ CWWiFiClient) Interfaces() []CWInterface {
+func (c_ CWWiFiClient) Interfaces() []CWInterface /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CWInterface](c_.ID, objc.Sel("interfaces"))
 	return rv
 }
@@ -157,7 +159,7 @@ func (c_ CWWiFiClient) Interfaces() []CWInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/startMonitoringEvent(with:)
-func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool {
+func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }
@@ -167,7 +169,7 @@ func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ CWEventType, erro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/stopMonitoringAllEvents()
-func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool {
+func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringAllEventsAndReturnError:"), error_)
 	return rv
 }
@@ -177,7 +179,7 @@ func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error_ unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/stopMonitoringEvent(with:)
-func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool {
+func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }

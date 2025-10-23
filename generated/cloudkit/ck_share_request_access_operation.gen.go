@@ -30,16 +30,18 @@ type _CKShareRequestAccessOperationClass struct {
 // An interface definition for the [CKShareRequestAccessOperation] class.
 type ICKShareRequestAccessOperation interface {
 	ICKOperation
+	// properties:
 	PerShareAccessRequestCompletionBlock() unsafe.Pointer
 	SetPerShareAccessRequestCompletionBlock(value unsafe.Pointer)
-	ShareRequestAccessCompletionBlock() func(error objc.ID)
-	SetShareRequestAccessCompletionBlock(value func(error objc.ID))
-	ShareURLs() []foundation.URL
-	SetShareURLs(value []foundation.URL)
+	ShareRequestAccessCompletionBlock() func(error objc.ID) /* already interface */
+	SetShareRequestAccessCompletionBlock(value func(error objc.ID) /* already interface */)
+	ShareURLs() []foundation.objc.IObject /* cross-framework: URL */
+	SetShareURLs(value []foundation.objc.IObject /* cross-framework: URL */)
 	PerShareAccessRequestResultBlock() unsafe.Pointer
 	SetPerShareAccessRequestResultBlock(value unsafe.Pointer)
 	ShareAccessRequestResultBlock() unsafe.Pointer
 	SetShareAccessRequestResultBlock(value unsafe.Pointer)
+	// methods:
 }
 
 
@@ -94,7 +96,7 @@ func NewCKShareRequestAccessOperation() CKShareRequestAccessOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/init(shareURLs:)
-func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.URL) CKShareRequestAccessOperation {
+func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.objc.IObject /* cross-framework URL */) CKShareRequestAccessOperation {
 	instance := getCKShareRequestAccessOperationClass().Alloc()
 	rv := objc.Send[CKShareRequestAccessOperation](instance.ID, objc.Sel("initWithShareURLs:"), shareURLs)
 	rv.Autorelease()
@@ -126,7 +128,7 @@ func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestCompletionBlock(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareRequestAccessCompletionBlock
-func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func(error objc.ID) {
+func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func(error objc.ID) /* already interface */ {
 	rv := objc.Send[func(error objc.ID)](c_.ID, objc.Sel("shareRequestAccessCompletionBlock"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (c_ CKShareRequestAccessOperation) ShareRequestAccessCompletionBlock() func
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareRequestAccessCompletionBlock
-func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(value func(error objc.ID)) {
+func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(value func(error objc.ID) /* already interface */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareRequestAccessCompletionBlock:"), value)
 }
 
@@ -145,7 +147,7 @@ func (c_ CKShareRequestAccessOperation) SetShareRequestAccessCompletionBlock(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
+func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[[]foundation.URL](c_.ID, objc.Sel("shareURLs"))
 	return rv
 }
@@ -155,7 +157,7 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.URL) {
+func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.objc.IObject /* cross-framework: URL */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -31,6 +31,7 @@ type _HKVisionPrismClass struct {
 type IHKVisionPrism interface {
 	objectivec.IObject
 	// properties:
+	HorizontalBase() unsafe.Pointer
 	Amount() IHKQuantity
 	SetAmount(value IHKQuantity)
 	Angle() IHKQuantity
@@ -39,8 +40,6 @@ type IHKVisionPrism interface {
 	SetEye(value unsafe.Pointer)
 	HorizontalAmount() IHKQuantity
 	SetHorizontalAmount(value IHKQuantity)
-	HorizontalBase() unsafe.Pointer
-	SetHorizontalBase(value unsafe.Pointer)
 	VerticalAmount() IHKQuantity
 	SetVerticalAmount(value IHKQuantity)
 	VerticalBase() unsafe.Pointer
@@ -99,6 +98,16 @@ func NewHKVisionPrism() HKVisionPrism {
 	return getHKVisionPrismClass().New()
 }
 
+
+
+// The orientation of the horizontal portion of the correction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVisionPrism/horizontalBase
+func (h_ HKVisionPrism) HorizontalBase() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalBase"))
+	return rv
+}
 
 
 // The strength of the correction.
@@ -174,25 +183,6 @@ func (h_ HKVisionPrism) HorizontalAmount() IHKQuantity {
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
 func (h_ HKVisionPrism) SetHorizontalAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalAmount:"), value)
-}
-
-
-// The orientation of the horizontal portion of the correction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
-func (h_ HKVisionPrism) HorizontalBase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalBase"))
-	return rv
-}
-
-
-// The orientation of the horizontal portion of the correction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase
-func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalBase:"), value)
 }
 
 

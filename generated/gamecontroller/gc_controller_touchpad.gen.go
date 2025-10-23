@@ -29,20 +29,22 @@ type _GCControllerTouchpadClass struct {
 // An interface definition for the [GCControllerTouchpad] class.
 type IGCControllerTouchpad interface {
 	IGCControllerElement
-	Button() GCControllerButtonInput
-	SetButton(value GCControllerButtonInput)
-	ReportsAbsoluteTouchSurfaceValues() bool
-	SetReportsAbsoluteTouchSurfaceValues(value bool)
+	// properties:
+	Button() objc.IObject /* cross-framework: GCControllerButtonInput */
+	SetButton(value objc.IObject /* cross-framework: GCControllerButtonInput */)
+	ReportsAbsoluteTouchSurfaceValues() bool /* primitive/slice/pointer. */
+	SetReportsAbsoluteTouchSurfaceValues(value bool /* primitive/slice/pointer. */)
 	TouchDown() unsafe.Pointer
 	SetTouchDown(value unsafe.Pointer)
 	TouchMoved() unsafe.Pointer
 	SetTouchMoved(value unsafe.Pointer)
 	TouchState() unsafe.Pointer
 	SetTouchState(value unsafe.Pointer)
-	TouchSurface() GCControllerDirectionPad
-	SetTouchSurface(value GCControllerDirectionPad)
+	TouchSurface() objc.IObject /* cross-framework: GCControllerDirectionPad */
+	SetTouchSurface(value objc.IObject /* cross-framework: GCControllerDirectionPad */)
 	TouchUp() unsafe.Pointer
 	SetTouchUp(value unsafe.Pointer)
+	// methods:
 }
 
 // A control element that represents a touch event on a touchpad.
@@ -104,7 +106,7 @@ func NewGCControllerTouchpad() GCControllerTouchpad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/button
-func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
+func (g_ GCControllerTouchpad) Button() objc.IObject /* cross-framework: GCControllerButtonInput */ {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("button"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/button
-func (g_ GCControllerTouchpad) SetButton(value GCControllerButtonInput) {
+func (g_ GCControllerTouchpad) SetButton(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButton:"), value)
 }
 
@@ -123,7 +125,7 @@ func (g_ GCControllerTouchpad) SetButton(value GCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool {
+func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reportsAbsoluteTouchSurfaceValues"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (g_ GCControllerTouchpad) ReportsAbsoluteTouchSurfaceValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/reportsabsolutetouchsurfacevalues
-func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool) {
+func (g_ GCControllerTouchpad) SetReportsAbsoluteTouchSurfaceValues(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReportsAbsoluteTouchSurfaceValues:"), value)
 }
 
@@ -199,7 +201,7 @@ func (g_ GCControllerTouchpad) SetTouchState(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
+func (g_ GCControllerTouchpad) TouchSurface() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("touchSurface"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-func (g_ GCControllerTouchpad) SetTouchSurface(value GCControllerDirectionPad) {
+func (g_ GCControllerTouchpad) SetTouchSurface(value objc.IObject /* cross-framework: GCControllerDirectionPad */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchSurface:"), value)
 }
 

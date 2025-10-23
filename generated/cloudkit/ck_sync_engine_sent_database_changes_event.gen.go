@@ -29,6 +29,8 @@ type _CKSyncEngineSentDatabaseChangesEventClass struct {
 // An interface definition for the [CKSyncEngineSentDatabaseChangesEvent] class.
 type ICKSyncEngineSentDatabaseChangesEvent interface {
 	ICKSyncEngineEvent
+	// properties:
+	// methods:
 }
 
 // An object that provides information about a sent batch of database changes.

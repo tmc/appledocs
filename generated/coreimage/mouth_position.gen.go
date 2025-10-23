@@ -30,6 +30,8 @@ type _mouthPositionClass struct {
 // An interface definition for the [mouthPosition] class.
 type ImouthPosition interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

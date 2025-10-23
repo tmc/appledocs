@@ -30,10 +30,12 @@ type _SliderAccessoryClass struct {
 // An interface definition for the [SliderAccessory] class.
 type ISliderAccessory interface {
 	objectivec.IObject
-	Behavior() NSSliderAccessoryBehavior
-	SetBehavior(value NSSliderAccessoryBehavior)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
+	// properties:
+	Behavior() ISliderAccessoryBehavior
+	SetBehavior(value ISliderAccessoryBehavior)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 
@@ -83,23 +85,23 @@ func NewSliderAccessory() SliderAccessory {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
-func (s_ SliderAccessory) Behavior() NSSliderAccessoryBehavior {
-	rv := objc.Send[NSSliderAccessoryBehavior](s_.ID, objc.Sel("behavior"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/behavior
+func (s_ SliderAccessory) Behavior() ISliderAccessoryBehavior {
+	rv := objc.Send[SliderAccessoryBehavior](s_.ID, objc.Sel("behavior"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/behavior
-func (s_ SliderAccessory) SetBehavior(value NSSliderAccessoryBehavior) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/behavior
+func (s_ SliderAccessory) SetBehavior(value ISliderAccessoryBehavior) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
-func (s_ SliderAccessory) IsEnabled() bool {
+func (s_ SliderAccessory) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (s_ SliderAccessory) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslideraccessory/isenabled
-func (s_ SliderAccessory) SetIsEnabled(value bool) {
+func (s_ SliderAccessory) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

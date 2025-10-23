@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PlayerInterstitialEventController] class.
@@ -34,8 +35,8 @@ type IPlayerInterstitialEventController interface {
 	SetEvents(value IAVPlayerInterstitialEvent)
 	LocalizedStringsBundle() Bundle /* not a class type */
 	SetLocalizedStringsBundle(value Bundle /* not a class type */)
-	LocalizedStringsTableName() string /* primitive/slice/pointer */
-	SetLocalizedStringsTableName(value string /* primitive/slice/pointer */)
+	LocalizedStringsTableName() objc.IObject /* cross-framework: NSString */
+	SetLocalizedStringsTableName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -136,8 +137,8 @@ func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value Bund
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
-func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
+func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedStringsTableName"))
 	return rv
 }
 
@@ -146,8 +147,8 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringstablename
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), value)
 }
 
 

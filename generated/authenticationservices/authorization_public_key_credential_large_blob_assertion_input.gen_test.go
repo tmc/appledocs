@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobAssertionInput
 
+// ExampleNewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation demonstrates how to create a AuthorizationPublicKeyCredentialLargeBlobAssertionInput instance using NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation.
+func ExampleNewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation() {
+	_ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(
+		authenticationservices.AuthorizationPublicKeyCredentialLargeBlobAssertionOperation{}, // operation AuthorizationPublicKeyCredentialLargeBlobAssertionOperation
+	)
+	// Output:
+}

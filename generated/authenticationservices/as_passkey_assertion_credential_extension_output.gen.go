@@ -30,7 +30,9 @@ type _PasskeyAssertionCredentialExtensionOutputClass struct {
 // An interface definition for the [PasskeyAssertionCredentialExtensionOutput] class.
 type IPasskeyAssertionCredentialExtensionOutput interface {
 	objectivec.IObject
+	// properties:
 	LargeBlobAssertionOutput() IASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput
+	// methods:
 }
 
 // This class encapsulates output for various WebAuthn extensions used during passkey assertion.

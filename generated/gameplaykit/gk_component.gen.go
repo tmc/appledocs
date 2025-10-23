@@ -31,9 +31,11 @@ type _ComponentClass struct {
 // An interface definition for the [Component] class.
 type IComponent interface {
 	objectivec.IObject
+	// properties:
 	Entity() IGKEntity
+	// methods:
 	DidAddToEntity()
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 	WillRemoveFromEntity()
 }
 
@@ -103,7 +105,7 @@ func (c_ Component) DidAddToEntity() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/update(deltaTime:)
-func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

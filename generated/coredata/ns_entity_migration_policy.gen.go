@@ -30,15 +30,17 @@ type _EntityMigrationPolicyClass struct {
 // An interface definition for the [EntityMigrationPolicy] class.
 type IEntityMigrationPolicy interface {
 	objectivec.IObject
-	EntityMigrationPolicyClassName() string
-	SetEntityMigrationPolicyClassName(value string)
-	NSMigrationDestinationObjectKey() string
-	NSMigrationEntityMappingKey() string
-	NSMigrationEntityPolicyKey() string
-	NSMigrationManagerKey() string
-	NSMigrationPropertyMappingKey() string
-	NSMigrationSourceObjectKey() string
-	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance IManagedObject, mapping IEntityMapping, manager IMigrationManager, error_ unsafe.Pointer) bool
+	// properties:
+	EntityMigrationPolicyClassName() string /* primitive/slice/pointer. */
+	SetEntityMigrationPolicyClassName(value string /* primitive/slice/pointer. */)
+	NSMigrationDestinationObjectKey() string /* primitive/slice/pointer. */
+	NSMigrationEntityMappingKey() string /* primitive/slice/pointer. */
+	NSMigrationEntityPolicyKey() string /* primitive/slice/pointer. */
+	NSMigrationManagerKey() string /* primitive/slice/pointer. */
+	NSMigrationPropertyMappingKey() string /* primitive/slice/pointer. */
+	NSMigrationSourceObjectKey() string /* primitive/slice/pointer. */
+	// methods:
+	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance IManagedObject, mapping IEntityMapping, manager IMigrationManager, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A policy instance that customizes the migration process for an entity mapping.
@@ -98,7 +100,7 @@ func NewEntityMigrationPolicy() EntityMigrationPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityMigrationPolicy/createDestinationInstances(forSource:in:manager:)
-func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance IManagedObject, mapping IEntityMapping, manager IMigrationManager, error_ unsafe.Pointer) bool {
+func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance IManagedObject, mapping IEntityMapping, manager IMigrationManager, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("createDestinationInstancesForSourceInstance:entityMapping:manager:error:"), sInstance, mapping, manager, error_)
 	return rv
 }
@@ -108,7 +110,7 @@ func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
-func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() string {
+func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("entityMigrationPolicyClassName"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname
-func (e_ EntityMigrationPolicy) SetEntityMigrationPolicyClassName(value string) {
+func (e_ EntityMigrationPolicy) SetEntityMigrationPolicyClassName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), objc.String(value))
 }
 
@@ -127,7 +129,7 @@ func (e_ EntityMigrationPolicy) SetEntityMigrationPolicyClassName(value string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationdestinationobjectkey
-func (e_ EntityMigrationPolicy) NSMigrationDestinationObjectKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationDestinationObjectKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationDestinationObjectKey"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (e_ EntityMigrationPolicy) NSMigrationDestinationObjectKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationentitymappingkey
-func (e_ EntityMigrationPolicy) NSMigrationEntityMappingKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationEntityMappingKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationEntityMappingKey"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (e_ EntityMigrationPolicy) NSMigrationEntityMappingKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationentitypolicykey
-func (e_ EntityMigrationPolicy) NSMigrationEntityPolicyKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationEntityPolicyKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationEntityPolicyKey"))
 	return rv
 }
@@ -157,7 +159,7 @@ func (e_ EntityMigrationPolicy) NSMigrationEntityPolicyKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanagerkey
-func (e_ EntityMigrationPolicy) NSMigrationManagerKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationManagerKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationManagerKey"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (e_ EntityMigrationPolicy) NSMigrationManagerKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationpropertymappingkey
-func (e_ EntityMigrationPolicy) NSMigrationPropertyMappingKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationPropertyMappingKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationPropertyMappingKey"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (e_ EntityMigrationPolicy) NSMigrationPropertyMappingKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationsourceobjectkey
-func (e_ EntityMigrationPolicy) NSMigrationSourceObjectKey() string {
+func (e_ EntityMigrationPolicy) NSMigrationSourceObjectKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("NSMigrationSourceObjectKey"))
 	return rv
 }

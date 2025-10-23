@@ -32,51 +32,53 @@ type _PrintInfoClass struct {
 // An interface definition for the [PrintInfo] class.
 type IPrintInfo interface {
 	objectivec.IObject
-	BottomMargin() float64
-	SetBottomMargin(value float64)
-	HorizontalPagination() NSPrintingPaginationMode
-	SetHorizontalPagination(value NSPrintingPaginationMode)
+	// properties:
+	BottomMargin() float64 /* primitive/slice/pointer. */
+	SetBottomMargin(value float64 /* primitive/slice/pointer. */)
+	HorizontalPagination() PrintingPaginationMode
+	SetHorizontalPagination(value PrintingPaginationMode)
 	ImageablePageBounds() coregraphics.CGRect
-	HorizontallyCentered() bool
-	SetHorizontallyCentered(value bool)
-	SelectionOnly() bool
-	SetSelectionOnly(value bool)
-	VerticallyCentered() bool
-	SetVerticallyCentered(value bool)
-	JobDisposition() PrintJobDispositionValue
-	SetJobDisposition(value PrintJobDispositionValue)
-	LeftMargin() float64
-	SetLeftMargin(value float64)
-	LocalizedPaperName() string
-	Orientation() NSPaperOrientation
-	SetOrientation(value NSPaperOrientation)
-	PaperName() PrinterPaperName
-	SetPaperName(value PrinterPaperName)
+	HorizontallyCentered() bool /* primitive/slice/pointer. */
+	SetHorizontallyCentered(value bool /* primitive/slice/pointer. */)
+	SelectionOnly() bool /* primitive/slice/pointer. */
+	SetSelectionOnly(value bool /* primitive/slice/pointer. */)
+	VerticallyCentered() bool /* primitive/slice/pointer. */
+	SetVerticallyCentered(value bool /* primitive/slice/pointer. */)
+	JobDisposition() objc.IObject /* cross-framework: PrintJobDispositionValue */
+	SetJobDisposition(value objc.IObject /* cross-framework: PrintJobDispositionValue */)
+	LeftMargin() float64 /* primitive/slice/pointer. */
+	SetLeftMargin(value float64 /* primitive/slice/pointer. */)
+	LocalizedPaperName() string /* primitive/slice/pointer. */
+	Orientation() PaperOrientation
+	SetOrientation(value PaperOrientation)
+	PaperName() objc.IObject /* cross-framework: PrinterPaperName */
+	SetPaperName(value objc.IObject /* cross-framework: PrinterPaperName */)
 	PaperSize() coregraphics.CGSize
 	SetPaperSize(value coregraphics.CGSize)
 	PrintSettings() unsafe.Pointer
 	Printer() IPrinter
 	SetPrinter(value IPrinter)
-	RightMargin() float64
-	SetRightMargin(value float64)
-	ScalingFactor() float64
-	SetScalingFactor(value float64)
-	TopMargin() float64
-	SetTopMargin(value float64)
-	VerticalPagination() NSPrintingPaginationMode
-	SetVerticalPagination(value NSPrintingPaginationMode)
-	IsHorizontallyCentered() bool
-	SetIsHorizontallyCentered(value bool)
-	IsSelectionOnly() bool
-	SetIsSelectionOnly(value bool)
-	IsVerticallyCentered() bool
-	SetIsVerticallyCentered(value bool)
+	RightMargin() float64 /* primitive/slice/pointer. */
+	SetRightMargin(value float64 /* primitive/slice/pointer. */)
+	ScalingFactor() float64 /* primitive/slice/pointer. */
+	SetScalingFactor(value float64 /* primitive/slice/pointer. */)
+	TopMargin() float64 /* primitive/slice/pointer. */
+	SetTopMargin(value float64 /* primitive/slice/pointer. */)
+	VerticalPagination() PrintingPaginationMode
+	SetVerticalPagination(value PrintingPaginationMode)
+	IsHorizontallyCentered() bool /* primitive/slice/pointer. */
+	SetIsHorizontallyCentered(value bool /* primitive/slice/pointer. */)
+	IsSelectionOnly() bool /* primitive/slice/pointer. */
+	SetIsSelectionOnly(value bool /* primitive/slice/pointer. */)
+	IsVerticallyCentered() bool /* primitive/slice/pointer. */
+	SetIsVerticallyCentered(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Dictionary() unsafe.Pointer
 	PMPageFormat()
 	PMPrintSession()
 	PMPrintSettings()
 	SetUpPrintOperationDefaultValues()
-	TakeSettingsFromPDFInfo(inPDFInfo PDFInfo)
+	TakeSettingsFromPDFInfo(inPDFInfo IPDFInfo)
 	UpdateFromPMPageFormat()
 	UpdateFromPMPrintSettings()
 }
@@ -138,7 +140,7 @@ func NewPrintInfo() PrintInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/init(coder:)
-func NewPrintInfoWithCoder(coder foundation.Coder) PrintInfo {
+func NewPrintInfoWithCoder(coder Coder /* not a class type */) PrintInfo {
 	instance := getPrintInfoClass().Alloc()
 	rv := objc.Send[PrintInfo](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -150,7 +152,7 @@ func NewPrintInfoWithCoder(coder foundation.Coder) PrintInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/init(dictionary:)
-func NewPrintInfoWithDictionary(attributes foundation.IDictionary) PrintInfo {
+func NewPrintInfoWithDictionary(attributes foundation.IDictionary /* already interface */) PrintInfo {
 	instance := getPrintInfoClass().Alloc()
 	rv := objc.Send[PrintInfo](instance.ID, objc.Sel("initWithDictionary:"), attributes)
 	rv.Autorelease()
@@ -172,7 +174,7 @@ func (pc _PrintInfoClass) SetDefaultPrinter(printer IPrinter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/sizeForPaperName:
-func (pc _PrintInfoClass) SizeForPaperName(name PrinterPaperName) coregraphics.CGSize {
+func (pc _PrintInfoClass) SizeForPaperName(name objc.IObject /* cross-framework PrinterPaperName */) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(pc.class), objc.Sel("sizeForPaperName:"), name)
 	return rv
 }
@@ -246,7 +248,7 @@ func (p_ PrintInfo) SetUpPrintOperationDefaultValues() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/takeSettings(from:)
-func (p_ PrintInfo) TakeSettingsFromPDFInfo(inPDFInfo PDFInfo) {
+func (p_ PrintInfo) TakeSettingsFromPDFInfo(inPDFInfo IPDFInfo) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("takeSettingsFromPDFInfo:"), inPDFInfo)
 }
 
@@ -273,7 +275,7 @@ func (p_ PrintInfo) UpdateFromPMPrintSettings() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/bottomMargin
-func (p_ PrintInfo) BottomMargin() float64 {
+func (p_ PrintInfo) BottomMargin() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("bottomMargin"))
 	return rv
 }
@@ -283,7 +285,7 @@ func (p_ PrintInfo) BottomMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/bottomMargin
-func (p_ PrintInfo) SetBottomMargin(value float64) {
+func (p_ PrintInfo) SetBottomMargin(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBottomMargin:"), value)
 }
 
@@ -302,8 +304,8 @@ func (p_ PrintInfo) DefaultPrinter() IPrinter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/horizontalPagination
-func (p_ PrintInfo) HorizontalPagination() NSPrintingPaginationMode {
-	rv := objc.Send[NSPrintingPaginationMode](p_.ID, objc.Sel("horizontalPagination"))
+func (p_ PrintInfo) HorizontalPagination() PrintingPaginationMode {
+	rv := objc.Send[PrintingPaginationMode](p_.ID, objc.Sel("horizontalPagination"))
 	return rv
 }
 
@@ -312,7 +314,7 @@ func (p_ PrintInfo) HorizontalPagination() NSPrintingPaginationMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/horizontalPagination
-func (p_ PrintInfo) SetHorizontalPagination(value NSPrintingPaginationMode) {
+func (p_ PrintInfo) SetHorizontalPagination(value PrintingPaginationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHorizontalPagination:"), value)
 }
 
@@ -331,7 +333,7 @@ func (p_ PrintInfo) ImageablePageBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isHorizontallyCentered
-func (p_ PrintInfo) HorizontallyCentered() bool {
+func (p_ PrintInfo) HorizontallyCentered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("horizontallyCentered"))
 	return rv
 }
@@ -341,7 +343,7 @@ func (p_ PrintInfo) HorizontallyCentered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isHorizontallyCentered
-func (p_ PrintInfo) SetHorizontallyCentered(value bool) {
+func (p_ PrintInfo) SetHorizontallyCentered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHorizontallyCentered:"), value)
 }
 
@@ -350,7 +352,7 @@ func (p_ PrintInfo) SetHorizontallyCentered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isSelectionOnly
-func (p_ PrintInfo) SelectionOnly() bool {
+func (p_ PrintInfo) SelectionOnly() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("selectionOnly"))
 	return rv
 }
@@ -360,7 +362,7 @@ func (p_ PrintInfo) SelectionOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isSelectionOnly
-func (p_ PrintInfo) SetSelectionOnly(value bool) {
+func (p_ PrintInfo) SetSelectionOnly(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionOnly:"), value)
 }
 
@@ -369,7 +371,7 @@ func (p_ PrintInfo) SetSelectionOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isVerticallyCentered
-func (p_ PrintInfo) VerticallyCentered() bool {
+func (p_ PrintInfo) VerticallyCentered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("verticallyCentered"))
 	return rv
 }
@@ -379,7 +381,7 @@ func (p_ PrintInfo) VerticallyCentered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/isVerticallyCentered
-func (p_ PrintInfo) SetVerticallyCentered(value bool) {
+func (p_ PrintInfo) SetVerticallyCentered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVerticallyCentered:"), value)
 }
 
@@ -388,7 +390,7 @@ func (p_ PrintInfo) SetVerticallyCentered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/jobDisposition-swift.property
-func (p_ PrintInfo) JobDisposition() PrintJobDispositionValue {
+func (p_ PrintInfo) JobDisposition() objc.IObject /* cross-framework: PrintJobDispositionValue */ {
 	rv := objc.Send[PrintJobDispositionValue](p_.ID, objc.Sel("jobDisposition"))
 	return rv
 }
@@ -398,7 +400,7 @@ func (p_ PrintInfo) JobDisposition() PrintJobDispositionValue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/jobDisposition-swift.property
-func (p_ PrintInfo) SetJobDisposition(value PrintJobDispositionValue) {
+func (p_ PrintInfo) SetJobDisposition(value objc.IObject /* cross-framework: PrintJobDispositionValue */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setJobDisposition:"), value)
 }
 
@@ -407,7 +409,7 @@ func (p_ PrintInfo) SetJobDisposition(value PrintJobDispositionValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/leftMargin
-func (p_ PrintInfo) LeftMargin() float64 {
+func (p_ PrintInfo) LeftMargin() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("leftMargin"))
 	return rv
 }
@@ -417,7 +419,7 @@ func (p_ PrintInfo) LeftMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/leftMargin
-func (p_ PrintInfo) SetLeftMargin(value float64) {
+func (p_ PrintInfo) SetLeftMargin(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLeftMargin:"), value)
 }
 
@@ -426,7 +428,7 @@ func (p_ PrintInfo) SetLeftMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/localizedPaperName
-func (p_ PrintInfo) LocalizedPaperName() string {
+func (p_ PrintInfo) LocalizedPaperName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("localizedPaperName"))
 	return rv
 }
@@ -436,8 +438,8 @@ func (p_ PrintInfo) LocalizedPaperName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/orientation-swift.property
-func (p_ PrintInfo) Orientation() NSPaperOrientation {
-	rv := objc.Send[NSPaperOrientation](p_.ID, objc.Sel("orientation"))
+func (p_ PrintInfo) Orientation() PaperOrientation {
+	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
 	return rv
 }
 
@@ -446,7 +448,7 @@ func (p_ PrintInfo) Orientation() NSPaperOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/orientation-swift.property
-func (p_ PrintInfo) SetOrientation(value NSPaperOrientation) {
+func (p_ PrintInfo) SetOrientation(value PaperOrientation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
@@ -455,7 +457,7 @@ func (p_ PrintInfo) SetOrientation(value NSPaperOrientation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/paperName
-func (p_ PrintInfo) PaperName() PrinterPaperName {
+func (p_ PrintInfo) PaperName() objc.IObject /* cross-framework: PrinterPaperName */ {
 	rv := objc.Send[PrinterPaperName](p_.ID, objc.Sel("paperName"))
 	return rv
 }
@@ -465,7 +467,7 @@ func (p_ PrintInfo) PaperName() PrinterPaperName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/paperName
-func (p_ PrintInfo) SetPaperName(value PrinterPaperName) {
+func (p_ PrintInfo) SetPaperName(value objc.IObject /* cross-framework: PrinterPaperName */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperName:"), value)
 }
 
@@ -522,7 +524,7 @@ func (p_ PrintInfo) SetPrinter(value IPrinter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/rightMargin
-func (p_ PrintInfo) RightMargin() float64 {
+func (p_ PrintInfo) RightMargin() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("rightMargin"))
 	return rv
 }
@@ -532,7 +534,7 @@ func (p_ PrintInfo) RightMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/rightMargin
-func (p_ PrintInfo) SetRightMargin(value float64) {
+func (p_ PrintInfo) SetRightMargin(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRightMargin:"), value)
 }
 
@@ -541,7 +543,7 @@ func (p_ PrintInfo) SetRightMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/scalingFactor
-func (p_ PrintInfo) ScalingFactor() float64 {
+func (p_ PrintInfo) ScalingFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("scalingFactor"))
 	return rv
 }
@@ -551,7 +553,7 @@ func (p_ PrintInfo) ScalingFactor() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/scalingFactor
-func (p_ PrintInfo) SetScalingFactor(value float64) {
+func (p_ PrintInfo) SetScalingFactor(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setScalingFactor:"), value)
 }
 
@@ -579,7 +581,7 @@ func (p_ PrintInfo) SetSharedPrintInfo(value IPrintInfo) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/topMargin
-func (p_ PrintInfo) TopMargin() float64 {
+func (p_ PrintInfo) TopMargin() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](p_.ID, objc.Sel("topMargin"))
 	return rv
 }
@@ -589,7 +591,7 @@ func (p_ PrintInfo) TopMargin() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/topMargin
-func (p_ PrintInfo) SetTopMargin(value float64) {
+func (p_ PrintInfo) SetTopMargin(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTopMargin:"), value)
 }
 
@@ -598,8 +600,8 @@ func (p_ PrintInfo) SetTopMargin(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/verticalPagination
-func (p_ PrintInfo) VerticalPagination() NSPrintingPaginationMode {
-	rv := objc.Send[NSPrintingPaginationMode](p_.ID, objc.Sel("verticalPagination"))
+func (p_ PrintInfo) VerticalPagination() PrintingPaginationMode {
+	rv := objc.Send[PrintingPaginationMode](p_.ID, objc.Sel("verticalPagination"))
 	return rv
 }
 
@@ -608,7 +610,7 @@ func (p_ PrintInfo) VerticalPagination() NSPrintingPaginationMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/verticalPagination
-func (p_ PrintInfo) SetVerticalPagination(value NSPrintingPaginationMode) {
+func (p_ PrintInfo) SetVerticalPagination(value PrintingPaginationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVerticalPagination:"), value)
 }
 
@@ -617,7 +619,7 @@ func (p_ PrintInfo) SetVerticalPagination(value NSPrintingPaginationMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/ishorizontallycentered
-func (p_ PrintInfo) IsHorizontallyCentered() bool {
+func (p_ PrintInfo) IsHorizontallyCentered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isHorizontallyCentered"))
 	return rv
 }
@@ -627,7 +629,7 @@ func (p_ PrintInfo) IsHorizontallyCentered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/ishorizontallycentered
-func (p_ PrintInfo) SetIsHorizontallyCentered(value bool) {
+func (p_ PrintInfo) SetIsHorizontallyCentered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHorizontallyCentered:"), value)
 }
 
@@ -636,7 +638,7 @@ func (p_ PrintInfo) SetIsHorizontallyCentered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/isselectiononly
-func (p_ PrintInfo) IsSelectionOnly() bool {
+func (p_ PrintInfo) IsSelectionOnly() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isSelectionOnly"))
 	return rv
 }
@@ -646,7 +648,7 @@ func (p_ PrintInfo) IsSelectionOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/isselectiononly
-func (p_ PrintInfo) SetIsSelectionOnly(value bool) {
+func (p_ PrintInfo) SetIsSelectionOnly(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelectionOnly:"), value)
 }
 
@@ -655,7 +657,7 @@ func (p_ PrintInfo) SetIsSelectionOnly(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/isverticallycentered
-func (p_ PrintInfo) IsVerticallyCentered() bool {
+func (p_ PrintInfo) IsVerticallyCentered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isVerticallyCentered"))
 	return rv
 }
@@ -665,7 +667,7 @@ func (p_ PrintInfo) IsVerticallyCentered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsprintinfo/isverticallycentered
-func (p_ PrintInfo) SetIsVerticallyCentered(value bool) {
+func (p_ PrintInfo) SetIsVerticallyCentered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsVerticallyCentered:"), value)
 }
 

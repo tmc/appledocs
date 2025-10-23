@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [Form] class.
@@ -29,8 +30,8 @@ type _FormClass struct {
 // An interface definition for the [Form] class.
 type IForm interface {
 	IMatrix
-	SelectTextAtIndex(index int)
-	SetTextAlignment(mode ITextAlignment)
+	// properties:
+	// methods:
 }
 
 // An object is a vertical matrix of objects to implement the fields.
@@ -84,24 +85,6 @@ func NewForm() Form {
 	return getFormClass().New()
 }
 
-
-
-// Selects the entry at the specified index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/selectText(at:)
-func (f_ Form) SelectTextAtIndex(index int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("selectTextAtIndex:"), index)
-}
-
-
-// Sets the alignment for all of the receiver’s editable text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSForm/setTextAlignment(_:)
-func (f_ Form) SetTextAlignment(mode ITextAlignment) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setTextAlignment:"), mode)
-}
 
 
 

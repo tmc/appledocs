@@ -30,9 +30,11 @@ type _CNPhoneNumberClass struct {
 // An interface definition for the [CNPhoneNumber] class.
 type ICNPhoneNumber interface {
 	objectivec.IObject
-	CNContactPhoneNumbersKey() string
-	StringValue() string
-	SetStringValue(value string)
+	// properties:
+	CNContactPhoneNumbersKey() string /* primitive/slice/pointer. */
+	StringValue() string /* primitive/slice/pointer. */
+	SetStringValue(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An immutable object representing a phone number for a contact.
@@ -93,7 +95,7 @@ func NewCNPhoneNumber() CNPhoneNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactphonenumberskey
-func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string {
+func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPhoneNumbersKey"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (c_ CNPhoneNumber) CNContactPhoneNumbersKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnphonenumber/stringvalue
-func (c_ CNPhoneNumber) StringValue() string {
+func (c_ CNPhoneNumber) StringValue() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (c_ CNPhoneNumber) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnphonenumber/stringvalue
-func (c_ CNPhoneNumber) SetStringValue(value string) {
+func (c_ CNPhoneNumber) SetStringValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 

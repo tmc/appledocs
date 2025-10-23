@@ -140,6 +140,15 @@ type HKGAD7AssessmentAnswer uint
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGAD7Assessment/Risk-swift.enum
 type HKGAD7AssessmentRisk uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGAD7Assessment/Risk-swift.enum/noneToMinimal
+	HKGAD7AssessmentRiskNoneToMinimal HKGAD7AssessmentRisk = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKGAD7Assessment/Risk-swift.enum/severe
+	HKGAD7AssessmentRiskSevere HKGAD7AssessmentRisk = 0
+)
+
 // HKMedicationDoseEventLogStatus - The statuses the system assigns to a logged medication dose event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/LogStatus-swift.enum
@@ -223,10 +232,28 @@ type HKStateOfMindValenceClassification uint
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsOptions
 type HKStatisticsOptions uint
 
+const (
+	// HKStatisticsOptionSeparateBySource - An option indicating that the system calculates the specified statistics separately for each source.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStatisticsOptions/separateBySource
+	HKStatisticsOptionSeparateBySource HKStatisticsOptions = 0
+)
+
 // HKUpdateFrequency - Constants that determine how often the system launches your app in response to changes to HealthKit data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUpdateFrequency
 type HKUpdateFrequency uint
+
+const (
+	// HKUpdateFrequencyHourly - The system launches your app at most once an hour in response to changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUpdateFrequency/hourly
+	HKUpdateFrequencyHourly HKUpdateFrequency = 0
+	// HKUpdateFrequencyWeekly - The system launches your app at most once per week in response to changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUpdateFrequency/weekly
+	HKUpdateFrequencyWeekly HKUpdateFrequency = 0
+)
 
 // HKWheelchairUse - Constants indicating the user’s wheelchair use.
 //
@@ -254,6 +281,13 @@ type HKWorkoutEffortRelationshipQueryOptions uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSessionState
 type HKWorkoutSessionState uint
+
+const (
+	// HKWorkoutSessionStateEnded - The workout session has ended.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSessionState/ended
+	HKWorkoutSessionStateEnded HKWorkoutSessionState = 0
+)
 
 // HKWorkoutSessionType - The type of session.
 //

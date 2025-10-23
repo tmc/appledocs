@@ -30,6 +30,8 @@ type _DispatchSerialQueueClass struct {
 // An interface definition for the [DispatchSerialQueue] class.
 type IDispatchSerialQueue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A custom dispatch queue that schedules tasks for serial execution on an arbitrary thread.

@@ -30,10 +30,12 @@ type _GameCenterViewControllerClass struct {
 // An interface definition for the [GameCenterViewController] class.
 type IGameCenterViewController interface {
 	appkit.IViewController
-	GameCenterDelegate() unsafe.Pointer
-	SetGameCenterDelegate(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	GameCenterDelegate() GameCenterControllerDelegate /* not a class type */
+	SetGameCenterDelegate(value GameCenterControllerDelegate /* not a class type */)
+	Delegate() ObjectProtocol /* not a class type */
+	SetDelegate(value ObjectProtocol /* not a class type */)
+	// methods:
 }
 
 // The dashboard that allows players to access their Game Center data in your game.
@@ -91,11 +93,23 @@ func NewGameCenterViewController() GameCenterViewController {
 
 
 
+// Creates a view controller that presents an achievement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(achievementID:)
+func NewGameCenterViewControllerWithAchievementID(achievementID string /* primitive/slice/pointer. */) GameCenterViewController {
+	instance := getGameCenterViewControllerClass().Alloc()
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithAchievementID:"), objc.String(achievementID))
+	rv.Autorelease()
+	return rv
+}
+
+
 // Creates a view controller that presents a leaderboard set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
-func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) GameCenterViewController {
+func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string /* primitive/slice/pointer. */) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
 	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), objc.String(leaderboardSetID))
 	rv.Autorelease()
@@ -115,13 +129,25 @@ func NewGameCenterViewControllerWithPlayer(player IGKPlayer) GameCenterViewContr
 }
 
 
+// Creates a view controller that presents the specified Game Center content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(state:)
+func NewGameCenterViewControllerWithState(state GameCenterViewControllerState /* not a class type */) GameCenterViewController {
+	instance := getGameCenterViewControllerClass().Alloc()
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithState:"), state)
+	rv.Autorelease()
+	return rv
+}
+
+
 
 // The view controller’s delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
-func (g_ GameCenterViewController) GameCenterDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gameCenterDelegate"))
+func (g_ GameCenterViewController) GameCenterDelegate() GameCenterControllerDelegate /* not a class type */ {
+	rv := objc.Send[GameCenterControllerDelegate](g_.ID, objc.Sel("gameCenterDelegate"))
 	return rv
 }
 
@@ -130,7 +156,7 @@ func (g_ GameCenterViewController) GameCenterDelegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller/gamecenterdelegate
-func (g_ GameCenterViewController) SetGameCenterDelegate(value unsafe.Pointer) {
+func (g_ GameCenterViewController) SetGameCenterDelegate(value GameCenterControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGameCenterDelegate:"), value)
 }
 
@@ -139,8 +165,8 @@ func (g_ GameCenterViewController) SetGameCenterDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameCenterViewController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
+func (g_ GameCenterViewController) Delegate() ObjectProtocol /* not a class type */ {
+	rv := objc.Send[ObjectProtocol](g_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -149,7 +175,7 @@ func (g_ GameCenterViewController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (g_ GameCenterViewController) SetDelegate(value unsafe.Pointer) {
+func (g_ GameCenterViewController) SetDelegate(value ObjectProtocol /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
 }
 

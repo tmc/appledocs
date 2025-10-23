@@ -34,3 +34,128 @@ type CMTimebaseRef unsafe.Pointer
 
 
 
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type Allocator = int
+
+type AllocatorRef = int
+
+type ArrayRef = int
+
+type AttachmentBearer = int
+
+type AttachmentBearerRef = int
+
+type AttachmentMode = int
+
+type BlockBuffer = int
+
+type BufferQueue = int
+
+type BufferQueueRef = int
+
+type BufferRef = int
+
+type CFAllocator = int
+
+type CFDictionary = int
+
+type CFRunLoop = int
+
+type CFRunLoopTimer = int
+
+type CFString = int
+
+type CFTypeRef = int
+
+type CMAttachmentBearer = int
+
+type CMAttachmentMode = int
+
+type CMBlockBuffer = int
+
+type CMBuffer = int
+
+type CMBufferQueueTriggerToken = int
+
+type CMBufferValidationHandler = int
+
+type CMClock = int
+
+type CMItemCount = int
+
+type CMSampleBuffer = int
+
+type CMSampleBufferInvalidateHandler = int
+
+type CMTime = int
+
+type CMTimeRange = int
+
+type CMTimeRoundingMethod = int
+
+type CMTimeScale = int
+
+type CMTimebase = int
+
+type Clock = int
+
+type ClockOrTimebase = int
+
+type ClockOrTimebaseRef = int
+
+type DictionaryRef = int
+
+type FormatDescription = int
+
+type Index = int
+
+type MemoryPool = int
+
+type MetadataFormatDescription = int
+
+type MutableTagCollectionRef = int
+
+type OSStatus = int
+
+type OSType = int
+
+type SampleBuffer = int
+
+type SimpleQueue = int
+
+type SimpleQueueRef = int
+
+type StringRef = int
+
+type Tag = int
+
+type TaggedBufferGroupFormatDescriptionRef = int
+
+type TaggedBufferGroupRef = int
+
+type Time = int
+
+type TimeCodeDescriptionFlavor = int
+
+type TimeCodeFormatDescription = int
+
+type TimeCodeFormatDescriptionRef = int
+
+type TimeMapping = int
+
+type TimeRange = int
+
+type Timebase = int
+
+type TimebaseRef = int
+
+type TypeID = int
+
+type TypeRef = int
+
+type VideoFormatDescription = int
+
+
+

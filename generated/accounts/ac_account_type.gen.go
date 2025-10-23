@@ -30,11 +30,13 @@ type _ACAccountTypeClass struct {
 // An interface definition for the [ACAccountType] class.
 type IACAccountType interface {
 	objectivec.IObject
-	AccessGranted() bool
-	AccountTypeDescription() string
-	Identifier() string
+	// properties:
+	AccessGranted() bool /* primitive/slice/pointer. */
+	AccountTypeDescription() string /* primitive/slice/pointer. */
+	Identifier() string /* primitive/slice/pointer. */
 	AccountType() IACAccountType
 	SetAccountType(value IACAccountType)
+	// methods:
 }
 
 // An object that encapsulates information about all accounts of a particular type.
@@ -94,7 +96,7 @@ func NewACAccountType() ACAccountType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accessGranted
-func (a_ ACAccountType) AccessGranted() bool {
+func (a_ ACAccountType) AccessGranted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("accessGranted"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (a_ ACAccountType) AccessGranted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-func (a_ ACAccountType) AccountTypeDescription() string {
+func (a_ ACAccountType) AccountTypeDescription() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (a_ ACAccountType) AccountTypeDescription() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-func (a_ ACAccountType) Identifier() string {
+func (a_ ACAccountType) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
 	return rv
 }

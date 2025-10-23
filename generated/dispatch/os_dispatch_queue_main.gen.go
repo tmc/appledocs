@@ -30,6 +30,8 @@ type _OS_dispatch_queue_mainClass struct {
 // An interface definition for the [OS_dispatch_queue_main] class.
 type IOS_dispatch_queue_main interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A system-provided dispatch queue that schedules tasks for serial execution on the app’s main thread.

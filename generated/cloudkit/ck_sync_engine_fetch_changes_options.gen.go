@@ -30,6 +30,8 @@ type _CKSyncEngineFetchChangesOptionsClass struct {
 // An interface definition for the [CKSyncEngineFetchChangesOptions] class.
 type ICKSyncEngineFetchChangesOptions interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A set of options to use with a fetch operation.

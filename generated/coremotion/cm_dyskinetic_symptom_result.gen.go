@@ -31,10 +31,12 @@ type _DyskineticSymptomResultClass struct {
 // An interface definition for the [DyskineticSymptomResult] class.
 type IDyskineticSymptomResult interface {
 	objectivec.IObject
-	EndDate() foundation.NSDate
-	PercentLikely() float32
-	PercentUnlikely() float32
-	StartDate() foundation.NSDate
+	// properties:
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	PercentLikely() float32 /* primitive/slice/pointer. */
+	PercentUnlikely() float32 /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	// methods:
 }
 
 // A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.
@@ -94,7 +96,7 @@ func NewDyskineticSymptomResult() DyskineticSymptomResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/endDate
-func (d_ DyskineticSymptomResult) EndDate() foundation.NSDate {
+func (d_ DyskineticSymptomResult) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (d_ DyskineticSymptomResult) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentLikely
-func (d_ DyskineticSymptomResult) PercentLikely() float32 {
+func (d_ DyskineticSymptomResult) PercentLikely() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](d_.ID, objc.Sel("percentLikely"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (d_ DyskineticSymptomResult) PercentLikely() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/percentUnlikely
-func (d_ DyskineticSymptomResult) PercentUnlikely() float32 {
+func (d_ DyskineticSymptomResult) PercentUnlikely() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](d_.ID, objc.Sel("percentUnlikely"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (d_ DyskineticSymptomResult) PercentUnlikely() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/startDate
-func (d_ DyskineticSymptomResult) StartDate() foundation.NSDate {
+func (d_ DyskineticSymptomResult) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }

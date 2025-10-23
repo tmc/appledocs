@@ -30,6 +30,8 @@ type _rowCountClass struct {
 // An interface definition for the [rowCount] class.
 type IrowCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

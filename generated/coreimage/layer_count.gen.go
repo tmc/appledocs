@@ -30,6 +30,8 @@ type _layerCountClass struct {
 // An interface definition for the [layerCount] class.
 type IlayerCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

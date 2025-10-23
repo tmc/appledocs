@@ -32,33 +32,35 @@ type _TextLayoutManagerClass struct {
 // An interface definition for the [TextLayoutManager] class.
 type ITextLayoutManager interface {
 	objectivec.IObject
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	LayoutQueue() foundation.OperationQueue
-	SetLayoutQueue(value foundation.OperationQueue)
-	LimitsLayoutForSuspiciousContents() bool
-	SetLimitsLayoutForSuspiciousContents(value bool)
+	// properties:
+	Delegate() TextLayoutManagerDelegate /* not a class type */
+	SetDelegate(value TextLayoutManagerDelegate /* not a class type */)
+	LayoutQueue() objc.IObject /* cross-framework: OperationQueue */
+	SetLayoutQueue(value objc.IObject /* cross-framework: OperationQueue */)
+	LimitsLayoutForSuspiciousContents() bool /* primitive/slice/pointer. */
+	SetLimitsLayoutForSuspiciousContents(value bool /* primitive/slice/pointer. */)
 	RenderingAttributesValidator() unsafe.Pointer
 	SetRenderingAttributesValidator(value unsafe.Pointer)
-	ResolvesNaturalAlignmentWithBaseWritingDirection() bool
-	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool)
-	TextContainer() TextContainer
-	SetTextContainer(value TextContainer)
-	TextContentManager() TextContentManager
-	SetTextContentManager(value TextContentManager)
-	TextSelectionNavigation() TextSelectionNavigation
-	SetTextSelectionNavigation(value TextSelectionNavigation)
-	TextSelections() TextSelection
-	SetTextSelections(value TextSelection)
-	TextViewportLayoutController() TextViewportLayoutController
-	SetTextViewportLayoutController(value TextViewportLayoutController)
+	ResolvesNaturalAlignmentWithBaseWritingDirection() bool /* primitive/slice/pointer. */
+	SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool /* primitive/slice/pointer. */)
+	TextContainer() ITextContainer
+	SetTextContainer(value ITextContainer)
+	TextContentManager() objc.IObject /* cross-framework: TextContentManager */
+	SetTextContentManager(value objc.IObject /* cross-framework: TextContentManager */)
+	TextSelectionNavigation() objc.IObject /* cross-framework: TextSelectionNavigation */
+	SetTextSelectionNavigation(value objc.IObject /* cross-framework: TextSelectionNavigation */)
+	TextSelections() objc.IObject /* cross-framework: TextSelection */
+	SetTextSelections(value objc.IObject /* cross-framework: TextSelection */)
+	TextViewportLayoutController() objc.IObject /* cross-framework: TextViewportLayoutController */
+	SetTextViewportLayoutController(value objc.IObject /* cross-framework: TextViewportLayoutController */)
 	UsageBoundsForTextContainer() coregraphics.CGRect
 	SetUsageBoundsForTextContainer(value coregraphics.CGRect)
-	UsesFontLeading() bool
-	SetUsesFontLeading(value bool)
-	UsesHyphenation() bool
-	SetUsesHyphenation(value bool)
-	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange)
+	UsesFontLeading() bool /* primitive/slice/pointer. */
+	SetUsesFontLeading(value bool /* primitive/slice/pointer. */)
+	UsesHyphenation() bool /* primitive/slice/pointer. */
+	SetUsesHyphenation(value bool /* primitive/slice/pointer. */)
+	// methods:
+	SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary /* already interface */, textRange ITextRange)
 }
 
 // The primary class that you use to manage text layout and presentation for custom text displays.
@@ -118,7 +120,7 @@ func NewTextLayoutManager() TextLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/setRenderingAttributes(_:for:)
-func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary, textRange ITextRange) {
+func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttributes foundation.IDictionary /* already interface */, textRange ITextRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRenderingAttributes:forTextRange:"), renderingAttributes, textRange)
 }
 
@@ -127,8 +129,8 @@ func (t_ TextLayoutManager) SetRenderingAttributesForTextRange(renderingAttribut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/delegate
-func (t_ TextLayoutManager) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+func (t_ TextLayoutManager) Delegate() TextLayoutManagerDelegate /* not a class type */ {
+	rv := objc.Send[TextLayoutManagerDelegate](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -137,7 +139,7 @@ func (t_ TextLayoutManager) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/delegate
-func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
+func (t_ TextLayoutManager) SetDelegate(value TextLayoutManagerDelegate /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -146,8 +148,8 @@ func (t_ TextLayoutManager) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
-	rv := objc.Send[foundation.OperationQueue](t_.ID, objc.Sel("layoutQueue"))
+func (t_ TextLayoutManager) LayoutQueue() objc.IObject /* cross-framework: OperationQueue */ {
+	rv := objc.Send[OperationQueue](t_.ID, objc.Sel("layoutQueue"))
 	return rv
 }
 
@@ -156,7 +158,7 @@ func (t_ TextLayoutManager) LayoutQueue() foundation.OperationQueue {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/layoutqueue
-func (t_ TextLayoutManager) SetLayoutQueue(value foundation.OperationQueue) {
+func (t_ TextLayoutManager) SetLayoutQueue(value objc.IObject /* cross-framework: OperationQueue */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutQueue:"), value)
 }
 
@@ -165,7 +167,7 @@ func (t_ TextLayoutManager) SetLayoutQueue(value foundation.OperationQueue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/limitslayoutforsuspiciouscontents
-func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool {
+func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("limitsLayoutForSuspiciousContents"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (t_ TextLayoutManager) LimitsLayoutForSuspiciousContents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/limitslayoutforsuspiciouscontents
-func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool) {
+func (t_ TextLayoutManager) SetLimitsLayoutForSuspiciousContents(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLimitsLayoutForSuspiciousContents:"), value)
 }
 
@@ -203,7 +205,7 @@ func (t_ TextLayoutManager) SetRenderingAttributesValidator(value unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/resolvesnaturalalignmentwithbasewritingdirection
-func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() bool {
+func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("resolvesNaturalAlignmentWithBaseWritingDirection"))
 	return rv
 }
@@ -213,7 +215,7 @@ func (t_ TextLayoutManager) ResolvesNaturalAlignmentWithBaseWritingDirection() b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/resolvesnaturalalignmentwithbasewritingdirection
-func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool) {
+func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResolvesNaturalAlignmentWithBaseWritingDirection:"), value)
 }
 
@@ -222,7 +224,7 @@ func (t_ TextLayoutManager) SetResolvesNaturalAlignmentWithBaseWritingDirection(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontainer
-func (t_ TextLayoutManager) TextContainer() TextContainer {
+func (t_ TextLayoutManager) TextContainer() ITextContainer {
 	rv := objc.Send[TextContainer](t_.ID, objc.Sel("textContainer"))
 	return rv
 }
@@ -232,7 +234,7 @@ func (t_ TextLayoutManager) TextContainer() TextContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontainer
-func (t_ TextLayoutManager) SetTextContainer(value TextContainer) {
+func (t_ TextLayoutManager) SetTextContainer(value ITextContainer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContainer:"), value)
 }
 
@@ -241,7 +243,7 @@ func (t_ TextLayoutManager) SetTextContainer(value TextContainer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontentmanager
-func (t_ TextLayoutManager) TextContentManager() TextContentManager {
+func (t_ TextLayoutManager) TextContentManager() objc.IObject /* cross-framework: TextContentManager */ {
 	rv := objc.Send[TextContentManager](t_.ID, objc.Sel("textContentManager"))
 	return rv
 }
@@ -251,7 +253,7 @@ func (t_ TextLayoutManager) TextContentManager() TextContentManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textcontentmanager
-func (t_ TextLayoutManager) SetTextContentManager(value TextContentManager) {
+func (t_ TextLayoutManager) SetTextContentManager(value objc.IObject /* cross-framework: TextContentManager */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextContentManager:"), value)
 }
 
@@ -260,7 +262,7 @@ func (t_ TextLayoutManager) SetTextContentManager(value TextContentManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselectionnavigation
-func (t_ TextLayoutManager) TextSelectionNavigation() TextSelectionNavigation {
+func (t_ TextLayoutManager) TextSelectionNavigation() objc.IObject /* cross-framework: TextSelectionNavigation */ {
 	rv := objc.Send[TextSelectionNavigation](t_.ID, objc.Sel("textSelectionNavigation"))
 	return rv
 }
@@ -270,7 +272,7 @@ func (t_ TextLayoutManager) TextSelectionNavigation() TextSelectionNavigation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselectionnavigation
-func (t_ TextLayoutManager) SetTextSelectionNavigation(value TextSelectionNavigation) {
+func (t_ TextLayoutManager) SetTextSelectionNavigation(value objc.IObject /* cross-framework: TextSelectionNavigation */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelectionNavigation:"), value)
 }
 
@@ -279,7 +281,7 @@ func (t_ TextLayoutManager) SetTextSelectionNavigation(value TextSelectionNaviga
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselections
-func (t_ TextLayoutManager) TextSelections() TextSelection {
+func (t_ TextLayoutManager) TextSelections() objc.IObject /* cross-framework: TextSelection */ {
 	rv := objc.Send[TextSelection](t_.ID, objc.Sel("textSelections"))
 	return rv
 }
@@ -289,7 +291,7 @@ func (t_ TextLayoutManager) TextSelections() TextSelection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textselections
-func (t_ TextLayoutManager) SetTextSelections(value TextSelection) {
+func (t_ TextLayoutManager) SetTextSelections(value objc.IObject /* cross-framework: TextSelection */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelections:"), value)
 }
 
@@ -298,7 +300,7 @@ func (t_ TextLayoutManager) SetTextSelections(value TextSelection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) TextViewportLayoutController() TextViewportLayoutController {
+func (t_ TextLayoutManager) TextViewportLayoutController() objc.IObject /* cross-framework: TextViewportLayoutController */ {
 	rv := objc.Send[TextViewportLayoutController](t_.ID, objc.Sel("textViewportLayoutController"))
 	return rv
 }
@@ -308,7 +310,7 @@ func (t_ TextLayoutManager) TextViewportLayoutController() TextViewportLayoutCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/textviewportlayoutcontroller
-func (t_ TextLayoutManager) SetTextViewportLayoutController(value TextViewportLayoutController) {
+func (t_ TextLayoutManager) SetTextViewportLayoutController(value objc.IObject /* cross-framework: TextViewportLayoutController */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextViewportLayoutController:"), value)
 }
 
@@ -336,7 +338,7 @@ func (t_ TextLayoutManager) SetUsageBoundsForTextContainer(value coregraphics.CG
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usesfontleading
-func (t_ TextLayoutManager) UsesFontLeading() bool {
+func (t_ TextLayoutManager) UsesFontLeading() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontLeading"))
 	return rv
 }
@@ -346,7 +348,7 @@ func (t_ TextLayoutManager) UsesFontLeading() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/usesfontleading
-func (t_ TextLayoutManager) SetUsesFontLeading(value bool) {
+func (t_ TextLayoutManager) SetUsesFontLeading(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontLeading:"), value)
 }
 
@@ -355,7 +357,7 @@ func (t_ TextLayoutManager) SetUsesFontLeading(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/useshyphenation
-func (t_ TextLayoutManager) UsesHyphenation() bool {
+func (t_ TextLayoutManager) UsesHyphenation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesHyphenation"))
 	return rv
 }
@@ -365,7 +367,7 @@ func (t_ TextLayoutManager) UsesHyphenation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlayoutmanager/useshyphenation
-func (t_ TextLayoutManager) SetUsesHyphenation(value bool) {
+func (t_ TextLayoutManager) SetUsesHyphenation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesHyphenation:"), value)
 }
 

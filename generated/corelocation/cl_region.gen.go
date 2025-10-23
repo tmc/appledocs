@@ -30,13 +30,15 @@ type _RegionClass struct {
 // An interface definition for the [Region] class.
 type IRegion interface {
 	objectivec.IObject
-	Center() unsafe.Pointer
-	Identifier() string
-	NotifyOnEntry() bool
-	SetNotifyOnEntry(value bool)
-	NotifyOnExit() bool
-	SetNotifyOnExit(value bool)
-	Radius() unsafe.Pointer
+	// properties:
+	Center() LocationCoordinate2D /* not a class type */
+	Identifier() string /* primitive/slice/pointer. */
+	NotifyOnEntry() bool /* primitive/slice/pointer. */
+	SetNotifyOnEntry(value bool /* primitive/slice/pointer. */)
+	NotifyOnExit() bool /* primitive/slice/pointer. */
+	SetNotifyOnExit(value bool /* primitive/slice/pointer. */)
+	Radius() LocationDistance /* not a class type */
+	// methods:
 }
 
 // A base class representing an area that can be monitored.
@@ -96,7 +98,7 @@ func NewRegion() Region {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/init(circularRegionWithCenter:radius:identifier:)
-func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, radius unsafe.Pointer, identifier string) Region {
+func NewRegionCircularRegionWithCenterRadiusIdentifier(center LocationCoordinate2D /* not a class type */, radius LocationDistance /* not a class type */, identifier string /* primitive/slice/pointer. */) Region {
 	instance := getRegionClass().Alloc()
 	rv := objc.Send[Region](instance.ID, objc.Sel("initCircularRegionWithCenter:radius:identifier:"), center, radius, objc.String(identifier))
 	rv.Autorelease()
@@ -109,8 +111,8 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center unsafe.Pointer, ra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/center
-func (r_ Region) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("center"))
+func (r_ Region) Center() LocationCoordinate2D /* not a class type */ {
+	rv := objc.Send[LocationCoordinate2D](r_.ID, objc.Sel("center"))
 	return rv
 }
 
@@ -119,7 +121,7 @@ func (r_ Region) Center() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/identifier
-func (r_ Region) Identifier() string {
+func (r_ Region) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](r_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -129,7 +131,7 @@ func (r_ Region) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-func (r_ Region) NotifyOnEntry() bool {
+func (r_ Region) NotifyOnEntry() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnEntry"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (r_ Region) NotifyOnEntry() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnEntry
-func (r_ Region) SetNotifyOnEntry(value bool) {
+func (r_ Region) SetNotifyOnEntry(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
 
@@ -148,7 +150,7 @@ func (r_ Region) SetNotifyOnEntry(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-func (r_ Region) NotifyOnExit() bool {
+func (r_ Region) NotifyOnExit() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("notifyOnExit"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (r_ Region) NotifyOnExit() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/notifyOnExit
-func (r_ Region) SetNotifyOnExit(value bool) {
+func (r_ Region) SetNotifyOnExit(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
 
@@ -167,8 +169,8 @@ func (r_ Region) SetNotifyOnExit(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLRegion/radius
-func (r_ Region) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("radius"))
+func (r_ Region) Radius() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](r_.ID, objc.Sel("radius"))
 	return rv
 }
 

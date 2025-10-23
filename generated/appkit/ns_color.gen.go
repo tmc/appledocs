@@ -32,47 +32,51 @@ type _ColorClass struct {
 // An interface definition for the [Color] class.
 type IColor interface {
 	objectivec.IObject
-	BlackComponent() float64
-	BlueComponent() float64
-	BrightnessComponent() float64
-	CatalogNameComponent() unsafe.Pointer
-	ColorNameComponent() unsafe.Pointer
-	ColorSpace() ColorSpace
-	ColorSpaceName() ColorSpaceName
-	CyanComponent() float64
-	GreenComponent() float64
-	HueComponent() float64
-	LinearExposure() float64
-	LocalizedColorNameComponent() string
-	NumberOfComponents() int
-	RedComponent() float64
-	SaturationComponent() float64
-	Type() NSColorType
-	YellowComponent() float64
-	AlphaComponent() float64
-	SetAlphaComponent(value float64)
-	CgColor() IColor
-	SetCgColor(value IColor)
-	LocalizedCatalogNameComponent() string
-	SetLocalizedCatalogNameComponent(value string)
-	MagentaComponent() float64
-	SetMagentaComponent(value float64)
+	// properties:
+	AlphaComponent() float64 /* primitive/slice/pointer. */
+	BlackComponent() float64 /* primitive/slice/pointer. */
+	BlueComponent() float64 /* primitive/slice/pointer. */
+	BrightnessComponent() float64 /* primitive/slice/pointer. */
+	CatalogNameComponent() objc.IObject /* cross-framework: ColorListName */
+	CGColor() coregraphics.ColorRef /* not a class type */
+	ColorNameComponent() objc.IObject /* cross-framework: ColorName */
+	ColorSpace() IColorSpace
+	ColorSpaceName() objc.IObject /* cross-framework: ColorSpaceName */
+	CyanComponent() float64 /* primitive/slice/pointer. */
+	GreenComponent() float64 /* primitive/slice/pointer. */
+	HueComponent() float64 /* primitive/slice/pointer. */
+	LinearExposure() float64 /* primitive/slice/pointer. */
+	LocalizedCatalogNameComponent() string /* primitive/slice/pointer. */
+	LocalizedColorNameComponent() string /* primitive/slice/pointer. */
+	MagentaComponent() float64 /* primitive/slice/pointer. */
+	NumberOfComponents() int /* primitive/slice/pointer. */
+	PatternImage() IImage
+	RedComponent() float64 /* primitive/slice/pointer. */
+	SaturationComponent() float64 /* primitive/slice/pointer. */
+	StandardDynamicRangeColor() IColor
+	Type() ColorType
+	WhiteComponent() float64 /* primitive/slice/pointer. */
+	YellowComponent() float64 /* primitive/slice/pointer. */
 	StandardDynamicRange() IColor
 	SetStandardDynamicRange(value IColor)
-	WhiteComponent() float64
-	SetWhiteComponent(value float64)
-	ColorByApplyingContentHeadroom(contentHeadroom float64) IColor
-	BlendedColorWithFractionOfColor(fraction float64, color IColor) IColor
-	GetComponents(components coregraphics.float64)
-	GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magenta coregraphics.float64, yellow coregraphics.float64, black coregraphics.float64, alpha coregraphics.float64)
-	GetHueSaturationBrightnessAlpha(hue coregraphics.float64, saturation coregraphics.float64, brightness coregraphics.float64, alpha coregraphics.float64)
-	GetRedGreenBlueAlpha(red coregraphics.float64, green coregraphics.float64, blue coregraphics.float64, alpha coregraphics.float64)
+	// methods:
+	ColorByApplyingContentHeadroom(contentHeadroom float64 /* primitive/slice/pointer. */) IColor
+	BlendedColorWithFractionOfColor(fraction float64 /* primitive/slice/pointer. */, color IColor) IColor
+	DrawSwatchInRect(rect coregraphics.CGRect)
+	GetComponents(components coregraphics.float64 /* primitive/slice/pointer. */)
+	GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64 /* primitive/slice/pointer. */, magenta coregraphics.float64 /* primitive/slice/pointer. */, yellow coregraphics.float64 /* primitive/slice/pointer. */, black coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
+	GetHueSaturationBrightnessAlpha(hue coregraphics.float64 /* primitive/slice/pointer. */, saturation coregraphics.float64 /* primitive/slice/pointer. */, brightness coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
+	GetRedGreenBlueAlpha(red coregraphics.float64 /* primitive/slice/pointer. */, green coregraphics.float64 /* primitive/slice/pointer. */, blue coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
+	GetWhiteAlpha(white coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */)
+	HighlightWithLevel(val float64 /* primitive/slice/pointer. */) IColor
 	Set()
 	SetFill()
 	SetStroke()
-	ShadowWithLevel(val float64) IColor
-	ColorUsingColorSpace(space ColorSpace) IColor
-	ColorWithSystemEffect(systemEffect NSColorSystemEffect) IColor
+	ShadowWithLevel(val float64 /* primitive/slice/pointer. */) IColor
+	ColorUsingColorSpace(space IColorSpace) IColor
+	ColorUsingType(type_ ColorType) IColor
+	ColorWithAlphaComponent(alpha float64 /* primitive/slice/pointer. */) IColor
+	ColorWithSystemEffect(systemEffect ColorSystemEffect) IColor
 	WriteToPasteboard(pasteBoard IPasteboard)
 }
 
@@ -129,6 +133,118 @@ func NewColor() Color {
 
 
 
+// Creates a color object from color data currently on the pasteboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(from:)
+func NewColorFromPasteboard(pasteBoard IPasteboard) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorFromPasteboard:"), pasteBoard)
+	return rv
+}
+
+
+// Creates a color object from the provided name, which corresponds to a color in the default asset catalog of the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(named:bundle:)
+func NewColorNamedBundle(name objc.IObject /* cross-framework ColorName */, bundle objc.IObject /* cross-framework Bundle */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorNamed:bundle:"), name, bundle)
+	return rv
+}
+
+
+// Creates a color object using the specified Core Graphics color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(cgColor:)
+func NewColorWithCGColor(cgColor coregraphics.ColorRef /* not a class type */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCGColor:"), cgColor)
+	return rv
+}
+
+
+// Creates a color object using the specified asset catalog and color names.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
+func NewColorWithCatalogNameColorName(listName objc.IObject /* cross-framework ColorListName */, colorName objc.IObject /* cross-framework ColorName */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
+	return rv
+}
+
+
+// Creates a color object from data in an unarchiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(coder:)
+func NewColorWithCoder(coder Coder /* not a class type */) Color {
+	instance := getColorClass().Alloc()
+	rv := objc.Send[Color](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a color object with the specified color space, hue, saturation, brightness, and alpha channel values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:hue:saturation:brightness:alpha:)
+func NewColorWithColorSpaceHueSaturationBrightnessAlpha(space IColorSpace, hue float64 /* primitive/slice/pointer. */, saturation float64 /* primitive/slice/pointer. */, brightness float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithColorSpace:hue:saturation:brightness:alpha:"), space, hue, saturation, brightness, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity value and CMYK components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceCyan:magenta:yellow:black:alpha:)
+func NewColorWithDeviceCyanMagentaYellowBlackAlpha(cyan float64 /* primitive/slice/pointer. */, magenta float64 /* primitive/slice/pointer. */, yellow float64 /* primitive/slice/pointer. */, black float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithDeviceCyan:magenta:yellow:black:alpha:"), cyan, magenta, yellow, black, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity value and RGB components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceRed:green:blue:alpha:)
+func NewColorWithDeviceRedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithDeviceRed:green:blue:alpha:"), red, green, blue, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity and grayscale values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceWhite:alpha:)
+func NewColorWithDeviceWhiteAlpha(white float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithDeviceWhite:alpha:"), white, alpha)
+	return rv
+}
+
+
+// Creates a color object from the specified components in the Display P3 color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(displayP3Red:green:blue:alpha:)
+func NewColorWithDisplayP3RedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithDisplayP3Red:green:blue:alpha:"), red, green, blue, alpha)
+	return rv
+}
+
+
+// Creates a dynamic catalog color with a provider that’s used to resolve the exact color value, calculated on first use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(name:dynamicProvider:)
+func NewColorWithNameDynamicProvider(colorName objc.IObject /* cross-framework ColorName */, dynamicProvider unsafe.Pointer) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithName:dynamicProvider:"), colorName, dynamicProvider)
+	return rv
+}
+
+
 // Creates a color object that uses the specified image pattern to paint the target area.
 //
 // [Full Topic]
@@ -138,6 +254,136 @@ func NewColorWithPatternImage(image IImage) Color {
 	return rv
 }
 
+
+// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The , , and components have a nominal range of [0..1], is a value >= 0. To produce an HDR color, we process the given color in a linear color space, multiplying component values by . The produced color will have a equal to the linearized exposure value. Each whole value of exposure produces a color that is twice as bright.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(red:green:blue:alpha:exposure:)
+func NewColorWithRedGreenBlueAlphaExposure(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, exposure float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithRed:green:blue:alpha:exposure:"), red, green, blue, alpha, exposure)
+	return rv
+}
+
+
+// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The , , and components have a nominal range of [0..1], is a value >= 1. To produce an HDR color, we process the given color in a linear color space, multiplying component values by . The produced color will have a equal to . Each doubling of produces a color that is twice as bright.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(red:green:blue:alpha:linearExposure:)
+func NewColorWithRedGreenBlueAlphaLinearExposure(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, linearExposure float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithRed:green:blue:alpha:linearExposure:"), red, green, blue, alpha, linearExposure)
+	return rv
+}
+
+
+// Creates a color object with the specified brightness and alpha channel values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(white:alpha:)
+func NewColorWithWhiteAlpha(white float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithWhite:alpha:"), white, alpha)
+	return rv
+}
+
+
+
+// Creates a color object using the specified asset catalog and color names.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(catalogName:colorName:)
+func (cc _ColorClass) ColorWithCatalogNameColorName(listName objc.IObject /* cross-framework ColorListName */, colorName objc.IObject /* cross-framework ColorName */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithCatalogName:colorName:"), listName, colorName)
+	return rv
+}
+
+
+// Creates a color object using the specified Core Graphics color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(cgColor:)
+func (cc _ColorClass) ColorWithCGColor(cgColor coregraphics.ColorRef /* not a class type */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithCGColor:"), cgColor)
+	return rv
+}
+
+
+// Creates a color object with the specified color space, hue, saturation, brightness, and alpha channel values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(colorSpace:hue:saturation:brightness:alpha:)
+func (cc _ColorClass) ColorWithColorSpaceHueSaturationBrightnessAlpha(space IColorSpace, hue float64 /* primitive/slice/pointer. */, saturation float64 /* primitive/slice/pointer. */, brightness float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithColorSpace:hue:saturation:brightness:alpha:"), space, hue, saturation, brightness, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity value and CMYK components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceCyan:magenta:yellow:black:alpha:)
+func (cc _ColorClass) ColorWithDeviceCyanMagentaYellowBlackAlpha(cyan float64 /* primitive/slice/pointer. */, magenta float64 /* primitive/slice/pointer. */, yellow float64 /* primitive/slice/pointer. */, black float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithDeviceCyan:magenta:yellow:black:alpha:"), cyan, magenta, yellow, black, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity value and RGB components.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceRed:green:blue:alpha:)
+func (cc _ColorClass) ColorWithDeviceRedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithDeviceRed:green:blue:alpha:"), red, green, blue, alpha)
+	return rv
+}
+
+
+// Creates a color object using the given opacity and grayscale values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(deviceWhite:alpha:)
+func (cc _ColorClass) ColorWithDeviceWhiteAlpha(white float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithDeviceWhite:alpha:"), white, alpha)
+	return rv
+}
+
+
+// Creates a color object from the specified components in the Display P3 color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(displayP3Red:green:blue:alpha:)
+func (cc _ColorClass) ColorWithDisplayP3RedGreenBlueAlpha(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithDisplayP3Red:green:blue:alpha:"), red, green, blue, alpha)
+	return rv
+}
+
+
+// Creates a color object from color data currently on the pasteboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(from:)
+func (cc _ColorClass) ColorFromPasteboard(pasteBoard IPasteboard) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorFromPasteboard:"), pasteBoard)
+	return rv
+}
+
+
+// Creates a dynamic catalog color with a provider that’s used to resolve the exact color value, calculated on first use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(name:dynamicProvider:)
+func (cc _ColorClass) ColorWithNameDynamicProvider(colorName objc.IObject /* cross-framework ColorName */, dynamicProvider unsafe.Pointer) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithName:dynamicProvider:"), colorName, dynamicProvider)
+	return rv
+}
+
+
+// Creates a color object from the provided name, which corresponds to a color in the default asset catalog of the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(named:bundle:)
+func (cc _ColorClass) ColorNamedBundle(name objc.IObject /* cross-framework ColorName */, bundle objc.IObject /* cross-framework Bundle */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorNamed:bundle:"), name, bundle)
+	return rv
+}
 
 
 // Creates a color object that uses the specified image pattern to paint the target area.
@@ -150,6 +396,72 @@ func (cc _ColorClass) ColorWithPatternImage(image IImage) IColor {
 }
 
 
+// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The , , and components have a nominal range of [0..1], is a value >= 0. To produce an HDR color, we process the given color in a linear color space, multiplying component values by . The produced color will have a equal to the linearized exposure value. Each whole value of exposure produces a color that is twice as bright.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(red:green:blue:alpha:exposure:)
+func (cc _ColorClass) ColorWithRedGreenBlueAlphaExposure(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, exposure float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:exposure:"), red, green, blue, alpha, exposure)
+	return rv
+}
+
+
+// Generates an HDR color in the extended sRGB colorspace by applying an exposure to the SDR color defined by the red, green, and blue components. The , , and components have a nominal range of [0..1], is a value >= 1. To produce an HDR color, we process the given color in a linear color space, multiplying component values by . The produced color will have a equal to . Each doubling of produces a color that is twice as bright.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(red:green:blue:alpha:linearExposure:)
+func (cc _ColorClass) ColorWithRedGreenBlueAlphaLinearExposure(red float64 /* primitive/slice/pointer. */, green float64 /* primitive/slice/pointer. */, blue float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */, linearExposure float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithRed:green:blue:alpha:linearExposure:"), red, green, blue, alpha, linearExposure)
+	return rv
+}
+
+
+// Creates a color object with the specified brightness and alpha channel values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/init(white:alpha:)
+func (cc _ColorClass) ColorWithWhiteAlpha(white float64 /* primitive/slice/pointer. */, alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("colorWithWhite:alpha:"), white, alpha)
+	return rv
+}
+
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/black
+func (cc _ColorClass) BlackColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("blackColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blue
+func (cc _ColorClass) BlueColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("blueColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/brown
+func (cc _ColorClass) BrownColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("brownColor"))
+	return rv
+}
+
+// Returns a color object whose grayscale and alpha values are both .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/clear
+func (cc _ColorClass) ClearColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("clearColor"))
+	return rv
+}
+
 // The color to use for the background of large controls, such as scroll views or table views.
 //
 // [Full Topic]
@@ -159,12 +471,57 @@ func (cc _ColorClass) ControlBackgroundColor() Color {
 	return rv
 }
 
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cyan
+func (cc _ColorClass) CyanColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("cyanColor"))
+	return rv
+}
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/darkGray
+func (cc _ColorClass) DarkGrayColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("darkGrayColor"))
+	return rv
+}
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/gray
+func (cc _ColorClass) GrayColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("grayColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/green
+func (cc _ColorClass) GreenColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("greenColor"))
+	return rv
+}
+
 // A Boolean value that indicates whether the app supports alpha.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
-func (cc _ColorClass) IgnoresAlpha() bool {
+func (cc _ColorClass) IgnoresAlpha() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("ignoresAlpha"))
+	return rv
+}
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/lightGray
+func (cc _ColorClass) LightGrayColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("lightGrayColor"))
 	return rv
 }
 
@@ -186,6 +543,40 @@ func (cc _ColorClass) MagentaColor() Color {
 	return rv
 }
 
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/orange
+func (cc _ColorClass) OrangeColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("orangeColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/purple
+func (cc _ColorClass) PurpleColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("purpleColor"))
+	return rv
+}
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quinaryLabel
+func (cc _ColorClass) QuinaryLabelColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("quinaryLabelColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/red
+func (cc _ColorClass) RedColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("redColor"))
+	return rv
+}
+
 // The patterned color to use for the background of a scrubber control.
 //
 // [Full Topic]
@@ -204,11 +595,45 @@ func (cc _ColorClass) SystemBlueColor() Color {
 	return rv
 }
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemFill
+func (cc _ColorClass) SystemFillColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("systemFillColor"))
+	return rv
+}
+
+// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
+func (cc _ColorClass) SystemYellowColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("systemYellowColor"))
+	return rv
+}
+
+// Returns a color object whose grayscale and alpha values are both .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/white
+func (cc _ColorClass) WhiteColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("whiteColor"))
+	return rv
+}
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/yellow
+func (cc _ColorClass) YellowColor() Color {
+	rv := objc.Send[Color](objc.ID(cc.class), objc.Sel("yellowColor"))
+	return rv
+}
+
 // Reinterpret the color by applying a new without changing the color components. Changing the redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling . The new color will have a >= 1.0. If called on a color with a color space that does not support extended range, or does not have an equivalent extended range counterpart, this will return .
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/applyingContentHeadroom(_:)
-func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64) IColor {
+func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64 /* primitive/slice/pointer. */) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorByApplyingContentHeadroom:"), contentHeadroom)
 	return rv
 }
@@ -218,9 +643,18 @@ func (c_ Color) ColorByApplyingContentHeadroom(contentHeadroom float64) IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blended(withFraction:of:)
-func (c_ Color) BlendedColorWithFractionOfColor(fraction float64, color IColor) IColor {
+func (c_ Color) BlendedColorWithFractionOfColor(fraction float64 /* primitive/slice/pointer. */, color IColor) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("blendedColorWithFraction:ofColor:"), fraction, color)
 	return rv
+}
+
+
+// Draws the current color in the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/drawSwatch(in:)
+func (c_ Color) DrawSwatchInRect(rect coregraphics.CGRect) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("drawSwatchInRect:"), rect)
 }
 
 
@@ -228,7 +662,7 @@ func (c_ Color) BlendedColorWithFractionOfColor(fraction float64, color IColor) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getComponents(_:)
-func (c_ Color) GetComponents(components coregraphics.float64) {
+func (c_ Color) GetComponents(components coregraphics.float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getComponents:"), components)
 }
 
@@ -237,7 +671,7 @@ func (c_ Color) GetComponents(components coregraphics.float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getCyan(_:magenta:yellow:black:alpha:)
-func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magenta coregraphics.float64, yellow coregraphics.float64, black coregraphics.float64, alpha coregraphics.float64) {
+func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64 /* primitive/slice/pointer. */, magenta coregraphics.float64 /* primitive/slice/pointer. */, yellow coregraphics.float64 /* primitive/slice/pointer. */, black coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getCyan:magenta:yellow:black:alpha:"), cyan, magenta, yellow, black, alpha)
 }
 
@@ -246,7 +680,7 @@ func (c_ Color) GetCyanMagentaYellowBlackAlpha(cyan coregraphics.float64, magent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getHue(_:saturation:brightness:alpha:)
-func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64, saturation coregraphics.float64, brightness coregraphics.float64, alpha coregraphics.float64) {
+func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64 /* primitive/slice/pointer. */, saturation coregraphics.float64 /* primitive/slice/pointer. */, brightness coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHue:saturation:brightness:alpha:"), hue, saturation, brightness, alpha)
 }
 
@@ -255,8 +689,27 @@ func (c_ Color) GetHueSaturationBrightnessAlpha(hue coregraphics.float64, satura
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getRed(_:green:blue:alpha:)
-func (c_ Color) GetRedGreenBlueAlpha(red coregraphics.float64, green coregraphics.float64, blue coregraphics.float64, alpha coregraphics.float64) {
+func (c_ Color) GetRedGreenBlueAlpha(red coregraphics.float64 /* primitive/slice/pointer. */, green coregraphics.float64 /* primitive/slice/pointer. */, blue coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getRed:green:blue:alpha:"), red, green, blue, alpha)
+}
+
+
+// Returns the grayscale and alpha values of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/getWhite(_:alpha:)
+func (c_ Color) GetWhiteAlpha(white coregraphics.float64 /* primitive/slice/pointer. */, alpha coregraphics.float64 /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("getWhite:alpha:"), white, alpha)
+}
+
+
+// Creates a new color object that represents a blend between the current color and the highlight color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/highlight(withLevel:)
+func (c_ Color) HighlightWithLevel(val float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("highlightWithLevel:"), val)
+	return rv
 }
 
 
@@ -291,7 +744,7 @@ func (c_ Color) SetStroke() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/shadow(withLevel:)
-func (c_ Color) ShadowWithLevel(val float64) IColor {
+func (c_ Color) ShadowWithLevel(val float64 /* primitive/slice/pointer. */) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("shadowWithLevel:"), val)
 	return rv
 }
@@ -301,8 +754,28 @@ func (c_ Color) ShadowWithLevel(val float64) IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingColorSpace(_:)
-func (c_ Color) ColorUsingColorSpace(space ColorSpace) IColor {
+func (c_ Color) ColorUsingColorSpace(space IColorSpace) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorUsingColorSpace:"), space)
+	return rv
+}
+
+
+// Returns a version of the color object that is compatible with the specified color type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/usingType(_:)
+func (c_ Color) ColorUsingType(type_ ColorType) IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("colorUsingType:"), type_)
+	return rv
+}
+
+
+// Creates a new color object that has the same color space and component values as the current color object, but the specified alpha component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/withAlphaComponent(_:)
+func (c_ Color) ColorWithAlphaComponent(alpha float64 /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("colorWithAlphaComponent:"), alpha)
 	return rv
 }
 
@@ -311,7 +784,7 @@ func (c_ Color) ColorUsingColorSpace(space ColorSpace) IColor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/withSystemEffect(_:)
-func (c_ Color) ColorWithSystemEffect(systemEffect NSColorSystemEffect) IColor {
+func (c_ Color) ColorWithSystemEffect(systemEffect ColorSystemEffect) IColor {
 	rv := objc.Send[Color](c_.ID, objc.Sel("colorWithSystemEffect:"), systemEffect)
 	return rv
 }
@@ -326,12 +799,42 @@ func (c_ Color) WriteToPasteboard(pasteBoard IPasteboard) {
 }
 
 
+// The alpha (opacity) component value of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/alphaComponent
+func (c_ Color) AlphaComponent() float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](c_.ID, objc.Sel("alphaComponent"))
+	return rv
+}
+
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/black
+func (c_ Color) BlackColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("blackColor"))
+	return rv
+}
+
+
 // The black component value of the color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blackComponent
-func (c_ Color) BlackComponent() float64 {
+func (c_ Color) BlackComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("blackComponent"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blue
+func (c_ Color) BlueColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("blueColor"))
 	return rv
 }
 
@@ -340,7 +843,7 @@ func (c_ Color) BlackComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/blueComponent
-func (c_ Color) BlueComponent() float64 {
+func (c_ Color) BlueComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("blueComponent"))
 	return rv
 }
@@ -350,8 +853,18 @@ func (c_ Color) BlueComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/brightnessComponent
-func (c_ Color) BrightnessComponent() float64 {
+func (c_ Color) BrightnessComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("brightnessComponent"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/brown
+func (c_ Color) BrownColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("brownColor"))
 	return rv
 }
 
@@ -360,8 +873,28 @@ func (c_ Color) BrightnessComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/catalogNameComponent
-func (c_ Color) CatalogNameComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("catalogNameComponent"))
+func (c_ Color) CatalogNameComponent() objc.IObject /* cross-framework: ColorListName */ {
+	rv := objc.Send[ColorListName](c_.ID, objc.Sel("catalogNameComponent"))
+	return rv
+}
+
+
+// The Core Graphics color object corresponding to the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cgColor
+func (c_ Color) CGColor() coregraphics.ColorRef /* not a class type */ {
+	rv := objc.Send[coregraphics.ColorRef](c_.ID, objc.Sel("CGColor"))
+	return rv
+}
+
+
+// Returns a color object whose grayscale and alpha values are both .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/clear
+func (c_ Color) ClearColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("clearColor"))
 	return rv
 }
 
@@ -370,8 +903,8 @@ func (c_ Color) CatalogNameComponent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorNameComponent
-func (c_ Color) ColorNameComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("colorNameComponent"))
+func (c_ Color) ColorNameComponent() objc.IObject /* cross-framework: ColorName */ {
+	rv := objc.Send[ColorName](c_.ID, objc.Sel("colorNameComponent"))
 	return rv
 }
 
@@ -380,7 +913,7 @@ func (c_ Color) ColorNameComponent() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorSpace
-func (c_ Color) ColorSpace() ColorSpace {
+func (c_ Color) ColorSpace() IColorSpace {
 	rv := objc.Send[ColorSpace](c_.ID, objc.Sel("colorSpace"))
 	return rv
 }
@@ -390,7 +923,7 @@ func (c_ Color) ColorSpace() ColorSpace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/colorSpaceName
-func (c_ Color) ColorSpaceName() ColorSpaceName {
+func (c_ Color) ColorSpaceName() objc.IObject /* cross-framework: ColorSpaceName */ {
 	rv := objc.Send[ColorSpaceName](c_.ID, objc.Sel("colorSpaceName"))
 	return rv
 }
@@ -406,12 +939,52 @@ func (c_ Color) ControlBackgroundColor() IColor {
 }
 
 
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cyan
+func (c_ Color) CyanColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("cyanColor"))
+	return rv
+}
+
+
 // The cyan component value of the color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/cyanComponent
-func (c_ Color) CyanComponent() float64 {
+func (c_ Color) CyanComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("cyanComponent"))
+	return rv
+}
+
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/darkGray
+func (c_ Color) DarkGrayColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("darkGrayColor"))
+	return rv
+}
+
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/gray
+func (c_ Color) GrayColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("grayColor"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/green
+func (c_ Color) GreenColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("greenColor"))
 	return rv
 }
 
@@ -420,7 +993,7 @@ func (c_ Color) CyanComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/greenComponent
-func (c_ Color) GreenComponent() float64 {
+func (c_ Color) GreenComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("greenComponent"))
 	return rv
 }
@@ -430,7 +1003,7 @@ func (c_ Color) GreenComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/hueComponent
-func (c_ Color) HueComponent() float64 {
+func (c_ Color) HueComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("hueComponent"))
 	return rv
 }
@@ -440,7 +1013,7 @@ func (c_ Color) HueComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
-func (c_ Color) IgnoresAlpha() bool {
+func (c_ Color) IgnoresAlpha() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("ignoresAlpha"))
 	return rv
 }
@@ -450,8 +1023,18 @@ func (c_ Color) IgnoresAlpha() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/ignoresAlpha
-func (c_ Color) SetIgnoresAlpha(value bool) {
+func (c_ Color) SetIgnoresAlpha(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIgnoresAlpha:"), value)
+}
+
+
+// Returns a color object whose grayscale value is and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/lightGray
+func (c_ Color) LightGrayColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("lightGrayColor"))
+	return rv
 }
 
 
@@ -459,7 +1042,7 @@ func (c_ Color) SetIgnoresAlpha(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/linearExposure
-func (c_ Color) LinearExposure() float64 {
+func (c_ Color) LinearExposure() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("linearExposure"))
 	return rv
 }
@@ -475,11 +1058,21 @@ func (c_ Color) LinkColor() IColor {
 }
 
 
+// The localized version of the catalog name containing the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedCatalogNameComponent
+func (c_ Color) LocalizedCatalogNameComponent() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
+	return rv
+}
+
+
 // The localized version of the color name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedColorNameComponent
-func (c_ Color) LocalizedColorNameComponent() string {
+func (c_ Color) LocalizedColorNameComponent() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedColorNameComponent"))
 	return rv
 }
@@ -495,12 +1088,70 @@ func (c_ Color) MagentaColor() IColor {
 }
 
 
+// The magenta component value of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/magentaComponent
+func (c_ Color) MagentaComponent() float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](c_.ID, objc.Sel("magentaComponent"))
+	return rv
+}
+
+
 // The number of components in the color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/numberOfComponents
-func (c_ Color) NumberOfComponents() int {
+func (c_ Color) NumberOfComponents() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfComponents"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/orange
+func (c_ Color) OrangeColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("orangeColor"))
+	return rv
+}
+
+
+// The pattern image used to paint the target area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/patternImage
+func (c_ Color) PatternImage() IImage {
+	rv := objc.Send[Image](c_.ID, objc.Sel("patternImage"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/purple
+func (c_ Color) PurpleColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("purpleColor"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/quinaryLabel
+func (c_ Color) QuinaryLabelColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("quinaryLabelColor"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/red
+func (c_ Color) RedColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("redColor"))
 	return rv
 }
 
@@ -509,7 +1160,7 @@ func (c_ Color) NumberOfComponents() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/redComponent
-func (c_ Color) RedComponent() float64 {
+func (c_ Color) RedComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("redComponent"))
 	return rv
 }
@@ -519,7 +1170,7 @@ func (c_ Color) RedComponent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/saturationComponent
-func (c_ Color) SaturationComponent() float64 {
+func (c_ Color) SaturationComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("saturationComponent"))
 	return rv
 }
@@ -535,6 +1186,16 @@ func (c_ Color) ScrubberTexturedBackgroundColor() IColor {
 }
 
 
+// In some cases it is useful to recover the color that was base the SDR color that was exposed to generate an HDR color. If a color’s is > 1, then this will return the base SDR color. If the color is not an HDR color, this will return .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/standardDynamicRange
+func (c_ Color) StandardDynamicRangeColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("standardDynamicRangeColor"))
+	return rv
+}
+
+
 // Returns a color object for blue that automatically adapts to vibrancy and accessibility settings.
 //
 // [Full Topic]
@@ -545,12 +1206,60 @@ func (c_ Color) SystemBlueColor() IColor {
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemFill
+func (c_ Color) SystemFillColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("systemFillColor"))
+	return rv
+}
+
+
+// Returns a color object for yellow that automatically adapts to vibrancy and accessibility settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/systemYellow
+func (c_ Color) SystemYellowColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("systemYellowColor"))
+	return rv
+}
+
+
 // The type of the color object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/type
-func (c_ Color) Type() NSColorType {
-	rv := objc.Send[NSColorType](c_.ID, objc.Sel("type"))
+func (c_ Color) Type() ColorType {
+	rv := objc.Send[ColorType](c_.ID, objc.Sel("type"))
+	return rv
+}
+
+
+// Returns a color object whose grayscale and alpha values are both .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/white
+func (c_ Color) WhiteColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("whiteColor"))
+	return rv
+}
+
+
+// The white component value of the color.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/whiteComponent
+func (c_ Color) WhiteComponent() float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](c_.ID, objc.Sel("whiteComponent"))
+	return rv
+}
+
+
+// Returns a color object whose RGB value is , , and whose alpha value is .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/yellow
+func (c_ Color) YellowColor() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("yellowColor"))
 	return rv
 }
 
@@ -559,85 +1268,9 @@ func (c_ Color) Type() NSColorType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/yellowComponent
-func (c_ Color) YellowComponent() float64 {
+func (c_ Color) YellowComponent() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("yellowComponent"))
 	return rv
-}
-
-
-// The alpha (opacity) component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/alphacomponent
-func (c_ Color) AlphaComponent() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("alphaComponent"))
-	return rv
-}
-
-
-// The alpha (opacity) component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/alphacomponent
-func (c_ Color) SetAlphaComponent(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlphaComponent:"), value)
-}
-
-
-// The Core Graphics color object corresponding to the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/cgcolor
-func (c_ Color) CgColor() IColor {
-	rv := objc.Send[Color](c_.ID, objc.Sel("cgColor"))
-	return rv
-}
-
-
-// The Core Graphics color object corresponding to the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/cgcolor
-func (c_ Color) SetCgColor(value IColor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCgColor:"), value)
-}
-
-
-// The localized version of the catalog name containing the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcatalognamecomponent
-func (c_ Color) LocalizedCatalogNameComponent() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
-	return rv
-}
-
-
-// The localized version of the catalog name containing the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/localizedcatalognamecomponent
-func (c_ Color) SetLocalizedCatalogNameComponent(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCatalogNameComponent:"), objc.String(value))
-}
-
-
-// The magenta component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/magentacomponent
-func (c_ Color) MagentaComponent() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("magentaComponent"))
-	return rv
-}
-
-
-// The magenta component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/magentacomponent
-func (c_ Color) SetMagentaComponent(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMagentaComponent:"), value)
 }
 
 
@@ -657,25 +1290,6 @@ func (c_ Color) StandardDynamicRange() IColor {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/standarddynamicrange
 func (c_ Color) SetStandardDynamicRange(value IColor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStandardDynamicRange:"), value)
-}
-
-
-// The white component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/whitecomponent
-func (c_ Color) WhiteComponent() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("whiteComponent"))
-	return rv
-}
-
-
-// The white component value of the color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolor/whitecomponent
-func (c_ Color) SetWhiteComponent(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWhiteComponent:"), value)
 }
 
 

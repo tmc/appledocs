@@ -30,9 +30,11 @@ type _PersistentCloudKitContainerOptionsClass struct {
 // An interface definition for the [PersistentCloudKitContainerOptions] class.
 type IPersistentCloudKitContainerOptions interface {
 	objectivec.IObject
-	ContainerIdentifier() string
+	// properties:
+	ContainerIdentifier() string /* primitive/slice/pointer. */
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that customizes how a store description aligns with a CloudKit database.
@@ -92,7 +94,7 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
-func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
+func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string /* primitive/slice/pointer. */) PersistentCloudKitContainerOptions {
 	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
 	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
-func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
+func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }

@@ -29,7 +29,9 @@ type _CNChangeHistoryDeleteContactEventClass struct {
 // An interface definition for the [CNChangeHistoryDeleteContactEvent] class.
 type ICNChangeHistoryDeleteContactEvent interface {
 	ICNChangeHistoryEvent
-	ContactIdentifier() string
+	// properties:
+	ContactIdentifier() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a user deleting a contact.
@@ -89,7 +91,7 @@ func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent/contactIdentifier
-func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() string {
+func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }

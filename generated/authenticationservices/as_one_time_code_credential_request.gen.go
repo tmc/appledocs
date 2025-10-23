@@ -30,6 +30,8 @@ type _OneTimeCodeCredentialRequestClass struct {
 // An interface definition for the [OneTimeCodeCredentialRequest] class.
 type IOneTimeCodeCredentialRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

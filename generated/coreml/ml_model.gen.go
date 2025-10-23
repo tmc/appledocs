@@ -31,10 +31,12 @@ type _ModelClass struct {
 // An interface definition for the [Model] class.
 type IModel interface {
 	objectivec.IObject
+	// properties:
 	Configuration() IMLModelConfiguration
 	ModelDescription() IMLModelDescription
-	Metadata() ModelMetadataKey
-	SetMetadata(value ModelMetadataKey)
+	Metadata() objc.IObject /* cross-framework: ModelMetadataKey */
+	SetMetadata(value objc.IObject /* cross-framework: ModelMetadataKey */)
+	// methods:
 	NewState() IState
 	ParameterValueForKeyError(key IMLParameterKey, error_ unsafe.Pointer) objc.ID
 	Prediction()
@@ -104,7 +106,7 @@ func NewModel() Model {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func NewModelWithContentsOfURLConfigurationError(url foundation.URL, configuration IMLModelConfiguration, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLConfigurationError(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -114,7 +116,7 @@ func NewModelWithContentsOfURLConfigurationError(url foundation.URL, configurati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -132,7 +134,7 @@ func (mc _ModelClass) CompileModel() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-3nea
-func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.URL, handler unsafe.Pointer) {
+func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.objc.IObject /* cross-framework URL */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("compileModelAtURL:completionHandler:"), modelURL, handler)
 }
 
@@ -141,7 +143,7 @@ func (mc _ModelClass) CompileModelAtURLCompletionHandler(modelURL foundation.URL
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/compileModel(at:)-6442s
-func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.URL, error_ unsafe.Pointer) foundation.URL {
+func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](objc.ID(mc.class), objc.Sel("compileModelAtURL:error:"), modelURL, error_)
 	return rv
 }
@@ -151,7 +153,7 @@ func (mc _ModelClass) CompileModelAtURLError(modelURL foundation.URL, error_ uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.objc.IObject /* cross-framework URL */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -161,7 +163,7 @@ func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/init(contentsOf:configuration:)
-func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.URL, configuration IMLModelConfiguration, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLConfigurationError(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:configuration:error:"), url, configuration, error_)
 	return rv
 }
@@ -180,7 +182,7 @@ func (mc _ModelClass) LoadModelAssetConfigurationCompletionHandler(asset IMLMode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/loadContentsOfURL:configuration:completionHandler:
-func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.URL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
+func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 
@@ -189,7 +191,7 @@ func (mc _ModelClass) LoadContentsOfURLConfigurationCompletionHandler(url founda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-func (mc _ModelClass) AvailableComputeDevices() []objc.ID {
+func (mc _ModelClass) AvailableComputeDevices() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](objc.ID(mc.class), objc.Sel("availableComputeDevices"))
 	return rv
 }
@@ -292,7 +294,7 @@ func (m_ Model) PredictionsFromBatchError(inputBatch objectivec.IObject, error_ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/availableComputeDevices-42uzt
-func (m_ Model) AvailableComputeDevices() []objc.ID {
+func (m_ Model) AvailableComputeDevices() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("availableComputeDevices"))
 	return rv
 }
@@ -322,7 +324,7 @@ func (m_ Model) ModelDescription() IMLModelDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-func (m_ Model) Metadata() ModelMetadataKey {
+func (m_ Model) Metadata() objc.IObject /* cross-framework: ModelMetadataKey */ {
 	rv := objc.Send[ModelMetadataKey](m_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -332,7 +334,7 @@ func (m_ Model) Metadata() ModelMetadataKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata
-func (m_ Model) SetMetadata(value ModelMetadataKey) {
+func (m_ Model) SetMetadata(value objc.IObject /* cross-framework: ModelMetadataKey */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
 }
 

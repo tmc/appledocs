@@ -31,20 +31,22 @@ type _PasskeyAssertionCredentialClass struct {
 // An interface definition for the [PasskeyAssertionCredential] class.
 type IPasskeyAssertionCredential interface {
 	objectivec.IObject
-	AuthenticatorData() foundation.Data
-	SetAuthenticatorData(value foundation.Data)
-	ClientDataHash() foundation.Data
-	SetClientDataHash(value foundation.Data)
-	CredentialID() foundation.Data
-	SetCredentialID(value foundation.Data)
+	// properties:
+	AuthenticatorData() foundation.objc.IObject /* cross-framework: Data */
+	SetAuthenticatorData(value foundation.objc.IObject /* cross-framework: Data */)
+	ClientDataHash() foundation.objc.IObject /* cross-framework: Data */
+	SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */)
+	CredentialID() foundation.objc.IObject /* cross-framework: Data */
+	SetCredentialID(value foundation.objc.IObject /* cross-framework: Data */)
 	ExtensionOutput() IPasskeyAssertionCredentialExtensionOutput
 	SetExtensionOutput(value IPasskeyAssertionCredentialExtensionOutput)
-	RelyingParty() string
-	SetRelyingParty(value string)
-	Signature() foundation.Data
-	SetSignature(value foundation.Data)
-	UserHandle() foundation.Data
-	SetUserHandle(value foundation.Data)
+	RelyingParty() string /* primitive/slice/pointer. */
+	SetRelyingParty(value string /* primitive/slice/pointer. */)
+	Signature() foundation.objc.IObject /* cross-framework: Data */
+	SetSignature(value foundation.objc.IObject /* cross-framework: Data */)
+	UserHandle() foundation.objc.IObject /* cross-framework: Data */
+	SetUserHandle(value foundation.objc.IObject /* cross-framework: Data */)
+	// methods:
 }
 
 // A passkey assertion credential.
@@ -104,7 +106,7 @@ func NewPasskeyAssertionCredential() PasskeyAssertionCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.Data {
+func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("authenticatorData"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.Data) {
+func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAuthenticatorData:"), value)
 }
 
@@ -123,7 +125,7 @@ func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.Data)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.Data {
+func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.Data) {
+func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 
@@ -142,7 +144,7 @@ func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-func (p_ PasskeyAssertionCredential) CredentialID() foundation.Data {
+func (p_ PasskeyAssertionCredential) CredentialID() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("credentialID"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (p_ PasskeyAssertionCredential) CredentialID() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-func (p_ PasskeyAssertionCredential) SetCredentialID(value foundation.Data) {
+func (p_ PasskeyAssertionCredential) SetCredentialID(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
 }
 
@@ -176,7 +178,7 @@ func (p_ PasskeyAssertionCredential) SetExtensionOutput(value IPasskeyAssertionC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) RelyingParty() string {
+func (p_ PasskeyAssertionCredential) RelyingParty() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
@@ -186,7 +188,7 @@ func (p_ PasskeyAssertionCredential) RelyingParty() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
+func (p_ PasskeyAssertionCredential) SetRelyingParty(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
 }
 
@@ -195,7 +197,7 @@ func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/signature
-func (p_ PasskeyAssertionCredential) Signature() foundation.Data {
+func (p_ PasskeyAssertionCredential) Signature() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("signature"))
 	return rv
 }
@@ -205,7 +207,7 @@ func (p_ PasskeyAssertionCredential) Signature() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/signature
-func (p_ PasskeyAssertionCredential) SetSignature(value foundation.Data) {
+func (p_ PasskeyAssertionCredential) SetSignature(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSignature:"), value)
 }
 
@@ -214,7 +216,7 @@ func (p_ PasskeyAssertionCredential) SetSignature(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-func (p_ PasskeyAssertionCredential) UserHandle() foundation.Data {
+func (p_ PasskeyAssertionCredential) UserHandle() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("userHandle"))
 	return rv
 }
@@ -224,7 +226,7 @@ func (p_ PasskeyAssertionCredential) UserHandle() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-func (p_ PasskeyAssertionCredential) SetUserHandle(value foundation.Data) {
+func (p_ PasskeyAssertionCredential) SetUserHandle(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserHandle:"), value)
 }
 

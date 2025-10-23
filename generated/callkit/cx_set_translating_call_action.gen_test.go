@@ -9,3 +9,21 @@ import (
 // Suppress unused import errors
 var _ = callkit.NewCXSetTranslatingCallAction
 
+// ExampleNewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage demonstrates how to create a CXSetTranslatingCallAction instance using NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage.
+func ExampleNewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage() {
+	_ = callkit.NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(
+		callkit.UUID{}, // uuid UUID
+		false, // isTranslating bool
+		"localLanguage", // localLanguage string
+		"remoteLanguage", // remoteLanguage string
+	)
+	// Output:
+}
+// ExampleNewCXSetTranslatingCallActionWithCoder demonstrates how to create a CXSetTranslatingCallAction instance using NewCXSetTranslatingCallActionWithCoder.
+// Creates a new action to start or stop translating a call with the provided data.
+func ExampleNewCXSetTranslatingCallActionWithCoder() {
+	_ = callkit.NewCXSetTranslatingCallActionWithCoder(
+		callkit.Coder{}, // aDecoder Coder
+	)
+	// Output:
+}

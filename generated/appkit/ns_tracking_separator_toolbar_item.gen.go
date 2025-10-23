@@ -29,12 +29,14 @@ type _TrackingSeparatorToolbarItemClass struct {
 // An interface definition for the [TrackingSeparatorToolbarItem] class.
 type ITrackingSeparatorToolbarItem interface {
 	IToolbarItem
-	SplitView() NSSplitView
+	// properties:
+	DividerIndex() int /* primitive/slice/pointer. */
+	SetDividerIndex(value int /* primitive/slice/pointer. */)
+	SplitView() ISplitView
 	SetSplitView(value ISplitView)
 	Target() unsafe.Pointer
 	SetTarget(value unsafe.Pointer)
-	DividerIndex() int
-	SetDividerIndex(value int)
+	// methods:
 }
 
 // A toolbar separator that aligns with the vertical split view in the same window.
@@ -92,12 +94,52 @@ func NewTrackingSeparatorToolbarItem() TrackingSeparatorToolbarItem {
 
 
 
+// Creates a new tracking separator toolbar item and configures it to align with the divider of the split view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/init(identifier:splitView:dividerIndex:)
+func NewTrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int /* primitive/slice/pointer. */) TrackingSeparatorToolbarItem {
+	rv := objc.Send[TrackingSeparatorToolbarItem](objc.ID(getTrackingSeparatorToolbarItemClass().class), objc.Sel("trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:"), identifier, splitView, dividerIndex)
+	return rv
+}
+
+
+
+// Creates a new tracking separator toolbar item and configures it to align with the divider of the split view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/init(identifier:splitView:dividerIndex:)
+func (tc _TrackingSeparatorToolbarItemClass) TrackingSeparatorToolbarItemWithIdentifierSplitViewDividerIndex(identifier objc.IObject /* cross-framework ToolbarItemIdentifier */, splitView ISplitView, dividerIndex int /* primitive/slice/pointer. */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:"), identifier, splitView, dividerIndex)
+	return rv
+}
+
+
+// The index of the split view divider to align with the tracking separator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/dividerIndex
+func (t_ TrackingSeparatorToolbarItem) DividerIndex() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](t_.ID, objc.Sel("dividerIndex"))
+	return rv
+}
+
+
+// The index of the split view divider to align with the tracking separator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/dividerIndex
+func (t_ TrackingSeparatorToolbarItem) SetDividerIndex(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDividerIndex:"), value)
+}
+
+
 // The vertical split view to align with the toolbar separator.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
-func (t_ TrackingSeparatorToolbarItem) SplitView() NSSplitView {
-	rv := objc.Send[NSSplitView](t_.ID, objc.Sel("splitView"))
+func (t_ TrackingSeparatorToolbarItem) SplitView() ISplitView {
+	rv := objc.Send[SplitView](t_.ID, objc.Sel("splitView"))
 	return rv
 }
 
@@ -128,25 +170,5 @@ func (t_ TrackingSeparatorToolbarItem) Target() unsafe.Pointer {
 func (t_ TrackingSeparatorToolbarItem) SetTarget(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
 }
-
-
-// The index of the split view divider to align with the tracking separator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem/dividerindex
-func (t_ TrackingSeparatorToolbarItem) DividerIndex() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("dividerIndex"))
-	return rv
-}
-
-
-// The index of the split view divider to align with the tracking separator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem/dividerindex
-func (t_ TrackingSeparatorToolbarItem) SetDividerIndex(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDividerIndex:"), value)
-}
-
 
 

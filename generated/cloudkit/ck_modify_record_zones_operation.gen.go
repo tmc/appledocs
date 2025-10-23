@@ -29,6 +29,7 @@ type _CKModifyRecordZonesOperationClass struct {
 // An interface definition for the [CKModifyRecordZonesOperation] class.
 type ICKModifyRecordZonesOperation interface {
 	ICKDatabaseOperation
+	// properties:
 	ModifyRecordZonesCompletionBlock() unsafe.Pointer
 	SetModifyRecordZonesCompletionBlock(value unsafe.Pointer)
 	ModifyRecordZonesResultBlock() unsafe.Pointer
@@ -43,6 +44,7 @@ type ICKModifyRecordZonesOperation interface {
 	SetRecordZonesToSave(value ICKRecordZone)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation that modifies one or more record zones.

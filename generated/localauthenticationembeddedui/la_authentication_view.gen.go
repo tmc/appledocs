@@ -31,8 +31,8 @@ type _AuthenticationViewClass struct {
 type IAuthenticationView interface {
 	appkit.IView
 	// properties:
-	Context() LAContext
-	ControlSize() NSControlSize
+	Context() objc.IObject /* cross-framework: Context */
+	ControlSize() ControlSize /* not a class type */
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewAuthenticationView() AuthenticationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
-func NewAuthenticationViewWithContext(context LAContext) AuthenticationView {
+func NewAuthenticationViewWithContext(context objc.IObject /* cross-framework Context */) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:"), context)
 	rv.Autorelease()
@@ -107,7 +107,7 @@ func NewAuthenticationViewWithContext(context LAContext) AuthenticationView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:controlSize:)
-func NewAuthenticationViewWithContextControlSize(context LAContext, controlSize NSControlSize) AuthenticationView {
+func NewAuthenticationViewWithContextControlSize(context objc.IObject /* cross-framework Context */, controlSize ControlSize /* not a class type */) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:controlSize:"), context, controlSize)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func NewAuthenticationViewWithContextControlSize(context LAContext, controlSize 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/context
-func (a_ AuthenticationView) Context() LAContext {
+func (a_ AuthenticationView) Context() objc.IObject /* cross-framework: Context */ {
 	rv := objc.Send[Context](a_.ID, objc.Sel("context"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (a_ AuthenticationView) Context() LAContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/controlSize
-func (a_ AuthenticationView) ControlSize() NSControlSize {
+func (a_ AuthenticationView) ControlSize() ControlSize /* not a class type */ {
 	rv := objc.Send[ControlSize](a_.ID, objc.Sel("controlSize"))
 	return rv
 }

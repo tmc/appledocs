@@ -29,6 +29,8 @@ type _NibOutletConnectorClass struct {
 // An interface definition for the [NibOutletConnector] class.
 type INibOutletConnector interface {
 	INibConnector
+	// properties:
+	// methods:
 }
 
 // An outlet connection between Interface Builder objects.

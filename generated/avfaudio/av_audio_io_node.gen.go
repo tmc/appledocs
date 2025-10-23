@@ -29,12 +29,14 @@ type _AudioIONodeClass struct {
 // An interface definition for the [AudioIONode] class.
 type IAudioIONode interface {
 	IAudioNode
+	// properties:
 	AudioUnit() IAudioUnit
 	SetAudioUnit(value IAudioUnit)
-	IsVoiceProcessingEnabled() bool
-	SetIsVoiceProcessingEnabled(value bool)
+	IsVoiceProcessingEnabled() bool /* primitive/slice/pointer. */
+	SetIsVoiceProcessingEnabled(value bool /* primitive/slice/pointer. */)
 	PresentationLatency() unsafe.Pointer
 	SetPresentationLatency(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that performs audio input or output in the engine.
@@ -115,7 +117,7 @@ func (a_ AudioIONode) SetAudioUnit(value IAudioUnit) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
+func (a_ AudioIONode) IsVoiceProcessingEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isVoiceProcessingEnabled"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (a_ AudioIONode) IsVoiceProcessingEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioionode/isvoiceprocessingenabled
-func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool) {
+func (a_ AudioIONode) SetIsVoiceProcessingEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsVoiceProcessingEnabled:"), value)
 }
 

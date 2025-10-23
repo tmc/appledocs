@@ -29,7 +29,9 @@ type _AXMathExpressionOperatorClass struct {
 // An interface definition for the [AXMathExpressionOperator] class.
 type IAXMathExpressionOperator interface {
 	IAXMathExpression
-	Content() string
+	// properties:
+	Content() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -82,7 +84,7 @@ func NewAXMathExpressionOperator() AXMathExpressionOperator {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/init(content:)
-func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOperator {
+func NewAXMathExpressionOperatorWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionOperator {
 	instance := getAXMathExpressionOperatorClass().Alloc()
 	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
 	rv.Autorelease()
@@ -93,7 +95,7 @@ func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOper
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/content
-func (a_ AXMathExpressionOperator) Content() string {
+func (a_ AXMathExpressionOperator) Content() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }

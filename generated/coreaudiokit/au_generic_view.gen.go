@@ -31,9 +31,11 @@ type _GenericViewClass struct {
 // An interface definition for the [GenericView] class.
 type IGenericView interface {
 	appkit.IView
-	AudioUnit() audiotoolbox.AudioUnit
-	ShowsExpertParameters() bool
-	SetShowsExpertParameters(value bool)
+	// properties:
+	AudioUnit() audiotoolbox.objc.IObject /* cross-framework: AudioUnit */
+	ShowsExpertParameters() bool /* primitive/slice/pointer. */
+	SetShowsExpertParameters(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A view that provides a generic user interface for a Cocoa audio unit.
@@ -93,7 +95,7 @@ func NewGenericView() GenericView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:)
-func NewGenericViewWithAudioUnit(au audiotoolbox.AudioUnit) GenericView {
+func NewGenericViewWithAudioUnit(au audiotoolbox.objc.IObject /* cross-framework AudioUnit */) GenericView {
 	instance := getGenericViewClass().Alloc()
 	rv := objc.Send[GenericView](instance.ID, objc.Sel("initWithAudioUnit:"), au)
 	rv.Autorelease()
@@ -106,7 +108,7 @@ func NewGenericViewWithAudioUnit(au audiotoolbox.AudioUnit) GenericView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/audioUnit
-func (g_ GenericView) AudioUnit() audiotoolbox.AudioUnit {
+func (g_ GenericView) AudioUnit() audiotoolbox.objc.IObject /* cross-framework: AudioUnit */ {
 	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("audioUnit"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (g_ GenericView) AudioUnit() audiotoolbox.AudioUnit {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/augenericview/showsexpertparameters
-func (g_ GenericView) ShowsExpertParameters() bool {
+func (g_ GenericView) ShowsExpertParameters() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("showsExpertParameters"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (g_ GenericView) ShowsExpertParameters() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/augenericview/showsexpertparameters
-func (g_ GenericView) SetShowsExpertParameters(value bool) {
+func (g_ GenericView) SetShowsExpertParameters(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShowsExpertParameters:"), value)
 }
 

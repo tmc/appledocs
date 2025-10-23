@@ -30,6 +30,8 @@ type _DispatchGroupClass struct {
 // An interface definition for the [DispatchGroup] class.
 type IDispatchGroup interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A group of tasks that you monitor as a single unit.

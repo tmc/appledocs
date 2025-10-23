@@ -29,8 +29,9 @@ type _CKFetchRecordsOperationClass struct {
 // An interface definition for the [CKFetchRecordsOperation] class.
 type ICKFetchRecordsOperation interface {
 	ICKDatabaseOperation
-	RecordIDs() []CKRecordID
-	SetRecordIDs(value []CKRecordID)
+	// properties:
+	RecordIDs() []CKRecordID /* primitive/slice/pointer. */
+	SetRecordIDs(value []CKRecordID /* primitive/slice/pointer. */)
 	DesiredKeys() unsafe.Pointer
 	SetDesiredKeys(value unsafe.Pointer)
 	FetchRecordsCompletionBlock() unsafe.Pointer
@@ -45,6 +46,7 @@ type ICKFetchRecordsOperation interface {
 	SetPerRecordResultBlock(value unsafe.Pointer)
 	CompletionBlock() unsafe.Pointer
 	SetCompletionBlock(value unsafe.Pointer)
+	// methods:
 }
 
 // An operation for retrieving records from a database.
@@ -106,7 +108,7 @@ func NewCKFetchRecordsOperation() CKFetchRecordsOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID {
+func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CKRecordID](c_.ID, objc.Sel("recordIDs"))
 	return rv
 }
@@ -116,7 +118,7 @@ func (c_ CKFetchRecordsOperation) RecordIDs() []CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/recordIDs
-func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID) {
+func (c_ CKFetchRecordsOperation) SetRecordIDs(value []CKRecordID /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

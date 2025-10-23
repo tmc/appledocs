@@ -29,10 +29,11 @@ type _CKFetchRecordZoneChangesOperationClass struct {
 // An interface definition for the [CKFetchRecordZoneChangesOperation] class.
 type ICKFetchRecordZoneChangesOperation interface {
 	ICKDatabaseOperation
-	ConfigurationsByRecordZoneID() CKFetchRecordZoneChangesConfiguration
-	SetConfigurationsByRecordZoneID(value CKFetchRecordZoneChangesConfiguration)
-	FetchAllChanges() bool
-	SetFetchAllChanges(value bool)
+	// properties:
+	ConfigurationsByRecordZoneID() objc.IObject /* cross-framework: CKFetchRecordZoneChangesConfiguration */
+	SetConfigurationsByRecordZoneID(value objc.IObject /* cross-framework: CKFetchRecordZoneChangesConfiguration */)
+	FetchAllChanges() bool /* primitive/slice/pointer. */
+	SetFetchAllChanges(value bool /* primitive/slice/pointer. */)
 	FetchRecordZoneChangesCompletionBlock() unsafe.Pointer
 	SetFetchRecordZoneChangesCompletionBlock(value unsafe.Pointer)
 	FetchRecordZoneChangesResultBlock() unsafe.Pointer
@@ -51,6 +52,7 @@ type ICKFetchRecordZoneChangesOperation interface {
 	SetRecordZoneFetchResultBlock(value unsafe.Pointer)
 	RecordZoneIDs() ICKRecordZoneID
 	SetRecordZoneIDs(value ICKRecordZoneID)
+	// methods:
 }
 
 // An operation that fetches record zone changes.
@@ -112,7 +114,7 @@ func NewCKFetchRecordZoneChangesOperation() CKFetchRecordZoneChangesOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() CKFetchRecordZoneChangesConfiguration {
+func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() objc.IObject /* cross-framework: CKFetchRecordZoneChangesConfiguration */ {
 	rv := objc.Send[CKFetchRecordZoneChangesConfiguration](c_.ID, objc.Sel("configurationsByRecordZoneID"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (c_ CKFetchRecordZoneChangesOperation) ConfigurationsByRecordZoneID() CKFet
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/configurationsbyrecordzoneid
-func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(value CKFetchRecordZoneChangesConfiguration) {
+func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(value objc.IObject /* cross-framework: CKFetchRecordZoneChangesConfiguration */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfigurationsByRecordZoneID:"), value)
 }
 
@@ -131,7 +133,7 @@ func (c_ CKFetchRecordZoneChangesOperation) SetConfigurationsByRecordZoneID(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool {
+func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
 	return rv
 }
@@ -141,7 +143,7 @@ func (c_ CKFetchRecordZoneChangesOperation) FetchAllChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/fetchallchanges
-func (c_ CKFetchRecordZoneChangesOperation) SetFetchAllChanges(value bool) {
+func (c_ CKFetchRecordZoneChangesOperation) SetFetchAllChanges(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
 

@@ -30,7 +30,9 @@ type _AuthorizationPublicKeyCredentialLargeBlobRegistrationOutputClass struct {
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput interface {
 	objectivec.IObject
-	IsSupported() bool
+	// properties:
+	IsSupported() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -81,7 +83,7 @@ func NewAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput() Authorizat
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput-c.class/isSupported
-func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) IsSupported() bool {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) IsSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSupported"))
 	return rv
 }

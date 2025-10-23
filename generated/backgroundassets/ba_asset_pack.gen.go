@@ -31,10 +31,12 @@ type _BAAssetPackClass struct {
 // An interface definition for the [BAAssetPack] class.
 type IBAAssetPack interface {
 	objectivec.IObject
-	DownloadSize() int
-	Identifier() string
-	UserInfo() foundation.NSData
-	Version() int
+	// properties:
+	DownloadSize() int /* primitive/slice/pointer. */
+	Identifier() string /* primitive/slice/pointer. */
+	UserInfo() foundation.objc.IObject /* cross-framework: NSData */
+	Version() int /* primitive/slice/pointer. */
+	// methods:
 	Download() IBADownload
 	DownloadForContentRequest(contentRequest BAContentRequest) IBADownload
 }
@@ -116,7 +118,7 @@ func (b_ BAAssetPack) DownloadForContentRequest(contentRequest BAContentRequest)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadSize
-func (b_ BAAssetPack) DownloadSize() int {
+func (b_ BAAssetPack) DownloadSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("downloadSize"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (b_ BAAssetPack) DownloadSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-func (b_ BAAssetPack) Identifier() string {
+func (b_ BAAssetPack) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (b_ BAAssetPack) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/userInfo
-func (b_ BAAssetPack) UserInfo() foundation.NSData {
+func (b_ BAAssetPack) UserInfo() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (b_ BAAssetPack) UserInfo() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/version
-func (b_ BAAssetPack) Version() int {
+func (b_ BAAssetPack) Version() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("version"))
 	return rv
 }

@@ -30,10 +30,12 @@ type _TKTokenWatcherClass struct {
 // An interface definition for the [TKTokenWatcher] class.
 type ITKTokenWatcher interface {
 	objectivec.IObject
-	TokenIDs() string
-	SetTokenIDs(value string)
+	// properties:
+	TokenIDs() string /* primitive/slice/pointer. */
+	SetTokenIDs(value string /* primitive/slice/pointer. */)
+	// methods:
 	SetInsertionHandler(insertionHandler unsafe.Pointer)
-	TokenInfoForTokenID(tokenID string) ITKTokenWatcherTokenInfo
+	TokenInfoForTokenID(tokenID string /* primitive/slice/pointer. */) ITKTokenWatcherTokenInfo
 }
 
 // An object that tracks the tokens available in the system.
@@ -101,7 +103,7 @@ func (t_ TKTokenWatcher) SetInsertionHandler(insertionHandler unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/tokenInfo(forTokenID:)
-func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string) ITKTokenWatcherTokenInfo {
+func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string /* primitive/slice/pointer. */) ITKTokenWatcherTokenInfo {
 	rv := objc.Send[TKTokenWatcherTokenInfo](t_.ID, objc.Sel("tokenInfoForTokenID:"), objc.String(tokenID))
 	return rv
 }
@@ -111,7 +113,7 @@ func (t_ TKTokenWatcher) TokenInfoForTokenID(tokenID string) ITKTokenWatcherToke
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-func (t_ TKTokenWatcher) TokenIDs() string {
+func (t_ TKTokenWatcher) TokenIDs() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("tokenIDs"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (t_ TKTokenWatcher) TokenIDs() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokenids
-func (t_ TKTokenWatcher) SetTokenIDs(value string) {
+func (t_ TKTokenWatcher) SetTokenIDs(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenIDs:"), objc.String(value))
 }
 

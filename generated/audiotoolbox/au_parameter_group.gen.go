@@ -29,10 +29,12 @@ type _ParameterGroupClass struct {
 // An interface definition for the [ParameterGroup] class.
 type IParameterGroup interface {
 	IParameterNode
-	AllParameters() []Parameter
-	Children() []ParameterNode
-	Identifier() string
-	SetIdentifier(value string)
+	// properties:
+	AllParameters() []Parameter /* primitive/slice/pointer. */
+	Children() []ParameterNode /* primitive/slice/pointer. */
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A parameter group object represents a group of related audio unit parameters.
@@ -94,7 +96,7 @@ func NewParameterGroup() ParameterGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/allParameters
-func (p_ ParameterGroup) AllParameters() []Parameter {
+func (p_ ParameterGroup) AllParameters() []Parameter /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Parameter](p_.ID, objc.Sel("allParameters"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (p_ ParameterGroup) AllParameters() []Parameter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterGroup/children
-func (p_ ParameterGroup) Children() []ParameterNode {
+func (p_ ParameterGroup) Children() []ParameterNode /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ParameterNode](p_.ID, objc.Sel("children"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (p_ ParameterGroup) Children() []ParameterNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) Identifier() string {
+func (p_ ParameterGroup) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (p_ ParameterGroup) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier
-func (p_ ParameterGroup) SetIdentifier(value string) {
+func (p_ ParameterGroup) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 

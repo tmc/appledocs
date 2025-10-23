@@ -30,6 +30,8 @@ type _RenderTaskClass struct {
 // An interface definition for the [RenderTask] class.
 type IRenderTask interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) IRenderInfo
 }
 

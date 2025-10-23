@@ -30,34 +30,36 @@ type _ManagedObjectClass struct {
 // An interface definition for the [ManagedObject] class.
 type IManagedObject interface {
 	objectivec.IObject
+	// properties:
 	Entity() IEntityDescription
-	Inserted() bool
+	Inserted() bool /* primitive/slice/pointer. */
 	ManagedObjectContext() IManagedObjectContext
 	ObjectID() IManagedObjectID
-	FaultingState() int
-	SetFaultingState(value int)
-	HasChanges() bool
-	SetHasChanges(value bool)
-	HasPersistentChangedValues() bool
-	SetHasPersistentChangedValues(value bool)
-	IsDeleted() bool
-	SetIsDeleted(value bool)
-	IsFault() bool
-	SetIsFault(value bool)
-	IsInserted() bool
-	SetIsInserted(value bool)
-	IsUpdated() bool
-	SetIsUpdated(value bool)
-	NSValidationKeyErrorKey() string
-	NSValidationObjectErrorKey() string
-	NSValidationPredicateErrorKey() string
-	NSValidationValueErrorKey() string
-	Description() string
-	SetDescription(value string)
-	Hash() int
-	SetHash(value int)
+	FaultingState() int /* primitive/slice/pointer. */
+	SetFaultingState(value int /* primitive/slice/pointer. */)
+	HasChanges() bool /* primitive/slice/pointer. */
+	SetHasChanges(value bool /* primitive/slice/pointer. */)
+	HasPersistentChangedValues() bool /* primitive/slice/pointer. */
+	SetHasPersistentChangedValues(value bool /* primitive/slice/pointer. */)
+	IsDeleted() bool /* primitive/slice/pointer. */
+	SetIsDeleted(value bool /* primitive/slice/pointer. */)
+	IsFault() bool /* primitive/slice/pointer. */
+	SetIsFault(value bool /* primitive/slice/pointer. */)
+	IsInserted() bool /* primitive/slice/pointer. */
+	SetIsInserted(value bool /* primitive/slice/pointer. */)
+	IsUpdated() bool /* primitive/slice/pointer. */
+	SetIsUpdated(value bool /* primitive/slice/pointer. */)
+	NSValidationKeyErrorKey() string /* primitive/slice/pointer. */
+	NSValidationObjectErrorKey() string /* primitive/slice/pointer. */
+	NSValidationPredicateErrorKey() string /* primitive/slice/pointer. */
+	NSValidationValueErrorKey() string /* primitive/slice/pointer. */
+	Description() string /* primitive/slice/pointer. */
+	SetDescription(value string /* primitive/slice/pointer. */)
+	Hash() int /* primitive/slice/pointer. */
+	SetHash(value int /* primitive/slice/pointer. */)
 	Superclass() unsafe.Pointer
 	SetSuperclass(value unsafe.Pointer)
+	// methods:
 }
 
 // The base class that all Core Data model objects inherit from.
@@ -140,7 +142,7 @@ func (m_ ManagedObject) Entity() IEntityDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/isInserted
-func (m_ ManagedObject) Inserted() bool {
+func (m_ ManagedObject) Inserted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("inserted"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (m_ ManagedObject) ObjectID() IManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/faultingstate
-func (m_ ManagedObject) FaultingState() int {
+func (m_ ManagedObject) FaultingState() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("faultingState"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (m_ ManagedObject) FaultingState() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/faultingstate
-func (m_ ManagedObject) SetFaultingState(value int) {
+func (m_ ManagedObject) SetFaultingState(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultingState:"), value)
 }
 
@@ -189,7 +191,7 @@ func (m_ ManagedObject) SetFaultingState(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haschanges
-func (m_ ManagedObject) HasChanges() bool {
+func (m_ ManagedObject) HasChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasChanges"))
 	return rv
 }
@@ -199,7 +201,7 @@ func (m_ ManagedObject) HasChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haschanges
-func (m_ ManagedObject) SetHasChanges(value bool) {
+func (m_ ManagedObject) SetHasChanges(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasChanges:"), value)
 }
 
@@ -208,7 +210,7 @@ func (m_ ManagedObject) SetHasChanges(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haspersistentchangedvalues
-func (m_ ManagedObject) HasPersistentChangedValues() bool {
+func (m_ ManagedObject) HasPersistentChangedValues() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasPersistentChangedValues"))
 	return rv
 }
@@ -218,7 +220,7 @@ func (m_ ManagedObject) HasPersistentChangedValues() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/haspersistentchangedvalues
-func (m_ ManagedObject) SetHasPersistentChangedValues(value bool) {
+func (m_ ManagedObject) SetHasPersistentChangedValues(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasPersistentChangedValues:"), value)
 }
 
@@ -227,7 +229,7 @@ func (m_ ManagedObject) SetHasPersistentChangedValues(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-func (m_ ManagedObject) IsDeleted() bool {
+func (m_ ManagedObject) IsDeleted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeleted"))
 	return rv
 }
@@ -237,7 +239,7 @@ func (m_ ManagedObject) IsDeleted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isdeleted
-func (m_ ManagedObject) SetIsDeleted(value bool) {
+func (m_ ManagedObject) SetIsDeleted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeleted:"), value)
 }
 
@@ -246,7 +248,7 @@ func (m_ ManagedObject) SetIsDeleted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-func (m_ ManagedObject) IsFault() bool {
+func (m_ ManagedObject) IsFault() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isFault"))
 	return rv
 }
@@ -256,7 +258,7 @@ func (m_ ManagedObject) IsFault() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isfault
-func (m_ ManagedObject) SetIsFault(value bool) {
+func (m_ ManagedObject) SetIsFault(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFault:"), value)
 }
 
@@ -265,7 +267,7 @@ func (m_ ManagedObject) SetIsFault(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-func (m_ ManagedObject) IsInserted() bool {
+func (m_ ManagedObject) IsInserted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isInserted"))
 	return rv
 }
@@ -275,7 +277,7 @@ func (m_ ManagedObject) IsInserted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isinserted
-func (m_ ManagedObject) SetIsInserted(value bool) {
+func (m_ ManagedObject) SetIsInserted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsInserted:"), value)
 }
 
@@ -284,7 +286,7 @@ func (m_ ManagedObject) SetIsInserted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-func (m_ ManagedObject) IsUpdated() bool {
+func (m_ ManagedObject) IsUpdated() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUpdated"))
 	return rv
 }
@@ -294,7 +296,7 @@ func (m_ ManagedObject) IsUpdated() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobject/isupdated
-func (m_ ManagedObject) SetIsUpdated(value bool) {
+func (m_ ManagedObject) SetIsUpdated(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdated:"), value)
 }
 
@@ -303,7 +305,7 @@ func (m_ ManagedObject) SetIsUpdated(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey
-func (m_ ManagedObject) NSValidationKeyErrorKey() string {
+func (m_ ManagedObject) NSValidationKeyErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
 	return rv
 }
@@ -313,7 +315,7 @@ func (m_ ManagedObject) NSValidationKeyErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey
-func (m_ ManagedObject) NSValidationObjectErrorKey() string {
+func (m_ ManagedObject) NSValidationObjectErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
 	return rv
 }
@@ -323,7 +325,7 @@ func (m_ ManagedObject) NSValidationObjectErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey
-func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
+func (m_ ManagedObject) NSValidationPredicateErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
 	return rv
 }
@@ -333,7 +335,7 @@ func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey
-func (m_ ManagedObject) NSValidationValueErrorKey() string {
+func (m_ ManagedObject) NSValidationValueErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
 	return rv
 }
@@ -343,7 +345,7 @@ func (m_ ManagedObject) NSValidationValueErrorKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) Description() string {
+func (m_ ManagedObject) Description() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("description"))
 	return rv
 }
@@ -353,7 +355,7 @@ func (m_ ManagedObject) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) SetDescription(value string) {
+func (m_ ManagedObject) SetDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 
@@ -362,7 +364,7 @@ func (m_ ManagedObject) SetDescription(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (m_ ManagedObject) Hash() int {
+func (m_ ManagedObject) Hash() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("hash"))
 	return rv
 }
@@ -372,7 +374,7 @@ func (m_ ManagedObject) Hash() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
-func (m_ ManagedObject) SetHash(value int) {
+func (m_ ManagedObject) SetHash(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHash:"), value)
 }
 

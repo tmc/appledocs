@@ -30,6 +30,8 @@ type _CKServerChangeTokenClass struct {
 // An interface definition for the [CKServerChangeToken] class.
 type ICKServerChangeToken interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An opaque token that represents a specific point in a database’s history.

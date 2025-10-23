@@ -31,6 +31,8 @@ type _HKActivitySummaryClass struct {
 type IHKActivitySummary interface {
 	objectivec.IObject
 	// properties:
+	AppleMoveTime() IHKQuantity
+	SetAppleMoveTime(value IHKQuantity)
 	ActiveEnergyBurned() IHKQuantity
 	SetActiveEnergyBurned(value IHKQuantity)
 	ActiveEnergyBurnedGoal() IHKQuantity
@@ -41,8 +43,6 @@ type IHKActivitySummary interface {
 	SetAppleExerciseTime(value IHKQuantity)
 	AppleExerciseTimeGoal() IHKQuantity
 	SetAppleExerciseTimeGoal(value IHKQuantity)
-	AppleMoveTime() IHKQuantity
-	SetAppleMoveTime(value IHKQuantity)
 	AppleMoveTimeGoal() IHKQuantity
 	SetAppleMoveTimeGoal(value IHKQuantity)
 	AppleStandHours() IHKQuantity
@@ -51,11 +51,11 @@ type IHKActivitySummary interface {
 	SetAppleStandHoursGoal(value IHKQuantity)
 	ExerciseTimeGoal() IHKQuantity
 	SetExerciseTimeGoal(value IHKQuantity)
-	IsPaused() bool
-	SetIsPaused(value bool)
+	IsPaused() bool /* primitive/slice/pointer. */
+	SetIsPaused(value bool /* primitive/slice/pointer. */)
 	StandHoursGoal() IHKQuantity
 	SetStandHoursGoal(value IHKQuantity)
-	HKPredicateKeyPathDateComponents() string
+	HKPredicateKeyPathDateComponents() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -110,6 +110,25 @@ func NewHKActivitySummary() HKActivitySummary {
 	return getHKActivitySummaryClass().New()
 }
 
+
+
+// The amount of time the user spent performing activities that involve full-body movements during the specified day.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
+func (h_ HKActivitySummary) AppleMoveTime() IHKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTime"))
+	return rv
+}
+
+
+// The amount of time the user spent performing activities that involve full-body movements during the specified day.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummary/appleMoveTime
+func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
+}
 
 
 // The amount of active energy the user burned during the specified day.
@@ -207,25 +226,6 @@ func (h_ HKActivitySummary) SetAppleExerciseTimeGoal(value IHKQuantity) {
 }
 
 
-// The amount of time the user spent performing activities that involve full-body movements during the specified day.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
-func (h_ HKActivitySummary) AppleMoveTime() IHKQuantity {
-	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("appleMoveTime"))
-	return rv
-}
-
-
-// The amount of time the user spent performing activities that involve full-body movements during the specified day.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime
-func (h_ HKActivitySummary) SetAppleMoveTime(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
-}
-
-
 // The user’s daily goal for move time.
 //
 // [Full Topic]
@@ -304,7 +304,7 @@ func (h_ HKActivitySummary) SetExerciseTimeGoal(value IHKQuantity) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) IsPaused() bool {
+func (h_ HKActivitySummary) IsPaused() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isPaused"))
 	return rv
 }
@@ -312,7 +312,7 @@ func (h_ HKActivitySummary) IsPaused() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkactivitysummary/ispaused
-func (h_ HKActivitySummary) SetIsPaused(value bool) {
+func (h_ HKActivitySummary) SetIsPaused(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsPaused:"), value)
 }
 
@@ -340,7 +340,7 @@ func (h_ HKActivitySummary) SetStandHoursGoal(value IHKQuantity) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents
-func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string {
+func (h_ HKActivitySummary) HKPredicateKeyPathDateComponents() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathDateComponents"))
 	return rv
 }

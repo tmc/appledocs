@@ -30,16 +30,18 @@ type _BatchedSensorManagerClass struct {
 // An interface definition for the [BatchedSensorManager] class.
 type IBatchedSensorManager interface {
 	objectivec.IObject
-	AccelerometerBatch() []AccelerometerData
-	AccelerometerDataFrequency() int
-	DeviceMotionBatch() []DeviceMotion
-	DeviceMotionDataFrequency() int
-	AccelerometerActive() bool
-	DeviceMotionActive() bool
-	IsAccelerometerActive() bool
-	SetIsAccelerometerActive(value bool)
-	IsDeviceMotionActive() bool
-	SetIsDeviceMotionActive(value bool)
+	// properties:
+	AccelerometerBatch() []AccelerometerData /* primitive/slice/pointer. */
+	AccelerometerDataFrequency() int /* primitive/slice/pointer. */
+	DeviceMotionBatch() []DeviceMotion /* primitive/slice/pointer. */
+	DeviceMotionDataFrequency() int /* primitive/slice/pointer. */
+	AccelerometerActive() bool /* primitive/slice/pointer. */
+	DeviceMotionActive() bool /* primitive/slice/pointer. */
+	IsAccelerometerActive() bool /* primitive/slice/pointer. */
+	SetIsAccelerometerActive(value bool /* primitive/slice/pointer. */)
+	IsDeviceMotionActive() bool /* primitive/slice/pointer. */
+	SetIsDeviceMotionActive(value bool /* primitive/slice/pointer. */)
+	// methods:
 	StartAccelerometerUpdates()
 	StartAccelerometerUpdatesWithHandler(handler unsafe.Pointer)
 	StartDeviceMotionUpdates()
@@ -96,21 +98,21 @@ func NewBatchedSensorManager() BatchedSensorManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (bc _BatchedSensorManagerClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(bc.class), objc.Sel("authorizationStatus"))
+func (bc _BatchedSensorManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(bc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isAccelerometerSupported
-func (bc _BatchedSensorManagerClass) AccelerometerSupported() bool {
+func (bc _BatchedSensorManagerClass) AccelerometerSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("accelerometerSupported"))
 	return rv
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isDeviceMotionSupported
-func (bc _BatchedSensorManagerClass) DeviceMotionSupported() bool {
+func (bc _BatchedSensorManagerClass) DeviceMotionSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(bc.class), objc.Sel("deviceMotionSupported"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (b_ BatchedSensorManager) StopDeviceMotionUpdates() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/accelerometerBatch
-func (b_ BatchedSensorManager) AccelerometerBatch() []AccelerometerData {
+func (b_ BatchedSensorManager) AccelerometerBatch() []AccelerometerData /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AccelerometerData](b_.ID, objc.Sel("accelerometerBatch"))
 	return rv
 }
@@ -167,7 +169,7 @@ func (b_ BatchedSensorManager) AccelerometerBatch() []AccelerometerData {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/accelerometerDataFrequency
-func (b_ BatchedSensorManager) AccelerometerDataFrequency() int {
+func (b_ BatchedSensorManager) AccelerometerDataFrequency() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("accelerometerDataFrequency"))
 	return rv
 }
@@ -175,15 +177,15 @@ func (b_ BatchedSensorManager) AccelerometerDataFrequency() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (b_ BatchedSensorManager) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](b_.ID, objc.Sel("authorizationStatus"))
+func (b_ BatchedSensorManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](b_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/deviceMotionBatch
-func (b_ BatchedSensorManager) DeviceMotionBatch() []DeviceMotion {
+func (b_ BatchedSensorManager) DeviceMotionBatch() []DeviceMotion /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]DeviceMotion](b_.ID, objc.Sel("deviceMotionBatch"))
 	return rv
 }
@@ -191,7 +193,7 @@ func (b_ BatchedSensorManager) DeviceMotionBatch() []DeviceMotion {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/deviceMotionDataFrequency
-func (b_ BatchedSensorManager) DeviceMotionDataFrequency() int {
+func (b_ BatchedSensorManager) DeviceMotionDataFrequency() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("deviceMotionDataFrequency"))
 	return rv
 }
@@ -199,7 +201,7 @@ func (b_ BatchedSensorManager) DeviceMotionDataFrequency() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isAccelerometerActive
-func (b_ BatchedSensorManager) AccelerometerActive() bool {
+func (b_ BatchedSensorManager) AccelerometerActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("accelerometerActive"))
 	return rv
 }
@@ -207,7 +209,7 @@ func (b_ BatchedSensorManager) AccelerometerActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isAccelerometerSupported
-func (b_ BatchedSensorManager) AccelerometerSupported() bool {
+func (b_ BatchedSensorManager) AccelerometerSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("accelerometerSupported"))
 	return rv
 }
@@ -215,7 +217,7 @@ func (b_ BatchedSensorManager) AccelerometerSupported() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isDeviceMotionActive
-func (b_ BatchedSensorManager) DeviceMotionActive() bool {
+func (b_ BatchedSensorManager) DeviceMotionActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("deviceMotionActive"))
 	return rv
 }
@@ -223,7 +225,7 @@ func (b_ BatchedSensorManager) DeviceMotionActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/isDeviceMotionSupported
-func (b_ BatchedSensorManager) DeviceMotionSupported() bool {
+func (b_ BatchedSensorManager) DeviceMotionSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("deviceMotionSupported"))
 	return rv
 }
@@ -231,7 +233,7 @@ func (b_ BatchedSensorManager) DeviceMotionSupported() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
-func (b_ BatchedSensorManager) IsAccelerometerActive() bool {
+func (b_ BatchedSensorManager) IsAccelerometerActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isAccelerometerActive"))
 	return rv
 }
@@ -239,14 +241,14 @@ func (b_ BatchedSensorManager) IsAccelerometerActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isaccelerometeractive
-func (b_ BatchedSensorManager) SetIsAccelerometerActive(value bool) {
+func (b_ BatchedSensorManager) SetIsAccelerometerActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsAccelerometerActive:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
-func (b_ BatchedSensorManager) IsDeviceMotionActive() bool {
+func (b_ BatchedSensorManager) IsDeviceMotionActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isDeviceMotionActive"))
 	return rv
 }
@@ -254,7 +256,7 @@ func (b_ BatchedSensorManager) IsDeviceMotionActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmbatchedsensormanager/isdevicemotionactive
-func (b_ BatchedSensorManager) SetIsDeviceMotionActive(value bool) {
+func (b_ BatchedSensorManager) SetIsDeviceMotionActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
 }
 

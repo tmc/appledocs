@@ -30,10 +30,12 @@ type _CellularDataClass struct {
 // An interface definition for the [CellularData] class.
 type ICellularData interface {
 	objectivec.IObject
+	// properties:
 	CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer
 	SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer)
-	RestrictedState() CTCellularDataRestrictedState
-	SetRestrictedState(value CTCellularDataRestrictedState)
+	RestrictedState() CellularDataRestrictedState
+	SetRestrictedState(value CellularDataRestrictedState)
+	// methods:
 }
 
 // An object indicating whether the app can access cellular data.
@@ -112,8 +114,8 @@ func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) RestrictedState() CTCellularDataRestrictedState {
-	rv := objc.Send[CTCellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
+func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
+	rv := objc.Send[CellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
 	return rv
 }
 
@@ -122,7 +124,7 @@ func (c_ CellularData) RestrictedState() CTCellularDataRestrictedState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) SetRestrictedState(value CTCellularDataRestrictedState) {
+func (c_ CellularData) SetRestrictedState(value CellularDataRestrictedState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRestrictedState:"), value)
 }
 

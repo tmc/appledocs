@@ -30,11 +30,13 @@ type _CBIdentityPickerClass struct {
 // An interface definition for the [CBIdentityPicker] class.
 type ICBIdentityPicker interface {
 	objectivec.IObject
-	Identities() []CBIdentity
-	AllowsMultipleSelection() bool
-	SetAllowsMultipleSelection(value bool)
-	Title() string
-	SetTitle(value string)
+	// properties:
+	Identities() []CBIdentity /* primitive/slice/pointer. */
+	AllowsMultipleSelection() bool /* primitive/slice/pointer. */
+	SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A object allows a user to select identities—for example, user or group objects—that it wants one or more services or shared resources to have access to. An identity picker can be displayed either as an application-modal dialog or as a sheet attached to a document window. An identity picker returns the selected records to be added to access control lists using Collaboration. If a selected record is not a user or group identity, then an identity picker prompts the user for additional information—such as a password—to promote that record to a sharing account.
@@ -92,7 +94,7 @@ func NewCBIdentityPicker() CBIdentityPicker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityPicker/identities
-func (c_ CBIdentityPicker) Identities() []CBIdentity {
+func (c_ CBIdentityPicker) Identities() []CBIdentity /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBIdentity](c_.ID, objc.Sel("identities"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (c_ CBIdentityPicker) Identities() []CBIdentity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/allowsmultipleselection
-func (c_ CBIdentityPicker) AllowsMultipleSelection() bool {
+func (c_ CBIdentityPicker) AllowsMultipleSelection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (c_ CBIdentityPicker) AllowsMultipleSelection() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/allowsmultipleselection
-func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool) {
+func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
 
@@ -121,7 +123,7 @@ func (c_ CBIdentityPicker) SetAllowsMultipleSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/title
-func (c_ CBIdentityPicker) Title() string {
+func (c_ CBIdentityPicker) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
@@ -131,7 +133,7 @@ func (c_ CBIdentityPicker) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentitypicker/title
-func (c_ CBIdentityPicker) SetTitle(value string) {
+func (c_ CBIdentityPicker) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

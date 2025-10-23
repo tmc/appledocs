@@ -30,7 +30,7 @@ type _HKWorkoutRouteClass struct {
 type IHKWorkoutRoute interface {
 	IHKSeriesSample
 	// properties:
-	HKWorkoutRouteTypeIdentifier() string
+	HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewHKWorkoutRoute() HKWorkoutRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKWorkoutRoute) HKWorkoutRouteTypeIdentifier() string {
+func (h_ HKWorkoutRoute) HKWorkoutRouteTypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }

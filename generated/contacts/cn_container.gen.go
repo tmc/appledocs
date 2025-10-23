@@ -30,15 +30,17 @@ type _CNContainerClass struct {
 // An interface definition for the [CNContainer] class.
 type ICNContainer interface {
 	objectivec.IObject
-	Identifier() string
-	SetIdentifier(value string)
-	Name() string
-	SetName(value string)
+	// properties:
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	Type() unsafe.Pointer
 	SetType(value unsafe.Pointer)
-	CNContainerIdentifierKey() string
-	CNContainerNameKey() string
-	CNContainerTypeKey() string
+	CNContainerIdentifierKey() string /* primitive/slice/pointer. */
+	CNContainerNameKey() string /* primitive/slice/pointer. */
+	CNContainerTypeKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An immutable object that represents a collection of contacts.
@@ -98,7 +100,7 @@ func NewCNContainer() CNContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
-func (c_ CNContainer) Identifier() string {
+func (c_ CNContainer) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (c_ CNContainer) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/identifier
-func (c_ CNContainer) SetIdentifier(value string) {
+func (c_ CNContainer) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -117,7 +119,7 @@ func (c_ CNContainer) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
-func (c_ CNContainer) Name() string {
+func (c_ CNContainer) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (c_ CNContainer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainer/name
-func (c_ CNContainer) SetName(value string) {
+func (c_ CNContainer) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -155,7 +157,7 @@ func (c_ CNContainer) SetType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontaineridentifierkey
-func (c_ CNContainer) CNContainerIdentifierKey() string {
+func (c_ CNContainer) CNContainerIdentifierKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerIdentifierKey"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (c_ CNContainer) CNContainerIdentifierKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainernamekey
-func (c_ CNContainer) CNContainerNameKey() string {
+func (c_ CNContainer) CNContainerNameKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerNameKey"))
 	return rv
 }
@@ -175,7 +177,7 @@ func (c_ CNContainer) CNContainerNameKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontainertypekey
-func (c_ CNContainer) CNContainerTypeKey() string {
+func (c_ CNContainer) CNContainerTypeKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CNContainerTypeKey"))
 	return rv
 }

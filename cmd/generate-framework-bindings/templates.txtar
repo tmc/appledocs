@@ -596,6 +596,7 @@ var _ = {{.PackageName}}.New{{classToStructName .Class.Name}}
 {{- $canGenerateAllParams := true}}
 {{- range .Parameters}}
 {{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $goType = typeToInterfaceType $goType}}
 {{- if not (canGenerateTestValue $goType .Name)}}
 {{- $canGenerateAllParams = false}}
 {{- end}}
@@ -612,6 +613,7 @@ func Example{{$constructorName}}() {
 	_ = {{$packageName}}.{{$constructorName}}(
 		{{- range $i, $p := .Parameters}}
 		{{- $goType := mapObjCTypeToGo $p.Type $framework}}
+		{{- $goType = typeToInterfaceType $goType}}
 		{{- $testValue := generateTestValueWithPackage $goType $framework $packageName $p.Name}}
 		{{$testValue}}, // {{$p.Name}} {{$goType}}
 		{{- end}}

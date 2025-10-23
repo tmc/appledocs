@@ -31,9 +31,9 @@ type _EnvironmentMechanismClass struct {
 type IEnvironmentMechanism interface {
 	objectivec.IObject
 	// properties:
-	IconSystemName() string
-	IsUsable() bool
-	LocalizedName() string
+	IconSystemName() string /* primitive/slice/pointer. */
+	IsUsable() bool /* primitive/slice/pointer. */
+	LocalizedName() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -87,7 +87,7 @@ func NewEnvironmentMechanism() EnvironmentMechanism {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/iconSystemName
-func (e_ EnvironmentMechanism) IconSystemName() string {
+func (e_ EnvironmentMechanism) IconSystemName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("iconSystemName"))
 	return rv
 }
@@ -95,7 +95,7 @@ func (e_ EnvironmentMechanism) IconSystemName() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/isUsable
-func (e_ EnvironmentMechanism) IsUsable() bool {
+func (e_ EnvironmentMechanism) IsUsable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isUsable"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (e_ EnvironmentMechanism) IsUsable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism/localizedName
-func (e_ EnvironmentMechanism) LocalizedName() string {
+func (e_ EnvironmentMechanism) LocalizedName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("localizedName"))
 	return rv
 }

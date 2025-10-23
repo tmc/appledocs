@@ -30,14 +30,16 @@ type _OpenGLViewClass struct {
 // An interface definition for the [OpenGLView] class.
 type IOpenGLView interface {
 	IView
+	// properties:
 	OpenGLContext() IOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
 	PixelFormat() IOpenGLPixelFormat
 	SetPixelFormat(value IOpenGLPixelFormat)
-	WantsBestResolutionOpenGLSurface() bool
-	SetWantsBestResolutionOpenGLSurface(value bool)
-	WantsExtendedDynamicRangeOpenGLSurface() bool
-	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
+	WantsBestResolutionOpenGLSurface() bool /* primitive/slice/pointer. */
+	SetWantsBestResolutionOpenGLSurface(value bool /* primitive/slice/pointer. */)
+	WantsExtendedDynamicRangeOpenGLSurface() bool /* primitive/slice/pointer. */
+	SetWantsExtendedDynamicRangeOpenGLSurface(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A view that displays OpenGL content in a view.
@@ -160,7 +162,7 @@ func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
-func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
+func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
-func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
+func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsBestResolutionOpenGLSurface:"), value)
 }
 
@@ -179,7 +181,7 @@ func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
-func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
+func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
-func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
+func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
 }
 

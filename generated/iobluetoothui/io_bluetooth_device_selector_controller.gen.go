@@ -32,7 +32,7 @@ type IBluetoothDeviceSelectorController interface {
 	appkit.IWindowController
 	// properties:
 	// methods:
-	SetTitle(windowTitle string)
+	SetTitle(windowTitle string /* primitive/slice/pointer. */)
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -94,7 +94,7 @@ func NewBluetoothDeviceSelectorController() BluetoothDeviceSelectorController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothDeviceSelectorController/setTitle(_:)
-func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle string) {
+func (b_ BluetoothDeviceSelectorController) SetTitle(windowTitle string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(windowTitle))
 }
 

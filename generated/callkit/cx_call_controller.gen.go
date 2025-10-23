@@ -30,10 +30,12 @@ type _CXCallControllerClass struct {
 // An interface definition for the [CXCallController] class.
 type ICXCallController interface {
 	objectivec.IObject
+	// properties:
 	CallObserver() ICXCallObserver
-	CXErrorDomainRequestTransaction() string
+	CXErrorDomainRequestTransaction() string /* primitive/slice/pointer. */
+	// methods:
 	RequestTransactionCompletion(transaction ICXTransaction, completion unsafe.Pointer)
-	RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer)
+	RequestTransactionWithActionsCompletion(actions []CXAction /* primitive/slice/pointer. */, completion unsafe.Pointer)
 	RequestTransactionWithActionCompletion(action ICXAction, completion unsafe.Pointer)
 }
 
@@ -116,7 +118,7 @@ func (c_ CXCallController) RequestTransactionCompletion(transaction ICXTransacti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4
-func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer) {
+func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []CXAction /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithActions:completion:"), actions, completion)
 }
 
@@ -144,7 +146,7 @@ func (c_ CXCallController) CallObserver() ICXCallObserver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction
-func (c_ CXCallController) CXErrorDomainRequestTransaction() string {
+func (c_ CXCallController) CXErrorDomainRequestTransaction() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CXErrorDomainRequestTransaction"))
 	return rv
 }

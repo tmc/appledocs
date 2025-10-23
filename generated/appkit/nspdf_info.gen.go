@@ -32,20 +32,20 @@ type _PDFInfoClass struct {
 // An interface definition for the [PDFInfo] class.
 type IPDFInfo interface {
 	objectivec.IObject
-	FileExtensionHidden() bool
-	SetFileExtensionHidden(value bool)
+	// properties:
+	Attributes() MutableDictionary /* not a class type */
+	SetAttributes(value MutableDictionary /* not a class type */)
+	IsFileExtensionHidden() bool /* primitive/slice/pointer. */
+	SetIsFileExtensionHidden(value bool /* primitive/slice/pointer. */)
 	Orientation() PaperOrientation
-	SetOrientation(value IPaperOrientation)
-	TagNames() []string
-	SetTagNames(value []string)
-	Attributes() foundation.MutableDictionary
-	SetAttributes(value foundation.IMutableDictionary)
-	IsFileExtensionHidden() bool
-	SetIsFileExtensionHidden(value bool)
+	SetOrientation(value PaperOrientation)
 	PaperSize() coregraphics.CGSize
 	SetPaperSize(value coregraphics.CGSize)
-	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	TagNames() string /* primitive/slice/pointer. */
+	SetTagNames(value string /* primitive/slice/pointer. */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size.
@@ -101,79 +101,12 @@ func NewPDFInfo() PDFInfo {
 
 
 
-// A Boolean value that indicates whether the file extension should appear after the filename.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
-func (p_ PDFInfo) FileExtensionHidden() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the file extension should appear after the filename.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
-func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFileExtensionHidden:"), value)
-}
-
-
-// The paper orientation to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-func (p_ PDFInfo) Orientation() PaperOrientation {
-	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
-	return rv
-}
-
-
-// The paper orientation to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
-func (p_ PDFInfo) SetOrientation(value IPaperOrientation) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
-}
-
-
-// An array of tag names that should be applied to the PDF file after it’s created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
-func (p_ PDFInfo) TagNames() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
-	return rv
-}
-
-
-// An array of tag names that should be applied to the PDF file after it’s created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
-func (p_ PDFInfo) SetTagNames(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), nsArray)
-}
-
-
 // A dictionary of additional attributes that describe how to export content as a PDF file.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) Attributes() foundation.MutableDictionary {
-	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("attributes"))
+func (p_ PDFInfo) Attributes() MutableDictionary /* not a class type */ {
+	rv := objc.Send[MutableDictionary](p_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -182,7 +115,7 @@ func (p_ PDFInfo) Attributes() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) SetAttributes(value foundation.IMutableDictionary) {
+func (p_ PDFInfo) SetAttributes(value MutableDictionary /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
 }
 
@@ -191,7 +124,7 @@ func (p_ PDFInfo) SetAttributes(value foundation.IMutableDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-func (p_ PDFInfo) IsFileExtensionHidden() bool {
+func (p_ PDFInfo) IsFileExtensionHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isFileExtensionHidden"))
 	return rv
 }
@@ -201,8 +134,27 @@ func (p_ PDFInfo) IsFileExtensionHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
-func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
+func (p_ PDFInfo) SetIsFileExtensionHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFileExtensionHidden:"), value)
+}
+
+
+// The paper orientation to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
+func (p_ PDFInfo) Orientation() PaperOrientation {
+	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
+	return rv
+}
+
+
+// The paper orientation to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
+func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
 }
 
 
@@ -225,11 +177,30 @@ func (p_ PDFInfo) SetPaperSize(value coregraphics.CGSize) {
 }
 
 
+// An array of tag names that should be applied to the PDF file after it’s created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
+func (p_ PDFInfo) TagNames() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](p_.ID, objc.Sel("tagNames"))
+	return rv
+}
+
+
+// An array of tag names that should be applied to the PDF file after it’s created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
+func (p_ PDFInfo) SetTagNames(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), objc.String(value))
+}
+
+
 // The URL identifying the location at which the PDF file will be created.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) Url() foundation.URL {
+func (p_ PDFInfo) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -239,7 +210,7 @@ func (p_ PDFInfo) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) SetUrl(value foundation.IURL) {
+func (p_ PDFInfo) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

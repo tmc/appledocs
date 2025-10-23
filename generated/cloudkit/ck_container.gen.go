@@ -30,19 +30,22 @@ type _CKContainerClass struct {
 // An interface definition for the [CKContainer] class.
 type ICKContainer interface {
 	objectivec.IObject
-	ContainerIdentifier() string
-	SetContainerIdentifier(value string)
+	// properties:
+	ContainerIdentifier() string /* primitive/slice/pointer. */
+	SetContainerIdentifier(value string /* primitive/slice/pointer. */)
 	PrivateCloudDatabase() ICKDatabase
 	SetPrivateCloudDatabase(value ICKDatabase)
 	PublicCloudDatabase() ICKDatabase
 	SetPublicCloudDatabase(value ICKDatabase)
 	SharedCloudDatabase() ICKDatabase
 	SetSharedCloudDatabase(value ICKDatabase)
-	CKCurrentUserDefaultName() string
-	CKOwnerDefaultName() string
-	UserRecordID() CKRecordID
-	SetUserRecordID(value CKRecordID)
+	CKCurrentUserDefaultName() string /* primitive/slice/pointer. */
+	CKOwnerDefaultName() string /* primitive/slice/pointer. */
+	UserRecordID() objc.IObject /* cross-framework: CKRecordID */
+	SetUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
+	// methods:
 	AccountStatusWithCompletionHandler(completionHandler unsafe.Pointer)
+	FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer)
 	FetchUserRecordIDWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -99,12 +102,52 @@ func NewCKContainer() CKContainer {
 
 
 
+// Creates a container for the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/init(identifier:)
+func NewCKContainerWithIdentifier(containerIdentifier string /* primitive/slice/pointer. */) CKContainer {
+	rv := objc.Send[CKContainer](objc.ID(getCKContainerClass().class), objc.Sel("containerWithIdentifier:"), objc.String(containerIdentifier))
+	return rv
+}
+
+
+
+// Returns the app’s default container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/default()
+func (cc _CKContainerClass) DefaultContainer() CKContainer {
+	rv := objc.Send[CKContainer](objc.ID(cc.class), objc.Sel("defaultContainer"))
+	return rv
+}
+
+
+// Creates a container for the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/init(identifier:)
+func (cc _CKContainerClass) ContainerWithIdentifier(containerIdentifier string /* primitive/slice/pointer. */) CKContainer {
+	rv := objc.Send[CKContainer](objc.ID(cc.class), objc.Sel("containerWithIdentifier:"), objc.String(containerIdentifier))
+	return rv
+}
+
+
 // Determines whether the system can access the user’s iCloud account.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/accountStatus(completionHandler:)
 func (c_ CKContainer) AccountStatusWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("accountStatusWithCompletionHandler:"), completionHandler)
+}
+
+
+// Fetches the share participant with the specified user record ID.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/fetchShareParticipant(withUserRecordID:completionHandler:)
+func (c_ CKContainer) FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("fetchShareParticipantWithUserRecordID:completionHandler:"), userRecordID, completionHandler)
 }
 
 
@@ -121,7 +164,7 @@ func (c_ CKContainer) FetchUserRecordIDWithCompletionHandler(completionHandler u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcontainer/containeridentifier
-func (c_ CKContainer) ContainerIdentifier() string {
+func (c_ CKContainer) ContainerIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
@@ -131,7 +174,7 @@ func (c_ CKContainer) ContainerIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcontainer/containeridentifier
-func (c_ CKContainer) SetContainerIdentifier(value string) {
+func (c_ CKContainer) SetContainerIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainerIdentifier:"), objc.String(value))
 }
 
@@ -197,7 +240,7 @@ func (c_ CKContainer) SetSharedCloudDatabase(value ICKDatabase) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname
-func (c_ CKContainer) CKCurrentUserDefaultName() string {
+func (c_ CKContainer) CKCurrentUserDefaultName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKCurrentUserDefaultName"))
 	return rv
 }
@@ -207,7 +250,7 @@ func (c_ CKContainer) CKCurrentUserDefaultName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckownerdefaultname
-func (c_ CKContainer) CKOwnerDefaultName() string {
+func (c_ CKContainer) CKOwnerDefaultName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKOwnerDefaultName"))
 	return rv
 }
@@ -217,7 +260,7 @@ func (c_ CKContainer) CKOwnerDefaultName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) UserRecordID() CKRecordID {
+func (c_ CKContainer) UserRecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
@@ -227,9 +270,8 @@ func (c_ CKContainer) UserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) SetUserRecordID(value CKRecordID) {
+func (c_ CKContainer) SetUserRecordID(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
-
 
 

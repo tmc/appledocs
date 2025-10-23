@@ -29,8 +29,10 @@ type _CircularGeographicConditionClass struct {
 // An interface definition for the [CircularGeographicCondition] class.
 type ICircularGeographicCondition interface {
 	ICondition
-	Center() unsafe.Pointer
-	Radius() unsafe.Pointer
+	// properties:
+	Center() LocationCoordinate2D /* not a class type */
+	Radius() LocationDistance /* not a class type */
+	// methods:
 }
 
 // A circular geographic condition that a center point and radius define.
@@ -92,7 +94,7 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/initWithCenter:radius:
-func NewCircularGeographicConditionWithCenterRadius(center unsafe.Pointer, radius unsafe.Pointer) CircularGeographicCondition {
+func NewCircularGeographicConditionWithCenterRadius(center LocationCoordinate2D /* not a class type */, radius LocationDistance /* not a class type */) CircularGeographicCondition {
 	instance := getCircularGeographicConditionClass().Alloc()
 	rv := objc.Send[CircularGeographicCondition](instance.ID, objc.Sel("initWithCenter:radius:"), center, radius)
 	rv.Autorelease()
@@ -105,8 +107,8 @@ func NewCircularGeographicConditionWithCenterRadius(center unsafe.Pointer, radiu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/center
-func (c_ CircularGeographicCondition) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
+func (c_ CircularGeographicCondition) Center() LocationCoordinate2D /* not a class type */ {
+	rv := objc.Send[LocationCoordinate2D](c_.ID, objc.Sel("center"))
 	return rv
 }
 
@@ -115,8 +117,8 @@ func (c_ CircularGeographicCondition) Center() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLCircularGeographicCondition/radius
-func (c_ CircularGeographicCondition) Radius() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("radius"))
+func (c_ CircularGeographicCondition) Radius() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](c_.ID, objc.Sel("radius"))
 	return rv
 }
 

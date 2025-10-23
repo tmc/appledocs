@@ -31,14 +31,16 @@ type _CustomDeviceRouteClass struct {
 // An interface definition for the [CustomDeviceRoute] class.
 type ICustomDeviceRoute interface {
 	objectivec.IObject
-	BluetoothIdentifier() foundation.UUID
-	SetBluetoothIdentifier(value foundation.UUID)
+	// properties:
+	BluetoothIdentifier() foundation.objc.IObject /* cross-framework: UUID */
+	SetBluetoothIdentifier(value foundation.objc.IObject /* cross-framework: UUID */)
 	NetworkEndpoint() unsafe.Pointer
 	SetNetworkEndpoint(value unsafe.Pointer)
-	Reason() AVCustomRoutingEventReason
-	SetReason(value AVCustomRoutingEventReason)
+	Reason() CustomRoutingEventReason /* not a class type */
+	SetReason(value CustomRoutingEventReason /* not a class type */)
 	Route() IAVCustomDeviceRoute
 	SetRoute(value IAVCustomDeviceRoute)
+	// methods:
 }
 
 // An object that represents a custom device route.
@@ -98,7 +100,7 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
-func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
+func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier
-func (c_ CustomDeviceRoute) SetBluetoothIdentifier(value foundation.UUID) {
+func (c_ CustomDeviceRoute) SetBluetoothIdentifier(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBluetoothIdentifier:"), value)
 }
 
@@ -136,7 +138,7 @@ func (c_ CustomDeviceRoute) SetNetworkEndpoint(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) Reason() AVCustomRoutingEventReason {
+func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason /* not a class type */ {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (c_ CustomDeviceRoute) Reason() AVCustomRoutingEventReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) SetReason(value AVCustomRoutingEventReason) {
+func (c_ CustomDeviceRoute) SetReason(value CustomRoutingEventReason /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
 

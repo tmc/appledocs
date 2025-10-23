@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,30 +30,31 @@ type _TouchBarClass struct {
 // An interface definition for the [TouchBar] class.
 type ITouchBar interface {
 	objectivec.IObject
-	CustomizationAllowedItemIdentifiers() []string
-	SetCustomizationAllowedItemIdentifiers(value []string)
-	CustomizationIdentifier() TouchBarCustomizationIdentifier
-	SetCustomizationIdentifier(value TouchBarCustomizationIdentifier)
-	CustomizationRequiredItemIdentifiers() []string
-	SetCustomizationRequiredItemIdentifiers(value []string)
-	DefaultItemIdentifiers() []string
-	SetDefaultItemIdentifiers(value []string)
+	// properties:
+	CustomizationAllowedItemIdentifiers() []string /* primitive/slice/pointer. */
+	SetCustomizationAllowedItemIdentifiers(value []string /* primitive/slice/pointer. */)
+	CustomizationIdentifier() objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */
+	SetCustomizationIdentifier(value objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */)
+	CustomizationRequiredItemIdentifiers() []string /* primitive/slice/pointer. */
+	SetCustomizationRequiredItemIdentifiers(value []string /* primitive/slice/pointer. */)
+	DefaultItemIdentifiers() []string /* primitive/slice/pointer. */
+	SetDefaultItemIdentifiers(value []string /* primitive/slice/pointer. */)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier
-	SetEscapeKeyReplacementItemIdentifier(value TouchBarItemIdentifier)
-	Visible() bool
-	ItemIdentifiers() []string
-	PrincipalItemIdentifier() TouchBarItemIdentifier
-	SetPrincipalItemIdentifier(value TouchBarItemIdentifier)
+	EscapeKeyReplacementItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */
+	SetEscapeKeyReplacementItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */)
+	Visible() bool /* primitive/slice/pointer. */
+	ItemIdentifiers() []string /* primitive/slice/pointer. */
+	PrincipalItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */
+	SetPrincipalItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */)
 	TemplateItems() unsafe.Pointer
 	SetTemplateItems(value unsafe.Pointer)
-	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool
-	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
+	IsAutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */
+	SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */)
 	BezelColor() IColor
 	SetBezelColor(value IColor)
-	AllowedTouchTypes() NSTouchTypeMask
-	SetAllowedTouchTypes(value NSTouchTypeMask)
+	AllowedTouchTypes() TouchTypeMask
+	SetAllowedTouchTypes(value TouchTypeMask)
 	GroupTouchBar() ITouchBar
 	SetGroupTouchBar(value ITouchBar)
 	PopoverTouchBar() ITouchBar
@@ -65,15 +65,16 @@ type ITouchBar interface {
 	SetSelectedSegmentBezelColor(value IColor)
 	TrackFillColor() IColor
 	SetTrackFillColor(value IColor)
-	IsVisible() bool
-	SetIsVisible(value bool)
-	CustomizationLabel() string
-	SetCustomizationLabel(value string)
+	IsVisible() bool /* primitive/slice/pointer. */
+	SetIsVisible(value bool /* primitive/slice/pointer. */)
+	CustomizationLabel() string /* primitive/slice/pointer. */
+	SetCustomizationLabel(value string /* primitive/slice/pointer. */)
 	TouchBar() ITouchBar
 	SetTouchBar(value ITouchBar)
-	AcceptsTouchEvents() bool
-	SetAcceptsTouchEvents(value bool)
-	ItemForIdentifier(identifier TouchBarItemIdentifier) TouchBarItem
+	AcceptsTouchEvents() bool /* primitive/slice/pointer. */
+	SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */)
+	// methods:
+	ItemForIdentifier(identifier objc.IObject /* cross-framework TouchBarItemIdentifier */) objc.IObject /* cross-framework: TouchBarItem */
 }
 
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
@@ -133,7 +134,7 @@ func NewTouchBar() TouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/init(coder:)
-func NewTouchBarWithCoder(coder foundation.Coder) TouchBar {
+func NewTouchBarWithCoder(coder Coder /* not a class type */) TouchBar {
 	instance := getTouchBarClass().Alloc()
 	rv := objc.Send[TouchBar](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -146,7 +147,7 @@ func NewTouchBarWithCoder(coder foundation.Coder) TouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
+func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(tc.class), objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
@@ -155,7 +156,7 @@ func (tc _TouchBarClass) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/item(forIdentifier:)
-func (t_ TouchBar) ItemForIdentifier(identifier TouchBarItemIdentifier) TouchBarItem {
+func (t_ TouchBar) ItemForIdentifier(identifier objc.IObject /* cross-framework TouchBarItemIdentifier */) objc.IObject /* cross-framework: TouchBarItem */ {
 	rv := objc.Send[TouchBarItem](t_.ID, objc.Sel("itemForIdentifier:"), identifier)
 	return rv
 }
@@ -165,7 +166,7 @@ func (t_ TouchBar) ItemForIdentifier(identifier TouchBarItemIdentifier) TouchBar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
+func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationAllowedItemIdentifiers"))
 	return rv
 }
@@ -175,7 +176,7 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationAllowedItemIdentifiers
-func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string) {
+func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -194,7 +195,7 @@ func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) CustomizationIdentifier() TouchBarCustomizationIdentifier {
+func (t_ TouchBar) CustomizationIdentifier() objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */ {
 	rv := objc.Send[TouchBarCustomizationIdentifier](t_.ID, objc.Sel("customizationIdentifier"))
 	return rv
 }
@@ -204,7 +205,7 @@ func (t_ TouchBar) CustomizationIdentifier() TouchBarCustomizationIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationIdentifier-swift.property
-func (t_ TouchBar) SetCustomizationIdentifier(value TouchBarCustomizationIdentifier) {
+func (t_ TouchBar) SetCustomizationIdentifier(value objc.IObject /* cross-framework: TouchBarCustomizationIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
 }
 
@@ -213,7 +214,7 @@ func (t_ TouchBar) SetCustomizationIdentifier(value TouchBarCustomizationIdentif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
+func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("customizationRequiredItemIdentifiers"))
 	return rv
 }
@@ -223,7 +224,7 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/customizationRequiredItemIdentifiers
-func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string) {
+func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -242,7 +243,7 @@ func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value []string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) DefaultItemIdentifiers() []string {
+func (t_ TouchBar) DefaultItemIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("defaultItemIdentifiers"))
 	return rv
 }
@@ -252,7 +253,7 @@ func (t_ TouchBar) DefaultItemIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/defaultItemIdentifiers
-func (t_ TouchBar) SetDefaultItemIdentifiers(value []string) {
+func (t_ TouchBar) SetDefaultItemIdentifiers(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -290,7 +291,7 @@ func (t_ TouchBar) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier {
+func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */ {
 	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("escapeKeyReplacementItemIdentifier"))
 	return rv
 }
@@ -300,7 +301,7 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() TouchBarItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/escapeKeyReplacementItemIdentifier
-func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value TouchBarItemIdentifier) {
+func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
 }
 
@@ -309,7 +310,7 @@ func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value TouchBarItemIdent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
+func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
@@ -319,7 +320,7 @@ func (t_ TouchBar) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isAutomaticCustomizeTouchBarMenuItemEnabled
-func (t_ TouchBar) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
+func (t_ TouchBar) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
 
@@ -328,7 +329,7 @@ func (t_ TouchBar) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/isVisible
-func (t_ TouchBar) Visible() bool {
+func (t_ TouchBar) Visible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
 	return rv
 }
@@ -338,7 +339,7 @@ func (t_ TouchBar) Visible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/itemIdentifiers
-func (t_ TouchBar) ItemIdentifiers() []string {
+func (t_ TouchBar) ItemIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("itemIdentifiers"))
 	return rv
 }
@@ -348,7 +349,7 @@ func (t_ TouchBar) ItemIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) PrincipalItemIdentifier() TouchBarItemIdentifier {
+func (t_ TouchBar) PrincipalItemIdentifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */ {
 	rv := objc.Send[TouchBarItemIdentifier](t_.ID, objc.Sel("principalItemIdentifier"))
 	return rv
 }
@@ -358,7 +359,7 @@ func (t_ TouchBar) PrincipalItemIdentifier() TouchBarItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBar/principalItemIdentifier
-func (t_ TouchBar) SetPrincipalItemIdentifier(value TouchBarItemIdentifier) {
+func (t_ TouchBar) SetPrincipalItemIdentifier(value objc.IObject /* cross-framework: TouchBarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
 }
 
@@ -386,7 +387,7 @@ func (t_ TouchBar) SetTemplateItems(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
-func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
+func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isAutomaticCustomizeTouchBarMenuItemEnabled"))
 	return rv
 }
@@ -396,7 +397,7 @@ func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled
-func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
+func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
 
@@ -422,7 +423,7 @@ func (t_ TouchBar) SetBezelColor(value IColor) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) AllowedTouchTypes() NSTouchTypeMask {
+func (t_ TouchBar) AllowedTouchTypes() TouchTypeMask {
 	rv := objc.Send[TouchTypeMask](t_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
@@ -430,7 +431,7 @@ func (t_ TouchBar) AllowedTouchTypes() NSTouchTypeMask {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
-func (t_ TouchBar) SetAllowedTouchTypes(value NSTouchTypeMask) {
+func (t_ TouchBar) SetAllowedTouchTypes(value TouchTypeMask) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -534,7 +535,7 @@ func (t_ TouchBar) SetTrackFillColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
-func (t_ TouchBar) IsVisible() bool {
+func (t_ TouchBar) IsVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -544,7 +545,7 @@ func (t_ TouchBar) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbar/isvisible
-func (t_ TouchBar) SetIsVisible(value bool) {
+func (t_ TouchBar) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }
 
@@ -553,7 +554,7 @@ func (t_ TouchBar) SetIsVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBar) CustomizationLabel() string {
+func (t_ TouchBar) CustomizationLabel() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
@@ -563,7 +564,7 @@ func (t_ TouchBar) CustomizationLabel() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBar) SetCustomizationLabel(value string) {
+func (t_ TouchBar) SetCustomizationLabel(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
 
@@ -591,7 +592,7 @@ func (t_ TouchBar) SetTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
-func (t_ TouchBar) AcceptsTouchEvents() bool {
+func (t_ TouchBar) AcceptsTouchEvents() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("acceptsTouchEvents"))
 	return rv
 }
@@ -601,7 +602,7 @@ func (t_ TouchBar) AcceptsTouchEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/acceptstouchevents
-func (t_ TouchBar) SetAcceptsTouchEvents(value bool) {
+func (t_ TouchBar) SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsTouchEvents:"), value)
 }
 

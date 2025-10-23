@@ -36,8 +36,8 @@ type IHKStateOfMind interface {
 	SetKind(value unsafe.Pointer)
 	Labels() unsafe.Pointer
 	SetLabels(value unsafe.Pointer)
-	Valence() float64
-	SetValence(value float64)
+	Valence() float64 /* primitive/slice/pointer. */
+	SetValence(value float64 /* primitive/slice/pointer. */)
 	ValenceClassification() unsafe.Pointer
 	SetValenceClassification(value unsafe.Pointer)
 	// methods:
@@ -138,7 +138,7 @@ func (h_ HKStateOfMind) SetLabels(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstateofmind/valence
-func (h_ HKStateOfMind) Valence() float64 {
+func (h_ HKStateOfMind) Valence() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](h_.ID, objc.Sel("valence"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (h_ HKStateOfMind) Valence() float64 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstateofmind/valence
-func (h_ HKStateOfMind) SetValence(value float64) {
+func (h_ HKStateOfMind) SetValence(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setValence:"), value)
 }
 

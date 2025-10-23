@@ -31,15 +31,17 @@ type _SubscriberClass struct {
 // An interface definition for the [Subscriber] class.
 type ISubscriber interface {
 	objectivec.IObject
-	Identifier() string
-	SIMInserted() bool
-	CarrierToken() foundation.Data
-	SetCarrierToken(value foundation.Data)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	IsSIMInserted() bool
-	SetIsSIMInserted(value bool)
-	CTSubscriberTokenRefreshed() string
+	// properties:
+	Identifier() string /* primitive/slice/pointer. */
+	SIMInserted() bool /* primitive/slice/pointer. */
+	CarrierToken() foundation.objc.IObject /* cross-framework: Data */
+	SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */)
+	Delegate() SubscriberDelegate /* not a class type */
+	SetDelegate(value SubscriberDelegate /* not a class type */)
+	IsSIMInserted() bool /* primitive/slice/pointer. */
+	SetIsSIMInserted(value bool /* primitive/slice/pointer. */)
+	CTSubscriberTokenRefreshed() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A cellular network subscriber.
@@ -97,7 +99,7 @@ func NewSubscriber() Subscriber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/identifier
-func (s_ Subscriber) Identifier() string {
+func (s_ Subscriber) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (s_ Subscriber) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber/isSIMInserted
-func (s_ Subscriber) SIMInserted() bool {
+func (s_ Subscriber) SIMInserted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("SIMInserted"))
 	return rv
 }
@@ -117,7 +119,7 @@ func (s_ Subscriber) SIMInserted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) CarrierToken() foundation.Data {
+func (s_ Subscriber) CarrierToken() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (s_ Subscriber) CarrierToken() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) SetCarrierToken(value foundation.Data) {
+func (s_ Subscriber) SetCarrierToken(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
@@ -136,8 +138,8 @@ func (s_ Subscriber) SetCarrierToken(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
-func (s_ Subscriber) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+func (s_ Subscriber) Delegate() SubscriberDelegate /* not a class type */ {
+	rv := objc.Send[SubscriberDelegate](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -146,7 +148,7 @@ func (s_ Subscriber) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
-func (s_ Subscriber) SetDelegate(value unsafe.Pointer) {
+func (s_ Subscriber) SetDelegate(value SubscriberDelegate /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -155,7 +157,7 @@ func (s_ Subscriber) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
-func (s_ Subscriber) IsSIMInserted() bool {
+func (s_ Subscriber) IsSIMInserted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSIMInserted"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (s_ Subscriber) IsSIMInserted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
-func (s_ Subscriber) SetIsSIMInserted(value bool) {
+func (s_ Subscriber) SetIsSIMInserted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
 }
 
@@ -174,7 +176,7 @@ func (s_ Subscriber) SetIsSIMInserted(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
-func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
+func (s_ Subscriber) CTSubscriberTokenRefreshed() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
 }

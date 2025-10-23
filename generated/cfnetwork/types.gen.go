@@ -37,3 +37,44 @@ type CFWriteStreamRef unsafe.Pointer
 
 
 
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type AllocatorRef = int
+
+type ArrayRef = int
+
+type DataRef = int
+
+type DictionaryRef = int
+
+type ErrorRef = int
+
+type HostClientContext = int
+
+type Index = int
+
+type NetServiceClientContext = int
+
+type OptionFlags = int
+
+type ReadStreamRef = int
+
+type RunLoopRef = int
+
+type RunLoopSourceRef = int
+
+type StreamClientContext = int
+
+type StreamError = int
+
+type StringRef = int
+
+type TypeID = int
+
+type URLRef = int
+
+type WriteStreamRef = int
+
+
+

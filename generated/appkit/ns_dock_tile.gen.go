@@ -31,19 +31,22 @@ type _DockTileClass struct {
 // An interface definition for the [DockTile] class.
 type IDockTile interface {
 	objectivec.IObject
-	Display()
-	BadgeLabel() string
-	SetBadgeLabel(value string)
-	ContentView() NSView
-	SetContentView(value IView)
-	Owner() objc.ID
-	ShowsApplicationBadge() bool
-	SetShowsApplicationBadge(value bool)
-	Size() coregraphics.CGSize
-	ApplicationIconImage() Image
+	// properties:
+	ApplicationIconImage() IImage
 	SetApplicationIconImage(value IImage)
-	DockTile() NSDockTile
+	BadgeLabel() string /* primitive/slice/pointer. */
+	SetBadgeLabel(value string /* primitive/slice/pointer. */)
+	ContentView() IView
+	SetContentView(value IView)
+	Owner() unsafe.Pointer
+	SetOwner(value unsafe.Pointer)
+	ShowsApplicationBadge() bool /* primitive/slice/pointer. */
+	SetShowsApplicationBadge(value bool /* primitive/slice/pointer. */)
+	Size() coregraphics.CGSize
+	SetSize(value coregraphics.CGSize)
+	DockTile() IDockTile
 	SetDockTile(value IDockTile)
+	// methods:
 }
 
 // The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.
@@ -99,97 +102,11 @@ func NewDockTile() DockTile {
 
 
 
-// Redraws the dock tile’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/display()
-func (d_ DockTile) Display() {
-	objc.Send[objc.ID](d_.ID, objc.Sel("display"))
-}
-
-
-// The string to be displayed in the tile’s badging area.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/badgeLabel
-func (d_ DockTile) BadgeLabel() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("badgeLabel"))
-	return rv
-}
-
-
-// The string to be displayed in the tile’s badging area.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/badgeLabel
-func (d_ DockTile) SetBadgeLabel(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), objc.String(value))
-}
-
-
-// The view to use for drawing the dock tile contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/contentView
-func (d_ DockTile) ContentView() NSView {
-	rv := objc.Send[NSView](d_.ID, objc.Sel("contentView"))
-	return rv
-}
-
-
-// The view to use for drawing the dock tile contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/contentView
-func (d_ DockTile) SetContentView(value IView) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
-}
-
-
-// The object represented by the dock tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/owner
-func (d_ DockTile) Owner() objc.ID {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("owner"))
-	return rv
-}
-
-
-// A Boolean showing whether the tile is badged with the application’s icon
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/showsApplicationBadge
-func (d_ DockTile) ShowsApplicationBadge() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("showsApplicationBadge"))
-	return rv
-}
-
-
-// A Boolean showing whether the tile is badged with the application’s icon
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/showsApplicationBadge
-func (d_ DockTile) SetShowsApplicationBadge(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShowsApplicationBadge:"), value)
-}
-
-
-// The size of the tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/size
-func (d_ DockTile) Size() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("size"))
-	return rv
-}
-
-
 // The image used for the app’s icon.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage
-func (d_ DockTile) ApplicationIconImage() Image {
+func (d_ DockTile) ApplicationIconImage() IImage {
 	rv := objc.Send[Image](d_.ID, objc.Sel("applicationIconImage"))
 	return rv
 }
@@ -204,12 +121,107 @@ func (d_ DockTile) SetApplicationIconImage(value IImage) {
 }
 
 
+// The string to be displayed in the tile’s badging area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
+func (d_ DockTile) BadgeLabel() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](d_.ID, objc.Sel("badgeLabel"))
+	return rv
+}
+
+
+// The string to be displayed in the tile’s badging area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/badgelabel
+func (d_ DockTile) SetBadgeLabel(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setBadgeLabel:"), objc.String(value))
+}
+
+
+// The view to use for drawing the dock tile contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/contentview
+func (d_ DockTile) ContentView() IView {
+	rv := objc.Send[View](d_.ID, objc.Sel("contentView"))
+	return rv
+}
+
+
+// The view to use for drawing the dock tile contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/contentview
+func (d_ DockTile) SetContentView(value IView) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
+}
+
+
+// The object represented by the dock tile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
+func (d_ DockTile) Owner() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("owner"))
+	return rv
+}
+
+
+// The object represented by the dock tile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
+func (d_ DockTile) SetOwner(value unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setOwner:"), value)
+}
+
+
+// A Boolean showing whether the tile is badged with the application’s icon
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
+func (d_ DockTile) ShowsApplicationBadge() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](d_.ID, objc.Sel("showsApplicationBadge"))
+	return rv
+}
+
+
+// A Boolean showing whether the tile is badged with the application’s icon
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/showsapplicationbadge
+func (d_ DockTile) SetShowsApplicationBadge(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setShowsApplicationBadge:"), value)
+}
+
+
+// The size of the tile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
+func (d_ DockTile) Size() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](d_.ID, objc.Sel("size"))
+	return rv
+}
+
+
+// The size of the tile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/size
+func (d_ DockTile) SetSize(value coregraphics.CGSize) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setSize:"), value)
+}
+
+
 // The application’s Dock tile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/docktile
-func (d_ DockTile) DockTile() NSDockTile {
-	rv := objc.Send[NSDockTile](d_.ID, objc.Sel("dockTile"))
+func (d_ DockTile) DockTile() IDockTile {
+	rv := objc.Send[DockTile](d_.ID, objc.Sel("dockTile"))
 	return rv
 }
 

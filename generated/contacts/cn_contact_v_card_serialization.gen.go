@@ -31,6 +31,8 @@ type _CNContactVCardSerializationClass struct {
 // An interface definition for the [CNContactVCardSerialization] class.
 type ICNContactVCardSerialization interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object you use to convert to and from a vCard representation of the user’s contacts.
@@ -88,7 +90,7 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
-func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.NSData, error_ unsafe.Pointer) []CNContact {
+func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.objc.IObject /* cross-framework NSData */, error_ unsafe.Pointer) []CNContact /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
 }
@@ -98,8 +100,8 @@ func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/data(with:)
-func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact, error_ unsafe.Pointer) foundation.Data {
-	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
+func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact /* primitive/slice/pointer. */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
 	return rv
 }
 

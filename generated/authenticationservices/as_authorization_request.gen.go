@@ -30,6 +30,8 @@ type _AuthorizationRequestClass struct {
 // An interface definition for the [AuthorizationRequest] class.
 type IAuthorizationRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AuthenticationServices classes.

@@ -30,12 +30,14 @@ type _CWConfigurationClass struct {
 // An interface definition for the [CWConfiguration] class.
 type ICWConfiguration interface {
 	objectivec.IObject
+	// properties:
 	NetworkProfiles() unsafe.Pointer
-	RememberJoinedNetworks() bool
-	RequireAdministratorForAssociation() bool
-	RequireAdministratorForIBSSMode() bool
-	RequireAdministratorForPower() bool
-	IsEqualToConfiguration(configuration ICWConfiguration) bool
+	RememberJoinedNetworks() bool /* primitive/slice/pointer. */
+	RequireAdministratorForAssociation() bool /* primitive/slice/pointer. */
+	RequireAdministratorForIBSSMode() bool /* primitive/slice/pointer. */
+	RequireAdministratorForPower() bool /* primitive/slice/pointer. */
+	// methods:
+	IsEqualToConfiguration(configuration ICWConfiguration) bool /* primitive/slice/pointer. */
 }
 
 // Encapsulates an immutable configuration for an AirPort WLAN interface.
@@ -126,7 +128,7 @@ func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration ICW
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/isEqual(to:)
-func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration) bool {
+func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToConfiguration:"), configuration)
 	return rv
 }
@@ -146,7 +148,7 @@ func (c_ CWConfiguration) NetworkProfiles() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/rememberJoinedNetworks
-func (c_ CWConfiguration) RememberJoinedNetworks() bool {
+func (c_ CWConfiguration) RememberJoinedNetworks() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rememberJoinedNetworks"))
 	return rv
 }
@@ -156,7 +158,7 @@ func (c_ CWConfiguration) RememberJoinedNetworks() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForAssociation
-func (c_ CWConfiguration) RequireAdministratorForAssociation() bool {
+func (c_ CWConfiguration) RequireAdministratorForAssociation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForAssociation"))
 	return rv
 }
@@ -166,7 +168,7 @@ func (c_ CWConfiguration) RequireAdministratorForAssociation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForIBSSMode
-func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool {
+func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForIBSSMode"))
 	return rv
 }
@@ -176,7 +178,7 @@ func (c_ CWConfiguration) RequireAdministratorForIBSSMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/requireAdministratorForPower
-func (c_ CWConfiguration) RequireAdministratorForPower() bool {
+func (c_ CWConfiguration) RequireAdministratorForPower() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("requireAdministratorForPower"))
 	return rv
 }

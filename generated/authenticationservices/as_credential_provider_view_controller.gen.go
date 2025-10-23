@@ -31,10 +31,12 @@ type _CredentialProviderViewControllerClass struct {
 // An interface definition for the [CredentialProviderViewController] class.
 type ICredentialProviderViewController interface {
 	appkit.IViewController
-	ExtensionContext() unsafe.Pointer
-	SetExtensionContext(value unsafe.Pointer)
-	ASExtensionErrorDomain() string
-	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer)
+	// properties:
+	ExtensionContext() CredentialProviderExtensionContext /* not a class type */
+	SetExtensionContext(value CredentialProviderExtensionContext /* not a class type */)
+	ASExtensionErrorDomain() string /* primitive/slice/pointer. */
+	// methods:
+	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest IASPasskeyCredentialRequest)
 	PrepareInterfaceForUserChoosingTextToInsert()
 	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
 	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
@@ -99,7 +101,7 @@ func NewCredentialProviderViewController() CredentialProviderViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/performWithoutUserInteractionIfPossible(passkeyRegistration:)
-func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer) {
+func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest IASPasskeyCredentialRequest) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performPasskeyRegistrationWithoutUserInteractionIfPossible:"), registrationRequest)
 }
 
@@ -135,8 +137,8 @@ func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteracti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
-func (c_ CredentialProviderViewController) ExtensionContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extensionContext"))
+func (c_ CredentialProviderViewController) ExtensionContext() CredentialProviderExtensionContext /* not a class type */ {
+	rv := objc.Send[CredentialProviderExtensionContext](c_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 
@@ -145,7 +147,7 @@ func (c_ CredentialProviderViewController) ExtensionContext() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/extensioncontext
-func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Pointer) {
+func (c_ CredentialProviderViewController) SetExtensionContext(value CredentialProviderExtensionContext /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExtensionContext:"), value)
 }
 
@@ -154,7 +156,7 @@ func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
-func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string {
+func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
 	return rv
 }

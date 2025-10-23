@@ -31,8 +31,8 @@ type _INSpeakableStringClass struct {
 type IINSpeakableString interface {
 	objectivec.IObject
 	// properties:
-	Identifier() string
-	SetIdentifier(value string)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewINSpeakableString() INSpeakableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
-func (i_ INSpeakableString) Identifier() string {
+func (i_ INSpeakableString) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -103,7 +103,7 @@ func (i_ INSpeakableString) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inspeakable/identifier
-func (i_ INSpeakableString) SetIdentifier(value string) {
+func (i_ INSpeakableString) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 

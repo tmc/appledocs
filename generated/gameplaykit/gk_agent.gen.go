@@ -29,20 +29,22 @@ type _AgentClass struct {
 // An interface definition for the [Agent] class.
 type IAgent interface {
 	IComponent
+	// properties:
 	Behavior() IGKBehavior
 	SetBehavior(value IGKBehavior)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	Mass() float32
-	SetMass(value float32)
-	MaxAcceleration() float32
-	SetMaxAcceleration(value float32)
-	MaxSpeed() float32
-	SetMaxSpeed(value float32)
-	Radius() float32
-	SetRadius(value float32)
-	Speed() float32
-	SetSpeed(value float32)
+	Mass() float32 /* primitive/slice/pointer. */
+	SetMass(value float32 /* primitive/slice/pointer. */)
+	MaxAcceleration() float32 /* primitive/slice/pointer. */
+	SetMaxAcceleration(value float32 /* primitive/slice/pointer. */)
+	MaxSpeed() float32 /* primitive/slice/pointer. */
+	SetMaxSpeed(value float32 /* primitive/slice/pointer. */)
+	Radius() float32 /* primitive/slice/pointer. */
+	SetRadius(value float32 /* primitive/slice/pointer. */)
+	Speed() float32 /* primitive/slice/pointer. */
+	SetSpeed(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A component that moves a game entity according to a set of goals and realistic constraints.
@@ -142,7 +144,7 @@ func (a_ Agent) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-func (a_ Agent) Mass() float32 {
+func (a_ Agent) Mass() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("mass"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (a_ Agent) Mass() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/mass
-func (a_ Agent) SetMass(value float32) {
+func (a_ Agent) SetMass(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMass:"), value)
 }
 
@@ -161,7 +163,7 @@ func (a_ Agent) SetMass(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-func (a_ Agent) MaxAcceleration() float32 {
+func (a_ Agent) MaxAcceleration() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxAcceleration"))
 	return rv
 }
@@ -171,7 +173,7 @@ func (a_ Agent) MaxAcceleration() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxAcceleration
-func (a_ Agent) SetMaxAcceleration(value float32) {
+func (a_ Agent) SetMaxAcceleration(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxAcceleration:"), value)
 }
 
@@ -180,7 +182,7 @@ func (a_ Agent) SetMaxAcceleration(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-func (a_ Agent) MaxSpeed() float32 {
+func (a_ Agent) MaxSpeed() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("maxSpeed"))
 	return rv
 }
@@ -190,7 +192,7 @@ func (a_ Agent) MaxSpeed() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/maxSpeed
-func (a_ Agent) SetMaxSpeed(value float32) {
+func (a_ Agent) SetMaxSpeed(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaxSpeed:"), value)
 }
 
@@ -199,7 +201,7 @@ func (a_ Agent) SetMaxSpeed(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-func (a_ Agent) Radius() float32 {
+func (a_ Agent) Radius() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("radius"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (a_ Agent) Radius() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/radius
-func (a_ Agent) SetRadius(value float32) {
+func (a_ Agent) SetRadius(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadius:"), value)
 }
 
@@ -218,7 +220,7 @@ func (a_ Agent) SetRadius(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-func (a_ Agent) Speed() float32 {
+func (a_ Agent) Speed() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("speed"))
 	return rv
 }
@@ -228,7 +230,7 @@ func (a_ Agent) Speed() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/speed
-func (a_ Agent) SetSpeed(value float32) {
+func (a_ Agent) SetSpeed(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSpeed:"), value)
 }
 

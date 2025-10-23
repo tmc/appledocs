@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TimedMetadataGroup] class.
@@ -29,7 +28,7 @@ type _TimedMetadataGroupClass struct {
 
 // An interface definition for the [TimedMetadataGroup] class.
 type ITimedMetadataGroup interface {
-	objectivec.IObject
+	IMetadataGroup
 	// properties:
 	Items() IAVMetadataItem
 	SetItems(value IAVMetadataItem)
@@ -48,14 +47,16 @@ type ITimedMetadataGroup interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup
 type TimedMetadataGroup struct {
-	objectivec.Object
+	MetadataGroup
 }
 
 // TimedMetadataGroupFrom constructs a [TimedMetadataGroup] from an unsafe.Pointer.
 //
 // A collection of metadata items that are valid for use during a specific time range.
 func TimedMetadataGroupFrom(ptr unsafe.Pointer) TimedMetadataGroup {
-	return TimedMetadataGroup{objectivec.Object{objc.ID(ptr)}}
+	return TimedMetadataGroup{
+		MetadataGroup: MetadataGroupFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

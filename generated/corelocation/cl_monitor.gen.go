@@ -30,12 +30,14 @@ type _MonitorClass struct {
 // An interface definition for the [Monitor] class.
 type IMonitor interface {
 	objectivec.IObject
-	MonitoredIdentifiers() []string
-	Name() string
-	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string)
-	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state unsafe.Pointer)
-	MonitoringRecordForIdentifier(identifier string) IMonitoringRecord
-	RemoveConditionFromMonitoringWithIdentifier(identifier string)
+	// properties:
+	MonitoredIdentifiers() []string /* primitive/slice/pointer. */
+	Name() string /* primitive/slice/pointer. */
+	// methods:
+	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string /* primitive/slice/pointer. */)
+	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string /* primitive/slice/pointer. */, state MonitoringState /* not a class type */)
+	MonitoringRecordForIdentifier(identifier string /* primitive/slice/pointer. */) IMonitoringRecord
+	RemoveConditionFromMonitoringWithIdentifier(identifier string /* primitive/slice/pointer. */)
 }
 
 // An object that monitors the conditions you add to it.
@@ -104,7 +106,7 @@ func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config ICLMoni
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:
-func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string) {
+func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, objc.String(identifier))
 }
 
@@ -113,7 +115,7 @@ func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, id
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
-func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string, state unsafe.Pointer) {
+func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier string /* primitive/slice/pointer. */, state MonitoringState /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, objc.String(identifier), state)
 }
 
@@ -122,7 +124,7 @@ func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
-func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) IMonitoringRecord {
+func (m_ Monitor) MonitoringRecordForIdentifier(identifier string /* primitive/slice/pointer. */) IMonitoringRecord {
 	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), objc.String(identifier))
 	return rv
 }
@@ -132,7 +134,7 @@ func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) IMonitoringRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/removeConditionFromMonitoringWithIdentifier:
-func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string) {
+func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), objc.String(identifier))
 }
 
@@ -141,7 +143,7 @@ func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoredIdentifiers
-func (m_ Monitor) MonitoredIdentifiers() []string {
+func (m_ Monitor) MonitoredIdentifiers() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("monitoredIdentifiers"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (m_ Monitor) MonitoredIdentifiers() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/name
-func (m_ Monitor) Name() string {
+func (m_ Monitor) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }

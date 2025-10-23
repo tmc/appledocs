@@ -8,6 +8,30 @@ package cinematic
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code
 type CNCinematicErrorCode uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/cancelled
+	CNCinematicErrorCodeCancelled CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/incompatible
+	CNCinematicErrorCodeIncompatible CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/incomplete
+	CNCinematicErrorCodeIncomplete CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/malformed
+	CNCinematicErrorCodeMalformed CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/unknown
+	CNCinematicErrorCodeUnknown CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/unreadable
+	CNCinematicErrorCodeUnreadable CNCinematicErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCinematicError/Code/unsupported
+	CNCinematicErrorCodeUnsupported CNCinematicErrorCode = 0
+)
+
 // CNDetectionType - The type of object detected, such as face, torso, cat, dog and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionType

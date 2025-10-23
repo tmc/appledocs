@@ -30,18 +30,20 @@ type _CellularPlanProvisioningRequestClass struct {
 // An interface definition for the [CellularPlanProvisioningRequest] class.
 type ICellularPlanProvisioningRequest interface {
 	objectivec.IObject
-	Address() string
-	SetAddress(value string)
-	ConfirmationCode() string
-	SetConfirmationCode(value string)
-	Eid() string
-	SetEid(value string)
-	Iccid() string
-	SetIccid(value string)
-	MatchingID() string
-	SetMatchingID(value string)
-	Oid() string
-	SetOid(value string)
+	// properties:
+	Address() string /* primitive/slice/pointer. */
+	SetAddress(value string /* primitive/slice/pointer. */)
+	ConfirmationCode() string /* primitive/slice/pointer. */
+	SetConfirmationCode(value string /* primitive/slice/pointer. */)
+	Eid() string /* primitive/slice/pointer. */
+	SetEid(value string /* primitive/slice/pointer. */)
+	Iccid() string /* primitive/slice/pointer. */
+	SetIccid(value string /* primitive/slice/pointer. */)
+	MatchingID() string /* primitive/slice/pointer. */
+	SetMatchingID(value string /* primitive/slice/pointer. */)
+	Oid() string /* primitive/slice/pointer. */
+	SetOid(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A request specifying an eSIM to download and install.
@@ -101,7 +103,7 @@ func NewCellularPlanProvisioningRequest() CellularPlanProvisioningRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest/address
-func (c_ CellularPlanProvisioningRequest) Address() string {
+func (c_ CellularPlanProvisioningRequest) Address() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("address"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (c_ CellularPlanProvisioningRequest) Address() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest/address
-func (c_ CellularPlanProvisioningRequest) SetAddress(value string) {
+func (c_ CellularPlanProvisioningRequest) SetAddress(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAddress:"), objc.String(value))
 }
 
@@ -120,7 +122,7 @@ func (c_ CellularPlanProvisioningRequest) SetAddress(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
-func (c_ CellularPlanProvisioningRequest) ConfirmationCode() string {
+func (c_ CellularPlanProvisioningRequest) ConfirmationCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("confirmationCode"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (c_ CellularPlanProvisioningRequest) ConfirmationCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
-func (c_ CellularPlanProvisioningRequest) SetConfirmationCode(value string) {
+func (c_ CellularPlanProvisioningRequest) SetConfirmationCode(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfirmationCode:"), objc.String(value))
 }
 
@@ -139,7 +141,7 @@ func (c_ CellularPlanProvisioningRequest) SetConfirmationCode(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
-func (c_ CellularPlanProvisioningRequest) Eid() string {
+func (c_ CellularPlanProvisioningRequest) Eid() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("eid"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (c_ CellularPlanProvisioningRequest) Eid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
-func (c_ CellularPlanProvisioningRequest) SetEid(value string) {
+func (c_ CellularPlanProvisioningRequest) SetEid(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEid:"), objc.String(value))
 }
 
@@ -158,7 +160,7 @@ func (c_ CellularPlanProvisioningRequest) SetEid(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
-func (c_ CellularPlanProvisioningRequest) Iccid() string {
+func (c_ CellularPlanProvisioningRequest) Iccid() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("iccid"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (c_ CellularPlanProvisioningRequest) Iccid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
-func (c_ CellularPlanProvisioningRequest) SetIccid(value string) {
+func (c_ CellularPlanProvisioningRequest) SetIccid(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIccid:"), objc.String(value))
 }
 
@@ -177,7 +179,7 @@ func (c_ CellularPlanProvisioningRequest) SetIccid(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
-func (c_ CellularPlanProvisioningRequest) MatchingID() string {
+func (c_ CellularPlanProvisioningRequest) MatchingID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("matchingID"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (c_ CellularPlanProvisioningRequest) MatchingID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
-func (c_ CellularPlanProvisioningRequest) SetMatchingID(value string) {
+func (c_ CellularPlanProvisioningRequest) SetMatchingID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMatchingID:"), objc.String(value))
 }
 
@@ -196,7 +198,7 @@ func (c_ CellularPlanProvisioningRequest) SetMatchingID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
-func (c_ CellularPlanProvisioningRequest) Oid() string {
+func (c_ CellularPlanProvisioningRequest) Oid() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("oid"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (c_ CellularPlanProvisioningRequest) Oid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
-func (c_ CellularPlanProvisioningRequest) SetOid(value string) {
+func (c_ CellularPlanProvisioningRequest) SetOid(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOid:"), objc.String(value))
 }
 

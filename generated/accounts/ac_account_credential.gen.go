@@ -31,8 +31,10 @@ type _ACAccountCredentialClass struct {
 // An interface definition for the [ACAccountCredential] class.
 type IACAccountCredential interface {
 	objectivec.IObject
-	OauthToken() string
-	SetOauthToken(value string)
+	// properties:
+	OauthToken() string /* primitive/slice/pointer. */
+	SetOauthToken(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A credential object that encapsulates the information needed to authenticate a user.
@@ -92,7 +94,7 @@ func NewACAccountCredential() ACAccountCredential {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuth2Token:refreshToken:expiryDate:)
-func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, refreshToken string, expiryDate foundation.NSDate) ACAccountCredential {
+func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string /* primitive/slice/pointer. */, refreshToken string /* primitive/slice/pointer. */, expiryDate foundation.objc.IObject /* cross-framework NSDate */) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
 	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuth2Token:refreshToken:expiryDate:"), objc.String(token), objc.String(refreshToken), expiryDate)
 	rv.Autorelease()
@@ -104,7 +106,7 @@ func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuthToken:tokenSecret:)
-func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string) ACAccountCredential {
+func NewACAccountCredentialWithOAuthTokenTokenSecret(token string /* primitive/slice/pointer. */, secret string /* primitive/slice/pointer. */) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
 	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuthToken:tokenSecret:"), objc.String(token), objc.String(secret))
 	rv.Autorelease()
@@ -117,7 +119,7 @@ func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-func (a_ ACAccountCredential) OauthToken() string {
+func (a_ ACAccountCredential) OauthToken() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("oauthToken"))
 	return rv
 }
@@ -127,7 +129,7 @@ func (a_ ACAccountCredential) OauthToken() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-func (a_ ACAccountCredential) SetOauthToken(value string) {
+func (a_ ACAccountCredential) SetOauthToken(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOauthToken:"), objc.String(value))
 }
 

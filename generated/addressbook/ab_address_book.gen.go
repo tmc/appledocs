@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,22 +30,24 @@ type _ABAddressBookClass struct {
 // An interface definition for the [ABAddressBook] class.
 type IABAddressBook interface {
 	objectivec.IObject
-	AddRecord(record IABRecord) bool
-	AddRecordError(record IABRecord, error_ unsafe.Pointer) bool
-	DefaultCountryCode() foundation.String
-	DefaultNameOrdering() int
-	FormattedAddressFromDictionary(address objectivec.IObject) foundation.AttributedString
-	Groups() foundation.Array
-	HasUnsavedChanges() bool
+	// properties:
+	// methods:
+	AddRecord(record IABRecord) bool /* primitive/slice/pointer. */
+	AddRecordError(record IABRecord, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	DefaultCountryCode() objc.IObject /* cross-framework: String */
+	DefaultNameOrdering() int /* primitive/slice/pointer. */
+	FormattedAddressFromDictionary(address objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
+	Groups() objc.IObject /* cross-framework: Array */
+	HasUnsavedChanges() bool /* primitive/slice/pointer. */
 	Me() IABPerson
-	People() foundation.Array
-	RecordForUniqueId(uniqueId string) IABRecord
-	RecordClassFromUniqueId(uniqueId string) foundation.String
-	RecordsMatchingSearchElement(search IABSearchElement) foundation.Array
-	RemoveRecord(record IABRecord) bool
-	RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool
-	Save() bool
-	SaveAndReturnError(error_ unsafe.Pointer) bool
+	People() objc.IObject /* cross-framework: Array */
+	RecordForUniqueId(uniqueId string /* primitive/slice/pointer. */) IABRecord
+	RecordClassFromUniqueId(uniqueId string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	RecordsMatchingSearchElement(search IABSearchElement) objc.IObject /* cross-framework: Array */
+	RemoveRecord(record IABRecord) bool /* primitive/slice/pointer. */
+	RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	Save() bool /* primitive/slice/pointer. */
+	SaveAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 	SetMe(moi IABPerson)
 }
 
@@ -127,7 +128,7 @@ func (ac _ABAddressBookClass) SharedAddressBook() ABAddressBook {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/add(_:)
-func (a_ ABAddressBook) AddRecord(record IABRecord) bool {
+func (a_ ABAddressBook) AddRecord(record IABRecord) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addRecord:"), record)
 	return rv
 }
@@ -137,7 +138,7 @@ func (a_ ABAddressBook) AddRecord(record IABRecord) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/add(_:error:)
-func (a_ ABAddressBook) AddRecordError(record IABRecord, error_ unsafe.Pointer) bool {
+func (a_ ABAddressBook) AddRecordError(record IABRecord, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addRecord:error:"), record, error_)
 	return rv
 }
@@ -147,8 +148,8 @@ func (a_ ABAddressBook) AddRecordError(record IABRecord, error_ unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/defaultCountryCode()
-func (a_ ABAddressBook) DefaultCountryCode() foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("defaultCountryCode"))
+func (a_ ABAddressBook) DefaultCountryCode() objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("defaultCountryCode"))
 	return rv
 }
 
@@ -157,7 +158,7 @@ func (a_ ABAddressBook) DefaultCountryCode() foundation.String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/defaultNameOrdering()
-func (a_ ABAddressBook) DefaultNameOrdering() int {
+func (a_ ABAddressBook) DefaultNameOrdering() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("defaultNameOrdering"))
 	return rv
 }
@@ -167,8 +168,8 @@ func (a_ ABAddressBook) DefaultNameOrdering() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/formattedAddress(from:)
-func (a_ ABAddressBook) FormattedAddressFromDictionary(address objectivec.IObject) foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("formattedAddressFromDictionary:"), address)
+func (a_ ABAddressBook) FormattedAddressFromDictionary(address objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](a_.ID, objc.Sel("formattedAddressFromDictionary:"), address)
 	return rv
 }
 
@@ -177,8 +178,8 @@ func (a_ ABAddressBook) FormattedAddressFromDictionary(address objectivec.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/groups()
-func (a_ ABAddressBook) Groups() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("groups"))
+func (a_ ABAddressBook) Groups() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("groups"))
 	return rv
 }
 
@@ -187,7 +188,7 @@ func (a_ ABAddressBook) Groups() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/hasUnsavedChanges()
-func (a_ ABAddressBook) HasUnsavedChanges() bool {
+func (a_ ABAddressBook) HasUnsavedChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasUnsavedChanges"))
 	return rv
 }
@@ -207,8 +208,8 @@ func (a_ ABAddressBook) Me() IABPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/people()
-func (a_ ABAddressBook) People() foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("people"))
+func (a_ ABAddressBook) People() objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("people"))
 	return rv
 }
 
@@ -217,7 +218,7 @@ func (a_ ABAddressBook) People() foundation.Array {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/record(forUniqueId:)
-func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) IABRecord {
+func (a_ ABAddressBook) RecordForUniqueId(uniqueId string /* primitive/slice/pointer. */) IABRecord {
 	rv := objc.Send[ABRecord](a_.ID, objc.Sel("recordForUniqueId:"), objc.String(uniqueId))
 	return rv
 }
@@ -227,8 +228,8 @@ func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) IABRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/recordClass(fromUniqueId:)
-func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) foundation.String {
-	rv := objc.Send[foundation.String](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
+func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
 	return rv
 }
 
@@ -237,8 +238,8 @@ func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) foundation.Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/records(matching:)
-func (a_ ABAddressBook) RecordsMatchingSearchElement(search IABSearchElement) foundation.Array {
-	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("recordsMatchingSearchElement:"), search)
+func (a_ ABAddressBook) RecordsMatchingSearchElement(search IABSearchElement) objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](a_.ID, objc.Sel("recordsMatchingSearchElement:"), search)
 	return rv
 }
 
@@ -247,7 +248,7 @@ func (a_ ABAddressBook) RecordsMatchingSearchElement(search IABSearchElement) fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/remove(_:)
-func (a_ ABAddressBook) RemoveRecord(record IABRecord) bool {
+func (a_ ABAddressBook) RemoveRecord(record IABRecord) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeRecord:"), record)
 	return rv
 }
@@ -257,7 +258,7 @@ func (a_ ABAddressBook) RemoveRecord(record IABRecord) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/remove(_:error:)
-func (a_ ABAddressBook) RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool {
+func (a_ ABAddressBook) RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeRecord:error:"), record, error_)
 	return rv
 }
@@ -267,7 +268,7 @@ func (a_ ABAddressBook) RemoveRecordError(record IABRecord, error_ unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/save()
-func (a_ ABAddressBook) Save() bool {
+func (a_ ABAddressBook) Save() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("save"))
 	return rv
 }
@@ -277,7 +278,7 @@ func (a_ ABAddressBook) Save() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/saveAndReturnError()
-func (a_ ABAddressBook) SaveAndReturnError(error_ unsafe.Pointer) bool {
+func (a_ ABAddressBook) SaveAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("saveAndReturnError:"), error_)
 	return rv
 }

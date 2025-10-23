@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewWindowController
 
+// ExampleNewWindowControllerWithCoder demonstrates how to create a WindowController instance using NewWindowControllerWithCoder.
+func ExampleNewWindowControllerWithCoder() {
+	_ = appkit.NewWindowControllerWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}
 // ExampleNewWindowControllerWithWindow demonstrates how to create a WindowController instance using NewWindowControllerWithWindow.
 // Returns a window controller initialized with a given window.
 func ExampleNewWindowControllerWithWindow() {

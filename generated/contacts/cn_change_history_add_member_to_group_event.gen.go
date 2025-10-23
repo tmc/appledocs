@@ -29,8 +29,10 @@ type _CNChangeHistoryAddMemberToGroupEventClass struct {
 // An interface definition for the [CNChangeHistoryAddMemberToGroupEvent] class.
 type ICNChangeHistoryAddMemberToGroupEvent interface {
 	ICNChangeHistoryEvent
+	// properties:
 	Group() ICNGroup
 	Member() ICNContact
+	// methods:
 }
 
 // An object that represents a user adding a contact to a group.

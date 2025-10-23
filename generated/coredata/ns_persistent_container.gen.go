@@ -30,13 +30,15 @@ type _PersistentContainerClass struct {
 // An interface definition for the [PersistentContainer] class.
 type IPersistentContainer interface {
 	objectivec.IObject
+	// properties:
 	ManagedObjectModel() IManagedObjectModel
 	PersistentStoreCoordinator() IPersistentStoreCoordinator
 	ViewContext() IManagedObjectContext
-	Name() string
-	SetName(value string)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	PersistentStoreDescriptions() IPersistentStoreDescription
 	SetPersistentStoreDescriptions(value IPersistentStoreDescription)
+	// methods:
 	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
 	NewBackgroundContext() IManagedObjectContext
 	PerformBackgroundTask(block unsafe.Pointer)
@@ -99,7 +101,7 @@ func NewPersistentContainer() PersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
-func NewPersistentContainerWithName(name string) PersistentContainer {
+func NewPersistentContainerWithName(name string /* primitive/slice/pointer. */) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
 	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
 	rv.Autorelease()
@@ -170,7 +172,7 @@ func (p_ PersistentContainer) ViewContext() IManagedObjectContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
-func (p_ PersistentContainer) Name() string {
+func (p_ PersistentContainer) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("name"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (p_ PersistentContainer) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentcontainer/name
-func (p_ PersistentContainer) SetName(value string) {
+func (p_ PersistentContainer) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

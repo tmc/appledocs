@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,35 +30,37 @@ type _WindowControllerClass struct {
 // An interface definition for the [WindowController] class.
 type IWindowController interface {
 	IResponder
+	// properties:
 	ContentViewController() IViewController
 	SetContentViewController(value IViewController)
 	Document() objc.ID
 	SetDocument(value objc.ID)
-	WindowLoaded() bool
+	WindowLoaded() bool /* primitive/slice/pointer. */
 	Owner() objc.ID
-	PreviewRepresentableActivityItems() []objc.ID
-	SetPreviewRepresentableActivityItems(value []objc.ID)
-	ShouldCascadeWindows() bool
-	SetShouldCascadeWindows(value bool)
-	ShouldCloseDocument() bool
-	SetShouldCloseDocument(value bool)
+	PreviewRepresentableActivityItems() []objc.ID /* already interface */
+	SetPreviewRepresentableActivityItems(value []objc.ID /* already interface */)
+	ShouldCascadeWindows() bool /* primitive/slice/pointer. */
+	SetShouldCascadeWindows(value bool /* primitive/slice/pointer. */)
+	ShouldCloseDocument() bool /* primitive/slice/pointer. */
+	SetShouldCloseDocument(value bool /* primitive/slice/pointer. */)
 	Storyboard() IStoryboard
 	Window() IWindow
 	SetWindow(value IWindow)
-	WindowFrameAutosaveName() WindowFrameAutosaveName
-	SetWindowFrameAutosaveName(value WindowFrameAutosaveName)
-	WindowNibName() NibName
-	WindowNibPath() string
-	IsWindowLoaded() bool
-	SetIsWindowLoaded(value bool)
+	WindowFrameAutosaveName() objc.IObject /* cross-framework: WindowFrameAutosaveName */
+	SetWindowFrameAutosaveName(value objc.IObject /* cross-framework: WindowFrameAutosaveName */)
+	WindowNibName() objc.IObject /* cross-framework: NibName */
+	WindowNibPath() string /* primitive/slice/pointer. */
+	IsWindowLoaded() bool /* primitive/slice/pointer. */
+	SetIsWindowLoaded(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Close()
 	DismissController(sender objectivec.IObject)
 	LoadWindow()
-	SetDocumentEdited(dirtyFlag bool)
+	SetDocumentEdited(dirtyFlag bool /* primitive/slice/pointer. */)
 	ShowWindow(sender objectivec.IObject)
 	SynchronizeWindowTitleWithDocumentName()
 	WindowDidLoad()
-	WindowTitleForDocumentDisplayName(displayName string) foundation.String
+	WindowTitleForDocumentDisplayName(displayName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
 	WindowWillLoad()
 }
 
@@ -120,7 +121,7 @@ func NewWindowController() WindowController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(coder:)
-func NewWindowControllerWithCoder(coder foundation.Coder) WindowController {
+func NewWindowControllerWithCoder(coder Coder /* not a class type */) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -144,7 +145,7 @@ func NewWindowControllerWithWindow(window IWindow) WindowController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:)
-func NewWindowControllerWithWindowNibName(windowNibName NibName) WindowController {
+func NewWindowControllerWithWindowNibName(windowNibName objc.IObject /* cross-framework NibName */) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:"), windowNibName)
 	rv.Autorelease()
@@ -156,7 +157,7 @@ func NewWindowControllerWithWindowNibName(windowNibName NibName) WindowControlle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibName:owner:)
-func NewWindowControllerWithWindowNibNameOwner(windowNibName NibName, owner objectivec.IObject) WindowController {
+func NewWindowControllerWithWindowNibNameOwner(windowNibName objc.IObject /* cross-framework NibName */, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibName:owner:"), windowNibName, owner)
 	rv.Autorelease()
@@ -168,7 +169,7 @@ func NewWindowControllerWithWindowNibNameOwner(windowNibName NibName, owner obje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/init(windowNibPath:owner:)
-func NewWindowControllerWithWindowNibPathOwner(windowNibPath string, owner objectivec.IObject) WindowController {
+func NewWindowControllerWithWindowNibPathOwner(windowNibPath string /* primitive/slice/pointer. */, owner objectivec.IObject) WindowController {
 	instance := getWindowControllerClass().Alloc()
 	rv := objc.Send[WindowController](instance.ID, objc.Sel("initWithWindowNibPath:owner:"), objc.String(windowNibPath), owner)
 	rv.Autorelease()
@@ -208,7 +209,7 @@ func (w_ WindowController) LoadWindow() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/setDocumentEdited(_:)
-func (w_ WindowController) SetDocumentEdited(dirtyFlag bool) {
+func (w_ WindowController) SetDocumentEdited(dirtyFlag bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDocumentEdited:"), dirtyFlag)
 }
 
@@ -244,8 +245,8 @@ func (w_ WindowController) WindowDidLoad() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowTitle(forDocumentDisplayName:)
-func (w_ WindowController) WindowTitleForDocumentDisplayName(displayName string) foundation.String {
-	rv := objc.Send[foundation.String](w_.ID, objc.Sel("windowTitleForDocumentDisplayName:"), objc.String(displayName))
+func (w_ WindowController) WindowTitleForDocumentDisplayName(displayName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](w_.ID, objc.Sel("windowTitleForDocumentDisplayName:"), objc.String(displayName))
 	return rv
 }
 
@@ -301,7 +302,7 @@ func (w_ WindowController) SetDocument(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/isWindowLoaded
-func (w_ WindowController) WindowLoaded() bool {
+func (w_ WindowController) WindowLoaded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("windowLoaded"))
 	return rv
 }
@@ -319,7 +320,7 @@ func (w_ WindowController) Owner() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/previewRepresentableActivityItems
-func (w_ WindowController) PreviewRepresentableActivityItems() []objc.ID {
+func (w_ WindowController) PreviewRepresentableActivityItems() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](w_.ID, objc.Sel("previewRepresentableActivityItems"))
 	return rv
 }
@@ -327,7 +328,7 @@ func (w_ WindowController) PreviewRepresentableActivityItems() []objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/previewRepresentableActivityItems
-func (w_ WindowController) SetPreviewRepresentableActivityItems(value []objc.ID) {
+func (w_ WindowController) SetPreviewRepresentableActivityItems(value []objc.ID /* already interface */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -346,7 +347,7 @@ func (w_ WindowController) SetPreviewRepresentableActivityItems(value []objc.ID)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCascadeWindows
-func (w_ WindowController) ShouldCascadeWindows() bool {
+func (w_ WindowController) ShouldCascadeWindows() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCascadeWindows"))
 	return rv
 }
@@ -356,7 +357,7 @@ func (w_ WindowController) ShouldCascadeWindows() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCascadeWindows
-func (w_ WindowController) SetShouldCascadeWindows(value bool) {
+func (w_ WindowController) SetShouldCascadeWindows(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCascadeWindows:"), value)
 }
 
@@ -365,7 +366,7 @@ func (w_ WindowController) SetShouldCascadeWindows(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCloseDocument
-func (w_ WindowController) ShouldCloseDocument() bool {
+func (w_ WindowController) ShouldCloseDocument() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("shouldCloseDocument"))
 	return rv
 }
@@ -375,7 +376,7 @@ func (w_ WindowController) ShouldCloseDocument() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/shouldCloseDocument
-func (w_ WindowController) SetShouldCloseDocument(value bool) {
+func (w_ WindowController) SetShouldCloseDocument(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setShouldCloseDocument:"), value)
 }
 
@@ -413,7 +414,7 @@ func (w_ WindowController) SetWindow(value IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowFrameAutosaveName
-func (w_ WindowController) WindowFrameAutosaveName() WindowFrameAutosaveName {
+func (w_ WindowController) WindowFrameAutosaveName() objc.IObject /* cross-framework: WindowFrameAutosaveName */ {
 	rv := objc.Send[WindowFrameAutosaveName](w_.ID, objc.Sel("windowFrameAutosaveName"))
 	return rv
 }
@@ -423,7 +424,7 @@ func (w_ WindowController) WindowFrameAutosaveName() WindowFrameAutosaveName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowFrameAutosaveName
-func (w_ WindowController) SetWindowFrameAutosaveName(value WindowFrameAutosaveName) {
+func (w_ WindowController) SetWindowFrameAutosaveName(value objc.IObject /* cross-framework: WindowFrameAutosaveName */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWindowFrameAutosaveName:"), value)
 }
 
@@ -432,7 +433,7 @@ func (w_ WindowController) SetWindowFrameAutosaveName(value WindowFrameAutosaveN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowNibName
-func (w_ WindowController) WindowNibName() NibName {
+func (w_ WindowController) WindowNibName() objc.IObject /* cross-framework: NibName */ {
 	rv := objc.Send[NibName](w_.ID, objc.Sel("windowNibName"))
 	return rv
 }
@@ -442,7 +443,7 @@ func (w_ WindowController) WindowNibName() NibName {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowController/windowNibPath
-func (w_ WindowController) WindowNibPath() string {
+func (w_ WindowController) WindowNibPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](w_.ID, objc.Sel("windowNibPath"))
 	return rv
 }
@@ -452,7 +453,7 @@ func (w_ WindowController) WindowNibPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
-func (w_ WindowController) IsWindowLoaded() bool {
+func (w_ WindowController) IsWindowLoaded() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](w_.ID, objc.Sel("isWindowLoaded"))
 	return rv
 }
@@ -462,7 +463,7 @@ func (w_ WindowController) IsWindowLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowcontroller/iswindowloaded
-func (w_ WindowController) SetIsWindowLoaded(value bool) {
+func (w_ WindowController) SetIsWindowLoaded(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIsWindowLoaded:"), value)
 }
 

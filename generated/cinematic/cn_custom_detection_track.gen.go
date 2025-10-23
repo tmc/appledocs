@@ -29,7 +29,9 @@ type _CNCustomDetectionTrackClass struct {
 // An interface definition for the [CNCustomDetectionTrack] class.
 type ICNCustomDetectionTrack interface {
 	ICNDetectionTrack
-	AllDetections() []CNDetection
+	// properties:
+	AllDetections() []CNDetection /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object representing a discrete detection track composed of individual detections.
@@ -89,7 +91,7 @@ func NewCNCustomDetectionTrack() CNCustomDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/initWithDetections:smooth:
-func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection, applySmoothing bool) CNCustomDetectionTrack {
+func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection /* primitive/slice/pointer. */, applySmoothing bool /* primitive/slice/pointer. */) CNCustomDetectionTrack {
 	instance := getCNCustomDetectionTrackClass().Alloc()
 	rv := objc.Send[CNCustomDetectionTrack](instance.ID, objc.Sel("initWithDetections:smooth:"), detections, applySmoothing)
 	rv.Autorelease()
@@ -102,7 +104,7 @@ func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection, app
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/allDetections
-func (c_ CNCustomDetectionTrack) AllDetections() []CNDetection {
+func (c_ CNCustomDetectionTrack) AllDetections() []CNDetection /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CNDetection](c_.ID, objc.Sel("allDetections"))
 	return rv
 }

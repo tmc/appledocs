@@ -30,23 +30,23 @@ type _INSendMessageIntentClass struct {
 type IINSendMessageIntent interface {
 	IINIntent
 	// properties:
-	SpeakableGroupName() INSpeakableString
-	Attachments() INSendMessageAttachment
-	SetAttachments(value INSendMessageAttachment)
-	Content() string
-	SetContent(value string)
-	ConversationIdentifier() string
-	SetConversationIdentifier(value string)
-	GroupName() string
-	SetGroupName(value string)
+	SpeakableGroupName() INSpeakableString /* already interface */
+	Attachments() INSendMessageAttachment /* already interface */
+	SetAttachments(value INSendMessageAttachment /* already interface */)
+	Content() string /* primitive/slice/pointer. */
+	SetContent(value string /* primitive/slice/pointer. */)
+	ConversationIdentifier() string /* primitive/slice/pointer. */
+	SetConversationIdentifier(value string /* primitive/slice/pointer. */)
+	GroupName() string /* primitive/slice/pointer. */
+	SetGroupName(value string /* primitive/slice/pointer. */)
 	OutgoingMessageType() unsafe.Pointer
 	SetOutgoingMessageType(value unsafe.Pointer)
-	Recipients() INPerson
-	SetRecipients(value INPerson)
-	Sender() INPerson
-	SetSender(value INPerson)
-	ServiceName() string
-	SetServiceName(value string)
+	Recipients() INPerson /* already interface */
+	SetRecipients(value INPerson /* already interface */)
+	Sender() INPerson /* already interface */
+	SetSender(value INPerson /* already interface */)
+	ServiceName() string /* primitive/slice/pointer. */
+	SetServiceName(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -109,7 +109,7 @@ func NewINSendMessageIntent() INSendMessageIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageIntent/speakableGroupName
-func (i_ INSendMessageIntent) SpeakableGroupName() INSpeakableString {
+func (i_ INSendMessageIntent) SpeakableGroupName() INSpeakableString /* already interface */ {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("speakableGroupName"))
 	return rv
 }
@@ -119,7 +119,7 @@ func (i_ INSendMessageIntent) SpeakableGroupName() INSpeakableString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/attachments
-func (i_ INSendMessageIntent) Attachments() INSendMessageAttachment {
+func (i_ INSendMessageIntent) Attachments() INSendMessageAttachment /* already interface */ {
 	rv := objc.Send[INSendMessageAttachment](i_.ID, objc.Sel("attachments"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (i_ INSendMessageIntent) Attachments() INSendMessageAttachment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/attachments
-func (i_ INSendMessageIntent) SetAttachments(value INSendMessageAttachment) {
+func (i_ INSendMessageIntent) SetAttachments(value INSendMessageAttachment /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttachments:"), value)
 }
 
@@ -138,7 +138,7 @@ func (i_ INSendMessageIntent) SetAttachments(value INSendMessageAttachment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/content
-func (i_ INSendMessageIntent) Content() string {
+func (i_ INSendMessageIntent) Content() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("content"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (i_ INSendMessageIntent) Content() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/content
-func (i_ INSendMessageIntent) SetContent(value string) {
+func (i_ INSendMessageIntent) SetContent(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
 }
 
@@ -157,7 +157,7 @@ func (i_ INSendMessageIntent) SetContent(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/conversationidentifier
-func (i_ INSendMessageIntent) ConversationIdentifier() string {
+func (i_ INSendMessageIntent) ConversationIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifier"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (i_ INSendMessageIntent) ConversationIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/conversationidentifier
-func (i_ INSendMessageIntent) SetConversationIdentifier(value string) {
+func (i_ INSendMessageIntent) SetConversationIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), objc.String(value))
 }
 
@@ -176,7 +176,7 @@ func (i_ INSendMessageIntent) SetConversationIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/groupname
-func (i_ INSendMessageIntent) GroupName() string {
+func (i_ INSendMessageIntent) GroupName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupName"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (i_ INSendMessageIntent) GroupName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/groupname
-func (i_ INSendMessageIntent) SetGroupName(value string) {
+func (i_ INSendMessageIntent) SetGroupName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), objc.String(value))
 }
 
@@ -214,7 +214,7 @@ func (i_ INSendMessageIntent) SetOutgoingMessageType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/recipients
-func (i_ INSendMessageIntent) Recipients() INPerson {
+func (i_ INSendMessageIntent) Recipients() INPerson /* already interface */ {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("recipients"))
 	return rv
 }
@@ -224,7 +224,7 @@ func (i_ INSendMessageIntent) Recipients() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/recipients
-func (i_ INSendMessageIntent) SetRecipients(value INPerson) {
+func (i_ INSendMessageIntent) SetRecipients(value INPerson /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipients:"), value)
 }
 
@@ -233,7 +233,7 @@ func (i_ INSendMessageIntent) SetRecipients(value INPerson) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/sender
-func (i_ INSendMessageIntent) Sender() INPerson {
+func (i_ INSendMessageIntent) Sender() INPerson /* already interface */ {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("sender"))
 	return rv
 }
@@ -243,7 +243,7 @@ func (i_ INSendMessageIntent) Sender() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/sender
-func (i_ INSendMessageIntent) SetSender(value INPerson) {
+func (i_ INSendMessageIntent) SetSender(value INPerson /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }
 
@@ -252,7 +252,7 @@ func (i_ INSendMessageIntent) SetSender(value INPerson) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/servicename
-func (i_ INSendMessageIntent) ServiceName() string {
+func (i_ INSendMessageIntent) ServiceName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("serviceName"))
 	return rv
 }
@@ -262,7 +262,7 @@ func (i_ INSendMessageIntent) ServiceName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintent/servicename
-func (i_ INSendMessageIntent) SetServiceName(value string) {
+func (i_ INSendMessageIntent) SetServiceName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), objc.String(value))
 }
 

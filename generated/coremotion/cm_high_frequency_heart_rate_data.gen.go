@@ -30,9 +30,11 @@ type _HighFrequencyHeartRateDataClass struct {
 // An interface definition for the [HighFrequencyHeartRateData] class.
 type IHighFrequencyHeartRateData interface {
 	ILogItem
-	Confidence() CMHighFrequencyHeartRateDataConfidence
-	Date() foundation.NSDate
-	HeartRate() float64
+	// properties:
+	Confidence() HighFrequencyHeartRateDataConfidence
+	Date() foundation.objc.IObject /* cross-framework: NSDate */
+	HeartRate() float64 /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class that represents heart rate data collected at 1 Hz.
@@ -94,8 +96,8 @@ func NewHighFrequencyHeartRateData() HighFrequencyHeartRateData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/confidence
-func (h_ HighFrequencyHeartRateData) Confidence() CMHighFrequencyHeartRateDataConfidence {
-	rv := objc.Send[CMHighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
+func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConfidence {
+	rv := objc.Send[HighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -104,7 +106,7 @@ func (h_ HighFrequencyHeartRateData) Confidence() CMHighFrequencyHeartRateDataCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/date
-func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
+func (h_ HighFrequencyHeartRateData) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("date"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/heartRate
-func (h_ HighFrequencyHeartRateData) HeartRate() float64 {
+func (h_ HighFrequencyHeartRateData) HeartRate() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](h_.ID, objc.Sel("heartRate"))
 	return rv
 }

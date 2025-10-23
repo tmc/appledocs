@@ -30,10 +30,12 @@ type _CustomRoutingEventClass struct {
 // An interface definition for the [CustomRoutingEvent] class.
 type ICustomRoutingEvent interface {
 	objectivec.IObject
-	Reason() AVCustomRoutingEventReason
-	SetReason(value AVCustomRoutingEventReason)
+	// properties:
+	Reason() CustomRoutingEventReason /* not a class type */
+	SetReason(value CustomRoutingEventReason /* not a class type */)
 	Route() IAVCustomDeviceRoute
 	SetRoute(value IAVCustomDeviceRoute)
+	// methods:
 }
 
 // An object that represents an event that occurs on a route.
@@ -93,7 +95,7 @@ func NewCustomRoutingEvent() CustomRoutingEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomRoutingEvent) Reason() AVCustomRoutingEventReason {
+func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason /* not a class type */ {
 	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (c_ CustomRoutingEvent) Reason() AVCustomRoutingEventReason {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomRoutingEvent) SetReason(value AVCustomRoutingEventReason) {
+func (c_ CustomRoutingEvent) SetReason(value CustomRoutingEventReason /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
 

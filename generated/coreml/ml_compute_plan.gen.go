@@ -31,7 +31,9 @@ type _ComputePlanClass struct {
 // An interface definition for the [ComputePlan] class.
 type IComputePlan interface {
 	objectivec.IObject
+	// properties:
 	ModelStructure() IMLModelStructure
+	// methods:
 	ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanDeviceUsage
 	ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) IComputePlanDeviceUsage
 	EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) IComputePlanCost
@@ -94,7 +96,7 @@ func NewComputePlan() ComputePlan {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.URL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 

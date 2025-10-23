@@ -29,14 +29,14 @@ type _AssetDownloadTaskClass struct {
 
 // An interface definition for the [AssetDownloadTask] class.
 type IAssetDownloadTask interface {
-	foundation.IURLSessionTask
+	IURLSessionTask
 	// properties:
-	DestinationURL() foundation.URL /* not a class type */
-	SetDestinationURL(value foundation.URL /* not a class type */)
-	LoadedTimeRanges() Value /* not a class type */
-	SetLoadedTimeRanges(value Value /* not a class type */)
-	Options() string /* primitive/slice/pointer */
-	SetOptions(value string /* primitive/slice/pointer */)
+	DestinationURL() objc.IObject /* cross-framework: URL */
+	SetDestinationURL(value objc.IObject /* cross-framework: URL */)
+	LoadedTimeRanges() objc.IObject /* cross-framework: Value */
+	SetLoadedTimeRanges(value objc.IObject /* cross-framework: Value */)
+	Options() objc.IObject /* cross-framework: NSString */
+	SetOptions(value objc.IObject /* cross-framework: NSString */)
 	UrlAsset() IAVURLAsset
 	SetUrlAsset(value IAVURLAsset)
 	// methods:
@@ -52,7 +52,7 @@ type IAssetDownloadTask interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
 type AssetDownloadTask struct {
-	foundation.URLSessionTask
+	URLSessionTask
 }
 
 // AssetDownloadTaskFrom constructs a [AssetDownloadTask] from an unsafe.Pointer.
@@ -60,7 +60,7 @@ type AssetDownloadTask struct {
 // A session used to download HTTP Live Streaming assets.
 func AssetDownloadTaskFrom(ptr unsafe.Pointer) AssetDownloadTask {
 	return AssetDownloadTask{
-		URLSessionTask: foundation.URLSessionTaskFrom(ptr),
+		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
 
@@ -101,7 +101,7 @@ func NewAssetDownloadTask() AssetDownloadTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) DestinationURL() foundation.URL /* not a class type */ {
+func (a_ AssetDownloadTask) DestinationURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("destinationURL"))
 	return rv
 }
@@ -111,7 +111,7 @@ func (a_ AssetDownloadTask) DestinationURL() foundation.URL /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL /* not a class type */) {
+func (a_ AssetDownloadTask) SetDestinationURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDestinationURL:"), value)
 }
 
@@ -120,7 +120,7 @@ func (a_ AssetDownloadTask) SetDestinationURL(value foundation.URL /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) LoadedTimeRanges() Value /* not a class type */ {
+func (a_ AssetDownloadTask) LoadedTimeRanges() objc.IObject /* cross-framework: Value */ {
 	rv := objc.Send[Value](a_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
 }
@@ -130,7 +130,7 @@ func (a_ AssetDownloadTask) LoadedTimeRanges() Value /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) SetLoadedTimeRanges(value Value /* not a class type */) {
+func (a_ AssetDownloadTask) SetLoadedTimeRanges(value objc.IObject /* cross-framework: Value */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoadedTimeRanges:"), value)
 }
 
@@ -139,8 +139,8 @@ func (a_ AssetDownloadTask) SetLoadedTimeRanges(value Value /* not a class type 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) Options() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("options"))
+func (a_ AssetDownloadTask) Options() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (a_ AssetDownloadTask) Options() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) SetOptions(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), objc.String(value))
+func (a_ AssetDownloadTask) SetOptions(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), value)
 }
 
 

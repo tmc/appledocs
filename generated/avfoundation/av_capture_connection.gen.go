@@ -35,36 +35,36 @@ type ICaptureConnection interface {
 	SetActiveVideoStabilizationMode(value CaptureVideoStabilizationMode /* not a class type */)
 	AudioChannels() IAVCaptureAudioChannel
 	SetAudioChannels(value IAVCaptureAudioChannel)
-	AutomaticallyAdjustsVideoMirroring() bool /* primitive/slice/pointer */
-	SetAutomaticallyAdjustsVideoMirroring(value bool /* primitive/slice/pointer */)
-	EnablesVideoStabilizationWhenAvailable() bool /* primitive/slice/pointer */
-	SetEnablesVideoStabilizationWhenAvailable(value bool /* primitive/slice/pointer */)
+	AutomaticallyAdjustsVideoMirroring() bool /* primitive/slice/pointer. */
+	SetAutomaticallyAdjustsVideoMirroring(value bool /* primitive/slice/pointer. */)
+	EnablesVideoStabilizationWhenAvailable() bool /* primitive/slice/pointer. */
+	SetEnablesVideoStabilizationWhenAvailable(value bool /* primitive/slice/pointer. */)
 	InputPorts() IAVCaptureInputPort
 	SetInputPorts(value IAVCaptureInputPort)
-	IsActive() bool /* primitive/slice/pointer */
-	SetIsActive(value bool /* primitive/slice/pointer */)
-	IsCameraIntrinsicMatrixDeliveryEnabled() bool /* primitive/slice/pointer */
-	SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool /* primitive/slice/pointer */)
-	IsCameraIntrinsicMatrixDeliverySupported() bool /* primitive/slice/pointer */
-	SetIsCameraIntrinsicMatrixDeliverySupported(value bool /* primitive/slice/pointer */)
-	IsEnabled() bool /* primitive/slice/pointer */
-	SetIsEnabled(value bool /* primitive/slice/pointer */)
-	IsVideoFieldModeSupported() bool /* primitive/slice/pointer */
-	SetIsVideoFieldModeSupported(value bool /* primitive/slice/pointer */)
-	IsVideoMaxFrameDurationSupported() bool /* primitive/slice/pointer */
-	SetIsVideoMaxFrameDurationSupported(value bool /* primitive/slice/pointer */)
-	IsVideoMinFrameDurationSupported() bool /* primitive/slice/pointer */
-	SetIsVideoMinFrameDurationSupported(value bool /* primitive/slice/pointer */)
-	IsVideoMirrored() bool /* primitive/slice/pointer */
-	SetIsVideoMirrored(value bool /* primitive/slice/pointer */)
-	IsVideoMirroringSupported() bool /* primitive/slice/pointer */
-	SetIsVideoMirroringSupported(value bool /* primitive/slice/pointer */)
-	IsVideoOrientationSupported() bool /* primitive/slice/pointer */
-	SetIsVideoOrientationSupported(value bool /* primitive/slice/pointer */)
-	IsVideoStabilizationEnabled() bool /* primitive/slice/pointer */
-	SetIsVideoStabilizationEnabled(value bool /* primitive/slice/pointer */)
-	IsVideoStabilizationSupported() bool /* primitive/slice/pointer */
-	SetIsVideoStabilizationSupported(value bool /* primitive/slice/pointer */)
+	IsActive() bool /* primitive/slice/pointer. */
+	SetIsActive(value bool /* primitive/slice/pointer. */)
+	IsCameraIntrinsicMatrixDeliveryEnabled() bool /* primitive/slice/pointer. */
+	SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool /* primitive/slice/pointer. */)
+	IsCameraIntrinsicMatrixDeliverySupported() bool /* primitive/slice/pointer. */
+	SetIsCameraIntrinsicMatrixDeliverySupported(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsVideoFieldModeSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoFieldModeSupported(value bool /* primitive/slice/pointer. */)
+	IsVideoMaxFrameDurationSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoMaxFrameDurationSupported(value bool /* primitive/slice/pointer. */)
+	IsVideoMinFrameDurationSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoMinFrameDurationSupported(value bool /* primitive/slice/pointer. */)
+	IsVideoMirrored() bool /* primitive/slice/pointer. */
+	SetIsVideoMirrored(value bool /* primitive/slice/pointer. */)
+	IsVideoMirroringSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoMirroringSupported(value bool /* primitive/slice/pointer. */)
+	IsVideoOrientationSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoOrientationSupported(value bool /* primitive/slice/pointer. */)
+	IsVideoStabilizationEnabled() bool /* primitive/slice/pointer. */
+	SetIsVideoStabilizationEnabled(value bool /* primitive/slice/pointer. */)
+	IsVideoStabilizationSupported() bool /* primitive/slice/pointer. */
+	SetIsVideoStabilizationSupported(value bool /* primitive/slice/pointer. */)
 	Output() IAVCaptureOutput
 	SetOutput(value IAVCaptureOutput)
 	PreferredVideoStabilizationMode() CaptureVideoStabilizationMode /* not a class type */
@@ -73,18 +73,18 @@ type ICaptureConnection interface {
 	SetVideoFieldMode(value VideoFieldMode /* not a class type */)
 	VideoMaxFrameDuration() Time /* not a class type */
 	SetVideoMaxFrameDuration(value Time /* not a class type */)
-	VideoMaxScaleAndCropFactor() float64 /* primitive/slice/pointer */
-	SetVideoMaxScaleAndCropFactor(value float64 /* primitive/slice/pointer */)
+	VideoMaxScaleAndCropFactor() float64 /* primitive/slice/pointer. */
+	SetVideoMaxScaleAndCropFactor(value float64 /* primitive/slice/pointer. */)
 	VideoMinFrameDuration() Time /* not a class type */
 	SetVideoMinFrameDuration(value Time /* not a class type */)
 	VideoOrientation() CaptureVideoOrientation /* not a class type */
 	SetVideoOrientation(value CaptureVideoOrientation /* not a class type */)
 	VideoPreviewLayer() IAVCaptureVideoPreviewLayer
 	SetVideoPreviewLayer(value IAVCaptureVideoPreviewLayer)
-	VideoRotationAngle() float64 /* primitive/slice/pointer */
-	SetVideoRotationAngle(value float64 /* primitive/slice/pointer */)
-	VideoScaleAndCropFactor() float64 /* primitive/slice/pointer */
-	SetVideoScaleAndCropFactor(value float64 /* primitive/slice/pointer */)
+	VideoRotationAngle() float64 /* primitive/slice/pointer. */
+	SetVideoRotationAngle(value float64 /* primitive/slice/pointer. */)
+	VideoScaleAndCropFactor() float64 /* primitive/slice/pointer. */
+	SetVideoScaleAndCropFactor(value float64 /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -183,7 +183,7 @@ func (c_ CaptureConnection) SetAudioChannels(value IAVCaptureAudioChannel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/automaticallyadjustsvideomirroring
-func (c_ CaptureConnection) AutomaticallyAdjustsVideoMirroring() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) AutomaticallyAdjustsVideoMirroring() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyAdjustsVideoMirroring"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (c_ CaptureConnection) AutomaticallyAdjustsVideoMirroring() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/automaticallyadjustsvideomirroring
-func (c_ CaptureConnection) SetAutomaticallyAdjustsVideoMirroring(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetAutomaticallyAdjustsVideoMirroring(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyAdjustsVideoMirroring:"), value)
 }
 
@@ -202,7 +202,7 @@ func (c_ CaptureConnection) SetAutomaticallyAdjustsVideoMirroring(value bool /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/enablesvideostabilizationwhenavailable
-func (c_ CaptureConnection) EnablesVideoStabilizationWhenAvailable() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) EnablesVideoStabilizationWhenAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enablesVideoStabilizationWhenAvailable"))
 	return rv
 }
@@ -212,7 +212,7 @@ func (c_ CaptureConnection) EnablesVideoStabilizationWhenAvailable() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/enablesvideostabilizationwhenavailable
-func (c_ CaptureConnection) SetEnablesVideoStabilizationWhenAvailable(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetEnablesVideoStabilizationWhenAvailable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnablesVideoStabilizationWhenAvailable:"), value)
 }
 
@@ -240,7 +240,7 @@ func (c_ CaptureConnection) SetInputPorts(value IAVCaptureInputPort) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isactive
-func (c_ CaptureConnection) IsActive() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -250,7 +250,7 @@ func (c_ CaptureConnection) IsActive() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isactive
-func (c_ CaptureConnection) SetIsActive(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -259,7 +259,7 @@ func (c_ CaptureConnection) SetIsActive(value bool /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliveryenabled
-func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliveryEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliveryEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraIntrinsicMatrixDeliveryEnabled"))
 	return rv
 }
@@ -269,7 +269,7 @@ func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliveryEnabled() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliveryenabled
-func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraIntrinsicMatrixDeliveryEnabled:"), value)
 }
 
@@ -278,7 +278,7 @@ func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliveryEnabled(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliverysupported
-func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliverySupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliverySupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraIntrinsicMatrixDeliverySupported"))
 	return rv
 }
@@ -288,7 +288,7 @@ func (c_ CaptureConnection) IsCameraIntrinsicMatrixDeliverySupported() bool /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/iscameraintrinsicmatrixdeliverysupported
-func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliverySupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliverySupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraIntrinsicMatrixDeliverySupported:"), value)
 }
 
@@ -297,7 +297,7 @@ func (c_ CaptureConnection) SetIsCameraIntrinsicMatrixDeliverySupported(value bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isenabled
-func (c_ CaptureConnection) IsEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -307,7 +307,7 @@ func (c_ CaptureConnection) IsEnabled() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isenabled
-func (c_ CaptureConnection) SetIsEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -316,7 +316,7 @@ func (c_ CaptureConnection) SetIsEnabled(value bool /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideofieldmodesupported
-func (c_ CaptureConnection) IsVideoFieldModeSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoFieldModeSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoFieldModeSupported"))
 	return rv
 }
@@ -326,7 +326,7 @@ func (c_ CaptureConnection) IsVideoFieldModeSupported() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideofieldmodesupported
-func (c_ CaptureConnection) SetIsVideoFieldModeSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoFieldModeSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoFieldModeSupported:"), value)
 }
 
@@ -335,7 +335,7 @@ func (c_ CaptureConnection) SetIsVideoFieldModeSupported(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomaxframedurationsupported
-func (c_ CaptureConnection) IsVideoMaxFrameDurationSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoMaxFrameDurationSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoMaxFrameDurationSupported"))
 	return rv
 }
@@ -345,7 +345,7 @@ func (c_ CaptureConnection) IsVideoMaxFrameDurationSupported() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomaxframedurationsupported
-func (c_ CaptureConnection) SetIsVideoMaxFrameDurationSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoMaxFrameDurationSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoMaxFrameDurationSupported:"), value)
 }
 
@@ -354,7 +354,7 @@ func (c_ CaptureConnection) SetIsVideoMaxFrameDurationSupported(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideominframedurationsupported
-func (c_ CaptureConnection) IsVideoMinFrameDurationSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoMinFrameDurationSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoMinFrameDurationSupported"))
 	return rv
 }
@@ -364,7 +364,7 @@ func (c_ CaptureConnection) IsVideoMinFrameDurationSupported() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideominframedurationsupported
-func (c_ CaptureConnection) SetIsVideoMinFrameDurationSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoMinFrameDurationSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoMinFrameDurationSupported:"), value)
 }
 
@@ -373,7 +373,7 @@ func (c_ CaptureConnection) SetIsVideoMinFrameDurationSupported(value bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomirrored
-func (c_ CaptureConnection) IsVideoMirrored() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoMirrored() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoMirrored"))
 	return rv
 }
@@ -383,7 +383,7 @@ func (c_ CaptureConnection) IsVideoMirrored() bool /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomirrored
-func (c_ CaptureConnection) SetIsVideoMirrored(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoMirrored(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoMirrored:"), value)
 }
 
@@ -392,7 +392,7 @@ func (c_ CaptureConnection) SetIsVideoMirrored(value bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomirroringsupported
-func (c_ CaptureConnection) IsVideoMirroringSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoMirroringSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoMirroringSupported"))
 	return rv
 }
@@ -402,7 +402,7 @@ func (c_ CaptureConnection) IsVideoMirroringSupported() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideomirroringsupported
-func (c_ CaptureConnection) SetIsVideoMirroringSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoMirroringSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoMirroringSupported:"), value)
 }
 
@@ -411,7 +411,7 @@ func (c_ CaptureConnection) SetIsVideoMirroringSupported(value bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideoorientationsupported
-func (c_ CaptureConnection) IsVideoOrientationSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoOrientationSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoOrientationSupported"))
 	return rv
 }
@@ -421,7 +421,7 @@ func (c_ CaptureConnection) IsVideoOrientationSupported() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideoorientationsupported
-func (c_ CaptureConnection) SetIsVideoOrientationSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoOrientationSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoOrientationSupported:"), value)
 }
 
@@ -430,7 +430,7 @@ func (c_ CaptureConnection) SetIsVideoOrientationSupported(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideostabilizationenabled
-func (c_ CaptureConnection) IsVideoStabilizationEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoStabilizationEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoStabilizationEnabled"))
 	return rv
 }
@@ -440,7 +440,7 @@ func (c_ CaptureConnection) IsVideoStabilizationEnabled() bool /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideostabilizationenabled
-func (c_ CaptureConnection) SetIsVideoStabilizationEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoStabilizationEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoStabilizationEnabled:"), value)
 }
 
@@ -449,7 +449,7 @@ func (c_ CaptureConnection) SetIsVideoStabilizationEnabled(value bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideostabilizationsupported
-func (c_ CaptureConnection) IsVideoStabilizationSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) IsVideoStabilizationSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVideoStabilizationSupported"))
 	return rv
 }
@@ -459,7 +459,7 @@ func (c_ CaptureConnection) IsVideoStabilizationSupported() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/isvideostabilizationsupported
-func (c_ CaptureConnection) SetIsVideoStabilizationSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetIsVideoStabilizationSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVideoStabilizationSupported:"), value)
 }
 
@@ -544,7 +544,7 @@ func (c_ CaptureConnection) SetVideoMaxFrameDuration(value Time /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videomaxscaleandcropfactor
-func (c_ CaptureConnection) VideoMaxScaleAndCropFactor() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) VideoMaxScaleAndCropFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoMaxScaleAndCropFactor"))
 	return rv
 }
@@ -554,7 +554,7 @@ func (c_ CaptureConnection) VideoMaxScaleAndCropFactor() float64 /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videomaxscaleandcropfactor
-func (c_ CaptureConnection) SetVideoMaxScaleAndCropFactor(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetVideoMaxScaleAndCropFactor(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoMaxScaleAndCropFactor:"), value)
 }
 
@@ -620,7 +620,7 @@ func (c_ CaptureConnection) SetVideoPreviewLayer(value IAVCaptureVideoPreviewLay
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videorotationangle
-func (c_ CaptureConnection) VideoRotationAngle() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) VideoRotationAngle() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngle"))
 	return rv
 }
@@ -630,7 +630,7 @@ func (c_ CaptureConnection) VideoRotationAngle() float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videorotationangle
-func (c_ CaptureConnection) SetVideoRotationAngle(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetVideoRotationAngle(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngle:"), value)
 }
 
@@ -639,7 +639,7 @@ func (c_ CaptureConnection) SetVideoRotationAngle(value float64 /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videoscaleandcropfactor
-func (c_ CaptureConnection) VideoScaleAndCropFactor() float64 /* primitive/slice/pointer */ {
+func (c_ CaptureConnection) VideoScaleAndCropFactor() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoScaleAndCropFactor"))
 	return rv
 }
@@ -649,7 +649,7 @@ func (c_ CaptureConnection) VideoScaleAndCropFactor() float64 /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videoscaleandcropfactor
-func (c_ CaptureConnection) SetVideoScaleAndCropFactor(value float64 /* primitive/slice/pointer */) {
+func (c_ CaptureConnection) SetVideoScaleAndCropFactor(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoScaleAndCropFactor:"), value)
 }
 

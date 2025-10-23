@@ -29,6 +29,8 @@ type _FrontAnchoringStrategyClass struct {
 // An interface definition for the [FrontAnchoringStrategy] class.
 type IFrontAnchoringStrategy interface {
 	IAnchoringStrategy
+	// properties:
+	// methods:
 }
 
 // Anchor to the front of the user’s space.

@@ -31,9 +31,11 @@ type _AccessibilityElementClass struct {
 // An interface definition for the [AccessibilityElement] class.
 type IAccessibilityElement interface {
 	objectivec.IObject
-	AccessibilityAddChildElement(childElement IAccessibilityElement)
+	// properties:
 	AccessibilityFrameInParentSpace() coregraphics.CGRect
 	SetAccessibilityFrameInParentSpace(value coregraphics.CGRect)
+	// methods:
+	AccessibilityAddChildElement(childElement IAccessibilityElement)
 }
 
 // The basic infrastructure necessary for interacting with an assistive app.
@@ -93,7 +95,7 @@ func NewAccessibilityElement() AccessibilityElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role IAccessibilityRole, frame coregraphics.CGRect, label string, parent objectivec.IObject) objc.ID {
+func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role AccessibilityRole /* not a class type */, frame coregraphics.CGRect, label string /* primitive/slice/pointer. */, parent objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, objc.String(label), parent)
 	return rv
 }

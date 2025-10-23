@@ -31,7 +31,9 @@ type _ModelStructureProgramClass struct {
 // An interface definition for the [ModelStructureProgram] class.
 type IModelStructureProgram interface {
 	objectivec.IObject
-	Functions() foundation.IDictionary
+	// properties:
+	Functions() foundation.IDictionary /* already interface */
+	// methods:
 }
 
 // A class representing the structure of an ML Program model.
@@ -89,7 +91,7 @@ func NewModelStructureProgram() ModelStructureProgram {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgram/functions
-func (m_ ModelStructureProgram) Functions() foundation.IDictionary {
+func (m_ ModelStructureProgram) Functions() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("functions"))
 	return rv
 }

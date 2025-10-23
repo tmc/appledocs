@@ -31,12 +31,14 @@ type _TKTokenDriverClass struct {
 // An interface definition for the [TKTokenDriver] class.
 type ITKTokenDriver interface {
 	objectivec.IObject
-	ConfigurationData() foundation.Data
-	SetConfigurationData(value foundation.Data)
+	// properties:
+	ConfigurationData() foundation.objc.IObject /* cross-framework: Data */
+	SetConfigurationData(value foundation.objc.IObject /* cross-framework: Data */)
 	KeychainItems() unsafe.Pointer
 	SetKeychainItems(value unsafe.Pointer)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
+	// methods:
 }
 
 // A base class for building token drivers.
@@ -96,7 +98,7 @@ func NewTKTokenDriver() TKTokenDriver {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
+func (t_ TKTokenDriver) ConfigurationData() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("configurationData"))
 	return rv
 }
@@ -106,7 +108,7 @@ func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) SetConfigurationData(value foundation.Data) {
+func (t_ TKTokenDriver) SetConfigurationData(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfigurationData:"), value)
 }
 

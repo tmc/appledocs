@@ -30,7 +30,9 @@ type _AccountAuthenticationModificationExtensionContextClass struct {
 // An interface definition for the [AccountAuthenticationModificationExtensionContext] class.
 type IAccountAuthenticationModificationExtensionContext interface {
 	foundation.IExtensionContext
-	ASExtensionLocalizedFailureReasonErrorKey() string
+	// properties:
+	ASExtensionLocalizedFailureReasonErrorKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that you interact with to change an account’s password or to upgrade to Sign in with Apple.
@@ -90,7 +92,7 @@ func NewAccountAuthenticationModificationExtensionContext() AccountAuthenticatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
-func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string {
+func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
 	return rv
 }

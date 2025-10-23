@@ -31,9 +31,11 @@ type _ModelStructureClass struct {
 // An interface definition for the [ModelStructure] class.
 type IModelStructure interface {
 	objectivec.IObject
+	// properties:
 	NeuralNetwork() IMLModelStructureNeuralNetwork
 	Pipeline() IMLModelStructurePipeline
 	Program() IMLModelStructureProgram
+	// methods:
 }
 
 // A class representing the structure of a model.
@@ -91,7 +93,7 @@ func NewModelStructure() ModelStructure {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructure-c.class/loadContentsOfURL:completionHandler:
-func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.URL, handler unsafe.Pointer) {
+func (mc _ModelStructureClass) LoadContentsOfURLCompletionHandler(url foundation.objc.IObject /* cross-framework URL */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("loadContentsOfURL:completionHandler:"), url, handler)
 }
 

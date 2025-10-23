@@ -30,8 +30,10 @@ type _ComputePlanDeviceUsageClass struct {
 // An interface definition for the [ComputePlanDeviceUsage] class.
 type IComputePlanDeviceUsage interface {
 	objectivec.IObject
+	// properties:
 	PreferredComputeDevice() objc.ID
-	SupportedComputeDevices() []objc.ID
+	SupportedComputeDevices() []objc.ID /* already interface */
+	// methods:
 }
 
 // The anticipated compute devices to use for executing a layer or operation.
@@ -99,7 +101,7 @@ func (c_ ComputePlanDeviceUsage) PreferredComputeDevice() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanDeviceUsage/supportedComputeDevices
-func (c_ ComputePlanDeviceUsage) SupportedComputeDevices() []objc.ID {
+func (c_ ComputePlanDeviceUsage) SupportedComputeDevices() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("supportedComputeDevices"))
 	return rv
 }

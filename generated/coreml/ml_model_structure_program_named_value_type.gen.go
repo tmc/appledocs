@@ -30,8 +30,10 @@ type _ModelStructureProgramNamedValueTypeClass struct {
 // An interface definition for the [ModelStructureProgramNamedValueType] class.
 type IModelStructureProgramNamedValueType interface {
 	objectivec.IObject
-	Name() string
+	// properties:
+	Name() string /* primitive/slice/pointer. */
 	Type() IMLModelStructureProgramValueType
+	// methods:
 }
 
 // A class representing a named value type in a Program.
@@ -89,7 +91,7 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-func (m_ ModelStructureProgramNamedValueType) Name() string {
+func (m_ ModelStructureProgramNamedValueType) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }

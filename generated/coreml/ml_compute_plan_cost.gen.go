@@ -30,7 +30,9 @@ type _ComputePlanCostClass struct {
 // An interface definition for the [ComputePlanCost] class.
 type IComputePlanCost interface {
 	objectivec.IObject
-	Weight() float64
+	// properties:
+	Weight() float64 /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class that represents the estimated cost of executing a layer or operation.
@@ -88,7 +90,7 @@ func NewComputePlanCost() ComputePlanCost {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlanCost/weight
-func (c_ ComputePlanCost) Weight() float64 {
+func (c_ ComputePlanCost) Weight() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](c_.ID, objc.Sel("weight"))
 	return rv
 }

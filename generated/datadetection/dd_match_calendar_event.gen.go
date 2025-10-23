@@ -30,13 +30,15 @@ type _DDMatchCalendarEventClass struct {
 // An interface definition for the [DDMatchCalendarEvent] class.
 type IDDMatchCalendarEvent interface {
 	IDDMatch
-	EndDate() foundation.NSDate
-	EndTimeZone() NSTimeZone
-	AllDay() bool
-	StartDate() foundation.NSDate
-	StartTimeZone() NSTimeZone
-	IsAllDay() bool
-	SetIsAllDay(value bool)
+	// properties:
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	EndTimeZone() objc.IObject /* cross-framework: TimeZone */
+	AllDay() bool /* primitive/slice/pointer. */
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	StartTimeZone() objc.IObject /* cross-framework: TimeZone */
+	IsAllDay() bool /* primitive/slice/pointer. */
+	SetIsAllDay(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that represents a calendar date or date range that the data detection system matches.
@@ -98,7 +100,7 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endDate
-func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
+func (d_ DDMatchCalendarEvent) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
-func (d_ DDMatchCalendarEvent) EndTimeZone() NSTimeZone {
+func (d_ DDMatchCalendarEvent) EndTimeZone() objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (d_ DDMatchCalendarEvent) EndTimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/isAllDay
-func (d_ DDMatchCalendarEvent) AllDay() bool {
+func (d_ DDMatchCalendarEvent) AllDay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("allDay"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (d_ DDMatchCalendarEvent) AllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startDate
-func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
+func (d_ DDMatchCalendarEvent) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
-func (d_ DDMatchCalendarEvent) StartTimeZone() NSTimeZone {
+func (d_ DDMatchCalendarEvent) StartTimeZone() objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (d_ DDMatchCalendarEvent) StartTimeZone() NSTimeZone {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
-func (d_ DDMatchCalendarEvent) IsAllDay() bool {
+func (d_ DDMatchCalendarEvent) IsAllDay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isAllDay"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
-func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool) {
+func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsAllDay:"), value)
 }
 

@@ -30,9 +30,11 @@ type _AuthorizationAppleIDProviderClass struct {
 // An interface definition for the [AuthorizationAppleIDProvider] class.
 type IAuthorizationAppleIDProvider interface {
 	objectivec.IObject
-	User() string
-	SetUser(value string)
-	GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer)
+	// properties:
+	User() string /* primitive/slice/pointer. */
+	SetUser(value string /* primitive/slice/pointer. */)
+	// methods:
+	GetCredentialStateForUserIDCompletion(userID string /* primitive/slice/pointer. */, completion unsafe.Pointer)
 }
 
 // A mechanism for generating requests to authenticate users based on their Apple ID.
@@ -92,7 +94,7 @@ func NewAuthorizationAppleIDProvider() AuthorizationAppleIDProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)
-func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer) {
+func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), objc.String(userID), completion)
 }
 
@@ -101,7 +103,7 @@ func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(use
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) User() string {
+func (a_ AuthorizationAppleIDProvider) User() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("user"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (a_ AuthorizationAppleIDProvider) User() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) SetUser(value string) {
+func (a_ AuthorizationAppleIDProvider) SetUser(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
 }
 

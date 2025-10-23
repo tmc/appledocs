@@ -29,10 +29,12 @@ type _PredicateEditorClass struct {
 // An interface definition for the [PredicateEditor] class.
 type IPredicateEditor interface {
 	IRuleEditor
+	// properties:
 	ObjectValue() unsafe.Pointer
 	SetObjectValue(value unsafe.Pointer)
-	RowTemplates() PredicateEditorRowTemplate
-	SetRowTemplates(value PredicateEditorRowTemplate)
+	RowTemplates() IPredicateEditorRowTemplate
+	SetRowTemplates(value IPredicateEditorRowTemplate)
+	// methods:
 }
 
 // A defined set of rules that allows the editing of predicate objects.
@@ -113,7 +115,7 @@ func (p_ PredicateEditor) SetObjectValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
-func (p_ PredicateEditor) RowTemplates() PredicateEditorRowTemplate {
+func (p_ PredicateEditor) RowTemplates() IPredicateEditorRowTemplate {
 	rv := objc.Send[PredicateEditorRowTemplate](p_.ID, objc.Sel("rowTemplates"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (p_ PredicateEditor) RowTemplates() PredicateEditorRowTemplate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates
-func (p_ PredicateEditor) SetRowTemplates(value PredicateEditorRowTemplate) {
+func (p_ PredicateEditor) SetRowTemplates(value IPredicateEditorRowTemplate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
 }
 

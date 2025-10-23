@@ -30,9 +30,11 @@ type _FallDetectionManagerClass struct {
 // An interface definition for the [FallDetectionManager] class.
 type IFallDetectionManager interface {
 	objectivec.IObject
-	AuthorizationStatus() CMAuthorizationStatus
+	// properties:
+	AuthorizationStatus() AuthorizationStatus
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
+	// methods:
 	RequestAuthorizationWithHandler(handler unsafe.Pointer)
 }
 
@@ -93,7 +95,7 @@ func NewFallDetectionManager() FallDetectionManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-func (fc _FallDetectionManagerClass) Available() bool {
+func (fc _FallDetectionManagerClass) Available() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("available"))
 	return rv
 }
@@ -111,8 +113,8 @@ func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
-func (f_ FallDetectionManager) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
+func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -140,7 +142,7 @@ func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/isAvailable
-func (f_ FallDetectionManager) Available() bool {
+func (f_ FallDetectionManager) Available() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("available"))
 	return rv
 }

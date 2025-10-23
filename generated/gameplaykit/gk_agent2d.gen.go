@@ -30,12 +30,14 @@ type _Agent2DClass struct {
 // An interface definition for the [Agent2D] class.
 type IAgent2D interface {
 	IAgent
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
-	Rotation() float32
-	SetRotation(value float32)
+	Rotation() float32 /* primitive/slice/pointer. */
+	SetRotation(value float32 /* primitive/slice/pointer. */)
 	Velocity() unsafe.Pointer
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	// methods:
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 }
 
 // An agent that operates in a two-dimensional space.
@@ -97,7 +99,7 @@ func NewAgent2D() Agent2D {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/update(deltaTime:)
-func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (a_ Agent2D) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -125,7 +127,7 @@ func (a_ Agent2D) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-func (a_ Agent2D) Rotation() float32 {
+func (a_ Agent2D) Rotation() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("rotation"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (a_ Agent2D) Rotation() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent2D/rotation
-func (a_ Agent2D) SetRotation(value float32) {
+func (a_ Agent2D) SetRotation(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRotation:"), value)
 }
 

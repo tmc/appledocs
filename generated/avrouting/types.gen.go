@@ -9,10 +9,10 @@ import (
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type AVCustomRoutingEventReason unsafe.Pointer
+// Using inferred base types as fallback to allow code generation.
+type CustomRoutingEventReason = int
 
-type AVCustomRoutingPartialIP unsafe.Pointer
+type RoutingPlaybackParticipant = int
 
 
 

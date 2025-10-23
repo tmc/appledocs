@@ -30,9 +30,12 @@ type _TKSmartCardSlotManagerClass struct {
 // An interface definition for the [TKSmartCardSlotManager] class.
 type ITKSmartCardSlotManager interface {
 	objectivec.IObject
-	SlotNames() []string
-	CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer)
-	SlotNamed(name string) ITKSmartCardSlot
+	// properties:
+	SlotNames() []string /* primitive/slice/pointer. */
+	// methods:
+	CreateNFCSlotWithMessageCompletion(message string /* primitive/slice/pointer. */, completion unsafe.Pointer)
+	GetSlotWithNameReply(name string /* primitive/slice/pointer. */, reply unsafe.Pointer)
+	SlotNamed(name string /* primitive/slice/pointer. */) ITKSmartCardSlot
 }
 
 // An interface to all available smart card reader slots.
@@ -88,12 +91,30 @@ func NewTKSmartCardSlotManager() TKSmartCardSlotManager {
 
 
 
+// The shared singleton Smart Card reader slot manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
+func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
+	rv := objc.Send[TKSmartCardSlotManager](objc.ID(tc.class), objc.Sel("defaultManager"))
+	return rv
+}
+
 // Creates an NFC smart card slot using the device’s hardware and presents a system UI.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/createNFCSlot(message:completion:)
-func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer) {
+func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), objc.String(message), completion)
+}
+
+
+// Asynchronously calls a block with a Smart Card reader slot for a specified name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/getSlot(withName:reply:)
+func (t_ TKSmartCardSlotManager) GetSlotWithNameReply(name string /* primitive/slice/pointer. */, reply unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("getSlotWithName:reply:"), objc.String(name), reply)
 }
 
 
@@ -101,8 +122,18 @@ func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-func (t_ TKSmartCardSlotManager) SlotNamed(name string) ITKSmartCardSlot {
+func (t_ TKSmartCardSlotManager) SlotNamed(name string /* primitive/slice/pointer. */) ITKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
+	return rv
+}
+
+
+// The shared singleton Smart Card reader slot manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
+func (t_ TKSmartCardSlotManager) DefaultManager() ITKSmartCardSlotManager {
+	rv := objc.Send[TKSmartCardSlotManager](t_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 
@@ -111,7 +142,7 @@ func (t_ TKSmartCardSlotManager) SlotNamed(name string) ITKSmartCardSlot {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNames
-func (t_ TKSmartCardSlotManager) SlotNames() []string {
+func (t_ TKSmartCardSlotManager) SlotNames() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("slotNames"))
 	return rv
 }

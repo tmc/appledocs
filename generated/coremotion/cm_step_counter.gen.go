@@ -31,6 +31,8 @@ type _StepCounterClass struct {
 // An interface definition for the [StepCounter] class.
 type IStepCounter interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The number of steps the user has taken with the device.
@@ -90,7 +92,7 @@ func NewStepCounter() StepCounter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/isStepCountingAvailable()
-func (sc _StepCounterClass) IsStepCountingAvailable() bool {
+func (sc _StepCounterClass) IsStepCountingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }

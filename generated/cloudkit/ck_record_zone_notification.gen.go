@@ -29,18 +29,20 @@ type _CKRecordZoneNotificationClass struct {
 // An interface definition for the [CKRecordZoneNotification] class.
 type ICKRecordZoneNotification interface {
 	ICKNotification
-	IsPruned() bool
-	SetIsPruned(value bool)
+	// properties:
+	IsPruned() bool /* primitive/slice/pointer. */
+	SetIsPruned(value bool /* primitive/slice/pointer. */)
 	NotificationType() unsafe.Pointer
 	SetNotificationType(value unsafe.Pointer)
 	DatabaseScope() unsafe.Pointer
 	SetDatabaseScope(value unsafe.Pointer)
 	RecordZoneID() ICKRecordZoneID
 	SetRecordZoneID(value ICKRecordZoneID)
-	ShouldSendContentAvailable() bool
-	SetShouldSendContentAvailable(value bool)
-	NotificationInfo() CKNotificationInfo
-	SetNotificationInfo(value CKNotificationInfo)
+	ShouldSendContentAvailable() bool /* primitive/slice/pointer. */
+	SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */)
+	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
+	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
+	// methods:
 }
 
 // A notification that triggers when the contents of a record zone change.
@@ -102,7 +104,7 @@ func NewCKRecordZoneNotification() CKRecordZoneNotification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKRecordZoneNotification) IsPruned() bool {
+func (c_ CKRecordZoneNotification) IsPruned() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (c_ CKRecordZoneNotification) IsPruned() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
-func (c_ CKRecordZoneNotification) SetIsPruned(value bool) {
+func (c_ CKRecordZoneNotification) SetIsPruned(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
 }
 
@@ -178,7 +180,7 @@ func (c_ CKRecordZoneNotification) SetRecordZoneID(value ICKRecordZoneID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
+func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
 }
@@ -188,7 +190,7 @@ func (c_ CKRecordZoneNotification) ShouldSendContentAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
-func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
+func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
 }
 
@@ -197,7 +199,7 @@ func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
+func (c_ CKRecordZoneNotification) NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */ {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
@@ -207,7 +209,7 @@ func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneNotification) SetNotificationInfo(value CKNotificationInfo) {
+func (c_ CKRecordZoneNotification) SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

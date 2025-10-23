@@ -30,18 +30,20 @@ type _MIDINetworkSessionClass struct {
 // An interface definition for the [MIDINetworkSession] class.
 type IMIDINetworkSession interface {
 	objectivec.IObject
-	MIDINetworkNotificationContactsDidChange() string
-	MIDINetworkNotificationSessionDidChange() string
+	// properties:
+	MIDINetworkNotificationContactsDidChange() string /* primitive/slice/pointer. */
+	MIDINetworkNotificationSessionDidChange() string /* primitive/slice/pointer. */
 	ConnectionPolicy() MIDINetworkConnectionPolicy
 	SetConnectionPolicy(value MIDINetworkConnectionPolicy)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	LocalName() string
-	SetLocalName(value string)
-	NetworkName() string
-	SetNetworkName(value string)
-	NetworkPort() int
-	SetNetworkPort(value int)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	LocalName() string /* primitive/slice/pointer. */
+	SetLocalName(value string /* primitive/slice/pointer. */)
+	NetworkName() string /* primitive/slice/pointer. */
+	SetNetworkName(value string /* primitive/slice/pointer. */)
+	NetworkPort() int /* primitive/slice/pointer. */
+	SetNetworkPort(value int /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that represents a pairing of a source and destination.
@@ -101,7 +103,7 @@ func NewMIDINetworkSession() MIDINetworkSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
+func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
 	return rv
 }
@@ -111,7 +113,7 @@ func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
+func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
 	return rv
 }
@@ -140,7 +142,7 @@ func (m_ MIDINetworkSession) SetConnectionPolicy(value MIDINetworkConnectionPoli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/isenabled
-func (m_ MIDINetworkSession) IsEnabled() bool {
+func (m_ MIDINetworkSession) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (m_ MIDINetworkSession) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/isenabled
-func (m_ MIDINetworkSession) SetIsEnabled(value bool) {
+func (m_ MIDINetworkSession) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
@@ -159,7 +161,7 @@ func (m_ MIDINetworkSession) SetIsEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-func (m_ MIDINetworkSession) LocalName() string {
+func (m_ MIDINetworkSession) LocalName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("localName"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (m_ MIDINetworkSession) LocalName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-func (m_ MIDINetworkSession) SetLocalName(value string) {
+func (m_ MIDINetworkSession) SetLocalName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalName:"), objc.String(value))
 }
 
@@ -178,7 +180,7 @@ func (m_ MIDINetworkSession) SetLocalName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-func (m_ MIDINetworkSession) NetworkName() string {
+func (m_ MIDINetworkSession) NetworkName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
@@ -188,7 +190,7 @@ func (m_ MIDINetworkSession) NetworkName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-func (m_ MIDINetworkSession) SetNetworkName(value string) {
+func (m_ MIDINetworkSession) SetNetworkName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
 }
 
@@ -197,7 +199,7 @@ func (m_ MIDINetworkSession) SetNetworkName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkport
-func (m_ MIDINetworkSession) NetworkPort() int {
+func (m_ MIDINetworkSession) NetworkPort() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](m_.ID, objc.Sel("networkPort"))
 	return rv
 }
@@ -207,7 +209,7 @@ func (m_ MIDINetworkSession) NetworkPort() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkport
-func (m_ MIDINetworkSession) SetNetworkPort(value int) {
+func (m_ MIDINetworkSession) SetNetworkPort(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkPort:"), value)
 }
 

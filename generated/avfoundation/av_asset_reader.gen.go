@@ -35,8 +35,8 @@ type IAssetReader interface {
 	SetAsset(value IAVAsset)
 	Error() Error
 	SetError(value Error)
-	Outputs() AssetReaderOutput /* not a class type */
-	SetOutputs(value AssetReaderOutput /* not a class type */)
+	Outputs() objc.IObject /* cross-framework: AssetReaderOutput */
+	SetOutputs(value objc.IObject /* cross-framework: AssetReaderOutput */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
 	TimeRange() TimeRange /* not a class type */
@@ -139,7 +139,7 @@ func (a_ AssetReader) SetError(value Error) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) Outputs() AssetReaderOutput /* not a class type */ {
+func (a_ AssetReader) Outputs() objc.IObject /* cross-framework: AssetReaderOutput */ {
 	rv := objc.Send[AssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
@@ -149,7 +149,7 @@ func (a_ AssetReader) Outputs() AssetReaderOutput /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) SetOutputs(value AssetReaderOutput /* not a class type */) {
+func (a_ AssetReader) SetOutputs(value objc.IObject /* cross-framework: AssetReaderOutput */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewSKNodeComponent
 
+// ExampleNewSKNodeComponentWithNode demonstrates how to create a SKNodeComponent instance using NewSKNodeComponentWithNode.
+// Initializes a component to manage the specified SpriteKit node.
+func ExampleNewSKNodeComponentWithNode() {
+	_ = gameplaykit.NewSKNodeComponentWithNode(
+		gameplaykit.Node{}, // node Node
+	)
+	// Output:
+}

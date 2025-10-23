@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AssetReaderTrackOutput] class.
@@ -32,20 +33,20 @@ type IAssetReaderTrackOutput interface {
 	// properties:
 	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
 	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
-	OutputSettings() string /* primitive/slice/pointer */
-	SetOutputSettings(value string /* primitive/slice/pointer */)
+	OutputSettings() objc.IObject /* cross-framework: NSString */
+	SetOutputSettings(value objc.IObject /* cross-framework: NSString */)
 	Track() IAVAssetTrack
 	SetTrack(value IAVAssetTrack)
-	AVVideoCleanApertureKey() string /* primitive/slice/pointer */
-	AVVideoPixelAspectRatioKey() string /* primitive/slice/pointer */
-	AVVideoScalingModeKey() string /* primitive/slice/pointer */
-	AVFormatIDKey() string /* primitive/slice/pointer */
-	AVSampleRateConverterAudioQualityKey() string /* primitive/slice/pointer */
+	AVVideoCleanApertureKey() objc.IObject /* cross-framework: NSString */
+	AVVideoPixelAspectRatioKey() objc.IObject /* cross-framework: NSString */
+	AVVideoScalingModeKey() objc.IObject /* cross-framework: NSString */
+	AVFormatIDKey() objc.IObject /* cross-framework: NSString */
+	AVSampleRateConverterAudioQualityKey() objc.IObject /* cross-framework: NSString */
 	KAudioFormatLinearPCM() unsafe.Pointer
 	SetKAudioFormatLinearPCM(value unsafe.Pointer)
-	KCMFormatDescriptionExtension_Depth() String /* not a class type */
-	KCVPixelBufferHeightKey() String /* not a class type */
-	KCVPixelBufferWidthKey() String /* not a class type */
+	KCMFormatDescriptionExtension_Depth() objc.IObject /* cross-framework: String */
+	KCVPixelBufferHeightKey() objc.IObject /* cross-framework: String */
+	KCVPixelBufferWidthKey() objc.IObject /* cross-framework: String */
 	KCVPixelFormatType_32ARGB() unsafe.Pointer
 	SetKCVPixelFormatType_32ARGB(value unsafe.Pointer)
 	KCVPixelFormatType_32BGRA() unsafe.Pointer
@@ -145,8 +146,8 @@ func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value AudioTimePitch
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) OutputSettings() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
+func (a_ AssetReaderTrackOutput) OutputSettings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (a_ AssetReaderTrackOutput) OutputSettings() string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) SetOutputSettings(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
+func (a_ AssetReaderTrackOutput) SetOutputSettings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), value)
 }
 
 
@@ -183,8 +184,8 @@ func (a_ AssetReaderTrackOutput) SetTrack(value IAVAssetTrack) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey
-func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
+func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
 	return rv
 }
 
@@ -193,8 +194,8 @@ func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey
-func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
+func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
 	return rv
 }
 
@@ -203,8 +204,8 @@ func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string /* primitiv
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey
-func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
+func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVVideoScalingModeKey"))
 	return rv
 }
 
@@ -213,8 +214,8 @@ func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVFormatIDKey
-func (a_ AssetReaderTrackOutput) AVFormatIDKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVFormatIDKey"))
+func (a_ AssetReaderTrackOutput) AVFormatIDKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVFormatIDKey"))
 	return rv
 }
 
@@ -223,8 +224,8 @@ func (a_ AssetReaderTrackOutput) AVFormatIDKey() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey
-func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
+func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
 	return rv
 }
 
@@ -250,7 +251,7 @@ func (a_ AssetReaderTrackOutput) SetKAudioFormatLinearPCM(value unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth
-func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() String /* not a class type */ {
+func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
 	return rv
 }
@@ -260,7 +261,7 @@ func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() String /*
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferHeightKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() String /* not a class type */ {
+func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
 	return rv
 }
@@ -270,7 +271,7 @@ func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() String /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferWidthKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() String /* not a class type */ {
+func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
 	return rv
 }

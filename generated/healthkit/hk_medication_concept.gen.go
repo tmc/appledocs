@@ -31,10 +31,10 @@ type _HKMedicationConceptClass struct {
 type IHKMedicationConcept interface {
 	objectivec.IObject
 	// properties:
-	DisplayText() string
-	SetDisplayText(value string)
-	GeneralForm() HKMedicationGeneralForm
-	SetGeneralForm(value HKMedicationGeneralForm)
+	DisplayText() string /* primitive/slice/pointer. */
+	SetDisplayText(value string /* primitive/slice/pointer. */)
+	GeneralForm() HKMedicationGeneralForm /* typedef */
+	SetGeneralForm(value HKMedicationGeneralForm /* typedef */)
 	Identifier() IHKHealthConceptIdentifier
 	SetIdentifier(value IHKHealthConceptIdentifier)
 	RelatedCodings() IHKClinicalCoding
@@ -99,7 +99,7 @@ func NewHKMedicationConcept() HKMedicationConcept {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
-func (h_ HKMedicationConcept) DisplayText() string {
+func (h_ HKMedicationConcept) DisplayText() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
 	return rv
 }
@@ -109,7 +109,7 @@ func (h_ HKMedicationConcept) DisplayText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/displaytext
-func (h_ HKMedicationConcept) SetDisplayText(value string) {
+func (h_ HKMedicationConcept) SetDisplayText(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDisplayText:"), objc.String(value))
 }
 
@@ -118,7 +118,7 @@ func (h_ HKMedicationConcept) SetDisplayText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/generalform
-func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
+func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm /* typedef */ {
 	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
 	return rv
 }
@@ -128,7 +128,7 @@ func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationconcept/generalform
-func (h_ HKMedicationConcept) SetGeneralForm(value HKMedicationGeneralForm) {
+func (h_ HKMedicationConcept) SetGeneralForm(value HKMedicationGeneralForm /* typedef */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setGeneralForm:"), value)
 }
 

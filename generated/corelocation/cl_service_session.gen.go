@@ -30,6 +30,8 @@ type _ServiceSessionClass struct {
 // An interface definition for the [ServiceSession] class.
 type IServiceSession interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	Invalidate()
 }
 
@@ -81,7 +83,7 @@ func NewServiceSession() ServiceSession {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:
-func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequirement CLServiceSessionAuthorizationRequirement) IServiceSession {
+func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequirement ServiceSessionAuthorizationRequirement) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:"), authorizationRequirement)
 	return rv
 }
@@ -89,7 +91,7 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequir
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:
-func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKey(authorizationRequirement CLServiceSessionAuthorizationRequirement, purposeKey string) IServiceSession {
+func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKey(authorizationRequirement ServiceSessionAuthorizationRequirement, purposeKey string /* primitive/slice/pointer. */) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:"), authorizationRequirement, objc.String(purposeKey))
 	return rv
 }
@@ -97,7 +99,7 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeK
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:
-func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement CLServiceSessionAuthorizationRequirement, purposeKey string, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
+func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement ServiceSessionAuthorizationRequirement, purposeKey string /* primitive/slice/pointer. */, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:"), authorizationRequirement, objc.String(purposeKey), queue, handler)
 	return rv
 }
@@ -105,7 +107,7 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeK
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:queue:handler:
-func (sc _ServiceSessionClass) SessionRequiringAuthorizationQueueHandler(authorizationRequirement CLServiceSessionAuthorizationRequirement, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
+func (sc _ServiceSessionClass) SessionRequiringAuthorizationQueueHandler(authorizationRequirement ServiceSessionAuthorizationRequirement, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:queue:handler:"), authorizationRequirement, queue, handler)
 	return rv
 }

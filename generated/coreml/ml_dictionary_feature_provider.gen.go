@@ -31,8 +31,10 @@ type _DictionaryFeatureProviderClass struct {
 // An interface definition for the [DictionaryFeatureProvider] class.
 type IDictionaryFeatureProvider interface {
 	objectivec.IObject
-	Dictionary() foundation.IDictionary
-	ObjectForKeyedSubscript(featureName string) IFeatureValue
+	// properties:
+	Dictionary() foundation.IDictionary /* already interface */
+	// methods:
+	ObjectForKeyedSubscript(featureName string /* primitive/slice/pointer. */) IFeatureValue
 }
 
 // A convenience wrapper for the given dictionary of data.
@@ -92,7 +94,7 @@ func NewDictionaryFeatureProvider() DictionaryFeatureProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/init(dictionary:)
-func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDictionary, error_ unsafe.Pointer) DictionaryFeatureProvider {
+func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDictionary /* already interface */, error_ unsafe.Pointer) DictionaryFeatureProvider {
 	instance := getDictionaryFeatureProviderClass().Alloc()
 	rv := objc.Send[DictionaryFeatureProvider](instance.ID, objc.Sel("initWithDictionary:error:"), dictionary, error_)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewDictionaryFeatureProviderWithDictionaryError(dictionary foundation.IDict
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/subscript(_:)
-func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) IFeatureValue {
+func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string /* primitive/slice/pointer. */) IFeatureValue {
 	rv := objc.Send[FeatureValue](d_.ID, objc.Sel("objectForKeyedSubscript:"), objc.String(featureName))
 	return rv
 }
@@ -115,7 +117,7 @@ func (d_ DictionaryFeatureProvider) ObjectForKeyedSubscript(featureName string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLDictionaryFeatureProvider/dictionary
-func (d_ DictionaryFeatureProvider) Dictionary() foundation.IDictionary {
+func (d_ DictionaryFeatureProvider) Dictionary() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](d_.ID, objc.Sel("dictionary"))
 	return rv
 }

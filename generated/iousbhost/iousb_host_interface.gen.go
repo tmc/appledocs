@@ -32,12 +32,12 @@ type _USBHostInterfaceClass struct {
 type IUSBHostInterface interface {
 	IUSBHostObject
 	// properties:
-	ConfigurationDescriptor() unsafe.Pointer
-	SetConfigurationDescriptor(value unsafe.Pointer)
+	ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */
+	SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */)
 	IdleTimeout() unsafe.Pointer
 	SetIdleTimeout(value unsafe.Pointer)
-	InterfaceDescriptor() unsafe.Pointer
-	SetInterfaceDescriptor(value unsafe.Pointer)
+	InterfaceDescriptor() USBInterfaceDescriptor /* not a class type */
+	SetInterfaceDescriptor(value USBInterfaceDescriptor /* not a class type */)
 	// methods:
 }
 
@@ -100,8 +100,8 @@ func NewUSBHostInterface() USBHostInterface {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
-func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.Number, productID foundation.Number, bcdDevice foundation.Number, interfaceNumber foundation.Number, configurationValue foundation.Number, interfaceClass foundation.Number, interfaceSubclass foundation.Number, interfaceProtocol foundation.Number, speed foundation.Number, productIDArray objectivec.IObject) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
+func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.objc.IObject /* cross-framework Number */, productID foundation.objc.IObject /* cross-framework Number */, bcdDevice foundation.objc.IObject /* cross-framework Number */, interfaceNumber foundation.objc.IObject /* cross-framework Number */, configurationValue foundation.objc.IObject /* cross-framework Number */, interfaceClass foundation.objc.IObject /* cross-framework Number */, interfaceSubclass foundation.objc.IObject /* cross-framework Number */, interfaceProtocol foundation.objc.IObject /* cross-framework Number */, speed foundation.objc.IObject /* cross-framework Number */, productIDArray objectivec.IObject) MutableDictionaryRef /* not a class type */ {
+	rv := objc.Send[MutableDictionaryRef](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
-func (u_ USBHostInterface) ConfigurationDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configurationDescriptor"))
+func (u_ USBHostInterface) ConfigurationDescriptor() USBConfigurationDescriptor /* not a class type */ {
+	rv := objc.Send[USBConfigurationDescriptor](u_.ID, objc.Sel("configurationDescriptor"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (u_ USBHostInterface) ConfigurationDescriptor() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/configurationdescriptor
-func (u_ USBHostInterface) SetConfigurationDescriptor(value unsafe.Pointer) {
+func (u_ USBHostInterface) SetConfigurationDescriptor(value USBConfigurationDescriptor /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfigurationDescriptor:"), value)
 }
 
@@ -148,8 +148,8 @@ func (u_ USBHostInterface) SetIdleTimeout(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/interfacedescriptor
-func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interfaceDescriptor"))
+func (u_ USBHostInterface) InterfaceDescriptor() USBInterfaceDescriptor /* not a class type */ {
+	rv := objc.Send[USBInterfaceDescriptor](u_.ID, objc.Sel("interfaceDescriptor"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (u_ USBHostInterface) InterfaceDescriptor() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostinterface/interfacedescriptor
-func (u_ USBHostInterface) SetInterfaceDescriptor(value unsafe.Pointer) {
+func (u_ USBHostInterface) SetInterfaceDescriptor(value USBInterfaceDescriptor /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setInterfaceDescriptor:"), value)
 }
 

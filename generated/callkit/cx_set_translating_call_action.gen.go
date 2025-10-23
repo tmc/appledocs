@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetTranslatingCallAction] class.
@@ -30,9 +29,11 @@ type _CXSetTranslatingCallActionClass struct {
 // An interface definition for the [CXSetTranslatingCallAction] class.
 type ICXSetTranslatingCallAction interface {
 	ICXCallAction
-	IsTranslating() bool
-	LocalLanguage() string
-	RemoteLanguage() string
+	// properties:
+	IsTranslating() bool /* primitive/slice/pointer. */
+	LocalLanguage() string /* primitive/slice/pointer. */
+	RemoteLanguage() string /* primitive/slice/pointer. */
+	// methods:
 	FulfillUsingTranslationEngine(translationEngine CXTranslationEngine)
 }
 
@@ -93,7 +94,7 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
-func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.UUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid objc.IObject /* cross-framework UUID */, isTranslating bool /* primitive/slice/pointer. */, localLanguage string /* primitive/slice/pointer. */, remoteLanguage string /* primitive/slice/pointer. */) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
 	rv.Autorelease()
@@ -105,7 +106,7 @@ func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
-func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.Coder) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCoder(aDecoder Coder /* not a class type */) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -125,7 +126,7 @@ func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/isTranslating
-func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
+func (c_ CXSetTranslatingCallAction) IsTranslating() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isTranslating"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (c_ CXSetTranslatingCallAction) IsTranslating() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/localLanguage
-func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
+func (c_ CXSetTranslatingCallAction) LocalLanguage() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localLanguage"))
 	return rv
 }
@@ -141,7 +142,7 @@ func (c_ CXSetTranslatingCallAction) LocalLanguage() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/remoteLanguage
-func (c_ CXSetTranslatingCallAction) RemoteLanguage() string {
+func (c_ CXSetTranslatingCallAction) RemoteLanguage() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("remoteLanguage"))
 	return rv
 }

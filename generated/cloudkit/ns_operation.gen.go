@@ -30,6 +30,8 @@ type _OperationClass struct {
 // An interface definition for the [Operation] class.
 type IOperation interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other CloudKit classes.

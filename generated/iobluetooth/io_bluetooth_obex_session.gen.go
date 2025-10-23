@@ -32,16 +32,16 @@ type IBluetoothOBEXSession interface {
 	IOBEXSession
 	// properties:
 	// methods:
-	CloseTransportConnection() OBEXError
+	CloseTransportConnection() OBEXError /* typedef */
 	GetDevice() IBluetoothDevice
 	GetRFCOMMChannel() IBluetoothRFCOMMChannel
 	HasOpenTransportConnection() unsafe.Pointer
-	IsSessionTargetAMac() bool
-	OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError
+	IsSessionTargetAMac() bool /* primitive/slice/pointer. */
+	OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */
 	RestartTransmission()
-	SendBufferTroughChannel() unsafe.Pointer
-	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr) OBEXError
-	SetOBEXSessionOpenConnectionCallbackRefCon(inCallback BluetoothOBEXSessionOpenConnectionCallback, inUserRefCon unsafe.Pointer)
+	SendBufferTroughChannel() Return /* not a class type */
+	SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr /* not a class type */) OBEXError /* typedef */
+	SetOBEXSessionOpenConnectionCallbackRefCon(inCallback objc.IObject /* cross-framework BluetoothOBEXSessionOpenConnectionCallback */, inUserRefCon unsafe.Pointer)
 	SetOpenTransportConnectionAsyncSelectorTargetRefCon(inSelector objc.SEL, inSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer)
 }
 
@@ -102,7 +102,7 @@ func NewBluetoothOBEXSession() BluetoothOBEXSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(device:channelID:)
-func NewBluetoothOBEXSessionWithDeviceChannelID(inDevice IOBluetoothDevice, inChannelID BluetoothRFCOMMChannelID) BluetoothOBEXSession {
+func NewBluetoothOBEXSessionWithDeviceChannelID(inDevice BluetoothDevice /* already interface */, inChannelID BluetoothRFCOMMChannelID /* typedef */) BluetoothOBEXSession {
 	instance := getBluetoothOBEXSessionClass().Alloc()
 	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithDevice:channelID:"), inDevice, inChannelID)
 	rv.Autorelease()
@@ -114,7 +114,7 @@ func NewBluetoothOBEXSessionWithDeviceChannelID(inDevice IOBluetoothDevice, inCh
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(incomingRFCOMMChannel:eventSelector:selectorTarget:refCon:)
-func NewBluetoothOBEXSessionWithIncomingRFCOMMChannelEventSelectorSelectorTargetRefCon(inChannel IOBluetoothRFCOMMChannel, inEventSelector objc.SEL, inEventSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer) BluetoothOBEXSession {
+func NewBluetoothOBEXSessionWithIncomingRFCOMMChannelEventSelectorSelectorTargetRefCon(inChannel BluetoothRFCOMMChannel /* already interface */, inEventSelector objc.SEL, inEventSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer) BluetoothOBEXSession {
 	instance := getBluetoothOBEXSessionClass().Alloc()
 	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:"), inChannel, inEventSelector, inEventSelectorTarget, inUserRefCon)
 	rv.Autorelease()
@@ -126,7 +126,7 @@ func NewBluetoothOBEXSessionWithIncomingRFCOMMChannelEventSelectorSelectorTarget
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/init(sdpServiceRecord:)
-func NewBluetoothOBEXSessionWithSDPServiceRecord(inSDPServiceRecord IOBluetoothSDPServiceRecord) BluetoothOBEXSession {
+func NewBluetoothOBEXSessionWithSDPServiceRecord(inSDPServiceRecord BluetoothSDPServiceRecord /* already interface */) BluetoothOBEXSession {
 	instance := getBluetoothOBEXSessionClass().Alloc()
 	rv := objc.Send[BluetoothOBEXSession](instance.ID, objc.Sel("initWithSDPServiceRecord:"), inSDPServiceRecord)
 	rv.Autorelease()
@@ -139,7 +139,7 @@ func NewBluetoothOBEXSessionWithSDPServiceRecord(inSDPServiceRecord IOBluetoothS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/withDevice(_:channelID:)
-func (bc _BluetoothOBEXSessionClass) WithDeviceChannelID(inDevice IOBluetoothDevice, inRFCOMMChannelID BluetoothRFCOMMChannelID) unsafe.Pointer {
+func (bc _BluetoothOBEXSessionClass) WithDeviceChannelID(inDevice BluetoothDevice /* already interface */, inRFCOMMChannelID BluetoothRFCOMMChannelID /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withDevice:channelID:"), inDevice, inRFCOMMChannelID)
 	return rv
 }
@@ -149,7 +149,7 @@ func (bc _BluetoothOBEXSessionClass) WithDeviceChannelID(inDevice IOBluetoothDev
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/withIncomingRFCOMMChannel(_:eventSelector:selectorTarget:refCon:)
-func (bc _BluetoothOBEXSessionClass) WithIncomingRFCOMMChannelEventSelectorSelectorTargetRefCon(inChannel IOBluetoothRFCOMMChannel, inEventSelector objc.SEL, inEventSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer) unsafe.Pointer {
+func (bc _BluetoothOBEXSessionClass) WithIncomingRFCOMMChannelEventSelectorSelectorTargetRefCon(inChannel BluetoothRFCOMMChannel /* already interface */, inEventSelector objc.SEL, inEventSelectorTarget objectivec.IObject, inUserRefCon unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:"), inChannel, inEventSelector, inEventSelectorTarget, inUserRefCon)
 	return rv
 }
@@ -159,7 +159,7 @@ func (bc _BluetoothOBEXSessionClass) WithIncomingRFCOMMChannelEventSelectorSelec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/withSDPServiceRecord(_:)
-func (bc _BluetoothOBEXSessionClass) WithSDPServiceRecord(inSDPServiceRecord IOBluetoothSDPServiceRecord) unsafe.Pointer {
+func (bc _BluetoothOBEXSessionClass) WithSDPServiceRecord(inSDPServiceRecord BluetoothSDPServiceRecord /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withSDPServiceRecord:"), inSDPServiceRecord)
 	return rv
 }
@@ -169,7 +169,7 @@ func (bc _BluetoothOBEXSessionClass) WithSDPServiceRecord(inSDPServiceRecord IOB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/closeTransportConnection()
-func (b_ BluetoothOBEXSession) CloseTransportConnection() OBEXError {
+func (b_ BluetoothOBEXSession) CloseTransportConnection() OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](b_.ID, objc.Sel("closeTransportConnection"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (b_ BluetoothOBEXSession) HasOpenTransportConnection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/isSessionTargetAMac()
-func (b_ BluetoothOBEXSession) IsSessionTargetAMac() bool {
+func (b_ BluetoothOBEXSession) IsSessionTargetAMac() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isSessionTargetAMac"))
 	return rv
 }
@@ -219,7 +219,7 @@ func (b_ BluetoothOBEXSession) IsSessionTargetAMac() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/openTransportConnection(_:selectorTarget:refCon:)
-func (b_ BluetoothOBEXSession) OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError {
+func (b_ BluetoothOBEXSession) OpenTransportConnectionSelectorTargetRefCon(inSelector objc.SEL, inTarget objectivec.IObject, inUserRefCon unsafe.Pointer) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](b_.ID, objc.Sel("openTransportConnection:selectorTarget:refCon:"), inSelector, inTarget, inUserRefCon)
 	return rv
 }
@@ -238,8 +238,8 @@ func (b_ BluetoothOBEXSession) RestartTransmission() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/sendBufferTroughChannel()
-func (b_ BluetoothOBEXSession) SendBufferTroughChannel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sendBufferTroughChannel"))
+func (b_ BluetoothOBEXSession) SendBufferTroughChannel() Return /* not a class type */ {
+	rv := objc.Send[Return](b_.ID, objc.Sel("sendBufferTroughChannel"))
 	return rv
 }
 
@@ -248,7 +248,7 @@ func (b_ BluetoothOBEXSession) SendBufferTroughChannel() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/sendData(toTransport:dataLength:)
-func (b_ BluetoothOBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr) OBEXError {
+func (b_ BluetoothOBEXSession) SendDataToTransportDataLength(inDataToSend unsafe.Pointer, inDataLength uintptr /* not a class type */) OBEXError /* typedef */ {
 	rv := objc.Send[OBEXError](b_.ID, objc.Sel("sendDataToTransport:dataLength:"), inDataToSend, inDataLength)
 	return rv
 }
@@ -258,7 +258,7 @@ func (b_ BluetoothOBEXSession) SendDataToTransportDataLength(inDataToSend unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/setOBEXSessionOpenConnectionCallback(_:refCon:)
-func (b_ BluetoothOBEXSession) SetOBEXSessionOpenConnectionCallbackRefCon(inCallback BluetoothOBEXSessionOpenConnectionCallback, inUserRefCon unsafe.Pointer) {
+func (b_ BluetoothOBEXSession) SetOBEXSessionOpenConnectionCallbackRefCon(inCallback objc.IObject /* cross-framework BluetoothOBEXSessionOpenConnectionCallback */, inUserRefCon unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setOBEXSessionOpenConnectionCallback:refCon:"), inCallback, inUserRefCon)
 }
 

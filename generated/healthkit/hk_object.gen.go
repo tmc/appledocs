@@ -34,16 +34,16 @@ type IHKObject interface {
 	// properties:
 	Device() IHKDevice
 	SetDevice(value IHKDevice)
-	Metadata() string
-	SetMetadata(value string)
+	Metadata() string /* primitive/slice/pointer. */
+	SetMetadata(value string /* primitive/slice/pointer. */)
 	Source() IHKSource
 	SetSource(value IHKSource)
 	SourceRevision() IHKSourceRevision
 	SetSourceRevision(value IHKSourceRevision)
-	Uuid() foundation.UUID
-	SetUuid(value foundation.UUID)
-	HKPredicateKeyPathMetadata() string
-	HKPredicateKeyPathUUID() string
+	Uuid() foundation.objc.IObject /* cross-framework: UUID */
+	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	HKPredicateKeyPathMetadata() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathUUID() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -123,7 +123,7 @@ func (h_ HKObject) SetDevice(value IHKDevice) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/metadata
-func (h_ HKObject) Metadata() string {
+func (h_ HKObject) Metadata() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (h_ HKObject) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/metadata
-func (h_ HKObject) SetMetadata(value string) {
+func (h_ HKObject) SetMetadata(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
@@ -180,7 +180,7 @@ func (h_ HKObject) SetSourceRevision(value IHKSourceRevision) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/uuid
-func (h_ HKObject) Uuid() foundation.UUID {
+func (h_ HKObject) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (h_ HKObject) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkobject/uuid
-func (h_ HKObject) SetUuid(value foundation.UUID) {
+func (h_ HKObject) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 
@@ -199,7 +199,7 @@ func (h_ HKObject) SetUuid(value foundation.UUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKObject) HKPredicateKeyPathMetadata() string {
+func (h_ HKObject) HKPredicateKeyPathMetadata() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (h_ HKObject) HKPredicateKeyPathMetadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKObject) HKPredicateKeyPathUUID() string {
+func (h_ HKObject) HKPredicateKeyPathUUID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }

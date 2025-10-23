@@ -30,8 +30,10 @@ type _AuthorizationProviderExtensionUserLoginConfigurationClass struct {
 // An interface definition for the [AuthorizationProviderExtensionUserLoginConfiguration] class.
 type IAuthorizationProviderExtensionUserLoginConfiguration interface {
 	objectivec.IObject
-	LoginUserName() string
-	SetLoginUserName(value string)
+	// properties:
+	LoginUserName() string /* primitive/slice/pointer. */
+	SetLoginUserName(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 
@@ -82,7 +84,7 @@ func NewAuthorizationProviderExtensionUserLoginConfiguration() AuthorizationProv
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() string {
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
 	return rv
 }
@@ -90,7 +92,7 @@ func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() s
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value string) {
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
 }
 

@@ -30,6 +30,7 @@ type _MigrationManagerClass struct {
 // An interface definition for the [MigrationManager] class.
 type IMigrationManager interface {
 	objectivec.IObject
+	// properties:
 	CurrentEntityMapping() IEntityMapping
 	SetCurrentEntityMapping(value IEntityMapping)
 	DestinationContext() IManagedObjectContext
@@ -38,16 +39,17 @@ type IMigrationManager interface {
 	SetDestinationModel(value IManagedObjectModel)
 	MappingModel() IMappingModel
 	SetMappingModel(value IMappingModel)
-	MigrationProgress() float32
-	SetMigrationProgress(value float32)
+	MigrationProgress() float32 /* primitive/slice/pointer. */
+	SetMigrationProgress(value float32 /* primitive/slice/pointer. */)
 	SourceContext() IManagedObjectContext
 	SetSourceContext(value IManagedObjectContext)
 	SourceModel() IManagedObjectModel
 	SetSourceModel(value IManagedObjectModel)
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
-	UsesStoreSpecificMigrationManager() bool
-	SetUsesStoreSpecificMigrationManager(value bool)
+	UsesStoreSpecificMigrationManager() bool /* primitive/slice/pointer. */
+	SetUsesStoreSpecificMigrationManager(value bool /* primitive/slice/pointer. */)
+	// methods:
 	DestinationEntityForEntityMapping(mEntity IEntityMapping) IEntityDescription
 }
 
@@ -192,7 +194,7 @@ func (m_ MigrationManager) SetMappingModel(value IMappingModel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/migrationprogress
-func (m_ MigrationManager) MigrationProgress() float32 {
+func (m_ MigrationManager) MigrationProgress() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](m_.ID, objc.Sel("migrationProgress"))
 	return rv
 }
@@ -202,7 +204,7 @@ func (m_ MigrationManager) MigrationProgress() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/migrationprogress
-func (m_ MigrationManager) SetMigrationProgress(value float32) {
+func (m_ MigrationManager) SetMigrationProgress(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMigrationProgress:"), value)
 }
 
@@ -268,7 +270,7 @@ func (m_ MigrationManager) SetUserInfo(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/usesstorespecificmigrationmanager
-func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
+func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("usesStoreSpecificMigrationManager"))
 	return rv
 }
@@ -278,7 +280,7 @@ func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmigrationmanager/usesstorespecificmigrationmanager
-func (m_ MigrationManager) SetUsesStoreSpecificMigrationManager(value bool) {
+func (m_ MigrationManager) SetUsesStoreSpecificMigrationManager(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesStoreSpecificMigrationManager:"), value)
 }
 

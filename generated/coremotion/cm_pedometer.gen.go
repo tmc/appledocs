@@ -31,9 +31,11 @@ type _PedometerClass struct {
 // An interface definition for the [Pedometer] class.
 type IPedometer interface {
 	objectivec.IObject
-	QueryPedometerDataFromDateToDateWithHandler(start foundation.NSDate, end foundation.NSDate, handler unsafe.Pointer)
-	StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer)
-	StartPedometerUpdatesFromDateWithHandler(start foundation.NSDate, handler unsafe.Pointer)
+	// properties:
+	// methods:
+	QueryPedometerDataFromDateToDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */)
+	StartPedometerEventUpdatesWithHandler(handler PedometerEventHandler /* not a class type */)
+	StartPedometerUpdatesFromDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */)
 	StopPedometerEventUpdates()
 	StopPedometerUpdates()
 }
@@ -95,8 +97,8 @@ func NewPedometer() Pedometer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/authorizationStatus()
-func (pc _PedometerClass) AuthorizationStatus() CMAuthorizationStatus {
-	rv := objc.Send[CMAuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
+func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -105,7 +107,7 @@ func (pc _PedometerClass) AuthorizationStatus() CMAuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isCadenceAvailable()
-func (pc _PedometerClass) IsCadenceAvailable() bool {
+func (pc _PedometerClass) IsCadenceAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isCadenceAvailable"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (pc _PedometerClass) IsCadenceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isDistanceAvailable()
-func (pc _PedometerClass) IsDistanceAvailable() bool {
+func (pc _PedometerClass) IsDistanceAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isDistanceAvailable"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (pc _PedometerClass) IsDistanceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()
-func (pc _PedometerClass) IsFloorCountingAvailable() bool {
+func (pc _PedometerClass) IsFloorCountingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isFloorCountingAvailable"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (pc _PedometerClass) IsFloorCountingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPaceAvailable()
-func (pc _PedometerClass) IsPaceAvailable() bool {
+func (pc _PedometerClass) IsPaceAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPaceAvailable"))
 	return rv
 }
@@ -145,7 +147,7 @@ func (pc _PedometerClass) IsPaceAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()
-func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool {
+func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPedometerEventTrackingAvailable"))
 	return rv
 }
@@ -155,7 +157,7 @@ func (pc _PedometerClass) IsPedometerEventTrackingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()
-func (pc _PedometerClass) IsStepCountingAvailable() bool {
+func (pc _PedometerClass) IsStepCountingAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isStepCountingAvailable"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (pc _PedometerClass) IsStepCountingAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)
-func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.NSDate, end foundation.NSDate, handler unsafe.Pointer) {
+func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, end foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("queryPedometerDataFromDate:toDate:withHandler:"), start, end, handler)
 }
 
@@ -174,7 +176,7 @@ func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)
-func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer) {
+func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler PedometerEventHandler /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerEventUpdatesWithHandler:"), handler)
 }
 
@@ -183,7 +185,7 @@ func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)
-func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.NSDate, handler unsafe.Pointer) {
+func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.objc.IObject /* cross-framework NSDate */, handler PedometerHandler /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerUpdatesFromDate:withHandler:"), start, handler)
 }
 

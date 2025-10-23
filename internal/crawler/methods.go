@@ -335,6 +335,17 @@ func (c *Crawler) queueNewURLs(newURLs []string, parentURL string, urlQueue chan
 				continue
 			}
 
+			// Check if URL is within entry point scope (only crawl children of entry point)
+			if c.entryPointPrefix != "" && parsedURL != nil {
+				urlPath := strings.ToLower(parsedURL.Path)
+				if !strings.HasPrefix(urlPath, c.entryPointPrefix) {
+					if cfg.Verbose {
+						log.Printf("Skipping URL outside entry point scope: %s (prefix: %s)", parsedURL.Path, c.entryPointPrefix)
+					}
+					continue
+				}
+			}
+
 			// Check if URL has been visited using atomic LoadOrStore
 			_, alreadyVisited := c.visitedURLs.LoadOrStore(resolvedURL, true)
 			if alreadyVisited {

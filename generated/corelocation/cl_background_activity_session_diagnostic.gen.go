@@ -30,12 +30,14 @@ type _BackgroundActivitySessionDiagnosticClass struct {
 // An interface definition for the [BackgroundActivitySessionDiagnostic] class.
 type IBackgroundActivitySessionDiagnostic interface {
 	objectivec.IObject
-	AuthorizationDenied() bool
-	AuthorizationDeniedGlobally() bool
-	AuthorizationRequestInProgress() bool
-	AuthorizationRestricted() bool
-	InsufficientlyInUse() bool
-	ServiceSessionRequired() bool
+	// properties:
+	AuthorizationDenied() bool /* primitive/slice/pointer. */
+	AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */
+	AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */
+	AuthorizationRestricted() bool /* primitive/slice/pointer. */
+	InsufficientlyInUse() bool /* primitive/slice/pointer. */
+	ServiceSessionRequired() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -86,7 +88,7 @@ func NewBackgroundActivitySessionDiagnostic() BackgroundActivitySessionDiagnosti
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationDenied
-func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDenied() bool {
+func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDenied() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationDenied"))
 	return rv
 }
@@ -94,7 +96,7 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDenied() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationDeniedGlobally
-func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDeniedGlobally() bool {
+func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationDeniedGlobally() bool
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationRequestInProgress
-func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRequestInProgress() bool {
+func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRequestInProgress() b
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/authorizationRestricted
-func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRestricted() bool {
+func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRestricted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("authorizationRestricted"))
 	return rv
 }
@@ -118,7 +120,7 @@ func (b_ BackgroundActivitySessionDiagnostic) AuthorizationRestricted() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/insufficientlyInUse
-func (b_ BackgroundActivitySessionDiagnostic) InsufficientlyInUse() bool {
+func (b_ BackgroundActivitySessionDiagnostic) InsufficientlyInUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (b_ BackgroundActivitySessionDiagnostic) InsufficientlyInUse() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic/serviceSessionRequired
-func (b_ BackgroundActivitySessionDiagnostic) ServiceSessionRequired() bool {
+func (b_ BackgroundActivitySessionDiagnostic) ServiceSessionRequired() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }

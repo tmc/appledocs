@@ -29,10 +29,12 @@ type _BackgroundExtensionViewClass struct {
 // An interface definition for the [BackgroundExtensionView] class.
 type IBackgroundExtensionView interface {
 	IView
-	AutomaticallyPlacesContentView() bool
-	SetAutomaticallyPlacesContentView(value bool)
+	// properties:
+	AutomaticallyPlacesContentView() bool /* primitive/slice/pointer. */
+	SetAutomaticallyPlacesContentView(value bool /* primitive/slice/pointer. */)
 	ContentView() IView
 	SetContentView(value IView)
+	// methods:
 }
 
 // A view that extends content to fill its own bounds.
@@ -94,7 +96,7 @@ func NewBackgroundExtensionView() BackgroundExtensionView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
-func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
+func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("automaticallyPlacesContentView"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (b_ BackgroundExtensionView) AutomaticallyPlacesContentView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBackgroundExtensionView/automaticallyPlacesContentView
-func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool) {
+func (b_ BackgroundExtensionView) SetAutomaticallyPlacesContentView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAutomaticallyPlacesContentView:"), value)
 }
 

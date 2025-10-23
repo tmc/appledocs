@@ -30,9 +30,11 @@ type _CNDetectionTrackClass struct {
 // An interface definition for the [CNDetectionTrack] class.
 type ICNDetectionTrack interface {
 	objectivec.IObject
-	DetectionID() CNDetectionID
-	UserCreated() bool
-	DetectionNearestTime(time unsafe.Pointer) ICNDetection
+	// properties:
+	DetectionID() CNDetectionID /* typedef */
+	UserCreated() bool /* primitive/slice/pointer. */
+	// methods:
+	DetectionNearestTime(time Time /* not a class type */) ICNDetection
 }
 
 // An object representing a series of detections of the same subject over time.
@@ -90,7 +92,7 @@ func NewCNDetectionTrack() CNDetectionTrack {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionNearestTime:
-func (c_ CNDetectionTrack) DetectionNearestTime(time unsafe.Pointer) ICNDetection {
+func (c_ CNDetectionTrack) DetectionNearestTime(time Time /* not a class type */) ICNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionNearestTime:"), time)
 	return rv
 }
@@ -100,7 +102,7 @@ func (c_ CNDetectionTrack) DetectionNearestTime(time unsafe.Pointer) ICNDetectio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionID
-func (c_ CNDetectionTrack) DetectionID() CNDetectionID {
+func (c_ CNDetectionTrack) DetectionID() CNDetectionID /* typedef */ {
 	rv := objc.Send[CNDetectionID](c_.ID, objc.Sel("detectionID"))
 	return rv
 }
@@ -110,7 +112,7 @@ func (c_ CNDetectionTrack) DetectionID() CNDetectionID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/userCreated
-func (c_ CNDetectionTrack) UserCreated() bool {
+func (c_ CNDetectionTrack) UserCreated() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("userCreated"))
 	return rv
 }

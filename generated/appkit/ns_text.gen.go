@@ -32,62 +32,70 @@ type _TextClass struct {
 // An interface definition for the [Text] class.
 type IText interface {
 	IView
+	// properties:
+	Alignment() TextAlignment
+	SetAlignment(value TextAlignment)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	Editable() bool
-	SetEditable(value bool)
-	RichText() bool
-	SetRichText(value bool)
-	Alignment() unsafe.Pointer
-	SetAlignment(value unsafe.Pointer)
-	BaseWritingDirection() unsafe.Pointer
-	SetBaseWritingDirection(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	DrawsBackground() bool
-	SetDrawsBackground(value bool)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	ImportsGraphics() bool /* primitive/slice/pointer. */
+	SetImportsGraphics(value bool /* primitive/slice/pointer. */)
+	Editable() bool /* primitive/slice/pointer. */
+	SetEditable(value bool /* primitive/slice/pointer. */)
+	RichText() bool /* primitive/slice/pointer. */
+	SetRichText(value bool /* primitive/slice/pointer. */)
+	BaseWritingDirection() WritingDirection
+	SetBaseWritingDirection(value WritingDirection)
+	DrawsBackground() bool /* primitive/slice/pointer. */
+	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
 	Font() IFont
 	SetFont(value IFont)
-	ImportsGraphics() bool
-	SetImportsGraphics(value bool)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	IsFieldEditor() bool
-	SetIsFieldEditor(value bool)
-	IsHorizontallyResizable() bool
-	SetIsHorizontallyResizable(value bool)
-	IsRichText() bool
-	SetIsRichText(value bool)
-	IsRulerVisible() bool
-	SetIsRulerVisible(value bool)
-	IsSelectable() bool
-	SetIsSelectable(value bool)
-	IsVerticallyResizable() bool
-	SetIsVerticallyResizable(value bool)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsFieldEditor() bool /* primitive/slice/pointer. */
+	SetIsFieldEditor(value bool /* primitive/slice/pointer. */)
+	IsHorizontallyResizable() bool /* primitive/slice/pointer. */
+	SetIsHorizontallyResizable(value bool /* primitive/slice/pointer. */)
+	IsRichText() bool /* primitive/slice/pointer. */
+	SetIsRichText(value bool /* primitive/slice/pointer. */)
+	IsRulerVisible() bool /* primitive/slice/pointer. */
+	SetIsRulerVisible(value bool /* primitive/slice/pointer. */)
+	IsSelectable() bool /* primitive/slice/pointer. */
+	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	IsVerticallyResizable() bool /* primitive/slice/pointer. */
+	SetIsVerticallyResizable(value bool /* primitive/slice/pointer. */)
 	MaxSize() coregraphics.CGSize
 	SetMaxSize(value coregraphics.CGSize)
 	MinSize() coregraphics.CGSize
 	SetMinSize(value coregraphics.CGSize)
-	SelectedRange() foundation.Range
-	SetSelectedRange(value foundation.Range)
-	String() string
-	SetString(value string)
+	SelectedRange() foundation.objc.IObject /* cross-framework: Range */
+	SetSelectedRange(value foundation.objc.IObject /* cross-framework: Range */)
+	String() string /* primitive/slice/pointer. */
+	SetString(value string /* primitive/slice/pointer. */)
 	TextColor() IColor
 	SetTextColor(value IColor)
-	UsesFontPanel() bool
-	SetUsesFontPanel(value bool)
+	UsesFontPanel() bool /* primitive/slice/pointer. */
+	SetUsesFontPanel(value bool /* primitive/slice/pointer. */)
+	// methods:
+	AlignCenter(sender objectivec.IObject)
 	AlignLeft(sender objectivec.IObject)
+	CheckSpelling(sender objectivec.IObject)
 	Copy(sender objectivec.IObject)
 	CopyRuler(sender objectivec.IObject)
 	Delete(sender objectivec.IObject)
 	PasteRuler(sender objectivec.IObject)
-	ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdData foundation.NSData)
-	SetTextColorRange(color IColor, range_ foundation.Range)
+	ReadRTFDFromFile(path string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ReplaceCharactersInRangeWithRTFD(range_ foundation.objc.IObject /* cross-framework Range */, rtfdData foundation.objc.IObject /* cross-framework NSData */)
+	RTFFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
+	RTFDFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */
+	SetFontRange(font IFont, range_ foundation.objc.IObject /* cross-framework Range */)
+	SetTextColorRange(color IColor, range_ foundation.objc.IObject /* cross-framework Range */)
 	SizeToFit()
 	Superscript(sender objectivec.IObject)
 	ToggleRuler(sender objectivec.IObject)
 	Unscript(sender objectivec.IObject)
-	WriteRTFDToFileAtomically(path string, flag bool) bool
+	WriteRTFDToFileAtomically(path string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // The most general programmatic interface for objects that manage text.
@@ -145,12 +153,41 @@ func NewText() Text {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
+func NewTextWithCoder(coder Coder /* not a class type */) Text {
+	instance := getTextClass().Alloc()
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// This action method applies center alignment to selected paragraphs (or all text if the receiver is a plain text object).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/alignCenter(_:)
+func (t_ Text) AlignCenter(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("alignCenter:"), sender)
+}
+
+
 // This action method applies left alignment to selected paragraphs (or all text if the receiver is a plain text object).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/alignLeft(_:)
 func (t_ Text) AlignLeft(sender objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("alignLeft:"), sender)
+}
+
+
+// This action method searches for a misspelled word in the receiver’s text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/checkSpelling(_:)
+func (t_ Text) CheckSpelling(sender objectivec.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("checkSpelling:"), sender)
 }
 
 
@@ -190,12 +227,51 @@ func (t_ Text) PasteRuler(sender objectivec.IObject) {
 }
 
 
+// Attempts to read the RTFD file at the specified path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/readRTFD(fromFile:)
+func (t_ Text) ReadRTFDFromFile(path string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("readRTFDFromFile:"), objc.String(path))
+	return rv
+}
+
+
 // Replaces the characters in the given range with RTFD text interpreted from the given RTFD data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/replaceCharacters(in:withRTFD:)
-func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdData foundation.NSData) {
+func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.objc.IObject /* cross-framework Range */, rtfdData foundation.objc.IObject /* cross-framework NSData */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("replaceCharactersInRange:withRTFD:"), range_, rtfdData)
+}
+
+
+// Returns an NSData object that contains an RTF stream corresponding to the characters and attributes within , omitting any attachment characters and attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/rtf(from:)
+func (t_ Text) RTFFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](t_.ID, objc.Sel("RTFFromRange:"), range_)
+	return rv
+}
+
+
+// Returns an NSData object that contains an RTFD stream corresponding to the characters and attributes within .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/rtfd(from:)
+func (t_ Text) RTFDFromRange(range_ foundation.objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](t_.ID, objc.Sel("RTFDFromRange:"), range_)
+	return rv
+}
+
+
+// Sets the font of characters within to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/setFont(_:range:)
+func (t_ Text) SetFontRange(font IFont, range_ foundation.objc.IObject /* cross-framework Range */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setFont:range:"), font, range_)
 }
 
 
@@ -203,7 +279,7 @@ func (t_ Text) ReplaceCharactersInRangeWithRTFD(range_ foundation.Range, rtfdDat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/setTextColor(_:range:)
-func (t_ Text) SetTextColorRange(color IColor, range_ foundation.Range) {
+func (t_ Text) SetTextColorRange(color IColor, range_ foundation.objc.IObject /* cross-framework Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:range:"), color, range_)
 }
 
@@ -248,9 +324,28 @@ func (t_ Text) Unscript(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/writeRTFD(toFile:atomically:)
-func (t_ Text) WriteRTFDToFileAtomically(path string, flag bool) bool {
+func (t_ Text) WriteRTFDToFileAtomically(path string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("writeRTFDToFile:atomically:"), objc.String(path), flag)
 	return rv
+}
+
+
+// The alignment of all the receiver’s text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/alignment
+func (t_ Text) Alignment() TextAlignment {
+	rv := objc.Send[TextAlignment](t_.ID, objc.Sel("alignment"))
+	return rv
+}
+
+
+// The alignment of all the receiver’s text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/alignment
+func (t_ Text) SetAlignment(value TextAlignment) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
 }
 
 
@@ -273,11 +368,49 @@ func (t_ Text) SetBackgroundColor(value IColor) {
 }
 
 
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/delegate
+func (t_ Text) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/delegate
+func (t_ Text) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A Boolean that controls whether the receiver allows the user to import files by dragging.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/importsGraphics
+func (t_ Text) ImportsGraphics() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("importsGraphics"))
+	return rv
+}
+
+
+// A Boolean that controls whether the receiver allows the user to import files by dragging.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/importsGraphics
+func (t_ Text) SetImportsGraphics(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImportsGraphics:"), value)
+}
+
+
 // A Boolean that controls whether the receiver allows the user to edit its text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isEditable
-func (t_ Text) Editable() bool {
+func (t_ Text) Editable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("editable"))
 	return rv
 }
@@ -287,7 +420,7 @@ func (t_ Text) Editable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isEditable
-func (t_ Text) SetEditable(value bool) {
+func (t_ Text) SetEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditable:"), value)
 }
 
@@ -296,7 +429,7 @@ func (t_ Text) SetEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isRichText
-func (t_ Text) RichText() bool {
+func (t_ Text) RichText() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("richText"))
 	return rv
 }
@@ -306,36 +439,17 @@ func (t_ Text) RichText() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/isRichText
-func (t_ Text) SetRichText(value bool) {
+func (t_ Text) SetRichText(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRichText:"), value)
 }
 
 
-// The alignment of all the receiver’s text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/alignment
-func (t_ Text) Alignment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("alignment"))
-	return rv
-}
-
-
-// The alignment of all the receiver’s text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/alignment
-func (t_ Text) SetAlignment(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
-}
-
-
 // The initial writing direction used to determine the actual writing direction for text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/basewritingdirection
-func (t_ Text) BaseWritingDirection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("baseWritingDirection"))
+func (t_ Text) BaseWritingDirection() WritingDirection {
+	rv := objc.Send[WritingDirection](t_.ID, objc.Sel("baseWritingDirection"))
 	return rv
 }
 
@@ -344,27 +458,8 @@ func (t_ Text) BaseWritingDirection() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/basewritingdirection
-func (t_ Text) SetBaseWritingDirection(value unsafe.Pointer) {
+func (t_ Text) SetBaseWritingDirection(value WritingDirection) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBaseWritingDirection:"), value)
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/delegate
-func (t_ Text) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/delegate
-func (t_ Text) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -372,7 +467,7 @@ func (t_ Text) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/drawsbackground
-func (t_ Text) DrawsBackground() bool {
+func (t_ Text) DrawsBackground() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -382,7 +477,7 @@ func (t_ Text) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/drawsbackground
-func (t_ Text) SetDrawsBackground(value bool) {
+func (t_ Text) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
 }
 
@@ -406,30 +501,11 @@ func (t_ Text) SetFont(value IFont) {
 }
 
 
-// A Boolean that controls whether the receiver allows the user to import files by dragging.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/importsgraphics
-func (t_ Text) ImportsGraphics() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("importsGraphics"))
-	return rv
-}
-
-
-// A Boolean that controls whether the receiver allows the user to import files by dragging.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/importsgraphics
-func (t_ Text) SetImportsGraphics(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setImportsGraphics:"), value)
-}
-
-
 // A Boolean that controls whether the receiver allows the user to edit its text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/iseditable
-func (t_ Text) IsEditable() bool {
+func (t_ Text) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -439,7 +515,7 @@ func (t_ Text) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/iseditable
-func (t_ Text) SetIsEditable(value bool) {
+func (t_ Text) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -448,7 +524,7 @@ func (t_ Text) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isfieldeditor
-func (t_ Text) IsFieldEditor() bool {
+func (t_ Text) IsFieldEditor() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isFieldEditor"))
 	return rv
 }
@@ -458,7 +534,7 @@ func (t_ Text) IsFieldEditor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isfieldeditor
-func (t_ Text) SetIsFieldEditor(value bool) {
+func (t_ Text) SetIsFieldEditor(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsFieldEditor:"), value)
 }
 
@@ -467,7 +543,7 @@ func (t_ Text) SetIsFieldEditor(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/ishorizontallyresizable
-func (t_ Text) IsHorizontallyResizable() bool {
+func (t_ Text) IsHorizontallyResizable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHorizontallyResizable"))
 	return rv
 }
@@ -477,7 +553,7 @@ func (t_ Text) IsHorizontallyResizable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/ishorizontallyresizable
-func (t_ Text) SetIsHorizontallyResizable(value bool) {
+func (t_ Text) SetIsHorizontallyResizable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHorizontallyResizable:"), value)
 }
 
@@ -486,7 +562,7 @@ func (t_ Text) SetIsHorizontallyResizable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrichtext
-func (t_ Text) IsRichText() bool {
+func (t_ Text) IsRichText() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRichText"))
 	return rv
 }
@@ -496,7 +572,7 @@ func (t_ Text) IsRichText() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrichtext
-func (t_ Text) SetIsRichText(value bool) {
+func (t_ Text) SetIsRichText(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRichText:"), value)
 }
 
@@ -505,7 +581,7 @@ func (t_ Text) SetIsRichText(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrulervisible
-func (t_ Text) IsRulerVisible() bool {
+func (t_ Text) IsRulerVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isRulerVisible"))
 	return rv
 }
@@ -515,7 +591,7 @@ func (t_ Text) IsRulerVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isrulervisible
-func (t_ Text) SetIsRulerVisible(value bool) {
+func (t_ Text) SetIsRulerVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsRulerVisible:"), value)
 }
 
@@ -524,7 +600,7 @@ func (t_ Text) SetIsRulerVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isselectable
-func (t_ Text) IsSelectable() bool {
+func (t_ Text) IsSelectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isSelectable"))
 	return rv
 }
@@ -534,7 +610,7 @@ func (t_ Text) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isselectable
-func (t_ Text) SetIsSelectable(value bool) {
+func (t_ Text) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsSelectable:"), value)
 }
 
@@ -543,7 +619,7 @@ func (t_ Text) SetIsSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isverticallyresizable
-func (t_ Text) IsVerticallyResizable() bool {
+func (t_ Text) IsVerticallyResizable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVerticallyResizable"))
 	return rv
 }
@@ -553,7 +629,7 @@ func (t_ Text) IsVerticallyResizable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/isverticallyresizable
-func (t_ Text) SetIsVerticallyResizable(value bool) {
+func (t_ Text) SetIsVerticallyResizable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVerticallyResizable:"), value)
 }
 
@@ -600,7 +676,7 @@ func (t_ Text) SetMinSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/selectedrange
-func (t_ Text) SelectedRange() foundation.Range {
+func (t_ Text) SelectedRange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("selectedRange"))
 	return rv
 }
@@ -610,7 +686,7 @@ func (t_ Text) SelectedRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/selectedrange
-func (t_ Text) SetSelectedRange(value foundation.Range) {
+func (t_ Text) SetSelectedRange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedRange:"), value)
 }
 
@@ -619,7 +695,7 @@ func (t_ Text) SetSelectedRange(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/string
-func (t_ Text) String() string {
+func (t_ Text) String() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
@@ -629,7 +705,7 @@ func (t_ Text) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/string
-func (t_ Text) SetString(value string) {
+func (t_ Text) SetString(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 
@@ -657,7 +733,7 @@ func (t_ Text) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/usesfontpanel
-func (t_ Text) UsesFontPanel() bool {
+func (t_ Text) UsesFontPanel() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("usesFontPanel"))
 	return rv
 }
@@ -667,9 +743,8 @@ func (t_ Text) UsesFontPanel() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstext/usesfontpanel
-func (t_ Text) SetUsesFontPanel(value bool) {
+func (t_ Text) SetUsesFontPanel(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsesFontPanel:"), value)
 }
-
 
 

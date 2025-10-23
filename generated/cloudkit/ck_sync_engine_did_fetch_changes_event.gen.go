@@ -29,6 +29,8 @@ type _CKSyncEngineDidFetchChangesEventClass struct {
 // An interface definition for the [CKSyncEngineDidFetchChangesEvent] class.
 type ICKSyncEngineDidFetchChangesEvent interface {
 	ICKSyncEngineEvent
+	// properties:
+	// methods:
 }
 
 // An object that represents a completed database fetch.

@@ -30,6 +30,8 @@ type _AudioUnitClass struct {
 // An interface definition for the [AudioUnit] class.
 type IAudioUnit interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AVFAudio classes.

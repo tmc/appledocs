@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ComboBox] class.
@@ -31,43 +30,34 @@ type _ComboBoxClass struct {
 // An interface definition for the [ComboBox] class.
 type IComboBox interface {
 	ITextField
-	AddItemWithObjectValue(object objectivec.IObject)
-	AddItemsWithObjectValues(objects objectivec.IObject)
-	IndexOfItemWithObjectValue(object objectivec.IObject) int
-	InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int)
-	ItemObjectValueAtIndex(index int) objc.ID
-	ReloadData()
-	RemoveAllItems()
-	RemoveItemAtIndex(index int)
-	ScrollItemAtIndexToTop(index int)
-	ScrollItemAtIndexToVisible(index int)
-	SelectItemWithObjectValue(object objectivec.IObject)
-	DataSource() objc.ID
-	SetDataSource(value objc.ID)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	ItemHeight() float64
-	SetItemHeight(value float64)
-	NumberOfVisibleItems() int
-	SetNumberOfVisibleItems(value int)
-	UsesDataSource() bool
-	SetUsesDataSource(value bool)
-	Completes() bool
-	SetCompletes(value bool)
-	HasVerticalScroller() bool
-	SetHasVerticalScroller(value bool)
-	IndexOfSelectedItem() int
-	SetIndexOfSelectedItem(value int)
+	// properties:
+	Completes() bool /* primitive/slice/pointer. */
+	SetCompletes(value bool /* primitive/slice/pointer. */)
+	DataSource() ComboBoxDataSource /* not a class type */
+	SetDataSource(value ComboBoxDataSource /* not a class type */)
+	Delegate() ComboBoxDelegate /* not a class type */
+	SetDelegate(value ComboBoxDelegate /* not a class type */)
+	HasVerticalScroller() bool /* primitive/slice/pointer. */
+	SetHasVerticalScroller(value bool /* primitive/slice/pointer. */)
+	IndexOfSelectedItem() int /* primitive/slice/pointer. */
+	SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */)
 	IntercellSpacing() coregraphics.CGSize
 	SetIntercellSpacing(value coregraphics.CGSize)
-	IsButtonBordered() bool
-	SetIsButtonBordered(value bool)
-	NumberOfItems() int
-	SetNumberOfItems(value int)
+	IsButtonBordered() bool /* primitive/slice/pointer. */
+	SetIsButtonBordered(value bool /* primitive/slice/pointer. */)
+	ItemHeight() float64 /* primitive/slice/pointer. */
+	SetItemHeight(value float64 /* primitive/slice/pointer. */)
+	NumberOfItems() int /* primitive/slice/pointer. */
+	SetNumberOfItems(value int /* primitive/slice/pointer. */)
+	NumberOfVisibleItems() int /* primitive/slice/pointer. */
+	SetNumberOfVisibleItems(value int /* primitive/slice/pointer. */)
 	ObjectValueOfSelectedItem() unsafe.Pointer
 	SetObjectValueOfSelectedItem(value unsafe.Pointer)
 	ObjectValues() unsafe.Pointer
 	SetObjectValues(value unsafe.Pointer)
+	UsesDataSource() bool /* primitive/slice/pointer. */
+	SetUsesDataSource(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.
@@ -125,207 +115,11 @@ func NewComboBox() ComboBox {
 
 
 
-// Adds an object to the end of the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/addItem(withObjectValue:)
-func (c_ ComboBox) AddItemWithObjectValue(object objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addItemWithObjectValue:"), object)
-}
-
-
-// Adds multiple objects to the end of the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/addItems(withObjectValues:)
-func (c_ ComboBox) AddItemsWithObjectValues(objects objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addItemsWithObjectValues:"), objects)
-}
-
-
-// Searches the receiver’s internal item list for the specified object and returns the lowest matching index.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/indexOfItem(withObjectValue:)
-func (c_ ComboBox) IndexOfItemWithObjectValue(object objectivec.IObject) int {
-	rv := objc.Send[int](c_.ID, objc.Sel("indexOfItemWithObjectValue:"), object)
-	return rv
-}
-
-
-// Inserts an object at the specified location in the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/insertItem(withObjectValue:at:)
-func (c_ ComboBox) InsertItemWithObjectValueAtIndex(object objectivec.IObject, index int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("insertItemWithObjectValue:atIndex:"), object, index)
-}
-
-
-// Returns the object located at the given index within the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/itemObjectValue(at:)
-func (c_ ComboBox) ItemObjectValueAtIndex(index int) objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("itemObjectValueAtIndex:"), index)
-	return rv
-}
-
-
-// Marks the receiver as needing redisplay, so that it will reload the data for visible pop-up items and draw the new values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/reloadData()
-func (c_ ComboBox) ReloadData() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("reloadData"))
-}
-
-
-// Removes all items from the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/removeAllItems()
-func (c_ ComboBox) RemoveAllItems() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeAllItems"))
-}
-
-
-// Removes the object at the specified location from the receiver’s internal item list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/removeItem(at:)
-func (c_ ComboBox) RemoveItemAtIndex(index int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeItemAtIndex:"), index)
-}
-
-
-// Scrolls the receiver’s pop-up list vertically so that the item at the specified index is as close to the top as possible.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/scrollItemAtIndexToTop(_:)
-func (c_ ComboBox) ScrollItemAtIndexToTop(index int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("scrollItemAtIndexToTop:"), index)
-}
-
-
-// Scrolls the receiver’s pop-up list vertically so that the item at the specified index is visible.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/scrollItemAtIndexToVisible(_:)
-func (c_ ComboBox) ScrollItemAtIndexToVisible(index int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("scrollItemAtIndexToVisible:"), index)
-}
-
-
-// Selects the first pop-up list item that corresponds to the given object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/selectItem(withObjectValue:)
-func (c_ ComboBox) SelectItemWithObjectValue(object objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("selectItemWithObjectValue:"), object)
-}
-
-
-// The object that provides the item data for the combo box.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/dataSource
-func (c_ ComboBox) DataSource() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("dataSource"))
-	return rv
-}
-
-
-// The object that provides the item data for the combo box.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/dataSource
-func (c_ ComboBox) SetDataSource(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/delegate
-func (c_ ComboBox) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Sets the receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/delegate
-func (c_ ComboBox) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The height of each item in the pop-up list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/itemHeight
-func (c_ ComboBox) ItemHeight() float64 {
-	rv := objc.Send[float64](c_.ID, objc.Sel("itemHeight"))
-	return rv
-}
-
-
-// The height of each item in the pop-up list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/itemHeight
-func (c_ ComboBox) SetItemHeight(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setItemHeight:"), value)
-}
-
-
-// The maximum number of visible items to display in the pop-up list at one time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/numberOfVisibleItems
-func (c_ ComboBox) NumberOfVisibleItems() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("numberOfVisibleItems"))
-	return rv
-}
-
-
-// The maximum number of visible items to display in the pop-up list at one time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/numberOfVisibleItems
-func (c_ ComboBox) SetNumberOfVisibleItems(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
-}
-
-
-// A Boolean value indicating whether the combo box retrieves its items from a data source object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/usesDataSource
-func (c_ ComboBox) UsesDataSource() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("usesDataSource"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the combo box retrieves its items from a data source object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboBox/usesDataSource
-func (c_ ComboBox) SetUsesDataSource(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesDataSource:"), value)
-}
-
-
 // A Boolean value indicating whether the combo box tries to complete what the user types.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/completes
-func (c_ ComboBox) Completes() bool {
+func (c_ ComboBox) Completes() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("completes"))
 	return rv
 }
@@ -335,8 +129,46 @@ func (c_ ComboBox) Completes() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/completes
-func (c_ ComboBox) SetCompletes(value bool) {
+func (c_ ComboBox) SetCompletes(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCompletes:"), value)
+}
+
+
+// The object that provides the item data for the combo box.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/datasource
+func (c_ ComboBox) DataSource() ComboBoxDataSource /* not a class type */ {
+	rv := objc.Send[ComboBoxDataSource](c_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// The object that provides the item data for the combo box.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/datasource
+func (c_ ComboBox) SetDataSource(value ComboBoxDataSource /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/delegate
+func (c_ ComboBox) Delegate() ComboBoxDelegate /* not a class type */ {
+	rv := objc.Send[ComboBoxDelegate](c_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Sets the receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/delegate
+func (c_ ComboBox) SetDelegate(value ComboBoxDelegate /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
 
 
@@ -344,7 +176,7 @@ func (c_ ComboBox) SetCompletes(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/hasverticalscroller
-func (c_ ComboBox) HasVerticalScroller() bool {
+func (c_ ComboBox) HasVerticalScroller() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasVerticalScroller"))
 	return rv
 }
@@ -354,7 +186,7 @@ func (c_ ComboBox) HasVerticalScroller() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/hasverticalscroller
-func (c_ ComboBox) SetHasVerticalScroller(value bool) {
+func (c_ ComboBox) SetHasVerticalScroller(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasVerticalScroller:"), value)
 }
 
@@ -363,7 +195,7 @@ func (c_ ComboBox) SetHasVerticalScroller(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/indexofselecteditem
-func (c_ ComboBox) IndexOfSelectedItem() int {
+func (c_ ComboBox) IndexOfSelectedItem() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("indexOfSelectedItem"))
 	return rv
 }
@@ -373,7 +205,7 @@ func (c_ ComboBox) IndexOfSelectedItem() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/indexofselecteditem
-func (c_ ComboBox) SetIndexOfSelectedItem(value int) {
+func (c_ ComboBox) SetIndexOfSelectedItem(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
 }
 
@@ -401,7 +233,7 @@ func (c_ ComboBox) SetIntercellSpacing(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/isbuttonbordered
-func (c_ ComboBox) IsButtonBordered() bool {
+func (c_ ComboBox) IsButtonBordered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isButtonBordered"))
 	return rv
 }
@@ -411,8 +243,27 @@ func (c_ ComboBox) IsButtonBordered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/isbuttonbordered
-func (c_ ComboBox) SetIsButtonBordered(value bool) {
+func (c_ ComboBox) SetIsButtonBordered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsButtonBordered:"), value)
+}
+
+
+// The height of each item in the pop-up list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/itemheight
+func (c_ ComboBox) ItemHeight() float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](c_.ID, objc.Sel("itemHeight"))
+	return rv
+}
+
+
+// The height of each item in the pop-up list.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/itemheight
+func (c_ ComboBox) SetItemHeight(value float64 /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setItemHeight:"), value)
 }
 
 
@@ -420,7 +271,7 @@ func (c_ ComboBox) SetIsButtonBordered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/numberofitems
-func (c_ ComboBox) NumberOfItems() int {
+func (c_ ComboBox) NumberOfItems() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfItems"))
 	return rv
 }
@@ -430,8 +281,27 @@ func (c_ ComboBox) NumberOfItems() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/numberofitems
-func (c_ ComboBox) SetNumberOfItems(value int) {
+func (c_ ComboBox) SetNumberOfItems(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfItems:"), value)
+}
+
+
+// The maximum number of visible items to display in the pop-up list at one time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/numberofvisibleitems
+func (c_ ComboBox) NumberOfVisibleItems() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](c_.ID, objc.Sel("numberOfVisibleItems"))
+	return rv
+}
+
+
+// The maximum number of visible items to display in the pop-up list at one time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/numberofvisibleitems
+func (c_ ComboBox) SetNumberOfVisibleItems(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }
 
 
@@ -470,6 +340,25 @@ func (c_ ComboBox) ObjectValues() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/objectvalues
 func (c_ ComboBox) SetObjectValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObjectValues:"), value)
+}
+
+
+// A Boolean value indicating whether the combo box retrieves its items from a data source object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/usesdatasource
+func (c_ ComboBox) UsesDataSource() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("usesDataSource"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the combo box retrieves its items from a data source object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscombobox/usesdatasource
+func (c_ ComboBox) SetUsesDataSource(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUsesDataSource:"), value)
 }
 
 

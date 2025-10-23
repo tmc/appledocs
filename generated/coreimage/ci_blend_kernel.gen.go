@@ -30,6 +30,8 @@ type _BlendKernelClass struct {
 // An interface definition for the [BlendKernel] class.
 type IBlendKernel interface {
 	IColorKernel
+	// properties:
+	// methods:
 	ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) IImage
 	ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace coregraphics.CGColorSpaceRef) IImage
 }
@@ -93,7 +95,7 @@ func NewBlendKernel() BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func NewBlendKernelWithString(string_ string) BlendKernel {
+func NewBlendKernelWithString(string_ string /* primitive/slice/pointer. */) BlendKernel {
 	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
@@ -104,7 +106,7 @@ func NewBlendKernelWithString(string_ string) BlendKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+func (bc _BlendKernelClass) KernelWithString(string_ string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }

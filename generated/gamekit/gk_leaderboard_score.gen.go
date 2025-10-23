@@ -30,14 +30,16 @@ type _LeaderboardScoreClass struct {
 // An interface definition for the [LeaderboardScore] class.
 type ILeaderboardScore interface {
 	objectivec.IObject
-	Context() int
-	SetContext(value int)
-	LeaderboardID() string
-	SetLeaderboardID(value string)
+	// properties:
+	Context() int /* primitive/slice/pointer. */
+	SetContext(value int /* primitive/slice/pointer. */)
+	LeaderboardID() string /* primitive/slice/pointer. */
+	SetLeaderboardID(value string /* primitive/slice/pointer. */)
 	Player() IGKPlayer
 	SetPlayer(value IGKPlayer)
-	Value() int
-	SetValue(value int)
+	Value() int /* primitive/slice/pointer. */
+	SetValue(value int /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // Information about a player’s score on a leaderboard.
@@ -97,7 +99,7 @@ func NewLeaderboardScore() LeaderboardScore {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) Context() int {
+func (l_ LeaderboardScore) Context() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](l_.ID, objc.Sel("context"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (l_ LeaderboardScore) Context() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/context
-func (l_ LeaderboardScore) SetContext(value int) {
+func (l_ LeaderboardScore) SetContext(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -116,7 +118,7 @@ func (l_ LeaderboardScore) SetContext(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) LeaderboardID() string {
+func (l_ LeaderboardScore) LeaderboardID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardID"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (l_ LeaderboardScore) LeaderboardID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) SetLeaderboardID(value string) {
+func (l_ LeaderboardScore) SetLeaderboardID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), objc.String(value))
 }
 
@@ -154,7 +156,7 @@ func (l_ LeaderboardScore) SetPlayer(value IGKPlayer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) Value() int {
+func (l_ LeaderboardScore) Value() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](l_.ID, objc.Sel("value"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (l_ LeaderboardScore) Value() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/value
-func (l_ LeaderboardScore) SetValue(value int) {
+func (l_ LeaderboardScore) SetValue(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setValue:"), value)
 }
 

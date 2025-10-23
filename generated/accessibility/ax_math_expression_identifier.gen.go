@@ -29,8 +29,10 @@ type _AXMathExpressionIdentifierClass struct {
 // An interface definition for the [AXMathExpressionIdentifier] class.
 type IAXMathExpressionIdentifier interface {
 	IAXMathExpression
-	Content() string
-	SetContent(value string)
+	// properties:
+	Content() string /* primitive/slice/pointer. */
+	SetContent(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 
@@ -83,7 +85,7 @@ func NewAXMathExpressionIdentifier() AXMathExpressionIdentifier {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionIdentifier/init(content:)
-func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionIdentifier {
+func NewAXMathExpressionIdentifierWithContent(content string /* primitive/slice/pointer. */) AXMathExpressionIdentifier {
 	instance := getAXMathExpressionIdentifierClass().Alloc()
 	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
 	rv.Autorelease()
@@ -94,7 +96,7 @@ func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionId
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) Content() string {
+func (a_ AXMathExpressionIdentifier) Content() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("content"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (a_ AXMathExpressionIdentifier) Content() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) SetContent(value string) {
+func (a_ AXMathExpressionIdentifier) SetContent(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), objc.String(value))
 }
 

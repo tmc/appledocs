@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +30,13 @@ type _CXTransactionClass struct {
 // An interface definition for the [CXTransaction] class.
 type ICXTransaction interface {
 	objectivec.IObject
-	Actions() []CXAction
-	Complete() bool
-	UUID() foundation.UUID
-	IsComplete() bool
-	SetIsComplete(value bool)
+	// properties:
+	Actions() []CXAction /* primitive/slice/pointer. */
+	Complete() bool /* primitive/slice/pointer. */
+	UUID() objc.IObject /* cross-framework: UUID */
+	IsComplete() bool /* primitive/slice/pointer. */
+	SetIsComplete(value bool /* primitive/slice/pointer. */)
+	// methods:
 	AddAction(action ICXAction)
 }
 
@@ -106,7 +107,7 @@ func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(actions:)
-func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
+func NewCXTransactionWithActions(actions []CXAction /* primitive/slice/pointer. */) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithActions:"), actions)
 	rv.Autorelease()
@@ -128,7 +129,7 @@ func (c_ CXTransaction) AddAction(action ICXAction) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/actions
-func (c_ CXTransaction) Actions() []CXAction {
+func (c_ CXTransaction) Actions() []CXAction /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CXAction](c_.ID, objc.Sel("actions"))
 	return rv
 }
@@ -138,7 +139,7 @@ func (c_ CXTransaction) Actions() []CXAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/isComplete
-func (c_ CXTransaction) Complete() bool {
+func (c_ CXTransaction) Complete() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
 	return rv
 }
@@ -148,8 +149,8 @@ func (c_ CXTransaction) Complete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/uuid
-func (c_ CXTransaction) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
+func (c_ CXTransaction) UUID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 
@@ -158,7 +159,7 @@ func (c_ CXTransaction) UUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
-func (c_ CXTransaction) IsComplete() bool {
+func (c_ CXTransaction) IsComplete() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
 }
@@ -168,7 +169,7 @@ func (c_ CXTransaction) IsComplete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxtransaction/iscomplete
-func (c_ CXTransaction) SetIsComplete(value bool) {
+func (c_ CXTransaction) SetIsComplete(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }
 

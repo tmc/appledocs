@@ -28,3 +28,26 @@ type EventTargetRef unsafe.Pointer
 
 
 
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using inferred base types as fallback to allow code generation.
+type ABPeoplePickerSelectionBehavior = int
+
+type ArrayRef = int
+
+type ComparisonResult = int
+
+type DataRef = int
+
+type DictionaryRef = int
+
+type ErrorRef = int
+
+type Index = int
+
+type StringRef = int
+
+type TypeRef = int
+
+
+

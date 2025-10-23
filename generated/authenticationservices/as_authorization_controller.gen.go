@@ -30,14 +30,16 @@ type _AuthorizationControllerClass struct {
 // An interface definition for the [AuthorizationController] class.
 type IAuthorizationController interface {
 	objectivec.IObject
-	CustomAuthorizationMethods() []string
-	SetCustomAuthorizationMethods(value []string)
-	AuthorizationRequests() AuthorizationRequest
-	SetAuthorizationRequests(value AuthorizationRequest)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	PresentationContextProvider() unsafe.Pointer
-	SetPresentationContextProvider(value unsafe.Pointer)
+	// properties:
+	CustomAuthorizationMethods() []string /* primitive/slice/pointer. */
+	SetCustomAuthorizationMethods(value []string /* primitive/slice/pointer. */)
+	AuthorizationRequests() objc.IObject /* cross-framework: AuthorizationRequest */
+	SetAuthorizationRequests(value objc.IObject /* cross-framework: AuthorizationRequest */)
+	Delegate() AuthorizationControllerDelegate /* not a class type */
+	SetDelegate(value AuthorizationControllerDelegate /* not a class type */)
+	PresentationContextProvider() AuthorizationControllerPresentationContextProviding /* not a class type */
+	SetPresentationContextProvider(value AuthorizationControllerPresentationContextProviding /* not a class type */)
+	// methods:
 }
 
 // A controller that manages authorization requests that a provider creates.
@@ -97,7 +99,7 @@ func NewAuthorizationController() AuthorizationController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
+func (a_ AuthorizationController) CustomAuthorizationMethods() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("customAuthorizationMethods"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/customAuthorizationMethods
-func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) {
+func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -126,7 +128,7 @@ func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) AuthorizationRequests() AuthorizationRequest {
+func (a_ AuthorizationController) AuthorizationRequests() objc.IObject /* cross-framework: AuthorizationRequest */ {
 	rv := objc.Send[AuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (a_ AuthorizationController) AuthorizationRequests() AuthorizationRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) SetAuthorizationRequests(value AuthorizationRequest) {
+func (a_ AuthorizationController) SetAuthorizationRequests(value objc.IObject /* cross-framework: AuthorizationRequest */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 
@@ -145,8 +147,8 @@ func (a_ AuthorizationController) SetAuthorizationRequests(value AuthorizationRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-func (a_ AuthorizationController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+func (a_ AuthorizationController) Delegate() AuthorizationControllerDelegate /* not a class type */ {
+	rv := objc.Send[AuthorizationControllerDelegate](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -155,7 +157,7 @@ func (a_ AuthorizationController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate
-func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
+func (a_ AuthorizationController) SetDelegate(value AuthorizationControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -164,8 +166,8 @@ func (a_ AuthorizationController) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/presentationcontextprovider
-func (a_ AuthorizationController) PresentationContextProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationContextProvider"))
+func (a_ AuthorizationController) PresentationContextProvider() AuthorizationControllerPresentationContextProviding /* not a class type */ {
+	rv := objc.Send[AuthorizationControllerPresentationContextProviding](a_.ID, objc.Sel("presentationContextProvider"))
 	return rv
 }
 
@@ -174,7 +176,7 @@ func (a_ AuthorizationController) PresentationContextProvider() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/presentationcontextprovider
-func (a_ AuthorizationController) SetPresentationContextProvider(value unsafe.Pointer) {
+func (a_ AuthorizationController) SetPresentationContextProvider(value AuthorizationControllerPresentationContextProviding /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
 }
 

@@ -30,8 +30,10 @@ type _ModelStructureProgramFunctionClass struct {
 // An interface definition for the [ModelStructureProgramFunction] class.
 type IModelStructureProgramFunction interface {
 	objectivec.IObject
+	// properties:
 	Block() IMLModelStructureProgramBlock
-	Inputs() []ModelStructureProgramNamedValueType
+	Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A class representing a function in the Program.
@@ -99,7 +101,7 @@ func (m_ ModelStructureProgramFunction) Block() IMLModelStructureProgramBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction/inputs
-func (m_ ModelStructureProgramFunction) Inputs() []ModelStructureProgramNamedValueType {
+func (m_ ModelStructureProgramFunction) Inputs() []ModelStructureProgramNamedValueType /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]ModelStructureProgramNamedValueType](m_.ID, objc.Sel("inputs"))
 	return rv
 }

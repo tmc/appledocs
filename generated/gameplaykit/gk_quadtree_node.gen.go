@@ -30,7 +30,9 @@ type _QuadtreeNodeClass struct {
 // An interface definition for the [QuadtreeNode] class.
 type IQuadtreeNode interface {
 	objectivec.IObject
-	Quad() unsafe.Pointer
+	// properties:
+	Quad() Quad /* not a class type */
+	// methods:
 }
 
 // A helper class for managing the objects you organize in a quadtree.
@@ -90,8 +92,8 @@ func NewQuadtreeNode() QuadtreeNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtreeNode/quad
-func (q_ QuadtreeNode) Quad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("quad"))
+func (q_ QuadtreeNode) Quad() Quad /* not a class type */ {
+	rv := objc.Send[Quad](q_.ID, objc.Sel("quad"))
 	return rv
 }
 

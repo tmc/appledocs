@@ -30,6 +30,8 @@ type _symbolVersionClass struct {
 // An interface definition for the [symbolVersion] class.
 type IsymbolVersion interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,19 +30,21 @@ type _MIDIUMPEndpointClass struct {
 // An interface definition for the [MIDIUMPEndpoint] class.
 type IMIDIUMPEndpoint interface {
 	objectivec.IObject
+	// properties:
 	DeviceInfo() IMIDI2DeviceInfo
 	EndpointType() MIDIUMPCIObjectBackingType
-	FunctionBlocks() []MIDIUMPFunctionBlock
-	SetFunctionBlocks(value []MIDIUMPFunctionBlock)
-	HasJRTSReceiveCapability() bool
-	HasJRTSTransmitCapability() bool
-	HasStaticFunctionBlocks() bool
-	MIDIDestination() MIDIEndpointRef
+	FunctionBlocks() []MIDIUMPFunctionBlock /* primitive/slice/pointer. */
+	SetFunctionBlocks(value []MIDIUMPFunctionBlock /* primitive/slice/pointer. */)
+	HasJRTSReceiveCapability() bool /* primitive/slice/pointer. */
+	HasJRTSTransmitCapability() bool /* primitive/slice/pointer. */
+	HasStaticFunctionBlocks() bool /* primitive/slice/pointer. */
+	MIDIDestination() MIDIEndpointRef /* typedef */
 	MIDIProtocol() MIDIProtocolID
-	MIDISource() MIDIEndpointRef
-	Name() string
-	ProductInstanceID() string
+	MIDISource() MIDIEndpointRef /* typedef */
+	Name() string /* primitive/slice/pointer. */
+	ProductInstanceID() string /* primitive/slice/pointer. */
 	SupportedMIDIProtocols() MIDIUMPProtocolOptions
+	// methods:
 }
 
 
@@ -109,7 +111,7 @@ func (m_ MIDIUMPEndpoint) EndpointType() MIDIUMPCIObjectBackingType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/functionBlocks
-func (m_ MIDIUMPEndpoint) FunctionBlocks() []MIDIUMPFunctionBlock {
+func (m_ MIDIUMPEndpoint) FunctionBlocks() []MIDIUMPFunctionBlock /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MIDIUMPFunctionBlock](m_.ID, objc.Sel("functionBlocks"))
 	return rv
 }
@@ -117,7 +119,7 @@ func (m_ MIDIUMPEndpoint) FunctionBlocks() []MIDIUMPFunctionBlock {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/functionBlocks
-func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock) {
+func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -134,7 +136,7 @@ func (m_ MIDIUMPEndpoint) SetFunctionBlocks(value []MIDIUMPFunctionBlock) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasJRTSReceiveCapability
-func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool {
+func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasJRTSReceiveCapability"))
 	return rv
 }
@@ -142,7 +144,7 @@ func (m_ MIDIUMPEndpoint) HasJRTSReceiveCapability() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasJRTSTransmitCapability
-func (m_ MIDIUMPEndpoint) HasJRTSTransmitCapability() bool {
+func (m_ MIDIUMPEndpoint) HasJRTSTransmitCapability() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasJRTSTransmitCapability"))
 	return rv
 }
@@ -150,7 +152,7 @@ func (m_ MIDIUMPEndpoint) HasJRTSTransmitCapability() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/hasStaticFunctionBlocks
-func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool {
+func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasStaticFunctionBlocks"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiDestination
-func (m_ MIDIUMPEndpoint) MIDIDestination() MIDIEndpointRef {
+func (m_ MIDIUMPEndpoint) MIDIDestination() MIDIEndpointRef /* typedef */ {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDIDestination"))
 	return rv
 }
@@ -174,7 +176,7 @@ func (m_ MIDIUMPEndpoint) MIDIProtocol() MIDIProtocolID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiSource
-func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
+func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef /* typedef */ {
 	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDISource"))
 	return rv
 }
@@ -182,7 +184,7 @@ func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/name
-func (m_ MIDIUMPEndpoint) Name() string {
+func (m_ MIDIUMPEndpoint) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("name"))
 	return rv
 }
@@ -190,7 +192,7 @@ func (m_ MIDIUMPEndpoint) Name() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/productInstanceID
-func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
+func (m_ MIDIUMPEndpoint) ProductInstanceID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("productInstanceID"))
 	return rv
 }

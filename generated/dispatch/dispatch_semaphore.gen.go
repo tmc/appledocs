@@ -30,6 +30,8 @@ type _DispatchSemaphoreClass struct {
 // An interface definition for the [DispatchSemaphore] class.
 type IDispatchSemaphore interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that controls access to a resource across multiple execution contexts through use of a traditional counting semaphore.

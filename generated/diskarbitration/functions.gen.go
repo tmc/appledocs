@@ -9,13 +9,15 @@ import (
 )
 
 
-// DiskArbitration Functions (6 total)
+// DiskArbitration Functions (8 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
 	_DAApprovalSessionGetTypeID func() unsafe.Pointer
+	_DAApprovalSessionScheduleWithRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+	_DAApprovalSessionUnscheduleFromRunLoop func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 	_DADiskCopyWholeDisk func(unsafe.Pointer) unsafe.Pointer
 	_DADiskCreateFromIOMedia func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_DADiskCreateFromVolumePath func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -29,6 +31,8 @@ func init() {
 		panic(err)
 	}
 	tryRegister(&_DAApprovalSessionGetTypeID, lib, "DAApprovalSessionGetTypeID")
+	tryRegister(&_DAApprovalSessionScheduleWithRunLoop, lib, "DAApprovalSessionScheduleWithRunLoop")
+	tryRegister(&_DAApprovalSessionUnscheduleFromRunLoop, lib, "DAApprovalSessionUnscheduleFromRunLoop")
 	tryRegister(&_DADiskCopyWholeDisk, lib, "DADiskCopyWholeDisk")
 	tryRegister(&_DADiskCreateFromIOMedia, lib, "DADiskCreateFromIOMedia")
 	tryRegister(&_DADiskCreateFromVolumePath, lib, "DADiskCreateFromVolumePath")
@@ -57,6 +61,24 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionGetTypeID
 func DAApprovalSessionGetTypeID() unsafe.Pointer {
 	return _DAApprovalSessionGetTypeID()
+}
+
+// DAApprovalSessionScheduleWithRunLoop is a DiskArbitration function.
+//
+// Added in macOS 10.4.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionScheduleWithRunLoop
+func DAApprovalSessionScheduleWithRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+	_DAApprovalSessionScheduleWithRunLoop(session, runLoop, runLoopMode)
+}
+
+// DAApprovalSessionUnscheduleFromRunLoop is a DiskArbitration function.
+//
+// Added in macOS 10.4.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/DiskArbitration/DAApprovalSessionUnscheduleFromRunLoop
+func DAApprovalSessionUnscheduleFromRunLoop(session unsafe.Pointer, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) {
+	_DAApprovalSessionUnscheduleFromRunLoop(session, runLoop, runLoopMode)
 }
 
 // Obtain the associated whole disk object for the specified disk.

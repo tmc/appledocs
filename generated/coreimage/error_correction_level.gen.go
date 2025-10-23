@@ -30,6 +30,8 @@ type _errorCorrectionLevelClass struct {
 // An interface definition for the [errorCorrectionLevel] class.
 type IerrorCorrectionLevel interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

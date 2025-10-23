@@ -32,42 +32,42 @@ type _SurfaceClass struct {
 type ISurface interface {
 	objectivec.IObject
 	// properties:
-	AllocationSize() int
-	AllowsPixelSizeCasting() bool
+	AllocationSize() int /* primitive/slice/pointer. */
+	AllowsPixelSizeCasting() bool /* primitive/slice/pointer. */
 	BaseAddress() unsafe.Pointer
-	BytesPerElement() int
-	BytesPerRow() int
-	ElementHeight() int
-	ElementWidth() int
-	Height() int
-	InUse() bool
+	BytesPerElement() int /* primitive/slice/pointer. */
+	BytesPerRow() int /* primitive/slice/pointer. */
+	ElementHeight() int /* primitive/slice/pointer. */
+	ElementWidth() int /* primitive/slice/pointer. */
+	Height() int /* primitive/slice/pointer. */
+	InUse() bool /* primitive/slice/pointer. */
 	LocalUseCount() unsafe.Pointer
 	PixelFormat() unsafe.Pointer
-	PlaneCount() uint
-	Seed() uint32
-	SurfaceID() uint32
-	Width() int
-	IsInUse() bool
-	SetIsInUse(value bool)
+	PlaneCount() uint /* primitive/slice/pointer. */
+	Seed() uint32 /* not a class type */
+	SurfaceID() uint32 /* not a class type */
+	Width() int /* primitive/slice/pointer. */
+	IsInUse() bool /* primitive/slice/pointer. */
+	SetIsInUse(value bool /* primitive/slice/pointer. */)
 	// methods:
-	AllAttachments() foundation.IDictionary
-	AttachmentForKey(key string) objc.ID
-	BaseAddressOfPlaneAtIndex(planeIndex uint)
-	BytesPerElementOfPlaneAtIndex(planeIndex uint) int
-	BytesPerRowOfPlaneAtIndex(planeIndex uint) int
+	AllAttachments() foundation.IDictionary /* already interface */
+	AttachmentForKey(key string /* primitive/slice/pointer. */) objc.ID
+	BaseAddressOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */)
+	BytesPerElementOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
+	BytesPerRowOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
 	DecrementUseCount()
-	ElementHeightOfPlaneAtIndex(planeIndex uint) int
-	ElementWidthOfPlaneAtIndex(planeIndex uint) int
-	HeightOfPlaneAtIndex(planeIndex uint) int
+	ElementHeightOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
+	ElementWidthOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
+	HeightOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
 	IncrementUseCount()
-	LockWithOptionsSeed(options IOSurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
+	LockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
 	RemoveAllAttachments()
-	RemoveAttachmentForKey(key string)
-	SetAllAttachments(dict foundation.IDictionary)
-	SetAttachmentForKey(anObject objectivec.IObject, key string)
-	SetPurgeableOldState(newState IOSurfacePurgeabilityState, oldState IOSurfacePurgeabilityState) unsafe.Pointer
-	UnlockWithOptionsSeed(options IOSurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
-	WidthOfPlaneAtIndex(planeIndex uint) int
+	RemoveAttachmentForKey(key string /* primitive/slice/pointer. */)
+	SetAllAttachments(dict foundation.IDictionary /* already interface */)
+	SetAttachmentForKey(anObject objectivec.IObject, key string /* primitive/slice/pointer. */)
+	SetPurgeableOldState(newState SurfacePurgeabilityState, oldState SurfacePurgeabilityState /* already interface */) unsafe.Pointer
+	UnlockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
+	WidthOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */
 }
 
 // Data type representing an IOSurface opaque object.
@@ -123,7 +123,7 @@ func NewSurface() Surface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/init(properties:)
-func NewSurfaceWithProperties(properties foundation.IDictionary) Surface {
+func NewSurfaceWithProperties(properties foundation.IDictionary /* already interface */) Surface {
 	instance := getSurfaceClass().Alloc()
 	rv := objc.Send[Surface](instance.ID, objc.Sel("initWithProperties:"), properties)
 	rv.Autorelease()
@@ -134,7 +134,7 @@ func NewSurfaceWithProperties(properties foundation.IDictionary) Surface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/allAttachments()
-func (s_ Surface) AllAttachments() foundation.IDictionary {
+func (s_ Surface) AllAttachments() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](s_.ID, objc.Sel("allAttachments"))
 	return rv
 }
@@ -142,7 +142,7 @@ func (s_ Surface) AllAttachments() foundation.IDictionary {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/attachment(forKey:)
-func (s_ Surface) AttachmentForKey(key string) objc.ID {
+func (s_ Surface) AttachmentForKey(key string /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("attachmentForKey:"), objc.String(key))
 	return rv
 }
@@ -150,14 +150,14 @@ func (s_ Surface) AttachmentForKey(key string) objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/baseAddressOfPlane(at:)
-func (s_ Surface) BaseAddressOfPlaneAtIndex(planeIndex uint) {
+func (s_ Surface) BaseAddressOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("baseAddressOfPlaneAtIndex:"), planeIndex)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/bytesPerElementOfPlane(at:)
-func (s_ Surface) BytesPerElementOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) BytesPerElementOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("bytesPerElementOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -165,7 +165,7 @@ func (s_ Surface) BytesPerElementOfPlaneAtIndex(planeIndex uint) int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/bytesPerRowOfPlane(at:)
-func (s_ Surface) BytesPerRowOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) BytesPerRowOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("bytesPerRowOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -180,7 +180,7 @@ func (s_ Surface) DecrementUseCount() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/elementHeightOfPlane(at:)
-func (s_ Surface) ElementHeightOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) ElementHeightOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("elementHeightOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -188,7 +188,7 @@ func (s_ Surface) ElementHeightOfPlaneAtIndex(planeIndex uint) int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/elementWidthOfPlane(at:)
-func (s_ Surface) ElementWidthOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) ElementWidthOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("elementWidthOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -196,7 +196,7 @@ func (s_ Surface) ElementWidthOfPlaneAtIndex(planeIndex uint) int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/heightOfPlane(at:)
-func (s_ Surface) HeightOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) HeightOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("heightOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -211,7 +211,7 @@ func (s_ Surface) IncrementUseCount() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/lock(options:seed:)
-func (s_ Surface) LockWithOptionsSeed(options IOSurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
+func (s_ Surface) LockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lockWithOptions:seed:"), options, seed)
 	return rv
 }
@@ -226,28 +226,28 @@ func (s_ Surface) RemoveAllAttachments() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/removeAttachment(forKey:)
-func (s_ Surface) RemoveAttachmentForKey(key string) {
+func (s_ Surface) RemoveAttachmentForKey(key string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeAttachmentForKey:"), objc.String(key))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setAllAttachments(_:)
-func (s_ Surface) SetAllAttachments(dict foundation.IDictionary) {
+func (s_ Surface) SetAllAttachments(dict foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllAttachments:"), dict)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setAttachment(_:forKey:)
-func (s_ Surface) SetAttachmentForKey(anObject objectivec.IObject, key string) {
+func (s_ Surface) SetAttachmentForKey(anObject objectivec.IObject, key string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachment:forKey:"), anObject, objc.String(key))
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setPurgeable(_:oldState:)
-func (s_ Surface) SetPurgeableOldState(newState IOSurfacePurgeabilityState, oldState IOSurfacePurgeabilityState) unsafe.Pointer {
+func (s_ Surface) SetPurgeableOldState(newState SurfacePurgeabilityState, oldState SurfacePurgeabilityState /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("setPurgeable:oldState:"), newState, oldState)
 	return rv
 }
@@ -255,7 +255,7 @@ func (s_ Surface) SetPurgeableOldState(newState IOSurfacePurgeabilityState, oldS
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/unlock(options:seed:)
-func (s_ Surface) UnlockWithOptionsSeed(options IOSurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
+func (s_ Surface) UnlockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("unlockWithOptions:seed:"), options, seed)
 	return rv
 }
@@ -263,7 +263,7 @@ func (s_ Surface) UnlockWithOptionsSeed(options IOSurfaceLockOptions, seed unsaf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/widthOfPlane(at:)
-func (s_ Surface) WidthOfPlaneAtIndex(planeIndex uint) int {
+func (s_ Surface) WidthOfPlaneAtIndex(planeIndex uint /* primitive/slice/pointer. */) int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("widthOfPlaneAtIndex:"), planeIndex)
 	return rv
 }
@@ -271,7 +271,7 @@ func (s_ Surface) WidthOfPlaneAtIndex(planeIndex uint) int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/allocationSize
-func (s_ Surface) AllocationSize() int {
+func (s_ Surface) AllocationSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("allocationSize"))
 	return rv
 }
@@ -279,7 +279,7 @@ func (s_ Surface) AllocationSize() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/allowsPixelSizeCasting
-func (s_ Surface) AllowsPixelSizeCasting() bool {
+func (s_ Surface) AllowsPixelSizeCasting() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsPixelSizeCasting"))
 	return rv
 }
@@ -295,7 +295,7 @@ func (s_ Surface) BaseAddress() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/bytesPerElement
-func (s_ Surface) BytesPerElement() int {
+func (s_ Surface) BytesPerElement() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("bytesPerElement"))
 	return rv
 }
@@ -303,7 +303,7 @@ func (s_ Surface) BytesPerElement() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/bytesPerRow
-func (s_ Surface) BytesPerRow() int {
+func (s_ Surface) BytesPerRow() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("bytesPerRow"))
 	return rv
 }
@@ -311,7 +311,7 @@ func (s_ Surface) BytesPerRow() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/elementHeight
-func (s_ Surface) ElementHeight() int {
+func (s_ Surface) ElementHeight() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("elementHeight"))
 	return rv
 }
@@ -319,7 +319,7 @@ func (s_ Surface) ElementHeight() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/elementWidth
-func (s_ Surface) ElementWidth() int {
+func (s_ Surface) ElementWidth() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("elementWidth"))
 	return rv
 }
@@ -327,7 +327,7 @@ func (s_ Surface) ElementWidth() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/height
-func (s_ Surface) Height() int {
+func (s_ Surface) Height() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("height"))
 	return rv
 }
@@ -335,7 +335,7 @@ func (s_ Surface) Height() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/isInUse
-func (s_ Surface) InUse() bool {
+func (s_ Surface) InUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("inUse"))
 	return rv
 }
@@ -359,7 +359,7 @@ func (s_ Surface) PixelFormat() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/planeCount
-func (s_ Surface) PlaneCount() uint {
+func (s_ Surface) PlaneCount() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](s_.ID, objc.Sel("planeCount"))
 	return rv
 }
@@ -367,7 +367,7 @@ func (s_ Surface) PlaneCount() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/seed
-func (s_ Surface) Seed() uint32 {
+func (s_ Surface) Seed() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](s_.ID, objc.Sel("seed"))
 	return rv
 }
@@ -375,7 +375,7 @@ func (s_ Surface) Seed() uint32 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/surfaceID
-func (s_ Surface) SurfaceID() uint32 {
+func (s_ Surface) SurfaceID() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](s_.ID, objc.Sel("surfaceID"))
 	return rv
 }
@@ -383,7 +383,7 @@ func (s_ Surface) SurfaceID() uint32 {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/width
-func (s_ Surface) Width() int {
+func (s_ Surface) Width() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("width"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (s_ Surface) Width() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
-func (s_ Surface) IsInUse() bool {
+func (s_ Surface) IsInUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isInUse"))
 	return rv
 }
@@ -399,7 +399,7 @@ func (s_ Surface) IsInUse() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iosurface/iosurface/isinuse
-func (s_ Surface) SetIsInUse(value bool) {
+func (s_ Surface) SetIsInUse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsInUse:"), value)
 }
 

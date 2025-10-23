@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXPlayDTMFCallAction] class.
@@ -30,10 +29,12 @@ type _CXPlayDTMFCallActionClass struct {
 // An interface definition for the [CXPlayDTMFCallAction] class.
 type ICXPlayDTMFCallAction interface {
 	ICXCallAction
-	Digits() string
-	SetDigits(value string)
+	// properties:
+	Digits() string /* primitive/slice/pointer. */
+	SetDigits(value string /* primitive/slice/pointer. */)
 	Type() CXPlayDTMFCallActionType
 	SetType(value CXPlayDTMFCallActionType)
+	// methods:
 }
 
 // An encapsulation of the act of playing a dual tone multifrequency (DTMF) sequence.
@@ -95,7 +96,7 @@ func NewCXPlayDTMFCallAction() CXPlayDTMFCallAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(call:digits:type:)
-func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID foundation.UUID, digits string, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID objc.IObject /* cross-framework UUID */, digits string /* primitive/slice/pointer. */, type_ CXPlayDTMFCallActionType) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
 	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCallUUID:digits:type:"), callUUID, objc.String(digits), type_)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewCXPlayDTMFCallActionWithCallUUIDDigitsType(callUUID foundation.UUID, dig
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/init(coder:)
-func NewCXPlayDTMFCallActionWithCoder(aDecoder foundation.Coder) CXPlayDTMFCallAction {
+func NewCXPlayDTMFCallActionWithCoder(aDecoder Coder /* not a class type */) CXPlayDTMFCallAction {
 	instance := getCXPlayDTMFCallActionClass().Alloc()
 	rv := objc.Send[CXPlayDTMFCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -120,7 +121,7 @@ func NewCXPlayDTMFCallActionWithCoder(aDecoder foundation.Coder) CXPlayDTMFCallA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) Digits() string {
+func (c_ CXPlayDTMFCallAction) Digits() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("digits"))
 	return rv
 }
@@ -130,7 +131,7 @@ func (c_ CXPlayDTMFCallAction) Digits() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/digits
-func (c_ CXPlayDTMFCallAction) SetDigits(value string) {
+func (c_ CXPlayDTMFCallAction) SetDigits(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDigits:"), objc.String(value))
 }
 

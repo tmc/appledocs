@@ -29,8 +29,10 @@ type _AsynchronousFetchResultClass struct {
 // An interface definition for the [AsynchronousFetchResult] class.
 type IAsynchronousFetchResult interface {
 	IPersistentStoreAsynchronousResult
+	// properties:
 	FetchRequest() unsafe.Pointer
-	FinalResult() []objc.ID
+	FinalResult() []objc.ID /* already interface */
+	// methods:
 }
 
 // A fetch result object that encompasses the response from an executed asynchronous fetch request.
@@ -100,7 +102,7 @@ func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAsynchronousFetchResult/finalResult
-func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
+func (a_ AsynchronousFetchResult) FinalResult() []objc.ID /* already interface */ {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv
 }

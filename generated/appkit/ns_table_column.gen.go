@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,32 +30,34 @@ type _TableColumnClass struct {
 // An interface definition for the [TableColumn] class.
 type ITableColumn interface {
 	objectivec.IObject
+	// properties:
 	DataCell() unsafe.Pointer
 	SetDataCell(value unsafe.Pointer)
-	HeaderCell() TableHeaderCell
-	SetHeaderCell(value TableHeaderCell)
-	HeaderToolTip() string
-	SetHeaderToolTip(value string)
-	Identifier() UserInterfaceItemIdentifier
-	SetIdentifier(value UserInterfaceItemIdentifier)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	MaxWidth() float64
-	SetMaxWidth(value float64)
-	MinWidth() float64
-	SetMinWidth(value float64)
+	HeaderCell() objc.IObject /* cross-framework: TableHeaderCell */
+	SetHeaderCell(value objc.IObject /* cross-framework: TableHeaderCell */)
+	HeaderToolTip() string /* primitive/slice/pointer. */
+	SetHeaderToolTip(value string /* primitive/slice/pointer. */)
+	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
+	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsHidden() bool /* primitive/slice/pointer. */
+	SetIsHidden(value bool /* primitive/slice/pointer. */)
+	MaxWidth() float64 /* primitive/slice/pointer. */
+	SetMaxWidth(value float64 /* primitive/slice/pointer. */)
+	MinWidth() float64 /* primitive/slice/pointer. */
+	SetMinWidth(value float64 /* primitive/slice/pointer. */)
 	ResizingMask() unsafe.Pointer
 	SetResizingMask(value unsafe.Pointer)
-	SortDescriptorPrototype() foundation.SortDescriptor
-	SetSortDescriptorPrototype(value foundation.SortDescriptor)
-	TableView() TableView
-	SetTableView(value TableView)
-	Title() string
-	SetTitle(value string)
-	Width() float64
-	SetWidth(value float64)
+	SortDescriptorPrototype() SortDescriptor /* not a class type */
+	SetSortDescriptorPrototype(value SortDescriptor /* not a class type */)
+	TableView() objc.IObject /* cross-framework: TableView */
+	SetTableView(value objc.IObject /* cross-framework: TableView */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	Width() float64 /* primitive/slice/pointer. */
+	SetWidth(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // The display characteristics and identifier for a column in a table view.
@@ -135,7 +136,7 @@ func (t_ TableColumn) SetDataCell(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) HeaderCell() TableHeaderCell {
+func (t_ TableColumn) HeaderCell() objc.IObject /* cross-framework: TableHeaderCell */ {
 	rv := objc.Send[TableHeaderCell](t_.ID, objc.Sel("headerCell"))
 	return rv
 }
@@ -145,7 +146,7 @@ func (t_ TableColumn) HeaderCell() TableHeaderCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headercell
-func (t_ TableColumn) SetHeaderCell(value TableHeaderCell) {
+func (t_ TableColumn) SetHeaderCell(value objc.IObject /* cross-framework: TableHeaderCell */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderCell:"), value)
 }
 
@@ -154,7 +155,7 @@ func (t_ TableColumn) SetHeaderCell(value TableHeaderCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-func (t_ TableColumn) HeaderToolTip() string {
+func (t_ TableColumn) HeaderToolTip() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("headerToolTip"))
 	return rv
 }
@@ -164,7 +165,7 @@ func (t_ TableColumn) HeaderToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/headertooltip
-func (t_ TableColumn) SetHeaderToolTip(value string) {
+func (t_ TableColumn) SetHeaderToolTip(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHeaderToolTip:"), objc.String(value))
 }
 
@@ -173,7 +174,7 @@ func (t_ TableColumn) SetHeaderToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
+func (t_ TableColumn) Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */ {
 	rv := objc.Send[UserInterfaceItemIdentifier](t_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -183,7 +184,7 @@ func (t_ TableColumn) Identifier() UserInterfaceItemIdentifier {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/identifier
-func (t_ TableColumn) SetIdentifier(value UserInterfaceItemIdentifier) {
+func (t_ TableColumn) SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -192,7 +193,7 @@ func (t_ TableColumn) SetIdentifier(value UserInterfaceItemIdentifier) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
-func (t_ TableColumn) IsEditable() bool {
+func (t_ TableColumn) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -202,7 +203,7 @@ func (t_ TableColumn) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/iseditable
-func (t_ TableColumn) SetIsEditable(value bool) {
+func (t_ TableColumn) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -211,7 +212,7 @@ func (t_ TableColumn) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
-func (t_ TableColumn) IsHidden() bool {
+func (t_ TableColumn) IsHidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
 	return rv
 }
@@ -221,7 +222,7 @@ func (t_ TableColumn) IsHidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/ishidden
-func (t_ TableColumn) SetIsHidden(value bool) {
+func (t_ TableColumn) SetIsHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
 }
 
@@ -230,7 +231,7 @@ func (t_ TableColumn) SetIsHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
-func (t_ TableColumn) MaxWidth() float64 {
+func (t_ TableColumn) MaxWidth() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("maxWidth"))
 	return rv
 }
@@ -240,7 +241,7 @@ func (t_ TableColumn) MaxWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/maxwidth
-func (t_ TableColumn) SetMaxWidth(value float64) {
+func (t_ TableColumn) SetMaxWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxWidth:"), value)
 }
 
@@ -249,7 +250,7 @@ func (t_ TableColumn) SetMaxWidth(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
-func (t_ TableColumn) MinWidth() float64 {
+func (t_ TableColumn) MinWidth() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("minWidth"))
 	return rv
 }
@@ -259,7 +260,7 @@ func (t_ TableColumn) MinWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/minwidth
-func (t_ TableColumn) SetMinWidth(value float64) {
+func (t_ TableColumn) SetMinWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinWidth:"), value)
 }
 
@@ -287,8 +288,8 @@ func (t_ TableColumn) SetResizingMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
-	rv := objc.Send[foundation.SortDescriptor](t_.ID, objc.Sel("sortDescriptorPrototype"))
+func (t_ TableColumn) SortDescriptorPrototype() SortDescriptor /* not a class type */ {
+	rv := objc.Send[SortDescriptor](t_.ID, objc.Sel("sortDescriptorPrototype"))
 	return rv
 }
 
@@ -297,7 +298,7 @@ func (t_ TableColumn) SortDescriptorPrototype() foundation.SortDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/sortdescriptorprototype
-func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.SortDescriptor) {
+func (t_ TableColumn) SetSortDescriptorPrototype(value SortDescriptor /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptorPrototype:"), value)
 }
 
@@ -306,7 +307,7 @@ func (t_ TableColumn) SetSortDescriptorPrototype(value foundation.SortDescriptor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) TableView() TableView {
+func (t_ TableColumn) TableView() objc.IObject /* cross-framework: TableView */ {
 	rv := objc.Send[TableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
@@ -316,7 +317,7 @@ func (t_ TableColumn) TableView() TableView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/tableview
-func (t_ TableColumn) SetTableView(value TableView) {
+func (t_ TableColumn) SetTableView(value objc.IObject /* cross-framework: TableView */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 
@@ -325,7 +326,7 @@ func (t_ TableColumn) SetTableView(value TableView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-func (t_ TableColumn) Title() string {
+func (t_ TableColumn) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("title"))
 	return rv
 }
@@ -335,7 +336,7 @@ func (t_ TableColumn) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/title
-func (t_ TableColumn) SetTitle(value string) {
+func (t_ TableColumn) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -344,7 +345,7 @@ func (t_ TableColumn) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
-func (t_ TableColumn) Width() float64 {
+func (t_ TableColumn) Width() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("width"))
 	return rv
 }
@@ -354,7 +355,7 @@ func (t_ TableColumn) Width() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstablecolumn/width
-func (t_ TableColumn) SetWidth(value float64) {
+func (t_ TableColumn) SetWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setWidth:"), value)
 }
 

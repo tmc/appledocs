@@ -31,10 +31,10 @@ type _USBHostCIControllerStateMachineClass struct {
 type IUSBHostCIControllerStateMachine interface {
 	objectivec.IObject
 	// properties:
-	ControllerInterface() IOUSBHostControllerInterface
-	SetControllerInterface(value IOUSBHostControllerInterface)
-	ControllerState() unsafe.Pointer
-	SetControllerState(value unsafe.Pointer)
+	ControllerInterface() IOUSBHostControllerInterface /* already interface */
+	SetControllerInterface(value IOUSBHostControllerInterface /* already interface */)
+	ControllerState() USBHostCIControllerState /* not a class type */
+	SetControllerState(value USBHostCIControllerState /* not a class type */)
 	// methods:
 }
 
@@ -86,7 +86,7 @@ func NewUSBHostCIControllerStateMachine() USBHostCIControllerStateMachine {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/initWithInterface:error:
-func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ IOUSBHostControllerInterface, error_ unsafe.Pointer) USBHostCIControllerStateMachine {
+func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ USBHostControllerInterface /* already interface */, error_ unsafe.Pointer) USBHostCIControllerStateMachine {
 	instance := getUSBHostCIControllerStateMachineClass().Alloc()
 	rv := objc.Send[USBHostCIControllerStateMachine](instance.ID, objc.Sel("initWithInterface:error:"), interface_, error_)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ IOUSBHostCo
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
-func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface /* already interface */ {
 	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
@@ -105,22 +105,22 @@ func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControl
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
-func (u_ USBHostCIControllerStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
+func (u_ USBHostCIControllerStateMachine) SetControllerInterface(value IOUSBHostControllerInterface /* already interface */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
-func (u_ USBHostCIControllerStateMachine) ControllerState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerState"))
+func (u_ USBHostCIControllerStateMachine) ControllerState() USBHostCIControllerState /* not a class type */ {
+	rv := objc.Send[USBHostCIControllerState](u_.ID, objc.Sel("controllerState"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
-func (u_ USBHostCIControllerStateMachine) SetControllerState(value unsafe.Pointer) {
+func (u_ USBHostCIControllerStateMachine) SetControllerState(value USBHostCIControllerState /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerState:"), value)
 }
 

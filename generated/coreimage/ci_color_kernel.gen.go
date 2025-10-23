@@ -30,7 +30,9 @@ type _ColorKernelClass struct {
 // An interface definition for the [ColorKernel] class.
 type IColorKernel interface {
 	IKernel
-	ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID) IImage
+	// properties:
+	// methods:
+	ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID /* already interface */) IImage
 }
 
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
@@ -92,7 +94,7 @@ func NewColorKernel() ColorKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func NewColorKernelWithString(string_ string) ColorKernel {
+func NewColorKernelWithString(string_ string /* primitive/slice/pointer. */) ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
@@ -103,7 +105,7 @@ func NewColorKernelWithString(string_ string) ColorKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func (cc _ColorKernelClass) KernelWithString(string_ string) unsafe.Pointer {
+func (cc _ColorKernelClass) KernelWithString(string_ string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string_))
 	return rv
 }
@@ -113,7 +115,7 @@ func (cc _ColorKernelClass) KernelWithString(string_ string) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
-func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID) IImage {
+func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID /* already interface */) IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv
 }

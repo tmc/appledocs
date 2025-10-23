@@ -29,10 +29,12 @@ type _FPUIActionExtensionContextClass struct {
 
 // An interface definition for the [FPUIActionExtensionContext] class.
 type IFPUIActionExtensionContext interface {
-	IExtensionContext
-	DomainIdentifier() unsafe.Pointer
-	SetDomainIdentifier(value unsafe.Pointer)
-	CancelRequestWithError(error_ foundation.Error)
+	foundation.IExtensionContext
+	// properties:
+	DomainIdentifier() FileProviderDomainIdentifier /* not a class type */
+	SetDomainIdentifier(value FileProviderDomainIdentifier /* not a class type */)
+	// methods:
+	CancelRequestWithError(error_ Error /* not a class type */)
 	CompleteRequest()
 }
 
@@ -44,7 +46,7 @@ type IFPUIActionExtensionContext interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext
 type FPUIActionExtensionContext struct {
-	ExtensionContext
+	foundation.ExtensionContext
 }
 
 // FPUIActionExtensionContextFrom constructs a [FPUIActionExtensionContext] from an unsafe.Pointer.
@@ -52,7 +54,7 @@ type FPUIActionExtensionContext struct {
 // An extension context provided to File Provider UI extensions.
 func FPUIActionExtensionContextFrom(ptr unsafe.Pointer) FPUIActionExtensionContext {
 	return FPUIActionExtensionContext{
-		ExtensionContext: ExtensionContextFrom(ptr),
+		ExtensionContext: foundation.ExtensionContextFrom(ptr),
 	}
 }
 
@@ -93,7 +95,7 @@ func NewFPUIActionExtensionContext() FPUIActionExtensionContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)
-func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ foundation.Error) {
+func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ Error /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 
@@ -111,8 +113,8 @@ func (f_ FPUIActionExtensionContext) CompleteRequest() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext/domainidentifier
-func (f_ FPUIActionExtensionContext) DomainIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domainIdentifier"))
+func (f_ FPUIActionExtensionContext) DomainIdentifier() FileProviderDomainIdentifier /* not a class type */ {
+	rv := objc.Send[FileProviderDomainIdentifier](f_.ID, objc.Sel("domainIdentifier"))
 	return rv
 }
 
@@ -121,7 +123,7 @@ func (f_ FPUIActionExtensionContext) DomainIdentifier() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext/domainidentifier
-func (f_ FPUIActionExtensionContext) SetDomainIdentifier(value unsafe.Pointer) {
+func (f_ FPUIActionExtensionContext) SetDomainIdentifier(value FileProviderDomainIdentifier /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainIdentifier:"), value)
 }
 

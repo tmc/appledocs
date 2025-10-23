@@ -31,7 +31,9 @@ type _CNRenderingSessionClass struct {
 // An interface definition for the [CNRenderingSession] class.
 type ICNRenderingSession interface {
 	objectivec.IObject
-	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool
+	// properties:
+	// methods:
+	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool /* primitive/slice/pointer. */
 }
 
 // An object representing the context in which rendering occurs.
@@ -89,7 +91,7 @@ func NewCNRenderingSession() CNRenderingSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sourcePixelFormatTypes
-func (cc _CNRenderingSessionClass) SourcePixelFormatTypes() []foundation.Number {
+func (cc _CNRenderingSessionClass) SourcePixelFormatTypes() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](objc.ID(cc.class), objc.Sel("sourcePixelFormatTypes"))
 	return rv
 }
@@ -98,7 +100,7 @@ func (cc _CNRenderingSessionClass) SourcePixelFormatTypes() []foundation.Number 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:
-func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool {
+func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage PixelBufferRef /* not a class type */, sourceDisparity PixelBufferRef /* not a class type */, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:"), commandBuffer, frameAttributes, sourceImage, sourceDisparity, destinationLuma, destinationChroma)
 	return rv
 }
@@ -108,7 +110,7 @@ func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceIma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sourcePixelFormatTypes
-func (c_ CNRenderingSession) SourcePixelFormatTypes() []foundation.Number {
+func (c_ CNRenderingSession) SourcePixelFormatTypes() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("sourcePixelFormatTypes"))
 	return rv
 }

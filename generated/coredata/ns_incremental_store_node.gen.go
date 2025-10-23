@@ -30,9 +30,11 @@ type _IncrementalStoreNodeClass struct {
 // An interface definition for the [IncrementalStoreNode] class.
 type IIncrementalStoreNode interface {
 	objectivec.IObject
+	// properties:
 	ObjectID() IManagedObjectID
-	Version() uint64
-	SetVersion(value uint64)
+	Version() uint64 /* primitive/slice/pointer. */
+	SetVersion(value uint64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A concrete class used to represent basic nodes in a Core Data incremental store.
@@ -102,7 +104,7 @@ func (i_ IncrementalStoreNode) ObjectID() IManagedObjectID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-func (i_ IncrementalStoreNode) Version() uint64 {
+func (i_ IncrementalStoreNode) Version() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](i_.ID, objc.Sel("version"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (i_ IncrementalStoreNode) Version() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsincrementalstorenode/version
-func (i_ IncrementalStoreNode) SetVersion(value uint64) {
+func (i_ IncrementalStoreNode) SetVersion(value uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVersion:"), value)
 }
 

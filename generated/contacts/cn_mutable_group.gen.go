@@ -29,8 +29,10 @@ type _CNMutableGroupClass struct {
 // An interface definition for the [CNMutableGroup] class.
 type ICNMutableGroup interface {
 	ICNGroup
-	Name() string
-	SetName(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A mutable object that represents a group of contacts.
@@ -92,7 +94,7 @@ func NewCNMutableGroup() CNMutableGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
-func (c_ CNMutableGroup) Name() string {
+func (c_ CNMutableGroup) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (c_ CNMutableGroup) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnmutablegroup/name
-func (c_ CNMutableGroup) SetName(value string) {
+func (c_ CNMutableGroup) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

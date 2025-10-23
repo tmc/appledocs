@@ -31,8 +31,10 @@ type _DialogControllerClass struct {
 // An interface definition for the [DialogController] class.
 type IDialogController interface {
 	appkit.IResponder
-	ParentWindow() appkit.Window
-	SetParentWindow(value appkit.Window)
+	// properties:
+	ParentWindow() objc.IObject /* cross-framework: Window */
+	SetParentWindow(value objc.IObject /* cross-framework: Window */)
+	// methods:
 	Dismiss(sender objectivec.IObject)
 }
 
@@ -103,9 +105,9 @@ func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 // The window that displays the dashboard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-func (d_ DialogController) ParentWindow() appkit.Window {
-	rv := objc.Send[appkit.Window](d_.ID, objc.Sel("parentWindow"))
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/parentWindow
+func (d_ DialogController) ParentWindow() objc.IObject /* cross-framework: Window */ {
+	rv := objc.Send[Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -113,8 +115,8 @@ func (d_ DialogController) ParentWindow() appkit.Window {
 // The window that displays the dashboard.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-func (d_ DialogController) SetParentWindow(value appkit.Window) {
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/parentWindow
+func (d_ DialogController) SetParentWindow(value objc.IObject /* cross-framework: Window */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }
 

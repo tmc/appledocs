@@ -30,11 +30,13 @@ type _FSMetadataRangeClass struct {
 // An interface definition for the [FSMetadataRange] class.
 type IFSMetadataRange interface {
 	objectivec.IObject
-	SegmentCount() uint64
-	SegmentLength() uint64
-	SetSegmentLength(value uint64)
+	// properties:
+	SegmentCount() uint64 /* primitive/slice/pointer. */
+	SegmentLength() uint64 /* primitive/slice/pointer. */
+	SetSegmentLength(value uint64 /* primitive/slice/pointer. */)
 	StartOffset() unsafe.Pointer
 	SetStartOffset(value unsafe.Pointer)
+	// methods:
 }
 
 // A range that describes contiguous metadata segments on disk.
@@ -94,7 +96,7 @@ func NewFSMetadataRange() FSMetadataRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMetadataRange/segmentCount
-func (f_ FSMetadataRange) SegmentCount() uint64 {
+func (f_ FSMetadataRange) SegmentCount() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentCount"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (f_ FSMetadataRange) SegmentCount() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
-func (f_ FSMetadataRange) SegmentLength() uint64 {
+func (f_ FSMetadataRange) SegmentLength() uint64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint64](f_.ID, objc.Sel("segmentLength"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (f_ FSMetadataRange) SegmentLength() uint64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsmetadatarange/segmentlength
-func (f_ FSMetadataRange) SetSegmentLength(value uint64) {
+func (f_ FSMetadataRange) SetSegmentLength(value uint64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSegmentLength:"), value)
 }
 

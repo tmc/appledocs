@@ -29,10 +29,12 @@ type _SphereObstacleClass struct {
 // An interface definition for the [SphereObstacle] class.
 type ISphereObstacle interface {
 	IObstacle
+	// properties:
 	Position() unsafe.Pointer
 	SetPosition(value unsafe.Pointer)
-	Radius() float32
-	SetRadius(value float32)
+	Radius() float32 /* primitive/slice/pointer. */
+	SetRadius(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A spherical impassable volume to be avoided by agents.
@@ -94,7 +96,7 @@ func NewSphereObstacle() SphereObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/init(radius:)
-func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
+func NewSphereObstacleWithRadius(radius float32 /* primitive/slice/pointer. */) SphereObstacle {
 	instance := getSphereObstacleClass().Alloc()
 	rv := objc.Send[SphereObstacle](instance.ID, objc.Sel("initWithRadius:"), radius)
 	rv.Autorelease()
@@ -107,7 +109,7 @@ func NewSphereObstacleWithRadius(radius float32) SphereObstacle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/obstacleWithRadius:
-func (sc _SphereObstacleClass) ObstacleWithRadius(radius float32) unsafe.Pointer {
+func (sc _SphereObstacleClass) ObstacleWithRadius(radius float32 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("obstacleWithRadius:"), radius)
 	return rv
 }
@@ -136,7 +138,7 @@ func (s_ SphereObstacle) SetPosition(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
-func (s_ SphereObstacle) Radius() float32 {
+func (s_ SphereObstacle) Radius() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](s_.ID, objc.Sel("radius"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (s_ SphereObstacle) Radius() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSphereObstacle/radius
-func (s_ SphereObstacle) SetRadius(value float32) {
+func (s_ SphereObstacle) SetRadius(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRadius:"), value)
 }
 

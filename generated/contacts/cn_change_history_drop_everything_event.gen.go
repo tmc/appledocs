@@ -29,6 +29,8 @@ type _CNChangeHistoryDropEverythingEventClass struct {
 // An interface definition for the [CNChangeHistoryDropEverythingEvent] class.
 type ICNChangeHistoryDropEverythingEvent interface {
 	ICNChangeHistoryEvent
+	// properties:
+	// methods:
 }
 
 // An object that indicates the delegate should drop all contacts and groups before handling change events.

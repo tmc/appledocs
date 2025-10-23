@@ -31,27 +31,28 @@ type _WritingToolsCoordinatorClass struct {
 // An interface definition for the [WritingToolsCoordinator] class.
 type IWritingToolsCoordinator interface {
 	objectivec.IObject
-	UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID)
-	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID)
+	// properties:
 	Behavior() WritingToolsBehavior
-	DecorationContainerView() NSView
+	DecorationContainerView() IView
 	SetDecorationContainerView(value IView)
-	EffectContainerView() NSView
+	Delegate() objc.ID
+	EffectContainerView() IView
 	SetEffectContainerView(value IView)
+	IncludesTextListMarkers() bool /* primitive/slice/pointer. */
+	SetIncludesTextListMarkers(value bool /* primitive/slice/pointer. */)
 	PreferredBehavior() WritingToolsBehavior
 	SetPreferredBehavior(value WritingToolsBehavior)
 	PreferredResultOptions() WritingToolsResultOptions
 	SetPreferredResultOptions(value WritingToolsResultOptions)
 	ResultOptions() WritingToolsResultOptions
 	State() WritingToolsCoordinatorState
-	WritingToolsCoordinator() NSWritingToolsCoordinator
+	View() IView
+	WritingToolsCoordinator() IWritingToolsCoordinator
 	SetWritingToolsCoordinator(value IWritingToolsCoordinator)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	IncludesTextListMarkers() bool
-	SetIncludesTextListMarkers(value bool)
-	View() NSView
-	SetView(value IView)
+	// methods:
+	StopWritingTools()
+	UpdateForReflowedTextInContextWithIdentifier(contextID objc.IObject /* cross-framework UUID */)
+	UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */)
 }
 
 // An object that manages interactions between Writing Tools and your custom text view.
@@ -107,11 +108,42 @@ func NewWritingToolsCoordinator() WritingToolsCoordinator {
 
 
 
+// Creates a writing tools coordinator and assigns the specified delegate object to it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/init(delegate:)
+func NewWritingToolsCoordinatorWithDelegate(delegate objectivec.IObject) WritingToolsCoordinator {
+	instance := getWritingToolsCoordinatorClass().Alloc()
+	rv := objc.Send[WritingToolsCoordinator](instance.ID, objc.Sel("initWithDelegate:"), delegate)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// A Boolean value that indicates whether Writing Tools features are currently available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable
+func (wc _WritingToolsCoordinatorClass) IsWritingToolsAvailable() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("isWritingToolsAvailable"))
+	return rv
+}
+
+// Stops the current Writing Tools operation and dismisses the system UI.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/stopWritingTools()
+func (w_ WritingToolsCoordinator) StopWritingTools() {
+	objc.Send[objc.ID](w_.ID, objc.Sel("stopWritingTools"))
+}
+
+
 // Informs the coordinator that a change occurred to the view or its text that requires a layout update.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)
-func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID foundation.IUUID) {
+func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(contextID objc.IObject /* cross-framework UUID */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateForReflowedTextInContextWithIdentifier:"), contextID)
 }
 
@@ -120,7 +152,7 @@ func (w_ WritingToolsCoordinator) UpdateForReflowedTextInContextWithIdentifier(c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)
-func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.Range, replacementText foundation.IAttributedString, reason unsafe.Pointer, contextID foundation.IUUID) {
+func (w_ WritingToolsCoordinator) UpdateRangeWithTextReasonForContextWithIdentifier(range_ foundation.objc.IObject /* cross-framework Range */, replacementText objc.IObject /* cross-framework AttributedString */, reason WritingToolsCoordinatorTextUpdateReason, contextID objc.IObject /* cross-framework UUID */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("updateRange:withText:reason:forContextWithIdentifier:"), range_, replacementText, reason, contextID)
 }
 
@@ -139,8 +171,8 @@ func (w_ WritingToolsCoordinator) Behavior() WritingToolsBehavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView
-func (w_ WritingToolsCoordinator) DecorationContainerView() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("decorationContainerView"))
+func (w_ WritingToolsCoordinator) DecorationContainerView() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("decorationContainerView"))
 	return rv
 }
 
@@ -154,12 +186,22 @@ func (w_ WritingToolsCoordinator) SetDecorationContainerView(value IView) {
 }
 
 
+// The object that handles Writing Tools interactions for your view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/delegate-swift.property
+func (w_ WritingToolsCoordinator) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](w_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
 // The view that Writing Tools uses to display visual effects during the text-rewriting process.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
-func (w_ WritingToolsCoordinator) EffectContainerView() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("effectContainerView"))
+func (w_ WritingToolsCoordinator) EffectContainerView() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("effectContainerView"))
 	return rv
 }
 
@@ -170,6 +212,31 @@ func (w_ WritingToolsCoordinator) EffectContainerView() NSView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView
 func (w_ WritingToolsCoordinator) SetEffectContainerView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setEffectContainerView:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/includesTextListMarkers
+func (w_ WritingToolsCoordinator) IncludesTextListMarkers() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](w_.ID, objc.Sel("includesTextListMarkers"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/includesTextListMarkers
+func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
+}
+
+
+// A Boolean value that indicates whether Writing Tools features are currently available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable
+func (w_ WritingToolsCoordinator) IsWritingToolsAvailable() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](w_.ID, objc.Sel("isWritingToolsAvailable"))
+	return rv
 }
 
 
@@ -231,10 +298,20 @@ func (w_ WritingToolsCoordinator) State() WritingToolsCoordinatorState {
 }
 
 
+// The view that currently uses the writing tools coordinator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/view
+func (w_ WritingToolsCoordinator) View() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("view"))
+	return rv
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/writingtoolscoordinator
-func (w_ WritingToolsCoordinator) WritingToolsCoordinator() NSWritingToolsCoordinator {
-	rv := objc.Send[NSWritingToolsCoordinator](w_.ID, objc.Sel("writingToolsCoordinator"))
+func (w_ WritingToolsCoordinator) WritingToolsCoordinator() IWritingToolsCoordinator {
+	rv := objc.Send[WritingToolsCoordinator](w_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
 }
 
@@ -244,59 +321,5 @@ func (w_ WritingToolsCoordinator) WritingToolsCoordinator() NSWritingToolsCoordi
 func (w_ WritingToolsCoordinator) SetWritingToolsCoordinator(value IWritingToolsCoordinator) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
-
-
-// The object that handles Writing Tools interactions for your view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
-func (w_ WritingToolsCoordinator) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The object that handles Writing Tools interactions for your view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property
-func (w_ WritingToolsCoordinator) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
-func (w_ WritingToolsCoordinator) IncludesTextListMarkers() bool {
-	rv := objc.Send[bool](w_.ID, objc.Sel("includesTextListMarkers"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/includestextlistmarkers
-func (w_ WritingToolsCoordinator) SetIncludesTextListMarkers(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setIncludesTextListMarkers:"), value)
-}
-
-
-// The view that currently uses the writing tools coordinator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-func (w_ WritingToolsCoordinator) View() NSView {
-	rv := objc.Send[NSView](w_.ID, objc.Sel("view"))
-	return rv
-}
-
-
-// The view that currently uses the writing tools coordinator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/view
-func (w_ WritingToolsCoordinator) SetView(value IView) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setView:"), value)
-}
-
 
 

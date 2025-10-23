@@ -30,9 +30,11 @@ type _BasePlayerClass struct {
 // An interface definition for the [BasePlayer] class.
 type IBasePlayer interface {
 	objectivec.IObject
-	PlayerID() string
-	DisplayName() string
-	SetDisplayName(value string)
+	// properties:
+	PlayerID() string /* primitive/slice/pointer. */
+	DisplayName() string /* primitive/slice/pointer. */
+	SetDisplayName(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A class that provides common data and methods for the different player objects.
@@ -92,7 +94,7 @@ func NewBasePlayer() BasePlayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKBasePlayer/playerID
-func (b_ BasePlayer) PlayerID() string {
+func (b_ BasePlayer) PlayerID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("playerID"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (b_ BasePlayer) PlayerID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) DisplayName() string {
+func (b_ BasePlayer) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (b_ BasePlayer) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkbaseplayer/displayname
-func (b_ BasePlayer) SetDisplayName(value string) {
+func (b_ BasePlayer) SetDisplayName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 

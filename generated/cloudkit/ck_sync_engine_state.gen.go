@@ -30,10 +30,12 @@ type _CKSyncEngineStateClass struct {
 // An interface definition for the [CKSyncEngineState] class.
 type ICKSyncEngineState interface {
 	objectivec.IObject
-	UserRecordID() CKRecordID
-	SetUserRecordID(value CKRecordID)
-	AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
-	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
+	// properties:
+	UserRecordID() objc.IObject /* cross-framework: CKRecordID */
+	SetUserRecordID(value objc.IObject /* cross-framework: CKRecordID */)
+	// methods:
+	AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange /* primitive/slice/pointer. */)
+	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange /* primitive/slice/pointer. */)
 }
 
 // An object that manages the sync engine’s state.
@@ -93,7 +95,7 @@ func NewCKSyncEngineState() CKSyncEngineState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:
-func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
+func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingDatabaseChanges:"), changes)
 }
 
@@ -102,7 +104,7 @@ func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePend
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:
-func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
+func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingRecordZoneChanges:"), changes)
 }
 
@@ -111,7 +113,7 @@ func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKSyncEngineState) UserRecordID() CKRecordID {
+func (c_ CKSyncEngineState) UserRecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (c_ CKSyncEngineState) UserRecordID() CKRecordID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKSyncEngineState) SetUserRecordID(value CKRecordID) {
+func (c_ CKSyncEngineState) SetUserRecordID(value objc.IObject /* cross-framework: CKRecordID */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
 

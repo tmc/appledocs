@@ -30,12 +30,14 @@ type _CBCharacteristicClass struct {
 // An interface definition for the [CBCharacteristic] class.
 type ICBCharacteristic interface {
 	ICBAttribute
-	Descriptors() []CBDescriptor
-	IsBroadcasted() bool
-	IsNotifying() bool
+	// properties:
+	Descriptors() []CBDescriptor /* primitive/slice/pointer. */
+	IsBroadcasted() bool /* primitive/slice/pointer. */
+	IsNotifying() bool /* primitive/slice/pointer. */
 	Properties() CBCharacteristicProperties
 	Service() ICBService
-	Value() foundation.NSData
+	Value() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
 }
 
 // A characteristic of a remote peripheral’s service.
@@ -97,7 +99,7 @@ func NewCBCharacteristic() CBCharacteristic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/descriptors
-func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
+func (c_ CBCharacteristic) Descriptors() []CBDescriptor /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isBroadcasted
-func (c_ CBCharacteristic) IsBroadcasted() bool {
+func (c_ CBCharacteristic) IsBroadcasted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBroadcasted"))
 	return rv
 }
@@ -117,7 +119,7 @@ func (c_ CBCharacteristic) IsBroadcasted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/isNotifying
-func (c_ CBCharacteristic) IsNotifying() bool {
+func (c_ CBCharacteristic) IsNotifying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isNotifying"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (c_ CBCharacteristic) Service() ICBService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/value
-func (c_ CBCharacteristic) Value() foundation.NSData {
+func (c_ CBCharacteristic) Value() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
 }

@@ -29,6 +29,8 @@ type _RidgedNoiseSourceClass struct {
 // An interface definition for the [RidgedNoiseSource] class.
 type IRidgedNoiseSource interface {
 	ICoherentNoiseSource
+	// properties:
+	// methods:
 }
 
 // A procedural noise generator whose output is a type of multifractal coherent noise with sharply defined features.
@@ -90,7 +92,7 @@ func NewRidgedNoiseSource() RidgedNoiseSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/init(frequency:octaveCount:lacunarity:seed:)
-func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) RidgedNoiseSource {
+func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64 /* primitive/slice/pointer. */, octaveCount int /* primitive/slice/pointer. */, lacunarity float64 /* primitive/slice/pointer. */, seed unsafe.Pointer) RidgedNoiseSource {
 	instance := getRidgedNoiseSourceClass().Alloc()
 	rv := objc.Send[RidgedNoiseSource](instance.ID, objc.Sel("initWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
 	rv.Autorelease()
@@ -103,7 +105,7 @@ func NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float6
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRidgedNoiseSource/ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:
-func (rc _RidgedNoiseSourceClass) RidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64, octaveCount int, lacunarity float64, seed unsafe.Pointer) unsafe.Pointer {
+func (rc _RidgedNoiseSourceClass) RidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(frequency float64 /* primitive/slice/pointer. */, octaveCount int /* primitive/slice/pointer. */, lacunarity float64 /* primitive/slice/pointer. */, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:"), frequency, octaveCount, lacunarity, seed)
 	return rv
 }

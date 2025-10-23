@@ -31,10 +31,12 @@ type _RenderInfoClass struct {
 // An interface definition for the [RenderInfo] class.
 type IRenderInfo interface {
 	objectivec.IObject
-	KernelCompileTime() foundation.TimeInterval
-	KernelExecutionTime() foundation.TimeInterval
-	PassCount() int
-	PixelsProcessed() int
+	// properties:
+	KernelCompileTime() foundation.TimeInterval /* not a class type */
+	KernelExecutionTime() foundation.TimeInterval /* not a class type */
+	PassCount() int /* primitive/slice/pointer. */
+	PixelsProcessed() int /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An encapsulation of a render task’s timing, passes, and pixels processed.
@@ -92,7 +94,7 @@ func NewRenderInfo() RenderInfo {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelCompileTime
-func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval {
+func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelCompileTime"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (r_ RenderInfo) KernelCompileTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/kernelExecutionTime
-func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval {
+func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](r_.ID, objc.Sel("kernelExecutionTime"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (r_ RenderInfo) KernelExecutionTime() foundation.TimeInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/passCount
-func (r_ RenderInfo) PassCount() int {
+func (r_ RenderInfo) PassCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("passCount"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (r_ RenderInfo) PassCount() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderInfo/pixelsProcessed
-func (r_ RenderInfo) PixelsProcessed() int {
+func (r_ RenderInfo) PixelsProcessed() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("pixelsProcessed"))
 	return rv
 }

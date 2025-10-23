@@ -29,8 +29,10 @@ type _DDMatchEmailAddressClass struct {
 // An interface definition for the [DDMatchEmailAddress] class.
 type IDDMatchEmailAddress interface {
 	IDDMatch
-	EmailAddress() string
-	Label() string
+	// properties:
+	EmailAddress() string /* primitive/slice/pointer. */
+	Label() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains an email address that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchEmailAddress() DDMatchEmailAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/emailAddress
-func (d_ DDMatchEmailAddress) EmailAddress() string {
+func (d_ DDMatchEmailAddress) EmailAddress() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("emailAddress"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (d_ DDMatchEmailAddress) EmailAddress() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchEmailAddress/label
-func (d_ DDMatchEmailAddress) Label() string {
+func (d_ DDMatchEmailAddress) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }

@@ -30,7 +30,9 @@ type _OneTimeCodeCredentialIdentityClass struct {
 // An interface definition for the [OneTimeCodeCredentialIdentity] class.
 type IOneTimeCodeCredentialIdentity interface {
 	objectivec.IObject
-	Label() string
+	// properties:
+	Label() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -81,7 +83,7 @@ func NewOneTimeCodeCredentialIdentity() OneTimeCodeCredentialIdentity {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialIdentity/label
-func (o_ OneTimeCodeCredentialIdentity) Label() string {
+func (o_ OneTimeCodeCredentialIdentity) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](o_.ID, objc.Sel("label"))
 	return rv
 }

@@ -29,6 +29,8 @@ type _BTMIDILocalPeripheralViewControllerClass struct {
 // An interface definition for the [BTMIDILocalPeripheralViewController] class.
 type IBTMIDILocalPeripheralViewController interface {
 	IViewController
+	// properties:
+	// methods:
 }
 
 // A view controller that advertises an iOS device as a Bluetooth-based MIDI peripheral.

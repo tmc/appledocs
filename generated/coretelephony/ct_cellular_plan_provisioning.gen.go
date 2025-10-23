@@ -30,8 +30,13 @@ type _CellularPlanProvisioningClass struct {
 // An interface definition for the [CellularPlanProvisioning] class.
 type ICellularPlanProvisioning interface {
 	objectivec.IObject
-	SupportsEmbeddedSIM() bool
-	SetSupportsEmbeddedSIM(value bool)
+	// properties:
+	SupportsEmbeddedSIM() bool /* primitive/slice/pointer. */
+	// methods:
+	AddPlanWithRequestPropertiesCompletionHandler(request ICTCellularPlanProvisioningRequest, properties ICTCellularPlanProperties, completionHandler unsafe.Pointer)
+	AddPlanWithCompletionHandler(request ICTCellularPlanProvisioningRequest, completionHandler unsafe.Pointer)
+	SupportsCellularPlan() bool /* primitive/slice/pointer. */
+	UpdateCellularPlanPropertiesCompletionHandler(properties ICTCellularPlanProperties, completionHandler unsafe.Pointer)
 }
 
 // An object you use to download and install a carrier eSIM.
@@ -87,22 +92,50 @@ func NewCellularPlanProvisioning() CellularPlanProvisioning {
 
 
 
-// A Boolean value that indicates whether the device has hardware eSIM support.
+// Starts the provisioning process with optional properties for the specified eSIM.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning/supportsembeddedsim
-func (c_ CellularPlanProvisioning) SupportsEmbeddedSIM() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("supportsEmbeddedSIM"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/addPlan(request:properties:completionHandler:)
+func (c_ CellularPlanProvisioning) AddPlanWithRequestPropertiesCompletionHandler(request ICTCellularPlanProvisioningRequest, properties ICTCellularPlanProperties, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addPlanWithRequest:properties:completionHandler:"), request, properties, completionHandler)
+}
+
+
+// Starts the provisioning process for a specified eSIM.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/addPlan(with:completionHandler:)
+func (c_ CellularPlanProvisioning) AddPlanWithCompletionHandler(request ICTCellularPlanProvisioningRequest, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addPlanWith:completionHandler:"), request, completionHandler)
+}
+
+
+// Indicates whether the device supports eSIM and the activation policy allows eSIM installation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/supportsCellularPlan()
+func (c_ CellularPlanProvisioning) SupportsCellularPlan() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportsCellularPlan"))
 	return rv
+}
+
+
+// Updates the capability and region availability for an eSIM.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/update(_:completionHandler:)
+func (c_ CellularPlanProvisioning) UpdateCellularPlanPropertiesCompletionHandler(properties ICTCellularPlanProperties, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("updateCellularPlanProperties:completionHandler:"), properties, completionHandler)
 }
 
 
 // A Boolean value that indicates whether the device has hardware eSIM support.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning/supportsembeddedsim
-func (c_ CellularPlanProvisioning) SetSupportsEmbeddedSIM(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsEmbeddedSIM:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioning/supportsEmbeddedSIM
+func (c_ CellularPlanProvisioning) SupportsEmbeddedSIM() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](c_.ID, objc.Sel("supportsEmbeddedSIM"))
+	return rv
 }
 
 

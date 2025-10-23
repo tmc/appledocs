@@ -30,8 +30,10 @@ type _CNContactsUserDefaultsClass struct {
 // An interface definition for the [CNContactsUserDefaults] class.
 type ICNContactsUserDefaults interface {
 	objectivec.IObject
-	CountryCode() string
+	// properties:
+	CountryCode() string /* primitive/slice/pointer. */
 	SortOrder() CNContactSortOrder
+	// methods:
 }
 
 // An object that defines the default options to use when displaying contacts.
@@ -99,7 +101,7 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/countryCode
-func (c_ CNContactsUserDefaults) CountryCode() string {
+func (c_ CNContactsUserDefaults) CountryCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("countryCode"))
 	return rv
 }

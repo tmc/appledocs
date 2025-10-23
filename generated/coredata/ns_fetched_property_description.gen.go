@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchedPropertyDescription] class.
@@ -30,18 +29,20 @@ type _FetchedPropertyDescriptionClass struct {
 // An interface definition for the [FetchedPropertyDescription] class.
 type IFetchedPropertyDescription interface {
 	IPropertyDescription
+	// properties:
 	FetchRequest() IFetchRequest
 	SetFetchRequest(value IFetchRequest)
 	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
-	FetchBatchSize() int
-	SetFetchBatchSize(value int)
-	FetchLimit() int
-	SetFetchLimit(value int)
-	FetchOffset() int
-	SetFetchOffset(value int)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	FetchBatchSize() int /* primitive/slice/pointer. */
+	SetFetchBatchSize(value int /* primitive/slice/pointer. */)
+	FetchLimit() int /* primitive/slice/pointer. */
+	SetFetchLimit(value int /* primitive/slice/pointer. */)
+	FetchOffset() int /* primitive/slice/pointer. */
+	SetFetchOffset(value int /* primitive/slice/pointer. */)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
+	// methods:
 }
 
 // A description object used to define which properties are fetched from Core Data.
@@ -141,7 +142,7 @@ func (f_ FetchedPropertyDescription) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) FetchBatchSize() int {
+func (f_ FetchedPropertyDescription) FetchBatchSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -151,7 +152,7 @@ func (f_ FetchedPropertyDescription) FetchBatchSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
+func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -160,7 +161,7 @@ func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchedPropertyDescription) FetchLimit() int {
+func (f_ FetchedPropertyDescription) FetchLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -170,7 +171,7 @@ func (f_ FetchedPropertyDescription) FetchLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
+func (f_ FetchedPropertyDescription) SetFetchLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -179,7 +180,7 @@ func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchedPropertyDescription) FetchOffset() int {
+func (f_ FetchedPropertyDescription) FetchOffset() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -189,7 +190,7 @@ func (f_ FetchedPropertyDescription) FetchOffset() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
+func (f_ FetchedPropertyDescription) SetFetchOffset(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -198,8 +199,8 @@ func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchedPropertyDescription) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
+func (f_ FetchedPropertyDescription) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -208,7 +209,7 @@ func (f_ FetchedPropertyDescription) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchedPropertyDescription) SetPredicate(value foundation.Predicate) {
+func (f_ FetchedPropertyDescription) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 

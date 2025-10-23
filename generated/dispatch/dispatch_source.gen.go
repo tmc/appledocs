@@ -30,6 +30,8 @@ type _DispatchSourceClass struct {
 // An interface definition for the [DispatchSource] class.
 type IDispatchSource interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that coordinates the processing of specific low-level system events, such as file-system events, timers, and UNIX signals.

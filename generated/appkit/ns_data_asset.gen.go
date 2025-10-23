@@ -31,11 +31,13 @@ type _DataAssetClass struct {
 // An interface definition for the [DataAsset] class.
 type IDataAsset interface {
 	objectivec.IObject
-	Data() foundation.NSData
+	// properties:
+	Data() foundation.objc.IObject /* cross-framework: NSData */
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
-	TypeIdentifier() string
-	SetTypeIdentifier(value string)
+	TypeIdentifier() string /* primitive/slice/pointer. */
+	SetTypeIdentifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object from a data set type stored in an asset catalog.
@@ -95,7 +97,7 @@ func NewDataAsset() DataAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
-func NewDataAssetWithNameBundle(name unsafe.Pointer, bundle foundation.Bundle) DataAsset {
+func NewDataAssetWithNameBundle(name DataAssetName /* not a class type */, bundle objc.IObject /* cross-framework Bundle */) DataAsset {
 	instance := getDataAssetClass().Alloc()
 	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewDataAssetWithNameBundle(name unsafe.Pointer, bundle foundation.Bundle) D
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
-func (d_ DataAsset) Data() foundation.NSData {
+func (d_ DataAsset) Data() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (d_ DataAsset) SetName(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) TypeIdentifier() string {
+func (d_ DataAsset) TypeIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (d_ DataAsset) TypeIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) SetTypeIdentifier(value string) {
+func (d_ DataAsset) SetTypeIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), objc.String(value))
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,12 +32,14 @@ type _TrackingAreaClass struct {
 // An interface definition for the [TrackingArea] class.
 type ITrackingArea interface {
 	objectivec.IObject
+	// properties:
 	Options() TrackingAreaOptions
 	Owner() objc.ID
 	Rect() coregraphics.CGRect
-	UserInfo() unsafe.Pointer
+	UserInfo() foundation.IDictionary /* already interface */
 	VisibleRect() coregraphics.CGRect
 	SetVisibleRect(value coregraphics.CGRect)
+	// methods:
 }
 
 // A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.
@@ -96,7 +99,7 @@ func NewTrackingArea() TrackingArea {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
-func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, options TrackingAreaOptions, owner objectivec.IObject, userInfo unsafe.Pointer) TrackingArea {
+func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect coregraphics.CGRect, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary /* already interface */) TrackingArea {
 	instance := getTrackingAreaClass().Alloc()
 	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
 	rv.Autorelease()
@@ -139,8 +142,8 @@ func (t_ TrackingArea) Rect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/userInfo
-func (t_ TrackingArea) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInfo"))
+func (t_ TrackingArea) UserInfo() foundation.IDictionary /* already interface */ {
+	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
 

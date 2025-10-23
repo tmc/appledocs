@@ -30,9 +30,9 @@ type _INGetReservationDetailsIntentClass struct {
 type IINGetReservationDetailsIntent interface {
 	IINIntent
 	// properties:
-	ReservationContainerReference() INSpeakableString
-	ReservationItemReferences() INSpeakableString
-	SetReservationItemReferences(value INSpeakableString)
+	ReservationContainerReference() INSpeakableString /* already interface */
+	ReservationItemReferences() INSpeakableString /* already interface */
+	SetReservationItemReferences(value INSpeakableString /* already interface */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewINGetReservationDetailsIntent() INGetReservationDetailsIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent/reservationContainerReference
-func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeakableString {
+func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeakableString /* already interface */ {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationContainerReference"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeaka
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintent/reservationitemreferences
-func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableString {
+func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableString /* already interface */ {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationItemReferences"))
 	return rv
 }
@@ -115,7 +115,7 @@ func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintent/reservationitemreferences
-func (i_ INGetReservationDetailsIntent) SetReservationItemReferences(value INSpeakableString) {
+func (i_ INGetReservationDetailsIntent) SetReservationItemReferences(value INSpeakableString /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationItemReferences:"), value)
 }
 

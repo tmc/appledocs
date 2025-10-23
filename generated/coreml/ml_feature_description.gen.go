@@ -30,27 +30,29 @@ type _FeatureDescriptionClass struct {
 // An interface definition for the [FeatureDescription] class.
 type IFeatureDescription interface {
 	objectivec.IObject
-	MultiArrayConstraint() MultiArrayConstraint
-	DictionaryConstraint() DictionaryConstraint
-	SetDictionaryConstraint(value DictionaryConstraint)
+	// properties:
+	MultiArrayConstraint() objc.IObject /* cross-framework: MultiArrayConstraint */
+	DictionaryConstraint() objc.IObject /* cross-framework: DictionaryConstraint */
+	SetDictionaryConstraint(value objc.IObject /* cross-framework: DictionaryConstraint */)
 	ImageConstraint() IMLImageConstraint
 	SetImageConstraint(value IMLImageConstraint)
-	IsOptional() bool
-	SetIsOptional(value bool)
-	Name() string
-	SetName(value string)
-	SequenceConstraint() SequenceConstraint
-	SetSequenceConstraint(value SequenceConstraint)
+	IsOptional() bool /* primitive/slice/pointer. */
+	SetIsOptional(value bool /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	SequenceConstraint() objc.IObject /* cross-framework: SequenceConstraint */
+	SetSequenceConstraint(value objc.IObject /* cross-framework: SequenceConstraint */)
 	StateConstraint() IMLStateConstraint
 	SetStateConstraint(value IMLStateConstraint)
-	Type() MLFeatureType
-	SetType(value MLFeatureType)
+	Type() FeatureType
+	SetType(value FeatureType)
 	InputDescriptionsByName() IMLFeatureDescription
 	SetInputDescriptionsByName(value IMLFeatureDescription)
 	OutputDescriptionsByName() IMLFeatureDescription
 	SetOutputDescriptionsByName(value IMLFeatureDescription)
 	StateDescriptionsByName() IMLFeatureDescription
 	SetStateDescriptionsByName(value IMLFeatureDescription)
+	// methods:
 }
 
 // The name, type, and constraints of an input or output feature.
@@ -110,7 +112,7 @@ func NewFeatureDescription() FeatureDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/multiArrayConstraint
-func (f_ FeatureDescription) MultiArrayConstraint() MultiArrayConstraint {
+func (f_ FeatureDescription) MultiArrayConstraint() objc.IObject /* cross-framework: MultiArrayConstraint */ {
 	rv := objc.Send[MultiArrayConstraint](f_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (f_ FeatureDescription) MultiArrayConstraint() MultiArrayConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (f_ FeatureDescription) DictionaryConstraint() DictionaryConstraint {
+func (f_ FeatureDescription) DictionaryConstraint() objc.IObject /* cross-framework: DictionaryConstraint */ {
 	rv := objc.Send[DictionaryConstraint](f_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (f_ FeatureDescription) DictionaryConstraint() DictionaryConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (f_ FeatureDescription) SetDictionaryConstraint(value DictionaryConstraint) {
+func (f_ FeatureDescription) SetDictionaryConstraint(value objc.IObject /* cross-framework: DictionaryConstraint */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDictionaryConstraint:"), value)
 }
 
@@ -158,7 +160,7 @@ func (f_ FeatureDescription) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) IsOptional() bool {
+func (f_ FeatureDescription) IsOptional() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isOptional"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (f_ FeatureDescription) IsOptional() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/isoptional
-func (f_ FeatureDescription) SetIsOptional(value bool) {
+func (f_ FeatureDescription) SetIsOptional(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsOptional:"), value)
 }
 
@@ -177,7 +179,7 @@ func (f_ FeatureDescription) SetIsOptional(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/name
-func (f_ FeatureDescription) Name() string {
+func (f_ FeatureDescription) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("name"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (f_ FeatureDescription) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/name
-func (f_ FeatureDescription) SetName(value string) {
+func (f_ FeatureDescription) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -196,7 +198,7 @@ func (f_ FeatureDescription) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (f_ FeatureDescription) SequenceConstraint() SequenceConstraint {
+func (f_ FeatureDescription) SequenceConstraint() objc.IObject /* cross-framework: SequenceConstraint */ {
 	rv := objc.Send[SequenceConstraint](f_.ID, objc.Sel("sequenceConstraint"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (f_ FeatureDescription) SequenceConstraint() SequenceConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (f_ FeatureDescription) SetSequenceConstraint(value SequenceConstraint) {
+func (f_ FeatureDescription) SetSequenceConstraint(value objc.IObject /* cross-framework: SequenceConstraint */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSequenceConstraint:"), value)
 }
 
@@ -234,8 +236,8 @@ func (f_ FeatureDescription) SetStateConstraint(value IMLStateConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (f_ FeatureDescription) Type() MLFeatureType {
-	rv := objc.Send[MLFeatureType](f_.ID, objc.Sel("type"))
+func (f_ FeatureDescription) Type() FeatureType {
+	rv := objc.Send[FeatureType](f_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -244,7 +246,7 @@ func (f_ FeatureDescription) Type() MLFeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (f_ FeatureDescription) SetType(value MLFeatureType) {
+func (f_ FeatureDescription) SetType(value FeatureType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setType:"), value)
 }
 

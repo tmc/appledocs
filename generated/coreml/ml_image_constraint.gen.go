@@ -30,18 +30,20 @@ type _ImageConstraintClass struct {
 // An interface definition for the [ImageConstraint] class.
 type IImageConstraint interface {
 	objectivec.IObject
+	// properties:
 	ImageConstraint() IMLImageConstraint
 	SetImageConstraint(value IMLImageConstraint)
-	Type() MLFeatureType
-	SetType(value MLFeatureType)
+	Type() FeatureType
+	SetType(value FeatureType)
 	PixelFormatType() unsafe.Pointer
 	SetPixelFormatType(value unsafe.Pointer)
-	PixelsHigh() int
-	SetPixelsHigh(value int)
-	PixelsWide() int
-	SetPixelsWide(value int)
-	SizeConstraint() ImageSizeConstraint
-	SetSizeConstraint(value ImageSizeConstraint)
+	PixelsHigh() int /* primitive/slice/pointer. */
+	SetPixelsHigh(value int /* primitive/slice/pointer. */)
+	PixelsWide() int /* primitive/slice/pointer. */
+	SetPixelsWide(value int /* primitive/slice/pointer. */)
+	SizeConstraint() objc.IObject /* cross-framework: ImageSizeConstraint */
+	SetSizeConstraint(value objc.IObject /* cross-framework: ImageSizeConstraint */)
+	// methods:
 }
 
 // The width, height, and pixel format constraints of an image feature.
@@ -120,8 +122,8 @@ func (i_ ImageConstraint) SetImageConstraint(value IMLImageConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) Type() MLFeatureType {
-	rv := objc.Send[MLFeatureType](i_.ID, objc.Sel("type"))
+func (i_ ImageConstraint) Type() FeatureType {
+	rv := objc.Send[FeatureType](i_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -130,7 +132,7 @@ func (i_ ImageConstraint) Type() MLFeatureType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) SetType(value MLFeatureType) {
+func (i_ ImageConstraint) SetType(value FeatureType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 
@@ -158,7 +160,7 @@ func (i_ ImageConstraint) SetPixelFormatType(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-func (i_ ImageConstraint) PixelsHigh() int {
+func (i_ ImageConstraint) PixelsHigh() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsHigh"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (i_ ImageConstraint) PixelsHigh() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh
-func (i_ ImageConstraint) SetPixelsHigh(value int) {
+func (i_ ImageConstraint) SetPixelsHigh(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsHigh:"), value)
 }
 
@@ -177,7 +179,7 @@ func (i_ ImageConstraint) SetPixelsHigh(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-func (i_ ImageConstraint) PixelsWide() int {
+func (i_ ImageConstraint) PixelsWide() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("pixelsWide"))
 	return rv
 }
@@ -187,7 +189,7 @@ func (i_ ImageConstraint) PixelsWide() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide
-func (i_ ImageConstraint) SetPixelsWide(value int) {
+func (i_ ImageConstraint) SetPixelsWide(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPixelsWide:"), value)
 }
 
@@ -196,7 +198,7 @@ func (i_ ImageConstraint) SetPixelsWide(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-func (i_ ImageConstraint) SizeConstraint() ImageSizeConstraint {
+func (i_ ImageConstraint) SizeConstraint() objc.IObject /* cross-framework: ImageSizeConstraint */ {
 	rv := objc.Send[ImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
 }
@@ -206,7 +208,7 @@ func (i_ ImageConstraint) SizeConstraint() ImageSizeConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-func (i_ ImageConstraint) SetSizeConstraint(value ImageSizeConstraint) {
+func (i_ ImageConstraint) SetSizeConstraint(value objc.IObject /* cross-framework: ImageSizeConstraint */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
 }
 

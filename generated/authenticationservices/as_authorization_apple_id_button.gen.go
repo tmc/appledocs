@@ -30,8 +30,10 @@ type _AuthorizationAppleIDButtonClass struct {
 // An interface definition for the [AuthorizationAppleIDButton] class.
 type IAuthorizationAppleIDButton interface {
 	appkit.IControl
-	CornerRadius() float64
-	SetCornerRadius(value float64)
+	// properties:
+	CornerRadius() float64 /* primitive/slice/pointer. */
+	SetCornerRadius(value float64 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A control you add to your interface that enables users to initiate the Sign In with Apple flow.
@@ -93,7 +95,7 @@ func NewAuthorizationAppleIDButton() AuthorizationAppleIDButton {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(authorizationButtonType:authorizationButtonStyle:)
-func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ ASAuthorizationAppleIDButtonType, style ASAuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
+func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	instance := getAuthorizationAppleIDButtonClass().Alloc()
 	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButton
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
-func NewAuthorizationAppleIDButtonWithTypeStyle(type_ ASAuthorizationAppleIDButtonType, style ASAuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
+func NewAuthorizationAppleIDButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
@@ -116,7 +118,7 @@ func NewAuthorizationAppleIDButtonWithTypeStyle(type_ ASAuthorizationAppleIDButt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
-func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ ASAuthorizationAppleIDButtonType, style ASAuthorizationAppleIDButtonStyle) unsafe.Pointer {
+func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
@@ -126,7 +128,7 @@ func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ ASAuthoriza
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
-func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
+func (a_ AuthorizationAppleIDButton) CornerRadius() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("cornerRadius"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
-func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64) {
+func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCornerRadius:"), value)
 }
 

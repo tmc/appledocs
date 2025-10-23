@@ -31,11 +31,13 @@ type _DCAppAttestServiceClass struct {
 // An interface definition for the [DCAppAttestService] class.
 type IDCAppAttestService interface {
 	objectivec.IObject
-	Supported() bool
-	IsSupported() bool
-	SetIsSupported(value bool)
-	AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer)
-	GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer)
+	// properties:
+	Supported() bool /* primitive/slice/pointer. */
+	IsSupported() bool /* primitive/slice/pointer. */
+	SetIsSupported(value bool /* primitive/slice/pointer. */)
+	// methods:
+	AttestKeyClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
+	GenerateAssertionClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer)
 	GenerateKeyWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -105,7 +107,7 @@ func (dc _DCAppAttestServiceClass) SharedService() DCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/attestKey(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer) {
+func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("attestKey:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
@@ -114,7 +116,7 @@ func (d_ DCAppAttestService) AttestKeyClientDataHashCompletionHandler(keyId stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/generateAssertion(_:clientDataHash:completionHandler:)
-func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string, clientDataHash foundation.NSData, completionHandler unsafe.Pointer) {
+func (d_ DCAppAttestService) GenerateAssertionClientDataHashCompletionHandler(keyId string /* primitive/slice/pointer. */, clientDataHash foundation.objc.IObject /* cross-framework NSData */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("generateAssertion:clientDataHash:completionHandler:"), objc.String(keyId), clientDataHash, completionHandler)
 }
 
@@ -132,7 +134,7 @@ func (d_ DCAppAttestService) GenerateKeyWithCompletionHandler(completionHandler 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCAppAttestService/isSupported
-func (d_ DCAppAttestService) Supported() bool {
+func (d_ DCAppAttestService) Supported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("supported"))
 	return rv
 }
@@ -152,7 +154,7 @@ func (d_ DCAppAttestService) SharedService() IDCAppAttestService {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-func (d_ DCAppAttestService) IsSupported() bool {
+func (d_ DCAppAttestService) IsSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isSupported"))
 	return rv
 }
@@ -162,7 +164,7 @@ func (d_ DCAppAttestService) IsSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported
-func (d_ DCAppAttestService) SetIsSupported(value bool) {
+func (d_ DCAppAttestService) SetIsSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsSupported:"), value)
 }
 

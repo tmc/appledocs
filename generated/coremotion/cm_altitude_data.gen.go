@@ -30,8 +30,10 @@ type _AltitudeDataClass struct {
 // An interface definition for the [AltitudeData] class.
 type IAltitudeData interface {
 	ILogItem
-	Pressure() foundation.Number
-	RelativeAltitude() foundation.Number
+	// properties:
+	Pressure() foundation.objc.IObject /* cross-framework: Number */
+	RelativeAltitude() foundation.objc.IObject /* cross-framework: Number */
+	// methods:
 }
 
 // Data for a recorded change in altitude.
@@ -93,7 +95,7 @@ func NewAltitudeData() AltitudeData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/pressure
-func (a_ AltitudeData) Pressure() foundation.Number {
+func (a_ AltitudeData) Pressure() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("pressure"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (a_ AltitudeData) Pressure() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData/relativeAltitude
-func (a_ AltitudeData) RelativeAltitude() foundation.Number {
+func (a_ AltitudeData) RelativeAltitude() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("relativeAltitude"))
 	return rv
 }

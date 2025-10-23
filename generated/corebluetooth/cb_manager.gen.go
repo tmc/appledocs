@@ -30,8 +30,10 @@ type _CBManagerClass struct {
 // An interface definition for the [CBManager] class.
 type ICBManager interface {
 	objectivec.IObject
+	// properties:
 	Authorization() CBManagerAuthorization
 	State() CBManagerState
+	// methods:
 }
 
 // The abstract base class that manages central and peripheral objects.

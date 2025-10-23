@@ -30,27 +30,29 @@ type _InterAppAudioTransportViewClass struct {
 // An interface definition for the [InterAppAudioTransportView] class.
 type IInterAppAudioTransportView interface {
 	appkit.IView
-	Connected() bool
-	CurrentTimeLabelFont() appkit.Font
-	SetCurrentTimeLabelFont(value appkit.Font)
-	IsConnected() bool
-	SetIsConnected(value bool)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	IsPlaying() bool
-	SetIsPlaying(value bool)
-	IsRecording() bool
-	SetIsRecording(value bool)
-	LabelColor() appkit.Color
-	SetLabelColor(value appkit.Color)
-	PauseButtonColor() appkit.Color
-	SetPauseButtonColor(value appkit.Color)
-	PlayButtonColor() appkit.Color
-	SetPlayButtonColor(value appkit.Color)
-	RecordButtonColor() appkit.Color
-	SetRecordButtonColor(value appkit.Color)
-	RewindButtonColor() appkit.Color
-	SetRewindButtonColor(value appkit.Color)
+	// properties:
+	Connected() bool /* primitive/slice/pointer. */
+	CurrentTimeLabelFont() objc.IObject /* cross-framework: Font */
+	SetCurrentTimeLabelFont(value objc.IObject /* cross-framework: Font */)
+	IsConnected() bool /* primitive/slice/pointer. */
+	SetIsConnected(value bool /* primitive/slice/pointer. */)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
+	IsPlaying() bool /* primitive/slice/pointer. */
+	SetIsPlaying(value bool /* primitive/slice/pointer. */)
+	IsRecording() bool /* primitive/slice/pointer. */
+	SetIsRecording(value bool /* primitive/slice/pointer. */)
+	LabelColor() objc.IObject /* cross-framework: Color */
+	SetLabelColor(value objc.IObject /* cross-framework: Color */)
+	PauseButtonColor() objc.IObject /* cross-framework: Color */
+	SetPauseButtonColor(value objc.IObject /* cross-framework: Color */)
+	PlayButtonColor() objc.IObject /* cross-framework: Color */
+	SetPlayButtonColor(value objc.IObject /* cross-framework: Color */)
+	RecordButtonColor() objc.IObject /* cross-framework: Color */
+	SetRecordButtonColor(value objc.IObject /* cross-framework: Color */)
+	RewindButtonColor() objc.IObject /* cross-framework: Color */
+	SetRewindButtonColor(value objc.IObject /* cross-framework: Color */)
+	// methods:
 }
 
 // A view that provides an audio transport user interface.
@@ -108,7 +110,7 @@ func NewInterAppAudioTransportView() InterAppAudioTransportView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/isConnected
-func (i_ InterAppAudioTransportView) Connected() bool {
+func (i_ InterAppAudioTransportView) Connected() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("connected"))
 	return rv
 }
@@ -116,22 +118,22 @@ func (i_ InterAppAudioTransportView) Connected() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/currenttimelabelfont
-func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() appkit.Font {
-	rv := objc.Send[appkit.Font](i_.ID, objc.Sel("currentTimeLabelFont"))
+func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() objc.IObject /* cross-framework: Font */ {
+	rv := objc.Send[Font](i_.ID, objc.Sel("currentTimeLabelFont"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/currenttimelabelfont
-func (i_ InterAppAudioTransportView) SetCurrentTimeLabelFont(value appkit.Font) {
+func (i_ InterAppAudioTransportView) SetCurrentTimeLabelFont(value objc.IObject /* cross-framework: Font */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentTimeLabelFont:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
-func (i_ InterAppAudioTransportView) IsConnected() bool {
+func (i_ InterAppAudioTransportView) IsConnected() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isConnected"))
 	return rv
 }
@@ -139,14 +141,14 @@ func (i_ InterAppAudioTransportView) IsConnected() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isconnected
-func (i_ InterAppAudioTransportView) SetIsConnected(value bool) {
+func (i_ InterAppAudioTransportView) SetIsConnected(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsConnected:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
-func (i_ InterAppAudioTransportView) IsEnabled() bool {
+func (i_ InterAppAudioTransportView) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -154,14 +156,14 @@ func (i_ InterAppAudioTransportView) IsEnabled() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isenabled
-func (i_ InterAppAudioTransportView) SetIsEnabled(value bool) {
+func (i_ InterAppAudioTransportView) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsEnabled:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
-func (i_ InterAppAudioTransportView) IsPlaying() bool {
+func (i_ InterAppAudioTransportView) IsPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isPlaying"))
 	return rv
 }
@@ -169,14 +171,14 @@ func (i_ InterAppAudioTransportView) IsPlaying() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isplaying
-func (i_ InterAppAudioTransportView) SetIsPlaying(value bool) {
+func (i_ InterAppAudioTransportView) SetIsPlaying(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsPlaying:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
-func (i_ InterAppAudioTransportView) IsRecording() bool {
+func (i_ InterAppAudioTransportView) IsRecording() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isRecording"))
 	return rv
 }
@@ -184,82 +186,82 @@ func (i_ InterAppAudioTransportView) IsRecording() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/isrecording
-func (i_ InterAppAudioTransportView) SetIsRecording(value bool) {
+func (i_ InterAppAudioTransportView) SetIsRecording(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsRecording:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/labelcolor
-func (i_ InterAppAudioTransportView) LabelColor() appkit.Color {
-	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("labelColor"))
+func (i_ InterAppAudioTransportView) LabelColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](i_.ID, objc.Sel("labelColor"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/labelcolor
-func (i_ InterAppAudioTransportView) SetLabelColor(value appkit.Color) {
+func (i_ InterAppAudioTransportView) SetLabelColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLabelColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) PauseButtonColor() appkit.Color {
-	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("pauseButtonColor"))
+func (i_ InterAppAudioTransportView) PauseButtonColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](i_.ID, objc.Sel("pauseButtonColor"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) SetPauseButtonColor(value appkit.Color) {
+func (i_ InterAppAudioTransportView) SetPauseButtonColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPauseButtonColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) PlayButtonColor() appkit.Color {
-	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("playButtonColor"))
+func (i_ InterAppAudioTransportView) PlayButtonColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](i_.ID, objc.Sel("playButtonColor"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) SetPlayButtonColor(value appkit.Color) {
+func (i_ InterAppAudioTransportView) SetPlayButtonColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayButtonColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/recordbuttoncolor
-func (i_ InterAppAudioTransportView) RecordButtonColor() appkit.Color {
-	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("recordButtonColor"))
+func (i_ InterAppAudioTransportView) RecordButtonColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](i_.ID, objc.Sel("recordButtonColor"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/recordbuttoncolor
-func (i_ InterAppAudioTransportView) SetRecordButtonColor(value appkit.Color) {
+func (i_ InterAppAudioTransportView) SetRecordButtonColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordButtonColor:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) RewindButtonColor() appkit.Color {
-	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("rewindButtonColor"))
+func (i_ InterAppAudioTransportView) RewindButtonColor() objc.IObject /* cross-framework: Color */ {
+	rv := objc.Send[Color](i_.ID, objc.Sel("rewindButtonColor"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) SetRewindButtonColor(value appkit.Color) {
+func (i_ InterAppAudioTransportView) SetRewindButtonColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRewindButtonColor:"), value)
 }
 

@@ -31,16 +31,14 @@ type _HKSampleClass struct {
 type IHKSample interface {
 	IHKObject
 	// properties:
-	EndDate() foundation.NSDate
-	StartDate() foundation.NSDate
-	HKPredicateKeyPathEndDate() string
-	HKPredicateKeyPathStartDate() string
-	HasUndeterminedDuration() bool
-	SetHasUndeterminedDuration(value bool)
+	EndDate() foundation.objc.IObject /* cross-framework: NSDate */
+	HasUndeterminedDuration() bool /* primitive/slice/pointer. */
 	SampleType() IHKSampleType
-	SetSampleType(value IHKSampleType)
-	HKSampleSortIdentifierEndDate() string
-	HKSampleSortIdentifierStartDate() string
+	StartDate() foundation.objc.IObject /* cross-framework: NSDate */
+	HKPredicateKeyPathEndDate() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathStartDate() string /* primitive/slice/pointer. */
+	HKSampleSortIdentifierEndDate() string /* primitive/slice/pointer. */
+	HKSampleSortIdentifierStartDate() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -103,8 +101,28 @@ func NewHKSample() HKSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/endDate
-func (h_ HKSample) EndDate() foundation.NSDate {
+func (h_ HKSample) EndDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("endDate"))
+	return rv
+}
+
+
+// Indicates whether the sample has an unknown duration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/hasUndeterminedDuration
+func (h_ HKSample) HasUndeterminedDuration() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](h_.ID, objc.Sel("hasUndeterminedDuration"))
+	return rv
+}
+
+
+// The sample type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/sampleType
+func (h_ HKSample) SampleType() IHKSampleType {
+	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
@@ -113,7 +131,7 @@ func (h_ HKSample) EndDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSample/startDate
-func (h_ HKSample) StartDate() foundation.NSDate {
+func (h_ HKSample) StartDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("startDate"))
 	return rv
 }
@@ -123,7 +141,7 @@ func (h_ HKSample) StartDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate
-func (h_ HKSample) HKPredicateKeyPathEndDate() string {
+func (h_ HKSample) HKPredicateKeyPathEndDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathEndDate"))
 	return rv
 }
@@ -133,47 +151,9 @@ func (h_ HKSample) HKPredicateKeyPathEndDate() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate
-func (h_ HKSample) HKPredicateKeyPathStartDate() string {
+func (h_ HKSample) HKPredicateKeyPathStartDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathStartDate"))
 	return rv
-}
-
-
-// Indicates whether the sample has an unknown duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/hasundeterminedduration
-func (h_ HKSample) HasUndeterminedDuration() bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("hasUndeterminedDuration"))
-	return rv
-}
-
-
-// Indicates whether the sample has an unknown duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/hasundeterminedduration
-func (h_ HKSample) SetHasUndeterminedDuration(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setHasUndeterminedDuration:"), value)
-}
-
-
-// The sample type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/sampletype
-func (h_ HKSample) SampleType() IHKSampleType {
-	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
-	return rv
-}
-
-
-// The sample type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/sampletype
-func (h_ HKSample) SetSampleType(value IHKSampleType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 
 
@@ -181,7 +161,7 @@ func (h_ HKSample) SetSampleType(value IHKSampleType) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate
-func (h_ HKSample) HKSampleSortIdentifierEndDate() string {
+func (h_ HKSample) HKSampleSortIdentifierEndDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierEndDate"))
 	return rv
 }
@@ -191,7 +171,7 @@ func (h_ HKSample) HKSampleSortIdentifierEndDate() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate
-func (h_ HKSample) HKSampleSortIdentifierStartDate() string {
+func (h_ HKSample) HKSampleSortIdentifierStartDate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKSampleSortIdentifierStartDate"))
 	return rv
 }

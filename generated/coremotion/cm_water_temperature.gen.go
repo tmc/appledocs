@@ -31,9 +31,11 @@ type _WaterTemperatureClass struct {
 // An interface definition for the [WaterTemperature] class.
 type IWaterTemperature interface {
 	objectivec.IObject
-	Date() foundation.NSDate
+	// properties:
+	Date() foundation.objc.IObject /* cross-framework: NSDate */
 	Temperature() unsafe.Pointer
 	TemperatureUncertainty() unsafe.Pointer
+	// methods:
 }
 
 // An update that contains data about the water temperature.
@@ -91,7 +93,7 @@ func NewWaterTemperature() WaterTemperature {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/date
-func (w_ WaterTemperature) Date() foundation.NSDate {
+func (w_ WaterTemperature) Date() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }

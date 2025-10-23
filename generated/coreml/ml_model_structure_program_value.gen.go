@@ -30,6 +30,8 @@ type _ModelStructureProgramValueClass struct {
 // An interface definition for the [ModelStructureProgramValue] class.
 type IModelStructureProgramValue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A class representing a constant value in the Program.

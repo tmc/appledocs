@@ -34,16 +34,16 @@ type IHKElectrocardiogram interface {
 	SetAverageHeartRate(value IHKQuantity)
 	Classification() unsafe.Pointer
 	SetClassification(value unsafe.Pointer)
-	NumberOfVoltageMeasurements() int
-	SetNumberOfVoltageMeasurements(value int)
+	NumberOfVoltageMeasurements() int /* primitive/slice/pointer. */
+	SetNumberOfVoltageMeasurements(value int /* primitive/slice/pointer. */)
 	SamplingFrequency() IHKQuantity
 	SetSamplingFrequency(value IHKQuantity)
 	SymptomsStatus() unsafe.Pointer
 	SetSymptomsStatus(value unsafe.Pointer)
-	HKMetadataKeyAppleECGAlgorithmVersion() string
-	HKPredicateKeyPathAverageHeartRate() string
-	HKPredicateKeyPathECGClassification() string
-	HKPredicateKeyPathECGSymptomsStatus() string
+	HKMetadataKeyAppleECGAlgorithmVersion() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathAverageHeartRate() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathECGClassification() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathECGSymptomsStatus() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -144,7 +144,7 @@ func (h_ HKElectrocardiogram) SetClassification(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
-func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int {
+func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("numberOfVoltageMeasurements"))
 	return rv
 }
@@ -154,7 +154,7 @@ func (h_ HKElectrocardiogram) NumberOfVoltageMeasurements() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/numberofvoltagemeasurements
-func (h_ HKElectrocardiogram) SetNumberOfVoltageMeasurements(value int) {
+func (h_ HKElectrocardiogram) SetNumberOfVoltageMeasurements(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNumberOfVoltageMeasurements:"), value)
 }
 
@@ -201,7 +201,7 @@ func (h_ HKElectrocardiogram) SetSymptomsStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion
-func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string {
+func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAppleECGAlgorithmVersion"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (h_ HKElectrocardiogram) HKMetadataKeyAppleECGAlgorithmVersion() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverageheartrate
-func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string {
+func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverageHeartRate"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (h_ HKElectrocardiogram) HKPredicateKeyPathAverageHeartRate() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgclassification
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string {
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGClassification"))
 	return rv
 }
@@ -231,7 +231,7 @@ func (h_ HKElectrocardiogram) HKPredicateKeyPathECGClassification() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus
-func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() string {
+func (h_ HKElectrocardiogram) HKPredicateKeyPathECGSymptomsStatus() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathECGSymptomsStatus"))
 	return rv
 }

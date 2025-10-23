@@ -29,9 +29,11 @@ type _AudioMixerNodeClass struct {
 // An interface definition for the [AudioMixerNode] class.
 type IAudioMixerNode interface {
 	IAudioNode
-	NextAvailableInputBus() unsafe.Pointer
-	OutputVolume() float32
-	SetOutputVolume(value float32)
+	// properties:
+	NextAvailableInputBus() AudioNodeBus /* not a class type */
+	OutputVolume() float32 /* primitive/slice/pointer. */
+	SetOutputVolume(value float32 /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that takes any number of inputs and converts them into a single output.
@@ -94,8 +96,8 @@ func NewAudioMixerNode() AudioMixerNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/nextAvailableInputBus
-func (a_ AudioMixerNode) NextAvailableInputBus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextAvailableInputBus"))
+func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus /* not a class type */ {
+	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 
@@ -104,7 +106,7 @@ func (a_ AudioMixerNode) NextAvailableInputBus() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) OutputVolume() float32 {
+func (a_ AudioMixerNode) OutputVolume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (a_ AudioMixerNode) OutputVolume() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/outputVolume
-func (a_ AudioMixerNode) SetOutputVolume(value float32) {
+func (a_ AudioMixerNode) SetOutputVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputVolume:"), value)
 }
 

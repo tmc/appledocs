@@ -31,23 +31,25 @@ type _CXProviderConfigurationClass struct {
 // An interface definition for the [CXProviderConfiguration] class.
 type ICXProviderConfiguration interface {
 	objectivec.IObject
-	IconTemplateImageData() foundation.NSData
-	SetIconTemplateImageData(value foundation.NSData)
-	IncludesCallsInRecents() bool
-	SetIncludesCallsInRecents(value bool)
-	LocalizedName() string
-	MaximumCallGroups() uint
-	SetMaximumCallGroups(value uint)
-	MaximumCallsPerCallGroup() uint
-	SetMaximumCallsPerCallGroup(value uint)
-	RingtoneSound() string
-	SetRingtoneSound(value string)
+	// properties:
+	IconTemplateImageData() foundation.objc.IObject /* cross-framework: NSData */
+	SetIconTemplateImageData(value foundation.objc.IObject /* cross-framework: NSData */)
+	IncludesCallsInRecents() bool /* primitive/slice/pointer. */
+	SetIncludesCallsInRecents(value bool /* primitive/slice/pointer. */)
+	LocalizedName() string /* primitive/slice/pointer. */
+	MaximumCallGroups() uint /* primitive/slice/pointer. */
+	SetMaximumCallGroups(value uint /* primitive/slice/pointer. */)
+	MaximumCallsPerCallGroup() uint /* primitive/slice/pointer. */
+	SetMaximumCallsPerCallGroup(value uint /* primitive/slice/pointer. */)
+	RingtoneSound() string /* primitive/slice/pointer. */
+	SetRingtoneSound(value string /* primitive/slice/pointer. */)
 	SupportedHandleTypes() unsafe.Pointer
 	SetSupportedHandleTypes(value unsafe.Pointer)
-	SupportsAudioTranslation() bool
-	SetSupportsAudioTranslation(value bool)
-	SupportsVideo() bool
-	SetSupportsVideo(value bool)
+	SupportsAudioTranslation() bool /* primitive/slice/pointer. */
+	SetSupportsAudioTranslation(value bool /* primitive/slice/pointer. */)
+	SupportsVideo() bool /* primitive/slice/pointer. */
+	SetSupportsVideo(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An encapsulation of the configuration of a provider object.
@@ -107,7 +109,7 @@ func NewCXProviderConfiguration() CXProviderConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/init(localizedName:)
-func NewCXProviderConfigurationWithLocalizedName(localizedName string) CXProviderConfiguration {
+func NewCXProviderConfigurationWithLocalizedName(localizedName string /* primitive/slice/pointer. */) CXProviderConfiguration {
 	instance := getCXProviderConfigurationClass().Alloc()
 	rv := objc.Send[CXProviderConfiguration](instance.ID, objc.Sel("initWithLocalizedName:"), objc.String(localizedName))
 	rv.Autorelease()
@@ -120,7 +122,7 @@ func NewCXProviderConfigurationWithLocalizedName(localizedName string) CXProvide
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/iconTemplateImageData
-func (c_ CXProviderConfiguration) IconTemplateImageData() foundation.NSData {
+func (c_ CXProviderConfiguration) IconTemplateImageData() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("iconTemplateImageData"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (c_ CXProviderConfiguration) IconTemplateImageData() foundation.NSData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/iconTemplateImageData
-func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.NSData) {
+func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIconTemplateImageData:"), value)
 }
 
@@ -139,7 +141,7 @@ func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.NSDa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/includesCallsInRecents
-func (c_ CXProviderConfiguration) IncludesCallsInRecents() bool {
+func (c_ CXProviderConfiguration) IncludesCallsInRecents() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("includesCallsInRecents"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (c_ CXProviderConfiguration) IncludesCallsInRecents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/includesCallsInRecents
-func (c_ CXProviderConfiguration) SetIncludesCallsInRecents(value bool) {
+func (c_ CXProviderConfiguration) SetIncludesCallsInRecents(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludesCallsInRecents:"), value)
 }
 
@@ -158,7 +160,7 @@ func (c_ CXProviderConfiguration) SetIncludesCallsInRecents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/localizedName
-func (c_ CXProviderConfiguration) LocalizedName() string {
+func (c_ CXProviderConfiguration) LocalizedName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (c_ CXProviderConfiguration) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/maximumCallGroups
-func (c_ CXProviderConfiguration) MaximumCallGroups() uint {
+func (c_ CXProviderConfiguration) MaximumCallGroups() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumCallGroups"))
 	return rv
 }
@@ -178,7 +180,7 @@ func (c_ CXProviderConfiguration) MaximumCallGroups() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/maximumCallGroups
-func (c_ CXProviderConfiguration) SetMaximumCallGroups(value uint) {
+func (c_ CXProviderConfiguration) SetMaximumCallGroups(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumCallGroups:"), value)
 }
 
@@ -187,7 +189,7 @@ func (c_ CXProviderConfiguration) SetMaximumCallGroups(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/maximumCallsPerCallGroup
-func (c_ CXProviderConfiguration) MaximumCallsPerCallGroup() uint {
+func (c_ CXProviderConfiguration) MaximumCallsPerCallGroup() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumCallsPerCallGroup"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (c_ CXProviderConfiguration) MaximumCallsPerCallGroup() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/maximumCallsPerCallGroup
-func (c_ CXProviderConfiguration) SetMaximumCallsPerCallGroup(value uint) {
+func (c_ CXProviderConfiguration) SetMaximumCallsPerCallGroup(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumCallsPerCallGroup:"), value)
 }
 
@@ -206,7 +208,7 @@ func (c_ CXProviderConfiguration) SetMaximumCallsPerCallGroup(value uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/ringtoneSound
-func (c_ CXProviderConfiguration) RingtoneSound() string {
+func (c_ CXProviderConfiguration) RingtoneSound() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("ringtoneSound"))
 	return rv
 }
@@ -216,7 +218,7 @@ func (c_ CXProviderConfiguration) RingtoneSound() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/ringtoneSound
-func (c_ CXProviderConfiguration) SetRingtoneSound(value string) {
+func (c_ CXProviderConfiguration) SetRingtoneSound(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRingtoneSound:"), objc.String(value))
 }
 
@@ -242,7 +244,7 @@ func (c_ CXProviderConfiguration) SetSupportedHandleTypes(value unsafe.Pointer) 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsAudioTranslation
-func (c_ CXProviderConfiguration) SupportsAudioTranslation() bool {
+func (c_ CXProviderConfiguration) SupportsAudioTranslation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsAudioTranslation"))
 	return rv
 }
@@ -250,7 +252,7 @@ func (c_ CXProviderConfiguration) SupportsAudioTranslation() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsAudioTranslation
-func (c_ CXProviderConfiguration) SetSupportsAudioTranslation(value bool) {
+func (c_ CXProviderConfiguration) SetSupportsAudioTranslation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsAudioTranslation:"), value)
 }
 
@@ -259,7 +261,7 @@ func (c_ CXProviderConfiguration) SetSupportsAudioTranslation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsVideo
-func (c_ CXProviderConfiguration) SupportsVideo() bool {
+func (c_ CXProviderConfiguration) SupportsVideo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsVideo"))
 	return rv
 }
@@ -269,7 +271,7 @@ func (c_ CXProviderConfiguration) SupportsVideo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/supportsVideo
-func (c_ CXProviderConfiguration) SetSupportsVideo(value bool) {
+func (c_ CXProviderConfiguration) SetSupportsVideo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsVideo:"), value)
 }
 

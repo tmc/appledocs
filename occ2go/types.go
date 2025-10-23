@@ -124,6 +124,23 @@ type ParsedConstant struct {
 	Abstract     string
 }
 
+// ParsedStruct represents a C struct declaration (e.g., struct NSAffineTransformStruct).
+type ParsedStruct struct {
+	Name         string
+	Fields       []*ParsedStructField
+	Comment      string
+	Availability Availability
+	DocURL       string
+	Abstract     string
+}
+
+// ParsedStructField represents a field within a C struct.
+type ParsedStructField struct {
+	Name    string
+	Type    string // C/Objective-C type (e.g., "CGFloat", "double")
+	Comment string
+}
+
 // Parameter represents a function parameter.
 type Parameter struct {
 	Name string

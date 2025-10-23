@@ -30,6 +30,8 @@ type _NibConnectorClass struct {
 // An interface definition for the [NibConnector] class.
 type INibConnector interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A connection between two nibs.

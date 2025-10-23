@@ -31,7 +31,9 @@ type _LogItemClass struct {
 // An interface definition for the [LogItem] class.
 type ILogItem interface {
 	objectivec.IObject
-	Timestamp() foundation.TimeInterval
+	// properties:
+	Timestamp() foundation.TimeInterval /* not a class type */
+	// methods:
 }
 
 // The base class for all motion-related data objects.
@@ -91,7 +93,7 @@ func NewLogItem() LogItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMLogItem/timestamp
-func (l_ LogItem) Timestamp() foundation.TimeInterval {
+func (l_ LogItem) Timestamp() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](l_.ID, objc.Sel("timestamp"))
 	return rv
 }

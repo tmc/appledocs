@@ -29,6 +29,8 @@ type _AudioUnitV2BridgeClass struct {
 // An interface definition for the [AudioUnitV2Bridge] class.
 type IAudioUnitV2Bridge interface {
 	IAudioUnit
+	// properties:
+	// methods:
 }
 
 // A class that wraps a version 2 audio unit as version 3 audio unit.

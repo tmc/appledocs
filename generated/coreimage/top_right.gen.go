@@ -30,6 +30,8 @@ type _topRightClass struct {
 // An interface definition for the [topRight] class.
 type ItopRight interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

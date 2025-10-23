@@ -30,12 +30,14 @@ type _CKReferenceClass struct {
 // An interface definition for the [CKReference] class.
 type ICKReference interface {
 	objectivec.IObject
+	// properties:
 	ReferenceAction() unsafe.Pointer
-	RecordID() CKRecordID
+	RecordID() objc.IObject /* cross-framework: CKRecordID */
 	Action() unsafe.Pointer
 	SetAction(value unsafe.Pointer)
-	RecordChangeTag() string
-	SetRecordChangeTag(value string)
+	RecordChangeTag() string /* primitive/slice/pointer. */
+	SetRecordChangeTag(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A relationship between two records in a record zone.
@@ -107,7 +109,7 @@ func NewCKReferenceWithRecordAction(record ICKRecord, action unsafe.Pointer) CKR
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
-func NewCKReferenceWithRecordIDAction(recordID CKRecordID, action unsafe.Pointer) CKReference {
+func NewCKReferenceWithRecordIDAction(recordID objc.IObject /* cross-framework CKRecordID */, action unsafe.Pointer) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
 	rv.Autorelease()
@@ -130,7 +132,7 @@ func (c_ CKReference) ReferenceAction() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
-func (c_ CKReference) RecordID() CKRecordID {
+func (c_ CKReference) RecordID() objc.IObject /* cross-framework: CKRecordID */ {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (c_ CKReference) SetAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKReference) RecordChangeTag() string {
+func (c_ CKReference) RecordChangeTag() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("recordChangeTag"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (c_ CKReference) RecordChangeTag() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordchangetag
-func (c_ CKReference) SetRecordChangeTag(value string) {
+func (c_ CKReference) SetRecordChangeTag(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordChangeTag:"), objc.String(value))
 }
 

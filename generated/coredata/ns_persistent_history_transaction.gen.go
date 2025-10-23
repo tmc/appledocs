@@ -31,19 +31,21 @@ type _PersistentHistoryTransactionClass struct {
 // An interface definition for the [PersistentHistoryTransaction] class.
 type IPersistentHistoryTransaction interface {
 	objectivec.IObject
-	Author() string
-	BundleID() string
-	Changes() []PersistentHistoryChange
-	ContextName() string
-	ProcessID() string
-	StoreID() string
-	Timestamp() foundation.Date
-	SetTimestamp(value foundation.Date)
+	// properties:
+	Author() string /* primitive/slice/pointer. */
+	BundleID() string /* primitive/slice/pointer. */
+	Changes() []PersistentHistoryChange /* primitive/slice/pointer. */
+	ContextName() string /* primitive/slice/pointer. */
+	ProcessID() string /* primitive/slice/pointer. */
+	StoreID() string /* primitive/slice/pointer. */
+	Timestamp() foundation.objc.IObject /* cross-framework: Date */
+	SetTimestamp(value foundation.objc.IObject /* cross-framework: Date */)
 	Token() IPersistentHistoryToken
 	SetToken(value IPersistentHistoryToken)
 	TransactionNumber() unsafe.Pointer
 	SetTransactionNumber(value unsafe.Pointer)
-	ObjectIDNotification() foundation.Notification
+	// methods:
+	ObjectIDNotification() Notification /* not a class type */
 }
 
 // A set of changes in the persistent history based on a context save or batch operation.
@@ -129,8 +131,8 @@ func (pc _PersistentHistoryTransactionClass) FetchRequest() IFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/objectIDNotification()
-func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notification {
-	rv := objc.Send[foundation.Notification](p_.ID, objc.Sel("objectIDNotification"))
+func (p_ PersistentHistoryTransaction) ObjectIDNotification() Notification /* not a class type */ {
+	rv := objc.Send[Notification](p_.ID, objc.Sel("objectIDNotification"))
 	return rv
 }
 
@@ -139,7 +141,7 @@ func (p_ PersistentHistoryTransaction) ObjectIDNotification() foundation.Notific
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/author
-func (p_ PersistentHistoryTransaction) Author() string {
+func (p_ PersistentHistoryTransaction) Author() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("author"))
 	return rv
 }
@@ -149,7 +151,7 @@ func (p_ PersistentHistoryTransaction) Author() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/bundleID
-func (p_ PersistentHistoryTransaction) BundleID() string {
+func (p_ PersistentHistoryTransaction) BundleID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("bundleID"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (p_ PersistentHistoryTransaction) BundleID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/changes
-func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
+func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]PersistentHistoryChange](p_.ID, objc.Sel("changes"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (p_ PersistentHistoryTransaction) Changes() []PersistentHistoryChange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/contextName
-func (p_ PersistentHistoryTransaction) ContextName() string {
+func (p_ PersistentHistoryTransaction) ContextName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("contextName"))
 	return rv
 }
@@ -199,7 +201,7 @@ func (p_ PersistentHistoryTransaction) FetchRequest() IFetchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/processID
-func (p_ PersistentHistoryTransaction) ProcessID() string {
+func (p_ PersistentHistoryTransaction) ProcessID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("processID"))
 	return rv
 }
@@ -209,7 +211,7 @@ func (p_ PersistentHistoryTransaction) ProcessID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryTransaction/storeID
-func (p_ PersistentHistoryTransaction) StoreID() string {
+func (p_ PersistentHistoryTransaction) StoreID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("storeID"))
 	return rv
 }
@@ -219,7 +221,7 @@ func (p_ PersistentHistoryTransaction) StoreID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/timestamp
-func (p_ PersistentHistoryTransaction) Timestamp() foundation.Date {
+func (p_ PersistentHistoryTransaction) Timestamp() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("timestamp"))
 	return rv
 }
@@ -229,7 +231,7 @@ func (p_ PersistentHistoryTransaction) Timestamp() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorytransaction/timestamp
-func (p_ PersistentHistoryTransaction) SetTimestamp(value foundation.Date) {
+func (p_ PersistentHistoryTransaction) SetTimestamp(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimestamp:"), value)
 }
 

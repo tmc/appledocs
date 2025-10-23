@@ -30,14 +30,16 @@ type _AudioUnitPresetClass struct {
 // An interface definition for the [AudioUnitPreset] class.
 type IAudioUnitPreset interface {
 	objectivec.IObject
-	Name() string
-	SetName(value string)
-	Number() int
-	SetNumber(value int)
-	FullState() string
-	SetFullState(value string)
-	FullStateForDocument() string
-	SetFullStateForDocument(value string)
+	// properties:
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	Number() int /* primitive/slice/pointer. */
+	SetNumber(value int /* primitive/slice/pointer. */)
+	FullState() string /* primitive/slice/pointer. */
+	SetFullState(value string /* primitive/slice/pointer. */)
+	FullStateForDocument() string /* primitive/slice/pointer. */
+	SetFullStateForDocument(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A class that describes an interface for custom parameter settings provided by the audio unit developer.
@@ -97,7 +99,7 @@ func NewAudioUnitPreset() AudioUnitPreset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) Name() string {
+func (a_ AudioUnitPreset) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("name"))
 	return rv
 }
@@ -107,7 +109,7 @@ func (a_ AudioUnitPreset) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/name
-func (a_ AudioUnitPreset) SetName(value string) {
+func (a_ AudioUnitPreset) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -116,7 +118,7 @@ func (a_ AudioUnitPreset) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-func (a_ AudioUnitPreset) Number() int {
+func (a_ AudioUnitPreset) Number() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("number"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (a_ AudioUnitPreset) Number() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitPreset/number
-func (a_ AudioUnitPreset) SetNumber(value int) {
+func (a_ AudioUnitPreset) SetNumber(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumber:"), value)
 }
 
@@ -135,7 +137,7 @@ func (a_ AudioUnitPreset) SetNumber(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) FullState() string {
+func (a_ AudioUnitPreset) FullState() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("fullState"))
 	return rv
 }
@@ -145,7 +147,7 @@ func (a_ AudioUnitPreset) FullState() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate
-func (a_ AudioUnitPreset) SetFullState(value string) {
+func (a_ AudioUnitPreset) SetFullState(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullState:"), objc.String(value))
 }
 
@@ -154,7 +156,7 @@ func (a_ AudioUnitPreset) SetFullState(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) FullStateForDocument() string {
+func (a_ AudioUnitPreset) FullStateForDocument() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("fullStateForDocument"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (a_ AudioUnitPreset) FullStateForDocument() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument
-func (a_ AudioUnitPreset) SetFullStateForDocument(value string) {
+func (a_ AudioUnitPreset) SetFullStateForDocument(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFullStateForDocument:"), objc.String(value))
 }
 

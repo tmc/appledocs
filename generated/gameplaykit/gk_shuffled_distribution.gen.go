@@ -29,6 +29,8 @@ type _ShuffledDistributionClass struct {
 // An interface definition for the [ShuffledDistribution] class.
 type IShuffledDistribution interface {
 	IRandomDistribution
+	// properties:
+	// methods:
 }
 
 // A generator for random numbers that are uniformly distributed across many samplings, but where short sequences of similar values are unlikely.

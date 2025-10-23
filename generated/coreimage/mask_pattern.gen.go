@@ -30,6 +30,8 @@ type _maskPatternClass struct {
 // An interface definition for the [maskPattern] class.
 type ImaskPattern interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -31,16 +31,18 @@ type _BehaviorClass struct {
 // An interface definition for the [Behavior] class.
 type IBehavior interface {
 	objectivec.IObject
-	GoalCount() int
+	// properties:
+	GoalCount() int /* primitive/slice/pointer. */
 	Behavior() IGKBehavior
 	SetBehavior(value IGKBehavior)
+	// methods:
 	RemoveGoal(goal IGKGoal)
 	RemoveAllGoals()
-	SetObjectForKeyedSubscript(weight foundation.Number, goal IGKGoal)
-	SetWeightForGoal(weight float32, goal IGKGoal)
-	ObjectForKeyedSubscript(goal IGKGoal) foundation.Number
-	ObjectAtIndexedSubscript(idx uint) IGoal
-	WeightForGoal(goal IGKGoal) float32
+	SetObjectForKeyedSubscript(weight foundation.objc.IObject /* cross-framework Number */, goal IGKGoal)
+	SetWeightForGoal(weight float32 /* primitive/slice/pointer. */, goal IGKGoal)
+	ObjectForKeyedSubscript(goal IGKGoal) foundation.objc.IObject /* cross-framework: Number */
+	ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) IGoal
+	WeightForGoal(goal IGKGoal) float32 /* primitive/slice/pointer. */
 }
 
 // A set of goals that together influence the movement of an agent.
@@ -100,7 +102,7 @@ func NewBehavior() Behavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
-func NewBehaviorWithGoalWeight(goal IGKGoal, weight float32) Behavior {
+func NewBehaviorWithGoalWeight(goal IGKGoal, weight float32 /* primitive/slice/pointer. */) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
@@ -110,7 +112,7 @@ func NewBehaviorWithGoalWeight(goal IGKGoal, weight float32) Behavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:)
-func NewBehaviorWithGoals(goals []Goal) Behavior {
+func NewBehaviorWithGoals(goals []Goal /* primitive/slice/pointer. */) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoals:"), goals)
 	return rv
 }
@@ -120,7 +122,7 @@ func NewBehaviorWithGoals(goals []Goal) Behavior {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:andWeights:)
-func NewBehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.Number) Behavior {
+func NewBehaviorWithGoalsAndWeights(goals []Goal /* primitive/slice/pointer. */, weights []foundation.objc.IObject /* cross-framework Number */) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithGoals:andWeights:"), goals, weights)
 	return rv
 }
@@ -130,7 +132,7 @@ func NewBehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.Number) B
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(weightedGoals:)
-func NewBehaviorWithWeightedGoals(weightedGoals foundation.IDictionary) Behavior {
+func NewBehaviorWithWeightedGoals(weightedGoals foundation.IDictionary /* already interface */) Behavior {
 	rv := objc.Send[Behavior](objc.ID(getBehaviorClass().class), objc.Sel("behaviorWithWeightedGoals:"), weightedGoals)
 	return rv
 }
@@ -141,7 +143,7 @@ func NewBehaviorWithWeightedGoals(weightedGoals foundation.IDictionary) Behavior
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goal:weight:)
-func (bc _BehaviorClass) BehaviorWithGoalWeight(goal IGKGoal, weight float32) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithGoalWeight(goal IGKGoal, weight float32 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithGoal:weight:"), goal, weight)
 	return rv
 }
@@ -151,7 +153,7 @@ func (bc _BehaviorClass) BehaviorWithGoalWeight(goal IGKGoal, weight float32) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:)
-func (bc _BehaviorClass) BehaviorWithGoals(goals []Goal) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithGoals(goals []Goal /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithGoals:"), goals)
 	return rv
 }
@@ -161,7 +163,7 @@ func (bc _BehaviorClass) BehaviorWithGoals(goals []Goal) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(goals:andWeights:)
-func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal, weights []foundation.Number) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal /* primitive/slice/pointer. */, weights []foundation.objc.IObject /* cross-framework Number */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithGoals:andWeights:"), goals, weights)
 	return rv
 }
@@ -171,7 +173,7 @@ func (bc _BehaviorClass) BehaviorWithGoalsAndWeights(goals []Goal, weights []fou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/init(weightedGoals:)
-func (bc _BehaviorClass) BehaviorWithWeightedGoals(weightedGoals foundation.IDictionary) unsafe.Pointer {
+func (bc _BehaviorClass) BehaviorWithWeightedGoals(weightedGoals foundation.IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("behaviorWithWeightedGoals:"), weightedGoals)
 	return rv
 }
@@ -199,7 +201,7 @@ func (b_ Behavior) RemoveAllGoals() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/setObject:forKeyedSubscript:
-func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.Number, goal IGKGoal) {
+func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.objc.IObject /* cross-framework Number */, goal IGKGoal) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, goal)
 }
 
@@ -208,7 +210,7 @@ func (b_ Behavior) SetObjectForKeyedSubscript(weight foundation.Number, goal IGK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/setWeight(_:for:)
-func (b_ Behavior) SetWeightForGoal(weight float32, goal IGKGoal) {
+func (b_ Behavior) SetWeightForGoal(weight float32 /* primitive/slice/pointer. */, goal IGKGoal) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setWeight:forGoal:"), weight, goal)
 }
 
@@ -217,7 +219,7 @@ func (b_ Behavior) SetWeightForGoal(weight float32, goal IGKGoal) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/subscript(_:)-2yvko
-func (b_ Behavior) ObjectForKeyedSubscript(goal IGKGoal) foundation.Number {
+func (b_ Behavior) ObjectForKeyedSubscript(goal IGKGoal) foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("objectForKeyedSubscript:"), goal)
 	return rv
 }
@@ -227,7 +229,7 @@ func (b_ Behavior) ObjectForKeyedSubscript(goal IGKGoal) foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/subscript(_:)-997a9
-func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) IGoal {
+func (b_ Behavior) ObjectAtIndexedSubscript(idx uint /* primitive/slice/pointer. */) IGoal {
 	rv := objc.Send[Goal](b_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
@@ -237,7 +239,7 @@ func (b_ Behavior) ObjectAtIndexedSubscript(idx uint) IGoal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/weight(for:)
-func (b_ Behavior) WeightForGoal(goal IGKGoal) float32 {
+func (b_ Behavior) WeightForGoal(goal IGKGoal) float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](b_.ID, objc.Sel("weightForGoal:"), goal)
 	return rv
 }
@@ -247,7 +249,7 @@ func (b_ Behavior) WeightForGoal(goal IGKGoal) float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKBehavior/goalCount
-func (b_ Behavior) GoalCount() int {
+func (b_ Behavior) GoalCount() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](b_.ID, objc.Sel("goalCount"))
 	return rv
 }

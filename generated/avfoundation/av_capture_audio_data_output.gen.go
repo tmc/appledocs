@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CaptureAudioDataOutput] class.
@@ -30,8 +31,8 @@ type _CaptureAudioDataOutputClass struct {
 type ICaptureAudioDataOutput interface {
 	ICaptureOutput
 	// properties:
-	AudioSettings() string /* primitive/slice/pointer */
-	SetAudioSettings(value string /* primitive/slice/pointer */)
+	AudioSettings() objc.IObject /* cross-framework: NSString */
+	SetAudioSettings(value objc.IObject /* cross-framework: NSString */)
 	SampleBufferCallbackQueue() unsafe.Pointer
 	SetSampleBufferCallbackQueue(value unsafe.Pointer)
 	SampleBufferDelegate() CaptureAudioDataOutputSampleBufferDelegate /* not a class type */
@@ -98,8 +99,8 @@ func NewCaptureAudioDataOutput() CaptureAudioDataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) AudioSettings() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("audioSettings"))
+func (c_ CaptureAudioDataOutput) AudioSettings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("audioSettings"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (c_ CaptureAudioDataOutput) AudioSettings() string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput/audiosettings
-func (c_ CaptureAudioDataOutput) SetAudioSettings(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), objc.String(value))
+func (c_ CaptureAudioDataOutput) SetAudioSettings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSettings:"), value)
 }
 
 

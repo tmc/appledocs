@@ -29,23 +29,26 @@ type _TabViewControllerClass struct {
 // An interface definition for the [TabViewController] class.
 type ITabViewController interface {
 	IViewController
-	CanPropagateSelectedChildViewControllerTitle() bool
-	SetCanPropagateSelectedChildViewControllerTitle(value bool)
-	SelectedTabViewItemIndex() int
-	SetSelectedTabViewItemIndex(value int)
+	// properties:
+	TabView() objc.IObject /* cross-framework: TabView */
+	SetTabView(value objc.IObject /* cross-framework: TabView */)
+	CanPropagateSelectedChildViewControllerTitle() bool /* primitive/slice/pointer. */
+	SetCanPropagateSelectedChildViewControllerTitle(value bool /* primitive/slice/pointer. */)
+	SelectedTabViewItemIndex() int /* primitive/slice/pointer. */
+	SetSelectedTabViewItemIndex(value int /* primitive/slice/pointer. */)
 	TabStyle() unsafe.Pointer
 	SetTabStyle(value unsafe.Pointer)
-	TabView() ITabView
-	SetTabView(value ITabView)
-	TabViewItems() TabViewItem
-	SetTabViewItems(value TabViewItem)
+	TabViewItems() objc.IObject /* cross-framework: TabViewItem */
+	SetTabViewItems(value objc.IObject /* cross-framework: TabViewItem */)
 	TransitionOptions() unsafe.Pointer
 	SetTransitionOptions(value unsafe.Pointer)
 	Children() IViewController
 	SetChildren(value IViewController)
-	AddTabViewItem(tabViewItem TabViewItem)
-	InsertTabViewItemAtIndex(tabViewItem TabViewItem, index int)
-	ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string
+	// methods:
+	AddTabViewItem(tabViewItem objc.IObject /* cross-framework TabViewItem */)
+	InsertTabViewItemAtIndex(tabViewItem objc.IObject /* cross-framework TabViewItem */, index int /* primitive/slice/pointer. */)
+	RemoveTabViewItem(tabViewItem objc.IObject /* cross-framework TabViewItem */)
+	ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string /* primitive/slice/pointer. */
 }
 
 // A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
@@ -107,7 +110,7 @@ func NewTabViewController() TabViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/addTabViewItem(_:)
-func (t_ TabViewController) AddTabViewItem(tabViewItem TabViewItem) {
+func (t_ TabViewController) AddTabViewItem(tabViewItem objc.IObject /* cross-framework TabViewItem */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addTabViewItem:"), tabViewItem)
 }
 
@@ -116,8 +119,17 @@ func (t_ TabViewController) AddTabViewItem(tabViewItem TabViewItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/insertTabViewItem(_:at:)
-func (t_ TabViewController) InsertTabViewItemAtIndex(tabViewItem TabViewItem, index int) {
+func (t_ TabViewController) InsertTabViewItemAtIndex(tabViewItem objc.IObject /* cross-framework TabViewItem */, index int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("insertTabViewItem:atIndex:"), tabViewItem, index)
+}
+
+
+// Removes the specified tab view item from the tab view controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/removeTabViewItem(_:)
+func (t_ TabViewController) RemoveTabViewItem(tabViewItem objc.IObject /* cross-framework TabViewItem */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("removeTabViewItem:"), tabViewItem)
 }
 
 
@@ -125,9 +137,28 @@ func (t_ TabViewController) InsertTabViewItemAtIndex(tabViewItem TabViewItem, in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/toolbarAllowedItemIdentifiers(_:)
-func (t_ TabViewController) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string {
+func (t_ TabViewController) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("toolbarAllowedItemIdentifiers:"), toolbar)
 	return rv
+}
+
+
+// The tab view that manages the views of the interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabView
+func (t_ TabViewController) TabView() objc.IObject /* cross-framework: TabView */ {
+	rv := objc.Send[TabView](t_.ID, objc.Sel("tabView"))
+	return rv
+}
+
+
+// The tab view that manages the views of the interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabView
+func (t_ TabViewController) SetTabView(value objc.IObject /* cross-framework: TabView */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTabView:"), value)
 }
 
 
@@ -135,7 +166,7 @@ func (t_ TabViewController) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/canpropagateselectedchildviewcontrollertitle
-func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool {
+func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canPropagateSelectedChildViewControllerTitle"))
 	return rv
 }
@@ -145,7 +176,7 @@ func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/canpropagateselectedchildviewcontrollertitle
-func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(value bool) {
+func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanPropagateSelectedChildViewControllerTitle:"), value)
 }
 
@@ -154,7 +185,7 @@ func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/selectedtabviewitemindex
-func (t_ TabViewController) SelectedTabViewItemIndex() int {
+func (t_ TabViewController) SelectedTabViewItemIndex() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedTabViewItemIndex"))
 	return rv
 }
@@ -164,7 +195,7 @@ func (t_ TabViewController) SelectedTabViewItemIndex() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/selectedtabviewitemindex
-func (t_ TabViewController) SetSelectedTabViewItemIndex(value int) {
+func (t_ TabViewController) SetSelectedTabViewItemIndex(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTabViewItemIndex:"), value)
 }
 
@@ -188,30 +219,11 @@ func (t_ TabViewController) SetTabStyle(value unsafe.Pointer) {
 }
 
 
-// The tab view that manages the views of the interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview
-func (t_ TabViewController) TabView() ITabView {
-	rv := objc.Send[TabView](t_.ID, objc.Sel("tabView"))
-	return rv
-}
-
-
-// The tab view that manages the views of the interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview
-func (t_ TabViewController) SetTabView(value ITabView) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTabView:"), value)
-}
-
-
 // The array of tab view items used to manage each of the child view controllers.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabviewitems
-func (t_ TabViewController) TabViewItems() TabViewItem {
+func (t_ TabViewController) TabViewItems() objc.IObject /* cross-framework: TabViewItem */ {
 	rv := objc.Send[TabViewItem](t_.ID, objc.Sel("tabViewItems"))
 	return rv
 }
@@ -221,7 +233,7 @@ func (t_ TabViewController) TabViewItems() TabViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabviewitems
-func (t_ TabViewController) SetTabViewItems(value TabViewItem) {
+func (t_ TabViewController) SetTabViewItems(value objc.IObject /* cross-framework: TabViewItem */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), value)
 }
 

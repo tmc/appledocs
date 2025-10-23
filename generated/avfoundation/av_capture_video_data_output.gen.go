@@ -32,31 +32,31 @@ type _CaptureVideoDataOutputClass struct {
 type ICaptureVideoDataOutput interface {
 	ICaptureOutput
 	// properties:
-	AlwaysDiscardsLateVideoFrames() bool /* primitive/slice/pointer */
-	SetAlwaysDiscardsLateVideoFrames(value bool /* primitive/slice/pointer */)
+	AlwaysDiscardsLateVideoFrames() bool /* primitive/slice/pointer. */
+	SetAlwaysDiscardsLateVideoFrames(value bool /* primitive/slice/pointer. */)
 	MinFrameDuration() Time /* not a class type */
 	SetMinFrameDuration(value Time /* not a class type */)
 	SampleBufferCallbackQueue() unsafe.Pointer
 	VideoSettings() foundation.IDictionary /* already interface */
 	SetVideoSettings(value foundation.IDictionary /* already interface */)
-	AutomaticallyConfiguresOutputBufferDimensions() bool /* primitive/slice/pointer */
-	SetAutomaticallyConfiguresOutputBufferDimensions(value bool /* primitive/slice/pointer */)
+	AutomaticallyConfiguresOutputBufferDimensions() bool /* primitive/slice/pointer. */
+	SetAutomaticallyConfiguresOutputBufferDimensions(value bool /* primitive/slice/pointer. */)
 	AvailableVideoCodecTypes() VideoCodecType /* not a class type */
 	SetAvailableVideoCodecTypes(value VideoCodecType /* not a class type */)
 	AvailableVideoPixelFormatTypes() unsafe.Pointer
 	SetAvailableVideoPixelFormatTypes(value unsafe.Pointer)
-	DeliversPreviewSizedOutputBuffers() bool /* primitive/slice/pointer */
-	SetDeliversPreviewSizedOutputBuffers(value bool /* primitive/slice/pointer */)
-	PreparesCellularRadioForNetworkConnection() bool /* primitive/slice/pointer */
-	SetPreparesCellularRadioForNetworkConnection(value bool /* primitive/slice/pointer */)
-	PreservesDynamicHDRMetadata() bool /* primitive/slice/pointer */
-	SetPreservesDynamicHDRMetadata(value bool /* primitive/slice/pointer */)
+	DeliversPreviewSizedOutputBuffers() bool /* primitive/slice/pointer. */
+	SetDeliversPreviewSizedOutputBuffers(value bool /* primitive/slice/pointer. */)
+	PreparesCellularRadioForNetworkConnection() bool /* primitive/slice/pointer. */
+	SetPreparesCellularRadioForNetworkConnection(value bool /* primitive/slice/pointer. */)
+	PreservesDynamicHDRMetadata() bool /* primitive/slice/pointer. */
+	SetPreservesDynamicHDRMetadata(value bool /* primitive/slice/pointer. */)
 	RecommendedMediaTimeScaleForAssetWriter() TimeScale /* not a class type */
 	SetRecommendedMediaTimeScaleForAssetWriter(value TimeScale /* not a class type */)
 	SampleBufferDelegate() CaptureVideoDataOutputSampleBufferDelegate /* not a class type */
 	SetSampleBufferDelegate(value CaptureVideoDataOutputSampleBufferDelegate /* not a class type */)
 	// methods:
-	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType FileType /* not a class type */) []MetadataItem /* primitive/slice/pointer */
+	RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType objc.IObject /* cross-framework FileType */) []MetadataItem /* primitive/slice/pointer. */
 	SetSampleBufferDelegateQueue(sampleBufferDelegate objectivec.IObject, sampleBufferCallbackQueue unsafe.Pointer)
 }
 
@@ -119,7 +119,7 @@ func NewCaptureVideoDataOutput() CaptureVideoDataOutput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/recommendedMovieMetadata(forVideoCodecType:assetWriterOutputFileType:)
-func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType FileType /* not a class type */) []MetadataItem /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) RecommendedMovieMetadataForVideoCodecTypeAssetWriterOutputFileType(videoCodecType VideoCodecType /* not a class type */, outputFileType objc.IObject /* cross-framework FileType */) []MetadataItem /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:"), videoCodecType, outputFileType)
 	return rv
 }
@@ -138,7 +138,7 @@ func (c_ CaptureVideoDataOutput) SetSampleBufferDelegateQueue(sampleBufferDelega
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames
-func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("alwaysDiscardsLateVideoFrames"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (c_ CaptureVideoDataOutput) AlwaysDiscardsLateVideoFrames() bool /* primiti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoDataOutput/alwaysDiscardsLateVideoFrames
-func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoDataOutput) SetAlwaysDiscardsLateVideoFrames(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlwaysDiscardsLateVideoFrames:"), value)
 }
 
@@ -205,7 +205,7 @@ func (c_ CaptureVideoDataOutput) SetVideoSettings(value foundation.IDictionary /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/automaticallyconfiguresoutputbufferdimensions
-func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("automaticallyConfiguresOutputBufferDimensions"))
 	return rv
 }
@@ -215,7 +215,7 @@ func (c_ CaptureVideoDataOutput) AutomaticallyConfiguresOutputBufferDimensions()
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/automaticallyconfiguresoutputbufferdimensions
-func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimensions(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoDataOutput) SetAutomaticallyConfiguresOutputBufferDimensions(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticallyConfiguresOutputBufferDimensions:"), value)
 }
 
@@ -262,7 +262,7 @@ func (c_ CaptureVideoDataOutput) SetAvailableVideoPixelFormatTypes(value unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/deliverspreviewsizedoutputbuffers
-func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("deliversPreviewSizedOutputBuffers"))
 	return rv
 }
@@ -272,7 +272,7 @@ func (c_ CaptureVideoDataOutput) DeliversPreviewSizedOutputBuffers() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/deliverspreviewsizedoutputbuffers
-func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeliversPreviewSizedOutputBuffers:"), value)
 }
 
@@ -281,7 +281,7 @@ func (c_ CaptureVideoDataOutput) SetDeliversPreviewSizedOutputBuffers(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preparescellularradiofornetworkconnection
-func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("preparesCellularRadioForNetworkConnection"))
 	return rv
 }
@@ -291,7 +291,7 @@ func (c_ CaptureVideoDataOutput) PreparesCellularRadioForNetworkConnection() boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preparescellularradiofornetworkconnection
-func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparesCellularRadioForNetworkConnection:"), value)
 }
 
@@ -300,7 +300,7 @@ func (c_ CaptureVideoDataOutput) SetPreparesCellularRadioForNetworkConnection(va
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preservesdynamichdrmetadata
-func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("preservesDynamicHDRMetadata"))
 	return rv
 }
@@ -310,7 +310,7 @@ func (c_ CaptureVideoDataOutput) PreservesDynamicHDRMetadata() bool /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/preservesdynamichdrmetadata
-func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoDataOutput) SetPreservesDynamicHDRMetadata(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesDynamicHDRMetadata:"), value)
 }
 

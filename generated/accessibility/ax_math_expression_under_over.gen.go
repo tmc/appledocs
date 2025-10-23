@@ -29,11 +29,12 @@ type _AXMathExpressionUnderOverClass struct {
 // An interface definition for the [AXMathExpressionUnderOver] class.
 type IAXMathExpressionUnderOver interface {
 	IAXMathExpression
-	UnderExpression() AXMathExpression
-	BaseExpression() AXMathExpression
-	SetBaseExpression(value IAXMathExpression)
-	OverExpression() AXMathExpression
+	// properties:
+	BaseExpression() IAXMathExpression
+	UnderExpression() IAXMathExpression
+	OverExpression() IAXMathExpression
 	SetOverExpression(value IAXMathExpression)
+	// methods:
 }
 
 
@@ -96,31 +97,24 @@ func NewAXMathExpressionUnderOverWithBaseExpressionUnderExpressionOverExpression
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionUnderOver/underExpression
-func (a_ AXMathExpressionUnderOver) UnderExpression() AXMathExpression {
-	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("underExpression"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/baseexpression
-func (a_ AXMathExpressionUnderOver) BaseExpression() AXMathExpression {
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionUnderOver/baseExpression
+func (a_ AXMathExpressionUnderOver) BaseExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("baseExpression"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/baseexpression
-func (a_ AXMathExpressionUnderOver) SetBaseExpression(value IAXMathExpression) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setBaseExpression:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionUnderOver/underExpression
+func (a_ AXMathExpressionUnderOver) UnderExpression() IAXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("underExpression"))
+	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/overexpression
-func (a_ AXMathExpressionUnderOver) OverExpression() AXMathExpression {
+func (a_ AXMathExpressionUnderOver) OverExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("overExpression"))
 	return rv
 }

@@ -32,9 +32,9 @@ type _AssetExportSessionClass struct {
 type IAssetExportSession interface {
 	objectivec.IObject
 	// properties:
-	Progress() float32 /* primitive/slice/pointer */
-	AllowsParallelizedExport() bool /* primitive/slice/pointer */
-	SetAllowsParallelizedExport(value bool /* primitive/slice/pointer */)
+	Progress() float32 /* primitive/slice/pointer. */
+	AllowsParallelizedExport() bool /* primitive/slice/pointer. */
+	SetAllowsParallelizedExport(value bool /* primitive/slice/pointer. */)
 	Asset() IAVAsset
 	SetAsset(value IAVAsset)
 	AudioMix() IAVAudioMix
@@ -43,12 +43,12 @@ type IAssetExportSession interface {
 	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
 	AudioTrackGroupHandling() AssetTrackGroupOutputHandling /* not a class type */
 	SetAudioTrackGroupHandling(value AssetTrackGroupOutputHandling /* not a class type */)
-	CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer */
-	SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer */)
+	CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer. */
+	SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer. */)
 	CustomVideoCompositor() VideoCompositing /* not a class type */
 	SetCustomVideoCompositor(value VideoCompositing /* not a class type */)
-	DirectoryForTemporaryFiles() foundation.URL /* not a class type */
-	SetDirectoryForTemporaryFiles(value foundation.URL /* not a class type */)
+	DirectoryForTemporaryFiles() objc.IObject /* cross-framework: URL */
+	SetDirectoryForTemporaryFiles(value objc.IObject /* cross-framework: URL */)
 	Error() Error
 	SetError(value Error)
 	EstimatedOutputFileLength() unsafe.Pointer
@@ -61,22 +61,22 @@ type IAssetExportSession interface {
 	SetMetadata(value IAVMetadataItem)
 	MetadataItemFilter() MetadataItemFilter /* not a class type */
 	SetMetadataItemFilter(value MetadataItemFilter /* not a class type */)
-	OutputFileType() FileType /* not a class type */
-	SetOutputFileType(value FileType /* not a class type */)
-	OutputURL() foundation.URL /* not a class type */
-	SetOutputURL(value foundation.URL /* not a class type */)
-	PresetName() string /* primitive/slice/pointer */
-	SetPresetName(value string /* primitive/slice/pointer */)
-	ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer */
-	SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer */)
+	OutputFileType() objc.IObject /* cross-framework: FileType */
+	SetOutputFileType(value objc.IObject /* cross-framework: FileType */)
+	OutputURL() objc.IObject /* cross-framework: URL */
+	SetOutputURL(value objc.IObject /* cross-framework: URL */)
+	PresetName() objc.IObject /* cross-framework: NSString */
+	SetPresetName(value objc.IObject /* cross-framework: NSString */)
+	ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */
+	SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */)
 	Status() unsafe.Pointer
 	SetStatus(value unsafe.Pointer)
-	SupportedFileTypes() FileType /* not a class type */
-	SetSupportedFileTypes(value FileType /* not a class type */)
+	SupportedFileTypes() objc.IObject /* cross-framework: FileType */
+	SetSupportedFileTypes(value objc.IObject /* cross-framework: FileType */)
 	TimeRange() TimeRange /* not a class type */
 	SetTimeRange(value TimeRange /* not a class type */)
-	VideoComposition() VideoComposition /* not a class type */
-	SetVideoComposition(value VideoComposition /* not a class type */)
+	VideoComposition() objc.IObject /* cross-framework: VideoComposition */
+	SetVideoComposition(value objc.IObject /* cross-framework: VideoComposition */)
 	// methods:
 }
 
@@ -137,7 +137,7 @@ func NewAssetExportSession() AssetExportSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/allExportPresets()
-func (ac _AssetExportSessionClass) AllExportPresets() []string /* primitive/slice/pointer */ {
+func (ac _AssetExportSessionClass) AllExportPresets() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("allExportPresets"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (ac _AssetExportSessionClass) AllExportPresets() []string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportPresets(compatibleWith:)
-func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAsset) []string /* primitive/slice/pointer */ {
+func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAsset) []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("exportPresetsCompatibleWithAsset:"), asset)
 	return rv
 }
@@ -157,7 +157,7 @@ func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAss
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/progress
-func (a_ AssetExportSession) Progress() float32 /* primitive/slice/pointer */ {
+func (a_ AssetExportSession) Progress() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("progress"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (a_ AssetExportSession) Progress() float32 /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/allowsparallelizedexport
-func (a_ AssetExportSession) AllowsParallelizedExport() bool /* primitive/slice/pointer */ {
+func (a_ AssetExportSession) AllowsParallelizedExport() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowsParallelizedExport"))
 	return rv
 }
@@ -177,7 +177,7 @@ func (a_ AssetExportSession) AllowsParallelizedExport() bool /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/allowsparallelizedexport
-func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool /* primitive/slice/pointer */) {
+func (a_ AssetExportSession) SetAllowsParallelizedExport(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsParallelizedExport:"), value)
 }
 
@@ -262,7 +262,7 @@ func (a_ AssetExportSession) SetAudioTrackGroupHandling(value AssetTrackGroupOut
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/canperformmultiplepassesoversourcemediadata
-func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer */ {
+func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canPerformMultiplePassesOverSourceMediaData"))
 	return rv
 }
@@ -272,7 +272,7 @@ func (a_ AssetExportSession) CanPerformMultiplePassesOverSourceMediaData() bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/canperformmultiplepassesoversourcemediadata
-func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer */) {
+func (a_ AssetExportSession) SetCanPerformMultiplePassesOverSourceMediaData(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCanPerformMultiplePassesOverSourceMediaData:"), value)
 }
 
@@ -300,7 +300,7 @@ func (a_ AssetExportSession) SetCustomVideoCompositor(value VideoCompositing /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/directoryfortemporaryfiles
-func (a_ AssetExportSession) DirectoryForTemporaryFiles() foundation.URL /* not a class type */ {
+func (a_ AssetExportSession) DirectoryForTemporaryFiles() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("directoryForTemporaryFiles"))
 	return rv
 }
@@ -310,7 +310,7 @@ func (a_ AssetExportSession) DirectoryForTemporaryFiles() foundation.URL /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/directoryfortemporaryfiles
-func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value foundation.URL /* not a class type */) {
+func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
@@ -433,7 +433,7 @@ func (a_ AssetExportSession) SetMetadataItemFilter(value MetadataItemFilter /* n
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/outputfiletype
-func (a_ AssetExportSession) OutputFileType() FileType /* not a class type */ {
+func (a_ AssetExportSession) OutputFileType() objc.IObject /* cross-framework: FileType */ {
 	rv := objc.Send[FileType](a_.ID, objc.Sel("outputFileType"))
 	return rv
 }
@@ -443,7 +443,7 @@ func (a_ AssetExportSession) OutputFileType() FileType /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/outputfiletype
-func (a_ AssetExportSession) SetOutputFileType(value FileType /* not a class type */) {
+func (a_ AssetExportSession) SetOutputFileType(value objc.IObject /* cross-framework: FileType */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileType:"), value)
 }
 
@@ -452,7 +452,7 @@ func (a_ AssetExportSession) SetOutputFileType(value FileType /* not a class typ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/outputurl
-func (a_ AssetExportSession) OutputURL() foundation.URL /* not a class type */ {
+func (a_ AssetExportSession) OutputURL() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("outputURL"))
 	return rv
 }
@@ -462,7 +462,7 @@ func (a_ AssetExportSession) OutputURL() foundation.URL /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/outputurl
-func (a_ AssetExportSession) SetOutputURL(value foundation.URL /* not a class type */) {
+func (a_ AssetExportSession) SetOutputURL(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputURL:"), value)
 }
 
@@ -471,8 +471,8 @@ func (a_ AssetExportSession) SetOutputURL(value foundation.URL /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) PresetName() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](a_.ID, objc.Sel("presetName"))
+func (a_ AssetExportSession) PresetName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("presetName"))
 	return rv
 }
 
@@ -481,8 +481,8 @@ func (a_ AssetExportSession) PresetName() string /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) SetPresetName(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), objc.String(value))
+func (a_ AssetExportSession) SetPresetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), value)
 }
 
 
@@ -490,7 +490,7 @@ func (a_ AssetExportSession) SetPresetName(value string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse
-func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer */ {
+func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("shouldOptimizeForNetworkUse"))
 	return rv
 }
@@ -500,7 +500,7 @@ func (a_ AssetExportSession) ShouldOptimizeForNetworkUse() bool /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse
-func (a_ AssetExportSession) SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer */) {
+func (a_ AssetExportSession) SetShouldOptimizeForNetworkUse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setShouldOptimizeForNetworkUse:"), value)
 }
 
@@ -528,7 +528,7 @@ func (a_ AssetExportSession) SetStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/supportedfiletypes
-func (a_ AssetExportSession) SupportedFileTypes() FileType /* not a class type */ {
+func (a_ AssetExportSession) SupportedFileTypes() objc.IObject /* cross-framework: FileType */ {
 	rv := objc.Send[FileType](a_.ID, objc.Sel("supportedFileTypes"))
 	return rv
 }
@@ -538,7 +538,7 @@ func (a_ AssetExportSession) SupportedFileTypes() FileType /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/supportedfiletypes
-func (a_ AssetExportSession) SetSupportedFileTypes(value FileType /* not a class type */) {
+func (a_ AssetExportSession) SetSupportedFileTypes(value objc.IObject /* cross-framework: FileType */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSupportedFileTypes:"), value)
 }
 
@@ -566,7 +566,7 @@ func (a_ AssetExportSession) SetTimeRange(value TimeRange /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
-func (a_ AssetExportSession) VideoComposition() VideoComposition /* not a class type */ {
+func (a_ AssetExportSession) VideoComposition() objc.IObject /* cross-framework: VideoComposition */ {
 	rv := objc.Send[VideoComposition](a_.ID, objc.Sel("videoComposition"))
 	return rv
 }
@@ -576,7 +576,7 @@ func (a_ AssetExportSession) VideoComposition() VideoComposition /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
-func (a_ AssetExportSession) SetVideoComposition(value VideoComposition /* not a class type */) {
+func (a_ AssetExportSession) SetVideoComposition(value objc.IObject /* cross-framework: VideoComposition */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoComposition:"), value)
 }
 

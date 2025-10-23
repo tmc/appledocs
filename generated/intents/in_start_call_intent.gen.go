@@ -30,15 +30,15 @@ type _INStartCallIntentClass struct {
 type IINStartCallIntent interface {
 	IINIntent
 	// properties:
-	CallRecordToCallBack() INCallRecord
+	CallRecordToCallBack() INCallRecord /* already interface */
 	AudioRoute() unsafe.Pointer
 	SetAudioRoute(value unsafe.Pointer)
 	CallCapability() unsafe.Pointer
 	SetCallCapability(value unsafe.Pointer)
-	CallRecordFilter() INCallRecordFilter
-	SetCallRecordFilter(value INCallRecordFilter)
-	Contacts() INPerson
-	SetContacts(value INPerson)
+	CallRecordFilter() INCallRecordFilter /* already interface */
+	SetCallRecordFilter(value INCallRecordFilter /* already interface */)
+	Contacts() INPerson /* already interface */
+	SetContacts(value INPerson /* already interface */)
 	DestinationType() unsafe.Pointer
 	SetDestinationType(value unsafe.Pointer)
 	RecordTypeForRedialing() unsafe.Pointer
@@ -105,7 +105,7 @@ func NewINStartCallIntent() INStartCallIntent {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntent/callRecordToCallBack
-func (i_ INStartCallIntent) CallRecordToCallBack() INCallRecord {
+func (i_ INStartCallIntent) CallRecordToCallBack() INCallRecord /* already interface */ {
 	rv := objc.Send[INCallRecord](i_.ID, objc.Sel("callRecordToCallBack"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (i_ INStartCallIntent) SetCallCapability(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callrecordfilter
-func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
+func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter /* already interface */ {
 	rv := objc.Send[INCallRecordFilter](i_.ID, objc.Sel("callRecordFilter"))
 	return rv
 }
@@ -163,7 +163,7 @@ func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/callrecordfilter
-func (i_ INStartCallIntent) SetCallRecordFilter(value INCallRecordFilter) {
+func (i_ INStartCallIntent) SetCallRecordFilter(value INCallRecordFilter /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordFilter:"), value)
 }
 
@@ -172,7 +172,7 @@ func (i_ INStartCallIntent) SetCallRecordFilter(value INCallRecordFilter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/contacts
-func (i_ INStartCallIntent) Contacts() INPerson {
+func (i_ INStartCallIntent) Contacts() INPerson /* already interface */ {
 	rv := objc.Send[INPerson](i_.ID, objc.Sel("contacts"))
 	return rv
 }
@@ -182,7 +182,7 @@ func (i_ INStartCallIntent) Contacts() INPerson {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartcallintent/contacts
-func (i_ INStartCallIntent) SetContacts(value INPerson) {
+func (i_ INStartCallIntent) SetContacts(value INPerson /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
 }
 

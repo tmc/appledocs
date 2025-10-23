@@ -30,6 +30,8 @@ type _dataCodewordCountClass struct {
 // An interface definition for the [dataCodewordCount] class.
 type IdataCodewordCount interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

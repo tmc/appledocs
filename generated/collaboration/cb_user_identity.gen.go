@@ -29,11 +29,13 @@ type _CBUserIdentityClass struct {
 // An interface definition for the [CBUserIdentity] class.
 type ICBUserIdentity interface {
 	ICBIdentity
+	// properties:
 	Certificate() unsafe.Pointer
-	IsEnabled() bool
-	SetIsEnabled(value bool)
+	IsEnabled() bool /* primitive/slice/pointer. */
+	SetIsEnabled(value bool /* primitive/slice/pointer. */)
 	PosixUID() unsafe.Pointer
 	SetPosixUID(value unsafe.Pointer)
+	// methods:
 }
 
 // An object of the class represents a user identity and is used for accessing the attributes of a user identity from an identity authority. The principal attributes of are a POSIX user identifier (UID), password, and certificate.
@@ -103,7 +105,7 @@ func (c_ CBUserIdentity) Certificate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-func (c_ CBUserIdentity) IsEnabled() bool {
+func (c_ CBUserIdentity) IsEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (c_ CBUserIdentity) IsEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbuseridentity/isenabled
-func (c_ CBUserIdentity) SetIsEnabled(value bool) {
+func (c_ CBUserIdentity) SetIsEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
 }
 

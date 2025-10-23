@@ -31,11 +31,13 @@ type _StateMachineClass struct {
 // An interface definition for the [StateMachine] class.
 type IStateMachine interface {
 	objectivec.IObject
+	// properties:
 	CurrentState() IGKState
-	CanEnterState(stateClass objc.Class) bool
-	EnterState(stateClass objc.Class) bool
+	// methods:
+	CanEnterState(stateClass objc.Class) bool /* primitive/slice/pointer. */
+	EnterState(stateClass objc.Class) bool /* primitive/slice/pointer. */
 	StateForClass(stateClass objc.Class) IState
-	UpdateWithDeltaTime(sec foundation.TimeInterval)
+	UpdateWithDeltaTime(sec foundation.TimeInterval /* not a class type */)
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
@@ -95,7 +97,7 @@ func NewStateMachine() StateMachine {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/init(states:)
-func NewStateMachineWithStates(states []State) StateMachine {
+func NewStateMachineWithStates(states []State /* primitive/slice/pointer. */) StateMachine {
 	instance := getStateMachineClass().Alloc()
 	rv := objc.Send[StateMachine](instance.ID, objc.Sel("initWithStates:"), states)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewStateMachineWithStates(states []State) StateMachine {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:
-func (sc _StateMachineClass) StateMachineWithStates(states []State) unsafe.Pointer {
+func (sc _StateMachineClass) StateMachineWithStates(states []State /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stateMachineWithStates:"), states)
 	return rv
 }
@@ -118,7 +120,7 @@ func (sc _StateMachineClass) StateMachineWithStates(states []State) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/canEnterState(_:)
-func (s_ StateMachine) CanEnterState(stateClass objc.Class) bool {
+func (s_ StateMachine) CanEnterState(stateClass objc.Class) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canEnterState:"), stateClass)
 	return rv
 }
@@ -128,7 +130,7 @@ func (s_ StateMachine) CanEnterState(stateClass objc.Class) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/enter(_:)
-func (s_ StateMachine) EnterState(stateClass objc.Class) bool {
+func (s_ StateMachine) EnterState(stateClass objc.Class) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enterState:"), stateClass)
 	return rv
 }
@@ -148,7 +150,7 @@ func (s_ StateMachine) StateForClass(stateClass objc.Class) IState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 

@@ -29,21 +29,23 @@ type _VisualEffectViewClass struct {
 // An interface definition for the [VisualEffectView] class.
 type IVisualEffectView interface {
 	IView
-	BlendingMode() NSVisualEffectBlendingMode
-	SetBlendingMode(value NSVisualEffectBlendingMode)
-	InteriorBackgroundStyle() NSBackgroundStyle
-	Emphasized() bool
-	SetEmphasized(value bool)
+	// properties:
+	BlendingMode() VisualEffectBlendingMode
+	SetBlendingMode(value VisualEffectBlendingMode)
+	InteriorBackgroundStyle() BackgroundStyle
+	Emphasized() bool /* primitive/slice/pointer. */
+	SetEmphasized(value bool /* primitive/slice/pointer. */)
 	MaskImage() IImage
 	SetMaskImage(value IImage)
-	Material() NSVisualEffectMaterial
-	SetMaterial(value NSVisualEffectMaterial)
-	State() NSVisualEffectState
-	SetState(value NSVisualEffectState)
-	AllowsVibrancy() bool
-	SetAllowsVibrancy(value bool)
-	IsEmphasized() bool
-	SetIsEmphasized(value bool)
+	Material() VisualEffectMaterial
+	SetMaterial(value VisualEffectMaterial)
+	State() VisualEffectState
+	SetState(value VisualEffectState)
+	AllowsVibrancy() bool /* primitive/slice/pointer. */
+	SetAllowsVibrancy(value bool /* primitive/slice/pointer. */)
+	IsEmphasized() bool /* primitive/slice/pointer. */
+	SetIsEmphasized(value bool /* primitive/slice/pointer. */)
+	// methods:
 	ViewDidMoveToWindow()
 	ViewWillMoveToWindow(newWindow IWindow)
 }
@@ -125,8 +127,8 @@ func (v_ VisualEffectView) ViewWillMoveToWindow(newWindow IWindow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) BlendingMode() NSVisualEffectBlendingMode {
-	rv := objc.Send[NSVisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
+func (v_ VisualEffectView) BlendingMode() VisualEffectBlendingMode {
+	rv := objc.Send[VisualEffectBlendingMode](v_.ID, objc.Sel("blendingMode"))
 	return rv
 }
 
@@ -135,7 +137,7 @@ func (v_ VisualEffectView) BlendingMode() NSVisualEffectBlendingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/blendingMode-swift.property
-func (v_ VisualEffectView) SetBlendingMode(value NSVisualEffectBlendingMode) {
+func (v_ VisualEffectView) SetBlendingMode(value VisualEffectBlendingMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBlendingMode:"), value)
 }
 
@@ -144,8 +146,8 @@ func (v_ VisualEffectView) SetBlendingMode(value NSVisualEffectBlendingMode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/interiorBackgroundStyle
-func (v_ VisualEffectView) InteriorBackgroundStyle() NSBackgroundStyle {
-	rv := objc.Send[NSBackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
+func (v_ VisualEffectView) InteriorBackgroundStyle() BackgroundStyle {
+	rv := objc.Send[BackgroundStyle](v_.ID, objc.Sel("interiorBackgroundStyle"))
 	return rv
 }
 
@@ -154,7 +156,7 @@ func (v_ VisualEffectView) InteriorBackgroundStyle() NSBackgroundStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/isEmphasized
-func (v_ VisualEffectView) Emphasized() bool {
+func (v_ VisualEffectView) Emphasized() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("emphasized"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (v_ VisualEffectView) Emphasized() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/isEmphasized
-func (v_ VisualEffectView) SetEmphasized(value bool) {
+func (v_ VisualEffectView) SetEmphasized(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setEmphasized:"), value)
 }
 
@@ -192,8 +194,8 @@ func (v_ VisualEffectView) SetMaskImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) Material() NSVisualEffectMaterial {
-	rv := objc.Send[NSVisualEffectMaterial](v_.ID, objc.Sel("material"))
+func (v_ VisualEffectView) Material() VisualEffectMaterial {
+	rv := objc.Send[VisualEffectMaterial](v_.ID, objc.Sel("material"))
 	return rv
 }
 
@@ -202,7 +204,7 @@ func (v_ VisualEffectView) Material() NSVisualEffectMaterial {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/material-swift.property
-func (v_ VisualEffectView) SetMaterial(value NSVisualEffectMaterial) {
+func (v_ VisualEffectView) SetMaterial(value VisualEffectMaterial) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaterial:"), value)
 }
 
@@ -211,8 +213,8 @@ func (v_ VisualEffectView) SetMaterial(value NSVisualEffectMaterial) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) State() NSVisualEffectState {
-	rv := objc.Send[NSVisualEffectState](v_.ID, objc.Sel("state"))
+func (v_ VisualEffectView) State() VisualEffectState {
+	rv := objc.Send[VisualEffectState](v_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -221,7 +223,7 @@ func (v_ VisualEffectView) State() NSVisualEffectState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/state-swift.property
-func (v_ VisualEffectView) SetState(value NSVisualEffectState) {
+func (v_ VisualEffectView) SetState(value VisualEffectState) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setState:"), value)
 }
 
@@ -230,7 +232,7 @@ func (v_ VisualEffectView) SetState(value NSVisualEffectState) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
-func (v_ VisualEffectView) AllowsVibrancy() bool {
+func (v_ VisualEffectView) AllowsVibrancy() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("allowsVibrancy"))
 	return rv
 }
@@ -240,7 +242,7 @@ func (v_ VisualEffectView) AllowsVibrancy() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy
-func (v_ VisualEffectView) SetAllowsVibrancy(value bool) {
+func (v_ VisualEffectView) SetAllowsVibrancy(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAllowsVibrancy:"), value)
 }
 
@@ -249,7 +251,7 @@ func (v_ VisualEffectView) SetAllowsVibrancy(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
-func (v_ VisualEffectView) IsEmphasized() bool {
+func (v_ VisualEffectView) IsEmphasized() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isEmphasized"))
 	return rv
 }
@@ -259,7 +261,7 @@ func (v_ VisualEffectView) IsEmphasized() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsvisualeffectview/isemphasized
-func (v_ VisualEffectView) SetIsEmphasized(value bool) {
+func (v_ VisualEffectView) SetIsEmphasized(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsEmphasized:"), value)
 }
 

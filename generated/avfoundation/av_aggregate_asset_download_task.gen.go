@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AggregateAssetDownloadTask] class.
@@ -29,7 +28,7 @@ type _AggregateAssetDownloadTaskClass struct {
 
 // An interface definition for the [AggregateAssetDownloadTask] class.
 type IAggregateAssetDownloadTask interface {
-	foundation.IURLSessionTask
+	IURLSessionTask
 	// properties:
 	URLAsset() IAVURLAsset
 	// methods:
@@ -43,7 +42,7 @@ type IAggregateAssetDownloadTask interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAggregateAssetDownloadTask
 type AggregateAssetDownloadTask struct {
-	foundation.URLSessionTask
+	URLSessionTask
 }
 
 // AggregateAssetDownloadTaskFrom constructs a [AggregateAssetDownloadTask] from an unsafe.Pointer.
@@ -51,7 +50,7 @@ type AggregateAssetDownloadTask struct {
 // A task that downloads multiple media selections for an asset.
 func AggregateAssetDownloadTaskFrom(ptr unsafe.Pointer) AggregateAssetDownloadTask {
 	return AggregateAssetDownloadTask{
-		URLSessionTask: foundation.URLSessionTaskFrom(ptr),
+		URLSessionTask: URLSessionTaskFrom(ptr),
 	}
 }
 

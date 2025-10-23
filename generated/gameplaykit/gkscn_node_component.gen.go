@@ -29,7 +29,9 @@ type _SCNNodeComponentClass struct {
 // An interface definition for the [SCNNodeComponent] class.
 type ISCNNodeComponent interface {
 	IComponent
-	Node() unsafe.Pointer
+	// properties:
+	Node() NNode /* not a class type */
+	// methods:
 }
 
 
@@ -82,7 +84,7 @@ func NewSCNNodeComponent() SCNNodeComponent {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/init(node:)
-func NewSCNNodeComponentWithNode(node unsafe.Pointer) SCNNodeComponent {
+func NewSCNNodeComponentWithNode(node NNode /* not a class type */) SCNNodeComponent {
 	instance := getSCNNodeComponentClass().Alloc()
 	rv := objc.Send[SCNNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
 	rv.Autorelease()
@@ -93,7 +95,7 @@ func NewSCNNodeComponentWithNode(node unsafe.Pointer) SCNNodeComponent {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/componentWithNode:
-func (nc _SCNNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.Pointer {
+func (nc _SCNNodeComponentClass) ComponentWithNode(node NNode /* not a class type */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
 }
@@ -101,8 +103,8 @@ func (nc _SCNNodeComponentClass) ComponentWithNode(node unsafe.Pointer) unsafe.P
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSCNNodeComponent/node
-func (n_ SCNNodeComponent) Node() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("node"))
+func (n_ SCNNodeComponent) Node() NNode /* not a class type */ {
+	rv := objc.Send[NNode](n_.ID, objc.Sel("node"))
 	return rv
 }
 

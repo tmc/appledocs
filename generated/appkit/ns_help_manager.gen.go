@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,13 +31,15 @@ type _HelpManagerClass struct {
 // An interface definition for the [HelpManager] class.
 type IHelpManager interface {
 	objectivec.IObject
-	ContextHelpForObject(object objectivec.IObject) foundation.AttributedString
-	FindStringInBook(query string, book IHelpBookName)
-	OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName)
-	RegisterBooksInBundle(bundle foundation.IBundle) bool
+	// properties:
+	// methods:
+	ContextHelpForObject(object objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
+	FindStringInBook(query string /* primitive/slice/pointer. */, book objc.IObject /* cross-framework HelpBookName */)
+	OpenHelpAnchorInBook(anchor objc.IObject /* cross-framework HelpAnchorName */, book objc.IObject /* cross-framework HelpBookName */)
+	RegisterBooksInBundle(bundle objc.IObject /* cross-framework Bundle */) bool /* primitive/slice/pointer. */
 	RemoveContextHelpForObject(object objectivec.IObject)
-	SetContextHelpForObject(attrString foundation.IAttributedString, object objectivec.IObject)
-	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool
+	SetContextHelpForObject(attrString objc.IObject /* cross-framework AttributedString */, object objectivec.IObject)
+	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool /* primitive/slice/pointer. */
 }
 
 // An object for displaying online help for an app.
@@ -96,7 +97,7 @@ func NewHelpManager() HelpManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
-func (hc _HelpManagerClass) ContextHelpModeActive() bool {
+func (hc _HelpManagerClass) ContextHelpModeActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(hc.class), objc.Sel("contextHelpModeActive"))
 	return rv
 }
@@ -106,7 +107,7 @@ func (hc _HelpManagerClass) ContextHelpModeActive() bool {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
 func (hc _HelpManagerClass) SharedHelpManager() HelpManager {
-	rv := objc.Send[NSHelpManager](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
+	rv := objc.Send[HelpManager](objc.ID(hc.class), objc.Sel("sharedHelpManager"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (hc _HelpManagerClass) SharedHelpManager() HelpManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
-func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
+func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
 	return rv
 }
 
@@ -124,7 +125,7 @@ func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) foundation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/find(_:inBook:)
-func (h_ HelpManager) FindStringInBook(query string, book IHelpBookName) {
+func (h_ HelpManager) FindStringInBook(query string /* primitive/slice/pointer. */, book objc.IObject /* cross-framework HelpBookName */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("findString:inBook:"), objc.String(query), book)
 }
 
@@ -133,7 +134,7 @@ func (h_ HelpManager) FindStringInBook(query string, book IHelpBookName) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/openHelpAnchor(_:inBook:)
-func (h_ HelpManager) OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBookName) {
+func (h_ HelpManager) OpenHelpAnchorInBook(anchor objc.IObject /* cross-framework HelpAnchorName */, book objc.IObject /* cross-framework HelpBookName */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("openHelpAnchor:inBook:"), anchor, book)
 }
 
@@ -142,7 +143,7 @@ func (h_ HelpManager) OpenHelpAnchorInBook(anchor IHelpAnchorName, book IHelpBoo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/registerBooks(in:)
-func (h_ HelpManager) RegisterBooksInBundle(bundle foundation.IBundle) bool {
+func (h_ HelpManager) RegisterBooksInBundle(bundle objc.IObject /* cross-framework Bundle */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("registerBooksInBundle:"), bundle)
 	return rv
 }
@@ -161,7 +162,7 @@ func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/setContextHelp(_:for:)
-func (h_ HelpManager) SetContextHelpForObject(attrString foundation.IAttributedString, object objectivec.IObject) {
+func (h_ HelpManager) SetContextHelpForObject(attrString objc.IObject /* cross-framework AttributedString */, object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelp:forObject:"), attrString, object)
 }
 
@@ -170,7 +171,7 @@ func (h_ HelpManager) SetContextHelpForObject(attrString foundation.IAttributedS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
-func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool {
+func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt coregraphics.CGPoint) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }
@@ -178,7 +179,7 @@ func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IOb
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
-func (h_ HelpManager) ContextHelpModeActive() bool {
+func (h_ HelpManager) ContextHelpModeActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](h_.ID, objc.Sel("contextHelpModeActive"))
 	return rv
 }
@@ -186,7 +187,7 @@ func (h_ HelpManager) ContextHelpModeActive() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/isContextHelpModeActive
-func (h_ HelpManager) SetContextHelpModeActive(value bool) {
+func (h_ HelpManager) SetContextHelpModeActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelpModeActive:"), value)
 }
 
@@ -195,8 +196,8 @@ func (h_ HelpManager) SetContextHelpModeActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/shared
-func (h_ HelpManager) SharedHelpManager() NSHelpManager {
-	rv := objc.Send[NSHelpManager](h_.ID, objc.Sel("sharedHelpManager"))
+func (h_ HelpManager) SharedHelpManager() IHelpManager {
+	rv := objc.Send[HelpManager](h_.ID, objc.Sel("sharedHelpManager"))
 	return rv
 }
 

@@ -30,8 +30,10 @@ type _PublicKeyCredentialClientDataClass struct {
 // An interface definition for the [PublicKeyCredentialClientData] class.
 type IPublicKeyCredentialClientData interface {
 	objectivec.IObject
-	Origin() string
-	SetOrigin(value string)
+	// properties:
+	Origin() string /* primitive/slice/pointer. */
+	SetOrigin(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
@@ -87,7 +89,7 @@ func NewPublicKeyCredentialClientData() PublicKeyCredentialClientData {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) Origin() string {
+func (p_ PublicKeyCredentialClientData) Origin() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
 	return rv
 }
@@ -95,7 +97,7 @@ func (p_ PublicKeyCredentialClientData) Origin() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
+func (p_ PublicKeyCredentialClientData) SetOrigin(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
 }
 

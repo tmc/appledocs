@@ -31,19 +31,21 @@ type _CBPeripheralManagerClass struct {
 // An interface definition for the [CBPeripheralManager] class.
 type ICBPeripheralManager interface {
 	ICBManager
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	IsAdvertising() bool
+	IsAdvertising() bool /* primitive/slice/pointer. */
+	// methods:
 	AddService(service ICBMutableService)
-	PublishL2CAPChannelWithEncryption(encryptionRequired bool)
+	PublishL2CAPChannelWithEncryption(encryptionRequired bool /* primitive/slice/pointer. */)
 	RemoveService(service ICBMutableService)
 	RemoveAllServices()
 	RespondToRequestWithResult(request ICBATTRequest, result CBATTError)
 	SetDesiredConnectionLatencyForCentral(latency CBPeripheralManagerConnectionLatency, central ICBCentral)
-	StartAdvertising(advertisementData foundation.IDictionary)
+	StartAdvertising(advertisementData foundation.IDictionary /* already interface */)
 	StopAdvertising()
-	UnpublishL2CAPChannel(PSM CBL2CAPPSM)
-	UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.NSData, characteristic ICBMutableCharacteristic, centrals []CBCentral) bool
+	UnpublishL2CAPChannel(PSM CBL2CAPPSM /* typedef */)
+	UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.objc.IObject /* cross-framework NSData */, characteristic ICBMutableCharacteristic, centrals []CBCentral /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // An object that manages and advertises peripheral services exposed by this app.
@@ -117,7 +119,7 @@ func NewCBPeripheralManagerWithDelegateQueue(delegate objectivec.IObject, queue 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)
-func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objectivec.IObject, queue unsafe.Pointer, options foundation.IDictionary) CBPeripheralManager {
+func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objectivec.IObject, queue unsafe.Pointer, options foundation.IDictionary /* already interface */) CBPeripheralManager {
 	instance := getCBPeripheralManagerClass().Alloc()
 	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
 	rv.Autorelease()
@@ -149,7 +151,7 @@ func (c_ CBPeripheralManager) AddService(service ICBMutableService) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/publishL2CAPChannel(withEncryption:)
-func (c_ CBPeripheralManager) PublishL2CAPChannelWithEncryption(encryptionRequired bool) {
+func (c_ CBPeripheralManager) PublishL2CAPChannelWithEncryption(encryptionRequired bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("publishL2CAPChannelWithEncryption:"), encryptionRequired)
 }
 
@@ -194,7 +196,7 @@ func (c_ CBPeripheralManager) SetDesiredConnectionLatencyForCentral(latency CBPe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)
-func (c_ CBPeripheralManager) StartAdvertising(advertisementData foundation.IDictionary) {
+func (c_ CBPeripheralManager) StartAdvertising(advertisementData foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("startAdvertising:"), advertisementData)
 }
 
@@ -212,7 +214,7 @@ func (c_ CBPeripheralManager) StopAdvertising() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)
-func (c_ CBPeripheralManager) UnpublishL2CAPChannel(PSM CBL2CAPPSM) {
+func (c_ CBPeripheralManager) UnpublishL2CAPChannel(PSM CBL2CAPPSM /* typedef */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("unpublishL2CAPChannel:"), PSM)
 }
 
@@ -221,7 +223,7 @@ func (c_ CBPeripheralManager) UnpublishL2CAPChannel(PSM CBL2CAPPSM) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)
-func (c_ CBPeripheralManager) UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.NSData, characteristic ICBMutableCharacteristic, centrals []CBCentral) bool {
+func (c_ CBPeripheralManager) UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.objc.IObject /* cross-framework NSData */, characteristic ICBMutableCharacteristic, centrals []CBCentral /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateValue:forCharacteristic:onSubscribedCentrals:"), value, characteristic, centrals)
 	return rv
 }
@@ -250,7 +252,7 @@ func (c_ CBPeripheralManager) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising
-func (c_ CBPeripheralManager) IsAdvertising() bool {
+func (c_ CBPeripheralManager) IsAdvertising() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAdvertising"))
 	return rv
 }

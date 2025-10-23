@@ -30,8 +30,10 @@ type _AuthorizationWebBrowserPublicKeyCredentialManagerClass struct {
 // An interface definition for the [AuthorizationWebBrowserPublicKeyCredentialManager] class.
 type IAuthorizationWebBrowserPublicKeyCredentialManager interface {
 	objectivec.IObject
+	// properties:
 	AuthorizationStateForPlatformCredentials() unsafe.Pointer
 	SetAuthorizationStateForPlatformCredentials(value unsafe.Pointer)
+	// methods:
 }
 
 // A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.

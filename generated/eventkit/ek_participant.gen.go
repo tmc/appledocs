@@ -31,16 +31,18 @@ type _EKParticipantClass struct {
 // An interface definition for the [EKParticipant] class.
 type IEKParticipant interface {
 	IEKObject
-	ContactPredicate() foundation.Predicate
-	CurrentUser() bool
-	Name() string
+	// properties:
+	ContactPredicate() objc.IObject /* cross-framework: Predicate */
+	CurrentUser() bool /* primitive/slice/pointer. */
+	Name() string /* primitive/slice/pointer. */
 	ParticipantRole() EKParticipantRole
 	ParticipantStatus() EKParticipantStatus
 	ParticipantType() EKParticipantType
-	URL() foundation.URL
-	IsCurrentUser() bool
-	SetIsCurrentUser(value bool)
-	ABRecordWithAddressBook(addressBook ABAddressBookRef) ABRecordRef
+	URL() foundation.objc.IObject /* cross-framework: URL */
+	IsCurrentUser() bool /* primitive/slice/pointer. */
+	SetIsCurrentUser(value bool /* primitive/slice/pointer. */)
+	// methods:
+	ABRecordWithAddressBook(addressBook ABAddressBookRef /* typedef */) ABRecordRef /* typedef */
 }
 
 // A class that represents person, group, or room invited to a calendar event.
@@ -102,7 +104,7 @@ func NewEKParticipant() EKParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
-func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef) ABRecordRef {
+func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef /* typedef */) ABRecordRef /* typedef */ {
 	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
 }
@@ -112,8 +114,8 @@ func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef) AB
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
-func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
+func (e_ EKParticipant) ContactPredicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
 }
 
@@ -122,7 +124,7 @@ func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/isCurrentUser
-func (e_ EKParticipant) CurrentUser() bool {
+func (e_ EKParticipant) CurrentUser() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("currentUser"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (e_ EKParticipant) CurrentUser() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-func (e_ EKParticipant) Name() string {
+func (e_ EKParticipant) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("name"))
 	return rv
 }
@@ -172,7 +174,7 @@ func (e_ EKParticipant) ParticipantType() EKParticipantType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/url
-func (e_ EKParticipant) URL() foundation.URL {
+func (e_ EKParticipant) URL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](e_.ID, objc.Sel("URL"))
 	return rv
 }
@@ -182,7 +184,7 @@ func (e_ EKParticipant) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-func (e_ EKParticipant) IsCurrentUser() bool {
+func (e_ EKParticipant) IsCurrentUser() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
 	return rv
 }
@@ -192,7 +194,7 @@ func (e_ EKParticipant) IsCurrentUser() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
-func (e_ EKParticipant) SetIsCurrentUser(value bool) {
+func (e_ EKParticipant) SetIsCurrentUser(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
 }
 

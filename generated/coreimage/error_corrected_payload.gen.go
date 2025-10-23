@@ -30,6 +30,8 @@ type _errorCorrectedPayloadClass struct {
 // An interface definition for the [errorCorrectedPayload] class.
 type IerrorCorrectedPayload interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

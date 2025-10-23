@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/iosurface"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,30 +32,32 @@ type _RenderDestinationClass struct {
 // An interface definition for the [RenderDestination] class.
 type IRenderDestination interface {
 	objectivec.IObject
-	AlphaMode() CIRenderDestinationAlphaMode
-	SetAlphaMode(value CIRenderDestinationAlphaMode)
+	// properties:
+	AlphaMode() RenderDestinationAlphaMode
+	SetAlphaMode(value RenderDestinationAlphaMode)
 	BlendKernel() ICIBlendKernel
 	SetBlendKernel(value ICIBlendKernel)
-	BlendsInDestinationColorSpace() bool
-	SetBlendsInDestinationColorSpace(value bool)
-	CaptureTraceURL() foundation.URL
-	SetCaptureTraceURL(value foundation.URL)
+	BlendsInDestinationColorSpace() bool /* primitive/slice/pointer. */
+	SetBlendsInDestinationColorSpace(value bool /* primitive/slice/pointer. */)
+	CaptureTraceURL() foundation.objc.IObject /* cross-framework: URL */
+	SetCaptureTraceURL(value foundation.objc.IObject /* cross-framework: URL */)
 	ColorSpace() coregraphics.CGColorSpaceRef
 	SetColorSpace(value coregraphics.CGColorSpaceRef)
-	Height() uint
-	Clamped() bool
-	SetClamped(value bool)
-	Dithered() bool
-	SetDithered(value bool)
-	Flipped() bool
-	SetFlipped(value bool)
-	Width() uint
-	IsClamped() bool
-	SetIsClamped(value bool)
-	IsDithered() bool
-	SetIsDithered(value bool)
-	IsFlipped() bool
-	SetIsFlipped(value bool)
+	Height() uint /* primitive/slice/pointer. */
+	Clamped() bool /* primitive/slice/pointer. */
+	SetClamped(value bool /* primitive/slice/pointer. */)
+	Dithered() bool /* primitive/slice/pointer. */
+	SetDithered(value bool /* primitive/slice/pointer. */)
+	Flipped() bool /* primitive/slice/pointer. */
+	SetFlipped(value bool /* primitive/slice/pointer. */)
+	Width() uint /* primitive/slice/pointer. */
+	IsClamped() bool /* primitive/slice/pointer. */
+	SetIsClamped(value bool /* primitive/slice/pointer. */)
+	IsDithered() bool /* primitive/slice/pointer. */
+	SetIsDithered(value bool /* primitive/slice/pointer. */)
+	IsFlipped() bool /* primitive/slice/pointer. */
+	SetIsFlipped(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks.
@@ -116,7 +117,7 @@ func NewRenderDestination() RenderDestination {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
-func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format Format) RenderDestination {
+func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint /* primitive/slice/pointer. */, height uint /* primitive/slice/pointer. */, bytesPerRow uint /* primitive/slice/pointer. */, format objc.IObject /* cross-framework Format */) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
 	rv.Autorelease()
@@ -128,7 +129,7 @@ func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(glTexture:target:width:height:)
-func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint, height uint) RenderDestination {
+func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, target unsafe.Pointer, width uint /* primitive/slice/pointer. */, height uint /* primitive/slice/pointer. */) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithGLTexture:target:width:height:"), texture, target, width, height)
 	rv.Autorelease()
@@ -140,7 +141,7 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
-func NewRenderDestinationWithIOSurface(surface iosurface.Surface) RenderDestination {
+func NewRenderDestinationWithIOSurface(surface objc.IObject /* cross-framework Surface */) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithIOSurface:"), surface)
 	rv.Autorelease()
@@ -164,7 +165,7 @@ func NewRenderDestinationWithMTLTextureCommandBuffer(texture objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(pixelBuffer:)
-func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDestination {
+func NewRenderDestinationWithPixelBuffer(pixelBuffer PixelBufferRef /* not a class type */) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithPixelBuffer:"), pixelBuffer)
 	rv.Autorelease()
@@ -176,7 +177,7 @@ func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDesti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
-func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer objectivec.IObject, block objectivec.IObject) RenderDestination {
+func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint /* primitive/slice/pointer. */, height uint /* primitive/slice/pointer. */, pixelFormat PixelFormat /* not a class type */, commandBuffer objectivec.IObject, block objectivec.IObject) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
 	rv.Autorelease()
@@ -189,8 +190,8 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) AlphaMode() CIRenderDestinationAlphaMode {
-	rv := objc.Send[CIRenderDestinationAlphaMode](r_.ID, objc.Sel("alphaMode"))
+func (r_ RenderDestination) AlphaMode() RenderDestinationAlphaMode {
+	rv := objc.Send[RenderDestinationAlphaMode](r_.ID, objc.Sel("alphaMode"))
 	return rv
 }
 
@@ -199,7 +200,7 @@ func (r_ RenderDestination) AlphaMode() CIRenderDestinationAlphaMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) SetAlphaMode(value CIRenderDestinationAlphaMode) {
+func (r_ RenderDestination) SetAlphaMode(value RenderDestinationAlphaMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAlphaMode:"), value)
 }
 
@@ -227,7 +228,7 @@ func (r_ RenderDestination) SetBlendKernel(value ICIBlendKernel) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/blendsInDestinationColorSpace
-func (r_ RenderDestination) BlendsInDestinationColorSpace() bool {
+func (r_ RenderDestination) BlendsInDestinationColorSpace() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("blendsInDestinationColorSpace"))
 	return rv
 }
@@ -237,7 +238,7 @@ func (r_ RenderDestination) BlendsInDestinationColorSpace() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/blendsInDestinationColorSpace
-func (r_ RenderDestination) SetBlendsInDestinationColorSpace(value bool) {
+func (r_ RenderDestination) SetBlendsInDestinationColorSpace(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBlendsInDestinationColorSpace:"), value)
 }
 
@@ -246,7 +247,7 @@ func (r_ RenderDestination) SetBlendsInDestinationColorSpace(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) CaptureTraceURL() foundation.URL {
+func (r_ RenderDestination) CaptureTraceURL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](r_.ID, objc.Sel("captureTraceURL"))
 	return rv
 }
@@ -256,7 +257,7 @@ func (r_ RenderDestination) CaptureTraceURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) SetCaptureTraceURL(value foundation.URL) {
+func (r_ RenderDestination) SetCaptureTraceURL(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCaptureTraceURL:"), value)
 }
 
@@ -284,7 +285,7 @@ func (r_ RenderDestination) SetColorSpace(value coregraphics.CGColorSpaceRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/height
-func (r_ RenderDestination) Height() uint {
+func (r_ RenderDestination) Height() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](r_.ID, objc.Sel("height"))
 	return rv
 }
@@ -294,7 +295,7 @@ func (r_ RenderDestination) Height() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isClamped
-func (r_ RenderDestination) Clamped() bool {
+func (r_ RenderDestination) Clamped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("clamped"))
 	return rv
 }
@@ -304,7 +305,7 @@ func (r_ RenderDestination) Clamped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isClamped
-func (r_ RenderDestination) SetClamped(value bool) {
+func (r_ RenderDestination) SetClamped(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClamped:"), value)
 }
 
@@ -313,7 +314,7 @@ func (r_ RenderDestination) SetClamped(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isDithered
-func (r_ RenderDestination) Dithered() bool {
+func (r_ RenderDestination) Dithered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("dithered"))
 	return rv
 }
@@ -323,7 +324,7 @@ func (r_ RenderDestination) Dithered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isDithered
-func (r_ RenderDestination) SetDithered(value bool) {
+func (r_ RenderDestination) SetDithered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDithered:"), value)
 }
 
@@ -332,7 +333,7 @@ func (r_ RenderDestination) SetDithered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isFlipped
-func (r_ RenderDestination) Flipped() bool {
+func (r_ RenderDestination) Flipped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("flipped"))
 	return rv
 }
@@ -342,7 +343,7 @@ func (r_ RenderDestination) Flipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/isFlipped
-func (r_ RenderDestination) SetFlipped(value bool) {
+func (r_ RenderDestination) SetFlipped(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFlipped:"), value)
 }
 
@@ -351,7 +352,7 @@ func (r_ RenderDestination) SetFlipped(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/width
-func (r_ RenderDestination) Width() uint {
+func (r_ RenderDestination) Width() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](r_.ID, objc.Sel("width"))
 	return rv
 }
@@ -361,7 +362,7 @@ func (r_ RenderDestination) Width() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
-func (r_ RenderDestination) IsClamped() bool {
+func (r_ RenderDestination) IsClamped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isClamped"))
 	return rv
 }
@@ -371,7 +372,7 @@ func (r_ RenderDestination) IsClamped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isclamped
-func (r_ RenderDestination) SetIsClamped(value bool) {
+func (r_ RenderDestination) SetIsClamped(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsClamped:"), value)
 }
 
@@ -380,7 +381,7 @@ func (r_ RenderDestination) SetIsClamped(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
-func (r_ RenderDestination) IsDithered() bool {
+func (r_ RenderDestination) IsDithered() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isDithered"))
 	return rv
 }
@@ -390,7 +391,7 @@ func (r_ RenderDestination) IsDithered() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isdithered
-func (r_ RenderDestination) SetIsDithered(value bool) {
+func (r_ RenderDestination) SetIsDithered(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsDithered:"), value)
 }
 
@@ -399,7 +400,7 @@ func (r_ RenderDestination) SetIsDithered(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
-func (r_ RenderDestination) IsFlipped() bool {
+func (r_ RenderDestination) IsFlipped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("isFlipped"))
 	return rv
 }
@@ -409,7 +410,7 @@ func (r_ RenderDestination) IsFlipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cirenderdestination/isflipped
-func (r_ RenderDestination) SetIsFlipped(value bool) {
+func (r_ RenderDestination) SetIsFlipped(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setIsFlipped:"), value)
 }
 

@@ -29,14 +29,16 @@ type _CBDescriptorClass struct {
 // An interface definition for the [CBDescriptor] class.
 type ICBDescriptor interface {
 	ICBAttribute
+	// properties:
 	Characteristic() ICBCharacteristic
 	Value() objc.ID
-	CBUUIDCharacteristicAggregateFormatString() string
-	CBUUIDCharacteristicExtendedPropertiesString() string
-	CBUUIDCharacteristicFormatString() string
-	CBUUIDCharacteristicUserDescriptionString() string
-	CBUUIDClientCharacteristicConfigurationString() string
-	CBUUIDServerCharacteristicConfigurationString() string
+	CBUUIDCharacteristicAggregateFormatString() string /* primitive/slice/pointer. */
+	CBUUIDCharacteristicExtendedPropertiesString() string /* primitive/slice/pointer. */
+	CBUUIDCharacteristicFormatString() string /* primitive/slice/pointer. */
+	CBUUIDCharacteristicUserDescriptionString() string /* primitive/slice/pointer. */
+	CBUUIDClientCharacteristicConfigurationString() string /* primitive/slice/pointer. */
+	CBUUIDServerCharacteristicConfigurationString() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that provides further information about a remote peripheral’s characteristic.
@@ -118,7 +120,7 @@ func (c_ CBDescriptor) Value() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring
-func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string {
+func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicAggregateFormatString"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (c_ CBDescriptor) CBUUIDCharacteristicAggregateFormatString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring
-func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string {
+func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicExtendedPropertiesString"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (c_ CBDescriptor) CBUUIDCharacteristicExtendedPropertiesString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring
-func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string {
+func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicFormatString"))
 	return rv
 }
@@ -148,7 +150,7 @@ func (c_ CBDescriptor) CBUUIDCharacteristicFormatString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring
-func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
+func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDCharacteristicUserDescriptionString"))
 	return rv
 }
@@ -158,7 +160,7 @@ func (c_ CBDescriptor) CBUUIDCharacteristicUserDescriptionString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring
-func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string {
+func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDClientCharacteristicConfigurationString"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (c_ CBDescriptor) CBUUIDClientCharacteristicConfigurationString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring
-func (c_ CBDescriptor) CBUUIDServerCharacteristicConfigurationString() string {
+func (c_ CBDescriptor) CBUUIDServerCharacteristicConfigurationString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CBUUIDServerCharacteristicConfigurationString"))
 	return rv
 }

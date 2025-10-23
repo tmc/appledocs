@@ -30,10 +30,12 @@ type _PredictionOptionsClass struct {
 // An interface definition for the [PredictionOptions] class.
 type IPredictionOptions interface {
 	objectivec.IObject
-	OutputBackings() string
-	SetOutputBackings(value string)
-	UsesCPUOnly() bool
-	SetUsesCPUOnly(value bool)
+	// properties:
+	OutputBackings() string /* primitive/slice/pointer. */
+	SetOutputBackings(value string /* primitive/slice/pointer. */)
+	UsesCPUOnly() bool /* primitive/slice/pointer. */
+	SetUsesCPUOnly(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // The options available when making a prediction.
@@ -91,7 +93,7 @@ func NewPredictionOptions() PredictionOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) OutputBackings() string {
+func (p_ PredictionOptions) OutputBackings() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("outputBackings"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (p_ PredictionOptions) OutputBackings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/outputbackings
-func (p_ PredictionOptions) SetOutputBackings(value string) {
+func (p_ PredictionOptions) SetOutputBackings(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputBackings:"), objc.String(value))
 }
 
@@ -110,7 +112,7 @@ func (p_ PredictionOptions) SetOutputBackings(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-func (p_ PredictionOptions) UsesCPUOnly() bool {
+func (p_ PredictionOptions) UsesCPUOnly() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesCPUOnly"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (p_ PredictionOptions) UsesCPUOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlpredictionoptions/usescpuonly
-func (p_ PredictionOptions) SetUsesCPUOnly(value bool) {
+func (p_ PredictionOptions) SetUsesCPUOnly(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUsesCPUOnly:"), value)
 }
 

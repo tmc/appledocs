@@ -30,34 +30,36 @@ type _TextStorageClass struct {
 // An interface definition for the [TextStorage] class.
 type ITextStorage interface {
 	IMutableAttributedString
-	Characters() []TextStorage
-	SetCharacters(value []TextStorage)
-	TextStorageObserver() objc.ID
-	SetTextStorageObserver(value objc.ID)
-	AttributeRuns() NSTextStorage
+	// properties:
+	Characters() []TextStorage /* primitive/slice/pointer. */
+	SetCharacters(value []TextStorage /* primitive/slice/pointer. */)
+	FixesAttributesLazily() bool /* primitive/slice/pointer. */
+	Words() []TextStorage /* primitive/slice/pointer. */
+	SetWords(value []TextStorage /* primitive/slice/pointer. */)
+	AttributeRuns() ITextStorage
 	SetAttributeRuns(value ITextStorage)
-	ChangeInLength() int
-	SetChangeInLength(value int)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	EditedMask() unsafe.Pointer
-	SetEditedMask(value unsafe.Pointer)
-	EditedRange() foundation.Range
-	SetEditedRange(value foundation.Range)
-	FixesAttributesLazily() bool
-	SetFixesAttributesLazily(value bool)
-	Font() NSFont
+	ChangeInLength() int /* primitive/slice/pointer. */
+	SetChangeInLength(value int /* primitive/slice/pointer. */)
+	Delegate() TextStorageDelegate /* not a class type */
+	SetDelegate(value TextStorageDelegate /* not a class type */)
+	EditedMask() TextStorageEditActions /* not a class type */
+	SetEditedMask(value TextStorageEditActions /* not a class type */)
+	EditedRange() foundation.objc.IObject /* cross-framework: Range */
+	SetEditedRange(value foundation.objc.IObject /* cross-framework: Range */)
+	Font() IFont
 	SetFont(value IFont)
-	ForegroundColor() NSColor
+	ForegroundColor() IColor
 	SetForegroundColor(value IColor)
-	LayoutManagers() NSLayoutManager
-	SetLayoutManagers(value ILayoutManager)
-	Paragraphs() NSTextStorage
+	LayoutManagers() objc.IObject /* cross-framework: LayoutManager */
+	SetLayoutManagers(value objc.IObject /* cross-framework: LayoutManager */)
+	Paragraphs() ITextStorage
 	SetParagraphs(value ITextStorage)
-	Words() NSTextStorage
-	SetWords(value ITextStorage)
-	String() string
-	SetString(value string)
+	TextStorageObserver() TextStorageObserving /* not a class type */
+	SetTextStorageObserver(value TextStorageObserving /* not a class type */)
+	String() string /* primitive/slice/pointer. */
+	SetString(value string /* primitive/slice/pointer. */)
+	// methods:
+	ProcessEditing()
 }
 
 // The fundamental storage mechanism of TextKit that contains the text managed by the system.
@@ -115,11 +117,20 @@ func NewTextStorage() TextStorage {
 
 
 
+// Cleans up changes to the text storage object and notifies its delegate and layout managers of changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/processEditing()
+func (t_ TextStorage) ProcessEditing() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("processEditing"))
+}
+
+
 // The text storage contents as an array of characters.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
-func (t_ TextStorage) Characters() []TextStorage {
+func (t_ TextStorage) Characters() []TextStorage /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]TextStorage](t_.ID, objc.Sel("characters"))
 	return rv
 }
@@ -129,7 +140,7 @@ func (t_ TextStorage) Characters() []TextStorage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/characters
-func (t_ TextStorage) SetCharacters(value []TextStorage) {
+func (t_ TextStorage) SetCharacters(value []TextStorage /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -144,22 +155,42 @@ func (t_ TextStorage) SetCharacters(value []TextStorage) {
 }
 
 
-// The observer for the text storage object.
+// A Boolean value that indicates whether the text storage object fixes attributes lazily.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/textStorageObserver
-func (t_ TextStorage) TextStorageObserver() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("textStorageObserver"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/fixesAttributesLazily
+func (t_ TextStorage) FixesAttributesLazily() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](t_.ID, objc.Sel("fixesAttributesLazily"))
 	return rv
 }
 
 
-// The observer for the text storage object.
+// The text storage contents as an array of words.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/textStorageObserver
-func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorageObserver:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/words
+func (t_ TextStorage) Words() []TextStorage /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]TextStorage](t_.ID, objc.Sel("words"))
+	return rv
+}
+
+
+// The text storage contents as an array of words.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorage/words
+func (t_ TextStorage) SetWords(value []TextStorage /* primitive/slice/pointer. */) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setWords:"), nsArray)
 }
 
 
@@ -167,8 +198,8 @@ func (t_ TextStorage) SetTextStorageObserver(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/attributeruns
-func (t_ TextStorage) AttributeRuns() NSTextStorage {
-	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("attributeRuns"))
+func (t_ TextStorage) AttributeRuns() ITextStorage {
+	rv := objc.Send[TextStorage](t_.ID, objc.Sel("attributeRuns"))
 	return rv
 }
 
@@ -186,7 +217,7 @@ func (t_ TextStorage) SetAttributeRuns(value ITextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/changeinlength
-func (t_ TextStorage) ChangeInLength() int {
+func (t_ TextStorage) ChangeInLength() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](t_.ID, objc.Sel("changeInLength"))
 	return rv
 }
@@ -196,7 +227,7 @@ func (t_ TextStorage) ChangeInLength() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/changeinlength
-func (t_ TextStorage) SetChangeInLength(value int) {
+func (t_ TextStorage) SetChangeInLength(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChangeInLength:"), value)
 }
 
@@ -205,8 +236,8 @@ func (t_ TextStorage) SetChangeInLength(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/delegate
-func (t_ TextStorage) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+func (t_ TextStorage) Delegate() TextStorageDelegate /* not a class type */ {
+	rv := objc.Send[TextStorageDelegate](t_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -215,7 +246,7 @@ func (t_ TextStorage) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/delegate
-func (t_ TextStorage) SetDelegate(value unsafe.Pointer) {
+func (t_ TextStorage) SetDelegate(value TextStorageDelegate /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -224,8 +255,8 @@ func (t_ TextStorage) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedmask
-func (t_ TextStorage) EditedMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("editedMask"))
+func (t_ TextStorage) EditedMask() TextStorageEditActions /* not a class type */ {
+	rv := objc.Send[TextStorageEditActions](t_.ID, objc.Sel("editedMask"))
 	return rv
 }
 
@@ -234,7 +265,7 @@ func (t_ TextStorage) EditedMask() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedmask
-func (t_ TextStorage) SetEditedMask(value unsafe.Pointer) {
+func (t_ TextStorage) SetEditedMask(value TextStorageEditActions /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedMask:"), value)
 }
 
@@ -243,7 +274,7 @@ func (t_ TextStorage) SetEditedMask(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-func (t_ TextStorage) EditedRange() foundation.Range {
+func (t_ TextStorage) EditedRange() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("editedRange"))
 	return rv
 }
@@ -253,27 +284,8 @@ func (t_ TextStorage) EditedRange() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/editedrange
-func (t_ TextStorage) SetEditedRange(value foundation.Range) {
+func (t_ TextStorage) SetEditedRange(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEditedRange:"), value)
-}
-
-
-// A Boolean value that indicates whether the text storage object fixes attributes lazily.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/fixesattributeslazily
-func (t_ TextStorage) FixesAttributesLazily() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("fixesAttributesLazily"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the text storage object fixes attributes lazily.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/fixesattributeslazily
-func (t_ TextStorage) SetFixesAttributesLazily(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setFixesAttributesLazily:"), value)
 }
 
 
@@ -281,8 +293,8 @@ func (t_ TextStorage) SetFixesAttributesLazily(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/font
-func (t_ TextStorage) Font() NSFont {
-	rv := objc.Send[NSFont](t_.ID, objc.Sel("font"))
+func (t_ TextStorage) Font() IFont {
+	rv := objc.Send[Font](t_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -300,8 +312,8 @@ func (t_ TextStorage) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/foregroundcolor
-func (t_ TextStorage) ForegroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("foregroundColor"))
+func (t_ TextStorage) ForegroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("foregroundColor"))
 	return rv
 }
 
@@ -319,8 +331,8 @@ func (t_ TextStorage) SetForegroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-func (t_ TextStorage) LayoutManagers() NSLayoutManager {
-	rv := objc.Send[NSLayoutManager](t_.ID, objc.Sel("layoutManagers"))
+func (t_ TextStorage) LayoutManagers() objc.IObject /* cross-framework: LayoutManager */ {
+	rv := objc.Send[LayoutManager](t_.ID, objc.Sel("layoutManagers"))
 	return rv
 }
 
@@ -329,7 +341,7 @@ func (t_ TextStorage) LayoutManagers() NSLayoutManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/layoutmanagers
-func (t_ TextStorage) SetLayoutManagers(value ILayoutManager) {
+func (t_ TextStorage) SetLayoutManagers(value objc.IObject /* cross-framework: LayoutManager */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutManagers:"), value)
 }
 
@@ -338,8 +350,8 @@ func (t_ TextStorage) SetLayoutManagers(value ILayoutManager) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs
-func (t_ TextStorage) Paragraphs() NSTextStorage {
-	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("paragraphs"))
+func (t_ TextStorage) Paragraphs() ITextStorage {
+	rv := objc.Send[TextStorage](t_.ID, objc.Sel("paragraphs"))
 	return rv
 }
 
@@ -353,22 +365,22 @@ func (t_ TextStorage) SetParagraphs(value ITextStorage) {
 }
 
 
-// The text storage contents as an array of words.
+// The observer for the text storage object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-func (t_ TextStorage) Words() NSTextStorage {
-	rv := objc.Send[NSTextStorage](t_.ID, objc.Sel("words"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/textstorageobserver
+func (t_ TextStorage) TextStorageObserver() TextStorageObserving /* not a class type */ {
+	rv := objc.Send[TextStorageObserving](t_.ID, objc.Sel("textStorageObserver"))
 	return rv
 }
 
 
-// The text storage contents as an array of words.
+// The observer for the text storage object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/words
-func (t_ TextStorage) SetWords(value ITextStorage) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setWords:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextstorage/textstorageobserver
+func (t_ TextStorage) SetTextStorageObserver(value TextStorageObserving /* not a class type */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStorageObserver:"), value)
 }
 
 
@@ -376,7 +388,7 @@ func (t_ TextStorage) SetWords(value ITextStorage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-func (t_ TextStorage) String() string {
+func (t_ TextStorage) String() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
@@ -386,7 +398,7 @@ func (t_ TextStorage) String() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-func (t_ TextStorage) SetString(value string) {
+func (t_ TextStorage) SetString(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 

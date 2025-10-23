@@ -31,8 +31,10 @@ type _AXBrailleTranslationResultClass struct {
 // An interface definition for the [AXBrailleTranslationResult] class.
 type IAXBrailleTranslationResult interface {
 	objectivec.IObject
-	LocationMap() []foundation.Number
-	ResultString() string
+	// properties:
+	LocationMap() []foundation.objc.IObject /* cross-framework: Number */
+	ResultString() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // The result of translation or back-translation.
@@ -90,7 +92,7 @@ func NewAXBrailleTranslationResult() AXBrailleTranslationResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/locationMap
-func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
+func (a_ AXBrailleTranslationResult) LocationMap() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("locationMap"))
 	return rv
 }
@@ -100,7 +102,7 @@ func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-func (a_ AXBrailleTranslationResult) ResultString() string {
+func (a_ AXBrailleTranslationResult) ResultString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
 	return rv
 }

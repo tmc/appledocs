@@ -30,14 +30,16 @@ type _CKDatabaseClass struct {
 // An interface definition for the [CKDatabase] class.
 type ICKDatabase interface {
 	objectivec.IObject
+	// properties:
 	DatabaseScope() CKDatabaseScope
 	QualityOfService() unsafe.Pointer
 	SetQualityOfService(value unsafe.Pointer)
+	// methods:
 	AddOperation(operation ICKDatabaseOperation)
-	DeleteRecordWithIDCompletionHandler(recordID CKRecordID, completionHandler unsafe.Pointer)
+	DeleteRecordWithIDCompletionHandler(recordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer)
 	DeleteRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer)
 	DeleteSubscriptionWithIDCompletionHandler(subscriptionID unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchRecordWithIDCompletionHandler(recordID CKRecordID, completionHandler unsafe.Pointer)
+	FetchRecordWithIDCompletionHandler(recordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer)
 	FetchRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer)
 	FetchAllRecordZonesWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchAllSubscriptionsWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -113,7 +115,7 @@ func (c_ CKDatabase) AddOperation(operation ICKDatabaseOperation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/delete(withRecordID:completionHandler:)
-func (c_ CKDatabase) DeleteRecordWithIDCompletionHandler(recordID CKRecordID, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) DeleteRecordWithIDCompletionHandler(recordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteRecordWithID:completionHandler:"), recordID, completionHandler)
 }
 
@@ -140,7 +142,7 @@ func (c_ CKDatabase) DeleteSubscriptionWithIDCompletionHandler(subscriptionID un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/fetch(withRecordID:completionHandler:)
-func (c_ CKDatabase) FetchRecordWithIDCompletionHandler(recordID CKRecordID, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) FetchRecordWithIDCompletionHandler(recordID objc.IObject /* cross-framework CKRecordID */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchRecordWithID:completionHandler:"), recordID, completionHandler)
 }
 

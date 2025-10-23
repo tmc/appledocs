@@ -30,18 +30,20 @@ type _BeaconRegionClass struct {
 // An interface definition for the [BeaconRegion] class.
 type IBeaconRegion interface {
 	IRegion
+	// properties:
 	BeaconIdentityConstraint() ICLBeaconIdentityConstraint
 	SetBeaconIdentityConstraint(value ICLBeaconIdentityConstraint)
-	Major() foundation.Number
-	SetMajor(value foundation.Number)
-	Minor() foundation.Number
-	SetMinor(value foundation.Number)
-	NotifyEntryStateOnDisplay() bool
-	SetNotifyEntryStateOnDisplay(value bool)
-	ProximityUUID() foundation.UUID
-	SetProximityUUID(value foundation.UUID)
-	Uuid() foundation.UUID
-	SetUuid(value foundation.UUID)
+	Major() foundation.objc.IObject /* cross-framework: Number */
+	SetMajor(value foundation.objc.IObject /* cross-framework: Number */)
+	Minor() foundation.objc.IObject /* cross-framework: Number */
+	SetMinor(value foundation.objc.IObject /* cross-framework: Number */)
+	NotifyEntryStateOnDisplay() bool /* primitive/slice/pointer. */
+	SetNotifyEntryStateOnDisplay(value bool /* primitive/slice/pointer. */)
+	ProximityUUID() foundation.objc.IObject /* cross-framework: UUID */
+	SetProximityUUID(value foundation.objc.IObject /* cross-framework: UUID */)
+	Uuid() foundation.objc.IObject /* cross-framework: UUID */
+	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
+	// methods:
 }
 
 // A region for detecting the presence of iBeacon devices.
@@ -122,7 +124,7 @@ func (b_ BeaconRegion) SetBeaconIdentityConstraint(value ICLBeaconIdentityConstr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
-func (b_ BeaconRegion) Major() foundation.Number {
+func (b_ BeaconRegion) Major() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("major"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (b_ BeaconRegion) Major() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/major
-func (b_ BeaconRegion) SetMajor(value foundation.Number) {
+func (b_ BeaconRegion) SetMajor(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
@@ -141,7 +143,7 @@ func (b_ BeaconRegion) SetMajor(value foundation.Number) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
-func (b_ BeaconRegion) Minor() foundation.Number {
+func (b_ BeaconRegion) Minor() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](b_.ID, objc.Sel("minor"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (b_ BeaconRegion) Minor() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/minor
-func (b_ BeaconRegion) SetMinor(value foundation.Number) {
+func (b_ BeaconRegion) SetMinor(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
@@ -160,7 +162,7 @@ func (b_ BeaconRegion) SetMinor(value foundation.Number) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
-func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool {
+func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("notifyEntryStateOnDisplay"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (b_ BeaconRegion) NotifyEntryStateOnDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/notifyentrystateondisplay
-func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool) {
+func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setNotifyEntryStateOnDisplay:"), value)
 }
 
@@ -179,7 +181,7 @@ func (b_ BeaconRegion) SetNotifyEntryStateOnDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
-func (b_ BeaconRegion) ProximityUUID() foundation.UUID {
+func (b_ BeaconRegion) ProximityUUID() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (b_ BeaconRegion) ProximityUUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid
-func (b_ BeaconRegion) SetProximityUUID(value foundation.UUID) {
+func (b_ BeaconRegion) SetProximityUUID(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setProximityUUID:"), value)
 }
 
@@ -198,7 +200,7 @@ func (b_ BeaconRegion) SetProximityUUID(value foundation.UUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
-func (b_ BeaconRegion) Uuid() foundation.UUID {
+func (b_ BeaconRegion) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (b_ BeaconRegion) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeaconregion/uuid
-func (b_ BeaconRegion) SetUuid(value foundation.UUID) {
+func (b_ BeaconRegion) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
 

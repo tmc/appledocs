@@ -35,7 +35,7 @@ type IGLKSubmesh interface {
 	ElementCount() unsafe.Pointer
 	Mesh() IGLKMesh
 	Mode() unsafe.Pointer
-	Name() string
+	Name() string /* primitive/slice/pointer. */
 	Type() unsafe.Pointer
 	// methods:
 }
@@ -120,7 +120,7 @@ func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
-func (g_ GLKSubmesh) Name() string {
+func (g_ GLKSubmesh) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](g_.ID, objc.Sel("name"))
 	return rv
 }

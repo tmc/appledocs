@@ -17,6 +17,9 @@ type CFStringRef unsafe.Pointer
 // CFURLRef is a CoreGraphics opaque type.
 type CFURLRef unsafe.Pointer
 
+// DAApprovalSessionRef is a CoreGraphics opaque type.
+type DAApprovalSessionRef unsafe.Pointer
+
 // DADiskRef is a CoreGraphics opaque type.
 type DADiskRef unsafe.Pointer
 
@@ -27,8 +30,16 @@ type DADissenterRef unsafe.Pointer
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
-// Using unsafe.Pointer as fallback to allow code generation.
-type CFTypeID unsafe.Pointer
+// Using inferred base types as fallback to allow code generation.
+type AllocatorRef = int
+
+type RunLoopRef = int
+
+type StringRef = int
+
+type TypeID = int
+
+type URLRef = int
 
 
 

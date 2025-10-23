@@ -30,8 +30,10 @@ type _TKSmartCardTokenRegistrationManagerClass struct {
 // An interface definition for the [TKSmartCardTokenRegistrationManager] class.
 type ITKSmartCardTokenRegistrationManager interface {
 	objectivec.IObject
-	RegisteredSmartCardTokens() []string
-	UnregisterSmartCardWithTokenIDError(tokenID string, error_ unsafe.Pointer) bool
+	// properties:
+	RegisteredSmartCardTokens() []string /* primitive/slice/pointer. */
+	// methods:
+	UnregisterSmartCardWithTokenIDError(tokenID string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // Provides a centralized management system for registering and unregistering smartcards using their token IDs.
@@ -91,7 +93,7 @@ func NewTKSmartCardTokenRegistrationManager() TKSmartCardTokenRegistrationManage
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/unregisterSmartCard(tokenID:)
-func (t_ TKSmartCardTokenRegistrationManager) UnregisterSmartCardWithTokenIDError(tokenID string, error_ unsafe.Pointer) bool {
+func (t_ TKSmartCardTokenRegistrationManager) UnregisterSmartCardWithTokenIDError(tokenID string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("unregisterSmartCardWithTokenID:error:"), objc.String(tokenID), error_)
 	return rv
 }
@@ -101,7 +103,7 @@ func (t_ TKSmartCardTokenRegistrationManager) UnregisterSmartCardWithTokenIDErro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/registeredSmartCardTokens
-func (t_ TKSmartCardTokenRegistrationManager) RegisteredSmartCardTokens() []string {
+func (t_ TKSmartCardTokenRegistrationManager) RegisteredSmartCardTokens() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("registeredSmartCardTokens"))
 	return rv
 }

@@ -33,8 +33,8 @@ type IINParameter interface {
 	// properties:
 	ParameterClass() unsafe.Pointer
 	SetParameterClass(value unsafe.Pointer)
-	ParameterKeyPath() string
-	SetParameterKeyPath(value string)
+	ParameterKeyPath() string /* primitive/slice/pointer. */
+	SetParameterKeyPath(value string /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -114,7 +114,7 @@ func (i_ INParameter) SetParameterClass(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterkeypath
-func (i_ INParameter) ParameterKeyPath() string {
+func (i_ INParameter) ParameterKeyPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("parameterKeyPath"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (i_ INParameter) ParameterKeyPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inparameter/parameterkeypath
-func (i_ INParameter) SetParameterKeyPath(value string) {
+func (i_ INParameter) SetParameterKeyPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterKeyPath:"), objc.String(value))
 }
 

@@ -31,48 +31,50 @@ type _SContextClass struct {
 // An interface definition for the [SContext] class.
 type ISContext interface {
 	ISObject
+	// properties:
 	CurrentActivity() ICLSActivity
-	CustomTypeName() string
-	SetCustomTypeName(value string)
-	DisplayOrder() int
-	SetDisplayOrder(value int)
-	Identifier() string
-	IdentifierPath() []string
-	Active() bool
-	Assignable() bool
-	SetAssignable(value bool)
-	NavigationChildContexts() []SContext
+	CustomTypeName() string /* primitive/slice/pointer. */
+	SetCustomTypeName(value string /* primitive/slice/pointer. */)
+	DisplayOrder() int /* primitive/slice/pointer. */
+	SetDisplayOrder(value int /* primitive/slice/pointer. */)
+	Identifier() string /* primitive/slice/pointer. */
+	IdentifierPath() []string /* primitive/slice/pointer. */
+	Active() bool /* primitive/slice/pointer. */
+	Assignable() bool /* primitive/slice/pointer. */
+	SetAssignable(value bool /* primitive/slice/pointer. */)
+	NavigationChildContexts() []SContext /* primitive/slice/pointer. */
 	Parent() ICLSContext
 	ProgressReportingCapabilities() unsafe.Pointer
-	SuggestedAge() foundation.Range
-	SetSuggestedAge(value foundation.Range)
-	SuggestedCompletionTime() foundation.Range
-	SetSuggestedCompletionTime(value foundation.Range)
-	Summary() string
-	SetSummary(value string)
-	Thumbnail() coregraphics.ImageRef
-	SetThumbnail(value coregraphics.ImageRef)
-	Title() string
-	SetTitle(value string)
-	Topic() SContextTopic
-	SetTopic(value SContextTopic)
-	Type() CLSContextType
-	UniversalLinkURL() foundation.URL
-	SetUniversalLinkURL(value foundation.URL)
-	IsActive() bool
-	SetIsActive(value bool)
-	IsAssignable() bool
-	SetIsAssignable(value bool)
-	ContextIdentifierPath() string
-	SetContextIdentifierPath(value string)
-	IsClassKitDeepLink() bool
-	SetIsClassKitDeepLink(value bool)
+	SuggestedAge() foundation.objc.IObject /* cross-framework: Range */
+	SetSuggestedAge(value foundation.objc.IObject /* cross-framework: Range */)
+	SuggestedCompletionTime() foundation.objc.IObject /* cross-framework: Range */
+	SetSuggestedCompletionTime(value foundation.objc.IObject /* cross-framework: Range */)
+	Summary() string /* primitive/slice/pointer. */
+	SetSummary(value string /* primitive/slice/pointer. */)
+	Thumbnail() coregraphics.ImageRef /* not a class type */
+	SetThumbnail(value coregraphics.ImageRef /* not a class type */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
+	Topic() objc.IObject /* cross-framework: SContextTopic */
+	SetTopic(value objc.IObject /* cross-framework: SContextTopic */)
+	Type() SContextType
+	UniversalLinkURL() foundation.objc.IObject /* cross-framework: URL */
+	SetUniversalLinkURL(value foundation.objc.IObject /* cross-framework: URL */)
+	IsActive() bool /* primitive/slice/pointer. */
+	SetIsActive(value bool /* primitive/slice/pointer. */)
+	IsAssignable() bool /* primitive/slice/pointer. */
+	SetIsAssignable(value bool /* primitive/slice/pointer. */)
+	ContextIdentifierPath() string /* primitive/slice/pointer. */
+	SetContextIdentifierPath(value string /* primitive/slice/pointer. */)
+	IsClassKitDeepLink() bool /* primitive/slice/pointer. */
+	SetIsClassKitDeepLink(value bool /* primitive/slice/pointer. */)
+	// methods:
 	AddChildContext(child ICLSContext)
 	AddNavigationChildContext(child ICLSContext)
 	AddProgressReportingCapabilities(capabilities unsafe.Pointer)
 	BecomeActive()
 	CreateNewActivity() ISActivity
-	DescendantMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
+	DescendantMatchingIdentifierPathCompletion(identifierPath []string /* primitive/slice/pointer. */, completion unsafe.Pointer)
 	RemoveFromParent()
 	RemoveNavigationChildContext(child ICLSContext)
 	ResetProgressReportingCapabilities()
@@ -138,7 +140,7 @@ func NewSContext() SContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/init(type:identifier:title:)
-func NewSContextWithTypeIdentifierTitle(type_ CLSContextType, identifier string, title string) SContext {
+func NewSContextWithTypeIdentifierTitle(type_ SContextType, identifier string /* primitive/slice/pointer. */, title string /* primitive/slice/pointer. */) SContext {
 	instance := getSContextClass().Alloc()
 	rv := objc.Send[SContext](instance.ID, objc.Sel("initWithType:identifier:title:"), type_, objc.String(identifier), objc.String(title))
 	rv.Autorelease()
@@ -197,7 +199,7 @@ func (s_ SContext) CreateNewActivity() ISActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/descendant(matchingIdentifierPath:completion:)
-func (s_ SContext) DescendantMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer) {
+func (s_ SContext) DescendantMatchingIdentifierPathCompletion(identifierPath []string /* primitive/slice/pointer. */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("descendantMatchingIdentifierPath:completion:"), identifierPath, completion)
 }
 
@@ -252,7 +254,7 @@ func (s_ SContext) CurrentActivity() ICLSActivity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) CustomTypeName() string {
+func (s_ SContext) CustomTypeName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("customTypeName"))
 	return rv
 }
@@ -262,7 +264,7 @@ func (s_ SContext) CustomTypeName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/customTypeName
-func (s_ SContext) SetCustomTypeName(value string) {
+func (s_ SContext) SetCustomTypeName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomTypeName:"), objc.String(value))
 }
 
@@ -271,7 +273,7 @@ func (s_ SContext) SetCustomTypeName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/displayOrder
-func (s_ SContext) DisplayOrder() int {
+func (s_ SContext) DisplayOrder() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](s_.ID, objc.Sel("displayOrder"))
 	return rv
 }
@@ -281,7 +283,7 @@ func (s_ SContext) DisplayOrder() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/displayOrder
-func (s_ SContext) SetDisplayOrder(value int) {
+func (s_ SContext) SetDisplayOrder(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDisplayOrder:"), value)
 }
 
@@ -290,7 +292,7 @@ func (s_ SContext) SetDisplayOrder(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/identifier
-func (s_ SContext) Identifier() string {
+func (s_ SContext) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -300,7 +302,7 @@ func (s_ SContext) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/identifierPath
-func (s_ SContext) IdentifierPath() []string {
+func (s_ SContext) IdentifierPath() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("identifierPath"))
 	return rv
 }
@@ -310,7 +312,7 @@ func (s_ SContext) IdentifierPath() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/isActive
-func (s_ SContext) Active() bool {
+func (s_ SContext) Active() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("active"))
 	return rv
 }
@@ -320,7 +322,7 @@ func (s_ SContext) Active() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/isAssignable
-func (s_ SContext) Assignable() bool {
+func (s_ SContext) Assignable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("assignable"))
 	return rv
 }
@@ -330,7 +332,7 @@ func (s_ SContext) Assignable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/isAssignable
-func (s_ SContext) SetAssignable(value bool) {
+func (s_ SContext) SetAssignable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAssignable:"), value)
 }
 
@@ -339,7 +341,7 @@ func (s_ SContext) SetAssignable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/navigationChildContexts
-func (s_ SContext) NavigationChildContexts() []SContext {
+func (s_ SContext) NavigationChildContexts() []SContext /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]SContext](s_.ID, objc.Sel("navigationChildContexts"))
 	return rv
 }
@@ -369,7 +371,7 @@ func (s_ SContext) ProgressReportingCapabilities() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/suggestedAge
-func (s_ SContext) SuggestedAge() foundation.Range {
+func (s_ SContext) SuggestedAge() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("suggestedAge"))
 	return rv
 }
@@ -379,7 +381,7 @@ func (s_ SContext) SuggestedAge() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/suggestedAge
-func (s_ SContext) SetSuggestedAge(value foundation.Range) {
+func (s_ SContext) SetSuggestedAge(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuggestedAge:"), value)
 }
 
@@ -388,7 +390,7 @@ func (s_ SContext) SetSuggestedAge(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/suggestedCompletionTime
-func (s_ SContext) SuggestedCompletionTime() foundation.Range {
+func (s_ SContext) SuggestedCompletionTime() foundation.objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("suggestedCompletionTime"))
 	return rv
 }
@@ -398,7 +400,7 @@ func (s_ SContext) SuggestedCompletionTime() foundation.Range {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/suggestedCompletionTime
-func (s_ SContext) SetSuggestedCompletionTime(value foundation.Range) {
+func (s_ SContext) SetSuggestedCompletionTime(value foundation.objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuggestedCompletionTime:"), value)
 }
 
@@ -407,7 +409,7 @@ func (s_ SContext) SetSuggestedCompletionTime(value foundation.Range) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) Summary() string {
+func (s_ SContext) Summary() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("summary"))
 	return rv
 }
@@ -417,7 +419,7 @@ func (s_ SContext) Summary() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/summary
-func (s_ SContext) SetSummary(value string) {
+func (s_ SContext) SetSummary(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSummary:"), objc.String(value))
 }
 
@@ -426,7 +428,7 @@ func (s_ SContext) SetSummary(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/thumbnail
-func (s_ SContext) Thumbnail() coregraphics.ImageRef {
+func (s_ SContext) Thumbnail() coregraphics.ImageRef /* not a class type */ {
 	rv := objc.Send[coregraphics.ImageRef](s_.ID, objc.Sel("thumbnail"))
 	return rv
 }
@@ -436,7 +438,7 @@ func (s_ SContext) Thumbnail() coregraphics.ImageRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/thumbnail
-func (s_ SContext) SetThumbnail(value coregraphics.ImageRef) {
+func (s_ SContext) SetThumbnail(value coregraphics.ImageRef /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setThumbnail:"), value)
 }
 
@@ -445,7 +447,7 @@ func (s_ SContext) SetThumbnail(value coregraphics.ImageRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) Title() string {
+func (s_ SContext) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
@@ -455,7 +457,7 @@ func (s_ SContext) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/title
-func (s_ SContext) SetTitle(value string) {
+func (s_ SContext) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
@@ -464,7 +466,7 @@ func (s_ SContext) SetTitle(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/topic
-func (s_ SContext) Topic() SContextTopic {
+func (s_ SContext) Topic() objc.IObject /* cross-framework: SContextTopic */ {
 	rv := objc.Send[SContextTopic](s_.ID, objc.Sel("topic"))
 	return rv
 }
@@ -474,7 +476,7 @@ func (s_ SContext) Topic() SContextTopic {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/topic
-func (s_ SContext) SetTopic(value SContextTopic) {
+func (s_ SContext) SetTopic(value objc.IObject /* cross-framework: SContextTopic */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTopic:"), value)
 }
 
@@ -483,8 +485,8 @@ func (s_ SContext) SetTopic(value SContextTopic) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/type
-func (s_ SContext) Type() CLSContextType {
-	rv := objc.Send[CLSContextType](s_.ID, objc.Sel("type"))
+func (s_ SContext) Type() SContextType {
+	rv := objc.Send[SContextType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -493,7 +495,7 @@ func (s_ SContext) Type() CLSContextType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/universalLinkURL
-func (s_ SContext) UniversalLinkURL() foundation.URL {
+func (s_ SContext) UniversalLinkURL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("universalLinkURL"))
 	return rv
 }
@@ -503,7 +505,7 @@ func (s_ SContext) UniversalLinkURL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSContext/universalLinkURL
-func (s_ SContext) SetUniversalLinkURL(value foundation.URL) {
+func (s_ SContext) SetUniversalLinkURL(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUniversalLinkURL:"), value)
 }
 
@@ -512,7 +514,7 @@ func (s_ SContext) SetUniversalLinkURL(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/isactive
-func (s_ SContext) IsActive() bool {
+func (s_ SContext) IsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -522,7 +524,7 @@ func (s_ SContext) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/isactive
-func (s_ SContext) SetIsActive(value bool) {
+func (s_ SContext) SetIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -531,7 +533,7 @@ func (s_ SContext) SetIsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/isassignable
-func (s_ SContext) IsAssignable() bool {
+func (s_ SContext) IsAssignable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAssignable"))
 	return rv
 }
@@ -541,7 +543,7 @@ func (s_ SContext) IsAssignable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clscontext/isassignable
-func (s_ SContext) SetIsAssignable(value bool) {
+func (s_ SContext) SetIsAssignable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAssignable:"), value)
 }
 
@@ -550,7 +552,7 @@ func (s_ SContext) SetIsAssignable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-func (s_ SContext) ContextIdentifierPath() string {
+func (s_ SContext) ContextIdentifierPath() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("contextIdentifierPath"))
 	return rv
 }
@@ -560,7 +562,7 @@ func (s_ SContext) ContextIdentifierPath() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contextIdentifierPath
-func (s_ SContext) SetContextIdentifierPath(value string) {
+func (s_ SContext) SetContextIdentifierPath(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContextIdentifierPath:"), objc.String(value))
 }
 
@@ -569,7 +571,7 @@ func (s_ SContext) SetContextIdentifierPath(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
-func (s_ SContext) IsClassKitDeepLink() bool {
+func (s_ SContext) IsClassKitDeepLink() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isClassKitDeepLink"))
 	return rv
 }
@@ -579,7 +581,7 @@ func (s_ SContext) IsClassKitDeepLink() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/isClassKitDeepLink
-func (s_ SContext) SetIsClassKitDeepLink(value bool) {
+func (s_ SContext) SetIsClassKitDeepLink(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsClassKitDeepLink:"), value)
 }
 

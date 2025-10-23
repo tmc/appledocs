@@ -30,6 +30,8 @@ type _LayoutAnchorClass struct {
 // An interface definition for the [LayoutAnchor] class.
 type ILayoutAnchor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AppKit classes.

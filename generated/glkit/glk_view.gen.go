@@ -40,15 +40,15 @@ type IGLKView interface {
 	SetDrawableColorFormat(value GLKViewDrawableColorFormat)
 	DrawableDepthFormat() GLKViewDrawableDepthFormat
 	SetDrawableDepthFormat(value GLKViewDrawableDepthFormat)
-	DrawableHeight() int
+	DrawableHeight() int /* primitive/slice/pointer. */
 	DrawableMultisample() GLKViewDrawableMultisample
 	SetDrawableMultisample(value GLKViewDrawableMultisample)
 	DrawableStencilFormat() GLKViewDrawableStencilFormat
 	SetDrawableStencilFormat(value GLKViewDrawableStencilFormat)
-	DrawableWidth() int
-	EnableSetNeedsDisplay() bool
-	SetEnableSetNeedsDisplay(value bool)
-	Snapshot() appkit.Image
+	DrawableWidth() int /* primitive/slice/pointer. */
+	EnableSetNeedsDisplay() bool /* primitive/slice/pointer. */
+	SetEnableSetNeedsDisplay(value bool /* primitive/slice/pointer. */)
+	Snapshot() objc.IObject /* cross-framework: Image */
 	// methods:
 }
 
@@ -200,7 +200,7 @@ func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableHeight
-func (g_ GLKView) DrawableHeight() int {
+func (g_ GLKView) DrawableHeight() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](g_.ID, objc.Sel("drawableHeight"))
 	return rv
 }
@@ -248,7 +248,7 @@ func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableWidth
-func (g_ GLKView) DrawableWidth() int {
+func (g_ GLKView) DrawableWidth() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](g_.ID, objc.Sel("drawableWidth"))
 	return rv
 }
@@ -258,7 +258,7 @@ func (g_ GLKView) DrawableWidth() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-func (g_ GLKView) EnableSetNeedsDisplay() bool {
+func (g_ GLKView) EnableSetNeedsDisplay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("enableSetNeedsDisplay"))
 	return rv
 }
@@ -268,7 +268,7 @@ func (g_ GLKView) EnableSetNeedsDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/enableSetNeedsDisplay
-func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
+func (g_ GLKView) SetEnableSetNeedsDisplay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnableSetNeedsDisplay:"), value)
 }
 
@@ -277,8 +277,8 @@ func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot
-func (g_ GLKView) Snapshot() appkit.Image {
-	rv := objc.Send[appkit.Image](g_.ID, objc.Sel("snapshot"))
+func (g_ GLKView) Snapshot() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](g_.ID, objc.Sel("snapshot"))
 	return rv
 }
 

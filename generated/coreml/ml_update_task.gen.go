@@ -29,6 +29,8 @@ type _UpdateTaskClass struct {
 // An interface definition for the [UpdateTask] class.
 type IUpdateTask interface {
 	ITask
+	// properties:
+	// methods:
 }
 
 // A task that updates a model with additional training data.

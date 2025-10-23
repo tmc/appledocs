@@ -29,7 +29,9 @@ type _FixedSpatialAudioClass struct {
 // An interface definition for the [FixedSpatialAudio] class.
 type IFixedSpatialAudio interface {
 	ISpatialAudioExperience
-	SoundStageSize() CASoundStageSize
+	// properties:
+	SoundStageSize() SoundStageSize
+	// methods:
 }
 
 // A spatial experience that does not take user motion into account.
@@ -89,7 +91,7 @@ func NewFixedSpatialAudio() FixedSpatialAudio {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio/initWithSoundStageSize:
-func NewFixedSpatialAudioWithSoundStageSize(soundStageSize CASoundStageSize) FixedSpatialAudio {
+func NewFixedSpatialAudioWithSoundStageSize(soundStageSize SoundStageSize) FixedSpatialAudio {
 	instance := getFixedSpatialAudioClass().Alloc()
 	rv := objc.Send[FixedSpatialAudio](instance.ID, objc.Sel("initWithSoundStageSize:"), soundStageSize)
 	rv.Autorelease()
@@ -102,8 +104,8 @@ func NewFixedSpatialAudioWithSoundStageSize(soundStageSize CASoundStageSize) Fix
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAFixedSpatialAudio/soundStageSize
-func (f_ FixedSpatialAudio) SoundStageSize() CASoundStageSize {
-	rv := objc.Send[CASoundStageSize](f_.ID, objc.Sel("soundStageSize"))
+func (f_ FixedSpatialAudio) SoundStageSize() SoundStageSize {
+	rv := objc.Send[SoundStageSize](f_.ID, objc.Sel("soundStageSize"))
 	return rv
 }
 

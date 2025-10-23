@@ -31,62 +31,64 @@ type _AudioSessionClass struct {
 // An interface definition for the [AudioSession] class.
 type IAudioSession interface {
 	objectivec.IObject
-	AllowHapticsAndSystemSoundsDuringRecording() bool
-	AvailableCategories() []string
-	AvailableInputs() []AudioSessionPortDescription
-	AvailableModes() []string
-	Category() AudioSessionCategory
-	CategoryOptions() AVAudioSessionCategoryOptions
+	// properties:
+	AllowHapticsAndSystemSoundsDuringRecording() bool /* primitive/slice/pointer. */
+	AvailableCategories() []string /* primitive/slice/pointer. */
+	AvailableInputs() []AudioSessionPortDescription /* primitive/slice/pointer. */
+	AvailableModes() []string /* primitive/slice/pointer. */
+	Category() objc.IObject /* cross-framework: AudioSessionCategory */
+	CategoryOptions() AudioSessionCategoryOptions
 	CurrentRoute() IAVAudioSessionRouteDescription
 	InputDataSource() IAVAudioSessionDataSourceDescription
-	InputDataSources() []AudioSessionDataSourceDescription
-	InputOrientation() AVAudioStereoOrientation
-	IntendedSpatialExperience() AVAudioSessionSpatialExperience
-	IntendedSpatialExperienceOptions() foundation.IDictionary
-	IsEchoCancelledInputAvailable() bool
-	IsEchoCancelledInputEnabled() bool
-	InputAvailable() bool
-	IsMicrophoneInjectionAvailable() bool
-	IsNowPlayingCandidate() bool
-	OtherAudioPlaying() bool
-	OutputMuted() bool
-	Mode() AudioSessionMode
+	InputDataSources() []AudioSessionDataSourceDescription /* primitive/slice/pointer. */
+	InputOrientation() AudioStereoOrientation
+	IntendedSpatialExperience() AudioSessionSpatialExperience
+	IntendedSpatialExperienceOptions() foundation.IDictionary /* already interface */
+	IsEchoCancelledInputAvailable() bool /* primitive/slice/pointer. */
+	IsEchoCancelledInputEnabled() bool /* primitive/slice/pointer. */
+	InputAvailable() bool /* primitive/slice/pointer. */
+	IsMicrophoneInjectionAvailable() bool /* primitive/slice/pointer. */
+	IsNowPlayingCandidate() bool /* primitive/slice/pointer. */
+	OtherAudioPlaying() bool /* primitive/slice/pointer. */
+	OutputMuted() bool /* primitive/slice/pointer. */
+	Mode() objc.IObject /* cross-framework: AudioSessionMode */
 	PreferredInput() IAVAudioSessionPortDescription
-	PreferredInputOrientation() AVAudioStereoOrientation
-	PreferredMicrophoneInjectionMode() AVAudioSessionMicrophoneInjectionMode
-	PrefersEchoCancelledInput() bool
-	PrefersInterruptionOnRouteDisconnect() bool
-	PrefersNoInterruptionsFromSystemAlerts() bool
-	PromptStyle() AVAudioSessionPromptStyle
-	RenderingMode() AVAudioSessionRenderingMode
-	RouteSharingPolicy() AVAudioSessionRouteSharingPolicy
-	SecondaryAudioShouldBeSilencedHint() bool
-	SupportedOutputChannelLayouts() []AudioChannelLayout
-	IsOtherAudioPlaying() bool
-	SetIsOtherAudioPlaying(value bool)
-	IsOutputMuted() bool
-	SetIsOutputMuted(value bool)
-	ActivateWithOptionsCompletionHandler(options AVAudioSessionActivationOptions, handler unsafe.Pointer)
+	PreferredInputOrientation() AudioStereoOrientation
+	PreferredMicrophoneInjectionMode() AudioSessionMicrophoneInjectionMode
+	PrefersEchoCancelledInput() bool /* primitive/slice/pointer. */
+	PrefersInterruptionOnRouteDisconnect() bool /* primitive/slice/pointer. */
+	PrefersNoInterruptionsFromSystemAlerts() bool /* primitive/slice/pointer. */
+	PromptStyle() AudioSessionPromptStyle
+	RenderingMode() AudioSessionRenderingMode
+	RouteSharingPolicy() AudioSessionRouteSharingPolicy
+	SecondaryAudioShouldBeSilencedHint() bool /* primitive/slice/pointer. */
+	SupportedOutputChannelLayouts() []AudioChannelLayout /* primitive/slice/pointer. */
+	IsOtherAudioPlaying() bool /* primitive/slice/pointer. */
+	SetIsOtherAudioPlaying(value bool /* primitive/slice/pointer. */)
+	IsOutputMuted() bool /* primitive/slice/pointer. */
+	SetIsOutputMuted(value bool /* primitive/slice/pointer. */)
+	// methods:
+	ActivateWithOptionsCompletionHandler(options AudioSessionActivationOptions, handler unsafe.Pointer)
 	PrepareRouteSelectionForPlaybackWithCompletionHandler(completionHandler unsafe.Pointer)
-	SetActiveWithOptionsError(active bool, options AVAudioSessionSetActiveOptions, outError unsafe.Pointer) bool
-	SetActiveError(active bool, outError unsafe.Pointer) bool
-	SetAggregatedIOPreferenceError(inIOType AVAudioSessionIOType, outError unsafe.Pointer) bool
-	SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool, outError unsafe.Pointer) bool
-	SetCategoryError(category AudioSessionCategory, outError unsafe.Pointer) bool
-	SetCategoryModeOptionsError(category AudioSessionCategory, mode AudioSessionMode, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool
-	SetCategoryModeRouteSharingPolicyOptionsError(category AudioSessionCategory, mode AudioSessionMode, policy AVAudioSessionRouteSharingPolicy, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool
-	SetCategoryWithOptionsError(category AudioSessionCategory, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool
-	SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError unsafe.Pointer) bool
-	SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AVAudioSessionSpatialExperience, options foundation.IDictionary, error_ unsafe.Pointer) bool
-	SetIsNowPlayingCandidateError(inValue bool, outError unsafe.Pointer) bool
-	SetModeError(mode AudioSessionMode, outError unsafe.Pointer) bool
-	SetOutputMutedError(muted bool, outError unsafe.Pointer) bool
-	SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError unsafe.Pointer) bool
-	SetPreferredInputOrientationError(orientation AVAudioStereoOrientation, outError unsafe.Pointer) bool
-	SetPreferredMicrophoneInjectionModeError(inValue AVAudioSessionMicrophoneInjectionMode, outError unsafe.Pointer) bool
-	SetPrefersEchoCancelledInputError(value bool, error_ unsafe.Pointer) bool
-	SetPrefersInterruptionOnRouteDisconnectError(inValue bool, outError unsafe.Pointer) bool
-	SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool, outError unsafe.Pointer) bool
+	SetActiveWithOptionsError(active bool /* primitive/slice/pointer. */, options AudioSessionSetActiveOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetActiveError(active bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetAggregatedIOPreferenceError(inIOType AudioSessionIOType, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetCategoryError(category objc.IObject /* cross-framework AudioSessionCategory */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetCategoryModeOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, mode objc.IObject /* cross-framework AudioSessionMode */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetCategoryModeRouteSharingPolicyOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, mode objc.IObject /* cross-framework AudioSessionMode */, policy AudioSessionRouteSharingPolicy, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetCategoryWithOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AudioSessionSpatialExperience, options foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetIsNowPlayingCandidateError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetModeError(mode objc.IObject /* cross-framework AudioSessionMode */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetOutputMutedError(muted bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPreferredInputOrientationError(orientation AudioStereoOrientation, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPreferredMicrophoneInjectionModeError(inValue AudioSessionMicrophoneInjectionMode, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPrefersEchoCancelledInputError(value bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPrefersInterruptionOnRouteDisconnectError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // An object that communicates to the system how you intend to use audio in your app.
@@ -156,7 +158,7 @@ func (ac _AudioSessionClass) SharedInstance() IAudioSession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/activate(options:completionHandler:)
-func (a_ AudioSession) ActivateWithOptionsCompletionHandler(options AVAudioSessionActivationOptions, handler unsafe.Pointer) {
+func (a_ AudioSession) ActivateWithOptionsCompletionHandler(options AudioSessionActivationOptions, handler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("activateWithOptions:completionHandler:"), options, handler)
 }
 
@@ -174,7 +176,7 @@ func (a_ AudioSession) PrepareRouteSelectionForPlaybackWithCompletionHandler(com
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setActive(_:options:)
-func (a_ AudioSession) SetActiveWithOptionsError(active bool, options AVAudioSessionSetActiveOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetActiveWithOptionsError(active bool /* primitive/slice/pointer. */, options AudioSessionSetActiveOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setActive:withOptions:error:"), active, options, outError)
 	return rv
 }
@@ -184,7 +186,7 @@ func (a_ AudioSession) SetActiveWithOptionsError(active bool, options AVAudioSes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setActive:error:
-func (a_ AudioSession) SetActiveError(active bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetActiveError(active bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setActive:error:"), active, outError)
 	return rv
 }
@@ -194,7 +196,7 @@ func (a_ AudioSession) SetActiveError(active bool, outError unsafe.Pointer) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setAggregatedIOPreference(_:)
-func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AVAudioSessionIOType, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AudioSessionIOType, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setAggregatedIOPreference:error:"), inIOType, outError)
 	return rv
 }
@@ -204,7 +206,7 @@ func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AVAudioSessionIOT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setAllowHapticsAndSystemSoundsDuringRecording(_:)
-func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setAllowHapticsAndSystemSoundsDuringRecording:error:"), inValue, outError)
 	return rv
 }
@@ -214,7 +216,7 @@ func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:)
-func (a_ AudioSession) SetCategoryError(category AudioSessionCategory, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryError(category objc.IObject /* cross-framework AudioSessionCategory */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:error:"), category, outError)
 	return rv
 }
@@ -224,7 +226,7 @@ func (a_ AudioSession) SetCategoryError(category AudioSessionCategory, outError 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:mode:options:)
-func (a_ AudioSession) SetCategoryModeOptionsError(category AudioSessionCategory, mode AudioSessionMode, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryModeOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, mode objc.IObject /* cross-framework AudioSessionMode */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:mode:options:error:"), category, mode, options, outError)
 	return rv
 }
@@ -234,7 +236,7 @@ func (a_ AudioSession) SetCategoryModeOptionsError(category AudioSessionCategory
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:mode:policy:options:)
-func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category AudioSessionCategory, mode AudioSessionMode, policy AVAudioSessionRouteSharingPolicy, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, mode objc.IObject /* cross-framework AudioSessionMode */, policy AudioSessionRouteSharingPolicy, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:mode:routeSharingPolicy:options:error:"), category, mode, policy, options, outError)
 	return rv
 }
@@ -244,7 +246,7 @@ func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category Au
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)
-func (a_ AudioSession) SetCategoryWithOptionsError(category AudioSessionCategory, options AVAudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryWithOptionsError(category objc.IObject /* cross-framework AudioSessionCategory */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:withOptions:error:"), category, options, outError)
 	return rv
 }
@@ -254,7 +256,7 @@ func (a_ AudioSession) SetCategoryWithOptionsError(category AudioSessionCategory
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setInputDataSource(_:)
-func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputDataSource:error:"), dataSource, outError)
 	return rv
 }
@@ -264,7 +266,7 @@ func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setIntendedSpatialExperience:options:error:
-func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AVAudioSessionSpatialExperience, options foundation.IDictionary, error_ unsafe.Pointer) bool {
+func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AudioSessionSpatialExperience, options foundation.IDictionary /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setIntendedSpatialExperience:options:error:"), intendedSpatialExperience, options, error_)
 	return rv
 }
@@ -274,7 +276,7 @@ func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setIsNowPlayingCandidate(_:)
-func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setIsNowPlayingCandidate:error:"), inValue, outError)
 	return rv
 }
@@ -284,7 +286,7 @@ func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool, outError unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setMode(_:)
-func (a_ AudioSession) SetModeError(mode AudioSessionMode, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetModeError(mode objc.IObject /* cross-framework AudioSessionMode */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setMode:error:"), mode, outError)
 	return rv
 }
@@ -294,7 +296,7 @@ func (a_ AudioSession) SetModeError(mode AudioSessionMode, outError unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setOutputMuted(_:)
-func (a_ AudioSession) SetOutputMutedError(muted bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetOutputMutedError(muted bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setOutputMuted:error:"), muted, outError)
 	return rv
 }
@@ -304,7 +306,7 @@ func (a_ AudioSession) SetOutputMutedError(muted bool, outError unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredInput(_:)
-func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredInput:error:"), inPort, outError)
 	return rv
 }
@@ -314,7 +316,7 @@ func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredInputOrientation(_:)
-func (a_ AudioSession) SetPreferredInputOrientationError(orientation AVAudioStereoOrientation, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredInputOrientationError(orientation AudioStereoOrientation, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredInputOrientation:error:"), orientation, outError)
 	return rv
 }
@@ -324,7 +326,7 @@ func (a_ AudioSession) SetPreferredInputOrientationError(orientation AVAudioSter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredMicrophoneInjectionMode(_:)
-func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AVAudioSessionMicrophoneInjectionMode, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AudioSessionMicrophoneInjectionMode, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredMicrophoneInjectionMode:error:"), inValue, outError)
 	return rv
 }
@@ -334,7 +336,7 @@ func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AVAudioS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersEchoCancelledInput(_:)
-func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool, error_ unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersEchoCancelledInput:error:"), value, error_)
 	return rv
 }
@@ -344,7 +346,7 @@ func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool, error_ unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersInterruptionOnRouteDisconnect(_:)
-func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersInterruptionOnRouteDisconnect:error:"), inValue, outError)
 	return rv
 }
@@ -354,7 +356,7 @@ func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts(_:)
-func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersNoInterruptionsFromSystemAlerts:error:"), inValue, outError)
 	return rv
 }
@@ -364,7 +366,7 @@ func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/allowHapticsAndSystemSoundsDuringRecording
-func (a_ AudioSession) AllowHapticsAndSystemSoundsDuringRecording() bool {
+func (a_ AudioSession) AllowHapticsAndSystemSoundsDuringRecording() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("allowHapticsAndSystemSoundsDuringRecording"))
 	return rv
 }
@@ -374,7 +376,7 @@ func (a_ AudioSession) AllowHapticsAndSystemSoundsDuringRecording() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/availableCategories
-func (a_ AudioSession) AvailableCategories() []string {
+func (a_ AudioSession) AvailableCategories() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("availableCategories"))
 	return rv
 }
@@ -384,7 +386,7 @@ func (a_ AudioSession) AvailableCategories() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/availableInputs
-func (a_ AudioSession) AvailableInputs() []AudioSessionPortDescription {
+func (a_ AudioSession) AvailableInputs() []AudioSessionPortDescription /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AudioSessionPortDescription](a_.ID, objc.Sel("availableInputs"))
 	return rv
 }
@@ -394,7 +396,7 @@ func (a_ AudioSession) AvailableInputs() []AudioSessionPortDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/availableModes
-func (a_ AudioSession) AvailableModes() []string {
+func (a_ AudioSession) AvailableModes() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("availableModes"))
 	return rv
 }
@@ -404,7 +406,7 @@ func (a_ AudioSession) AvailableModes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/category-swift.property
-func (a_ AudioSession) Category() AudioSessionCategory {
+func (a_ AudioSession) Category() objc.IObject /* cross-framework: AudioSessionCategory */ {
 	rv := objc.Send[AudioSessionCategory](a_.ID, objc.Sel("category"))
 	return rv
 }
@@ -414,8 +416,8 @@ func (a_ AudioSession) Category() AudioSessionCategory {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/categoryOptions-swift.property
-func (a_ AudioSession) CategoryOptions() AVAudioSessionCategoryOptions {
-	rv := objc.Send[AVAudioSessionCategoryOptions](a_.ID, objc.Sel("categoryOptions"))
+func (a_ AudioSession) CategoryOptions() AudioSessionCategoryOptions {
+	rv := objc.Send[AudioSessionCategoryOptions](a_.ID, objc.Sel("categoryOptions"))
 	return rv
 }
 
@@ -444,7 +446,7 @@ func (a_ AudioSession) InputDataSource() IAVAudioSessionDataSourceDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputDataSources
-func (a_ AudioSession) InputDataSources() []AudioSessionDataSourceDescription {
+func (a_ AudioSession) InputDataSources() []AudioSessionDataSourceDescription /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AudioSessionDataSourceDescription](a_.ID, objc.Sel("inputDataSources"))
 	return rv
 }
@@ -454,8 +456,8 @@ func (a_ AudioSession) InputDataSources() []AudioSessionDataSourceDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputOrientation
-func (a_ AudioSession) InputOrientation() AVAudioStereoOrientation {
-	rv := objc.Send[AVAudioStereoOrientation](a_.ID, objc.Sel("inputOrientation"))
+func (a_ AudioSession) InputOrientation() AudioStereoOrientation {
+	rv := objc.Send[AudioStereoOrientation](a_.ID, objc.Sel("inputOrientation"))
 	return rv
 }
 
@@ -464,8 +466,8 @@ func (a_ AudioSession) InputOrientation() AVAudioStereoOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/intendedSpatialExperience-qlty
-func (a_ AudioSession) IntendedSpatialExperience() AVAudioSessionSpatialExperience {
-	rv := objc.Send[AVAudioSessionSpatialExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
+func (a_ AudioSession) IntendedSpatialExperience() AudioSessionSpatialExperience {
+	rv := objc.Send[AudioSessionSpatialExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
 }
 
@@ -474,7 +476,7 @@ func (a_ AudioSession) IntendedSpatialExperience() AVAudioSessionSpatialExperien
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/intendedSpatialExperienceOptions
-func (a_ AudioSession) IntendedSpatialExperienceOptions() foundation.IDictionary {
+func (a_ AudioSession) IntendedSpatialExperienceOptions() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("intendedSpatialExperienceOptions"))
 	return rv
 }
@@ -484,7 +486,7 @@ func (a_ AudioSession) IntendedSpatialExperienceOptions() foundation.IDictionary
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isEchoCancelledInputAvailable
-func (a_ AudioSession) IsEchoCancelledInputAvailable() bool {
+func (a_ AudioSession) IsEchoCancelledInputAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEchoCancelledInputAvailable"))
 	return rv
 }
@@ -494,7 +496,7 @@ func (a_ AudioSession) IsEchoCancelledInputAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isEchoCancelledInputEnabled
-func (a_ AudioSession) IsEchoCancelledInputEnabled() bool {
+func (a_ AudioSession) IsEchoCancelledInputEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEchoCancelledInputEnabled"))
 	return rv
 }
@@ -504,7 +506,7 @@ func (a_ AudioSession) IsEchoCancelledInputEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isInputAvailable
-func (a_ AudioSession) InputAvailable() bool {
+func (a_ AudioSession) InputAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputAvailable"))
 	return rv
 }
@@ -514,7 +516,7 @@ func (a_ AudioSession) InputAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isMicrophoneInjectionAvailable
-func (a_ AudioSession) IsMicrophoneInjectionAvailable() bool {
+func (a_ AudioSession) IsMicrophoneInjectionAvailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isMicrophoneInjectionAvailable"))
 	return rv
 }
@@ -524,7 +526,7 @@ func (a_ AudioSession) IsMicrophoneInjectionAvailable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isNowPlayingCandidate
-func (a_ AudioSession) IsNowPlayingCandidate() bool {
+func (a_ AudioSession) IsNowPlayingCandidate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isNowPlayingCandidate"))
 	return rv
 }
@@ -534,7 +536,7 @@ func (a_ AudioSession) IsNowPlayingCandidate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isOtherAudioPlaying
-func (a_ AudioSession) OtherAudioPlaying() bool {
+func (a_ AudioSession) OtherAudioPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("otherAudioPlaying"))
 	return rv
 }
@@ -544,7 +546,7 @@ func (a_ AudioSession) OtherAudioPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isOutputMuted
-func (a_ AudioSession) OutputMuted() bool {
+func (a_ AudioSession) OutputMuted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("outputMuted"))
 	return rv
 }
@@ -554,7 +556,7 @@ func (a_ AudioSession) OutputMuted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/mode-swift.property
-func (a_ AudioSession) Mode() AudioSessionMode {
+func (a_ AudioSession) Mode() objc.IObject /* cross-framework: AudioSessionMode */ {
 	rv := objc.Send[AudioSessionMode](a_.ID, objc.Sel("mode"))
 	return rv
 }
@@ -574,8 +576,8 @@ func (a_ AudioSession) PreferredInput() IAVAudioSessionPortDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredInputOrientation
-func (a_ AudioSession) PreferredInputOrientation() AVAudioStereoOrientation {
-	rv := objc.Send[AVAudioStereoOrientation](a_.ID, objc.Sel("preferredInputOrientation"))
+func (a_ AudioSession) PreferredInputOrientation() AudioStereoOrientation {
+	rv := objc.Send[AudioStereoOrientation](a_.ID, objc.Sel("preferredInputOrientation"))
 	return rv
 }
 
@@ -584,8 +586,8 @@ func (a_ AudioSession) PreferredInputOrientation() AVAudioStereoOrientation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredMicrophoneInjectionMode
-func (a_ AudioSession) PreferredMicrophoneInjectionMode() AVAudioSessionMicrophoneInjectionMode {
-	rv := objc.Send[AVAudioSessionMicrophoneInjectionMode](a_.ID, objc.Sel("preferredMicrophoneInjectionMode"))
+func (a_ AudioSession) PreferredMicrophoneInjectionMode() AudioSessionMicrophoneInjectionMode {
+	rv := objc.Send[AudioSessionMicrophoneInjectionMode](a_.ID, objc.Sel("preferredMicrophoneInjectionMode"))
 	return rv
 }
 
@@ -594,7 +596,7 @@ func (a_ AudioSession) PreferredMicrophoneInjectionMode() AVAudioSessionMicropho
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/prefersEchoCancelledInput
-func (a_ AudioSession) PrefersEchoCancelledInput() bool {
+func (a_ AudioSession) PrefersEchoCancelledInput() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prefersEchoCancelledInput"))
 	return rv
 }
@@ -604,7 +606,7 @@ func (a_ AudioSession) PrefersEchoCancelledInput() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/prefersInterruptionOnRouteDisconnect
-func (a_ AudioSession) PrefersInterruptionOnRouteDisconnect() bool {
+func (a_ AudioSession) PrefersInterruptionOnRouteDisconnect() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prefersInterruptionOnRouteDisconnect"))
 	return rv
 }
@@ -614,7 +616,7 @@ func (a_ AudioSession) PrefersInterruptionOnRouteDisconnect() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/prefersNoInterruptionsFromSystemAlerts
-func (a_ AudioSession) PrefersNoInterruptionsFromSystemAlerts() bool {
+func (a_ AudioSession) PrefersNoInterruptionsFromSystemAlerts() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("prefersNoInterruptionsFromSystemAlerts"))
 	return rv
 }
@@ -624,8 +626,8 @@ func (a_ AudioSession) PrefersNoInterruptionsFromSystemAlerts() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/promptStyle-swift.property
-func (a_ AudioSession) PromptStyle() AVAudioSessionPromptStyle {
-	rv := objc.Send[AVAudioSessionPromptStyle](a_.ID, objc.Sel("promptStyle"))
+func (a_ AudioSession) PromptStyle() AudioSessionPromptStyle {
+	rv := objc.Send[AudioSessionPromptStyle](a_.ID, objc.Sel("promptStyle"))
 	return rv
 }
 
@@ -634,8 +636,8 @@ func (a_ AudioSession) PromptStyle() AVAudioSessionPromptStyle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/renderingMode-swift.property
-func (a_ AudioSession) RenderingMode() AVAudioSessionRenderingMode {
-	rv := objc.Send[AVAudioSessionRenderingMode](a_.ID, objc.Sel("renderingMode"))
+func (a_ AudioSession) RenderingMode() AudioSessionRenderingMode {
+	rv := objc.Send[AudioSessionRenderingMode](a_.ID, objc.Sel("renderingMode"))
 	return rv
 }
 
@@ -644,8 +646,8 @@ func (a_ AudioSession) RenderingMode() AVAudioSessionRenderingMode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/routeSharingPolicy-swift.property
-func (a_ AudioSession) RouteSharingPolicy() AVAudioSessionRouteSharingPolicy {
-	rv := objc.Send[AVAudioSessionRouteSharingPolicy](a_.ID, objc.Sel("routeSharingPolicy"))
+func (a_ AudioSession) RouteSharingPolicy() AudioSessionRouteSharingPolicy {
+	rv := objc.Send[AudioSessionRouteSharingPolicy](a_.ID, objc.Sel("routeSharingPolicy"))
 	return rv
 }
 
@@ -654,7 +656,7 @@ func (a_ AudioSession) RouteSharingPolicy() AVAudioSessionRouteSharingPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/secondaryAudioShouldBeSilencedHint
-func (a_ AudioSession) SecondaryAudioShouldBeSilencedHint() bool {
+func (a_ AudioSession) SecondaryAudioShouldBeSilencedHint() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("secondaryAudioShouldBeSilencedHint"))
 	return rv
 }
@@ -664,7 +666,7 @@ func (a_ AudioSession) SecondaryAudioShouldBeSilencedHint() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/supportedOutputChannelLayouts
-func (a_ AudioSession) SupportedOutputChannelLayouts() []AudioChannelLayout {
+func (a_ AudioSession) SupportedOutputChannelLayouts() []AudioChannelLayout /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AudioChannelLayout](a_.ID, objc.Sel("supportedOutputChannelLayouts"))
 	return rv
 }
@@ -674,7 +676,7 @@ func (a_ AudioSession) SupportedOutputChannelLayouts() []AudioChannelLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isotheraudioplaying
-func (a_ AudioSession) IsOtherAudioPlaying() bool {
+func (a_ AudioSession) IsOtherAudioPlaying() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isOtherAudioPlaying"))
 	return rv
 }
@@ -684,7 +686,7 @@ func (a_ AudioSession) IsOtherAudioPlaying() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isotheraudioplaying
-func (a_ AudioSession) SetIsOtherAudioPlaying(value bool) {
+func (a_ AudioSession) SetIsOtherAudioPlaying(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOtherAudioPlaying:"), value)
 }
 
@@ -693,7 +695,7 @@ func (a_ AudioSession) SetIsOtherAudioPlaying(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isoutputmuted
-func (a_ AudioSession) IsOutputMuted() bool {
+func (a_ AudioSession) IsOutputMuted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isOutputMuted"))
 	return rv
 }
@@ -703,7 +705,7 @@ func (a_ AudioSession) IsOutputMuted() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/isoutputmuted
-func (a_ AudioSession) SetIsOutputMuted(value bool) {
+func (a_ AudioSession) SetIsOutputMuted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsOutputMuted:"), value)
 }
 

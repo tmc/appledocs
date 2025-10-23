@@ -30,12 +30,14 @@ type _QuadtreeClass struct {
 // An interface definition for the [Quadtree] class.
 type IQuadtree interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	AddElementWithPoint(element unsafe.Pointer, point unsafe.Pointer) IQuadtreeNode
-	AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) IQuadtreeNode
-	ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject
-	ElementsInQuad(quad unsafe.Pointer) []objectivec.IObject
-	RemoveElement(element unsafe.Pointer) bool
-	RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool
+	AddElementWithQuad(element unsafe.Pointer, quad Quad /* not a class type */) IQuadtreeNode
+	ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject /* already interface */
+	ElementsInQuad(quad Quad /* not a class type */) []objectivec.IObject /* already interface */
+	RemoveElement(element unsafe.Pointer) bool /* primitive/slice/pointer. */
+	RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool /* primitive/slice/pointer. */
 }
 
 // A data structure for organizing objects based on their locations in a two-dimensional space.
@@ -95,7 +97,7 @@ func NewQuadtree() Quadtree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/init(boundingQuad:minimumCellSize:)
-func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) Quadtree {
+func NewQuadtreeWithBoundingQuadMinimumCellSize(quad Quad /* not a class type */, minCellSize float32 /* primitive/slice/pointer. */) Quadtree {
 	instance := getQuadtreeClass().Alloc()
 	rv := objc.Send[Quadtree](instance.ID, objc.Sel("initWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewQuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/quadtreeWithBoundingQuad:minimumCellSize:
-func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad unsafe.Pointer, minCellSize float32) unsafe.Pointer {
+func (qc _QuadtreeClass) QuadtreeWithBoundingQuadMinimumCellSize(quad Quad /* not a class type */, minCellSize float32 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("quadtreeWithBoundingQuad:minimumCellSize:"), quad, minCellSize)
 	return rv
 }
@@ -128,7 +130,7 @@ func (q_ Quadtree) AddElementWithPoint(element unsafe.Pointer, point unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/add(_:in:)
-func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointer) IQuadtreeNode {
+func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad Quad /* not a class type */) IQuadtreeNode {
 	rv := objc.Send[QuadtreeNode](q_.ID, objc.Sel("addElement:withQuad:"), element, quad)
 	return rv
 }
@@ -138,7 +140,7 @@ func (q_ Quadtree) AddElementWithQuad(element unsafe.Pointer, quad unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(at:)
-func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject {
+func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject /* already interface */ {
 	rv := objc.Send[[]objectivec.IObject](q_.ID, objc.Sel("elementsAtPoint:"), point)
 	return rv
 }
@@ -148,7 +150,7 @@ func (q_ Quadtree) ElementsAtPoint(point unsafe.Pointer) []objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/elements(in:)
-func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []objectivec.IObject {
+func (q_ Quadtree) ElementsInQuad(quad Quad /* not a class type */) []objectivec.IObject /* already interface */ {
 	rv := objc.Send[[]objectivec.IObject](q_.ID, objc.Sel("elementsInQuad:"), quad)
 	return rv
 }
@@ -158,7 +160,7 @@ func (q_ Quadtree) ElementsInQuad(quad unsafe.Pointer) []objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:)
-func (q_ Quadtree) RemoveElement(element unsafe.Pointer) bool {
+func (q_ Quadtree) RemoveElement(element unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:"), element)
 	return rv
 }
@@ -168,7 +170,7 @@ func (q_ Quadtree) RemoveElement(element unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKQuadtree/remove(_:using:)
-func (q_ Quadtree) RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool {
+func (q_ Quadtree) RemoveElementWithNode(data unsafe.Pointer, node IGKQuadtreeNode) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](q_.ID, objc.Sel("removeElement:withNode:"), data, node)
 	return rv
 }

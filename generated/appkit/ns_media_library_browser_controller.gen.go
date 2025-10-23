@@ -31,12 +31,14 @@ type _MediaLibraryBrowserControllerClass struct {
 // An interface definition for the [MediaLibraryBrowserController] class.
 type IMediaLibraryBrowserController interface {
 	objectivec.IObject
+	// properties:
 	Frame() coregraphics.CGRect
 	SetFrame(value coregraphics.CGRect)
-	IsVisible() bool
-	SetIsVisible(value bool)
+	IsVisible() bool /* primitive/slice/pointer. */
+	SetIsVisible(value bool /* primitive/slice/pointer. */)
 	MediaLibraries() unsafe.Pointer
 	SetMediaLibraries(value unsafe.Pointer)
+	// methods:
 	TogglePanel(sender objectivec.IObject)
 }
 
@@ -125,7 +127,7 @@ func (m_ MediaLibraryBrowserController) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-func (m_ MediaLibraryBrowserController) IsVisible() bool {
+func (m_ MediaLibraryBrowserController) IsVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isVisible"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (m_ MediaLibraryBrowserController) IsVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
-func (m_ MediaLibraryBrowserController) SetIsVisible(value bool) {
+func (m_ MediaLibraryBrowserController) SetIsVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsVisible:"), value)
 }
 

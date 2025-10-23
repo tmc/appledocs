@@ -30,13 +30,15 @@ type _ABRecordClass struct {
 // An interface definition for the [ABRecord] class.
 type IABRecord interface {
 	objectivec.IObject
-	DisplayName() string
-	UniqueId() string
-	IsReadOnly() bool
-	RemoveValueForProperty(property string) bool
-	SetValueForProperty(value objectivec.IObject, property string) bool
-	SetValueForPropertyError(value objectivec.IObject, property string, error_ unsafe.Pointer) bool
-	ValueForProperty(property string) objc.ID
+	// properties:
+	DisplayName() string /* primitive/slice/pointer. */
+	UniqueId() string /* primitive/slice/pointer. */
+	// methods:
+	IsReadOnly() bool /* primitive/slice/pointer. */
+	RemoveValueForProperty(property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	SetValueForProperty(value objectivec.IObject, property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	SetValueForPropertyError(value objectivec.IObject, property string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ValueForProperty(property string /* primitive/slice/pointer. */) objc.ID
 }
 
 // An abstract class that defines the common properties for all Address Book records.
@@ -109,7 +111,7 @@ func NewABRecordWithAddressBook(addressBook IABAddressBook) ABRecord {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/isReadOnly()
-func (a_ ABRecord) IsReadOnly() bool {
+func (a_ ABRecord) IsReadOnly() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isReadOnly"))
 	return rv
 }
@@ -119,7 +121,7 @@ func (a_ ABRecord) IsReadOnly() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/removeValue(forProperty:)
-func (a_ ABRecord) RemoveValueForProperty(property string) bool {
+func (a_ ABRecord) RemoveValueForProperty(property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeValueForProperty:"), objc.String(property))
 	return rv
 }
@@ -129,7 +131,7 @@ func (a_ ABRecord) RemoveValueForProperty(property string) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:)
-func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string) bool {
+func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:"), value, objc.String(property))
 	return rv
 }
@@ -139,7 +141,7 @@ func (a_ ABRecord) SetValueForProperty(value objectivec.IObject, property string
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/setValue(_:forProperty:error:)
-func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property string, error_ unsafe.Pointer) bool {
+func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property string /* primitive/slice/pointer. */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forProperty:error:"), value, objc.String(property), error_)
 	return rv
 }
@@ -149,7 +151,7 @@ func (a_ ABRecord) SetValueForPropertyError(value objectivec.IObject, property s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/value(forProperty:)
-func (a_ ABRecord) ValueForProperty(property string) objc.ID {
+func (a_ ABRecord) ValueForProperty(property string /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForProperty:"), objc.String(property))
 	return rv
 }
@@ -159,7 +161,7 @@ func (a_ ABRecord) ValueForProperty(property string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/displayName
-func (a_ ABRecord) DisplayName() string {
+func (a_ ABRecord) DisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("displayName"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (a_ ABRecord) DisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord/uniqueId
-func (a_ ABRecord) UniqueId() string {
+func (a_ ABRecord) UniqueId() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("uniqueId"))
 	return rv
 }

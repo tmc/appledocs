@@ -30,8 +30,10 @@ type _CNScriptFrameClass struct {
 // An interface definition for the [CNScriptFrame] class.
 type ICNScriptFrame interface {
 	objectivec.IObject
-	BestDetectionForGroupID(detectionGroupID CNDetectionGroupID) ICNDetection
-	DetectionForID(detectionID CNDetectionID) ICNDetection
+	// properties:
+	// methods:
+	BestDetectionForGroupID(detectionGroupID CNDetectionGroupID /* typedef */) ICNDetection
+	DetectionForID(detectionID CNDetectionID /* typedef */) ICNDetection
 }
 
 // An object that represents what to focus on, and where to focus, in a given movie frame.
@@ -89,7 +91,7 @@ func NewCNScriptFrame() CNScriptFrame {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/bestDetectionForGroupID:
-func (c_ CNScriptFrame) BestDetectionForGroupID(detectionGroupID CNDetectionGroupID) ICNDetection {
+func (c_ CNScriptFrame) BestDetectionForGroupID(detectionGroupID CNDetectionGroupID /* typedef */) ICNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("bestDetectionForGroupID:"), detectionGroupID)
 	return rv
 }
@@ -99,7 +101,7 @@ func (c_ CNScriptFrame) BestDetectionForGroupID(detectionGroupID CNDetectionGrou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/detectionForID:
-func (c_ CNScriptFrame) DetectionForID(detectionID CNDetectionID) ICNDetection {
+func (c_ CNScriptFrame) DetectionForID(detectionID CNDetectionID /* typedef */) ICNDetection {
 	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionForID:"), detectionID)
 	return rv
 }

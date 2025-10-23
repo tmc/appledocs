@@ -30,12 +30,14 @@ type _RectangleFeatureClass struct {
 // An interface definition for the [RectangleFeature] class.
 type IRectangleFeature interface {
 	IFeature
+	// properties:
 	BottomLeft() coregraphics.CGPoint
 	BottomRight() coregraphics.CGPoint
 	Bounds() coregraphics.CGRect
 	TopLeft() coregraphics.CGPoint
 	TopRight() coregraphics.CGPoint
-	CIDetectorTypeRectangle() string
+	CIDetectorTypeRectangle() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Information about a rectangular region detected in a still or video image.
@@ -147,7 +149,7 @@ func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
-func (r_ RectangleFeature) CIDetectorTypeRectangle() string {
+func (r_ RectangleFeature) CIDetectorTypeRectangle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
 	return rv
 }

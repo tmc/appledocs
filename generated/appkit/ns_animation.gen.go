@@ -31,26 +31,28 @@ type _AnimationClass struct {
 // An interface definition for the [Animation] class.
 type IAnimation interface {
 	objectivec.IObject
-	CurrentProgress() AnimationProgress
-	SetCurrentProgress(value IAnimationProgress)
+	// properties:
 	AnimationBlockingMode() unsafe.Pointer
 	SetAnimationBlockingMode(value unsafe.Pointer)
 	AnimationCurve() unsafe.Pointer
 	SetAnimationCurve(value unsafe.Pointer)
-	CurrentValue() float32
-	SetCurrentValue(value float32)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	CurrentProgress() unsafe.Pointer
+	SetCurrentProgress(value unsafe.Pointer)
+	CurrentValue() float32 /* primitive/slice/pointer. */
+	SetCurrentValue(value float32 /* primitive/slice/pointer. */)
+	Delegate() AnimationDelegate /* not a class type */
+	SetDelegate(value AnimationDelegate /* not a class type */)
 	Duration() unsafe.Pointer
 	SetDuration(value unsafe.Pointer)
-	FrameRate() float32
-	SetFrameRate(value float32)
-	IsAnimating() bool
-	SetIsAnimating(value bool)
-	ProgressMarks() foundation.Number
-	SetProgressMarks(value foundation.INumber)
+	FrameRate() float32 /* primitive/slice/pointer. */
+	SetFrameRate(value float32 /* primitive/slice/pointer. */)
+	IsAnimating() bool /* primitive/slice/pointer. */
+	SetIsAnimating(value bool /* primitive/slice/pointer. */)
+	ProgressMarks() foundation.objc.IObject /* cross-framework: Number */
+	SetProgressMarks(value foundation.objc.IObject /* cross-framework: Number */)
 	RunLoopModesForAnimating() unsafe.Pointer
 	SetRunLoopModesForAnimating(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that manages the timing and progress of animations in the user interface.
@@ -106,25 +108,6 @@ func NewAnimation() Animation {
 
 
 
-// The current progress of the animation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-func (a_ Animation) CurrentProgress() AnimationProgress {
-	rv := objc.Send[AnimationProgress](a_.ID, objc.Sel("currentProgress"))
-	return rv
-}
-
-
-// The current progress of the animation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/currentProgress
-func (a_ Animation) SetCurrentProgress(value IAnimationProgress) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
-}
-
-
 // The blocking mode of the animation.
 //
 // [Full Topic]
@@ -163,11 +146,30 @@ func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
 }
 
 
+// The current progress of the animation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentprogress
+func (a_ Animation) CurrentProgress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentProgress"))
+	return rv
+}
+
+
+// The current progress of the animation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentprogress
+func (a_ Animation) SetCurrentProgress(value unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentProgress:"), value)
+}
+
+
 // The current value of the animation effect, based on the current progress
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) CurrentValue() float32 {
+func (a_ Animation) CurrentValue() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("currentValue"))
 	return rv
 }
@@ -177,7 +179,7 @@ func (a_ Animation) CurrentValue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) SetCurrentValue(value float32) {
+func (a_ Animation) SetCurrentValue(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentValue:"), value)
 }
 
@@ -186,8 +188,8 @@ func (a_ Animation) SetCurrentValue(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
-func (a_ Animation) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+func (a_ Animation) Delegate() AnimationDelegate /* not a class type */ {
+	rv := objc.Send[AnimationDelegate](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -196,7 +198,7 @@ func (a_ Animation) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/delegate
-func (a_ Animation) SetDelegate(value unsafe.Pointer) {
+func (a_ Animation) SetDelegate(value AnimationDelegate /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -224,7 +226,7 @@ func (a_ Animation) SetDuration(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) FrameRate() float32 {
+func (a_ Animation) FrameRate() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("frameRate"))
 	return rv
 }
@@ -234,7 +236,7 @@ func (a_ Animation) FrameRate() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) SetFrameRate(value float32) {
+func (a_ Animation) SetFrameRate(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameRate:"), value)
 }
 
@@ -243,7 +245,7 @@ func (a_ Animation) SetFrameRate(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-func (a_ Animation) IsAnimating() bool {
+func (a_ Animation) IsAnimating() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isAnimating"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (a_ Animation) IsAnimating() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/isanimating
-func (a_ Animation) SetIsAnimating(value bool) {
+func (a_ Animation) SetIsAnimating(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsAnimating:"), value)
 }
 
@@ -262,7 +264,7 @@ func (a_ Animation) SetIsAnimating(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-func (a_ Animation) ProgressMarks() foundation.Number {
+func (a_ Animation) ProgressMarks() foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[foundation.Number](a_.ID, objc.Sel("progressMarks"))
 	return rv
 }
@@ -272,7 +274,7 @@ func (a_ Animation) ProgressMarks() foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/progressmarks
-func (a_ Animation) SetProgressMarks(value foundation.INumber) {
+func (a_ Animation) SetProgressMarks(value foundation.objc.IObject /* cross-framework: Number */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setProgressMarks:"), value)
 }
 

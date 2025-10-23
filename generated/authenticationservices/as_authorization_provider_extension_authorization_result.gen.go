@@ -31,12 +31,14 @@ type _AuthorizationProviderExtensionAuthorizationResultClass struct {
 // An interface definition for the [AuthorizationProviderExtensionAuthorizationResult] class.
 type IAuthorizationProviderExtensionAuthorizationResult interface {
 	objectivec.IObject
-	HttpAuthorizationHeaders() string
-	SetHttpAuthorizationHeaders(value string)
-	HttpBody() foundation.Data
-	SetHttpBody(value foundation.Data)
-	HttpResponse() foundation.HTTPURLResponse
-	SetHttpResponse(value foundation.HTTPURLResponse)
+	// properties:
+	HttpAuthorizationHeaders() string /* primitive/slice/pointer. */
+	SetHttpAuthorizationHeaders(value string /* primitive/slice/pointer. */)
+	HttpBody() foundation.objc.IObject /* cross-framework: Data */
+	SetHttpBody(value foundation.objc.IObject /* cross-framework: Data */)
+	HttpResponse() HTTPURLResponse /* not a class type */
+	SetHttpResponse(value HTTPURLResponse /* not a class type */)
+	// methods:
 }
 
 // The result of an authorization request.
@@ -94,7 +96,7 @@ func NewAuthorizationProviderExtensionAuthorizationResult() AuthorizationProvide
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() string {
+func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHeaders() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("httpAuthorizationHeaders"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpAuthorizationHea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpauthorizationheaders
-func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value string) {
+func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorizationHeaders(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpAuthorizationHeaders:"), objc.String(value))
 }
 
@@ -113,7 +115,7 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpAuthorization
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpbody
-func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpBody() foundation.Data {
+func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpBody() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("httpBody"))
 	return rv
 }
@@ -123,7 +125,7 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpBody() foundatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpbody
-func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpBody(value foundation.Data) {
+func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpBody(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpBody:"), value)
 }
 
@@ -132,8 +134,8 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpBody(value fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpresponse
-func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpResponse() foundation.HTTPURLResponse {
-	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("httpResponse"))
+func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpResponse() HTTPURLResponse /* not a class type */ {
+	rv := objc.Send[HTTPURLResponse](a_.ID, objc.Sel("httpResponse"))
 	return rv
 }
 
@@ -142,7 +144,7 @@ func (a_ AuthorizationProviderExtensionAuthorizationResult) HttpResponse() found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationresult/httpresponse
-func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpResponse(value foundation.HTTPURLResponse) {
+func (a_ AuthorizationProviderExtensionAuthorizationResult) SetHttpResponse(value HTTPURLResponse /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpResponse:"), value)
 }
 

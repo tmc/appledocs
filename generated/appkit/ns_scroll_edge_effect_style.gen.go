@@ -30,6 +30,8 @@ type _ScrollEdgeEffectStyleClass struct {
 // An interface definition for the [ScrollEdgeEffectStyle] class.
 type IScrollEdgeEffectStyle interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // Styles for a scroll view’s edge effect.

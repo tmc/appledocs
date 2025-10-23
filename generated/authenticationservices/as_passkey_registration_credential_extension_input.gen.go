@@ -30,7 +30,9 @@ type _PasskeyRegistrationCredentialExtensionInputClass struct {
 // An interface definition for the [PasskeyRegistrationCredentialExtensionInput] class.
 type IPasskeyRegistrationCredentialExtensionInput interface {
 	objectivec.IObject
+	// properties:
 	LargeBlob() IASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput
+	// methods:
 }
 
 // This class encapsulates input for various WebAuthn extensions during passkey registration.

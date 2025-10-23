@@ -29,10 +29,11 @@ type _CKFetchDatabaseChangesOperationClass struct {
 // An interface definition for the [CKFetchDatabaseChangesOperation] class.
 type ICKFetchDatabaseChangesOperation interface {
 	ICKDatabaseOperation
+	// properties:
 	ChangeTokenUpdatedBlock() unsafe.Pointer
 	SetChangeTokenUpdatedBlock(value unsafe.Pointer)
-	FetchAllChanges() bool
-	SetFetchAllChanges(value bool)
+	FetchAllChanges() bool /* primitive/slice/pointer. */
+	SetFetchAllChanges(value bool /* primitive/slice/pointer. */)
 	FetchDatabaseChangesCompletionBlock() unsafe.Pointer
 	SetFetchDatabaseChangesCompletionBlock(value unsafe.Pointer)
 	FetchDatabaseChangesResultBlock() unsafe.Pointer
@@ -47,8 +48,9 @@ type ICKFetchDatabaseChangesOperation interface {
 	SetRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value unsafe.Pointer)
 	RecordZoneWithIDWasPurgedBlock() unsafe.Pointer
 	SetRecordZoneWithIDWasPurgedBlock(value unsafe.Pointer)
-	ResultsLimit() int
-	SetResultsLimit(value int)
+	ResultsLimit() int /* primitive/slice/pointer. */
+	SetResultsLimit(value int /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An operation that fetches database changes.
@@ -129,7 +131,7 @@ func (c_ CKFetchDatabaseChangesOperation) SetChangeTokenUpdatedBlock(value unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchallchanges
-func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool {
+func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("fetchAllChanges"))
 	return rv
 }
@@ -139,7 +141,7 @@ func (c_ CKFetchDatabaseChangesOperation) FetchAllChanges() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/fetchallchanges
-func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool) {
+func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
 
@@ -277,7 +279,7 @@ func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasPurgedBlock(valu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/resultslimit
-func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() int {
+func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](c_.ID, objc.Sel("resultsLimit"))
 	return rv
 }
@@ -287,7 +289,7 @@ func (c_ CKFetchDatabaseChangesOperation) ResultsLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation/resultslimit
-func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value int) {
+func (c_ CKFetchDatabaseChangesOperation) SetResultsLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResultsLimit:"), value)
 }
 

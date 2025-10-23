@@ -30,8 +30,8 @@ type _HKContactsPrescriptionClass struct {
 type IHKContactsPrescription interface {
 	IHKVisionPrescription
 	// properties:
-	Brand() string
-	SetBrand(value string)
+	Brand() string /* primitive/slice/pointer. */
+	SetBrand(value string /* primitive/slice/pointer. */)
 	LeftEye() IHKContactsLensSpecification
 	SetLeftEye(value IHKContactsLensSpecification)
 	RightEye() IHKContactsLensSpecification
@@ -98,7 +98,7 @@ func NewHKContactsPrescription() HKContactsPrescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) Brand() string {
+func (h_ HKContactsPrescription) Brand() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
 	return rv
 }
@@ -108,7 +108,7 @@ func (h_ HKContactsPrescription) Brand() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) SetBrand(value string) {
+func (h_ HKContactsPrescription) SetBrand(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
 }
 

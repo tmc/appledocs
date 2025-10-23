@@ -31,18 +31,20 @@ type _AMWorkflowClass struct {
 // An interface definition for the [AMWorkflow] class.
 type IAMWorkflow interface {
 	objectivec.IObject
-	Actions() []AMAction
-	FileURL() foundation.URL
+	// properties:
+	Actions() []AMAction /* primitive/slice/pointer. */
+	FileURL() foundation.objc.IObject /* cross-framework: URL */
 	Input() objc.ID
 	SetInput(value objc.ID)
 	Output() objc.ID
+	// methods:
 	AddAction(action IAMAction)
-	InsertActionAtIndex(action IAMAction, index uint)
-	MoveActionAtIndexToIndex(startIndex uint, endIndex uint)
+	InsertActionAtIndex(action IAMAction, index uint /* primitive/slice/pointer. */)
+	MoveActionAtIndexToIndex(startIndex uint /* primitive/slice/pointer. */, endIndex uint /* primitive/slice/pointer. */)
 	RemoveAction(action IAMAction)
-	SetValueForVariableWithName(value objectivec.IObject, variableName string) bool
-	ValueForVariableWithName(variableName string) objc.ID
-	WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool
+	SetValueForVariableWithName(value objectivec.IObject, variableName string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	ValueForVariableWithName(variableName string /* primitive/slice/pointer. */) objc.ID
+	WriteToURLError(fileURL foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // An object that lets you use an Automator workflow in your app.
@@ -102,7 +104,7 @@ func NewAMWorkflow() AMWorkflow {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/init(contentsOf:)
-func NewAMWorkflowWithContentsOfURLError(fileURL foundation.URL, outError unsafe.Pointer) AMWorkflow {
+func NewAMWorkflowWithContentsOfURLError(fileURL foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) AMWorkflow {
 	instance := getAMWorkflowClass().Alloc()
 	rv := objc.Send[AMWorkflow](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -115,7 +117,7 @@ func NewAMWorkflowWithContentsOfURLError(fileURL foundation.URL, outError unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/run(at:withInput:)
-func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.URL, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+func (ac _AMWorkflowClass) RunWorkflowAtURLWithInputError(fileURL foundation.objc.IObject /* cross-framework URL */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("runWorkflowAtURL:withInput:error:"), fileURL, input, error_)
 	return rv
 }
@@ -134,7 +136,7 @@ func (a_ AMWorkflow) AddAction(action IAMAction) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/insertAction(_:at:)
-func (a_ AMWorkflow) InsertActionAtIndex(action IAMAction, index uint) {
+func (a_ AMWorkflow) InsertActionAtIndex(action IAMAction, index uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertAction:atIndex:"), action, index)
 }
 
@@ -143,7 +145,7 @@ func (a_ AMWorkflow) InsertActionAtIndex(action IAMAction, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/moveAction(at:to:)
-func (a_ AMWorkflow) MoveActionAtIndexToIndex(startIndex uint, endIndex uint) {
+func (a_ AMWorkflow) MoveActionAtIndexToIndex(startIndex uint /* primitive/slice/pointer. */, endIndex uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("moveActionAtIndex:toIndex:"), startIndex, endIndex)
 }
 
@@ -161,7 +163,7 @@ func (a_ AMWorkflow) RemoveAction(action IAMAction) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/setValue(_:forVariableWithName:)
-func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, variableName string) bool {
+func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, variableName string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setValue:forVariableWithName:"), value, objc.String(variableName))
 	return rv
 }
@@ -171,7 +173,7 @@ func (a_ AMWorkflow) SetValueForVariableWithName(value objectivec.IObject, varia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/valueForVariable(withName:)
-func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
+func (a_ AMWorkflow) ValueForVariableWithName(variableName string /* primitive/slice/pointer. */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForVariableWithName:"), objc.String(variableName))
 	return rv
 }
@@ -181,7 +183,7 @@ func (a_ AMWorkflow) ValueForVariableWithName(variableName string) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/write(to:)
-func (a_ AMWorkflow) WriteToURLError(fileURL foundation.URL, outError unsafe.Pointer) bool {
+func (a_ AMWorkflow) WriteToURLError(fileURL foundation.objc.IObject /* cross-framework URL */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), fileURL, outError)
 	return rv
 }
@@ -191,7 +193,7 @@ func (a_ AMWorkflow) WriteToURLError(fileURL foundation.URL, outError unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/actions
-func (a_ AMWorkflow) Actions() []AMAction {
+func (a_ AMWorkflow) Actions() []AMAction /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AMAction](a_.ID, objc.Sel("actions"))
 	return rv
 }
@@ -201,7 +203,7 @@ func (a_ AMWorkflow) Actions() []AMAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflow/fileURL
-func (a_ AMWorkflow) FileURL() foundation.URL {
+func (a_ AMWorkflow) FileURL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("fileURL"))
 	return rv
 }

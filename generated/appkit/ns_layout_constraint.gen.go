@@ -30,31 +30,34 @@ type _LayoutConstraintClass struct {
 // An interface definition for the [LayoutConstraint] class.
 type ILayoutConstraint interface {
 	objectivec.IObject
-	SecondItem() objc.ID
-	Constant() float64
-	SetConstant(value float64)
-	FirstAnchor() NSLayoutAnchor
-	SetFirstAnchor(value ILayoutAnchor)
+	// properties:
+	Constant() float64 /* primitive/slice/pointer. */
+	SetConstant(value float64 /* primitive/slice/pointer. */)
+	FirstAnchor() objc.IObject /* cross-framework: LayoutAnchor */
+	SetFirstAnchor(value objc.IObject /* cross-framework: LayoutAnchor */)
 	FirstAttribute() unsafe.Pointer
 	SetFirstAttribute(value unsafe.Pointer)
 	FirstItem() unsafe.Pointer
 	SetFirstItem(value unsafe.Pointer)
-	Identifier() string
-	SetIdentifier(value string)
-	IsActive() bool
-	SetIsActive(value bool)
-	Multiplier() float64
-	SetMultiplier(value float64)
+	Identifier() string /* primitive/slice/pointer. */
+	SetIdentifier(value string /* primitive/slice/pointer. */)
+	IsActive() bool /* primitive/slice/pointer. */
+	SetIsActive(value bool /* primitive/slice/pointer. */)
+	Multiplier() float64 /* primitive/slice/pointer. */
+	SetMultiplier(value float64 /* primitive/slice/pointer. */)
 	Priority() unsafe.Pointer
 	SetPriority(value unsafe.Pointer)
 	Relation() unsafe.Pointer
 	SetRelation(value unsafe.Pointer)
-	SecondAnchor() NSLayoutAnchor
-	SetSecondAnchor(value ILayoutAnchor)
+	SecondAnchor() objc.IObject /* cross-framework: LayoutAnchor */
+	SetSecondAnchor(value objc.IObject /* cross-framework: LayoutAnchor */)
 	SecondAttribute() unsafe.Pointer
 	SetSecondAttribute(value unsafe.Pointer)
-	ShouldBeArchived() bool
-	SetShouldBeArchived(value bool)
+	SecondItem() unsafe.Pointer
+	SetSecondItem(value unsafe.Pointer)
+	ShouldBeArchived() bool /* primitive/slice/pointer. */
+	SetShouldBeArchived(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
@@ -110,21 +113,11 @@ func NewLayoutConstraint() LayoutConstraint {
 
 
 
-// The second object participating in the constraint.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/secondItem
-func (l_ LayoutConstraint) SecondItem() objc.ID {
-	rv := objc.Send[objc.ID](l_.ID, objc.Sel("secondItem"))
-	return rv
-}
-
-
 // The constant added to the multiplied second attribute participating in the constraint.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/constant
-func (l_ LayoutConstraint) Constant() float64 {
+func (l_ LayoutConstraint) Constant() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("constant"))
 	return rv
 }
@@ -134,7 +127,7 @@ func (l_ LayoutConstraint) Constant() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/constant
-func (l_ LayoutConstraint) SetConstant(value float64) {
+func (l_ LayoutConstraint) SetConstant(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstant:"), value)
 }
 
@@ -143,8 +136,8 @@ func (l_ LayoutConstraint) SetConstant(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/firstanchor
-func (l_ LayoutConstraint) FirstAnchor() NSLayoutAnchor {
-	rv := objc.Send[NSLayoutAnchor](l_.ID, objc.Sel("firstAnchor"))
+func (l_ LayoutConstraint) FirstAnchor() objc.IObject /* cross-framework: LayoutAnchor */ {
+	rv := objc.Send[LayoutAnchor](l_.ID, objc.Sel("firstAnchor"))
 	return rv
 }
 
@@ -153,7 +146,7 @@ func (l_ LayoutConstraint) FirstAnchor() NSLayoutAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/firstanchor
-func (l_ LayoutConstraint) SetFirstAnchor(value ILayoutAnchor) {
+func (l_ LayoutConstraint) SetFirstAnchor(value objc.IObject /* cross-framework: LayoutAnchor */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFirstAnchor:"), value)
 }
 
@@ -200,7 +193,7 @@ func (l_ LayoutConstraint) SetFirstItem(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/identifier
-func (l_ LayoutConstraint) Identifier() string {
+func (l_ LayoutConstraint) Identifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](l_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -210,7 +203,7 @@ func (l_ LayoutConstraint) Identifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/identifier
-func (l_ LayoutConstraint) SetIdentifier(value string) {
+func (l_ LayoutConstraint) SetIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
@@ -219,7 +212,7 @@ func (l_ LayoutConstraint) SetIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/isactive
-func (l_ LayoutConstraint) IsActive() bool {
+func (l_ LayoutConstraint) IsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -229,7 +222,7 @@ func (l_ LayoutConstraint) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/isactive
-func (l_ LayoutConstraint) SetIsActive(value bool) {
+func (l_ LayoutConstraint) SetIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsActive:"), value)
 }
 
@@ -238,7 +231,7 @@ func (l_ LayoutConstraint) SetIsActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/multiplier
-func (l_ LayoutConstraint) Multiplier() float64 {
+func (l_ LayoutConstraint) Multiplier() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](l_.ID, objc.Sel("multiplier"))
 	return rv
 }
@@ -248,7 +241,7 @@ func (l_ LayoutConstraint) Multiplier() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/multiplier
-func (l_ LayoutConstraint) SetMultiplier(value float64) {
+func (l_ LayoutConstraint) SetMultiplier(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMultiplier:"), value)
 }
 
@@ -295,8 +288,8 @@ func (l_ LayoutConstraint) SetRelation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/secondanchor
-func (l_ LayoutConstraint) SecondAnchor() NSLayoutAnchor {
-	rv := objc.Send[NSLayoutAnchor](l_.ID, objc.Sel("secondAnchor"))
+func (l_ LayoutConstraint) SecondAnchor() objc.IObject /* cross-framework: LayoutAnchor */ {
+	rv := objc.Send[LayoutAnchor](l_.ID, objc.Sel("secondAnchor"))
 	return rv
 }
 
@@ -305,7 +298,7 @@ func (l_ LayoutConstraint) SecondAnchor() NSLayoutAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/secondanchor
-func (l_ LayoutConstraint) SetSecondAnchor(value ILayoutAnchor) {
+func (l_ LayoutConstraint) SetSecondAnchor(value objc.IObject /* cross-framework: LayoutAnchor */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSecondAnchor:"), value)
 }
 
@@ -329,11 +322,30 @@ func (l_ LayoutConstraint) SetSecondAttribute(value unsafe.Pointer) {
 }
 
 
+// The second object participating in the constraint.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/seconditem
+func (l_ LayoutConstraint) SecondItem() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("secondItem"))
+	return rv
+}
+
+
+// The second object participating in the constraint.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/seconditem
+func (l_ LayoutConstraint) SetSecondItem(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setSecondItem:"), value)
+}
+
+
 // A Boolean value that determines whether the constraint should be archived by its owning view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/shouldbearchived
-func (l_ LayoutConstraint) ShouldBeArchived() bool {
+func (l_ LayoutConstraint) ShouldBeArchived() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](l_.ID, objc.Sel("shouldBeArchived"))
 	return rv
 }
@@ -343,7 +355,7 @@ func (l_ LayoutConstraint) ShouldBeArchived() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/shouldbearchived
-func (l_ LayoutConstraint) SetShouldBeArchived(value bool) {
+func (l_ LayoutConstraint) SetShouldBeArchived(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldBeArchived:"), value)
 }
 

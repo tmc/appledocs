@@ -34,8 +34,8 @@ type IHKCorrelation interface {
 	SetCorrelationType(value IHKCorrelationType)
 	Objects() IHKSample
 	SetObjects(value IHKSample)
-	HKMetadataKeyFoodType() string
-	HKPredicateKeyPathCorrelation() string
+	HKMetadataKeyFoodType() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathCorrelation() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -136,7 +136,7 @@ func (h_ HKCorrelation) SetObjects(value IHKSample) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype
-func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
+func (h_ HKCorrelation) HKMetadataKeyFoodType() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyFoodType"))
 	return rv
 }
@@ -146,7 +146,7 @@ func (h_ HKCorrelation) HKMetadataKeyFoodType() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation
-func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string {
+func (h_ HKCorrelation) HKPredicateKeyPathCorrelation() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCorrelation"))
 	return rv
 }

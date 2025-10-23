@@ -31,10 +31,10 @@ type _ILClassificationUIExtensionContextClass struct {
 type IILClassificationUIExtensionContext interface {
 	foundation.IExtensionContext
 	// properties:
-	ReadyForClassificationResponse() bool
-	SetReadyForClassificationResponse(value bool)
-	IsReadyForClassificationResponse() bool
-	SetIsReadyForClassificationResponse(value bool)
+	ReadyForClassificationResponse() bool /* primitive/slice/pointer. */
+	SetReadyForClassificationResponse(value bool /* primitive/slice/pointer. */)
+	IsReadyForClassificationResponse() bool /* primitive/slice/pointer. */
+	SetIsReadyForClassificationResponse(value bool /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -95,7 +95,7 @@ func NewILClassificationUIExtensionContext() ILClassificationUIExtensionContext 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse
-func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bool {
+func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("readyForClassificationResponse"))
 	return rv
 }
@@ -105,7 +105,7 @@ func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionContext/isReadyForClassificationResponse
-func (i_ ILClassificationUIExtensionContext) SetReadyForClassificationResponse(value bool) {
+func (i_ ILClassificationUIExtensionContext) SetReadyForClassificationResponse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReadyForClassificationResponse:"), value)
 }
 
@@ -114,7 +114,7 @@ func (i_ ILClassificationUIExtensionContext) SetReadyForClassificationResponse(v
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
-func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() bool {
+func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isReadyForClassificationResponse"))
 	return rv
 }
@@ -124,7 +124,7 @@ func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext/isreadyforclassificationresponse
-func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse(value bool) {
+func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReadyForClassificationResponse:"), value)
 }
 

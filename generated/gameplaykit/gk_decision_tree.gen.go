@@ -31,13 +31,15 @@ type _DecisionTreeClass struct {
 // An interface definition for the [DecisionTree] class.
 type IDecisionTree interface {
 	objectivec.IObject
+	// properties:
 	RandomSource() IGKRandomSource
 	SetRandomSource(value IGKRandomSource)
 	RootNode() IGKDecisionNode
-	Description() string
-	SetDescription(value string)
-	ExportToURLError(url foundation.URL, error_ foundation.Error) bool
-	FindActionForAnswers(answers foundation.IDictionary) objc.ID
+	Description() string /* primitive/slice/pointer. */
+	SetDescription(value string /* primitive/slice/pointer. */)
+	// methods:
+	ExportToURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) bool /* primitive/slice/pointer. */
+	FindActionForAnswers(answers foundation.IDictionary /* already interface */) objc.ID
 }
 
 // A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
@@ -109,7 +111,7 @@ func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.Array, actions []objc.ID, attributes []objc.ID) DecisionTree {
+func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.objc.IObject /* cross-framework Array */, actions []objc.ID /* already interface */, attributes []objc.ID /* already interface */) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
 	rv.Autorelease()
@@ -119,7 +121,7 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.Array, a
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url foundation.URL, error_ foundation.Error) DecisionTree {
+func NewDecisionTreeWithURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -130,7 +132,7 @@ func NewDecisionTreeWithURLError(url foundation.URL, error_ foundation.Error) De
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-func (d_ DecisionTree) ExportToURLError(url foundation.URL, error_ foundation.Error) bool {
+func (d_ DecisionTree) ExportToURLError(url foundation.objc.IObject /* cross-framework URL */, error_ Error /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
@@ -140,7 +142,7 @@ func (d_ DecisionTree) ExportToURLError(url foundation.URL, error_ foundation.Er
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/findAction(forAnswers:)
-func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary) objc.ID {
+func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary /* already interface */) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
 }
@@ -179,7 +181,7 @@ func (d_ DecisionTree) RootNode() IGKDecisionNode {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) Description() string {
+func (d_ DecisionTree) Description() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (d_ DecisionTree) Description() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) SetDescription(value string) {
+func (d_ DecisionTree) SetDescription(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
 }
 

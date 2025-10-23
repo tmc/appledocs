@@ -29,7 +29,9 @@ type _LightweightMigrationStageClass struct {
 // An interface definition for the [LightweightMigrationStage] class.
 type ILightweightMigrationStage interface {
 	IMigrationStage
-	VersionChecksums() []string
+	// properties:
+	VersionChecksums() []string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that describes a series of models suitable for lightweight migration.
@@ -91,7 +93,7 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSLightweightMigrationStage/versionChecksums
-func (l_ LightweightMigrationStage) VersionChecksums() []string {
+func (l_ LightweightMigrationStage) VersionChecksums() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](l_.ID, objc.Sel("versionChecksums"))
 	return rv
 }

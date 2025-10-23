@@ -30,9 +30,11 @@ type _EKVirtualConferenceDescriptorClass struct {
 // An interface definition for the [EKVirtualConferenceDescriptor] class.
 type IEKVirtualConferenceDescriptor interface {
 	objectivec.IObject
-	ConferenceDetails() string
-	Title() string
-	URLDescriptors() []EKVirtualConferenceURLDescriptor
+	// properties:
+	ConferenceDetails() string /* primitive/slice/pointer. */
+	Title() string /* primitive/slice/pointer. */
+	URLDescriptors() []EKVirtualConferenceURLDescriptor /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Details about a virtual conference that uses a custom room type.
@@ -92,7 +94,7 @@ func NewEKVirtualConferenceDescriptor() EKVirtualConferenceDescriptor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/init(title:urlDescriptors:conferenceDetails:)
-func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title string, URLDescriptors []EKVirtualConferenceURLDescriptor, conferenceDetails string) EKVirtualConferenceDescriptor {
+func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title string /* primitive/slice/pointer. */, URLDescriptors []EKVirtualConferenceURLDescriptor /* primitive/slice/pointer. */, conferenceDetails string /* primitive/slice/pointer. */) EKVirtualConferenceDescriptor {
 	instance := getEKVirtualConferenceDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceDescriptor](instance.ID, objc.Sel("initWithTitle:URLDescriptors:conferenceDetails:"), objc.String(title), URLDescriptors, objc.String(conferenceDetails))
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(ti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/conferenceDetails
-func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
+func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/title
-func (e_ EKVirtualConferenceDescriptor) Title() string {
+func (e_ EKVirtualConferenceDescriptor) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (e_ EKVirtualConferenceDescriptor) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/urlDescriptors
-func (e_ EKVirtualConferenceDescriptor) URLDescriptors() []EKVirtualConferenceURLDescriptor {
+func (e_ EKVirtualConferenceDescriptor) URLDescriptors() []EKVirtualConferenceURLDescriptor /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]EKVirtualConferenceURLDescriptor](e_.ID, objc.Sel("URLDescriptors"))
 	return rv
 }

@@ -29,8 +29,10 @@ type _DDMatchPhoneNumberClass struct {
 // An interface definition for the [DDMatchPhoneNumber] class.
 type IDDMatchPhoneNumber interface {
 	IDDMatch
-	Label() string
-	PhoneNumber() string
+	// properties:
+	Label() string /* primitive/slice/pointer. */
+	PhoneNumber() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains a phone number that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchPhoneNumber() DDMatchPhoneNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/label
-func (d_ DDMatchPhoneNumber) Label() string {
+func (d_ DDMatchPhoneNumber) Label() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("label"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (d_ DDMatchPhoneNumber) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPhoneNumber/phoneNumber
-func (d_ DDMatchPhoneNumber) PhoneNumber() string {
+func (d_ DDMatchPhoneNumber) PhoneNumber() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("phoneNumber"))
 	return rv
 }

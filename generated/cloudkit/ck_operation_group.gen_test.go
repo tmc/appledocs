@@ -15,3 +15,11 @@ func ExampleNewCKOperationGroup() {
 	_ = cloudkit.NewCKOperationGroup()
 	// Output:
 }
+// ExampleNewCKOperationGroupWithCoder demonstrates how to create a CKOperationGroup instance using NewCKOperationGroupWithCoder.
+// Creates an operation group from a serialized instance.
+func ExampleNewCKOperationGroupWithCoder() {
+	_ = cloudkit.NewCKOperationGroupWithCoder(
+		cloudkit.Coder{}, // aDecoder Coder
+	)
+	// Output:
+}

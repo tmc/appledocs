@@ -32,6 +32,8 @@ type _ImageProcessorKernelClass struct {
 // An interface definition for the [ImageProcessorKernel] class.
 type IImageProcessorKernel interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract class you extend to create custom image processors that can integrate with Core Image workflows.
@@ -91,7 +93,7 @@ func NewImageProcessorKernel() ImageProcessorKernel {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtent:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs []Image, arguments foundation.IDictionary, error_ unsafe.Pointer) IImage {
+func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs []Image /* primitive/slice/pointer. */, arguments foundation.IDictionary /* already interface */, error_ unsafe.Pointer) IImage {
 	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error_)
 	return rv
 }
@@ -101,7 +103,7 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtents:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents []Vector, inputs []Image, arguments foundation.IDictionary, error_ unsafe.Pointer) []Image {
+func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents []Vector /* primitive/slice/pointer. */, inputs []Image /* primitive/slice/pointer. */, arguments foundation.IDictionary /* already interface */, error_ unsafe.Pointer) []Image /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error_)
 	return rv
 }
@@ -111,7 +113,7 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/formatForInput(at:)
-func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) Format {
+func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Format */ {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
 	return rv
 }
@@ -121,7 +123,7 @@ func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex int) Forma
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat(at:arguments:)
-func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex int, arguments foundation.IDictionary) Format {
+func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex int /* primitive/slice/pointer. */, arguments foundation.IDictionary /* already interface */) objc.IObject /* cross-framework: Format */ {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
 	return rv
 }
@@ -131,7 +133,7 @@ func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex in
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs []objc.ID, arguments foundation.IDictionary, output objectivec.IObject, error_ unsafe.Pointer) bool {
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs []objc.ID /* already interface */, arguments foundation.IDictionary /* already interface */, output objectivec.IObject, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error_)
 	return rv
 }
@@ -141,7 +143,7 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(input
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:outputs:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs []objc.ID, arguments foundation.IDictionary, outputs []objc.ID, error_ unsafe.Pointer) bool {
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs []objc.ID /* already interface */, arguments foundation.IDictionary /* already interface */, outputs []objc.ID /* already interface */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error_)
 	return rv
 }
@@ -151,7 +153,7 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inpu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roi(forInput:arguments:outputRect:)
-func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex int, arguments foundation.IDictionary, outputRect coregraphics.CGRect) coregraphics.CGRect {
+func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex int /* primitive/slice/pointer. */, arguments foundation.IDictionary /* already interface */, outputRect coregraphics.CGRect) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](objc.ID(ic.class), objc.Sel("roiForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }
@@ -161,7 +163,7 @@ func (ic _ImageProcessorKernelClass) RoiForInputArgumentsOutputRect(inputIndex i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/roiTileArray(forInput:arguments:outputRect:)
-func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int, arguments foundation.IDictionary, outputRect coregraphics.CGRect) []Vector {
+func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inputIndex int /* primitive/slice/pointer. */, arguments foundation.IDictionary /* already interface */, outputRect coregraphics.CGRect) []Vector /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Vector](objc.ID(ic.class), objc.Sel("roiTileArrayForInput:arguments:outputRect:"), inputIndex, arguments, outputRect)
 	return rv
 }
@@ -171,7 +173,7 @@ func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-func (ic _ImageProcessorKernelClass) OutputFormat() Format {
+func (ic _ImageProcessorKernelClass) OutputFormat() objc.IObject /* cross-framework: Format */ {
 	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormat"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (ic _ImageProcessorKernelClass) OutputFormat() Format {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
-func (ic _ImageProcessorKernelClass) OutputIsOpaque() bool {
+func (ic _ImageProcessorKernelClass) OutputIsOpaque() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("outputIsOpaque"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (ic _ImageProcessorKernelClass) OutputIsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
-func (ic _ImageProcessorKernelClass) SynchronizeInputs() bool {
+func (ic _ImageProcessorKernelClass) SynchronizeInputs() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("synchronizeInputs"))
 	return rv
 }
@@ -198,7 +200,7 @@ func (ic _ImageProcessorKernelClass) SynchronizeInputs() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-func (i_ ImageProcessorKernel) OutputFormat() Format {
+func (i_ ImageProcessorKernel) OutputFormat() objc.IObject /* cross-framework: Format */ {
 	rv := objc.Send[Format](i_.ID, objc.Sel("outputFormat"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (i_ ImageProcessorKernel) OutputFormat() Format {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputIsOpaque
-func (i_ ImageProcessorKernel) OutputIsOpaque() bool {
+func (i_ ImageProcessorKernel) OutputIsOpaque() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("outputIsOpaque"))
 	return rv
 }
@@ -218,7 +220,7 @@ func (i_ ImageProcessorKernel) OutputIsOpaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/synchronizeInputs
-func (i_ ImageProcessorKernel) SynchronizeInputs() bool {
+func (i_ ImageProcessorKernel) SynchronizeInputs() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("synchronizeInputs"))
 	return rv
 }

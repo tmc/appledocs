@@ -30,14 +30,16 @@ type _TextTabClass struct {
 // An interface definition for the [TextTab] class.
 type ITextTab interface {
 	objectivec.IObject
+	// properties:
 	Alignment() TextAlignment
-	SetAlignment(value ITextAlignment)
-	Location() float64
-	SetLocation(value float64)
+	SetAlignment(value TextAlignment)
+	Location() float64 /* primitive/slice/pointer. */
+	SetLocation(value float64 /* primitive/slice/pointer. */)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
-	TabStopType() unsafe.Pointer
-	SetTabStopType(value unsafe.Pointer)
+	TabStopType() TextTabType
+	SetTabStopType(value TextTabType)
+	// methods:
 }
 
 // A tab in a paragraph.
@@ -93,6 +95,16 @@ func NewTextTab() TextTab {
 
 
 
+// Returns the column terminators for the specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTab/columnTerminators(for:)
+func (tc _TextTabClass) ColumnTerminatorsForLocale(aLocale objc.IObject /* cross-framework Locale */) objc.IObject /* cross-framework: CharacterSet */ {
+	rv := objc.Send[CharacterSet](objc.ID(tc.class), objc.Sel("columnTerminatorsForLocale:"), aLocale)
+	return rv
+}
+
+
 // The text alignment of the text tab.
 //
 // [Full Topic]
@@ -107,7 +119,7 @@ func (t_ TextTab) Alignment() TextAlignment {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/alignment
-func (t_ TextTab) SetAlignment(value ITextAlignment) {
+func (t_ TextTab) SetAlignment(value TextAlignment) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignment:"), value)
 }
 
@@ -116,7 +128,7 @@ func (t_ TextTab) SetAlignment(value ITextAlignment) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
-func (t_ TextTab) Location() float64 {
+func (t_ TextTab) Location() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("location"))
 	return rv
 }
@@ -126,7 +138,7 @@ func (t_ TextTab) Location() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/location
-func (t_ TextTab) SetLocation(value float64) {
+func (t_ TextTab) SetLocation(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocation:"), value)
 }
 
@@ -154,8 +166,8 @@ func (t_ TextTab) SetOptions(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
-func (t_ TextTab) TabStopType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tabStopType"))
+func (t_ TextTab) TabStopType() TextTabType {
+	rv := objc.Send[TextTabType](t_.ID, objc.Sel("tabStopType"))
 	return rv
 }
 
@@ -164,7 +176,7 @@ func (t_ TextTab) TabStopType() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttab/tabstoptype
-func (t_ TextTab) SetTabStopType(value unsafe.Pointer) {
+func (t_ TextTab) SetTabStopType(value TextTabType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabStopType:"), value)
 }
 

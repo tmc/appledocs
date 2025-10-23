@@ -30,8 +30,10 @@ type _CKSyncEngineFetchChangesContextClass struct {
 // An interface definition for the [CKSyncEngineFetchChangesContext] class.
 type ICKSyncEngineFetchChangesContext interface {
 	objectivec.IObject
+	// properties:
 	Options() ICKSyncEngineFetchChangesOptions
 	Reason() unsafe.Pointer
+	// methods:
 }
 
 

@@ -30,10 +30,12 @@ type _FriendRequestComposeViewControllerClass struct {
 // An interface definition for the [FriendRequestComposeViewController] class.
 type IFriendRequestComposeViewController interface {
 	appkit.IViewController
-	ComposeViewDelegate() unsafe.Pointer
-	SetComposeViewDelegate(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	ComposeViewDelegate() FriendRequestComposeViewControllerDelegate /* not a class type */
+	SetComposeViewDelegate(value FriendRequestComposeViewControllerDelegate /* not a class type */)
+	Delegate() ObjectProtocol /* not a class type */
+	SetDelegate(value ObjectProtocol /* not a class type */)
+	// methods:
 }
 
 // Your game uses the class to present a screen that allows the local player to send friend requests to other players.
@@ -95,8 +97,8 @@ func NewFriendRequestComposeViewController() FriendRequestComposeViewController 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller/composeviewdelegate
-func (f_ FriendRequestComposeViewController) ComposeViewDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("composeViewDelegate"))
+func (f_ FriendRequestComposeViewController) ComposeViewDelegate() FriendRequestComposeViewControllerDelegate /* not a class type */ {
+	rv := objc.Send[FriendRequestComposeViewControllerDelegate](f_.ID, objc.Sel("composeViewDelegate"))
 	return rv
 }
 
@@ -105,7 +107,7 @@ func (f_ FriendRequestComposeViewController) ComposeViewDelegate() unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller/composeviewdelegate
-func (f_ FriendRequestComposeViewController) SetComposeViewDelegate(value unsafe.Pointer) {
+func (f_ FriendRequestComposeViewController) SetComposeViewDelegate(value FriendRequestComposeViewControllerDelegate /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setComposeViewDelegate:"), value)
 }
 
@@ -114,8 +116,8 @@ func (f_ FriendRequestComposeViewController) SetComposeViewDelegate(value unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (f_ FriendRequestComposeViewController) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
+func (f_ FriendRequestComposeViewController) Delegate() ObjectProtocol /* not a class type */ {
+	rv := objc.Send[ObjectProtocol](f_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -124,7 +126,7 @@ func (f_ FriendRequestComposeViewController) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate
-func (f_ FriendRequestComposeViewController) SetDelegate(value unsafe.Pointer) {
+func (f_ FriendRequestComposeViewController) SetDelegate(value ObjectProtocol /* not a class type */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 

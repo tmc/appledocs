@@ -30,16 +30,18 @@ type _MIDICIDeviceClass struct {
 // An interface definition for the [MIDICIDevice] class.
 type IMIDICIDevice interface {
 	objectivec.IObject
+	// properties:
 	DeviceInfo() IMIDI2DeviceInfo
 	DeviceType() MIDICIDeviceType
-	MaxPropertyExchangeRequests() uint
-	MaxSysExSize() uint
-	MUID() MIDICIMUID
-	Profiles() []MIDIUMPCIProfile
-	SupportsProcessInquiry() bool
-	SupportsProfileConfiguration() bool
-	SupportsPropertyExchange() bool
-	SupportsProtocolNegotiation() bool
+	MaxPropertyExchangeRequests() uint /* primitive/slice/pointer. */
+	MaxSysExSize() uint /* primitive/slice/pointer. */
+	MUID() MIDICIMUID /* typedef */
+	Profiles() []MIDIUMPCIProfile /* primitive/slice/pointer. */
+	SupportsProcessInquiry() bool /* primitive/slice/pointer. */
+	SupportsProfileConfiguration() bool /* primitive/slice/pointer. */
+	SupportsPropertyExchange() bool /* primitive/slice/pointer. */
+	SupportsProtocolNegotiation() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -106,7 +108,7 @@ func (m_ MIDICIDevice) DeviceType() MIDICIDeviceType {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxPropertyExchangeRequests
-func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint {
+func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxPropertyExchangeRequests"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (m_ MIDICIDevice) MaxPropertyExchangeRequests() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/maxSysExSize
-func (m_ MIDICIDevice) MaxSysExSize() uint {
+func (m_ MIDICIDevice) MaxSysExSize() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](m_.ID, objc.Sel("maxSysExSize"))
 	return rv
 }
@@ -122,7 +124,7 @@ func (m_ MIDICIDevice) MaxSysExSize() uint {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/muid
-func (m_ MIDICIDevice) MUID() MIDICIMUID {
+func (m_ MIDICIDevice) MUID() MIDICIMUID /* typedef */ {
 	rv := objc.Send[MIDICIMUID](m_.ID, objc.Sel("MUID"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (m_ MIDICIDevice) MUID() MIDICIMUID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/profiles
-func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile {
+func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MIDIUMPCIProfile](m_.ID, objc.Sel("profiles"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (m_ MIDICIDevice) Profiles() []MIDIUMPCIProfile {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProcessInquiry
-func (m_ MIDICIDevice) SupportsProcessInquiry() bool {
+func (m_ MIDICIDevice) SupportsProcessInquiry() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProcessInquiry"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (m_ MIDICIDevice) SupportsProcessInquiry() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProfileConfiguration
-func (m_ MIDICIDevice) SupportsProfileConfiguration() bool {
+func (m_ MIDICIDevice) SupportsProfileConfiguration() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileConfiguration"))
 	return rv
 }
@@ -154,7 +156,7 @@ func (m_ MIDICIDevice) SupportsProfileConfiguration() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsPropertyExchange
-func (m_ MIDICIDevice) SupportsPropertyExchange() bool {
+func (m_ MIDICIDevice) SupportsPropertyExchange() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyExchange"))
 	return rv
 }
@@ -162,7 +164,7 @@ func (m_ MIDICIDevice) SupportsPropertyExchange() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/supportsProtocolNegotiation
-func (m_ MIDICIDevice) SupportsProtocolNegotiation() bool {
+func (m_ MIDICIDevice) SupportsProtocolNegotiation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProtocolNegotiation"))
 	return rv
 }

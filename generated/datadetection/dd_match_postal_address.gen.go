@@ -29,11 +29,13 @@ type _DDMatchPostalAddressClass struct {
 // An interface definition for the [DDMatchPostalAddress] class.
 type IDDMatchPostalAddress interface {
 	IDDMatch
-	City() string
-	Country() string
-	PostalCode() string
-	State() string
-	Street() string
+	// properties:
+	City() string /* primitive/slice/pointer. */
+	Country() string /* primitive/slice/pointer. */
+	PostalCode() string /* primitive/slice/pointer. */
+	State() string /* primitive/slice/pointer. */
+	Street() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains a postal address that the data detection system matches.
@@ -95,7 +97,7 @@ func NewDDMatchPostalAddress() DDMatchPostalAddress {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/city
-func (d_ DDMatchPostalAddress) City() string {
+func (d_ DDMatchPostalAddress) City() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("city"))
 	return rv
 }
@@ -105,7 +107,7 @@ func (d_ DDMatchPostalAddress) City() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/country
-func (d_ DDMatchPostalAddress) Country() string {
+func (d_ DDMatchPostalAddress) Country() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("country"))
 	return rv
 }
@@ -115,7 +117,7 @@ func (d_ DDMatchPostalAddress) Country() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/postalCode
-func (d_ DDMatchPostalAddress) PostalCode() string {
+func (d_ DDMatchPostalAddress) PostalCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("postalCode"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (d_ DDMatchPostalAddress) PostalCode() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/state
-func (d_ DDMatchPostalAddress) State() string {
+func (d_ DDMatchPostalAddress) State() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("state"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (d_ DDMatchPostalAddress) State() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchPostalAddress/street
-func (d_ DDMatchPostalAddress) Street() string {
+func (d_ DDMatchPostalAddress) Street() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("street"))
 	return rv
 }

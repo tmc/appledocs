@@ -32,8 +32,8 @@ type _CaptureDeviceDiscoverySessionClass struct {
 type ICaptureDeviceDiscoverySession interface {
 	objectivec.IObject
 	// properties:
-	Devices() []CaptureDevice /* primitive/slice/pointer */
-	SupportedMultiCamDeviceSets() []foundation.Set /* not a class type */
+	Devices() []CaptureDevice /* primitive/slice/pointer. */
+	SupportedMultiCamDeviceSets() objc.IObject /* cross-framework: Set */
 	// methods:
 }
 
@@ -94,7 +94,7 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string /* primitive/slice/pointer */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
+func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string /* primitive/slice/pointer. */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(getCaptureDeviceDiscoverySessionClass().class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
@@ -105,7 +105,7 @@ func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string /* primitive/slice/pointer */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) unsafe.Pointer {
+func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string /* primitive/slice/pointer. */, mediaType MediaType /* not a class type */, position CaptureDevicePosition) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
@@ -115,7 +115,7 @@ func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMed
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/devices
-func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice /* primitive/slice/pointer */ {
+func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("devices"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/supportedMultiCamDeviceSets
-func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() []foundation.Set /* not a class type */ {
+func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() objc.IObject /* cross-framework: Set */ {
 	rv := objc.Send[[]foundation.Set](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
 	return rv
 }

@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,16 +30,12 @@ type _GradientClass struct {
 // An interface definition for the [Gradient] class.
 type IGradient interface {
 	objectivec.IObject
-	DrawFromPointToPointOptions(startingPoint coregraphics.CGPoint, endingPoint coregraphics.CGPoint, options GradientDrawingOptions)
-	DrawFromCenterRadiusToCenterRadiusOptions(startCenter coregraphics.CGPoint, startRadius float64, endCenter coregraphics.CGPoint, endRadius float64, options GradientDrawingOptions)
-	DrawInBezierPathAngle(path IBezierPath, angle float64)
-	DrawInRectAngle(rect coregraphics.CGRect, angle float64)
-	DrawInRectRelativeCenterPosition(rect coregraphics.CGRect, relativeCenterPosition coregraphics.CGPoint)
-	DrawInBezierPathRelativeCenterPosition(path IBezierPath, relativeCenterPosition coregraphics.CGPoint)
-	GetColorLocationAtIndex(color IColor, location coregraphics.float64, index int)
-	InterpolatedColorAtLocation(location float64) Color
-	ColorSpace() NSColorSpace
-	NumberOfColorStops() int
+	// properties:
+	ColorSpace() IColorSpace
+	SetColorSpace(value IColorSpace)
+	NumberOfColorStops() int /* primitive/slice/pointer. */
+	SetNumberOfColorStops(value int /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that can draw gradient fill colors
@@ -97,136 +91,12 @@ func NewGradient() Gradient {
 
 
 
-// Creates a gradient from data in an unarchiver.
+// The color space of the colors associated with the gradient.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(coder:)
-func NewGradientWithCoder(coder foundation.ICoder) Gradient {
-	instance := getGradientClass().Alloc()
-	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a newly allocated gradient object with an array of colors.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(colors:)
-func NewGradientWithColors(colorArray []Color) Gradient {
-	instance := getGradientClass().Alloc()
-	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithColors:"), colorArray)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a newly allocated gradient object with a comma-separated list of arguments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/initWithColorsAndLocations:
-func NewGradientWithColorsAndLocations(firstColor IColor) Gradient {
-	instance := getGradientClass().Alloc()
-	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithColorsAndLocations:"), firstColor)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a newly allocated gradient object with the specified colors, color locations, and color space.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(colors:atLocations:colorSpace:)
-func NewGradientWithColorsAtLocationsColorSpace(colorArray []Color, locations coregraphics.float64, colorSpace IColorSpace) Gradient {
-	instance := getGradientClass().Alloc()
-	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithColors:atLocations:colorSpace:"), colorArray, locations, colorSpace)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Initializes a newly allocated gradient object with two colors.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(starting:ending:)
-func NewGradientWithStartingColorEndingColor(startingColor IColor, endingColor IColor) Gradient {
-	instance := getGradientClass().Alloc()
-	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithStartingColor:endingColor:"), startingColor, endingColor)
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Draws a linear gradient between the specified start and end points.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(from:to:options:)
-func (g_ Gradient) DrawFromPointToPointOptions(startingPoint coregraphics.CGPoint, endingPoint coregraphics.CGPoint, options GradientDrawingOptions) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawFromPoint:toPoint:options:"), startingPoint, endingPoint, options)
-}
-
-
-// Draws a radial gradient between the specified circles.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(fromCenter:radius:toCenter:radius:options:)
-func (g_ Gradient) DrawFromCenterRadiusToCenterRadiusOptions(startCenter coregraphics.CGPoint, startRadius float64, endCenter coregraphics.CGPoint, endRadius float64, options GradientDrawingOptions) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawFromCenter:radius:toCenter:radius:options:"), startCenter, startRadius, endCenter, endRadius, options)
-}
-
-
-// Fills the specified path with a linear gradient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(in:angle:)-68adz
-func (g_ Gradient) DrawInBezierPathAngle(path IBezierPath, angle float64) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawInBezierPath:angle:"), path, angle)
-}
-
-
-// Fills the specified rectangle with a linear gradient.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(in:angle:)-7sdyh
-func (g_ Gradient) DrawInRectAngle(rect coregraphics.CGRect, angle float64) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawInRect:angle:"), rect, angle)
-}
-
-
-// Draws a radial gradient starting at the center of the specified rectangle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(in:relativeCenterPosition:)-3a83
-func (g_ Gradient) DrawInRectRelativeCenterPosition(rect coregraphics.CGRect, relativeCenterPosition coregraphics.CGPoint) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawInRect:relativeCenterPosition:"), rect, relativeCenterPosition)
-}
-
-
-// Draws a radial gradient starting at the center point of the specified path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/draw(in:relativeCenterPosition:)-502cc
-func (g_ Gradient) DrawInBezierPathRelativeCenterPosition(path IBezierPath, relativeCenterPosition coregraphics.CGPoint) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("drawInBezierPath:relativeCenterPosition:"), path, relativeCenterPosition)
-}
-
-
-// Returns information about the color stop at the specified index in the receiver’s color array.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/getColor(_:location:at:)
-func (g_ Gradient) GetColorLocationAtIndex(color IColor, location coregraphics.float64, index int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("getColor:location:atIndex:"), color, location, index)
-}
-
-
-// Returns the color of the rendered gradient at the specified relative location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/interpolatedColor(atLocation:)
-func (g_ Gradient) InterpolatedColorAtLocation(location float64) Color {
-	rv := objc.Send[Color](g_.ID, objc.Sel("interpolatedColorAtLocation:"), location)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/colorspace
+func (g_ Gradient) ColorSpace() IColorSpace {
+	rv := objc.Send[ColorSpace](g_.ID, objc.Sel("colorSpace"))
 	return rv
 }
 
@@ -234,9 +104,18 @@ func (g_ Gradient) InterpolatedColorAtLocation(location float64) Color {
 // The color space of the colors associated with the gradient.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/colorSpace
-func (g_ Gradient) ColorSpace() NSColorSpace {
-	rv := objc.Send[NSColorSpace](g_.ID, objc.Sel("colorSpace"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/colorspace
+func (g_ Gradient) SetColorSpace(value IColorSpace) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setColorSpace:"), value)
+}
+
+
+// The number of color stops associated with the gradient.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/numberofcolorstops
+func (g_ Gradient) NumberOfColorStops() int /* primitive/slice/pointer. */ {
+	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColorStops"))
 	return rv
 }
 
@@ -244,10 +123,10 @@ func (g_ Gradient) ColorSpace() NSColorSpace {
 // The number of color stops associated with the gradient.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/numberOfColorStops
-func (g_ Gradient) NumberOfColorStops() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("numberOfColorStops"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgradient/numberofcolorstops
+func (g_ Gradient) SetNumberOfColorStops(value int /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfColorStops:"), value)
 }
+
 
 

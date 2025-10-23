@@ -30,10 +30,12 @@ type _PathComponentCellClass struct {
 // An interface definition for the [PathComponentCell] class.
 type IPathComponentCell interface {
 	ITextFieldCell
-	Image() Image
+	// properties:
+	Image() IImage
 	SetImage(value IImage)
-	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // A component of a path.
@@ -95,7 +97,7 @@ func NewPathComponentCell() PathComponentCell {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
-func (p_ PathComponentCell) Image() Image {
+func (p_ PathComponentCell) Image() IImage {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
 }
@@ -114,7 +116,7 @@ func (p_ PathComponentCell) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) Url() foundation.URL {
+func (p_ PathComponentCell) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -124,7 +126,7 @@ func (p_ PathComponentCell) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) SetUrl(value foundation.IURL) {
+func (p_ PathComponentCell) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

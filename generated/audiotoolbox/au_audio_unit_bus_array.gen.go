@@ -30,21 +30,23 @@ type _AudioUnitBusArrayClass struct {
 // An interface definition for the [AudioUnitBusArray] class.
 type IAudioUnitBusArray interface {
 	objectivec.IObject
-	BusType() AUAudioUnitBusType
-	Count() uint
-	CountChangeable() bool
+	// properties:
+	BusType() AudioUnitBusType
+	Count() uint /* primitive/slice/pointer. */
+	CountChangeable() bool /* primitive/slice/pointer. */
 	OwnerAudioUnit() IAUAudioUnit
 	InputBusses() IAUAudioUnitBusArray
 	SetInputBusses(value IAUAudioUnitBusArray)
 	OutputBusses() IAUAudioUnitBusArray
 	SetOutputBusses(value IAUAudioUnitBusArray)
-	IsCountChangeable() bool
-	SetIsCountChangeable(value bool)
-	AddObserverToAllBussesForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
-	RemoveObserverFromAllBussesForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer)
-	ReplaceBusses(busArray []AudioUnitBus)
-	SetBusCountError(count uint, outError unsafe.Pointer) bool
-	ObjectAtIndexedSubscript(index uint) IAudioUnitBus
+	IsCountChangeable() bool /* primitive/slice/pointer. */
+	SetIsCountChangeable(value bool /* primitive/slice/pointer. */)
+	// methods:
+	AddObserverToAllBussesForKeyPathOptionsContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer. */, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer)
+	RemoveObserverFromAllBussesForKeyPathContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer. */, context unsafe.Pointer)
+	ReplaceBusses(busArray []AudioUnitBus /* primitive/slice/pointer. */)
+	SetBusCountError(count uint /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */
+	ObjectAtIndexedSubscript(index uint /* primitive/slice/pointer. */) IAudioUnitBus
 }
 
 // A class that defines a container for an audio unit’s input or output busses.
@@ -104,7 +106,7 @@ func NewAudioUnitBusArray() AudioUnitBusArray {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)
-func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AUAudioUnitBusType) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AudioUnitBusType) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:"), owner, busType)
 	rv.Autorelease()
@@ -116,7 +118,7 @@ func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AUAudi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)
-func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType AUAudioUnitBusType, busArray []AudioUnitBus) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType AudioUnitBusType, busArray []AudioUnitBus /* primitive/slice/pointer. */) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:busses:"), owner, busType, busArray)
 	rv.Autorelease()
@@ -129,7 +131,7 @@ func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)
-func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer objectivec.IObject, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
+func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer. */, options KeyValueObservingOptions /* not a class type */, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObserverToAllBusses:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
 }
 
@@ -138,7 +140,7 @@ func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(obser
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)
-func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer objectivec.IObject, keyPath string, context unsafe.Pointer) {
+func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer objectivec.IObject, keyPath string /* primitive/slice/pointer. */, context unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserverFromAllBusses:forKeyPath:context:"), observer, objc.String(keyPath), context)
 }
 
@@ -147,7 +149,7 @@ func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)
-func (a_ AudioUnitBusArray) ReplaceBusses(busArray []AudioUnitBus) {
+func (a_ AudioUnitBusArray) ReplaceBusses(busArray []AudioUnitBus /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("replaceBusses:"), busArray)
 }
 
@@ -156,7 +158,7 @@ func (a_ AudioUnitBusArray) ReplaceBusses(busArray []AudioUnitBus) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/setBusCount(_:)
-func (a_ AudioUnitBusArray) SetBusCountError(count uint, outError unsafe.Pointer) bool {
+func (a_ AudioUnitBusArray) SetBusCountError(count uint /* primitive/slice/pointer. */, outError unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setBusCount:error:"), count, outError)
 	return rv
 }
@@ -166,7 +168,7 @@ func (a_ AudioUnitBusArray) SetBusCountError(count uint, outError unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)
-func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) IAudioUnitBus {
+func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint /* primitive/slice/pointer. */) IAudioUnitBus {
 	rv := objc.Send[AudioUnitBus](a_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
 }
@@ -176,8 +178,8 @@ func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) IAudioUnitBus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/busType
-func (a_ AudioUnitBusArray) BusType() AUAudioUnitBusType {
-	rv := objc.Send[AUAudioUnitBusType](a_.ID, objc.Sel("busType"))
+func (a_ AudioUnitBusArray) BusType() AudioUnitBusType {
+	rv := objc.Send[AudioUnitBusType](a_.ID, objc.Sel("busType"))
 	return rv
 }
 
@@ -186,7 +188,7 @@ func (a_ AudioUnitBusArray) BusType() AUAudioUnitBusType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/count
-func (a_ AudioUnitBusArray) Count() uint {
+func (a_ AudioUnitBusArray) Count() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](a_.ID, objc.Sel("count"))
 	return rv
 }
@@ -196,7 +198,7 @@ func (a_ AudioUnitBusArray) Count() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/isCountChangeable
-func (a_ AudioUnitBusArray) CountChangeable() bool {
+func (a_ AudioUnitBusArray) CountChangeable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("countChangeable"))
 	return rv
 }
@@ -254,7 +256,7 @@ func (a_ AudioUnitBusArray) SetOutputBusses(value IAUAudioUnitBusArray) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
-func (a_ AudioUnitBusArray) IsCountChangeable() bool {
+func (a_ AudioUnitBusArray) IsCountChangeable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isCountChangeable"))
 	return rv
 }
@@ -264,7 +266,7 @@ func (a_ AudioUnitBusArray) IsCountChangeable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray/iscountchangeable
-func (a_ AudioUnitBusArray) SetIsCountChangeable(value bool) {
+func (a_ AudioUnitBusArray) SetIsCountChangeable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsCountChangeable:"), value)
 }
 

@@ -31,11 +31,13 @@ type _EntityClass struct {
 // An interface definition for the [Entity] class.
 type IEntity interface {
 	objectivec.IObject
-	Components() []Component
+	// properties:
+	Components() []Component /* primitive/slice/pointer. */
+	// methods:
 	AddComponent(component IGKComponent)
 	ComponentForClass(componentClass objc.Class) IComponent
 	RemoveComponentForClass(componentClass objc.Class)
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */)
 }
 
 // An object relevant to gameplay, with functionality entirely provided by a collection of component objects.
@@ -134,7 +136,7 @@ func (e_ Entity) RemoveComponentForClass(componentClass objc.Class) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/update(deltaTime:)
-func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -143,7 +145,7 @@ func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/components
-func (e_ Entity) Components() []Component {
+func (e_ Entity) Components() []Component /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]Component](e_.ID, objc.Sel("components"))
 	return rv
 }

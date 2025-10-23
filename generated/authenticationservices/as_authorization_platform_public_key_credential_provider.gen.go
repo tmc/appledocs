@@ -30,8 +30,10 @@ type _AuthorizationPlatformPublicKeyCredentialProviderClass struct {
 // An interface definition for the [AuthorizationPlatformPublicKeyCredentialProvider] class.
 type IAuthorizationPlatformPublicKeyCredentialProvider interface {
 	objectivec.IObject
-	RelyingPartyIdentifier() string
-	SetRelyingPartyIdentifier(value string)
+	// properties:
+	RelyingPartyIdentifier() string /* primitive/slice/pointer. */
+	SetRelyingPartyIdentifier(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A mechanism for providing public key credential requests to an app or service with iCloud Keychain.
@@ -91,7 +93,7 @@ func NewAuthorizationPlatformPublicKeyCredentialProvider() AuthorizationPlatform
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifier() string {
+func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("relyingPartyIdentifier"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (a_ AuthorizationPlatformPublicKeyCredentialProvider) RelyingPartyIdentifie
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider/relyingpartyidentifier
-func (a_ AuthorizationPlatformPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string) {
+func (a_ AuthorizationPlatformPublicKeyCredentialProvider) SetRelyingPartyIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRelyingPartyIdentifier:"), objc.String(value))
 }
 

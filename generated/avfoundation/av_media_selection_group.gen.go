@@ -31,8 +31,8 @@ type _MediaSelectionGroupClass struct {
 type IMediaSelectionGroup interface {
 	objectivec.IObject
 	// properties:
-	AllowsEmptySelection() bool /* primitive/slice/pointer */
-	SetAllowsEmptySelection(value bool /* primitive/slice/pointer */)
+	AllowsEmptySelection() bool /* primitive/slice/pointer. */
+	SetAllowsEmptySelection(value bool /* primitive/slice/pointer. */)
 	CustomMediaSelectionScheme() IAVCustomMediaSelectionScheme
 	SetCustomMediaSelectionScheme(value IAVCustomMediaSelectionScheme)
 	DefaultOption() IAVMediaSelectionOption
@@ -97,7 +97,7 @@ func NewMediaSelectionGroup() MediaSelectionGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/allowsemptyselection
-func (m_ MediaSelectionGroup) AllowsEmptySelection() bool /* primitive/slice/pointer */ {
+func (m_ MediaSelectionGroup) AllowsEmptySelection() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowsEmptySelection"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (m_ MediaSelectionGroup) AllowsEmptySelection() bool /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/allowsemptyselection
-func (m_ MediaSelectionGroup) SetAllowsEmptySelection(value bool /* primitive/slice/pointer */) {
+func (m_ MediaSelectionGroup) SetAllowsEmptySelection(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowsEmptySelection:"), value)
 }
 

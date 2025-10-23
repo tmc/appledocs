@@ -31,23 +31,21 @@ type _MIDICISessionClass struct {
 // An interface definition for the [MIDICISession] class.
 type IMIDICISession interface {
 	objectivec.IObject
-	DeviceInfo() MIDICIDeviceInfo
-	SetDeviceInfo(value MIDICIDeviceInfo)
-	MaxPropertyRequests() foundation.Number
-	SetMaxPropertyRequests(value foundation.Number)
-	MaxSysExSize() foundation.Number
-	SetMaxSysExSize(value foundation.Number)
-	MidiDestination() MIDIEntityRef
-	SetMidiDestination(value MIDIEntityRef)
+	// properties:
+	MaxPropertyRequests() foundation.objc.IObject /* cross-framework: Number */
+	MaxSysExSize() foundation.objc.IObject /* cross-framework: Number */
+	SupportsProfileCapability() bool /* primitive/slice/pointer. */
+	SupportsPropertyCapability() bool /* primitive/slice/pointer. */
+	DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */
+	SetDeviceInfo(value objc.IObject /* cross-framework: MIDICIDeviceInfo */)
+	MidiDestination() MIDIEntityRef /* typedef */
+	SetMidiDestination(value MIDIEntityRef /* typedef */)
 	ProfileChangedCallback() unsafe.Pointer
 	SetProfileChangedCallback(value unsafe.Pointer)
 	ProfileSpecificDataHandler() unsafe.Pointer
 	SetProfileSpecificDataHandler(value unsafe.Pointer)
-	SupportsProfileCapability() bool
-	SetSupportsProfileCapability(value bool)
-	SupportsPropertyCapability() bool
-	SetSupportsPropertyCapability(value bool)
-	MIDIChannelsWholePort() MIDIChannelNumber
+	MIDIChannelsWholePort() MIDIChannelNumber /* typedef */
+	// methods:
 }
 
 // An object that represents a MIDI-CI session.
@@ -103,11 +101,64 @@ func NewMIDICISession() MIDICISession {
 
 
 
+// Creates a MIDI-CI session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/init(discoveredNode:dataReadyHandler:disconnectHandler:)
+func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discoveredNode IMIDICIDiscoveredNode, handler unsafe.Pointer, disconnectHandler unsafe.Pointer) MIDICISession {
+	instance := getMIDICISessionClass().Alloc()
+	rv := objc.Send[MIDICISession](instance.ID, objc.Sel("initWithDiscoveredNode:dataReadyHandler:disconnectHandler:"), discoveredNode, handler, disconnectHandler)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The maximum number of simultaneous property exchange requests, if supported.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxPropertyRequests
+func (m_ MIDICISession) MaxPropertyRequests() foundation.objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPropertyRequests"))
+	return rv
+}
+
+
+// The maximum size of System Exclusive (SysEx) messages.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/maxSysExSize
+func (m_ MIDICISession) MaxSysExSize() foundation.objc.IObject /* cross-framework: Number */ {
+	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the entity supports the MIDI-CI profile’s capability.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/supportsProfileCapability
+func (m_ MIDICISession) SupportsProfileCapability() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileCapability"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the entity supports the MIDI-CI property exchange capability.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/supportsPropertyCapability
+func (m_ MIDICISession) SupportsPropertyCapability() bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyCapability"))
+	return rv
+}
+
+
 // Information about a MIDI-CI device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/deviceinfo
-func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
+func (m_ MIDICISession) DeviceInfo() objc.IObject /* cross-framework: MIDICIDeviceInfo */ {
 	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
@@ -117,46 +168,8 @@ func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/deviceinfo
-func (m_ MIDICISession) SetDeviceInfo(value MIDICIDeviceInfo) {
+func (m_ MIDICISession) SetDeviceInfo(value objc.IObject /* cross-framework: MIDICIDeviceInfo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
-}
-
-
-// The maximum number of simultaneous property exchange requests, if supported.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxPropertyRequests"))
-	return rv
-}
-
-
-// The maximum number of simultaneous property exchange requests, if supported.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPropertyRequests:"), value)
-}
-
-
-// The maximum size of System Exclusive (SysEx) messages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxsysexsize
-func (m_ MIDICISession) MaxSysExSize() foundation.Number {
-	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("maxSysExSize"))
-	return rv
-}
-
-
-// The maximum size of System Exclusive (SysEx) messages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxsysexsize
-func (m_ MIDICISession) SetMaxSysExSize(value foundation.Number) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxSysExSize:"), value)
 }
 
 
@@ -164,7 +177,7 @@ func (m_ MIDICISession) SetMaxSysExSize(value foundation.Number) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/mididestination
-func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
+func (m_ MIDICISession) MidiDestination() MIDIEntityRef /* typedef */ {
 	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
 }
@@ -174,7 +187,7 @@ func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/mididestination
-func (m_ MIDICISession) SetMidiDestination(value MIDIEntityRef) {
+func (m_ MIDICISession) SetMidiDestination(value MIDIEntityRef /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
 
@@ -217,52 +230,13 @@ func (m_ MIDICISession) SetProfileSpecificDataHandler(value unsafe.Pointer) {
 }
 
 
-// A Boolean value that indicates whether the entity supports the MIDI-CI profile’s capability.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
-func (m_ MIDICISession) SupportsProfileCapability() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("supportsProfileCapability"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the entity supports the MIDI-CI profile’s capability.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportsprofilecapability
-func (m_ MIDICISession) SetSupportsProfileCapability(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsProfileCapability:"), value)
-}
-
-
-// A Boolean value that indicates whether the entity supports the MIDI-CI property exchange capability.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
-func (m_ MIDICISession) SupportsPropertyCapability() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("supportsPropertyCapability"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the entity supports the MIDI-CI property exchange capability.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/supportspropertycapability
-func (m_ MIDICISession) SetSupportsPropertyCapability(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportsPropertyCapability:"), value)
-}
-
-
 // A constant value that indicates to use all channels of the port.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midichannelswholeport
-func (m_ MIDICISession) MIDIChannelsWholePort() MIDIChannelNumber {
+func (m_ MIDICISession) MIDIChannelsWholePort() MIDIChannelNumber /* typedef */ {
 	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("MIDIChannelsWholePort"))
 	return rv
 }
-
 
 

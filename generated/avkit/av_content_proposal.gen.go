@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
@@ -34,23 +33,25 @@ type _ContentProposalClass struct {
 // An interface definition for the [ContentProposal] class.
 type IContentProposal interface {
 	objectivec.IObject
-	AutomaticAcceptanceInterval() foundation.TimeInterval
-	SetAutomaticAcceptanceInterval(value foundation.TimeInterval)
-	ContentTimeForTransition() unsafe.Pointer
-	Metadata() []avfoundation.MetadataItem
-	SetMetadata(value []avfoundation.MetadataItem)
-	PreviewImage() appkit.Image
-	Title() string
-	URL() foundation.URL
-	SetURL(value foundation.URL)
+	// properties:
+	AutomaticAcceptanceInterval() foundation.TimeInterval /* not a class type */
+	SetAutomaticAcceptanceInterval(value foundation.TimeInterval /* not a class type */)
+	ContentTimeForTransition() Time /* not a class type */
+	Metadata() []avfoundation.objc.IObject /* cross-framework: MetadataItem */
+	SetMetadata(value []avfoundation.objc.IObject /* cross-framework: MetadataItem */)
+	PreviewImage() objc.IObject /* cross-framework: Image */
+	Title() string /* primitive/slice/pointer. */
+	URL() foundation.objc.IObject /* cross-framework: URL */
+	SetURL(value foundation.objc.IObject /* cross-framework: URL */)
 	ContentProposal() IAVContentProposal
 	SetContentProposal(value IAVContentProposal)
-	DateOfAutomaticAcceptance() foundation.Date
-	SetDateOfAutomaticAcceptance(value foundation.Date)
-	PlayerLayoutGuide() appkit.LayoutGuide
-	SetPlayerLayoutGuide(value appkit.LayoutGuide)
+	DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: Date */
+	SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: Date */)
+	PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */
+	SetPlayerLayoutGuide(value objc.IObject /* cross-framework: LayoutGuide */)
 	PreferredPlayerViewFrame() coregraphics.CGRect
 	SetPreferredPlayerViewFrame(value coregraphics.CGRect)
+	// methods:
 }
 
 // An object that describes the content to propose playing after the current item finishes.
@@ -110,7 +111,7 @@ func NewContentProposal() ContentProposal {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/init(contentTimeForTransition:title:previewImage:)
-func NewContentProposalWithContentTimeForTransitionTitlePreviewImage(contentTimeForTransition unsafe.Pointer, title string, previewImage appkit.Image) ContentProposal {
+func NewContentProposalWithContentTimeForTransitionTitlePreviewImage(contentTimeForTransition Time /* not a class type */, title string /* primitive/slice/pointer. */, previewImage objc.IObject /* cross-framework Image */) ContentProposal {
 	instance := getContentProposalClass().Alloc()
 	rv := objc.Send[ContentProposal](instance.ID, objc.Sel("initWithContentTimeForTransition:title:previewImage:"), contentTimeForTransition, objc.String(title), previewImage)
 	rv.Autorelease()
@@ -123,7 +124,7 @@ func NewContentProposalWithContentTimeForTransitionTitlePreviewImage(contentTime
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/automaticAcceptanceInterval
-func (c_ ContentProposal) AutomaticAcceptanceInterval() foundation.TimeInterval {
+func (c_ ContentProposal) AutomaticAcceptanceInterval() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](c_.ID, objc.Sel("automaticAcceptanceInterval"))
 	return rv
 }
@@ -133,7 +134,7 @@ func (c_ ContentProposal) AutomaticAcceptanceInterval() foundation.TimeInterval 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/automaticAcceptanceInterval
-func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value foundation.TimeInterval) {
+func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value foundation.TimeInterval /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAutomaticAcceptanceInterval:"), value)
 }
 
@@ -142,8 +143,8 @@ func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value foundation.TimeIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/contentTimeForTransition
-func (c_ ContentProposal) ContentTimeForTransition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentTimeForTransition"))
+func (c_ ContentProposal) ContentTimeForTransition() Time /* not a class type */ {
+	rv := objc.Send[Time](c_.ID, objc.Sel("contentTimeForTransition"))
 	return rv
 }
 
@@ -152,7 +153,7 @@ func (c_ ContentProposal) ContentTimeForTransition() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/metadata
-func (c_ ContentProposal) Metadata() []avfoundation.MetadataItem {
+func (c_ ContentProposal) Metadata() []avfoundation.objc.IObject /* cross-framework: MetadataItem */ {
 	rv := objc.Send[[]avfoundation.MetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -162,7 +163,7 @@ func (c_ ContentProposal) Metadata() []avfoundation.MetadataItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/metadata
-func (c_ ContentProposal) SetMetadata(value []avfoundation.MetadataItem) {
+func (c_ ContentProposal) SetMetadata(value []avfoundation.objc.IObject /* cross-framework: MetadataItem */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -181,8 +182,8 @@ func (c_ ContentProposal) SetMetadata(value []avfoundation.MetadataItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/previewImage
-func (c_ ContentProposal) PreviewImage() appkit.Image {
-	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("previewImage"))
+func (c_ ContentProposal) PreviewImage() objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](c_.ID, objc.Sel("previewImage"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (c_ ContentProposal) PreviewImage() appkit.Image {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/title
-func (c_ ContentProposal) Title() string {
+func (c_ ContentProposal) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
@@ -201,7 +202,7 @@ func (c_ ContentProposal) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/url
-func (c_ ContentProposal) URL() foundation.URL {
+func (c_ ContentProposal) URL() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("URL"))
 	return rv
 }
@@ -211,7 +212,7 @@ func (c_ ContentProposal) URL() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/url
-func (c_ ContentProposal) SetURL(value foundation.URL) {
+func (c_ ContentProposal) SetURL(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setURL:"), value)
 }
 
@@ -239,7 +240,7 @@ func (c_ ContentProposal) SetContentProposal(value IAVContentProposal) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.Date {
+func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
 }
@@ -249,7 +250,7 @@ func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.Date) {
+func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
 
@@ -258,8 +259,8 @@ func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-func (c_ ContentProposal) PlayerLayoutGuide() appkit.LayoutGuide {
-	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
+func (c_ ContentProposal) PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */ {
+	rv := objc.Send[LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
 }
 
@@ -268,7 +269,7 @@ func (c_ ContentProposal) PlayerLayoutGuide() appkit.LayoutGuide {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-func (c_ ContentProposal) SetPlayerLayoutGuide(value appkit.LayoutGuide) {
+func (c_ ContentProposal) SetPlayerLayoutGuide(value objc.IObject /* cross-framework: LayoutGuide */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayerLayoutGuide:"), value)
 }
 

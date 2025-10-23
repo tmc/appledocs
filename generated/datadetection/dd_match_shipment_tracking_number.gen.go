@@ -29,8 +29,10 @@ type _DDMatchShipmentTrackingNumberClass struct {
 // An interface definition for the [DDMatchShipmentTrackingNumber] class.
 type IDDMatchShipmentTrackingNumber interface {
 	IDDMatch
-	Carrier() string
-	TrackingNumber() string
+	// properties:
+	Carrier() string /* primitive/slice/pointer. */
+	TrackingNumber() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that contains parcel tracking information that the data detection system matches.
@@ -92,7 +94,7 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
-func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
+func (d_ DDMatchShipmentTrackingNumber) Carrier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
 	return rv
 }
@@ -102,7 +104,7 @@ func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
-func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string {
+func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
 	return rv
 }

@@ -30,11 +30,15 @@ type _EAAccessoryManagerClass struct {
 // An interface definition for the [EAAccessoryManager] class.
 type IEAAccessoryManager interface {
 	objectivec.IObject
-	EAAccessoryKey() string
+	// properties:
+	EAAccessoryKey() string /* primitive/slice/pointer. */
 	ConnectedAccessories() IEAAccessory
 	SetConnectedAccessories(value IEAAccessory)
-	EAAccessorySelectedKey() string
-	EABluetoothAccessoryPickerErrorDomain() string
+	EAAccessorySelectedKey() string /* primitive/slice/pointer. */
+	EABluetoothAccessoryPickerErrorDomain() string /* primitive/slice/pointer. */
+	// methods:
+	RegisterForLocalNotifications()
+	UnregisterForLocalNotifications()
 }
 
 // The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.
@@ -90,11 +94,29 @@ func NewEAAccessoryManager() EAAccessoryManager {
 
 
 
+// Begins the delivery of accessory-related notifications to the current application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager/registerForLocalNotifications()
+func (e_ EAAccessoryManager) RegisterForLocalNotifications() {
+	objc.Send[objc.ID](e_.ID, objc.Sel("registerForLocalNotifications"))
+}
+
+
+// Stops the delivery of accessory-related notifications to the current application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager/unregisterForLocalNotifications()
+func (e_ EAAccessoryManager) UnregisterForLocalNotifications() {
+	objc.Send[objc.ID](e_.ID, objc.Sel("unregisterForLocalNotifications"))
+}
+
+
 // A key that indicates the accessory object whose status changed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
-func (e_ EAAccessoryManager) EAAccessoryKey() string {
+func (e_ EAAccessoryManager) EAAccessoryKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
 }
@@ -123,7 +145,7 @@ func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
-func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
+func (e_ EAAccessoryManager) EAAccessorySelectedKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
 }
@@ -133,7 +155,7 @@ func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
-func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string {
+func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv
 }

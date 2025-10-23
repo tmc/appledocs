@@ -17,3 +17,12 @@ func ExampleNewCSSearchableIndexWithName() {
 	)
 	// Output:
 }
+// ExampleNewCSSearchableIndexWithNameProtectionClass demonstrates how to create a CSSearchableIndex instance using NewCSSearchableIndexWithNameProtectionClass.
+// Returns an on-device index with the specified name and data protection class.
+func ExampleNewCSSearchableIndexWithNameProtectionClass() {
+	_ = corespotlight.NewCSSearchableIndexWithNameProtectionClass(
+		"name", // name string
+		corespotlight.FileProtectionType{}, // protectionClass FileProtectionType
+	)
+	// Output:
+}

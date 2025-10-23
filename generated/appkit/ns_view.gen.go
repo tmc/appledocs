@@ -11,7 +11,6 @@ import (
 	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [View] class.
@@ -34,185 +33,187 @@ type _ViewClass struct {
 // An interface definition for the [View] class.
 type IView interface {
 	IResponder
-	AcceptsTouchEvents() bool
-	SetAcceptsTouchEvents(value bool)
-	AdditionalSafeAreaInsets() unsafe.Pointer
-	SetAdditionalSafeAreaInsets(value unsafe.Pointer)
-	AlignmentRectInsets() unsafe.Pointer
-	AllowedTouchTypes() NSTouchTypeMask
-	SetAllowedTouchTypes(value NSTouchTypeMask)
-	AllowsVibrancy() bool
-	AlphaValue() float64
-	SetAlphaValue(value float64)
-	AutoresizesSubviews() bool
-	SetAutoresizesSubviews(value bool)
-	AutoresizingMask() NSAutoresizingMaskOptions
-	SetAutoresizingMask(value NSAutoresizingMaskOptions)
-	BackgroundFilters() []coreimage.Filter
-	SetBackgroundFilters(value []coreimage.Filter)
-	BaselineOffsetFromBottom() float64
-	BottomAnchor() LayoutYAxisAnchor
+	// properties:
+	AcceptsTouchEvents() bool /* primitive/slice/pointer. */
+	SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */)
+	AdditionalSafeAreaInsets() EdgeInsets /* not a class type */
+	SetAdditionalSafeAreaInsets(value EdgeInsets /* not a class type */)
+	AlignmentRectInsets() EdgeInsets /* not a class type */
+	AllowedTouchTypes() TouchTypeMask
+	SetAllowedTouchTypes(value TouchTypeMask)
+	AllowsVibrancy() bool /* primitive/slice/pointer. */
+	AlphaValue() float64 /* primitive/slice/pointer. */
+	SetAlphaValue(value float64 /* primitive/slice/pointer. */)
+	AutoresizesSubviews() bool /* primitive/slice/pointer. */
+	SetAutoresizesSubviews(value bool /* primitive/slice/pointer. */)
+	AutoresizingMask() AutoresizingMaskOptions
+	SetAutoresizingMask(value AutoresizingMaskOptions)
+	BackgroundFilters() []coreimage.objc.IObject /* cross-framework: Filter */
+	SetBackgroundFilters(value []coreimage.objc.IObject /* cross-framework: Filter */)
+	BaselineOffsetFromBottom() float64 /* primitive/slice/pointer. */
+	BottomAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
 	Bounds() coregraphics.CGRect
 	SetBounds(value coregraphics.CGRect)
-	BoundsRotation() float64
-	SetBoundsRotation(value float64)
-	CanBecomeKeyView() bool
-	CanDraw() bool
-	CanDrawConcurrently() bool
-	SetCanDrawConcurrently(value bool)
-	CanDrawSubviewsIntoLayer() bool
-	SetCanDrawSubviewsIntoLayer(value bool)
-	CandidateListTouchBarItem() CandidateListTouchBarItem
+	BoundsRotation() float64 /* primitive/slice/pointer. */
+	SetBoundsRotation(value float64 /* primitive/slice/pointer. */)
+	CanBecomeKeyView() bool /* primitive/slice/pointer. */
+	CanDraw() bool /* primitive/slice/pointer. */
+	CanDrawConcurrently() bool /* primitive/slice/pointer. */
+	SetCanDrawConcurrently(value bool /* primitive/slice/pointer. */)
+	CanDrawSubviewsIntoLayer() bool /* primitive/slice/pointer. */
+	SetCanDrawSubviewsIntoLayer(value bool /* primitive/slice/pointer. */)
+	CandidateListTouchBarItem() objc.IObject /* cross-framework: CandidateListTouchBarItem */
 	CenterXAnchor() ILayoutXAxisAnchor
-	CenterYAnchor() LayoutYAxisAnchor
-	ClipsToBounds() bool
-	SetClipsToBounds(value bool)
-	CompositingFilter() coreimage.Filter
-	SetCompositingFilter(value coreimage.Filter)
-	Constraints() []LayoutConstraint
-	ContentFilters() []coreimage.Filter
-	SetContentFilters(value []coreimage.Filter)
-	EnclosingMenuItem() MenuItem
+	CenterYAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
+	ClipsToBounds() bool /* primitive/slice/pointer. */
+	SetClipsToBounds(value bool /* primitive/slice/pointer. */)
+	CompositingFilter() objc.IObject /* cross-framework: Filter */
+	SetCompositingFilter(value objc.IObject /* cross-framework: Filter */)
+	Constraints() []LayoutConstraint /* primitive/slice/pointer. */
+	ContentFilters() []coreimage.objc.IObject /* cross-framework: Filter */
+	SetContentFilters(value []coreimage.objc.IObject /* cross-framework: Filter */)
+	EnclosingMenuItem() objc.IObject /* cross-framework: MenuItem */
 	EnclosingScrollView() IScrollView
-	FirstBaselineAnchor() LayoutYAxisAnchor
-	FirstBaselineOffsetFromTop() float64
+	FirstBaselineAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
+	FirstBaselineOffsetFromTop() float64 /* primitive/slice/pointer. */
 	FittingSize() coregraphics.CGSize
 	FocusRingMaskBounds() coregraphics.CGRect
-	FocusRingType() NSFocusRingType
-	SetFocusRingType(value NSFocusRingType)
+	FocusRingType() FocusRingType
+	SetFocusRingType(value FocusRingType)
 	Frame() coregraphics.CGRect
 	SetFrame(value coregraphics.CGRect)
-	FrameCenterRotation() float64
-	SetFrameCenterRotation(value float64)
-	FrameRotation() float64
-	SetFrameRotation(value float64)
-	GestureRecognizers() []GestureRecognizer
-	SetGestureRecognizers(value []GestureRecognizer)
-	HasAmbiguousLayout() bool
-	HeightAdjustLimit() float64
-	HeightAnchor() LayoutDimension
-	InLiveResize() bool
-	InputContext() TextInputContext
+	FrameCenterRotation() float64 /* primitive/slice/pointer. */
+	SetFrameCenterRotation(value float64 /* primitive/slice/pointer. */)
+	FrameRotation() float64 /* primitive/slice/pointer. */
+	SetFrameRotation(value float64 /* primitive/slice/pointer. */)
+	GestureRecognizers() []GestureRecognizer /* primitive/slice/pointer. */
+	SetGestureRecognizers(value []GestureRecognizer /* primitive/slice/pointer. */)
+	HasAmbiguousLayout() bool /* primitive/slice/pointer. */
+	HeightAdjustLimit() float64 /* primitive/slice/pointer. */
+	HeightAnchor() objc.IObject /* cross-framework: LayoutDimension */
+	InLiveResize() bool /* primitive/slice/pointer. */
+	InputContext() ITextInputContext
 	IntrinsicContentSize() coregraphics.CGSize
-	DrawingFindIndicator() bool
-	Flipped() bool
-	Hidden() bool
-	SetHidden(value bool)
-	HiddenOrHasHiddenAncestor() bool
-	HorizontalContentSizeConstraintActive() bool
-	SetHorizontalContentSizeConstraintActive(value bool)
-	InFullScreenMode() bool
-	Opaque() bool
-	RotatedFromBase() bool
-	RotatedOrScaledFromBase() bool
-	VerticalContentSizeConstraintActive() bool
-	SetVerticalContentSizeConstraintActive(value bool)
-	LastBaselineAnchor() LayoutYAxisAnchor
-	LastBaselineOffsetFromBottom() float64
-	Layer() quartzcore.Layer
-	SetLayer(value quartzcore.Layer)
-	LayerContentsPlacement() NSViewLayerContentsPlacement
-	SetLayerContentsPlacement(value NSViewLayerContentsPlacement)
-	LayerContentsRedrawPolicy() NSViewLayerContentsRedrawPolicy
-	SetLayerContentsRedrawPolicy(value NSViewLayerContentsRedrawPolicy)
-	LayerUsesCoreImageFilters() bool
-	SetLayerUsesCoreImageFilters(value bool)
-	LayoutGuides() []LayoutGuide
+	DrawingFindIndicator() bool /* primitive/slice/pointer. */
+	Flipped() bool /* primitive/slice/pointer. */
+	Hidden() bool /* primitive/slice/pointer. */
+	SetHidden(value bool /* primitive/slice/pointer. */)
+	HiddenOrHasHiddenAncestor() bool /* primitive/slice/pointer. */
+	HorizontalContentSizeConstraintActive() bool /* primitive/slice/pointer. */
+	SetHorizontalContentSizeConstraintActive(value bool /* primitive/slice/pointer. */)
+	InFullScreenMode() bool /* primitive/slice/pointer. */
+	Opaque() bool /* primitive/slice/pointer. */
+	RotatedFromBase() bool /* primitive/slice/pointer. */
+	RotatedOrScaledFromBase() bool /* primitive/slice/pointer. */
+	VerticalContentSizeConstraintActive() bool /* primitive/slice/pointer. */
+	SetVerticalContentSizeConstraintActive(value bool /* primitive/slice/pointer. */)
+	LastBaselineAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
+	LastBaselineOffsetFromBottom() float64 /* primitive/slice/pointer. */
+	Layer() objc.IObject /* cross-framework: Layer */
+	SetLayer(value objc.IObject /* cross-framework: Layer */)
+	LayerContentsPlacement() ViewLayerContentsPlacement
+	SetLayerContentsPlacement(value ViewLayerContentsPlacement)
+	LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy
+	SetLayerContentsRedrawPolicy(value ViewLayerContentsRedrawPolicy)
+	LayerUsesCoreImageFilters() bool /* primitive/slice/pointer. */
+	SetLayerUsesCoreImageFilters(value bool /* primitive/slice/pointer. */)
+	LayoutGuides() []LayoutGuide /* primitive/slice/pointer. */
 	LayoutMarginsGuide() ILayoutGuide
 	LeadingAnchor() ILayoutXAxisAnchor
 	LeftAnchor() ILayoutXAxisAnchor
-	MouseDownCanMoveWindow() bool
-	NeedsDisplay() bool
-	SetNeedsDisplay(value bool)
-	NeedsLayout() bool
-	SetNeedsLayout(value bool)
-	NeedsPanelToBecomeKey() bool
-	NeedsUpdateConstraints() bool
-	SetNeedsUpdateConstraints(value bool)
+	MouseDownCanMoveWindow() bool /* primitive/slice/pointer. */
+	NeedsDisplay() bool /* primitive/slice/pointer. */
+	SetNeedsDisplay(value bool /* primitive/slice/pointer. */)
+	NeedsLayout() bool /* primitive/slice/pointer. */
+	SetNeedsLayout(value bool /* primitive/slice/pointer. */)
+	NeedsPanelToBecomeKey() bool /* primitive/slice/pointer. */
+	NeedsUpdateConstraints() bool /* primitive/slice/pointer. */
+	SetNeedsUpdateConstraints(value bool /* primitive/slice/pointer. */)
 	NextKeyView() IView
 	SetNextKeyView(value IView)
 	NextValidKeyView() IView
 	OpaqueAncestor() IView
-	PageFooter() foundation.AttributedString
-	PageHeader() foundation.AttributedString
-	PostsBoundsChangedNotifications() bool
-	SetPostsBoundsChangedNotifications(value bool)
-	PostsFrameChangedNotifications() bool
-	SetPostsFrameChangedNotifications(value bool)
-	PrefersCompactControlSizeMetrics() bool
-	SetPrefersCompactControlSizeMetrics(value bool)
+	PageFooter() objc.IObject /* cross-framework: AttributedString */
+	PageHeader() objc.IObject /* cross-framework: AttributedString */
+	PostsBoundsChangedNotifications() bool /* primitive/slice/pointer. */
+	SetPostsBoundsChangedNotifications(value bool /* primitive/slice/pointer. */)
+	PostsFrameChangedNotifications() bool /* primitive/slice/pointer. */
+	SetPostsFrameChangedNotifications(value bool /* primitive/slice/pointer. */)
+	PrefersCompactControlSizeMetrics() bool /* primitive/slice/pointer. */
+	SetPrefersCompactControlSizeMetrics(value bool /* primitive/slice/pointer. */)
 	PreparedContentRect() coregraphics.CGRect
 	SetPreparedContentRect(value coregraphics.CGRect)
-	PreservesContentDuringLiveResize() bool
+	PreservesContentDuringLiveResize() bool /* primitive/slice/pointer. */
 	PressureConfiguration() IPressureConfiguration
 	SetPressureConfiguration(value IPressureConfiguration)
 	PreviousKeyView() IView
 	PreviousValidKeyView() IView
-	PrintJobTitle() string
+	PrintJobTitle() string /* primitive/slice/pointer. */
 	RectPreservedDuringLiveResize() coregraphics.CGRect
-	RegisteredDraggedTypes() []string
+	RegisteredDraggedTypes() []string /* primitive/slice/pointer. */
 	RightAnchor() ILayoutXAxisAnchor
-	SafeAreaInsets() unsafe.Pointer
+	SafeAreaInsets() EdgeInsets /* not a class type */
 	SafeAreaLayoutGuide() ILayoutGuide
 	SafeAreaRect() coregraphics.CGRect
 	Shadow() IShadow
 	SetShadow(value IShadow)
-	Subviews() []View
-	SetSubviews(value []View)
+	Subviews() []View /* primitive/slice/pointer. */
+	SetSubviews(value []View /* primitive/slice/pointer. */)
 	Superview() IView
-	Tag() int
-	ToolTip() string
-	SetToolTip(value string)
-	TopAnchor() LayoutYAxisAnchor
-	TrackingAreas() []TrackingArea
+	Tag() int /* primitive/slice/pointer. */
+	ToolTip() string /* primitive/slice/pointer. */
+	SetToolTip(value string /* primitive/slice/pointer. */)
+	TopAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */
+	TrackingAreas() []TrackingArea /* primitive/slice/pointer. */
 	TrailingAnchor() ILayoutXAxisAnchor
-	TranslatesAutoresizingMaskIntoConstraints() bool
-	SetTranslatesAutoresizingMaskIntoConstraints(value bool)
-	UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection)
+	TranslatesAutoresizingMaskIntoConstraints() bool /* primitive/slice/pointer. */
+	SetTranslatesAutoresizingMaskIntoConstraints(value bool /* primitive/slice/pointer. */)
+	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
 	VisibleRect() coregraphics.CGRect
-	WantsBestResolutionOpenGLSurface() bool
-	SetWantsBestResolutionOpenGLSurface(value bool)
-	WantsDefaultClipping() bool
-	WantsExtendedDynamicRangeOpenGLSurface() bool
-	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
-	WantsLayer() bool
-	SetWantsLayer(value bool)
-	WantsRestingTouches() bool
-	SetWantsRestingTouches(value bool)
-	WantsUpdateLayer() bool
-	WidthAdjustLimit() float64
-	WidthAnchor() LayoutDimension
+	WantsBestResolutionOpenGLSurface() bool /* primitive/slice/pointer. */
+	SetWantsBestResolutionOpenGLSurface(value bool /* primitive/slice/pointer. */)
+	WantsDefaultClipping() bool /* primitive/slice/pointer. */
+	WantsExtendedDynamicRangeOpenGLSurface() bool /* primitive/slice/pointer. */
+	SetWantsExtendedDynamicRangeOpenGLSurface(value bool /* primitive/slice/pointer. */)
+	WantsLayer() bool /* primitive/slice/pointer. */
+	SetWantsLayer(value bool /* primitive/slice/pointer. */)
+	WantsRestingTouches() bool /* primitive/slice/pointer. */
+	SetWantsRestingTouches(value bool /* primitive/slice/pointer. */)
+	WantsUpdateLayer() bool /* primitive/slice/pointer. */
+	WidthAdjustLimit() float64 /* primitive/slice/pointer. */
+	WidthAnchor() objc.IObject /* cross-framework: LayoutDimension */
 	Window() IWindow
-	WritingToolsCoordinator() WritingToolsCoordinator
-	SetWritingToolsCoordinator(value WritingToolsCoordinator)
-	AcceptsFirstMouse(event IEvent) bool
-	AddConstraint(constraint LayoutConstraint)
-	AddConstraints(constraints []LayoutConstraint)
+	WritingToolsCoordinator() IWritingToolsCoordinator
+	SetWritingToolsCoordinator(value IWritingToolsCoordinator)
+	// methods:
+	AcceptsFirstMouse(event IEvent) bool /* primitive/slice/pointer. */
+	AddConstraint(constraint ILayoutConstraint)
+	AddConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */)
 	AddCursorRectCursor(rect coregraphics.CGRect, object ICursor)
-	AddGestureRecognizer(gestureRecognizer GestureRecognizer)
+	AddGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */)
 	AddLayoutGuide(guide ILayoutGuide)
 	AddSubview(view IView)
-	AddSubviewPositionedRelativeTo(view IView, place NSWindowOrderingMode, otherView IView)
-	AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) ToolTipTag
-	AddTrackingArea(trackingArea TrackingArea)
-	AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool) TrackingRectTag
-	AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64, oldTop float64, oldBottom float64, bottomLimit float64)
-	AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64, oldLeft float64, oldRight float64, rightLimit float64)
+	AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMode, otherView IView)
+	AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */
+	AddTrackingArea(trackingArea ITrackingArea)
+	AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */
+	AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64 /* primitive/slice/pointer. */, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */)
+	AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64 /* primitive/slice/pointer. */, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */)
 	AdjustScroll(newVisible coregraphics.CGRect) coregraphics.CGRect
 	AlignmentRectForFrame(frame coregraphics.CGRect) coregraphics.CGRect
 	AncestorSharedWithView(view IView) IView
-	Autoscroll(event IEvent) bool
-	BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect
+	Autoscroll(event IEvent) bool /* primitive/slice/pointer. */
+	BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect
 	BeginDocument()
-	BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession
+	BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession
 	BeginPageInRectAtPlacement(rect coregraphics.CGRect, location coregraphics.CGPoint)
 	BitmapImageRepForCachingDisplayInRect(rect coregraphics.CGRect) IBitmapImageRep
 	CacheDisplayInRectToBitmapImageRep(rect coregraphics.CGRect, bitmapImageRep IBitmapImageRep)
 	CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect
-	ConstraintsAffectingLayoutForOrientation(orientation NSLayoutConstraintOrientation) []LayoutConstraint
-	ContentCompressionResistancePriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority
-	ContentHuggingPriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority
+	ConstraintsAffectingLayoutForOrientation(orientation LayoutConstraintOrientation) []LayoutConstraint /* primitive/slice/pointer. */
+	ContentCompressionResistancePriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */
+	ContentHuggingPriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */
 	ConvertPointFromView(point coregraphics.CGPoint, view IView) coregraphics.CGPoint
 	ConvertSizeFromView(size coregraphics.CGSize, view IView) coregraphics.CGSize
 	ConvertRectFromView(rect coregraphics.CGRect, view IView) coregraphics.CGRect
@@ -231,8 +232,8 @@ type IView interface {
 	ConvertRectToLayer(rect coregraphics.CGRect) coregraphics.CGRect
 	ConvertSizeToLayer(size coregraphics.CGSize) coregraphics.CGSize
 	ConvertPointToLayer(point coregraphics.CGPoint) coregraphics.CGPoint
-	DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data
-	DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data
+	DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
+	DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */
 	DidAddSubview(subview IView)
 	DidCloseMenuWithEvent(menu IMenu, event IEvent)
 	DiscardCursorRects()
@@ -244,84 +245,84 @@ type IView interface {
 	DisplayIfNeededInRectIgnoringOpacity(rect coregraphics.CGRect)
 	DisplayRectIgnoringOpacity(rect coregraphics.CGRect)
 	DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, context IGraphicsContext)
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink
+	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */
 	DrawRect(dirtyRect coregraphics.CGRect)
 	DrawFocusRingMask()
 	DrawPageBorderWithSize(borderSize coregraphics.CGSize)
-	EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) unsafe.Pointer
+	EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) EdgeInsets /* not a class type */
 	EndDocument()
 	EndPage()
-	EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary) bool
+	EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */
 	ExerciseAmbiguityInLayout()
-	ExitFullScreenModeWithOptions(options foundation.IDictionary)
+	ExitFullScreenModeWithOptions(options foundation.IDictionary /* already interface */)
 	FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregraphics.CGRect
-	GetRectsBeingDrawnCount(rects coregraphics.CGRect, count unsafe.Pointer)
-	GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer, count unsafe.Pointer)
+	GetRectsBeingDrawnCount(rects coregraphics.CGRect, count Integer /* not a class type */)
+	GetRectsExposedDuringLiveResizeCount(exposedRects Rect [ 4 ] /* not a class type */, count Integer /* not a class type */)
 	HitTest(point coregraphics.CGPoint) IView
 	InvalidateIntrinsicContentSize()
-	IsDescendantOf(view IView) bool
-	MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool
-	KnowsPageRange(range_ unsafe.Pointer) bool
+	IsDescendantOf(view IView) bool /* primitive/slice/pointer. */
+	MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
+	KnowsPageRange(range_ RangePointer /* not a class type */) bool /* primitive/slice/pointer. */
 	Layout()
 	LayoutGuideForLayoutRegion(layoutRegion IViewLayoutRegion) ILayoutGuide
 	LayoutSubtreeIfNeeded()
 	LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoint
-	MakeBackingLayer() quartzcore.Layer
+	MakeBackingLayer() objc.IObject /* cross-framework: Layer */
 	MenuForEvent(event IEvent) IMenu
-	NeedsToDrawRect(rect coregraphics.CGRect) bool
+	NeedsToDrawRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
 	NoteFocusRingMaskChanged()
-	PerformKeyEquivalent(event IEvent) bool
+	PerformKeyEquivalent(event IEvent) bool /* primitive/slice/pointer. */
 	PrepareContentInRect(rect coregraphics.CGRect)
 	PrepareForReuse()
 	Print(sender objectivec.IObject)
 	RectForLayoutRegion(layoutRegion IViewLayoutRegion) coregraphics.CGRect
-	RectForPage(page int) coregraphics.CGRect
+	RectForPage(page int /* primitive/slice/pointer. */) coregraphics.CGRect
 	RectForSmartMagnificationAtPointInRect(location coregraphics.CGPoint, visibleRect coregraphics.CGRect) coregraphics.CGRect
 	ReflectScrolledClipView(clipView IClipView)
-	RegisterForDraggedTypes(newTypes []string)
+	RegisterForDraggedTypes(newTypes []string /* primitive/slice/pointer. */)
 	RemoveAllToolTips()
-	RemoveConstraint(constraint LayoutConstraint)
-	RemoveConstraints(constraints []LayoutConstraint)
+	RemoveConstraint(constraint ILayoutConstraint)
+	RemoveConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */)
 	RemoveCursorRectCursor(rect coregraphics.CGRect, object ICursor)
 	RemoveFromSuperview()
 	RemoveFromSuperviewWithoutNeedingDisplay()
-	RemoveGestureRecognizer(gestureRecognizer GestureRecognizer)
+	RemoveGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */)
 	RemoveLayoutGuide(guide ILayoutGuide)
-	RemoveToolTip(tag ToolTipTag)
-	RemoveTrackingArea(trackingArea TrackingArea)
-	RemoveTrackingRect(tag TrackingRectTag)
+	RemoveToolTip(tag objc.IObject /* cross-framework ToolTipTag */)
+	RemoveTrackingArea(trackingArea ITrackingArea)
+	RemoveTrackingRect(tag objc.IObject /* cross-framework TrackingRectTag */)
 	ReplaceSubviewWith(oldView IView, newView IView)
 	ResetCursorRects()
 	ResizeWithOldSuperviewSize(oldSize coregraphics.CGSize)
 	ResizeSubviewsWithOldSize(oldSize coregraphics.CGSize)
-	RotateByAngle(angle float64)
-	RulerViewDidAddMarker(ruler IRulerView, marker RulerMarker)
-	RulerViewDidMoveMarker(ruler IRulerView, marker RulerMarker)
-	RulerViewDidRemoveMarker(ruler IRulerView, marker RulerMarker)
+	RotateByAngle(angle float64 /* primitive/slice/pointer. */)
+	RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker)
+	RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker)
+	RulerViewDidRemoveMarker(ruler IRulerView, marker IRulerMarker)
 	RulerViewHandleMouseDown(ruler IRulerView, event IEvent)
-	RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64
-	RulerViewPointForLocation(ruler IRulerView, point float64) coregraphics.CGPoint
-	RulerViewShouldAddMarker(ruler IRulerView, marker RulerMarker) bool
-	RulerViewShouldMoveMarker(ruler IRulerView, marker RulerMarker) bool
-	RulerViewShouldRemoveMarker(ruler IRulerView, marker RulerMarker) bool
-	RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker RulerMarker, location float64) float64
-	RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker RulerMarker, location float64) float64
+	RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64 /* primitive/slice/pointer. */
+	RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) coregraphics.CGPoint
+	RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
+	RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
+	RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */
+	RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
+	RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */
 	RulerViewWillSetClientView(ruler IRulerView, newClient IView)
 	ScaleUnitSquareToSize(newUnitSize coregraphics.CGSize)
 	ScrollPoint(point coregraphics.CGPoint)
 	ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPoint)
-	ScrollRectToVisible(rect coregraphics.CGRect) bool
+	ScrollRectToVisible(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */
 	SetBoundsOrigin(newOrigin coregraphics.CGPoint)
 	SetBoundsSize(newSize coregraphics.CGSize)
-	SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation)
-	SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation)
+	SetContentCompressionResistancePriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation)
+	SetContentHuggingPriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation)
 	SetFrameOrigin(newOrigin coregraphics.CGPoint)
 	SetFrameSize(newSize coregraphics.CGSize)
 	SetKeyboardFocusRingNeedsDisplayInRect(rect coregraphics.CGRect)
 	SetNeedsDisplayInRect(invalidRect coregraphics.CGRect)
-	ShouldDelayWindowOrderingForEvent(event IEvent) bool
-	ShowDefinitionForAttributedStringAtPoint(attrString foundation.AttributedString, textBaselineOrigin coregraphics.CGPoint)
-	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.AttributedString, targetRange foundation.Range, options foundation.IDictionary, originProvider unsafe.Pointer)
+	ShouldDelayWindowOrderingForEvent(event IEvent) bool /* primitive/slice/pointer. */
+	ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin coregraphics.CGPoint)
+	ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange foundation.objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */)
 	SortSubviewsUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	TranslateOriginToPoint(translation coregraphics.CGPoint)
 	TranslateRectsNeedingDisplayInRectBy(clipRect coregraphics.CGRect, delta coregraphics.CGSize)
@@ -341,7 +342,7 @@ type IView interface {
 	ViewWillMoveToSuperview(newSuperview IView)
 	ViewWillMoveToWindow(newWindow IWindow)
 	ViewWillStartLiveResize()
-	ViewWithTag(tag int) IView
+	ViewWithTag(tag int /* primitive/slice/pointer. */) IView
 	WillOpenMenuWithEvent(menu IMenu, event IEvent)
 	WillRemoveSubview(subview IView)
 	WriteEPSInsideRectToPasteboard(rect coregraphics.CGRect, pasteboard IPasteboard)
@@ -407,7 +408,7 @@ func NewView() View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/init(coder:)
-func NewViewWithCoder(coder foundation.Coder) View {
+func NewViewWithCoder(coder Coder /* not a class type */) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -432,8 +433,8 @@ func NewViewWithFrame(frameRect coregraphics.CGRect) View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
-func (vc _ViewClass) DefaultFocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
+func (vc _ViewClass) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](objc.ID(vc.class), objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -459,7 +460,7 @@ func (vc _ViewClass) FocusView() View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isCompatibleWithResponsiveScrolling
-func (vc _ViewClass) CompatibleWithResponsiveScrolling() bool {
+func (vc _ViewClass) CompatibleWithResponsiveScrolling() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("compatibleWithResponsiveScrolling"))
 	return rv
 }
@@ -468,7 +469,7 @@ func (vc _ViewClass) CompatibleWithResponsiveScrolling() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/requiresConstraintBasedLayout
-func (vc _ViewClass) RequiresConstraintBasedLayout() bool {
+func (vc _ViewClass) RequiresConstraintBasedLayout() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("requiresConstraintBasedLayout"))
 	return rv
 }
@@ -477,7 +478,7 @@ func (vc _ViewClass) RequiresConstraintBasedLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/acceptsFirstMouse(for:)
-func (v_ View) AcceptsFirstMouse(event IEvent) bool {
+func (v_ View) AcceptsFirstMouse(event IEvent) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("acceptsFirstMouse:"), event)
 	return rv
 }
@@ -487,7 +488,7 @@ func (v_ View) AcceptsFirstMouse(event IEvent) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addConstraint(_:)
-func (v_ View) AddConstraint(constraint LayoutConstraint) {
+func (v_ View) AddConstraint(constraint ILayoutConstraint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addConstraint:"), constraint)
 }
 
@@ -496,7 +497,7 @@ func (v_ View) AddConstraint(constraint LayoutConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addConstraints(_:)
-func (v_ View) AddConstraints(constraints []LayoutConstraint) {
+func (v_ View) AddConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addConstraints:"), constraints)
 }
 
@@ -514,7 +515,7 @@ func (v_ View) AddCursorRectCursor(rect coregraphics.CGRect, object ICursor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addGestureRecognizer(_:)
-func (v_ View) AddGestureRecognizer(gestureRecognizer GestureRecognizer) {
+func (v_ View) AddGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addGestureRecognizer:"), gestureRecognizer)
 }
 
@@ -541,7 +542,7 @@ func (v_ View) AddSubview(view IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addSubview(_:positioned:relativeTo:)
-func (v_ View) AddSubviewPositionedRelativeTo(view IView, place NSWindowOrderingMode, otherView IView) {
+func (v_ View) AddSubviewPositionedRelativeTo(view IView, place WindowOrderingMode, otherView IView) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addSubview:positioned:relativeTo:"), view, place, otherView)
 }
 
@@ -550,7 +551,7 @@ func (v_ View) AddSubviewPositionedRelativeTo(view IView, place NSWindowOrdering
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addToolTip(_:owner:userData:)
-func (v_ View) AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) ToolTipTag {
+func (v_ View) AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer) objc.IObject /* cross-framework: ToolTipTag */ {
 	rv := objc.Send[ToolTipTag](v_.ID, objc.Sel("addToolTipRect:owner:userData:"), rect, owner, data)
 	return rv
 }
@@ -560,7 +561,7 @@ func (v_ View) AddToolTipRectOwnerUserData(rect coregraphics.CGRect, owner objec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addTrackingArea(_:)
-func (v_ View) AddTrackingArea(trackingArea TrackingArea) {
+func (v_ View) AddTrackingArea(trackingArea ITrackingArea) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addTrackingArea:"), trackingArea)
 }
 
@@ -569,7 +570,7 @@ func (v_ View) AddTrackingArea(trackingArea TrackingArea) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/addTrackingRect(_:owner:userData:assumeInside:)
-func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool) TrackingRectTag {
+func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect, owner objectivec.IObject, data unsafe.Pointer, flag bool /* primitive/slice/pointer. */) objc.IObject /* cross-framework: TrackingRectTag */ {
 	rv := objc.Send[TrackingRectTag](v_.ID, objc.Sel("addTrackingRect:owner:userData:assumeInside:"), rect, owner, data, flag)
 	return rv
 }
@@ -579,7 +580,7 @@ func (v_ View) AddTrackingRectOwnerUserDataAssumeInside(rect coregraphics.CGRect
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/adjustPageHeightNew(_:top:bottom:limit:)
-func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64, oldTop float64, oldBottom float64, bottomLimit float64) {
+func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64 /* primitive/slice/pointer. */, oldTop float64 /* primitive/slice/pointer. */, oldBottom float64 /* primitive/slice/pointer. */, bottomLimit float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("adjustPageHeightNew:top:bottom:limit:"), newBottom, oldTop, oldBottom, bottomLimit)
 }
 
@@ -588,7 +589,7 @@ func (v_ View) AdjustPageHeightNewTopBottomLimit(newBottom coregraphics.float64,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/adjustPageWidthNew(_:left:right:limit:)
-func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64, oldLeft float64, oldRight float64, rightLimit float64) {
+func (v_ View) AdjustPageWidthNewLeftRightLimit(newRight coregraphics.float64 /* primitive/slice/pointer. */, oldLeft float64 /* primitive/slice/pointer. */, oldRight float64 /* primitive/slice/pointer. */, rightLimit float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("adjustPageWidthNew:left:right:limit:"), newRight, oldLeft, oldRight, rightLimit)
 }
 
@@ -627,7 +628,7 @@ func (v_ View) AncestorSharedWithView(view IView) IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoscroll(with:)
-func (v_ View) Autoscroll(event IEvent) bool {
+func (v_ View) Autoscroll(event IEvent) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("autoscroll:"), event)
 	return rv
 }
@@ -637,7 +638,7 @@ func (v_ View) Autoscroll(event IEvent) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backingAlignedRect(_:options:)
-func (v_ View) BackingAlignedRectOptions(rect coregraphics.CGRect, options unsafe.Pointer) coregraphics.CGRect {
+func (v_ View) BackingAlignedRectOptions(rect coregraphics.CGRect, options AlignmentOptions /* not a class type */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("backingAlignedRect:options:"), rect, options)
 	return rv
 }
@@ -656,7 +657,7 @@ func (v_ View) BeginDocument() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/beginDraggingSession(with:event:source:)
-func (v_ View) BeginDraggingSessionWithItemsEventSource(items []DraggingItem, event IEvent, source objectivec.IObject) IDraggingSession {
+func (v_ View) BeginDraggingSessionWithItemsEventSource(items []DraggingItem /* primitive/slice/pointer. */, event IEvent, source objectivec.IObject) IDraggingSession {
 	rv := objc.Send[DraggingSession](v_.ID, objc.Sel("beginDraggingSessionWithItems:event:source:"), items, event, source)
 	return rv
 }
@@ -704,7 +705,7 @@ func (v_ View) CenterScanRect(rect coregraphics.CGRect) coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/constraintsAffectingLayout(for:)
-func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation NSLayoutConstraintOrientation) []LayoutConstraint {
+func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation LayoutConstraintOrientation) []LayoutConstraint /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraintsAffectingLayoutForOrientation:"), orientation)
 	return rv
 }
@@ -714,7 +715,7 @@ func (v_ View) ConstraintsAffectingLayoutForOrientation(orientation NSLayoutCons
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentCompressionResistancePriority(for:)
-func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority {
+func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */ {
 	rv := objc.Send[LayoutPriority](v_.ID, objc.Sel("contentCompressionResistancePriorityForOrientation:"), orientation)
 	return rv
 }
@@ -724,7 +725,7 @@ func (v_ View) ContentCompressionResistancePriorityForOrientation(orientation NS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentHuggingPriority(for:)
-func (v_ View) ContentHuggingPriorityForOrientation(orientation NSLayoutConstraintOrientation) LayoutPriority {
+func (v_ View) ContentHuggingPriorityForOrientation(orientation LayoutConstraintOrientation) objc.IObject /* cross-framework: LayoutPriority */ {
 	rv := objc.Send[LayoutPriority](v_.ID, objc.Sel("contentHuggingPriorityForOrientation:"), orientation)
 	return rv
 }
@@ -914,8 +915,8 @@ func (v_ View) ConvertPointToLayer(point coregraphics.CGPoint) coregraphics.CGPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dataWithEPS(inside:)
-func (v_ View) DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data {
-	rv := objc.Send[foundation.Data](v_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
+func (v_ View) DataWithEPSInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](v_.ID, objc.Sel("dataWithEPSInsideRect:"), rect)
 	return rv
 }
 
@@ -924,8 +925,8 @@ func (v_ View) DataWithEPSInsideRect(rect coregraphics.CGRect) foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/dataWithPDF(inside:)
-func (v_ View) DataWithPDFInsideRect(rect coregraphics.CGRect) foundation.Data {
-	rv := objc.Send[foundation.Data](v_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
+func (v_ View) DataWithPDFInsideRect(rect coregraphics.CGRect) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](v_.ID, objc.Sel("dataWithPDFInsideRect:"), rect)
 	return rv
 }
 
@@ -1031,8 +1032,8 @@ func (v_ View) DisplayRectIgnoringOpacityInContext(rect coregraphics.CGRect, con
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/displayLink(target:selector:)
-func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) quartzcore.DisplayLink {
-	rv := objc.Send[quartzcore.DisplayLink](v_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
+func (v_ View) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */ {
+	rv := objc.Send[DisplayLink](v_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
 	return rv
 }
 
@@ -1066,8 +1067,8 @@ func (v_ View) DrawPageBorderWithSize(borderSize coregraphics.CGSize) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/edgeInsetsForLayoutRegion:
-func (v_ View) EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("edgeInsetsForLayoutRegion:"), layoutRegion)
+func (v_ View) EdgeInsetsForLayoutRegion(layoutRegion IViewLayoutRegion) EdgeInsets /* not a class type */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("edgeInsetsForLayoutRegion:"), layoutRegion)
 	return rv
 }
 
@@ -1094,7 +1095,7 @@ func (v_ View) EndPage() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enterFullScreenMode(_:withOptions:)
-func (v_ View) EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary) bool {
+func (v_ View) EnterFullScreenModeWithOptions(screen IScreen, options foundation.IDictionary /* already interface */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("enterFullScreenMode:withOptions:"), screen, options)
 	return rv
 }
@@ -1113,7 +1114,7 @@ func (v_ View) ExerciseAmbiguityInLayout() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/exitFullScreenMode(options:)
-func (v_ View) ExitFullScreenModeWithOptions(options foundation.IDictionary) {
+func (v_ View) ExitFullScreenModeWithOptions(options foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("exitFullScreenModeWithOptions:"), options)
 }
 
@@ -1132,7 +1133,7 @@ func (v_ View) FrameForAlignmentRect(alignmentRect coregraphics.CGRect) coregrap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/getRectsBeingDrawn(_:count:)
-func (v_ View) GetRectsBeingDrawnCount(rects coregraphics.CGRect, count unsafe.Pointer) {
+func (v_ View) GetRectsBeingDrawnCount(rects coregraphics.CGRect, count Integer /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("getRectsBeingDrawn:count:"), rects, count)
 }
 
@@ -1141,7 +1142,7 @@ func (v_ View) GetRectsBeingDrawnCount(rects coregraphics.CGRect, count unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/getRectsExposedDuringLiveResize(_:count:)
-func (v_ View) GetRectsExposedDuringLiveResizeCount(exposedRects unsafe.Pointer, count unsafe.Pointer) {
+func (v_ View) GetRectsExposedDuringLiveResizeCount(exposedRects Rect [ 4 ] /* not a class type */, count Integer /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("getRectsExposedDuringLiveResize:count:"), exposedRects, count)
 }
 
@@ -1169,7 +1170,7 @@ func (v_ View) InvalidateIntrinsicContentSize() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isDescendant(of:)
-func (v_ View) IsDescendantOf(view IView) bool {
+func (v_ View) IsDescendantOf(view IView) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isDescendantOf:"), view)
 	return rv
 }
@@ -1179,7 +1180,7 @@ func (v_ View) IsDescendantOf(view IView) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isMousePoint(_:in:)
-func (v_ View) MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool {
+func (v_ View) MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("mouse:inRect:"), point, rect)
 	return rv
 }
@@ -1189,7 +1190,7 @@ func (v_ View) MouseInRect(point coregraphics.CGPoint, rect coregraphics.CGRect)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/knowsPageRange(_:)
-func (v_ View) KnowsPageRange(range_ unsafe.Pointer) bool {
+func (v_ View) KnowsPageRange(range_ RangePointer /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("knowsPageRange:"), range_)
 	return rv
 }
@@ -1235,8 +1236,8 @@ func (v_ View) LocationOfPrintRect(rect coregraphics.CGRect) coregraphics.CGPoin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/makeBackingLayer()
-func (v_ View) MakeBackingLayer() quartzcore.Layer {
-	rv := objc.Send[quartzcore.Layer](v_.ID, objc.Sel("makeBackingLayer"))
+func (v_ View) MakeBackingLayer() objc.IObject /* cross-framework: Layer */ {
+	rv := objc.Send[Layer](v_.ID, objc.Sel("makeBackingLayer"))
 	return rv
 }
 
@@ -1255,7 +1256,7 @@ func (v_ View) MenuForEvent(event IEvent) IMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsToDraw(_:)
-func (v_ View) NeedsToDrawRect(rect coregraphics.CGRect) bool {
+func (v_ View) NeedsToDrawRect(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsToDrawRect:"), rect)
 	return rv
 }
@@ -1274,7 +1275,7 @@ func (v_ View) NoteFocusRingMaskChanged() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/performKeyEquivalent(with:)
-func (v_ View) PerformKeyEquivalent(event IEvent) bool {
+func (v_ View) PerformKeyEquivalent(event IEvent) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("performKeyEquivalent:"), event)
 	return rv
 }
@@ -1319,7 +1320,7 @@ func (v_ View) RectForLayoutRegion(layoutRegion IViewLayoutRegion) coregraphics.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rectForPage(_:)
-func (v_ View) RectForPage(page int) coregraphics.CGRect {
+func (v_ View) RectForPage(page int /* primitive/slice/pointer. */) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](v_.ID, objc.Sel("rectForPage:"), page)
 	return rv
 }
@@ -1348,7 +1349,7 @@ func (v_ View) ReflectScrolledClipView(clipView IClipView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/registerForDraggedTypes(_:)
-func (v_ View) RegisterForDraggedTypes(newTypes []string) {
+func (v_ View) RegisterForDraggedTypes(newTypes []string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("registerForDraggedTypes:"), newTypes)
 }
 
@@ -1366,7 +1367,7 @@ func (v_ View) RemoveAllToolTips() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeConstraint(_:)
-func (v_ View) RemoveConstraint(constraint LayoutConstraint) {
+func (v_ View) RemoveConstraint(constraint ILayoutConstraint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeConstraint:"), constraint)
 }
 
@@ -1375,7 +1376,7 @@ func (v_ View) RemoveConstraint(constraint LayoutConstraint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeConstraints(_:)
-func (v_ View) RemoveConstraints(constraints []LayoutConstraint) {
+func (v_ View) RemoveConstraints(constraints []LayoutConstraint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeConstraints:"), constraints)
 }
 
@@ -1411,7 +1412,7 @@ func (v_ View) RemoveFromSuperviewWithoutNeedingDisplay() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeGestureRecognizer(_:)
-func (v_ View) RemoveGestureRecognizer(gestureRecognizer GestureRecognizer) {
+func (v_ View) RemoveGestureRecognizer(gestureRecognizer objc.IObject /* cross-framework GestureRecognizer */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeGestureRecognizer:"), gestureRecognizer)
 }
 
@@ -1429,7 +1430,7 @@ func (v_ View) RemoveLayoutGuide(guide ILayoutGuide) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeToolTip(_:)
-func (v_ View) RemoveToolTip(tag ToolTipTag) {
+func (v_ View) RemoveToolTip(tag objc.IObject /* cross-framework ToolTipTag */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeToolTip:"), tag)
 }
 
@@ -1438,7 +1439,7 @@ func (v_ View) RemoveToolTip(tag ToolTipTag) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeTrackingArea(_:)
-func (v_ View) RemoveTrackingArea(trackingArea TrackingArea) {
+func (v_ View) RemoveTrackingArea(trackingArea ITrackingArea) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeTrackingArea:"), trackingArea)
 }
 
@@ -1447,7 +1448,7 @@ func (v_ View) RemoveTrackingArea(trackingArea TrackingArea) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/removeTrackingRect(_:)
-func (v_ View) RemoveTrackingRect(tag TrackingRectTag) {
+func (v_ View) RemoveTrackingRect(tag objc.IObject /* cross-framework TrackingRectTag */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeTrackingRect:"), tag)
 }
 
@@ -1492,7 +1493,7 @@ func (v_ View) ResizeSubviewsWithOldSize(oldSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rotate(byDegrees:)
-func (v_ View) RotateByAngle(angle float64) {
+func (v_ View) RotateByAngle(angle float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rotateByAngle:"), angle)
 }
 
@@ -1501,7 +1502,7 @@ func (v_ View) RotateByAngle(angle float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didAdd:)
-func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker RulerMarker) {
+func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker IRulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didAddMarker:"), ruler, marker)
 }
 
@@ -1510,7 +1511,7 @@ func (v_ View) RulerViewDidAddMarker(ruler IRulerView, marker RulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didMove:)
-func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker RulerMarker) {
+func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker IRulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didMoveMarker:"), ruler, marker)
 }
 
@@ -1519,7 +1520,7 @@ func (v_ View) RulerViewDidMoveMarker(ruler IRulerView, marker RulerMarker) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:didRemove:)
-func (v_ View) RulerViewDidRemoveMarker(ruler IRulerView, marker RulerMarker) {
+func (v_ View) RulerViewDidRemoveMarker(ruler IRulerView, marker IRulerMarker) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("rulerView:didRemoveMarker:"), ruler, marker)
 }
 
@@ -1535,7 +1536,7 @@ func (v_ View) RulerViewHandleMouseDown(ruler IRulerView, event IEvent) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:locationFor:)
-func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64 {
+func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CGPoint) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:locationForPoint:"), ruler, point)
 	return rv
 }
@@ -1543,7 +1544,7 @@ func (v_ View) RulerViewLocationForPoint(ruler IRulerView, point coregraphics.CG
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:pointForLocation:)
-func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64) coregraphics.CGPoint {
+func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64 /* primitive/slice/pointer. */) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](v_.ID, objc.Sel("rulerView:pointForLocation:"), ruler, point)
 	return rv
 }
@@ -1553,7 +1554,7 @@ func (v_ View) RulerViewPointForLocation(ruler IRulerView, point float64) coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldAdd:)
-func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker RulerMarker) bool {
+func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldAddMarker:"), ruler, marker)
 	return rv
 }
@@ -1563,7 +1564,7 @@ func (v_ View) RulerViewShouldAddMarker(ruler IRulerView, marker RulerMarker) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldMove:)
-func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker RulerMarker) bool {
+func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldMoveMarker:"), ruler, marker)
 	return rv
 }
@@ -1573,7 +1574,7 @@ func (v_ View) RulerViewShouldMoveMarker(ruler IRulerView, marker RulerMarker) b
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:shouldRemove:)
-func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker RulerMarker) bool {
+func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker IRulerMarker) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rulerView:shouldRemoveMarker:"), ruler, marker)
 	return rv
 }
@@ -1583,7 +1584,7 @@ func (v_ View) RulerViewShouldRemoveMarker(ruler IRulerView, marker RulerMarker)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:willAdd:atLocation:)
-func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker RulerMarker, location float64) float64 {
+func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:willAddMarker:atLocation:"), ruler, marker, location)
 	return rv
 }
@@ -1593,7 +1594,7 @@ func (v_ View) RulerViewWillAddMarkerAtLocation(ruler IRulerView, marker RulerMa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/rulerView(_:willMove:toLocation:)
-func (v_ View) RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker RulerMarker, location float64) float64 {
+func (v_ View) RulerViewWillMoveMarkerToLocation(ruler IRulerView, marker IRulerMarker, location float64 /* primitive/slice/pointer. */) float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("rulerView:willMoveMarker:toLocation:"), ruler, marker, location)
 	return rv
 }
@@ -1639,7 +1640,7 @@ func (v_ View) ScrollClipViewToPoint(clipView IClipView, point coregraphics.CGPo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/scrollToVisible(_:)
-func (v_ View) ScrollRectToVisible(rect coregraphics.CGRect) bool {
+func (v_ View) ScrollRectToVisible(rect coregraphics.CGRect) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("scrollRectToVisible:"), rect)
 	return rv
 }
@@ -1667,7 +1668,7 @@ func (v_ View) SetBoundsSize(newSize coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setContentCompressionResistancePriority(_:for:)
-func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation) {
+func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentCompressionResistancePriority:forOrientation:"), priority, orientation)
 }
 
@@ -1676,7 +1677,7 @@ func (v_ View) SetContentCompressionResistancePriorityForOrientation(priority La
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/setContentHuggingPriority(_:for:)
-func (v_ View) SetContentHuggingPriorityForOrientation(priority LayoutPriority, orientation NSLayoutConstraintOrientation) {
+func (v_ View) SetContentHuggingPriorityForOrientation(priority objc.IObject /* cross-framework LayoutPriority */, orientation LayoutConstraintOrientation) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setContentHuggingPriority:forOrientation:"), priority, orientation)
 }
 
@@ -1721,7 +1722,7 @@ func (v_ View) SetNeedsDisplayInRect(invalidRect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/shouldDelayWindowOrdering(for:)
-func (v_ View) ShouldDelayWindowOrderingForEvent(event IEvent) bool {
+func (v_ View) ShouldDelayWindowOrderingForEvent(event IEvent) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("shouldDelayWindowOrderingForEvent:"), event)
 	return rv
 }
@@ -1731,7 +1732,7 @@ func (v_ View) ShouldDelayWindowOrderingForEvent(event IEvent) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:at:)
-func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.AttributedString, textBaselineOrigin coregraphics.CGPoint) {
+func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString objc.IObject /* cross-framework AttributedString */, textBaselineOrigin coregraphics.CGPoint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:atPoint:"), attrString, textBaselineOrigin)
 }
 
@@ -1740,7 +1741,7 @@ func (v_ View) ShowDefinitionForAttributedStringAtPoint(attrString foundation.At
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/showDefinition(for:range:options:baselineOriginProvider:)
-func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString foundation.AttributedString, targetRange foundation.Range, options foundation.IDictionary, originProvider unsafe.Pointer) {
+func (v_ View) ShowDefinitionForAttributedStringRangeOptionsBaselineOriginProvider(attrString objc.IObject /* cross-framework AttributedString */, targetRange foundation.objc.IObject /* cross-framework Range */, options foundation.IDictionary /* already interface */, originProvider Point  (^)( NSRange adjustedRange /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("showDefinitionForAttributedString:range:options:baselineOriginProvider:"), attrString, targetRange, options, originProvider)
 }
 
@@ -1920,7 +1921,7 @@ func (v_ View) ViewWillStartLiveResize() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/viewWithTag(_:)
-func (v_ View) ViewWithTag(tag int) IView {
+func (v_ View) ViewWithTag(tag int /* primitive/slice/pointer. */) IView {
 	rv := objc.Send[View](v_.ID, objc.Sel("viewWithTag:"), tag)
 	return rv
 }
@@ -1966,7 +1967,7 @@ func (v_ View) WritePDFInsideRectToPasteboard(rect coregraphics.CGRect, pasteboa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/acceptsTouchEvents
-func (v_ View) AcceptsTouchEvents() bool {
+func (v_ View) AcceptsTouchEvents() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("acceptsTouchEvents"))
 	return rv
 }
@@ -1976,7 +1977,7 @@ func (v_ View) AcceptsTouchEvents() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/acceptsTouchEvents
-func (v_ View) SetAcceptsTouchEvents(value bool) {
+func (v_ View) SetAcceptsTouchEvents(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAcceptsTouchEvents:"), value)
 }
 
@@ -1985,8 +1986,8 @@ func (v_ View) SetAcceptsTouchEvents(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/additionalSafeAreaInsets
-func (v_ View) AdditionalSafeAreaInsets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("additionalSafeAreaInsets"))
+func (v_ View) AdditionalSafeAreaInsets() EdgeInsets /* not a class type */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("additionalSafeAreaInsets"))
 	return rv
 }
 
@@ -1995,7 +1996,7 @@ func (v_ View) AdditionalSafeAreaInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/additionalSafeAreaInsets
-func (v_ View) SetAdditionalSafeAreaInsets(value unsafe.Pointer) {
+func (v_ View) SetAdditionalSafeAreaInsets(value EdgeInsets /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAdditionalSafeAreaInsets:"), value)
 }
 
@@ -2004,8 +2005,8 @@ func (v_ View) SetAdditionalSafeAreaInsets(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alignmentRectInsets
-func (v_ View) AlignmentRectInsets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("alignmentRectInsets"))
+func (v_ View) AlignmentRectInsets() EdgeInsets /* not a class type */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("alignmentRectInsets"))
 	return rv
 }
 
@@ -2014,8 +2015,8 @@ func (v_ View) AlignmentRectInsets() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowedTouchTypes
-func (v_ View) AllowedTouchTypes() NSTouchTypeMask {
-	rv := objc.Send[NSTouchTypeMask](v_.ID, objc.Sel("allowedTouchTypes"))
+func (v_ View) AllowedTouchTypes() TouchTypeMask {
+	rv := objc.Send[TouchTypeMask](v_.ID, objc.Sel("allowedTouchTypes"))
 	return rv
 }
 
@@ -2024,7 +2025,7 @@ func (v_ View) AllowedTouchTypes() NSTouchTypeMask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowedTouchTypes
-func (v_ View) SetAllowedTouchTypes(value NSTouchTypeMask) {
+func (v_ View) SetAllowedTouchTypes(value TouchTypeMask) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
 
@@ -2033,7 +2034,7 @@ func (v_ View) SetAllowedTouchTypes(value NSTouchTypeMask) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/allowsVibrancy
-func (v_ View) AllowsVibrancy() bool {
+func (v_ View) AllowsVibrancy() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("allowsVibrancy"))
 	return rv
 }
@@ -2043,7 +2044,7 @@ func (v_ View) AllowsVibrancy() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alphaValue
-func (v_ View) AlphaValue() float64 {
+func (v_ View) AlphaValue() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("alphaValue"))
 	return rv
 }
@@ -2053,7 +2054,7 @@ func (v_ View) AlphaValue() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/alphaValue
-func (v_ View) SetAlphaValue(value float64) {
+func (v_ View) SetAlphaValue(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAlphaValue:"), value)
 }
 
@@ -2062,7 +2063,7 @@ func (v_ View) SetAlphaValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizesSubviews
-func (v_ View) AutoresizesSubviews() bool {
+func (v_ View) AutoresizesSubviews() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("autoresizesSubviews"))
 	return rv
 }
@@ -2072,7 +2073,7 @@ func (v_ View) AutoresizesSubviews() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizesSubviews
-func (v_ View) SetAutoresizesSubviews(value bool) {
+func (v_ View) SetAutoresizesSubviews(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAutoresizesSubviews:"), value)
 }
 
@@ -2081,8 +2082,8 @@ func (v_ View) SetAutoresizesSubviews(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizingMask-swift.property
-func (v_ View) AutoresizingMask() NSAutoresizingMaskOptions {
-	rv := objc.Send[NSAutoresizingMaskOptions](v_.ID, objc.Sel("autoresizingMask"))
+func (v_ View) AutoresizingMask() AutoresizingMaskOptions {
+	rv := objc.Send[AutoresizingMaskOptions](v_.ID, objc.Sel("autoresizingMask"))
 	return rv
 }
 
@@ -2091,7 +2092,7 @@ func (v_ View) AutoresizingMask() NSAutoresizingMaskOptions {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/autoresizingMask-swift.property
-func (v_ View) SetAutoresizingMask(value NSAutoresizingMaskOptions) {
+func (v_ View) SetAutoresizingMask(value AutoresizingMaskOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAutoresizingMask:"), value)
 }
 
@@ -2100,7 +2101,7 @@ func (v_ View) SetAutoresizingMask(value NSAutoresizingMaskOptions) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() []coreimage.Filter {
+func (v_ View) BackgroundFilters() []coreimage.objc.IObject /* cross-framework: Filter */ {
 	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
@@ -2110,7 +2111,7 @@ func (v_ View) BackgroundFilters() []coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []coreimage.Filter) {
+func (v_ View) SetBackgroundFilters(value []coreimage.objc.IObject /* cross-framework: Filter */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2129,7 +2130,7 @@ func (v_ View) SetBackgroundFilters(value []coreimage.Filter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/baselineOffsetFromBottom
-func (v_ View) BaselineOffsetFromBottom() float64 {
+func (v_ View) BaselineOffsetFromBottom() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("baselineOffsetFromBottom"))
 	return rv
 }
@@ -2139,7 +2140,7 @@ func (v_ View) BaselineOffsetFromBottom() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/bottomAnchor
-func (v_ View) BottomAnchor() LayoutYAxisAnchor {
+func (v_ View) BottomAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */ {
 	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("bottomAnchor"))
 	return rv
 }
@@ -2168,7 +2169,7 @@ func (v_ View) SetBounds(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/boundsRotation
-func (v_ View) BoundsRotation() float64 {
+func (v_ View) BoundsRotation() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("boundsRotation"))
 	return rv
 }
@@ -2178,7 +2179,7 @@ func (v_ View) BoundsRotation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/boundsRotation
-func (v_ View) SetBoundsRotation(value float64) {
+func (v_ View) SetBoundsRotation(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBoundsRotation:"), value)
 }
 
@@ -2187,7 +2188,7 @@ func (v_ View) SetBoundsRotation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canBecomeKeyView
-func (v_ View) CanBecomeKeyView() bool {
+func (v_ View) CanBecomeKeyView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canBecomeKeyView"))
 	return rv
 }
@@ -2197,7 +2198,7 @@ func (v_ View) CanBecomeKeyView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDraw
-func (v_ View) CanDraw() bool {
+func (v_ View) CanDraw() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDraw"))
 	return rv
 }
@@ -2207,7 +2208,7 @@ func (v_ View) CanDraw() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDrawConcurrently
-func (v_ View) CanDrawConcurrently() bool {
+func (v_ View) CanDrawConcurrently() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDrawConcurrently"))
 	return rv
 }
@@ -2217,7 +2218,7 @@ func (v_ View) CanDrawConcurrently() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDrawConcurrently
-func (v_ View) SetCanDrawConcurrently(value bool) {
+func (v_ View) SetCanDrawConcurrently(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCanDrawConcurrently:"), value)
 }
 
@@ -2226,7 +2227,7 @@ func (v_ View) SetCanDrawConcurrently(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDrawSubviewsIntoLayer
-func (v_ View) CanDrawSubviewsIntoLayer() bool {
+func (v_ View) CanDrawSubviewsIntoLayer() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("canDrawSubviewsIntoLayer"))
 	return rv
 }
@@ -2236,14 +2237,14 @@ func (v_ View) CanDrawSubviewsIntoLayer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/canDrawSubviewsIntoLayer
-func (v_ View) SetCanDrawSubviewsIntoLayer(value bool) {
+func (v_ View) SetCanDrawSubviewsIntoLayer(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCanDrawSubviewsIntoLayer:"), value)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/candidateListTouchBarItem
-func (v_ View) CandidateListTouchBarItem() CandidateListTouchBarItem {
+func (v_ View) CandidateListTouchBarItem() objc.IObject /* cross-framework: CandidateListTouchBarItem */ {
 	rv := objc.Send[CandidateListTouchBarItem](v_.ID, objc.Sel("candidateListTouchBarItem"))
 	return rv
 }
@@ -2263,7 +2264,7 @@ func (v_ View) CenterXAnchor() ILayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/centerYAnchor
-func (v_ View) CenterYAnchor() LayoutYAxisAnchor {
+func (v_ View) CenterYAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */ {
 	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("centerYAnchor"))
 	return rv
 }
@@ -2273,7 +2274,7 @@ func (v_ View) CenterYAnchor() LayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/clipsToBounds
-func (v_ View) ClipsToBounds() bool {
+func (v_ View) ClipsToBounds() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("clipsToBounds"))
 	return rv
 }
@@ -2283,7 +2284,7 @@ func (v_ View) ClipsToBounds() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/clipsToBounds
-func (v_ View) SetClipsToBounds(value bool) {
+func (v_ View) SetClipsToBounds(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setClipsToBounds:"), value)
 }
 
@@ -2292,8 +2293,8 @@ func (v_ View) SetClipsToBounds(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) CompositingFilter() coreimage.Filter {
-	rv := objc.Send[coreimage.Filter](v_.ID, objc.Sel("compositingFilter"))
+func (v_ View) CompositingFilter() objc.IObject /* cross-framework: Filter */ {
+	rv := objc.Send[Filter](v_.ID, objc.Sel("compositingFilter"))
 	return rv
 }
 
@@ -2302,7 +2303,7 @@ func (v_ View) CompositingFilter() coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/compositingFilter
-func (v_ View) SetCompositingFilter(value coreimage.Filter) {
+func (v_ View) SetCompositingFilter(value objc.IObject /* cross-framework: Filter */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCompositingFilter:"), value)
 }
 
@@ -2311,7 +2312,7 @@ func (v_ View) SetCompositingFilter(value coreimage.Filter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/constraints
-func (v_ View) Constraints() []LayoutConstraint {
+func (v_ View) Constraints() []LayoutConstraint /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]LayoutConstraint](v_.ID, objc.Sel("constraints"))
 	return rv
 }
@@ -2321,7 +2322,7 @@ func (v_ View) Constraints() []LayoutConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() []coreimage.Filter {
+func (v_ View) ContentFilters() []coreimage.objc.IObject /* cross-framework: Filter */ {
 	rv := objc.Send[[]coreimage.Filter](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
@@ -2331,7 +2332,7 @@ func (v_ View) ContentFilters() []coreimage.Filter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []coreimage.Filter) {
+func (v_ View) SetContentFilters(value []coreimage.objc.IObject /* cross-framework: Filter */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2350,8 +2351,8 @@ func (v_ View) SetContentFilters(value []coreimage.Filter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/defaultFocusRingType
-func (v_ View) DefaultFocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](v_.ID, objc.Sel("defaultFocusRingType"))
+func (v_ View) DefaultFocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](v_.ID, objc.Sel("defaultFocusRingType"))
 	return rv
 }
 
@@ -2370,7 +2371,7 @@ func (v_ View) DefaultMenu() IMenu {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/enclosingMenuItem
-func (v_ View) EnclosingMenuItem() MenuItem {
+func (v_ View) EnclosingMenuItem() objc.IObject /* cross-framework: MenuItem */ {
 	rv := objc.Send[MenuItem](v_.ID, objc.Sel("enclosingMenuItem"))
 	return rv
 }
@@ -2390,7 +2391,7 @@ func (v_ View) EnclosingScrollView() IScrollView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/firstBaselineAnchor
-func (v_ View) FirstBaselineAnchor() LayoutYAxisAnchor {
+func (v_ View) FirstBaselineAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */ {
 	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("firstBaselineAnchor"))
 	return rv
 }
@@ -2400,7 +2401,7 @@ func (v_ View) FirstBaselineAnchor() LayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/firstBaselineOffsetFromTop
-func (v_ View) FirstBaselineOffsetFromTop() float64 {
+func (v_ View) FirstBaselineOffsetFromTop() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("firstBaselineOffsetFromTop"))
 	return rv
 }
@@ -2430,8 +2431,8 @@ func (v_ View) FocusRingMaskBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingType
-func (v_ View) FocusRingType() NSFocusRingType {
-	rv := objc.Send[NSFocusRingType](v_.ID, objc.Sel("focusRingType"))
+func (v_ View) FocusRingType() FocusRingType {
+	rv := objc.Send[FocusRingType](v_.ID, objc.Sel("focusRingType"))
 	return rv
 }
 
@@ -2440,7 +2441,7 @@ func (v_ View) FocusRingType() NSFocusRingType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/focusRingType
-func (v_ View) SetFocusRingType(value NSFocusRingType) {
+func (v_ View) SetFocusRingType(value FocusRingType) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFocusRingType:"), value)
 }
 
@@ -2478,7 +2479,7 @@ func (v_ View) SetFrame(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frameCenterRotation
-func (v_ View) FrameCenterRotation() float64 {
+func (v_ View) FrameCenterRotation() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("frameCenterRotation"))
 	return rv
 }
@@ -2488,7 +2489,7 @@ func (v_ View) FrameCenterRotation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frameCenterRotation
-func (v_ View) SetFrameCenterRotation(value float64) {
+func (v_ View) SetFrameCenterRotation(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrameCenterRotation:"), value)
 }
 
@@ -2497,7 +2498,7 @@ func (v_ View) SetFrameCenterRotation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frameRotation
-func (v_ View) FrameRotation() float64 {
+func (v_ View) FrameRotation() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("frameRotation"))
 	return rv
 }
@@ -2507,7 +2508,7 @@ func (v_ View) FrameRotation() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/frameRotation
-func (v_ View) SetFrameRotation(value float64) {
+func (v_ View) SetFrameRotation(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFrameRotation:"), value)
 }
 
@@ -2516,7 +2517,7 @@ func (v_ View) SetFrameRotation(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) GestureRecognizers() []GestureRecognizer {
+func (v_ View) GestureRecognizers() []GestureRecognizer /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GestureRecognizer](v_.ID, objc.Sel("gestureRecognizers"))
 	return rv
 }
@@ -2526,7 +2527,7 @@ func (v_ View) GestureRecognizers() []GestureRecognizer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/gestureRecognizers
-func (v_ View) SetGestureRecognizers(value []GestureRecognizer) {
+func (v_ View) SetGestureRecognizers(value []GestureRecognizer /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -2545,7 +2546,7 @@ func (v_ View) SetGestureRecognizers(value []GestureRecognizer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/hasAmbiguousLayout
-func (v_ View) HasAmbiguousLayout() bool {
+func (v_ View) HasAmbiguousLayout() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hasAmbiguousLayout"))
 	return rv
 }
@@ -2555,7 +2556,7 @@ func (v_ View) HasAmbiguousLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/heightAdjustLimit
-func (v_ View) HeightAdjustLimit() float64 {
+func (v_ View) HeightAdjustLimit() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("heightAdjustLimit"))
 	return rv
 }
@@ -2565,7 +2566,7 @@ func (v_ View) HeightAdjustLimit() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/heightAnchor
-func (v_ View) HeightAnchor() LayoutDimension {
+func (v_ View) HeightAnchor() objc.IObject /* cross-framework: LayoutDimension */ {
 	rv := objc.Send[LayoutDimension](v_.ID, objc.Sel("heightAnchor"))
 	return rv
 }
@@ -2575,7 +2576,7 @@ func (v_ View) HeightAnchor() LayoutDimension {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/inLiveResize
-func (v_ View) InLiveResize() bool {
+func (v_ View) InLiveResize() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("inLiveResize"))
 	return rv
 }
@@ -2585,7 +2586,7 @@ func (v_ View) InLiveResize() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/inputContext
-func (v_ View) InputContext() TextInputContext {
+func (v_ View) InputContext() ITextInputContext {
 	rv := objc.Send[TextInputContext](v_.ID, objc.Sel("inputContext"))
 	return rv
 }
@@ -2605,7 +2606,7 @@ func (v_ View) IntrinsicContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isCompatibleWithResponsiveScrolling
-func (v_ View) CompatibleWithResponsiveScrolling() bool {
+func (v_ View) CompatibleWithResponsiveScrolling() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("compatibleWithResponsiveScrolling"))
 	return rv
 }
@@ -2615,7 +2616,7 @@ func (v_ View) CompatibleWithResponsiveScrolling() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isDrawingFindIndicator
-func (v_ View) DrawingFindIndicator() bool {
+func (v_ View) DrawingFindIndicator() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("drawingFindIndicator"))
 	return rv
 }
@@ -2625,7 +2626,7 @@ func (v_ View) DrawingFindIndicator() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isFlipped
-func (v_ View) Flipped() bool {
+func (v_ View) Flipped() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("flipped"))
 	return rv
 }
@@ -2635,7 +2636,7 @@ func (v_ View) Flipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHidden
-func (v_ View) Hidden() bool {
+func (v_ View) Hidden() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hidden"))
 	return rv
 }
@@ -2645,7 +2646,7 @@ func (v_ View) Hidden() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHidden
-func (v_ View) SetHidden(value bool) {
+func (v_ View) SetHidden(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHidden:"), value)
 }
 
@@ -2654,7 +2655,7 @@ func (v_ View) SetHidden(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHiddenOrHasHiddenAncestor
-func (v_ View) HiddenOrHasHiddenAncestor() bool {
+func (v_ View) HiddenOrHasHiddenAncestor() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("hiddenOrHasHiddenAncestor"))
 	return rv
 }
@@ -2664,7 +2665,7 @@ func (v_ View) HiddenOrHasHiddenAncestor() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHorizontalContentSizeConstraintActive
-func (v_ View) HorizontalContentSizeConstraintActive() bool {
+func (v_ View) HorizontalContentSizeConstraintActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("horizontalContentSizeConstraintActive"))
 	return rv
 }
@@ -2674,7 +2675,7 @@ func (v_ View) HorizontalContentSizeConstraintActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isHorizontalContentSizeConstraintActive
-func (v_ View) SetHorizontalContentSizeConstraintActive(value bool) {
+func (v_ View) SetHorizontalContentSizeConstraintActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHorizontalContentSizeConstraintActive:"), value)
 }
 
@@ -2683,7 +2684,7 @@ func (v_ View) SetHorizontalContentSizeConstraintActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isInFullScreenMode
-func (v_ View) InFullScreenMode() bool {
+func (v_ View) InFullScreenMode() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("inFullScreenMode"))
 	return rv
 }
@@ -2693,7 +2694,7 @@ func (v_ View) InFullScreenMode() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isOpaque
-func (v_ View) Opaque() bool {
+func (v_ View) Opaque() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("opaque"))
 	return rv
 }
@@ -2703,7 +2704,7 @@ func (v_ View) Opaque() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isRotatedFromBase
-func (v_ View) RotatedFromBase() bool {
+func (v_ View) RotatedFromBase() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rotatedFromBase"))
 	return rv
 }
@@ -2713,7 +2714,7 @@ func (v_ View) RotatedFromBase() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isRotatedOrScaledFromBase
-func (v_ View) RotatedOrScaledFromBase() bool {
+func (v_ View) RotatedOrScaledFromBase() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("rotatedOrScaledFromBase"))
 	return rv
 }
@@ -2723,7 +2724,7 @@ func (v_ View) RotatedOrScaledFromBase() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isVerticalContentSizeConstraintActive
-func (v_ View) VerticalContentSizeConstraintActive() bool {
+func (v_ View) VerticalContentSizeConstraintActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("verticalContentSizeConstraintActive"))
 	return rv
 }
@@ -2733,7 +2734,7 @@ func (v_ View) VerticalContentSizeConstraintActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/isVerticalContentSizeConstraintActive
-func (v_ View) SetVerticalContentSizeConstraintActive(value bool) {
+func (v_ View) SetVerticalContentSizeConstraintActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVerticalContentSizeConstraintActive:"), value)
 }
 
@@ -2742,7 +2743,7 @@ func (v_ View) SetVerticalContentSizeConstraintActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lastBaselineAnchor
-func (v_ View) LastBaselineAnchor() LayoutYAxisAnchor {
+func (v_ View) LastBaselineAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */ {
 	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("lastBaselineAnchor"))
 	return rv
 }
@@ -2752,7 +2753,7 @@ func (v_ View) LastBaselineAnchor() LayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/lastBaselineOffsetFromBottom
-func (v_ View) LastBaselineOffsetFromBottom() float64 {
+func (v_ View) LastBaselineOffsetFromBottom() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("lastBaselineOffsetFromBottom"))
 	return rv
 }
@@ -2762,8 +2763,8 @@ func (v_ View) LastBaselineOffsetFromBottom() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
-func (v_ View) Layer() quartzcore.Layer {
-	rv := objc.Send[quartzcore.Layer](v_.ID, objc.Sel("layer"))
+func (v_ View) Layer() objc.IObject /* cross-framework: Layer */ {
+	rv := objc.Send[Layer](v_.ID, objc.Sel("layer"))
 	return rv
 }
 
@@ -2772,7 +2773,7 @@ func (v_ View) Layer() quartzcore.Layer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layer
-func (v_ View) SetLayer(value quartzcore.Layer) {
+func (v_ View) SetLayer(value objc.IObject /* cross-framework: Layer */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayer:"), value)
 }
 
@@ -2781,8 +2782,8 @@ func (v_ View) SetLayer(value quartzcore.Layer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsPlacement-swift.property
-func (v_ View) LayerContentsPlacement() NSViewLayerContentsPlacement {
-	rv := objc.Send[NSViewLayerContentsPlacement](v_.ID, objc.Sel("layerContentsPlacement"))
+func (v_ View) LayerContentsPlacement() ViewLayerContentsPlacement {
+	rv := objc.Send[ViewLayerContentsPlacement](v_.ID, objc.Sel("layerContentsPlacement"))
 	return rv
 }
 
@@ -2791,7 +2792,7 @@ func (v_ View) LayerContentsPlacement() NSViewLayerContentsPlacement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsPlacement-swift.property
-func (v_ View) SetLayerContentsPlacement(value NSViewLayerContentsPlacement) {
+func (v_ View) SetLayerContentsPlacement(value ViewLayerContentsPlacement) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayerContentsPlacement:"), value)
 }
 
@@ -2800,8 +2801,8 @@ func (v_ View) SetLayerContentsPlacement(value NSViewLayerContentsPlacement) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property
-func (v_ View) LayerContentsRedrawPolicy() NSViewLayerContentsRedrawPolicy {
-	rv := objc.Send[NSViewLayerContentsRedrawPolicy](v_.ID, objc.Sel("layerContentsRedrawPolicy"))
+func (v_ View) LayerContentsRedrawPolicy() ViewLayerContentsRedrawPolicy {
+	rv := objc.Send[ViewLayerContentsRedrawPolicy](v_.ID, objc.Sel("layerContentsRedrawPolicy"))
 	return rv
 }
 
@@ -2810,7 +2811,7 @@ func (v_ View) LayerContentsRedrawPolicy() NSViewLayerContentsRedrawPolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerContentsRedrawPolicy-swift.property
-func (v_ View) SetLayerContentsRedrawPolicy(value NSViewLayerContentsRedrawPolicy) {
+func (v_ View) SetLayerContentsRedrawPolicy(value ViewLayerContentsRedrawPolicy) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayerContentsRedrawPolicy:"), value)
 }
 
@@ -2819,7 +2820,7 @@ func (v_ View) SetLayerContentsRedrawPolicy(value NSViewLayerContentsRedrawPolic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerUsesCoreImageFilters
-func (v_ View) LayerUsesCoreImageFilters() bool {
+func (v_ View) LayerUsesCoreImageFilters() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("layerUsesCoreImageFilters"))
 	return rv
 }
@@ -2829,7 +2830,7 @@ func (v_ View) LayerUsesCoreImageFilters() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layerUsesCoreImageFilters
-func (v_ View) SetLayerUsesCoreImageFilters(value bool) {
+func (v_ View) SetLayerUsesCoreImageFilters(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setLayerUsesCoreImageFilters:"), value)
 }
 
@@ -2838,7 +2839,7 @@ func (v_ View) SetLayerUsesCoreImageFilters(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/layoutGuides
-func (v_ View) LayoutGuides() []LayoutGuide {
+func (v_ View) LayoutGuides() []LayoutGuide /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]LayoutGuide](v_.ID, objc.Sel("layoutGuides"))
 	return rv
 }
@@ -2878,7 +2879,7 @@ func (v_ View) LeftAnchor() ILayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/mouseDownCanMoveWindow
-func (v_ View) MouseDownCanMoveWindow() bool {
+func (v_ View) MouseDownCanMoveWindow() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("mouseDownCanMoveWindow"))
 	return rv
 }
@@ -2888,7 +2889,7 @@ func (v_ View) MouseDownCanMoveWindow() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsDisplay
-func (v_ View) NeedsDisplay() bool {
+func (v_ View) NeedsDisplay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsDisplay"))
 	return rv
 }
@@ -2898,7 +2899,7 @@ func (v_ View) NeedsDisplay() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsDisplay
-func (v_ View) SetNeedsDisplay(value bool) {
+func (v_ View) SetNeedsDisplay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNeedsDisplay:"), value)
 }
 
@@ -2907,7 +2908,7 @@ func (v_ View) SetNeedsDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsLayout
-func (v_ View) NeedsLayout() bool {
+func (v_ View) NeedsLayout() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsLayout"))
 	return rv
 }
@@ -2917,7 +2918,7 @@ func (v_ View) NeedsLayout() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsLayout
-func (v_ View) SetNeedsLayout(value bool) {
+func (v_ View) SetNeedsLayout(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNeedsLayout:"), value)
 }
 
@@ -2926,7 +2927,7 @@ func (v_ View) SetNeedsLayout(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsPanelToBecomeKey
-func (v_ View) NeedsPanelToBecomeKey() bool {
+func (v_ View) NeedsPanelToBecomeKey() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsPanelToBecomeKey"))
 	return rv
 }
@@ -2936,7 +2937,7 @@ func (v_ View) NeedsPanelToBecomeKey() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsUpdateConstraints
-func (v_ View) NeedsUpdateConstraints() bool {
+func (v_ View) NeedsUpdateConstraints() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("needsUpdateConstraints"))
 	return rv
 }
@@ -2946,7 +2947,7 @@ func (v_ View) NeedsUpdateConstraints() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/needsUpdateConstraints
-func (v_ View) SetNeedsUpdateConstraints(value bool) {
+func (v_ View) SetNeedsUpdateConstraints(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNeedsUpdateConstraints:"), value)
 }
 
@@ -2994,8 +2995,8 @@ func (v_ View) OpaqueAncestor() IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageFooter
-func (v_ View) PageFooter() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](v_.ID, objc.Sel("pageFooter"))
+func (v_ View) PageFooter() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](v_.ID, objc.Sel("pageFooter"))
 	return rv
 }
 
@@ -3004,8 +3005,8 @@ func (v_ View) PageFooter() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/pageHeader
-func (v_ View) PageHeader() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](v_.ID, objc.Sel("pageHeader"))
+func (v_ View) PageHeader() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](v_.ID, objc.Sel("pageHeader"))
 	return rv
 }
 
@@ -3014,7 +3015,7 @@ func (v_ View) PageHeader() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/postsBoundsChangedNotifications
-func (v_ View) PostsBoundsChangedNotifications() bool {
+func (v_ View) PostsBoundsChangedNotifications() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("postsBoundsChangedNotifications"))
 	return rv
 }
@@ -3024,7 +3025,7 @@ func (v_ View) PostsBoundsChangedNotifications() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/postsBoundsChangedNotifications
-func (v_ View) SetPostsBoundsChangedNotifications(value bool) {
+func (v_ View) SetPostsBoundsChangedNotifications(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPostsBoundsChangedNotifications:"), value)
 }
 
@@ -3033,7 +3034,7 @@ func (v_ View) SetPostsBoundsChangedNotifications(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/postsFrameChangedNotifications
-func (v_ View) PostsFrameChangedNotifications() bool {
+func (v_ View) PostsFrameChangedNotifications() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("postsFrameChangedNotifications"))
 	return rv
 }
@@ -3043,7 +3044,7 @@ func (v_ View) PostsFrameChangedNotifications() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/postsFrameChangedNotifications
-func (v_ View) SetPostsFrameChangedNotifications(value bool) {
+func (v_ View) SetPostsFrameChangedNotifications(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPostsFrameChangedNotifications:"), value)
 }
 
@@ -3052,7 +3053,7 @@ func (v_ View) SetPostsFrameChangedNotifications(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/prefersCompactControlSizeMetrics
-func (v_ View) PrefersCompactControlSizeMetrics() bool {
+func (v_ View) PrefersCompactControlSizeMetrics() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("prefersCompactControlSizeMetrics"))
 	return rv
 }
@@ -3062,7 +3063,7 @@ func (v_ View) PrefersCompactControlSizeMetrics() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/prefersCompactControlSizeMetrics
-func (v_ View) SetPrefersCompactControlSizeMetrics(value bool) {
+func (v_ View) SetPrefersCompactControlSizeMetrics(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPrefersCompactControlSizeMetrics:"), value)
 }
 
@@ -3090,7 +3091,7 @@ func (v_ View) SetPreparedContentRect(value coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/preservesContentDuringLiveResize
-func (v_ View) PreservesContentDuringLiveResize() bool {
+func (v_ View) PreservesContentDuringLiveResize() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("preservesContentDuringLiveResize"))
 	return rv
 }
@@ -3139,7 +3140,7 @@ func (v_ View) PreviousValidKeyView() IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/printJobTitle
-func (v_ View) PrintJobTitle() string {
+func (v_ View) PrintJobTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](v_.ID, objc.Sel("printJobTitle"))
 	return rv
 }
@@ -3159,7 +3160,7 @@ func (v_ View) RectPreservedDuringLiveResize() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/registeredDraggedTypes
-func (v_ View) RegisteredDraggedTypes() []string {
+func (v_ View) RegisteredDraggedTypes() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](v_.ID, objc.Sel("registeredDraggedTypes"))
 	return rv
 }
@@ -3169,7 +3170,7 @@ func (v_ View) RegisteredDraggedTypes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/requiresConstraintBasedLayout
-func (v_ View) RequiresConstraintBasedLayout() bool {
+func (v_ View) RequiresConstraintBasedLayout() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("requiresConstraintBasedLayout"))
 	return rv
 }
@@ -3189,8 +3190,8 @@ func (v_ View) RightAnchor() ILayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/safeAreaInsets
-func (v_ View) SafeAreaInsets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("safeAreaInsets"))
+func (v_ View) SafeAreaInsets() EdgeInsets /* not a class type */ {
+	rv := objc.Send[EdgeInsets](v_.ID, objc.Sel("safeAreaInsets"))
 	return rv
 }
 
@@ -3238,7 +3239,7 @@ func (v_ View) SetShadow(value IShadow) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) Subviews() []View {
+func (v_ View) Subviews() []View /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]View](v_.ID, objc.Sel("subviews"))
 	return rv
 }
@@ -3248,7 +3249,7 @@ func (v_ View) Subviews() []View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/subviews
-func (v_ View) SetSubviews(value []View) {
+func (v_ View) SetSubviews(value []View /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -3277,7 +3278,7 @@ func (v_ View) Superview() IView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/tag
-func (v_ View) Tag() int {
+func (v_ View) Tag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](v_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -3287,7 +3288,7 @@ func (v_ View) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) ToolTip() string {
+func (v_ View) ToolTip() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](v_.ID, objc.Sel("toolTip"))
 	return rv
 }
@@ -3297,7 +3298,7 @@ func (v_ View) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) SetToolTip(value string) {
+func (v_ View) SetToolTip(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 
@@ -3306,7 +3307,7 @@ func (v_ View) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/topAnchor
-func (v_ View) TopAnchor() LayoutYAxisAnchor {
+func (v_ View) TopAnchor() objc.IObject /* cross-framework: LayoutYAxisAnchor */ {
 	rv := objc.Send[LayoutYAxisAnchor](v_.ID, objc.Sel("topAnchor"))
 	return rv
 }
@@ -3316,7 +3317,7 @@ func (v_ View) TopAnchor() LayoutYAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/trackingAreas
-func (v_ View) TrackingAreas() []TrackingArea {
+func (v_ View) TrackingAreas() []TrackingArea /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]TrackingArea](v_.ID, objc.Sel("trackingAreas"))
 	return rv
 }
@@ -3336,7 +3337,7 @@ func (v_ View) TrailingAnchor() ILayoutXAxisAnchor {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translatesAutoresizingMaskIntoConstraints
-func (v_ View) TranslatesAutoresizingMaskIntoConstraints() bool {
+func (v_ View) TranslatesAutoresizingMaskIntoConstraints() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("translatesAutoresizingMaskIntoConstraints"))
 	return rv
 }
@@ -3346,7 +3347,7 @@ func (v_ View) TranslatesAutoresizingMaskIntoConstraints() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/translatesAutoresizingMaskIntoConstraints
-func (v_ View) SetTranslatesAutoresizingMaskIntoConstraints(value bool) {
+func (v_ View) SetTranslatesAutoresizingMaskIntoConstraints(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTranslatesAutoresizingMaskIntoConstraints:"), value)
 }
 
@@ -3355,8 +3356,8 @@ func (v_ View) SetTranslatesAutoresizingMaskIntoConstraints(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/userInterfaceLayoutDirection
-func (v_ View) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
-	rv := objc.Send[NSUserInterfaceLayoutDirection](v_.ID, objc.Sel("userInterfaceLayoutDirection"))
+func (v_ View) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
+	rv := objc.Send[UserInterfaceLayoutDirection](v_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
 }
 
@@ -3365,7 +3366,7 @@ func (v_ View) UserInterfaceLayoutDirection() NSUserInterfaceLayoutDirection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/userInterfaceLayoutDirection
-func (v_ View) SetUserInterfaceLayoutDirection(value NSUserInterfaceLayoutDirection) {
+func (v_ View) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 
@@ -3384,7 +3385,7 @@ func (v_ View) VisibleRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsBestResolutionOpenGLSurface
-func (v_ View) WantsBestResolutionOpenGLSurface() bool {
+func (v_ View) WantsBestResolutionOpenGLSurface() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
 }
@@ -3394,7 +3395,7 @@ func (v_ View) WantsBestResolutionOpenGLSurface() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsBestResolutionOpenGLSurface
-func (v_ View) SetWantsBestResolutionOpenGLSurface(value bool) {
+func (v_ View) SetWantsBestResolutionOpenGLSurface(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWantsBestResolutionOpenGLSurface:"), value)
 }
 
@@ -3403,7 +3404,7 @@ func (v_ View) SetWantsBestResolutionOpenGLSurface(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsDefaultClipping
-func (v_ View) WantsDefaultClipping() bool {
+func (v_ View) WantsDefaultClipping() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsDefaultClipping"))
 	return rv
 }
@@ -3411,7 +3412,7 @@ func (v_ View) WantsDefaultClipping() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsExtendedDynamicRangeOpenGLSurface
-func (v_ View) WantsExtendedDynamicRangeOpenGLSurface() bool {
+func (v_ View) WantsExtendedDynamicRangeOpenGLSurface() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
 }
@@ -3419,7 +3420,7 @@ func (v_ View) WantsExtendedDynamicRangeOpenGLSurface() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsExtendedDynamicRangeOpenGLSurface
-func (v_ View) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
+func (v_ View) SetWantsExtendedDynamicRangeOpenGLSurface(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
 }
 
@@ -3428,7 +3429,7 @@ func (v_ View) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsLayer
-func (v_ View) WantsLayer() bool {
+func (v_ View) WantsLayer() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsLayer"))
 	return rv
 }
@@ -3438,7 +3439,7 @@ func (v_ View) WantsLayer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsLayer
-func (v_ View) SetWantsLayer(value bool) {
+func (v_ View) SetWantsLayer(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWantsLayer:"), value)
 }
 
@@ -3447,7 +3448,7 @@ func (v_ View) SetWantsLayer(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsRestingTouches
-func (v_ View) WantsRestingTouches() bool {
+func (v_ View) WantsRestingTouches() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsRestingTouches"))
 	return rv
 }
@@ -3457,7 +3458,7 @@ func (v_ View) WantsRestingTouches() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsRestingTouches
-func (v_ View) SetWantsRestingTouches(value bool) {
+func (v_ View) SetWantsRestingTouches(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWantsRestingTouches:"), value)
 }
 
@@ -3466,7 +3467,7 @@ func (v_ View) SetWantsRestingTouches(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/wantsUpdateLayer
-func (v_ View) WantsUpdateLayer() bool {
+func (v_ View) WantsUpdateLayer() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](v_.ID, objc.Sel("wantsUpdateLayer"))
 	return rv
 }
@@ -3476,7 +3477,7 @@ func (v_ View) WantsUpdateLayer() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/widthAdjustLimit
-func (v_ View) WidthAdjustLimit() float64 {
+func (v_ View) WidthAdjustLimit() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](v_.ID, objc.Sel("widthAdjustLimit"))
 	return rv
 }
@@ -3486,7 +3487,7 @@ func (v_ View) WidthAdjustLimit() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/widthAnchor
-func (v_ View) WidthAnchor() LayoutDimension {
+func (v_ View) WidthAnchor() objc.IObject /* cross-framework: LayoutDimension */ {
 	rv := objc.Send[LayoutDimension](v_.ID, objc.Sel("widthAnchor"))
 	return rv
 }
@@ -3504,7 +3505,7 @@ func (v_ View) Window() IWindow {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
-func (v_ View) WritingToolsCoordinator() WritingToolsCoordinator {
+func (v_ View) WritingToolsCoordinator() IWritingToolsCoordinator {
 	rv := objc.Send[WritingToolsCoordinator](v_.ID, objc.Sel("writingToolsCoordinator"))
 	return rv
 }
@@ -3512,7 +3513,7 @@ func (v_ View) WritingToolsCoordinator() WritingToolsCoordinator {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/writingToolsCoordinator
-func (v_ View) SetWritingToolsCoordinator(value WritingToolsCoordinator) {
+func (v_ View) SetWritingToolsCoordinator(value IWritingToolsCoordinator) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setWritingToolsCoordinator:"), value)
 }
 

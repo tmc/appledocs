@@ -30,6 +30,8 @@ type _GCPhysicalInputElementCollectionClass struct {
 // An interface definition for the [GCPhysicalInputElementCollection] class.
 type IGCPhysicalInputElementCollection interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A collection of physical input elements.

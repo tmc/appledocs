@@ -30,6 +30,8 @@ type _DispatchQueueClass struct {
 // An interface definition for the [DispatchQueue] class.
 type IDispatchQueue interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.

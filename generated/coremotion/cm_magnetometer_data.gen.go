@@ -29,9 +29,11 @@ type _MagnetometerDataClass struct {
 // An interface definition for the [MagnetometerData] class.
 type IMagnetometerData interface {
 	ILogItem
-	MagneticField() unsafe.Pointer
+	// properties:
+	MagneticField() MagneticField /* not a class type */
 	MagnetometerData() ICMMagnetometerData
 	SetMagnetometerData(value ICMMagnetometerData)
+	// methods:
 }
 
 // Measurements of the Earth’s magnetic field relative to the device.
@@ -93,8 +95,8 @@ func NewMagnetometerData() MagnetometerData {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMagnetometerData/magneticField
-func (m_ MagnetometerData) MagneticField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("magneticField"))
+func (m_ MagnetometerData) MagneticField() MagneticField /* not a class type */ {
+	rv := objc.Send[MagneticField](m_.ID, objc.Sel("magneticField"))
 	return rv
 }
 

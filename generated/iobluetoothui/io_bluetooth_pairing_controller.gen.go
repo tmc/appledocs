@@ -32,7 +32,7 @@ type IBluetoothPairingController interface {
 	appkit.IWindowController
 	// properties:
 	// methods:
-	GetPrompt() NSString
+	GetPrompt() objc.IObject /* cross-framework: String */
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -94,7 +94,7 @@ func NewBluetoothPairingController() BluetoothPairingController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getPrompt()
-func (b_ BluetoothPairingController) GetPrompt() NSString {
+func (b_ BluetoothPairingController) GetPrompt() objc.IObject /* cross-framework: String */ {
 	rv := objc.Send[String](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }

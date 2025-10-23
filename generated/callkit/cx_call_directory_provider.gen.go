@@ -30,6 +30,8 @@ type _CXCallDirectoryProviderClass struct {
 // An interface definition for the [CXCallDirectoryProvider] class.
 type ICXCallDirectoryProvider interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	BeginRequestWithExtensionContext(context ICXCallDirectoryExtensionContext)
 }
 

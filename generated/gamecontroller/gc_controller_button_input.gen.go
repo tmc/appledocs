@@ -30,6 +30,8 @@ type _GCControllerButtonInputClass struct {
 // An interface definition for the [GCControllerButtonInput] class.
 type IGCControllerButtonInput interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other GameController classes.

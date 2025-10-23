@@ -9,13 +9,22 @@ import (
 // Suppress unused import errors
 var _ = coremidi.NewMIDINetworkHost
 
-// ExampleNewMIDINetworkHostWithNameNetServiceNameNetServiceDomain demonstrates how to create a MIDINetworkHost instance using NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain.
-// Creates a host with the specified name, net service name, and domain.
-func ExampleNewMIDINetworkHostWithNameNetServiceNameNetServiceDomain() {
-	_ = coremidi.NewMIDINetworkHostWithNameNetServiceNameNetServiceDomain(
+// ExampleNewMIDINetworkHostWithNameAddressPort demonstrates how to create a MIDINetworkHost instance using NewMIDINetworkHostWithNameAddressPort.
+// Creates a host with the specified name, adress, and port.
+func ExampleNewMIDINetworkHostWithNameAddressPort() {
+	_ = coremidi.NewMIDINetworkHostWithNameAddressPort(
 		"name", // name string
-		"netServiceName", // netServiceName string
-		"netServiceDomain", // netServiceDomain string
+		"address", // address string
+		0, // port uint
+	)
+	// Output:
+}
+// ExampleNewMIDINetworkHostWithNameNetService demonstrates how to create a MIDINetworkHost instance using NewMIDINetworkHostWithNameNetService.
+// Creates a host with the specified name and net service.
+func ExampleNewMIDINetworkHostWithNameNetService() {
+	_ = coremidi.NewMIDINetworkHostWithNameNetService(
+		"name", // name string
+		coremidi.NetService{}, // netService NetService
 	)
 	// Output:
 }

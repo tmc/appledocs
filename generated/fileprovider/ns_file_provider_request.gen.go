@@ -31,14 +31,16 @@ type _FileProviderRequestClass struct {
 // An interface definition for the [FileProviderRequest] class.
 type IFileProviderRequest interface {
 	objectivec.IObject
+	// properties:
 	DomainVersion() IFileProviderDomainVersion
 	SetDomainVersion(value IFileProviderDomainVersion)
-	IsFileViewerRequest() bool
-	SetIsFileViewerRequest(value bool)
-	IsSystemRequest() bool
-	SetIsSystemRequest(value bool)
-	RequestingExecutable() foundation.URL
-	SetRequestingExecutable(value foundation.URL)
+	IsFileViewerRequest() bool /* primitive/slice/pointer. */
+	SetIsFileViewerRequest(value bool /* primitive/slice/pointer. */)
+	IsSystemRequest() bool /* primitive/slice/pointer. */
+	SetIsSystemRequest(value bool /* primitive/slice/pointer. */)
+	RequestingExecutable() foundation.objc.IObject /* cross-framework: URL */
+	SetRequestingExecutable(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // An object that provides information about the application requesting data from the File Provider extension.
@@ -115,7 +117,7 @@ func (f_ FileProviderRequest) SetDomainVersion(value IFileProviderDomainVersion)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
-func (f_ FileProviderRequest) IsFileViewerRequest() bool {
+func (f_ FileProviderRequest) IsFileViewerRequest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
-func (f_ FileProviderRequest) SetIsFileViewerRequest(value bool) {
+func (f_ FileProviderRequest) SetIsFileViewerRequest(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsFileViewerRequest:"), value)
 }
 
@@ -134,7 +136,7 @@ func (f_ FileProviderRequest) SetIsFileViewerRequest(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
-func (f_ FileProviderRequest) IsSystemRequest() bool {
+func (f_ FileProviderRequest) IsSystemRequest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (f_ FileProviderRequest) IsSystemRequest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
-func (f_ FileProviderRequest) SetIsSystemRequest(value bool) {
+func (f_ FileProviderRequest) SetIsSystemRequest(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSystemRequest:"), value)
 }
 
@@ -153,7 +155,7 @@ func (f_ FileProviderRequest) SetIsSystemRequest(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
-func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
+func (f_ FileProviderRequest) RequestingExecutable() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv
 }
@@ -163,7 +165,7 @@ func (f_ FileProviderRequest) RequestingExecutable() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
-func (f_ FileProviderRequest) SetRequestingExecutable(value foundation.URL) {
+func (f_ FileProviderRequest) SetRequestingExecutable(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRequestingExecutable:"), value)
 }
 

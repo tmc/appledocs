@@ -30,6 +30,8 @@ type _EXAppExtensionBrowserViewControllerClass struct {
 // An interface definition for the [EXAppExtensionBrowserViewController] class.
 type IEXAppExtensionBrowserViewController interface {
 	appkit.IViewController
+	// properties:
+	// methods:
 }
 
 // A view controller that displays an interface to enable or disable the host app’s extensions.

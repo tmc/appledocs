@@ -35,8 +35,8 @@ type IMKMapFeatureAnnotation interface {
 	SetFeatureType(value unsafe.Pointer)
 	IconStyle() IMKIconStyle
 	SetIconStyle(value IMKIconStyle)
-	PointOfInterestCategory() MKPointOfInterestCategory
-	SetPointOfInterestCategory(value MKPointOfInterestCategory)
+	PointOfInterestCategory() MKPointOfInterestCategory /* typedef */
+	SetPointOfInterestCategory(value MKPointOfInterestCategory /* typedef */)
 	// methods:
 }
 
@@ -133,7 +133,7 @@ func (m_ MKMapFeatureAnnotation) SetIconStyle(value IMKIconStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
-func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() MKPointOfInterestCategory {
+func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() MKPointOfInterestCategory /* typedef */ {
 	rv := objc.Send[MKPointOfInterestCategory](m_.ID, objc.Sel("pointOfInterestCategory"))
 	return rv
 }
@@ -143,7 +143,7 @@ func (m_ MKMapFeatureAnnotation) PointOfInterestCategory() MKPointOfInterestCate
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation/pointofinterestcategory
-func (m_ MKMapFeatureAnnotation) SetPointOfInterestCategory(value MKPointOfInterestCategory) {
+func (m_ MKMapFeatureAnnotation) SetPointOfInterestCategory(value MKPointOfInterestCategory /* typedef */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestCategory:"), value)
 }
 

@@ -30,6 +30,8 @@ type _QueryGenerationTokenClass struct {
 // An interface definition for the [QueryGenerationToken] class.
 type IQueryGenerationToken interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A token that indicates which generation of the persistent store is being accessed.

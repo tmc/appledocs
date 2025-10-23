@@ -30,8 +30,10 @@ type _EXHostViewControllerClass struct {
 // An interface definition for the [EXHostViewController] class.
 type IEXHostViewController interface {
 	appkit.IViewController
+	// properties:
 	Configuration() unsafe.Pointer
 	SetConfiguration(value unsafe.Pointer)
+	// methods:
 	MakeXPCConnection()
 }
 

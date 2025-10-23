@@ -30,7 +30,9 @@ type _DDMatchClass struct {
 // An interface definition for the [DDMatch] class.
 type IDDMatch interface {
 	objectivec.IObject
-	MatchedString() string
+	// properties:
+	MatchedString() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A base class for common types of data that the data detection system matches.
@@ -90,7 +92,7 @@ func NewDDMatch() DDMatch {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
-func (d_ DDMatch) MatchedString() string {
+func (d_ DDMatch) MatchedString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
 	return rv
 }

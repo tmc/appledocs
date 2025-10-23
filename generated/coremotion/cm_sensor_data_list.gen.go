@@ -30,6 +30,8 @@ type _SensorDataListClass struct {
 // An interface definition for the [SensorDataList] class.
 type ISensorDataList interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A list of the accelerometer data recorded by the system.

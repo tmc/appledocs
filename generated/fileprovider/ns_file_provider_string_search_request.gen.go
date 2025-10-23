@@ -30,10 +30,12 @@ type _FileProviderStringSearchRequestClass struct {
 // An interface definition for the [FileProviderStringSearchRequest] class.
 type IFileProviderStringSearchRequest interface {
 	objectivec.IObject
-	DesiredNumberOfResults() int
-	SetDesiredNumberOfResults(value int)
-	Query() string
-	SetQuery(value string)
+	// properties:
+	DesiredNumberOfResults() int /* primitive/slice/pointer. */
+	SetDesiredNumberOfResults(value int /* primitive/slice/pointer. */)
+	Query() string /* primitive/slice/pointer. */
+	SetQuery(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A type that contains details of a string-based search request.
@@ -91,7 +93,7 @@ func NewFileProviderStringSearchRequest() FileProviderStringSearchRequest {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
-func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int {
+func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](f_.ID, objc.Sel("desiredNumberOfResults"))
 	return rv
 }
@@ -101,7 +103,7 @@ func (f_ FileProviderStringSearchRequest) DesiredNumberOfResults() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/desirednumberofresults
-func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
+func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesiredNumberOfResults:"), value)
 }
 
@@ -110,7 +112,7 @@ func (f_ FileProviderStringSearchRequest) SetDesiredNumberOfResults(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-func (f_ FileProviderStringSearchRequest) Query() string {
+func (f_ FileProviderStringSearchRequest) Query() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](f_.ID, objc.Sel("query"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (f_ FileProviderStringSearchRequest) Query() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest/query
-func (f_ FileProviderStringSearchRequest) SetQuery(value string) {
+func (f_ FileProviderStringSearchRequest) SetQuery(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setQuery:"), objc.String(value))
 }
 

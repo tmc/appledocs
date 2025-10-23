@@ -31,27 +31,29 @@ type _AudioFormatClass struct {
 // An interface definition for the [AudioFormat] class.
 type IAudioFormat interface {
 	objectivec.IObject
-	ChannelCount() AudioChannelCount
-	SetChannelCount(value AudioChannelCount)
-	ChannelLayout() AudioChannelLayout
-	SetChannelLayout(value AudioChannelLayout)
-	CommonFormat() unsafe.Pointer
-	SetCommonFormat(value unsafe.Pointer)
-	FormatDescription() unsafe.Pointer
-	SetFormatDescription(value unsafe.Pointer)
-	IsInterleaved() bool
-	SetIsInterleaved(value bool)
-	IsStandard() bool
-	SetIsStandard(value bool)
-	MagicCookie() foundation.Data
-	SetMagicCookie(value foundation.Data)
-	SampleRate() float64
-	SetSampleRate(value float64)
-	Settings() string
-	SetSettings(value string)
+	// properties:
+	ChannelCount() objc.IObject /* cross-framework: AudioChannelCount */
+	SetChannelCount(value objc.IObject /* cross-framework: AudioChannelCount */)
+	ChannelLayout() objc.IObject /* cross-framework: AudioChannelLayout */
+	SetChannelLayout(value objc.IObject /* cross-framework: AudioChannelLayout */)
+	CommonFormat() AudioCommonFormat /* not a class type */
+	SetCommonFormat(value AudioCommonFormat /* not a class type */)
+	FormatDescription() AudioFormatDescription /* not a class type */
+	SetFormatDescription(value AudioFormatDescription /* not a class type */)
+	IsInterleaved() bool /* primitive/slice/pointer. */
+	SetIsInterleaved(value bool /* primitive/slice/pointer. */)
+	IsStandard() bool /* primitive/slice/pointer. */
+	SetIsStandard(value bool /* primitive/slice/pointer. */)
+	MagicCookie() foundation.objc.IObject /* cross-framework: Data */
+	SetMagicCookie(value foundation.objc.IObject /* cross-framework: Data */)
+	SampleRate() float64 /* primitive/slice/pointer. */
+	SetSampleRate(value float64 /* primitive/slice/pointer. */)
+	Settings() string /* primitive/slice/pointer. */
+	SetSettings(value string /* primitive/slice/pointer. */)
 	StreamDescription() unsafe.Pointer
 	SetStreamDescription(value unsafe.Pointer)
-	AVChannelLayoutKey() string
+	AVChannelLayoutKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that describes the representation of an audio format.
@@ -111,7 +113,7 @@ func NewAudioFormat() AudioFormat {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channelcount
-func (a_ AudioFormat) ChannelCount() AudioChannelCount {
+func (a_ AudioFormat) ChannelCount() objc.IObject /* cross-framework: AudioChannelCount */ {
 	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("channelCount"))
 	return rv
 }
@@ -121,7 +123,7 @@ func (a_ AudioFormat) ChannelCount() AudioChannelCount {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channelcount
-func (a_ AudioFormat) SetChannelCount(value AudioChannelCount) {
+func (a_ AudioFormat) SetChannelCount(value objc.IObject /* cross-framework: AudioChannelCount */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelCount:"), value)
 }
 
@@ -130,7 +132,7 @@ func (a_ AudioFormat) SetChannelCount(value AudioChannelCount) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channellayout
-func (a_ AudioFormat) ChannelLayout() AudioChannelLayout {
+func (a_ AudioFormat) ChannelLayout() objc.IObject /* cross-framework: AudioChannelLayout */ {
 	rv := objc.Send[AudioChannelLayout](a_.ID, objc.Sel("channelLayout"))
 	return rv
 }
@@ -140,7 +142,7 @@ func (a_ AudioFormat) ChannelLayout() AudioChannelLayout {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channellayout
-func (a_ AudioFormat) SetChannelLayout(value AudioChannelLayout) {
+func (a_ AudioFormat) SetChannelLayout(value objc.IObject /* cross-framework: AudioChannelLayout */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelLayout:"), value)
 }
 
@@ -149,8 +151,8 @@ func (a_ AudioFormat) SetChannelLayout(value AudioChannelLayout) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/commonformat
-func (a_ AudioFormat) CommonFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("commonFormat"))
+func (a_ AudioFormat) CommonFormat() AudioCommonFormat /* not a class type */ {
+	rv := objc.Send[AudioCommonFormat](a_.ID, objc.Sel("commonFormat"))
 	return rv
 }
 
@@ -159,7 +161,7 @@ func (a_ AudioFormat) CommonFormat() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/commonformat
-func (a_ AudioFormat) SetCommonFormat(value unsafe.Pointer) {
+func (a_ AudioFormat) SetCommonFormat(value AudioCommonFormat /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCommonFormat:"), value)
 }
 
@@ -168,8 +170,8 @@ func (a_ AudioFormat) SetCommonFormat(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/formatdescription
-func (a_ AudioFormat) FormatDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("formatDescription"))
+func (a_ AudioFormat) FormatDescription() AudioFormatDescription /* not a class type */ {
+	rv := objc.Send[AudioFormatDescription](a_.ID, objc.Sel("formatDescription"))
 	return rv
 }
 
@@ -178,7 +180,7 @@ func (a_ AudioFormat) FormatDescription() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/formatdescription
-func (a_ AudioFormat) SetFormatDescription(value unsafe.Pointer) {
+func (a_ AudioFormat) SetFormatDescription(value AudioFormatDescription /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFormatDescription:"), value)
 }
 
@@ -187,7 +189,7 @@ func (a_ AudioFormat) SetFormatDescription(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/isinterleaved
-func (a_ AudioFormat) IsInterleaved() bool {
+func (a_ AudioFormat) IsInterleaved() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isInterleaved"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (a_ AudioFormat) IsInterleaved() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/isinterleaved
-func (a_ AudioFormat) SetIsInterleaved(value bool) {
+func (a_ AudioFormat) SetIsInterleaved(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsInterleaved:"), value)
 }
 
@@ -206,7 +208,7 @@ func (a_ AudioFormat) SetIsInterleaved(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/isstandard
-func (a_ AudioFormat) IsStandard() bool {
+func (a_ AudioFormat) IsStandard() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isStandard"))
 	return rv
 }
@@ -216,7 +218,7 @@ func (a_ AudioFormat) IsStandard() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/isstandard
-func (a_ AudioFormat) SetIsStandard(value bool) {
+func (a_ AudioFormat) SetIsStandard(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsStandard:"), value)
 }
 
@@ -225,7 +227,7 @@ func (a_ AudioFormat) SetIsStandard(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/magiccookie
-func (a_ AudioFormat) MagicCookie() foundation.Data {
+func (a_ AudioFormat) MagicCookie() foundation.objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("magicCookie"))
 	return rv
 }
@@ -235,7 +237,7 @@ func (a_ AudioFormat) MagicCookie() foundation.Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/magiccookie
-func (a_ AudioFormat) SetMagicCookie(value foundation.Data) {
+func (a_ AudioFormat) SetMagicCookie(value foundation.objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMagicCookie:"), value)
 }
 
@@ -244,7 +246,7 @@ func (a_ AudioFormat) SetMagicCookie(value foundation.Data) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/samplerate
-func (a_ AudioFormat) SampleRate() float64 {
+func (a_ AudioFormat) SampleRate() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](a_.ID, objc.Sel("sampleRate"))
 	return rv
 }
@@ -254,7 +256,7 @@ func (a_ AudioFormat) SampleRate() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/samplerate
-func (a_ AudioFormat) SetSampleRate(value float64) {
+func (a_ AudioFormat) SetSampleRate(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleRate:"), value)
 }
 
@@ -263,7 +265,7 @@ func (a_ AudioFormat) SetSampleRate(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) Settings() string {
+func (a_ AudioFormat) Settings() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("settings"))
 	return rv
 }
@@ -273,7 +275,7 @@ func (a_ AudioFormat) Settings() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) SetSettings(value string) {
+func (a_ AudioFormat) SetSettings(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSettings:"), objc.String(value))
 }
 
@@ -299,7 +301,7 @@ func (a_ AudioFormat) SetStreamDescription(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
-func (a_ AudioFormat) AVChannelLayoutKey() string {
+func (a_ AudioFormat) AVChannelLayoutKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv
 }

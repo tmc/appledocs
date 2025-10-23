@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ExpressionDescription] class.
@@ -30,26 +29,28 @@ type _ExpressionDescriptionClass struct {
 // An interface definition for the [ExpressionDescription] class.
 type IExpressionDescription interface {
 	IPropertyDescription
-	Expression() Expression
-	SetExpression(value Expression)
-	ExpressionResultType() NSAttributeType
-	SetExpressionResultType(value NSAttributeType)
+	// properties:
+	Expression() objc.IObject /* cross-framework: Expression */
+	SetExpression(value objc.IObject /* cross-framework: Expression */)
+	ExpressionResultType() AttributeType
+	SetExpressionResultType(value AttributeType)
 	Properties() IPropertyDescription
 	SetProperties(value IPropertyDescription)
-	ResultType() NSAttributeType
-	SetResultType(value NSAttributeType)
+	ResultType() AttributeType
+	SetResultType(value AttributeType)
 	AffectedStores() IPersistentStore
 	SetAffectedStores(value IPersistentStore)
-	FetchBatchSize() int
-	SetFetchBatchSize(value int)
-	FetchLimit() int
-	SetFetchLimit(value int)
-	FetchOffset() int
-	SetFetchOffset(value int)
-	Predicate() foundation.Predicate
-	SetPredicate(value foundation.Predicate)
+	FetchBatchSize() int /* primitive/slice/pointer. */
+	SetFetchBatchSize(value int /* primitive/slice/pointer. */)
+	FetchLimit() int /* primitive/slice/pointer. */
+	SetFetchLimit(value int /* primitive/slice/pointer. */)
+	FetchOffset() int /* primitive/slice/pointer. */
+	SetFetchOffset(value int /* primitive/slice/pointer. */)
+	Predicate() objc.IObject /* cross-framework: Predicate */
+	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
 	PropertiesToFetch() unsafe.Pointer
 	SetPropertiesToFetch(value unsafe.Pointer)
+	// methods:
 }
 
 // An object that describes an expression to include with a fetch request.
@@ -111,7 +112,7 @@ func NewExpressionDescription() ExpressionDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) Expression() Expression {
+func (e_ ExpressionDescription) Expression() objc.IObject /* cross-framework: Expression */ {
 	rv := objc.Send[Expression](e_.ID, objc.Sel("expression"))
 	return rv
 }
@@ -121,7 +122,7 @@ func (e_ ExpressionDescription) Expression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expression
-func (e_ ExpressionDescription) SetExpression(value Expression) {
+func (e_ ExpressionDescription) SetExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
 
@@ -130,8 +131,8 @@ func (e_ ExpressionDescription) SetExpression(value Expression) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) ExpressionResultType() NSAttributeType {
-	rv := objc.Send[NSAttributeType](e_.ID, objc.Sel("expressionResultType"))
+func (e_ ExpressionDescription) ExpressionResultType() AttributeType {
+	rv := objc.Send[AttributeType](e_.ID, objc.Sel("expressionResultType"))
 	return rv
 }
 
@@ -140,7 +141,7 @@ func (e_ ExpressionDescription) ExpressionResultType() NSAttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSExpressionDescription/expressionResultType
-func (e_ ExpressionDescription) SetExpressionResultType(value NSAttributeType) {
+func (e_ ExpressionDescription) SetExpressionResultType(value AttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
 }
 
@@ -168,7 +169,7 @@ func (e_ ExpressionDescription) SetProperties(value IPropertyDescription) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) ResultType() NSAttributeType {
+func (e_ ExpressionDescription) ResultType() AttributeType {
 	rv := objc.Send[AttributeType](e_.ID, objc.Sel("resultType"))
 	return rv
 }
@@ -178,7 +179,7 @@ func (e_ ExpressionDescription) ResultType() NSAttributeType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsexpressiondescription/resulttype
-func (e_ ExpressionDescription) SetResultType(value NSAttributeType) {
+func (e_ ExpressionDescription) SetResultType(value AttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -206,7 +207,7 @@ func (e_ ExpressionDescription) SetAffectedStores(value IPersistentStore) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (e_ ExpressionDescription) FetchBatchSize() int {
+func (e_ ExpressionDescription) FetchBatchSize() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchBatchSize"))
 	return rv
 }
@@ -216,7 +217,7 @@ func (e_ ExpressionDescription) FetchBatchSize() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchbatchsize
-func (e_ ExpressionDescription) SetFetchBatchSize(value int) {
+func (e_ ExpressionDescription) SetFetchBatchSize(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
 
@@ -225,7 +226,7 @@ func (e_ ExpressionDescription) SetFetchBatchSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) FetchLimit() int {
+func (e_ ExpressionDescription) FetchLimit() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchLimit"))
 	return rv
 }
@@ -235,7 +236,7 @@ func (e_ ExpressionDescription) FetchLimit() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchlimit
-func (e_ ExpressionDescription) SetFetchLimit(value int) {
+func (e_ ExpressionDescription) SetFetchLimit(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchLimit:"), value)
 }
 
@@ -244,7 +245,7 @@ func (e_ ExpressionDescription) SetFetchLimit(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) FetchOffset() int {
+func (e_ ExpressionDescription) FetchOffset() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](e_.ID, objc.Sel("fetchOffset"))
 	return rv
 }
@@ -254,7 +255,7 @@ func (e_ ExpressionDescription) FetchOffset() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/fetchoffset
-func (e_ ExpressionDescription) SetFetchOffset(value int) {
+func (e_ ExpressionDescription) SetFetchOffset(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchOffset:"), value)
 }
 
@@ -263,8 +264,8 @@ func (e_ ExpressionDescription) SetFetchOffset(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (e_ ExpressionDescription) Predicate() foundation.Predicate {
-	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("predicate"))
+func (e_ ExpressionDescription) Predicate() objc.IObject /* cross-framework: Predicate */ {
+	rv := objc.Send[Predicate](e_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -273,7 +274,7 @@ func (e_ ExpressionDescription) Predicate() foundation.Predicate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (e_ ExpressionDescription) SetPredicate(value foundation.Predicate) {
+func (e_ ExpressionDescription) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
 }
 

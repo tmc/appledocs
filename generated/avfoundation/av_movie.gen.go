@@ -31,16 +31,16 @@ type _MovieClass struct {
 type IMovie interface {
 	IAsset
 	// properties:
-	CanContainMovieFragments() bool /* primitive/slice/pointer */
-	ContainsMovieFragments() bool /* primitive/slice/pointer */
-	Data() foundation.Data /* not a class type */
-	SetData(value foundation.Data /* not a class type */)
-	DefaultMediaDataStorage() MediaDataStorage /* not a class type */
-	SetDefaultMediaDataStorage(value MediaDataStorage /* not a class type */)
-	Tracks() MovieTrack /* not a class type */
-	SetTracks(value MovieTrack /* not a class type */)
-	Url() foundation.URL /* not a class type */
-	SetUrl(value foundation.URL /* not a class type */)
+	CanContainMovieFragments() bool /* primitive/slice/pointer. */
+	ContainsMovieFragments() bool /* primitive/slice/pointer. */
+	Data() objc.IObject /* cross-framework: Data */
+	SetData(value objc.IObject /* cross-framework: Data */)
+	DefaultMediaDataStorage() objc.IObject /* cross-framework: MediaDataStorage */
+	SetDefaultMediaDataStorage(value objc.IObject /* cross-framework: MediaDataStorage */)
+	Tracks() objc.IObject /* cross-framework: MovieTrack */
+	SetTracks(value objc.IObject /* cross-framework: MovieTrack */)
+	Url() objc.IObject /* cross-framework: URL */
+	SetUrl(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -103,7 +103,7 @@ func NewMovie() Movie {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/canContainMovieFragments
-func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer */ {
+func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canContainMovieFragments"))
 	return rv
 }
@@ -113,7 +113,7 @@ func (m_ Movie) CanContainMovieFragments() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/containsMovieFragments
-func (m_ Movie) ContainsMovieFragments() bool /* primitive/slice/pointer */ {
+func (m_ Movie) ContainsMovieFragments() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("containsMovieFragments"))
 	return rv
 }
@@ -123,7 +123,7 @@ func (m_ Movie) ContainsMovieFragments() bool /* primitive/slice/pointer */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/data
-func (m_ Movie) Data() foundation.Data /* not a class type */ {
+func (m_ Movie) Data() objc.IObject /* cross-framework: Data */ {
 	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (m_ Movie) Data() foundation.Data /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/data
-func (m_ Movie) SetData(value foundation.Data /* not a class type */) {
+func (m_ Movie) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -142,7 +142,7 @@ func (m_ Movie) SetData(value foundation.Data /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) DefaultMediaDataStorage() MediaDataStorage /* not a class type */ {
+func (m_ Movie) DefaultMediaDataStorage() objc.IObject /* cross-framework: MediaDataStorage */ {
 	rv := objc.Send[MediaDataStorage](m_.ID, objc.Sel("defaultMediaDataStorage"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (m_ Movie) DefaultMediaDataStorage() MediaDataStorage /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) SetDefaultMediaDataStorage(value MediaDataStorage /* not a class type */) {
+func (m_ Movie) SetDefaultMediaDataStorage(value objc.IObject /* cross-framework: MediaDataStorage */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultMediaDataStorage:"), value)
 }
 
@@ -161,7 +161,7 @@ func (m_ Movie) SetDefaultMediaDataStorage(value MediaDataStorage /* not a class
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) Tracks() MovieTrack /* not a class type */ {
+func (m_ Movie) Tracks() objc.IObject /* cross-framework: MovieTrack */ {
 	rv := objc.Send[MovieTrack](m_.ID, objc.Sel("tracks"))
 	return rv
 }
@@ -171,7 +171,7 @@ func (m_ Movie) Tracks() MovieTrack /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) SetTracks(value MovieTrack /* not a class type */) {
+func (m_ Movie) SetTracks(value objc.IObject /* cross-framework: MovieTrack */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 
@@ -180,7 +180,7 @@ func (m_ Movie) SetTracks(value MovieTrack /* not a class type */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-func (m_ Movie) Url() foundation.URL /* not a class type */ {
+func (m_ Movie) Url() objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("url"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (m_ Movie) Url() foundation.URL /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-func (m_ Movie) SetUrl(value foundation.URL /* not a class type */) {
+func (m_ Movie) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 

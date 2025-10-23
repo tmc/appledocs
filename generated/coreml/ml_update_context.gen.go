@@ -30,16 +30,18 @@ type _UpdateContextClass struct {
 // An interface definition for the [UpdateContext] class.
 type IUpdateContext interface {
 	objectivec.IObject
-	Event() unsafe.Pointer
-	SetEvent(value unsafe.Pointer)
-	Metrics() MetricKey
-	SetMetrics(value MetricKey)
-	Model() unsafe.Pointer
-	SetModel(value unsafe.Pointer)
+	// properties:
+	Event() UpdateProgressEvent /* not a class type */
+	SetEvent(value UpdateProgressEvent /* not a class type */)
+	Metrics() objc.IObject /* cross-framework: MetricKey */
+	SetMetrics(value objc.IObject /* cross-framework: MetricKey */)
+	Model() Writable /* not a class type */
+	SetModel(value Writable /* not a class type */)
 	Parameters() IMLParameterKey
 	SetParameters(value IMLParameterKey)
 	Task() IMLUpdateTask
 	SetTask(value IMLUpdateTask)
+	// methods:
 }
 
 // The context an update task provides to your app’s completion and update progress handlers.
@@ -97,8 +99,8 @@ func NewUpdateContext() UpdateContext {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/event
-func (u_ UpdateContext) Event() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("event"))
+func (u_ UpdateContext) Event() UpdateProgressEvent /* not a class type */ {
+	rv := objc.Send[UpdateProgressEvent](u_.ID, objc.Sel("event"))
 	return rv
 }
 
@@ -107,7 +109,7 @@ func (u_ UpdateContext) Event() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/event
-func (u_ UpdateContext) SetEvent(value unsafe.Pointer) {
+func (u_ UpdateContext) SetEvent(value UpdateProgressEvent /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEvent:"), value)
 }
 
@@ -116,7 +118,7 @@ func (u_ UpdateContext) SetEvent(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-func (u_ UpdateContext) Metrics() MetricKey {
+func (u_ UpdateContext) Metrics() objc.IObject /* cross-framework: MetricKey */ {
 	rv := objc.Send[MetricKey](u_.ID, objc.Sel("metrics"))
 	return rv
 }
@@ -126,7 +128,7 @@ func (u_ UpdateContext) Metrics() MetricKey {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-func (u_ UpdateContext) SetMetrics(value MetricKey) {
+func (u_ UpdateContext) SetMetrics(value objc.IObject /* cross-framework: MetricKey */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMetrics:"), value)
 }
 
@@ -135,8 +137,8 @@ func (u_ UpdateContext) SetMetrics(value MetricKey) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/model
-func (u_ UpdateContext) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("model"))
+func (u_ UpdateContext) Model() Writable /* not a class type */ {
+	rv := objc.Send[Writable](u_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -145,7 +147,7 @@ func (u_ UpdateContext) Model() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/model
-func (u_ UpdateContext) SetModel(value unsafe.Pointer) {
+func (u_ UpdateContext) SetModel(value Writable /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setModel:"), value)
 }
 

@@ -31,10 +31,10 @@ type _AXBrailleMapClass struct {
 // An interface definition for the [AXBrailleMap] class.
 type IAXBrailleMap interface {
 	objectivec.IObject
-	HeightAtPoint(point coregraphics.CGPoint) float32
-	PresentImage(image coregraphics.CGImageRef)
-	SetHeightAtPoint(status float32, point coregraphics.CGPoint)
+	// properties:
 	Dimensions() coregraphics.CGSize
+	SetDimensions(value coregraphics.CGSize)
+	// methods:
 }
 
 // A representation of a two-dimensional braille display.
@@ -90,41 +90,22 @@ func NewAXBrailleMap() AXBrailleMap {
 
 
 
-// Retrieves the height of an individual pin on the braille display.
+// The number of pins in each dimension of the braille display.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/height(at:)
-func (a_ AXBrailleMap) HeightAtPoint(point coregraphics.CGPoint) float32 {
-	rv := objc.Send[float32](a_.ID, objc.Sel("heightAtPoint:"), point)
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axbraillemap/dimensions
+func (a_ AXBrailleMap) Dimensions() coregraphics.CGSize {
+	rv := objc.Send[coregraphics.CGSize](a_.ID, objc.Sel("dimensions"))
 	return rv
-}
-
-
-// Converts the data from the image you specify into the braille map.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/present(_:)
-func (a_ AXBrailleMap) PresentImage(image coregraphics.CGImageRef) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("presentImage:"), image)
-}
-
-
-// Sets the height of an individual pin on the braille display.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/setHeight(_:at:)
-func (a_ AXBrailleMap) SetHeightAtPoint(status float32, point coregraphics.CGPoint) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setHeight:atPoint:"), status, point)
 }
 
 
 // The number of pins in each dimension of the braille display.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/dimensions
-func (a_ AXBrailleMap) Dimensions() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](a_.ID, objc.Sel("dimensions"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/accessibility/axbraillemap/dimensions
+func (a_ AXBrailleMap) SetDimensions(value coregraphics.CGSize) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDimensions:"), value)
 }
 
 

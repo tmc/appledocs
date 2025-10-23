@@ -165,6 +165,10 @@ type AVAudioRoutingArbitrationCategory uint
 type AVAudioSessionCategoryOptions uint
 
 const (
+	// AVAudioSessionCategoryOptionAllowAirPlay - An option that determines whether you can stream audio from this session to AirPlay devices.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct/allowAirPlay
+	AVAudioSessionCategoryOptionAllowAirPlay AVAudioSessionCategoryOptions = 0
 	// AVAudioSessionCategoryOptionAllowBluetoothHFP - An option that makes Bluetooth Hands-Free Profile (HFP) devices available for audio input.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct/allowBluetoothHFP
@@ -185,12 +189,21 @@ type AVAudioSessionIOType uint
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionOptions
 type AVAudioSessionInterruptionOptions uint
 
+// AVAudioSessionInterruptionReason - Constants that define the reasons for an audio session interruption.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionReason
+type AVAudioSessionInterruptionReason uint
+
 // AVAudioSessionInterruptionType - Constants that describe the type of an audio interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionType
 type AVAudioSessionInterruptionType uint
 
 const (
+	// AVAudioSessionInterruptionTypeBegan - A type that indicates that the operating system began interrupting the audio session.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionType/began
+	AVAudioSessionInterruptionTypeBegan AVAudioSessionInterruptionType = 0
 	// AVAudioSessionInterruptionTypeEnded - A type that indicates that the operating system ended interrupting the audio session.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/InterruptionType/ended
@@ -288,6 +301,11 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/SetActiveOptions
 type AVAudioSessionSetActiveOptions uint
+
+// AVAudioSessionSilenceSecondaryAudioHintType - Constants that indicate whether optional secondary audio muting should begin or end.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/SilenceSecondaryAudioHintType
+type AVAudioSessionSilenceSecondaryAudioHintType uint
 
 // AVAudioSessionSoundStageSize - Constants that specify the perceived size of sounds the audio session plays.
 //

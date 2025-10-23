@@ -30,10 +30,12 @@ type _CustomRoutingActionItemClass struct {
 // An interface definition for the [CustomRoutingActionItem] class.
 type ICustomRoutingActionItem interface {
 	objectivec.IObject
-	OverrideTitle() string
-	SetOverrideTitle(value string)
+	// properties:
+	OverrideTitle() string /* primitive/slice/pointer. */
+	SetOverrideTitle(value string /* primitive/slice/pointer. */)
 	Type() objectivec.IObject
 	SetType(value objectivec.IObject)
+	// methods:
 }
 
 // An object that represents a custom action item to display in a device route picker.
@@ -93,7 +95,7 @@ func NewCustomRoutingActionItem() CustomRoutingActionItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) OverrideTitle() string {
+func (c_ CustomRoutingActionItem) OverrideTitle() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
 	return rv
 }
@@ -103,7 +105,7 @@ func (c_ CustomRoutingActionItem) OverrideTitle() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
+func (c_ CustomRoutingActionItem) SetOverrideTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
 }
 

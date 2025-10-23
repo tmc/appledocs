@@ -30,6 +30,8 @@ type _CNFetchRequestClass struct {
 // An interface definition for the [CNFetchRequest] class.
 type ICNFetchRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The base class for contact fetch requests.

@@ -30,7 +30,9 @@ type _InterstitialTimeRangeClass struct {
 // An interface definition for the [InterstitialTimeRange] class.
 type IInterstitialTimeRange interface {
 	objectivec.IObject
-	TimeRange() unsafe.Pointer
+	// properties:
+	TimeRange() TimeRange /* not a class type */
+	// methods:
 }
 
 // A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.
@@ -90,7 +92,7 @@ func NewInterstitialTimeRange() InterstitialTimeRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/init(timeRange:)
-func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) InterstitialTimeRange {
+func NewInterstitialTimeRangeWithTimeRange(timeRange TimeRange /* not a class type */) InterstitialTimeRange {
 	instance := getInterstitialTimeRangeClass().Alloc()
 	rv := objc.Send[InterstitialTimeRange](instance.ID, objc.Sel("initWithTimeRange:"), timeRange)
 	rv.Autorelease()
@@ -103,8 +105,8 @@ func NewInterstitialTimeRangeWithTimeRange(timeRange unsafe.Pointer) Interstitia
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInterstitialTimeRange/timeRange
-func (i_ InterstitialTimeRange) TimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("timeRange"))
+func (i_ InterstitialTimeRange) TimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](i_.ID, objc.Sel("timeRange"))
 	return rv
 }
 

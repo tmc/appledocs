@@ -30,6 +30,8 @@ type _MutableAttributedStringClass struct {
 // An interface definition for the [MutableAttributedString] class.
 type IMutableAttributedString interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AppKit classes.

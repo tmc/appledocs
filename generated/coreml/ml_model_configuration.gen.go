@@ -30,20 +30,22 @@ type _ModelConfigurationClass struct {
 // An interface definition for the [ModelConfiguration] class.
 type IModelConfiguration interface {
 	objectivec.IObject
-	AllowLowPrecisionAccumulationOnGPU() bool
-	SetAllowLowPrecisionAccumulationOnGPU(value bool)
-	ComputeUnits() unsafe.Pointer
-	SetComputeUnits(value unsafe.Pointer)
-	FunctionName() string
-	SetFunctionName(value string)
-	ModelDisplayName() string
-	SetModelDisplayName(value string)
+	// properties:
+	AllowLowPrecisionAccumulationOnGPU() bool /* primitive/slice/pointer. */
+	SetAllowLowPrecisionAccumulationOnGPU(value bool /* primitive/slice/pointer. */)
+	ComputeUnits() ComputeUnits /* not a class type */
+	SetComputeUnits(value ComputeUnits /* not a class type */)
+	FunctionName() string /* primitive/slice/pointer. */
+	SetFunctionName(value string /* primitive/slice/pointer. */)
+	ModelDisplayName() string /* primitive/slice/pointer. */
+	SetModelDisplayName(value string /* primitive/slice/pointer. */)
 	OptimizationHints() IOptimizationHints
 	SetOptimizationHints(value IOptimizationHints)
 	Parameters() IMLParameterKey
 	SetParameters(value IMLParameterKey)
-	PreferredMetalDevice() unsafe.Pointer
-	SetPreferredMetalDevice(value unsafe.Pointer)
+	PreferredMetalDevice() Device /* not a class type */
+	SetPreferredMetalDevice(value Device /* not a class type */)
+	// methods:
 }
 
 // The settings for creating or updating a machine learning model.
@@ -103,7 +105,7 @@ func NewModelConfiguration() ModelConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
-func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
+func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowLowPrecisionAccumulationOnGPU"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (m_ ModelConfiguration) AllowLowPrecisionAccumulationOnGPU() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/allowlowprecisionaccumulationongpu
-func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
+func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowLowPrecisionAccumulationOnGPU:"), value)
 }
 
@@ -122,8 +124,8 @@ func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/computeunits
-func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("computeUnits"))
+func (m_ ModelConfiguration) ComputeUnits() ComputeUnits /* not a class type */ {
+	rv := objc.Send[ComputeUnits](m_.ID, objc.Sel("computeUnits"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/computeunits
-func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
+func (m_ ModelConfiguration) SetComputeUnits(value ComputeUnits /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeUnits:"), value)
 }
 
@@ -141,7 +143,7 @@ func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
-func (m_ ModelConfiguration) FunctionName() string {
+func (m_ ModelConfiguration) FunctionName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
 	return rv
 }
@@ -151,7 +153,7 @@ func (m_ ModelConfiguration) FunctionName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/functionname
-func (m_ ModelConfiguration) SetFunctionName(value string) {
+func (m_ ModelConfiguration) SetFunctionName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
 }
 
@@ -160,7 +162,7 @@ func (m_ ModelConfiguration) SetFunctionName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) ModelDisplayName() string {
+func (m_ ModelConfiguration) ModelDisplayName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (m_ ModelConfiguration) ModelDisplayName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) SetModelDisplayName(value string) {
+func (m_ ModelConfiguration) SetModelDisplayName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
 
@@ -217,8 +219,8 @@ func (m_ ModelConfiguration) SetParameters(value IMLParameterKey) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/preferredmetaldevice
-func (m_ ModelConfiguration) PreferredMetalDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredMetalDevice"))
+func (m_ ModelConfiguration) PreferredMetalDevice() Device /* not a class type */ {
+	rv := objc.Send[Device](m_.ID, objc.Sel("preferredMetalDevice"))
 	return rv
 }
 
@@ -227,7 +229,7 @@ func (m_ ModelConfiguration) PreferredMetalDevice() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/preferredmetaldevice
-func (m_ ModelConfiguration) SetPreferredMetalDevice(value unsafe.Pointer) {
+func (m_ ModelConfiguration) SetPreferredMetalDevice(value Device /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
 }
 

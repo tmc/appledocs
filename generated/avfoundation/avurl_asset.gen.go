@@ -8,7 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [URLAsset] class.
@@ -34,14 +34,14 @@ type IURLAsset interface {
 	// properties:
 	AssetCache() AssetCache /* not a class type */
 	HttpSessionIdentifier() UUID /* not a class type */
-	MayRequireContentKeysForMediaDataProcessing() bool /* primitive/slice/pointer */
+	MayRequireContentKeysForMediaDataProcessing() bool /* primitive/slice/pointer. */
 	MediaExtensionProperties() IAVMediaExtensionProperties
 	ResourceLoader() IAVAssetResourceLoader
-	SidecarURL() foundation.URL /* not a class type */
-	URL() foundation.URL /* not a class type */
-	Variants() []AssetVariant /* primitive/slice/pointer */
+	SidecarURL() objc.IObject /* cross-framework: NSURL */
+	URL() objc.IObject /* cross-framework: NSURL */
+	Variants() []AssetVariant /* primitive/slice/pointer. */
 	// methods:
-	FindCompatibleTrackForCompositionTrackCompletionHandler(compositionTrack CompositionTrack /* not a class type */, completionHandler unsafe.Pointer)
+	FindCompatibleTrackForCompositionTrackCompletionHandler(compositionTrack objc.IObject /* cross-framework CompositionTrack */, completionHandler unsafe.Pointer)
 }
 
 // An asset that represents media at a local or remote URL.
@@ -103,7 +103,7 @@ func NewURLAsset() URLAsset {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/init(url:options:)
-func NewURLAssetWithURLOptions(URL foundation.URL /* not a class type */, options foundation.IDictionary /* already interface */) URLAsset {
+func NewURLAssetWithURLOptions(URL objc.IObject /* cross-framework NSURL */, options foundation.IDictionary /* already interface */) URLAsset {
 	instance := getURLAssetClass().Alloc()
 	rv := objc.Send[URLAsset](instance.ID, objc.Sel("initWithURL:options:"), URL, options)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewURLAssetWithURLOptions(URL foundation.URL /* not a class type */, option
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/URLAssetWithURL:options:
-func (uc _URLAssetClass) URLAssetWithURLOptions(URL foundation.URL /* not a class type */, options foundation.IDictionary /* already interface */) unsafe.Pointer {
+func (uc _URLAssetClass) URLAssetWithURLOptions(URL objc.IObject /* cross-framework NSURL */, options foundation.IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("URLAssetWithURL:options:"), URL, options)
 	return rv
 }
@@ -126,7 +126,7 @@ func (uc _URLAssetClass) URLAssetWithURLOptions(URL foundation.URL /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/audiovisualMIMETypes()
-func (uc _URLAssetClass) AudiovisualMIMETypes() []string /* primitive/slice/pointer */ {
+func (uc _URLAssetClass) AudiovisualMIMETypes() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(uc.class), objc.Sel("audiovisualMIMETypes"))
 	return rv
 }
@@ -136,7 +136,7 @@ func (uc _URLAssetClass) AudiovisualMIMETypes() []string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/audiovisualTypes()
-func (uc _URLAssetClass) AudiovisualTypes() []string /* primitive/slice/pointer */ {
+func (uc _URLAssetClass) AudiovisualTypes() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](objc.ID(uc.class), objc.Sel("audiovisualTypes"))
 	return rv
 }
@@ -146,8 +146,8 @@ func (uc _URLAssetClass) AudiovisualTypes() []string /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/isPlayableExtendedMIMEType(_:)
-func (uc _URLAssetClass) IsPlayableExtendedMIMEType(extendedMIMEType string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
-	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("isPlayableExtendedMIMEType:"), objc.String(extendedMIMEType))
+func (uc _URLAssetClass) IsPlayableExtendedMIMEType(extendedMIMEType objc.IObject /* cross-framework NSString */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("isPlayableExtendedMIMEType:"), extendedMIMEType)
 	return rv
 }
 
@@ -156,8 +156,8 @@ func (uc _URLAssetClass) IsPlayableExtendedMIMEType(extendedMIMEType string /* p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/audiovisualContentTypes
-func (uc _URLAssetClass) AudiovisualContentTypes() []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](objc.ID(uc.class), objc.Sel("audiovisualContentTypes"))
+func (uc _URLAssetClass) AudiovisualContentTypes() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[[]uniformtypeidentifiers.UTType](objc.ID(uc.class), objc.Sel("audiovisualContentTypes"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (uc _URLAssetClass) AudiovisualContentTypes() []objectivec.IObject /* alrea
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/findCompatibleTrack(for:completionHandler:)
-func (u_ URLAsset) FindCompatibleTrackForCompositionTrackCompletionHandler(compositionTrack CompositionTrack /* not a class type */, completionHandler unsafe.Pointer) {
+func (u_ URLAsset) FindCompatibleTrackForCompositionTrackCompletionHandler(compositionTrack objc.IObject /* cross-framework CompositionTrack */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("findCompatibleTrackForCompositionTrack:completionHandler:"), compositionTrack, completionHandler)
 }
 
@@ -184,8 +184,8 @@ func (u_ URLAsset) AssetCache() AssetCache /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/audiovisualContentTypes
-func (u_ URLAsset) AudiovisualContentTypes() []objectivec.IObject /* already interface */ {
-	rv := objc.Send[[]objectivec.IObject](u_.ID, objc.Sel("audiovisualContentTypes"))
+func (u_ URLAsset) AudiovisualContentTypes() objc.IObject /* cross-framework: UTType */ {
+	rv := objc.Send[[]uniformtypeidentifiers.UTType](u_.ID, objc.Sel("audiovisualContentTypes"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (u_ URLAsset) HttpSessionIdentifier() UUID /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/mayRequireContentKeysForMediaDataProcessing
-func (u_ URLAsset) MayRequireContentKeysForMediaDataProcessing() bool /* primitive/slice/pointer */ {
+func (u_ URLAsset) MayRequireContentKeysForMediaDataProcessing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("mayRequireContentKeysForMediaDataProcessing"))
 	return rv
 }
@@ -234,8 +234,8 @@ func (u_ URLAsset) ResourceLoader() IAVAssetResourceLoader {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/sidecarURL
-func (u_ URLAsset) SidecarURL() foundation.URL /* not a class type */ {
-	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("sidecarURL"))
+func (u_ URLAsset) SidecarURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](u_.ID, objc.Sel("sidecarURL"))
 	return rv
 }
 
@@ -244,8 +244,8 @@ func (u_ URLAsset) SidecarURL() foundation.URL /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/url
-func (u_ URLAsset) URL() foundation.URL /* not a class type */ {
-	rv := objc.Send[foundation.URL](u_.ID, objc.Sel("URL"))
+func (u_ URLAsset) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](u_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -254,7 +254,7 @@ func (u_ URLAsset) URL() foundation.URL /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVURLAsset/variants
-func (u_ URLAsset) Variants() []AssetVariant /* primitive/slice/pointer */ {
+func (u_ URLAsset) Variants() []AssetVariant /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]AssetVariant](u_.ID, objc.Sel("variants"))
 	return rv
 }

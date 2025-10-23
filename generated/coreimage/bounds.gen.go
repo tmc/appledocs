@@ -30,6 +30,8 @@ type _boundsClass struct {
 // An interface definition for the [bounds] class.
 type Ibounds interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

@@ -30,6 +30,8 @@ type _bottomLeftClass struct {
 // An interface definition for the [bottomLeft] class.
 type IbottomLeft interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

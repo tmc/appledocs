@@ -31,9 +31,11 @@ type _NavigationMarkersGroupClass struct {
 // An interface definition for the [NavigationMarkersGroup] class.
 type INavigationMarkersGroup interface {
 	objectivec.IObject
-	DateRangeNavigationMarkers() []avfoundation.DateRangeMetadataGroup
-	TimedNavigationMarkers() []avfoundation.TimedMetadataGroup
-	Title() string
+	// properties:
+	DateRangeNavigationMarkers() []avfoundation.objc.IObject /* cross-framework: DateRangeMetadataGroup */
+	TimedNavigationMarkers() []avfoundation.objc.IObject /* cross-framework: TimedMetadataGroup */
+	Title() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // A set of markers for navigating playback of an audiovisual presentation.
@@ -93,7 +95,7 @@ func NewNavigationMarkersGroup() NavigationMarkersGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:dateRangeNavigationMarkers:)
-func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, navigationMarkers []avfoundation.DateRangeMetadataGroup) NavigationMarkersGroup {
+func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string /* primitive/slice/pointer. */, navigationMarkers []avfoundation.objc.IObject /* cross-framework DateRangeMetadataGroup */) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:dateRangeNavigationMarkers:"), objc.String(title), navigationMarkers)
 	rv.Autorelease()
@@ -105,7 +107,7 @@ func NewNavigationMarkersGroupWithTitleDateRangeNavigationMarkers(title string, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/init(title:timedNavigationMarkers:)
-func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navigationMarkers []avfoundation.TimedMetadataGroup) NavigationMarkersGroup {
+func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string /* primitive/slice/pointer. */, navigationMarkers []avfoundation.objc.IObject /* cross-framework TimedMetadataGroup */) NavigationMarkersGroup {
 	instance := getNavigationMarkersGroupClass().Alloc()
 	rv := objc.Send[NavigationMarkersGroup](instance.ID, objc.Sel("initWithTitle:timedNavigationMarkers:"), objc.String(title), navigationMarkers)
 	rv.Autorelease()
@@ -118,7 +120,7 @@ func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/dateRangeNavigationMarkers
-func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avfoundation.DateRangeMetadataGroup {
+func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avfoundation.objc.IObject /* cross-framework: DateRangeMetadataGroup */ {
 	rv := objc.Send[[]avfoundation.DateRangeMetadataGroup](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avfoundation.Dat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/timedNavigationMarkers
-func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avfoundation.TimedMetadataGroup {
+func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avfoundation.objc.IObject /* cross-framework: TimedMetadataGroup */ {
 	rv := objc.Send[[]avfoundation.TimedMetadataGroup](n_.ID, objc.Sel("timedNavigationMarkers"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avfoundation.TimedMe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/title
-func (n_ NavigationMarkersGroup) Title() string {
+func (n_ NavigationMarkersGroup) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](n_.ID, objc.Sel("title"))
 	return rv
 }

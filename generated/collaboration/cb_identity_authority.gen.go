@@ -30,8 +30,10 @@ type _CBIdentityAuthorityClass struct {
 // An interface definition for the [CBIdentityAuthority] class.
 type ICBIdentityAuthority interface {
 	objectivec.IObject
-	LocalizedName() string
-	SetLocalizedName(value string)
+	// properties:
+	LocalizedName() string /* primitive/slice/pointer. */
+	SetLocalizedName(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An identity authority is a database that stores information about identities. The class defines one or more identity authorities. You can search this database for identities in conjunction with the class factory methods.
@@ -99,7 +101,7 @@ func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
-func (c_ CBIdentityAuthority) LocalizedName() string {
+func (c_ CBIdentityAuthority) LocalizedName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
@@ -109,7 +111,7 @@ func (c_ CBIdentityAuthority) LocalizedName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/collaboration/cbidentityauthority/localizedname
-func (c_ CBIdentityAuthority) SetLocalizedName(value string) {
+func (c_ CBIdentityAuthority) SetLocalizedName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
 }
 

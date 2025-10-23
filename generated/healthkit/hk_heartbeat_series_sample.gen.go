@@ -30,7 +30,7 @@ type _HKHeartbeatSeriesSampleClass struct {
 type IHKHeartbeatSeriesSample interface {
 	IHKSeriesSample
 	// properties:
-	HKMetadataKeyAlgorithmVersion() string
+	HKMetadataKeyAlgorithmVersion() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -93,7 +93,7 @@ func NewHKHeartbeatSeriesSample() HKHeartbeatSeriesSample {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion
-func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string {
+func (h_ HKHeartbeatSeriesSample) HKMetadataKeyAlgorithmVersion() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyAlgorithmVersion"))
 	return rv
 }

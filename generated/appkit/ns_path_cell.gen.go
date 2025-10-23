@@ -30,32 +30,34 @@ type _PathCellClass struct {
 // An interface definition for the [PathCell] class.
 type IPathCell interface {
 	IActionCell
+	// properties:
 	ControlSize() ControlSize
-	SetControlSize(value IControlSize)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	IsSelectable() bool
-	SetIsSelectable(value bool)
-	AllowedTypes() string
-	SetAllowedTypes(value string)
-	BackgroundColor() NSColor
+	SetControlSize(value ControlSize)
+	IsEditable() bool /* primitive/slice/pointer. */
+	SetIsEditable(value bool /* primitive/slice/pointer. */)
+	IsSelectable() bool /* primitive/slice/pointer. */
+	SetIsSelectable(value bool /* primitive/slice/pointer. */)
+	AllowedTypes() string /* primitive/slice/pointer. */
+	SetAllowedTypes(value string /* primitive/slice/pointer. */)
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	ClickedPathComponentCell() NSPathComponentCell
+	ClickedPathComponentCell() IPathComponentCell
 	SetClickedPathComponentCell(value IPathComponentCell)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Delegate() PathCellDelegate /* not a class type */
+	SetDelegate(value PathCellDelegate /* not a class type */)
 	DoubleAction() unsafe.Pointer
 	SetDoubleAction(value unsafe.Pointer)
-	PathComponentCells() NSPathComponentCell
+	PathComponentCells() IPathComponentCell
 	SetPathComponentCells(value IPathComponentCell)
 	PathStyle() unsafe.Pointer
 	SetPathStyle(value unsafe.Pointer)
-	PlaceholderAttributedString() foundation.AttributedString
-	SetPlaceholderAttributedString(value foundation.IAttributedString)
-	PlaceholderString() string
-	SetPlaceholderString(value string)
-	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
+	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
+	PlaceholderString() string /* primitive/slice/pointer. */
+	SetPlaceholderString(value string /* primitive/slice/pointer. */)
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // The user interface of a path control object.
@@ -127,7 +129,7 @@ func (p_ PathCell) ControlSize() ControlSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/controlsize
-func (p_ PathCell) SetControlSize(value IControlSize) {
+func (p_ PathCell) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlSize:"), value)
 }
 
@@ -136,7 +138,7 @@ func (p_ PathCell) SetControlSize(value IControlSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (p_ PathCell) IsEditable() bool {
+func (p_ PathCell) IsEditable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isEditable"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (p_ PathCell) IsEditable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/iseditable
-func (p_ PathCell) SetIsEditable(value bool) {
+func (p_ PathCell) SetIsEditable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsEditable:"), value)
 }
 
@@ -155,7 +157,7 @@ func (p_ PathCell) SetIsEditable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (p_ PathCell) IsSelectable() bool {
+func (p_ PathCell) IsSelectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isSelectable"))
 	return rv
 }
@@ -165,7 +167,7 @@ func (p_ PathCell) IsSelectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/isselectable
-func (p_ PathCell) SetIsSelectable(value bool) {
+func (p_ PathCell) SetIsSelectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSelectable:"), value)
 }
 
@@ -174,7 +176,7 @@ func (p_ PathCell) SetIsSelectable(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-func (p_ PathCell) AllowedTypes() string {
+func (p_ PathCell) AllowedTypes() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("allowedTypes"))
 	return rv
 }
@@ -184,7 +186,7 @@ func (p_ PathCell) AllowedTypes() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes
-func (p_ PathCell) SetAllowedTypes(value string) {
+func (p_ PathCell) SetAllowedTypes(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedTypes:"), objc.String(value))
 }
 
@@ -193,8 +195,8 @@ func (p_ PathCell) SetAllowedTypes(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/backgroundcolor
-func (p_ PathCell) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](p_.ID, objc.Sel("backgroundColor"))
+func (p_ PathCell) BackgroundColor() IColor {
+	rv := objc.Send[Color](p_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -212,8 +214,8 @@ func (p_ PathCell) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell
-func (p_ PathCell) ClickedPathComponentCell() NSPathComponentCell {
-	rv := objc.Send[NSPathComponentCell](p_.ID, objc.Sel("clickedPathComponentCell"))
+func (p_ PathCell) ClickedPathComponentCell() IPathComponentCell {
+	rv := objc.Send[PathComponentCell](p_.ID, objc.Sel("clickedPathComponentCell"))
 	return rv
 }
 
@@ -231,8 +233,8 @@ func (p_ PathCell) SetClickedPathComponentCell(value IPathComponentCell) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
-func (p_ PathCell) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+func (p_ PathCell) Delegate() PathCellDelegate /* not a class type */ {
+	rv := objc.Send[PathCellDelegate](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -241,7 +243,7 @@ func (p_ PathCell) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/delegate
-func (p_ PathCell) SetDelegate(value unsafe.Pointer) {
+func (p_ PathCell) SetDelegate(value PathCellDelegate /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -269,8 +271,8 @@ func (p_ PathCell) SetDoubleAction(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/pathcomponentcells
-func (p_ PathCell) PathComponentCells() NSPathComponentCell {
-	rv := objc.Send[NSPathComponentCell](p_.ID, objc.Sel("pathComponentCells"))
+func (p_ PathCell) PathComponentCells() IPathComponentCell {
+	rv := objc.Send[PathComponentCell](p_.ID, objc.Sel("pathComponentCells"))
 	return rv
 }
 
@@ -307,8 +309,8 @@ func (p_ PathCell) SetPathStyle(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-func (p_ PathCell) PlaceholderAttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
+func (p_ PathCell) PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](p_.ID, objc.Sel("placeholderAttributedString"))
 	return rv
 }
 
@@ -317,7 +319,7 @@ func (p_ PathCell) PlaceholderAttributedString() foundation.AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderattributedstring
-func (p_ PathCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
+func (p_ PathCell) SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
 }
 
@@ -326,7 +328,7 @@ func (p_ PathCell) SetPlaceholderAttributedString(value foundation.IAttributedSt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-func (p_ PathCell) PlaceholderString() string {
+func (p_ PathCell) PlaceholderString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](p_.ID, objc.Sel("placeholderString"))
 	return rv
 }
@@ -336,7 +338,7 @@ func (p_ PathCell) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/placeholderstring
-func (p_ PathCell) SetPlaceholderString(value string) {
+func (p_ PathCell) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
 
@@ -345,7 +347,7 @@ func (p_ PathCell) SetPlaceholderString(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-func (p_ PathCell) Url() foundation.URL {
+func (p_ PathCell) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
 	return rv
 }
@@ -355,7 +357,7 @@ func (p_ PathCell) Url() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcell/url
-func (p_ PathCell) SetUrl(value foundation.IURL) {
+func (p_ PathCell) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

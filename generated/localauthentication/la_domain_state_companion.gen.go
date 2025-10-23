@@ -33,9 +33,9 @@ type IDomainStateCompanion interface {
 	objectivec.IObject
 	// properties:
 	AvailableCompanionTypes() unsafe.Pointer
-	StateHash() foundation.NSData
+	StateHash() foundation.objc.IObject /* cross-framework: NSData */
 	// methods:
-	StateHashForCompanionType(companionType LACompanionType) foundation.Data
+	StateHashForCompanionType(companionType CompanionType) objc.IObject /* cross-framework: Data */
 }
 
 
@@ -88,8 +88,8 @@ func NewDomainStateCompanion() DomainStateCompanion {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash(for:)
-func (d_ DomainStateCompanion) StateHashForCompanionType(companionType LACompanionType) foundation.Data {
-	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
+func (d_ DomainStateCompanion) StateHashForCompanionType(companionType CompanionType) objc.IObject /* cross-framework: Data */ {
+	rv := objc.Send[Data](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (d_ DomainStateCompanion) AvailableCompanionTypes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash
-func (d_ DomainStateCompanion) StateHash() foundation.NSData {
+func (d_ DomainStateCompanion) StateHash() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }

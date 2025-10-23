@@ -13,7 +13,7 @@ var _ = localauthenticationembeddedui.NewAuthenticationView
 // Creates a new authentication icon that reflects the current authentication state.
 func ExampleNewAuthenticationViewWithContext() {
 	_ = localauthenticationembeddedui.NewAuthenticationViewWithContext(
-		localauthenticationembeddedui.LAContext{}, // context LAContext
+		localauthenticationembeddedui.Context{}, // context Context
 	)
 	// Output:
 }
@@ -21,8 +21,8 @@ func ExampleNewAuthenticationViewWithContext() {
 // Creates a new authentication icon that reflects the current authentication state,   using a specified size.
 func ExampleNewAuthenticationViewWithContextControlSize() {
 	_ = localauthenticationembeddedui.NewAuthenticationViewWithContextControlSize(
-		localauthenticationembeddedui.LAContext{}, // context LAContext
-		localauthenticationembeddedui.NSControlSize{}, // controlSize NSControlSize
+		localauthenticationembeddedui.Context{}, // context Context
+		localauthenticationembeddedui.ControlSize{}, // controlSize ControlSize
 	)
 	// Output:
 }

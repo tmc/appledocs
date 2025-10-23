@@ -30,6 +30,7 @@ type _CKRecordZoneClass struct {
 // An interface definition for the [CKRecordZone] class.
 type ICKRecordZone interface {
 	objectivec.IObject
+	// properties:
 	Capabilities() unsafe.Pointer
 	SetCapabilities(value unsafe.Pointer)
 	EncryptionScope() unsafe.Pointer
@@ -38,6 +39,7 @@ type ICKRecordZone interface {
 	SetShare(value ICKReference)
 	ZoneID() ICKRecordZoneID
 	SetZoneID(value ICKRecordZoneID)
+	// methods:
 }
 
 // A database partition that contains related records.

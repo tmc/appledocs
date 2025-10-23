@@ -15,3 +15,11 @@ func ExampleNewDocumentController() {
 	_ = appkit.NewDocumentController()
 	// Output:
 }
+// ExampleNewDocumentControllerWithCoder demonstrates how to create a DocumentController instance using NewDocumentControllerWithCoder.
+// This method initializes a new NSDocumentController from the coder.
+func ExampleNewDocumentControllerWithCoder() {
+	_ = appkit.NewDocumentControllerWithCoder(
+		appkit.Coder{}, // coder Coder
+	)
+	// Output:
+}

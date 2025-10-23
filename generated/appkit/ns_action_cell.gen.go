@@ -29,22 +29,24 @@ type _ActionCellClass struct {
 // An interface definition for the [ActionCell] class.
 type IActionCell interface {
 	ICell
+	// properties:
 	Action() objc.SEL
 	SetAction(value objc.SEL)
-	Tag() int
-	SetTag(value int)
+	Tag() int /* primitive/slice/pointer. */
+	SetTag(value int /* primitive/slice/pointer. */)
 	Target() objc.ID
 	SetTarget(value objc.ID)
 	ControlView() IView
 	SetControlView(value IView)
-	FloatValue() float32
-	SetFloatValue(value float32)
+	FloatValue() float32 /* primitive/slice/pointer. */
+	SetFloatValue(value float32 /* primitive/slice/pointer. */)
 	IntValue() unsafe.Pointer
 	SetIntValue(value unsafe.Pointer)
-	IntegerValue() int
-	SetIntegerValue(value int)
-	StringValue() string
-	SetStringValue(value string)
+	IntegerValue() int /* primitive/slice/pointer. */
+	SetIntegerValue(value int /* primitive/slice/pointer. */)
+	StringValue() string /* primitive/slice/pointer. */
+	SetStringValue(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An active area inside a control.
@@ -125,7 +127,7 @@ func (a_ ActionCell) SetAction(value objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
-func (a_ ActionCell) Tag() int {
+func (a_ ActionCell) Tag() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("tag"))
 	return rv
 }
@@ -135,7 +137,7 @@ func (a_ ActionCell) Tag() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSActionCell/tag
-func (a_ ActionCell) SetTag(value int) {
+func (a_ ActionCell) SetTag(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTag:"), value)
 }
 
@@ -182,7 +184,7 @@ func (a_ ActionCell) SetControlView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) FloatValue() float32 {
+func (a_ ActionCell) FloatValue() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](a_.ID, objc.Sel("floatValue"))
 	return rv
 }
@@ -192,7 +194,7 @@ func (a_ ActionCell) FloatValue() float32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) SetFloatValue(value float32) {
+func (a_ ActionCell) SetFloatValue(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFloatValue:"), value)
 }
 
@@ -220,7 +222,7 @@ func (a_ ActionCell) SetIntValue(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
-func (a_ ActionCell) IntegerValue() int {
+func (a_ ActionCell) IntegerValue() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("integerValue"))
 	return rv
 }
@@ -230,7 +232,7 @@ func (a_ ActionCell) IntegerValue() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/integervalue
-func (a_ ActionCell) SetIntegerValue(value int) {
+func (a_ ActionCell) SetIntegerValue(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntegerValue:"), value)
 }
 
@@ -239,7 +241,7 @@ func (a_ ActionCell) SetIntegerValue(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) StringValue() string {
+func (a_ ActionCell) StringValue() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }
@@ -249,7 +251,7 @@ func (a_ ActionCell) StringValue() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/stringvalue
-func (a_ ActionCell) SetStringValue(value string) {
+func (a_ ActionCell) SetStringValue(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 

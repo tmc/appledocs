@@ -29,9 +29,11 @@ type _BatchUpdateResultClass struct {
 // An interface definition for the [BatchUpdateResult] class.
 type IBatchUpdateResult interface {
 	IPersistentStoreResult
-	ResultType() unsafe.Pointer
+	// properties:
+	ResultType() BatchUpdateRequestResultType /* not a class type */
 	Result() unsafe.Pointer
 	SetResult(value unsafe.Pointer)
+	// methods:
 }
 
 // The result returned when executing a batch update request.
@@ -91,8 +93,8 @@ func NewBatchUpdateResult() BatchUpdateResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateResult/resultType
-func (b_ BatchUpdateResult) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+func (b_ BatchUpdateResult) ResultType() BatchUpdateRequestResultType /* not a class type */ {
+	rv := objc.Send[BatchUpdateRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 

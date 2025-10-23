@@ -30,7 +30,9 @@ type _MergePolicyClass struct {
 // An interface definition for the [MergePolicy] class.
 type IMergePolicy interface {
 	objectivec.IObject
-	MergeType() unsafe.Pointer
+	// properties:
+	MergeType() MergePolicyType /* not a class type */
+	// methods:
 }
 
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
@@ -90,8 +92,8 @@ func NewMergePolicy() MergePolicy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergePolicy/mergeType
-func (m_ MergePolicy) MergeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mergeType"))
+func (m_ MergePolicy) MergeType() MergePolicyType /* not a class type */ {
+	rv := objc.Send[MergePolicyType](m_.ID, objc.Sel("mergeType"))
 	return rv
 }
 

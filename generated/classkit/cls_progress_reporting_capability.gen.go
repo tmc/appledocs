@@ -29,12 +29,14 @@ type _SProgressReportingCapabilityClass struct {
 // An interface definition for the [SProgressReportingCapability] class.
 type ISProgressReportingCapability interface {
 	ISObject
+	// properties:
 	ProgressReportingCapabilities() ICLSProgressReportingCapability
 	SetProgressReportingCapabilities(value ICLSProgressReportingCapability)
-	Details() string
-	SetDetails(value string)
+	Details() string /* primitive/slice/pointer. */
+	SetDetails(value string /* primitive/slice/pointer. */)
 	Kind() unsafe.Pointer
 	SetKind(value unsafe.Pointer)
+	// methods:
 }
 
 // A progress reporting capability supported by a context.
@@ -115,7 +117,7 @@ func (s_ SProgressReportingCapability) SetProgressReportingCapabilities(value IC
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details
-func (s_ SProgressReportingCapability) Details() string {
+func (s_ SProgressReportingCapability) Details() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("details"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (s_ SProgressReportingCapability) Details() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details
-func (s_ SProgressReportingCapability) SetDetails(value string) {
+func (s_ SProgressReportingCapability) SetDetails(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDetails:"), objc.String(value))
 }
 

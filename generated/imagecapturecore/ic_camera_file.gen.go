@@ -31,52 +31,52 @@ type _ICCameraFileClass struct {
 type IICCameraFile interface {
 	IICCameraItem
 	// properties:
-	BurstUUID() string
-	GpsString() string
-	BurstFavorite() bool
-	SetBurstFavorite(value bool)
-	BurstPicked() bool
-	SetBurstPicked(value bool)
-	CreatedFilename() string
-	SetCreatedFilename(value string)
-	Duration() float64
-	SetDuration(value float64)
-	ExifCreationDate() foundation.Date
-	SetExifCreationDate(value foundation.Date)
-	ExifModificationDate() foundation.Date
-	SetExifModificationDate(value foundation.Date)
-	FileCreationDate() foundation.Date
-	SetFileCreationDate(value foundation.Date)
-	FileModificationDate() foundation.Date
-	SetFileModificationDate(value foundation.Date)
+	BurstUUID() string /* primitive/slice/pointer. */
+	GpsString() string /* primitive/slice/pointer. */
+	BurstFavorite() bool /* primitive/slice/pointer. */
+	SetBurstFavorite(value bool /* primitive/slice/pointer. */)
+	BurstPicked() bool /* primitive/slice/pointer. */
+	SetBurstPicked(value bool /* primitive/slice/pointer. */)
+	CreatedFilename() string /* primitive/slice/pointer. */
+	SetCreatedFilename(value string /* primitive/slice/pointer. */)
+	Duration() float64 /* primitive/slice/pointer. */
+	SetDuration(value float64 /* primitive/slice/pointer. */)
+	ExifCreationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetExifCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	ExifModificationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetExifModificationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	FileCreationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetFileCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	FileModificationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetFileModificationDate(value foundation.objc.IObject /* cross-framework: Date */)
 	FileSize() unsafe.Pointer
 	SetFileSize(value unsafe.Pointer)
-	Fingerprint() string
-	SetFingerprint(value string)
-	FirstPicked() bool
-	SetFirstPicked(value bool)
-	GroupUUID() string
-	SetGroupUUID(value string)
-	Height() int
-	SetHeight(value int)
-	HighFramerate() bool
-	SetHighFramerate(value bool)
+	Fingerprint() string /* primitive/slice/pointer. */
+	SetFingerprint(value string /* primitive/slice/pointer. */)
+	FirstPicked() bool /* primitive/slice/pointer. */
+	SetFirstPicked(value bool /* primitive/slice/pointer. */)
+	GroupUUID() string /* primitive/slice/pointer. */
+	SetGroupUUID(value string /* primitive/slice/pointer. */)
+	Height() int /* primitive/slice/pointer. */
+	SetHeight(value int /* primitive/slice/pointer. */)
+	HighFramerate() bool /* primitive/slice/pointer. */
+	SetHighFramerate(value bool /* primitive/slice/pointer. */)
 	Orientation() unsafe.Pointer
 	SetOrientation(value unsafe.Pointer)
-	OriginalFilename() string
-	SetOriginalFilename(value string)
-	OriginatingAssetID() string
-	SetOriginatingAssetID(value string)
-	PairedRawImage() ICCameraFile
-	SetPairedRawImage(value ICCameraFile)
-	RelatedUUID() string
-	SetRelatedUUID(value string)
-	SidecarFiles() ICCameraItem
-	SetSidecarFiles(value ICCameraItem)
-	TimeLapse() bool
-	SetTimeLapse(value bool)
-	Width() int
-	SetWidth(value int)
+	OriginalFilename() string /* primitive/slice/pointer. */
+	SetOriginalFilename(value string /* primitive/slice/pointer. */)
+	OriginatingAssetID() string /* primitive/slice/pointer. */
+	SetOriginatingAssetID(value string /* primitive/slice/pointer. */)
+	PairedRawImage() ICCameraFile /* already interface */
+	SetPairedRawImage(value ICCameraFile /* already interface */)
+	RelatedUUID() string /* primitive/slice/pointer. */
+	SetRelatedUUID(value string /* primitive/slice/pointer. */)
+	SidecarFiles() ICCameraItem /* already interface */
+	SetSidecarFiles(value ICCameraItem /* already interface */)
+	TimeLapse() bool /* primitive/slice/pointer. */
+	SetTimeLapse(value bool /* primitive/slice/pointer. */)
+	Width() int /* primitive/slice/pointer. */
+	SetWidth(value int /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -137,7 +137,7 @@ func NewICCameraFile() ICCameraFile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/burstUUID
-func (i_ ICCameraFile) BurstUUID() string {
+func (i_ ICCameraFile) BurstUUID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("burstUUID"))
 	return rv
 }
@@ -147,7 +147,7 @@ func (i_ ICCameraFile) BurstUUID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraFile/gpsString
-func (i_ ICCameraFile) GpsString() string {
+func (i_ ICCameraFile) GpsString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("gpsString"))
 	return rv
 }
@@ -157,7 +157,7 @@ func (i_ ICCameraFile) GpsString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstfavorite
-func (i_ ICCameraFile) BurstFavorite() bool {
+func (i_ ICCameraFile) BurstFavorite() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("burstFavorite"))
 	return rv
 }
@@ -167,7 +167,7 @@ func (i_ ICCameraFile) BurstFavorite() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstfavorite
-func (i_ ICCameraFile) SetBurstFavorite(value bool) {
+func (i_ ICCameraFile) SetBurstFavorite(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBurstFavorite:"), value)
 }
 
@@ -176,7 +176,7 @@ func (i_ ICCameraFile) SetBurstFavorite(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstpicked
-func (i_ ICCameraFile) BurstPicked() bool {
+func (i_ ICCameraFile) BurstPicked() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("burstPicked"))
 	return rv
 }
@@ -186,7 +186,7 @@ func (i_ ICCameraFile) BurstPicked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/burstpicked
-func (i_ ICCameraFile) SetBurstPicked(value bool) {
+func (i_ ICCameraFile) SetBurstPicked(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBurstPicked:"), value)
 }
 
@@ -195,7 +195,7 @@ func (i_ ICCameraFile) SetBurstPicked(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
-func (i_ ICCameraFile) CreatedFilename() string {
+func (i_ ICCameraFile) CreatedFilename() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("createdFilename"))
 	return rv
 }
@@ -205,7 +205,7 @@ func (i_ ICCameraFile) CreatedFilename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/createdfilename
-func (i_ ICCameraFile) SetCreatedFilename(value string) {
+func (i_ ICCameraFile) SetCreatedFilename(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCreatedFilename:"), objc.String(value))
 }
 
@@ -214,7 +214,7 @@ func (i_ ICCameraFile) SetCreatedFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/duration
-func (i_ ICCameraFile) Duration() float64 {
+func (i_ ICCameraFile) Duration() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](i_.ID, objc.Sel("duration"))
 	return rv
 }
@@ -224,7 +224,7 @@ func (i_ ICCameraFile) Duration() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/duration
-func (i_ ICCameraFile) SetDuration(value float64) {
+func (i_ ICCameraFile) SetDuration(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -233,7 +233,7 @@ func (i_ ICCameraFile) SetDuration(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifcreationdate
-func (i_ ICCameraFile) ExifCreationDate() foundation.Date {
+func (i_ ICCameraFile) ExifCreationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("exifCreationDate"))
 	return rv
 }
@@ -243,7 +243,7 @@ func (i_ ICCameraFile) ExifCreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifcreationdate
-func (i_ ICCameraFile) SetExifCreationDate(value foundation.Date) {
+func (i_ ICCameraFile) SetExifCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExifCreationDate:"), value)
 }
 
@@ -252,7 +252,7 @@ func (i_ ICCameraFile) SetExifCreationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifmodificationdate
-func (i_ ICCameraFile) ExifModificationDate() foundation.Date {
+func (i_ ICCameraFile) ExifModificationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("exifModificationDate"))
 	return rv
 }
@@ -262,7 +262,7 @@ func (i_ ICCameraFile) ExifModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/exifmodificationdate
-func (i_ ICCameraFile) SetExifModificationDate(value foundation.Date) {
+func (i_ ICCameraFile) SetExifModificationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExifModificationDate:"), value)
 }
 
@@ -271,7 +271,7 @@ func (i_ ICCameraFile) SetExifModificationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filecreationdate
-func (i_ ICCameraFile) FileCreationDate() foundation.Date {
+func (i_ ICCameraFile) FileCreationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("fileCreationDate"))
 	return rv
 }
@@ -281,7 +281,7 @@ func (i_ ICCameraFile) FileCreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filecreationdate
-func (i_ ICCameraFile) SetFileCreationDate(value foundation.Date) {
+func (i_ ICCameraFile) SetFileCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileCreationDate:"), value)
 }
 
@@ -290,7 +290,7 @@ func (i_ ICCameraFile) SetFileCreationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filemodificationdate
-func (i_ ICCameraFile) FileModificationDate() foundation.Date {
+func (i_ ICCameraFile) FileModificationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("fileModificationDate"))
 	return rv
 }
@@ -300,7 +300,7 @@ func (i_ ICCameraFile) FileModificationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/filemodificationdate
-func (i_ ICCameraFile) SetFileModificationDate(value foundation.Date) {
+func (i_ ICCameraFile) SetFileModificationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFileModificationDate:"), value)
 }
 
@@ -326,7 +326,7 @@ func (i_ ICCameraFile) SetFileSize(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
-func (i_ ICCameraFile) Fingerprint() string {
+func (i_ ICCameraFile) Fingerprint() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("fingerprint"))
 	return rv
 }
@@ -334,7 +334,7 @@ func (i_ ICCameraFile) Fingerprint() string {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/fingerprint
-func (i_ ICCameraFile) SetFingerprint(value string) {
+func (i_ ICCameraFile) SetFingerprint(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFingerprint:"), objc.String(value))
 }
 
@@ -343,7 +343,7 @@ func (i_ ICCameraFile) SetFingerprint(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/firstpicked
-func (i_ ICCameraFile) FirstPicked() bool {
+func (i_ ICCameraFile) FirstPicked() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("firstPicked"))
 	return rv
 }
@@ -353,7 +353,7 @@ func (i_ ICCameraFile) FirstPicked() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/firstpicked
-func (i_ ICCameraFile) SetFirstPicked(value bool) {
+func (i_ ICCameraFile) SetFirstPicked(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFirstPicked:"), value)
 }
 
@@ -362,7 +362,7 @@ func (i_ ICCameraFile) SetFirstPicked(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
-func (i_ ICCameraFile) GroupUUID() string {
+func (i_ ICCameraFile) GroupUUID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("groupUUID"))
 	return rv
 }
@@ -372,7 +372,7 @@ func (i_ ICCameraFile) GroupUUID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/groupuuid
-func (i_ ICCameraFile) SetGroupUUID(value string) {
+func (i_ ICCameraFile) SetGroupUUID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupUUID:"), objc.String(value))
 }
 
@@ -381,7 +381,7 @@ func (i_ ICCameraFile) SetGroupUUID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/height
-func (i_ ICCameraFile) Height() int {
+func (i_ ICCameraFile) Height() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("height"))
 	return rv
 }
@@ -391,7 +391,7 @@ func (i_ ICCameraFile) Height() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/height
-func (i_ ICCameraFile) SetHeight(value int) {
+func (i_ ICCameraFile) SetHeight(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHeight:"), value)
 }
 
@@ -400,7 +400,7 @@ func (i_ ICCameraFile) SetHeight(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/highframerate
-func (i_ ICCameraFile) HighFramerate() bool {
+func (i_ ICCameraFile) HighFramerate() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("highFramerate"))
 	return rv
 }
@@ -410,7 +410,7 @@ func (i_ ICCameraFile) HighFramerate() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/highframerate
-func (i_ ICCameraFile) SetHighFramerate(value bool) {
+func (i_ ICCameraFile) SetHighFramerate(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHighFramerate:"), value)
 }
 
@@ -438,7 +438,7 @@ func (i_ ICCameraFile) SetOrientation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
-func (i_ ICCameraFile) OriginalFilename() string {
+func (i_ ICCameraFile) OriginalFilename() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("originalFilename"))
 	return rv
 }
@@ -448,7 +448,7 @@ func (i_ ICCameraFile) OriginalFilename() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originalfilename
-func (i_ ICCameraFile) SetOriginalFilename(value string) {
+func (i_ ICCameraFile) SetOriginalFilename(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginalFilename:"), objc.String(value))
 }
 
@@ -457,7 +457,7 @@ func (i_ ICCameraFile) SetOriginalFilename(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
-func (i_ ICCameraFile) OriginatingAssetID() string {
+func (i_ ICCameraFile) OriginatingAssetID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("originatingAssetID"))
 	return rv
 }
@@ -467,7 +467,7 @@ func (i_ ICCameraFile) OriginatingAssetID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/originatingassetid
-func (i_ ICCameraFile) SetOriginatingAssetID(value string) {
+func (i_ ICCameraFile) SetOriginatingAssetID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOriginatingAssetID:"), objc.String(value))
 }
 
@@ -476,7 +476,7 @@ func (i_ ICCameraFile) SetOriginatingAssetID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/pairedrawimage
-func (i_ ICCameraFile) PairedRawImage() ICCameraFile {
+func (i_ ICCameraFile) PairedRawImage() ICCameraFile /* already interface */ {
 	rv := objc.Send[ICCameraFile](i_.ID, objc.Sel("pairedRawImage"))
 	return rv
 }
@@ -486,7 +486,7 @@ func (i_ ICCameraFile) PairedRawImage() ICCameraFile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/pairedrawimage
-func (i_ ICCameraFile) SetPairedRawImage(value ICCameraFile) {
+func (i_ ICCameraFile) SetPairedRawImage(value ICCameraFile /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPairedRawImage:"), value)
 }
 
@@ -495,7 +495,7 @@ func (i_ ICCameraFile) SetPairedRawImage(value ICCameraFile) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
-func (i_ ICCameraFile) RelatedUUID() string {
+func (i_ ICCameraFile) RelatedUUID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](i_.ID, objc.Sel("relatedUUID"))
 	return rv
 }
@@ -505,7 +505,7 @@ func (i_ ICCameraFile) RelatedUUID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/relateduuid
-func (i_ ICCameraFile) SetRelatedUUID(value string) {
+func (i_ ICCameraFile) SetRelatedUUID(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelatedUUID:"), objc.String(value))
 }
 
@@ -514,7 +514,7 @@ func (i_ ICCameraFile) SetRelatedUUID(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/sidecarfiles
-func (i_ ICCameraFile) SidecarFiles() ICCameraItem {
+func (i_ ICCameraFile) SidecarFiles() ICCameraItem /* already interface */ {
 	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("sidecarFiles"))
 	return rv
 }
@@ -524,7 +524,7 @@ func (i_ ICCameraFile) SidecarFiles() ICCameraItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/sidecarfiles
-func (i_ ICCameraFile) SetSidecarFiles(value ICCameraItem) {
+func (i_ ICCameraFile) SetSidecarFiles(value ICCameraItem /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSidecarFiles:"), value)
 }
 
@@ -533,7 +533,7 @@ func (i_ ICCameraFile) SetSidecarFiles(value ICCameraItem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/timelapse
-func (i_ ICCameraFile) TimeLapse() bool {
+func (i_ ICCameraFile) TimeLapse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](i_.ID, objc.Sel("timeLapse"))
 	return rv
 }
@@ -543,7 +543,7 @@ func (i_ ICCameraFile) TimeLapse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/timelapse
-func (i_ ICCameraFile) SetTimeLapse(value bool) {
+func (i_ ICCameraFile) SetTimeLapse(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTimeLapse:"), value)
 }
 
@@ -552,7 +552,7 @@ func (i_ ICCameraFile) SetTimeLapse(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/width
-func (i_ ICCameraFile) Width() int {
+func (i_ ICCameraFile) Width() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](i_.ID, objc.Sel("width"))
 	return rv
 }
@@ -562,7 +562,7 @@ func (i_ ICCameraFile) Width() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccamerafile/width
-func (i_ ICCameraFile) SetWidth(value int) {
+func (i_ ICCameraFile) SetWidth(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWidth:"), value)
 }
 

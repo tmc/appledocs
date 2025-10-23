@@ -37,12 +37,12 @@ type IJSContext interface {
 	SetExceptionHandler(value unsafe.Pointer)
 	GlobalObject() IJSValue
 	SetGlobalObject(value IJSValue)
-	IsInspectable() bool
-	SetIsInspectable(value bool)
+	IsInspectable() bool /* primitive/slice/pointer. */
+	SetIsInspectable(value bool /* primitive/slice/pointer. */)
 	JsGlobalContextRef() unsafe.Pointer
 	SetJsGlobalContextRef(value unsafe.Pointer)
-	Name() string
-	SetName(value string)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
 	VirtualMachine() IJSVirtualMachine
 	SetVirtualMachine(value IJSVirtualMachine)
 	// methods:
@@ -173,7 +173,7 @@ func (j_ JSContext) SetGlobalObject(value IJSValue) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
-func (j_ JSContext) IsInspectable() bool {
+func (j_ JSContext) IsInspectable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](j_.ID, objc.Sel("isInspectable"))
 	return rv
 }
@@ -183,7 +183,7 @@ func (j_ JSContext) IsInspectable() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/isinspectable
-func (j_ JSContext) SetIsInspectable(value bool) {
+func (j_ JSContext) SetIsInspectable(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setIsInspectable:"), value)
 }
 
@@ -211,7 +211,7 @@ func (j_ JSContext) SetJsGlobalContextRef(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) Name() string {
+func (j_ JSContext) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](j_.ID, objc.Sel("name"))
 	return rv
 }
@@ -221,7 +221,7 @@ func (j_ JSContext) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jscontext/name
-func (j_ JSContext) SetName(value string) {
+func (j_ JSContext) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setName:"), objc.String(value))
 }
 

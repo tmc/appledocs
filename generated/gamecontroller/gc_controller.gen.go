@@ -30,6 +30,7 @@ type _GCControllerClass struct {
 // An interface definition for the [GCController] class.
 type IGCController interface {
 	objectivec.IObject
+	// properties:
 	ExtendedGamepad() IGCExtendedGamepad
 	PhysicalInputProfile() IGCPhysicalInputProfile
 	PlayerIndex() unsafe.Pointer
@@ -42,22 +43,23 @@ type IGCController interface {
 	SetGamepad(value unsafe.Pointer)
 	Haptics() IGCDeviceHaptics
 	SetHaptics(value IGCDeviceHaptics)
-	Input() GCControllerLiveInput
-	SetInput(value GCControllerLiveInput)
-	IsAttachedToDevice() bool
-	SetIsAttachedToDevice(value bool)
-	IsSnapshot() bool
-	SetIsSnapshot(value bool)
+	Input() objc.IObject /* cross-framework: GCControllerLiveInput */
+	SetInput(value objc.IObject /* cross-framework: GCControllerLiveInput */)
+	IsAttachedToDevice() bool /* primitive/slice/pointer. */
+	SetIsAttachedToDevice(value bool /* primitive/slice/pointer. */)
+	IsSnapshot() bool /* primitive/slice/pointer. */
+	SetIsSnapshot(value bool /* primitive/slice/pointer. */)
 	Light() IGCDeviceLight
 	SetLight(value IGCDeviceLight)
-	MicroGamepad() GCMicroGamepad
-	SetMicroGamepad(value GCMicroGamepad)
+	MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */
+	SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */)
 	Motion() IGCMotion
 	SetMotion(value IGCMotion)
-	LeftThumbstick() GCControllerDirectionPad
-	SetLeftThumbstick(value GCControllerDirectionPad)
+	LeftThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */
+	SetLeftThumbstick(value objc.IObject /* cross-framework: GCControllerDirectionPad */)
 	ValueChangedHandler() unsafe.Pointer
 	SetValueChangedHandler(value unsafe.Pointer)
+	// methods:
 	Capture() IGCController
 }
 
@@ -118,7 +120,7 @@ func NewGCController() GCController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/controllers()
-func (gc _GCControllerClass) Controllers() []GCController {
+func (gc _GCControllerClass) Controllers() []GCController /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]GCController](objc.ID(gc.class), objc.Sel("controllers"))
 	return rv
 }
@@ -130,6 +132,15 @@ func (gc _GCControllerClass) Controllers() []GCController {
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/startWirelessControllerDiscovery(completionHandler:)
 func (gc _GCControllerClass) StartWirelessControllerDiscoveryWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("startWirelessControllerDiscoveryWithCompletionHandler:"), completionHandler)
+}
+
+
+// Stops searching for nearby wireless controllers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/stopWirelessControllerDiscovery()
+func (gc _GCControllerClass) StopWirelessControllerDiscovery() {
+	objc.Send[objc.ID](objc.ID(gc.class), objc.Sel("stopWirelessControllerDiscovery"))
 }
 
 
@@ -281,7 +292,7 @@ func (g_ GCController) SetHaptics(value IGCDeviceHaptics) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCController) Input() GCControllerLiveInput {
+func (g_ GCController) Input() objc.IObject /* cross-framework: GCControllerLiveInput */ {
 	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("input"))
 	return rv
 }
@@ -291,7 +302,7 @@ func (g_ GCController) Input() GCControllerLiveInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCController) SetInput(value GCControllerLiveInput) {
+func (g_ GCController) SetInput(value objc.IObject /* cross-framework: GCControllerLiveInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
@@ -300,7 +311,7 @@ func (g_ GCController) SetInput(value GCControllerLiveInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/isattachedtodevice
-func (g_ GCController) IsAttachedToDevice() bool {
+func (g_ GCController) IsAttachedToDevice() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isAttachedToDevice"))
 	return rv
 }
@@ -310,7 +321,7 @@ func (g_ GCController) IsAttachedToDevice() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/isattachedtodevice
-func (g_ GCController) SetIsAttachedToDevice(value bool) {
+func (g_ GCController) SetIsAttachedToDevice(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsAttachedToDevice:"), value)
 }
 
@@ -319,7 +330,7 @@ func (g_ GCController) SetIsAttachedToDevice(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/issnapshot
-func (g_ GCController) IsSnapshot() bool {
+func (g_ GCController) IsSnapshot() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isSnapshot"))
 	return rv
 }
@@ -329,7 +340,7 @@ func (g_ GCController) IsSnapshot() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/issnapshot
-func (g_ GCController) SetIsSnapshot(value bool) {
+func (g_ GCController) SetIsSnapshot(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsSnapshot:"), value)
 }
 
@@ -357,7 +368,7 @@ func (g_ GCController) SetLight(value IGCDeviceLight) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCController) MicroGamepad() GCMicroGamepad {
+func (g_ GCController) MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */ {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
@@ -367,7 +378,7 @@ func (g_ GCController) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCController) SetMicroGamepad(value GCMicroGamepad) {
+func (g_ GCController) SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
@@ -395,7 +406,7 @@ func (g_ GCController) SetMotion(value IGCMotion) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCController) LeftThumbstick() GCControllerDirectionPad {
+func (g_ GCController) LeftThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("leftThumbstick"))
 	return rv
 }
@@ -405,7 +416,7 @@ func (g_ GCController) LeftThumbstick() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCController) SetLeftThumbstick(value GCControllerDirectionPad) {
+func (g_ GCController) SetLeftThumbstick(value objc.IObject /* cross-framework: GCControllerDirectionPad */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstick:"), value)
 }
 

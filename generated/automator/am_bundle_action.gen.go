@@ -7,8 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AMBundleAction] class.
@@ -31,14 +29,16 @@ type _AMBundleActionClass struct {
 // An interface definition for the [AMBundleAction] class.
 type IAMBundleAction interface {
 	IAMAction
-	Bundle() foundation.Bundle
-	SetBundle(value foundation.Bundle)
-	HasView() bool
-	SetHasView(value bool)
-	Parameters() foundation.MutableDictionary
-	SetParameters(value foundation.MutableDictionary)
-	View() appkit.View
-	SetView(value appkit.View)
+	// properties:
+	Bundle() objc.IObject /* cross-framework: Bundle */
+	SetBundle(value objc.IObject /* cross-framework: Bundle */)
+	HasView() bool /* primitive/slice/pointer. */
+	SetHasView(value bool /* primitive/slice/pointer. */)
+	Parameters() MutableDictionary /* not a class type */
+	SetParameters(value MutableDictionary /* not a class type */)
+	View() objc.IObject /* cross-framework: View */
+	SetView(value objc.IObject /* cross-framework: View */)
+	// methods:
 }
 
 // An object that represents an Automator action that’s a loadable bundle.
@@ -100,8 +100,8 @@ func NewAMBundleAction() AMBundleAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/bundle
-func (a_ AMBundleAction) Bundle() foundation.Bundle {
-	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
+func (a_ AMBundleAction) Bundle() objc.IObject /* cross-framework: Bundle */ {
+	rv := objc.Send[Bundle](a_.ID, objc.Sel("bundle"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (a_ AMBundleAction) Bundle() foundation.Bundle {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/bundle
-func (a_ AMBundleAction) SetBundle(value foundation.Bundle) {
+func (a_ AMBundleAction) SetBundle(value objc.IObject /* cross-framework: Bundle */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBundle:"), value)
 }
 
@@ -119,7 +119,7 @@ func (a_ AMBundleAction) SetBundle(value foundation.Bundle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/hasview
-func (a_ AMBundleAction) HasView() bool {
+func (a_ AMBundleAction) HasView() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("hasView"))
 	return rv
 }
@@ -129,7 +129,7 @@ func (a_ AMBundleAction) HasView() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/hasview
-func (a_ AMBundleAction) SetHasView(value bool) {
+func (a_ AMBundleAction) SetHasView(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHasView:"), value)
 }
 
@@ -138,8 +138,8 @@ func (a_ AMBundleAction) SetHasView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/parameters
-func (a_ AMBundleAction) Parameters() foundation.MutableDictionary {
-	rv := objc.Send[foundation.MutableDictionary](a_.ID, objc.Sel("parameters"))
+func (a_ AMBundleAction) Parameters() MutableDictionary /* not a class type */ {
+	rv := objc.Send[MutableDictionary](a_.ID, objc.Sel("parameters"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (a_ AMBundleAction) Parameters() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/parameters
-func (a_ AMBundleAction) SetParameters(value foundation.MutableDictionary) {
+func (a_ AMBundleAction) SetParameters(value MutableDictionary /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParameters:"), value)
 }
 
@@ -157,8 +157,8 @@ func (a_ AMBundleAction) SetParameters(value foundation.MutableDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/view
-func (a_ AMBundleAction) View() appkit.View {
-	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
+func (a_ AMBundleAction) View() objc.IObject /* cross-framework: View */ {
+	rv := objc.Send[View](a_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (a_ AMBundleAction) View() appkit.View {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automator/ambundleaction/view
-func (a_ AMBundleAction) SetView(value appkit.View) {
+func (a_ AMBundleAction) SetView(value objc.IObject /* cross-framework: View */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setView:"), value)
 }
 

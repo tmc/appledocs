@@ -30,6 +30,8 @@ type _topLeftClass struct {
 // An interface definition for the [topLeft] class.
 type ItopLeft interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

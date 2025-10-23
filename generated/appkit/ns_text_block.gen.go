@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +32,21 @@ type _TextBlockClass struct {
 // An interface definition for the [TextBlock] class.
 type ITextBlock interface {
 	objectivec.IObject
-	BackgroundColor() NSColor
+	// properties:
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	ContentWidth() float64
-	SetContentWidth(value float64)
+	ContentWidth() float64 /* primitive/slice/pointer. */
+	SetContentWidth(value float64 /* primitive/slice/pointer. */)
 	ContentWidthValueType() unsafe.Pointer
 	SetContentWidthValueType(value unsafe.Pointer)
 	VerticalAlignment() unsafe.Pointer
 	SetVerticalAlignment(value unsafe.Pointer)
+	// methods:
+	BorderColorForEdge(edge int /* primitive/slice/pointer. */) IColor
+	RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect
+	SetValueTypeForDimension(val float64 /* primitive/slice/pointer. */, type_ TextBlockValueType /* not a class type */, dimension TextBlockDimension)
+	ValueForDimension(dimension TextBlockDimension) float64 /* primitive/slice/pointer. */
+	ValueTypeForDimension(dimension TextBlockDimension) TextBlockValueType /* not a class type */
 }
 
 // A block of text laid out in a subregion of the text container.
@@ -93,12 +102,61 @@ func NewTextBlock() TextBlock {
 
 
 
+// Returns the border color of the specified text block edge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/borderColor(for:)
+func (t_ TextBlock) BorderColorForEdge(edge int /* primitive/slice/pointer. */) IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("borderColorForEdge:"), edge)
+	return rv
+}
+
+
+// Returns the rectangle within which glyphs should be laid out for the specified arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/rectForLayout(at:in:textContainer:characterRange:)
+func (t_ TextBlock) RectForLayoutAtPointInRectTextContainerCharacterRange(startingPoint coregraphics.CGPoint, rect coregraphics.CGRect, textContainer ITextContainer, charRange foundation.objc.IObject /* cross-framework Range */) coregraphics.CGRect {
+	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("rectForLayoutAtPoint:inRect:textContainer:characterRange:"), startingPoint, rect, textContainer, charRange)
+	return rv
+}
+
+
+// Sets a dimension of the text block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/setValue(_:type:for:)
+func (t_ TextBlock) SetValueTypeForDimension(val float64 /* primitive/slice/pointer. */, type_ TextBlockValueType /* not a class type */, dimension TextBlockDimension) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setValue:type:forDimension:"), val, type_, dimension)
+}
+
+
+// Returns the value of the specified text block dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/value(for:)
+func (t_ TextBlock) ValueForDimension(dimension TextBlockDimension) float64 /* primitive/slice/pointer. */ {
+	rv := objc.Send[float64](t_.ID, objc.Sel("valueForDimension:"), dimension)
+	return rv
+}
+
+
+// Returns the value type of the specified text block dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/valueType(for:)
+func (t_ TextBlock) ValueTypeForDimension(dimension TextBlockDimension) TextBlockValueType /* not a class type */ {
+	rv := objc.Send[TextBlockValueType](t_.ID, objc.Sel("valueTypeForDimension:"), dimension)
+	return rv
+}
+
+
 // The background color of the text block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/backgroundcolor
-func (t_ TextBlock) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
+func (t_ TextBlock) BackgroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -116,7 +174,7 @@ func (t_ TextBlock) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
-func (t_ TextBlock) ContentWidth() float64 {
+func (t_ TextBlock) ContentWidth() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](t_.ID, objc.Sel("contentWidth"))
 	return rv
 }
@@ -126,7 +184,7 @@ func (t_ TextBlock) ContentWidth() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextblock/contentwidth
-func (t_ TextBlock) SetContentWidth(value float64) {
+func (t_ TextBlock) SetContentWidth(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentWidth:"), value)
 }
 

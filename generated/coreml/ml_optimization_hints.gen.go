@@ -30,10 +30,12 @@ type _OptimizationHintsClass struct {
 // An interface definition for the [OptimizationHints] class.
 type IOptimizationHints interface {
 	objectivec.IObject
-	ReshapeFrequency() MLReshapeFrequencyHint
-	SetReshapeFrequency(value MLReshapeFrequencyHint)
-	SpecializationStrategy() MLSpecializationStrategy
-	SetSpecializationStrategy(value MLSpecializationStrategy)
+	// properties:
+	ReshapeFrequency() ReshapeFrequencyHint
+	SetReshapeFrequency(value ReshapeFrequencyHint)
+	SpecializationStrategy() SpecializationStrategy
+	SetSpecializationStrategy(value SpecializationStrategy)
+	// methods:
 }
 
 // MLOptimizationHints
@@ -93,8 +95,8 @@ func NewOptimizationHints() OptimizationHints {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/reshapeFrequency
-func (o_ OptimizationHints) ReshapeFrequency() MLReshapeFrequencyHint {
-	rv := objc.Send[MLReshapeFrequencyHint](o_.ID, objc.Sel("reshapeFrequency"))
+func (o_ OptimizationHints) ReshapeFrequency() ReshapeFrequencyHint {
+	rv := objc.Send[ReshapeFrequencyHint](o_.ID, objc.Sel("reshapeFrequency"))
 	return rv
 }
 
@@ -103,7 +105,7 @@ func (o_ OptimizationHints) ReshapeFrequency() MLReshapeFrequencyHint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/reshapeFrequency
-func (o_ OptimizationHints) SetReshapeFrequency(value MLReshapeFrequencyHint) {
+func (o_ OptimizationHints) SetReshapeFrequency(value ReshapeFrequencyHint) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReshapeFrequency:"), value)
 }
 
@@ -112,8 +114,8 @@ func (o_ OptimizationHints) SetReshapeFrequency(value MLReshapeFrequencyHint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/specializationStrategy
-func (o_ OptimizationHints) SpecializationStrategy() MLSpecializationStrategy {
-	rv := objc.Send[MLSpecializationStrategy](o_.ID, objc.Sel("specializationStrategy"))
+func (o_ OptimizationHints) SpecializationStrategy() SpecializationStrategy {
+	rv := objc.Send[SpecializationStrategy](o_.ID, objc.Sel("specializationStrategy"))
 	return rv
 }
 
@@ -122,7 +124,7 @@ func (o_ OptimizationHints) SpecializationStrategy() MLSpecializationStrategy {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/specializationStrategy
-func (o_ OptimizationHints) SetSpecializationStrategy(value MLSpecializationStrategy) {
+func (o_ OptimizationHints) SetSpecializationStrategy(value SpecializationStrategy) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSpecializationStrategy:"), value)
 }
 

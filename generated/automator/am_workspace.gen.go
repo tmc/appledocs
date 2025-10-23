@@ -30,7 +30,9 @@ type _AMWorkspaceClass struct {
 // An interface definition for the [AMWorkspace] class.
 type IAMWorkspace interface {
 	objectivec.IObject
-	RunWorkflowAtPathWithInputError(path string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
+	// properties:
+	// methods:
+	RunWorkflowAtPathWithInputError(path string /* primitive/slice/pointer. */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
 }
 
 // A workspace for running an Automator workflow.
@@ -99,7 +101,7 @@ func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
-func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string /* primitive/slice/pointer. */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), objc.String(path), input, error_)
 	return rv
 }

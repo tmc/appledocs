@@ -8,6 +8,41 @@ package corespotlight
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code
 type CSIndexErrorCode uint
 
+const (
+	// CSIndexErrorCodeIndexUnavailableError - The indexer is unavailable.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/indexUnavailableError
+	CSIndexErrorCodeIndexUnavailableError CSIndexErrorCode = 0
+	// CSIndexErrorCodeIndexingUnsupported - Indexing isn’t supported on the device.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/indexingUnsupported
+	CSIndexErrorCodeIndexingUnsupported CSIndexErrorCode = 0
+	// CSIndexErrorCodeInvalidClientStateError - The provided client state data is invalid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/invalidClientStateError
+	CSIndexErrorCodeInvalidClientStateError CSIndexErrorCode = 0
+	// CSIndexErrorCodeInvalidItemError - The searchable item object is invalid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/invalidItemError
+	CSIndexErrorCodeInvalidItemError CSIndexErrorCode = 0
+	// CSIndexErrorCodeMismatchedClientState - The provided client state did not match the information in the index.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/mismatchedClientState
+	CSIndexErrorCodeMismatchedClientState CSIndexErrorCode = 0
+	// CSIndexErrorCodeQuotaExceeded - The quota for the bundle has been exceeded.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/quotaExceeded
+	CSIndexErrorCodeQuotaExceeded CSIndexErrorCode = 0
+	// CSIndexErrorCodeRemoteConnectionError - An error occurred while communicating with the remote process.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/remoteConnectionError
+	CSIndexErrorCodeRemoteConnectionError CSIndexErrorCode = 0
+	// CSIndexErrorCodeUnknownError - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexError/Code/unknownError
+	CSIndexErrorCodeUnknownError CSIndexErrorCode = 0
+)
+
 // CSSearchQuerySourceOptions - The query source options to allow or deny Mail messages in the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/SourceOptions-swift.struct
@@ -17,6 +52,25 @@ type CSSearchQuerySourceOptions uint
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryError/Code
 type CSSearchQueryErrorCode uint
+
+const (
+	// CSSearchQueryErrorCodeCancelled - The query stopped because someone canceled it.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryError/Code/cancelled
+	CSSearchQueryErrorCodeCancelled CSSearchQueryErrorCode = 0
+	// CSSearchQueryErrorCodeIndexUnreachable - The index is unreachable.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryError/Code/indexUnreachable
+	CSSearchQueryErrorCodeIndexUnreachable CSSearchQueryErrorCode = 0
+	// CSSearchQueryErrorCodeInvalidQuery - The query is syntactically invalid or specifies items that your app   doesn’t have access to.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryError/Code/invalidQuery
+	CSSearchQueryErrorCodeInvalidQuery CSSearchQueryErrorCode = 0
+	// CSSearchQueryErrorCodeUnknown - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryError/Code/unknown
+	CSSearchQueryErrorCodeUnknown CSSearchQueryErrorCode = 0
+)
 
 // CSSearchableItemUpdateListenerOptions - The set of options that contain metadata-associated summarization and
 //

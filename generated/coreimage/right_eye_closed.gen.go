@@ -30,6 +30,8 @@ type _rightEyeClosedClass struct {
 // An interface definition for the [rightEyeClosed] class.
 type IrightEyeClosed interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

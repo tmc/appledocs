@@ -31,11 +31,13 @@ type _CXActionClass struct {
 // An interface definition for the [CXAction] class.
 type ICXAction interface {
 	objectivec.IObject
-	Complete() bool
-	TimeoutDate() foundation.NSDate
-	UUID() foundation.UUID
-	IsComplete() bool
-	SetIsComplete(value bool)
+	// properties:
+	Complete() bool /* primitive/slice/pointer. */
+	TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */
+	UUID() objc.IObject /* cross-framework: UUID */
+	IsComplete() bool /* primitive/slice/pointer. */
+	SetIsComplete(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Fail()
 	Fulfill()
 }
@@ -97,7 +99,7 @@ func NewCXAction() CXAction {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/init(coder:)
-func NewCXActionWithCoder(aDecoder foundation.Coder) CXAction {
+func NewCXActionWithCoder(aDecoder Coder /* not a class type */) CXAction {
 	instance := getCXActionClass().Alloc()
 	rv := objc.Send[CXAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -128,7 +130,7 @@ func (c_ CXAction) Fulfill() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/isComplete
-func (c_ CXAction) Complete() bool {
+func (c_ CXAction) Complete() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("complete"))
 	return rv
 }
@@ -138,7 +140,7 @@ func (c_ CXAction) Complete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/timeoutDate
-func (c_ CXAction) TimeoutDate() foundation.NSDate {
+func (c_ CXAction) TimeoutDate() foundation.objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
@@ -148,8 +150,8 @@ func (c_ CXAction) TimeoutDate() foundation.NSDate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/uuid
-func (c_ CXAction) UUID() foundation.UUID {
-	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
+func (c_ CXAction) UUID() objc.IObject /* cross-framework: UUID */ {
+	rv := objc.Send[UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 
@@ -158,7 +160,7 @@ func (c_ CXAction) UUID() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-func (c_ CXAction) IsComplete() bool {
+func (c_ CXAction) IsComplete() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isComplete"))
 	return rv
 }
@@ -168,7 +170,7 @@ func (c_ CXAction) IsComplete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxaction/iscomplete
-func (c_ CXAction) SetIsComplete(value bool) {
+func (c_ CXAction) SetIsComplete(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsComplete:"), value)
 }
 

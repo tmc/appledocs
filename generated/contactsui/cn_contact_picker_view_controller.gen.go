@@ -30,16 +30,18 @@ type _CNContactPickerViewControllerClass struct {
 // An interface definition for the [CNContactPickerViewController] class.
 type ICNContactPickerViewController interface {
 	appkit.IViewController
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	DisplayedPropertyKeys() []string
-	SetDisplayedPropertyKeys(value []string)
-	PredicateForEnablingContact() NSPredicate
-	SetPredicateForEnablingContact(value NSPredicate)
-	PredicateForSelectionOfContact() NSPredicate
-	SetPredicateForSelectionOfContact(value NSPredicate)
-	PredicateForSelectionOfProperty() NSPredicate
-	SetPredicateForSelectionOfProperty(value NSPredicate)
+	DisplayedPropertyKeys() []string /* primitive/slice/pointer. */
+	SetDisplayedPropertyKeys(value []string /* primitive/slice/pointer. */)
+	PredicateForEnablingContact() objc.IObject /* cross-framework: Predicate */
+	SetPredicateForEnablingContact(value objc.IObject /* cross-framework: Predicate */)
+	PredicateForSelectionOfContact() objc.IObject /* cross-framework: Predicate */
+	SetPredicateForSelectionOfContact(value objc.IObject /* cross-framework: Predicate */)
+	PredicateForSelectionOfProperty() objc.IObject /* cross-framework: Predicate */
+	SetPredicateForSelectionOfProperty(value objc.IObject /* cross-framework: Predicate */)
+	// methods:
 }
 
 // A view controller that displays an interface for picking contacts.
@@ -120,7 +122,7 @@ func (c_ CNContactPickerViewController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
-func (c_ CNContactPickerViewController) DisplayedPropertyKeys() []string {
+func (c_ CNContactPickerViewController) DisplayedPropertyKeys() []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("displayedPropertyKeys"))
 	return rv
 }
@@ -130,7 +132,7 @@ func (c_ CNContactPickerViewController) DisplayedPropertyKeys() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/displayedPropertyKeys
-func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string) {
+func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string /* primitive/slice/pointer. */) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -149,7 +151,7 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) PredicateForEnablingContact() NSPredicate {
+func (c_ CNContactPickerViewController) PredicateForEnablingContact() objc.IObject /* cross-framework: Predicate */ {
 	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
 	return rv
 }
@@ -159,7 +161,7 @@ func (c_ CNContactPickerViewController) PredicateForEnablingContact() NSPredicat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value NSPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForEnablingContact:"), value)
 }
 
@@ -168,7 +170,7 @@ func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value NSP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() NSPredicate {
+func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() objc.IObject /* cross-framework: Predicate */ {
 	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
 	return rv
 }
@@ -178,7 +180,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() NSPredi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value NSPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfContact:"), value)
 }
 
@@ -187,7 +189,7 @@ func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() NSPredicate {
+func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() objc.IObject /* cross-framework: Predicate */ {
 	rv := objc.Send[Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
 	return rv
 }
@@ -197,7 +199,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() NSPred
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value NSPredicate) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfProperty:"), value)
 }
 

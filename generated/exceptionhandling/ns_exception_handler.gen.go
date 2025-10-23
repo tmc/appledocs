@@ -30,14 +30,16 @@ type _ExceptionHandlerClass struct {
 // An interface definition for the [ExceptionHandler] class.
 type IExceptionHandler interface {
 	objectivec.IObject
+	// properties:
 	UserInfo() unsafe.Pointer
 	SetUserInfo(value unsafe.Pointer)
+	// methods:
 	Delegate() objc.ID
-	ExceptionHandlingMask() uint
-	ExceptionHangingMask() uint
+	ExceptionHandlingMask() uint /* primitive/slice/pointer. */
+	ExceptionHangingMask() uint /* primitive/slice/pointer. */
 	SetDelegate(anObject objectivec.IObject)
-	SetExceptionHandlingMask(aMask uint)
-	SetExceptionHangingMask(aMask uint)
+	SetExceptionHandlingMask(aMask uint /* primitive/slice/pointer. */)
+	SetExceptionHangingMask(aMask uint /* primitive/slice/pointer. */)
 }
 
 // The class provides facilities for monitoring and debugging exceptional conditions in Objective-C programs. It works by installing a special uncaught exception handler via the function. Consequently, to use the services of , you must not install your own custom uncaught exception handler.
@@ -115,7 +117,7 @@ func (e_ ExceptionHandler) Delegate() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/exceptionHandlingMask()
-func (e_ ExceptionHandler) ExceptionHandlingMask() uint {
+func (e_ ExceptionHandler) ExceptionHandlingMask() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](e_.ID, objc.Sel("exceptionHandlingMask"))
 	return rv
 }
@@ -125,7 +127,7 @@ func (e_ ExceptionHandler) ExceptionHandlingMask() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/exceptionHangingMask()
-func (e_ ExceptionHandler) ExceptionHangingMask() uint {
+func (e_ ExceptionHandler) ExceptionHangingMask() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](e_.ID, objc.Sel("exceptionHangingMask"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (e_ ExceptionHandler) SetDelegate(anObject objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setExceptionHandlingMask(_:)
-func (e_ ExceptionHandler) SetExceptionHandlingMask(aMask uint) {
+func (e_ ExceptionHandler) SetExceptionHandlingMask(aMask uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExceptionHandlingMask:"), aMask)
 }
 
@@ -153,7 +155,7 @@ func (e_ ExceptionHandler) SetExceptionHandlingMask(aMask uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setExceptionHangingMask(_:)
-func (e_ ExceptionHandler) SetExceptionHangingMask(aMask uint) {
+func (e_ ExceptionHandler) SetExceptionHangingMask(aMask uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExceptionHangingMask:"), aMask)
 }
 

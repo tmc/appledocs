@@ -31,8 +31,10 @@ type _StateConstraintClass struct {
 // An interface definition for the [StateConstraint] class.
 type IStateConstraint interface {
 	objectivec.IObject
-	BufferShape() []foundation.Number
-	DataType() MLMultiArrayDataType
+	// properties:
+	BufferShape() []foundation.objc.IObject /* cross-framework: Number */
+	DataType() MultiArrayDataType
+	// methods:
 }
 
 // Constraint of a state feature value.
@@ -90,7 +92,7 @@ func NewStateConstraint() StateConstraint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/bufferShape-6o5vn
-func (s_ StateConstraint) BufferShape() []foundation.Number {
+func (s_ StateConstraint) BufferShape() []foundation.objc.IObject /* cross-framework: Number */ {
 	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("bufferShape"))
 	return rv
 }
@@ -100,8 +102,8 @@ func (s_ StateConstraint) BufferShape() []foundation.Number {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/dataType
-func (s_ StateConstraint) DataType() MLMultiArrayDataType {
-	rv := objc.Send[MLMultiArrayDataType](s_.ID, objc.Sel("dataType"))
+func (s_ StateConstraint) DataType() MultiArrayDataType {
+	rv := objc.Send[MultiArrayDataType](s_.ID, objc.Sel("dataType"))
 	return rv
 }
 

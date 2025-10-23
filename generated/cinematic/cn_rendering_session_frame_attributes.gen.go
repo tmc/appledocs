@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +30,8 @@ type _CNRenderingSessionFrameAttributesClass struct {
 // An interface definition for the [CNRenderingSessionFrameAttributes] class.
 type ICNRenderingSessionFrameAttributes interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // Creates an object with the per frame attributes that control the appearance of a single frame of the Cinematic movie.
@@ -90,7 +91,7 @@ func NewCNRenderingSessionFrameAttributes() CNRenderingSessionFrameAttributes {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithSampleBuffer:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer SampleBufferRef /* not a class type */, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
 	rv.Autorelease()
@@ -102,7 +103,7 @@ func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup avfoundation.TimedMetadataGroup, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup objc.IObject /* cross-framework TimedMetadataGroup */, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
 	rv.Autorelease()

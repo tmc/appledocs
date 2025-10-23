@@ -32,8 +32,8 @@ type IFragmentedMovieMinder interface {
 	// properties:
 	MindingInterval() unsafe.Pointer
 	SetMindingInterval(value unsafe.Pointer)
-	Movies() FragmentedMovie /* not a class type */
-	SetMovies(value FragmentedMovie /* not a class type */)
+	Movies() objc.IObject /* cross-framework: FragmentedMovie */
+	SetMovies(value objc.IObject /* cross-framework: FragmentedMovie */)
 	// methods:
 }
 
@@ -115,7 +115,7 @@ func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) Movies() FragmentedMovie /* not a class type */ {
+func (f_ FragmentedMovieMinder) Movies() objc.IObject /* cross-framework: FragmentedMovie */ {
 	rv := objc.Send[FragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (f_ FragmentedMovieMinder) Movies() FragmentedMovie /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) SetMovies(value FragmentedMovie /* not a class type */) {
+func (f_ FragmentedMovieMinder) SetMovies(value objc.IObject /* cross-framework: FragmentedMovie */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }
 

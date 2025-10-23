@@ -30,20 +30,22 @@ type _CXCallUpdateClass struct {
 // An interface definition for the [CXCallUpdate] class.
 type ICXCallUpdate interface {
 	objectivec.IObject
-	HasVideo() bool
-	SetHasVideo(value bool)
-	LocalizedCallerName() string
-	SetLocalizedCallerName(value string)
+	// properties:
+	HasVideo() bool /* primitive/slice/pointer. */
+	SetHasVideo(value bool /* primitive/slice/pointer. */)
+	LocalizedCallerName() string /* primitive/slice/pointer. */
+	SetLocalizedCallerName(value string /* primitive/slice/pointer. */)
 	RemoteHandle() ICXHandle
 	SetRemoteHandle(value ICXHandle)
-	SupportsDTMF() bool
-	SetSupportsDTMF(value bool)
-	SupportsGrouping() bool
-	SetSupportsGrouping(value bool)
-	SupportsHolding() bool
-	SetSupportsHolding(value bool)
-	SupportsUngrouping() bool
-	SetSupportsUngrouping(value bool)
+	SupportsDTMF() bool /* primitive/slice/pointer. */
+	SetSupportsDTMF(value bool /* primitive/slice/pointer. */)
+	SupportsGrouping() bool /* primitive/slice/pointer. */
+	SetSupportsGrouping(value bool /* primitive/slice/pointer. */)
+	SupportsHolding() bool /* primitive/slice/pointer. */
+	SetSupportsHolding(value bool /* primitive/slice/pointer. */)
+	SupportsUngrouping() bool /* primitive/slice/pointer. */
+	SetSupportsUngrouping(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An encapsulation of new and changed information about a call.
@@ -103,7 +105,7 @@ func NewCXCallUpdate() CXCallUpdate {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/hasVideo
-func (c_ CXCallUpdate) HasVideo() bool {
+func (c_ CXCallUpdate) HasVideo() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("hasVideo"))
 	return rv
 }
@@ -113,7 +115,7 @@ func (c_ CXCallUpdate) HasVideo() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/hasVideo
-func (c_ CXCallUpdate) SetHasVideo(value bool) {
+func (c_ CXCallUpdate) SetHasVideo(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHasVideo:"), value)
 }
 
@@ -122,7 +124,7 @@ func (c_ CXCallUpdate) SetHasVideo(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) LocalizedCallerName() string {
+func (c_ CXCallUpdate) LocalizedCallerName() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("localizedCallerName"))
 	return rv
 }
@@ -132,7 +134,7 @@ func (c_ CXCallUpdate) LocalizedCallerName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/localizedCallerName
-func (c_ CXCallUpdate) SetLocalizedCallerName(value string) {
+func (c_ CXCallUpdate) SetLocalizedCallerName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedCallerName:"), objc.String(value))
 }
 
@@ -160,7 +162,7 @@ func (c_ CXCallUpdate) SetRemoteHandle(value ICXHandle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsDTMF
-func (c_ CXCallUpdate) SupportsDTMF() bool {
+func (c_ CXCallUpdate) SupportsDTMF() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsDTMF"))
 	return rv
 }
@@ -170,7 +172,7 @@ func (c_ CXCallUpdate) SupportsDTMF() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsDTMF
-func (c_ CXCallUpdate) SetSupportsDTMF(value bool) {
+func (c_ CXCallUpdate) SetSupportsDTMF(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsDTMF:"), value)
 }
 
@@ -179,7 +181,7 @@ func (c_ CXCallUpdate) SetSupportsDTMF(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsGrouping
-func (c_ CXCallUpdate) SupportsGrouping() bool {
+func (c_ CXCallUpdate) SupportsGrouping() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsGrouping"))
 	return rv
 }
@@ -189,7 +191,7 @@ func (c_ CXCallUpdate) SupportsGrouping() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsGrouping
-func (c_ CXCallUpdate) SetSupportsGrouping(value bool) {
+func (c_ CXCallUpdate) SetSupportsGrouping(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsGrouping:"), value)
 }
 
@@ -198,7 +200,7 @@ func (c_ CXCallUpdate) SetSupportsGrouping(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsHolding
-func (c_ CXCallUpdate) SupportsHolding() bool {
+func (c_ CXCallUpdate) SupportsHolding() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsHolding"))
 	return rv
 }
@@ -208,7 +210,7 @@ func (c_ CXCallUpdate) SupportsHolding() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsHolding
-func (c_ CXCallUpdate) SetSupportsHolding(value bool) {
+func (c_ CXCallUpdate) SetSupportsHolding(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsHolding:"), value)
 }
 
@@ -217,7 +219,7 @@ func (c_ CXCallUpdate) SetSupportsHolding(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsUngrouping
-func (c_ CXCallUpdate) SupportsUngrouping() bool {
+func (c_ CXCallUpdate) SupportsUngrouping() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("supportsUngrouping"))
 	return rv
 }
@@ -227,7 +229,7 @@ func (c_ CXCallUpdate) SupportsUngrouping() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/supportsUngrouping
-func (c_ CXCallUpdate) SetSupportsUngrouping(value bool) {
+func (c_ CXCallUpdate) SetSupportsUngrouping(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportsUngrouping:"), value)
 }
 

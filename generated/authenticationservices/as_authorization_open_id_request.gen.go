@@ -30,6 +30,8 @@ type _AuthorizationOpenIDRequestClass struct {
 // An interface definition for the [AuthorizationOpenIDRequest] class.
 type IAuthorizationOpenIDRequest interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AuthenticationServices classes.

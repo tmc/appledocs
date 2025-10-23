@@ -30,13 +30,16 @@ type _AEAssessmentSessionClass struct {
 // An interface definition for the [AEAssessmentSession] class.
 type IAEAssessmentSession interface {
 	objectivec.IObject
+	// properties:
 	Configuration() IAEAssessmentConfiguration
 	SetConfiguration(value IAEAssessmentConfiguration)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	IsActive() bool
-	SetIsActive(value bool)
+	IsActive() bool /* primitive/slice/pointer. */
+	SetIsActive(value bool /* primitive/slice/pointer. */)
+	// methods:
 	Begin()
+	End()
 	UpdateToConfiguration(configuration IAEAssessmentConfiguration)
 }
 
@@ -102,6 +105,15 @@ func (a_ AEAssessmentSession) Begin() {
 }
 
 
+// Ends an assessment session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/end()
+func (a_ AEAssessmentSession) End() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("end"))
+}
+
+
 // Changes the session to use the specified configuration.
 //
 // [Full Topic]
@@ -153,7 +165,7 @@ func (a_ AEAssessmentSession) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-func (a_ AEAssessmentSession) IsActive() bool {
+func (a_ AEAssessmentSession) IsActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isActive"))
 	return rv
 }
@@ -163,7 +175,7 @@ func (a_ AEAssessmentSession) IsActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/isactive
-func (a_ AEAssessmentSession) SetIsActive(value bool) {
+func (a_ AEAssessmentSession) SetIsActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsActive:"), value)
 }
 

@@ -32,38 +32,38 @@ type _MKMapViewClass struct {
 type IMKMapView interface {
 	appkit.IView
 	// properties:
-	ShowsPointsOfInterest() bool
-	SetShowsPointsOfInterest(value bool)
-	ShowsUserLocation() bool
-	SetShowsUserLocation(value bool)
-	Appearance() appkit.Appearance
-	SetAppearance(value appkit.Appearance)
-	EffectiveAppearance() appkit.Appearance
-	SetEffectiveAppearance(value appkit.Appearance)
+	ShowsPointsOfInterest() bool /* primitive/slice/pointer. */
+	SetShowsPointsOfInterest(value bool /* primitive/slice/pointer. */)
+	ShowsUserLocation() bool /* primitive/slice/pointer. */
+	SetShowsUserLocation(value bool /* primitive/slice/pointer. */)
+	Appearance() objc.IObject /* cross-framework: Appearance */
+	SetAppearance(value objc.IObject /* cross-framework: Appearance */)
+	EffectiveAppearance() objc.IObject /* cross-framework: Appearance */
+	SetEffectiveAppearance(value objc.IObject /* cross-framework: Appearance */)
 	AnnotationVisibleRect() coregraphics.CGRect
 	SetAnnotationVisibleRect(value coregraphics.CGRect)
 	Annotations() unsafe.Pointer
 	SetAnnotations(value unsafe.Pointer)
 	Camera() IMKMapCamera
 	SetCamera(value IMKMapCamera)
-	CameraBoundary() MKMapCameraBoundary
-	SetCameraBoundary(value MKMapCameraBoundary)
-	CameraZoomRange() MKMapCameraZoomRange
-	SetCameraZoomRange(value MKMapCameraZoomRange)
-	CenterCoordinate() unsafe.Pointer
-	SetCenterCoordinate(value unsafe.Pointer)
+	CameraBoundary() objc.IObject /* cross-framework: MKMapCameraBoundary */
+	SetCameraBoundary(value objc.IObject /* cross-framework: MKMapCameraBoundary */)
+	CameraZoomRange() objc.IObject /* cross-framework: MKMapCameraZoomRange */
+	SetCameraZoomRange(value objc.IObject /* cross-framework: MKMapCameraZoomRange */)
+	CenterCoordinate() LocationCoordinate2D /* not a class type */
+	SetCenterCoordinate(value LocationCoordinate2D /* not a class type */)
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
-	IsPitchEnabled() bool
-	SetIsPitchEnabled(value bool)
-	IsRotateEnabled() bool
-	SetIsRotateEnabled(value bool)
-	IsScrollEnabled() bool
-	SetIsScrollEnabled(value bool)
-	IsUserLocationVisible() bool
-	SetIsUserLocationVisible(value bool)
-	IsZoomEnabled() bool
-	SetIsZoomEnabled(value bool)
+	IsPitchEnabled() bool /* primitive/slice/pointer. */
+	SetIsPitchEnabled(value bool /* primitive/slice/pointer. */)
+	IsRotateEnabled() bool /* primitive/slice/pointer. */
+	SetIsRotateEnabled(value bool /* primitive/slice/pointer. */)
+	IsScrollEnabled() bool /* primitive/slice/pointer. */
+	SetIsScrollEnabled(value bool /* primitive/slice/pointer. */)
+	IsUserLocationVisible() bool /* primitive/slice/pointer. */
+	SetIsUserLocationVisible(value bool /* primitive/slice/pointer. */)
+	IsZoomEnabled() bool /* primitive/slice/pointer. */
+	SetIsZoomEnabled(value bool /* primitive/slice/pointer. */)
 	MapType() unsafe.Pointer
 	SetMapType(value unsafe.Pointer)
 	Overlays() unsafe.Pointer
@@ -72,36 +72,36 @@ type IMKMapView interface {
 	SetPitchButtonVisibility(value unsafe.Pointer)
 	PointOfInterestFilter() IMKPointOfInterestFilter
 	SetPointOfInterestFilter(value IMKPointOfInterestFilter)
-	PreferredConfiguration() MKMapConfiguration
-	SetPreferredConfiguration(value MKMapConfiguration)
+	PreferredConfiguration() objc.IObject /* cross-framework: MKMapConfiguration */
+	SetPreferredConfiguration(value objc.IObject /* cross-framework: MKMapConfiguration */)
 	Region() unsafe.Pointer
 	SetRegion(value unsafe.Pointer)
 	SelectableMapFeatures() unsafe.Pointer
 	SetSelectableMapFeatures(value unsafe.Pointer)
 	SelectedAnnotations() unsafe.Pointer
 	SetSelectedAnnotations(value unsafe.Pointer)
-	ShowsBuildings() bool
-	SetShowsBuildings(value bool)
-	ShowsCompass() bool
-	SetShowsCompass(value bool)
-	ShowsPitchControl() bool
-	SetShowsPitchControl(value bool)
-	ShowsScale() bool
-	SetShowsScale(value bool)
-	ShowsTraffic() bool
-	SetShowsTraffic(value bool)
-	ShowsUserTrackingButton() bool
-	SetShowsUserTrackingButton(value bool)
-	ShowsZoomControls() bool
-	SetShowsZoomControls(value bool)
+	ShowsBuildings() bool /* primitive/slice/pointer. */
+	SetShowsBuildings(value bool /* primitive/slice/pointer. */)
+	ShowsCompass() bool /* primitive/slice/pointer. */
+	SetShowsCompass(value bool /* primitive/slice/pointer. */)
+	ShowsPitchControl() bool /* primitive/slice/pointer. */
+	SetShowsPitchControl(value bool /* primitive/slice/pointer. */)
+	ShowsScale() bool /* primitive/slice/pointer. */
+	SetShowsScale(value bool /* primitive/slice/pointer. */)
+	ShowsTraffic() bool /* primitive/slice/pointer. */
+	SetShowsTraffic(value bool /* primitive/slice/pointer. */)
+	ShowsUserTrackingButton() bool /* primitive/slice/pointer. */
+	SetShowsUserTrackingButton(value bool /* primitive/slice/pointer. */)
+	ShowsZoomControls() bool /* primitive/slice/pointer. */
+	SetShowsZoomControls(value bool /* primitive/slice/pointer. */)
 	UserLocation() IMKUserLocation
 	SetUserLocation(value IMKUserLocation)
 	UserTrackingMode() unsafe.Pointer
 	SetUserTrackingMode(value unsafe.Pointer)
 	VisibleMapRect() unsafe.Pointer
 	SetVisibleMapRect(value unsafe.Pointer)
-	MKMapViewDefaultAnnotationViewReuseIdentifier() string
-	MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string
+	MKMapViewDefaultAnnotationViewReuseIdentifier() string /* primitive/slice/pointer. */
+	MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string /* primitive/slice/pointer. */
 	// methods:
 }
 
@@ -164,7 +164,7 @@ func NewMKMapView() MKMapView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsPointsOfInterest
-func (m_ MKMapView) ShowsPointsOfInterest() bool {
+func (m_ MKMapView) ShowsPointsOfInterest() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsPointsOfInterest"))
 	return rv
 }
@@ -174,7 +174,7 @@ func (m_ MKMapView) ShowsPointsOfInterest() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsPointsOfInterest
-func (m_ MKMapView) SetShowsPointsOfInterest(value bool) {
+func (m_ MKMapView) SetShowsPointsOfInterest(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPointsOfInterest:"), value)
 }
 
@@ -183,7 +183,7 @@ func (m_ MKMapView) SetShowsPointsOfInterest(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsUserLocation
-func (m_ MKMapView) ShowsUserLocation() bool {
+func (m_ MKMapView) ShowsUserLocation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserLocation"))
 	return rv
 }
@@ -193,7 +193,7 @@ func (m_ MKMapView) ShowsUserLocation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showsUserLocation
-func (m_ MKMapView) SetShowsUserLocation(value bool) {
+func (m_ MKMapView) SetShowsUserLocation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserLocation:"), value)
 }
 
@@ -202,8 +202,8 @@ func (m_ MKMapView) SetShowsUserLocation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) Appearance() appkit.Appearance {
-	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
+func (m_ MKMapView) Appearance() objc.IObject /* cross-framework: Appearance */ {
+	rv := objc.Send[Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -212,7 +212,7 @@ func (m_ MKMapView) Appearance() appkit.Appearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) SetAppearance(value appkit.Appearance) {
+func (m_ MKMapView) SetAppearance(value objc.IObject /* cross-framework: Appearance */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
 }
 
@@ -221,8 +221,8 @@ func (m_ MKMapView) SetAppearance(value appkit.Appearance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) EffectiveAppearance() appkit.Appearance {
-	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("effectiveAppearance"))
+func (m_ MKMapView) EffectiveAppearance() objc.IObject /* cross-framework: Appearance */ {
+	rv := objc.Send[Appearance](m_.ID, objc.Sel("effectiveAppearance"))
 	return rv
 }
 
@@ -231,7 +231,7 @@ func (m_ MKMapView) EffectiveAppearance() appkit.Appearance {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) SetEffectiveAppearance(value appkit.Appearance) {
+func (m_ MKMapView) SetEffectiveAppearance(value objc.IObject /* cross-framework: Appearance */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectiveAppearance:"), value)
 }
 
@@ -297,7 +297,7 @@ func (m_ MKMapView) SetCamera(value IMKMapCamera) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
-func (m_ MKMapView) CameraBoundary() MKMapCameraBoundary {
+func (m_ MKMapView) CameraBoundary() objc.IObject /* cross-framework: MKMapCameraBoundary */ {
 	rv := objc.Send[MKMapCameraBoundary](m_.ID, objc.Sel("cameraBoundary"))
 	return rv
 }
@@ -307,7 +307,7 @@ func (m_ MKMapView) CameraBoundary() MKMapCameraBoundary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.property
-func (m_ MKMapView) SetCameraBoundary(value MKMapCameraBoundary) {
+func (m_ MKMapView) SetCameraBoundary(value objc.IObject /* cross-framework: MKMapCameraBoundary */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:"), value)
 }
 
@@ -316,7 +316,7 @@ func (m_ MKMapView) SetCameraBoundary(value MKMapCameraBoundary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
-func (m_ MKMapView) CameraZoomRange() MKMapCameraZoomRange {
+func (m_ MKMapView) CameraZoomRange() objc.IObject /* cross-framework: MKMapCameraZoomRange */ {
 	rv := objc.Send[MKMapCameraZoomRange](m_.ID, objc.Sel("cameraZoomRange"))
 	return rv
 }
@@ -326,7 +326,7 @@ func (m_ MKMapView) CameraZoomRange() MKMapCameraZoomRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.property
-func (m_ MKMapView) SetCameraZoomRange(value MKMapCameraZoomRange) {
+func (m_ MKMapView) SetCameraZoomRange(value objc.IObject /* cross-framework: MKMapCameraZoomRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:"), value)
 }
 
@@ -335,8 +335,8 @@ func (m_ MKMapView) SetCameraZoomRange(value MKMapCameraZoomRange) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/centercoordinate
-func (m_ MKMapView) CenterCoordinate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("centerCoordinate"))
+func (m_ MKMapView) CenterCoordinate() LocationCoordinate2D /* not a class type */ {
+	rv := objc.Send[LocationCoordinate2D](m_.ID, objc.Sel("centerCoordinate"))
 	return rv
 }
 
@@ -345,7 +345,7 @@ func (m_ MKMapView) CenterCoordinate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/centercoordinate
-func (m_ MKMapView) SetCenterCoordinate(value unsafe.Pointer) {
+func (m_ MKMapView) SetCenterCoordinate(value LocationCoordinate2D /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCenterCoordinate:"), value)
 }
 
@@ -373,7 +373,7 @@ func (m_ MKMapView) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
-func (m_ MKMapView) IsPitchEnabled() bool {
+func (m_ MKMapView) IsPitchEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPitchEnabled"))
 	return rv
 }
@@ -383,7 +383,7 @@ func (m_ MKMapView) IsPitchEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/ispitchenabled
-func (m_ MKMapView) SetIsPitchEnabled(value bool) {
+func (m_ MKMapView) SetIsPitchEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPitchEnabled:"), value)
 }
 
@@ -392,7 +392,7 @@ func (m_ MKMapView) SetIsPitchEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
-func (m_ MKMapView) IsRotateEnabled() bool {
+func (m_ MKMapView) IsRotateEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isRotateEnabled"))
 	return rv
 }
@@ -402,7 +402,7 @@ func (m_ MKMapView) IsRotateEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isrotateenabled
-func (m_ MKMapView) SetIsRotateEnabled(value bool) {
+func (m_ MKMapView) SetIsRotateEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsRotateEnabled:"), value)
 }
 
@@ -411,7 +411,7 @@ func (m_ MKMapView) SetIsRotateEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
-func (m_ MKMapView) IsScrollEnabled() bool {
+func (m_ MKMapView) IsScrollEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isScrollEnabled"))
 	return rv
 }
@@ -421,7 +421,7 @@ func (m_ MKMapView) IsScrollEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled
-func (m_ MKMapView) SetIsScrollEnabled(value bool) {
+func (m_ MKMapView) SetIsScrollEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsScrollEnabled:"), value)
 }
 
@@ -430,7 +430,7 @@ func (m_ MKMapView) SetIsScrollEnabled(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
-func (m_ MKMapView) IsUserLocationVisible() bool {
+func (m_ MKMapView) IsUserLocationVisible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isUserLocationVisible"))
 	return rv
 }
@@ -440,7 +440,7 @@ func (m_ MKMapView) IsUserLocationVisible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/isuserlocationvisible
-func (m_ MKMapView) SetIsUserLocationVisible(value bool) {
+func (m_ MKMapView) SetIsUserLocationVisible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUserLocationVisible:"), value)
 }
 
@@ -449,7 +449,7 @@ func (m_ MKMapView) SetIsUserLocationVisible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
-func (m_ MKMapView) IsZoomEnabled() bool {
+func (m_ MKMapView) IsZoomEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isZoomEnabled"))
 	return rv
 }
@@ -459,7 +459,7 @@ func (m_ MKMapView) IsZoomEnabled() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled
-func (m_ MKMapView) SetIsZoomEnabled(value bool) {
+func (m_ MKMapView) SetIsZoomEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsZoomEnabled:"), value)
 }
 
@@ -544,7 +544,7 @@ func (m_ MKMapView) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKMapView) PreferredConfiguration() MKMapConfiguration {
+func (m_ MKMapView) PreferredConfiguration() objc.IObject /* cross-framework: MKMapConfiguration */ {
 	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
 }
@@ -554,7 +554,7 @@ func (m_ MKMapView) PreferredConfiguration() MKMapConfiguration {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKMapView) SetPreferredConfiguration(value MKMapConfiguration) {
+func (m_ MKMapView) SetPreferredConfiguration(value objc.IObject /* cross-framework: MKMapConfiguration */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
@@ -620,7 +620,7 @@ func (m_ MKMapView) SetSelectedAnnotations(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsbuildings
-func (m_ MKMapView) ShowsBuildings() bool {
+func (m_ MKMapView) ShowsBuildings() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsBuildings"))
 	return rv
 }
@@ -630,7 +630,7 @@ func (m_ MKMapView) ShowsBuildings() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsbuildings
-func (m_ MKMapView) SetShowsBuildings(value bool) {
+func (m_ MKMapView) SetShowsBuildings(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsBuildings:"), value)
 }
 
@@ -639,7 +639,7 @@ func (m_ MKMapView) SetShowsBuildings(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showscompass
-func (m_ MKMapView) ShowsCompass() bool {
+func (m_ MKMapView) ShowsCompass() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsCompass"))
 	return rv
 }
@@ -649,7 +649,7 @@ func (m_ MKMapView) ShowsCompass() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showscompass
-func (m_ MKMapView) SetShowsCompass(value bool) {
+func (m_ MKMapView) SetShowsCompass(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsCompass:"), value)
 }
 
@@ -658,7 +658,7 @@ func (m_ MKMapView) SetShowsCompass(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showspitchcontrol
-func (m_ MKMapView) ShowsPitchControl() bool {
+func (m_ MKMapView) ShowsPitchControl() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsPitchControl"))
 	return rv
 }
@@ -668,7 +668,7 @@ func (m_ MKMapView) ShowsPitchControl() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showspitchcontrol
-func (m_ MKMapView) SetShowsPitchControl(value bool) {
+func (m_ MKMapView) SetShowsPitchControl(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsPitchControl:"), value)
 }
 
@@ -677,7 +677,7 @@ func (m_ MKMapView) SetShowsPitchControl(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsscale
-func (m_ MKMapView) ShowsScale() bool {
+func (m_ MKMapView) ShowsScale() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsScale"))
 	return rv
 }
@@ -687,7 +687,7 @@ func (m_ MKMapView) ShowsScale() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsscale
-func (m_ MKMapView) SetShowsScale(value bool) {
+func (m_ MKMapView) SetShowsScale(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsScale:"), value)
 }
 
@@ -696,7 +696,7 @@ func (m_ MKMapView) SetShowsScale(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showstraffic
-func (m_ MKMapView) ShowsTraffic() bool {
+func (m_ MKMapView) ShowsTraffic() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsTraffic"))
 	return rv
 }
@@ -706,7 +706,7 @@ func (m_ MKMapView) ShowsTraffic() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showstraffic
-func (m_ MKMapView) SetShowsTraffic(value bool) {
+func (m_ MKMapView) SetShowsTraffic(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
 }
 
@@ -715,7 +715,7 @@ func (m_ MKMapView) SetShowsTraffic(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKMapView) ShowsUserTrackingButton() bool {
+func (m_ MKMapView) ShowsUserTrackingButton() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsUserTrackingButton"))
 	return rv
 }
@@ -725,7 +725,7 @@ func (m_ MKMapView) ShowsUserTrackingButton() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showsusertrackingbutton
-func (m_ MKMapView) SetShowsUserTrackingButton(value bool) {
+func (m_ MKMapView) SetShowsUserTrackingButton(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsUserTrackingButton:"), value)
 }
 
@@ -734,7 +734,7 @@ func (m_ MKMapView) SetShowsUserTrackingButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showszoomcontrols
-func (m_ MKMapView) ShowsZoomControls() bool {
+func (m_ MKMapView) ShowsZoomControls() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsZoomControls"))
 	return rv
 }
@@ -744,7 +744,7 @@ func (m_ MKMapView) ShowsZoomControls() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/showszoomcontrols
-func (m_ MKMapView) SetShowsZoomControls(value bool) {
+func (m_ MKMapView) SetShowsZoomControls(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsZoomControls:"), value)
 }
 
@@ -810,7 +810,7 @@ func (m_ MKMapView) SetVisibleMapRect(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
+func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
 	return rv
 }
@@ -820,7 +820,7 @@ func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string {
+func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
 	return rv
 }

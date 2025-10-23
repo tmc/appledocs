@@ -31,15 +31,17 @@ type _BADownloadManagerClass struct {
 // An interface definition for the [BADownloadManager] class.
 type IBADownloadManager interface {
 	objectivec.IObject
+	// properties:
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool
-	FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload
+	// methods:
+	CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload /* primitive/slice/pointer. */
 	FetchCurrentDownloadsWithCompletionHandler(completionHandler unsafe.Pointer)
-	ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool
-	StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool
+	ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 	PerformWithExclusiveControl(performHandler unsafe.Pointer)
-	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.NSDate, performHandler unsafe.Pointer)
+	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.objc.IObject /* cross-framework NSDate */, performHandler unsafe.Pointer)
 }
 
 // An object that manages the queue of scheduled asset downloads.
@@ -108,7 +110,7 @@ func (bc _BADownloadManagerClass) SharedManager() BADownloadManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/cancel(_:)
-func (b_ BADownloadManager) CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("cancelDownload:error:"), download, error_)
 	return rv
 }
@@ -116,7 +118,7 @@ func (b_ BADownloadManager) CancelDownloadError(download IBADownload, error_ uns
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/fetchCurrentDownloads()
-func (b_ BADownloadManager) FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload {
+func (b_ BADownloadManager) FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]BADownload](b_.ID, objc.Sel("fetchCurrentDownloads:"), error_)
 	return rv
 }
@@ -135,7 +137,7 @@ func (b_ BADownloadManager) FetchCurrentDownloadsWithCompletionHandler(completio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)
-func (b_ BADownloadManager) ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("scheduleDownload:error:"), download, error_)
 	return rv
 }
@@ -145,7 +147,7 @@ func (b_ BADownloadManager) ScheduleDownloadError(download IBADownload, error_ u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)
-func (b_ BADownloadManager) StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](b_.ID, objc.Sel("startForegroundDownload:error:"), download, error_)
 	return rv
 }
@@ -162,7 +164,7 @@ func (b_ BADownloadManager) PerformWithExclusiveControl(performHandler unsafe.Po
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)
-func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.NSDate, performHandler unsafe.Pointer) {
+func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.objc.IObject /* cross-framework NSDate */, performHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("performWithExclusiveControlBeforeDate:performHandler:"), date, performHandler)
 }
 

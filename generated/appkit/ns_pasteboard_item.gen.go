@@ -31,22 +31,17 @@ type _PasteboardItemClass struct {
 // An interface definition for the [PasteboardItem] class.
 type IPasteboardItem interface {
 	objectivec.IObject
-	AvailableTypeFromArray(types []string) PasteboardType
-	DataForType(type_ PasteboardType) foundation.Data
-	DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer)
-	DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
-	DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer)
-	PropertyListForType(type_ PasteboardType) objc.ID
-	SetDataForType(data foundation.IData, type_ PasteboardType) bool
-	SetDataProviderForTypes(dataProvider objectivec.IObject, types []string) bool
-	SetPropertyListForType(propertyList objectivec.IObject, type_ PasteboardType) bool
-	SetStringForType(string_ string, type_ PasteboardType) bool
-	StringForType(type_ PasteboardType) foundation.String
+	// properties:
 	CollaborationMetadata() unsafe.Pointer
 	SetCollaborationMetadata(value unsafe.Pointer)
-	Types() []string
-	PasteboardItems() NSPasteboardItem
+	PasteboardItems() IPasteboardItem
 	SetPasteboardItems(value IPasteboardItem)
+	Types() objc.IObject /* cross-framework: PasteboardType */
+	SetTypes(value objc.IObject /* cross-framework: PasteboardType */)
+	// methods:
+	AvailableTypeFromArray(types []string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: PasteboardType */
+	DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler foundation.IDictionary /* already interface */)
+	SetDataProviderForTypes(dataProvider objectivec.IObject, types []string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
 }
 
 // An item on a pasteboard.
@@ -106,37 +101,9 @@ func NewPasteboardItem() PasteboardItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/availableType(from:)
-func (p_ PasteboardItem) AvailableTypeFromArray(types []string) PasteboardType {
+func (p_ PasteboardItem) AvailableTypeFromArray(types []string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: PasteboardType */ {
 	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("availableTypeFromArray:"), types)
 	return rv
-}
-
-
-// Returns the value for the specified type as a data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/data(forType:)
-func (p_ PasteboardItem) DataForType(type_ PasteboardType) foundation.Data {
-	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("dataForType:"), type_)
-	return rv
-}
-
-
-// Determines available metadata from the specified metadata types for this pasteboard item, without notifying the person using the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectMetadataForTypes:completionHandler:
-func (p_ PasteboardItem) DetectMetadataForTypesCompletionHandler(types unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectMetadataForTypes:completionHandler:"), types, completionHandler)
-}
-
-
-// Determines whether this pasteboard item matches the specified patterns, without notifying the person using the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectPatternsForPatterns:completionHandler:
-func (p_ PasteboardItem) DetectPatternsForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("detectPatternsForPatterns:completionHandler:"), patterns, completionHandler)
 }
 
 
@@ -144,28 +111,8 @@ func (p_ PasteboardItem) DetectPatternsForPatternsCompletionHandler(patterns uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/detectValuesForPatterns:completionHandler:
-func (p_ PasteboardItem) DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ PasteboardItem) DetectValuesForPatternsCompletionHandler(patterns unsafe.Pointer, completionHandler foundation.IDictionary /* already interface */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("detectValuesForPatterns:completionHandler:"), patterns, completionHandler)
-}
-
-
-// Returns the value for the specified type as a property list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/propertyList(forType:)
-func (p_ PasteboardItem) PropertyListForType(type_ PasteboardType) objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("propertyListForType:"), type_)
-	return rv
-}
-
-
-// Sets the value for a specified type as a data object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setData(_:forType:)
-func (p_ PasteboardItem) SetDataForType(data foundation.IData, type_ PasteboardType) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setData:forType:"), data, type_)
-	return rv
 }
 
 
@@ -173,38 +120,8 @@ func (p_ PasteboardItem) SetDataForType(data foundation.IData, type_ PasteboardT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setDataProvider(_:forTypes:)
-func (p_ PasteboardItem) SetDataProviderForTypes(dataProvider objectivec.IObject, types []string) bool {
+func (p_ PasteboardItem) SetDataProviderForTypes(dataProvider objectivec.IObject, types []string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("setDataProvider:forTypes:"), dataProvider, types)
-	return rv
-}
-
-
-// Sets the value for a specified type as a property list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setPropertyList(_:forType:)
-func (p_ PasteboardItem) SetPropertyListForType(propertyList objectivec.IObject, type_ PasteboardType) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setPropertyList:forType:"), propertyList, type_)
-	return rv
-}
-
-
-// Sets the value for a specified type as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/setString(_:forType:)
-func (p_ PasteboardItem) SetStringForType(string_ string, type_ PasteboardType) bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("setString:forType:"), objc.String(string_), type_)
-	return rv
-}
-
-
-// Returns the value for the specified type as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/string(forType:)
-func (p_ PasteboardItem) StringForType(type_ PasteboardType) foundation.String {
-	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringForType:"), type_)
 	return rv
 }
 
@@ -228,22 +145,12 @@ func (p_ PasteboardItem) SetCollaborationMetadata(value unsafe.Pointer) {
 }
 
 
-// An array of uniform type identifier strings of the data types that the receiver supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/types
-func (p_ PasteboardItem) Types() []string {
-	rv := objc.Send[[]string](p_.ID, objc.Sel("types"))
-	return rv
-}
-
-
 // An array that contains all the items held by the pasteboard.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
-func (p_ PasteboardItem) PasteboardItems() NSPasteboardItem {
-	rv := objc.Send[NSPasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
+func (p_ PasteboardItem) PasteboardItems() IPasteboardItem {
+	rv := objc.Send[PasteboardItem](p_.ID, objc.Sel("pasteboardItems"))
 	return rv
 }
 
@@ -254,6 +161,25 @@ func (p_ PasteboardItem) PasteboardItems() NSPasteboardItem {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems
 func (p_ PasteboardItem) SetPasteboardItems(value IPasteboardItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPasteboardItems:"), value)
+}
+
+
+// An array of uniform type identifier strings of the data types that the receiver supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
+func (p_ PasteboardItem) Types() objc.IObject /* cross-framework: PasteboardType */ {
+	rv := objc.Send[PasteboardType](p_.ID, objc.Sel("types"))
+	return rv
+}
+
+
+// An array of uniform type identifier strings of the data types that the receiver supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspasteboarditem/types
+func (p_ PasteboardItem) SetTypes(value objc.IObject /* cross-framework: PasteboardType */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTypes:"), value)
 }
 
 

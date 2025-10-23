@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,25 +31,27 @@ type _PictureInPictureControllerClass struct {
 // An interface definition for the [PictureInPictureController] class.
 type IPictureInPictureController interface {
 	objectivec.IObject
-	CanStartPictureInPictureAutomaticallyFromInline() bool
-	SetCanStartPictureInPictureAutomaticallyFromInline(value bool)
-	CanStopPictureInPicture() bool
+	// properties:
+	CanStartPictureInPictureAutomaticallyFromInline() bool /* primitive/slice/pointer. */
+	SetCanStartPictureInPictureAutomaticallyFromInline(value bool /* primitive/slice/pointer. */)
+	CanStopPictureInPicture() bool /* primitive/slice/pointer. */
 	ContentSource() IAVPictureInPictureControllerContentSource
 	SetContentSource(value IAVPictureInPictureControllerContentSource)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
-	PictureInPictureActive() bool
-	PictureInPicturePossible() bool
-	PictureInPictureSuspended() bool
-	PlayerLayer() avfoundation.PlayerLayer
-	RequiresLinearPlayback() bool
-	SetRequiresLinearPlayback(value bool)
-	IsPictureInPictureActive() bool
-	SetIsPictureInPictureActive(value bool)
-	IsPictureInPicturePossible() bool
-	SetIsPictureInPicturePossible(value bool)
-	IsPictureInPictureSuspended() bool
-	SetIsPictureInPictureSuspended(value bool)
+	PictureInPictureActive() bool /* primitive/slice/pointer. */
+	PictureInPicturePossible() bool /* primitive/slice/pointer. */
+	PictureInPictureSuspended() bool /* primitive/slice/pointer. */
+	PlayerLayer() objc.IObject /* cross-framework: PlayerLayer */
+	RequiresLinearPlayback() bool /* primitive/slice/pointer. */
+	SetRequiresLinearPlayback(value bool /* primitive/slice/pointer. */)
+	IsPictureInPictureActive() bool /* primitive/slice/pointer. */
+	SetIsPictureInPictureActive(value bool /* primitive/slice/pointer. */)
+	IsPictureInPicturePossible() bool /* primitive/slice/pointer. */
+	SetIsPictureInPicturePossible(value bool /* primitive/slice/pointer. */)
+	IsPictureInPictureSuspended() bool /* primitive/slice/pointer. */
+	SetIsPictureInPictureSuspended(value bool /* primitive/slice/pointer. */)
+	// methods:
 	InvalidatePlaybackState()
 	StartPictureInPicture()
 	StopPictureInPicture()
@@ -125,7 +126,7 @@ func NewPictureInPictureControllerWithContentSource(contentSource IAVPictureInPi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/init(playerLayer:)
-func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.PlayerLayer) PictureInPictureController {
+func NewPictureInPictureControllerWithPlayerLayer(playerLayer objc.IObject /* cross-framework PlayerLayer */) PictureInPictureController {
 	instance := getPictureInPictureControllerClass().Alloc()
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithPlayerLayer:"), playerLayer)
 	rv.Autorelease()
@@ -138,7 +139,7 @@ func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.Playe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSupported()
-func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool {
+func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("isPictureInPictureSupported"))
 	return rv
 }
@@ -148,8 +149,8 @@ func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage(compatibleWith:)
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImageCompatibleWithTraitCollection:"), traitCollection)
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompatibleWithTraitCollection(traitCollection TraitCollection /* not a class type */) objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
 }
 
@@ -158,8 +159,8 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage(compatibleWith:)
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) appkit.Image {
-	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImageCompatibleWithTraitCollection:"), traitCollection)
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompatibleWithTraitCollection(traitCollection TraitCollection /* not a class type */) objc.IObject /* cross-framework: Image */ {
+	rv := objc.Send[Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
 }
 
@@ -168,7 +169,7 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() appkit.Image {
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
 }
@@ -177,7 +178,7 @@ func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() ap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() appkit.Image {
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
 }
@@ -213,7 +214,7 @@ func (p_ PictureInPictureController) StopPictureInPicture() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline
-func (p_ PictureInPictureController) CanStartPictureInPictureAutomaticallyFromInline() bool {
+func (p_ PictureInPictureController) CanStartPictureInPictureAutomaticallyFromInline() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStartPictureInPictureAutomaticallyFromInline"))
 	return rv
 }
@@ -223,7 +224,7 @@ func (p_ PictureInPictureController) CanStartPictureInPictureAutomaticallyFromIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/canStartPictureInPictureAutomaticallyFromInline
-func (p_ PictureInPictureController) SetCanStartPictureInPictureAutomaticallyFromInline(value bool) {
+func (p_ PictureInPictureController) SetCanStartPictureInPictureAutomaticallyFromInline(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanStartPictureInPictureAutomaticallyFromInline:"), value)
 }
 
@@ -232,7 +233,7 @@ func (p_ PictureInPictureController) SetCanStartPictureInPictureAutomaticallyFro
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/canStopPictureInPicture
-func (p_ PictureInPictureController) CanStopPictureInPicture() bool {
+func (p_ PictureInPictureController) CanStopPictureInPicture() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canStopPictureInPicture"))
 	return rv
 }
@@ -280,7 +281,7 @@ func (p_ PictureInPictureController) SetDelegate(value objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPictureActive
-func (p_ PictureInPictureController) PictureInPictureActive() bool {
+func (p_ PictureInPictureController) PictureInPictureActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPictureActive"))
 	return rv
 }
@@ -290,7 +291,7 @@ func (p_ PictureInPictureController) PictureInPictureActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPicturePossible
-func (p_ PictureInPictureController) PictureInPicturePossible() bool {
+func (p_ PictureInPictureController) PictureInPicturePossible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPicturePossible"))
 	return rv
 }
@@ -300,7 +301,7 @@ func (p_ PictureInPictureController) PictureInPicturePossible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/isPictureInPictureSuspended
-func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
+func (p_ PictureInPictureController) PictureInPictureSuspended() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("pictureInPictureSuspended"))
 	return rv
 }
@@ -310,7 +311,7 @@ func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
-func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.Image {
+func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
 }
@@ -320,7 +321,7 @@ func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
-func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.Image {
+func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.objc.IObject /* cross-framework: Image */ {
 	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
 }
@@ -330,8 +331,8 @@ func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.Im
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/playerLayer
-func (p_ PictureInPictureController) PlayerLayer() avfoundation.PlayerLayer {
-	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
+func (p_ PictureInPictureController) PlayerLayer() objc.IObject /* cross-framework: PlayerLayer */ {
+	rv := objc.Send[PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
 }
 
@@ -340,7 +341,7 @@ func (p_ PictureInPictureController) PlayerLayer() avfoundation.PlayerLayer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/requiresLinearPlayback
-func (p_ PictureInPictureController) RequiresLinearPlayback() bool {
+func (p_ PictureInPictureController) RequiresLinearPlayback() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("requiresLinearPlayback"))
 	return rv
 }
@@ -350,7 +351,7 @@ func (p_ PictureInPictureController) RequiresLinearPlayback() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/requiresLinearPlayback
-func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool) {
+func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRequiresLinearPlayback:"), value)
 }
 
@@ -359,7 +360,7 @@ func (p_ PictureInPictureController) SetRequiresLinearPlayback(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpictureactive
-func (p_ PictureInPictureController) IsPictureInPictureActive() bool {
+func (p_ PictureInPictureController) IsPictureInPictureActive() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureActive"))
 	return rv
 }
@@ -369,7 +370,7 @@ func (p_ PictureInPictureController) IsPictureInPictureActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpictureactive
-func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool) {
+func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureActive:"), value)
 }
 
@@ -378,7 +379,7 @@ func (p_ PictureInPictureController) SetIsPictureInPictureActive(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible
-func (p_ PictureInPictureController) IsPictureInPicturePossible() bool {
+func (p_ PictureInPictureController) IsPictureInPicturePossible() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPicturePossible"))
 	return rv
 }
@@ -388,7 +389,7 @@ func (p_ PictureInPictureController) IsPictureInPicturePossible() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible
-func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool) {
+func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPicturePossible:"), value)
 }
 
@@ -397,7 +398,7 @@ func (p_ PictureInPictureController) SetIsPictureInPicturePossible(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesuspended
-func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool {
+func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isPictureInPictureSuspended"))
 	return rv
 }
@@ -407,7 +408,7 @@ func (p_ PictureInPictureController) IsPictureInPictureSuspended() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesuspended
-func (p_ PictureInPictureController) SetIsPictureInPictureSuspended(value bool) {
+func (p_ PictureInPictureController) SetIsPictureInPictureSuspended(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsPictureInPictureSuspended:"), value)
 }
 

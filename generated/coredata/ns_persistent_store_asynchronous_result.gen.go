@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentStoreAsynchronousResult] class.
@@ -30,9 +29,11 @@ type _PersistentStoreAsynchronousResultClass struct {
 // An interface definition for the [PersistentStoreAsynchronousResult] class.
 type IPersistentStoreAsynchronousResult interface {
 	IPersistentStoreResult
+	// properties:
 	ManagedObjectContext() IManagedObjectContext
-	OperationError() foundation.Error
-	Progress() foundation.Progress
+	OperationError() Error /* not a class type */
+	Progress() Progress /* not a class type */
+	// methods:
 	Cancel()
 }
 
@@ -112,8 +113,8 @@ func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() IManagedObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/operationError
-func (p_ PersistentStoreAsynchronousResult) OperationError() foundation.Error {
-	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("operationError"))
+func (p_ PersistentStoreAsynchronousResult) OperationError() Error /* not a class type */ {
+	rv := objc.Send[Error](p_.ID, objc.Sel("operationError"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (p_ PersistentStoreAsynchronousResult) OperationError() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/progress
-func (p_ PersistentStoreAsynchronousResult) Progress() foundation.Progress {
-	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("progress"))
+func (p_ PersistentStoreAsynchronousResult) Progress() Progress /* not a class type */ {
+	rv := objc.Send[Progress](p_.ID, objc.Sel("progress"))
 	return rv
 }
 

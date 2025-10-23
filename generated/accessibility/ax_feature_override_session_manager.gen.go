@@ -30,9 +30,11 @@ type _AXFeatureOverrideSessionManagerClass struct {
 // An interface definition for the [AXFeatureOverrideSessionManager] class.
 type IAXFeatureOverrideSessionManager interface {
 	objectivec.IObject
-	AXFeatureOverrideSessionErrorDomain() string
-	BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) AXFeatureOverrideSession
-	EndOverrideSessionError(session AXFeatureOverrideSession, error_ unsafe.Pointer) bool
+	// properties:
+	AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */
+	// methods:
+	BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) IAXFeatureOverrideSession
+	EndOverrideSessionError(session IAXFeatureOverrideSession, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A manager class to begin and end accessibility feature override sessions. Multiple override sessions are reconciled by combining the requests, preferring feature enablement. Ending all sessions restores the prior state of Accessibility feature enablement. Your app must be entitled with com.apple.developer.accessibility.merchant-api-control.
@@ -95,7 +97,7 @@ func (ac _AXFeatureOverrideSessionManagerClass) SharedInstance() AXFeatureOverri
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/beginOverrideSession(enabling:disabling:)
-func (a_ AXFeatureOverrideSessionManager) BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) AXFeatureOverrideSession {
+func (a_ AXFeatureOverrideSessionManager) BeginOverrideSessionEnablingOptionsDisablingOptionsError(enableOptions AXFeatureOverrideSessionOptions, disableOptions AXFeatureOverrideSessionOptions, error_ unsafe.Pointer) IAXFeatureOverrideSession {
 	rv := objc.Send[AXFeatureOverrideSession](a_.ID, objc.Sel("beginOverrideSessionEnablingOptions:disablingOptions:error:"), enableOptions, disableOptions, error_)
 	return rv
 }
@@ -103,7 +105,7 @@ func (a_ AXFeatureOverrideSessionManager) BeginOverrideSessionEnablingOptionsDis
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXFeatureOverrideSessionManager/end(_:)
-func (a_ AXFeatureOverrideSessionManager) EndOverrideSessionError(session AXFeatureOverrideSession, error_ unsafe.Pointer) bool {
+func (a_ AXFeatureOverrideSessionManager) EndOverrideSessionError(session IAXFeatureOverrideSession, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("endOverrideSession:error:"), session, error_)
 	return rv
 }
@@ -119,11 +121,10 @@ func (a_ AXFeatureOverrideSessionManager) SharedInstance() IAXFeatureOverrideSes
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string {
+func (a_ AXFeatureOverrideSessionManager) AXFeatureOverrideSessionErrorDomain() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
-
 
 
 

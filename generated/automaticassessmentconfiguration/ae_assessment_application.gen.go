@@ -30,16 +30,18 @@ type _AEAssessmentApplicationClass struct {
 // An interface definition for the [AEAssessmentApplication] class.
 type IAEAssessmentApplication interface {
 	objectivec.IObject
-	BundleIdentifier() string
-	SetBundleIdentifier(value string)
-	RequiresSignatureValidation() bool
-	SetRequiresSignatureValidation(value bool)
-	TeamIdentifier() string
-	SetTeamIdentifier(value string)
+	// properties:
+	BundleIdentifier() string /* primitive/slice/pointer. */
+	SetBundleIdentifier(value string /* primitive/slice/pointer. */)
+	RequiresSignatureValidation() bool /* primitive/slice/pointer. */
+	SetRequiresSignatureValidation(value bool /* primitive/slice/pointer. */)
+	TeamIdentifier() string /* primitive/slice/pointer. */
+	SetTeamIdentifier(value string /* primitive/slice/pointer. */)
 	ConfigurationsByApplication() IAEAssessmentParticipantConfiguration
 	SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration)
 	MainParticipantConfiguration() IAEAssessmentParticipantConfiguration
 	SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration)
+	// methods:
 }
 
 // A representation of an app that users can access during an assessment.
@@ -99,7 +101,7 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
-func (a_ AEAssessmentApplication) BundleIdentifier() string {
+func (a_ AEAssessmentApplication) BundleIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
@@ -109,7 +111,7 @@ func (a_ AEAssessmentApplication) BundleIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/bundleidentifier
-func (a_ AEAssessmentApplication) SetBundleIdentifier(value string) {
+func (a_ AEAssessmentApplication) SetBundleIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
 }
 
@@ -118,7 +120,7 @@ func (a_ AEAssessmentApplication) SetBundleIdentifier(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
-func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
+func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](a_.ID, objc.Sel("requiresSignatureValidation"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (a_ AEAssessmentApplication) RequiresSignatureValidation() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation
-func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
+func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresSignatureValidation:"), value)
 }
 
@@ -137,7 +139,7 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
-func (a_ AEAssessmentApplication) TeamIdentifier() string {
+func (a_ AEAssessmentApplication) TeamIdentifier() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
 }
@@ -147,7 +149,7 @@ func (a_ AEAssessmentApplication) TeamIdentifier() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/teamidentifier
-func (a_ AEAssessmentApplication) SetTeamIdentifier(value string) {
+func (a_ AEAssessmentApplication) SetTeamIdentifier(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTeamIdentifier:"), objc.String(value))
 }
 

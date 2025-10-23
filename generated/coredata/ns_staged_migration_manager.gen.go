@@ -30,9 +30,11 @@ type _StagedMigrationManagerClass struct {
 // An interface definition for the [StagedMigrationManager] class.
 type IStagedMigrationManager interface {
 	objectivec.IObject
+	// properties:
 	Container() IPersistentContainer
-	Stages() []MigrationStage
-	NSPersistentStoreStagedMigrationManagerOptionKey() string
+	Stages() []MigrationStage /* primitive/slice/pointer. */
+	NSPersistentStoreStagedMigrationManagerOptionKey() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that handles the migration event loop and provides access to the migrating persistent store.
@@ -102,7 +104,7 @@ func (s_ StagedMigrationManager) Container() IPersistentContainer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSStagedMigrationManager/stages
-func (s_ StagedMigrationManager) Stages() []MigrationStage {
+func (s_ StagedMigrationManager) Stages() []MigrationStage /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MigrationStage](s_.ID, objc.Sel("stages"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (s_ StagedMigrationManager) Stages() []MigrationStage {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey
-func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string {
+func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv
 }

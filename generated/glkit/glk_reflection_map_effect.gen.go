@@ -30,8 +30,8 @@ type _GLKReflectionMapEffectClass struct {
 type IGLKReflectionMapEffect interface {
 	IGLKBaseEffect
 	// properties:
-	Matrix() GLKMatrix3
-	SetMatrix(value GLKMatrix3)
+	Matrix() GLKMatrix3 /* typedef */
+	SetMatrix(value GLKMatrix3 /* typedef */)
 	TextureCubeMap() IGLKEffectPropertyTexture
 	TextureOrder() IGLKEffectPropertyTexture
 	SetTextureOrder(value IGLKEffectPropertyTexture)
@@ -97,7 +97,7 @@ func NewGLKReflectionMapEffect() GLKReflectionMapEffect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 {
+func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 /* typedef */ {
 	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("matrix"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-func (g_ GLKReflectionMapEffect) SetMatrix(value GLKMatrix3) {
+func (g_ GLKReflectionMapEffect) SetMatrix(value GLKMatrix3 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMatrix:"), value)
 }
 

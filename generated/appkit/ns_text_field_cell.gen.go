@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TextFieldCell] class.
@@ -30,21 +29,22 @@ type _TextFieldCellClass struct {
 // An interface definition for the [TextFieldCell] class.
 type ITextFieldCell interface {
 	IActionCell
-	SetWantsNotificationForMarkedText(flag bool)
-	AllowedInputSourceLocales() []string
-	SetAllowedInputSourceLocales(value []string)
-	BackgroundColor() NSColor
+	// properties:
+	PlaceholderString() string /* primitive/slice/pointer. */
+	SetPlaceholderString(value string /* primitive/slice/pointer. */)
+	AllowedInputSourceLocales() string /* primitive/slice/pointer. */
+	SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */)
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
 	BezelStyle() unsafe.Pointer
 	SetBezelStyle(value unsafe.Pointer)
-	PlaceholderAttributedString() foundation.AttributedString
-	SetPlaceholderAttributedString(value foundation.IAttributedString)
-	PlaceholderString() string
-	SetPlaceholderString(value string)
-	TextColor() NSColor
+	DrawsBackground() bool /* primitive/slice/pointer. */
+	SetDrawsBackground(value bool /* primitive/slice/pointer. */)
+	PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */
+	SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */)
+	TextColor() IColor
 	SetTextColor(value IColor)
-	DrawsBackground() bool
-	SetDrawsBackground(value bool)
+	// methods:
 }
 
 // An object that enhances the text display capabilities of a cell.
@@ -102,106 +102,11 @@ func NewTextFieldCell() TextFieldCell {
 
 
 
-// Directs the cell’s associated field editor to post text change notifications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/setWantsNotificationForMarkedText(_:)
-func (t_ TextFieldCell) SetWantsNotificationForMarkedText(flag bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setWantsNotificationForMarkedText:"), flag)
-}
-
-
-// An array of locale identifiers that represent the allowed input sources when the text field has the keyboard focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/allowedInputSourceLocales
-func (t_ TextFieldCell) AllowedInputSourceLocales() []string {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("allowedInputSourceLocales"))
-	return rv
-}
-
-
-// An array of locale identifiers that represent the allowed input sources when the text field has the keyboard focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/allowedInputSourceLocales
-func (t_ TextFieldCell) SetAllowedInputSourceLocales(value []string) {
-	// Convert Go slice to NSArray
-	var nsArray objc.ID
-	if len(value) > 0 {
-		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
-		for _, item := range value {
-			nsArray.Send(objc.Sel("addObject:"), item)
-		}
-	} else {
-		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
-	}
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), nsArray)
-}
-
-
-// The color of the cell’s background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-func (t_ TextFieldCell) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
-	return rv
-}
-
-
-// The color of the cell’s background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/backgroundColor
-func (t_ TextFieldCell) SetBackgroundColor(value IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
-}
-
-
-// The bezel style to use when drawing the text field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/bezelStyle
-func (t_ TextFieldCell) BezelStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelStyle"))
-	return rv
-}
-
-
-// The bezel style to use when drawing the text field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/bezelStyle
-func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
-}
-
-
-// The placeholder text for the cell, specified as an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) PlaceholderAttributedString() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
-	return rv
-}
-
-
-// The placeholder text for the cell, specified as an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderAttributedString
-func (t_ TextFieldCell) SetPlaceholderAttributedString(value foundation.IAttributedString) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
-}
-
-
 // The placeholder text for the cell, specified as a plain text string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) PlaceholderString() string {
+func (t_ TextFieldCell) PlaceholderString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
 	return rv
 }
@@ -211,27 +116,65 @@ func (t_ TextFieldCell) PlaceholderString() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) SetPlaceholderString(value string) {
+func (t_ TextFieldCell) SetPlaceholderString(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
 
 
-// The color to use to draw the cell’s text.
+// An array of locale identifiers that represent the allowed input sources when the text field has the keyboard focus.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-func (t_ TextFieldCell) TextColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("textColor"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/allowedinputsourcelocales
+func (t_ TextFieldCell) AllowedInputSourceLocales() string /* primitive/slice/pointer. */ {
+	rv := objc.Send[string](t_.ID, objc.Sel("allowedInputSourceLocales"))
 	return rv
 }
 
 
-// The color to use to draw the cell’s text.
+// An array of locale identifiers that represent the allowed input sources when the text field has the keyboard focus.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/textColor
-func (t_ TextFieldCell) SetTextColor(value IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/allowedinputsourcelocales
+func (t_ TextFieldCell) SetAllowedInputSourceLocales(value string /* primitive/slice/pointer. */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedInputSourceLocales:"), objc.String(value))
+}
+
+
+// The color of the cell’s background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/backgroundcolor
+func (t_ TextFieldCell) BackgroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// The color of the cell’s background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/backgroundcolor
+func (t_ TextFieldCell) SetBackgroundColor(value IColor) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
+}
+
+
+// The bezel style to use when drawing the text field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/bezelstyle
+func (t_ TextFieldCell) BezelStyle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("bezelStyle"))
+	return rv
+}
+
+
+// The bezel style to use when drawing the text field.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/bezelstyle
+func (t_ TextFieldCell) SetBezelStyle(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelStyle:"), value)
 }
 
 
@@ -239,7 +182,7 @@ func (t_ TextFieldCell) SetTextColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-func (t_ TextFieldCell) DrawsBackground() bool {
+func (t_ TextFieldCell) DrawsBackground() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("drawsBackground"))
 	return rv
 }
@@ -249,8 +192,46 @@ func (t_ TextFieldCell) DrawsBackground() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/drawsbackground
-func (t_ TextFieldCell) SetDrawsBackground(value bool) {
+func (t_ TextFieldCell) SetDrawsBackground(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDrawsBackground:"), value)
+}
+
+
+// The placeholder text for the cell, specified as an attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/placeholderattributedstring
+func (t_ TextFieldCell) PlaceholderAttributedString() objc.IObject /* cross-framework: AttributedString */ {
+	rv := objc.Send[AttributedString](t_.ID, objc.Sel("placeholderAttributedString"))
+	return rv
+}
+
+
+// The placeholder text for the cell, specified as an attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/placeholderattributedstring
+func (t_ TextFieldCell) SetPlaceholderAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderAttributedString:"), value)
+}
+
+
+// The color to use to draw the cell’s text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/textcolor
+func (t_ TextFieldCell) TextColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("textColor"))
+	return rv
+}
+
+
+// The color to use to draw the cell’s text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextfieldcell/textcolor
+func (t_ TextFieldCell) SetTextColor(value IColor) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTextColor:"), value)
 }
 
 

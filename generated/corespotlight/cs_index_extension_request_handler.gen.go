@@ -30,6 +30,8 @@ type _CSIndexExtensionRequestHandlerClass struct {
 // An interface definition for the [CSIndexExtensionRequestHandler] class.
 type ICSIndexExtensionRequestHandler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An interface that implements an index-maintenance app extension.

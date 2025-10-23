@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +30,15 @@ type _RuleClass struct {
 // An interface definition for the [Rule] class.
 type IRule interface {
 	objectivec.IObject
-	Salience() int
-	SetSalience(value int)
+	// properties:
+	Salience() int /* primitive/slice/pointer. */
+	SetSalience(value int /* primitive/slice/pointer. */)
 	Facts() unsafe.Pointer
 	SetFacts(value unsafe.Pointer)
-	State() foundation.MutableDictionary
-	SetState(value foundation.MutableDictionary)
-	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
+	State() MutableDictionary /* not a class type */
+	SetState(value MutableDictionary /* not a class type */)
+	// methods:
+	EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */
 	PerformActionWithSystem(system IGKRuleSystem)
 }
 
@@ -108,7 +109,7 @@ func NewRuleWithBlockPredicateAction(predicate unsafe.Pointer, action unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:assertingFact:grade:)
-func NewRuleWithPredicateAssertingFactGrade(predicate foundation.Predicate, fact objectivec.IObject, grade float32) Rule {
+func NewRuleWithPredicateAssertingFactGrade(predicate objc.IObject /* cross-framework Predicate */, fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) Rule {
 	rv := objc.Send[Rule](objc.ID(getRuleClass().class), objc.Sel("ruleWithPredicate:assertingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -118,7 +119,7 @@ func NewRuleWithPredicateAssertingFactGrade(predicate foundation.Predicate, fact
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:retractingFact:grade:)
-func NewRuleWithPredicateRetractingFactGrade(predicate foundation.Predicate, fact objectivec.IObject, grade float32) Rule {
+func NewRuleWithPredicateRetractingFactGrade(predicate objc.IObject /* cross-framework Predicate */, fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) Rule {
 	rv := objc.Send[Rule](objc.ID(getRuleClass().class), objc.Sel("ruleWithPredicate:retractingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -139,7 +140,7 @@ func (rc _RuleClass) RuleWithBlockPredicateAction(predicate unsafe.Pointer, acti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:assertingFact:grade:)
-func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate foundation.Predicate, fact objectivec.IObject, grade float32) unsafe.Pointer {
+func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate objc.IObject /* cross-framework Predicate */, fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ruleWithPredicate:assertingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -149,7 +150,7 @@ func (rc _RuleClass) RuleWithPredicateAssertingFactGrade(predicate foundation.Pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/init(predicate:retractingFact:grade:)
-func (rc _RuleClass) RuleWithPredicateRetractingFactGrade(predicate foundation.Predicate, fact objectivec.IObject, grade float32) unsafe.Pointer {
+func (rc _RuleClass) RuleWithPredicateRetractingFactGrade(predicate objc.IObject /* cross-framework Predicate */, fact objectivec.IObject, grade float32 /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("ruleWithPredicate:retractingFact:grade:"), predicate, fact, grade)
 	return rv
 }
@@ -159,7 +160,7 @@ func (rc _RuleClass) RuleWithPredicateRetractingFactGrade(predicate foundation.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/evaluatePredicate(in:)
-func (r_ Rule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
+func (r_ Rule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](r_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
 }
@@ -178,7 +179,7 @@ func (r_ Rule) PerformActionWithSystem(system IGKRuleSystem) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
-func (r_ Rule) Salience() int {
+func (r_ Rule) Salience() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
 	return rv
 }
@@ -188,7 +189,7 @@ func (r_ Rule) Salience() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRule/salience
-func (r_ Rule) SetSalience(value int) {
+func (r_ Rule) SetSalience(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
 }
 
@@ -216,8 +217,8 @@ func (r_ Rule) SetFacts(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state
-func (r_ Rule) State() foundation.MutableDictionary {
-	rv := objc.Send[foundation.MutableDictionary](r_.ID, objc.Sel("state"))
+func (r_ Rule) State() MutableDictionary /* not a class type */ {
+	rv := objc.Send[MutableDictionary](r_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -226,7 +227,7 @@ func (r_ Rule) State() foundation.MutableDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state
-func (r_ Rule) SetState(value foundation.MutableDictionary) {
+func (r_ Rule) SetState(value MutableDictionary /* not a class type */) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setState:"), value)
 }
 

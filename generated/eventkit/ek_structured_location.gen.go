@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/mapkit"
 )
 
@@ -31,14 +30,16 @@ type _EKStructuredLocationClass struct {
 // An interface definition for the [EKStructuredLocation] class.
 type IEKStructuredLocation interface {
 	IEKObject
-	GeoLocation() corelocation.Location
-	SetGeoLocation(value corelocation.Location)
-	Radius() float64
-	SetRadius(value float64)
-	Title() string
-	SetTitle(value string)
+	// properties:
+	GeoLocation() objc.IObject /* cross-framework: Location */
+	SetGeoLocation(value objc.IObject /* cross-framework: Location */)
+	Radius() float64 /* primitive/slice/pointer. */
+	SetRadius(value float64 /* primitive/slice/pointer. */)
+	Title() string /* primitive/slice/pointer. */
+	SetTitle(value string /* primitive/slice/pointer. */)
 	StructuredLocation() IEKStructuredLocation
 	SetStructuredLocation(value IEKStructuredLocation)
+	// methods:
 }
 
 // class that specifies a geofence to activate the alarm of a calendar item.
@@ -100,7 +101,7 @@ func NewEKStructuredLocation() EKStructuredLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
-func NewEKStructuredLocationWithMapItem(mapItem mapkit.MKMapItem) EKStructuredLocation {
+func NewEKStructuredLocationWithMapItem(mapItem mapkit.objc.IObject /* cross-framework MKMapItem */) EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
@@ -110,7 +111,7 @@ func NewEKStructuredLocationWithMapItem(mapItem mapkit.MKMapItem) EKStructuredLo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
-func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
+func NewEKStructuredLocationWithTitle(title string /* primitive/slice/pointer. */) EKStructuredLocation {
 	rv := objc.Send[EKStructuredLocation](objc.ID(getEKStructuredLocationClass().class), objc.Sel("locationWithTitle:"), objc.String(title))
 	return rv
 }
@@ -121,7 +122,7 @@ func NewEKStructuredLocationWithTitle(title string) EKStructuredLocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(mapItem:)
-func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.MKMapItem) unsafe.Pointer {
+func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.objc.IObject /* cross-framework MKMapItem */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("locationWithMapItem:"), mapItem)
 	return rv
 }
@@ -131,7 +132,7 @@ func (ec _EKStructuredLocationClass) LocationWithMapItem(mapItem mapkit.MKMapIte
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/init(title:)
-func (ec _EKStructuredLocationClass) LocationWithTitle(title string) unsafe.Pointer {
+func (ec _EKStructuredLocationClass) LocationWithTitle(title string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("locationWithTitle:"), objc.String(title))
 	return rv
 }
@@ -141,8 +142,8 @@ func (ec _EKStructuredLocationClass) LocationWithTitle(title string) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/geoLocation
-func (e_ EKStructuredLocation) GeoLocation() corelocation.Location {
-	rv := objc.Send[corelocation.Location](e_.ID, objc.Sel("geoLocation"))
+func (e_ EKStructuredLocation) GeoLocation() objc.IObject /* cross-framework: Location */ {
+	rv := objc.Send[Location](e_.ID, objc.Sel("geoLocation"))
 	return rv
 }
 
@@ -151,7 +152,7 @@ func (e_ EKStructuredLocation) GeoLocation() corelocation.Location {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/geoLocation
-func (e_ EKStructuredLocation) SetGeoLocation(value corelocation.Location) {
+func (e_ EKStructuredLocation) SetGeoLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setGeoLocation:"), value)
 }
 
@@ -160,7 +161,7 @@ func (e_ EKStructuredLocation) SetGeoLocation(value corelocation.Location) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/radius
-func (e_ EKStructuredLocation) Radius() float64 {
+func (e_ EKStructuredLocation) Radius() float64 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float64](e_.ID, objc.Sel("radius"))
 	return rv
 }
@@ -170,7 +171,7 @@ func (e_ EKStructuredLocation) Radius() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/radius
-func (e_ EKStructuredLocation) SetRadius(value float64) {
+func (e_ EKStructuredLocation) SetRadius(value float64 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRadius:"), value)
 }
 
@@ -179,7 +180,7 @@ func (e_ EKStructuredLocation) SetRadius(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) Title() string {
+func (e_ EKStructuredLocation) Title() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](e_.ID, objc.Sel("title"))
 	return rv
 }
@@ -189,7 +190,7 @@ func (e_ EKStructuredLocation) Title() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKStructuredLocation/title
-func (e_ EKStructuredLocation) SetTitle(value string) {
+func (e_ EKStructuredLocation) SetTitle(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 

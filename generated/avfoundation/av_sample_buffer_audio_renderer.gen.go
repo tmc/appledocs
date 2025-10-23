@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,19 +34,19 @@ type ISampleBufferAudioRenderer interface {
 	// properties:
 	AllowedAudioSpatializationFormats() AudioSpatializationFormats
 	SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats)
-	AudioOutputDeviceUniqueID() string /* primitive/slice/pointer */
-	SetAudioOutputDeviceUniqueID(value string /* primitive/slice/pointer */)
+	AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */
+	SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */)
 	AudioTimePitchAlgorithm() AudioTimePitchAlgorithm /* not a class type */
 	SetAudioTimePitchAlgorithm(value AudioTimePitchAlgorithm /* not a class type */)
 	Error() Error
 	SetError(value Error)
-	IsMuted() bool /* primitive/slice/pointer */
-	SetIsMuted(value bool /* primitive/slice/pointer */)
+	IsMuted() bool /* primitive/slice/pointer. */
+	SetIsMuted(value bool /* primitive/slice/pointer. */)
 	Status() QueuedSampleBufferRenderingStatus /* not a class type */
 	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
-	Volume() float32 /* primitive/slice/pointer */
-	SetVolume(value float32 /* primitive/slice/pointer */)
-	AVSampleBufferAudioRendererFlushTimeKey() string /* primitive/slice/pointer */
+	Volume() float32 /* primitive/slice/pointer. */
+	SetVolume(value float32 /* primitive/slice/pointer. */)
+	AVSampleBufferAudioRendererFlushTimeKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
 
@@ -125,8 +126,8 @@ func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value A
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiooutputdeviceuniqueid
-func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -135,8 +136,8 @@ func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string /* primit
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiooutputdeviceuniqueid
-func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
+func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
 }
 
 
@@ -182,7 +183,7 @@ func (s_ SampleBufferAudioRenderer) SetError(value Error) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
-func (s_ SampleBufferAudioRenderer) IsMuted() bool /* primitive/slice/pointer */ {
+func (s_ SampleBufferAudioRenderer) IsMuted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isMuted"))
 	return rv
 }
@@ -192,7 +193,7 @@ func (s_ SampleBufferAudioRenderer) IsMuted() bool /* primitive/slice/pointer */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/ismuted
-func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool /* primitive/slice/pointer */) {
+func (s_ SampleBufferAudioRenderer) SetIsMuted(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsMuted:"), value)
 }
 
@@ -220,7 +221,7 @@ func (s_ SampleBufferAudioRenderer) SetStatus(value QueuedSampleBufferRenderingS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) Volume() float32 /* primitive/slice/pointer */ {
+func (s_ SampleBufferAudioRenderer) Volume() float32 /* primitive/slice/pointer. */ {
 	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
@@ -230,7 +231,7 @@ func (s_ SampleBufferAudioRenderer) Volume() float32 /* primitive/slice/pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/volume
-func (s_ SampleBufferAudioRenderer) SetVolume(value float32 /* primitive/slice/pointer */) {
+func (s_ SampleBufferAudioRenderer) SetVolume(value float32 /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 
@@ -239,8 +240,8 @@ func (s_ SampleBufferAudioRenderer) SetVolume(value float32 /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererflushtimekey
-func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
+func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
 	return rv
 }
 

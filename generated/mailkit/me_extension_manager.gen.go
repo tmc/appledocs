@@ -82,7 +82,7 @@ func NewMEExtensionManager() MEExtensionManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEExtensionManager/reloadContentBlocker(withIdentifier:completionHandler:)
-func (mc _MEExtensionManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
+func (mc _MEExtensionManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier string /* primitive/slice/pointer. */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
 }
 

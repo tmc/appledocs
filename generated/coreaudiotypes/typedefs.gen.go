@@ -18,6 +18,11 @@ type AudioUInteger uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelLabel
 // AudioChannelLabel has base type: UInt32
 type AudioChannelLabel uintptr
+// AudioChannelLayoutTag - Identifies a previously-defined channel layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioChannelLayoutTag
+// AudioChannelLayoutTag has base type: UInt32
+type AudioChannelLayoutTag uintptr
 // AudioFormatFlags - A type definition for audio format flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioTypes/AudioFormatFlags

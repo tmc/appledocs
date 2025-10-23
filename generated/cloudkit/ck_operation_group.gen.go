@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,19 +30,21 @@ type _CKOperationGroupClass struct {
 // An interface definition for the [CKOperationGroup] class.
 type ICKOperationGroup interface {
 	objectivec.IObject
+	// properties:
 	DefaultConfiguration() ICKOperationConfiguration
 	SetDefaultConfiguration(value ICKOperationConfiguration)
 	ExpectedReceiveSize() CKOperationGroupTransferSize
 	SetExpectedReceiveSize(value CKOperationGroupTransferSize)
 	ExpectedSendSize() CKOperationGroupTransferSize
 	SetExpectedSendSize(value CKOperationGroupTransferSize)
-	Name() string
-	SetName(value string)
-	OperationGroupID() string
-	Quantity() uint
-	SetQuantity(value uint)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	OperationGroupID() string /* primitive/slice/pointer. */
+	Quantity() uint /* primitive/slice/pointer. */
+	SetQuantity(value uint /* primitive/slice/pointer. */)
 	Group() ICKOperationGroup
 	SetGroup(value ICKOperationGroup)
+	// methods:
 }
 
 // An explicit association between two or more operations.
@@ -103,7 +104,7 @@ func NewCKOperationGroup() CKOperationGroup {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/init(coder:)
-func NewCKOperationGroupWithCoder(aDecoder foundation.Coder) CKOperationGroup {
+func NewCKOperationGroupWithCoder(aDecoder Coder /* not a class type */) CKOperationGroup {
 	instance := getCKOperationGroupClass().Alloc()
 	rv := objc.Send[CKOperationGroup](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -173,7 +174,7 @@ func (c_ CKOperationGroup) SetExpectedSendSize(value CKOperationGroupTransferSiz
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/name
-func (c_ CKOperationGroup) Name() string {
+func (c_ CKOperationGroup) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("name"))
 	return rv
 }
@@ -183,7 +184,7 @@ func (c_ CKOperationGroup) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/name
-func (c_ CKOperationGroup) SetName(value string) {
+func (c_ CKOperationGroup) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -192,7 +193,7 @@ func (c_ CKOperationGroup) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/operationGroupID
-func (c_ CKOperationGroup) OperationGroupID() string {
+func (c_ CKOperationGroup) OperationGroupID() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("operationGroupID"))
 	return rv
 }
@@ -202,7 +203,7 @@ func (c_ CKOperationGroup) OperationGroupID() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/quantity
-func (c_ CKOperationGroup) Quantity() uint {
+func (c_ CKOperationGroup) Quantity() uint /* primitive/slice/pointer. */ {
 	rv := objc.Send[uint](c_.ID, objc.Sel("quantity"))
 	return rv
 }
@@ -212,7 +213,7 @@ func (c_ CKOperationGroup) Quantity() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/quantity
-func (c_ CKOperationGroup) SetQuantity(value uint) {
+func (c_ CKOperationGroup) SetQuantity(value uint /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuantity:"), value)
 }
 

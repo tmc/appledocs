@@ -31,10 +31,12 @@ type _CWNetworkProfileClass struct {
 // An interface definition for the [CWNetworkProfile] class.
 type ICWNetworkProfile interface {
 	objectivec.IObject
+	// properties:
 	Security() CWSecurity
-	Ssid() string
-	SsidData() foundation.NSData
-	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool
+	Ssid() string /* primitive/slice/pointer. */
+	SsidData() foundation.objc.IObject /* cross-framework: NSData */
+	// methods:
+	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool /* primitive/slice/pointer. */
 }
 
 // Encapsulates an immutable network profile entry.
@@ -125,7 +127,7 @@ func (cc _CWNetworkProfileClass) NetworkProfileWithNetworkProfile(networkProfile
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/isEqual(to:)
-func (c_ CWNetworkProfile) IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool {
+func (c_ CWNetworkProfile) IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToNetworkProfile:"), networkProfile)
 	return rv
 }
@@ -145,7 +147,7 @@ func (c_ CWNetworkProfile) Security() CWSecurity {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssid
-func (c_ CWNetworkProfile) Ssid() string {
+func (c_ CWNetworkProfile) Ssid() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
@@ -155,7 +157,7 @@ func (c_ CWNetworkProfile) Ssid() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssidData
-func (c_ CWNetworkProfile) SsidData() foundation.NSData {
+func (c_ CWNetworkProfile) SsidData() foundation.objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }

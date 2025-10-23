@@ -30,6 +30,8 @@ type _hasFaceAngleClass struct {
 // An interface definition for the [hasFaceAngle] class.
 type IhasFaceAngle interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 

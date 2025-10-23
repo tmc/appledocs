@@ -31,42 +31,44 @@ type _GCPhysicalInputProfileClass struct {
 // An interface definition for the [GCPhysicalInputProfile] class.
 type IGCPhysicalInputProfile interface {
 	objectivec.IObject
+	// properties:
 	AllElements() unsafe.Pointer
-	Dpads() foundation.IDictionary
-	HasRemappedElements() bool
-	LastEventTimestamp() foundation.TimeInterval
+	Dpads() foundation.IDictionary /* already interface */
+	HasRemappedElements() bool /* primitive/slice/pointer. */
+	LastEventTimestamp() foundation.TimeInterval /* not a class type */
+	ValueDidChangeHandler() unsafe.Pointer
+	SetValueDidChangeHandler(value unsafe.Pointer)
 	ExtendedGamepad() IGCExtendedGamepad
 	SetExtendedGamepad(value IGCExtendedGamepad)
 	Gamepad() unsafe.Pointer
 	SetGamepad(value unsafe.Pointer)
-	MicroGamepad() GCMicroGamepad
-	SetMicroGamepad(value GCMicroGamepad)
+	MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */
+	SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */)
 	Motion() IGCMotion
 	SetMotion(value IGCMotion)
 	PhysicalInputProfile() IGCPhysicalInputProfile
 	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
-	AllAxes() GCControllerAxisInput
-	SetAllAxes(value GCControllerAxisInput)
-	AllButtons() GCControllerButtonInput
-	SetAllButtons(value GCControllerButtonInput)
-	AllDpads() GCControllerDirectionPad
-	SetAllDpads(value GCControllerDirectionPad)
+	AllAxes() objc.IObject /* cross-framework: GCControllerAxisInput */
+	SetAllAxes(value objc.IObject /* cross-framework: GCControllerAxisInput */)
+	AllButtons() objc.IObject /* cross-framework: GCControllerButtonInput */
+	SetAllButtons(value objc.IObject /* cross-framework: GCControllerButtonInput */)
+	AllDpads() objc.IObject /* cross-framework: GCControllerDirectionPad */
+	SetAllDpads(value objc.IObject /* cross-framework: GCControllerDirectionPad */)
 	AllTouchpads() IGCControllerTouchpad
 	SetAllTouchpads(value IGCControllerTouchpad)
-	Axes() GCControllerAxisInput
-	SetAxes(value GCControllerAxisInput)
-	Buttons() GCControllerButtonInput
-	SetButtons(value GCControllerButtonInput)
+	Axes() objc.IObject /* cross-framework: GCControllerAxisInput */
+	SetAxes(value objc.IObject /* cross-framework: GCControllerAxisInput */)
+	Buttons() objc.IObject /* cross-framework: GCControllerButtonInput */
+	SetButtons(value objc.IObject /* cross-framework: GCControllerButtonInput */)
 	Device() unsafe.Pointer
 	SetDevice(value unsafe.Pointer)
 	Elements() IGCControllerElement
 	SetElements(value IGCControllerElement)
 	Touchpads() IGCControllerTouchpad
 	SetTouchpads(value IGCControllerTouchpad)
-	ValueDidChangeHandler() unsafe.Pointer
-	SetValueDidChangeHandler(value unsafe.Pointer)
-	MappedElementAliasForPhysicalInputName(inputName string) foundation.String
-	MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer
+	// methods:
+	MappedElementAliasForPhysicalInputName(inputName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */
+	MappedPhysicalInputNamesForElementAlias(elementAlias string /* primitive/slice/pointer. */) unsafe.Pointer
 }
 
 // The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.
@@ -126,8 +128,8 @@ func NewGCPhysicalInputProfile() GCPhysicalInputProfile {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)
-func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string) foundation.String {
-	rv := objc.Send[foundation.String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
+func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string /* primitive/slice/pointer. */) objc.IObject /* cross-framework: String */ {
+	rv := objc.Send[String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
 	return rv
 }
 
@@ -136,7 +138,7 @@ func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputNam
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)
-func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer {
+func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias string /* primitive/slice/pointer. */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), objc.String(elementAlias))
 	return rv
 }
@@ -156,7 +158,7 @@ func (g_ GCPhysicalInputProfile) AllElements() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/dpads
-func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary {
+func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary /* already interface */ {
 	rv := objc.Send[foundation.IDictionary](g_.ID, objc.Sel("dpads"))
 	return rv
 }
@@ -166,7 +168,7 @@ func (g_ GCPhysicalInputProfile) Dpads() foundation.IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/hasRemappedElements
-func (g_ GCPhysicalInputProfile) HasRemappedElements() bool {
+func (g_ GCPhysicalInputProfile) HasRemappedElements() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](g_.ID, objc.Sel("hasRemappedElements"))
 	return rv
 }
@@ -176,9 +178,28 @@ func (g_ GCPhysicalInputProfile) HasRemappedElements() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/lastEventTimestamp
-func (g_ GCPhysicalInputProfile) LastEventTimestamp() foundation.TimeInterval {
+func (g_ GCPhysicalInputProfile) LastEventTimestamp() foundation.TimeInterval /* not a class type */ {
 	rv := objc.Send[foundation.TimeInterval](g_.ID, objc.Sel("lastEventTimestamp"))
 	return rv
+}
+
+
+// The block that the profile calls when an element’s value changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/valueDidChangeHandler
+func (g_ GCPhysicalInputProfile) ValueDidChangeHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueDidChangeHandler"))
+	return rv
+}
+
+
+// The block that the profile calls when an element’s value changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/valueDidChangeHandler
+func (g_ GCPhysicalInputProfile) SetValueDidChangeHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValueDidChangeHandler:"), value)
 }
 
 
@@ -224,7 +245,7 @@ func (g_ GCPhysicalInputProfile) SetGamepad(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCPhysicalInputProfile) MicroGamepad() GCMicroGamepad {
+func (g_ GCPhysicalInputProfile) MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */ {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
@@ -234,7 +255,7 @@ func (g_ GCPhysicalInputProfile) MicroGamepad() GCMicroGamepad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCPhysicalInputProfile) SetMicroGamepad(value GCMicroGamepad) {
+func (g_ GCPhysicalInputProfile) SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
@@ -281,7 +302,7 @@ func (g_ GCPhysicalInputProfile) SetPhysicalInputProfile(value IGCPhysicalInputP
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/allaxes
-func (g_ GCPhysicalInputProfile) AllAxes() GCControllerAxisInput {
+func (g_ GCPhysicalInputProfile) AllAxes() objc.IObject /* cross-framework: GCControllerAxisInput */ {
 	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("allAxes"))
 	return rv
 }
@@ -291,7 +312,7 @@ func (g_ GCPhysicalInputProfile) AllAxes() GCControllerAxisInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/allaxes
-func (g_ GCPhysicalInputProfile) SetAllAxes(value GCControllerAxisInput) {
+func (g_ GCPhysicalInputProfile) SetAllAxes(value objc.IObject /* cross-framework: GCControllerAxisInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllAxes:"), value)
 }
 
@@ -300,7 +321,7 @@ func (g_ GCPhysicalInputProfile) SetAllAxes(value GCControllerAxisInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/allbuttons
-func (g_ GCPhysicalInputProfile) AllButtons() GCControllerButtonInput {
+func (g_ GCPhysicalInputProfile) AllButtons() objc.IObject /* cross-framework: GCControllerButtonInput */ {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("allButtons"))
 	return rv
 }
@@ -310,7 +331,7 @@ func (g_ GCPhysicalInputProfile) AllButtons() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/allbuttons
-func (g_ GCPhysicalInputProfile) SetAllButtons(value GCControllerButtonInput) {
+func (g_ GCPhysicalInputProfile) SetAllButtons(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllButtons:"), value)
 }
 
@@ -319,7 +340,7 @@ func (g_ GCPhysicalInputProfile) SetAllButtons(value GCControllerButtonInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/alldpads
-func (g_ GCPhysicalInputProfile) AllDpads() GCControllerDirectionPad {
+func (g_ GCPhysicalInputProfile) AllDpads() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("allDpads"))
 	return rv
 }
@@ -329,7 +350,7 @@ func (g_ GCPhysicalInputProfile) AllDpads() GCControllerDirectionPad {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/alldpads
-func (g_ GCPhysicalInputProfile) SetAllDpads(value GCControllerDirectionPad) {
+func (g_ GCPhysicalInputProfile) SetAllDpads(value objc.IObject /* cross-framework: GCControllerDirectionPad */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAllDpads:"), value)
 }
 
@@ -357,7 +378,7 @@ func (g_ GCPhysicalInputProfile) SetAllTouchpads(value IGCControllerTouchpad) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/axes
-func (g_ GCPhysicalInputProfile) Axes() GCControllerAxisInput {
+func (g_ GCPhysicalInputProfile) Axes() objc.IObject /* cross-framework: GCControllerAxisInput */ {
 	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("axes"))
 	return rv
 }
@@ -367,7 +388,7 @@ func (g_ GCPhysicalInputProfile) Axes() GCControllerAxisInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/axes
-func (g_ GCPhysicalInputProfile) SetAxes(value GCControllerAxisInput) {
+func (g_ GCPhysicalInputProfile) SetAxes(value objc.IObject /* cross-framework: GCControllerAxisInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAxes:"), value)
 }
 
@@ -376,7 +397,7 @@ func (g_ GCPhysicalInputProfile) SetAxes(value GCControllerAxisInput) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/buttons
-func (g_ GCPhysicalInputProfile) Buttons() GCControllerButtonInput {
+func (g_ GCPhysicalInputProfile) Buttons() objc.IObject /* cross-framework: GCControllerButtonInput */ {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttons"))
 	return rv
 }
@@ -386,7 +407,7 @@ func (g_ GCPhysicalInputProfile) Buttons() GCControllerButtonInput {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/buttons
-func (g_ GCPhysicalInputProfile) SetButtons(value GCControllerButtonInput) {
+func (g_ GCPhysicalInputProfile) SetButtons(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtons:"), value)
 }
 
@@ -445,25 +466,6 @@ func (g_ GCPhysicalInputProfile) Touchpads() IGCControllerTouchpad {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/touchpads
 func (g_ GCPhysicalInputProfile) SetTouchpads(value IGCControllerTouchpad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpads:"), value)
-}
-
-
-// The block that the profile calls when an element’s value changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/valuedidchangehandler
-func (g_ GCPhysicalInputProfile) ValueDidChangeHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueDidChangeHandler"))
-	return rv
-}
-
-
-// The block that the profile calls when an element’s value changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/valuedidchangehandler
-func (g_ GCPhysicalInputProfile) SetValueDidChangeHandler(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setValueDidChangeHandler:"), value)
 }
 
 

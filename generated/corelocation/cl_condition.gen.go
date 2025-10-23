@@ -30,6 +30,8 @@ type _ConditionClass struct {
 // An interface definition for the [Condition] class.
 type ICondition interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // The abstract base class that all other conditions derive from.

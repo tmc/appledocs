@@ -30,8 +30,10 @@ type _FSGenericURLResourceClass struct {
 // An interface definition for the [FSGenericURLResource] class.
 type IFSGenericURLResource interface {
 	IFSResource
-	Url() foundation.URL
-	SetUrl(value foundation.URL)
+	// properties:
+	Url() foundation.objc.IObject /* cross-framework: URL */
+	SetUrl(value foundation.objc.IObject /* cross-framework: URL */)
+	// methods:
 }
 
 // A resource representing an abstract URL
@@ -89,7 +91,7 @@ func NewFSGenericURLResource() FSGenericURLResource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/init(url:)
-func NewFSGenericURLResourceWithURL(url foundation.URL) FSGenericURLResource {
+func NewFSGenericURLResourceWithURL(url foundation.objc.IObject /* cross-framework URL */) FSGenericURLResource {
 	instance := getFSGenericURLResourceClass().Alloc()
 	rv := objc.Send[FSGenericURLResource](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -100,7 +102,7 @@ func NewFSGenericURLResourceWithURL(url foundation.URL) FSGenericURLResource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsgenericurlresource/url
-func (f_ FSGenericURLResource) Url() foundation.URL {
+func (f_ FSGenericURLResource) Url() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("url"))
 	return rv
 }
@@ -108,7 +110,7 @@ func (f_ FSGenericURLResource) Url() foundation.URL {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsgenericurlresource/url
-func (f_ FSGenericURLResource) SetUrl(value foundation.URL) {
+func (f_ FSGenericURLResource) SetUrl(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUrl:"), value)
 }
 

@@ -30,8 +30,10 @@ type _FSItemGetAttributesRequestClass struct {
 // An interface definition for the [FSItemGetAttributesRequest] class.
 type IFSItemGetAttributesRequest interface {
 	objectivec.IObject
+	// properties:
 	WantedAttributes() unsafe.Pointer
 	SetWantedAttributes(value unsafe.Pointer)
+	// methods:
 }
 
 // A request to get attributes from an item.

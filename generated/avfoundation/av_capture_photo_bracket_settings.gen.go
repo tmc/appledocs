@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CapturePhotoBracketSettings] class.
@@ -30,14 +31,14 @@ type _CapturePhotoBracketSettingsClass struct {
 type ICapturePhotoBracketSettings interface {
 	ICapturePhotoSettings
 	// properties:
-	BracketedSettings() CaptureBracketedStillImageSettings /* not a class type */
-	SetBracketedSettings(value CaptureBracketedStillImageSettings /* not a class type */)
-	IsLensStabilizationEnabled() bool /* primitive/slice/pointer */
-	SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer */)
-	IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer */
-	SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer */)
-	PreviewPhotoFormat() string /* primitive/slice/pointer */
-	SetPreviewPhotoFormat(value string /* primitive/slice/pointer */)
+	BracketedSettings() objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */
+	SetBracketedSettings(value objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */)
+	IsLensStabilizationEnabled() bool /* primitive/slice/pointer. */
+	SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer. */)
+	IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer. */
+	SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer. */)
+	PreviewPhotoFormat() objc.IObject /* cross-framework: NSString */
+	SetPreviewPhotoFormat(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -100,7 +101,7 @@ func NewCapturePhotoBracketSettings() CapturePhotoBracketSettings {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
-func (c_ CapturePhotoBracketSettings) BracketedSettings() CaptureBracketedStillImageSettings /* not a class type */ {
+func (c_ CapturePhotoBracketSettings) BracketedSettings() objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */ {
 	rv := objc.Send[CaptureBracketedStillImageSettings](c_.ID, objc.Sel("bracketedSettings"))
 	return rv
 }
@@ -110,7 +111,7 @@ func (c_ CapturePhotoBracketSettings) BracketedSettings() CaptureBracketedStillI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/bracketedsettings
-func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value CaptureBracketedStillImageSettings /* not a class type */) {
+func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value objc.IObject /* cross-framework: CaptureBracketedStillImageSettings */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBracketedSettings:"), value)
 }
 
@@ -119,7 +120,7 @@ func (c_ CapturePhotoBracketSettings) SetBracketedSettings(value CaptureBrackete
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled
-func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationEnabled"))
 	return rv
 }
@@ -129,7 +130,7 @@ func (c_ CapturePhotoBracketSettings) IsLensStabilizationEnabled() bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled
-func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationEnabled:"), value)
 }
 
@@ -138,7 +139,7 @@ func (c_ CapturePhotoBracketSettings) SetIsLensStabilizationEnabled(value bool /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled
-func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighResolutionPhotoEnabled"))
 	return rv
 }
@@ -148,7 +149,7 @@ func (c_ CapturePhotoBracketSettings) IsHighResolutionPhotoEnabled() bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled
-func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighResolutionPhotoEnabled:"), value)
 }
 
@@ -157,8 +158,8 @@ func (c_ CapturePhotoBracketSettings) SetIsHighResolutionPhotoEnabled(value bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() string /* primitive/slice/pointer */ {
-	rv := objc.Send[string](c_.ID, objc.Sel("previewPhotoFormat"))
+func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("previewPhotoFormat"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (c_ CapturePhotoBracketSettings) PreviewPhotoFormat() string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoBracketSettings) SetPreviewPhotoFormat(value string /* primitive/slice/pointer */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), objc.String(value))
+func (c_ CapturePhotoBracketSettings) SetPreviewPhotoFormat(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), value)
 }
 
 

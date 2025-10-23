@@ -29,12 +29,14 @@ type _CustomImageRepClass struct {
 // An interface definition for the [CustomImageRep] class.
 type ICustomImageRep interface {
 	IImageRep
+	// properties:
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	DrawSelector() unsafe.Pointer
 	SetDrawSelector(value unsafe.Pointer)
-	DrawingHandler() bool
-	SetDrawingHandler(value bool)
+	DrawingHandler() bool /* primitive/slice/pointer. */
+	SetDrawingHandler(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An object that uses a delegate object to render an image from a custom format.
@@ -134,7 +136,7 @@ func (c_ CustomImageRep) SetDrawSelector(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) DrawingHandler() bool {
+func (c_ CustomImageRep) DrawingHandler() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("drawingHandler"))
 	return rv
 }
@@ -144,7 +146,7 @@ func (c_ CustomImageRep) DrawingHandler() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomimagerep/drawinghandler
-func (c_ CustomImageRep) SetDrawingHandler(value bool) {
+func (c_ CustomImageRep) SetDrawingHandler(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingHandler:"), value)
 }
 

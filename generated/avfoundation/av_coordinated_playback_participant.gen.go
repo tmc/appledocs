@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,10 +31,10 @@ type _CoordinatedPlaybackParticipantClass struct {
 type ICoordinatedPlaybackParticipant interface {
 	objectivec.IObject
 	// properties:
-	Identifier() foundation.UUID /* not a class type */
-	SetIdentifier(value foundation.UUID /* not a class type */)
-	IsReadyToPlay() bool /* primitive/slice/pointer */
-	SetIsReadyToPlay(value bool /* primitive/slice/pointer */)
+	Identifier() unsafe.Pointer
+	SetIdentifier(value unsafe.Pointer)
+	IsReadyToPlay() bool /* primitive/slice/pointer. */
+	SetIsReadyToPlay(value bool /* primitive/slice/pointer. */)
 	SuspensionReasons() unsafe.Pointer
 	SetSuspensionReasons(value unsafe.Pointer)
 	OtherParticipants() IAVCoordinatedPlaybackParticipant
@@ -100,8 +99,8 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* not a class type */ {
-	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
+func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -110,7 +109,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID /* not a c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID /* not a class type */) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -119,7 +118,7 @@ func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.UUID /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool /* primitive/slice/pointer */ {
+func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isReadyToPlay"))
 	return rv
 }
@@ -129,7 +128,7 @@ func (c_ CoordinatedPlaybackParticipant) IsReadyToPlay() bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/isreadytoplay
-func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool /* primitive/slice/pointer */) {
+func (c_ CoordinatedPlaybackParticipant) SetIsReadyToPlay(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsReadyToPlay:"), value)
 }
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +30,11 @@ type _FSContainerStatusClass struct {
 // An interface definition for the [FSContainerStatus] class.
 type IFSContainerStatus interface {
 	objectivec.IObject
+	// properties:
 	State() unsafe.Pointer
-	Status() foundation.Error
-	SetStatus(value foundation.Error)
+	Status() unsafe.Pointer
+	SetStatus(value unsafe.Pointer)
+	// methods:
 }
 
 // A type that represents a container’s status.
@@ -103,8 +104,8 @@ func (f_ FSContainerStatus) State() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
-func (f_ FSContainerStatus) Status() foundation.Error {
-	rv := objc.Send[foundation.Error](f_.ID, objc.Sel("status"))
+func (f_ FSContainerStatus) Status() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (f_ FSContainerStatus) Status() foundation.Error {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fscontainerstatus/status
-func (f_ FSContainerStatus) SetStatus(value foundation.Error) {
+func (f_ FSContainerStatus) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setStatus:"), value)
 }
 

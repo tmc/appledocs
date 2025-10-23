@@ -30,6 +30,8 @@ type _BarcodeDescriptorClass struct {
 // An interface definition for the [BarcodeDescriptor] class.
 type IBarcodeDescriptor interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // An abstract base class that represents a machine-readable code’s attributes.

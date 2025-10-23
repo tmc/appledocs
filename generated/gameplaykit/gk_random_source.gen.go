@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +30,9 @@ type _RandomSourceClass struct {
 // An interface definition for the [RandomSource] class.
 type IRandomSource interface {
 	objectivec.IObject
-	ArrayByShufflingObjectsInArray(array objectivec.IObject) foundation.Array
+	// properties:
+	// methods:
+	ArrayByShufflingObjectsInArray(array objectivec.IObject) objc.IObject /* cross-framework: Array */
 }
 
 // The superclass for all basic randomization classes in GameplayKit.
@@ -89,7 +90,7 @@ func NewRandomSource() RandomSource {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/init(coder:)
-func NewRandomSourceWithCoder(aDecoder foundation.Coder) RandomSource {
+func NewRandomSourceWithCoder(aDecoder Coder /* not a class type */) RandomSource {
 	instance := getRandomSourceClass().Alloc()
 	rv := objc.Send[RandomSource](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -112,8 +113,8 @@ func (rc _RandomSourceClass) SharedRandom() IRandomSource {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)
-func (r_ RandomSource) ArrayByShufflingObjectsInArray(array objectivec.IObject) foundation.Array {
-	rv := objc.Send[foundation.Array](r_.ID, objc.Sel("arrayByShufflingObjectsInArray:"), array)
+func (r_ RandomSource) ArrayByShufflingObjectsInArray(array objectivec.IObject) objc.IObject /* cross-framework: Array */ {
+	rv := objc.Send[Array](r_.ID, objc.Sel("arrayByShufflingObjectsInArray:"), array)
 	return rv
 }
 

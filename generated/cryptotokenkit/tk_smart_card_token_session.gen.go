@@ -29,7 +29,9 @@ type _TKSmartCardTokenSessionClass struct {
 // An interface definition for the [TKSmartCardTokenSession] class.
 type ITKSmartCardTokenSession interface {
 	ITKTokenSession
+	// properties:
 	SmartCard() ITKSmartCard
+	// methods:
 }
 
 // A token session that is based on a smart card token.

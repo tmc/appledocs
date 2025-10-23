@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKQuantitySample] class.
@@ -30,10 +31,10 @@ type _HKQuantitySampleClass struct {
 type IHKQuantitySample interface {
 	IHKSample
 	// properties:
-	HKPredicateKeyPathCount() string
-	HKPredicateKeyPathQuantity() string
-	Count() int
-	SetCount(value int)
+	HKPredicateKeyPathCount() string /* primitive/slice/pointer. */
+	HKPredicateKeyPathQuantity() string /* primitive/slice/pointer. */
+	Count() int /* primitive/slice/pointer. */
+	SetCount(value int /* primitive/slice/pointer. */)
 	Quantity() IHKQuantity
 	SetQuantity(value IHKQuantity)
 	QuantityType() IHKQuantityType
@@ -96,11 +97,32 @@ func NewHKQuantitySample() HKQuantitySample {
 
 
 
+// Returns a sample containing a numeric measurement with the provided metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
+func NewHKQuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */) HKQuantitySample {
+	rv := objc.Send[HKQuantitySample](objc.ID(getHKQuantitySampleClass().class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
+	return rv
+}
+
+
+
+// Returns a sample containing a numeric measurement with the provided metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantitySample/init(type:quantity:start:end:metadata:)
+func (hc _HKQuantitySampleClass) QuantitySampleWithTypeQuantityStartDateEndDateMetadata(quantityType IHKQuantityType, quantity IHKQuantity, startDate foundation.objc.IObject /* cross-framework NSDate */, endDate foundation.objc.IObject /* cross-framework NSDate */, metadata foundation.IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantitySampleWithType:quantity:startDate:endDate:metadata:"), quantityType, quantity, startDate, endDate, metadata)
+	return rv
+}
+
+
 // A key path for the sample’s count.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount
-func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
+func (h_ HKQuantitySample) HKPredicateKeyPathCount() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCount"))
 	return rv
 }
@@ -110,7 +132,7 @@ func (h_ HKQuantitySample) HKPredicateKeyPathCount() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity
-func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
+func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathQuantity"))
 	return rv
 }
@@ -120,7 +142,7 @@ func (h_ HKQuantitySample) HKPredicateKeyPathQuantity() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitysample/count
-func (h_ HKQuantitySample) Count() int {
+func (h_ HKQuantitySample) Count() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("count"))
 	return rv
 }
@@ -130,7 +152,7 @@ func (h_ HKQuantitySample) Count() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantitysample/count
-func (h_ HKQuantitySample) SetCount(value int) {
+func (h_ HKQuantitySample) SetCount(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -171,6 +193,5 @@ func (h_ HKQuantitySample) QuantityType() IHKQuantityType {
 func (h_ HKQuantitySample) SetQuantityType(value IHKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
-
 
 

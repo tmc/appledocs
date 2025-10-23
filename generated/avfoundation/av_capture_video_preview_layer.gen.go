@@ -33,12 +33,12 @@ type ICaptureVideoPreviewLayer interface {
 	// properties:
 	Connection() IAVCaptureConnection
 	SetConnection(value IAVCaptureConnection)
-	IsDeferredStartEnabled() bool /* primitive/slice/pointer */
-	SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer */)
-	IsDeferredStartSupported() bool /* primitive/slice/pointer */
-	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer */)
-	IsPreviewing() bool /* primitive/slice/pointer */
-	SetIsPreviewing(value bool /* primitive/slice/pointer */)
+	IsDeferredStartEnabled() bool /* primitive/slice/pointer. */
+	SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */)
+	IsDeferredStartSupported() bool /* primitive/slice/pointer. */
+	SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */)
+	IsPreviewing() bool /* primitive/slice/pointer. */
+	SetIsPreviewing(value bool /* primitive/slice/pointer. */)
 	Session() IAVCaptureSession
 	SetSession(value IAVCaptureSession)
 	VideoGravity() LayerVideoGravity /* not a class type */
@@ -124,7 +124,7 @@ func (c_ CaptureVideoPreviewLayer) SetConnection(value IAVCaptureConnection) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartEnabled"))
 	return rv
 }
@@ -134,7 +134,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartEnabled() bool /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartenabled
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartEnabled:"), value)
 }
 
@@ -143,7 +143,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartEnabled(value bool /* primi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDeferredStartSupported"))
 	return rv
 }
@@ -153,7 +153,7 @@ func (c_ CaptureVideoPreviewLayer) IsDeferredStartSupported() bool /* primitive/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/isdeferredstartsupported
-func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDeferredStartSupported:"), value)
 }
 
@@ -162,7 +162,7 @@ func (c_ CaptureVideoPreviewLayer) SetIsDeferredStartSupported(value bool /* pri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointer */ {
+func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPreviewing"))
 	return rv
 }
@@ -172,7 +172,7 @@ func (c_ CaptureVideoPreviewLayer) IsPreviewing() bool /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/ispreviewing
-func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool /* primitive/slice/pointer */) {
+func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPreviewing:"), value)
 }
 

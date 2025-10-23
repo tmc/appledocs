@@ -30,14 +30,16 @@ type _QRCodeFeatureClass struct {
 // An interface definition for the [QRCodeFeature] class.
 type IQRCodeFeature interface {
 	IFeature
+	// properties:
 	BottomLeft() coregraphics.CGPoint
 	BottomRight() coregraphics.CGPoint
 	Bounds() coregraphics.CGRect
-	MessageString() string
+	MessageString() string /* primitive/slice/pointer. */
 	SymbolDescriptor() ICIQRCodeDescriptor
 	TopLeft() coregraphics.CGPoint
 	TopRight() coregraphics.CGPoint
-	CIDetectorTypeQRCode() string
+	CIDetectorTypeQRCode() string /* primitive/slice/pointer. */
+	// methods:
 }
 
 // Information about a Quick Response code detected in a still or video image.
@@ -129,7 +131,7 @@ func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
-func (q_ QRCodeFeature) MessageString() string {
+func (q_ QRCodeFeature) MessageString() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
 	return rv
 }
@@ -169,7 +171,7 @@ func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
-func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
+func (q_ QRCodeFeature) CIDetectorTypeQRCode() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv
 }

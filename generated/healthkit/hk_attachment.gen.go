@@ -34,16 +34,16 @@ type IHKAttachment interface {
 	// properties:
 	ContentType() objectivec.IObject
 	SetContentType(value objectivec.IObject)
-	CreationDate() foundation.Date
-	SetCreationDate(value foundation.Date)
-	Identifier() foundation.UUID
-	SetIdentifier(value foundation.UUID)
-	Metadata() string
-	SetMetadata(value string)
-	Name() string
-	SetName(value string)
-	Size() int
-	SetSize(value int)
+	CreationDate() foundation.objc.IObject /* cross-framework: Date */
+	SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */)
+	Identifier() foundation.objc.IObject /* cross-framework: UUID */
+	SetIdentifier(value foundation.objc.IObject /* cross-framework: UUID */)
+	Metadata() string /* primitive/slice/pointer. */
+	SetMetadata(value string /* primitive/slice/pointer. */)
+	Name() string /* primitive/slice/pointer. */
+	SetName(value string /* primitive/slice/pointer. */)
+	Size() int /* primitive/slice/pointer. */
+	SetSize(value int /* primitive/slice/pointer. */)
 	// methods:
 }
 
@@ -123,7 +123,7 @@ func (h_ HKAttachment) SetContentType(value objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/creationdate
-func (h_ HKAttachment) CreationDate() foundation.Date {
+func (h_ HKAttachment) CreationDate() foundation.objc.IObject /* cross-framework: Date */ {
 	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("creationDate"))
 	return rv
 }
@@ -133,7 +133,7 @@ func (h_ HKAttachment) CreationDate() foundation.Date {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/creationdate
-func (h_ HKAttachment) SetCreationDate(value foundation.Date) {
+func (h_ HKAttachment) SetCreationDate(value foundation.objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -142,7 +142,7 @@ func (h_ HKAttachment) SetCreationDate(value foundation.Date) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
-func (h_ HKAttachment) Identifier() foundation.UUID {
+func (h_ HKAttachment) Identifier() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("identifier"))
 	return rv
 }
@@ -152,7 +152,7 @@ func (h_ HKAttachment) Identifier() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
-func (h_ HKAttachment) SetIdentifier(value foundation.UUID) {
+func (h_ HKAttachment) SetIdentifier(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -161,7 +161,7 @@ func (h_ HKAttachment) SetIdentifier(value foundation.UUID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) Metadata() string {
+func (h_ HKAttachment) Metadata() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -171,7 +171,7 @@ func (h_ HKAttachment) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) SetMetadata(value string) {
+func (h_ HKAttachment) SetMetadata(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
@@ -180,7 +180,7 @@ func (h_ HKAttachment) SetMetadata(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) Name() string {
+func (h_ HKAttachment) Name() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
@@ -190,7 +190,7 @@ func (h_ HKAttachment) Name() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) SetName(value string) {
+func (h_ HKAttachment) SetName(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
@@ -199,7 +199,7 @@ func (h_ HKAttachment) SetName(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
-func (h_ HKAttachment) Size() int {
+func (h_ HKAttachment) Size() int /* primitive/slice/pointer. */ {
 	rv := objc.Send[int](h_.ID, objc.Sel("size"))
 	return rv
 }
@@ -209,7 +209,7 @@ func (h_ HKAttachment) Size() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/size
-func (h_ HKAttachment) SetSize(value int) {
+func (h_ HKAttachment) SetSize(value int /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSize:"), value)
 }
 

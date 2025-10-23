@@ -30,6 +30,8 @@ type _PersistentHistoryTokenClass struct {
 // An interface definition for the [PersistentHistoryToken] class.
 type IPersistentHistoryToken interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A bookmark for keeping track the most recent history that you’ve processed.

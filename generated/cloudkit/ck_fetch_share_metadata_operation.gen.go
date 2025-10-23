@@ -30,10 +30,11 @@ type _CKFetchShareMetadataOperationClass struct {
 // An interface definition for the [CKFetchShareMetadataOperation] class.
 type ICKFetchShareMetadataOperation interface {
 	ICKOperation
+	// properties:
 	PerShareMetadataBlock() unsafe.Pointer
 	SetPerShareMetadataBlock(value unsafe.Pointer)
-	ShouldFetchRootRecord() bool
-	SetShouldFetchRootRecord(value bool)
+	ShouldFetchRootRecord() bool /* primitive/slice/pointer. */
+	SetShouldFetchRootRecord(value bool /* primitive/slice/pointer. */)
 	FetchShareMetadataCompletionBlock() unsafe.Pointer
 	SetFetchShareMetadataCompletionBlock(value unsafe.Pointer)
 	FetchShareMetadataResultBlock() unsafe.Pointer
@@ -42,11 +43,12 @@ type ICKFetchShareMetadataOperation interface {
 	SetPerShareMetadataResultBlock(value unsafe.Pointer)
 	RootRecordDesiredKeys() unsafe.Pointer
 	SetRootRecordDesiredKeys(value unsafe.Pointer)
-	ShareURLs() foundation.URL
-	SetShareURLs(value foundation.URL)
-	CKPartialErrorsByItemIDKey() string
-	UserInfo() string
-	SetUserInfo(value string)
+	ShareURLs() foundation.objc.IObject /* cross-framework: URL */
+	SetShareURLs(value foundation.objc.IObject /* cross-framework: URL */)
+	CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */
+	UserInfo() string /* primitive/slice/pointer. */
+	SetUserInfo(value string /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // An operation that fetches metadata for one or more shares.
@@ -127,7 +129,7 @@ func (c_ CKFetchShareMetadataOperation) SetPerShareMetadataBlock(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareMetadataOperation/shouldFetchRootRecord
-func (c_ CKFetchShareMetadataOperation) ShouldFetchRootRecord() bool {
+func (c_ CKFetchShareMetadataOperation) ShouldFetchRootRecord() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldFetchRootRecord"))
 	return rv
 }
@@ -137,7 +139,7 @@ func (c_ CKFetchShareMetadataOperation) ShouldFetchRootRecord() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchShareMetadataOperation/shouldFetchRootRecord
-func (c_ CKFetchShareMetadataOperation) SetShouldFetchRootRecord(value bool) {
+func (c_ CKFetchShareMetadataOperation) SetShouldFetchRootRecord(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldFetchRootRecord:"), value)
 }
 
@@ -214,7 +216,7 @@ func (c_ CKFetchShareMetadataOperation) SetRootRecordDesiredKeys(value unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shareurls
-func (c_ CKFetchShareMetadataOperation) ShareURLs() foundation.URL {
+func (c_ CKFetchShareMetadataOperation) ShareURLs() foundation.objc.IObject /* cross-framework: URL */ {
 	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("shareURLs"))
 	return rv
 }
@@ -224,7 +226,7 @@ func (c_ CKFetchShareMetadataOperation) ShareURLs() foundation.URL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shareurls
-func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.URL) {
+func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), value)
 }
 
@@ -233,7 +235,7 @@ func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.URL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey
-func (c_ CKFetchShareMetadataOperation) CKPartialErrorsByItemIDKey() string {
+func (c_ CKFetchShareMetadataOperation) CKPartialErrorsByItemIDKey() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("CKPartialErrorsByItemIDKey"))
 	return rv
 }
@@ -243,7 +245,7 @@ func (c_ CKFetchShareMetadataOperation) CKPartialErrorsByItemIDKey() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKFetchShareMetadataOperation) UserInfo() string {
+func (c_ CKFetchShareMetadataOperation) UserInfo() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](c_.ID, objc.Sel("userInfo"))
 	return rv
 }
@@ -253,7 +255,7 @@ func (c_ CKFetchShareMetadataOperation) UserInfo() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (c_ CKFetchShareMetadataOperation) SetUserInfo(value string) {
+func (c_ CKFetchShareMetadataOperation) SetUserInfo(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserInfo:"), objc.String(value))
 }
 

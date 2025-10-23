@@ -30,6 +30,8 @@ type _TextContentManagerClass struct {
 // An interface definition for the [TextContentManager] class.
 type ITextContentManager interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // A parent class referenced by other AppKit classes.

@@ -29,9 +29,10 @@ type _AXMathExpressionFractionClass struct {
 // An interface definition for the [AXMathExpressionFraction] class.
 type IAXMathExpressionFraction interface {
 	IAXMathExpression
-	DenimonatorExpression() AXMathExpression
-	NumeratorExpression() AXMathExpression
-	SetNumeratorExpression(value IAXMathExpression)
+	// properties:
+	DenimonatorExpression() IAXMathExpression
+	NumeratorExpression() IAXMathExpression
+	// methods:
 }
 
 
@@ -83,26 +84,29 @@ func NewAXMathExpressionFraction() AXMathExpressionFraction {
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/init(numeratorExpression:denimonatorExpression:)
+func NewAXMathExpressionFractionWithNumeratorExpressionDenimonatorExpression(numeratorExpression IAXMathExpression, denimonatorExpression IAXMathExpression) AXMathExpressionFraction {
+	instance := getAXMathExpressionFractionClass().Alloc()
+	rv := objc.Send[AXMathExpressionFraction](instance.ID, objc.Sel("initWithNumeratorExpression:denimonatorExpression:"), numeratorExpression, denimonatorExpression)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/denimonatorExpression
-func (a_ AXMathExpressionFraction) DenimonatorExpression() AXMathExpression {
+func (a_ AXMathExpressionFraction) DenimonatorExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("denimonatorExpression"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
-func (a_ AXMathExpressionFraction) NumeratorExpression() AXMathExpression {
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/numeratorExpression
+func (a_ AXMathExpressionFraction) NumeratorExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("numeratorExpression"))
 	return rv
 }
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
-func (a_ AXMathExpressionFraction) SetNumeratorExpression(value IAXMathExpression) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNumeratorExpression:"), value)
-}
-
 
 

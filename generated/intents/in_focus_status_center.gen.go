@@ -33,8 +33,8 @@ type IINFocusStatusCenter interface {
 	// properties:
 	AuthorizationStatus() unsafe.Pointer
 	SetAuthorizationStatus(value unsafe.Pointer)
-	FocusStatus() INFocusStatus
-	SetFocusStatus(value INFocusStatus)
+	FocusStatus() INFocusStatus /* already interface */
+	SetFocusStatus(value INFocusStatus /* already interface */)
 	// methods:
 	RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer)
 }
@@ -122,7 +122,7 @@ func (i_ INFocusStatusCenter) SetAuthorizationStatus(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/focusstatus
-func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
+func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus /* already interface */ {
 	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
@@ -132,7 +132,7 @@ func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/infocusstatuscenter/focusstatus
-func (i_ INFocusStatusCenter) SetFocusStatus(value INFocusStatus) {
+func (i_ INFocusStatusCenter) SetFocusStatus(value INFocusStatus /* already interface */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
 

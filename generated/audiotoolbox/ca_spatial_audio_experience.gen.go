@@ -30,6 +30,8 @@ type _SpatialAudioExperienceClass struct {
 // An interface definition for the [SpatialAudioExperience] class.
 type ISpatialAudioExperience interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 }
 
 // Configure an audio stream for spatial computing.

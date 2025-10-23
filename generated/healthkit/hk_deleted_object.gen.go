@@ -32,10 +32,10 @@ type _HKDeletedObjectClass struct {
 type IHKDeletedObject interface {
 	objectivec.IObject
 	// properties:
-	Metadata() string
-	SetMetadata(value string)
-	Uuid() foundation.UUID
-	SetUuid(value foundation.UUID)
+	Metadata() string /* primitive/slice/pointer. */
+	SetMetadata(value string /* primitive/slice/pointer. */)
+	Uuid() foundation.objc.IObject /* cross-framework: UUID */
+	SetUuid(value foundation.objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewHKDeletedObject() HKDeletedObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
-func (h_ HKDeletedObject) Metadata() string {
+func (h_ HKDeletedObject) Metadata() string /* primitive/slice/pointer. */ {
 	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
@@ -106,7 +106,7 @@ func (h_ HKDeletedObject) Metadata() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/metadata
-func (h_ HKDeletedObject) SetMetadata(value string) {
+func (h_ HKDeletedObject) SetMetadata(value string /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
 }
 
@@ -115,7 +115,7 @@ func (h_ HKDeletedObject) SetMetadata(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
-func (h_ HKDeletedObject) Uuid() foundation.UUID {
+func (h_ HKDeletedObject) Uuid() foundation.objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("uuid"))
 	return rv
 }
@@ -125,7 +125,7 @@ func (h_ HKDeletedObject) Uuid() foundation.UUID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdeletedobject/uuid
-func (h_ HKDeletedObject) SetUuid(value foundation.UUID) {
+func (h_ HKDeletedObject) SetUuid(value foundation.objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setUuid:"), value)
 }
 

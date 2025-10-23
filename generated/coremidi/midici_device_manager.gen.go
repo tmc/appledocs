@@ -30,7 +30,9 @@ type _MIDICIDeviceManagerClass struct {
 // An interface definition for the [MIDICIDeviceManager] class.
 type IMIDICIDeviceManager interface {
 	objectivec.IObject
-	DiscoveredCIDevices() []MIDICIDevice
+	// properties:
+	DiscoveredCIDevices() []MIDICIDevice /* primitive/slice/pointer. */
+	// methods:
 }
 
 
@@ -88,7 +90,7 @@ func (mc _MIDICIDeviceManagerClass) SharedInstance() MIDICIDeviceManager {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDeviceManager/discoveredCIDevices
-func (m_ MIDICIDeviceManager) DiscoveredCIDevices() []MIDICIDevice {
+func (m_ MIDICIDeviceManager) DiscoveredCIDevices() []MIDICIDevice /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]MIDICIDevice](m_.ID, objc.Sel("discoveredCIDevices"))
 	return rv
 }

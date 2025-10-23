@@ -29,6 +29,8 @@ type _AutomaticSpatialAudioClass struct {
 // An interface definition for the [AutomaticSpatialAudio] class.
 type IAutomaticSpatialAudio interface {
 	ISpatialAudioExperience
+	// properties:
+	// methods:
 }
 
 // A spatial audio experience determined by the system.

@@ -30,11 +30,13 @@ type _TextRangeClass struct {
 // An interface definition for the [TextRange] class.
 type ITextRange interface {
 	objectivec.IObject
+	// properties:
 	Location() objc.ID
-	EndLocation() unsafe.Pointer
-	SetEndLocation(value unsafe.Pointer)
-	IsEmpty() bool
-	SetIsEmpty(value bool)
+	EndLocation() TextLocation /* not a class type */
+	SetEndLocation(value TextLocation /* not a class type */)
+	IsEmpty() bool /* primitive/slice/pointer. */
+	SetIsEmpty(value bool /* primitive/slice/pointer. */)
+	// methods:
 }
 
 // A class that represents a contiguous range between two locations inside document contents.
@@ -104,8 +106,8 @@ func (t_ TextRange) Location() objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/endlocation
-func (t_ TextRange) EndLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("endLocation"))
+func (t_ TextRange) EndLocation() TextLocation /* not a class type */ {
+	rv := objc.Send[TextLocation](t_.ID, objc.Sel("endLocation"))
 	return rv
 }
 
@@ -114,7 +116,7 @@ func (t_ TextRange) EndLocation() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/endlocation
-func (t_ TextRange) SetEndLocation(value unsafe.Pointer) {
+func (t_ TextRange) SetEndLocation(value TextLocation /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEndLocation:"), value)
 }
 
@@ -123,7 +125,7 @@ func (t_ TextRange) SetEndLocation(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
-func (t_ TextRange) IsEmpty() bool {
+func (t_ TextRange) IsEmpty() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEmpty"))
 	return rv
 }
@@ -133,7 +135,7 @@ func (t_ TextRange) IsEmpty() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextrange/isempty
-func (t_ TextRange) SetIsEmpty(value bool) {
+func (t_ TextRange) SetIsEmpty(value bool /* primitive/slice/pointer. */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEmpty:"), value)
 }
 

@@ -30,17 +30,19 @@ type _UpdateClass struct {
 // An interface definition for the [Update] class.
 type IUpdate interface {
 	objectivec.IObject
-	AccuracyLimited() bool
-	AuthorizationDenied() bool
-	AuthorizationDeniedGlobally() bool
-	AuthorizationRequestInProgress() bool
-	AuthorizationRestricted() bool
-	InsufficientlyInUse() bool
-	IsStationary() bool
+	// properties:
+	AccuracyLimited() bool /* primitive/slice/pointer. */
+	AuthorizationDenied() bool /* primitive/slice/pointer. */
+	AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */
+	AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */
+	AuthorizationRestricted() bool /* primitive/slice/pointer. */
+	InsufficientlyInUse() bool /* primitive/slice/pointer. */
+	IsStationary() bool /* primitive/slice/pointer. */
 	Location() ICLLocation
-	LocationUnavailable() bool
-	ServiceSessionRequired() bool
-	Stationary() bool
+	LocationUnavailable() bool /* primitive/slice/pointer. */
+	ServiceSessionRequired() bool /* primitive/slice/pointer. */
+	Stationary() bool /* primitive/slice/pointer. */
+	// methods:
 }
 
 // An object that represents a location update.
@@ -96,7 +98,7 @@ func NewUpdate() Update {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/accuracyLimited
-func (u_ Update) AccuracyLimited() bool {
+func (u_ Update) AccuracyLimited() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("accuracyLimited"))
 	return rv
 }
@@ -104,7 +106,7 @@ func (u_ Update) AccuracyLimited() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDenied
-func (u_ Update) AuthorizationDenied() bool {
+func (u_ Update) AuthorizationDenied() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDenied"))
 	return rv
 }
@@ -112,7 +114,7 @@ func (u_ Update) AuthorizationDenied() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationDeniedGlobally
-func (u_ Update) AuthorizationDeniedGlobally() bool {
+func (u_ Update) AuthorizationDeniedGlobally() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationDeniedGlobally"))
 	return rv
 }
@@ -120,7 +122,7 @@ func (u_ Update) AuthorizationDeniedGlobally() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRequestInProgress
-func (u_ Update) AuthorizationRequestInProgress() bool {
+func (u_ Update) AuthorizationRequestInProgress() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRequestInProgress"))
 	return rv
 }
@@ -128,7 +130,7 @@ func (u_ Update) AuthorizationRequestInProgress() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/authorizationRestricted
-func (u_ Update) AuthorizationRestricted() bool {
+func (u_ Update) AuthorizationRestricted() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("authorizationRestricted"))
 	return rv
 }
@@ -136,7 +138,7 @@ func (u_ Update) AuthorizationRestricted() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/insufficientlyInUse
-func (u_ Update) InsufficientlyInUse() bool {
+func (u_ Update) InsufficientlyInUse() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("insufficientlyInUse"))
 	return rv
 }
@@ -146,7 +148,7 @@ func (u_ Update) InsufficientlyInUse() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/isStationary
-func (u_ Update) IsStationary() bool {
+func (u_ Update) IsStationary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("isStationary"))
 	return rv
 }
@@ -164,7 +166,7 @@ func (u_ Update) Location() ICLLocation {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/locationUnavailable
-func (u_ Update) LocationUnavailable() bool {
+func (u_ Update) LocationUnavailable() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("locationUnavailable"))
 	return rv
 }
@@ -172,7 +174,7 @@ func (u_ Update) LocationUnavailable() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/serviceSessionRequired
-func (u_ Update) ServiceSessionRequired() bool {
+func (u_ Update) ServiceSessionRequired() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }
@@ -180,7 +182,7 @@ func (u_ Update) ServiceSessionRequired() bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/stationary
-func (u_ Update) Stationary() bool {
+func (u_ Update) Stationary() bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](u_.ID, objc.Sel("stationary"))
 	return rv
 }
