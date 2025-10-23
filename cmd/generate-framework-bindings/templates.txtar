@@ -118,12 +118,10 @@ func init() {
 package {{.PackageName}}
 
 {{- $undefinedTypes := .GetUndefinedTypesForTemplate}}
-{{- $hasImports := or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $undefinedTypes) 0)}}
-{{if $hasImports -}}
+{{- $needsUnsafe := or .WithRefMethods (gt (len .RefTypes) 0)}}
+{{if $needsUnsafe -}}
 import (
-{{- if or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $undefinedTypes) 0)}}
 	"unsafe"
-{{- end}}
 )
 
 {{end -}}
