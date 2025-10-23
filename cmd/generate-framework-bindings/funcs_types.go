@@ -10,6 +10,15 @@ import (
 // mapCTypeToGoWithFramework wraps occ2go.MapCTypeToGo and applies framework-specific type mappings.
 // This ensures C types like CGAffineTransform are properly qualified with their framework package.
 func mapCTypeToGoWithFramework(cType, framework string) string {
+	// Check if this C type is a typedef in the current framework BEFORE mapping
+	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.)
+	strippedCType := stripObjCPrefix(cType)
+	if currentFrameworkTypedefs[strippedCType] {
+		// This is a typedef in the current framework - return the stripped name
+		// E.g., CFTypeRef -> TypeRef, CFAllocatorRef -> AllocatorRef
+		return strippedCType
+	}
+
 	// First apply occ2go's basic C type mapping
 	goType := occ2go.MapCTypeToGo(cType, framework)
 
@@ -232,12 +241,10 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		"objcType", objcType,
 		"framework", framework)
 
-	// Handle Objective-C blocks (e.g., void (^)(NSModalResponse))
-	// Blocks are closures that cannot be easily represented in Go, so map to unsafe.Pointer
-	// This comes after type registry check so explicitly mapped blocks can use proper Go types
-	if occ2go.IsBlockType(objcType) {
-		return "unsafe.Pointer"
-	}
+	// NOTE: Removed hardcoded block-to-unsafe.Pointer mapping here.
+	// Block type mapping is now handled by occ2go.MapCTypeToGo which converts
+	// blocks to Go function types (e.g., void (^)(void) -> func()).
+	// This happens in the fallback call to occ2go.MapCTypeToGo below.
 
 	// Handle pointers for types not in the registry
 	isPointer := occ2go.IsPointerType(objcType)
@@ -290,9 +297,20 @@ func mapObjCTypeToGo(objcType, framework string) string {
 					"strippedType", strippedType)
 				return strippedType
 			}
-			Debug.TypeMap("not in currentFrameworkEnums", objcType, strippedType,
+
+			// Check if this is a struct type - structs keep their full names (e.g., CGSize, CGPoint)
+			if currentFrameworkStructs[strippedType] {
+				// This is a struct - return the ORIGINAL type to preserve CG/NS prefix
+				Debug.TypeMap("is struct, returning original", objcType, objcType,
+					"objcType", objcType,
+					"strippedType", strippedType)
+				return objcType
+			}
+
+			Debug.TypeMap("not in currentFrameworkEnums or Structs", objcType, strippedType,
 				"strippedType", strippedType,
-				"enumsSize", len(currentFrameworkEnums))
+				"enumsSize", len(currentFrameworkEnums),
+				"structsSize", len(currentFrameworkStructs))
 
 			// Successfully stripped a prefix - check if this is a known type
 			// in the current framework or type registry
@@ -348,8 +366,15 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		// If occ2go.MapCTypeToGo returned a type with NS/CG/CA prefix, strip it
 		// This handles enums that exist but weren't extracted (see bead appledocs-473)
 		// Example: NSEnergyFormatterUnit -> EnergyFormatterUnit
+		// EXCEPTION: Don't strip prefix for types defined in current framework (classes, enums, typedefs, structs)
 		strippedGoType := stripObjCPrefix(goType)
-		if strippedGoType != goType && goType != "unsafe.Pointer" {
+		// Check if stripped type exists in current framework before stripping
+		inCurrentFramework := currentFrameworkClasses[strippedGoType] ||
+			currentFrameworkEnums[strippedGoType] ||
+			currentFrameworkTypedefs[strippedGoType] ||
+			currentFrameworkStructs[strippedGoType]
+
+		if strippedGoType != goType && goType != "unsafe.Pointer" && !inCurrentFramework {
 			Debug.TypeMap("stripping prefix from fallback", goType, strippedGoType,
 				"from", goType,
 				"to", strippedGoType)
@@ -359,7 +384,8 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				"goType", goType,
 				"strippedGoType", strippedGoType,
 				"equal", strippedGoType == goType,
-				"isUnsafe", goType == "unsafe.Pointer")
+				"isUnsafe", goType == "unsafe.Pointer",
+				"inCurrentFramework", inCurrentFramework)
 		}
 	}
 
@@ -497,6 +523,15 @@ func resolveType(framework, typeName string) string {
 		return ""
 	}
 
+	// Check for function types (e.g., "func()", "func(int) string")
+	// Function types are Go primitives and should never be qualified
+	if strings.HasPrefix(typeName, "func(") {
+		Debug.TypeMap("returning function type unqualified", typeName, framework,
+			"typeName", typeName,
+			"framework", framework)
+		return typeName
+	}
+
 	// Never qualify Go primitives - they should always be unqualified
 	goPrimitives := map[string]bool{
 		"string":         true,
@@ -544,9 +579,9 @@ func resolveType(framework, typeName string) string {
 
 	// Check if the type exists in current framework FIRST before adding qualifications
 	// This prevents self-imports (e.g., coregraphics.CGAffineTransform in CoreGraphics)
-	// Check classes, enums, and typedefs - all stored with stripped ObjC prefixes
+	// Check classes, enums, typedefs, and structs - all stored with stripped ObjC prefixes
 	strippedTypeName := stripObjCPrefix(typeName)
-	if currentFrameworkClasses[strippedTypeName] || currentFrameworkEnums[strippedTypeName] || currentFrameworkTypedefs[strippedTypeName] {
+	if currentFrameworkClasses[strippedTypeName] || currentFrameworkEnums[strippedTypeName] || currentFrameworkTypedefs[strippedTypeName] || currentFrameworkStructs[strippedTypeName] {
 		// DEBUG: Uncomment to debug same-framework type resolution
 		// fmt.Fprintf(os.Stderr, "DEBUG resolveType: Found '%s' (stripped: '%s') in current framework '%s', returning as-is\n", typeName, strippedTypeName, framework)
 		// It's in the current framework, return as-is

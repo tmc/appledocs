@@ -129,6 +129,15 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			return strippedType, true // Return STRIPPED name to match generated enum types
 		}
 
+		// Check if it's a struct in the current framework
+		// Structs keep their full names with prefix (e.g., CGSize not Size)
+		if currentFrameworkStructs[strippedType] {
+			Debug.TypeMap("found in current framework structs", objcType, objcType,
+				"framework", framework,
+				"returning", "ORIGINAL name with prefix")
+			return objcType, true // Return ORIGINAL name to preserve CG/NS prefix for structs
+		}
+
 		// HEURISTIC: Types with NS/CG/CA prefix that are NOT pointer types are likely enums
 		// Classes are always used as pointers (*), but enums are value types
 		// Only apply this if objcType does NOT contain " *" (not a pointer type)
@@ -213,6 +222,11 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 // isGoPrimitive checks if a type name is a Go built-in primitive type.
 // These types should NEVER be qualified with a package name.
 func isGoPrimitive(typeName string) bool {
+	// Check for function types (e.g., "func()", "func(int) string")
+	if strings.HasPrefix(typeName, "func(") {
+		return true
+	}
+
 	goPrimitives := map[string]bool{
 		"string":         true,
 		"int":            true,

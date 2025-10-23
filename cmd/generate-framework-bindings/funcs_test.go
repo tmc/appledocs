@@ -447,3 +447,54 @@ func TestIsPropertySetter(t *testing.T) {
 		})
 	}
 }
+
+// TestMapObjCTypeToGo_BlockTypes tests mapping of Objective-C block types to Go function types.
+// This covers appledocs-506: Map Objective-C blocks to Go function types
+func TestMapObjCTypeToGo_BlockTypes(t *testing.T) {
+	tests := []struct {
+		name      string
+		objcType  string
+		framework string
+		expected  string
+	}{
+		{
+			name:      "simple void block",
+			objcType:  "void (^)(void)",
+			framework: "Foundation",
+			expected:  "func()",
+		},
+		{
+			name:      "array of void blocks (NSBlockOperation.executionBlocks)",
+			objcType:  "NSArray<void (^)(void)> *",
+			framework: "Foundation",
+			expected:  "[]func()",
+		},
+		{
+			name:      "block with error parameter",
+			objcType:  "void (^)(NSError *)",
+			framework: "Foundation",
+			expected:  "func(unsafe.Pointer)", // Note: NSError * maps to unsafe.Pointer, not objc.ID
+		},
+		{
+			name:      "block with bool parameter",
+			objcType:  "void (^)(BOOL)",
+			framework: "Foundation",
+			expected:  "func(bool)", // Note: parameter names are not included in type signatures
+		},
+		{
+			name:      "block with return value",
+			objcType:  "BOOL (^)(id, NSError *)",
+			framework: "Foundation",
+			expected:  "func(unsafe.Pointer, unsafe.Pointer) bool", // Note: parameters map to unsafe.Pointer
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := mapObjCTypeToGo(tt.objcType, tt.framework)
+			if result != tt.expected {
+				t.Errorf("mapObjCTypeToGo(%q, %q) = %q, want %q", tt.objcType, tt.framework, result, tt.expected)
+			}
+		})
+	}
+}

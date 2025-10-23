@@ -46,7 +46,7 @@ var (
 	_NSRecordAllocationEvent func(int, unsafe.Pointer)
 	_NSRectFromString func(unsafe.Pointer) Rect
 	_NSReturnAddress func(uint64) unsafe.Pointer
-	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) unsafe.Pointer
+	_NSSearchPathForDirectoriesInDomains func(unsafe.Pointer, unsafe.Pointer, bool) []unsafe.Pointer
 	_NSSetUncaughtExceptionHandler func()
 	_NSSizeFromString func(unsafe.Pointer) Size
 	_NSTemporaryDirectory func() unsafe.Pointer
@@ -472,7 +472,7 @@ func NSReturnAddress(frame uint64) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
-func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) unsafe.Pointer {
+func NSSearchPathForDirectoriesInDomains(directory unsafe.Pointer, domainMask unsafe.Pointer, expandTilde bool) []unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
 }
 

@@ -19,6 +19,10 @@ var currentFrameworkEnums = make(map[string]bool)
 // This is used to detect cross-framework type references
 var currentFrameworkTypedefs = make(map[string]bool)
 
+// currentFrameworkStructs holds the set of struct names (after prefix stripping) defined in the current framework
+// This is used to detect cross-framework type references
+var currentFrameworkStructs = make(map[string]bool)
+
 // crossFrameworkTypeRegistry maps type names to their framework package names
 // This allows proper type resolution across frameworks instead of falling back to unsafe.Pointer
 // Format: map[typeName]frameworkPackage (e.g., "Window" -> "appkit", "String" -> "foundation")

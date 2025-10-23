@@ -30,7 +30,7 @@ type _BlockOperationClass struct {
 type IBlockOperation interface {
 	IOperation
 	// properties:
-	ExecutionBlocks() []void (^)(void) /* primitive/slice/pointer. */
+	ExecutionBlocks() []func() /* primitive/slice/pointer. */
 	// methods:
 	AddExecutionBlock(block unsafe.Pointer)
 }
@@ -124,8 +124,8 @@ func (b_ BlockOperation) AddExecutionBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/executionBlocks
-func (b_ BlockOperation) ExecutionBlocks() []void (^)(void) /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]void (^)(void)](b_.ID, objc.Sel("executionBlocks"))
+func (b_ BlockOperation) ExecutionBlocks() []func() /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
 	return rv
 }
 

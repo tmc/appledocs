@@ -56,6 +56,9 @@ func main() {
 	cpuProfile := flag.String("cpuprofile", "", "Write CPU profile to file")
 	memProfile := flag.String("memprofile", "", "Write memory profile to file")
 
+	// Cache control flags
+	skipCache := flag.Bool("skip-cache", false, "Skip loading from cache and force fresh parsing")
+
 	flag.Parse()
 
 	// Start CPU profiling if requested
@@ -145,7 +148,7 @@ func main() {
 
 	// Generate bindings for each matching framework
 	for _, fw := range frameworks {
-		if err := generateFramework(fw, *inputDir, *outputDir, *filterRegexp, *txtarOutput, *variant, *withRefMethods, *generateTests, *generateExamples); err != nil {
+		if err := generateFramework(fw, *inputDir, *outputDir, *filterRegexp, *txtarOutput, *variant, *withRefMethods, *generateTests, *generateExamples, *skipCache); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating %s: %v\n", fw, err)
 			os.Exit(1)
 		}
@@ -166,7 +169,7 @@ func main() {
 	}
 }
 
-func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples bool) error {
+func generateFramework(framework, inputDir, outputDir, filterRegexp string, txtarOutput bool, variant string, withRefMethods, generateTests, generateExamples, skipCache bool) error {
 	startTime := time.Now()
 	if verbose {
 		fmt.Fprintf(os.Stderr, "[%s] Starting generation\n", framework)
@@ -203,7 +206,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 	// Try to load from cache first
 	usedCache := false
-	if os.Getenv("NO_CACHE") != "1" {
+	if !skipCache && os.Getenv("NO_CACHE") != "1" {
 		if cache, err := loadCache(framework, inputDir, verbose); cache != nil && err == nil {
 			functions = cache.Functions
 			classes = cache.Classes
@@ -216,6 +219,45 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			if verbose {
 				fmt.Fprintf(os.Stderr, "[%s] Using cached parsed symbols (%d classes, %d methods total)\n",
 					framework, len(classes), countMethods(classes))
+			}
+
+			// Repopulate global type maps from cached data
+			// These maps are used during template generation for type resolution
+			currentFrameworkClasses = make(map[string]bool)
+			for _, class := range classes {
+				if class.Name != "" {
+					strippedName := stripObjCPrefix(class.Name)
+					currentFrameworkClasses[strippedName] = true
+				}
+			}
+
+			currentFrameworkEnums = make(map[string]bool)
+			for _, enum := range enums {
+				if enum.Name != "" {
+					strippedName := stripObjCPrefix(enum.Name)
+					currentFrameworkEnums[strippedName] = true
+				}
+			}
+
+			currentFrameworkTypedefs = make(map[string]bool)
+			for _, typedef := range typedefs {
+				if typedef.Name != "" {
+					strippedName := stripObjCPrefix(typedef.Name)
+					currentFrameworkTypedefs[strippedName] = true
+				}
+			}
+
+			currentFrameworkStructs = make(map[string]bool)
+			for _, strct := range structs {
+				if strct.Name != "" {
+					strippedName := stripObjCPrefix(strct.Name)
+					currentFrameworkStructs[strippedName] = true
+				}
+			}
+
+			if verbose {
+				fmt.Fprintf(os.Stderr, "[%s] Repopulated type maps from cache: %d classes, %d enums, %d typedefs, %d structs\n",
+					framework, len(currentFrameworkClasses), len(currentFrameworkEnums), len(currentFrameworkTypedefs), len(currentFrameworkStructs))
 			}
 		}
 	}
@@ -524,6 +566,19 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				currentFrameworkTypedefs[strippedName] = true
 				Debug.TypeMap("added typedef", typedef.Name, strippedName,
 					"typedef", typedef.Name,
+					"stripped", strippedName,
+					"framework", framework)
+			}
+		}
+
+		// Populate struct names for current framework type resolution
+		currentFrameworkStructs = make(map[string]bool)
+		for _, strct := range structs {
+			if strct.Name != "" {
+				strippedName := stripObjCPrefix(strct.Name)
+				currentFrameworkStructs[strippedName] = true
+				Debug.TypeMap("added struct", strct.Name, strippedName,
+					"struct", strct.Name,
 					"stripped", strippedName,
 					"framework", framework)
 			}
@@ -853,3 +908,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 // generateFiles generates all files to disk
 
 // Cache implementation for parsed symbols
+
+func init() {
+	// This will run but we can't easily see output from init
+}
