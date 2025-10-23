@@ -142,6 +142,26 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 				"returning", "ORIGINAL name with prefix")
 			return objcType, true // Return ORIGINAL name to preserve CG/NS prefix for structs
 		}
+		// IMPORTANT: Before applying heuristic, check if this type is explicitly registered in crossFrameworkTypeRegistry
+		// This handles geometry types (CGPoint, CGSize, CGRect) which are structs (not pointers) but should not be treated as enums
+		// See appledocs-514: CGPoint is defined in CoreFoundation, not CoreGraphics
+		if frameworkPkg, found := crossFrameworkTypeRegistry[strippedType]; found {
+			Debug.TypeMap("found in cross-framework registry (before heuristic)", objcType, strippedType,
+				"frameworkPkg", frameworkPkg,
+				"currentFramework", framework)
+			// Don't qualify if it's the same framework
+			if strings.ToLower(framework) == frameworkPkg {
+				return strippedType, true
+			}
+			// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry
+			if isGoPrimitive(strippedType) {
+				return strippedType, true
+			}
+			result := frameworkPkg + "." + strippedType
+			Debug.TypeMap("returning qualified type (before heuristic)", objcType, result,
+				"result", result)
+			return result, true
+		}
 
 		// HEURISTIC: Types with NS/CG/CA prefix that are NOT pointer types are likely enums
 		// Classes are always used as pointers (*), but enums are value types

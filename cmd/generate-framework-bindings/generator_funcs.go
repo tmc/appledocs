@@ -92,45 +92,53 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 		// WORKAROUND for bead appledocs-473: Strip NS/CG/CA prefix from types that look like
 		// undefined enums (not in our indexes but have the prefix pattern)
 		// This handles enums like NSEnergyFormatterUnit that exist but weren't extracted
-		stripped := stripObjCPrefix(goType)
-		isClass := gf.IsClassType(goType)
-		isEnum := gf.IsEnumType(goType)
-		isTypedef := gf.IsTypedefType(goType)
-		Debug.TypeMap("type classification check", goType, stripped,
-			"goType", goType,
-			"stripped", stripped,
-			"equal", stripped == goType,
-			"isClass", isClass,
-			"isEnum", isEnum,
-			"isTypedef", isTypedef)
-		// Check if the STRIPPED name is in the enum index but the FULL name is not
-		strippedIsEnum := gf.IsEnumType(stripped)
-		if isEnum != strippedIsEnum {
-			Debug.TypeMap("enum mismatch detected", goType, stripped,
-				"fullType", goType,
-				"fullIsEnum", isEnum,
-				"strippedType", stripped,
-				"strippedIsEnum", strippedIsEnum)
-		}
-		// The fix: if stripped name is an enum but full name also says it's an enum,
-		// it means the enum index has BOTH. We should use the stripped name.
-		if stripped != goType && !gf.IsClassType(goType) && !gf.IsTypedefType(goType) {
-			// Skip the isEnum check - just strip if it's not a class or typedef
-			Debug.TypeMap("formatMethodParams: stripping type", goType, stripped,
-				"originalType", goType,
-				"strippedType", stripped,
+		// IMPORTANT: Don't strip if the type is already qualified with a package (e.g., "corefoundation.Point")
+		// See appledocs-514: Cross-framework types must preserve their package qualification
+		if !strings.Contains(goType, ".") {
+			stripped := stripObjCPrefix(goType)
+			isClass := gf.IsClassType(goType)
+			isEnum := gf.IsEnumType(goType)
+			isTypedef := gf.IsTypedefType(goType)
+			Debug.TypeMap("type classification check", goType, stripped,
+				"goType", goType,
+				"stripped", stripped,
+				"equal", stripped == goType,
+				"isClass", isClass,
+				"isEnum", isEnum,
+				"isTypedef", isTypedef)
+			// Check if the STRIPPED name is in the enum index but the FULL name is not
+			strippedIsEnum := gf.IsEnumType(stripped)
+			if isEnum != strippedIsEnum {
+				Debug.TypeMap("enum mismatch detected", goType, stripped,
+					"fullType", goType,
+					"fullIsEnum", isEnum,
+					"strippedType", stripped,
+					"strippedIsEnum", strippedIsEnum)
+			}
+			// The fix: if stripped name is an enum but full name also says it's an enum,
+			// it means the enum index has BOTH. We should use the stripped name.
+			if stripped != goType && !gf.IsClassType(goType) && !gf.IsTypedefType(goType) {
+				// Skip the isEnum check - just strip if it's not a class or typedef
+				Debug.TypeMap("formatMethodParams: stripping type", goType, stripped,
+					"originalType", goType,
+					"strippedType", stripped,
+					"method", method.Name,
+					"param", p.Name,
+					"framework", gf.Framework)
+				goType = stripped
+			}
+		} else {
+			Debug.TypeMap("formatMethodParams: skipping strip for qualified type", goType, "",
+				"goType", goType,
+				"reason", "already qualified with package",
 				"method", method.Name,
-				"param", p.Name,
 				"framework", gf.Framework)
-			goType = stripped
 		}
 
 		parts[i] = fmt.Sprintf("%s %s", paramName, goType)
 	}
 	return strings.Join(parts, ", ")
 }
-
-// Type Resolution
 // ---------------
 
 // shouldSkipTypedef determines if a typedef should be skipped during generation.
