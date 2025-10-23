@@ -31,7 +31,12 @@ type _AttributedStringMarkdownSourcePositionClass struct {
 type IAttributedStringMarkdownSourcePosition interface {
 	objectivec.IObject
 	// properties:
+	EndColumn() int /* primitive/slice/pointer */
+	EndLine() int /* primitive/slice/pointer */
+	StartColumn() int /* primitive/slice/pointer */
+	StartLine() int /* primitive/slice/pointer */
 	// methods:
+	RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */
 }
 
 // The position of attributed string text in its original Markdown source string.
@@ -84,5 +89,67 @@ func NewAttributedStringMarkdownSourcePosition() AttributedStringMarkdownSourceP
 }
 
 
+
+// Creates a Markdown source position instance from its start and end line and column.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/initWithStartLine:startColumn:endLine:endColumn:
+func NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn(startLine int /* primitive/slice/pointer */, startColumn int /* primitive/slice/pointer */, endLine int /* primitive/slice/pointer */, endColumn int /* primitive/slice/pointer */) AttributedStringMarkdownSourcePosition {
+	instance := getAttributedStringMarkdownSourcePositionClass().Alloc()
+	rv := objc.Send[AttributedStringMarkdownSourcePosition](instance.ID, objc.Sel("initWithStartLine:startColumn:endLine:endColumn:"), startLine, startColumn, endLine, endColumn)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a range indicating the source portion within a Markdown string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/rangeInString:
+func (a_ AttributedStringMarkdownSourcePosition) RangeInString(string_ string /* primitive/slice/pointer */) Range /* foo */ {
+	rv := objc.Send[Range](a_.ID, objc.Sel("rangeInString:"), objc.String(string_))
+	return rv
+}
+
+
+// The column where the text ends in the Markdown source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endColumn
+func (a_ AttributedStringMarkdownSourcePosition) EndColumn() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](a_.ID, objc.Sel("endColumn"))
+	return rv
+}
+
+
+// The line where the text ends in the Markdown source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/endLine
+func (a_ AttributedStringMarkdownSourcePosition) EndLine() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](a_.ID, objc.Sel("endLine"))
+	return rv
+}
+
+
+// The column where the text begins in the Markdown source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startColumn
+func (a_ AttributedStringMarkdownSourcePosition) StartColumn() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](a_.ID, objc.Sel("startColumn"))
+	return rv
+}
+
+
+// The line where the text begins in the Markdown source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownSourcePosition/startLine
+func (a_ AttributedStringMarkdownSourcePosition) StartLine() int /* primitive/slice/pointer */ {
+	rv := objc.Send[int](a_.ID, objc.Sel("startLine"))
+	return rv
+}
 
 

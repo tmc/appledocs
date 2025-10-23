@@ -50,7 +50,7 @@ type IScanner interface {
 	ScanHexDouble(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanHexFloat(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
-	ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */
+	ScanInteger(result NSInteger /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */
 	ScanLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
 	ScanUnsignedLongLong(result unsafe.Pointer) bool /* primitive/slice/pointer */
 }
@@ -121,6 +121,16 @@ func NewScannerWithString(string_ string /* primitive/slice/pointer */) Scanner 
 
 
 
+// Returns an object that scans a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScanner/scannerWithString:
+func (sc _ScannerClass) ScannerWithString(string_ string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("scannerWithString:"), objc.String(string_))
+	return rv
+}
+
+
 // Returns an object that scans a given string according to the user’s default locale.
 //
 // [Full Topic]
@@ -165,7 +175,7 @@ func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt(_:)
-func (s_ Scanner) ScanInteger(result Integer /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */ {
+func (s_ Scanner) ScanInteger(result NSInteger /* NSInteger/NSUInteger typedef */) bool /* primitive/slice/pointer */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
 	return rv
 }

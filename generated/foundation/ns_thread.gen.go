@@ -51,6 +51,7 @@ type IThread interface {
 	ThreadPriority() float64 /* primitive/slice/pointer */
 	SetThreadPriority(value float64 /* primitive/slice/pointer */)
 	// methods:
+	Cancel()
 }
 
 // A thread of execution.
@@ -104,6 +105,15 @@ func NewThread() Thread {
 	return getThreadClass().New()
 }
 
+
+
+// Changes the cancelled state of the receiver to indicate that it should exit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/cancel()
+func (t_ Thread) Cancel() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("cancel"))
+}
 
 
 // A key with a corresponding value in the thread dictionary.

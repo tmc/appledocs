@@ -96,7 +96,7 @@ type IURL interface {
 	SetTemporaryResourceValueForKey(value objectivec.IObject, key URLResourceKey /* foo */)
 	StartAccessingSecurityScopedResource() bool /* primitive/slice/pointer */
 	StopAccessingSecurityScopedResource()
-	WriteToPasteboard(pasteBoard Pasteboard /* foo */)
+	WriteToPasteboard(pasteBoard objectivec.IObject)
 }
 
 // An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
@@ -244,7 +244,7 @@ func NewURLFileURLWithPathRelativeToURL(path string /* primitive/slice/pointer *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func NewURLFromPasteboard(pasteBoard Pasteboard /* foo */) URL {
+func NewURLFromPasteboard(pasteBoard objectivec.IObject) URL {
 	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
@@ -435,7 +435,7 @@ func (uc _URLClass) FileURLWithPathComponents(components []string /* primitive/s
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fromPasteboard:)
-func (uc _URLClass) URLFromPasteboard(pasteBoard Pasteboard /* foo */) IURL {
+func (uc _URLClass) URLFromPasteboard(pasteBoard objectivec.IObject) IURL {
 	rv := objc.Send[URL](objc.ID(uc.class), objc.Sel("URLFromPasteboard:"), pasteBoard)
 	return rv
 }
@@ -691,7 +691,7 @@ func (u_ URL) StopAccessingSecurityScopedResource() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/write(to:)
-func (u_ URL) WriteToPasteboard(pasteBoard Pasteboard /* foo */) {
+func (u_ URL) WriteToPasteboard(pasteBoard objectivec.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeToPasteboard:"), pasteBoard)
 }
 

@@ -31,8 +31,8 @@ type _AffineTransformClass struct {
 type IAffineTransform interface {
 	objectivec.IObject
 	// properties:
-	TransformStruct() AffineTransformStruct /* foo */
-	SetTransformStruct(value AffineTransformStruct /* foo */)
+	TransformStruct() NSAffineTransformStruct /* foo */
+	SetTransformStruct(value NSAffineTransformStruct /* foo */)
 	// methods:
 	AppendTransform(transform IAffineTransform)
 	Concat()
@@ -45,7 +45,6 @@ type IAffineTransform interface {
 	Set()
 	TransformPoint(aPoint Point /* foo */) Point /* foo */
 	TransformSize(aSize Size /* foo */) Size /* foo */
-	TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */
 	TranslateXByYBy(deltaX float64 /* primitive/slice/pointer */, deltaY float64 /* primitive/slice/pointer */)
 }
 
@@ -226,16 +225,6 @@ func (a_ AffineTransform) TransformSize(aSize Size /* foo */) Size /* foo */ {
 }
 
 
-// Creates and returns a new Bézier path object with each point in the given path transformed by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transform(_:)-6z1xo
-func (a_ AffineTransform) TransformBezierPath(path BezierPath /* foo */) BezierPath /* foo */ {
-	rv := objc.Send[BezierPath](a_.ID, objc.Sel("transformBezierPath:"), path)
-	return rv
-}
-
-
 // Applies the specified translation factors to the receiver’s transformation matrix.
 //
 // [Full Topic]
@@ -249,7 +238,7 @@ func (a_ AffineTransform) TranslateXByYBy(deltaX float64 /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
-func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
+func (a_ AffineTransform) TransformStruct() NSAffineTransformStruct /* foo */ {
 	rv := objc.Send[AffineTransformStruct](a_.ID, objc.Sel("transformStruct"))
 	return rv
 }
@@ -259,7 +248,7 @@ func (a_ AffineTransform) TransformStruct() AffineTransformStruct /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAffineTransform/transformStruct
-func (a_ AffineTransform) SetTransformStruct(value AffineTransformStruct /* foo */) {
+func (a_ AffineTransform) SetTransformStruct(value NSAffineTransformStruct /* foo */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformStruct:"), value)
 }
 

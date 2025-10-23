@@ -111,6 +111,16 @@ func NewDataDetectorWithTypesError(checkingTypes TextCheckingTypes /* foo */, er
 
 
 
+// Creates and returns a new data detector instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/dataDetectorWithTypes:error:
+func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes TextCheckingTypes /* foo */, error_ unsafe.Pointer) IDataDetector {
+	rv := objc.Send[DataDetector](objc.ID(dc.class), objc.Sel("dataDetectorWithTypes:error:"), checkingTypes, error_)
+	return rv
+}
+
+
 // Returns the checking types for the data detector.
 //
 // [Full Topic]

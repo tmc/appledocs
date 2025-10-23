@@ -163,6 +163,19 @@ func NewDateFormatter() DateFormatter {
 
 
 
+// Initializes and returns an instance that uses the OS X 10.0 formatting behavior and the given date format string in its conversions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/initWithDateFormat:allowNaturalLanguage:
+func NewDateFormatterWithDateFormatAllowNaturalLanguage(format string /* primitive/slice/pointer */, flag bool /* primitive/slice/pointer */) DateFormatter {
+	instance := getDateFormatterClass().Alloc()
+	rv := objc.Send[DateFormatter](instance.ID, objc.Sel("initWithDateFormat:allowNaturalLanguage:"), objc.String(format), flag)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Returns a localized date format string representing the given date format components arranged appropriately for the specified locale.
 //
 // [Full Topic]
@@ -1093,6 +1106,5 @@ func (d_ DateFormatter) IsLenient() bool /* primitive/slice/pointer */ {
 func (d_ DateFormatter) SetIsLenient(value bool /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsLenient:"), value)
 }
-
 
 

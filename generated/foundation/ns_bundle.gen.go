@@ -31,6 +31,7 @@ type _BundleClass struct {
 type IBundle interface {
 	objectivec.IObject
 	// properties:
+	PrincipalClass() objc.Class
 	AppStoreReceiptURL() IURL
 	SetAppStoreReceiptURL(value IURL)
 	BuiltInPlugInsPath() string /* primitive/slice/pointer */
@@ -61,8 +62,6 @@ type IBundle interface {
 	SetLocalizedInfoDictionary(value string /* primitive/slice/pointer */)
 	PreferredLocalizations() string /* primitive/slice/pointer */
 	SetPreferredLocalizations(value string /* primitive/slice/pointer */)
-	PrincipalClass() unsafe.Pointer
-	SetPrincipalClass(value unsafe.Pointer)
 	PrivateFrameworksPath() string /* primitive/slice/pointer */
 	SetPrivateFrameworksPath(value string /* primitive/slice/pointer */)
 	PrivateFrameworksURL() IURL
@@ -95,6 +94,9 @@ type IBundle interface {
 	SetNSExecutableRuntimeMismatchError(value int /* primitive/slice/pointer */)
 	NSLoadedClasses() string /* primitive/slice/pointer */
 	// methods:
+	LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */
+	LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* foo */
+	PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer */, subpath string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */
 }
 
 // A representation of the code and resources stored in a bundle directory on disk.
@@ -148,6 +150,86 @@ func NewBundle() Bundle {
 	return getBundleClass().New()
 }
 
+
+
+// Returns the object with which the specified class is associated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+func NewBundleForClass(aClass objc.Class) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
+	return rv
+}
+
+
+
+// Returns the object with which the specified class is associated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+func (bc _BundleClass) BundleForClass(aClass objc.Class) IBundle {
+	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("bundleForClass:"), aClass)
+	return rv
+}
+
+
+// Returns the bundle object that contains the current executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
+func (bc _BundleClass) MainBundle() Bundle {
+	rv := objc.Send[Bundle](objc.ID(bc.class), objc.Sel("mainBundle"))
+	return rv
+}
+
+// Loads the bundle’s executable code and returns any errors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadAndReturnError()
+func (b_ Bundle) LoadAndReturnError(error_ unsafe.Pointer) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](b_.ID, objc.Sel("loadAndReturnError:"), error_)
+	return rv
+}
+
+
+// Returns a localized version of the string designated by the specified key and residing in the specified table.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedString(forKey:value:table:)
+func (b_ Bundle) LocalizedStringForKeyValueTable(key string /* primitive/slice/pointer */, value string /* primitive/slice/pointer */, tableName string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](b_.ID, objc.Sel("localizedStringForKey:value:table:"), objc.String(key), objc.String(value), objc.String(tableName))
+	return rv
+}
+
+
+// Returns an array containing the pathnames for all bundle resources having the specified filename extension and residing in the resource subdirectory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/paths(forResourcesOfType:inDirectory:)-swift.method
+func (b_ Bundle) PathsForResourcesOfTypeInDirectory(ext string /* primitive/slice/pointer */, subpath string /* primitive/slice/pointer */) []string /* primitive/slice/pointer */ {
+	rv := objc.Send[[]string](b_.ID, objc.Sel("pathsForResourcesOfType:inDirectory:"), objc.String(ext), objc.String(subpath))
+	return rv
+}
+
+
+// Returns the bundle object that contains the current executable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
+func (b_ Bundle) MainBundle() IBundle {
+	rv := objc.Send[Bundle](b_.ID, objc.Sel("mainBundle"))
+	return rv
+}
+
+
+// The bundle’s principal class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/principalClass
+func (b_ Bundle) PrincipalClass() objc.Class {
+	rv := objc.Send[objc.Class](b_.ID, objc.Sel("principalClass"))
+	return rv
+}
 
 
 // The file URL for the bundle’s App Store receipt.
@@ -432,25 +514,6 @@ func (b_ Bundle) PreferredLocalizations() string /* primitive/slice/pointer */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/preferredlocalizations
 func (b_ Bundle) SetPreferredLocalizations(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPreferredLocalizations:"), objc.String(value))
-}
-
-
-// The bundle’s principal class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/principalclass
-func (b_ Bundle) PrincipalClass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("principalClass"))
-	return rv
-}
-
-
-// The bundle’s principal class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/bundle/principalclass
-func (b_ Bundle) SetPrincipalClass(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrincipalClass:"), value)
 }
 
 
@@ -747,6 +810,5 @@ func (b_ Bundle) NSLoadedClasses() string /* primitive/slice/pointer */ {
 	rv := objc.Send[string](b_.ID, objc.Sel("NSLoadedClasses"))
 	return rv
 }
-
 
 

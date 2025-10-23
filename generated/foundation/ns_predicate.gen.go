@@ -89,6 +89,27 @@ func NewPredicate() Predicate {
 
 
 
+// Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
+func NewPredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) Predicate {
+	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
+	return rv
+}
+
+
+
+// Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
+func (pc _PredicateClass) PredicateWithFormatArguments(predicateFormat string /* primitive/slice/pointer */, argList unsafe.Pointer) IPredicate {
+	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("predicateWithFormat:arguments:"), objc.String(predicateFormat), argList)
+	return rv
+}
+
+
 // The predicate’s format string.
 //
 // [Full Topic]

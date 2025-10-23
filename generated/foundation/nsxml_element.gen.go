@@ -35,6 +35,7 @@ type IXMLElement interface {
 	Namespaces() XMLNode /* foo */
 	SetNamespaces(value XMLNode /* foo */)
 	// methods:
+	ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* foo */
 }
 
 // The element nodes in an XML tree structure.
@@ -90,6 +91,16 @@ func NewXMLElement() XMLElement {
 	return getXMLElementClass().New()
 }
 
+
+
+// Returns the namespace node with the prefix matching the given qualified name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/resolveNamespace(forName:)
+func (x_ XMLElement) ResolveNamespaceForName(name string /* primitive/slice/pointer */) XMLNode /* foo */ {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("resolveNamespaceForName:"), objc.String(name))
+	return rv
+}
 
 
 // Sets all attributes of the receiver at once, replacing any existing attribute nodes.

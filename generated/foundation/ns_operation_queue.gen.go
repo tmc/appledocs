@@ -31,6 +31,7 @@ type _OperationQueueClass struct {
 type IOperationQueue interface {
 	objectivec.IObject
 	// properties:
+	Operations() []Operation /* primitive/slice/pointer */
 	IsReady() bool /* primitive/slice/pointer */
 	SetIsReady(value bool /* primitive/slice/pointer */)
 	QueuePriority() unsafe.Pointer
@@ -43,8 +44,6 @@ type IOperationQueue interface {
 	SetName(value string /* primitive/slice/pointer */)
 	OperationCount() int /* primitive/slice/pointer */
 	SetOperationCount(value int /* primitive/slice/pointer */)
-	Operations() IOperation
-	SetOperations(value IOperation)
 	Progress() Progress /* foo */
 	SetProgress(value Progress /* foo */)
 	QualityOfService() unsafe.Pointer
@@ -105,6 +104,16 @@ func NewOperationQueue() OperationQueue {
 	return getOperationQueueClass().New()
 }
 
+
+
+// The operations currently in the queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
+func (o_ OperationQueue) Operations() []Operation /* primitive/slice/pointer */ {
+	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
+	return rv
+}
 
 
 // A Boolean value indicating whether the operation can be performed now.
@@ -218,25 +227,6 @@ func (o_ OperationQueue) OperationCount() int /* primitive/slice/pointer */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operationcount
 func (o_ OperationQueue) SetOperationCount(value int /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOperationCount:"), value)
-}
-
-
-// The operations currently in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operations
-func (o_ OperationQueue) Operations() IOperation {
-	rv := objc.Send[Operation](o_.ID, objc.Sel("operations"))
-	return rv
-}
-
-
-// The operations currently in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/operations
-func (o_ OperationQueue) SetOperations(value IOperation) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setOperations:"), value)
 }
 
 

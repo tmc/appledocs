@@ -13,7 +13,7 @@ var _ = foundation.NewDecimalNumber
 // Initializes a decimal number to represent a given decimal.
 func ExampleNewDecimalNumberWithDecimal() {
 	_ = foundation.NewDecimalNumberWithDecimal(
-		foundation.Decimal{}, // dcm Decimal
+		foundation.NSDecimal{}, // dcm NSDecimal
 	)
 	// Output:
 }

@@ -9,12 +9,30 @@ package foundation
 type FormattingContext uint
 
 const (
-	FormattingContextUnknown FormattingContext = 0
-	FormattingContextDynamic FormattingContext = 1
-	FormattingContextStandalone FormattingContext = 2
-	FormattingContextListItem FormattingContext = 3
+	// FormattingContextBeginningOfSentence - The formatting context for the beginning of a sentence.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/beginningOfSentence
 	FormattingContextBeginningOfSentence FormattingContext = 4
+	// FormattingContextDynamic - A formatting context determined automatically at runtime.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/dynamic
+	FormattingContextDynamic FormattingContext = 1
+	// FormattingContextListItem - The formatting context for a list or menu item.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/listItem
+	FormattingContextListItem FormattingContext = 3
+	// FormattingContextMiddleOfSentence - The formatting context for the middle of a sentence.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/middleOfSentence
 	FormattingContextMiddleOfSentence FormattingContext = 5
+	// FormattingContextStandalone - The formatting context for stand-alone usage.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/standalone
+	FormattingContextStandalone FormattingContext = 2
+	// FormattingContextUnknown - An unknown formatting context.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/Context/unknown
+	FormattingContextUnknown FormattingContext = 0
 )
 
 // AttributedStringEnumerationOptions - Options for enumerating attributes.
@@ -37,6 +55,63 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/SpellingState
 type SpellingState uint
+
+// AttributedStringFormattingOptions - Options to use when creating an attributed string from a format string and variable list of arguments.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions
+type AttributedStringFormattingOptions uint
+
+const (
+	// AttributedStringFormattingApplyReplacementIndexAttribute - An option to apply to the replaced portions of text in a format string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions/NSAttributedStringFormattingApplyReplacementIndexAttribute
+	AttributedStringFormattingApplyReplacementIndexAttribute AttributedStringFormattingOptions = 1
+	// AttributedStringFormattingInsertArgumentAttributesWithoutMerging - An option to replace the attributes in a substituted string with those of the provided attributed string.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringFormattingOptions/NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging
+	AttributedStringFormattingInsertArgumentAttributesWithoutMerging AttributedStringFormattingOptions = 0
+)
+
+// AttributedStringMarkdownInterpretedSyntax - A type that represents the syntax for intepreting a Markdown string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownInterpretedSyntax
+type AttributedStringMarkdownInterpretedSyntax int
+
+const (
+	AttributedStringMarkdownInterpretedSyntaxFull AttributedStringMarkdownInterpretedSyntax = 0
+	AttributedStringMarkdownInterpretedSyntaxInlineOnly AttributedStringMarkdownInterpretedSyntax = 1
+	AttributedStringMarkdownInterpretedSyntaxInlineOnlyPreservingWhitespace AttributedStringMarkdownInterpretedSyntax = 2
+)
+
+// AttributedStringMarkdownParsingFailurePolicy - A type that represents policies for handling parsing failures.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedStringMarkdownParsingFailurePolicy
+type AttributedStringMarkdownParsingFailurePolicy int
+
+const (
+	AttributedStringMarkdownParsingFailureReturnError AttributedStringMarkdownParsingFailurePolicy = 0
+	AttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible AttributedStringMarkdownParsingFailurePolicy = 1
+)
+
+// BinarySearchingOptions - Options for searches and insertions using 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
+type BinarySearchingOptions uint
+
+const (
+	// BinarySearchingFirstEqual - Specifies that the search should return the first object in the range that is equal to the given object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/firstEqual
+	BinarySearchingFirstEqual BinarySearchingOptions = 256
+	// BinarySearchingInsertionIndex - Returns the index at which you should insert the object in order to maintain a sorted array.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/insertionIndex
+	BinarySearchingInsertionIndex BinarySearchingOptions = 1024
+	// BinarySearchingLastEqual - Specifies that the search should return the last object in the range that is equal to the given object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions/lastEqual
+	BinarySearchingLastEqual BinarySearchingOptions = 512
+)
 
 // CalendarOptions - The options for arithmetic operations involving calendars.
 //
@@ -223,14 +298,93 @@ const (
 	CalendarUnitYearForWeekOfYear CalendarUnit = 3
 )
 
+// FileCoordinatorReadingOptions - Options to use when reading the contents or attributes of a file or directory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions
+type FileCoordinatorReadingOptions uint
+
+const (
+	// FileCoordinatorReadingForUploading - Specify this content when reading an item for the purpose of uploading its contents.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/forUploading
+	FileCoordinatorReadingForUploading FileCoordinatorReadingOptions = 4
+	// FileCoordinatorReadingImmediatelyAvailableMetadataOnly - Specify this constant if you want to read an item’s metadata without triggering a download.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/immediatelyAvailableMetadataOnly
+	FileCoordinatorReadingImmediatelyAvailableMetadataOnly FileCoordinatorReadingOptions = 3
+	// FileCoordinatorReadingResolvesSymbolicLink - Specify this constant if you want an item that might be a symbolic link to resolve to the file pointed to by that link (instead of to the link itself). When you use this option, the system provides the resolved URL to the accessor block in place of the original URL.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/resolvesSymbolicLink
+	FileCoordinatorReadingResolvesSymbolicLink FileCoordinatorReadingOptions = 2
+	// FileCoordinatorReadingWithoutChanges - Specify this constant if your code does not need other objects to save changes first. If you do   specify this constant, the   method of relevant file presenters is called before your code reads the item.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/ReadingOptions/withoutChanges
+	FileCoordinatorReadingWithoutChanges FileCoordinatorReadingOptions = 1
+)
+
+// FileCoordinatorWritingOptions - Options to use when changing the contents or attributes of a file or directory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions
+type FileCoordinatorWritingOptions uint
+
+const (
+	// FileCoordinatorWritingContentIndependentMetadataOnly - Select this option when writing to change the file’s metadata only and not its contents.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/contentIndependentMetadataOnly
+	FileCoordinatorWritingContentIndependentMetadataOnly FileCoordinatorWritingOptions = 9
+	// FileCoordinatorWritingForDeleting - When this constant is specified, the file coordinator calls the   or   method of relevant file presenters to give them a chance to make adjustments before the item is deleted.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forDeleting
+	FileCoordinatorWritingForDeleting FileCoordinatorWritingOptions = 1
+	// FileCoordinatorWritingForMerging - When this constant is specified, the file coordinator calls the   method of relevant file presenters to give them a chance to save their changes before your code makes its changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMerging
+	FileCoordinatorWritingForMerging FileCoordinatorWritingOptions = 4
+	// FileCoordinatorWritingForMoving - When specified for a directory item, the file coordinator waits for already running read and write operations of the directory’s contents, which were themselves initiated through a file coordinator, to finish before moving the directory. Queued, but not executing, read and write operations on the directory’s contents wait until the move operation finishes. This option has no effect on files. You can safely use it when moving file-system items without checking to see whether those items are files or directories.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forMoving
+	FileCoordinatorWritingForMoving FileCoordinatorWritingOptions = 2
+	// FileCoordinatorWritingForReplacing - Specifies whether the act of writing to the file involves actually replacing the file with a different file (or directory). If the current file coordinator is waiting for another object to move or rename the file, this option treats the operation as the creation of a new file (instead of as the replacement of the old file); otherwise, this constant causes the same behavior as the   constant. Use this method when the moving or creating an item should replace any item currently stored at that location. To avoid a race condition, use it regardless of whether an item is actually in the way before the writing begins. Do not use this method when simply updating the contents of the existing file.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions/forReplacing
+	FileCoordinatorWritingForReplacing FileCoordinatorWritingOptions = 8
+)
+
+// FileManagerResumeSyncBehavior - The behaviors the file manager can apply to resolve conflicts when resuming a sync.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerResumeSyncBehavior
+type FileManagerResumeSyncBehavior uint
+
+const (
+	FileManagerResumeSyncBehaviorPreserveLocalChanges FileManagerResumeSyncBehavior = 0
+	FileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict FileManagerResumeSyncBehavior = 1
+	FileManagerResumeSyncBehaviorDropLocalChanges FileManagerResumeSyncBehavior = 2
+)
+
 // FileManagerSupportedSyncControls - An option set of the sync controls available for an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls
 type FileManagerSupportedSyncControls uint
 
 const (
-	FileManagerSupportedSyncControlsPauseSync FileManagerSupportedSyncControls = 1
+	// FileManagerSupportedSyncControlsFailUploadOnConflict - The file provider supports failing an upload if the local and server versions conflict.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls/failUploadOnConflict
 	FileManagerSupportedSyncControlsFailUploadOnConflict FileManagerSupportedSyncControls = 2
+	// FileManagerSupportedSyncControlsPauseSync - The file provider supports pausing the sync on the item.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls/pauseSync
+	FileManagerSupportedSyncControlsPauseSync FileManagerSupportedSyncControls = 1
+)
+
+// FileManagerUploadLocalVersionConflictPolicy - The policies the file manager can apply to resolve conflicts when uploading a local version of a file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerUploadLocalVersionConflictPolicy
+type FileManagerUploadLocalVersionConflictPolicy uint
+
+const (
+	FileManagerUploadConflictPolicyDefault FileManagerUploadLocalVersionConflictPolicy = 0
+	FileManagerUploadConflictPolicyFailOnConflict FileManagerUploadLocalVersionConflictPolicy = 1
 )
 
 // GrammaticalDefiniteness enum type
@@ -239,9 +393,21 @@ const (
 type GrammaticalDefiniteness uint
 
 const (
-	GrammaticalDefinitenessNotSet GrammaticalDefiniteness = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalDefiniteness/indefinite
 	GrammaticalDefinitenessIndefinite GrammaticalDefiniteness = 1
-	GrammaticalDefinitenessDefinite GrammaticalDefiniteness = 2
+)
+
+// ItemProviderRepresentationVisibility - Specifications that control which categories of processes can see an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderRepresentationVisibility
+type ItemProviderRepresentationVisibility uint
+
+const (
+	ItemProviderRepresentationVisibilityAll ItemProviderRepresentationVisibility = 0
+	ItemProviderRepresentationVisibilityTeam ItemProviderRepresentationVisibility = 1
+	ItemProviderRepresentationVisibilityGroup ItemProviderRepresentationVisibility = 2
+	ItemProviderRepresentationVisibilityOwnProcess ItemProviderRepresentationVisibility = 3
 )
 
 // PresentationIntentKind - An enumeration of intended display styles for blocks of text like paragraphs, lists, and code blocks.
@@ -250,18 +416,10 @@ const (
 type PresentationIntentKind int
 
 const (
-	PresentationIntentKindParagraph PresentationIntentKind = 0
-	PresentationIntentKindHeader PresentationIntentKind = 1
-	PresentationIntentKindOrderedList PresentationIntentKind = 2
-	PresentationIntentKindUnorderedList PresentationIntentKind = 3
+	// PresentationIntentKindListItem - A presentation style for a list of items.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentKind/NSPresentationIntentKindListItem
 	PresentationIntentKindListItem PresentationIntentKind = 4
-	PresentationIntentKindCodeBlock PresentationIntentKind = 5
-	PresentationIntentKindBlockQuote PresentationIntentKind = 6
-	PresentationIntentKindThematicBreak PresentationIntentKind = 7
-	PresentationIntentKindTable PresentationIntentKind = 8
-	PresentationIntentKindTableHeaderRow PresentationIntentKind = 9
-	PresentationIntentKindTableRow PresentationIntentKind = 10
-	PresentationIntentKindTableCell PresentationIntentKind = 11
 )
 
 // PresentationIntentTableColumnAlignment - An enumeration of values for aligning the contents of table columns.
@@ -270,9 +428,30 @@ const (
 type PresentationIntentTableColumnAlignment int
 
 const (
-	PresentationIntentTableColumnAlignmentLeft PresentationIntentTableColumnAlignment = 0
+	// PresentationIntentTableColumnAlignmentCenter - A presentation style for columns with center-aligned text.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment/NSPresentationIntentTableColumnAlignmentCenter
 	PresentationIntentTableColumnAlignmentCenter PresentationIntentTableColumnAlignment = 1
+	// PresentationIntentTableColumnAlignmentLeft - A presentation style for columns with left-aligned text.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment/NSPresentationIntentTableColumnAlignmentLeft
+	PresentationIntentTableColumnAlignmentLeft PresentationIntentTableColumnAlignment = 0
+	// PresentationIntentTableColumnAlignmentRight - A presentation style for columns with right-aligned text.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntentTableColumnAlignment/NSPresentationIntentTableColumnAlignmentRight
 	PresentationIntentTableColumnAlignmentRight PresentationIntentTableColumnAlignment = 2
+)
+
+// StringDrawingOptions enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions
+type StringDrawingOptions uint
+
+const (
+	// StringDrawingUsesLineFragmentOrigin - Uses the line fragment origin instead of the baseline origin.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSStringDrawingOptions/usesLineFragmentOrigin
+	StringDrawingUsesLineFragmentOrigin StringDrawingOptions = 0
 )
 
 // AlignmentOptions - Values representing alignment operations.
@@ -409,6 +588,10 @@ const (
 type DateComponentsFormatterZeroFormattingBehavior uint
 
 const (
+	// DateComponentsFormatterZeroFormattingBehaviorNone - No formatting behavior. This behavior prevents the dropping of zero values or adding of zeroes for padding. For example, with hours, minutes, and seconds displayed, the abbreviated value for one hour and 10 seconds is “1h 0m 10s”.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponentsFormatterZeroFormattingBehavior/NSDateComponentsFormatterZeroFormattingBehaviorNone
+	DateComponentsFormatterZeroFormattingBehaviorNone DateComponentsFormatterZeroFormattingBehavior = 0
 	// DateComponentsFormatterZeroFormattingBehaviorDefault - The default formatting behavior. When using positional units, this behavior drops leading zeroes but pads middle and trailing values with zeros as needed. For example, with hours, minutes, and seconds displayed, the value for one hour and 10 seconds is “1:00:10”. For all other unit styles, this behavior drops all units whose values are 0. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour and 10 seconds is displayed as “1h 10s”.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/ZeroFormattingBehavior-swift.struct/default
@@ -517,11 +700,40 @@ const (
 type DirectoryEnumerationOptions uint
 
 const (
-	DirectoryEnumerationSkipsSubdirectoryDescendants DirectoryEnumerationOptions = 1
-	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 2
-	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 4
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/includesDirectoriesPostOrder
 	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 5
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/producesRelativePathURLs
 	DirectoryEnumerationProducesRelativePathURLs DirectoryEnumerationOptions = 6
+	// DirectoryEnumerationSkipsHiddenFiles - An option to skip hidden files.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsHiddenFiles
+	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 4
+	// DirectoryEnumerationSkipsPackageDescendants - An option to treat packages like files and not descend into their contents.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsPackageDescendants
+	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 2
+	// DirectoryEnumerationSkipsSubdirectoryDescendants - An option to perform a shallow enumeration that doesn’t descend into directories.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions/skipsSubdirectoryDescendants
+	DirectoryEnumerationSkipsSubdirectoryDescendants DirectoryEnumerationOptions = 1
+)
+
+// FileManagerItemReplacementOptions - Options for specifying the behavior of file replacement operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions
+type FileManagerItemReplacementOptions uint
+
+const (
+	// FileManagerItemReplacementUsingNewMetadataOnly - Only metadata from the new item is used, and metadata from the original item isn’t preserved (default).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/usingNewMetadataOnly
+	FileManagerItemReplacementUsingNewMetadataOnly FileManagerItemReplacementOptions = 1
+	// FileManagerItemReplacementWithoutDeletingBackupItem - The backup item remains in place after a successful replacement.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions/withoutDeletingBackupItem
+	FileManagerItemReplacementWithoutDeletingBackupItem FileManagerItemReplacementOptions = 2
 )
 
 // SearchPathDirectory - The location of significant directories.
@@ -1112,6 +1324,10 @@ const (
 type PointerFunctionsOptions uint
 
 const (
+	// PointerFunctionsZeroingWeakMemory - Use weak read and write barriers; use garbage-collected memory on copyIn.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctionsOptions/NSPointerFunctionsZeroingWeakMemory
+	PointerFunctionsZeroingWeakMemory PointerFunctionsOptions = 1
 	// PointerFunctionsCopyIn - Use the memory acquire function to allocate and copy items on input (see  ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options/copyIn
@@ -1578,25 +1794,239 @@ const (
 	NumberFormatterSpellOutStyle NumberFormatterStyle = 0
 )
 
+// BezierPathElement - Constants that specify basic path element commands.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/ElementType
+type BezierPathElement uint
+
+// LineCapStyle - Constants that specify the shape of endpoints for an open path when it is stroked.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineCapStyle-swift.enum
+type LineCapStyle uint
+
+// LineJoinStyle - Constants that specify the shape of the joins between connected segments of a stroked path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/LineJoinStyle-swift.enum
+type LineJoinStyle uint
+
+// WindingRule - Constants that specify the winding rule a Bézier path uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBezierPath/WindingRule-swift.enum
+type WindingRule uint
+
+// BorderType - These constants specify the type of a view’s border.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType
+type BorderType uint
+
+// TextLayoutOrientation - Constants that describe the text layout orientation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TextLayoutOrientation
+type TextLayoutOrientation uint
+
+const (
+	// TextLayoutOrientationHorizontal - Lines render horizontally, each line following the previous from top to bottom.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TextLayoutOrientation/horizontal
+	TextLayoutOrientationHorizontal TextLayoutOrientation = 0
+)
+
+// PasteboardAccessBehavior - A value indicating pasteboard access behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum
+type PasteboardAccessBehavior uint
+
+// PasteboardContentsOptions - Options for preparing the pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ContentsOptions
+type PasteboardContentsOptions uint
+
+// PasteboardReadingOptions - Options that specify how to interpret data on the pasteboard when initializing pasteboard data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions
+type PasteboardReadingOptions uint
+
+// PasteboardWritingOptions - Type to specify options for writing to a pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions
+type PasteboardWritingOptions uint
+
+// WorkspaceAuthorizationType - The types of privileged file operations that can be authorized by the user.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType
+type WorkspaceAuthorizationType uint
+
+// WorkspaceIconCreationOptions - Constants that describe options for creating icons.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/IconCreationOptions
+type WorkspaceIconCreationOptions uint
+
+// CFDataSearchFlags - A 
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSearchFlags
+type CFDataSearchFlags uint
+
+// CFRunLoopRunResult enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult
+type CFRunLoopRunResult uint
+
+// CFURLBookmarkCreationOptions - Type for bookmark data creation options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions
+type CFURLBookmarkCreationOptions uint
+
+// CFURLBookmarkResolutionOptions - Type for bookmark data resolution options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions
+type CFURLBookmarkResolutionOptions uint
+
+// CFURLComponentType - The types of components in a URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLComponentType
+type CFURLComponentType uint
+
+// CFURLPathStyle - Options you can use to determine how CFURL functions parse a file system path name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLPathStyle
+type CFURLPathStyle uint
+
 // CGRectEdge enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CGRectEdge
 type CGRectEdge uint
+
+// UIApplicationCategory - Constants that describe the types of apps in the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/Category
+type UIApplicationCategory uint
+
+// UIApplicationState - Constants that indicate the running states of an app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplication/State
+type UIApplicationState uint
+
+// UIApplicationCategoryDefaultStatus - The default status of an application for some category.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIApplicationCategoryDefaultStatus
+type UIApplicationCategoryDefaultStatus int
+
+// UIBackgroundRefreshStatus - Constants that indicate whether background execution is enabled for the app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIBackgroundRefreshStatus
+type UIBackgroundRefreshStatus uint
+
+// UIDocumentChangeKind - Constants that specify the kind of change to a document.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/ChangeKind
+type UIDocumentChangeKind uint
+
+// UIDocumentSaveOperation - Constants that specify the type of save operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/SaveOperation
+type UIDocumentSaveOperation uint
+
+// UIDocumentState - Constants that specify the document state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State
+type UIDocumentState uint
+
+const (
+	// UIDocumentStateClosed - There was an error in reading the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/closed
+	UIDocumentStateClosed UIDocumentState = 0
+	// UIDocumentStateInConflict - Conflicts exist for the document file located at the file URL.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/inConflict
+	UIDocumentStateInConflict UIDocumentState = 0
+	// UIDocumentStateSavingError - There was an error in saving or reverting the document.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocument/State/savingError
+	UIDocumentStateSavingError UIDocumentState = 0
+)
+
+// UIDocumentPickerMode - Modes that define the type of file transfer operation that the document picker uses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIDocumentPickerMode
+type UIDocumentPickerMode uint
+
+// UIUserInterfaceLayoutDirection - Constants that specify the directional flow of the user interface.
+//
+// [Full Topic]: https://developer.apple.com/documentation/UIKit/UIUserInterfaceLayoutDirection
+type UIUserInterfaceLayoutDirection uint
 
 // TextScalingType - Constants that specify the text scaling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextScalingType
 type TextScalingType uint
 
+const (
+	// TextScalingiOS - Font sizes throughout the document appear visually similar to how they would render in iOS.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextScalingType/iOS
+	TextScalingiOS TextScalingType = 0
+	// TextScalingStandard - Font sizes throughout the document appear visually similar to how they would render in macOS and non-Apple platforms.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextScalingType/standard
+	TextScalingStandard TextScalingType = 0
+)
+
 // TextWritingDirection - Options for specifying text-writing direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextWritingDirection
 type TextWritingDirection uint
 
+const (
+	// TextWritingDirectionEmbedding - Text is embedded in text with another writing direction.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextWritingDirection/embedding
+	TextWritingDirectionEmbedding TextWritingDirection = 0
+	// TextWritingDirectionOverride - Enables character types with inherent directionality to be overridden when required for special cases, such as for part numbers made of mixed English, digits, and Hebrew letters to be written from right to left.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSTextWritingDirection/override
+	TextWritingDirectionOverride TextWritingDirection = 0
+)
+
 // UnderlineStyle - Constants for the underline style and strikethrough style attribute keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle
 type UnderlineStyle uint
+
+const (
+	// UnderlineStyleNone - Don’t draw a line.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/NSUnderlineStyleNone
+	UnderlineStyleNone UnderlineStyle = 0
+	// UnderlineStyleByWord - Draw the line only beneath or through words, not whitespace.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/byWord
+	UnderlineStyleByWord UnderlineStyle = 0
+	// UnderlineStyleDouble - Draw a double line.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/double
+	UnderlineStyleDouble UnderlineStyle = 0
+	// UnderlineStylePatternDash - Draw a line of dashes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/patternDash
+	UnderlineStylePatternDash UnderlineStyle = 0
+	// UnderlineStylePatternDashDot - Draw a line of alternating dashes and dots.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/patternDashDot
+	UnderlineStylePatternDashDot UnderlineStyle = 0
+	// UnderlineStylePatternDashDotDot - Draw a line of alternating dashes and two dots.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/patternDashDotDot
+	UnderlineStylePatternDashDotDot UnderlineStyle = 0
+	// UnderlineStylePatternDot - Draw a line of dots.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/patternDot
+	UnderlineStylePatternDot UnderlineStyle = 0
+	// UnderlineStyleThick - Draw a thick line.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/UIKit/NSUnderlineStyle/thick
+	UnderlineStyleThick UnderlineStyle = 0
+)
 
 // WritingDirectionFormatType - Constants for the writing direction attribute key.
 //

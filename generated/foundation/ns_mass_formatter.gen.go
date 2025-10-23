@@ -30,12 +30,12 @@ type _MassFormatterClass struct {
 type IMassFormatter interface {
 	IFormatter
 	// properties:
+	UnitStyle() NSFormattingUnitStyle /* foo */
+	SetUnitStyle(value NSFormattingUnitStyle /* foo */)
 	IsForPersonMassUse() bool /* primitive/slice/pointer */
 	SetIsForPersonMassUse(value bool /* primitive/slice/pointer */)
 	NumberFormatter() INumberFormatter
 	SetNumberFormatter(value INumberFormatter)
-	UnitStyle() unsafe.Pointer
-	SetUnitStyle(value unsafe.Pointer)
 	// methods:
 }
 
@@ -92,6 +92,25 @@ func NewMassFormatter() MassFormatter {
 
 
 
+// The unit style used by this formatter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitStyle
+func (m_ MassFormatter) UnitStyle() NSFormattingUnitStyle /* foo */ {
+	rv := objc.Send[FormattingUnitStyle](m_.ID, objc.Sel("unitStyle"))
+	return rv
+}
+
+
+// The unit style used by this formatter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/MassFormatter/unitStyle
+func (m_ MassFormatter) SetUnitStyle(value NSFormattingUnitStyle /* foo */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
+}
+
+
 // A Boolean value that indicates whether the resulting string represents a person’s mass.
 //
 // [Full Topic]
@@ -127,25 +146,6 @@ func (m_ MassFormatter) NumberFormatter() INumberFormatter {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
 func (m_ MassFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
-}
-
-
-// The unit style used by this formatter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
-func (m_ MassFormatter) UnitStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unitStyle"))
-	return rv
-}
-
-
-// The unit style used by this formatter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/unitstyle
-func (m_ MassFormatter) SetUnitStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUnitStyle:"), value)
 }
 
 

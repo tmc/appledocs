@@ -106,6 +106,16 @@ func NewPointerFunctionsWithOptions(options PointerFunctionsOptions) PointerFunc
 
 
 
+// Returns a new object initialized with the given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/pointerFunctionsWithOptions:
+func (pc _PointerFunctionsClass) PointerFunctionsWithOptions(options PointerFunctionsOptions) IPointerFunctions {
+	rv := objc.Send[PointerFunctions](objc.ID(pc.class), objc.Sel("pointerFunctionsWithOptions:"), options)
+	return rv
+}
+
+
 // Specifies whether, in a garbage collected environment, pointers should be assigned using a strong write barrier.
 //
 // [Full Topic]

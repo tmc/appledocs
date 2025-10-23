@@ -127,6 +127,16 @@ func (oc _OrthographyClass) DefaultOrthographyForLanguage(language string /* pri
 }
 
 
+// Creates and returns an orthography object with the specified dominant script and language map.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/orthographyWithDominantScript:languageMap:
+func (oc _OrthographyClass) OrthographyWithDominantScriptLanguageMap(script string /* primitive/slice/pointer */, map_ IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("orthographyWithDominantScript:languageMap:"), objc.String(script), map_)
+	return rv
+}
+
+
 // Returns the dominant language for the specified script.
 //
 // [Full Topic]

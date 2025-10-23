@@ -41,30 +41,30 @@ type IAttributedString interface {
 	AttributedSubstringFromRange(range_ Range /* foo */) IAttributedString
 	AttributesAtIndexEffectiveRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) IDictionary /* already interface */
 	AttributesAtIndexLongestEffectiveRangeInRange(location uint /* primitive/slice/pointer */, range_ RangePointer /* foo */, rangeLimit Range /* foo */) IDictionary /* already interface */
-	BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions /* foo */) Rect /* foo */
-	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) coregraphics.CGRect
+	BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions) Rect /* foo */
+	BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context objectivec.IObject) coregraphics.CGRect
 	ContainsAttachmentsInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
 	DataFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) IData
 	DocFormatFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	DoubleClickAtIndex(location uint /* primitive/slice/pointer */) Range /* foo */
 	DrawAtPoint(point coregraphics.CGPoint)
 	DrawInRect(rect coregraphics.CGRect)
-	DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions /* foo */)
-	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */)
+	DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions)
+	DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context objectivec.IObject)
 	EnumerateAttributeInRangeOptionsUsingBlock(attrName AttributedStringKey /* foo */, enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block unsafe.Pointer)
 	EnumerateAttributesInRangeOptionsUsingBlock(enumerationRange Range /* foo */, opts AttributedStringEnumerationOptions, block IDictionary /* already interface */)
 	FileWrapperFromRangeDocumentAttributesError(range_ Range /* foo */, dict IDictionary /* already interface */, error_ unsafe.Pointer) FileWrapper /* foo */
 	FontAttributesInRange(range_ Range /* foo */) IDictionary /* already interface */
 	AttributedStringByInflectingString() IAttributedString
 	IsEqualToAttributedString(other IAttributedString) bool /* primitive/slice/pointer */
-	ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
+	ItemNumberInTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */
 	LineBreakBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
 	LineBreakByHyphenatingBeforeIndexWithinRange(location uint /* primitive/slice/pointer */, aRange Range /* foo */) uint /* primitive/slice/pointer */
 	NextWordFromIndexForward(location uint /* primitive/slice/pointer */, isForward bool /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	PrefersRTFDInRange(range_ Range /* foo */) bool /* primitive/slice/pointer */
-	RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
-	RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextBlockAtIndex(block objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextTableAtIndex(table objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
+	RangeOfTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */
 	RTFFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	RTFDFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) IData
 	RTFDFileWrapperFromRangeDocumentAttributes(range_ Range /* foo */, dict IDictionary /* already interface */) FileWrapper /* foo */
@@ -129,7 +129,7 @@ func NewAttributedString() AttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
-func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) AttributedString {
+func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph objectivec.IObject, attributes IDictionary /* already interface */) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
 	return rv
 }
@@ -139,7 +139,7 @@ func NewAttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph Adap
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
-func NewAttributedStringWithAttachment(attachment TextAttachment /* foo */) AttributedString {
+func NewAttributedStringWithAttachment(attachment objectivec.IObject) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:"), attachment)
 	return rv
 }
@@ -149,7 +149,7 @@ func NewAttributedStringWithAttachment(attachment TextAttachment /* foo */) Attr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
-func NewAttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) AttributedString {
+func NewAttributedStringWithAttachmentAttributes(attachment objectivec.IObject, attributes IDictionary /* already interface */) AttributedString {
 	rv := objc.Send[AttributedString](objc.ID(getAttributedStringClass().class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
 	return rv
 }
@@ -162,6 +162,18 @@ func NewAttributedStringWithAttachmentAttributes(attachment TextAttachment /* fo
 func NewAttributedStringWithAttributedString(attrStr IAttributedString) AttributedString {
 	instance := getAttributedStringClass().Alloc()
 	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithAttributedString:"), attrStr)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from the contents of a specified URL that contains Markdown-formatted data using the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithContentsOfMarkdownFileAtURL:options:baseURL:error:
+func NewAttributedStringWithContentsOfMarkdownFileAtURLOptionsBaseURLError(markdownFile IURL, options IAttributedStringMarkdownParsingOptions, baseURL IURL, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithContentsOfMarkdownFileAtURL:options:baseURL:error:"), markdownFile, options, baseURL, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -203,6 +215,54 @@ func NewAttributedStringWithFileURLOptionsDocumentAttributesError(url IURL, opti
 }
 
 
+// Initializes an attributed string by substituting arguments into a specially formatted string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithFormat:options:locale:
+func NewAttributedStringWithFormatOptionsLocale(format IAttributedString, options AttributedStringFormattingOptions, locale ILocale) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFormat:options:locale:"), format, options, locale)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an attributed string by substituting a list of function arguments into a specially formatted string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithFormat:options:locale:arguments:
+func NewAttributedStringWithFormatOptionsLocaleArguments(format IAttributedString, options AttributedStringFormattingOptions, locale ILocale, arguments unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFormat:options:locale:arguments:"), format, options, locale, arguments)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an attributed string by substituting arguments into a specially formatted string and applying additional contextual information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithFormat:options:locale:context:
+func NewAttributedStringWithFormatOptionsLocaleContext(format IAttributedString, options AttributedStringFormattingOptions, locale ILocale, context IDictionary /* already interface */) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFormat:options:locale:context:"), format, options, locale, context)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an attributed string by substituting a list of function arguments into a specially formatted string and applying additional contextual information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithFormat:options:locale:context:arguments:
+func NewAttributedStringWithFormatOptionsLocaleContextArguments(format IAttributedString, options AttributedStringFormattingOptions, locale ILocale, context IDictionary /* already interface */, arguments unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithFormat:options:locale:context:arguments:"), format, options, locale, context, arguments)
+	rv.Autorelease()
+	return rv
+}
+
+
 // Creates an attributed string from the HTML in the specified data object and base URL.
 //
 // [Full Topic]
@@ -234,6 +294,30 @@ func NewAttributedStringWithHTMLDocumentAttributes(data IData, dict IDictionary 
 func NewAttributedStringWithHTMLOptionsDocumentAttributes(data IData, options IDictionary /* already interface */, dict IDictionary /* already interface */) AttributedString {
 	instance := getAttributedStringClass().Alloc()
 	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithHTML:options:documentAttributes:"), data, options, dict)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from Markdown-formatted data using the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithMarkdown:options:baseURL:error:
+func NewAttributedStringWithMarkdownOptionsBaseURLError(markdown IData, options IAttributedStringMarkdownParsingOptions, baseURL IURL, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithMarkdown:options:baseURL:error:"), markdown, options, baseURL, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an attributed string from a Markdown-formatted string using the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/initWithMarkdownString:options:baseURL:error:
+func NewAttributedStringWithMarkdownStringOptionsBaseURLError(markdownString string /* primitive/slice/pointer */, options IAttributedStringMarkdownParsingOptions, baseURL IURL, error_ unsafe.Pointer) AttributedString {
+	instance := getAttributedStringClass().Alloc()
+	rv := objc.Send[AttributedString](instance.ID, objc.Sel("initWithMarkdownString:options:baseURL:error:"), objc.String(markdownString), options, baseURL, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -340,7 +424,7 @@ func NewAttributedStringWithURLOptionsDocumentAttributesError(url IURL, options 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(adaptiveImageGlyph:attributes:)
-func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph AdaptiveImageGlyph /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttributes(adaptiveImageGlyph objectivec.IObject, attributes IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAdaptiveImageGlyph:attributes:"), adaptiveImageGlyph, attributes)
 	return rv
 }
@@ -350,7 +434,7 @@ func (ac _AttributedStringClass) AttributedStringWithAdaptiveImageGlyphAttribute
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:)
-func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextAttachment /* foo */) IAttributedString {
+func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment objectivec.IObject) IAttributedString {
 	rv := objc.Send[AttributedString](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:"), attachment)
 	return rv
 }
@@ -360,7 +444,7 @@ func (ac _AttributedStringClass) AttributedStringWithAttachment(attachment TextA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/init(attachment:attributes:)
-func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attachment TextAttachment /* foo */, attributes IDictionary /* already interface */) unsafe.Pointer {
+func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attachment objectivec.IObject, attributes IDictionary /* already interface */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("attributedStringWithAttachment:attributes:"), attachment, attributes)
 	return rv
 }
@@ -370,7 +454,7 @@ func (ac _AttributedStringClass) AttributedStringWithAttachmentAttributes(attach
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(data:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(data IData, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(data IData, options IDictionary /* already interface */, completionHandler NSAttributedStringCompletionHandler /* foo */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithData:options:completionHandler:"), data, options, completionHandler)
 }
 
@@ -379,7 +463,7 @@ func (ac _AttributedStringClass) LoadFromHTMLWithDataOptionsCompletionHandler(da
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(fileURL:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler(fileURL IURL, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler(fileURL IURL, options IDictionary /* already interface */, completionHandler NSAttributedStringCompletionHandler /* foo */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithFileURL:options:completionHandler:"), fileURL, options, completionHandler)
 }
 
@@ -388,7 +472,7 @@ func (ac _AttributedStringClass) LoadFromHTMLWithFileURLOptionsCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(request:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler(request URLRequest /* foo */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler(request URLRequest /* foo */, options IDictionary /* already interface */, completionHandler NSAttributedStringCompletionHandler /* foo */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithRequest:options:completionHandler:"), request, options, completionHandler)
 }
 
@@ -397,8 +481,88 @@ func (ac _AttributedStringClass) LoadFromHTMLWithRequestOptionsCompletionHandler
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/loadFromHTML(string:options:completionHandler:)
-func (ac _AttributedStringClass) LoadFromHTMLWithStringOptionsCompletionHandler(string_ string /* primitive/slice/pointer */, options IDictionary /* already interface */, completionHandler AttributedStringCompletionHandler /* foo */) {
+func (ac _AttributedStringClass) LoadFromHTMLWithStringOptionsCompletionHandler(string_ string /* primitive/slice/pointer */, options IDictionary /* already interface */, completionHandler NSAttributedStringCompletionHandler /* foo */) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("loadFromHTMLWithString:options:completionHandler:"), objc.String(string_), options, completionHandler)
+}
+
+
+// Creates an attributed string by substituting arguments into a specially formatted string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/localizedAttributedStringWithFormat:
+func (ac _AttributedStringClass) LocalizedAttributedStringWithFormat(format IAttributedString) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("localizedAttributedStringWithFormat:"), format)
+	return rv
+}
+
+
+// Creates an attributed string by substituting arguments into a specially formatted string and applying additional contextual information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/localizedAttributedStringWithFormat:context:
+func (ac _AttributedStringClass) LocalizedAttributedStringWithFormatContext(format IAttributedString, context IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("localizedAttributedStringWithFormat:context:"), format, context)
+	return rv
+}
+
+
+// Creates an attributed string by substituting a list of function arguments into a specially formatted string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/localizedAttributedStringWithFormat:options:
+func (ac _AttributedStringClass) LocalizedAttributedStringWithFormatOptions(format IAttributedString, options AttributedStringFormattingOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("localizedAttributedStringWithFormat:options:"), format, options)
+	return rv
+}
+
+
+// Creates an attributed string by substituting a list of function arguments into a specially formatted string and applying additional contextual information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/localizedAttributedStringWithFormat:options:context:
+func (ac _AttributedStringClass) LocalizedAttributedStringWithFormatOptionsContext(format IAttributedString, options AttributedStringFormattingOptions, context IDictionary /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("localizedAttributedStringWithFormat:options:context:"), format, options, context)
+	return rv
+}
+
+
+// Returns an array of strings that represent file types that can be loaded as text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textFileTypes
+func (ac _AttributedStringClass) TextFileTypes() IArray {
+	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("textFileTypes"))
+	return rv
+}
+
+
+// Returns an array of pasteboard types that can be loaded as text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textPasteboardTypes
+func (ac _AttributedStringClass) TextPasteboardTypes() IArray {
+	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("textPasteboardTypes"))
+	return rv
+}
+
+
+// Returns an array of strings that represent file types that can be loaded as a text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textUnfilteredFileTypes
+func (ac _AttributedStringClass) TextUnfilteredFileTypes() IArray {
+	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("textUnfilteredFileTypes"))
+	return rv
+}
+
+
+// Returns an array of pasteboard types that can be loaded as text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/textUnfilteredPasteboardTypes
+func (ac _AttributedStringClass) TextUnfilteredPasteboardTypes() IArray {
+	rv := objc.Send[Array](objc.ID(ac.class), objc.Sel("textUnfilteredPasteboardTypes"))
+	return rv
 }
 
 
@@ -474,7 +638,7 @@ func (a_ AttributedString) AttributesAtIndexLongestEffectiveRangeInRange(locatio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:)
-func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions /* foo */) Rect /* foo */ {
+func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, options StringDrawingOptions) Rect /* foo */ {
 	rv := objc.Send[Rect](a_.ID, objc.Sel("boundingRectWithSize:options:"), size, options)
 	return rv
 }
@@ -484,7 +648,7 @@ func (a_ AttributedString) BoundingRectWithSizeOptions(size Size /* foo */, opti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/boundingRect(with:options:context:)
-func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) coregraphics.CGRect {
+func (a_ AttributedString) BoundingRectWithSizeOptionsContext(size coregraphics.CGSize, options StringDrawingOptions, context objectivec.IObject) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](a_.ID, objc.Sel("boundingRectWithSize:options:context:"), size, options, context)
 	return rv
 }
@@ -552,7 +716,7 @@ func (a_ AttributedString) DrawInRect(rect coregraphics.CGRect) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:)
-func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions /* foo */) {
+func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options StringDrawingOptions) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:"), rect, options)
 }
 
@@ -561,7 +725,7 @@ func (a_ AttributedString) DrawWithRectOptions(rect Rect /* foo */, options Stri
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/draw(with:options:context:)
-func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions /* foo */, context StringDrawingContext /* foo */) {
+func (a_ AttributedString) DrawWithRectOptionsContext(rect coregraphics.CGRect, options StringDrawingOptions, context objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("drawWithRect:options:context:"), rect, options, context)
 }
 
@@ -626,7 +790,7 @@ func (a_ AttributedString) IsEqualToAttributedString(other IAttributedString) bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/itemNumber(in:at:)
-func (a_ AttributedString) ItemNumberInTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
+func (a_ AttributedString) ItemNumberInTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) int /* primitive/slice/pointer */ {
 	rv := objc.Send[int](a_.ID, objc.Sel("itemNumberInTextList:atIndex:"), list, location)
 	return rv
 }
@@ -676,7 +840,7 @@ func (a_ AttributedString) PrefersRTFDInRange(range_ Range /* foo */) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-1wrcp
-func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextBlockAtIndex(block objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextBlock:atIndex:"), block, location)
 	return rv
 }
@@ -686,7 +850,7 @@ func (a_ AttributedString) RangeOfTextBlockAtIndex(block TextBlock /* foo */, lo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-3fevu
-func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextTableAtIndex(table objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextTable:atIndex:"), table, location)
 	return rv
 }
@@ -696,7 +860,7 @@ func (a_ AttributedString) RangeOfTextTableAtIndex(table TextTable /* foo */, lo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/range(of:at:)-6um0x
-func (a_ AttributedString) RangeOfTextListAtIndex(list TextList /* foo */, location uint /* primitive/slice/pointer */) Range /* foo */ {
+func (a_ AttributedString) RangeOfTextListAtIndex(list objectivec.IObject, location uint /* primitive/slice/pointer */) Range /* foo */ {
 	rv := objc.Send[Range](a_.ID, objc.Sel("rangeOfTextList:atIndex:"), list, location)
 	return rv
 }

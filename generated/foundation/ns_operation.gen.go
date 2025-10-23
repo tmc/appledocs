@@ -56,6 +56,7 @@ type IOperation interface {
 	ThreadPriority() float64 /* primitive/slice/pointer */
 	SetThreadPriority(value float64 /* primitive/slice/pointer */)
 	// methods:
+	Start()
 }
 
 // An abstract class that represents the code and data associated with a single task.
@@ -109,6 +110,15 @@ func NewOperation() Operation {
 	return getOperationClass().New()
 }
 
+
+
+// Begins the execution of the operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/start()
+func (o_ Operation) Start() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("start"))
+}
 
 
 // The block to execute after the operation’s main task is completed.

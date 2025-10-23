@@ -45,6 +45,7 @@ type IXMLDocument interface {
 	XmlData() IData
 	SetXmlData(value IData)
 	// methods:
+	SetChildren(children []XMLNode /* primitive/slice/pointer */)
 }
 
 // An XML document as internalized into a logical tree structure.
@@ -100,6 +101,15 @@ func NewXMLDocument() XMLDocument {
 	return getXMLDocumentClass().New()
 }
 
+
+
+// Sets the child nodes of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/setChildren(_:)
+func (x_ XMLDocument) SetChildren(children []XMLNode /* primitive/slice/pointer */) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
+}
 
 
 // Sets the character encoding of the receiver to

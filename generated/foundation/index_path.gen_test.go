@@ -39,7 +39,7 @@ func ExampleNewIndexPathWithIndex() {
 // Initializes an index path with the given nodes and length.
 func ExampleNewIndexPathWithIndexesLength() {
 	_ = foundation.NewIndexPathWithIndexesLength(
-		foundation.UInteger []{}, // indexes UInteger []
+		foundation.NSUInteger []{}, // indexes NSUInteger []
 		0, // length uint
 	)
 	// Output:

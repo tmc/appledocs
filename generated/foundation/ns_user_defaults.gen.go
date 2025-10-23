@@ -34,6 +34,7 @@ type IUserDefaults interface {
 	VolatileDomainNames() string /* primitive/slice/pointer */
 	SetVolatileDomainNames(value string /* primitive/slice/pointer */)
 	// methods:
+	StringForKey(defaultName string /* primitive/slice/pointer */) String /* foo */
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
@@ -87,6 +88,16 @@ func NewUserDefaults() UserDefaults {
 	return getUserDefaultsClass().New()
 }
 
+
+
+// Returns the string associated with the specified key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
+func (u_ UserDefaults) StringForKey(defaultName string /* primitive/slice/pointer */) String /* foo */ {
+	rv := objc.Send[String](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
+	return rv
+}
 
 
 // The current volatile domain names.

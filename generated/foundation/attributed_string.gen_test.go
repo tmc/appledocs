@@ -9,32 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewAttributedString
 
-// ExampleNewAttributedStringWithAdaptiveImageGlyphAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithAdaptiveImageGlyphAttributes.
-// Creates an attributed string with an adaptive image glyph and applies the specified attributes to it.
-func ExampleNewAttributedStringWithAdaptiveImageGlyphAttributes() {
-	_ = foundation.NewAttributedStringWithAdaptiveImageGlyphAttributes(
-		foundation.AdaptiveImageGlyph{}, // adaptiveImageGlyph AdaptiveImageGlyph
-		foundation.IDictionary{}, // attributes IDictionary
-	)
-	// Output:
-}
-// ExampleNewAttributedStringWithAttachment demonstrates how to create a AttributedString instance using NewAttributedStringWithAttachment.
-// Creates an attributed string with an attachment.
-func ExampleNewAttributedStringWithAttachment() {
-	_ = foundation.NewAttributedStringWithAttachment(
-		foundation.TextAttachment{}, // attachment TextAttachment
-	)
-	// Output:
-}
-// ExampleNewAttributedStringWithAttachmentAttributes demonstrates how to create a AttributedString instance using NewAttributedStringWithAttachmentAttributes.
-// Creates an attributed string with an attachment and applies the specified attributes to it.
-func ExampleNewAttributedStringWithAttachmentAttributes() {
-	_ = foundation.NewAttributedStringWithAttachmentAttributes(
-		foundation.TextAttachment{}, // attachment TextAttachment
-		foundation.IDictionary{}, // attributes IDictionary
-	)
-	// Output:
-}
 // ExampleNewAttributedStringWithAttributedString demonstrates how to create a AttributedString instance using NewAttributedStringWithAttributedString.
 // Creates a new attributed string from the contents of another attributed string.
 func ExampleNewAttributedStringWithAttributedString() {
@@ -49,6 +23,27 @@ func ExampleNewAttributedStringWithDocFormatDocumentAttributes() {
 	_ = foundation.NewAttributedStringWithDocFormatDocumentAttributes(
 		foundation.NSData{}, // data NSData
 		foundation.IDictionary{}, // dict IDictionary
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithFormatOptionsLocale demonstrates how to create a AttributedString instance using NewAttributedStringWithFormatOptionsLocale.
+// Initializes an attributed string by substituting arguments into a specially formatted string.
+func ExampleNewAttributedStringWithFormatOptionsLocale() {
+	_ = foundation.NewAttributedStringWithFormatOptionsLocale(
+		foundation.NSAttributedString{}, // format NSAttributedString
+		foundation.AttributedStringFormattingOptions{}, // options AttributedStringFormattingOptions
+		foundation.NSLocale{}, // locale NSLocale
+	)
+	// Output:
+}
+// ExampleNewAttributedStringWithFormatOptionsLocaleContext demonstrates how to create a AttributedString instance using NewAttributedStringWithFormatOptionsLocaleContext.
+// Initializes an attributed string by substituting arguments into a specially formatted string and applying additional contextual information.
+func ExampleNewAttributedStringWithFormatOptionsLocaleContext() {
+	_ = foundation.NewAttributedStringWithFormatOptionsLocaleContext(
+		foundation.NSAttributedString{}, // format NSAttributedString
+		foundation.AttributedStringFormattingOptions{}, // options AttributedStringFormattingOptions
+		foundation.NSLocale{}, // locale NSLocale
+		foundation.IDictionary{}, // context IDictionary
 	)
 	// Output:
 }

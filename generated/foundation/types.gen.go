@@ -5,8 +5,8 @@ import (
 	"unsafe"
 )
 
-// CFStringRef is a CoreGraphics opaque type.
-type CFStringRef unsafe.Pointer
+// CFTypeRef is a CoreGraphics opaque type.
+type CFTypeRef unsafe.Pointer
 
 
 // Foundation-specific types
@@ -32,51 +32,63 @@ type Range struct {
 	Length   int
 }
 
+// RectEdge defines which edge of a rectangle.
+type RectEdge int
+
+const (
+	RectEdgeMinX RectEdge = 0
+	RectEdgeMinY RectEdge = 1
+	RectEdgeMaxX RectEdge = 2
+	RectEdgeMaxY RectEdge = 3
+)
+
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
 // Using inferred base types as fallback to allow code generation.
-type AffineTransformStruct = int
+type CFIndex = int
 
-type AttributedStringCompletionHandler = int
+type CFStringEncoding = int
 
-type BinarySearchingOptions = int
+type CFTypeID = int
 
-type Comparator = int
+type CFUUIDBytes = int
 
-type ComparisonResult = int
+type NSAffineTransformStruct = int
 
-type Decimal = int
+type NSAttributedStringCompletionHandler = int
 
-type EdgeInsets = int
+type NSComparator = int
 
-type FontTraitMask = int
+type NSComparisonResult = int
 
-type HashEnumerator = int
+type NSDecimal = int
 
-type HashTableCallBacks = int
+type NSEdgeInsets = int
 
-type KeyValueObservingOptions = int
+type NSFontTraitMask = int
 
-type MapEnumerator = int
+type NSFormattingUnitStyle = int
 
-type MapTableKeyCallBacks = int
+type NSHashEnumerator = int
 
-type MapTableValueCallBacks = int
+type NSHashTableCallBacks = int
 
-type StringDrawingOptions = int
+type NSKeyValueObservingOptions = int
 
-type StringRef = int
+type NSMapEnumerator = int
 
-type TextAlignment = int
+type NSMapTableKeyCallBacks = int
 
-type UInteger = int
+type NSMapTableValueCallBacks = int
 
-type URLHandle = int
+type NSRunLoopMode = int
 
-type WritingDirection = int
+type NSTextAlignment = int
 
-type Zone = int
+type NSWritingDirection = int
+
+type UIEdgeInsets = int
 
 
 

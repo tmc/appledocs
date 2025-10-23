@@ -37,8 +37,8 @@ type IIndexPath interface {
 	Section() int /* primitive/slice/pointer */
 	// methods:
 	IndexPathByAddingIndex(index uint /* primitive/slice/pointer */) IIndexPath
-	Compare(otherObject IIndexPath) ComparisonResult /* foo */
-	GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */)
+	Compare(otherObject IIndexPath) NSComparisonResult /* foo */
+	GetIndexesRange(indexes unsafe.Pointer, positionRange Range /* foo */)
 	IndexAtPosition(position uint /* primitive/slice/pointer */) uint /* primitive/slice/pointer */
 	IndexPathByRemovingLastIndex() IIndexPath
 }
@@ -132,13 +132,33 @@ func NewIndexPathWithIndex(index uint /* primitive/slice/pointer */) IndexPath {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/init(indexes:length:)
-func NewIndexPathWithIndexesLength(indexes UInteger [] /* foo */, length uint /* primitive/slice/pointer */) IndexPath {
+func NewIndexPathWithIndexesLength(indexes NSUInteger [] /* foo */, length uint /* primitive/slice/pointer */) IndexPath {
 	instance := getIndexPathClass().Alloc()
 	rv := objc.Send[IndexPath](instance.ID, objc.Sel("initWithIndexes:length:"), indexes, length)
 	rv.Autorelease()
 	return rv
 }
 
+
+
+// Creates a one-node index path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/indexPathWithIndex:
+func (ic _IndexPathClass) IndexPathWithIndex(index uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathWithIndex:"), index)
+	return rv
+}
+
+
+// Creates an index path with one or more nodes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/indexPathWithIndexes:length:
+func (ic _IndexPathClass) IndexPathWithIndexesLength(indexes uint /* primitive/slice/pointer */, length uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexPathWithIndexes:length:"), indexes, length)
+	return rv
+}
 
 
 // Initializes an index path with the indexes of a specific item and section in a collection view.
@@ -175,7 +195,7 @@ func (i_ IndexPath) IndexPathByAddingIndex(index uint /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/compare(_:)
-func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult /* foo */ {
+func (i_ IndexPath) Compare(otherObject IIndexPath) NSComparisonResult /* foo */ {
 	rv := objc.Send[ComparisonResult](i_.ID, objc.Sel("compare:"), otherObject)
 	return rv
 }
@@ -185,7 +205,7 @@ func (i_ IndexPath) Compare(otherObject IIndexPath) ComparisonResult /* foo */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexPath/getIndexes(_:range:)
-func (i_ IndexPath) GetIndexesRange(indexes UInteger /* foo */, positionRange Range /* foo */) {
+func (i_ IndexPath) GetIndexesRange(indexes unsafe.Pointer, positionRange Range /* foo */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("getIndexes:range:"), indexes, positionRange)
 }
 

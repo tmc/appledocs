@@ -178,6 +178,26 @@ func (tc _TimeZoneClass) ResetSystemTimeZone() {
 }
 
 
+// Returns the time zone object identified by a given identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneWithName:
+func (tc _TimeZoneClass) TimeZoneWithName(tzName string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:"), objc.String(tzName))
+	return rv
+}
+
+
+// Returns the time zone with a given identifier whose data has been initialized using given data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/timeZoneWithName:data:
+func (tc _TimeZoneClass) TimeZoneWithNameData(tzName string /* primitive/slice/pointer */, aData IData) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("timeZoneWithName:data:"), objc.String(tzName), aData)
+	return rv
+}
+
+
 // Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
 //
 // [Full Topic]

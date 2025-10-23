@@ -32,6 +32,7 @@ type IFormatter interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */
 	StringForObjectValue(obj objectivec.IObject) String /* foo */
 }
 
@@ -86,6 +87,16 @@ func NewFormatter() Formatter {
 	return getFormatterClass().New()
 }
 
+
+
+// Returns a Boolean value that indicates whether a partial string is valid.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/isPartialStringValid(_:newEditingString:errorDescription:)
+func (f_ Formatter) IsPartialStringValidNewEditingStringErrorDescription(partialString string /* primitive/slice/pointer */, newString string /* primitive/slice/pointer */, error_ string /* primitive/slice/pointer */) bool /* primitive/slice/pointer */ {
+	rv := objc.Send[bool](f_.ID, objc.Sel("isPartialStringValid:newEditingString:errorDescription:"), objc.String(partialString), objc.String(newString), objc.String(error_))
+	return rv
+}
 
 
 // The default implementation of this method raises an exception.

@@ -42,6 +42,11 @@ type IArray interface {
 	SortedArrayHint() IData
 	SetSortedArrayHint(value IData)
 	// methods:
+	DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer
+	DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
+	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer
+	IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* foo */, opts BinarySearchingOptions, cmp NSComparator /* foo */) uint /* primitive/slice/pointer */
+	ReverseObjectEnumerator() unsafe.Pointer
 }
 
 // A static ordered collection of objects.
@@ -95,6 +100,56 @@ func NewArray() Array {
 	return getArrayClass().New()
 }
 
+
+
+// Compares two arrays to create a difference object that represents the changes between them.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:
+func (a_ Array) DifferenceFromArray(other []objc.ID /* already interface */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:"), other)
+	return rv
+}
+
+
+// Compares two arrays, with options, to create a difference object that represents the changes between them.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:
+func (a_ Array) DifferenceFromArrayWithOptions(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:"), other, options)
+	return rv
+}
+
+
+// Compares two arrays, using the provided block and with options, to create a difference object that represents the changes between them.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/differenceFromArray:withOptions:usingEquivalenceTest:
+func (a_ Array) DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID /* already interface */, options OrderedCollectionDifferenceCalculationOptions, block bool /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("differenceFromArray:withOptions:usingEquivalenceTest:"), other, options, block)
+	return rv
+}
+
+
+// Returns the index, within a specified range, of an object compared with elements in the array using a given block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/index(of:inSortedRange:options:usingComparator:)
+func (a_ Array) IndexOfObjectInSortedRangeOptionsUsingComparator(obj unsafe.Pointer, r Range /* foo */, opts BinarySearchingOptions, cmp NSComparator /* foo */) uint /* primitive/slice/pointer */ {
+	rv := objc.Send[uint](a_.ID, objc.Sel("indexOfObject:inSortedRange:options:usingComparator:"), obj, r, opts, cmp)
+	return rv
+}
+
+
+// Returns an enumerator object that lets you access each object in the array, in reverse order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/reverseObjectEnumerator()
+func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("reverseObjectEnumerator"))
+	return rv
+}
 
 
 // The number of objects in the array.

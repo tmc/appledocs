@@ -36,7 +36,8 @@ type IMutableAttributedString interface {
 	AddAttributeValueRange(name AttributedStringKey /* foo */, value objectivec.IObject, range_ Range /* foo */)
 	AddAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */)
 	AppendAttributedString(attrString IAttributedString)
-	ApplyFontTraitsRange(traitMask FontTraitMask /* foo */, range_ Range /* foo */)
+	AppendLocalizedFormat(format IAttributedString)
+	ApplyFontTraitsRange(traitMask NSFontTraitMask /* foo */, range_ Range /* foo */)
 	BeginEditing()
 	DeleteCharactersInRange(range_ Range /* foo */)
 	EndEditing()
@@ -50,10 +51,10 @@ type IMutableAttributedString interface {
 	RemoveAttributeRange(name AttributedStringKey /* foo */, range_ Range /* foo */)
 	ReplaceCharactersInRangeWithAttributedString(range_ Range /* foo */, attrString IAttributedString)
 	ReplaceCharactersInRangeWithString(range_ Range /* foo */, str string /* primitive/slice/pointer */)
-	SetAlignmentRange(alignment TextAlignment /* foo */, range_ Range /* foo */)
+	SetAlignmentRange(alignment NSTextAlignment /* foo */, range_ Range /* foo */)
 	SetAttributedString(attrString IAttributedString)
 	SetAttributesRange(attrs IDictionary /* already interface */, range_ Range /* foo */)
-	SetBaseWritingDirectionRange(writingDirection WritingDirection /* foo */, range_ Range /* foo */)
+	SetBaseWritingDirectionRange(writingDirection NSWritingDirection /* foo */, range_ Range /* foo */)
 	SubscriptRange(range_ Range /* foo */)
 	SuperscriptRange(range_ Range /* foo */)
 	UnscriptRange(range_ Range /* foo */)
@@ -142,11 +143,18 @@ func (m_ MutableAttributedString) AppendAttributedString(attrString IAttributedS
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/appendLocalizedFormat:
+func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("appendLocalizedFormat:"), format)
+}
+
+
 // Applies the specified font-related attributes to characters in the string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/applyFontTraits(_:range:)
-func (m_ MutableAttributedString) ApplyFontTraitsRange(traitMask FontTraitMask /* foo */, range_ Range /* foo */) {
+func (m_ MutableAttributedString) ApplyFontTraitsRange(traitMask NSFontTraitMask /* foo */, range_ Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("applyFontTraits:range:"), traitMask, range_)
 }
 
@@ -274,7 +282,7 @@ func (m_ MutableAttributedString) ReplaceCharactersInRangeWithString(range_ Rang
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAlignment(_:range:)
-func (m_ MutableAttributedString) SetAlignmentRange(alignment TextAlignment /* foo */, range_ Range /* foo */) {
+func (m_ MutableAttributedString) SetAlignmentRange(alignment NSTextAlignment /* foo */, range_ Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlignment:range:"), alignment, range_)
 }
 
@@ -301,7 +309,7 @@ func (m_ MutableAttributedString) SetAttributesRange(attrs IDictionary /* alread
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setBaseWritingDirection(_:range:)
-func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection WritingDirection /* foo */, range_ Range /* foo */) {
+func (m_ MutableAttributedString) SetBaseWritingDirectionRange(writingDirection NSWritingDirection /* foo */, range_ Range /* foo */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBaseWritingDirection:range:"), writingDirection, range_)
 }
 

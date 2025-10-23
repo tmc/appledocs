@@ -195,6 +195,16 @@ func (lc _LocaleClass) LineDirectionForLanguage(isoLangCode string /* primitive/
 }
 
 
+// Returns a locale initialized using the given locale identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/localeWithLocaleIdentifier:
+func (lc _LocaleClass) LocaleWithLocaleIdentifier(ident string /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("localeWithLocaleIdentifier:"), objc.String(ident))
+	return rv
+}
+
+
 // Returns a locale identifier from the components specified in a given dictionary.
 //
 // [Full Topic]

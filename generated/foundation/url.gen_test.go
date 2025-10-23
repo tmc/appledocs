@@ -51,14 +51,6 @@ func ExampleNewURLFileURLWithPathRelativeToURL() {
 	)
 	// Output:
 }
-// ExampleNewURLFromPasteboard demonstrates how to create a URL instance using NewURLFromPasteboard.
-// Reads an NSURL object off of the specified pasteboard.
-func ExampleNewURLFromPasteboard() {
-	_ = foundation.NewURLFromPasteboard(
-		foundation.Pasteboard{}, // pasteBoard Pasteboard
-	)
-	// Output:
-}
 // ExampleNewURLWithDataRepresentationRelativeToURL demonstrates how to create a URL instance using NewURLWithDataRepresentationRelativeToURL.
 func ExampleNewURLWithDataRepresentationRelativeToURL() {
 	_ = foundation.NewURLWithDataRepresentationRelativeToURL(

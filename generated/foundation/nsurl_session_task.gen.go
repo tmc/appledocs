@@ -67,6 +67,7 @@ type IURLSessionTask interface {
 	TaskIdentifier() int /* primitive/slice/pointer */
 	SetTaskIdentifier(value int /* primitive/slice/pointer */)
 	// methods:
+	Resume()
 }
 
 // A task, like downloading a specific resource, performed in a URL session.
@@ -120,6 +121,15 @@ func NewURLSessionTask() URLSessionTask {
 	return getURLSessionTaskClass().New()
 }
 
+
+
+// Resumes the task, if it is suspended.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/resume()
+func (u_ URLSessionTask) Resume() {
+	objc.Send[objc.ID](u_.ID, objc.Sel("resume"))
+}
 
 
 // The total size of the transfer cannot be determined.

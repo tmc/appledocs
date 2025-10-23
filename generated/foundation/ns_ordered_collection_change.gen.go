@@ -123,6 +123,26 @@ func NewOrderedCollectionChangeWithObjectTypeIndexAssociatedIndex(anObject unsaf
 
 
 
+// Creates an change object that represents inserting or removing an object from an ordered collection at a specific index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/changeWithObject:type:index:
+func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("changeWithObject:type:index:"), anObject, type_, index)
+	return rv
+}
+
+
+// Creates an change object that represents inserting or removing an object from an ordered collection at a specific index, matched with an associated location that infers a move within the collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionChange/changeWithObject:type:index:associatedIndex:
+func (oc _OrderedCollectionChangeClass) ChangeWithObjectTypeIndexAssociatedIndex(anObject unsafe.Pointer, type_ CollectionChangeType, index uint /* primitive/slice/pointer */, associatedIndex uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("changeWithObject:type:index:associatedIndex:"), anObject, type_, index, associatedIndex)
+	return rv
+}
+
+
 // When this property is set to a value other than , the receiver is one half of a move, and this value is the index of the change’s counterpart of the opposite type in the diff.
 //
 // [Full Topic]

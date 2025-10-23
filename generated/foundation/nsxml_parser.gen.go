@@ -41,8 +41,8 @@ type IXMLParser interface {
 	SetExternalEntityResolvingPolicy(value unsafe.Pointer)
 	LineNumber() int /* primitive/slice/pointer */
 	SetLineNumber(value int /* primitive/slice/pointer */)
-	ParserError() IError
-	SetParserError(value IError)
+	ParserError() Error /* foo */
+	SetParserError(value Error /* foo */)
 	PublicID() string /* primitive/slice/pointer */
 	SetPublicID(value string /* primitive/slice/pointer */)
 	ShouldProcessNamespaces() bool /* primitive/slice/pointer */
@@ -105,19 +105,6 @@ func (x_ XMLParser) Autorelease() XMLParser {
 // NewXMLParser creates a new XMLParser instance.
 func NewXMLParser() XMLParser {
 	return getXMLParserClass().New()
-}
-
-
-
-// Initializes a parser with the XML content referenced by the given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(contentsOf:)
-func NewXMLParserWithContentsOfURL(url IURL) XMLParser {
-	instance := getXMLParserClass().Alloc()
-	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
-	rv.Autorelease()
-	return rv
 }
 
 
@@ -213,7 +200,7 @@ func (x_ XMLParser) SetLineNumber(value int /* primitive/slice/pointer */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
-func (x_ XMLParser) ParserError() IError {
+func (x_ XMLParser) ParserError() Error /* foo */ {
 	rv := objc.Send[Error](x_.ID, objc.Sel("parserError"))
 	return rv
 }
@@ -223,7 +210,7 @@ func (x_ XMLParser) ParserError() IError {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/parsererror
-func (x_ XMLParser) SetParserError(value IError) {
+func (x_ XMLParser) SetParserError(value Error /* foo */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setParserError:"), value)
 }
 
@@ -321,5 +308,6 @@ func (x_ XMLParser) SystemID() string /* primitive/slice/pointer */ {
 func (x_ XMLParser) SetSystemID(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
+
 
 

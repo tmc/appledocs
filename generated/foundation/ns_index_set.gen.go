@@ -45,7 +45,7 @@ type IIndexSet interface {
 	EnumerateRangesUsingBlock(block unsafe.Pointer)
 	EnumerateRangesInRangeOptionsUsingBlock(range_ Range /* foo */, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
-	GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */
+	GetIndexesMaxCountInIndexRange(indexBuffer unsafe.Pointer, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */
 	IndexInRangeOptionsPassingTest(range_ Range /* foo */, opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint /* primitive/slice/pointer */
 	IndexPassingTest(predicate unsafe.Pointer) uint /* primitive/slice/pointer */
@@ -150,6 +150,36 @@ func NewIndexSetWithIndexesInRange(range_ Range /* foo */) IndexSet {
 
 
 
+// Creates an empty index set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSet
+func (ic _IndexSetClass) IndexSet() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSet"))
+	return rv
+}
+
+
+// Creates an index set with an index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndex:
+func (ic _IndexSetClass) IndexSetWithIndex(value uint /* primitive/slice/pointer */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndex:"), value)
+	return rv
+}
+
+
+// Creates an index set with an index range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndexesInRange:
+func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ Range /* foo */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndexesInRange:"), range_)
+	return rv
+}
+
+
 // Indicates whether the receiving index set contains a superset of the indexes in another index set.
 //
 // [Full Topic]
@@ -248,7 +278,7 @@ func (i_ IndexSet) EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/getIndexes(_:maxCount:inIndexRange:)
-func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer UInteger /* foo */, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */ {
+func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer unsafe.Pointer, bufferSize uint /* primitive/slice/pointer */, range_ RangePointer /* foo */) uint /* primitive/slice/pointer */ {
 	rv := objc.Send[uint](i_.ID, objc.Sel("getIndexes:maxCount:inIndexRange:"), indexBuffer, bufferSize, range_)
 	return rv
 }

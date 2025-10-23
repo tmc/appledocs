@@ -42,6 +42,8 @@ type IDictionary interface {
 	DescriptionInStringsFileFormat() string /* primitive/slice/pointer */
 	SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer */)
 	// methods:
+	KeyEnumerator() unsafe.Pointer
+	ObjectEnumerator() unsafe.Pointer
 }
 
 // A static collection of objects associated with unique keys.
@@ -95,6 +97,39 @@ func NewDictionary() Dictionary {
 	return getDictionaryClass().New()
 }
 
+
+
+// Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
+func NewDictionaryWithObjectsForKeys(objects []objc.ID /* already interface */, keys []objc.ID /* already interface */) Dictionary {
+	instance := getDictionaryClass().Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Provides an enumerator to access the keys in the dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keyEnumerator()
+func (d_ Dictionary) KeyEnumerator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keyEnumerator"))
+	return rv
+}
+
+
+// Returns an enumerator object that lets you access each value in the dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/objectEnumerator()
+func (d_ Dictionary) ObjectEnumerator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("objectEnumerator"))
+	return rv
+}
 
 
 // A new array containing the dictionary’s keys, or an empty array if the dictionary has no entries.
@@ -190,6 +225,5 @@ func (d_ Dictionary) DescriptionInStringsFileFormat() string /* primitive/slice/
 func (d_ Dictionary) SetDescriptionInStringsFileFormat(value string /* primitive/slice/pointer */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescriptionInStringsFileFormat:"), objc.String(value))
 }
-
 
 

@@ -145,6 +145,46 @@ func (mc _MapTableClass) MapTableWithKeyOptionsValueOptions(keyOptions PointerFu
 // Returns a new map table object which has strong references to the keys and values.
 //
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithStrongToStrongObjects
+func (mc _MapTableClass) MapTableWithStrongToStrongObjects() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithStrongToStrongObjects"))
+	return rv
+}
+
+
+// Returns a new map table object which has strong references to the keys and weak references to the values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithStrongToWeakObjects
+func (mc _MapTableClass) MapTableWithStrongToWeakObjects() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithStrongToWeakObjects"))
+	return rv
+}
+
+
+// Returns a new map table object which has weak references to the keys and strong references to the values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithWeakToStrongObjects
+func (mc _MapTableClass) MapTableWithWeakToStrongObjects() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithWeakToStrongObjects"))
+	return rv
+}
+
+
+// Returns a new map table object which has weak references to the keys and values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/mapTableWithWeakToWeakObjects
+func (mc _MapTableClass) MapTableWithWeakToWeakObjects() objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("mapTableWithWeakToWeakObjects"))
+	return rv
+}
+
+
+// Returns a new map table object which has strong references to the keys and values.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapTable/strongToStrongObjects()
 func (mc _MapTableClass) StrongToStrongObjectsMapTable() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("strongToStrongObjectsMapTable"))

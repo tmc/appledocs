@@ -134,6 +134,16 @@ func (rc _RegularExpressionClass) EscapedTemplateForString(string_ string /* pri
 }
 
 
+// Creates an NSRegularExpression instance with the specified regular expression pattern and options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/regularExpressionWithPattern:options:error:
+func (rc _RegularExpressionClass) RegularExpressionWithPatternOptionsError(pattern string /* primitive/slice/pointer */, options RegularExpressionOptions, error_ unsafe.Pointer) IRegularExpression {
+	rv := objc.Send[RegularExpression](objc.ID(rc.class), objc.Sel("regularExpressionWithPattern:options:error:"), objc.String(pattern), options, error_)
+	return rv
+}
+
+
 // Enumerates the string allowing the Block to handle each regular expression match.
 //
 // [Full Topic]

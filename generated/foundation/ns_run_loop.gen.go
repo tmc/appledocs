@@ -34,6 +34,9 @@ type IRunLoop interface {
 	CurrentMode() unsafe.Pointer
 	SetCurrentMode(value unsafe.Pointer)
 	// methods:
+	LimitDateForMode(mode NSRunLoopMode /* foo */) IDate
+	PerformBlock(block unsafe.Pointer)
+	PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer)
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -87,6 +90,34 @@ func NewRunLoop() RunLoop {
 	return getRunLoopClass().New()
 }
 
+
+
+// Performs one pass through the run loop in the specified mode and returns the date at which the next timer is scheduled to fire.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
+func (r_ RunLoop) LimitDateForMode(mode NSRunLoopMode /* foo */) IDate {
+	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
+	return rv
+}
+
+
+// Schedules a block that the run loop invokes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(_:)
+func (r_ RunLoop) PerformBlock(block unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("performBlock:"), block)
+}
+
+
+// Schedules a block that the run loop invokes when it’s running in any of the specified modes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(inModes:block:)
+func (r_ RunLoop) PerformInModesBlock(modes []string /* primitive/slice/pointer */, block unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("performInModes:block:"), modes, block)
+}
 
 
 // The receiver’s current input mode.
