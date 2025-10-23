@@ -176,6 +176,12 @@ type {{.Name}} struct {
 {{- end}}
 }
 
+{{- if hasPrefix .Name "NS"}}
+{{- $strippedName := trimPrefix .Name "NS"}}
+// {{$strippedName}} is a type alias for {{.Name}} for use in objc.Send[T] calls.
+type {{$strippedName}} = {{.Name}}
+
+{{end -}}
 {{end}}
 {{end}}
 
