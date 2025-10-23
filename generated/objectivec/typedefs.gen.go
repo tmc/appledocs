@@ -2,7 +2,8 @@
 
 package objectivec
 import (
-	"unsafe"
+"github.com/tmc/appledocs/generated/objc"
+"unsafe"
 )
 
 // Type aliases and typedefs
@@ -37,19 +38,19 @@ type Integer uintptr
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_handler
 // objc_exception_handler is a callback function
 // C type: void (*)(id, void *)
-type objc_exception_handler = func(id, unsafe.Pointer)
+type objc_exception_handler = func(objc.ID, unsafe.Pointer)
 // objc_exception_matcher type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_matcher
 // objc_exception_matcher is a callback function
 // C type: int (*)(Class, id)
-type objc_exception_matcher = func(Class, id) int32
+type objc_exception_matcher = func(objc.Class, objc.ID) int32
 // objc_exception_preprocessor type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_preprocessor
 // objc_exception_preprocessor is a callback function
 // C type: id (*)(id)
-type objc_exception_preprocessor = func(id) id
+type objc_exception_preprocessor = func(objc.ID) objc.ID
 // objc_func_loadImage type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_func_loadImage
@@ -61,19 +62,19 @@ type objc_func_loadImage = func(unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_getClass
 // objc_hook_getClass is a callback function
 // C type: _Bool (*)(const char *, Class *)
-type objc_hook_getClass = func(string, unsafe.Pointer) _Bool
+type objc_hook_getClass = func(string, unsafe.Pointer) bool
 // objc_hook_getImageName type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_getImageName
 // objc_hook_getImageName is a callback function
 // C type: _Bool (*)(Class, const char **)
-type objc_hook_getImageName = func(Class, unsafe.Pointer) _Bool
+type objc_hook_getImageName = func(objc.Class, unsafe.Pointer) bool
 // objc_hook_lazyClassNamer type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_hook_lazyClassNamer
 // objc_hook_lazyClassNamer is a callback function
 // C type: const char *(*)(Class)
-type objc_hook_lazyClassNamer = func(Class) string
+type objc_hook_lazyClassNamer = func(objc.Class) string
 // objc_objectptr_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_objectptr_t
@@ -89,7 +90,7 @@ type objc_property_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_uncaught_exception_handler
 // objc_uncaught_exception_handler is a callback function
 // C type: void (*)(id)
-type objc_uncaught_exception_handler = func(id)
+type objc_uncaught_exception_handler = func(objc.ID)
 // objc_zone_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_zone_t

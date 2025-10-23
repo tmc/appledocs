@@ -298,19 +298,13 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				return strippedType
 			}
 
-			// Check if this is a struct type - structs keep their full names (e.g., CGSize, CGPoint)
-			if currentFrameworkStructs[strippedType] {
-				// This is a struct - return the ORIGINAL type to preserve CG/NS prefix
-				Debug.TypeMap("is struct, returning original", objcType, objcType,
-					"objcType", objcType,
-					"strippedType", strippedType)
-				return objcType
-			}
+			// Don't check currentFrameworkStructs here for early return!
+			// Structs can be cross-framework (e.g., CGPoint defined in CoreFoundation but used in ObjectiveC).
+			// Let resolveType() handle framework qualification below.
 
-			Debug.TypeMap("not in currentFrameworkEnums or Structs", objcType, strippedType,
+			Debug.TypeMap("not in currentFrameworkEnums", objcType, strippedType,
 				"strippedType", strippedType,
-				"enumsSize", len(currentFrameworkEnums),
-				"structsSize", len(currentFrameworkStructs))
+				"enumsSize", len(currentFrameworkEnums))
 
 			// Successfully stripped a prefix - check if this is a known type
 			// in the current framework or type registry
@@ -322,6 +316,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 				return mappedGoType
 			}
 			// Let it fall through to use strippedType and then resolve it
+			// resolveType will check crossFrameworkTypeRegistry to properly qualify cross-framework types
 			resolvedType := resolveType(framework, strippedType)
 			Debug.TypeMap("resolveType called", strippedType, resolvedType,
 				"framework", framework,
@@ -591,8 +586,13 @@ func resolveType(framework, typeName string) string {
 	// Check if we know about this type from the cross-framework registry
 	// This automatically handles ALL cross-framework types without hardcoding
 	if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
+		Debug.TypeMap("registry lookup hit", typeName, frameworkPkg,
+			"typeName", typeName,
+			"frameworkPkg", frameworkPkg,
+			"currentFramework", framework)
 		// Don't qualify types with their own framework name (e.g., foundation.NSString in foundation package)
 		if strings.ToLower(framework) == frameworkPkg {
+			Debug.TypeMap("same framework, returning unqualified", typeName, frameworkPkg)
 			return typeName
 		}
 		// NEVER qualify Go built-in primitives, even if they appear in cross-framework registry

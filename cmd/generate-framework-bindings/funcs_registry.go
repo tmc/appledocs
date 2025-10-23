@@ -124,6 +124,24 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		crossFrameworkTypeRegistry[typeName] = "uniformtypeidentifiers"
 	}
 
+	// CoreFoundation geometry types (used by CoreGraphics but defined in CoreFoundation)
+	// See https://developer.apple.com/documentation/CoreGraphics - "Geometric Data Types" section
+	// explicitly shows these types are defined in CoreFoundation package
+	coreFoundationGeometryTypes := []string{
+		"CGPoint",
+		"CGSize",
+		"CGRect",
+		"CGVector",
+		"CGAffineTransform",
+		"CGFloat", // Also from CoreFoundation
+	}
+	for _, typeName := range coreFoundationGeometryTypes {
+		crossFrameworkTypeRegistry[typeName] = "corefoundation"
+		Debug.TypeMap("registry override: geometry type", typeName, "corefoundation",
+			"typeName", typeName,
+			"framework", "corefoundation")
+	}
+
 	return nil
 }
 
@@ -141,38 +159,53 @@ func buildTypeRegistryFromParsedData(framework string, classes []*occ2go.ParsedC
 	frameworkLower := strings.ToLower(framework)
 
 	// Register enum types: both NSImageScaling→appkit and ImageScaling→appkit
+	// Only register if not already present (preserves overrides from buildCrossFrameworkTypeRegistry)
 	for _, enum := range enums {
 		if enum.Name == "" {
 			continue
 		}
 		// Strip NS/CG/CA prefix to get Go type name
 		goTypeName := occ2go.StripObjCPrefix(enum.Name)
-		// Register both ObjC name and Go name for lookup
-		crossFrameworkTypeRegistry[enum.Name] = frameworkLower
-		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		// Register both ObjC name and Go name for lookup, but don't overwrite existing entries
+		if _, exists := crossFrameworkTypeRegistry[enum.Name]; !exists {
+			crossFrameworkTypeRegistry[enum.Name] = frameworkLower
+		}
+		if _, exists := crossFrameworkTypeRegistry[goTypeName]; !exists {
+			crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		}
 	}
 
 	// Register class types: both NSWindow→appkit and Window→appkit
+	// Only register if not already present (preserves overrides from buildCrossFrameworkTypeRegistry)
 	for _, class := range classes {
 		if class.Name == "" {
 			continue
 		}
 		// Strip NS/CG/CA prefix to get Go type name
 		goTypeName := occ2go.StripObjCPrefix(class.Name)
-		// Register both ObjC name and Go name for lookup
-		crossFrameworkTypeRegistry[class.Name] = frameworkLower
-		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		// Register both ObjC name and Go name for lookup, but don't overwrite existing entries
+		if _, exists := crossFrameworkTypeRegistry[class.Name]; !exists {
+			crossFrameworkTypeRegistry[class.Name] = frameworkLower
+		}
+		if _, exists := crossFrameworkTypeRegistry[goTypeName]; !exists {
+			crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		}
 	}
 
 	// Register typedef types: both NSTimeInterval→foundation and TimeInterval→foundation
+	// Only register if not already present (preserves overrides from buildCrossFrameworkTypeRegistry)
 	for _, typedef := range typedefs {
 		if typedef.Name == "" {
 			continue
 		}
 		// Strip NS/CG/CA prefix to get Go type name
 		goTypeName := occ2go.StripObjCPrefix(typedef.Name)
-		// Register both ObjC name and Go name for lookup
-		crossFrameworkTypeRegistry[typedef.Name] = frameworkLower
-		crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		// Register both ObjC name and Go name for lookup, but don't overwrite existing entries
+		if _, exists := crossFrameworkTypeRegistry[typedef.Name]; !exists {
+			crossFrameworkTypeRegistry[typedef.Name] = frameworkLower
+		}
+		if _, exists := crossFrameworkTypeRegistry[goTypeName]; !exists {
+			crossFrameworkTypeRegistry[goTypeName] = frameworkLower
+		}
 	}
 }
