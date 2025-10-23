@@ -35,7 +35,7 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		"concreteReturnType":  gf.concreteReturnType,
 
 		// Name Conversion
-		// TODO: Add name conversion methods as they're converted
+		"stripFrameworkPrefix": gf.stripFrameworkPrefix,
 
 		// Constructor Generation
 		// TODO: Add constructor methods as they're converted
@@ -205,12 +205,6 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		frameworkPrefix := parts[0]
 		typeName := parts[len(parts)-1]
 
-		// Debug
-		if strings.Contains(goType, "Data") || strings.Contains(goType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG framework check: frameworkPrefix=%q gf.Framework=%q strings.ToLower(gf.Framework)=%q\n",
-				frameworkPrefix, gf.Framework, strings.ToLower(gf.Framework))
-		}
-
 		// If it's from a different framework, keep it fully qualified
 		// For example, in Foundation: "coregraphics.CGRect" stays as "coregraphics.CGRect"
 		if frameworkPrefix != strings.ToLower(gf.Framework) {
@@ -228,9 +222,6 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 	// Check if it's already an enum as-is
 	if _, isEnum := gf.enumIndex[goType]; isEnum {
 		// It's an enum - keep it as-is
-		if strings.Contains(goType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType found %q in enumIndex directly\n", goType)
-		}
 		return goType
 	}
 
@@ -240,13 +231,7 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		strippedName := stripObjCPrefix(goType)
 		if _, isEnum := gf.enumIndex[strippedName]; isEnum {
 			// The stripped name is in the enum index - return the FULL name (with prefix)
-			if strings.Contains(goType, "Quality") {
-				fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType found stripped %q in enumIndex for %q\n", strippedName, goType)
-			}
 			return goType
-		}
-		if strings.Contains(goType, "Quality") {
-			fmt.Fprintf(os.Stderr, "DEBUG: concreteReturnType did NOT find %q or %q in enumIndex (size=%d)\n", goType, strippedName, len(gf.enumIndex))
 		}
 	}
 
@@ -279,3 +264,46 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 //   - A function clearly belongs as a Generator method (cohesion)
 //
 // The current implementation provides a solid foundation that's easy to extend.
+
+// Name Conversion
+// ---------------
+
+// stripFrameworkPrefix removes the framework-specific prefix from a type name.
+// Examples:
+//   Foundation: NSQualityOfService -> QualityOfService
+//   CoreGraphics: CGColor -> Color
+//   AppKit: NSWindow -> Window
+func (gf GeneratorFuncs) stripFrameworkPrefix(name string) string {
+	// Map framework names to their common prefixes
+	prefixes := map[string][]string{
+		"Foundation":       {"NS"},
+		"AppKit":           {"NS"},
+		"CoreFoundation":   {"CF"},
+		"CoreGraphics":     {"CG"},
+		"CoreImage":        {"CI"},
+		"CoreVideo":        {"CV"},
+		"CoreAudio":        {"CA"},
+		"AVFoundation":     {"AV"},
+		"SecurityFoundation": {"SF"},
+	}
+
+	// Get prefixes for current framework
+	fwPrefixes, ok := prefixes[gf.Framework]
+	if !ok {
+		// Unknown framework, return as-is
+		return name
+	}
+
+	// Try each prefix
+	for _, prefix := range fwPrefixes {
+		if strings.HasPrefix(name, prefix) {
+			stripped := strings.TrimPrefix(name, prefix)
+			// Make sure we didn't strip the entire name
+			if stripped != "" {
+				return stripped
+			}
+		}
+	}
+
+	return name
+}

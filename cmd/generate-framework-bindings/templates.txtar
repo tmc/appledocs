@@ -1000,24 +1000,26 @@ package {{.PackageName}}
 
 // Enum types and constants
 {{range $enum := .Enums -}}
+{{$enumName := stripFrameworkPrefix $enum.Name -}}
 {{if $enum.Abstract -}}
-// {{$enum.Name}} - {{$enum.Abstract}}
+// {{$enumName}} - {{$enum.Abstract}}
 {{else -}}
-// {{$enum.Name}} enum type
+// {{$enumName}} enum type
 {{end -}}
 {{if $enum.DocURL -}}
 //
 // [Full Topic]: {{convertDocURL $enum.DocURL}}
 {{end -}}
-type {{$enum.Name}} {{enumUnderlyingType $enum}}
+type {{$enumName}} {{enumUnderlyingType $enum}}
 
 {{if gt (len $enum.Cases) 0 -}}
 const (
 {{range $i, $case := $enum.Cases -}}
-{{if $case.Abstract}}	// {{$case.Name}} - {{$case.Abstract}}
+{{$caseName := stripFrameworkPrefix $case.Name -}}
+{{if $case.Abstract}}	// {{$caseName}} - {{$case.Abstract}}
 {{end}}{{if $case.DocURL}}	//
 	// [Full Topic]: {{convertDocURL $case.DocURL}}
-{{end}}	{{$case.Name}} {{$enum.Name}} = {{$case.IntValue}}
+{{end}}	{{$caseName}} {{$enumName}} = {{$case.IntValue}}
 {{end -}}
 )
 
