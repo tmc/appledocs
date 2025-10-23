@@ -431,6 +431,19 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			return objcType, true // Return FULL name with NS prefix, not stripped
 		}
 
+		// HEURISTIC: If currentFrameworkEnums is empty (not populated yet), use a heuristic:
+		// Types with NS/CG/CA prefix that are NOT pointer types are likely enums
+		// Classes are always used as pointers (*), but enums are value types
+		// Only apply this if objcType does NOT contain " *" (not a pointer type)
+		if len(currentFrameworkEnums) == 0 && !strings.Contains(objcType, " *") {
+			// Type has a prefix and is not a pointer type - likely an enum
+			if os.Getenv("DEBUG_TYPEMAP") == "1" {
+				fmt.Fprintf(os.Stderr, "DEBUG lookupTypeMapping: HEURISTIC - %s is non-pointer with prefix, likely enum, returning FULL name %s\n",
+					strippedType, objcType)
+			}
+			return objcType, true // Return FULL name with NS prefix
+		}
+
 		// Check if it's a typedef in the current framework
 		if currentFrameworkTypedefs[strippedType] {
 			if os.Getenv("DEBUG_IMPORTS") == "1" || os.Getenv("DEBUG_TYPEMAP") == "1" {
