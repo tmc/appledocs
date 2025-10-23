@@ -22,6 +22,17 @@ func typedefsNeedUnsafe(gen *Generator) bool {
 	return false
 }
 
+// typedefsNeedObjc checks if any typedef in the list needs the objc package
+func typedefsNeedObjc(gen *Generator) bool {
+	for _, typedef := range gen.Typedefs {
+		info := parseCFunctionPointer(typedef.BaseType)
+		if info.IsCallback && (strings.Contains(info.GoType, "objc.ID") || strings.Contains(info.GoType, "objc.Class")) {
+			return true
+		}
+	}
+	return false
+}
+
 // parseCFunctionPointer parses a C function pointer type and converts it to a Go function type.
 // Examples:
 //   - "void *(*)(long, unsigned long, void *)" → "func(int, uint, unsafe.Pointer) unsafe.Pointer"
@@ -146,6 +157,15 @@ func cTypeToGoType(cType string) string {
 	switch baseType {
 	case "void":
 		return "unsafe.Pointer"
+	case "id":
+		// id is always a pointer type in Objective-C, map to objc.ID
+		return "objc.ID"
+	case "Class":
+		// Class without * is the type itself, Class * is a pointer to Class
+		if isPointer {
+			return "unsafe.Pointer"
+		}
+		return "objc.Class"
 	case "_Bool":
 		return "bool"
 	case "char":

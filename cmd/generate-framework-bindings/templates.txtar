@@ -1003,10 +1003,15 @@ const (
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}
-{{if typedefsNeedUnsafe . -}}
+{{if or (typedefsNeedUnsafe .) (typedefsNeedObjc .) -}}
 
 import (
+{{if typedefsNeedObjc . -}}
+	"github.com/tmc/appledocs/generated/objc"
+{{end -}}
+{{if typedefsNeedUnsafe . -}}
 	"unsafe"
+{{end -}}
 )
 {{end}}
 {{if gt (len .Typedefs) 0 -}}

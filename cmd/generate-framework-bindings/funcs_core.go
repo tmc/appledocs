@@ -120,6 +120,7 @@ var templateFuncs = template.FuncMap{
 	"resolveType":            resolveType,
 	"parseCFunctionPointer":  parseCFunctionPointer,
 	"typedefsNeedUnsafe":     typedefsNeedUnsafe,
+	"typedefsNeedObjc":       typedefsNeedObjc,
 
 	// Method filtering
 	"isInheritedFromNSObject": isInheritedFromNSObject,
