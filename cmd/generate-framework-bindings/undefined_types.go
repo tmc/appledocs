@@ -333,6 +333,18 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 			"original", enum.Name)
 	}
 
+	// Add struct types
+	for _, strct := range g.Structs {
+		defined[strct.Name] = true
+		// Also add the stripped version (e.g., "CFRange" becomes "Range")
+		stripped := stripObjCPrefix(strct.Name)
+		defined[stripped] = true
+		Debug.Undefined("marking struct as defined", strct.Name, g.Framework,
+			"framework", g.Framework,
+			"structName", strct.Name,
+			"stripped", stripped)
+	}
+
 	// Add ref types
 	for _, ref := range g.refTypes {
 		defined[ref] = true
