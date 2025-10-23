@@ -1312,8 +1312,8 @@ package {{.PackageName}}
 {{if not (isValidGoIdentifier $typeName) -}}
 // SKIPPED: {{$typedef.Name}} - invalid Go identifier "{{$typeName}}"
 // Original type: {{$typedef.BaseType}}
-{{else if isTypeDefinedInTypesFile $typeName -}}
-// SKIPPED: {{$typedef.Name}} - already defined in types.gen.go
+{{else if shouldSkipTypedef $typedef -}}
+// SKIPPED: {{$typedef.Name}} - conflicts with existing enum "{{$typeName}}"
 {{else -}}
 {{if $typedef.Abstract -}}
 // {{$typeName}} - {{$typedef.Abstract}}

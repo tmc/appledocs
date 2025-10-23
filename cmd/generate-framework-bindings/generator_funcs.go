@@ -29,7 +29,7 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		"formatMethodParams": gf.formatMethodParams,
 
 		// Type Resolution
-		// TODO: Add type resolution methods as they're converted
+		"shouldSkipTypedef": gf.shouldSkipTypedef,
 
 		// Name Conversion
 		// TODO: Add name conversion methods as they're converted
@@ -80,6 +80,49 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 
 // Type Resolution
 // ---------------
+
+// shouldSkipTypedef determines if a typedef should be skipped during generation.
+// Returns true if the typedef should be skipped because:
+// 1. The stripped type name matches an existing enum name (enums are generated separately)
+// 2. The typedef is already defined in types.gen.go template
+func (gf GeneratorFuncs) shouldSkipTypedef(typedef *occ2go.ParsedTypedef) bool {
+	if typedef == nil || typedef.Name == "" {
+		return true
+	}
+
+	// Strip the ObjC prefix to get the Go type name
+	strippedName := stripObjCPrefix(typedef.Name)
+
+	// Skip if this typedef's stripped name matches an existing enum
+	// Enums are generated in enums.gen.go, so we don't want duplicate definitions
+	if _, exists := gf.enumIndex[strippedName]; exists {
+		return true
+	}
+
+	// Also check with the original (non-stripped) name in case it's already an enum
+	if _, exists := gf.enumIndex[typedef.Name]; exists {
+		return true
+	}
+
+	// Skip Foundation types that are defined in types.gen.go template
+	// These have proper struct/alias definitions rather than generic uintptr typedefs
+	if gf.Framework == "Foundation" {
+		typesDefinedInTemplate := map[string]bool{
+			"TimeInterval": true, // float64 alias
+			"Point":        true, // struct with X, Y
+			"Size":         true, // struct with Width, Height
+			"Rect":         true, // struct with Origin, Size
+			"Range":        true, // struct with Location, Length
+			"RectEdge":     true, // enum type
+		}
+		if typesDefinedInTemplate[strippedName] {
+			return true
+		}
+	}
+
+	return false
+}
+
 // TODO: Add more GeneratorFuncs methods here as they're converted from standalone functions
 
 // Name Conversion

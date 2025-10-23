@@ -33,9 +33,8 @@ var templateFuncs = template.FuncMap{
 	"trimPrefix":          trimPrefixString,
 	"hasPrefix":           hasPrefixString,
 	"commentLine":         commentLine,
-	"dict":                     dict,
-	"isValidGoIdentifier":      isValidGoIdentifier,
-	"isTypeDefinedInTypesFile": isTypeDefinedInTypesFile,
+	"dict":                dict,
+	"isValidGoIdentifier": isValidGoIdentifier,
 
 	// occ2go type mapping (wrapped to apply framework-specific mappings)
 	"mapCTypeToGo": mapCTypeToGoWithFramework,
@@ -261,17 +260,3 @@ func isValidGoIdentifier(s string) bool {
 	return true
 }
 
-// isTypeDefinedInTypesFile checks if a type is already defined in types.gen.go.
-// These types should be skipped in typedefs.gen.go to avoid redeclaration errors.
-func isTypeDefinedInTypesFile(typeName string) bool {
-	// Types that are defined in types.gen.go for Foundation
-	// These are geometry types and special aliases with proper definitions
-	predefinedTypes := map[string]bool{
-		"TimeInterval": true, // NSTimeInterval = float64
-		"Point":        true, // NSPoint struct
-		"Size":         true, // NSSize struct
-		"Rect":         true, // NSRect struct
-		"RectEdge":     true, // NSRectEdge enum
-	}
-	return predefinedTypes[typeName]
-}
