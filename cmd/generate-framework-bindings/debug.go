@@ -65,9 +65,10 @@ var Debug *DebugLogger
 //   - Per-category patterns: "category:pattern,category2:pattern2"
 //
 // Examples:
-//   InitDebug("typemap", "Coder|Error")                    // typemap with filter
-//   InitDebug("typemap,hierarchy", "typemap:Coder,hierarchy:Broadcast")  // per-category
-//   InitDebug("all", "")                                   // all categories, no filter
+//
+//	InitDebug("typemap", "Coder|Error")                    // typemap with filter
+//	InitDebug("typemap,hierarchy", "typemap:Coder,hierarchy:Broadcast")  // per-category
+//	InitDebug("all", "")                                   // all categories, no filter
 func InitDebug(categories, filterSpec string) {
 	enabled := make(map[string]bool)
 	filters := make(map[string]*regexp.Regexp)

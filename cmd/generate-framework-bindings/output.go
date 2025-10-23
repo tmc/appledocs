@@ -18,7 +18,7 @@ import (
 	"golang.org/x/tools/txtar"
 )
 
-func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateFiles(outDir, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -30,6 +30,7 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	gen.Enums = enums
 	gen.Typedefs = typedefs
 	gen.Constants = constants
+	gen.Structs = structs
 
 	// DEBUG: Check if enums have cases after assignment
 	if verbose {
@@ -90,7 +91,7 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 }
 
 // generateTxtar generates all files as txtar format
-func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, withRefMethods, generateTests, generateExamples bool, variant string) error {
+func generateTxtar(w io.Writer, framework, packageName, inputDir string, functions []*occ2go.ParsedFunction, classes []*occ2go.ParsedClass, protocols []*occ2go.ParsedProtocol, enums []*occ2go.ParsedEnum, typedefs []*occ2go.ParsedTypedef, constants []*occ2go.ParsedConstant, structs []*occ2go.ParsedStruct, withRefMethods, generateTests, generateExamples bool, variant string) error {
 	// Determine output module - default to github.com/tmc/appledocs/generated for now
 	outputModule := "github.com/tmc/appledocs/generated"
 
@@ -102,6 +103,7 @@ func generateTxtar(w io.Writer, framework, packageName, inputDir string, functio
 	gen.Enums = enums
 	gen.Typedefs = typedefs
 	gen.Constants = constants
+	gen.Structs = structs
 
 	// Apply property overrides
 	for _, cls := range gen.Classes {

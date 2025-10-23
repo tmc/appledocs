@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 
@@ -31,19 +30,6 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 		}
 	}
 
-	// TEMPORARY DEBUG: Log total class count for Foundation
-	if g.Framework == "Foundation" {
-		fmt.Printf("[Foundation Debug] Total classes: %d\n", len(g.Classes))
-		appleEventCount := 0
-		for _, cls := range g.Classes {
-			if strings.Contains(cls.Name, "Apple") || strings.Contains(cls.Name, "Event") {
-				appleEventCount++
-				fmt.Printf("[Foundation Debug] Apple/Event class: %s\n", cls.Name)
-			}
-		}
-		fmt.Printf("[Foundation Debug] Apple/Event classes found: %d\n", appleEventCount)
-	}
-
 	// Collect from class methods (only those that will be generated)
 	for _, cls := range g.Classes {
 		// Get the methods that will actually be generated
@@ -60,6 +46,12 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 					collectTypeReferences(typeToCollect, undefined, g.Framework, typedefNames)
 				} else {
 					collectTypeReferences(mappedType, undefined, g.Framework, typedefNames)
+					// Also collect the stripped ObjC type name for objc.Send[T] usage
+					// When mappedType is objc.IObject or cross-framework, we still need the unqualified type
+					if strings.HasPrefix(mappedType, "objc.") || strings.Contains(mappedType, ".") {
+						strippedObjcType := stripObjCPrefix(method.ReturnType)
+						collectTypeReferences(strippedObjcType, undefined, g.Framework, typedefNames)
+					}
 				}
 			}
 
@@ -67,11 +59,6 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 			for _, param := range method.Parameters {
 				if param.Type != "" {
 					mappedType := mapObjCTypeToGo(param.Type, g.Framework)
-					// TEMPORARY DEBUG
-					if g.Framework == "Foundation" && (strings.Contains(param.Type, "AppleEvent") || strings.Contains(param.Type, "Suspension")) {
-						fmt.Printf("[Param Type] class=%s, method=%s, param=%s, objcType=%s, mappedType=%s\n",
-							cls.Name, method.Selector, param.Name, param.Type, mappedType)
-					}
 					// If mapping failed, collect the original type
 					if mappedType == "unsafe.Pointer" && !strings.Contains(param.Type, "*") && !strings.Contains(param.Type, "^") && !strings.Contains(param.Type, "Block") {
 						typeToCollect := stripObjCPrefix(param.Type)
@@ -124,20 +111,12 @@ func (g *Generator) CollectUndefinedTypes() map[string]*UndefinedType {
 	// Filter out types that are defined
 	defined := g.getDefinedTypes()
 
-	// TEMPORARY DEBUG: Print all undefined types before filtering
-	fmt.Printf("\n=== UNDEFINED TYPES BEFORE FILTERING (framework=%s) ===\n", g.Framework)
-	for name, ut := range undefined {
-		fmt.Printf("  - %s (refs=%d, baseType=%s)\n", name, ut.References, ut.BaseType)
-	}
-	fmt.Printf("=== END UNDEFINED TYPES ===\n\n")
-
 	for name := range undefined {
 		Debug.Undefined("filtering undefined type", name, g.Framework,
 			"framework", g.Framework,
 			"name", name,
 			"defined", defined[name])
 		if defined[name] {
-			fmt.Printf("FILTERED OUT: %s (marked as defined)\n", name)
 			delete(undefined, name)
 		}
 	}
@@ -184,10 +163,6 @@ func boolToInt(b bool) int {
 // collectTypeReferences extracts type names from a type string and adds them to undefined.
 // IMPORTANT: This should only be called on MAPPED Go types (after resolveType), not raw ObjC types.
 func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, framework string, typedefNames map[string]bool) {
-	// TEMPORARY DEBUG: Log all calls for Foundation framework
-	if framework == "Foundation" && (strings.Contains(typeStr, "Decoding") || strings.Contains(typeStr, "Quality") || strings.Contains(typeStr, "AppleEvent") || strings.Contains(typeStr, "Progress")) {
-		fmt.Printf("[collectTypeReferences] framework=%s, typeStr=%s\n", framework, typeStr)
-	}
 
 	Debug.Undefined("collectTypeReferences entry", typeStr, framework,
 		"typeStr", typeStr,
@@ -212,8 +187,22 @@ func collectTypeReferences(typeStr string, undefined map[string]*UndefinedType, 
 		return
 	}
 
-	// Skip if it's unsafe.Pointer or other special cases
-	if typeStr == "unsafe.Pointer" || strings.HasPrefix(typeStr, "[]") || strings.HasPrefix(typeStr, "*") {
+	// Skip if it's unsafe.Pointer
+	if typeStr == "unsafe.Pointer" {
+		return
+	}
+
+	// Handle slice and pointer types by recursively processing the element type
+	if strings.HasPrefix(typeStr, "[]") {
+		// Extract the element type from the slice
+		elementType := strings.TrimPrefix(typeStr, "[]")
+		collectTypeReferences(elementType, undefined, framework, typedefNames)
+		return
+	}
+	if strings.HasPrefix(typeStr, "*") {
+		// Extract the element type from the pointer
+		elementType := strings.TrimPrefix(typeStr, "*")
+		collectTypeReferences(elementType, undefined, framework, typedefNames)
 		return
 	}
 
@@ -350,18 +339,15 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 	}
 
 	// Add types from cross-framework registry
-	// Mark types that belong to OTHER frameworks as defined (to avoid generating fallback types)
-	// Also mark types that belong to THIS framework as defined (they may have been filtered from g.Classes)
+	// ONLY mark types that belong to THIS framework as defined
+	// Types from other frameworks should NOT be marked as defined, so they can be
+	// generated as undefined type aliases (needed for objc.Send[T] calls)
 	currentFrameworkPkg := strings.ToLower(g.Framework)
 	for typeName, pkgName := range crossFrameworkTypeRegistry {
-		// Always mark types from the registry as defined
-		defined[typeName] = true
-
-		// For types belonging to this framework, also mark both ObjC and Go names
-		// This handles cases where a class like NSDate was filtered from g.Classes
-		// but still exists in generated code (from API collections or previous runs)
+		// Only mark if it belongs to THIS framework
 		if pkgName == currentFrameworkPkg {
-			// Add both "Date" and "NSDate" for Foundation types
+			defined[typeName] = true
+			// Also mark the NS-prefixed version
 			objcName := "NS" + typeName
 			Debug.Undefined("cross-framework registry (current)", typeName, objcName,
 				"framework", g.Framework,
@@ -369,32 +355,26 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 				"objcName", objcName,
 				"pkgName", pkgName)
 			defined[objcName] = true
-		} else {
-			// For other frameworks, just add the NS-prefixed version to catch references
-			objcName := "NS" + typeName
-			Debug.Undefined("cross-framework registry (other)", typeName, objcName,
-				"framework", g.Framework,
-				"typeName", typeName,
-				"objcName", objcName,
-				"pkgName", pkgName)
-			defined[objcName] = true
 		}
+		// Do NOT mark types from other frameworks as defined
+		// They need to be generated as undefined type aliases
 	}
 
 	// Add framework-specific types that are defined in templates or as classes
-	frameworkSpecificTypes := map[string][]string{
-		"CoreGraphics": {"CGFloat", "CGPoint", "CGSize", "CGRect", "CGAffineTransform", "CGVector", "Range", "Size", "Point", "Rect"},
-		"Foundation":   {"TimeInterval", "Point", "Size", "Rect", "Range", "RectEdge"},
-		"AppKit":       {"WindowStyleMask", "BackingStoreType", "WindowOrderingMode", "WindowLevel", "EventType", "EventModifierFlags"},
-		"QuartzCore":   {"CGFloat"},
-		"ObjectiveC":   {"Protocol"}, // Protocol is a class, not a fallback type
-	}
-
-	if types, ok := frameworkSpecificTypes[g.Framework]; ok {
-		for _, t := range types {
-			defined[t] = true
-		}
-	}
+	// NOTE: These are commented out to allow undefined type handling to generate type aliases
+	// frameworkSpecificTypes := map[string][]string{
+	// 	"CoreGraphics": {"CGFloat", "CGPoint", "CGSize", "CGRect", "CGAffineTransform", "CGVector", "Range", "Size", "Point", "Rect"},
+	// 	"Foundation":   {"TimeInterval", "Point", "Size", "Rect", "Range", "RectEdge"},
+	// 	"AppKit":       {"WindowStyleMask", "BackingStoreType", "WindowOrderingMode", "WindowLevel", "EventType", "EventModifierFlags"},
+	// 	"QuartzCore":   {"CGFloat"},
+	// 	"ObjectiveC":   {"Protocol"}, // Protocol is a class, not a fallback type
+	// }
+	//
+	// if types, ok := frameworkSpecificTypes[g.Framework]; ok {
+	// 	for _, t := range types {
+	// 		defined[t] = true
+	// 	}
+	// }
 
 	return defined
 }

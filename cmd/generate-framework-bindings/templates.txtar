@@ -145,111 +145,39 @@ func (ref {{.}}) Ptr() unsafe.Pointer {
 }
 
 {{end}}
-{{else -}}
-{{range .RefTypes -}}
-// {{.}} is a CoreGraphics opaque type.
-type {{.}} unsafe.Pointer
+{{end}}
+
+{{if gt (len $undefinedTypes) 0 -}}
+// _undefined is the base type for all undefined types referenced in documentation
+// but not defined. These types are typically enums, options, or type aliases that
+// weren't extracted from the documentation.
+type _undefined = int
+
+// Undefined types - referenced but not defined in documentation
+type (
+{{- range $undefinedTypes}}
+	{{.Name}} = _undefined // referenced in {{.Framework}}
+{{- end}}
+)
 
 {{end}}
+
+{{if gt (len .Structs) 0 -}}
+// C struct types
+{{range .Structs -}}
+// {{.Name}}{{if .Abstract}} - {{.Abstract}}{{end}}
+{{if .DocURL -}}
+//
+// [Full Topic]: {{.DocURL}}
 {{end -}}
-
-{{if eq .Framework "CoreGraphics" -}}
-// CoreGraphics struct types
-type CGFloat = float64
-
-type CGPoint struct {
-	X CGFloat
-	Y CGFloat
+type {{.Name}} struct {
+{{- range .Fields}}
+	{{.Name}} {{mapCTypeToGo .Type $.Framework}}{{if .Comment}} // {{.Comment}}{{end}}
+{{- end}}
 }
-
-type CGSize struct {
-	Width  CGFloat
-	Height CGFloat
-}
-
-type CGRect struct {
-	Origin CGPoint
-	Size   CGSize
-}
-
-type CGAffineTransform struct {
-	A  CGFloat
-	B  CGFloat
-	C  CGFloat
-	D  CGFloat
-	Tx CGFloat
-	Ty CGFloat
-}
-
-type CGVector struct {
-	DX CGFloat
-	DY CGFloat
-}
-
-{{end -}}
-
-{{if or (eq .Framework "Foundation") (eq .Framework "ObjectiveC") -}}
-{{end -}}
-{{if eq .Framework "Foundation" -}}
-// Foundation-specific types
-
-// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
-type Point struct {
-	X float64
-	Y float64
-}
-
-type Size struct {
-	Width  float64
-	Height float64
-}
-
-type Rect struct {
-	Origin Point
-	Size   Size
-}
-
-type Range struct {
-	Location int
-	Length   int
-}
-
-{{end -}}
-{{if eq .Framework "QuartzCore" -}}
-// QuartzCore needs CGFloat for its functions
-type CGFloat = float64
-
-{{end -}}
-{{if eq .Framework "AppKit" -}}
-// AppKit-specific type aliases
-// WindowLevel represents a window's position in the z-axis
-type WindowLevel = int  // NSWindowLevel
-
-{{end -}}
-{{if gt (len $undefinedTypes) 0}}
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-{{range $undefinedTypes -}}
-type {{.Name}} = {{.BaseType}}
 
 {{end}}
-{{if eq .Framework "Foundation" -}}
-// Manual fallback types for API collection classes
-// These classes come from API collections and aren't in the parsed class list
-type AppleEventSendOptions = int
-type AppleEventManagerSuspensionID = int
-type ByteCountFormatterCountStyle = int
-type ByteCountFormatterUnits = int
-type DecodingFailurePolicy = int
-type ProgressFileOperationKind = int
-type ProgressKind = int
-type ProgressUserInfoKey = int
-type StringEncoding = int
-type StringTransform = int
-
-{{end -}}
-{{end -}}
+{{end}}
 
 -- functions.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.

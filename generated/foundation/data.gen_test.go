@@ -22,7 +22,7 @@ func ExampleNewDataWithBase64EncodedDataOptions() {
 // Initializes a data object with the given Base64 encoded string.
 func ExampleNewDataWithBase64EncodedStringOptions() {
 	_ = foundation.NewDataWithBase64EncodedStringOptions(
-		"base64String", // base64String string
+		foundation.NSString{}, // base64String NSString
 		foundation.DataBase64DecodingOptions{}, // options DataBase64DecodingOptions
 	)
 	// Output:
@@ -31,7 +31,7 @@ func ExampleNewDataWithBase64EncodedStringOptions() {
 // Initializes a data object initialized with the given Base64 encoded string.
 func ExampleNewDataWithBase64Encoding() {
 	_ = foundation.NewDataWithBase64Encoding(
-		"base64String", // base64String string
+		foundation.NSString{}, // base64String NSString
 	)
 	// Output:
 }
@@ -39,17 +39,7 @@ func ExampleNewDataWithBase64Encoding() {
 // Initializes a data object with the content of the file at a given path.
 func ExampleNewDataWithContentsOfFile() {
 	_ = foundation.NewDataWithContentsOfFile(
-		"/tmp/test", // path string
-	)
-	// Output:
-}
-// ExampleNewDataWithContentsOfFileOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfFileOptionsError.
-// Initializes a data object with the content of the file at a given path.
-func ExampleNewDataWithContentsOfFileOptionsError() {
-	_ = foundation.NewDataWithContentsOfFileOptionsError(
-		"/tmp/test", // path string
-		foundation.DataReadingOptions{}, // readOptionsMask DataReadingOptions
-		foundation.NSError{}, // errorPtr NSError
+		foundation.NSString{}, // path NSString
 	)
 	// Output:
 }
@@ -57,7 +47,7 @@ func ExampleNewDataWithContentsOfFileOptionsError() {
 // Initializes a data object with the contents of the mapped file specified by a given path.
 func ExampleNewDataWithContentsOfMappedFile() {
 	_ = foundation.NewDataWithContentsOfMappedFile(
-		"/tmp/test", // path string
+		foundation.NSString{}, // path NSString
 	)
 	// Output:
 }
@@ -65,17 +55,7 @@ func ExampleNewDataWithContentsOfMappedFile() {
 // Creates a data object from the data at the specified file URL, or returns   if the system can’t create one.
 func ExampleNewDataWithContentsOfURL() {
 	_ = foundation.NewDataWithContentsOfURL(
-		foundation.URL{}, // url URL
-	)
-	// Output:
-}
-// ExampleNewDataWithContentsOfURLOptionsError demonstrates how to create a Data instance using NewDataWithContentsOfURLOptionsError.
-// Creates a data object from the data at the provided file URL using specific reading options.
-func ExampleNewDataWithContentsOfURLOptionsError() {
-	_ = foundation.NewDataWithContentsOfURLOptionsError(
-		foundation.URL{}, // url URL
-		foundation.DataReadingOptions{}, // readOptionsMask DataReadingOptions
-		foundation.NSError{}, // errorPtr NSError
+		foundation.NSURL{}, // url NSURL
 	)
 	// Output:
 }

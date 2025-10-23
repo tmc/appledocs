@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,13 +31,16 @@ type _StringClass struct {
 type IString interface {
 	objectivec.IObject
 	// properties:
-	StringByAbbreviatingWithTildeInPath() string /* primitive/slice/pointer. */
+	StringByAbbreviatingWithTildeInPath() IString
 	BoolValue() bool /* primitive/slice/pointer. */
-	StringByDeletingLastPathComponent() string /* primitive/slice/pointer. */
-	StringByDeletingPathExtension() string /* primitive/slice/pointer. */
-	Description() string /* primitive/slice/pointer. */
+	CapitalizedString() IString
+	DecomposedStringWithCanonicalMapping() IString
+	DecomposedStringWithCompatibilityMapping() IString
+	StringByDeletingLastPathComponent() IString
+	StringByDeletingPathExtension() IString
+	Description() IString
 	DoubleValue() float64 /* primitive/slice/pointer. */
-	StringByExpandingTildeInPath() string /* primitive/slice/pointer. */
+	StringByExpandingTildeInPath() IString
 	FastestEncoding() StringEncoding /* not a class type */
 	FileSystemRepresentation() unsafe.Pointer
 	FloatValue() float32 /* primitive/slice/pointer. */
@@ -46,90 +48,134 @@ type IString interface {
 	IntValue() int /* primitive/slice/pointer. */
 	IntegerValue() int /* primitive/slice/pointer. */
 	AbsolutePath() bool /* primitive/slice/pointer. */
-	LastPathComponent() string /* primitive/slice/pointer. */
+	LastPathComponent() IString
 	Length() uint /* primitive/slice/pointer. */
+	LocalizedCapitalizedString() IString
+	LocalizedLowercaseString() IString
+	LocalizedUppercaseString() IString
 	LongLongValue() unsafe.Pointer
+	LowercaseString() IString
 	PathComponents() []string /* primitive/slice/pointer. */
-	PathExtension() string /* primitive/slice/pointer. */
-	StringByRemovingPercentEncoding() string /* primitive/slice/pointer. */
-	StringByResolvingSymlinksInPath() string /* primitive/slice/pointer. */
+	PathExtension() IString
+	PrecomposedStringWithCanonicalMapping() IString
+	PrecomposedStringWithCompatibilityMapping() IString
+	StringByRemovingPercentEncoding() IString
+	StringByResolvingSymlinksInPath() IString
 	SmallestEncoding() StringEncoding /* not a class type */
-	StringByStandardizingPath() string /* primitive/slice/pointer. */
+	StringByStandardizingPath() IString
+	UppercaseString() IString
 	UTF8String() unsafe.Pointer
-	AbbreviatingWithTildeInPath() string /* primitive/slice/pointer. */
-	SetAbbreviatingWithTildeInPath(value string /* primitive/slice/pointer. */)
-	Capitalized() string /* primitive/slice/pointer. */
-	SetCapitalized(value string /* primitive/slice/pointer. */)
+	AbbreviatingWithTildeInPath() IString
+	SetAbbreviatingWithTildeInPath(value IString)
+	Capitalized() IString
+	SetCapitalized(value IString)
 	CustomPlaygroundQuickLook() unsafe.Pointer
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
-	DecomposedStringWithCanonicalMapping() string /* primitive/slice/pointer. */
-	SetDecomposedStringWithCanonicalMapping(value string /* primitive/slice/pointer. */)
-	DecomposedStringWithCompatibilityMapping() string /* primitive/slice/pointer. */
-	SetDecomposedStringWithCompatibilityMapping(value string /* primitive/slice/pointer. */)
-	DeletingLastPathComponent() string /* primitive/slice/pointer. */
-	SetDeletingLastPathComponent(value string /* primitive/slice/pointer. */)
-	DeletingPathExtension() string /* primitive/slice/pointer. */
-	SetDeletingPathExtension(value string /* primitive/slice/pointer. */)
-	ExpandingTildeInPath() string /* primitive/slice/pointer. */
-	SetExpandingTildeInPath(value string /* primitive/slice/pointer. */)
+	DeletingLastPathComponent() IString
+	SetDeletingLastPathComponent(value IString)
+	DeletingPathExtension() IString
+	SetDeletingPathExtension(value IString)
+	ExpandingTildeInPath() IString
+	SetExpandingTildeInPath(value IString)
 	IsAbsolutePath() bool /* primitive/slice/pointer. */
 	SetIsAbsolutePath(value bool /* primitive/slice/pointer. */)
-	LocalizedCapitalized() string /* primitive/slice/pointer. */
-	SetLocalizedCapitalized(value string /* primitive/slice/pointer. */)
-	LocalizedLowercase() string /* primitive/slice/pointer. */
-	SetLocalizedLowercase(value string /* primitive/slice/pointer. */)
-	LocalizedUppercase() string /* primitive/slice/pointer. */
-	SetLocalizedUppercase(value string /* primitive/slice/pointer. */)
-	Lowercased() string /* primitive/slice/pointer. */
-	SetLowercased(value string /* primitive/slice/pointer. */)
-	PrecomposedStringWithCanonicalMapping() string /* primitive/slice/pointer. */
-	SetPrecomposedStringWithCanonicalMapping(value string /* primitive/slice/pointer. */)
-	PrecomposedStringWithCompatibilityMapping() string /* primitive/slice/pointer. */
-	SetPrecomposedStringWithCompatibilityMapping(value string /* primitive/slice/pointer. */)
-	RemovingPercentEncoding() string /* primitive/slice/pointer. */
-	SetRemovingPercentEncoding(value string /* primitive/slice/pointer. */)
-	ResolvingSymlinksInPath() string /* primitive/slice/pointer. */
-	SetResolvingSymlinksInPath(value string /* primitive/slice/pointer. */)
-	StandardizingPath() string /* primitive/slice/pointer. */
-	SetStandardizingPath(value string /* primitive/slice/pointer. */)
-	Uppercased() string /* primitive/slice/pointer. */
-	SetUppercased(value string /* primitive/slice/pointer. */)
+	LocalizedCapitalized() IString
+	SetLocalizedCapitalized(value IString)
+	LocalizedLowercase() IString
+	SetLocalizedLowercase(value IString)
+	LocalizedUppercase() IString
+	SetLocalizedUppercase(value IString)
+	Lowercased() IString
+	SetLowercased(value IString)
+	RemovingPercentEncoding() IString
+	SetRemovingPercentEncoding(value IString)
+	ResolvingSymlinksInPath() IString
+	SetResolvingSymlinksInPath(value IString)
+	StandardizingPath() IString
+	SetStandardizingPath(value IString)
+	Uppercased() IString
+	SetUppercased(value IString)
 	// methods:
-	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
-	StringByAppendingPathComponent(str string /* primitive/slice/pointer. */) IString
-	StringByAppendingPathExtension(str string /* primitive/slice/pointer. */) IString
+	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters CharacterSet /* not a class type */) IString
+	StringByAppendingString(aString IString) IString
+	StringByAppendingPathComponent(str IString) IString
+	StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject /* cross-framework UTType */) IString
+	StringByAppendingPathExtension(str IString) IString
+	StringByAppendingPathExtensionForType(contentType objc.IObject /* cross-framework UTType */) IString
+	StringByApplyingTransformReverse(transform StringTransform /* not a class type */, reverse bool /* primitive/slice/pointer. */) IString
+	BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */) objc.IObject /* cross-framework: Rect */
+	BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) objc.IObject /* cross-framework: Rect */
 	CStringUsingEncoding(encoding StringEncoding /* not a class type */) unsafe.Pointer
 	CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
-	CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */
-	CompareOptions(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */) ComparisonResult /* not a class type */
-	CompareOptionsRange(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult /* not a class type */
-	CompareOptionsRangeLocale(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult /* not a class type */
-	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
-	ComponentsSeparatedByString(separator string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
-	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */
+	CapitalizedStringWithLocale(locale Locale /* not a class type */) IString
+	CaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */
+	CharacterAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer
+	CommonPrefixWithStringOptions(str IString, mask StringCompareOptions) IString
+	Compare(string_ IString) ComparisonResult /* not a class type */
+	CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult /* not a class type */
+	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */) ComparisonResult /* not a class type */
+	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */, locale objectivec.IObject) ComparisonResult /* not a class type */
+	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */
+	ComponentsSeparatedByString(separator IString) []string /* primitive/slice/pointer. */
+	ComponentsSeparatedByCharactersInSet(separator CharacterSet /* not a class type */) []string /* primitive/slice/pointer. */
+	ContainsString(str IString) bool /* primitive/slice/pointer. */
 	DataUsingEncoding(encoding StringEncoding /* not a class type */) IData
 	DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool /* primitive/slice/pointer. */) IData
-	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions /* not a class type */, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */
+	DrawAtPointWithAttributes(point objc.IObject /* cross-framework Point */, attrs IDictionary /* already interface */)
+	DrawInRectWithAttributes(rect objc.IObject /* cross-framework Rect */, attrs IDictionary /* already interface */)
+	DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */)
+	DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */)
+	EnumerateLinesUsingBlock(block unsafe.Pointer)
+	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts StringEnumerationOptions, block unsafe.Pointer)
+	StringByFoldingWithOptionsLocale(options StringCompareOptions, locale Locale /* not a class type */) IString
+	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ Range /* not a class type */, leftover RangePointer /* not a class type */) bool /* primitive/slice/pointer. */
 	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) bool /* primitive/slice/pointer. */
-	GetCharacters(buffer unichar /* typedef */)
-	GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */)
+	GetCharacters(buffer unsafe.Pointer)
+	GetCharactersRange(buffer unsafe.Pointer, range_ Range /* not a class type */)
 	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	HasSuffix(str string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	IsEqualToString(aString string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */)
+	GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */)
+	HasPrefix(str IString) bool /* primitive/slice/pointer. */
+	HasSuffix(str IString) bool /* primitive/slice/pointer. */
+	IsEqualToString(aString IString) bool /* primitive/slice/pointer. */
 	LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
-	LocalizedCaseInsensitiveCompare(string_ string /* primitive/slice/pointer. */) ComparisonResult /* not a class type */
-	LocalizedStandardCompare(string_ string /* primitive/slice/pointer. */) ComparisonResult /* not a class type */
+	LineRangeForRange(range_ Range /* not a class type */) Range /* not a class type */
+	LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */
+	LocalizedCaseInsensitiveContainsString(str IString) bool /* primitive/slice/pointer. */
+	LocalizedCompare(string_ IString) ComparisonResult /* not a class type */
+	LocalizedStandardCompare(string_ IString) ComparisonResult /* not a class type */
+	LocalizedStandardContainsString(str IString) bool /* primitive/slice/pointer. */
+	LocalizedStandardRangeOfString(str IString) Range /* not a class type */
+	LowercaseStringWithLocale(locale Locale /* not a class type */) IString
 	MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint /* primitive/slice/pointer. */
-	RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */
-	RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	SizeWithAttributes(attrs IDictionary /* already interface */) coregraphics.CGSize
+	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint /* primitive/slice/pointer. */, padString IString, padIndex uint /* primitive/slice/pointer. */) IString
+	ParagraphRangeForRange(range_ Range /* not a class type */) Range /* not a class type */
+	PropertyList() objc.ID
+	PropertyListFromStringsFileFormat() IDictionary
+	RangeOfString(searchString IString) Range /* not a class type */
+	RangeOfStringOptions(searchString IString, mask StringCompareOptions) Range /* not a class type */
+	RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */
+	RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */, locale Locale /* not a class type */) Range /* not a class type */
+	RangeOfCharacterFromSet(searchSet CharacterSet /* not a class type */) Range /* not a class type */
+	RangeOfCharacterFromSetOptions(searchSet CharacterSet /* not a class type */, mask StringCompareOptions) Range /* not a class type */
+	RangeOfCharacterFromSetOptionsRange(searchSet CharacterSet /* not a class type */, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */
+	RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) Range /* not a class type */
+	RangeOfComposedCharacterSequencesForRange(range_ Range /* not a class type */) Range /* not a class type */
+	StringByReplacingCharactersInRangeWithString(range_ Range /* not a class type */, replacement IString) IString
+	StringByReplacingOccurrencesOfStringWithString(target IString, replacement IString) IString
+	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange Range /* not a class type */) IString
+	SizeWithAttributes(attrs IDictionary /* already interface */) objc.IObject /* cross-framework: Size */
+	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
+	StringByAppendingFormat(format IString) IString
+	StringsByAppendingPaths(paths []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */
 	SubstringFromIndex(from uint /* primitive/slice/pointer. */) IString
 	SubstringToIndex(to uint /* primitive/slice/pointer. */) IString
-	SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString
-	StringByTrimmingCharactersInSet(set ICharacterSet) IString
+	SubstringWithRange(range_ Range /* not a class type */) IString
+	StringByTrimmingCharactersInSet(set CharacterSet /* not a class type */) IString
+	UppercaseStringWithLocale(locale Locale /* not a class type */) IString
 	VariantFittingPresentationWidth(width int /* primitive/slice/pointer. */) IString
-	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
-	WriteToFileAtomicallyEncodingError(path string /* primitive/slice/pointer. */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */
+	WriteToURLAtomicallyEncodingError(url objc.IObject /* cross-framework NSURL */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
+	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A static, plain-text Unicode string object.
@@ -192,6 +238,16 @@ func NewString() String {
 func NewStringWithBytesLengthEncoding(bytes unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len_, encoding)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(bytesNoCopy:length:encoding:deallocator:)
+func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, encoding StringEncoding /* not a class type */, deallocator unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len_, encoding, deallocator)
 	rv.Autorelease()
 	return rv
 }
@@ -261,9 +317,19 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(characters:length:)
-func NewStringWithCharactersLength(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersLength(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:deallocator:)
+func NewStringWithCharactersNoCopyLengthDeallocator(chars unsafe.Pointer, len_ uint /* primitive/slice/pointer. */, deallocator unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len_, deallocator)
 	rv.Autorelease()
 	return rv
 }
@@ -273,9 +339,19 @@ func NewStringWithCharactersLength(characters unichar /* typedef */, length uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(charactersNoCopy:length:freeWhenDone:)
-func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unichar /* typedef */, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
+func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */, freeBuffer bool /* primitive/slice/pointer. */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(coder:)
+func NewStringWithCoder(coder Coder /* not a class type */) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -285,9 +361,9 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters unichar /* typed
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:)
-func NewStringWithContentsOfFile(path string /* primitive/slice/pointer. */) String {
+func NewStringWithContentsOfFile(path IString) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -297,9 +373,9 @@ func NewStringWithContentsOfFile(path string /* primitive/slice/pointer. */) Str
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:encoding:)
-func NewStringWithContentsOfFileEncodingError(path string /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) String {
+func NewStringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), objc.String(path), enc, error_)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -309,9 +385,9 @@ func NewStringWithContentsOfFileEncodingError(path string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfFile:usedEncoding:)
-func NewStringWithContentsOfFileUsedEncodingError(path string /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) String {
+func NewStringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error_)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -321,7 +397,7 @@ func NewStringWithContentsOfFileUsedEncodingError(path string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:)
-func NewStringWithContentsOfURL(url IURL) String {
+func NewStringWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -333,7 +409,7 @@ func NewStringWithContentsOfURL(url IURL) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-715fw
-func NewStringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) String {
+func NewStringWithContentsOfURLEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:encoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -345,7 +421,7 @@ func NewStringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-2c72d
-func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) String {
+func NewStringWithContentsOfURLUsedEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	rv.Autorelease()
@@ -369,9 +445,9 @@ func NewStringWithDataEncoding(data IData, encoding StringEncoding /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:
-func NewStringWithFormat(format string /* primitive/slice/pointer. */) String {
+func NewStringWithFormat(format IString) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:"), objc.String(format))
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:"), format)
 	rv.Autorelease()
 	return rv
 }
@@ -381,9 +457,9 @@ func NewStringWithFormat(format string /* primitive/slice/pointer. */) String {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:arguments:)
-func NewStringWithFormatArguments(format string /* primitive/slice/pointer. */, argList unsafe.Pointer) String {
+func NewStringWithFormatArguments(format IString, argList unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), objc.String(format), argList)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), format, argList)
 	rv.Autorelease()
 	return rv
 }
@@ -393,9 +469,9 @@ func NewStringWithFormatArguments(format string /* primitive/slice/pointer. */, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
-func NewStringWithFormatLocale(format string /* primitive/slice/pointer. */, locale objectivec.IObject) String {
+func NewStringWithFormatLocale(format IString, locale objectivec.IObject) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), objc.String(format), locale)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
 	rv.Autorelease()
 	return rv
 }
@@ -405,9 +481,9 @@ func NewStringWithFormatLocale(format string /* primitive/slice/pointer. */, loc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:locale:arguments:)
-func NewStringWithFormatLocaleArguments(format string /* primitive/slice/pointer. */, locale objectivec.IObject, argList unsafe.Pointer) String {
+func NewStringWithFormatLocaleArguments(format IString, locale objectivec.IObject, argList unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), objc.String(format), locale, argList)
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), format, locale, argList)
 	rv.Autorelease()
 	return rv
 }
@@ -417,9 +493,9 @@ func NewStringWithFormatLocaleArguments(format string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(string:)-210xa
-func NewStringWithString(aString string /* primitive/slice/pointer. */) String {
+func NewStringWithString(aString IString) String {
 	instance := getStringClass().Alloc()
-	rv := objc.Send[String](instance.ID, objc.Sel("initWithString:"), objc.String(aString))
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithString:"), aString)
 	rv.Autorelease()
 	return rv
 }
@@ -436,6 +512,70 @@ func NewStringWithUTF8String(nullTerminatedCString unsafe.Pointer) String {
 	return rv
 }
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:arguments:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format IString, validFormatSpecifiers IString, argList unsafe.Pointer, error_ unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, argList unsafe.Pointer, error_ unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, error_ unsafe.Pointer) String {
+	instance := getStringClass().Alloc()
+	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:
+func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format IString) IString {
+	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:"), format)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:
+func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTable(format IString, table IString) IString {
+	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:"), format, table)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:fromTable:arguments:
+func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTableArguments(format IString, table IString, arguments unsafe.Pointer) IString {
+	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:arguments:"), format, table, arguments)
+	return rv
+}
 
 
 // Returns a string containing the bytes in a given C array, interpreted according to a given encoding.
@@ -462,7 +602,7 @@ func (sc _StringClass) StringWithUTF8String(nullTerminatedCString unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:encoding:)-x6cv
-func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:encoding:error:"), url, enc, error_)
 	return rv
 }
@@ -472,7 +612,7 @@ func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc String
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(contentsOfURL:usedEncoding:)-9jrum
-func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
+func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url objc.IObject /* cross-framework NSURL */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	return rv
 }
@@ -492,8 +632,16 @@ func (sc _StringClass) LocalizedNameOfStringEncoding(encoding StringEncoding /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithFormat:
-func (sc _StringClass) LocalizedStringWithFormat(format string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithFormat:"), objc.String(format))
+func (sc _StringClass) LocalizedStringWithFormat(format IString) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithFormat:"), format)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStringWithValidatedFormat:validFormatSpecifiers:error:
+func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
 }
 
@@ -502,8 +650,8 @@ func (sc _StringClass) LocalizedStringWithFormat(format string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedUserNotificationString(forKey:arguments:)
-func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key string /* primitive/slice/pointer. */, arguments objectivec.IObject) IString {
-	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("localizedUserNotificationStringForKey:arguments:"), objc.String(key), arguments)
+func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key IString, arguments IArray) IString {
+	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("localizedUserNotificationStringForKey:arguments:"), key, arguments)
 	return rv
 }
 
@@ -542,7 +690,7 @@ func (sc _StringClass) StringWithCStringLength(bytes unsafe.Pointer, length uint
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withContentsOf:)
-func (sc _StringClass) StringWithContentsOfURL(url IURL) objc.ID {
+func (sc _StringClass) StringWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:"), url)
 	return rv
 }
@@ -552,8 +700,8 @@ func (sc _StringClass) StringWithContentsOfURL(url IURL) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/string(withContentsOfFile:)
-func (sc _StringClass) StringWithContentsOfFile(path string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:"), objc.String(path))
+func (sc _StringClass) StringWithContentsOfFile(path IString) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:"), path)
 	return rv
 }
 
@@ -572,8 +720,18 @@ func (sc _StringClass) String() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringEncoding(for:encodingOptions:convertedString:usedLossyConversion:)
-func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary /* already interface */, string_ string /* primitive/slice/pointer. */, usedLossyConversion unsafe.Pointer) StringEncoding /* not a class type */ {
-	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, objc.String(string_), usedLossyConversion)
+func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary /* already interface */, string_ IString, usedLossyConversion unsafe.Pointer) StringEncoding /* not a class type */ {
+	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, string_, usedLossyConversion)
+	return rv
+}
+
+
+// Returns a string containing a given number of characters taken from a given C array of UTF-16 code units.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithCharacters:length:
+func (sc _StringClass) StringWithCharactersLength(characters unsafe.Pointer, length uint /* primitive/slice/pointer. */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithCharacters:length:"), characters, length)
 	return rv
 }
 
@@ -582,8 +740,8 @@ func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:encoding:error:
-func (sc _StringClass) StringWithContentsOfFileEncodingError(path string /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), objc.String(path), enc, error_)
+func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), path, enc, error_)
 	return rv
 }
 
@@ -592,8 +750,8 @@ func (sc _StringClass) StringWithContentsOfFileEncodingError(path string /* prim
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithContentsOfFile:usedEncoding:error:
-func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), objc.String(path), enc, error_)
+func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	return rv
 }
 
@@ -602,8 +760,26 @@ func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path string /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithFormat:
-func (sc _StringClass) StringWithFormat(format string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithFormat:"), objc.String(format))
+func (sc _StringClass) StringWithFormat(format IString) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithFormat:"), format)
+	return rv
+}
+
+
+// Returns a string created by copying the characters from another given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithString:
+func (sc _StringClass) StringWithString(string_ IString) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithString:"), string_)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringWithValidatedFormat:validFormatSpecifiers:error:
+func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
 }
 
@@ -630,8 +806,18 @@ func (sc _StringClass) DefaultCStringEncoding() StringEncoding /* not a class ty
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/addingPercentEncoding(withAllowedCharacters:)
-func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString {
+func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters CharacterSet /* not a class type */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEncodingWithAllowedCharacters:"), allowedCharacters)
+	return rv
+}
+
+
+// Returns a new string made by appending a given string to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appending(_:)
+func (s_ String) StringByAppendingString(aString IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingString:"), aString)
 	return rv
 }
 
@@ -640,8 +826,16 @@ func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedChara
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:)
-func (s_ String) StringByAppendingPathComponent(str string /* primitive/slice/pointer. */) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:"), objc.String(str))
+func (s_ String) StringByAppendingPathComponent(str IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:"), str)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
+func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject /* cross-framework UTType */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), partialName, contentType)
 	return rv
 }
 
@@ -650,8 +844,46 @@ func (s_ String) StringByAppendingPathComponent(str string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(_:)
-func (s_ String) StringByAppendingPathExtension(str string /* primitive/slice/pointer. */) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtension:"), objc.String(str))
+func (s_ String) StringByAppendingPathExtension(str IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtension:"), str)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
+func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject /* cross-framework UTType */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
+	return rv
+}
+
+
+// Returns a new string by applying a specified transform to the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/applyingTransform(_:reverse:)
+func (s_ String) StringByApplyingTransformReverse(transform StringTransform /* not a class type */, reverse bool /* primitive/slice/pointer. */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByApplyingTransform:reverse:"), transform, reverse)
+	return rv
+}
+
+
+// Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:)
+func (s_ String) BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:"), size, options, attributes)
+	return rv
+}
+
+
+// Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/boundingRect(with:options:attributes:context:)
+func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework Size */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
 	return rv
 }
 
@@ -676,12 +908,52 @@ func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class
 }
 
 
+// Returns a capitalized representation of the receiver using the specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/capitalized(with:)
+func (s_ String) CapitalizedStringWithLocale(locale Locale /* not a class type */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("capitalizedStringWithLocale:"), locale)
+	return rv
+}
+
+
+// Returns the result of invoking with as the only option.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/caseInsensitiveCompare(_:)
+func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("caseInsensitiveCompare:"), string_)
+	return rv
+}
+
+
 // Returns the character at a given UTF-16 code unit index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/character(at:)
-func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) unichar /* typedef */ {
-	rv := objc.Send[unichar](s_.ID, objc.Sel("characterAtIndex:"), index)
+func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("characterAtIndex:"), index)
+	return rv
+}
+
+
+// Returns a string containing characters the receiver and a given string have in common, starting from the beginning of each up to the first characters that aren’t equivalent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/commonPrefix(with:options:)
+func (s_ String) CommonPrefixWithStringOptions(str IString, mask StringCompareOptions) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("commonPrefixWithString:options:"), str, mask)
+	return rv
+}
+
+
+// Returns the result of invoking with no options and the receiver’s full extent as the range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:)
+func (s_ String) Compare(string_ IString) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:"), string_)
 	return rv
 }
 
@@ -690,8 +962,8 @@ func (s_ String) CharacterAtIndex(index uint /* primitive/slice/pointer. */) uni
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:)
-func (s_ String) CompareOptions(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */) ComparisonResult /* not a class type */ {
-	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:"), objc.String(string_), mask)
+func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:"), string_, mask)
 	return rv
 }
 
@@ -700,8 +972,8 @@ func (s_ String) CompareOptions(string_ string /* primitive/slice/pointer. */, m
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:)
-func (s_ String) CompareOptionsRange(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */) ComparisonResult /* not a class type */ {
-	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), objc.String(string_), mask, rangeOfReceiverToCompare)
+func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), string_, mask, rangeOfReceiverToCompare)
 	return rv
 }
 
@@ -710,8 +982,8 @@ func (s_ String) CompareOptionsRange(string_ string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
-func (s_ String) CompareOptionsRangeLocale(string_ string /* primitive/slice/pointer. */, mask StringCompareOptions /* not a class type */, rangeOfReceiverToCompare objc.IObject /* cross-framework Range */, locale objectivec.IObject) ComparisonResult /* not a class type */ {
-	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), objc.String(string_), mask, rangeOfReceiverToCompare, locale)
+func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare Range /* not a class type */, locale objectivec.IObject) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), string_, mask, rangeOfReceiverToCompare, locale)
 	return rv
 }
 
@@ -720,8 +992,8 @@ func (s_ String) CompareOptionsRangeLocale(string_ string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/completePath(into:caseSensitive:matchesInto:filterTypes:)
-func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName string /* primitive/slice/pointer. */, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
-	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), objc.String(outputName), flag, outputArray, filterTypes)
+func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool /* primitive/slice/pointer. */, outputArray []string /* primitive/slice/pointer. */, filterTypes []string /* primitive/slice/pointer. */) uint /* primitive/slice/pointer. */ {
+	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), outputName, flag, outputArray, filterTypes)
 	return rv
 }
 
@@ -730,8 +1002,8 @@ func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-238fy
-func (s_ String) ComponentsSeparatedByString(separator string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByString:"), objc.String(separator))
+func (s_ String) ComponentsSeparatedByString(separator IString) []string /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByString:"), separator)
 	return rv
 }
 
@@ -740,8 +1012,18 @@ func (s_ String) ComponentsSeparatedByString(separator string /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/components(separatedBy:)-27x9g
-func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string /* primitive/slice/pointer. */ {
+func (s_ String) ComponentsSeparatedByCharactersInSet(separator CharacterSet /* not a class type */) []string /* primitive/slice/pointer. */ {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByCharactersInSet:"), separator)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether the string contains a given string by performing a case-sensitive, locale-unaware search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/contains(_:)
+func (s_ String) ContainsString(str IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), str)
 	return rv
 }
 
@@ -766,11 +1048,75 @@ func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /
 }
 
 
+// Draws the receiver with the font and other display characteristics of the given attributes, at the specified point in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(at:withAttributes:)
+func (s_ String) DrawAtPointWithAttributes(point objc.IObject /* cross-framework Point */, attrs IDictionary /* already interface */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawAtPoint:withAttributes:"), point, attrs)
+}
+
+
+// Draws the attributed string inside the specified bounding rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(in:withAttributes:)
+func (s_ String) DrawInRectWithAttributes(rect objc.IObject /* cross-framework Rect */, attrs IDictionary /* already interface */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawInRect:withAttributes:"), rect, attrs)
+}
+
+
+// Draws the receiver with the specified options and other display characteristics of the given attributes, within the specified rectangle in the current graphics context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:)
+func (s_ String) DrawWithRectOptionsAttributes(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:"), rect, options, attributes)
+}
+
+
+// Draws the attributed string in the specified bounding rectangle using the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:context:)
+func (s_ String) DrawWithRectOptionsAttributesContext(rect objc.IObject /* cross-framework Rect */, options StringDrawingOptions, attributes IDictionary /* already interface */, context objc.IObject /* cross-framework StringDrawingContext */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:context:"), rect, options, attributes, context)
+}
+
+
+// Enumerates all the lines in the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateLines(_:)
+func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateLinesUsingBlock:"), block)
+}
+
+
+// Enumerates the substrings of the specified type in the specified range of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateSubstrings(in:options:using:)
+func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range /* not a class type */, opts StringEnumerationOptions, block unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateSubstringsInRange:options:usingBlock:"), range_, opts, block)
+}
+
+
+// Creates a string suitable for comparison by removing the specified character distinctions from a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/folding(options:locale:)
+func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, locale Locale /* not a class type */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByFoldingWithOptions:locale:"), options, locale)
+	return rv
+}
+
+
 // Gets a given range of characters as bytes in a specified encoding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)
-func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions /* not a class type */, range_ objc.IObject /* cross-framework Range */, leftover objc.IObject /* cross-framework RangePointer */) bool /* primitive/slice/pointer. */ {
+func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint /* primitive/slice/pointer. */, usedBufferCount UInteger /* not a class type */, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ Range /* not a class type */, leftover RangePointer /* not a class type */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
 }
@@ -790,7 +1136,7 @@ func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:)
-func (s_ String) GetCharacters(buffer unichar /* typedef */) {
+func (s_ String) GetCharacters(buffer unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:"), buffer)
 }
 
@@ -799,7 +1145,7 @@ func (s_ String) GetCharacters(buffer unichar /* typedef */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:range:)
-func (s_ String) GetCharactersRange(buffer unichar /* typedef */, range_ objc.IObject /* cross-framework Range */) {
+func (s_ String) GetCharactersRange(buffer unsafe.Pointer, range_ Range /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:range:"), buffer, range_)
 }
 
@@ -814,12 +1160,40 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max 
 }
 
 
+// Returns by reference the beginning of the first line and the end of the last line touched by the given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
+func (s_ String) GetLineStartEndContentsEndForRange(startPtr UInteger /* not a class type */, lineEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
+}
+
+
+// Returns by reference the beginning of the first paragraph and the end of the last paragraph touched by the given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
+func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr UInteger /* not a class type */, parEndPtr UInteger /* not a class type */, contentsEndPtr UInteger /* not a class type */, range_ Range /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
+}
+
+
+// Returns a Boolean value that indicates whether a given string matches the beginning characters of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasPrefix(_:)
+func (s_ String) HasPrefix(str IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("hasPrefix:"), str)
+	return rv
+}
+
+
 // Returns a Boolean value that indicates whether a given string matches the ending characters of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/hasSuffix(_:)
-func (s_ String) HasSuffix(str string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), objc.String(str))
+func (s_ String) HasSuffix(str IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), str)
 	return rv
 }
 
@@ -828,8 +1202,8 @@ func (s_ String) HasSuffix(str string /* primitive/slice/pointer. */) bool /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/isEqual(to:)
-func (s_ String) IsEqualToString(aString string /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), objc.String(aString))
+func (s_ String) IsEqualToString(aString IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), aString)
 	return rv
 }
 
@@ -844,12 +1218,42 @@ func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class ty
 }
 
 
+// Returns the range of characters representing the line or lines containing a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lineRange(for:)
+func (s_ String) LineRangeForRange(range_ Range /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("lineRangeForRange:"), range_)
+	return rv
+}
+
+
 // Compares the string with a given string using a case-insensitive, localized, comparison.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveCompare(_:)
-func (s_ String) LocalizedCaseInsensitiveCompare(string_ string /* primitive/slice/pointer. */) ComparisonResult /* not a class type */ {
-	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), objc.String(string_))
+func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), string_)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether the string contains a given string by performing a case-insensitive, locale-aware search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCaseInsensitiveContains(_:)
+func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), str)
+	return rv
+}
+
+
+// Compares the string and a given string using a localized comparison.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCompare(_:)
+func (s_ String) LocalizedCompare(string_ IString) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCompare:"), string_)
 	return rv
 }
 
@@ -858,8 +1262,38 @@ func (s_ String) LocalizedCaseInsensitiveCompare(string_ string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardCompare(_:)
-func (s_ String) LocalizedStandardCompare(string_ string /* primitive/slice/pointer. */) ComparisonResult /* not a class type */ {
-	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedStandardCompare:"), objc.String(string_))
+func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedStandardCompare:"), string_)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether the string contains a given string by performing a case and diacritic insensitive, locale-aware search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardContains(_:)
+func (s_ String) LocalizedStandardContainsString(str IString) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("localizedStandardContainsString:"), str)
+	return rv
+}
+
+
+// Finds and returns the range of the first occurrence of a given string within the string by performing a case and diacritic insensitive, locale-aware search.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardRange(of:)
+func (s_ String) LocalizedStandardRangeOfString(str IString) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
+	return rv
+}
+
+
+// Returns a version of the string with all letters converted to lowercase, taking into account the specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lowercased(with:)
+func (s_ String) LowercaseStringWithLocale(locale Locale /* not a class type */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseStringWithLocale:"), locale)
 	return rv
 }
 
@@ -874,11 +1308,121 @@ func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a c
 }
 
 
+// Returns a new string formed from the receiver by either removing characters from the end, or by appending as many occurrences as necessary of a given pad string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/padding(toLength:withPad:startingAt:)
+func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint /* primitive/slice/pointer. */, padString IString, padIndex uint /* primitive/slice/pointer. */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByPaddingToLength:withString:startingAtIndex:"), newLength, padString, padIndex)
+	return rv
+}
+
+
+// Returns the range of characters representing the paragraph or paragraphs containing a given range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/paragraphRange(for:)
+func (s_ String) ParagraphRangeForRange(range_ Range /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
+	return rv
+}
+
+
+// Parses the receiver as a text representation of a property list, returning an , , , or object, according to the topmost element.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/propertyList()
+func (s_ String) PropertyList() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("propertyList"))
+	return rv
+}
+
+
+// Returns a dictionary object initialized with the keys and values found in the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/propertyListFromStringsFileFormat()
+func (s_ String) PropertyListFromStringsFileFormat() IDictionary {
+	rv := objc.Send[Dictionary](s_.ID, objc.Sel("propertyListFromStringsFileFormat"))
+	return rv
+}
+
+
+// Finds and returns the range of the first occurrence of a given string within the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:)
+func (s_ String) RangeOfString(searchString IString) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:"), searchString)
+	return rv
+}
+
+
+// Finds and returns the range of the first occurrence of a given string within the string, subject to given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:)
+func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOptions) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
+	return rv
+}
+
+
+// Finds and returns the range of the first occurrence of a given string, within the given range of the string, subject to given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:)
+func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
+	return rv
+}
+
+
+// Finds and returns the range of the first occurrence of a given string within a given range of the string, subject to given options, using the specified locale, if any.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/range(of:options:range:locale:)
+func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */, locale Locale /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
+	return rv
+}
+
+
+// Finds and returns the range in the string of the first character from a given character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:)
+func (s_ String) RangeOfCharacterFromSet(searchSet CharacterSet /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:"), searchSet)
+	return rv
+}
+
+
+// Finds and returns the range in the string of the first character, using given options, from a given character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:)
+func (s_ String) RangeOfCharacterFromSetOptions(searchSet CharacterSet /* not a class type */, mask StringCompareOptions) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:"), searchSet, mask)
+	return rv
+}
+
+
+// Finds and returns the range in the string of the first character from a given character set found in a given range with given options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfCharacter(from:options:range:)
+func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet CharacterSet /* not a class type */, mask StringCompareOptions, rangeOfReceiverToSearch Range /* not a class type */) Range /* not a class type */ {
+	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
+	return rv
+}
+
+
 // Returns the range in the receiver of the composed character sequence located at a given index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequence(at:)
-func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) objc.IObject /* cross-framework: Range */ {
+func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive/slice/pointer. */) Range /* not a class type */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequenceAtIndex:"), index)
 	return rv
 }
@@ -888,8 +1432,38 @@ func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint /* primitive
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/rangeOfComposedCharacterSequences(for:)
-func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
+func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ Range /* not a class type */) Range /* not a class type */ {
 	rv := objc.Send[Range](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
+	return rv
+}
+
+
+// Returns a new string in which the characters in a specified range of the receiver are replaced by a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingCharacters(in:with:)
+func (s_ String) StringByReplacingCharactersInRangeWithString(range_ Range /* not a class type */, replacement IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, replacement)
+	return rv
+}
+
+
+// Returns a new string in which all occurrences of a target string in the receiver are replaced by another given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:)
+func (s_ String) StringByReplacingOccurrencesOfStringWithString(target IString, replacement IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:"), target, replacement)
+	return rv
+}
+
+
+// Returns a new string in which all occurrences of a target string in a specified range of the receiver are replaced by another given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingOccurrences(of:with:options:range:)
+func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange Range /* not a class type */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
 	return rv
 }
 
@@ -898,8 +1472,36 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/size(withAttributes:)
-func (s_ String) SizeWithAttributes(attrs IDictionary /* already interface */) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
+func (s_ String) SizeWithAttributes(attrs IDictionary /* already interface */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[Size](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sr_sensorForDeletionRecordsFromSensor()
+func (s_ String) Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sr_sensorForDeletionRecordsFromSensor"))
+	return rv
+}
+
+
+// Returns a string made by appending to the receiver a string constructed from a given format string and the following arguments.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/stringByAppendingFormat:
+func (s_ String) StringByAppendingFormat(format IString) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingFormat:"), format)
+	return rv
+}
+
+
+// Returns an array of strings made by separately appending to the receiver each string in a given array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/strings(byAppendingPaths:)
+func (s_ String) StringsByAppendingPaths(paths []string /* primitive/slice/pointer. */) []string /* primitive/slice/pointer. */ {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("stringsByAppendingPaths:"), paths)
 	return rv
 }
 
@@ -928,7 +1530,7 @@ func (s_ String) SubstringToIndex(to uint /* primitive/slice/pointer. */) IStrin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/substring(with:)
-func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework Range */) IString {
+func (s_ String) SubstringWithRange(range_ Range /* not a class type */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringWithRange:"), range_)
 	return rv
 }
@@ -938,8 +1540,18 @@ func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework Range
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/trimmingCharacters(in:)
-func (s_ String) StringByTrimmingCharactersInSet(set ICharacterSet) IString {
+func (s_ String) StringByTrimmingCharactersInSet(set CharacterSet /* not a class type */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByTrimmingCharactersInSet:"), set)
+	return rv
+}
+
+
+// Returns a version of the string with all letters converted to uppercase, taking into account the specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/uppercased(with:)
+func (s_ String) UppercaseStringWithLocale(locale Locale /* not a class type */) IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseStringWithLocale:"), locale)
 	return rv
 }
 
@@ -958,7 +1570,7 @@ func (s_ String) VariantFittingPresentationWidth(width int /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
-func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
+func (s_ String) WriteToURLAtomicallyEncodingError(url objc.IObject /* cross-framework NSURL */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
 }
@@ -968,8 +1580,8 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:encoding:)
-func (s_ String) WriteToFileAtomicallyEncodingError(path string /* primitive/slice/pointer. */, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), objc.String(path), useAuxiliaryFile, enc, error_)
+func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */, enc StringEncoding /* not a class type */, error_ unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), path, useAuxiliaryFile, enc, error_)
 	return rv
 }
 
@@ -978,8 +1590,8 @@ func (s_ String) WriteToFileAtomicallyEncodingError(path string /* primitive/sli
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/abbreviatingWithTildeInPath
-func (s_ String) StringByAbbreviatingWithTildeInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByAbbreviatingWithTildeInPath"))
+func (s_ String) StringByAbbreviatingWithTildeInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByAbbreviatingWithTildeInPath"))
 	return rv
 }
 
@@ -1004,6 +1616,36 @@ func (s_ String) BoolValue() bool /* primitive/slice/pointer. */ {
 }
 
 
+// A capitalized representation of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/capitalized
+func (s_ String) CapitalizedString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("capitalizedString"))
+	return rv
+}
+
+
+// A string made by normalizing the string’s contents using the Unicode Normalization Form D.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/decomposedStringWithCanonicalMapping
+func (s_ String) DecomposedStringWithCanonicalMapping() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("decomposedStringWithCanonicalMapping"))
+	return rv
+}
+
+
+// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KD.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/decomposedStringWithCompatibilityMapping
+func (s_ String) DecomposedStringWithCompatibilityMapping() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("decomposedStringWithCompatibilityMapping"))
+	return rv
+}
+
+
 // Returns the C-string encoding assumed for any method accepting a C string as an argument.
 //
 // [Full Topic]
@@ -1018,8 +1660,8 @@ func (s_ String) DefaultCStringEncoding() StringEncoding /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deletingLastPathComponent
-func (s_ String) StringByDeletingLastPathComponent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByDeletingLastPathComponent"))
+func (s_ String) StringByDeletingLastPathComponent() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByDeletingLastPathComponent"))
 	return rv
 }
 
@@ -1028,16 +1670,16 @@ func (s_ String) StringByDeletingLastPathComponent() string /* primitive/slice/p
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deletingPathExtension
-func (s_ String) StringByDeletingPathExtension() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByDeletingPathExtension"))
+func (s_ String) StringByDeletingPathExtension() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByDeletingPathExtension"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/description
-func (s_ String) Description() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("description"))
+func (s_ String) Description() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -1056,8 +1698,8 @@ func (s_ String) DoubleValue() float64 /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/expandingTildeInPath
-func (s_ String) StringByExpandingTildeInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByExpandingTildeInPath"))
+func (s_ String) StringByExpandingTildeInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByExpandingTildeInPath"))
 	return rv
 }
 
@@ -1136,8 +1778,8 @@ func (s_ String) AbsolutePath() bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lastPathComponent
-func (s_ String) LastPathComponent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("lastPathComponent"))
+func (s_ String) LastPathComponent() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("lastPathComponent"))
 	return rv
 }
 
@@ -1152,12 +1794,52 @@ func (s_ String) Length() uint /* primitive/slice/pointer. */ {
 }
 
 
+// Returns a capitalized representation of the receiver using the current locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedCapitalized
+func (s_ String) LocalizedCapitalizedString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedCapitalizedString"))
+	return rv
+}
+
+
+// Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedLowercase
+func (s_ String) LocalizedLowercaseString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedLowercaseString"))
+	return rv
+}
+
+
+// Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedUppercase
+func (s_ String) LocalizedUppercaseString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedUppercaseString"))
+	return rv
+}
+
+
 // The value of the string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/longLongValue
 func (s_ String) LongLongValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("longLongValue"))
+	return rv
+}
+
+
+// A lowercase representation of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lowercased
+func (s_ String) LowercaseString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseString"))
 	return rv
 }
 
@@ -1176,8 +1858,28 @@ func (s_ String) PathComponents() []string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/pathExtension
-func (s_ String) PathExtension() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("pathExtension"))
+func (s_ String) PathExtension() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("pathExtension"))
+	return rv
+}
+
+
+// A string made by normalizing the string’s contents using the Unicode Normalization Form C.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/precomposedStringWithCanonicalMapping
+func (s_ String) PrecomposedStringWithCanonicalMapping() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("precomposedStringWithCanonicalMapping"))
+	return rv
+}
+
+
+// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/precomposedStringWithCompatibilityMapping
+func (s_ String) PrecomposedStringWithCompatibilityMapping() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("precomposedStringWithCompatibilityMapping"))
 	return rv
 }
 
@@ -1186,8 +1888,8 @@ func (s_ String) PathExtension() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/removingPercentEncoding
-func (s_ String) StringByRemovingPercentEncoding() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByRemovingPercentEncoding"))
+func (s_ String) StringByRemovingPercentEncoding() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByRemovingPercentEncoding"))
 	return rv
 }
 
@@ -1196,8 +1898,8 @@ func (s_ String) StringByRemovingPercentEncoding() string /* primitive/slice/poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/resolvingSymlinksInPath
-func (s_ String) StringByResolvingSymlinksInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByResolvingSymlinksInPath"))
+func (s_ String) StringByResolvingSymlinksInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByResolvingSymlinksInPath"))
 	return rv
 }
 
@@ -1216,8 +1918,18 @@ func (s_ String) SmallestEncoding() StringEncoding /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/standardizingPath
-func (s_ String) StringByStandardizingPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringByStandardizingPath"))
+func (s_ String) StringByStandardizingPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("stringByStandardizingPath"))
+	return rv
+}
+
+
+// An uppercase representation of the string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/uppercased
+func (s_ String) UppercaseString() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseString"))
 	return rv
 }
 
@@ -1236,8 +1948,8 @@ func (s_ String) UTF8String() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
-func (s_ String) AbbreviatingWithTildeInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
+func (s_ String) AbbreviatingWithTildeInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
 	return rv
 }
 
@@ -1246,8 +1958,8 @@ func (s_ String) AbbreviatingWithTildeInPath() string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
-func (s_ String) SetAbbreviatingWithTildeInPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), objc.String(value))
+func (s_ String) SetAbbreviatingWithTildeInPath(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), value)
 }
 
 
@@ -1255,8 +1967,8 @@ func (s_ String) SetAbbreviatingWithTildeInPath(value string /* primitive/slice/
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
-func (s_ String) Capitalized() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("capitalized"))
+func (s_ String) Capitalized() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("capitalized"))
 	return rv
 }
 
@@ -1265,8 +1977,8 @@ func (s_ String) Capitalized() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
-func (s_ String) SetCapitalized(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), objc.String(value))
+func (s_ String) SetCapitalized(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), value)
 }
 
 
@@ -1285,50 +1997,12 @@ func (s_ String) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 }
 
 
-// A string made by normalizing the string’s contents using the Unicode Normalization Form D.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/decomposedstringwithcanonicalmapping
-func (s_ String) DecomposedStringWithCanonicalMapping() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("decomposedStringWithCanonicalMapping"))
-	return rv
-}
-
-
-// A string made by normalizing the string’s contents using the Unicode Normalization Form D.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/decomposedstringwithcanonicalmapping
-func (s_ String) SetDecomposedStringWithCanonicalMapping(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDecomposedStringWithCanonicalMapping:"), objc.String(value))
-}
-
-
-// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KD.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/decomposedstringwithcompatibilitymapping
-func (s_ String) DecomposedStringWithCompatibilityMapping() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("decomposedStringWithCompatibilityMapping"))
-	return rv
-}
-
-
-// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KD.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/decomposedstringwithcompatibilitymapping
-func (s_ String) SetDecomposedStringWithCompatibilityMapping(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDecomposedStringWithCompatibilityMapping:"), objc.String(value))
-}
-
-
 // A new string made by deleting the last path component from the receiver, along with any final path separator.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
-func (s_ String) DeletingLastPathComponent() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("deletingLastPathComponent"))
+func (s_ String) DeletingLastPathComponent() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("deletingLastPathComponent"))
 	return rv
 }
 
@@ -1337,8 +2011,8 @@ func (s_ String) DeletingLastPathComponent() string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
-func (s_ String) SetDeletingLastPathComponent(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), objc.String(value))
+func (s_ String) SetDeletingLastPathComponent(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), value)
 }
 
 
@@ -1346,8 +2020,8 @@ func (s_ String) SetDeletingLastPathComponent(value string /* primitive/slice/po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
-func (s_ String) DeletingPathExtension() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("deletingPathExtension"))
+func (s_ String) DeletingPathExtension() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("deletingPathExtension"))
 	return rv
 }
 
@@ -1356,8 +2030,8 @@ func (s_ String) DeletingPathExtension() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
-func (s_ String) SetDeletingPathExtension(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), objc.String(value))
+func (s_ String) SetDeletingPathExtension(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), value)
 }
 
 
@@ -1365,8 +2039,8 @@ func (s_ String) SetDeletingPathExtension(value string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
-func (s_ String) ExpandingTildeInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("expandingTildeInPath"))
+func (s_ String) ExpandingTildeInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("expandingTildeInPath"))
 	return rv
 }
 
@@ -1375,8 +2049,8 @@ func (s_ String) ExpandingTildeInPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
-func (s_ String) SetExpandingTildeInPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), objc.String(value))
+func (s_ String) SetExpandingTildeInPath(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), value)
 }
 
 
@@ -1403,8 +2077,8 @@ func (s_ String) SetIsAbsolutePath(value bool /* primitive/slice/pointer. */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
-func (s_ String) LocalizedCapitalized() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedCapitalized"))
+func (s_ String) LocalizedCapitalized() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedCapitalized"))
 	return rv
 }
 
@@ -1413,8 +2087,8 @@ func (s_ String) LocalizedCapitalized() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
-func (s_ String) SetLocalizedCapitalized(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), objc.String(value))
+func (s_ String) SetLocalizedCapitalized(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), value)
 }
 
 
@@ -1422,8 +2096,8 @@ func (s_ String) SetLocalizedCapitalized(value string /* primitive/slice/pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
-func (s_ String) LocalizedLowercase() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedLowercase"))
+func (s_ String) LocalizedLowercase() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedLowercase"))
 	return rv
 }
 
@@ -1432,8 +2106,8 @@ func (s_ String) LocalizedLowercase() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
-func (s_ String) SetLocalizedLowercase(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), objc.String(value))
+func (s_ String) SetLocalizedLowercase(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), value)
 }
 
 
@@ -1441,8 +2115,8 @@ func (s_ String) SetLocalizedLowercase(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
-func (s_ String) LocalizedUppercase() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("localizedUppercase"))
+func (s_ String) LocalizedUppercase() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("localizedUppercase"))
 	return rv
 }
 
@@ -1451,8 +2125,8 @@ func (s_ String) LocalizedUppercase() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
-func (s_ String) SetLocalizedUppercase(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), objc.String(value))
+func (s_ String) SetLocalizedUppercase(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), value)
 }
 
 
@@ -1460,8 +2134,8 @@ func (s_ String) SetLocalizedUppercase(value string /* primitive/slice/pointer. 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
-func (s_ String) Lowercased() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("lowercased"))
+func (s_ String) Lowercased() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("lowercased"))
 	return rv
 }
 
@@ -1470,46 +2144,8 @@ func (s_ String) Lowercased() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
-func (s_ String) SetLowercased(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), objc.String(value))
-}
-
-
-// A string made by normalizing the string’s contents using the Unicode Normalization Form C.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/precomposedstringwithcanonicalmapping
-func (s_ String) PrecomposedStringWithCanonicalMapping() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("precomposedStringWithCanonicalMapping"))
-	return rv
-}
-
-
-// A string made by normalizing the string’s contents using the Unicode Normalization Form C.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/precomposedstringwithcanonicalmapping
-func (s_ String) SetPrecomposedStringWithCanonicalMapping(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrecomposedStringWithCanonicalMapping:"), objc.String(value))
-}
-
-
-// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/precomposedstringwithcompatibilitymapping
-func (s_ String) PrecomposedStringWithCompatibilityMapping() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("precomposedStringWithCompatibilityMapping"))
-	return rv
-}
-
-
-// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/precomposedstringwithcompatibilitymapping
-func (s_ String) SetPrecomposedStringWithCompatibilityMapping(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrecomposedStringWithCompatibilityMapping:"), objc.String(value))
+func (s_ String) SetLowercased(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), value)
 }
 
 
@@ -1517,8 +2153,8 @@ func (s_ String) SetPrecomposedStringWithCompatibilityMapping(value string /* pr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
-func (s_ String) RemovingPercentEncoding() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("removingPercentEncoding"))
+func (s_ String) RemovingPercentEncoding() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("removingPercentEncoding"))
 	return rv
 }
 
@@ -1527,8 +2163,8 @@ func (s_ String) RemovingPercentEncoding() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
-func (s_ String) SetRemovingPercentEncoding(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), objc.String(value))
+func (s_ String) SetRemovingPercentEncoding(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), value)
 }
 
 
@@ -1536,8 +2172,8 @@ func (s_ String) SetRemovingPercentEncoding(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
-func (s_ String) ResolvingSymlinksInPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("resolvingSymlinksInPath"))
+func (s_ String) ResolvingSymlinksInPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("resolvingSymlinksInPath"))
 	return rv
 }
 
@@ -1546,8 +2182,8 @@ func (s_ String) ResolvingSymlinksInPath() string /* primitive/slice/pointer. */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
-func (s_ String) SetResolvingSymlinksInPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), objc.String(value))
+func (s_ String) SetResolvingSymlinksInPath(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), value)
 }
 
 
@@ -1555,8 +2191,8 @@ func (s_ String) SetResolvingSymlinksInPath(value string /* primitive/slice/poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
-func (s_ String) StandardizingPath() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("standardizingPath"))
+func (s_ String) StandardizingPath() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("standardizingPath"))
 	return rv
 }
 
@@ -1565,8 +2201,8 @@ func (s_ String) StandardizingPath() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
-func (s_ String) SetStandardizingPath(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), objc.String(value))
+func (s_ String) SetStandardizingPath(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), value)
 }
 
 
@@ -1574,8 +2210,8 @@ func (s_ String) SetStandardizingPath(value string /* primitive/slice/pointer. *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
-func (s_ String) Uppercased() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](s_.ID, objc.Sel("uppercased"))
+func (s_ String) Uppercased() IString {
+	rv := objc.Send[String](s_.ID, objc.Sel("uppercased"))
 	return rv
 }
 
@@ -1584,8 +2220,8 @@ func (s_ String) Uppercased() string /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
-func (s_ String) SetUppercased(value string /* primitive/slice/pointer. */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), objc.String(value))
+func (s_ String) SetUppercased(value IString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), value)
 }
 
 

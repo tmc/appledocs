@@ -18,7 +18,7 @@ func ExampleNewArray() {
 // ExampleNewArrayWithCoder demonstrates how to create a Array instance using NewArrayWithCoder.
 func ExampleNewArrayWithCoder() {
 	_ = foundation.NewArrayWithCoder(
-		foundation.NSCoder{}, // coder NSCoder
+		foundation.Coder{}, // coder Coder
 	)
 	// Output:
 }
@@ -26,7 +26,7 @@ func ExampleNewArrayWithCoder() {
 // Initializes a newly allocated array with the contents of the file specified by a given path.
 func ExampleNewArrayWithContentsOfFile() {
 	_ = foundation.NewArrayWithContentsOfFile(
-		"/tmp/test", // path string
+		foundation.NSString{}, // path NSString
 	)
 	// Output:
 }
@@ -34,15 +34,7 @@ func ExampleNewArrayWithContentsOfFile() {
 // Initializes a newly allocated array with the contents of the location specified by a given URL.
 func ExampleNewArrayWithContentsOfURL() {
 	_ = foundation.NewArrayWithContentsOfURL(
-		foundation.URL{}, // url URL
-	)
-	// Output:
-}
-// ExampleNewArrayWithContentsOfURLError demonstrates how to create a Array instance using NewArrayWithContentsOfURLError.
-func ExampleNewArrayWithContentsOfURLError() {
-	_ = foundation.NewArrayWithContentsOfURLError(
-		foundation.URL{}, // url URL
-		foundation.NSError{}, // error NSError
+		foundation.NSURL{}, // url NSURL
 	)
 	// Output:
 }

@@ -24,6 +24,7 @@ type ParsedCache struct {
 	Functions []*occ2go.ParsedFunction
 	Typedefs  []*occ2go.ParsedTypedef
 	Constants []*occ2go.ParsedConstant
+	Structs   []*occ2go.ParsedStruct
 }
 
 func getCacheDir() (string, error) {

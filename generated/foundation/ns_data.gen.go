@@ -32,7 +32,7 @@ type IData interface {
 	objectivec.IObject
 	// properties:
 	Bytes() unsafe.Pointer
-	Description() string /* primitive/slice/pointer. */
+	Description() IString
 	Length() uint /* primitive/slice/pointer. */
 	NSCompressionErrorMaximum() int /* primitive/slice/pointer. */
 	SetNSCompressionErrorMaximum(value int /* primitive/slice/pointer. */)
@@ -45,18 +45,18 @@ type IData interface {
 	// methods:
 	Base64EncodedDataWithOptions(options DataBase64EncodingOptions) IData
 	Base64EncodedStringWithOptions(options DataBase64EncodingOptions) IString
-	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
-	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer
+	CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer
+	DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
 	GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/slice/pointer. */)
-	GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework Range */)
+	GetBytesRange(buffer unsafe.Pointer, range_ Range /* not a class type */)
 	IsEqualToData(other IData) bool /* primitive/slice/pointer. */
-	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */
-	SubdataWithRange(range_ objc.IObject /* cross-framework Range */) IData
-	WriteToURLAtomically(url IURL, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */
-	WriteToFileAtomically(path string /* primitive/slice/pointer. */, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
-	WriteToFileOptionsError(path string /* primitive/slice/pointer. */, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */
+	RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* not a class type */) Range /* not a class type */
+	SubdataWithRange(range_ Range /* not a class type */) IData
+	WriteToURLAtomically(url objc.IObject /* cross-framework NSURL */, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	WriteToURLOptionsError(url objc.IObject /* cross-framework NSURL */, writeOptionsMask DataWritingOptions, errorPtr unsafe.Pointer) bool /* primitive/slice/pointer. */
+	WriteToFileAtomically(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */
+	WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr unsafe.Pointer) bool /* primitive/slice/pointer. */
 }
 
 // A static byte buffer in memory.
@@ -128,9 +128,9 @@ func NewDataWithBase64EncodedDataOptions(base64Data IData, options DataBase64Dec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedString:options:)
-func NewDataWithBase64EncodedStringOptions(base64String string /* primitive/slice/pointer. */, options DataBase64DecodingOptions) Data {
+func NewDataWithBase64EncodedStringOptions(base64String IString, options DataBase64DecodingOptions) Data {
 	instance := getDataClass().Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedString:options:"), objc.String(base64String), options)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64EncodedString:options:"), base64String, options)
 	rv.Autorelease()
 	return rv
 }
@@ -140,9 +140,9 @@ func NewDataWithBase64EncodedStringOptions(base64String string /* primitive/slic
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64Encoding:)
-func NewDataWithBase64Encoding(base64String string /* primitive/slice/pointer. */) Data {
+func NewDataWithBase64Encoding(base64String IString) Data {
 	instance := getDataClass().Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64Encoding:"), objc.String(base64String))
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithBase64Encoding:"), base64String)
 	rv.Autorelease()
 	return rv
 }
@@ -200,9 +200,9 @@ func NewDataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer, length uint 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfFile:)
-func NewDataWithContentsOfFile(path string /* primitive/slice/pointer. */) Data {
+func NewDataWithContentsOfFile(path IString) Data {
 	instance := getDataClass().Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -212,9 +212,9 @@ func NewDataWithContentsOfFile(path string /* primitive/slice/pointer. */) Data 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfFile:options:)
-func NewDataWithContentsOfFileOptionsError(path string /* primitive/slice/pointer. */, readOptionsMask DataReadingOptions, errorPtr IError) Data {
+func NewDataWithContentsOfFileOptionsError(path IString, readOptionsMask DataReadingOptions, errorPtr unsafe.Pointer) Data {
 	instance := getDataClass().Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:options:error:"), objc.String(path), readOptionsMask, errorPtr)
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfFile:options:error:"), path, readOptionsMask, errorPtr)
 	rv.Autorelease()
 	return rv
 }
@@ -224,9 +224,9 @@ func NewDataWithContentsOfFileOptionsError(path string /* primitive/slice/pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfMappedFile:)
-func NewDataWithContentsOfMappedFile(path string /* primitive/slice/pointer. */) Data {
+func NewDataWithContentsOfMappedFile(path IString) Data {
 	instance := getDataClass().Alloc()
-	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfMappedFile:"), objc.String(path))
+	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfMappedFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -236,7 +236,7 @@ func NewDataWithContentsOfMappedFile(path string /* primitive/slice/pointer. */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6rrnr
-func NewDataWithContentsOfURL(url IURL) Data {
+func NewDataWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -248,7 +248,7 @@ func NewDataWithContentsOfURL(url IURL) Data {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-5abi3
-func NewDataWithContentsOfURLOptionsError(url IURL, readOptionsMask DataReadingOptions, errorPtr IError) Data {
+func NewDataWithContentsOfURLOptionsError(url objc.IObject /* cross-framework NSURL */, readOptionsMask DataReadingOptions, errorPtr unsafe.Pointer) Data {
 	instance := getDataClass().Alloc()
 	rv := objc.Send[Data](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	rv.Autorelease()
@@ -313,8 +313,8 @@ func (dc _DataClass) DataWithBytesNoCopyLengthFreeWhenDone(bytes unsafe.Pointer,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfFile:
-func (dc _DataClass) DataWithContentsOfFile(path string /* primitive/slice/pointer. */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:"), objc.String(path))
+func (dc _DataClass) DataWithContentsOfFile(path IString) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:"), path)
 	return rv
 }
 
@@ -323,8 +323,18 @@ func (dc _DataClass) DataWithContentsOfFile(path string /* primitive/slice/point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfFile:options:error:
-func (dc _DataClass) DataWithContentsOfFileOptionsError(path string /* primitive/slice/pointer. */, readOptionsMask DataReadingOptions, errorPtr IError) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:options:error:"), objc.String(path), readOptionsMask, errorPtr)
+func (dc _DataClass) DataWithContentsOfFileOptionsError(path IString, readOptionsMask DataReadingOptions, errorPtr unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfFile:options:error:"), path, readOptionsMask, errorPtr)
+	return rv
+}
+
+
+// Creates a data object from the mapped file at a given path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfMappedFile(_:)
+func (dc _DataClass) DataWithContentsOfMappedFile(path IString) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dataWithContentsOfMappedFile:"), path)
 	return rv
 }
 
@@ -339,21 +349,11 @@ func (dc _DataClass) DataWithData(data IData) unsafe.Pointer {
 }
 
 
-// Creates a data object from the mapped file at a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/dataWithContentsOfMappedFile(_:)
-func (dc _DataClass) DataWithContentsOfMappedFile(path string /* primitive/slice/pointer. */) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dataWithContentsOfMappedFile:"), objc.String(path))
-	return rv
-}
-
-
 // Creates a data object from the data at the specified file URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:)-6foqd
-func (dc _DataClass) DataWithContentsOfURL(url IURL) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfURL(url objc.IObject /* cross-framework NSURL */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfURL:"), url)
 	return rv
 }
@@ -363,7 +363,7 @@ func (dc _DataClass) DataWithContentsOfURL(url IURL) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(contentsOfURL:options:)-95rht
-func (dc _DataClass) DataWithContentsOfURLOptionsError(url IURL, readOptionsMask DataReadingOptions, errorPtr IError) unsafe.Pointer {
+func (dc _DataClass) DataWithContentsOfURLOptionsError(url objc.IObject /* cross-framework NSURL */, readOptionsMask DataReadingOptions, errorPtr unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dataWithContentsOfURL:options:error:"), url, readOptionsMask, errorPtr)
 	return rv
 }
@@ -393,7 +393,7 @@ func (d_ Data) Base64EncodedStringWithOptions(options DataBase64EncodingOptions)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/compressed(using:)
-func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("compressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -403,7 +403,7 @@ func (d_ Data) CompressedDataUsingAlgorithmError(algorithm DataCompressionAlgori
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/decompressed(using:)
-func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ IError) unsafe.Pointer {
+func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm DataCompressionAlgorithm, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("decompressedDataUsingAlgorithm:error:"), algorithm, error_)
 	return rv
 }
@@ -431,7 +431,7 @@ func (d_ Data) GetBytesLength(buffer unsafe.Pointer, length uint /* primitive/sl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:range:)
-func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ objc.IObject /* cross-framework Range */) {
+func (d_ Data) GetBytesRange(buffer unsafe.Pointer, range_ Range /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:range:"), buffer, range_)
 }
 
@@ -450,7 +450,7 @@ func (d_ Data) IsEqualToData(other IData) bool /* primitive/slice/pointer. */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/range(of:options:in:)
-func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange objc.IObject /* cross-framework Range */) objc.IObject /* cross-framework: Range */ {
+func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions, searchRange Range /* not a class type */) Range /* not a class type */ {
 	rv := objc.Send[Range](d_.ID, objc.Sel("rangeOfData:options:range:"), dataToFind, mask, searchRange)
 	return rv
 }
@@ -460,7 +460,7 @@ func (d_ Data) RangeOfDataOptionsRange(dataToFind IData, mask DataSearchOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/subdata(with:)
-func (d_ Data) SubdataWithRange(range_ objc.IObject /* cross-framework Range */) IData {
+func (d_ Data) SubdataWithRange(range_ Range /* not a class type */) IData {
 	rv := objc.Send[Data](d_.ID, objc.Sel("subdataWithRange:"), range_)
 	return rv
 }
@@ -470,7 +470,7 @@ func (d_ Data) SubdataWithRange(range_ objc.IObject /* cross-framework Range */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:atomically:)
-func (d_ Data) WriteToURLAtomically(url IURL, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToURLAtomically(url objc.IObject /* cross-framework NSURL */, atomically bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
@@ -480,7 +480,7 @@ func (d_ Data) WriteToURLAtomically(url IURL, atomically bool /* primitive/slice
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(to:options:)
-func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */ {
+func (d_ Data) WriteToURLOptionsError(url objc.IObject /* cross-framework NSURL */, writeOptionsMask DataWritingOptions, errorPtr unsafe.Pointer) bool /* primitive/slice/pointer. */ {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:options:error:"), url, writeOptionsMask, errorPtr)
 	return rv
 }
@@ -490,8 +490,8 @@ func (d_ Data) WriteToURLOptionsError(url IURL, writeOptionsMask DataWritingOpti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(toFile:atomically:)
-func (d_ Data) WriteToFileAtomically(path string /* primitive/slice/pointer. */, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
+func (d_ Data) WriteToFileAtomically(path IString, useAuxiliaryFile bool /* primitive/slice/pointer. */) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
 	return rv
 }
 
@@ -500,8 +500,8 @@ func (d_ Data) WriteToFileAtomically(path string /* primitive/slice/pointer. */,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/write(toFile:options:)
-func (d_ Data) WriteToFileOptionsError(path string /* primitive/slice/pointer. */, writeOptionsMask DataWritingOptions, errorPtr IError) bool /* primitive/slice/pointer. */ {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:options:error:"), objc.String(path), writeOptionsMask, errorPtr)
+func (d_ Data) WriteToFileOptionsError(path IString, writeOptionsMask DataWritingOptions, errorPtr unsafe.Pointer) bool /* primitive/slice/pointer. */ {
+	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:options:error:"), path, writeOptionsMask, errorPtr)
 	return rv
 }
 
@@ -520,8 +520,8 @@ func (d_ Data) Bytes() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/description
-func (d_ Data) Description() string /* primitive/slice/pointer. */ {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+func (d_ Data) Description() IString {
+	rv := objc.Send[String](d_.ID, objc.Sel("description"))
 	return rv
 }
 

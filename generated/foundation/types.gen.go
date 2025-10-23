@@ -1,56 +1,72 @@
 // Code generated from Apple documentation for Foundation. DO NOT EDIT.
 
 package foundation
-import (
-	"unsafe"
+
+
+// _undefined is the base type for all undefined types referenced in documentation
+// but not defined. These types are typically enums, options, or type aliases that
+// weren't extracted from the documentation.
+type _undefined = int
+
+// Undefined types - referenced but not defined in documentation
+type (
+	BaselineAdjustment = _undefined // referenced in Foundation
+	BinarySearchingOptions = _undefined // referenced in Foundation
+	Bool = _undefined // referenced in Foundation
+	CharacterSet = _undefined // referenced in Foundation
+	Coder = _undefined // referenced in Foundation
+	Comparator = _undefined // referenced in Foundation
+	ComparisonResult = _undefined // referenced in Foundation
+	EnumerationOptions = _undefined // referenced in Foundation
+	Enumerator = _undefined // referenced in Foundation
+	Font = _undefined // referenced in Foundation
+	IndexSet = _undefined // referenced in Foundation
+	KeyType = _undefined // referenced in Foundation
+	KeyValueObservingOptions = _undefined // referenced in Foundation
+	LineBreakMode = _undefined // referenced in Foundation
+	LinguisticTagScheme = _undefined // referenced in Foundation
+	LinguisticTaggerOptions = _undefined // referenced in Foundation
+	Locale = _undefined // referenced in Foundation
+	OSType = _undefined // referenced in Foundation
+	ObjectType = _undefined // referenced in Foundation
+	OrderedCollectionDifference = _undefined // referenced in Foundation
+	OrderedCollectionDifferenceCalculationOptions = _undefined // referenced in Foundation
+	Orthography = _undefined // referenced in Foundation
+	PlaygroundQuickLook = _undefined // referenced in Foundation
+	Point = _undefined // referenced in Foundation
+	Predicate = _undefined // referenced in Foundation
+	RandomSource = _undefined // referenced in Foundation
+	Range = _undefined // referenced in Foundation
+	RangePointer = _undefined // referenced in Foundation
+	Rect = _undefined // referenced in Foundation
+	SRSensor = _undefined // referenced in Foundation
+	Size = _undefined // referenced in Foundation
+	SortDescriptor = _undefined // referenced in Foundation
+	SortOptions = _undefined // referenced in Foundation
+	StringDrawingContext = _undefined // referenced in Foundation
+	StringEncoding = _undefined // referenced in Foundation
+	StringTransform = _undefined // referenced in Foundation
+	TextAlignment = _undefined // referenced in Foundation
+	UInteger = _undefined // referenced in Foundation
+	Value = _undefined // referenced in Foundation
 )
 
 
-// Foundation-specific types
 
-// Foundation geometry types - compatible with NSPoint, NSSize, NSRect, NSRange
-type Point struct {
-	X float64
-	Y float64
-}
-
-type Size struct {
-	Width  float64
-	Height float64
-}
-
-type Rect struct {
-	Origin Point
-	Size   Size
-}
-
-type Range struct {
-	Location int
-	Length   int
+// C struct types
+// NSAffineTransformStruct - A structure that defines the three-by-three matrix that performs an affine transform between two coordinate systems.
+//
+// [Full Topic]: doc://com.apple.foundation/documentation/Foundation/NSAffineTransformStruct
+type NSAffineTransformStruct struct {
+	m11 float64 // An element of the transform matrix that contributes scaling, rotation, and shear.
+	m12 float64 // An element of the transform matrix that contributes scaling, rotation, and shear.
+	m21 float64 // An element of the transform matrix that contributes scaling, rotation, and shear.
+	m22 float64 // An element of the transform matrix that contributes scaling, rotation, and shear.
+	tX float64 // An element of the transform matrix that contributes translation.
+	tY float64 // An element of the transform matrix that contributes translation.
 }
 
 
-// Fallback type aliases for undefined types
-// These types are referenced in method signatures but not fully documented.
-// Using inferred base types as fallback to allow code generation.
-type Bool = int
 
-type Status = int
-
-type StreamDelegate = int
-
-
-// Manual fallback types for API collection classes
-// These classes come from API collections and aren't in the parsed class list
-type AppleEventSendOptions = int
-type AppleEventManagerSuspensionID = int
-type ByteCountFormatterCountStyle = int
-type ByteCountFormatterUnits = int
-type DecodingFailurePolicy = int
-type ProgressFileOperationKind = int
-type ProgressKind = int
-type ProgressUserInfoKey = int
-type StringEncoding = int
-type StringTransform = int
 
 

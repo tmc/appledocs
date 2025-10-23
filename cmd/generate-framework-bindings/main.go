@@ -196,6 +196,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	var enums []*occ2go.ParsedEnum
 	var typedefs []*occ2go.ParsedTypedef
 	var constants []*occ2go.ParsedConstant
+	var structs []*occ2go.ParsedStruct
 
 	processedFiles := 0
 	parseErrors := 0
@@ -210,6 +211,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			enums = cache.Enums
 			typedefs = cache.Typedefs
 			constants = cache.Constants
+			structs = cache.Structs
 			usedCache = true
 			if verbose {
 				fmt.Fprintf(os.Stderr, "[%s] Using cached parsed symbols (%d classes, %d methods total)\n",
@@ -282,6 +284,9 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 
 		// Keep track of enums and their cases
 		enumCasesMap := make(map[string][]*occ2go.ParsedEnumCase)
+
+		// Keep track of structs and their fields
+		structFieldsMap := make(map[string][]*occ2go.ParsedStructField)
 
 		// Process regular symbols
 		phaseStart = time.Now()
@@ -380,6 +385,35 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				typedef, typedefErr := occ2go.ParseTypedef(doc)
 				if typedefErr == nil && typedef != nil {
 					typedefs = append(typedefs, typedef)
+				}
+			} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") && !strings.Contains(doc.Metadata.ExternalID, "@FI@") {
+				// This is a C struct declaration (e.g., struct NSAffineTransformStruct)
+				// Note: struct fields have @FI@ and are handled separately below
+				tokens := []appledocs.Token{}
+				for _, section := range doc.PrimaryContentSections {
+					if section.Kind == "declarations" && len(section.Declarations) > 0 {
+						tokens = section.Declarations[0].Tokens
+						break
+					}
+				}
+				s := occ2go.ParseStructDeclaration(tokens)
+				if s != nil {
+					s.DocURL = doc.Identifier.URL
+					if len(doc.Abstract) > 0 {
+						s.Abstract = doc.Abstract[0].Text
+					}
+					structs = append(structs, s)
+				}
+			} else if strings.HasPrefix(doc.Metadata.ExternalID, "c:@SA@") && strings.Contains(doc.Metadata.ExternalID, "@FI@") {
+				// This is a C struct field (e.g., c:@SA@NSAffineTransformStruct@FI@m11)
+				field, fieldErr := occ2go.ParseStructField(doc)
+				if fieldErr == nil && field != nil {
+					// Extract struct name from external ID: c:@SA@NSAffineTransformStruct@FI@m11
+					parts := strings.Split(doc.Metadata.ExternalID, "@")
+					if len(parts) >= 4 {
+						structName := parts[2]
+						structFieldsMap[structName] = append(structFieldsMap[structName], field)
+					}
 				}
 			} else if strings.Contains(doc.Metadata.ExternalID, "@k") && (strings.HasPrefix(doc.Metadata.ExternalID, "c:@k") || strings.HasPrefix(doc.Metadata.ExternalID, "c:@E@")) {
 				// This is an extern const declaration
@@ -611,6 +645,22 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				fmt.Fprintf(os.Stderr, "[%s] Attached enum cases in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 			}
 
+			// Attach struct fields to structs
+			phaseStart = time.Now()
+			fieldCount := 0
+			for i := range structs {
+				if fields, ok := structFieldsMap[structs[i].Name]; ok {
+					fieldsCopy := make([]*occ2go.ParsedStructField, len(fields))
+					copy(fieldsCopy, fields)
+					structs[i].Fields = fieldsCopy
+					fieldCount += len(fields)
+				}
+			}
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Found %d struct fields for %d structs\n", fieldCount, len(structs))
+				fmt.Fprintf(os.Stderr, "[%s] Attached struct fields in %.2fs\n", framework, time.Since(phaseStart).Seconds())
+			}
+
 			// Enrich enum values from macOS SDK headers using extract-enum-values tool
 			enrichStart := time.Now()
 			if os.Getenv("SKIP_ENUM_ENRICHMENT") != "1" {
@@ -636,6 +686,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			Enums:     enums,
 			Typedefs:  typedefs,
 			Constants: constants,
+			Structs:   structs,
 		}
 		_ = saveCache(cache, framework, verbose)
 	}
@@ -736,11 +787,11 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		fmt.Fprintf(os.Stderr, "[%s] Starting code generation\n", framework)
 	}
 	if txtarOutput {
-		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateTxtar(os.Stdout, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, structs, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 	} else {
-		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, withRefMethods, generateTests, generateExamples, variant); err != nil {
+		if err := generateFiles(outDir, framework, packageName, inputDir, functions, classes, protocols, enums, typedefs, constants, structs, withRefMethods, generateTests, generateExamples, variant); err != nil {
 			return fmt.Errorf("failed to generate bindings: %w", err)
 		}
 		if verbose {

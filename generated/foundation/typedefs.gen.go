@@ -3,9 +3,9 @@
 package foundation
 
 // Type aliases and typedefs
-// WriteStreamRef type alias
+// TimeInterval - A number of seconds.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFWriteStream
-// CFWriteStreamRef has base type: struct __CFWriteStream *
-type WriteStreamRef uintptr
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/TimeInterval
+// NSTimeInterval has base type: double
+type TimeInterval uintptr
 
