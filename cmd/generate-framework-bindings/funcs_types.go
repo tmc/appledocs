@@ -217,7 +217,6 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "string"
 	}
 
-
 	// Check the type mapping registry first (includes both with and without pointers)
 	// This must come before the block check so that mapped block types (e.g., void (^)(void) -> func())
 	// are handled correctly
@@ -423,54 +422,55 @@ func getFrameworkLevel(framework string) int {
 	// We need to import this or duplicate the levels here
 	// For now, duplicate the essential levels
 	levels := map[string]int{
-		"objc":              0,
-		"objectivec":        0,
-		"coregraphics":      1,
-		"corefoundation":    1,
-		"foundation":        1,
-		"coretext":          1,
-		"iosurface":         1,
-		"coreimage":         2,
-		"quartzcore":        2,
-		"coreaudio":         2,
-		"coremidi":          2,
-		"imageio":           2,
-		"coredata":          2,
-		"corelocation":      2,
-		"corespotlight":     2,
-		"network":           2,
-		"security":          2,
-		"corebluetooth":     2,
-		"corevideo":         2,
-		"coreml":            2,
-		"vision":            2,
-		"naturallanguage":   2,
-		"appkit":            3,
-		"uikit":             3,
-		"webkit":            3,
-		"pdfkit":            3,
-		"networkextension":  3,
-		"avfoundation":      4,
-		"avfaudio":          4,
-		"avkit":             4,
-		"avrouting":         4,
-		"audiotoolbox":      4,
-		"cloudkit":          4,
-		"contacts":          4,
-		"contactsui":        4,
-		"gameplaykit":       4,
-		"intents":           4,
-		"intentsui":         4,
-		"metal":             4,
-		"metalkit":          4,
-		"eventkit":          4,
-		"healthkit":         4,
-		"homekit":           4,
-		"mapkit":            4,
-		"messages":          4,
-		"storekit":          4,
-		"usernotifications": 4,
-		"replaykit":         4,
+		"objc":                   0,
+		"objectivec":             0,
+		"coregraphics":           1,
+		"corefoundation":         1,
+		"foundation":             1,
+		"coretext":               1,
+		"iosurface":              1,
+		"uniformtypeidentifiers": 2, // UniformTypeIdentifiers depends on Foundation
+		"coreimage":              2,
+		"quartzcore":             2,
+		"coreaudio":              2,
+		"coremidi":               2,
+		"imageio":                2,
+		"coredata":               2,
+		"corelocation":           2,
+		"corespotlight":          2,
+		"network":                2,
+		"security":               2,
+		"corebluetooth":          2,
+		"corevideo":              2,
+		"coreml":                 2,
+		"vision":                 2,
+		"naturallanguage":        2,
+		"appkit":                 3,
+		"uikit":                  3,
+		"webkit":                 3,
+		"pdfkit":                 3,
+		"networkextension":       3,
+		"avfoundation":           4,
+		"avfaudio":               4,
+		"avkit":                  4,
+		"avrouting":              4,
+		"audiotoolbox":           4,
+		"cloudkit":               4,
+		"contacts":               4,
+		"contactsui":             4,
+		"gameplaykit":            4,
+		"intents":                4,
+		"intentsui":              4,
+		"metal":                  4,
+		"metalkit":               4,
+		"eventkit":               4,
+		"healthkit":              4,
+		"homekit":                4,
+		"mapkit":                 4,
+		"messages":               4,
+		"storekit":               4,
+		"usernotifications":      4,
+		"replaykit":              4,
 	}
 	if level, ok := levels[strings.ToLower(framework)]; ok {
 		return level
@@ -565,6 +565,16 @@ func resolveType(framework, typeName string) string {
 		if isGoPrimitive(typeName) {
 			return typeName
 		}
+
+		// Check for framework hierarchy violations BEFORE adding the package qualification
+		// If the target framework is at a higher level than the current framework, return
+		// objectivec.IObject instead to avoid import cycles (fixes appledocs-496)
+		currentLevel := getFrameworkLevel(strings.ToLower(framework))
+		targetLevel := getFrameworkLevel(frameworkPkg)
+		if currentLevel >= 0 && targetLevel > currentLevel {
+			return "objectivec.IObject"
+		}
+
 		Debug.TypeMap("cross-framework registry hit", typeName, frameworkPkg,
 			"typeName", typeName,
 			"framework", framework,

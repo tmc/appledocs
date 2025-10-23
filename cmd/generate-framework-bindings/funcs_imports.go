@@ -274,6 +274,28 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 
 			if importPath := GetImportPathFromType(goType); importPath != "" {
 				if importPath != currentFrameworkImportPath {
+					// Check for framework hierarchy violations before adding import
+					// If the target framework is at a higher level than current, skip the import
+					// since the template will use objectivec.IObject instead (fixes appledocs-496)
+					if strings.Contains(goType, ".") {
+						parts := strings.Split(goType, ".")
+						if len(parts) >= 2 {
+							targetFramework := parts[0]
+							currentLevel := getFrameworkLevel(strings.ToLower(framework))
+							targetLevel := getFrameworkLevel(targetFramework)
+							if currentLevel >= 0 && targetLevel > currentLevel {
+								// Skip import for hierarchy violation - template will use objectivec.IObject
+								Debug.Imports("skipping import due to hierarchy violation", method.Name, goType,
+									"class", class.Name,
+									"method", method.Name,
+									"param", param.Name,
+									"currentLevel", currentLevel,
+									"targetLevel", targetLevel)
+								continue
+							}
+						}
+					}
+
 					if class.Name == "CKQueryCursor" && strings.Contains(importPath, "appkit") {
 						fmt.Fprintf(os.Stderr, ">>> CKQueryCursor method %s param %q type %q -> go type %q -> import %q\n",
 							method.Name, param.Name, param.Type, goType, importPath)

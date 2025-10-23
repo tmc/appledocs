@@ -28,6 +28,7 @@ type Generator struct {
 	Enums     []*occ2go.ParsedEnum
 	Typedefs  []*occ2go.ParsedTypedef
 	Constants []*occ2go.ParsedConstant
+	Structs   []*occ2go.ParsedStruct
 
 	// Computed/cached data
 	frameworkAbstract string
@@ -187,6 +188,15 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 
 			// Recursively convert the type part
 			interfaceType := g.TypeToInterfaceType(typeName)
+
+			// IMPORTANT: If the recursive call returned a fallback type (objc.IObject or objectivec.IObject),
+			// don't re-qualify it with the original package. Fallback types should remain as-is.
+			// This fixes appledocs-496 where uniformtypeidentifiers.UTType → objc.IObject
+			// was being incorrectly transformed to uniformtypeidentifiers.objc.IObject
+			if strings.HasPrefix(interfaceType, "objc.IObject") || strings.HasPrefix(interfaceType, "objectivec.IObject") {
+				return interfaceType
+			}
+
 			return pkg + "." + interfaceType
 		}
 		return goType + " /* malformed qualified type */"
@@ -629,7 +639,7 @@ func (g *Generator) GenerateMissingParentStubs() []*occ2go.ParsedClass {
 							expectedPrefix = "CG"
 						case "quartz", "quartzcore":
 							expectedPrefix = "CA"
-						// Add more framework prefixes as needed
+							// Add more framework prefixes as needed
 						}
 
 						expectedClassName := expectedPrefix + typeName

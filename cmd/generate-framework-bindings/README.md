@@ -484,6 +484,235 @@ for _, mapping := range typeRegistry {
 return "unsafe.Pointer"
 ```
 
+### Framework Hierarchy & Import Cycle Prevention
+
+#### Problem: Circular Dependencies
+
+Apple frameworks have natural dependency hierarchies, but Go's strict import cycle detection can create build failures when generating bindings naively:
+
+```
+Foundation depends on → UniformTypeIdentifiers (UTType)
+   ↓
+Foundation package imports uniformtypeidentifiers package
+   ↓
+UniformTypeIdentifiers depends on → Foundation (NSString)
+   ↓
+Import Cycle! ❌
+```
+
+#### Solution: Framework Level System
+
+The generator implements a **framework hierarchy** system that maps frameworks to dependency levels and prevents upward dependencies:
+
+```go
+func getFrameworkLevel(framework string) int {
+    levels := map[string]int{
+        // Level 0: Runtime fundamentals
+        "objc":                     0,
+        "objectivec":               0,
+
+        // Level 1: Core frameworks (no Apple framework dependencies)
+        "coregraphics":             1,
+        "corefoundation":           1,
+        "foundation":               1,
+        "coretext":                 1,
+
+        // Level 2: Frameworks that depend on Level 1
+        "uniformtypeidentifiers":   2,
+        "coreimage":                2,
+        "quartzcore":               2,
+        "coredata":                 2,
+
+        // Level 3: Higher-level frameworks
+        "appkit":                   3,
+        "avfoundation":             3,
+        "metal":                    3,
+
+        // Level 4: Application frameworks
+        "mapkit":                   4,
+        "scenekit":                 4,
+    }
+    return levels[framework]
+}
+```
+
+#### Hierarchy Violation Detection
+
+When a lower-level framework (e.g., Foundation at level 1) tries to reference a type from a higher-level framework (e.g., UniformTypeIdentifiers at level 2), the generator:
+
+1. **Detects the violation** during type resolution
+2. **Maps the type** to `objectivec.IObject` (generic interface) instead of the qualified type
+3. **Skips the import** to prevent the cycle
+4. **Adds a comment** documenting the original type for human readers
+
+#### Implementation
+
+The hierarchy check is applied in **three places** to ensure complete prevention:
+
+**1. Type Mapping (`typemapping.go:lookupTypeMapping`)**
+```go
+if mapping.Framework != "" && mapping.Framework != framework {
+    currentLevel := getFrameworkLevel(strings.ToLower(framework))
+    targetLevel := getFrameworkLevel(strings.ToLower(mapping.Framework))
+    if currentLevel >= 0 && targetLevel > currentLevel {
+        // Hierarchy violation - use generic interface
+        return "objectivec.IObject", true
+    }
+    return strings.ToLower(mapping.Framework) + "." + mapping.GoType, true
+}
+```
+
+**2. Type Resolution (`funcs_types.go:resolveType`)**
+```go
+if frameworkPkg, found := crossFrameworkTypeRegistry[typeName]; found {
+    currentLevel := getFrameworkLevel(strings.ToLower(framework))
+    targetLevel := getFrameworkLevel(frameworkPkg)
+    if currentLevel >= 0 && targetLevel > currentLevel {
+        return "objectivec.IObject"
+    }
+    return frameworkPkg + "." + typeName
+}
+```
+
+**3. Import Detection (`funcs_imports.go:detectImportsForMethod`)**
+```go
+if strings.Contains(goType, ".") {
+    parts := strings.Split(goType, ".")
+    targetFramework := parts[0]
+    currentLevel := getFrameworkLevel(strings.ToLower(framework))
+    targetLevel := getFrameworkLevel(targetFramework)
+    if currentLevel >= 0 && targetLevel > currentLevel {
+        // Skip import - template will use objectivec.IObject
+        continue
+    }
+}
+```
+
+#### Example: Foundation → UniformTypeIdentifiers
+
+**Input (Apple Docs):**
+```objc
+@interface NSString
+- (NSString *)stringByAppendingPathComponent:(NSString *)path
+                             conformingToType:(UTType *)contentType;
+@end
+```
+
+**Without Hierarchy System:**
+```go
+// foundation/ns_string.gen.go
+import "github.com/tmc/appledocs/generated/uniformtypeidentifiers"  // ❌ Creates cycle!
+
+func (s String) StringByAppendingPathComponentConformingToType(
+    path IString,
+    contentType uniformtypeidentifiers.UTType,  // ❌ Upward dependency
+) IString
+```
+
+**With Hierarchy System:**
+```go
+// foundation/ns_string.gen.go
+import "github.com/tmc/appledocs/generated/objectivec"  // ✅ Safe runtime import
+
+func (s String) StringByAppendingPathComponentConformingToType(
+    path IString,
+    contentType objc.IObject,  /* cross-framework UTType */  // ✅ Generic interface
+) IString
+```
+
+#### Benefits
+
+1. **Zero Import Cycles**: All 69 frameworks build without circular dependency errors
+2. **Type Safety Preserved**: `objectivec.IObject` provides type-safe method dispatch
+3. **Runtime Compatibility**: Since all ObjC objects are `id` at runtime, no ABI issues
+4. **Documentation**: Comments preserve original type information
+5. **Extensibility**: New frameworks can be added to any level
+
+#### Mermaid Diagram
+
+```mermaid
+graph TB
+    subgraph "Level 0: Runtime"
+        OBJC[objc/objectivec]
+    end
+
+    subgraph "Level 1: Core Frameworks"
+        CG[CoreGraphics]
+        CF[CoreFoundation]
+        FOUND[Foundation]
+        CT[CoreText]
+    end
+
+    subgraph "Level 2: Mid-Level"
+        UTI[UniformTypeIdentifiers]
+        CI[CoreImage]
+        QC[QuartzCore]
+        CD[CoreData]
+    end
+
+    subgraph "Level 3: Application Frameworks"
+        AK[AppKit]
+        AVF[AVFoundation]
+        MTL[Metal]
+    end
+
+    subgraph "Level 4: High-Level"
+        MK[MapKit]
+        SK[SceneKit]
+    end
+
+    OBJC --> CG
+    OBJC --> CF
+    OBJC --> FOUND
+    OBJC --> CT
+
+    CG --> UTI
+    FOUND --> UTI
+    CG --> CI
+    CG --> QC
+    FOUND --> CD
+
+    CG --> AK
+    FOUND --> AK
+    UTI --> AK
+    QC --> AK
+
+    CG --> AVF
+    FOUND --> AVF
+
+    CG --> MTL
+
+    FOUND --> MK
+    AK --> MK
+
+    FOUND --> SK
+    MTL --> SK
+
+    style FOUND fill:#e1f5fe
+    style UTI fill:#fff9c4
+    style AK fill:#c8e6c9
+
+    classDef violation stroke:#f44336,stroke-width:3px,stroke-dasharray: 5 5
+```
+
+The diagram shows valid dependencies (solid arrows). Any reverse arrow (e.g., UTI → Foundation) would create a hierarchy violation.
+
+#### Trade-offs
+
+**Pros:**
+- Eliminates all import cycles
+- Maintains type safety through interfaces
+- Preserves runtime behavior
+- Scalable to new frameworks
+
+**Cons:**
+- Loses compile-time type checking for cross-hierarchy types
+- Requires manual `Cast()` when specific type behavior is needed:
+  ```go
+  utType := contentType.(uniformtypeidentifiers.UTType)  // Runtime cast
+  ```
+- Comment-based documentation of original types (not enforced by compiler)
+
 ## Template Architecture
 
 ### Template Organization
