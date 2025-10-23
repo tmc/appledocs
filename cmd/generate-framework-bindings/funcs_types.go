@@ -518,6 +518,33 @@ func resolveType(framework, typeName string) string {
 		return ""
 	}
 
+	// If the type is already qualified with a package name (e.g., "corefoundation.Point"),
+	// return it as-is. This prevents resolveType from re-processing types that have
+	// already been resolved by lookupTypeMapping.
+	// See appledocs-514: CGPoint should stay as corefoundation.Point, not become coregraphics.CGPoint
+	if strings.Contains(typeName, ".") {
+		// Check if it's a qualified type (package.Type format)
+		parts := strings.Split(typeName, ".")
+		if len(parts) == 2 {
+			pkgName := parts[0]
+			// Verify it looks like a valid package name (all lowercase, no special chars except maybe digits)
+			isValidPkg := true
+			for _, ch := range pkgName {
+				if !((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+					isValidPkg = false
+					break
+				}
+			}
+			if isValidPkg {
+				Debug.TypeMap("already qualified, returning as-is", typeName, framework,
+					"typeName", typeName,
+					"package", pkgName,
+					"framework", framework)
+				return typeName
+			}
+		}
+	}
+
 	// Check for function types (e.g., "func()", "func(int) string")
 	// Function types are Go primitives and should never be qualified
 	if strings.HasPrefix(typeName, "func(") {
