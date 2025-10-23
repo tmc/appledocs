@@ -118,7 +118,7 @@ func init() {
 package {{.PackageName}}
 
 {{- $undefinedTypes := .GetUndefinedTypesForTemplate}}
-{{- $needsUnsafe := or .WithRefMethods (gt (len .RefTypes) 0)}}
+{{- $needsUnsafe := or .WithRefMethods (gt (len .RefTypes) 0) (structsUseUnsafe .Structs .Framework)}}
 {{if $needsUnsafe -}}
 import (
 	"unsafe"

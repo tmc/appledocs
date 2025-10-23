@@ -100,6 +100,7 @@ var templateFuncs = template.FuncMap{
 	"wrapObjCReturn":                      wrapObjCReturn,
 	"isEssentialSelector":                 isEssentialSelector,
 	"convertDocURL":                       convertDocURL,
+	"structsUseUnsafe":                    structsUseUnsafe,
 
 	// Property generation helpers
 	"propertyToGoName":            propertyToGoName,
@@ -243,6 +244,20 @@ func formatMethodParamsStub(gen interface{}, method interface{}) string {
 // - Start with a letter (a-z, A-Z) or underscore
 // - Contain only letters, digits, or underscores
 // - Not be empty
+// structsUseUnsafe checks if any struct fields map to unsafe.Pointer
+func structsUseUnsafe(structs []*occ2go.ParsedStruct, framework string) bool {
+	for _, s := range structs {
+		for _, field := range s.Fields {
+			// Map the C type to Go type to check if it uses unsafe.Pointer
+			mappedType := mapCTypeToGoWithFramework(field.Type, framework)
+			if strings.Contains(mappedType, "unsafe.Pointer") {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func isValidGoIdentifier(s string) bool {
 	if s == "" {
 		return false
