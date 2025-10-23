@@ -56,9 +56,19 @@ func ResolveURL(base, relative string) string {
 		return relative
 	}
 
-	// Handle documentation paths
+	// Handle documentation paths (without leading slash)
 	if strings.HasPrefix(relative, "documentation/") {
 		return base + "/tutorials/data/" + relative
+	}
+
+	// Handle documentation paths (with leading slash)
+	if strings.HasPrefix(relative, "/documentation/") {
+		// Convert /documentation/... to /tutorials/data/documentation/...
+		docPath := strings.TrimPrefix(relative, "/")
+		if !strings.HasSuffix(docPath, ".json") {
+			docPath = docPath + ".json"
+		}
+		return base + "/tutorials/data/" + docPath
 	}
 
 	if strings.HasPrefix(relative, "/") {
