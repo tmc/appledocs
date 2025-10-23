@@ -31,7 +31,6 @@ type _ValueClass struct {
 // An interface definition for the [Value] class.
 type IValue interface {
 	objectivec.IObject
-	GetValue(value unsafe.Pointer)
 	ObjCType() unsafe.Pointer
 	Hash() int
 	SetHash(value int)
@@ -182,15 +181,6 @@ func (vc _ValueClass) ValueWithObjCType(value unsafe.Pointer, type_ unsafe.Point
 func (vc _ValueClass) ValueWithBytesObjCType(value unsafe.Pointer, type_ unsafe.Pointer) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithBytes:objCType:"), value, type_)
 	return rv
-}
-
-
-// Copies the value into the specified buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/getValue(_:)
-func (v_ Value) GetValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("getValue:"), value)
 }
 
 

@@ -30,11 +30,6 @@ type _UserNotificationCenterClass struct {
 // An interface definition for the [UserNotificationCenter] class.
 type IUserNotificationCenter interface {
 	objectivec.IObject
-	DeliverNotification(notification IUserNotification)
-	RemoveAllDeliveredNotifications()
-	RemoveDeliveredNotification(notification IUserNotification)
-	RemoveScheduledNotification(notification IUserNotification)
-	ScheduleNotification(notification IUserNotification)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	DeliveredNotifications() []UserNotification
@@ -109,51 +104,6 @@ func (uc _UserNotificationCenterClass) DefaultUserNotificationCenter() UserNotif
 	rv := objc.Send[NSUserNotificationCenter](objc.ID(uc.class), objc.Sel("defaultUserNotificationCenter"))
 	return rv
 }
-
-// Deliver the specified user notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliver(_:)
-func (u_ UserNotificationCenter) DeliverNotification(notification IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("deliverNotification:"), notification)
-}
-
-
-// Remove all delivered user notifications from the user notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeAllDeliveredNotifications()
-func (u_ UserNotificationCenter) RemoveAllDeliveredNotifications() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeAllDeliveredNotifications"))
-}
-
-
-// Remove a delivered user notification from the user notification center.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeDeliveredNotification(_:)
-func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
-}
-
-
-// Removes the specified user notification for the scheduled notifications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeScheduledNotification(_:)
-func (u_ UserNotificationCenter) RemoveScheduledNotification(notification IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeScheduledNotification:"), notification)
-}
-
-
-// Schedules the specified user notification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/scheduleNotification(_:)
-func (u_ UserNotificationCenter) ScheduleNotification(notification IUserNotification) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleNotification:"), notification)
-}
-
 
 // Returns the default user notification center.
 //

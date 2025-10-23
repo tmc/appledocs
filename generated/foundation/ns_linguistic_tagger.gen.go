@@ -30,7 +30,6 @@ type _LinguisticTaggerClass struct {
 // An interface definition for the [LinguisticTagger] class.
 type ILinguisticTagger interface {
 	objectivec.IObject
-	EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts NSLinguisticTaggerOptions, block unsafe.Pointer)
 	DominantLanguage() string
 	SetDominantLanguage(value string)
 	String() string
@@ -90,15 +89,6 @@ func NewLinguisticTagger() LinguisticTagger {
 	return getLinguisticTaggerClass().New()
 }
 
-
-
-// Enumerates over a given range of the string and calls the specified block for each tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/enumerateTags(in:scheme:options:using:)
-func (l_ LinguisticTagger) EnumerateTagsInRangeSchemeOptionsUsingBlock(range_ Range, tagScheme unsafe.Pointer, opts NSLinguisticTaggerOptions, block unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("enumerateTagsInRange:scheme:options:usingBlock:"), range_, tagScheme, opts, block)
-}
 
 
 // Returns the dominant language of the string set for the linguistic tagger.

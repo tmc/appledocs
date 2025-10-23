@@ -37,7 +37,6 @@ type IScriptClassDescription interface {
 	HasReadablePropertyForKey(key string) bool
 	HasWritablePropertyForKey(key string) bool
 	IsLocationRequiredToCreateForKey(toManyRelationshipKey string) bool
-	IsReadOnlyKey(key string) bool
 	KeyWithAppleEventCode(appleEventCode unsafe.Pointer) IString
 	MatchesAppleEventCode(appleEventCode unsafe.Pointer) bool
 	SelectorForCommand(commandDescription IScriptCommandDescription) objc.SEL
@@ -207,16 +206,6 @@ func (s_ ScriptClassDescription) HasWritablePropertyForKey(key string) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/isLocationRequiredToCreate(forKey:)
 func (s_ ScriptClassDescription) IsLocationRequiredToCreateForKey(toManyRelationshipKey string) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isLocationRequiredToCreateForKey:"), objc.String(toManyRelationshipKey))
-	return rv
-}
-
-
-// Returns a Boolean value indicating whether a specified property in the receiver is read-only.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/isReadOnlyKey:
-func (s_ ScriptClassDescription) IsReadOnlyKey(key string) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("isReadOnlyKey:"), objc.String(key))
 	return rv
 }
 

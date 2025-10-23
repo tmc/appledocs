@@ -30,7 +30,6 @@ type _DistantObjectRequestClass struct {
 // An interface definition for the [DistantObjectRequest] class.
 type IDistantObjectRequest interface {
 	objectivec.IObject
-	ReplyWithException(exception IException)
 	Connection() IConnection
 	Conversation() objc.ID
 	Invocation() IInvocation
@@ -87,15 +86,6 @@ func NewDistantObjectRequest() DistantObjectRequest {
 	return getDistantObjectRequestClass().New()
 }
 
-
-
-// Sends a reply back to the remote object making the distant object request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObjectRequest/replyWithException:
-func (d_ DistantObjectRequest) ReplyWithException(exception IException) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("replyWithException:"), exception)
-}
 
 
 // Returns the object involved in the request.

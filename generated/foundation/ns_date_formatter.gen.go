@@ -34,7 +34,6 @@ type IDateFormatter interface {
 	GetObjectValueForStringRangeError(obj objectivec.IObject, string_ string, rangep Range, error_ IError) bool
 	SetLocalizedDateFormatFromTemplate(dateFormatTemplate string)
 	StringFromDate(date IDate) IString
-	AllowsNaturalLanguage() bool
 	AMSymbol() string
 	SetAMSymbol(value string)
 	Calendar() ICalendar
@@ -239,16 +238,6 @@ func (d_ DateFormatter) SetLocalizedDateFormatFromTemplate(dateFormatTemplate st
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/string(from:)
 func (d_ DateFormatter) StringFromDate(date IDate) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:"), date)
-	return rv
-}
-
-
-// Returns a Boolean value that indicates whether the receiver attempts to process dates entered as a vernacular string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateFormatter/allowsNaturalLanguage
-func (d_ DateFormatter) AllowsNaturalLanguage() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("allowsNaturalLanguage"))
 	return rv
 }
 

@@ -33,7 +33,6 @@ type IFileManager interface {
 	AttributesOfFileSystemForPathError(path string, error_ IError) IDictionary
 	AttributesOfItemAtPathError(path string, error_ IError) IDictionary
 	ChangeCurrentDirectoryPath(path string) bool
-	ChangeFileAttributesAtPath(attributes objectivec.IObject, path string) bool
 	ComponentsToDisplayForPath(path string) []string
 	ContainerURLForSecurityApplicationGroupIdentifier(groupIdentifier string) IURL
 	ContentsAtPath(path string) IData
@@ -43,22 +42,17 @@ type IFileManager interface {
 	CopyItemAtURLToURLError(srcURL IURL, dstURL IURL, error_ IError) bool
 	CopyItemAtPathToPathError(srcPath string, dstPath string, error_ IError) bool
 	CreateDirectoryAtURLWithIntermediateDirectoriesAttributesError(url IURL, createIntermediates bool, attributes IDictionary, error_ IError) bool
-	CreateDirectoryAtPathAttributes(path string, attributes objectivec.IObject) bool
 	CreateDirectoryAtPathWithIntermediateDirectoriesAttributesError(path string, createIntermediates bool, attributes IDictionary, error_ IError) bool
 	CreateFileAtPathContentsAttributes(path string, data IData, attr IDictionary) bool
 	CreateSymbolicLinkAtURLWithDestinationURLError(url IURL, destURL IURL, error_ IError) bool
-	CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool
 	CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error_ IError) bool
 	DestinationOfSymbolicLinkAtPathError(path string, error_ IError) IString
-	DirectoryContentsAtPath(path string) IArray
 	DisplayNameAtPath(path string) IString
 	EnumeratorAtPath(path string) unsafe.Pointer
 	EvictUbiquitousItemAtURLError(url IURL, error_ IError) bool
 	FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url IURL, completionHandler unsafe.Pointer)
-	FileAttributesAtPathTraverseLink(path string, yorn bool) IDictionary
 	FileExistsAtPath(path string) bool
 	FileExistsAtPathIsDirectory(path string, isDirectory unsafe.Pointer) bool
-	FileSystemAttributesAtPath(path string) IDictionary
 	FileSystemRepresentationWithPath(path string) unsafe.Pointer
 	GetFileProviderServicesForItemAtURLCompletionHandler(url IURL, completionHandler IDictionary)
 	GetRelationshipOfDirectoryInDomainToItemAtURLError(outRelationship NSURLRelationship, directory NSSearchPathDirectory, domainMask NSSearchPathDomainMask, url IURL, error_ IError) bool
@@ -74,7 +68,6 @@ type IFileManager interface {
 	MountedVolumeURLsIncludingResourceValuesForKeysOptions(propertyKeys []string, options NSVolumeEnumerationOptions) []URL
 	MoveItemAtURLToURLError(srcURL IURL, dstURL IURL, error_ IError) bool
 	MoveItemAtPathToPathError(srcPath string, dstPath string, error_ IError) bool
-	PathContentOfSymbolicLinkAtPath(path string) IString
 	PauseSyncForUbiquitousItemAtURLCompletionHandler(url IURL, completionHandler unsafe.Pointer)
 	RemoveItemAtURLError(URL IURL, error_ IError) bool
 	RemoveItemAtPathError(path string, error_ IError) bool
@@ -93,11 +86,7 @@ type IFileManager interface {
 	URLForPublishingUbiquitousItemAtURLExpirationDateError(url IURL, outDate IDate, error_ IError) IURL
 	URLForUbiquityContainerIdentifier(containerIdentifier string) IURL
 	URLsForDirectoryInDomains(directory NSSearchPathDirectory, domainMask NSSearchPathDomainMask) []URL
-	CopyPathToPathHandler(src string, dest string, handler objectivec.IObject) bool
 	EnumeratorAtURLIncludingPropertiesForKeysOptionsErrorHandler(url IURL, keys []string, mask NSDirectoryEnumerationOptions, handler unsafe.Pointer) unsafe.Pointer
-	LinkPathToPathHandler(src string, dest string, handler objectivec.IObject) bool
-	MovePathToPathHandler(src string, dest string, handler objectivec.IObject) bool
-	RemoveFileAtPathHandler(path string, handler objectivec.IObject) bool
 	CurrentDirectoryPath() string
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -222,16 +211,6 @@ func (f_ FileManager) ChangeCurrentDirectoryPath(path string) bool {
 }
 
 
-// Changes the attributes of a given file or directory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/changeFileAttributes(_:atPath:)
-func (f_ FileManager) ChangeFileAttributesAtPath(attributes objectivec.IObject, path string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("changeFileAttributes:atPath:"), attributes, objc.String(path))
-	return rv
-}
-
-
 // Returns an array of strings representing the user-visible components of a given path.
 //
 // [Full Topic]
@@ -322,16 +301,6 @@ func (f_ FileManager) CreateDirectoryAtURLWithIntermediateDirectoriesAttributesE
 }
 
 
-// Creates a directory (without contents) at a given path with given attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createDirectory(atPath:attributes:)
-func (f_ FileManager) CreateDirectoryAtPathAttributes(path string, attributes objectivec.IObject) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createDirectoryAtPath:attributes:"), objc.String(path), attributes)
-	return rv
-}
-
-
 // Creates a directory with given attributes at the specified path.
 //
 // [Full Topic]
@@ -362,16 +331,6 @@ func (f_ FileManager) CreateSymbolicLinkAtURLWithDestinationURLError(url IURL, d
 }
 
 
-// Creates a symbolic link identified by a given path that refers to a given location.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/createSymbolicLink(atPath:pathContent:)
-func (f_ FileManager) CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("createSymbolicLinkAtPath:pathContent:"), objc.String(path), objc.String(otherpath))
-	return rv
-}
-
-
 // Creates a symbolic link that points to the specified destination.
 //
 // [Full Topic]
@@ -388,16 +347,6 @@ func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path stri
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/destinationOfSymbolicLink(atPath:)
 func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error_ IError) IString {
 	rv := objc.Send[String](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error_)
-	return rv
-}
-
-
-// Returns the directories and files (including symbolic links) contained in a given directory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/directoryContents(atPath:)
-func (f_ FileManager) DirectoryContentsAtPath(path string) IArray {
-	rv := objc.Send[Array](f_.ID, objc.Sel("directoryContentsAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -441,16 +390,6 @@ func (f_ FileManager) FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url I
 }
 
 
-// Returns a dictionary that describes the POSIX attributes of the file specified at a given.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileAttributes(atPath:traverseLink:)
-func (f_ FileManager) FileAttributesAtPathTraverseLink(path string, yorn bool) IDictionary {
-	rv := objc.Send[Dictionary](f_.ID, objc.Sel("fileAttributesAtPath:traverseLink:"), objc.String(path), yorn)
-	return rv
-}
-
-
 // Returns a Boolean value that indicates whether a file or directory exists at a specified path.
 //
 // [Full Topic]
@@ -467,16 +406,6 @@ func (f_ FileManager) FileExistsAtPath(path string) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileExists(atPath:isDirectory:)
 func (f_ FileManager) FileExistsAtPathIsDirectory(path string, isDirectory unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("fileExistsAtPath:isDirectory:"), objc.String(path), isDirectory)
-	return rv
-}
-
-
-// Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/fileSystemAttributes(atPath:)
-func (f_ FileManager) FileSystemAttributesAtPath(path string) IDictionary {
-	rv := objc.Send[Dictionary](f_.ID, objc.Sel("fileSystemAttributesAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -626,16 +555,6 @@ func (f_ FileManager) MoveItemAtURLToURLError(srcURL IURL, dstURL IURL, error_ I
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/moveItem(atPath:toPath:)
 func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("moveItemAtPath:toPath:error:"), objc.String(srcPath), objc.String(dstPath), error_)
-	return rv
-}
-
-
-// Returns the path of the directory or file that a symbolic link at a given path refers to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/pathContentOfSymbolicLink(atPath:)
-func (f_ FileManager) PathContentOfSymbolicLinkAtPath(path string) IString {
-	rv := objc.Send[String](f_.ID, objc.Sel("pathContentOfSymbolicLinkAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -816,52 +735,12 @@ func (f_ FileManager) URLsForDirectoryInDomains(directory NSSearchPathDirectory,
 }
 
 
-// Copies the directory or file specified in a given path to a different location in the file system identified by another path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/copyPath:toPath:handler:
-func (f_ FileManager) CopyPathToPathHandler(src string, dest string, handler objectivec.IObject) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("copyPath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
-	return rv
-}
-
-
 // Returns a directory enumerator object that can be used to perform a deep enumeration of the directory at the specified URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:
 func (f_ FileManager) EnumeratorAtURLIncludingPropertiesForKeysOptionsErrorHandler(url IURL, keys []string, mask NSDirectoryEnumerationOptions, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:"), url, keys, mask, handler)
-	return rv
-}
-
-
-// Creates a link from a source to a destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/linkPath:toPath:handler:
-func (f_ FileManager) LinkPathToPathHandler(src string, dest string, handler objectivec.IObject) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("linkPath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
-	return rv
-}
-
-
-// Moves the directory or file specified by a given path to a different location in the file system identified by another path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/movePath:toPath:handler:
-func (f_ FileManager) MovePathToPathHandler(src string, dest string, handler objectivec.IObject) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("movePath:toPath:handler:"), objc.String(src), objc.String(dest), handler)
-	return rv
-}
-
-
-// Deletes the file, link, or directory (including, recursively, all subdirectories, files, and links in the directory) identified by a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManager/removeFileAtPath:handler:
-func (f_ FileManager) RemoveFileAtPathHandler(path string, handler objectivec.IObject) bool {
-	rv := objc.Send[bool](f_.ID, objc.Sel("removeFileAtPath:handler:"), objc.String(path), handler)
 	return rv
 }
 

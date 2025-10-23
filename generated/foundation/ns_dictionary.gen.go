@@ -52,7 +52,6 @@ type IDictionary interface {
 	FileSystemFileNumber() uint
 	FileSystemNumber() int
 	FileType() IString
-	GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer)
 	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
 	IsEqualToDictionary(otherDictionary IDictionary) bool
 	KeyEnumerator() unsafe.Pointer
@@ -66,8 +65,6 @@ type IDictionary interface {
 	ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
 	WriteToURLError(url IURL, error_ IError) bool
-	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	AllKeys() []objc.ID
 	AllValues() []objc.ID
 	Count() uint
@@ -568,15 +565,6 @@ func (d_ Dictionary) FileType() IString {
 // Returns by reference C arrays of the keys and values in the dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/getObjects:andKeys:
-func (d_ Dictionary) GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("getObjects:andKeys:"), objects, keys)
-}
-
-
-// Returns by reference C arrays of the keys and values in the dictionary.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/getObjects:andKeys:count:
 func (d_ Dictionary) GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("getObjects:andKeys:count:"), objects, keys, count)
@@ -709,26 +697,6 @@ func (d_ Dictionary) ValueForKey(key string) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:)
 func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:error:"), url, error_)
-	return rv
-}
-
-
-// Writes a property list representation of the contents of the dictionary to a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:atomically:)
-func (d_ Dictionary) WriteToURLAtomically(url IURL, atomically bool) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
-	return rv
-}
-
-
-// Writes a property list representation of the contents of the dictionary to a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(toFile:atomically:)
-func (d_ Dictionary) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 

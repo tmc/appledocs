@@ -35,9 +35,9 @@ type IItemProvider interface {
 	HasItemConformingToTypeIdentifier(typeIdentifier string) bool
 	HasRepresentationConformingToTypeIdentifierFileOptions(typeIdentifier string, fileOptions NSItemProviderFileOptions) bool
 	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
-	LoadDataRepresentationForContentTypeCompletionHandler(contentType unsafe.Pointer, completionHandler unsafe.Pointer) Progress
+	LoadDataRepresentationForContentTypeCompletionHandler(contentType objectivec.IObject, completionHandler unsafe.Pointer) Progress
 	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
-	LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType unsafe.Pointer, openInPlace bool, completionHandler unsafe.Pointer) Progress
+	LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType objectivec.IObject, openInPlace bool, completionHandler unsafe.Pointer) Progress
 	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) Progress
 	LoadItemForTypeIdentifierOptionsCompletionHandler(typeIdentifier string, options objectivec.IObject, completionHandler unsafe.Pointer)
 	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress
@@ -47,13 +47,13 @@ type IItemProvider interface {
 	RegisterCloudKitShareContainer(share objectivec.IObject, container objectivec.IObject)
 	RegisterCloudKitShareWithPreparationHandler(preparationHandler unsafe.Pointer)
 	RegisterDataRepresentationForTypeIdentifierVisibilityLoadHandler(typeIdentifier string, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
-	RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType unsafe.Pointer, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType objectivec.IObject, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions NSItemProviderFileOptions, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
-	RegisterFileRepresentationForContentTypeVisibilityOpenInPlaceLoadHandler(contentType unsafe.Pointer, visibility NSItemProviderRepresentationVisibility, openInPlace bool, loadHandler unsafe.Pointer)
+	RegisterFileRepresentationForContentTypeVisibilityOpenInPlaceLoadHandler(contentType objectivec.IObject, visibility NSItemProviderRepresentationVisibility, openInPlace bool, loadHandler unsafe.Pointer)
 	RegisterItemForTypeIdentifierLoadHandler(typeIdentifier string, loadHandler unsafe.Pointer)
 	RegisterObjectVisibility(object objectivec.IObject, visibility NSItemProviderRepresentationVisibility)
 	RegisterObjectOfClassVisibilityLoadHandler(aClass unsafe.Pointer, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
-	RegisteredContentTypesConformingToContentType(contentType unsafe.Pointer) []UTType
+	RegisteredContentTypesConformingToContentType(contentType objectivec.IObject) []objectivec.IObject
 	RegisteredTypeIdentifiersWithFileOptions(fileOptions NSItemProviderFileOptions) []string
 	ContainerFrame() Rect
 	PreferredPresentationSize() coregraphics.CGSize
@@ -62,8 +62,8 @@ type IItemProvider interface {
 	SetPreferredPresentationStyle(value UIPreferredPresentationStyle)
 	PreviewImageHandler() unsafe.Pointer
 	SetPreviewImageHandler(value unsafe.Pointer)
-	RegisteredContentTypes() []UTType
-	RegisteredContentTypesForOpenInPlace() []UTType
+	RegisteredContentTypes() []objectivec.IObject
+	RegisteredContentTypesForOpenInPlace() []objectivec.IObject
 	RegisteredTypeIdentifiers() []string
 	SourceFrame() Rect
 	SuggestedName() string
@@ -143,7 +143,7 @@ func NewItemProviderWithContentsOfURL(fileURL IURL) ItemProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:
-func NewItemProviderWithContentsOfURLContentTypeOpenInPlaceCoordinatedVisibility(fileURL IURL, contentType unsafe.Pointer, openInPlace bool, coordinated bool, visibility NSItemProviderRepresentationVisibility) ItemProvider {
+func NewItemProviderWithContentsOfURLContentTypeOpenInPlaceCoordinatedVisibility(fileURL IURL, contentType objectivec.IObject, openInPlace bool, coordinated bool, visibility NSItemProviderRepresentationVisibility) ItemProvider {
 	instance := getItemProviderClass().Alloc()
 	rv := objc.Send[ItemProvider](instance.ID, objc.Sel("initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:"), fileURL, contentType, openInPlace, coordinated, visibility)
 	rv.Autorelease()
@@ -220,7 +220,7 @@ func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadDataRepresentationForContentType:completionHandler:
-func (i_ ItemProvider) LoadDataRepresentationForContentTypeCompletionHandler(contentType unsafe.Pointer, completionHandler unsafe.Pointer) Progress {
+func (i_ ItemProvider) LoadDataRepresentationForContentTypeCompletionHandler(contentType objectivec.IObject, completionHandler unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForContentType:completionHandler:"), contentType, completionHandler)
 	return rv
 }
@@ -240,7 +240,7 @@ func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadFileRepresentationForContentType:openInPlace:completionHandler:
-func (i_ ItemProvider) LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType unsafe.Pointer, openInPlace bool, completionHandler unsafe.Pointer) Progress {
+func (i_ ItemProvider) LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType objectivec.IObject, openInPlace bool, completionHandler unsafe.Pointer) Progress {
 	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForContentType:openInPlace:completionHandler:"), contentType, openInPlace, completionHandler)
 	return rv
 }
@@ -333,7 +333,7 @@ func (i_ ItemProvider) RegisterDataRepresentationForTypeIdentifierVisibilityLoad
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerDataRepresentationForContentType:visibility:loadHandler:
-func (i_ ItemProvider) RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType unsafe.Pointer, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+func (i_ ItemProvider) RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType objectivec.IObject, visibility NSItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerDataRepresentationForContentType:visibility:loadHandler:"), contentType, visibility, loadHandler)
 }
 
@@ -351,7 +351,7 @@ func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVis
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:
-func (i_ ItemProvider) RegisterFileRepresentationForContentTypeVisibilityOpenInPlaceLoadHandler(contentType unsafe.Pointer, visibility NSItemProviderRepresentationVisibility, openInPlace bool, loadHandler unsafe.Pointer) {
+func (i_ ItemProvider) RegisterFileRepresentationForContentTypeVisibilityOpenInPlaceLoadHandler(contentType objectivec.IObject, visibility NSItemProviderRepresentationVisibility, openInPlace bool, loadHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:"), contentType, visibility, openInPlace, loadHandler)
 }
 
@@ -387,8 +387,8 @@ func (i_ ItemProvider) RegisterObjectOfClassVisibilityLoadHandler(aClass unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registeredContentTypes(conformingTo:)
-func (i_ ItemProvider) RegisteredContentTypesConformingToContentType(contentType unsafe.Pointer) []UTType {
-	rv := objc.Send[[]UTType](i_.ID, objc.Sel("registeredContentTypesConformingToContentType:"), contentType)
+func (i_ ItemProvider) RegisteredContentTypesConformingToContentType(contentType objectivec.IObject) []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](i_.ID, objc.Sel("registeredContentTypesConformingToContentType:"), contentType)
 	return rv
 }
 
@@ -474,8 +474,8 @@ func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registeredContentTypes
-func (i_ ItemProvider) RegisteredContentTypes() []UTType {
-	rv := objc.Send[[]UTType](i_.ID, objc.Sel("registeredContentTypes"))
+func (i_ ItemProvider) RegisteredContentTypes() []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](i_.ID, objc.Sel("registeredContentTypes"))
 	return rv
 }
 
@@ -484,8 +484,8 @@ func (i_ ItemProvider) RegisteredContentTypes() []UTType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registeredContentTypesForOpenInPlace
-func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() []UTType {
-	rv := objc.Send[[]UTType](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
+func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
 	return rv
 }
 

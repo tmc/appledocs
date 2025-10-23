@@ -46,7 +46,6 @@ type IArray interface {
 	EnumerateObjectsWithOptionsUsingBlock(opts NSEnumerationOptions, block unsafe.Pointer)
 	FilteredArrayUsingPredicate(predicate IPredicate) []objc.ID
 	FirstObjectCommonWithArray(otherArray []objc.ID) unsafe.Pointer
-	GetObjects(objects unsafe.Pointer)
 	GetObjectsRange(objects unsafe.Pointer, range_ Range)
 	IndexOfObject(anObject unsafe.Pointer) uint
 	IndexOfObjectInRange(anObject unsafe.Pointer, range_ Range) uint
@@ -80,8 +79,6 @@ type IArray interface {
 	SubarrayWithRange(range_ Range) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 	WriteToURLError(url IURL, error_ IError) bool
-	WriteToURLAtomically(url IURL, atomically bool) bool
-	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	Count() uint
 	Description() string
 	FirstObject() unsafe.Pointer
@@ -488,15 +485,6 @@ func (a_ Array) FirstObjectCommonWithArray(otherArray []objc.ID) unsafe.Pointer 
 }
 
 
-// Copies all the objects contained in the array to .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/getObjects:
-func (a_ Array) GetObjects(objects unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("getObjects:"), objects)
-}
-
-
 // Copies references to objects contained in the array that fall within the specified range to .
 //
 // [Full Topic]
@@ -853,26 +841,6 @@ func (a_ Array) ValueForKey(key string) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:)
 func (a_ Array) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:error:"), url, error_)
-	return rv
-}
-
-
-// Writes the contents of the array to the location specified by a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(to:atomically:)
-func (a_ Array) WriteToURLAtomically(url IURL, atomically bool) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
-	return rv
-}
-
-
-// Writes the contents of the array to a file at a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/write(toFile:atomically:)
-func (a_ Array) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 

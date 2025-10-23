@@ -30,7 +30,6 @@ type _FileHandleClass struct {
 // An interface definition for the [FileHandle] class.
 type IFileHandle interface {
 	objectivec.IObject
-	CloseFile()
 	AvailableData() IData
 	SetAvailableData(value IData)
 	Bytes() unsafe.Pointer
@@ -97,15 +96,6 @@ func NewFileHandle() FileHandle {
 	return getFileHandleClass().New()
 }
 
-
-
-// Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/closeFile()
-func (f_ FileHandle) CloseFile() {
-	objc.Send[objc.ID](f_.ID, objc.Sel("closeFile"))
-}
 
 
 // The data currently available in the receiver.

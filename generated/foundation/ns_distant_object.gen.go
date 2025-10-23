@@ -30,7 +30,6 @@ type _DistantObjectClass struct {
 // An interface definition for the [DistantObject] class.
 type IDistantObject interface {
 	IProxy
-	SetProtocolForProxy(proto objectivec.Protocol)
 	ConnectionForProxy() IConnection
 }
 
@@ -141,15 +140,6 @@ func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject
 func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObject, connection IConnection) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithTarget:connection:"), target, connection)
 	return rv
-}
-
-
-// Sets the methods known to be handled by the receiver to those in a given protocol.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/setProtocolForProxy:
-func (d_ DistantObject) SetProtocolForProxy(proto objectivec.Protocol) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setProtocolForProxy:"), proto)
 }
 
 

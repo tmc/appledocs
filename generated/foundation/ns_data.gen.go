@@ -32,11 +32,9 @@ type IData interface {
 	objectivec.IObject
 	Base64EncodedDataWithOptions(options NSDataBase64EncodingOptions) IData
 	Base64EncodedStringWithOptions(options NSDataBase64EncodingOptions) IString
-	Base64Encoding() IString
 	CompressedDataUsingAlgorithmError(algorithm NSDataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	DecompressedDataUsingAlgorithmError(algorithm NSDataCompressionAlgorithm, error_ IError) unsafe.Pointer
 	EnumerateByteRangesUsingBlock(block unsafe.Pointer)
-	GetBytes(buffer unsafe.Pointer)
 	GetBytesLength(buffer unsafe.Pointer, length uint)
 	GetBytesRange(buffer unsafe.Pointer, range_ Range)
 	IsEqualToData(other IData) bool
@@ -389,16 +387,6 @@ func (d_ Data) Base64EncodedStringWithOptions(options NSDataBase64EncodingOption
 }
 
 
-// Initializes a Base64 encoded string from the string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/base64Encoding()
-func (d_ Data) Base64Encoding() IString {
-	rv := objc.Send[String](d_.ID, objc.Sel("base64Encoding"))
-	return rv
-}
-
-
 // Returns a new data object by compressing the data object’s bytes.
 //
 // [Full Topic]
@@ -425,15 +413,6 @@ func (d_ Data) DecompressedDataUsingAlgorithmError(algorithm NSDataCompressionAl
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/enumerateBytes(_:)
 func (d_ Data) EnumerateByteRangesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateByteRangesUsingBlock:"), block)
-}
-
-
-// Copies a data object’s contents into a given buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/getBytes(_:)
-func (d_ Data) GetBytes(buffer unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("getBytes:"), buffer)
 }
 
 

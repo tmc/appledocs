@@ -34,7 +34,6 @@ type IURLSessionStreamTask interface {
 	CloseWrite()
 	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout TimeInterval, completionHandler unsafe.Pointer)
 	StartSecureConnection()
-	StopSecureConnection()
 	WriteDataTimeoutCompletionHandler(data IData, timeout TimeInterval, completionHandler unsafe.Pointer)
 	HttpShouldUsePipelining() bool
 	SetHttpShouldUsePipelining(value bool)
@@ -138,15 +137,6 @@ func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHand
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/startSecureConnection()
 func (u_ URLSessionStreamTask) StartSecureConnection() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("startSecureConnection"))
-}
-
-
-// Completes any enqueued reads and writes, and closes the secure connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/stopSecureConnection()
-func (u_ URLSessionStreamTask) StopSecureConnection() {
-	objc.Send[objc.ID](u_.ID, objc.Sel("stopSecureConnection"))
 }
 
 

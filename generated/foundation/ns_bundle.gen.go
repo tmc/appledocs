@@ -34,7 +34,6 @@ type IBundle interface {
 	ContextHelpForKey(key unsafe.Pointer) IAttributedString
 	LoadAndReturnError(error_ IError) bool
 	LoadAppleScriptObjectiveCScripts()
-	LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) IArray
 	LoadNibNamedOwnerTopLevelObjects(nibName unsafe.Pointer, owner objectivec.IObject, topLevelObjects objectivec.IObject) bool
 	LocalizedStringForKeyValueTable(key string, value string, tableName string) IString
 	ObjectForInfoDictionaryKey(key string) objc.ID
@@ -57,7 +56,6 @@ type IBundle interface {
 	URLForImageResource(name unsafe.Pointer) IURL
 	URLsForResourcesWithExtensionSubdirectory(ext string, subpath string) []URL
 	URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL
-	LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool
 	LocalizedAttributedStringForKeyValueTable(key string, value string, tableName string) IAttributedString
 	LocalizedStringForKeyValueTableLocalizations(key string, value string, tableName string, localizations []string) IString
 	AppStoreReceiptURL() IURL
@@ -395,16 +393,6 @@ func (b_ Bundle) LoadAppleScriptObjectiveCScripts() {
 }
 
 
-// Unarchives the contents of a nib file located in the receiver’s bundle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/loadNibNamed(_:owner:options:)
-func (b_ Bundle) LoadNibNamedOwnerOptions(name string, owner objectivec.IObject, options IDictionary) IArray {
-	rv := objc.Send[Array](b_.ID, objc.Sel("loadNibNamed:owner:options:"), objc.String(name), owner, options)
-	return rv
-}
-
-
 // Loads a nib from the bundle with the specified file name and owner.
 //
 // [Full Topic]
@@ -620,16 +608,6 @@ func (b_ Bundle) URLsForResourcesWithExtensionSubdirectory(ext string, subpath s
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/urls(forResourcesWithExtension:subdirectory:localization:)
 func (b_ Bundle) URLsForResourcesWithExtensionSubdirectoryLocalization(ext string, subpath string, localizationName string) []URL {
 	rv := objc.Send[[]URL](b_.ID, objc.Sel("URLsForResourcesWithExtension:subdirectory:localization:"), objc.String(ext), objc.String(subpath), objc.String(localizationName))
-	return rv
-}
-
-
-// Unarchives the contents of a nib file located in the receiver’s bundle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundle/loadNibFile:externalNameTable:withZone:-c.method
-func (b_ Bundle) LoadNibFileExternalNameTableWithZone(fileName string, context objectivec.IObject, zone unsafe.Pointer) bool {
-	rv := objc.Send[bool](b_.ID, objc.Sel("loadNibFile:externalNameTable:withZone:"), objc.String(fileName), context, zone)
 	return rv
 }
 

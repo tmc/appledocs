@@ -30,7 +30,6 @@ type _RunLoopClass struct {
 // An interface definition for the [RunLoop] class.
 type IRunLoop interface {
 	objectivec.IObject
-	ConfigureAsServer()
 	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
 	AddTimerForMode(timer ITimer, mode RunLoopMode)
 	AddPortForMode(aPort IPort, mode RunLoopMode)
@@ -118,15 +117,6 @@ func (rc _RunLoopClass) MainRunLoop() RunLoop {
 	rv := objc.Send[NSRunLoop](objc.ID(rc.class), objc.Sel("mainRunLoop"))
 	return rv
 }
-
-// Deprecated. Does nothing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRunLoop/configureAsServer
-func (r_ RunLoop) ConfigureAsServer() {
-	objc.Send[objc.ID](r_.ID, objc.Sel("configureAsServer"))
-}
-
 
 // Runs the loop once or until the specified date, accepting input only for the specified mode.
 //

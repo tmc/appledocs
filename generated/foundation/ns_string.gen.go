@@ -32,18 +32,15 @@ type _StringClass struct {
 type IString interface {
 	objectivec.IObject
 	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
-	StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) IString
 	StringByAppendingString(aString string) IString
 	StringByAppendingPathComponent(str string) IString
-	StringByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IString
+	StringByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IString
 	StringByAppendingPathExtension(str string) IString
-	StringByAppendingPathExtensionForType(contentType unsafe.Pointer) IString
+	StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString
 	StringByApplyingTransformReverse(transform unsafe.Pointer, reverse bool) IString
 	BoundingRectWithSizeOptionsAttributes(size Size, options NSStringDrawingOptions, attributes IDictionary) Rect
 	BoundingRectWithSizeOptionsAttributesContext(size coregraphics.CGSize, options NSStringDrawingOptions, attributes IDictionary, context objectivec.IObject) coregraphics.CGRect
-	CString() unsafe.Pointer
 	CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer
-	CStringLength() uint
 	CanBeConvertedToEncoding(encoding unsafe.Pointer) bool
 	CapitalizedStringWithLocale(locale ILocale) IString
 	CaseInsensitiveCompare(string_ string) NSComparisonResult
@@ -63,22 +60,11 @@ type IString interface {
 	DrawInRectWithAttributes(rect coregraphics.CGRect, attrs IDictionary)
 	DrawWithRectOptionsAttributes(rect Rect, options NSStringDrawingOptions, attributes IDictionary)
 	DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, options NSStringDrawingOptions, attributes IDictionary, context objectivec.IObject)
-	DrawAtPointForWidthWithFontFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font objectivec.IObject, fontSize float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointForWidthWithFontLineBreakMode(point coregraphics.CGPoint, width float64, font objectivec.IObject, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointForWidthWithFontMinFontSizeActualFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font objectivec.IObject, minFontSize float64, actualFontSize coregraphics.float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize
-	DrawAtPointWithFont(point coregraphics.CGPoint, font objectivec.IObject) coregraphics.CGSize
-	DrawInRectWithFont(rect coregraphics.CGRect, font objectivec.IObject) coregraphics.CGSize
-	DrawInRectWithFontLineBreakMode(rect coregraphics.CGRect, font objectivec.IObject, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	DrawInRectWithFontLineBreakModeAlignment(rect coregraphics.CGRect, font objectivec.IObject, lineBreakMode unsafe.Pointer, alignment unsafe.Pointer) coregraphics.CGSize
 	EnumerateLinesUsingBlock(block unsafe.Pointer)
-	EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer)
 	EnumerateSubstringsInRangeOptionsUsingBlock(range_ Range, opts NSStringEnumerationOptions, block unsafe.Pointer)
 	StringByFoldingWithOptionsLocale(options NSStringCompareOptions, locale ILocale) IString
 	GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer unsafe.Pointer, maxBufferCount uint, usedBufferCount unsafe.Pointer, encoding unsafe.Pointer, options NSStringEncodingConversionOptions, range_ Range, leftover unsafe.Pointer) bool
-	GetCString(bytes unsafe.Pointer)
-	GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint)
 	GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding unsafe.Pointer) bool
-	GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange Range, leftoverRange unsafe.Pointer)
 	GetCharacters(buffer unichar)
 	GetCharactersRange(buffer unichar, range_ Range)
 	GetFileSystemRepresentationMaxLength(cname unsafe.Pointer, max uint) bool
@@ -89,14 +75,12 @@ type IString interface {
 	IsEqualToString(aString string) bool
 	LengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
 	LineRangeForRange(range_ Range) Range
-	LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string
 	LocalizedCaseInsensitiveCompare(string_ string) NSComparisonResult
 	LocalizedCaseInsensitiveContainsString(str string) bool
 	LocalizedCompare(string_ string) NSComparisonResult
 	LocalizedStandardCompare(string_ string) NSComparisonResult
 	LocalizedStandardContainsString(str string) bool
 	LocalizedStandardRangeOfString(str string) Range
-	LossyCString() unsafe.Pointer
 	LowercaseStringWithLocale(locale ILocale) IString
 	MaximumLengthOfBytesUsingEncoding(enc unsafe.Pointer) uint
 	StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString string, padIndex uint) IString
@@ -115,13 +99,7 @@ type IString interface {
 	StringByReplacingCharactersInRangeWithString(range_ Range, replacement string) IString
 	StringByReplacingOccurrencesOfStringWithString(target string, replacement string) IString
 	StringByReplacingOccurrencesOfStringWithStringOptionsRange(target string, replacement string, options NSStringCompareOptions, searchRange Range) IString
-	StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) IString
 	SizeWithAttributes(attrs IDictionary) coregraphics.CGSize
-	SizeWithFont(font objectivec.IObject) coregraphics.CGSize
-	SizeWithFontConstrainedToSize(font objectivec.IObject, size coregraphics.CGSize) coregraphics.CGSize
-	SizeWithFontConstrainedToSizeLineBreakMode(font objectivec.IObject, size coregraphics.CGSize, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	SizeWithFontForWidthLineBreakMode(font objectivec.IObject, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize
-	SizeWithFontMinFontSizeActualFontSizeForWidthLineBreakMode(font objectivec.IObject, minFontSize float64, actualFontSize coregraphics.float64, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize
 	Sr_sensorForDeletionRecordsFromSensor() unsafe.Pointer
 	StringByAppendingFormat(format string) IString
 	StringsByAppendingPaths(paths []string) []string
@@ -131,9 +109,7 @@ type IString interface {
 	StringByTrimmingCharactersInSet(set ICharacterSet) IString
 	UppercaseStringWithLocale(locale ILocale) IString
 	VariantFittingPresentationWidth(width int) IString
-	WriteToURLAtomically(url IURL, atomically bool) bool
 	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool
-	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
 	WriteToFileAtomicallyEncodingError(path string, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool
 	StringByAbbreviatingWithTildeInPath() string
 	BoolValue() bool
@@ -835,16 +811,6 @@ func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedChara
 }
 
 
-// Returns a representation of the receiver using a given encoding to determine the percent escapes necessary to convert the receiver into a legal URL string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/addingPercentEscapes(using:)
-func (s_ String) StringByAddingPercentEscapesUsingEncoding(enc unsafe.Pointer) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEscapesUsingEncoding:"), enc)
-	return rv
-}
-
-
 // Returns a new string made by appending a given string to the receiver.
 //
 // [Full Topic]
@@ -867,7 +833,7 @@ func (s_ String) StringByAppendingPathComponent(str string) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
-func (s_ String) StringByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IString {
+func (s_ String) StringByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
@@ -885,7 +851,7 @@ func (s_ String) StringByAppendingPathExtension(str string) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
-func (s_ String) StringByAppendingPathExtensionForType(contentType unsafe.Pointer) IString {
+func (s_ String) StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
@@ -921,32 +887,12 @@ func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size coregraphics.
 }
 
 
-// Returns a representation of the receiver as a C string in the default C-string encoding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/cString()
-func (s_ String) CString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cString"))
-	return rv
-}
-
-
 // Returns a representation of the string as a C string using a given encoding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/cString(using:)
 func (s_ String) CStringUsingEncoding(encoding unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("cStringUsingEncoding:"), encoding)
-	return rv
-}
-
-
-// Returns the length in char-sized units of the receiver’s C-string representation in the default C-string encoding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/cStringLength()
-func (s_ String) CStringLength() uint {
-	rv := objc.Send[uint](s_.ID, objc.Sel("cStringLength"))
 	return rv
 }
 
@@ -1137,91 +1083,12 @@ func (s_ String) DrawWithRectOptionsAttributesContext(rect coregraphics.CGRect, 
 }
 
 
-// Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:
-func (s_ String) DrawAtPointForWidthWithFontFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font objectivec.IObject, fontSize float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:"), point, width, font, fontSize, lineBreakMode, baselineAdjustment)
-	return rv
-}
-
-
-// Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:lineBreakMode:
-func (s_ String) DrawAtPointForWidthWithFontLineBreakMode(point coregraphics.CGPoint, width float64, font objectivec.IObject, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:lineBreakMode:"), point, width, font, lineBreakMode)
-	return rv
-}
-
-
-// Draws the string in a single line with the specified font and attributes, adjusting the font attributes as needed to render as much of the text as possible.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:
-func (s_ String) DrawAtPointForWidthWithFontMinFontSizeActualFontSizeLineBreakModeBaselineAdjustment(point coregraphics.CGPoint, width float64, font objectivec.IObject, minFontSize float64, actualFontSize coregraphics.float64, lineBreakMode unsafe.Pointer, baselineAdjustment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:"), point, width, font, minFontSize, actualFontSize, lineBreakMode, baselineAdjustment)
-	return rv
-}
-
-
-// Draws the string in a single line at the specified point in the current graphics context using the specified font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawAtPoint:withFont:
-func (s_ String) DrawAtPointWithFont(point coregraphics.CGPoint, font objectivec.IObject) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawAtPoint:withFont:"), point, font)
-	return rv
-}
-
-
-// Draws the string in the current graphics context using the specified bounding rectangle and font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:
-func (s_ String) DrawInRectWithFont(rect coregraphics.CGRect, font objectivec.IObject) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:"), rect, font)
-	return rv
-}
-
-
-// Draws the string in the current graphics context using the specified bounding rectangle, font, and attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:lineBreakMode:
-func (s_ String) DrawInRectWithFontLineBreakMode(rect coregraphics.CGRect, font objectivec.IObject, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:lineBreakMode:"), rect, font, lineBreakMode)
-	return rv
-}
-
-
-// Draws the string in the current graphics context using the specified bounding rectangle, font and attributes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/drawInRect:withFont:lineBreakMode:alignment:
-func (s_ String) DrawInRectWithFontLineBreakModeAlignment(rect coregraphics.CGRect, font objectivec.IObject, lineBreakMode unsafe.Pointer, alignment unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("drawInRect:withFont:lineBreakMode:alignment:"), rect, font, lineBreakMode, alignment)
-	return rv
-}
-
-
 // Enumerates all the lines in the string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateLines(_:)
 func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateLinesUsingBlock:"), block)
-}
-
-
-// Performs linguistic analysis on the specified string by enumerating the specific range of the string, providing the Block with the located tags.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateLinguisticTags(in:scheme:options:orthography:using:)
-func (s_ String) EnumerateLinguisticTagsInRangeSchemeOptionsOrthographyUsingBlock(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, block unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:"), range_, scheme, options, orthography, block)
 }
 
 
@@ -1254,24 +1121,6 @@ func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(b
 }
 
 
-// Invokes with as the maximum length, the receiver’s entire extent as the range, and for the remaining range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:)
-func (s_ String) GetCString(bytes unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("getCString:"), bytes)
-}
-
-
-// Invokes with as the maximum length in char-sized units, the receiver’s entire extent as the range, and for the remaining range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:maxLength:)
-func (s_ String) GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("getCString:maxLength:"), bytes, maxLength)
-}
-
-
 // Converts the string to a given encoding and stores it in a buffer.
 //
 // [Full Topic]
@@ -1279,15 +1128,6 @@ func (s_ String) GetCStringMaxLength(bytes unsafe.Pointer, maxLength uint) {
 func (s_ String) GetCStringMaxLengthEncoding(buffer unsafe.Pointer, maxBufferCount uint, encoding unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getCString:maxLength:encoding:"), buffer, maxBufferCount, encoding)
 	return rv
-}
-
-
-// Converts the receiver’s content to the default C-string encoding and stores them in a given buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCString(_:maxLength:range:remaining:)
-func (s_ String) GetCStringMaxLengthRangeRemainingRange(bytes unsafe.Pointer, maxLength uint, aRange Range, leftoverRange unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("getCString:maxLength:range:remainingRange:"), bytes, maxLength, aRange, leftoverRange)
 }
 
 
@@ -1387,16 +1227,6 @@ func (s_ String) LineRangeForRange(range_ Range) Range {
 }
 
 
-// Returns an array of linguistic tags for the specified range and requested tags within the receiving string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/linguisticTags(in:scheme:options:orthography:tokenRanges:)
-func (s_ String) LinguisticTagsInRangeSchemeOptionsOrthographyTokenRanges(range_ Range, scheme unsafe.Pointer, options NSLinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string {
-	rv := objc.Send[[]string](s_.ID, objc.Sel("linguisticTagsInRange:scheme:options:orthography:tokenRanges:"), range_, scheme, options, orthography, tokenRanges)
-	return rv
-}
-
-
 // Compares the string with a given string using a case-insensitive, localized, comparison.
 //
 // [Full Topic]
@@ -1453,16 +1283,6 @@ func (s_ String) LocalizedStandardContainsString(str string) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/localizedStandardRange(of:)
 func (s_ String) LocalizedStandardRangeOfString(str string) Range {
 	rv := objc.Send[Range](s_.ID, objc.Sel("localizedStandardRangeOfString:"), objc.String(str))
-	return rv
-}
-
-
-// Returns a representation of the receiver as a C string in the default C-string encoding, possibly losing information in converting to that encoding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/lossyCString()
-func (s_ String) LossyCString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lossyCString"))
 	return rv
 }
 
@@ -1647,72 +1467,12 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(targ
 }
 
 
-// Returns a new string made by replacing in the receiver all percent escapes with the matching characters as determined by a given encoding.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/replacingPercentEscapes(using:)
-func (s_ String) StringByReplacingPercentEscapesUsingEncoding(enc unsafe.Pointer) IString {
-	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingPercentEscapesUsingEncoding:"), enc)
-	return rv
-}
-
-
 // Returns the bounding box size the receiver occupies when drawn with the given attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/size(withAttributes:)
 func (s_ String) SizeWithAttributes(attrs IDictionary) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
-	return rv
-}
-
-
-// Returns the size of the string if it were to be rendered with the specified font on a single line.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:
-func (s_ String) SizeWithFont(font objectivec.IObject) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:"), font)
-	return rv
-}
-
-
-// Returns the size of the string if it were rendered and constrained to the specified size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:constrainedToSize:
-func (s_ String) SizeWithFontConstrainedToSize(font objectivec.IObject, size coregraphics.CGSize) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:constrainedToSize:"), font, size)
-	return rv
-}
-
-
-// Returns the size of the string if it were rendered with the specified constraints.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:constrainedToSize:lineBreakMode:
-func (s_ String) SizeWithFontConstrainedToSizeLineBreakMode(font objectivec.IObject, size coregraphics.CGSize, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:constrainedToSize:lineBreakMode:"), font, size, lineBreakMode)
-	return rv
-}
-
-
-// Returns the size of the string if it were to be rendered with the specified font and line attributes on a single line.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:forWidth:lineBreakMode:
-func (s_ String) SizeWithFontForWidthLineBreakMode(font objectivec.IObject, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:forWidth:lineBreakMode:"), font, width, lineBreakMode)
-	return rv
-}
-
-
-// Returns the size of the string if it were rendered with the specified constraints, including a variable font size, on a single line.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:
-func (s_ String) SizeWithFontMinFontSizeActualFontSizeForWidthLineBreakMode(font objectivec.IObject, minFontSize float64, actualFontSize coregraphics.float64, width float64, lineBreakMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](s_.ID, objc.Sel("sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:"), font, minFontSize, actualFontSize, width, lineBreakMode)
 	return rv
 }
 
@@ -1805,32 +1565,12 @@ func (s_ String) VariantFittingPresentationWidth(width int) IString {
 }
 
 
-// Writes the contents of the receiver to the location specified by a given URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:)
-func (s_ String) WriteToURLAtomically(url IURL, atomically bool) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
-	return rv
-}
-
-
 // Writes the contents of the receiver to the URL specified by using the specified encoding.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(to:atomically:encoding:)
 func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc unsafe.Pointer, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
-	return rv
-}
-
-
-// Writes the contents of the receiver to the file specified by a given path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/write(toFile:atomically:)
-func (s_ String) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
 	return rv
 }
 

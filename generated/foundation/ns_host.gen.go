@@ -30,7 +30,6 @@ type _HostClass struct {
 // An interface definition for the [Host] class.
 type IHost interface {
 	objectivec.IObject
-	IsEqualToHost(aHost IHost) bool
 	Address() string
 	Addresses() []string
 	LocalizedName() string
@@ -167,16 +166,6 @@ func (hc _HostClass) IsHostCacheEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHost/setHostCacheEnabled:
 func (hc _HostClass) SetHostCacheEnabled(flag bool) {
 	objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("setHostCacheEnabled:"), flag)
-}
-
-
-// Indicates whether the receiver represents the same host as another object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/isEqual(to:)
-func (h_ Host) IsEqualToHost(aHost IHost) bool {
-	rv := objc.Send[bool](h_.ID, objc.Sel("isEqualToHost:"), aHost)
-	return rv
 }
 
 

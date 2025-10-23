@@ -30,12 +30,6 @@ type _NetServiceBrowserClass struct {
 // An interface definition for the [NetServiceBrowser] class.
 type INetServiceBrowser interface {
 	objectivec.IObject
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	SearchForBrowsableDomains()
-	SearchForRegistrationDomains()
-	SearchForServicesOfTypeInDomain(type_ string, domainString string)
-	Stop()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	IncludesPeerToPeer() bool
@@ -94,60 +88,6 @@ func NewNetServiceBrowser() NetServiceBrowser {
 }
 
 
-
-
-// Removes the receiver from the specified run loop.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/remove(from:forMode:)
-func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Adds the receiver to the specified run loop.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/schedule(in:forMode:)
-func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Initiates a search for domains visible to the host. This method returns immediately.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForBrowsableDomains()
-func (n_ NetServiceBrowser) SearchForBrowsableDomains() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForBrowsableDomains"))
-}
-
-
-// Initiates a search for domains in which the host may register services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForRegistrationDomains()
-func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForRegistrationDomains"))
-}
-
-
-// Starts a search for services of a particular type within a specific domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForServices(ofType:inDomain:)
-func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
-}
-
-
-// Halts a currently running search or resolution.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/stop()
-func (n_ NetServiceBrowser) Stop() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
-}
 
 
 // The delegate object for this instance.

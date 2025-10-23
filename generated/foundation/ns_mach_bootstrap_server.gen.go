@@ -29,10 +29,6 @@ type _MachBootstrapServerClass struct {
 // An interface definition for the [MachBootstrapServer] class.
 type IMachBootstrapServer interface {
 	IPortNameServer
-	PortForName(name string) IPort
-	PortForNameHost(name string, host string) IPort
-	RegisterPortName(port IPort, name string) bool
-	ServicePortWithName(name string) IPort
 }
 
 // A port name server that takes and returns Mach port objects.
@@ -96,46 +92,6 @@ func NewMachBootstrapServer() MachBootstrapServer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/sharedInstance
 func (mc _MachBootstrapServerClass) SharedInstance() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("sharedInstance"))
-	return rv
-}
-
-
-// Looks up and returns the port registered under the specified name on the local host.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/portForName:
-func (m_ MachBootstrapServer) PortForName(name string) IPort {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
-	return rv
-}
-
-
-// Looks up and returns the port registered under the specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/portForName:host:
-func (m_ MachBootstrapServer) PortForNameHost(name string, host string) IPort {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
-	return rv
-}
-
-
-// Registers a port with a specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/registerPort:name:
-func (m_ MachBootstrapServer) RegisterPortName(port IPort, name string) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
-	return rv
-}
-
-
-// Looks up and returns the port for the vended service that is registered under the specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachBootstrapServer/servicePortWithName:
-func (m_ MachBootstrapServer) ServicePortWithName(name string) IPort {
-	rv := objc.Send[Port](m_.ID, objc.Sel("servicePortWithName:"), objc.String(name))
 	return rv
 }
 

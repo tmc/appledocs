@@ -33,7 +33,6 @@ type IExtensionContext interface {
 	objectivec.IObject
 	CancelRequestWithError(error_ IError)
 	CompleteRequestReturningItemsCompletionHandler(items objectivec.IObject, completionHandler unsafe.Pointer)
-	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL IURL, broadcastConfiguration objectivec.IObject, setupInfo IDictionary)
 	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary)
 	DismissNotificationContentExtension()
 	InterfaceParametersDescription() IString
@@ -42,12 +41,11 @@ type IExtensionContext interface {
 	MediaPlayingStarted()
 	OpenURLCompletionHandler(URL IURL, completionHandler unsafe.Pointer)
 	PerformNotificationDefaultAction()
-	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize
 	HostedViewMaximumAllowedSize() coregraphics.CGSize
 	HostedViewMinimumAllowedSize() coregraphics.CGSize
 	InputItems() objc.ID
-	NotificationActions() []objc.ID
-	SetNotificationActions(value []objc.ID)
+	NotificationActions() []objectivec.IObject
+	SetNotificationActions(value []objectivec.IObject)
 	WidgetActiveDisplayMode() unsafe.Pointer
 	WidgetLargestAvailableDisplayMode() unsafe.Pointer
 	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
@@ -125,15 +123,6 @@ func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items 
 }
 
 
-// Tells the host app to complete the app extension request with the specified broadcast information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:broadcastConfiguration:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL IURL, broadcastConfiguration objectivec.IObject, setupInfo IDictionary) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:broadcastConfiguration:setupInfo:"), broadcastURL, broadcastConfiguration, setupInfo)
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
 func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo IDictionary) {
@@ -199,16 +188,6 @@ func (e_ ExtensionContext) PerformNotificationDefaultAction() {
 }
 
 
-// Returns the maximum size for the specified widget display mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetMaximumSize(for:)
-func (e_ ExtensionContext) WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](e_.ID, objc.Sel("widgetMaximumSizeForDisplayMode:"), displayMode)
-	return rv
-}
-
-
 // The maximum size for a Siri hosted view.
 //
 // [Full Topic]
@@ -241,15 +220,15 @@ func (e_ ExtensionContext) InputItems() objc.ID {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
-func (e_ ExtensionContext) NotificationActions() []objc.ID {
-	rv := objc.Send[[]objc.ID](e_.ID, objc.Sel("notificationActions"))
+func (e_ ExtensionContext) NotificationActions() []objectivec.IObject {
+	rv := objc.Send[[]objectivec.IObject](e_.ID, objc.Sel("notificationActions"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
-func (e_ ExtensionContext) SetNotificationActions(value []objc.ID) {
+func (e_ ExtensionContext) SetNotificationActions(value []objectivec.IObject) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

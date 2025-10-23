@@ -43,7 +43,6 @@ type IUserDefaults interface {
 	ObjectIsForcedForKey(key string) bool
 	ObjectIsForcedForKeyInDomain(key string, domain string) bool
 	PersistentDomainForName(domainName string) IDictionary
-	PersistentDomainNames() IArray
 	RegisterDefaults(registrationDictionary IDictionary)
 	RemoveObjectForKey(defaultName string)
 	RemovePersistentDomainForName(domainName string)
@@ -286,16 +285,6 @@ func (u_ UserDefaults) ObjectIsForcedForKeyInDomain(key string, domain string) b
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/persistentDomain(forName:)
 func (u_ UserDefaults) PersistentDomainForName(domainName string) IDictionary {
 	rv := objc.Send[IDictionary](u_.ID, objc.Sel("persistentDomainForName:"), objc.String(domainName))
-	return rv
-}
-
-
-// Returns an array of the current persistent domain names.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/persistentDomainNames()
-func (u_ UserDefaults) PersistentDomainNames() IArray {
-	rv := objc.Send[Array](u_.ID, objc.Sel("persistentDomainNames"))
 	return rv
 }
 

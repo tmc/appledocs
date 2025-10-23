@@ -29,8 +29,6 @@ type _MessagePortNameServerClass struct {
 // An interface definition for the [MessagePortNameServer] class.
 type IMessagePortNameServer interface {
 	IPortNameServer
-	PortForName(name string) IPort
-	PortForNameHost(name string, host string) IPort
 }
 
 // A server takes and returns message ports.
@@ -94,26 +92,6 @@ func NewMessagePortNameServer() MessagePortNameServer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/sharedInstance
 func (mc _MessagePortNameServerClass) SharedInstance() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("sharedInstance"))
-	return rv
-}
-
-
-// Returns the object registered under a given name on the local host.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:
-func (m_ MessagePortNameServer) PortForName(name string) IPort {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:"), objc.String(name))
-	return rv
-}
-
-
-// Returns the object registered under a given name on the local host.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:host:
-func (m_ MessagePortNameServer) PortForNameHost(name string, host string) IPort {
-	rv := objc.Send[Port](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
 

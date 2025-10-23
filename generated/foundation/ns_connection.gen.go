@@ -30,16 +30,6 @@ type _ConnectionClass struct {
 // An interface definition for the [Connection] class.
 type IConnection interface {
 	objectivec.IObject
-	AddRequestMode(rmode string)
-	AddRunLoop(runloop IRunLoop)
-	DispatchWithComponents(components objectivec.IObject)
-	EnableMultipleThreads()
-	Invalidate()
-	RegisterName(name string) bool
-	RegisterNameWithNameServer(name string, server IPortNameServer) bool
-	RemoveRequestMode(rmode string)
-	RemoveRunLoop(runloop IRunLoop)
-	RunInNewThread()
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	IndependentConversationQueueing() bool
@@ -224,98 +214,6 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name string, root
 func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name string, root objectivec.IObject, server IPortNameServer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:usingNameServer:"), objc.String(name), root, server)
 	return rv
-}
-
-
-// Adds to the set of run-loop input modes that the receiver uses for connection requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRequestMode:
-func (c_ Connection) AddRequestMode(rmode string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addRequestMode:"), objc.String(rmode))
-}
-
-
-// Adds the specified run loop to the list of run loops the receiver monitors and from which it responds to requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/addRunLoop:
-func (c_ Connection) AddRunLoop(runloop IRunLoop) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addRunLoop:"), runloop)
-}
-
-
-// Allows subclasses to ask a connection object to dispatch component data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/dispatchWithComponents:
-func (c_ Connection) DispatchWithComponents(components objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("dispatchWithComponents:"), components)
-}
-
-
-// Configures the receiver to allow requests from multiple threads to the remote object, without requiring each thread to each maintain its own connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/enableMultipleThreads
-func (c_ Connection) EnableMultipleThreads() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("enableMultipleThreads"))
-}
-
-
-// Invalidates the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/invalidate
-func (c_ Connection) Invalidate() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("invalidate"))
-}
-
-
-// Registers the specified service using with the default system port name server.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:
-func (c_ Connection) RegisterName(name string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:"), objc.String(name))
-	return rv
-}
-
-
-// Registers a service with the specified port name server.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/registerName:withNameServer:
-func (c_ Connection) RegisterNameWithNameServer(name string, server IPortNameServer) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("registerName:withNameServer:"), objc.String(name), server)
-	return rv
-}
-
-
-// Removes from the set of run-loop input modes the receiver uses for connection requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRequestMode:
-func (c_ Connection) RemoveRequestMode(rmode string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeRequestMode:"), objc.String(rmode))
-}
-
-
-// Removes a given object from the list of run loops the receiver monitors and from which it responds to requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/removeRunLoop:
-func (c_ Connection) RemoveRunLoop(runloop IRunLoop) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeRunLoop:"), runloop)
-}
-
-
-// Creates and starts a new object and then runs the receiving connection in the new thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/runInNewThread
-func (c_ Connection) RunInNewThread() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("runInNewThread"))
 }
 
 

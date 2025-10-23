@@ -46,7 +46,6 @@ type IURLSession interface {
 	GetTasksWithCompletionHandler(completionHandler unsafe.Pointer)
 	InvalidateAndCancel()
 	ResetWithCompletionHandler(completionHandler unsafe.Pointer)
-	StreamTaskWithNetService(service INetService) IURLSessionStreamTask
 	StreamTaskWithHostNamePort(hostname string, port int) IURLSessionStreamTask
 	UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) IURLSessionUploadTask
 	UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask
@@ -319,16 +318,6 @@ func (u_ URLSession) InvalidateAndCancel() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/reset(completionHandler:)
 func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resetWithCompletionHandler:"), completionHandler)
-}
-
-
-// Creates a task that establishes a bidirectional TCP/IP connection using a specified network service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/streamTask(with:)
-func (u_ URLSession) StreamTaskWithNetService(service INetService) IURLSessionStreamTask {
-	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithNetService:"), service)
-	return rv
 }
 
 

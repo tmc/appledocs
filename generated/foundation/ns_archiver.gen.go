@@ -30,7 +30,6 @@ type _ArchiverClass struct {
 // An interface definition for the [Archiver] class.
 type IArchiver interface {
 	ICoder
-	EncodeRootObject(rootObject objectivec.IObject)
 	ArchiverData() IMutableData
 	SetArchiverData(value IMutableData)
 }
@@ -88,15 +87,6 @@ func NewArchiver() Archiver {
 	return getArchiverClass().New()
 }
 
-
-
-// Archives a given object along with all the objects to which it is connected.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/encodeRootObject(_:)
-func (a_ Archiver) EncodeRootObject(rootObject objectivec.IObject) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("encodeRootObject:"), rootObject)
-}
 
 
 // The receiver’s archive data.

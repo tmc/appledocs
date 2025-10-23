@@ -31,10 +31,10 @@ type _URLClass struct {
 type IURL interface {
 	objectivec.IObject
 	URLByAppendingPathComponent(pathComponent string) IURL
-	URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IURL
+	URLByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IURL
 	URLByAppendingPathComponentIsDirectory(pathComponent string, isDirectory bool) IURL
 	URLByAppendingPathExtension(pathExtension string) IURL
-	URLByAppendingPathExtensionForType(contentType unsafe.Pointer) IURL
+	URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL
 	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options NSURLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
 	FileReferenceURL() IURL
@@ -414,7 +414,7 @@ func (u_ URL) URLByAppendingPathComponent(pathComponent string) IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:conformingTo:)
-func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, contentType unsafe.Pointer) IURL {
+func (u_ URL) URLByAppendingPathComponentConformingToType(partialName string, contentType objectivec.IObject) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), objc.String(partialName), contentType)
 	return rv
 }
@@ -444,7 +444,7 @@ func (u_ URL) URLByAppendingPathExtension(pathExtension string) IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathExtension(for:)
-func (u_ URL) URLByAppendingPathExtensionForType(contentType unsafe.Pointer) IURL {
+func (u_ URL) URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathExtensionForType:"), contentType)
 	return rv
 }

@@ -30,8 +30,6 @@ type _MorphologyClass struct {
 // An interface definition for the [Morphology] class.
 type IMorphology interface {
 	objectivec.IObject
-	CustomPronounForLanguage(language string) IMorphologyCustomPronoun
-	SetCustomPronounForLanguageError(features IMorphologyCustomPronoun, language string, error_ IError) bool
 	Definiteness() NSGrammaticalDefiniteness
 	SetDefiniteness(value NSGrammaticalDefiniteness)
 	Determination() NSGrammaticalDetermination
@@ -112,26 +110,6 @@ func (mc _MorphologyClass) UserMorphology() Morphology {
 	rv := objc.Send[NSMorphology](objc.ID(mc.class), objc.Sel("userMorphology"))
 	return rv
 }
-
-// Returns any custom pronoun behavior this morphology applies to the given language.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/customPronounForLanguage:
-func (m_ Morphology) CustomPronounForLanguage(language string) IMorphologyCustomPronoun {
-	rv := objc.Send[MorphologyCustomPronoun](m_.ID, objc.Sel("customPronounForLanguage:"), objc.String(language))
-	return rv
-}
-
-
-// Sets a custom pronoun behavior for this morphology to apply to the given language.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/setCustomPronoun:forLanguage:error:
-func (m_ Morphology) SetCustomPronounForLanguageError(features IMorphologyCustomPronoun, language string, error_ IError) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setCustomPronoun:forLanguage:error:"), features, objc.String(language), error_)
-	return rv
-}
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphology/definiteness

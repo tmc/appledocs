@@ -30,18 +30,6 @@ type _NetServiceClass struct {
 // An interface definition for the [NetService] class.
 type INetService interface {
 	objectivec.IObject
-	GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool
-	Publish()
-	PublishWithOptions(options NSNetServiceOptions)
-	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	Resolve()
-	ResolveWithTimeout(timeout TimeInterval)
-	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
-	SetTXTRecordData(recordData IData) bool
-	StartMonitoring()
-	Stop()
-	StopMonitoring()
-	TXTRecordData() IData
 	Addresses() []Data
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
@@ -148,117 +136,6 @@ func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary IDictionary
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
 func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionary {
 	rv := objc.Send[IDictionary](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
-	return rv
-}
-
-
-// Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
-func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
-	return rv
-}
-
-
-// Attempts to advertise the receiver’s on the network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish()
-func (n_ NetService) Publish() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("publish"))
-}
-
-
-// Attempts to advertise the receiver on the network, with the given options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
-func (n_ NetService) PublishWithOptions(options NSNetServiceOptions) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
-}
-
-
-// Removes the service from the given run loop for a given mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
-func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Starts a resolve process for the service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve()
-func (n_ NetService) Resolve() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("resolve"))
-}
-
-
-// Starts a resolve process of a finite duration for the service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve(withTimeout:)
-func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("resolveWithTimeout:"), timeout)
-}
-
-
-// Adds the service to the specified run loop.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
-func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
-}
-
-
-// Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
-func (n_ NetService) SetTXTRecordData(recordData IData) bool {
-	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
-	return rv
-}
-
-
-// Starts the monitoring of TXT-record updates for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/startMonitoring()
-func (n_ NetService) StartMonitoring() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("startMonitoring"))
-}
-
-
-// Halts a currently running attempt to publish or resolve a service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stop()
-func (n_ NetService) Stop() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("stop"))
-}
-
-
-// Stops the monitoring of TXT-record updates for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/stopMonitoring()
-func (n_ NetService) StopMonitoring() {
-	objc.Send[objc.ID](n_.ID, objc.Sel("stopMonitoring"))
-}
-
-
-// Returns the TXT record for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
-func (n_ NetService) TXTRecordData() IData {
-	rv := objc.Send[Data](n_.ID, objc.Sel("TXTRecordData"))
 	return rv
 }
 

@@ -31,7 +31,6 @@ type _TaskClass struct {
 type ITask interface {
 	objectivec.IObject
 	Interrupt()
-	Launch()
 	Resume() bool
 	LaunchAndReturnError(error_ IError) bool
 	Suspend() bool
@@ -151,15 +150,6 @@ func (tc _TaskClass) LaunchedTaskWithExecutableURLArgumentsErrorTerminationHandl
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/interrupt()
 func (t_ Task) Interrupt() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("interrupt"))
-}
-
-
-// Launches the task represented by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launch()
-func (t_ Task) Launch() {
-	objc.Send[objc.ID](t_.ID, objc.Sel("launch"))
 }
 
 

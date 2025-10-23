@@ -47,7 +47,6 @@ type IXMLElement interface {
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
 	ResolveNamespaceForName(name string) IXMLNode
 	ResolvePrefixForNamespaceURI(namespaceURI string) IString
-	SetAttributesAsDictionary(attributes objectivec.IObject)
 	SetAttributesWithDictionary(attributes IDictionary)
 	SetChildren(children []XMLNode)
 	Attributes() []XMLNode
@@ -327,15 +326,6 @@ func (x_ XMLElement) ResolveNamespaceForName(name string) IXMLNode {
 func (x_ XMLElement) ResolvePrefixForNamespaceURI(namespaceURI string) IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("resolvePrefixForNamespaceURI:"), objc.String(namespaceURI))
 	return rv
-}
-
-
-// Sets the attributes of the receiver based on the key-value pairs specified in the passed-in dictionary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/setAttributesAs(_:)
-func (x_ XMLElement) SetAttributesAsDictionary(attributes objectivec.IObject) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setAttributesAsDictionary:"), attributes)
 }
 
 
