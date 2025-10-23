@@ -3,119 +3,6 @@
 package coregraphics
 
 // Enum types and constants
-// BitmapLayout enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout
-type BitmapLayout uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/abgr
-	kCGBitmapLayoutABGR BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/alphaOnly
-	kCGBitmapLayoutAlphaOnly BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/argb
-	kCGBitmapLayoutARGB BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/bgra
-	kCGBitmapLayoutBGRA BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/bgrx
-	kCGBitmapLayoutBGRX BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/cmyk
-	kCGBitmapLayoutCMYK BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/gray
-	kCGBitmapLayoutGray BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/grayAlpha
-	kCGBitmapLayoutGrayAlpha BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/rgba
-	kCGBitmapLayoutRGBA BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/rgbx
-	kCGBitmapLayoutRGBX BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/xbgr
-	kCGBitmapLayoutXBGR BitmapLayout = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/xrgb
-	kCGBitmapLayoutXRGB BitmapLayout = 0
-)
-
-// ColorModel enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel
-type ColorModel uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/cmyk
-	kCGColorModelCMYK ColorModel = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/deviceN
-	kCGColorModelDeviceN ColorModel = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/gray
-	kCGColorModelGray ColorModel = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/kCGColorModelNoColorant
-	kCGColorModelNoColorant ColorModel = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/lab
-	kCGColorModelLab ColorModel = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/rgb
-	kCGColorModelRGB ColorModel = 0
-)
-
-// Component enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent
-type Component uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/float16Bit
-	kCGComponentFloat16Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/float32Bit
-	kCGComponentFloat32Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer10Bit
-	kCGComponentInteger10Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer16Bit
-	kCGComponentInteger16Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer32Bit
-	kCGComponentInteger32Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer8Bit
-	kCGComponentInteger8Bit Component = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/unknown
-	kCGComponentUnknown Component = 0
-)
-
-// ImageComponentInfo enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo
-type ImageComponentInfo uint
-
-const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo/float
-	kCGImageComponentFloat ImageComponentInfo = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo/integer
-	kCGImageComponentInteger ImageComponentInfo = 0
-)
-
 // BitmapInfo - Component information for a bitmap image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapInfo
@@ -164,6 +51,50 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapInfo/kCGBitmapPixelFormatInfoMask
 	kCGBitmapPixelFormatInfoMask BitmapInfo = 0
+)
+
+// BitmapLayout enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout
+type BitmapLayout uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/abgr
+	kCGBitmapLayoutABGR BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/alphaOnly
+	kCGBitmapLayoutAlphaOnly BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/argb
+	kCGBitmapLayoutARGB BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/bgra
+	kCGBitmapLayoutBGRA BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/bgrx
+	kCGBitmapLayoutBGRX BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/cmyk
+	kCGBitmapLayoutCMYK BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/gray
+	kCGBitmapLayoutGray BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/grayAlpha
+	kCGBitmapLayoutGrayAlpha BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/rgba
+	kCGBitmapLayoutRGBA BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/rgbx
+	kCGBitmapLayoutRGBX BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/xbgr
+	kCGBitmapLayoutXBGR BitmapLayout = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapLayout/xrgb
+	kCGBitmapLayoutXRGB BitmapLayout = 0
 )
 
 // BlendMode - Compositing operations for images.
@@ -311,6 +242,32 @@ const (
 	kCGColorConversionTransformToSpace ColorConversionInfoTransformType = 0
 )
 
+// ColorModel enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel
+type ColorModel uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/cmyk
+	kCGColorModelCMYK ColorModel = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/deviceN
+	kCGColorModelDeviceN ColorModel = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/gray
+	kCGColorModelGray ColorModel = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/kCGColorModelNoColorant
+	kCGColorModelNoColorant ColorModel = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/lab
+	kCGColorModelLab ColorModel = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorModel/rgb
+	kCGColorModelRGB ColorModel = 0
+)
+
 // ColorRenderingIntent - Handling options for colors that are not located within the destination color space of a graphics context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRenderingIntent
@@ -345,6 +302,10 @@ const (
 type ColorSpaceModel uint
 
 const (
+	// kCGColorSpaceModelXYZ - An XYZ color space model.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceModel/XYZ
+	kCGColorSpaceModelXYZ ColorSpaceModel = 0
 	// kCGColorSpaceModelCMYK - A CMYK color space model.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceModel/cmyk
@@ -377,10 +338,35 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceModel/unknown
 	kCGColorSpaceModelUnknown ColorSpaceModel = 0
-	// kCGColorSpaceModelXYZ - An XYZ color space model.
+)
+
+// Component enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent
+type Component uint
+
+const (
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceModel/XYZ
-	kCGColorSpaceModelXYZ ColorSpaceModel = 0
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/float16Bit
+	kCGComponentFloat16Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/float32Bit
+	kCGComponentFloat32Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer10Bit
+	kCGComponentInteger10Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer16Bit
+	kCGComponentInteger16Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer32Bit
+	kCGComponentInteger32Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/integer8Bit
+	kCGComponentInteger8Bit Component = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGComponent/unknown
+	kCGComponentUnknown Component = 0
 )
 
 // ConfigureOption - The scope of the changes in a display configuration transaction.
@@ -941,14 +927,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapLocation/cgAnnotatedSessionEventTap
 	kCGAnnotatedSessionEventTap EventTapLocation = 0
-	// kCGHIDEventTap - Specifies that an event tap is placed at the point where HID system events enter the window server.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapLocation/cghidEventTap
-	kCGHIDEventTap EventTapLocation = 0
 	// kCGSessionEventTap - Specifies that an event tap is placed at the point where HID system and remote control events enter a login session.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapLocation/cgSessionEventTap
 	kCGSessionEventTap EventTapLocation = 0
+	// kCGHIDEventTap - Specifies that an event tap is placed at the point where HID system events enter the window server.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventTapLocation/cghidEventTap
+	kCGHIDEventTap EventTapLocation = 0
 )
 
 // EventTapOptions - Constants that specify whether a new event tap is an active filter or a passive listener.
@@ -1217,18 +1203,26 @@ const (
 	kCGImageByteOrderMask ImageByteOrderInfo = 0
 )
 
+// ImageComponentInfo enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo
+type ImageComponentInfo uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo/float
+	kCGImageComponentFloat ImageComponentInfo = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageComponentInfo/integer
+	kCGImageComponentInteger ImageComponentInfo = 0
+)
+
 // ImagePixelFormatInfo enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo
 type ImagePixelFormatInfo uint
 
 const (
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/mask
-	kCGImagePixelFormatMask ImagePixelFormatInfo = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/packed
-	kCGImagePixelFormatPacked ImagePixelFormatInfo = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/RGB101010
 	kCGImagePixelFormatRGB101010 ImagePixelFormatInfo = 0
@@ -1241,6 +1235,12 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/RGBCIF10
 	kCGImagePixelFormatRGBCIF10 ImagePixelFormatInfo = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/mask
+	kCGImagePixelFormatMask ImagePixelFormatInfo = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImagePixelFormatInfo/packed
+	kCGImagePixelFormatPacked ImagePixelFormatInfo = 0
 )
 
 // InterpolationQuality - Levels of interpolation quality for rendering an image.
@@ -1349,82 +1349,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMouseButton/right
 	kCGMouseButtonRight MouseButton = 0
-)
-
-// PathDrawingMode - Options for rendering a path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode
-type PathDrawingMode uint
-
-const (
-	// kCGPathEOFill - Render the area within the path using the even-odd rule.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/eoFill
-	kCGPathEOFill PathDrawingMode = 0
-	// kCGPathEOFillStroke - First fill and then stroke the path, using the even-odd rule.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/eoFillStroke
-	kCGPathEOFillStroke PathDrawingMode = 0
-	// kCGPathFill - Render the area contained within the path using the non-zero winding number rule.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/fill
-	kCGPathFill PathDrawingMode = 0
-	// kCGPathFillStroke - First fill and then stroke the path, using the nonzero winding number rule.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/fillStroke
-	kCGPathFillStroke PathDrawingMode = 0
-	// kCGPathStroke - Render a line along the path.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/stroke
-	kCGPathStroke PathDrawingMode = 0
-)
-
-// PathElementType - The type of element found in a path.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType
-type PathElementType uint
-
-const (
-	// kCGPathElementAddCurveToPoint - The path element that adds a cubic curve from the current point to the specified point.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addCurveToPoint
-	kCGPathElementAddCurveToPoint PathElementType = 0
-	// kCGPathElementAddLineToPoint - The path element that adds a line from the current point to a new point.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addLineToPoint
-	kCGPathElementAddLineToPoint PathElementType = 0
-	// kCGPathElementAddQuadCurveToPoint - The path element that adds a quadratic curve from the current point to the specified point.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addQuadCurveToPoint
-	kCGPathElementAddQuadCurveToPoint PathElementType = 0
-	// kCGPathElementCloseSubpath - The path element that closes and completes a subpath. The element does not contain any points. See the function  .
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/closeSubpath
-	kCGPathElementCloseSubpath PathElementType = 0
-	// kCGPathElementMoveToPoint - The path element that starts a new subpath.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/moveToPoint
-	kCGPathElementMoveToPoint PathElementType = 0
-)
-
-// PatternTiling - Different methods for rendering a tiled pattern.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling
-type PatternTiling uint
-
-const (
-	// kCGPatternTilingConstantSpacing - Pattern cells are spaced consistently, as with  .The pattern cell may be distorted additionally to permit a moreefficient implementation.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/constantSpacing
-	kCGPatternTilingConstantSpacing PatternTiling = 0
-	// kCGPatternTilingConstantSpacingMinimalDistortion - Pattern cells are spaced consistently. Thepattern cell may be distorted by as much as 1 device pixel whenthe pattern is painted.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/constantSpacingMinimalDistortion
-	kCGPatternTilingConstantSpacingMinimalDistortion PatternTiling = 0
-	// kCGPatternTilingNoDistortion - The pattern cell is not distorted when painted.The spacing between pattern cells may vary by as much as 1 devicepixel.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/noDistortion
-	kCGPatternTilingNoDistortion PatternTiling = 0
 )
 
 // PDFAccessPermissions enum type
@@ -1557,6 +1481,12 @@ const (
 type PDFTagType uint
 
 const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/TOC
+	PDFTagTypeTOC PDFTagType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/TOCI
+	PDFTagTypeTOCI PDFTagType = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/annotation
 	PDFTagTypeAnnotation PDFTagType = 0
@@ -1693,12 +1623,6 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/tableRow
 	PDFTagTypeTableRow PDFTagType = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/TOC
-	PDFTagTypeTOC PDFTagType = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/TOCI
-	PDFTagTypeTOCI PDFTagType = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/warichu
 	PDFTagTypeWarichu PDFTagType = 0
 	//
@@ -1707,6 +1631,82 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/warichuText
 	PDFTagTypeWarichuText PDFTagType = 0
+)
+
+// PathDrawingMode - Options for rendering a path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode
+type PathDrawingMode uint
+
+const (
+	// kCGPathEOFill - Render the area within the path using the even-odd rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/eoFill
+	kCGPathEOFill PathDrawingMode = 0
+	// kCGPathEOFillStroke - First fill and then stroke the path, using the even-odd rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/eoFillStroke
+	kCGPathEOFillStroke PathDrawingMode = 0
+	// kCGPathFill - Render the area contained within the path using the non-zero winding number rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/fill
+	kCGPathFill PathDrawingMode = 0
+	// kCGPathFillStroke - First fill and then stroke the path, using the nonzero winding number rule.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/fillStroke
+	kCGPathFillStroke PathDrawingMode = 0
+	// kCGPathStroke - Render a line along the path.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathDrawingMode/stroke
+	kCGPathStroke PathDrawingMode = 0
+)
+
+// PathElementType - The type of element found in a path.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType
+type PathElementType uint
+
+const (
+	// kCGPathElementAddCurveToPoint - The path element that adds a cubic curve from the current point to the specified point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addCurveToPoint
+	kCGPathElementAddCurveToPoint PathElementType = 0
+	// kCGPathElementAddLineToPoint - The path element that adds a line from the current point to a new point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addLineToPoint
+	kCGPathElementAddLineToPoint PathElementType = 0
+	// kCGPathElementAddQuadCurveToPoint - The path element that adds a quadratic curve from the current point to the specified point.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/addQuadCurveToPoint
+	kCGPathElementAddQuadCurveToPoint PathElementType = 0
+	// kCGPathElementCloseSubpath - The path element that closes and completes a subpath. The element does not contain any points. See the function  .
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/closeSubpath
+	kCGPathElementCloseSubpath PathElementType = 0
+	// kCGPathElementMoveToPoint - The path element that starts a new subpath.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathElementType/moveToPoint
+	kCGPathElementMoveToPoint PathElementType = 0
+)
+
+// PatternTiling - Different methods for rendering a tiled pattern.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling
+type PatternTiling uint
+
+const (
+	// kCGPatternTilingConstantSpacing - Pattern cells are spaced consistently, as with  .The pattern cell may be distorted additionally to permit a moreefficient implementation.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/constantSpacing
+	kCGPatternTilingConstantSpacing PatternTiling = 0
+	// kCGPatternTilingConstantSpacingMinimalDistortion - Pattern cells are spaced consistently. Thepattern cell may be distorted by as much as 1 device pixel whenthe pattern is painted.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/constantSpacingMinimalDistortion
+	kCGPatternTilingConstantSpacingMinimalDistortion PatternTiling = 0
+	// kCGPatternTilingNoDistortion - The pattern cell is not distorted when painted.The spacing between pattern cells may vary by as much as 1 devicepixel.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternTiling/noDistortion
+	kCGPatternTilingNoDistortion PatternTiling = 0
 )
 
 // ScreenUpdateOperation - Types of screen-update operations.

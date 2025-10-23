@@ -475,7 +475,7 @@ type ScreenRefreshCallback = func(uint32, unsafe.Pointer, unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScreenUpdateMoveCallback
 // CGScreenUpdateMoveCallback is a callback function
 // C type: void (*)(struct CGScreenUpdateMoveDelta, unsigned long, const struct CGRect *, void *)
-type ScreenUpdateMoveCallback = func(ScreenUpdateMoveDelta, uint, unsafe.Pointer, unsafe.Pointer)
+type ScreenUpdateMoveCallback = func(CGScreenUpdateMoveDelta, uint, unsafe.Pointer, unsafe.Pointer)
 // ShadingRef - A definition for a smooth transition between colors, controlled by a custom function you provide, for drawing radial and axial gradient fills.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading
